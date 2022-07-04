@@ -3,7 +3,7 @@
 Collection of notes from the books I read.
 
 This is intented to be only for my personal use,
-but my might be interested in what I read and
+but you might be interested in what I read and
 what I think about the books I have read.
 
 ## Bookmarks Grouped by Topic
