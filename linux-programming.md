@@ -52,3 +52,17 @@ Generally, reading headers' manual pages would help:
 * [stdlib.h(0p)](https://manpages.org/stdlibh)
 * [string.h(0p)](https://manpages.org/stringh)
 
+- - -
+
+## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
+<img alt="9781789349863" src="covers/9781789349863.jpg" width="200"/>
+
+> This books is the most update and best option for learning network programming in C.
+
+- - -
+
+## ★★★★★ [The Linux Programming Interface](https://www.amazon.com/Linux-Programming-Interface-System-Handbook/dp/1593272200/ref=mp_s_a_1_1?keywords=the+Linux+programming+interface&qid=1656499287&sr=8-1)
+<img alt="9781593272203" src="covers/9781593272203.jpg" width="200"/>
+
+> This is ultimate source to learn Linux system programming.
+
