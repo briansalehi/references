@@ -47,10 +47,10 @@ Environment functions:
 
 Generally, reading headers' manual pages would help:
 
-* [unistd.h(0p)](https://manpages.org/unistdh)
-* [stdio.h(0p)](https://manpages.org/stdioh)
-* [stdlib.h(0p)](https://manpages.org/stdlibh)
-* [string.h(0p)](https://manpages.org/stringh)
+* [unistd.h](https://manpages.org/unistdh)
+* [stdio.h](https://manpages.org/stdioh)
+* [stdlib.h](https://manpages.org/stdlibh)
+* [string.h](https://manpages.org/stringh)
 
 - - -
 
