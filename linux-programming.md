@@ -55,7 +55,7 @@ Generally, reading headers' manual pages would help:
 
 ### Chapter 3/12
 
-Link against math library, creat shared object,
+Link against math library, create shared object,
 change C standard in compiler options:
 
 * [gcc reference manual](https://gcc.gnu.org/onlinedocs/gcc-12.1.0/gcc/)
