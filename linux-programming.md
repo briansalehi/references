@@ -55,7 +55,55 @@ Generally, reading headers' manual pages would help:
 
 ### Chapter 3/12
 
+Link against math library, creat shared object,
+change C standard in compiler options:
 
+* [gcc reference manual](https://gcc.gnu.org/onlinedocs/gcc-12.1.0/gcc/)
+
+Print into terminal using a systemcall directly:
+
+* [intro(2)](https://manpages.org/intro/2)
+* [syscalls(2)](https://manpages.org/syscalls/2)
+* [write(2)](https://manpages.org/write/2)
+
+Get system resources and file system information:
+
+* [sysinfo(2)](https://manpages.org/sysinfo/2)
+* [getcwd(2)](https://manpages.org/getcwd/2)
+* [getuid(2)](https://manpages.org/getuid/2)
+* [geteuid(2)](https://manpages.org/geteuid/2)
+* [getpid(2)](https://manpages.org/getpid/2)
+* [getppid(2)](https://manpages.org/getppid/2)
+* [sys\_types.h](https://manpages.org/sys-typesh)
+
+Posix documentations can be found by `apropos -s7 posix`:
+
+* [aio(7)](https://manpages.org/aio/7)
+* [attributes(7)](https://manpages.org/attiributes/7)
+* [mq\_overview(7)](https://manpages.org/mq_overview/7)
+* [nptl(7)](https://manpages.org/nptl/7)
+* [posixoptions(7)](https://manpages.org/posixoptions/7)
+* [pthreads(7)](https://manpages.org/pthreads/7)
+* [regex(7)](https://manpages.org/regex/7)
+* [sem\_overview(7)](https://manpages.org/sem_overview/7)
+* [shm\_overview(7)](https://manpages.org/shm_overview/7)
+
+Use feature test macros:
+
+* [strdup(3)](https://manpages.org/strdup/3)
+* [feature\_test\_macros(7)](https://manpages.org/feature_test_macros/7)
+* [standards(7)](https://manpages.org/standards/7)
+* [libc(7)](https://manpages.org/libc/7)
+
+Inspect four stages of compilation:
+
+* [gcc(1)](https://manpages.org/gcc/1)
+* [gcc reference manual](https://gcc.gnu.org/onlinedocs/gcc-12.1.0/gcc/)
+
+Use make to build programs:
+
+* [make(1)](https://manpages.org/make/1)
+* [make reference manual](https://www.gnu.org/software/make/manual/html_node/)
 
 - - -
 
