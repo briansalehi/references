@@ -11,39 +11,40 @@ This major covers user space programming in C and C++.
 
 ### Chapter 1/12
 
-String handling and I/O functions:
+Get user input and sum numbers:
 
 * [printf(3)](https://manpages.org/printf/3)
 * [atoi(3)](https://manpages.org/atoi/3)
-* [strtol(3)](https://manpages.org/strtol/3)
 
-Argument parsing functions:
+Parse command-line options:
 
 * [getopt(3)](https://manpages.org/getopt/3)
 
 ### Chapter 2/12
 
-Termination control functions:
+Exit program when errors occured:
 
 * [exit(3)](https://manpages.org/exit/3)
 
-Program input and output control functions:
+Change case of user input and print into standard output and error
+using file descriptors:
 
 * [dprintf(3)](https://manpages.org/dprintf/3)
 * [fgets(3)](https://manpages.org/fgets/3)
 * [memset(3)](https://manpages.org/memset/3)
 
-String handling functions:
+Convert a temprature unit into another by filtering possible characters:
 
+* [strtol(3)](https://manpages.org/strtol/3)
 * [strspn(3)](https://manpages.org/strspn/3)
 * [strlen(3)](https://manpages.org/strlen/3)
-* [strstr(3)](https://manpages.org/strstr/3)
 * [strcmp(3)](https://manpages.org/strcmp/3)
 
-Environment functions:
+Print shell environments and check if shell supports colored output:
 
 * [getenv(3)](https://manpages.org/getenv/3)
 * [setenv(3)](https://manpages.org/setenv/3)
+* [strstr(3)](https://manpages.org/strstr/3)
 
 Generally, reading headers' manual pages would help:
 
@@ -51,6 +52,10 @@ Generally, reading headers' manual pages would help:
 * [stdio.h](https://manpages.org/stdioh)
 * [stdlib.h](https://manpages.org/stdlibh)
 * [string.h](https://manpages.org/stringh)
+
+### Chapter 3/12
+
+
 
 - - -
 
