@@ -105,6 +105,22 @@ Use make to build programs:
 * [make(1)](https://manpages.org/make/1)
 * [make reference manual](https://www.gnu.org/software/make/manual/html_node/)
 
+### Chapter 4/12
+
+Create a file using appropriate system call:
+
+* [strncpy(3)](https://manpages.org/strncpy/3)
+* [creat(2)](https://manpages.org/creat/2)
+* [limits.h](https://manpages.org/limitsh)
+* [fcntl.h](https://manpages.org/fcntlh)
+
+Check error numbers after system call:
+
+* [errno(3)](https://manpages.org/errno/3)
+* [strerror(3)](https://manpages.org/strerror/3)
+* [perror(3)](https://manpages.org/perror/3)
+* [errno.h](https://manpages.org/errnoh)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
