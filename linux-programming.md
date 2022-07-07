@@ -4,9 +4,9 @@ This major covers user space programming in C and C++.
 
 ## Table of Content
 
-* [Linux System Programming Techniques](#linux-system-programming-techniques)
-* [Hands-On Network Programming with C](#hands-on-network-programming-with-c)
-* [The Linux Programming Interface](the-linux-programming-interface)
+* [Linux System Programming Techniques](#-linux-system-programming-techniques)
+* [Hands-On Network Programming with C](#-hands-on-network-programming-with-c)
+* [The Linux Programming Interface](#-the-linux-programming-interface)
 
 - - -
 
