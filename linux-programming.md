@@ -217,6 +217,33 @@ Move around a file with file stream:
 * [fgetc(3)](https://manpages.org/fgetc/3)
 * [putchar(3)](https://manpages.org/putchar/3)
 
+### Chapter 6/12
+
+Handle signals:
+
+* [sigfillset(3)](https://manpages.org/sigfillset/3)
+* [sigaction(2)](https://manpages.org/sigaction/2)
+* [signal.h](httpsH//manpages.org/signalh)
+
+Ignore signals:
+
+* [sigemptyset(3)](https://manpages.org/sigemptyset/3)
+* [sigprocmask(3)](https://manpages.org/sigprocmask/3)
+* [sigaddset(3)](https://manpages.org/sigaddset/3)
+* [sigdelset(3)](https:/manpages.org/sigdelset/3)
+* [sigsetops(3)](https://manpages.org/sigsetops/3)
+
+* [signal(2) **[deprecated]**](https://manpages.org/signal/2)
+
+Replace execution of a forked process with another program:
+
+* [fork(2)](https://manpages.org/fork/2)
+* [execl(2)](https://manpages.org/exec/2)
+
+Run an external program without replacing execution of the process:
+
+* [system(2)](https://manpages.org/system/2)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
