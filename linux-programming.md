@@ -10,7 +10,7 @@ This major covers user space programming in C and C++.
 
 - - -
 
-## <p style="color:#F0AA00;">★★★★★</p> [Linux System Programming Techniques](https://www.amazon.com/Linux-System-Programming-Techniques-proficient/dp/1789951283)
+## <span style="color:#F0AA00;">★★★★★</span> [Linux System Programming Techniques](https://www.amazon.com/Linux-System-Programming-Techniques-proficient/dp/1789951283)
 <img alt="9781789951288" src="covers/9781789951288.jpg" width="200"/>
 
 > Consider this book essential after reading your first few C books.
