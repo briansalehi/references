@@ -286,6 +286,34 @@ Create a systemd style daemon:
 
 ### Chapter 8/12
 
+Use `libcurl` shared library to retrieve public IP:
+
+* [libcurl(3)](https://manpages.org/libcurl/3)
+* [curl\_easy\_init(3)](https://manpages.org/curl-easy-init/3)
+* [curl\_easy\_setopt(3)](https://manpages.org/curl-easy-setopt/3)
+* [curl\_easy\_perform(3)](https://manpages.org/curl-easy-perform/3)
+* [curl\_easy\_cleanup(3)](https://manpages.org/curl-easy-cleanup/3)
+
+Inspect function names in shared objects:
+
+* [nm(1)](https://manpages.org/nm/1)
+* [ar(1)](https://manpages.org/ar/1)
+* [strip(1)](https://manpages.org/strip/1)
+* [readelf(1)](https://manpages.org/readelf/1)
+* [file(1)](https://manpages.org/file/1)
+
+Create static and dynamic libraries:
+
+* [gcc(1)](https://manpages.org/gcc/1)
+* [gcc user manual](https://gcc.gnu.org/onlinedocs/gcc-12.1.0/gcc/)
+
+Install a dynamic library on system:
+
+* [ld(1)](https://manpages.org/ld/1)
+* [ldd(1)](https://manpages.org/ldd/1)
+* [ldconfig(8)](https://manpages.org/ldconfig/8)
+* [ld.so(8)](https://manpages.org/ldso/8)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
