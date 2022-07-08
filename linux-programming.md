@@ -314,6 +314,39 @@ Install a dynamic library on system:
 * [ldconfig(8)](https://manpages.org/ldconfig/8)
 * [ld.so(8)](https://manpages.org/ldso/8)
 
+### Chapter 9/12
+
+Inspect terminal information:
+
+* [tty(1)](https://manpages.org/tty/1)
+* [stty(1)](https://manpages.org/stty/1)
+
+Check if process connected to terminal:
+
+* [tty(4)](https://manpages.org/tty/4)
+* [isatty(3)](https://manpages.org/isatty/3)
+* [ttyname(3)](https://manpages.org/ttyname/3)
+
+Create a PTY:
+
+**Note:** a pts should be opened in both read and write mode.
+
+* [posix\_openpt(3)](https://manpages.org/posix-openpt/3)
+* [ptsname(3)](https://manpages.org/ptsname/3)
+* [grantpt(3)](https://manpages.org/grantpt/3)
+* [unlockpt(3)](https://manpages.org/unlockpt/3)
+* [fflush(3)](https://manpages.org/fflush/3)
+* [sprintf(3)](https://manpages.org/sprintf/3)
+* [write(2)](https://manpages.org/write/2)
+
+Disable echo on PTY:
+
+**Note:** to change terminal control, *termios* structure should be used.
+
+* [termios.h](https://manpages.org/termiosh)
+* [tcgetattr(3)](https://manpages.org/tcgetattr/3)
+* [tcsetattr(3)](https://manpages.org/tcsetattr/3)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
