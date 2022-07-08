@@ -10,7 +10,7 @@ This major covers user space programming in C and C++.
 
 - - -
 
-## <span style="color:#F0AA00;">★★★★★</span> [Linux System Programming Techniques](https://www.amazon.com/Linux-System-Programming-Techniques-proficient/dp/1789951283)
+## ★★★★★ [Linux System Programming Techniques](https://www.amazon.com/Linux-System-Programming-Techniques-proficient/dp/1789951283)
 <img alt="9781789951288" src="covers/9781789951288.jpg" width="200"/>
 
 > Consider this book essential after reading your first few C books.
@@ -252,14 +252,14 @@ Run an external program without replacing execution of the process:
 
 - - -
 
-## <span style="color:#F0AA00;">★★★★★</span> [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
+## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
 <img alt="9781789349863" src="covers/9781789349863.jpg" width="200"/>
 
 > This book is the most update and best option for learning network programming in C.
 
 - - -
 
-## <span style="color:#F0AA00;">★★★★★</span> [The Linux Programming Interface](https://www.amazon.com/Linux-Programming-Interface-System-Handbook/dp/1593272200/ref=mp_s_a_1_1?keywords=the+Linux+programming+interface&qid=1656499287&sr=8-1)
+## ★★★★★ [The Linux Programming Interface](https://www.amazon.com/Linux-Programming-Interface-System-Handbook/dp/1593272200/ref=mp_s_a_1_1?keywords=the+Linux+programming+interface&qid=1656499287&sr=8-1)
 <img alt="9781593272203" src="covers/9781593272203.jpg" width="200"/>
 
 > This is the ultimate source of learning Linux system programming.
