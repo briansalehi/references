@@ -245,10 +245,46 @@ Replace execution of a forked process with another program:
 
 * [fork(2)](https://manpages.org/fork/2)
 * [execl(2)](https://manpages.org/exec/2)
+* [waitpid(2)](https://manpages.org/waitpid/2)
+* [sys\_wait.h](https://manpages.org/sys-waith)
 
 Run an external program without replacing execution of the process:
 
 * [system(2)](https://manpages.org/system/2)
+
+Create a SysV style daemon running in background:
+
+**Note:** running a daemon requires two forks.  
+**Note:** first child should create a new session to escape user space.  
+**Note:** second child which is also the second parent, should create a pid file in `/var/run/`.  
+**Note:** third child which is the daemon should set `umask(2)` and change directory `chdir(2)` to root directory.  
+**Node:** daemon process should close standard streams.  
+**Node:** daemon process should open three file descriptors 0, 1 and 2 in `/dev/null`.  
+**Node:** daemon process should clean up on termination signals and remove pid file.
+
+* [setsid(2)](https://manpages.org/setsid/2)
+* [umask(2)](https://manpages.org/umask/2)
+* [chdir(2)](https://manpages.org/chdir/2)
+
+### Chapter 7/12
+
+Write systemd(1) unit file for a daemon:
+
+**Hint:** the least info should be `ExecStart` addressing daemon's executable, `Restart` to address its failure case.  
+**Hint:** the `Type` should be forking, and there should a `PIDFile` addressing daemon pid file.  
+**Note:** `After` and `Before` specify service ordering, while `Wants` and `Requires` specify dependency.  
+**Note:** `Wants` starts a service after dependency is met regardless of dependency status.  
+**Note:** `Requires` makes boot up to hang and waits for dependency until it's ready.
+
+* [systemd(1)](https://manpages.org/systemd/1)
+* [systemd.unit(5)](https://manpages.org/systemdunit/5)
+
+Create a systemd style daemon:
+
+**Note:** new style daemons won't fork, won't close standard streams, but they still need signal handling and clean up.
+**Note:** their systemd(1) unit file has `Type` of *simple* and `Restart` of *on-failure*.
+
+### Chapter 8/12
 
 - - -
 
