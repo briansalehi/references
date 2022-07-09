@@ -454,6 +454,13 @@ Use condition variables to synchronize threads when calculating primeness of num
 * [pthread\_cond\_signal(3)](https://manpages.org/pthread-cond-signal/3)
 * [pthread\_cond\_destroy(3)](https://manpages.org/pthread-cond-destroy/3)
 
+### Chapter 12/12
+
+Debug programs:
+
+* [gdb(1)](https://manpages.org/gdb/1)
+* [gdb manual reference](https://sourceware.org/gdb/current/onlinedocs/gdb/)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
