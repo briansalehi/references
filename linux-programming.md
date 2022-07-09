@@ -424,6 +424,36 @@ Create a client server communicating over Unix sockets:
 * [sys\_socket.h](https://manpages.org/sys-socketh)
 * [sys\_un.h](https://manpages.org/sys-unh)
 
+### Chapter 11/12
+
+Create two threads for *progress bar* and *is a prime number* functions:
+
+* [pthread\_attr\_init(3)](https://manpages.org/pthread-attr-init/3)
+* [pthread\_attr\_destroy(3)](https://manpages.org/pthread-attr-destroy/3)
+* [pthread\_create(3)](https://manpages.org/pthread-create/3)
+* [pthread\_detach(3)](https://manpages.org/pthread-detach/3)
+* [pthread\_cancel(3)](https://manpages.org/pthread-cancel/3)
+* [pthread\_join(3)](https://manpages.org/pthread-join/3)
+* [sleep(3)](https://manpages.org/sleep/3)
+* [pthread\_setcancelstate(3)](https://manpages.org/pthread-setcancelstate/3)
+* [pthreads(7)](https://manpages.org/pthreads/7)
+* [pthread.h](https://manpages.org/pthreadh)
+
+Synchronize threads to increase a global number:
+
+* [pthread\_mutex\_init(3)](https://manpages.org/pthread-mutex-init/3)
+* [pthread\_mutex\_lock(3)](https://manpages.org/pthread-mutex-lock/3)
+* [pthread\_mutex\_unlock(3)](https://manpages.org/pthread-mutex-unlock/3)
+* [pthread\_mutex\_destroy(3)](https://manpages.org/pthread-mutex-destroy/3)
+
+Use condition variables to synchronize threads when calculating primeness of numbers:
+
+* [pthread\_cond\_init(3)](https://manpages.org/pthread-cond-init/3)
+* [pthread\_cond\_wait(3)](https://manpages.org/pthread-cond-wait/3)
+* [pthread\_self(3)](https://manpages.org/pthread-self/3)
+* [pthread\_cond\_signal(3)](https://manpages.org/pthread-cond-signal/3)
+* [pthread\_cond\_destroy(3)](https://manpages.org/pthread-cond-destroy/3)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
