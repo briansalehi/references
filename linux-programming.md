@@ -356,6 +356,74 @@ Get terminal size:
 * [ioctl\_tty(2)]()
 * [console\_codes(4)]()
 
+### Chapter 10/12
+
+Write a kill switch for SysV style daemon sending a SIGTERM signal:
+
+**Hint:** kill switch finds daemon's PID through inspecting PID file in `/var/run/`.
+
+* [kill(2)](https://manpages.org/kill/2)
+
+Create a pipe between a parent and a forked child process:
+
+**Note:** parent and child should close irrelevant side of channel in pipe.
+
+* [fork(2)](https://manpages.org/fork/2)
+* [fcntl.h](https://manpages.org/fcntlh)
+
+Create a message sender and receiver using FIFO:
+
+**Hint:** service should clean up on signal.
+
+* [mkfifo(1)](https://manpages.org/mkfifo/1)
+* [fifo(7)](https://manpages.org/fifo/7)
+* [mkfifo(3)](https://manpages.org/mkfifo/3)
+* [close(2)](https://manpages.org/close/2)
+
+Create a message sender and receiver using message queue:
+
+**Note:** struct *mq_attr* should be initialized for message queues.  
+
+* [mq\_open(2)](https://manpages.org/mq-open/2)
+* [mq\_send(2)](https://manpages.org/mq-send/2)
+* [mq\_close(2)](https://manpages.org/mq-close/2)
+* [mqueue.h](https://manpages.org/mqueueh)
+
+**Note:** receiver should get message queue attributes after opening it.  
+**Note:** a buffer should be allocated for messages based on `mq_attr.msgsize`.  
+**Note:** buffer should be set to zero on each iteration.
+
+* [mq\_getattr(2)](https://manpages.org/mq-getattr/2)
+* [calloc(3)](https://manpages.org/calloc/3)
+* [free(3)](https://manpages.org/free/3)
+* [mq\_receive(2)](https://manpages.org/mq-receive/2)
+* [mq\_unlink(2)](https://manpages.org/mq-unlink/2)
+* [memset(3)](https://manpages.org/memset/3)
+
+Create a shared memory between a parent process and its child:
+
+* [shm\_open(3)](https://manpages.org/shm-open/3)
+* [ftruncate(2)](https://manpages.org/ftruncate/2)
+* [mmap(2)](https://manpages.org/mmap/2)
+* [memcpy(3)](https://manpages.org/memcpy/3)
+* [munmap(2)](https://manpages.org/munmap/2)
+* [shm\_unlink(2)](https://manpages.org/shm-unlink/2)
+* [sys\_mman.h](https://manpages.org/mmanh)
+
+Create a client server communicating over Unix sockets:
+
+* [socket(2)](https://manpages.org/socket/2)
+* [connect(2)](https://manpages.org/connect/2)
+* [send(2)](https://manpages.org/send/2)
+* [recv(2)](https://manpages.org/recv/2)
+* [bind(2)](https://manpages.org/bind/2)
+* [listen(2)](https://manpages.org/listen/2)
+* [accept(2)](https://manpages.org/accept/2)
+* [close(2)](https://manpages.org/close/2)
+* [unlink(2)](https://manpages.org/unlink/2)
+* [sys\_socket.h](https://manpages.org/sys-socketh)
+* [sys\_un.h](https://manpages.org/sys-unh)
+
 - - -
 
 ## ★★★★★ [Hands-On Network Programming with C](https://www.amazon.com/Hands-Network-Programming-programming-optimized/dp/1789349869/ref=mp_s_a_1_1?crid=1TNWEFU77MLI9&keywords=network+Programming+in+c&qid=1656491085&sprefix=network+programming+in+%2Caps%2C1749&sr=8-1)
