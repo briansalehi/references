@@ -231,6 +231,29 @@ Handle signals:
 * [sigaction(2)](https://manpages.org/sigaction/2)
 * [signal.h](httpsH//manpages.org/signalh)
 
+<details>
+<summary>sample code</summary>
+
+```c
+void signal_handler(int);
+
+int main(void)
+{
+    struct sigaction action;
+
+    action.sa_flags = SA_RESTART;
+    action.sa_handler = signal_handler;
+    sigfillset(&action.sa_mask);
+
+    sigaction(SIGHUP, &action, NULL);
+    sigaction(SIGINT, &action, NULL);
+
+    for (;;)
+        sleep(10);
+}
+```
+</details>
+
 Ignore signals:
 
 * [sigemptyset(3)](https://manpages.org/sigemptyset/3)
