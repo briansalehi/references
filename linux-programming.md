@@ -491,6 +491,67 @@ Debug programs:
 
 > This book is the most update and best option for learning network programming in C.
 
+### Chapter 1/14
+
+Read basic networking manuals:
+
+* [ip(8) tool](https://manpages.org/ip/8)
+* [ip(7)](https://manpages.org/ip/7)
+* [ipv6(7)](https://manpages.org/ipv6/7)
+* [socket(7)](https://manpages.org/socket/7)
+* [packet(7)](https://manpages.org/packet/7)
+* [services(5)](https://manpages.org/services/5)
+* [protocols(5)](https://manpages.org/protocols/5)
+* [address\_families(7)](https://manpages.org/address-families/7)
+* [tcp(7)](https://manpages.org/tcp/7)
+* [udp(7)](https://manpages.org/udp/7)
+* [raw(7)](https://manpages.org/raw/7)
+* [unix(7)](https://manpages.org/unix/7)
+* [icmp(7)](https://manpages.org/icmp/7)
+* [sctp(7)](https://manpages.org/sctp/7)
+* [udplite(7)](https://manpages.org/udplite/7)
+* [hostname(7)](https://manpages.org/hostname/7)
+
+List network interfaces:
+
+**Hint:** structure `ifaddrs` is used in network address operations.
+
+* [getifaddrs(3)](https://manpages.org/getifaddrs/3)
+* [freeifaddrs(3)](https://manpages.org/freeifaddrs/3)
+* [getnameinfo(3)](https://manpages.org/getnameinfo/3)
+* [gai\_strerror(3)](https://manpages.org/gai-strerror/3)
+* [sys\_socket.h](https://manpages.org/syssocketh)
+* [netdb.h](https://manpages.org/netdbh)
+* [ifaddrs.h](https://manpages.org/ifaddrsh)
+
+### Chapter 2/14
+
+### Chapter 3/14
+
+### Chapter 4/14
+
+### Chapter 5/14
+
+### Chapter 6/14
+
+### Chapter 7/14
+
+### Chapter 8/14
+
+* [mailaddr(7)](https://manpages.org/mailaddr/7)
+
+### Chapter 9/14
+
+### Chapter 10/14
+
+### Chapter 11/14
+
+### Chapter 12/14
+
+### Chapter 13/14
+
+### Chapter 14/14
+
 - - -
 
 ## ★★★★★ [The Linux Programming Interface](https://www.amazon.com/Linux-Programming-Interface-System-Handbook/dp/1593272200/ref=mp_s_a_1_1?keywords=the+Linux+programming+interface&qid=1656499287&sr=8-1)
