@@ -1,6 +1,9 @@
-# Bookmarks
+# Citation
 
-Collection of notes from the books I read.
+A collection of notes from the books I read mapped to
+their reference manual.
+
+## Motivation
 
 This is intented to be only for my personal use,
 but you might be interested in what I read and
@@ -13,4 +16,3 @@ what I think about the books I have read.
 * [Linux System Programming](linux-programming.md)
 * [Linux Kernel Programming](linux-kernel.md)
 * [Algorithms & Data Structure](algorithms.md)
-
