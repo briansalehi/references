@@ -520,11 +520,30 @@ List network interfaces:
 * [freeifaddrs(3)](https://manpages.org/freeifaddrs/3)
 * [getnameinfo(3)](https://manpages.org/getnameinfo/3)
 * [gai\_strerror(3)](https://manpages.org/gai-strerror/3)
+
 * [sys\_socket.h](https://manpages.org/syssocketh)
 * [netdb.h](https://manpages.org/netdbh)
 * [ifaddrs.h](https://manpages.org/ifaddrsh)
 
 ### Chapter 2/14
+
+* [memset(3)](https://manpages.org/memset/3)
+* [getaddrinfo(3)](https://manpages.org/getaddrinfo/3)
+* [freeaddrinfo(3)](https://manpages.org/freeaddrinfo/3)
+* [socket(2)](https://manpages.org/socket/2)
+* [bind(2)](https://manpages.org/bind/2)
+* [listen(2)](https://manpages.org/listen/2)
+* [accept(2)](https://manpages.org/accept/2)
+* [getnameinfo(3)](https://manpages.org/getnameinfo/3)
+* [send(2)](https://manpages.org/send/2)
+* [recv(2)](https://manpages.org/recv/2)
+
+* [string.h](https://manpages.org/string)
+* [sys\_socket.h](https://manpages.org/syssocketh)
+* [sys\_types.h](https://manpages.org/systypesh)
+* [netinet\_in.h](https://manpages.org/netinet_inh)
+* [arpa\_inet.h](https://manpages.org/arpa_ineth)
+* [netdb.h](https://manpages.org/netdbh)
 
 ### Chapter 3/14
 
