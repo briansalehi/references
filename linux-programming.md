@@ -35,18 +35,27 @@ Get user input and sum numbers:
 #include <stdlib.h>
 #include <errno.h>
 
+int print_user_value(char const* str);
+
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-    {
-        fprintf(stderr, "usage: %s <number>\n", argv[0]);
-        return 1;
-    }
+    int result = -1;
 
+    if (argc == 2)
+        result = print_user_value(argv[1]);
+    else
+        fprintf(stderr, "usage: %s <number>\n", argv[0]);
+
+    return result;
+}
+
+int print_user_value(char const* str)
+{
     errno = 0;
-    long double input = strtold(argv[1], NULL);
+    long double input = strtold(str, NULL);
+
     if (errno)
-        perror("cannot convert double");
+        perror("cannot convert to double");
     else
         fprintf(stdout, "%.2Lf", input);
 
