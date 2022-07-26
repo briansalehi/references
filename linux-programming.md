@@ -20,11 +20,92 @@ This major covers user space programming in C and C++.
 Get user input and sum numbers:
 
 * [printf(3)](https://manpages.org/printf/3)
-* [atoi(3)](https://manpages.org/atoi/3)
+* [atoi(3) [use strtod(3) instead]](https://manpages.org/atoi/3)
+* [strod(3)](https://manpages.org/strtod/3)
+
+<details>
+<summary>sample code<summary>
+
+```c
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 201712L
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        fprintf(stderr, "usage: %s <number>\n", argv[0]);
+        return 1;
+    }
+
+    errno = 0;
+    long double input = strtold(argv[1], NULL);
+    if (errno)
+        perror("cannot convert double");
+    else
+        fprintf(stdout, "%.2Lf", input);
+
+    return errno;
+}
+```
+</details>
 
 Parse command-line options:
 
-* [getopt(3)](https://manpages.org/getopt/3)
+* [getopt(3) [see EXAMPLES]](https://manpages.org/getopt/3)
+
+<details>
+<summary>sample code</summary>
+
+```c
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 201108L
+#endif
+
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE 5000L
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <getopt.h>
+#include <errno.h>
+
+int main(int argc, char **argv)
+{
+    int option = 0;
+
+    struct option longopts[] = {
+        {"help",  no_argument,       NULL, 'h'},
+        {"value", required_argument, NULL, 'a'}
+    };
+
+    while ((option = getopt_long(argc, argv, "hv:", longopts, NULL)) != -1)
+    {
+        switch (option)
+        {
+            case 'h':
+                fprintf(stdout, "usage: %s [-h] [-v <value>]\n", argv[0]);
+                break;
+            case 'v':
+                fprintf(stdout, "value: %s\n", optarg);
+                break;
+            case '?':
+                fprintf(stderr, "invalid argument\n");
+                break;
+            default:
+                fprintf(stderr, "usage: %s [-h] [-v <value>]\n", argv[0]);
+        }
+    }
+}
+```
+</details>
 
 ### Chapter 2/12
 
