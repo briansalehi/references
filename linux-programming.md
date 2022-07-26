@@ -24,7 +24,7 @@ Get user input and sum numbers:
 * [strod(3)](https://manpages.org/strtod/3)
 
 <details>
-<summary>sample code<summary>
+<summary>sample code</summary>
 
 ```c
 #ifndef _POSIX_C_SOURCE
