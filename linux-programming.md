@@ -20,7 +20,7 @@ This major covers user space programming in C and C++.
 Get user input and sum numbers:
 
 * [printf(3)](https://manpages.org/printf/3)
-* [atoi(3) [use strtod(3) instead]](https://manpages.org/atoi/3)
+* [atoi(3)](https://manpages.org/atoi/3) [use strtod(3) instead]
 * [strod(3)](https://manpages.org/strtod/3)
 
 <details>
@@ -66,7 +66,7 @@ int print_user_value(char const* str)
 
 Parse command-line options:
 
-* [getopt(3) [see EXAMPLES]](https://manpages.org/getopt/3)
+* [getopt(3)](https://manpages.org/getopt/3) [see EXAMPLES]
 
 <details>
 <summary>sample code</summary>
