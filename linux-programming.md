@@ -6,6 +6,7 @@ This major covers user space programming in C and C++.
 
 * [Linux System Programming Techniques](#-linux-system-programming-techniques)
 * [Hands-On Network Programming with C](#-hands-on-network-programming-with-c)
+* [Extreme C](#-extreme-c)
 * [The Linux Programming Interface](#-the-linux-programming-interface)
 
 - - -
@@ -659,6 +660,18 @@ List network interfaces:
 ### Chapter 13/14
 
 ### Chapter 14/14
+
+- - -
+
+## ★★★★★ [Extreme C](https://www.amazon.com/Extreme-Taking-Concurrency-advanced-capabilities-ebook/dp/B07XYX6FQL/ref=sr_1_1?keywords=extreme+c&qid=1659089535&sr=8-1)
+<img alt="9781789343625" src="covers/9781789343625.jpg" width="200"/>
+
+> Being an expert both in C and C++ won't justify not reading this book.
+> This book explains differently about various topics like compilation process,
+> object oriented concepts, concurrency and parallelism, and network programming,
+> and makes you become an insider and think better about all above topics.
+
+### Chapter 1/23
 
 - - -
 
