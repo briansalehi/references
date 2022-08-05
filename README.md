@@ -1,7 +1,7 @@
 # Citation
 
-A collection of notes from the books I read mapped to
-their reference manual.
+A collection of notes from the books I have read and
+mapped to their corresponding reference manual.
 
 ## Motivation
 
