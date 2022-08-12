@@ -13,7 +13,7 @@ This major covers the C++ programming language and its libraries.
 
 = = =
 
-## ★★★★★ [C++ Concurrency in Action](#books/9781617294693.md)
+## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 <img alt="C++ Concurrency in Action" src="covers/9781617294693.jpg" width="200"/>
 
 > Reading this book is inevitable!
