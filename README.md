@@ -11,7 +11,6 @@ what I think about the books I have read.
 
 ## Bookmarks Grouped by Topic
 
-* [C Programming Language](c.md)
 * [C++ Programming Language](cpp.md)
 * [Linux System Programming](linux-programming.md)
 * [Linux Kernel Programming](linux-kernel.md)

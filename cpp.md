@@ -2,23 +2,23 @@
 
 This major covers the C++ programming language and its libraries.
 
-- - -
-
 ## Table of Content
 
 * [C++ Concurrency in Action](#-c-concurrency-in-action)
-* [Modern C++ Programming Cookbook](#-modern-c-programming-cookbook)
+* [The C++ Standard Library](#-the-c-standard-library)
 * [C++17 STL Cookbook](#-c-stl-cookbook)
+* [Modern C++ Programming Cookbook](#-modern-c-programming-cookbook)
 * [Boost Libraries](#-boost-libraries)
-
-= = =
 
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 <img alt="C++ Concurrency in Action" src="covers/9781617294693.jpg" width="200"/>
 
 > Reading this book is inevitable!
 
-- - -
+## ☆☆☆☆☆ [The C++ Standard Library](books/9780321623218.md)
+<img alt="The C++ Standard Library" src="covers/9780321623218.jpg" width="200"/>
+
+> Not ranked yet
 
 ## ★★★★★ [Modern C++ Programming Cookbook](books/9781800208988.md)
 <img alt="Modern C++ Programming Cookbook" src="covers/9781800208988.jpg" width="200"/>
@@ -26,15 +26,16 @@ This major covers the C++ programming language and its libraries.
 > You cannot know how much you need to read this book until you do.
 > Consider this book essential if you are a junior or middle C++ programmer.
 
-- - -
-
 ## ★★★★★ [C++17 STL Cookbook](books/9781787120495.md)
 <img alt="C++17 STL Cookbook" src="covers/9781787120495.jpg" width="200"/>
 
 > It is never late for learning previous C++ standards.
 > This book will teach you many details you need to know for almost any of your programs.
 
-- - -
+## ☆☆☆☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
+<img alt="Design Patterns in Modern C++20" src="covers/9781484272947.jpg" width="200"/>
+
+> Not ranked yet
 
 ## [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
 
