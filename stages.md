@@ -22,7 +22,7 @@
 ### _C++_
 
 * ~[C++ Concurrency](https://github.com/briansalehi/citation/blob/main/books/9781617294693.md)~
-* [Design Patterns in Modern C++](https://github.com/briansalehi/citation/blob/main/books/9781484272947.md)
+* ~[Design Patterns in Modern C++](https://github.com/briansalehi/citation/blob/main/books/9781484272947.md)~
 
 ## Stage 2
 
