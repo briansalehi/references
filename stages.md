@@ -8,66 +8,71 @@
 
 ### _Linux System Programming_
 
-* ~[Linux System Programming Techniques](https://github.com/briansalehi/citation/blob/main/books/9781789951288.md)~
-* ~[Network Programming in C](https://github.com/briansalehi/citation/blob/main/books/9781789349863.md)~
+* ~[Linux System Programming Techniques](/books/9781789951288.md)~
+* ~[Network Programming in C](/books/9781789349863.md)~
 
 ### _Algorithms_
 
-* ~[Data Abstraction with C++](https://github.com/briansalehi/citation/blob/main/books/9780273768418.md)~
+* ~[Data Abstraction with C++](/books/9780273768418.md)~
 
 ### _C_
 
-* ~[Extreme C](https://github.com/briansalehi/citation/blob/main/books/9781789343625.md)~
+* ~[Extreme C](/books/9781789343625.md)~
 
 ### _C++_
 
-* ~[C++ Concurrency](https://github.com/briansalehi/citation/blob/main/books/9781617294693.md)~
-* ~[Design Patterns in Modern C++](https://github.com/briansalehi/citation/blob/main/books/9781484272947.md)~
+* ~[C++ Concurrency](/books/9781617294693.md)~
+* ~[Design Patterns in Modern C++](/books/9781484272947.md)~
 
 ## Stage 2
 
 ### _C++_
 
-* [The C++ Standard Library](https://github.com/briansalehi/citation/blob/main/books/9780321623218.md)
-* [C++17 STL Cookbook](https://github.com/briansalehi/citation/blob/main/books/9781787120495.md)
-* [Modern C++ Programming Cookbook](https://github.com/briansalehi/citation/blob/main/books/9781800208988.md)
+* [The C++ Standard Library](/books/9780321623218.md)
+* [C++17 STL Cookbook](/books/9781787120495.md)
+* [Modern C++ Programming Cookbook](/books/9781800208988.md)
 
 ### _C_
 
-* [Practical C Programming](https://github.com/briansalehi/citation/blob/main/)
+* [Practical C Programming](/)
 
 ### _Linux System Programming_
 
-* [The Linux Interface Programming](https://github.com/briansalehi/citation/blob/main/books/9781593272203.md)
+* [The Linux Interface Programming](/books/9781593272203.md)
 
 ### _Linux Kernel Programming_
 
-* [Mastering Embedded Linux Programming](https://github.com/briansalehi/citation/blob/main/books/9781789530384.md)
+* [Mastering Embedded Linux Programming](/books/9781789530384.md)
 
 ### _Algorithms_
 
-* [Algorithms with C](https://github.com/briansalehi/citation/blob/main/)
+* [Algorithms with C](/)
 
 ## Stage 3
 
 ### _Algorithms_
 
-* [Algorithms Illuminated](https://github.com/briansalehi/citation/blob/main/)
+* [Algorithms Illuminated](/)
 
 ### _C_
 
-* [System Programming with C](https://github.com/briansalehi/citation/blob/main/)
+* [System Programming with C](/)
 
 ### _C++_
 
-* [C++ Templates](https://github.com/briansalehi/citation/blob/main/)
-* [C++ Move Semantics](https://github.com/briansalehi/citation/blob/main/)
+* [C++ Templates](/)
+* [C++ Move Semantics](/)
 
 ### _Linux Kernel Programming_
 
-* [Linux Kernel Programming](https://github.com/briansalehi/citation/blob/main/books/9781789953435.md)
-* [Linux Kernel Programming Part 2](https://github.com/briansalehi/citation/blob/main/books/9781801079518.md)
-* [Linux Kernel Debugging](https://github.com/briansalehi/citation/blob/main/books/9781801075039.md)
+* [Linux Kernel Programming](/books/9781789953435.md)
+* [Linux Kernel Programming Part 2](/books/9781801079518.md)
+* [Linux Kernel Debugging](/books/9781801075039.md)
+* [Mastering Linux Device Driver Development](/books/9781789342208.md)
+* [Linux Device Driver Development](/books/9781803240060.md)
+* [Linux Driver Development for Embedded Processors](/books/9781729321829.md)
+* [Mastering Linux Kernel Development](/books/9781785883057.md)
+* [Linux Kernel Development](/books/9780672329463.md)
 
 ## Next Stage Coverage
 
