@@ -1,4 +1,4 @@
-# Citation
+# References
 
 A collection of notes from the books I have read and
 mapped to their corresponding reference manual.
