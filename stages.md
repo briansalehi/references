@@ -28,14 +28,14 @@
 ## Stage 2
 
 Progress Window: 100 pages/day  
-Stage Window: 3530 pages - 35 days
+Stage Window: 3460 pages - 35 days
 
 ### _Linux Kernel Programming_
 
-* [Mastering Embedded Linux Programming](/books/9781789530384.md "810 pages")
-* [Linux Kernel Programming](/books/9781789953435.md "700 pages")
-* [Linux Kernel Programming Part 2](/books/9781801079518.md "400 pages")
-* [Linux Kernel Debugging](/books/9781801075039.md "590 pages")
+* [Mastering Embedded Linux Programming](/books/9781789530384.md "708 pages")
+* [Linux Kernel Programming](/books/9781789953435.md "708 pages")
+* [Linux Kernel Programming Part 2](/books/9781801079518.md "419 pages")
+* [Linux Kernel Debugging](/books/9781801075039.md "594 pages")
 
 ### _C++_
 
@@ -44,7 +44,7 @@ Stage Window: 3530 pages - 35 days
 ## Stage 3
 
 Progress Window: 100 pages/day  
-Stage Window: 3380 pages - 33 days
+Stage Window: 3377 pages - 34 days
 
 ### _C++_
 
@@ -56,8 +56,8 @@ Stage Window: 3380 pages - 33 days
 
 ### _Linux Kernel Programming_
 
-* [Mastering Linux Device Driver Development](/books/9781789342208.md "610 pages")
-* [Linux Device Driver Development](/books/9781803240060.md "670 pages")
+* [Mastering Linux Device Driver Development](/books/9781789342208.md "609 pages")
+* [Linux Device Driver Development](/books/9781803240060.md "668 pages")
 
 ## Next Stage Coverage
 
