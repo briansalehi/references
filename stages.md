@@ -1,6 +1,6 @@
 # Learning Stages
 
-* [Stage 1](#stage-1) (Jun 2022 - Aug 2022)
+* ~[Stage 1](#stage-1)~ (Jun 2022 - Aug 2022)
 * [Stage 2](#stage-2) (Aug 2022 - Sep 2022)
 * [Stage 3](#stage-3) (Sep 2022 - Oct 2022)
 * Stage 4 (Not planned yet)
