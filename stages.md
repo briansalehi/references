@@ -61,19 +61,6 @@ Stage Window: 3377 pages - 34 days
 
 ## Next Stage Coverage
 
-* Tools
-* C
-* C++ ✔
-* Assembly
-* Python
-* Linux Kernel ✔
-* Algorithms
-* Database
-* Linux Administration
-* Qt
-* OpenCV
-* OpenGL
-
 ### _Algorithms_
 
 * [Algorithms with C](/)
@@ -100,3 +87,12 @@ Stage Window: 3377 pages - 34 days
 * [Linux Kernel Development](/books/9780672329463.md)
 
 ### _Linux System Programming_
+### _Tools_
+### _Assembly_
+### _Python_
+### _Linux Kernel_
+### _Database_
+### _Linux Administration_
+### _Qt_
+### _OpenCV_
+### _OpenGL_
