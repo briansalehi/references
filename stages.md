@@ -2,7 +2,8 @@
 
 * [Stage 1](#stage-1) (Jun 2022 - Aug 2022)
 * [Stage 2](#stage-2) (Aug 2022 - Sep 2022)
-* [Stage 3](#stage-3) (not reached yet)
+* [Stage 3](#stage-3) (Sep 2022 - Oct 2022)
+* Stage 4 (Not planned yet)
 
 ## Stage 1
 
@@ -21,8 +22,8 @@
 
 ### _C++_
 
-* ~[C++ Concurrency](/books/9781617294693.md)~ (350)
-* ~[Design Patterns in Modern C++](/books/9781484272947.md)~ (370)
+* ~[C++ Concurrency](/books/9781617294693.md "350 pages")~
+* ~[Design Patterns in Modern C++](/books/9781484272947.md "370 pages")~
 
 ## Stage 2
 
@@ -31,14 +32,14 @@ Stage Window: 3530 pages - 35 days
 
 ### _Linux Kernel Programming_
 
-* [Mastering Embedded Linux Programming](/books/9781789530384.md) (810)
-* [Linux Kernel Programming](/books/9781789953435.md) (700)
-* [Linux Kernel Programming Part 2](/books/9781801079518.md) (400)
-* [Linux Kernel Debugging](/books/9781801075039.md) (590)
+* [Mastering Embedded Linux Programming](/books/9781789530384.md "810 pages")
+* [Linux Kernel Programming](/books/9781789953435.md "700 pages")
+* [Linux Kernel Programming Part 2](/books/9781801079518.md "400 pages")
+* [Linux Kernel Debugging](/books/9781801075039.md "590 pages")
 
 ### _C++_
 
-* [The C++ Standard Library](/books/9780321623218.md) (1030)
+* [The C++ Standard Library](/books/9780321623218.md "1030 pages")
 
 ## Stage 3
 
@@ -47,16 +48,16 @@ Stage Window: 3380 pages - 33 days
 
 ### _C++_
 
-* [Modern C++ Programming Cookbook](/books/9781800208988.md) (700)
+* [Modern C++ Programming Cookbook](/books/9781800208988.md "700 pages")
 
 ### _Linux System Programming_
 
-* [The Linux Interface Programming](/books/9781593272203.md) (1400)
+* [The Linux Interface Programming](/books/9781593272203.md "1400 pages")
 
 ### _Linux Kernel Programming_
 
-* [Mastering Linux Device Driver Development](/books/9781789342208.md) (610)
-* [Linux Device Driver Development](/books/9781803240060.md) (670)
+* [Mastering Linux Device Driver Development](/books/9781789342208.md "610 pages")
+* [Linux Device Driver Development](/books/9781803240060.md "670 pages")
 
 ## Next Stage Coverage
 
@@ -79,15 +80,17 @@ Stage Window: 3380 pages - 33 days
 * [Algorithms Illuminated](/)
 
 ### _C++_
-* [C++17 The Complete Guide](/) (355)
-* [C++20 The Complete Guide](/) (430)
-* [C++ Templates](/) (750)
-* [C++ Move Semantics](/) (230)
-* [C++17 STL Cookbook](/books/9781787120495.md) (490)
+* [C++ Templates](/ "750 pages")
+* [C++ Move Semantics](/ "230 pages")
+* [C++17 STL Cookbook](/books/9781787120495.md "490 pages")
+* [C++17 The Complete Guide](/ "355 pages")
+* [C++20 The Complete Guide](/ "430 pages")
+* [C++20 STL Cookbook](/) (?)
+* [C++20 Get the Details](/) (?)
 
 ### _C_
 
-* [Practical C Programming](/) (570)
+* [Practical C Programming](/ "570 pages")
 * [System Programming with C](/)
 
 ### _Linux Kernel Programming_
