@@ -9,21 +9,21 @@
 
 ### _Linux System Programming_
 
-* ~[Linux System Programming Techniques](/books/9781789951288.md)~
-* ~[Network Programming in C](/books/9781789349863.md)~
+* ~[Linux System Programming Techniques](books/9781789951288.md)~
+* ~[Network Programming in C](books/9781789349863.md)~
 
 ### _Algorithms_
 
-* ~[Data Abstraction with C++](/books/9780273768418.md)~
+* ~[Data Abstraction with C++](books/9780273768418.md)~
 
 ### _C_
 
-* ~[Extreme C](/books/9781789343625.md)~
+* ~[Extreme C](books/9781789343625.md)~
 
 ### _C++_
 
-* ~[C++ Concurrency](/books/9781617294693.md "350 pages")~
-* ~[Design Patterns in Modern C++](/books/9781484272947.md "370 pages")~
+* ~[C++ Concurrency](books/9781617294693.md "350 pages")~
+* ~[Design Patterns in Modern C++](books/9781484272947.md "370 pages")~
 
 ## Stage 2
 
@@ -48,43 +48,43 @@ Stage Window: 3377 pages - 34 days
 
 ### _C++_
 
-* [Modern C++ Programming Cookbook](/books/9781800208988.md "700 pages")
+* [Modern C++ Programming Cookbook](books/9781800208988.md "700 pages")
 
 ### _Linux System Programming_
 
-* [The Linux Interface Programming](/books/9781593272203.md "1400 pages")
+* [The Linux Interface Programming](books/9781593272203.md "1400 pages")
 
 ### _Linux Kernel Programming_
 
-* [Mastering Linux Device Driver Development](/books/9781789342208.md "609 pages")
-* [Linux Device Driver Development](/books/9781803240060.md "668 pages")
+* [Mastering Linux Device Driver Development](books/9781789342208.md "609 pages")
+* [Linux Device Driver Development](books/9781803240060.md "668 pages")
 
 ## Next Stage Coverage
 
 ### _Algorithms_
 
-* [Algorithms with C](/)
-* [Algorithms Illuminated](/)
+* [Algorithms with C](#)
+* [Algorithms Illuminated](#)
 
 ### _C++_
-* [C++ Templates](/ "750 pages")
-* [C++ Move Semantics](/ "230 pages")
-* [C++17 STL Cookbook](/books/9781787120495.md "490 pages")
-* [C++17 The Complete Guide](/ "355 pages")
-* [C++20 The Complete Guide](/ "430 pages")
-* [C++20 STL Cookbook](/) (?)
-* [C++20 Get the Details](/) (?)
+* [C++ Templates](# "750 pages")
+* [C++ Move Semantics](# "230 pages")
+* [C++17 STL Cookbook](books/9781787120495.md "490 pages")
+* [C++17 The Complete Guide](# "355 pages")
+* [C++20 The Complete Guide](# "430 pages")
+* [C++20 STL Cookbook](#) (?)
+* [C++20 Get the Details](#) (?)
 
 ### _C_
 
-* [Practical C Programming](/ "570 pages")
-* [System Programming with C](/)
+* [Practical C Programming](# "570 pages")
+* [System Programming with C](#)
 
 ### _Linux Kernel Programming_
 
-* [Linux Driver Development for Embedded Processors](/books/9781729321829.md)
-* [Mastering Linux Kernel Development](/books/9781785883057.md)
-* [Linux Kernel Development](/books/9780672329463.md)
+* [Linux Driver Development for Embedded Processors](books/9781729321829.md)
+* [Mastering Linux Kernel Development](books/9781785883057.md)
+* [Linux Kernel Development](books/9780672329463.md)
 
 ### _Linux System Programming_
 ### _Tools_
