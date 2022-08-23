@@ -32,14 +32,14 @@ Stage Window: 3460 pages - 35 days
 
 ### _Linux Kernel Programming_
 
-* [Mastering Embedded Linux Programming](/books/9781789530384.md "708 pages")
-* [Linux Kernel Programming](/books/9781789953435.md "708 pages")
-* [Linux Kernel Programming Part 2](/books/9781801079518.md "419 pages")
-* [Linux Kernel Debugging](/books/9781801075039.md "594 pages")
+* [Mastering Embedded Linux Programming](books/9781789530384.md "708 pages")
+* [Linux Kernel Programming](books/9781789953435.md "708 pages")
+* [Linux Kernel Programming Part 2](books/9781801079518.md "419 pages")
+* [Linux Kernel Debugging](books/9781801075039.md "594 pages")
 
 ### _C++_
 
-* [The C++ Standard Library](/books/9780321623218.md "1030 pages")
+* [The C++ Standard Library](books/9780321623218.md "1030 pages")
 
 ## Stage 3
 
