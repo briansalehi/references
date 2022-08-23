@@ -18,7 +18,7 @@ and the tools used in that process.
 ## ☆☆☆☆☆ [Mastering Embedded Linux Programming](books/9781789530384.md)
 <img alt="Mastering Embedded Linux Programming" src="covers/9781789530384.jpg" width="200"/>
 
-> Not ranked yet
+> The best first step into Embedded Linux domain is to read this book.
 
 ## ☆☆☆☆☆ [Linux Kernel Programming](books/9781789953435.md)
 <img alt="Linux Kernel Programming" src="covers/9781789953435.jpg" width="200"/>
