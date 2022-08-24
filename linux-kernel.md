@@ -15,7 +15,7 @@ and the tools used in that process.
 * [Mastering Linux Kernel Development](#-mastering-linux-kernel-development)
 * [Linux Kernel Development](#-linux-kernel-development)
 
-## ☆☆☆☆☆ [Mastering Embedded Linux Programming](books/9781789530384.md)
+## ★★★★★ [Mastering Embedded Linux Programming](books/9781789530384.md)
 <img alt="Mastering Embedded Linux Programming" src="covers/9781789530384.jpg" width="200"/>
 
 > The best first step into Embedded Linux domain is to read this book.
