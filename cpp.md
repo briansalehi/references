@@ -24,8 +24,8 @@ This major covers the C++ programming language and its libraries.
 ## ★★★★★ [The C++ Standard Library](books/9780321623218.md)
 <img alt="9780321623218" src="covers/9780321623218.jpg" width="200"/>
 
-> This is not an old book, you need to know what are the capabilities
-> of C++11 before diving into the most recent feature.
+> This is the best resource to learn about C++11 standard features.
+> The book might be old, but its content is still invaluable.
 
 ## ★★★★★ [Modern C++ Programming Cookbook](books/9781800208988.md)
 <img alt="9781800208988" src="covers/9781800208988.jpg" width="200"/>
