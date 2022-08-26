@@ -15,7 +15,8 @@ specific topics to be covered by related books.
 
 ## Bookmarks Grouped by Topic
 
-* [C++ Programming Language](cpp.md)
+* [Assembly Programming](assembly.md)
+* [C++ Programming](cpp.md)
 * [Linux System Programming](linux-programming.md)
 * [Linux Kernel Programming](linux-kernel.md)
 * [Algorithms & Data Structure](algorithms.md)
