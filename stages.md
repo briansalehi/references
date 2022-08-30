@@ -7,6 +7,9 @@
 
 ## Stage 1
 
+Progress Window: unspecified
+Stage Window: not planned
+
 ### _Linux System Programming_
 
 * ~[Linux System Programming Techniques](books/9781789951288.md)~
@@ -32,14 +35,14 @@ Stage Window: 3460 pages - 35 days
 
 ### _Linux Kernel Programming_
 
-* [Mastering Embedded Linux Programming](books/9781789530384.md "708 pages")
+* ~[Mastering Embedded Linux Programming](books/9781789530384.md "708 pages")~
 * [Linux Kernel Programming](books/9781789953435.md "708 pages")
 * [Linux Kernel Programming Part 2](books/9781801079518.md "419 pages")
 * [Linux Kernel Debugging](books/9781801075039.md "594 pages")
 
 ### _C++_
 
-* [The C++ Standard Library](books/9780321623218.md "1030 pages")
+* ~[The C++ Standard Library](books/9780321623218.md "1030 pages")~
 
 ## Stage 3
 
@@ -67,13 +70,13 @@ Stage Window: 3377 pages - 34 days
 * [Algorithms Illuminated](#)
 
 ### _C++_
-* [C++ Templates](# "750 pages")
-* [C++ Move Semantics](# "230 pages")
 * [C++17 STL Cookbook](books/9781787120495.md "490 pages")
 * [C++17 The Complete Guide](# "355 pages")
 * [C++20 The Complete Guide](# "430 pages")
 * [C++20 STL Cookbook](#) (?)
 * [C++20 Get the Details](#) (?)
+* [C++ Templates](# "750 pages")
+* [C++ Move Semantics](# "230 pages")
 
 ### _C_
 
