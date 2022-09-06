@@ -20,10 +20,12 @@ and the tools used in that process.
 
 > The best first step into Embedded Linux domain is to read this book.
 
-## ☆☆☆☆☆ [Linux Kernel Programming](books/9781789953435.md)
+## ★★★★★ [Linux Kernel Programming](books/9781789953435.md)
 <img alt="9781789953435" src="covers/9781789953435.jpg" width="200"/>
 
-> Not ranked yet
+> A good source to dive into the kernel programming domain.
+> Somehow this topic might be oversimplified in the book for newbies though.
+> Make sure you already have read the "Mastering Embedded Linux Programming" book.
 
 ## ☆☆☆☆☆ [Linux Kernel Programming Part 2](books/9781801079518.md)
 <img alt="9781801079518" src="covers/9781801079518.jpg" width="200"/>
