@@ -8,7 +8,11 @@ This major covers the C++ programming language and its libraries.
 * [Design Patterns in Modern C++20](#-design-patterns-in-modern-c20))
 * [The C++ Standard Library](#-the-c-standard-library)
 * [Modern C++ Programming Cookbook](#-modern-c-programming-cookbook)
-* [C++17 STL Cookbook](#-c-stl-cookbook)
+* [C++17: The Complete Guide](#-c17-the-complete-guide)
+* [C++20: The Complete Guide](#-c20-the-complete-guide)
+* [C++ Move Semantics: The Complete Guide](#-c-move-semantics-the-complete-guide)
+* [C++ Templates: The Complete Guide](#-c-templates-the-complete-guide)
+* [C++17 STL Cookbook](#-c17-stl-cookbook)
 * [Boost Libraries](#-boost-libraries)
 
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
@@ -32,6 +36,26 @@ This major covers the C++ programming language and its libraries.
 
 > You cannot know how much you need to read this book until you do.
 > Consider this book essential if you are a junior or middle C++ programmer.
+
+## ★★★★★ [C++17: The Complete Guide](books/9783967300178.md)
+<img alt="9783967300178" src="covers/9783967300178.jpg" width="200"/>
+
+> Not ranked yet
+
+## ★★★★★ [C++20: The Complete Guide](books/.md)
+<img alt="" src="covers/.jpg" width="200"/>
+
+> Not ranked yet
+
+## ★★★★★ [C++ Move Semantics: The Complete Guide](books/9783967309003.md)
+<img alt="9783967309003" src="covers/9783967309003.jpg" width="200"/>
+
+> I though I knew something about move semantics until I read this book.
+
+## ★★★★★ [C++ Templates: The Complete Guide](books/9780321714121.md)
+<img alt="9780321714121" src="covers/9780321714121.jpg" width="200"/>
+
+> Not ranked yet
 
 ## ★★★★★ [C++17 STL Cookbook](books/9781787120495.md)
 <img alt="9781787120495" src="covers/9781787120495.jpg" width="200"/>
