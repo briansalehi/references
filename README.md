@@ -21,3 +21,7 @@ specific topics to be covered by related books.
 * [Linux Kernel Programming](linux-kernel.md)
 * [Algorithms & Data Structure](algorithms.md)
 * [Development Tools](tools.md)
+* [Linux Administration](linux-administration.md)
+* [Python Programming](python.md)
+* [Databases](databases.md)
+* [Mathematics](mathematics.md)
