@@ -14,6 +14,7 @@ This major covers the C++ programming language and its libraries.
 * [C++ Templates: The Complete Guide](#-c-templates-the-complete-guide)
 * [C++17 STL Cookbook](#-c17-stl-cookbook)
 * [Boost Libraries](#-boost-libraries)
+* [Other Resources](#other-resources)
 
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 <img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>
@@ -70,3 +71,15 @@ Following libraries are covered:
 * `boost::program_options`
 * `boost::asio`
 
+## Other Resources
+
+### References
+
+* [cppreference.com](http://en.cppreference.com/w/cpp)
+* [isocpp.org](http://isocpp.org)
+* [learncpp.com](http://learncpp.com)
+
+### Authors
+
+* [stroustrup.com](http://stroustrup.com)
+* [josuttis.com](http://josuttis.com)
