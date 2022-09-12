@@ -43,7 +43,7 @@ Stage Window: 3460 pages - 35 days
 ### _C++_
 
 * ~[The C++ Standard Library](books/9780321623218.md "1030 pages")~
-* [C++ Move Semantics](#books/9783967309003.md "230 pages")
+* [C++ Move Semantics](#books/9783967309003.md "230 pages") (additional)
 
 ## Stage 3
 
@@ -53,7 +53,7 @@ Stage Window: 3377 pages - 34 days
 ### _C++_
 
 * [Modern C++ Programming Cookbook](books/9781800208988.md "700 pages")
-* [C++ Templates](#books/9780321714121.md "750 pages")
+* [C++ Templates](#books/9780321714121.md "750 pages") (additional)
 
 ### _Linux System Programming_
 
