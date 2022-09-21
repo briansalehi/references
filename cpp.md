@@ -51,12 +51,13 @@ This major covers the C++ programming language and its libraries.
 ## ★★★★★ [C++17: The Complete Guide](books/9783967300178.md)
 <img alt="9783967300178" src="covers/9783967300178.jpg" width="200"/>
 
-> Not ranked yet
+> This is one of the necessary steps beginning from C++11 coverage
+> to C++23.
 
-## ★★★★★ [C++20: The Complete Guide](books/.md)
+## ★★★★★ [C++20: The Complete Guide](books/cxx20-the-complete-guide.md)
 <img alt="" src="covers/.jpg" width="200"/>
 
-> Not ranked yet
+> This book is one of the five (so far) essential books by Josuttis.
 
 ## ★★★★★ [C++ Move Semantics: The Complete Guide](books/9783967309003.md)
 <img alt="9783967309003" src="covers/9783967309003.jpg" width="200"/>
