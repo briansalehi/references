@@ -5,6 +5,32 @@
 
 ## Chapter 1/19
 
+<details>
+<summary>Define a user-defined type and overload all of comparison operators for it.</summary>
+
+* All comparisons are based on either operator == or operator <
+* Operators should be declared with `noexcept` if they cannot throw
+* Operators should be declared with `constexpr` if they can be used at compile time
+* Operators should be declared hidden friends if the constructors are not `explicit`
+* Operators should be declared with `[[nodiscard]]` to warn if the return value is not used
+
+```cpp
+class basic_value
+{
+public:
+    constexpr basic_value(long const init) noexcept : id{init} {}
+
+    [[nodiscard]] friend constexpr
+    bool operator ==(basic_value const& lhs, basic_value const& rhs) noexcept
+    { return lhs.number == rhs.number; }
+
+
+private:
+    long number;
+};
+```
+</details>
+
 
 ## Chapter 2/19
 ## Chapter 3/19
