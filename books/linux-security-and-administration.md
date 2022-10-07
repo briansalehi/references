@@ -32,7 +32,7 @@ useradd -s /bin/bash -m <username>
 * [useradd(8)](https://manpages.org/useradd/8)
 
 <details>
-<summary>How can we add a user to `sudo` group?</summary>
+<summary>How can we add a user to <i>sudo</i> group?</summary>
 
 > On account creation:
 
@@ -48,7 +48,7 @@ usermod -a -G sudo <username>
 </details>
 
 <details>
-<summary>What file changes the default behavior of `useradd` command when creating accounts?</summary>
+<summary>What file changes the default behavior of <i>useradd</i> command when creating accounts?</summary>
 
 ```sh
 /etc/login.defs
@@ -82,7 +82,7 @@ sudo systemctl restart sshd.service
 </details>
 
 <details>
-<summary>How to setup **PAM** on system?</summary>
+<summary>How to setup <b>PAM</b> on system?</summary>
 
 > Install PAM on system:
 
@@ -100,7 +100,7 @@ sudo apt install libpam-cracklib
 </details>
 
 <details>
-<summary>How to use **Pluggable Authentication Modules (PAM)** to implement password policies and enforce users to follow strict rules for setting their passwords?</summary>
+<summary>How to use <b>Pluggable Authentication Modules (PAM)</b> to implement password policies and enforce users to follow strict rules for setting their passwords?</summary>
 
 > Configure **PAM** by editing following configuration file:
 
@@ -122,7 +122,7 @@ password required pam_cracklib.so difok=2 minlen=8 dcredit=2 ocredit=2 retry=3
 </details>
 
 <details>
-<summary>How to restrict SSH access to only users in `sshusers` group on a remote server?</summary>
+<summary>How to restrict SSH access to only users in <i>sshusers</i> group on a remote server?</summary>
 
 > Create a new group called `sshusers`:
 
