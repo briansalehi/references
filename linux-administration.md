@@ -21,7 +21,7 @@ This major covers Linux administration.
 ## ★★★☆☆ [Linux Security and Administration](books/linux-security-and-administration.md)
 <img alt="linux-security-and-administration" src="covers/linux-security-and-administration.jpg" width="200"/>
 
-> Not ranked yet.
+> This tiny book is a good source to understand basics of Linux security and can be a big first step for beginners.
 
 ## ☆☆☆☆☆ [](books/.md)
 <img alt="" src="covers/.jpg" width="200"/>
