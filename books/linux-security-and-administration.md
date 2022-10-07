@@ -79,12 +79,8 @@ sudo systemctl restart sshd.service
 <summary>What modules is used to enfore users from following strict password policies?</summary>
 
 > **Pluggable Authentication Modules (PAM)**
-</details>
 
-<details>
-<summary>How to setup <b>PAM</b> on system?</summary>
-
-> Install PAM on system:
+> **CentOS** and **Red Hat** distros already come with **PAM** enabled.
 
 *archlinux*
 ```sh
@@ -95,8 +91,6 @@ sudo pacman -S pam
 ```sh
 sudo apt install libpam-cracklib
 ```
-
-> **CentOS** and **Red Hat** distros already come with **PAM** enabled.
 </details>
 
 * [pam(8)](https://manpages.org/pam/8)
