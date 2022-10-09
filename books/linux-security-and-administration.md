@@ -155,6 +155,173 @@ sudo systemctl restart sshd.service
 * [sshd\_config(5)](https://manpages.org/sshd_config/5)
 
 ## Chapter 3/12
+
+<details>
+<summary>What is the name of firewall mechanism used in the Linux kernel and what is the common firewall interface used to interact with it?</summary>
+
+> `netfilter` is the Linux firewall implemented in kernel.
+
+> `iptables` is a simple firewall interface to `netfilter`.  
+> `firewalld` is also a commonly used firewall interface to `netfilter`.
+
+*archlinux*
+```sh
+sudo pacman -S iptables firewalld
+```
+
+> Enable only one of interfaces:
+
+```sh
+sudo systemctl enable --now firewalld
+```
+</details>
+
+<details>
+<summary>How to get all the zones from firewalld?</summary>
+
+```sh
+firewall-cmd --get-zones
+```
+</details>
+
+<details>
+<summary>How to list all the allowed services in a specific zone from firewalld?</summary>
+
+```sh
+sudo firewall-cmd --zone public --list-services
+```
+</details>
+
+<details>
+<summary>How to list all the allowed ports in a specific zone from firewalld?</summary>
+
+```sh
+sudo firewall-cmd --zone public --list-ports
+```
+</details>
+
+<details>
+<summary>How to list all the information of the default zone from firewalld?</summary>
+
+```sh
+sudo firewall-cmd --list-all
+```
+</details>
+
+<details>
+<summary>How to list all the information of all the zones from firewalld?</summary>
+
+```sh
+sudo firewall-cmd --list-all-zones
+```
+</details>
+
+<details>
+<summary>How to make changes permanently on firewalld?</summary>
+
+> Use `--permanent` optional argument to make changes take effect even after reboot.
+</details>
+
+<details>
+<summary>How to create a new zone on firewalld?</summary>
+
+```sh
+sudo firewall-cmd --new-zone corp --permanent
+```
+</details>
+
+<details>
+<summary>How to reload firewalld so that new configuration is applied?</summary>
+
+```sh
+sudo firewall-cmd --reload
+```
+</details>
+
+<details>
+<summary>How to add a service to the newly created zone in firewalld?</summary>
+
+```sh
+sudo firewall-cmd --zone corp --add-service ssh --permanent
+sudo firewall-cmd --reload
+```
+</details>
+
+<details>
+<summary>How to identify the default zone used in firewalld?</summary>
+
+```sh
+sudo firewall-cmd --get-default
+```
+</details>
+
+<details>
+<summary>How to set a custom firewalld zone as default?</summary>
+
+> You should already allow `ssh` service in new zone to prevent losing access to the server once new zone was set to the interface.
+
+> The firewalld will access the default zone for every command is used unless any other zone is specified.
+
+```sh
+sudo firewall-cmd --change-interface <interface> --zone corp --permanent
+sudo firewall-cmd --set-default corp
+```
+</details>
+
+<details>
+<summary>How to list zones and the interfaces associated with them in firewalld?</summary>
+
+```sh
+sudo firewall-cmd --get-active-zones
+```
+</details>
+
+<details>
+<summary>How to retrieve all the services available on the network to specify in firewalld?</summary>
+
+```sh
+sudo firewall-cmd --get-services
+```
+</details>
+
+<details>
+<summary>How to allow a service in the default zone of firewalld?</summary>
+
+```sh
+sudo systemctl enable --now <service>
+sudo firewall-cmd --add-service <service> --permanent
+sudo firewall-cmd --reload
+```
+</details>
+
+<details>
+<summary>How to remove a service from default zone in firewalld?</summary>
+
+```sh
+sudo firewall-cmd --remove-service <service> --permanent
+sudo firewall-cmd --reload
+sudo systemctl disable --now <service>
+```
+</details>
+
+<details>
+<summary>How to allow a new port in the default zone of firewalld?</summary>
+
+```sh
+sudo firewall-cmd --add-port 1622/tcp --permanent
+sudo firewall-cmd --reload
+```
+</details>
+
+<details>
+<summary>How to remove a port in the default zone of firewalld?</summary>
+
+```sh
+sudo firewall-cmd --remove-port 1622/tcp --permanent
+sudo fierwall-cmd --reload
+```
+</details>
+
 ## Chapter 4/12
 ## Chapter 5/12
 ## Chapter 6/12
