@@ -44,10 +44,10 @@ and the tools used in that process.
 
 > Not ranked yet
 
-## ☆☆☆☆☆ [Linux Device Driver Development](books/9781803240060.md)
+## ★★★★★ [Linux Device Driver Development](books/9781803240060.md)
 <img alt="9781803240060" src="covers/9781803240060.jpg" width="200"/>
 
-> Not ranked yet
+> This book is very well written and is a great way to dive into device driver development.
 
 ## ☆☆☆☆☆ [Linux Driver Development for Embedded Processors](books/9781729321829.md)
 <img alt="9781729321829" src="covers/9781729321829.jpg" width="200"/>
