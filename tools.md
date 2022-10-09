@@ -34,6 +34,12 @@ for a Linux system programmer.
 * [GDB](#)
 * [LLVM](#)
 * [LLDB](#)
+* [sudo](#)
+* [SELinux](#)
+* [Auditd](#)
+* [iptables](#)
+* [snort](#)
+* [Firewalld](#)
 
 ## ★★★★★ [Practical Vim](books/9781934356982.md)
 <img alt="9781934356982" src="covers/9781934356982.jpg" width="200"/>

@@ -76,6 +76,34 @@ sudo systemctl restart sshd.service
 * [sshd\_config(5)](https://manpages.org/sshd_config/5)
 
 <details>
+<summary>How to change default SSH port on Linux system to prevent brute-force attacks on default port?</summary>
+
+```sh
+sudoedit /etc/ssh/sshd_config
+```
+
+```conf
+Port 9292
+```
+</details>
+
+<details>
+<summary>How to restrict SSH connections only to a certain address family?</summary>
+
+```sh
+sudoedit /etc/ssh/sshd_config
+```
+
+```conf
+AddressFamily inet
+```
+
+```sh
+sudo systemctl reload ssh
+```
+</details>
+
+<details>
 <summary>What modules is used to enfore users from following strict password policies?</summary>
 
 > **Pluggable Authentication Modules (PAM)**
@@ -323,6 +351,164 @@ sudo fierwall-cmd --reload
 </details>
 
 ## Chapter 4/12
+
+<details>
+<summary>How to create a 4096-bits RSA encripted SSH key to securely connect to remote server with it?</summary>
+
+```sh
+ssh-keygen -t rsa -b 4096 -C "user@domain.tld" -f ~/.ssh/user_rsa
+```
+</details>
+
+<details>
+<summary>How to securely transfer locally generated SSH key to remote server?</summary>
+
+```sh
+ssh-copy-id -i ~/.ssh/user_rsa.pub -p <port> user@domain.tld
+```
+</details>
+
+<details>
+<summary>How to identify open and active ports on system?</summary>
+
+*deprecated*
+```sh
+netstat -tuwlpn
+```
+
+*common*
+```sh
+ss -tuwlpn
+```
+</details>
+
+<details>
+<summary>How to enable two factor authentication on a server to add an additional security layer for user logins?</summary>
+
+*archlinux*
+```sh
+sudo pacman -S libpam-google-authenticator
+```
+
+*debian*
+```sh
+sudo apt install libpam-google-authenticator
+```
+
+> Setup a key:
+
+```sh
+google-authenticator
+```
+
+> Edit `sshd` service configuration:
+
+```sh
+sudoedit /etc/ssh/sshd_config
+```
+
+```conf
+UsePAM yes
+ChallengeResponseAuthentication yes
+```
+
+```sh
+sudo systemctl reload sshd
+```
+
+> Edit `pam` configuration:
+
+```sh
+sudoedit /etc/pam.d/sshd
+```
+
+> Add the following line:
+
+```conf
+auth    required    pam_google_authenticator.so
+```
+</details>
+
+<details>
+<summary>How to disable IPv4 or IPv6 on a server?</summary>
+
+```sh
+sudoedit /etc/sysconfig/network
+```
+
+```conf
+NETWORKING_IPV6=no
+IPV6INIT=no
+```
+</details>
+
+<details>
+<summary>What <b>Mandatory Access Control</b> modules are available for Linux systems?</summary>
+
+```sh
+sudo apt install selinux-basics selinux-policy-default auditd
+```
+</details>
+
+<details>
+<summary>How to restrict the use of old passwords on Linux using <b>Pluggable Authentication Module (PAM)</b>?</summary>
+
+> Edit **PAM** configuration file:
+
+```sh
+sudoedit /etc/pam.d/system-auth
+```
+
+> Add following lines:
+
+```conf
+auth    sufficient  pam_unix.so likeauth nullok
+password    sufficient  pam_unix.so nullok use_authtok sha256 shadow remember=5
+```
+</details>
+
+<details>
+<summary>What tool can be used to prevent brute-force authentication attempts by blocking their IP addresses?</summary>
+
+> `fail2ban` tool blocks frequently attempted login attempts.
+
+*archlinux*
+```sh
+sudo pacman -S fail2ban
+```
+
+> Configure the service by copying sample config file:
+
+```sh
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudoedit /etc/fail2ban/jail.local
+```
+
+```conf
+[sshd]
+enabled = true
+port = ssh
+protocol = tcp
+filter = sshd
+logpath = /var/log/secure
+maxretry = 5
+findtime = 600
+bantime = 600
+```
+
+```sh
+sudo systemctl restart fail2ban
+```
+</details>
+
+<details>
+<summary>How to list all the blocked addresses by fail2ban?</summary>
+
+```sh
+sudo fail2ban-client status ssh
+```
+</details>
+
 ## Chapter 5/12
 ## Chapter 6/12
 ## Chapter 7/12
