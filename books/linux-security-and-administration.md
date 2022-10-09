@@ -510,10 +510,212 @@ sudo fail2ban-client status ssh
 </details>
 
 ## Chapter 5/12
+
+Nothing to import.
+
 ## Chapter 6/12
+
+<details>
+<summary>What encryption tools are available on Linux?</summary>
+
+* gpg
+* bcrypt
+* ccrypt
+* zip (4-zip)
+* 7za (7-zip)
+* openssl
+</details>
+
+<details>
+<summary>What tool is used to sign files, verify integrity, and encrypt or decrypt files in Linux systems?</summary>
+
+> **GNU Privacy Guard** or **GnuPG**
+
+*archlinux*
+```sh
+sudo pacman -S gnupg
+```
+
+*debian*
+```sh
+sudo apt install gnupg
+```
+</details>
+
+* [gnupg(7)](https://manpages.org/gnupg/7)
+* [gpgconf(1)](https://manpages.org/gnupg/1)
+* [gpg-agent(1)](https://manpages.org/gnupg/1)
+
+<details>
+<summary>How to encrypt and decrypt files using GnuPG?</summary>
+
+> Encrypt:
+
+```sh
+gpg -c <file>
+```
+
+> Decrypt:
+
+```sh
+gpg <file>
+```
+</details>
+
+<details>
+<summary>What tool should be used to encrypt files by Blowfish cipher?</summary>
+
+*archlinux*
+```sh
+sudo pacman -S cryptsetup
+```
+
+*debian*
+```sh
+sudo apt install bcrypt
+```
+</details>
+
+* [bcrypt(1)](https://manpages.org/bcrypt/1)
+
+<details>
+<summary>How to encrypt or decrypt files using bcrypt?</summary>
+
+> Encrypt:
+
+```sh
+bcrypt <file>.ext
+```
+
+> Decrypt:
+
+```sh
+bcrypt <file>.bfe
+```
+</details>
+
+<details>
+<summary>How to use ccrypt and cdecrypt to encrypt and decrypt files on Linux?</summary>
+
+> Encrypt:
+
+```sh
+ccrypt <file>
+```
+
+> Decrypt:
+
+```sh
+cdecrypt <file>.cpt
+```
+</details>
+
+<details>
+<summary>How to encrypt and decrypt files with compression using zip on Linux?</summary>
+
+> Encrypt:
+
+```sh
+zip -p <pass> <output.zip> files...
+```
+
+> Decrypt:
+
+```sh
+unzip <output.zip>
+```
+</details>
+
+<details>
+<summary>How to encrypt and decrypt files using 7za tool on Linux?</summary>
+
+```sh
+7za a -t zip -p -mem=aes256 output.zip files...
+7za output.zip
+```
+</details>
+
+<details>
+<summary>How to encrypt and decrypt files using openssl tool on Linux?</summary>
+
+```sh
+openssl enc -aes-256-cbc -in file -out output.dat
+openssl enc -aes-256-cbc -d -in output.dat > file
+```
+</details>
+
 ## Chapter 7/12
+
+Nothing to import.
+
 ## Chapter 8/12
+
+<details>
+<summary>What kernel module can be used to encrypt block devices and what is the userspace interface for it?</summary>
+
+> dm-crypt
+
+*archlinux*
+```sh
+sudo pacman -S cryptsetup
+```
+
+*debian*
+```sh
+sudo apt install cryptset
+```
+</details>
+
+<details>
+<summary>How to check if filesystem encryption module is available on kernel?</summary>
+
+```sh
+gunzip -c /proc/config.gz | grep CONFIG_DM_CRYPT
+```
+</details>
+
+<details>
+<summary>How to use cryptsetup to encrypt or decrypt a partition on Linux systems?</summary>
+
+```sh
+cryptsetup --version
+cryptsetup open /dev/sda1 encrypted_partition
+cryptsetup close encrypted_partition
+```
+</details>
+
 ## Chapter 9/12
+
+<details>
+<summary>How ACL permissions of files on Linux systems?</summary>
+
+```sh
+getfacl <file>
+setfacl -m u::r <file>
+setfacl -x m::rx <file>
+```
+</details>
+
+* [acl(5)](https://manpages.org/acl/5)
+* [getfacl(1)](https://manpages.org/getfacl/1)
+* [setfacl(1)](https://manpages.org/setfacl/1)
+* [chacl(1)](https://manpages.org/chacl/1)
+
 ## Chapter 10/12
+
+Nothing to import.
+
 ## Chapter 11/12
+
+Nothing to import.
+
 ## Chapter 12/12
+
+<details>
+<summary>What tools are used to scan a system on network?</summary>
+
+* ping
+* traceroute
+* nmap
+</details>
+
