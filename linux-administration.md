@@ -19,7 +19,7 @@ This major covers Linux administration.
 * [Explain Shell](https://explainshell.com)
 * bash-docs package
 
-## ★★★★☆ [Sudo Mastery](books/9781493626205.md)
+## ★★★★★ [Sudo Mastery](books/9781493626205.md)
 <img alt="9781493626205" src="covers/9781493626205.jpg" width="200"/>
 
 > The best resource to know about sudo in depth.
