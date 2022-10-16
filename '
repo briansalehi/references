@@ -793,7 +793,7 @@ Defaults env_keep += "LANG LANGUAGE"
 </details>
 
 <details>
-<summary>How to allow users to retian all of their envinronment variables /etc/sudoers.conf file when blacklisting environment variables is desired?</summary>
+<summary>How to allow users to retian all of their envinronment variables /etc/sudoers.conf file?</summary>
 
 > The `env_reset` option tells `sudo` to remove all environment variables except a trusted few. It's set by default. Don't disable it.
 
@@ -805,151 +805,13 @@ Defaults !env_reset
 </details>
 
 <details>
-<summary>How to delete specific environment variables in /etc/sudoers.conf file when blacklisting environment variables is desired?</summary>
+<summary>How to delete specific environment variables in /etc/sudoers.conf file when blacklisting environment variables are desired?</summary>
 
 ```sh
 Defaults env_delete += "LD_LIBRARY_PRELOAD"
 ```
 
 > Users retain their entire environment, except for `LD_LIBRARY_PRELOAD`.
-</details>
-
-<details>
-<summary>How to allow users write a security policy to override their environment variables for specific commands when a software changes quickly and those values might need constant updating? (maybe can break into smaller parts)</summary>
-
-> Use the `SETENV` and `NOSETENV` tags on commands to let the users ask `sudo` to not alter their environment variables.
-
-> `SETENV` tag permits users to keep their environment on request:
-
-> Users must specifically ask `sudo` to not change their environment by using `-E` flag.
-
-> Without the `–E` flag, `sudo` will perform its standard environment stripping despite the presence of `NOSETENV` in sudoers.
-
-> Use the tag `NOSETENV` to override a previous `SETENV`.
-
-```sh
-julia db1 = (mysql) SETENV: /opt/mysql/bin/*
-julia db1 = (mysql) NOSETENV: /opt/mysql/bin/secure_install
-```
-
-> On the machine `db1`, `julia` can use her own environment to run MySQL commands as `mysql` user.
-
-```sh
-sudo -E -u mysql /opt/mysql/bin/mysql
-```
-
-> Update sudoers policy in production once she understands what she needs.
-
-```sh
-Defaults:julia setenv
-```
-
-> `julia` can override her environment anywhere, provided she uses the `-E` flag with `sudo`.
-</details>
-
-<details>
-<summary>How to run privileged commands as a target user, in the target user's shell environment by <code>sudo</code>?</summary>
-
-> Having `sudo` initialize an environment as the target user is the best way to manage application servers highly dependent on their startup environment.
-
-> Many Java server-side applications take their configuration from environment variables, and those variables might not be correct in your personal environment.
-> By configuring that environment in a single account, you eliminate one threat to the application's stability.
-
-```sh
-sudo -i /usr/bin/command
-```
-</details>
-
-<details>
-<summary>What are the sudo-specifi environment variables of commands running under <code>sudo</code>?</summary>
-
-> You can use `SUDO_USER` in log messages.
-
-* `SUDO_COMMAND`
-* `SUDO_USER`
-* `SUDO_UID`
-* `SUDO_GID`
-
-> The `SUDO_COMMAND` variable is set to the exact command you ran under `sudo` to start this session.
-> `SUDO_USER` gives your original username.
-> `SUDO_UID` and `SUDO_GID` give your original user ID and primary group ID.
-</details>
-
-<details>
-<summary>How to set PATH environment variable securely in <code>/etc/sudoers.conf</code> file?</summary>
-
-> Bad things can happen when commands like `passwd` are not ran from their original location in `PATH`.
-
-```sh
-Defaults secure_path = "/bin /usr/bin /usr/local/bin"
-```
-</details>
-
-<details>
-<summary>How to define new environment variables in <code>/etc/sudoers.conf</code> file?</summary>
-
-```sh
-Defaults env_file = /etc/sudoenv
-```
-
-*/etc/sudoenv*
-```txt
-FTP_PROXY=http://proxyhost:8080
-ftp_proxy=http://proxyhost:8080
-HTTP_PROXY=http:// proxyhost:8080
-http_proxy=http:// proxyhost:8080
-```
-
-> `sudo` adds these environment variables before stripping out the environment, so list any added variables in an `env_keep` sudoers rule as well.
-</details>
-
-<details>
-<summary>How to start a root shell by running <code>sudo</code> wth no arguments?</summary>
-
-> **NOTE: DO NOT DO THIS!!!**
-
-```sh
-Defaults:ADMINS shell_noargs
-```
-
-> You can simulate `shell_noargs` on the command line by using the `-s` flag.
-
-```sh
-sudo -s
-```
-</details>
-
-<details>
-<summary>How to retain a root shell but with your own environment using <code>sudo</code>?</summary>
-
-> **NOTE: DO NOT DO THIS!!!**
-
-```sh
-sudo su -m
-```
-</details>
-
-<details>
-<summary>How to run an external program by sudo but not attached to a terminal and still ask users their passwords?</summary>
-
-> Use the `askpass` path in `sudo.conf` file:
-
-```sh
-Path askpass /usr/bin/openssh-askpass
-```
-
-> When `sudo` needs a password and doesn't have a terminal to ask for one, it uses the `askpass` setting from `sudo.conf`.
-</details>
-
-<details>
-<summary>How to let automated processes run arbitrary commands only via <code>sudo</code>?</summary>
-
-```sh
-Defaults requiretty
-```
-
-> The requiretty option tells sudo to only work if the command is run in a terminal.
-> Enabling this option in sudoers means that programs cannot run without a terminal.
 </details>
 
 ## Chapter 9/13
