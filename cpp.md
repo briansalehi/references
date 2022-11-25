@@ -5,6 +5,7 @@ This major covers the C++ programming language and its libraries.
 ## Table of Content
 
 ### C++ Language
+
 * [C++ Concurrency in Action](#-c-concurrency-in-action)
 * [Design Patterns in Modern C++20](#-design-patterns-in-modern-c20))
 * [The C++ Standard Library](#-the-c-standard-library)
