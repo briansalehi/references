@@ -6,6 +6,7 @@ This major covers the C++ programming language and its libraries.
 
 ### C++ Language
 
+* [Deciphering Object-Oriented Programming with C++](#-deciphering-object-oriented-programming-with-c++)
 * [C++ Concurrency in Action](#-c-concurrency-in-action)
 * [Design Patterns in Modern C++20](#-design-patterns-in-modern-c20))
 * [The C++ Standard Library](#-the-c-standard-library)
@@ -24,8 +25,13 @@ This major covers the C++ programming language and its libraries.
 
 ### Image Processing
 
-* [Learning OpenCV 3](#-learning-opencv-3)
 * [OpenCV Manual](http://docs.opencv.org)
+* [Learning OpenCV 3](#-learning-opencv-3)
+
+## ☆☆☆☆☆ [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
+<img alt="9781804613900" src="covers/9781804613900.jpg" width="200"/>
+
+> Not ranked yet
 
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 <img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>

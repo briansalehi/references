@@ -19,6 +19,7 @@ for a Linux system programmer.
 
 * [Autotools Suite](#)
 * [Professional CMake](#-professional-cmake)
+* [CMake Cookbook](#-cmake-cookbook)
 
 ### Containerization
 
@@ -62,8 +63,23 @@ for a Linux system programmer.
 
 > Not ranked yet
 
-## ☆☆☆☆☆ [Professional CMake](books/.md)
-<img alt="" src="covers/.jpg" width="200"/>
+## ★★★★☆ [Professional CMake](books/9781925904208.md)
+<img alt="9781925904208" src="covers/9781925904208.jpg" width="200"/>
+
+> The best resource to start learning CMake but not the last step to overcome the details.
+
+## ★★★★☆ [CMake Cookbook](books/9781788470711.md)
+<img alt="9781788470711" src="covers/9781788470711.jpg" width="200"/>
+
+> A great complement to [Professional CMake](#-professional-cmake).
+
+## ☆☆☆☆☆ [CMake Best Practices](books/9781803239729.md)
+<img alt="9781803239729" src="covers/9781803239729.jpg" width="200"/>
+
+> Not ranked yet
+
+## ☆☆☆☆☆ [Modern CMake for C++](books/9781801070058.md)
+<img alt="9781801070058" src="covers/9781801070058.jpg" width="200"/>
 
 > Not ranked yet
 
