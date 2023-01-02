@@ -122,6 +122,13 @@ auto v = container | std::views::filter([](auto e) { return e % 2 == 0; })
 ```
 </details>
 
+<details>
+<summary>How to use a sentinel as an end of a range in iterating over a container?</summary>
+
+```cpp
+```
+</details>
+
 ## Chapter 6/19
 ## Chapter 7/19
 ## Chapter 8/19
