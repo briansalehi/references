@@ -29,58 +29,61 @@ This major covers the C++ programming language and its libraries.
 * [Learning OpenCV 3](#-learning-opencv-3)
 
 ## ☆☆☆☆☆ [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
-<img alt="9781804613900" src="covers/9781804613900.jpg" width="200"/>
+[<img alt="9781804613900" src="covers/9781804613900.jpg" width="200"/>](books/9781804613900.md)
 
 > Not ranked yet
 
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
-<img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>
+[<img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>](books/9781617294693.md)
 
 > Reading this book is inevitable!
 
 ## ★★★☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
-<img alt="9781484272947" src="covers/9781484272947.jpg" width="200"/>
+[<img alt="9781484272947" src="covers/9781484272947.jpg" width="200"/>](books/9781484272947.md)
 
 > This is a good start to learn about design patterns.
 
 ## ★★★★★ [The C++ Standard Library](books/9780321623218.md)
-<img alt="9780321623218" src="covers/9780321623218.jpg" width="200"/>
+[<img alt="9780321623218" src="covers/9780321623218.jpg" width="200"/>](books/9780321623218.md)
 
 > This is the best resource to learn about C++11 standard features.
 > The book might be old, but its content is still invaluable.
 
 ## ★★★★★ [Modern C++ Programming Cookbook](books/9781800208988.md)
-<img alt="9781800208988" src="covers/9781800208988.jpg" width="200"/>
+[<img alt="9781800208988" src="covers/9781800208988.jpg" width="200"/>](books/9781800208988.md)
 
 > You cannot know how much you need to read this book until you do.
 > Consider this book essential if you are a junior or middle C++ programmer.
 
 ## ★★★★★ [C++17: The Complete Guide](books/9783967300178.md)
-<img alt="9783967300178" src="covers/9783967300178.jpg" width="200"/>
+[<img alt="9783967300178" src="covers/9783967300178.jpg" width="200"/>](books/9783967300178.md)
 
 > This is one of the necessary steps beginning from C++11 coverage
 > to C++23.
 
 ## ★★★★★ [C++20: The Complete Guide](books/cxx20-the-complete-guide.md)
-<img alt="" src="covers/.jpg" width="200"/>
+[<img alt="" src="covers/.jpg" width="200"/>](books/.md)
 
 > This book is one of the five (so far) essential books by Josuttis.
 
 ## ★★★★★ [C++ Move Semantics: The Complete Guide](books/9783967309003.md)
-<img alt="9783967309003" src="covers/9783967309003.jpg" width="200"/>
+[<img alt="9783967309003" src="covers/9783967309003.jpg" width="200"/>](books/9783967309003.md)
 
 > I though I knew something about move semantics until I read this book.
 
 ## ★★★★★ [C++ Templates: The Complete Guide](books/9780321714121.md)
-<img alt="9780321714121" src="covers/9780321714121.jpg" width="200"/>
+[<img alt="9780321714121" src="covers/9780321714121.jpg" width="200"/>](books/9780321714121.md)
 
 > Not ranked yet
 
 ## ★★★★★ [C++17 STL Cookbook](books/9781787120495.md)
-<img alt="9781787120495" src="covers/9781787120495.jpg" width="200"/>
+[<img alt="9781787120495" src="covers/9781787120495.jpg" width="200"/>](books/9781787120495.md)
 
 > It is never late for learning previous C++ standards.
 > This book will teach you many details you need to know for almost any of your programs.
+
+## ☆☆☆☆☆ [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](books/9781484243978.md)
+[<img alt="9781484243978" src="covers/9781484243978.jpg" width="200"/>](books/9781484243978.md)
 
 ## [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
 
@@ -103,6 +106,6 @@ Following libraries are covered:
 * [josuttis.com](http://josuttis.com)
 
 ## ☆☆☆☆☆ [Learning OpenCV 3](books/.md)
-<img alt="" src="covers/.jpg" width="200"/>
+[<img alt="" src="covers/.jpg" width="200"/>](books/.md)
 
 > Not ranked yet
