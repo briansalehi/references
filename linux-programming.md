@@ -12,19 +12,15 @@ This major covers user space programming in C and C++.
 ## ★★★★★ [Linux System Programming Techniques](books/9781789951288.md)
 [<img alt="9781789951288" src="covers/9781789951288.jpg" width="200"/>](books/9781789951288.md)
 
-> Consider this book essential after reading your first few C books.
 
 ## ★★★★★ [Hands-On Network Programming with C](books/9781789349863.md)
 [<img alt="9781789349863" src="covers/9781789349863.jpg" width="200"/>](books/9781789349863.md)
 
-> This book is the most update and best option for learning network programming in C.
 
 ## ★★★★★ [Extreme C](books/9781789343625.md)
 [<img alt="9781789343625" src="covers/9781789343625.jpg" width="200"/>](books/9781789343625.md)
 
-> Being an expert both in C and C++ won't justify not reading this book.
 
 ## ★★★★★ [The Linux Programming Interface](books/9781593272203.md)
 [<img alt="9781593272203" src="covers/9781593272203.jpg" width="200"/>](books/9781593272203.md)
 
-> This is the ultimate source of learning Linux system programming.

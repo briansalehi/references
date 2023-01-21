@@ -45,50 +45,39 @@ for a Linux system programmer.
 ## ★★★★★ [Practical Vim](books/9781934356982.md)
 [<img alt="9781934356982" src="covers/9781934356982.jpg" width="200"/>](books/9781934356982.md)
 
-> If you want to become a Vim warrior, this book belongs to you!
 
 ## ★★★★★ [Modern Vim](books/9781680502626.md)
 [<img alt="9781680502626" src="covers/9781680502626.jpg" width="200"/>](books/9781680502626.md)
 
-> Reading this book complements the Practical Vim book,
-> together being the best resource of learning Vim.
 
 ## ☆☆☆☆☆ [Mastering Vim](books/9781789341096.md)
 [<img alt="9781789341096" src="covers/9781789341096.jpg" width="200"/>](books/9781789341096.md)
 
-> Not ranked yet
 
 ## ☆☆☆☆☆ [Pro Git](books/9781484200773.md)
 [<img alt="9781484200773" src="covers/9781484200773.jpg" width="200"/>](books/9781484200773.md)
 
-> Not ranked yet
 
 ## ★★★★☆ [Professional CMake](books/9781925904208.md)
 [<img alt="9781925904208" src="covers/9781925904208.jpg" width="200"/>](books/9781925904208.md)
 
-> The best resource to start learning CMake but not the last step to overcome the details.
 
 ## ★★★★☆ [CMake Cookbook](books/9781788470711.md)
 [<img alt="9781788470711" src="covers/9781788470711.jpg" width="200"/>](books/9781788470711.md)
 
-> A great complement to [Professional CMake](#-professional-cmake).
 
 ## ☆☆☆☆☆ [CMake Best Practices](books/9781803239729.md)
 [<img alt="9781803239729" src="covers/9781803239729.jpg" width="200"/>](books/9781803239729.md)
 
-> Not ranked yet
 
 ## ☆☆☆☆☆ [Modern CMake for C++](books/9781801070058.md)
 [<img alt="9781801070058" src="covers/9781801070058.jpg" width="200"/>](books/9781801070058.md)
 
-> Not ranked yet
 
 ## ☆☆☆☆☆ [Deep Dive into Docker](books/.md)
 [<img alt="" src="covers/.jpg" width="200"/>](books/.md)
 
-> Not ranked yet
 
 ## ☆☆☆☆☆ [Autotools Suite](books/.md)
 [<img alt="" src="covers/.jpg" width="200"/>](books/.md)
 
-> Not ranked yet

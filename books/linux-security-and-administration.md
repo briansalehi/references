@@ -1,7 +1,6 @@
 # [Linux Security and Administration](#)
 <img alt="linux-security-and-administration" src="../covers/linux-security-and-administration.jpg" width="200"/>
 
-> This tiny book is a good source to understand basics of Linux security and can be a big first step for beginners.
 
 ## Chapter 1/12
 
