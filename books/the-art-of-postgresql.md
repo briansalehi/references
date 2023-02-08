@@ -1,4 +1,4 @@
-# [The Art of PostgreSQL](books/the-art-of-postgresql.md)
+# [The Art of PostgreSQL](https://theartofpostgresql.com)
 <img alt="The Art of PostgreSQL" src="../covers/the-art-of-postgresql.jpg" width="200"/>
 
 > The best book to start learning PostgreSQL.
