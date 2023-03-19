@@ -8,7 +8,8 @@ This major covers the C++ programming language and its libraries.
 
 * [Deciphering Object-Oriented Programming with C++](#-deciphering-object-oriented-programming-with-c++)
 * [C++ Concurrency in Action](#-c-concurrency-in-action)
-* [Design Patterns in Modern C++20](#-design-patterns-in-modern-c20))
+* [Concurrency with Modern C++](#-concurrency-with-modern-c)
+* [Design Patterns in Modern C++20](#-design-patterns-in-modern-c20)
 * [The C++ Standard Library](#-the-c-standard-library)
 * [Modern C++ Programming Cookbook](#-modern-c-programming-cookbook)
 * [C++17: The Complete Guide](#-c17-the-complete-guide)
@@ -35,6 +36,7 @@ This major covers the C++ programming language and its libraries.
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 [<img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>](books/9781617294693.md)
 
+## ★★★★★ [Concurrency with Modern C++](books/cuncorrency-with-modern-cpp.md)
 
 ## ★★★☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
 [<img alt="9781484272947" src="covers/9781484272947.jpg" width="200"/>](books/9781484272947.md)
