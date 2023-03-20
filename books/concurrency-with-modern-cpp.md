@@ -8,9 +8,8 @@ Nothing to import.
 ## Chapter 2/17
 
 <details>
-<summary>How to use `std::atomic_flag` to make spinlock mechanism?</summary>
+<summary>How to use <code>std::atomic_flag</code> to make spinlock mechanism?</summary>
 
->
 > ```cpp
 > #include <atomic>
 > #include <thread>
@@ -44,7 +43,7 @@ Nothing to import.
 >     taskA.join();
 >     taskB.join();
 > }
-> ```
+> ``````
 
 > Origin:
 > - 2.3.2.1
@@ -54,7 +53,50 @@ Nothing to import.
 ---
 </details>
 
+<details>
+<summary>How to use <code>std::mutex</code> to make spinlock mechanism?</summary>
 
+> Using `std::atomic_flag` is more straightforward and fast.
+>
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <chrono>
+> #include <mutex>
+> 
+> class task_unit
+> {
+> public:
+>     void do_something()
+>     {
+>         _lock.lock();
+>         std::this_thread::sleep_for(std::chrono::seconds{1});
+>         _lock.unlock();
+>     }
+> 
+> private:
+>     std::mutex _lock;
+> };
+> 
+> int main()
+> {
+>     task_unit task;
+> 
+>     std::thread taskA{&task_unit::do_something, &task};
+>     std::thread taskB{&task_unit::do_something, &task};
+> 
+>     taskA.join();
+>     taskB.join();
+> }
+> ```
+
+> Origin:
+> - 2.3.2.1.1
+
+> References:
+> - [std::mutex](https://en.cppreference.com/w/cpp/thread/mutex)
+---
+</details>
 
 ## Chapter 3/17
 ## Chapter 4/17
