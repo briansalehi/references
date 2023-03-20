@@ -36,7 +36,7 @@ This major covers the C++ programming language and its libraries.
 ## ★★★★★ [C++ Concurrency in Action](books/9781617294693.md)
 [<img alt="9781617294693" src="covers/9781617294693.jpg" width="200"/>](books/9781617294693.md)
 
-## ★★★★★ [Concurrency with Modern C++](books/cuncorrency-with-modern-cpp.md)
+## ★★★★★ [Concurrency with Modern C++](books/concurrency-with-modern-cpp.md)
 [<img alt="Concurrency with Modern C++" src="covers/concurrency-with-modern-cpp.jpg" width="200"/>](books/concurrency-with-modern-cpp.md)
 
 ## ★★★☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
