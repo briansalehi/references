@@ -11,7 +11,7 @@ Nothing to import.
 <summary>How to use `std::atomic_flag` to make spinlock mechanism?</summary>
 
 >
-> ``cpp
+> ```cpp
 > #include <atomic>
 > #include <thread>
 > #include <chrono>
@@ -44,7 +44,7 @@ Nothing to import.
 >     taskA.join();
 >     taskB.join();
 > }
-> ``
+> ```
 
 > Origin:
 > - 2.3.2.1
@@ -53,6 +53,8 @@ Nothing to import.
 > - [std::atomic\_flag](https://en.cppreference.com/w/cpp/atomic/atomic_flag)
 ---
 </details>
+
+
 
 ## Chapter 3/17
 ## Chapter 4/17
