@@ -10,6 +10,8 @@ Nothing to import.
 <details>
 <summary>How to use <code>std::atomic_flag</code> to make spinlock mechanism?</summary>
 
+> Spinlock mechanism can be implemented lock-free using atomic library.
+>
 > ```cpp
 > #include <atomic>
 > #include <thread>
@@ -88,7 +90,7 @@ Nothing to import.
 >     taskA.join();
 >     taskB.join();
 > }
-> ```
+> ``````
 
 > Origin:
 > - 2.3.2.1.1
