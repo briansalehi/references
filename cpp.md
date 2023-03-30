@@ -17,6 +17,7 @@ This major covers the C++ programming language and its libraries.
 * [C++ Move Semantics: The Complete Guide](#-c-move-semantics-the-complete-guide)
 * [C++ Templates: The Complete Guide](#-c-templates-the-complete-guide)
 * [C++17 STL Cookbook](#-c17-stl-cookbook)
+* [Boost.Asio C++ Network Programming](#boost.asio-c-network-programming]
 * [Boost Libraries](#-boost-libraries)
 * [Other Resources](#other-resources)
 
@@ -73,6 +74,9 @@ This major covers the C++ programming language and its libraries.
 
 ## ☆☆☆☆☆ [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](books/9781484243978.md)
 [<img alt="9781484243978" src="covers/9781484243978.jpg" width="200"/>](books/9781484243978.md)
+
+## ★★★☆☆ [Boost.Asio C++ Network Programming](books/9781782163268.md)
+[<img alt="Boost.Asio C++ Network Programming" src="covers/9781782163268.jpg" width="200"/>](books/9781782163268.md)
 
 ## [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
 
