@@ -23,7 +23,7 @@ for a Linux system programmer.
 
 ### Containerization
 
-* [Deep Dive in Docker](#)
+* [Docker Deep Dive](#)
 
 ### Uncategorized
 
@@ -74,8 +74,8 @@ for a Linux system programmer.
 [<img alt="9781801070058" src="covers/9781801070058.jpg" width="200"/>](books/9781801070058.md)
 
 
-## ☆☆☆☆☆ [Deep Dive into Docker](books/.md)
-[<img alt="" src="covers/.jpg" width="200"/>](books/.md)
+## ★★★★☆ [Docker Deep Dive](books/9781521822807.md)
+[<img alt="Docker Deep Dive" src="covers/9781521822807.jpg" width="200"/>](books/9781521822807.md)
 
 
 ## ☆☆☆☆☆ [Autotools Suite](books/.md)
