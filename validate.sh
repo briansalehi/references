@@ -10,7 +10,7 @@ is_reference_scope=0
 is_extra_scope=0
 
 function error() {
-    echo -e "\e[1;31m""${*}:\n\t${line_number}: ${line}""\e[0m" >&2
+    echo -e "\e[1;31m""${*}:""\e[0m""\n\t""\e[1;33m""${file}:""\e[1;34m""${line_number}: ""\e[0m""${line}"
 }
 
 function check_unclosing_details() {
@@ -20,7 +20,6 @@ function check_unclosing_details() {
     fi
 
     is_detail_scope=1
-    is_empty_scope=1
 }
 
 function check_surrounding_details() {
@@ -28,6 +27,8 @@ function check_surrounding_details() {
     then
         error "summary left without surrounding details tag"
     fi
+
+    is_empty_scope=1
 }
 
 function check_contiguous_summary() {
@@ -97,6 +98,12 @@ function check_horizontal_reach() {
 }
 
 function check_scope_validity() {
+    if [ "$is_detail_scope" -ne 1 ]
+    then
+        error "scope indicator out of scope"
+        return 1
+    fi
+
     if [ "$is_body_scope" -eq 0 ] && [ "$is_origin_scope" -eq 0 ] && [ "$is_reference_scope" -eq 0 ] && [ "$is_extra_scope" -eq 0 ]
     then
         if [ "$is_separator_scope" -eq 1 ]
@@ -175,8 +182,8 @@ then
             elif [ -z "$line" ]
             then
                 check_separator_reached
-            else
-                check_out_of_scope_line
+            # else
+            #     check_out_of_scope_line
             fi
         done < "$file"
 
