@@ -188,6 +188,5 @@ then
         done < "$file"
 
         line_number=0
-        exit
     done <<< "$(find "${1:-books/}" -name \*.md -type f -not -name README.md)"
 fi
