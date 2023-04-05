@@ -1,6 +1,6 @@
 # Mathematics
 
-This section covers mathematics branches.
+This section covers mathematic subjects.
 
 ## Table of Content
 

@@ -1,6 +1,6 @@
 # Linux Administration
 
-This major covers Linux administration.
+This subject covers Linux administration.
 
 ## Table of Content
 

@@ -1,6 +1,6 @@
 # C++ Programming
 
-This major covers the C++ programming language and its libraries.
+This subject covers the C++ programming language and its libraries.
 
 ## Table of Content
 

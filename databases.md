@@ -1,6 +1,6 @@
 # Databases
 
-This major covers database concepts, languages, and popular projects.
+This subject covers database concepts, languages, and popular projects.
 
 ## Table of Content
 

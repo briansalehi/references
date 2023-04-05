@@ -1,7 +1,6 @@
 # Assembly Programming
 
-This major covers assembly language in various flavors
-and processor architectures.
+This subject covers assembly language in various flavors and processor architectures.
 
 ## Table of Content
 

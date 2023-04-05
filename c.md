@@ -1,6 +1,6 @@
 # C Programming
 
-This section covers topics about the C programming language itself.
+This subject covers topics about the C programming language itself.
 
 - - -
 
