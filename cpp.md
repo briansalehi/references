@@ -70,8 +70,8 @@ This subject covers the C++ programming language and its libraries.
 ## ★★★☆☆ [Boost.Asio C++ Network Programming](books/9781782163268.md)
 [<img alt="Boost.Asio C++ Network Programming" src="covers/9781782163268.jpg" width="200"/>](books/9781782163268.md)
 
-## ☆☆☆☆☆ [Learning OpenCV 3](books/.md)
-[<img alt="" src="covers/.jpg" width="200"/>](books/.md)
+## ★★★★★ [Learning OpenCV 3](books/9781491937990.md)
+[<img alt="Learning OpenCV 3" src="covers/9781491937990.jpg" width="200"/>](books/9781491937990.md)
 
 ## [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
 
