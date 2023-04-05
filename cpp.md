@@ -17,7 +17,7 @@ This subject covers the C++ programming language and its libraries.
 * [C++ Move Semantics: The Complete Guide](#-c-move-semantics-the-complete-guide)
 * [C++ Templates: The Complete Guide](#-c-templates-the-complete-guide)
 * [C++17 STL Cookbook](#-c17-stl-cookbook)
-* [Boost.Asio C++ Network Programming](#boost.asio-c-network-programming]
+* [Boost.Asio C++ Network Programming](#-boostasio-c-network-programming)
 * [Boost Libraries](#-boost-libraries)
 * [Other Resources](#other-resources)
 
