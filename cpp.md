@@ -17,7 +17,7 @@ This subject covers the C++ programming language and its libraries.
 [<img alt="C++17: The Complete Guide" src="covers/9783967300178.jpg" width="200"/>](books/9783967300178.md)
 
 ### ★★★★★ [C++20: The Complete Guide](books/cxx20-the-complete-guide.md)
-[<img alt="C++20: The Complete Guide" src="covers/c++20-the-complete-guide.jpg" width="200"/>](books/c++20-the-complete-guide.md)
+[<img alt="C++20: The Complete Guide" src="covers/cxx20-the-complete-guide.jpg" width="200"/>](books/cxx20-the-complete-guide.md)
 
 ### ★★★★★ [C++ Move Semantics: The Complete Guide](books/9783967309003.md)
 [<img alt="C++ Move Semantics: The Complete Guide" src="covers/9783967309003.jpg" width="200"/>](books/9783967309003.md)
