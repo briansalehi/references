@@ -1,5 +1,5 @@
 # [C++20: The Complete Guide](https://www.amazon.com/20-Complete-Guide-Nicolai-Josuttis/dp/3967309207)
-<img alt="" src="covers/.jpg" width="200"/>
+<img alt="C++20: The Complete Guide" src="../covers/cxx20-the-complete-guide.jpg" width="200"/>
 
 
 ## Chapter 1/19
