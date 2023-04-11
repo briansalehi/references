@@ -132,7 +132,7 @@ function check_scope_validity() {
     then
         if [ "$is_separator_scope" -eq 1 ]
         then
-            error "body found splitted, extra scope reached"
+            error "body found splitted"
             is_reference_scope=0
             is_extra_scope=1
             is_separator_scope=0
