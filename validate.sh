@@ -67,11 +67,10 @@ function check_missing_scopes() {
             is_origin_scope=0
         elif [ "$is_reference_scope" -eq 1 ]
         then
+            # works as expected
             error "missing horizontal line"
             is_reference_scope=0
         fi
-    else
-        error "missing all 3 bodies"
     fi
 
     is_detail_scope=0
@@ -151,6 +150,25 @@ function check_scope_validity() {
     fi
 }
 
+if [ $# -gt 0 ] && [ -f "$1" ]
+then
+    file_list="$1"
+    shift
+elif [ $# -gt 0 ] && [ -d "$1" ]
+then
+    file_list="$(find "${1:-books/}" -name \*.md -type f -not -name README.md)"
+    shift
+else
+    echo "file not found${1+::} $1"
+    exit 1
+fi
+
+if [ $# -eq 2 ]
+then
+    debug_begin_line="$1"
+    debug_end_line="$2"
+fi
+
 if [ -d .git ] && [ -d books/ ]
 then
     while read -r file
@@ -161,13 +179,15 @@ then
         do
             ((line_number++))
 
+            [ -n "$debug_begin_line" ] && [ "$debug_begin_line" -eq "$line_number" ] && set -x
+
             if [ "$line" = "<details>" ]
             then
                 check_unclosing_details
             elif [ "$is_empty_scope" -eq 1 ]
             then
                 check_contiguous_summary
-            elif [ "${line:0:8}" = "<summary>" ]
+            elif [ "${line:0:9}" = "<summary>" ]
             then
                 check_surrounding_details
             elif [ "${line:0:1}" = ">" ]
@@ -185,8 +205,10 @@ then
             # else
             #     check_out_of_scope_line
             fi
+
+            [ -n "$debug_end_line" ] && [ "$debug_end_line" -eq "$line_number" ] && set +x
         done < "$file"
 
         line_number=0
-    done <<< "$(find "${1:-books/}" -name \*.md -type f -not -name README.md)"
+    done <<< "$file_list"
 fi
