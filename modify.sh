@@ -42,3 +42,5 @@ do
 done < "$1"
 
 sed -i 's,> \(</details>\) \(> Origin: [0-9.]*\) \(> References:\) \(---\),\n\2\n\n\3\n\4\n\1,' "$1"
+
+sed -i 's/^> ```$/&```/' "$1"
