@@ -1,7 +1,6 @@
 # [Linux Security and Administration](https://www.amazon.com/Linux-Security-Administration-Andy-Vickler/dp/B08ZPWTZV6/ref=sr_1_1?keywords=linux+security+and+administration&qid=1674730813&s=books&sr=1-1)
 <img alt="linux-security-and-administration" src="../covers/linux-security-and-administration.jpg" width="200"/>
 
-
 ## Chapter 1/12
 
 Nothing to import.
