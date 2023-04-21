@@ -40,6 +40,9 @@ This section covers all development tools required for a Linux system programmer
 ### ★★★★☆ [Docker Deep Dive](books/9781521822807.md)
 [<img alt="Docker Deep Dive" src="covers/9781521822807.jpg" width="200"/>](books/9781521822807.md)
 
+### ★★★★☆ [Docker in Practice](books/9781617294808.md)
+[<img alt="Docker in Practice" src="covers/9781617294808.jpg" width="200"/>](books/.md)
+
 ## Uncategorized
 
 ### [QEMU](#)
