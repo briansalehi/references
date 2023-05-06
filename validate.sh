@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+is_broken=0
 line_number=0
 is_detail_scope=0
 is_empty_scope=0
@@ -9,8 +10,14 @@ is_separator_scope=0
 is_reference_scope=0
 is_extra_scope=0
 
+function usage() {
+    echo "Usage: $(basename "$(readlink -f "$0")") [-h,--help] [-q,--quiet] [-f,--file <filename>] [-d,--dir,--directory <dirname>] [-g,--debug <begin> <end>]" >&2
+    exit 1
+}
+
 function error() {
-    echo -e "\e[1;31m""${*}:""\e[0m""\n\t""\e[1;33m""${file}:""\e[1;34m""${line_number}: ""\e[0m""${line}"
+    echo -e "\e[1;31m""${*}:""\e[0m""\n\t""\e[1;33m""${file}:""\e[1;34m""${line_number}: ""\e[0m""${line}" >&3
+    is_broken=1
 }
 
 function check_unclosing_details() {
@@ -150,36 +157,68 @@ function check_scope_validity() {
     fi
 }
 
-if [ $# -gt 0 ] && [ -f "$1" ]
-then
-    file_list="$1"
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        -q|--quiet) QUIET_MODE=1 ;;
+        -h|--help) HELP_MODE=1 ;;
+        -f|--file) FILE_MODE=1; FILE_PATH="$2"; shift ;;
+        -d|--dir|--directory) DIR_MODE=1; DIR_PATH="$2"; shift ;;
+        -g|--debug) DEBUG_BEGIN_LINE="$2"; DEBUG_END_LINE="$3"; shift; shift ;;
+        *)
+            if [ $# -eq 1 ]
+            then
+                if [ -f "$1" ]
+                then
+                    FILE_MODE=1
+                    FILE_PATH="$1"
+                elif [ -d "$2" ]
+                then
+                    DIR_MODE=1
+                    DIR_PATH="$1"
+                else
+                    echo "Invalid path: $1" >&2
+                    exit 1
+                fi
+            fi
+            ;;
+    esac
     shift
-elif [ $# -gt 0 ] && [ -d "$1" ]
+done
+
+if [ "${QUIET_MODE:-0}" -eq 1 ]
 then
-    file_list="$(find "${1:-books/}" -name \*.md -type f -not -name README.md)"
-    shift
+    exec 3> "/tmp/$(date +%s).validate.log"
 else
-    echo "file not found${1+::} $1"
-    exit 1
+    exec 3>&2
 fi
 
-if [ $# -eq 2 ]
+if [ "${HELP_MODE:-0}" -eq 1 ]
 then
-    debug_begin_line="$1"
-    debug_end_line="$2"
+    usage
+fi
+
+if [ "${FILE_MODE:-0}" -eq 1 ]
+then
+    file_list="$FILE_PATH"
+elif [ "${DIR_MODE:-0}" -eq 1 ]
+then
+    file_list="$(find "${DIR_PATH:-books/}" -name \*.md -type f -not -name README.md)"
+else
+    usage
 fi
 
 if [ -d .git ] && [ -d books/ ]
 then
     while read -r file
     do
-        echo -e "\e[1;33m""$file""\e[0m"
+        [ "${QUIET_MODE:-0}" -eq 0 ] && echo -e "\e[1;33m""$file""\e[0m" >&2
 
         while read -r line
         do
             ((line_number++))
 
-            [ -n "$debug_begin_line" ] && [ "$debug_begin_line" -eq "$line_number" ] && set -x
+            [ -n "$DEBUG_BEGIN_LINE" ] && [ "$DEBUG_BEGIN_LINE" -eq "$line_number" ] && set -x
 
             if [ "$line" = "<details>" ]
             then
@@ -206,9 +245,22 @@ then
             #     check_out_of_scope_line
             fi
 
-            [ -n "$debug_end_line" ] && [ "$debug_end_line" -eq "$line_number" ] && set +x
+            [ -n "$DEBUG_END_LINE" ] && [ "$DEBUG_END_LINE" -eq "$line_number" ] && set +x
         done < "$file"
 
+        if [ "${QUIET_MODE:-0}" -eq 1 ] && [ -z "${DEBUG_END_LINE}" ] && [ -z "${DEBUG_BEGIN_LINE}" ]
+        then
+            if [ "${is_broken:-0}" -eq 1 ]
+            then
+                printf '[\e[1;31m%*s%-6s%*s\e[0m]' 1 " " "BROKEN" 1 " " >&2
+            else
+                printf '[\e[1;32m%*s%-4s%*s\e[0m]' 3 " " "OK" 1 " " >&2
+            fi
+
+            echo -e "\e[1;33m"" $file""\e[0m" >&2
+        fi
+
+        is_broken=0
         line_number=0
     done <<< "$file_list"
 fi
