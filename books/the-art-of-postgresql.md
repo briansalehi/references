@@ -1,8 +1,6 @@
 # [The Art of PostgreSQL](https://theartofpostgresql.com)
 <img alt="The Art of PostgreSQL" src="../covers/the-art-of-postgresql.jpg" width="200"/>
 
-> The best book to start learning PostgreSQL.
-
 ## Chapter 1/51
 ## Chapter 2/51
 ## Chapter 3/51
