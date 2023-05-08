@@ -166,20 +166,17 @@ do
         -d|--dir|--directory) DIR_MODE=1; DIR_PATH="$2"; shift ;;
         -g|--debug) DEBUG_BEGIN_LINE="$2"; DEBUG_END_LINE="$3"; shift; shift ;;
         *)
-            if [ $# -eq 1 ]
+            if [ -f "$1" ]
             then
-                if [ -f "$1" ]
-                then
-                    FILE_MODE=1
-                    FILE_PATH="$1"
-                elif [ -d "$2" ]
-                then
-                    DIR_MODE=1
-                    DIR_PATH="$1"
-                else
-                    echo "Invalid path: $1" >&2
-                    exit 1
-                fi
+                FILE_MODE=1
+                FILE_PATH="$1"
+            elif [ -d "$1" ]
+            then
+                DIR_MODE=1
+                DIR_PATH="$1"
+            else
+                echo "Invalid path: $1" >&2
+                exit 1
             fi
             ;;
     esac
