@@ -7,7 +7,6 @@
 >
 > ```sh
 > git clone git://git.yoctoproject.org/poky
-> git checkout
 > ``````
 >
 > Import the build configurations and environments by sourcing the `oe-init-build-env` script file on the project's root directory.
@@ -20,6 +19,10 @@
 > When not specified, `build` directory will be generated in the working directory.
 >
 > Before building an image, you should edit and configure the `build/local.conf` file and set `MACHINE` variable to whatever target you desire, e.g. qemuarm, qemuarm64, qemux86-64, etc.
+>
+> ```sh
+> sed -i '/^MACHINE[ ?=]\+/s/^MACHINE\([ ?=]\+\).*/MACHINE\1"qemuarm64"/' conf/local.conf
+> ``````
 >
 > Using `bitbake` utility which was sourced earlier build an image by choice:
 >
@@ -66,7 +69,7 @@
 </details>
 
 <details>
-<summary>How to build an image using <b>SATO</b> GNU desktop environment for mobile devices using <b>Yocto Poky</b> tools?</summary>
+<summary>How to build a <code>qemuarm64</code> image with <b>SATO</b> as desktop environment for mobile devices using <b>Yocto Poky</b> tools?</summary>
 
 > We just need to configure `conf/local.conf` file and add the following line before building an image:
 >
@@ -80,7 +83,7 @@
 > git clone git://git.yoctoproject.org/poky
 > cd poky
 > source oe-init-build-env
-> sed -i '/^MACHINE =/s/^MACHINE = .*/MACHINE = "qemuarm64"/' conf/local.conf
+> sed -i '/^MACHINE[ ?=]\+/s/^MACHINE\([ ?=]\+\).*/MACHINE\1"qemuarm64"/' conf/local.conf
 > bitbake qemuarm64 core-image-sato
 > runqemu core-image-sato
 > ``````
