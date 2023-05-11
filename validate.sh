@@ -2,6 +2,7 @@
 
 is_broken=0
 line_number=0
+faults=0
 is_detail_scope=0
 is_empty_scope=0
 is_body_scope=0
@@ -18,6 +19,7 @@ function usage() {
 function error() {
     echo -e "\e[1;31m""${*}:""\e[0m""\n\t""\e[1;33m""${file}:""\e[1;34m""${line_number}: ""\e[0m""${line}" >&3
     is_broken=1
+    ((++faults))
 }
 
 function check_unclosing_details() {
@@ -209,6 +211,10 @@ if [ -d .git ] && [ -d books/ ]
 then
     while read -r file
     do
+        is_broken=0
+        line_number=0
+        faults=0
+
         [ "${QUIET_MODE:-0}" -eq 0 ] && echo -e "\e[1;33m""$file""\e[0m" >&2
 
         while read -r line
@@ -249,15 +255,10 @@ then
         then
             if [ "${is_broken:-0}" -eq 1 ]
             then
-                printf '[\e[1;31m%*s%-6s%*s\e[0m]' 1 " " "BROKEN" 1 " " >&2
+                printf '[\e[1;31m%*s%-6s%*s\e[0m] \e[1;33m%s\e[0m \e[1;35m(%d faults)\e[0m\n' 1 " " "BROKEN" 1 " " "$file" "$faults" >&2
             else
-                printf '[\e[1;32m%*s%-4s%*s\e[0m]' 3 " " "OK" 1 " " >&2
+                printf '[\e[1;32m%*s%-4s%*s\e[0m] \e[1;33m%s\e[0m\n' 3 " " "OK" 1 " " "$file" >&2
             fi
-
-            echo -e "\e[1;33m"" $file""\e[0m" >&2
         fi
-
-        is_broken=0
-        line_number=0
     done <<< "$file_list"
 fi
