@@ -9,10 +9,6 @@ This is intented to be only for my personal use,
 but you might be interested in what I read and
 what I think about the books I have read.
 
-To manage my studies, I slice my progress into
-[stages](stages.md). Each stage contains a few
-specific topics to be covered by related books.
-
 ## Bookmarks Grouped by Topic
 
 * [Algorithms & Data Structure](algorithms.md)
