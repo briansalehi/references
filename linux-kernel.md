@@ -12,15 +12,15 @@ This subject covers kernel development knowledge and the tools used in that proc
 [<img alt="9781789953435" src="covers/9781789953435.jpg" width="200"/>](books/9781789953435.md)
 
 
-## ☆☆☆☆☆ [Linux Kernel Programming Part 2](books/9781801079518.md)
+## ★★★★★ [Linux Kernel Programming Part 2](books/9781801079518.md)
 [<img alt="9781801079518" src="covers/9781801079518.jpg" width="200"/>](books/9781801079518.md)
 
 
-## ☆☆☆☆☆ [Linux Kernel Debugging](books/9781801075039.md)
+## ★★★★★ [Linux Kernel Debugging](books/9781801075039.md)
 [<img alt="9781801075039" src="covers/9781801075039.jpg" width="200"/>](books/9781801075039.md)
 
 
-## ☆☆☆☆☆ [Mastering Linux Device Driver Development](books/9781789342208.md)
+## ★★★★★ [Mastering Linux Device Driver Development](books/9781789342208.md)
 [<img alt="9781789342208" src="covers/9781789342208.jpg" width="200"/>](books/9781789342208.md)
 
 
@@ -39,7 +39,7 @@ This subject covers kernel development knowledge and the tools used in that proc
 ## ☆☆☆☆☆ [Linux Kernel Development](books/9780672329463.md)
 [<img alt="9780672329463" src="covers/9780672329463.jpg" width="200"/>](books/9780672329463.md)
 
-## ☆☆☆☆☆ [Embedded Linux using Yocto](courses/embedded-linux-using-yocto.md)
+## ★☆☆☆☆ [Embedded Linux using Yocto](courses/embedded-linux-using-yocto.md)
 
-## ☆☆☆☆☆ [Embedded Linux Full Course](courses/embedded-linux-full-course.md)
+## ★★★☆☆ [Embedded Linux Full Course](courses/embedded-linux-full-course.md)
 
