@@ -39,7 +39,5 @@ This subject covers kernel development knowledge and the tools used in that proc
 ## ☆☆☆☆☆ [Linux Kernel Development](books/9780672329463.md)
 [<img alt="9780672329463" src="covers/9780672329463.jpg" width="200"/>](books/9780672329463.md)
 
-## ★☆☆☆☆ [Embedded Linux using Yocto](courses/embedded-linux-using-yocto.md)
-
 ## ★★★☆☆ [Embedded Linux Full Course](courses/embedded-linux-full-course.md)
 
