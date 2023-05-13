@@ -161,8 +161,8 @@
 > git clone https://github.com/crosstool-ng/crosstool-ng.git
 > cd crosstool-ng
 > ./bootstrap
-> ./configure --enable-local
-> make
+> ./configure --prefix $HOME/.local
+> make -j8
 > make install
 > ``````
 
@@ -176,7 +176,7 @@
 <summary>How to list <code>Crosstool-ng</code> sample configurations?</summary>
 
 > ```sh
-> ./ct-ng list-samples
+> ct-ng list-samples
 > ``````
 
 > Origin: 6:04:00
@@ -186,10 +186,33 @@
 </details>
 
 <details>
+<summary>How to use <code>Crosstool-ng</code> to show a brief info of current or specified configuration?</summary>
+
+> Prefix target with `show-` to see the configuration information:
+>
+> ```sh
+> ct-ng show-armv6-unknown-linux-gnueabihf
+> ``````
+>
+> Or just run `show-config` to see the current configuration information:
+>
+> ```sh
+> ct-ng show-config
+> ``````
+>
+> Note that `.config` file should be available in the later case.
+
+> Origin: 6:05:00
+
+> References:
+---
+</details>
+
+<details>
 <summary>How to use <code>Crosstool-ng</code> to load a target specific configuration sample?</summary>
 
 > ```sh
-> ./ct-ng armv6-none-linux-gnueabihf
+> ct-ng armv6-unknown-linux-gnueabihf
 > ``````
 
 > Origin: 6:05:00
@@ -204,9 +227,9 @@
 > Crosstool-ng uses kernel build system `Kbuild` and kernel configuration system `Kconfig` to configure and build the cross-toolchain.
 >
 > ```sh
-> ./ct-ng menuconfig
-> ./ct-ng nconfig
-> ./ct-ng qtconfig
+> ct-ng menuconfig
+> ct-ng nconfig
+> ct-ng qtconfig
 > ``````
 
 > Origin: 6:03:00
@@ -216,13 +239,470 @@
 </details>
 
 <details>
-<summary>How to use <code>Crosstool-ng</code> to build the desired architecture specific cross-toolchain?</summary>
+<summary>How to use <code>Crosstool-ng</code> to print the tuple of the currently configured toolchain?</summary>
 
 > ```sh
-> ./ct-ng build
+> ct-ng show-tuple
+> ``````
+
+> Origin: 6:03:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to use <code>Crosstool-ng</code> to separate downloading source files from building stage?</summary>
+
+> ```sh
+> ct-ng source
+> ``````
+
+> Origin:
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to use <code>Crosstool-ng</code> to build the desired architecture specific cross-toolchain?</summary>
+
+> Indicate a the number of parallel jobs behind the `build` target after a dot:
+>
+> ```sh
+> ct-ng build.8
 > ``````
 
 > Origin: 6:04:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to set library and headers path for a cross-compiled GNU GCC compiler?</summary>
+
+> ```sh
+> ${CROSS_COMPILE}gcc -L$(${CROSS_COMPILE}gcc -print-sysroot)/lib -I$(${CROSS_COMPILE}gcc -print-sysroot)/include -march armv6 -mtune bcm2835 -o program source.c
+> ``````
+
+> Origin: 8:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to obtain U-boot and configure it?</summary>
+
+> Obtain the U-boot source tree from GitHub:
+>
+> ```sh
+> git clone https://github.com/u-boot/u-boot.git
+> cd u-boot
+> ``````
+>
+> Configuration files are stored in `configs/` directory.
+> 
+> To check if your desired board is already supported by U-boot, check if there is a match for that board in the `boards.cfg` file.
+>
+> To use one of the configuration entries in `configs/` use `make` utility:
+>
+> ```sh
+> make CROSS_COMPILE=$(arm-unknown-linux-gnueabihf-gcc -print-sysroot) ARCH=armv6 raspberrypizero_defconfig
+> make CROSS_COMPILE=$(arm-unknown-linux-gnueabihf-gcc -print-sysroot) ARCH=armv6 menuconfig
+> ``````
+
+> Origin: 9:32:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to load a file from a filesystem to RAM within U-boot shell?</summary>
+
+> There are as many tools as there are filesystems to load an image into RAM:
+>
+> *FAT filesystem*
+> ```uboot
+> fatload usb 0:1 0x21000000 zImage
+> ``````
+>
+> *EXT4 filesystem*
+> ```uboot
+> ext4load usb 0:1 0x21000000 zImage
+> ``````
+> 
+> There are similarly other tools:
+>
+> * fatinfo,  fatls,  fatsize,  fatwrite, ...
+> * ext2info, ext2ls, ext2size, ext2write,...
+> * ext3info, ext3ls, ext3size, ext3write,...
+> * ext4info, ext4ls, ext4size, ext4write,...
+> * sqfsinfo, sqfsls, sqfssize, sqfswrite,...
+
+> Origin: 10:07:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to load a kernel image into RAM from network?</summary>
+
+> ```uboot
+> tftp
+> ``````
+
+> Origin: 10:11:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to test network conectivity?</summary>
+
+> ```uboot
+> ping
+> ``````
+
+> Origin: 10:12:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What utilities can be used within U-boot shell to load a kernel image from serial line to RAM?</summary>
+
+> `loads`, `loadb`, `loady` commands.
+
+> Origin: 10:13:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to control the USB subsystem?</summary>
+
+> ```uboot
+> ping
+> ``````
+
+> Origin: 10:14:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to control MMC subsystem?</summary>
+
+> ```uboot
+> mmc
+> ``````
+
+> Origin: 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to read, write and erase contents to NAND flash?</summary>
+
+> ```uboot
+> nand
+> ``````
+
+> Origin: 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What commands can be used within U-boot shell to erase, modify protection or write contents to NOR flash?</summary>
+
+> ```uboot
+> erase
+> protect
+> cp
+> ``````
+
+> Origin: 10:16:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to display memory info?</summary>
+
+> ```uboot
+> md
+> ``````
+
+> Origin: 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to modify memory info?</summary>
+
+> ```uboot
+> mm
+> ``````
+
+> Origin: 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to display board information?</summary>
+
+> ```uboot
+> bdinfo
+> ``````
+
+> Origin: 10:16:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to display environment variables?</summary>
+
+> ```uboot
+> printenv
+> printenv <variable-name>
+> ``````
+
+> Origin: 10:19:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to set environment variables?</summary>
+
+> ```uboot
+> setenv <variable-name> <variable-value>
+> ``````
+
+> Origin 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to edit an environment variable?</summary>
+
+> ```uboot
+> editenv <variable-name>
+> ``````
+
+> Origin: 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to save environment variables permanently?</summary>
+
+> ```uboot
+> saveenv
+> ``````
+
+> Origin: 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variable can be set within U-boot shell to specify the boot command sequence that U-boot should automatically execute at boot time?</summary>
+
+> Commands will be executed after a configurable delay `bootdelay`, if process is not interrupted.
+>
+> ```uboot
+> setenv bootcmd 'tftp 0x21000000 zImage; tftp 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
+> ``````
+
+> Origin: 10:22:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variable can be set within U-boot shell to be passed to the kernel as arguments?</summary>
+
+> ```uboot
+> setenv bootargs ''
+> ``````
+
+> Origin: 10:23:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variables should be set within U-boot shell to load an image into RAM from network?</summary>
+
+> * `serverip`
+> * `ipaddr`
+> * `netmask`
+> * `ethaddr`
+
+> Origin: 10:24:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-boot shell to see the size of the latest copy into memory?</summary>
+
+> After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of copy can be seen by:
+>
+> ```uboot
+> filesize
+> ``````
+
+> Origin: 10:24:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to write conditional expressions within U-boot shell?</summary>
+
+> U-boot shell uses the same conditional expression as Bash:
+>
+> ```uboot
+> setenv mmc-boot 'if fatload mmc 0 80000000 boot.ini; then source; else if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
+> ``````
+
+> Origin: 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to run a script within U-boot shell?</summary>
+
+> ```uboot
+> setenv <variable-name> <script-body>
+> run <variable-name>
+> ``````
+
+> Origin: 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to reference other variable within U-boot shell?</summary>
+
+> The same way that Unix shell references variables using braces:
+>
+> ```uboot
+> ${variable-name}
+> ``````
+
+> Origin: 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What does the <code>source</code> command do in U-boot shell environment?</summary>
+
+> When a command is used to load some file into RAM as follows:
+>
+> ```uboot
+> fatload mmc 0 80000000 boot.ini
+> ``````
+>
+> Then by executing `source` command, the contents within `boot.ini` file which was recently loaded will be read.  
+> This file should obbey the syntax of U-boot shell variables.  
+> By reading these variables, the boot sequence can be changed accordingly.
+
+> Origin: 10:34:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>Where to download the Raspberry Pi bootloader from?</summary>
+
+> The official `raspbberypi` repository holds the `boot` directory where `start.elf` file and the device tree files can be found:
+>
+> ```sh
+> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> ``````
+
+> Origin: 11:18:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What files are required to to boot using a Raspberry Pi device?</summary>
+
+> 1. Boot loader (Raspberry Pi specific SPL)
+> 2. Kernel image
+> 3. Device trees
+>
+> First download Raspberry Pi device specific SPL and device tree binary files.
+>
+> ```sh
+> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> ``````
+> 
+> Then partition the SD card which is used to attach to the device:
+>
+> ```sh
+> fdisk /dev/sda
+> ``````
+>
+> Create a 100M sized partition and set the bootable flag.  
+> Then format that bootable partition with vfat filesystem:
+>
+> ```sh
+> mkfs -t vfat /dev/sda1
+> ``````
+>
+> Mount it and then copy `u-boot.bin`, `start.elf` (raspberrypi repository), `bcm2708-rpi-zero.dtb` (raspbberypi repository) files into the filesystem:
+>
+> ```sh
+> mount /dev/sda1 /mnt
+> cp * /mnt
+> umount /mnt
+> ``````
+
+> Origin: 11:18:00
 
 > References:
 ---
