@@ -709,6 +709,43 @@
 </details>
 
 <details>
+<summary>How to list all available processors available to QEMU?</summary>
+
+> ```sh
+> qemu-system-arm --machine help
+> ``````
+
+> Origin: 13:17:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to use <code>qemu-system-arm</code> command to boot into <code>u-boot</code>?</summary>
+
+> ```sh
+> qemu-system-arm --machine raspi0 --nographic --kernel u-boot
+> ``````
+
+> Origin: 13:18:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to create a patch?</summary>
+
+> git format-patch
+
+> Origin: 14:55:00
+
+> References:
+---
+</details>
+
+<details>
 <summary>How to connect to an embedded device using <code>picocom</code> through <code>/dev/ttyUSB0</code> device driver?</summary>
 
 > ```sh
