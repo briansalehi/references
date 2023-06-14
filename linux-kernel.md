@@ -10,6 +10,9 @@ This subject covers kernel development knowledge and the tools used in that proc
 ## ★★★★★ [Linux Device Driver Development](books/9781803240060.md)
 [<img alt="9781803240060" src="covers/9781803240060.jpg" width="200"/>](books/9781803240060.md)
 
+## ★★★★★ [Mastering Linux Device Driver Development](books/9781789342208.md)
+[<img alt="9781789342208" src="covers/9781789342208.jpg" width="200"/>](books/9781789342208.md)
+
 ## ★★★★★ [Linux Kernel Programming](books/9781789953435.md)
 [<img alt="9781789953435" src="covers/9781789953435.jpg" width="200"/>](books/9781789953435.md)
 
@@ -18,9 +21,6 @@ This subject covers kernel development knowledge and the tools used in that proc
 
 ## ★★★★★ [Linux Kernel Debugging](books/9781801075039.md)
 [<img alt="9781801075039" src="covers/9781801075039.jpg" width="200"/>](books/9781801075039.md)
-
-## ★★★★★ [Mastering Linux Device Driver Development](books/9781789342208.md)
-[<img alt="9781789342208" src="covers/9781789342208.jpg" width="200"/>](books/9781789342208.md)
 
 ## ☆☆☆☆☆ [Linux Driver Development for Embedded Processors](books/9781729321829.md)
 [<img alt="9781729321829" src="covers/9781729321829.jpg" width="200"/>](books/9781729321829.md)
