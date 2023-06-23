@@ -1,15 +1,10 @@
 # References
 
-A collection of notes from the books I have read and
-mapped to their corresponding reference manual.
+A collection of notes from the books I have read and mapped to their corresponding reference manual.
 
-## Motivation
+This is intented to be only for my personal use, but you might be interested in what I read and what I think about the books I have read.
 
-This is intented to be only for my personal use,
-but you might be interested in what I read and
-what I think about the books I have read.
-
-## Bookmarks Grouped by Topic
+## Notes
 
 * [Algorithms & Data Structure](algorithms.md)
 * [Assembly Programming](assembly.md)
@@ -22,3 +17,8 @@ what I think about the books I have read.
 * [Linux System Programming](linux-programming.md)
 * [Mathematics](mathematics.md)
 * [Python Programming](python.md)
+
+## Topics
+
+* [C++ Programming](topics/cpp.md)
+* [Linux Kernel Development](topics/kernel.md)
