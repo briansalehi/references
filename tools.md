@@ -10,12 +10,12 @@ This section covers all development tools required for a Linux system programmer
 ### ★★★★★ [Modern Vim](books/9781680502626.md)
 [<img alt="9781680502626" src="covers/9781680502626.jpg" width="200"/>](books/9781680502626.md)
 
-### ☆☆☆☆☆ [Mastering Vim](books/9781789341096.md)
+### [Mastering Vim](books/9781789341096.md)
 [<img alt="9781789341096" src="covers/9781789341096.jpg" width="200"/>](books/9781789341096.md)
 
 ## Source Code Manager
 
-### ☆☆☆☆☆ [Pro Git](books/9781484200773.md)
+### [Pro Git](books/9781484200773.md)
 [<img alt="9781484200773" src="covers/9781484200773.jpg" width="200"/>](books/9781484200773.md)
 
 ## Build Tools
@@ -26,13 +26,13 @@ This section covers all development tools required for a Linux system programmer
 ### ★★★★☆ [CMake Cookbook](books/9781788470711.md)
 [<img alt="9781788470711" src="covers/9781788470711.jpg" width="200"/>](books/9781788470711.md)
 
-### ☆☆☆☆☆ [CMake Best Practices](books/9781803239729.md)
+### [CMake Best Practices](books/9781803239729.md)
 [<img alt="9781803239729" src="covers/9781803239729.jpg" width="200"/>](books/9781803239729.md)
 
-### ☆☆☆☆☆ [Modern CMake for C++](books/9781801070058.md)
+### [Modern CMake for C++](books/9781801070058.md)
 [<img alt="9781801070058" src="covers/9781801070058.jpg" width="200"/>](books/9781801070058.md)
 
-## ☆☆☆☆☆ [Autotools Suite](books/.md)
+## [Autotools Suite](books/.md)
 [<img alt="" src="covers/.jpg" width="200"/>](books/.md)
 
 ## Containerization

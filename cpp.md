@@ -31,13 +31,13 @@ This subject covers the C++ programming language and its libraries.
 ### ★★★★★ [Modern C++ Programming Cookbook](books/9781800208988.md)
 [<img alt="Modern C++ Programming Cookbook" src="covers/9781800208988.jpg" width="200"/>](books/9781800208988.md)
 
-### ☆☆☆☆☆ [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
+### [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
 [<img alt="Deciphering Object-Oriented Programming with C++" src="covers/9781804613900.jpg" width="200"/>](books/9781804613900.md)
 
 ### ★★★☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
 [<img alt="Design Patterns in Modern C++20" src="covers/9781484272947.jpg" width="200"/>](books/9781484272947.md)
 
-### ☆☆☆☆☆ [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](books/9781484243978.md)
+### [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](books/9781484243978.md)
 [<img alt="Pro Tbb: C++ Parallel Programming with Threading Building Blocks" src="covers/9781484243978.jpg" width="200"/>](books/9781484243978.md)
 
 ## Boost Libraries
