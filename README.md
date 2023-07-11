@@ -6,6 +6,8 @@ This is intented to be only for my personal use, but you might be interested in 
 
 ## Notes
 
+Note states: 1. *completed*, 2. *modified*, 3. *imported*, 4. *released*
+
 * [Algorithms & Data Structure](algorithms.md)
 * [Assembly Programming](assembly.md)
 * [C++ Programming](cpp.md)
