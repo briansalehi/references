@@ -6,7 +6,7 @@ This is intented to be only for my personal use, but you might be interested in 
 
 ## Notes
 
-Note states: 1. *completed*, 2. *modified*, 3. *imported*, 4. *released*
+Note states: 1. *completed*, 2. *edited*, 3. *covered*, 4. *published*
 
 * [Algorithms & Data Structure](algorithms.md)
 * [Assembly Programming](assembly.md)
