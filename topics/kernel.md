@@ -1,5 +1,51 @@
 # Linux Kernel Development
 
+## Linux System Structure
+
+<details>
+<summary>What are the development stages of an embedded Linux system?</summary>
+
+> 1. Board Bring-Up
+> 2. System Architecture and Design Choice
+> 3. Writing Embedded Applications
+> 4. Debugging and Optimizing Performance
+
+> Origin: Mastering Embedded Linux Programming - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the building blocks of an embedded Linux system?</summary>
+
+> 1. Toolchain
+> 2. Bootloader
+> 3. Kernel
+> 4. Root filesystem
+> 5. Embedded Applications
+
+> Origin: Mastering Embedded Linux Programming - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the minimum required hardware target to develop an Embedded Linux for?</summary>
+
+> 1. CPU architecture
+> 2. Reasonable amout of RAM
+> 3. Non-volatile storage
+> 4. Serial port
+> 5. Debugging interface (e.g. JTAG)
+
+> Origin: Mastering Embedded Linux Programming - Chapter 1
+
+> References:
+---
+</details>
+
 ## Linux Kernel Source Tree
 
 <details>
