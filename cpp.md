@@ -34,10 +34,10 @@ This subject covers the C++ programming language and its libraries.
 ### ★★★★★ [A Complete Guide to Standard C++ Algorithms](books/a-complete-guide-to-standard-cpp-algorithms.md)
 [<img alt="A Complete Guide to Standard C++ Algorithms" src="covers/a-complete-guide-to-standard-cpp-algorithms.jpg" width="200"/>](books/a-complete-guide-to-standard-cpp-algorithms.md)
 
-### [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
+### ★★★ [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
 [<img alt="Deciphering Object-Oriented Programming with C++" src="covers/9781804613900.jpg" width="200"/>](books/9781804613900.md)
 
-### ★★★☆☆ [Design Patterns in Modern C++20](books/9781484272947.md)
+### ★★★ [Design Patterns in Modern C++20](books/9781484272947.md)
 [<img alt="Design Patterns in Modern C++20" src="covers/9781484272947.jpg" width="200"/>](books/9781484272947.md)
 
 ### [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](books/9781484243978.md)
@@ -45,7 +45,7 @@ This subject covers the C++ programming language and its libraries.
 
 ## Boost Libraries
 
-### ★☆☆☆☆ [Boost.Asio C++ Network Programming](books/9781782163268.md)
+### ★ [Boost.Asio C++ Network Programming](books/9781782163268.md)
 [<img alt="Boost.Asio C++ Network Programming" src="covers/9781782163268.jpg" width="200"/>](books/9781782163268.md)
 
 ### [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)

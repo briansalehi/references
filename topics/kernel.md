@@ -1,6 +1,6 @@
 # Linux Kernel Development
 
-## Linux System Structure
+## Embedded Linux Development
 
 <details>
 <summary>What are the development stages of an embedded Linux system?</summary>
