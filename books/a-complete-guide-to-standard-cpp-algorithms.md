@@ -254,3 +254,34 @@
 > References:
 ---
 </details>
+
+<details>
+<summary>Iterate over all the elements of a container using <code>std::for_each</code>?</summary>
+
+> The C++11 standard introduced the range-based for loop, which mostly replaced the uses of `std::for_each`.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5};
+>     std::size_t sum{};
+>     std::for_each(numbers.begin(), numbers.end(), [&sum](auto const e) { sum += e; });
+>     for (auto e: numbers) { sum += e; }
+> }
+> ``````
+>
+> | `std::for_each` |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+
+> Origin: 2.1
+
+> References:
+---
+</details>
