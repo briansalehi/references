@@ -273,7 +273,7 @@
 > }
 > ``````
 >
-> | `std::for_each` |
+> | feature | standard |
 > | --- | --- |
 > | introduced | C++98 |
 > | paralllel | C++17 |
