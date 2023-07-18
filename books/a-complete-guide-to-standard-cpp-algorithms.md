@@ -1,5 +1,5 @@
 # [A Complete Guide to Standard C++ Algorithms]()
-<img alt="A Complete Guide to Standard C++ Algorithms" src="covers/a-complete-guide-to-standard-cpp-algorithms.jpg" width="200"/>
+<img alt="A Complete Guide to Standard C++ Algorithms" src="covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
 
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?</summary>
@@ -285,3 +285,211 @@
 > References:
 ---
 </details>
+
+<details>
+<summary>How to use parallel executaion on <code>std::for_each</code> to invoke an expensive operation for each element of a container?</summary>
+
+> As long as the operations are independent, there is no need for synchronization primitives.
+>
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <ranges>
+> #include <vector>
+>
+> struct work
+> {
+>     void expensive_operation() { /* ... */ }
+> };
+>
+> int main()
+> {
+>     std::vector<work> work_pool{work{}, work{}, work{}};
+>     std::for_each(std::execution::par_unseq, work_pool.begin(), work_pool.end(), [](work& w) { w.expensive_operation(); });
+> }
+> ``````
+>
+> When synchronization is required, operations need to be atmoic.
+>
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <atomic>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5};
+>     std::atomic<size_t> sum{};
+>     std::for_each(std::execution::par_unseq, numbers.begin(), numbers.end(), [&sum](auto& e) { sum += e; });
+> }
+> ``````
+
+> Origin: 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Use range based <code>std::for_each</code> utilizing a projection to invoke external methods?</summary>
+
+> ```cp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> struct work_unit
+> {
+>     size_t value;
+>     work_unit(size_t initial): value{std::move(initial)} {}
+>     size_t current() const { return value; }
+> };
+> 
+> int main()
+> {
+>     size_t sum{};
+>     std::vector<work_unit> tasks{1,2,3};
+>     std::ranges::for_each(tasks, [&sum](auto const& e) { sum += e; }, &work_unit::current);
+>     // sum: 6
+> }
+> ``````
+
+> Origin: 2.1.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Iterate over a limited number of a container using <code>std::for_each_n</code>?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> While `std::for_each` operates on the entire range, the interval $[begin, end)$, `std::for_each_n` operates on the range $[first, first + n)$.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5,6};
+>     std::size_t sum{};
+>     std::for_each_n(numbers.begin(), 3, [&sum](auto const& e) { sum += e; });
+>     // sum = 6
+> }
+> ``````
+>
+> Importantly, because the algorithm does not have access to the end iterator of the source range, it does no out-of-bounds checking, and it is the responsibility of the caller to ensure that the range $[first, first + n)$ is valid.
+
+> Origin: 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to swap two values?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Correctly calling swap requires pulling the default std::swap version to the local scope.
+>
+> ```cpp
+> #include <algorithm>
+> 
+> namespace library
+> {
+>     struct container { long value; };
+> }
+> 
+> int main()
+> {
+>     library::container a{3}, b{4};
+>     std::ranges::swap(a, b); // first calls library::swap
+>                              // then it calls the default move-swap
+> }
+> ``````
+
+> Origin: 2.2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Swap values of a range using <code>std::iter_swap</code>?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::iter_swap` is an indirect swap, swapping values behind two forward iterators.
+>
+> ```cpp
+> #include <algorithm>
+> #include <memory>
+> 
+> int main()
+> {
+>     auto p1 = std::make_unique<int>(1);
+>     auto p2 = std::make_unique<int>(2);
+> 
+>     int *p1_pre = p1.get();
+>     int *p2_pre = p2.get();
+> 
+>     std::ranges::swap(p1, p2);
+>     // p1.get() == p1_pre, *p1 == 2
+>     // p2.get() == p2_pre, *p2 == 1
+> }
+> ``````
+
+> Origin: 2.2.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to exchange elements between two non-overlapping ranges using <code>std::swap_ranges</code>?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5,6};
+>     std::swap_ranges(numbers.begin(), numbers.begin()+2, numbers.rbegin());
+>     // numbers: {6,5,3,4,2,1}
+> }
+> ``````
+
+> Origin: 2.2.3
+
+> References:
+---
+</details>
+
+
