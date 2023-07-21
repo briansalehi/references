@@ -1,5 +1,7 @@
-# [A Complete Guide to Standard C++ Algorithms]()
+# A Complete Guide to Standard C++ Algorithms
 <img alt="A Complete Guide to Standard C++ Algorithms" src="../covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
+
+## Introduction <sup>(complete)</sup>
 
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?</summary>
@@ -394,6 +396,8 @@
 ---
 </details>
 
+## Swaps <sup>(complete)</sup>
+
 <details>
 <summary>How to swap two values?</summary>
 
@@ -491,6 +495,8 @@
 > References:
 ---
 </details>
+
+## Sorting <sup>(complete)</sup>
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?</summary>
@@ -886,4 +892,214 @@
 > References:
 ---
 </details>
+
+## Partitioning <sup>(complete)</sup>
+
+<details>
+<summary>Reorder a vector of objects partitioned in two sections?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::partition` algorithm provides the basic partitioning functionality, reordering elements based on a unary predicate.
+> The algorithm returns the partition point, an iterator to the first element for which the predicate returned `false`.
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+> 
+> struct ExamResult
+> {
+>     std::string student_name;
+>     int score;
+> };
+> 
+> int main()
+> {
+>     std::vector<ExamResult> results{{"Jane Doe", 84}, {"John Doe", 78}, {"Liz Clarkson", 68}, {"David Teneth", 92}};
+> 
+>     auto partition_point = std::partition(results.begin(), results.end(), [threshold = 80](auto const& e) { return e.score >= threshold; });
+> 
+>     std::for_each(results.begin(), partition_point, [](auto const& e) { std::cout << "[PASSED] " << e.student_name << "\n"; });
+>     std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\n"; });
+> }
+> ``````
+
+> Origin: 2.4.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Guarantee the ordering of equal elements in partitioning a range?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | N/A |
+> | rangified | C++20 |
+>
+> The `std::partition` algorithm is permitted to rearrange the elements with the only guarantee that elements for which the predicate evaluated to true will precede elements for which the predicate evaluated to false.
+> This behaviour can be undesirable, for example, for UI elements.
+>
+> The `std::stable_partition` algorithm adds the guarantee of preserving the relative order of elements in both partitions.
+>
+> ```cpp
+> auto& widget = get_widget();
+> std::ranges::stable_partition(widget.items, &Item::is_selected);
+> ``````
+
+> Origin: 2.4.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a range is partitioned?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <cassert>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> series{2, 4, 6, 7, 9, 11};
+>     auto is_even = [](auto v) { return v % 2 == 0; };
+>     bool test = std::ranges::is_partitioned(series, is_even);
+>     assert(test); // test = true
+> }
+> ``````
+
+> Origin: 2.4.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy the reordering results of partitioning a vector?</summary>
+
+>
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::partition_copy` is a variant of `std::partition` that, instead of reordering elements, will output the partitioned elements to the two output ranges denoted by two iterators.
+>
+> ```cpp
+> #include <algorithm>
+> #include <cassert>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> series{2, 4, 6, 7, 9, 11};
+>     auto is_even = [](auto v) { return v % 2 == 0; };
+> 
+>     std::vector<long> evens, odds;
+>     std::ranges::partition_copy(series, std::back_inserter(evens), std::back_inserter(odds), is_even);
+> 
+>     assert(evens.size() == 3);
+>     assert(odds.size() == 3);
+> }
+> ``````
+
+> Origin: 2.4.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find the nth element within a range?</summary>
+
+> | feature | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::nth_element` algorithm is a partitioning algorithm that ensures that the element in the nth position is the element that would be in this position if the range was sorted.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> series1{6, 3, 5, 1, 2, 4};
+>     std::vector<long> series2{series1};
+> 
+>     std::nth_element(series1.begin(), std::next(series1.begin(), 2), series1.end());
+>     // 1 2 3 5 6 4
+> 
+>     std::nth_element(series2.begin(), std::next(series2.begin(), 2), series2.end(), std::greater<long>{});
+>     // 5 6 4 3 2 1
+> }
+> ``````
+>
+> Because of its selection/partitioning nature, `std::nth_element` offers a better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗ logk)`.
+> However, note that the standard only mandates average `O(n)` complexity, and `std::nth_element` implementations can have high overhead, so always test to determine which provides better performance for your use case.
+
+> Origin: 2.4.5
+
+> References:
+---
+</details>
+
+## Divide and Conquer
+
+## Linear Operations on Sorted Ranges
+
+## Set Operations
+
+## Transformation Algorithms
+
+## Left folds
+
+## General Reductions
+
+## Boolean Reductions
+
+## Generators
+
+## Copy and Move
+
+## Uninitialized Memory Algorithms
+
+## Heap Data Structure
+
+## Search and Compare Algorithms
+
+## Min-Max Algorithms
+
+## Ranges
+
+## Views
 

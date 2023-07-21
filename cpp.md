@@ -31,9 +31,6 @@ This subject covers the C++ programming language and its libraries.
 ### ★★★★★ [Modern C++ Programming Cookbook](books/9781800208988.md)
 [<img alt="Modern C++ Programming Cookbook" src="covers/9781800208988.jpg" width="200"/>](books/9781800208988.md)
 
-### ★★★★★ [A Complete Guide to Standard C++ Algorithms](books/a-complete-guide-to-standard-cpp-algorithms.md)
-[<img alt="A Complete Guide to Standard C++ Algorithms" src="covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>](books/a-complete-guide-to-standard-cpp-algorithms.md)
-
 ### ★★★ [Deciphering Object-Oriented Programming with C++](books/9781804613900.md)
 [<img alt="Deciphering Object-Oriented Programming with C++" src="covers/9781804613900.jpg" width="200"/>](books/9781804613900.md)
 

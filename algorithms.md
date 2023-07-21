@@ -8,3 +8,5 @@ This subject covers algorithms and data structures implemented in C and C++.
 ## ★★★★★ [Data Abstraction & Problem Solving with C++](books/9780134463971.md)
 [<img alt="Data Abstraction & Problem Solving with C++" src="covers/9780134463971.jpg" width="200"/>](books/9780134463971.md)
 
+### ★★★★★ [A Complete Guide to Standard C++ Algorithms](books/a-complete-guide-to-standard-cpp-algorithms.md)
+[<img alt="A Complete Guide to Standard C++ Algorithms" src="covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>](books/a-complete-guide-to-standard-cpp-algorithms.md)
