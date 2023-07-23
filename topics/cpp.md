@@ -86,7 +86,7 @@
 > }
 > ``````
 
-> Origin: 1.3
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.3
 
 > References:
 ---
@@ -94,11 +94,20 @@
 
 ## Algorithms
 
-### 1. `std::for_each`
+### 1. Iteration
 
 <details>
-<summary>Using a standard algorithm, sum the values of a container?</summary>
+<summary>Using the standard algorithms, sum the values of a container?</summary>
 
+> | `std::for_each` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The C++11 standard introduced the range-based for loop, which mostly replaced the uses of `std::for_each`.
+>
 > ```cp
 > #include <algorithm>
 > #include <ranges>
@@ -124,6 +133,9 @@
 >
 >     std::ranges::for_each(numbers, [&sum](auto e){ count++; sum += e; });
 >     // sum == 45, using ranges
+>
+>     for (auto e: numbers) { sum += e; }
+>     // sum == 60, using range-based for
 > }
 > ``````
 
@@ -134,11 +146,31 @@
 </details>
 
 <details>
-<summary>Using a standard algorithm, sum values of a container with <i>unsequenced parallel execution</i> model?</summary>
+<summary>Iterate over a range with <i>unsequenced parallel execution</i> model?</summary>
 
-> Note that variables are now shared state and need to be `std::atomic<>` or protected by a `std::mutex<>`.
+> As long as the operations are independent, there is no need for synchronization primitives.
 >
-> ```cp
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <ranges>
+> #include <vector>
+>
+> struct work
+> {
+>     void expensive_operation() { /* ... */ }
+> };
+>
+> int main()
+> {
+>     std::vector<work> work_pool{work{}, work{}, work{}};
+>     std::for_each(std::execution::par_unseq, work_pool.begin(), work_pool.end(), [](work& w) { w.expensive_operation(); });
+> }
+> ``````
+>
+> When synchronization is required, operations need to be atmoic.
+>
+> ```cpp
 > #include <algorithm>
 > #include <execution>
 > #include <atomic>
@@ -146,16 +178,108 @@
 >
 > int main()
 > {
->     std::atomic<long> sum{};
->     std::vector<long> numbers{1, 2, 3, 4, 5};
->     std::for_each(std::execution::par_unseq, numbers.begin(), numbers.end(), [&sum](auto e){ sum += e; });
->     // sum == 15
+>     std::vector<long> numbers{1,2,3,4,5};
+>     std::atomic<size_t> sum{};
+>     std::for_each(std::execution::par_unseq, numbers.begin(), numbers.end(), [&sum](auto& e) { sum += e; });
 > }
 > ``````
 >
 > Note: parallel execution requires *libtbb* library to be linked.
 
 > Origin: A Complete Guide to Standard C++ Algorithms - Section 1.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Invoke an external method utilizing a projection over the entire elements of a range?</summary>
+
+> ```cp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> struct work_unit
+> {
+>     size_t value;
+>     work_unit(size_t initial): value{std::move(initial)} {}
+>     size_t current() const { return value; }
+> };
+>
+> int main()
+> {
+>     size_t sum{};
+>     std::vector<work_unit> tasks{1,2,3};
+>     std::ranges::for_each(tasks, [&sum](auto const& e) { sum += e; }, &work_unit::current);
+>     // sum: 6
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.1.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Iterate over a limited number of elements within a range?</summary>
+
+> | `std::for_each_n` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> While `std::for_each` operates on the entire range, the interval $[begin, end)$, while the `std::for_each_n` operates on the range $[first, first + n)$.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5,6};
+>     std::size_t sum{};
+>     std::for_each_n(numbers.begin(), 3, [&sum](auto const& e) { sum += e; });
+>     // sum = 6
+> }
+> ``````
+>
+> Importantly, because the algorithm does not have access to the end iterator of the source range, it does no out-of-bounds checking, and it is the responsibility of the caller to ensure that the range $[first, first + n)$ is valid.
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.1
+
+> References:
+---
+</details>
+
+### 2. Sorting
+
+<details>
+<summary>Find the maximal sorted sub-range within a range using standard algorithms?</summary>
+
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5};
+>
+>     auto last_sorted = std::is_sorted_until(numbers.begin(), numbers.end());
+>
+>     for (auto iter = numbers.begin(); iter != last_sorted; ++iter)
+>         continue;
+>
+>     for (auto v: std::ranges::subrange(numbers.begin(), last_sorted))
+>         continue;
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.4
 
 > References:
 ---
