@@ -1,7 +1,7 @@
 # A Complete Guide to Standard C++ Algorithms
 <img alt="A Complete Guide to Standard C++ Algorithms" src="../covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
 
-## Introduction <sup>(complete, edited, covered)</sup>
+## Introduction <sup>(completed => edited => published)</sup>
 
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?</summary>
@@ -396,7 +396,7 @@
 ---
 </details>
 
-## Swaps <sup>(complete)</sup>
+## Swaps <sup>(completed => edited => published)</sup>
 
 <details>
 <summary>How to swap two values?</summary>
@@ -496,7 +496,7 @@
 ---
 </details>
 
-## Sorting <sup>(complete)</sup>
+## Sorting <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?</summary>
@@ -651,7 +651,7 @@
 </details>
 
 <details>
-<summary>What is the minimum requirement to sort a range?</summary>
+<summary>What iterator type does the sort function operates on?</summary>
 
 > The `std::sort` algorithm is the canonical `O(N log N)` sort (typically implemented as *intro-sort*).
 >
@@ -754,7 +754,7 @@
 </details>
 
 <details>
-<summary>Check if a range is already sorted in descending order?</summary>
+<summary>Check if a range is already sorted in ascending order?</summary>
 
 > | feature | standard |
 > | --- | --- |
@@ -790,7 +790,7 @@
 </details>
 
 <details>
-<summary>Check if a range is partially sorted?</summary>
+<summary>Find the end iterator of the maximal sorted sub-range within a range using standard algorithms?</summary>
 
 > | feature | standard |
 > | --- | --- |
@@ -893,7 +893,7 @@
 ---
 </details>
 
-## Partitioning <sup>(complete)</sup>
+## Partitioning <sup>(completed)</sup>
 
 <details>
 <summary>Reorder a vector of objects partitioned in two sections?</summary>

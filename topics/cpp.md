@@ -94,7 +94,7 @@
 
 ## Algorithms
 
-### 1. Iteration
+### 1. Iterating
 
 <details>
 <summary>Using the standard algorithms, sum the values of a container?</summary>
@@ -255,10 +255,497 @@
 ---
 </details>
 
-### 2. Sorting
+### 2. Swapping
 
 <details>
-<summary>Find the maximal sorted sub-range within a range using standard algorithms?</summary>
+<summary>Swap two values using standard algorithms?</summary>
+
+> | `std::swap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Correctly calling swap requires pulling the default `std::swap` version to the local scope.
+>
+> ```cpp
+> #include <algorithm>
+>
+> namespace library
+> {
+>     struct container { long value; };
+> }
+>
+> int main()
+> {
+>     library::container a{3}, b{4};
+>     std::ranges::swap(a, b); // first calls library::swap
+>                              // then it calls the default move-swap
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Swap values behind two forward iterators?</summary>
+
+> | `std::iter_swap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::iter_swap` is an indirect swap, swapping values behind two forward iterators.
+>
+> ```cpp
+> #include <algorithm>
+> #include <memory>
+>
+> int main()
+> {
+>     auto p1 = std::make_unique<int>(1);
+>     auto p2 = std::make_unique<int>(2);
+>
+>     int *p1_pre = p1.get();
+>     int *p2_pre = p2.get();
+>
+>     std::ranges::swap(p1, p2);
+>     // p1.get() == p1_pre, *p1 == 2
+>     // p2.get() == p2_pre, *p2 == 1
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Exchange elements of two non-overlapping ranges?</summary>
+
+> | `std::swap_ranges` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5,6};
+>     std::swap_ranges(numbers.begin(), numbers.begin()+2, numbers.rbegin());
+>     // numbers: {6,5,3,4,2,1}
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.3
+
+> References:
+---
+</details>
+
+### 3. Sorting
+
+<details>
+<summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
+
+> Implementing a `strict_weak_ordering` for a custom type, at minimum requires providing an overload of `operator<`.
+>
+> A good default for a `strict_weak_ordering` implementation is *lexicographical ordering*.
+>
+> Since C++20 introduced the spaceship operator, user-defined types can easily access the default version of *lexicographical ordering*.
+>
+> ```cpp
+> struct Point {
+>     int x;
+>     int y;
+>
+>     // pre-C++20 lexicographical less-than
+>     friend bool operator<(const Point& left, const Point& right)
+>     {
+>         if (left.x != right.x)
+>             return left.x < right.x;
+>         return left.y < right.y;
+>     }
+>
+>     // default C++20 spaceship version of lexicographical comparison
+>     friend auto operator<=>(const Point&, const Point&) = default;
+>
+>     // manual version of lexicographical comparison using operator <=>
+>     friend auto operator<=>(const Point& left, const Point& right)
+>     {
+>         if (left.x != right.x)
+>             return left.x <=> right.x;
+>         return left.y <=> right.y;
+>     }
+> };
+> ``````
+>
+> The type returned for the spaceship operator is the common comparison category type for the bases and members, one of:
+>
+> * `std::strong_ordering`
+> * `std::weak_ordering`
+> * `std::partial_ordering`
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Compare if one range is lexicographically less than another?</summary>
+
+> Lexicographical `strict_weak_ordering` for ranges is exposed through the `std::lexicographical_compare` algorithm.
+>
+> | `std::lexicographical_compare` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<long> range1{1, 2, 3};
+>     std::vector<long> range2{1, 3};
+>     std::vector<long> range3{1, 3, 1};
+>
+>     bool cmp1 = std::lexicographical_compare(range1.cbegin(), range1.cend(), range2.cbegin(), range2.cend());
+>     // same as
+>     bool cmp2 = range1 < range2;
+>     // cmp1 = cmp2 = true
+>
+>     bool cmp3 = std::lexicographical_compare(range2.cbegin(), range2.cend(), range3.cbegin(), range3.cend());
+>     // same as
+>     bool cmp4 = range2 < range3;
+>     // cmp3 = cmp4 = true
+>
+>     std::vector<std::string> range4{"Zoe", "Alice"};
+>     std::vector<std::string> range5{"Adam", "Maria"};
+>     auto compare_length = [](auto const& l, auto const& r) { return l.length() < r.length(); };
+>
+>     bool cmp5 = std::ranges::lexicographical_compare(range4, range5, compare_length);
+>     // different than
+>     bool cmp6 = range1 < range2;
+>     // cmp5 = true, cmp6 = false
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Compare if one range is lexicographically less than another using spaceship operator?</summary>
+
+> | `std::lexicographical_compare_three_way` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | constexpr | C++20 |
+> | paralllel | N/A |
+> | rangified | N/A |
+>
+> The `std::lexicographical_compare_three_way` is the spaceship operator equivalent to `std::lexicographical_compare`.
+> It returns one of:
+>
+> * `std::strong_ordering`
+> * `std::weak_ordering`
+> * `std::partial_ordering`
+>
+> The type depends on the type returned by the elements’ spaceship operator.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<long> numbers1{1, 1, 1};
+>     std::vector<long> numbers2{1, 2, 3};
+>
+>     auto cmp1 = std::lexicographical_compare_three_way(numbers1.cbegin(), numbers1.cend(), numbers2.cbegin(), numbers2.cend());
+>     // cmp1 = std::strong_ordering::less
+>
+>     std::vector<std::string> strings1{"Zoe", "Alice"};
+>     std::vector<std::string> strings2{"Adam", "Maria"};
+>
+>     auto cmp2 = std::lexicographical_compare_three_way(strings1.cbegin(), strings1.cend(), strings2.cbegin(), strings2.cend());
+>     // cmp2 = std::strong_ordering::greater
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>What iterator type does the sort function operates on?</summary>
+
+> The `std::sort` algorithm is the canonical `O(N log N)` sort (typically implemented as *intro-sort*).
+>
+> Due to the `O(n log n)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
+> Notably, `std::list` offers a method with an approximate `O(N log N)` complexity.
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Sort ranges having different iterator types?</summary>
+
+> | `std::sort` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <list>
+>
+> struct Account
+> {
+>     long value() { return value_; }
+>     long value_;
+> };
+>
+> int main()
+> {
+>     std::vector<long> series1{6,2,4,1,5,3};
+>     std::sort(series1.begin(), series1.end());
+>
+>     std::list<long> series2{6,2,4,1,5,3};
+>     //std::sort(series2.begin(), series2.end()); // won't compile
+>     series2.sort();
+>
+>     // With C++20, we can take advantage of projections to sort by a method or member
+>     std::vector<Account> accounts{{6},{2},{4},{1},{5},{3}};
+>     std::ranges::sort(accounts, std::greater<>{}, &Account::value);
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Sort a range providing an additional guarantee of preserving the relative order of equal elements?</summary>
+
+> The `std::sort` is free to re-arrange equivalent elements, which can be undesirable when re-sorting an already sorted range.
+> The `std::stable_sort` provides the additional guarantee of preserving the relative order of equal elements.
+>
+> | `std::stable_sort` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | N/A |
+> | rangified | C++20 |
+>
+> If additional memory is available, `stable_sort` remains `O(n log n)`.
+> However, if it fails to allocate, it will degrade to an `O(n log n log n)` algorithm.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> struct Record
+> {
+>     std::string label;
+>     short rank;
+> };
+>
+> int main()
+> {
+>     std::vector<Record> records{{"b", 2}, {"e", 1}, {"c", 2}, {"a", 1}, {"d", 3}};
+>
+>     std::ranges::stable_sort(records, {}, &Record::label);
+>     // guaranteed order: a-1, b-2, c-2, d-3, e-1
+>
+>     std::ranges::stable_sort(records, {}, &Record::rank);
+>     // guaranteed order: a-1, e-1, b-2, c-2, d-3
+> }
+> ``````
+
+> Origin: 2.3.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a range is already sorted in ascending or descending order?</summary>
+
+> | `std::is_sorted` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<int> data1 = {1, 2, 3, 4, 5};
+>     bool test1 = std::is_sorted(data1.begin(), data1.end());
+>     // test1 == true
+>
+>     std::vector<int> data2 = {5, 4, 3, 2, 1};
+>     bool test2 = std::ranges::is_sorted(data2);
+>     // test2 == false
+>
+>     bool test3 = std::ranges::is_sorted(data2, std::greater<>{});
+>     // test3 == true
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find the end iterator of the maximal sorted sub-range within a range using standard algorithms?</summary>
+
+> | `std::is_sorted_until` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,6,5,4};
+>     auto iter = std::ranges::is_sorted_until(numbers);
+>     // *iter = 6
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Sort a sub-range within a range?</summary>
+
+> | `std::partial_sort` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::partial_sort` algorithm reorders the range’s elements such that the leading sub-range is in the same order it would when fully sorted.
+> However, the algorithm leaves the rest of the range in an unspecified order.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<int> data{9, 8, 7, 6, 5, 4, 3, 2, 1};
+>
+>     std::partial_sort(data.begin(), data.begin()+3, data.end());
+>     // data == {1, 2, 3, -unspecified order-}
+>
+>     std::ranges::partial_sort(data, data.begin()+3, std::greater<>());
+>     // data == {9, 8, 7, -unspecified order-}
+> }
+> ``````
+>
+> The benefit of using a partial sort is faster runtime — approximately `O(N log K)`, where `K` is the number of elements sorted.
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Sort a sub-range within a range and write the results to another range?</summary>
+
+> | `std::partial_sort_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::partial_sort_copy` algorithm has the same behaviour as `std::partial_sort`; however, it does not operate inline.
+> Instead, the algorithm writes the results to a second range.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<int> top(3);
+
+>     // input == "0 1 2 3 4 5 6 7 8 9"
+>     auto input = std::istream_iterator<int>(std::cin);
+>     auto cnt = std::counted_iterator(input, 10);
+
+>     std::ranges::partial_sort_copy(cnt, std::default_sentinel, top.begin(), top.end(), std::greater<>{});
+>     // top == { 9, 8, 7 }
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.8
+
+> References:
+---
+</details>
+
+<details>
+<summary>Extract a sub-range from a range?</summary>
 
 > ```cpp
 > #include <algorithm>
@@ -284,3 +771,5 @@
 > References:
 ---
 </details>
+
+### 4. Partitioning
