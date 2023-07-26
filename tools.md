@@ -20,10 +20,10 @@ This section covers all development tools required for a Linux system programmer
 
 ## Build Tools
 
-### ★★★★☆ [Professional CMake](books/9781925904208.md)
+### ★★★★ [Professional CMake](books/9781925904208.md)
 [<img alt="9781925904208" src="covers/9781925904208.jpg" width="200"/>](books/9781925904208.md)
 
-### ★★★★☆ [CMake Cookbook](books/9781788470711.md)
+### ★★★★ [CMake Cookbook](books/9781788470711.md)
 [<img alt="9781788470711" src="covers/9781788470711.jpg" width="200"/>](books/9781788470711.md)
 
 ### [CMake Best Practices](books/9781803239729.md)
@@ -37,10 +37,10 @@ This section covers all development tools required for a Linux system programmer
 
 ## Containerization
 
-### ★★★★☆ [Docker Deep Dive](books/9781521822807.md)
+### ★★★★ [Docker Deep Dive](books/9781521822807.md)
 [<img alt="Docker Deep Dive" src="covers/9781521822807.jpg" width="200"/>](books/9781521822807.md)
 
-### ★★★★☆ [Docker in Practice](books/9781617294808.md)
+### ★★★★ [Docker in Practice](books/9781617294808.md)
 [<img alt="Docker in Practice" src="covers/9781617294808.jpg" width="200"/>](books/.md)
 
 ## Uncategorized
