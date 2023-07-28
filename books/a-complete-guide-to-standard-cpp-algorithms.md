@@ -9,7 +9,7 @@
 > ```cp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > template <typename T, typename S = std::size_t>
 > struct sum_predicate
 > {
@@ -21,7 +21,7 @@
 >         sum += e;
 >     }
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1, 2, 3, 4, 5};
@@ -42,7 +42,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::size_t count{};
@@ -69,7 +69,7 @@
 > #include <execution>
 > #include <atomic>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::atomic<std::size_t> count{};
@@ -93,7 +93,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::size_t count{};
@@ -122,14 +122,14 @@
 > #include <iostream>
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<int> numbers{1,2,3,4,5};
-> 
+>
 >     auto iter1 = numbers.begin();
 >     auto iter2 = numbers.end();
-> 
+>
 >     std::for_each(iter1, iter2, [](auto e) { std::cout << e << " "; });
 > }
 > ``````
@@ -143,7 +143,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > template <typename T>
 > struct sentinel
 > {
@@ -152,7 +152,7 @@
 >     std::iter_difference_t<iter_t> count;
 >     bool operator==(iter_t const& other) const { return std::distance(begin, other) >= count; }
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,4,5};
@@ -174,17 +174,17 @@
 > #include <algorithm>
 > #include <vector>
 > #include <list>
-> 
+>
 > int main()
 > {
 >     std::vector<long> random_access{1,2,3,4,5};
 >     std::list<long> bidirectional{1,2,3,4,5};
-> 
+>
 >     auto random_access_iterator = random_access.begin();
 >     random_access_iterator += 3; // OK
 >     random_access_iterator++; // OK
 >     ssize_t random_difference = random_access_iterator - random_access.begin(); // OK: 4
->     
+>
 >     auto bidirectional_iterator = bidirectional.begin();
 >     //bidirectional_iterator += 5; // ERROR
 >     std::advance(bidirectional_iterator, 3); // OK
@@ -209,12 +209,12 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> in{1,2,3,4,5,6,7,8,9,10};
 >     std::vector<long> out(10, 0);
-> 
+>
 >     std::copy(in.begin(), in.end(), out.begin());
 >     // output range is implied as: std::next(out.begin(), std::distance(in.begin(), in.end()));
 > }
@@ -233,16 +233,16 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,4,5};
-> 
+>
 >     auto last_sorted = std::is_sorted_until(numbers.begin(), numbers.end());
-> 
+>
 >     for (auto iter = numbers.begin(); iter != last_sorted; ++iter)
 >         continue;
-> 
+>
 >     for (auto v: std::ranges::subrange(numbers.begin(), last_sorted))
 >         continue;
 > }
@@ -318,7 +318,7 @@
 > #include <execution>
 > #include <atomic>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,4,5};
@@ -340,14 +340,14 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > struct work_unit
 > {
 >     size_t value;
 >     work_unit(size_t initial): value{std::move(initial)} {}
 >     size_t current() const { return value; }
 > };
-> 
+>
 > int main()
 > {
 >     size_t sum{};
@@ -378,7 +378,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,4,5,6};
@@ -412,12 +412,12 @@
 >
 > ```cpp
 > #include <algorithm>
-> 
+>
 > namespace library
 > {
 >     struct container { long value; };
 > }
-> 
+>
 > int main()
 > {
 >     library::container a{3}, b{4};
@@ -447,15 +447,15 @@
 > ```cpp
 > #include <algorithm>
 > #include <memory>
-> 
+>
 > int main()
 > {
 >     auto p1 = std::make_unique<int>(1);
 >     auto p2 = std::make_unique<int>(2);
-> 
+>
 >     int *p1_pre = p1.get();
 >     int *p2_pre = p2.get();
-> 
+>
 >     std::ranges::swap(p1, p2);
 >     // p1.get() == p1_pre, *p1 == 2
 >     // p2.get() == p2_pre, *p2 == 1
@@ -481,7 +481,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,4,5,6};
@@ -511,7 +511,7 @@
 > struct Point {
 >     int x;
 >     int y;
-> 
+>
 >     // pre-C++20 lexicographical less-than
 >     friend bool operator<(const Point& left, const Point& right)
 >     {
@@ -519,10 +519,10 @@
 >             return left.x < right.x;
 >         return left.y < right.y;
 >     }
-> 
+>
 >     // default C++20 spaceship version of lexicographical comparison
 >     friend auto operator<=>(const Point&, const Point&) = default;
-> 
+>
 >     // manual version of lexicographical comparison using operator <=>
 >     friend auto operator<=>(const Point& left, const Point& right)
 >     {
@@ -560,18 +560,18 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range1{1, 2, 3};
 >     std::vector<long> range2{1, 3};
 >     std::vector<long> range3{1, 3, 1};
-> 
+>
 >     bool cmp1 = std::lexicographical_compare(range1.cbegin(), range1.cend(), range2.cbegin(), range2.cend());
 >     // same as
 >     bool cmp2 = range1 < range2;
 >     // cmp1 = cmp2 = true
-> 
+>
 >     bool cmp3 = std::lexicographical_compare(range2.cbegin(), range2.cend(), range3.cbegin(), range3.cend());
 >     // same as
 >     bool cmp4 = range2 < range3;
@@ -584,13 +584,13 @@
 > #include <ranges>
 > #include <vector>
 > #include <string>
-> 
+>
 > int main()
 > {
 >     std::vector<std::string> range1{"Zoe", "Alice"};
 >     std::vector<std::string> range2{"Adam", "Maria"};
 >     auto compare_length = [](auto const& l, auto const& r) { return l.length() < r.length(); };
-> 
+>
 >     bool cmp1 = std::ranges::lexicographical_compare(range1, range2, compare_length);
 >     // different than
 >     bool cmp2 = range1 < range2;
@@ -627,18 +627,18 @@
 > #include <algorithm>
 > #include <vector>
 > #include <string>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers1{1, 1, 1};
 >     std::vector<long> numbers2{1, 2, 3};
-> 
+>
 >     auto cmp1 = std::lexicographical_compare_three_way(numbers1.cbegin(), numbers1.cend(), numbers2.cbegin(), numbers2.cend());
 >     // cmp1 = std::strong_ordering::less
-> 
+>
 >     std::vector<std::string> strings1{"Zoe", "Alice"};
 >     std::vector<std::string> strings2{"Adam", "Maria"};
-> 
+>
 >     auto cmp2 = std::lexicographical_compare_three_way(strings1.cbegin(), strings1.cend(), strings2.cbegin(), strings2.cend());
 >     // cmp2 = std::strong_ordering::greater
 > }
@@ -679,22 +679,22 @@
 > #include <ranges>
 > #include <vector>
 > #include <list>
-> 
+>
 > struct Account
 > {
 >     long value() { return value_; }
 >     long value_;
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<long> series1{6,2,4,1,5,3};
 >     std::sort(series1.begin(), series1.end());
-> 
+>
 >     std::list<long> series2{6,2,4,1,5,3};
 >     //std::sort(series2.begin(), series2.end()); // won't compile
 >     series2.sort();
-> 
+>
 >     // With C++20, we can take advantage of projections to sort by a method or member
 >     std::vector<Account> accounts{{6},{2},{4},{1},{5},{3}};
 >     std::ranges::sort(accounts, std::greater<>{}, &Account::value);
@@ -728,20 +728,20 @@
 > #include <ranges>
 > #include <vector>
 > #include <string>
-> 
+>
 > struct Record
 > {
 >     std::string label;
 >     short rank;
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<Record> records{{"b", 2}, {"e", 1}, {"c", 2}, {"a", 1}, {"d", 3}};
-> 
+>
 >     std::ranges::stable_sort(records, {}, &Record::label);
 >     // guaranteed order: a-1, b-2, c-2, d-3, e-1
-> 
+>
 >     std::ranges::stable_sort(records, {}, &Record::rank);
 >     // guaranteed order: a-1, e-1, b-2, c-2, d-3
 > }
@@ -767,7 +767,7 @@
 > #include <algorithm>
 > #include <vector>
 > #include <ranges>
-> 
+>
 > int main()
 > {
 >     std::vector<int> data1 = {1, 2, 3, 4, 5};
@@ -803,7 +803,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> numbers{1,2,3,6,5,4};
@@ -835,14 +835,14 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<int> data{9, 8, 7, 6, 5, 4, 3, 2, 1};
-> 
+>
 >     std::partial_sort(data.begin(), data.begin()+3, data.end());
 >     // data == {1, 2, 3, -unspecified order-}
-> 
+>
 >     std::ranges::partial_sort(data, data.begin()+3, std::greater<>());
 >     // data == {9, 8, 7, -unspecified order-}
 > }
@@ -873,7 +873,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<int> top(3);
@@ -893,7 +893,7 @@
 ---
 </details>
 
-## Partitioning <sup>(completed)</sup>
+## Partitioning <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Reorder a vector of objects partitioned in two sections?</summary>
@@ -915,19 +915,19 @@
 > #include <ranges>
 > #include <vector>
 > #include <string>
-> 
+>
 > struct ExamResult
 > {
 >     std::string student_name;
 >     int score;
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<ExamResult> results{{"Jane Doe", 84}, {"John Doe", 78}, {"Liz Clarkson", 68}, {"David Teneth", 92}};
-> 
+>
 >     auto partition_point = std::partition(results.begin(), results.end(), [threshold = 80](auto const& e) { return e.score >= threshold; });
-> 
+>
 >     std::for_each(results.begin(), partition_point, [](auto const& e) { std::cout << "[PASSED] " << e.student_name << "\n"; });
 >     std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\n"; });
 > }
@@ -980,7 +980,7 @@
 > #include <cassert>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series{2, 4, 6, 7, 9, 11};
@@ -1014,15 +1014,15 @@
 > #include <cassert>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series{2, 4, 6, 7, 9, 11};
 >     auto is_even = [](auto v) { return v % 2 == 0; };
-> 
+>
 >     std::vector<long> evens, odds;
 >     std::ranges::partition_copy(series, std::back_inserter(evens), std::back_inserter(odds), is_even);
-> 
+>
 >     assert(evens.size() == 3);
 >     assert(odds.size() == 3);
 > }
@@ -1050,15 +1050,15 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series1{6, 3, 5, 1, 2, 4};
 >     std::vector<long> series2{series1};
-> 
+>
 >     std::nth_element(series1.begin(), std::next(series1.begin(), 2), series1.end());
 >     // 1 2 3 5 6 4
-> 
+>
 >     std::nth_element(series2.begin(), std::next(series2.begin(), 2), series2.end(), std::greater<long>{});
 >     // 5 6 4 3 2 1
 > }
@@ -1073,7 +1073,174 @@
 ---
 </details>
 
-## Divide and Conquer
+## Divide and Conquer <sup>(completed, edited)</sup>
+
+<details>
+<summary>Find the lower and upper bounds of a value within a sorted range?</summary>
+
+> | `std::lower_bound` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::upper_bound` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The two algorithms differ in which bound they return:
+>
+> * The `std::lower_bound` returns the first element for which `element < value` returns `false`.
+> * The `std::upper_bound` returns the first element for which `value < element`.
+> * If no such element exists, both algorithms return the end iterator.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <string>
+>
+> struct ExamResult
+> {
+>     std::string student_name;
+>     int score;
+> };
+>
+> int main()
+> {
+>     std::vector<ExamResult> results{{"Jane", 65}, {"Maria", 80}, {"Liz", 70}, {"David", 90}, {"Paula", 70}};
+>     std::ranges::sort(results, std::less<int>{}, &ExamResult::score);
+>
+>     auto lower = std::ranges::lower_bound(results, 70, {}, &ExamResult::score);
+>     // lower.score == 70
+>     auto upper = std::ranges::upper_bound(results, 70, {}, &ExamResult::score);
+>     // upper.score == 80
+> }
+> ``````
+>
+> While both algorithms will operate on any `forward_range`, the logarithmic divide and conquer behavior is only available for `random_access_range`.
+>
+> Data structures like `std::set`, `std::multiset`, `std::map`, `std::multimap` offer their `O(log N)` implementations of lower and upper bound as methods.
+>
+> ```sh
+> #include <algorithm>
+> #include <set>
+>
+> int main()
+> {
+>     std::multiset<int> data{1,2,3,4,5,6,6,6,7,8,9};
+>
+>     auto lower = data.lower_bound(6);
+>     // std::distance(data.begin(), lower) == 5
+>
+>     auto upper = data.upper_bound(6);
+>     // std::distance(data.begin(), upper) == 8
+> }
+> ``````
+
+> Origin: 2.5.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Return both lower and upper bounds of a value within a range?</summary>
+
+> | `std::equal_range` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6,6,6,7,8,9};
+>
+>     auto [lower, upper] = std::equal_range(data.begin(), data.end(), 6);
+>     // std::distance(data.begin(), lower) == 5
+>     // std::distance(data.begin(), upper) == 8
+> }
+> ``````
+
+> Origin: 2.5.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Return the upper bound of a value within a range using a predicate?</summary>
+
+> | `std::partition_point` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Despite the naming, `std::partition_point` works very similaryly to `std::upper_bound`, however instead of searching for a particular value, it searches using a predicate.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6,6,6,7,8,9};
+>     auto point = std::partition_point(data.begin(), data.end(), [](long v) { return v < 6; });
+>     // std::distance(data.begin(), point) = 5
+> }
+> ``````
+
+> Origin: 2.5.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check the presence of a value within a range?</summary>
+
+> | `std::binary_search` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> This function checks whether the requested value is present in the sorted range or not.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6};
+>     std::binary_search(data.begin(), data.end(), 4);
+>     // true
+>     std::ranges::binary_search(data, 4);
+>     // true
+> }
+> ``````
+>
+> `std::binary_search` is equivalent to calling `std::equal_range` and checking whether the returned is non-empty; however, `std::binary_search` offers a single lookup performance, where `std::equal_range` does two lookups to determine the lower and upper bounds.
+
+> Origin: 2.5.4
+
+> References:
+---
+</details>
 
 ## Linear Operations on Sorted Ranges
 
