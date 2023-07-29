@@ -436,6 +436,8 @@
 ---
 </details>
 
+## Linux Kernel Build System
+
 <details>
 <summary>What <code>make</code> target should be used to build the kernel in the source tree?</summary>
 
@@ -462,7 +464,7 @@
 </details>
 
 <details>
-<summary>Where do kernel build artifact will be stored in the source tree?</summary>
+<summary>What kernel build artifacts will be stored in the source tree?</summary>
 
 > * `arch/<arch>/boot/Image`: An uncompressed kernel image that can be booted.
 > * `arch/<arch>/boot/*Image*`: A compressed kernel image that can also be booted.
@@ -475,6 +477,8 @@
 > References:
 ---
 </details>
+
+## Installing Kernel Build Artifacts
 
 <details>
 <summary>How to install the kernel binary file on native and non-native targets?</summary>
@@ -552,6 +556,4 @@
 > References:
 ---
 </details>
-
-## Linux Kernel Build System
 

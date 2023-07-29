@@ -502,11 +502,11 @@
 </details>
 
 <details>
-<summary>What iterator type does the sort function operates on?</summary>
+<summary>What iterator type does the sort function operate on?</summary>
 
 > The `std::sort` algorithm is the canonical `O(N log N)` sort (typically implemented as *intro-sort*).
 >
-> Due to the `O(n log n)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
+> Due to the `O(N log N)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
 > Notably, `std::list` offers a method with an approximate `O(N log N)` complexity.
 
 > Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.3

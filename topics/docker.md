@@ -746,7 +746,7 @@
 </details>
 
 <details>
-<summary>How many modes does each node of a swarm have??</summary>
+<summary>How many modes does each node of a swarm have?</summary>
 
 > Docker nodes that are not part of a *swarm* are said to be in a **single-engine** mode.
 > Once they're added to a *swarm* they're automatically switched into **swarm mode**.
@@ -758,6 +758,8 @@
 > References:
 ---
 </details>
+
+## Swarm Initializing
 
 <details>
 <summary>Initialize a swarm on an existing node?</summary>
@@ -783,6 +785,8 @@
 > References:
 ---
 </details>
+
+## Swarm Listing
 
 <details>
 <summary>List available swarm nodes?</summary>
