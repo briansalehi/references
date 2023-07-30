@@ -7,9 +7,9 @@ This is intented to be only for my personal use, but you might be interested in 
 
 These are processed notes edited and imported from bookmarks but independent from any resources and intentionally ordered for coding practices.
 
-* [C++ Programming](topics/cpp.md)
+* [C++](topics/cpp.md)
 * [Docker](topics/docker.md)
-* [Linux Kernel Development](topics/kernel.md)
+* [Linux Kernel](topics/kernel.md)
 
 ## Bookmarks
 
