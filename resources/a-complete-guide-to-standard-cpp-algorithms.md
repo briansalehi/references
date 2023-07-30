@@ -1073,7 +1073,7 @@
 ---
 </details>
 
-## Divide and Conquer <sup>(completed, edited)</sup>
+## Divide and Conquer <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -1242,7 +1242,7 @@
 ---
 </details>
 
-## Linear Operations on Sorted Ranges
+## Linear Operations on Sorted Ranges <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Determine whether one range is contained within another range?</summary>
@@ -1387,7 +1387,7 @@
 ---
 </details>
 
-## Set Operations
+## Set Operations <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -1402,7 +1402,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> data1{1,3,5,7,9};
@@ -1432,7 +1432,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> data1{1,3,5,7,9};
@@ -1462,7 +1462,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> data1{1,3,5,7,9};
@@ -1492,7 +1492,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> data1{1,3,5,7,9};

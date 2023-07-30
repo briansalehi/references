@@ -94,7 +94,7 @@
 
 ## Algorithms
 
-### 1. Iterating
+### Iterating Algorithms
 
 <details>
 <summary>Using the standard algorithms, sum the values of a container?</summary>
@@ -255,7 +255,7 @@
 ---
 </details>
 
-### 2. Swapping
+### Swapping Algorithms
 
 <details>
 <summary>Swap two values using standard algorithms?</summary>
@@ -355,7 +355,7 @@
 ---
 </details>
 
-### 3. Sorting
+### Sorting Algorithms
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
@@ -772,7 +772,7 @@
 ---
 </details>
 
-### 4. Partitioning
+### Partitioning Algorithms
 
 <details>
 <summary>Partition a range into two based on a criterion?</summary>
@@ -792,19 +792,19 @@
 > #include <iostream>
 > #include <vector>
 > #include <string>
-> 
+>
 > struct ExamResult
 > {
 >     std::string student_name;
 >     int score;
 > };
-> 
+>
 > int main()
 > {
 >     std::vector<ExamResult> results{{"Jane Doe", 84}, {"John Doe", 78}, {"Liz Clarkson", 68}, {"David Teneth", 92}};
-> 
+>
 >     auto partition_point = std::partition(results.begin(), results.end(), [threshold=80](auto const& e) { return e.score >= threshold; });
-> 
+>
 >     std::for_each(results.begin(), partition_point, [](auto const& e) { std::cout << "[PASSED] " << e.student_name << "\n"; });
 >     std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\n"; });
 > }
@@ -857,7 +857,7 @@
 > #include <cassert>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series{2, 4, 6, 7, 9, 11};
@@ -891,15 +891,15 @@
 > #include <cassert>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series{2, 4, 6, 7, 9, 11};
 >     auto is_even = [](auto v) { return v % 2 == 0; };
-> 
+>
 >     std::vector<long> evens, odds;
 >     std::ranges::partition_copy(series, std::back_inserter(evens), std::back_inserter(odds), is_even);
-> 
+>
 >     assert(evens.size() == 3);
 >     assert(odds.size() == 3);
 > }
@@ -927,7 +927,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> series1{6, 3, 5, 1, 2, 4};
@@ -937,7 +937,7 @@
 >     std::vector<long> series2{6, 3, 5, 1, 2, 4};
 >     std::ranges::nth_element(series2, std::ranges::next(series2.begin(), 2));
 >     // 1 2 3 5 6 4
-> 
+>
 >     std::vector<long> series3{6, 3, 5, 1, 2, 4};
 >     std::nth_element(series3.begin(), std::next(series3.begin(), 2), series3.end(), std::greater<long>{});
 >     // 5 6 4 3 2 1
@@ -957,4 +957,439 @@
 ---
 </details>
 
-### 5. Divide and Conquer
+### Sorted Range Algorithms
+
+<details>
+<summary>Find the lower and upper bounds of a value within a sorted range?</summary>
+
+> | `std::lower_bound` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::upper_bound` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The two algorithms differ in which bound they return:
+>
+> * The `std::lower_bound` returns the first element for which `element < value` returns `false`.
+> * The `std::upper_bound` returns the first element for which `value < element`.
+> * If no such element exists, both algorithms return the end iterator.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <string>
+>
+> struct ExamResult
+> {
+>     std::string student_name;
+>     int score;
+> };
+>
+> int main()
+> {
+>     std::vector<ExamResult> results{{"Jane", 65}, {"Maria", 80}, {"Liz", 70}, {"David", 90}, {"Paula", 70}};
+>     std::ranges::sort(results, std::less<int>{}, &ExamResult::score);
+>
+>     auto lower = std::ranges::lower_bound(results, 70, {}, &ExamResult::score);
+>     // lower.score == 70
+>     auto upper = std::ranges::upper_bound(results, 70, {}, &ExamResult::score);
+>     // upper.score == 80
+> }
+> ``````
+>
+> While both algorithms will operate on any `forward_range`, the logarithmic divide and conquer behavior is only available for `random_access_range`.
+>
+> Data structures like `std::set`, `std::multiset`, `std::map`, `std::multimap` offer their `O(log N)` implementations of lower and upper bound as methods.
+>
+> ```sh
+> #include <algorithm>
+> #include <set>
+>
+> int main()
+> {
+>     std::multiset<int> data{1,2,3,4,5,6,6,6,7,8,9};
+>
+>     auto lower = data.lower_bound(6);
+>     // std::distance(data.begin(), lower) == 5
+>
+>     auto upper = data.upper_bound(6);
+>     // std::distance(data.begin(), upper) == 8
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Return both lower and upper bounds of a value within a sorted range?</summary>
+
+> | `std::equal_range` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6,6,6,7,8,9};
+>
+>     auto [lower, upper] = std::equal_range(data.begin(), data.end(), 6);
+>     // std::distance(data.begin(), lower) == 5
+>     // std::distance(data.begin(), upper) == 8
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Return the upper bound of a value within a sorted range using a predicate?</summary>
+
+> | `std::partition_point` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Despite the naming, `std::partition_point` works very similaryly to `std::upper_bound`, however instead of searching for a particular value, it searches using a predicate.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6,6,6,7,8,9};
+>     auto point = std::partition_point(data.begin(), data.end(), [](long v) { return v < 6; });
+>     // std::distance(data.begin(), point) = 5
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check the presence of a value within a sorted range?</summary>
+
+> | `std::binary_search` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> This function checks whether the requested value is present in the sorted range or not.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data{1,2,3,4,5,6};
+>     std::binary_search(data.begin(), data.end(), 4);
+>     // true
+>     std::ranges::binary_search(data, 4);
+>     // true
+> }
+> ``````
+>
+> `std::binary_search` is equivalent to calling `std::equal_range` and checking whether the returned is non-empty; however, `std::binary_search` offers a single lookup performance, where `std::equal_range` does two lookups to determine the lower and upper bounds.
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.4
+
+> References:
+---
+</details>
+
+### Linear Operation Algorithms
+
+<details>
+<summary>Determine whether a sorted range is contained within another sorted range?</summary>
+
+> | `std::includes` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::ranges::includes({1,2,3,4,5}, {3,4});
+>     // true
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Merge two sorted ranges into one?</summary>
+
+> | `std::merge` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+> #include <map>
+>
+> int main()
+> {
+>     std::map<long, std::string> data1{{1, "first"}, {2, "first"}, {3, "first"}};
+>     std::map<long, std::string> data2{{0, "second"}, {2, "second"}, {4, "second"}};
+>     std::vector<std::pair<long, std::string>> result1, result2;
+>     auto compare = [](auto const& left, auto const& right) { return left.first < right.first; };
+>
+>     std::ranges::merge(data1, data2, std::back_inserter(result1), compare);
+>     std::ranges::for_each(result1, [](auto const& p) { std::cout << "{" << p.first << ", " << p.second << "} "; });
+>     std::cout << "\n";
+>
+>     std::merge(std::execution::par_unseq, data1.begin(), data1.end(), data2.begin(), data2.end(), std::back_inserter(result2), compare);
+>     std::ranges::for_each(result2, [](auto const& p) { std::cout << "{" << p.first << ", " << p.second << "} "; });
+>     std::cout << "\n";
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Merge two consecutive sub-ranges within a sorted range?</summary>
+
+> | `std::inplace_merge` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,3,5,2,4,6};
+>     std::inplace_merge(range.begin(), range.begin()+3, range.end());
+>     // range == {1,2,3,4,5,6}
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove consecutive duplicate values within a sorted range?</summary>
+
+> | `std::unique` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::unique_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range1{1,2,2,3,3,3,4,4,4,4,5,5,5,5,5};
+>     std::vector<long> range2{range1};
+>
+>     auto last = std::unique(range1.begin(), range1.end());
+>     range1.resize(std::distance(range1.begin(), last));
+>     // range1 == {1,2,3,4,5};
+>
+>     std::vector<long> result;
+>     std::ranges::unique_copy(range2, std::back_inserter(result));
+>     // range2 is untouched
+>     // result == {1,2,3,4,5};
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.4
+
+> References:
+---
+</details>
+
+### Set Operation Algorithms
+
+<details>
+<summary>Produce a range containing elements present in the first range but not in the second range?</summary>
+
+> | `std::set_difference` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> difference;
+>     std::ranges::set_difference(data1, data2, std::back_inserter(difference));
+>     // difference == {1,9};
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present only in one of two ranges, but not both?</summary>
+
+> | `std::set_symmetric_difference` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> symmetric_difference;
+>     std::ranges::set_symmetric_difference(data1, data2, std::back_inserter(symmetric_difference));
+>     // symmetric_difference == {1,4,6,9};
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present in either of the ranges?</summary>
+
+> | `std::set_union` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> union;
+>     std::ranges::set_union(data1, data2, std::back_inserter(union));
+>     // union == {1,3,4,5,6,7,9}
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present in both of the ranges?</summary>
+
+> | `std::set_intersection` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> intersection;
+>     std::ranges::set_intersection(data1, data2, std::back_inserter(intersection));
+>     // intersection == {3,5,7}
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.4
+
+> References:
+---
+</details>
+
