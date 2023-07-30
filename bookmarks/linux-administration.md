@@ -11,17 +11,17 @@ This section covers Linux administration.
 
 ## Linux Security
 
-### ★★★★★ [Sudo Mastery](books/9781493626205.md)
-[<img alt="Sudo Mastery" src="covers/9781493626205.jpg" width="200"/>](books/9781493626205.md)
+### ★★★★★ [Sudo Mastery](../books/9781493626205.md)
+[<img alt="Sudo Mastery" src="../covers/9781493626205.jpg" width="200"/>](../books/9781493626205.md)
 
-### ★★★★★ [Mastering Linux Security and Hardening](books/9781837630516.md)
-[<img alt="Mastering Linux Security and Hardening" src="covers/9781837630516.jpg" width="200"/>](books/9781837630516.md)
+### ★★★★★ [Mastering Linux Security and Hardening](../books/9781837630516.md)
+[<img alt="Mastering Linux Security and Hardening" src="../covers/9781837630516.jpg" width="200"/>](../books/9781837630516.md)
 
-### ★★★★★ [Mastering Kali Linux For Advanced Penetration Testing](books/9781801819770.md)
-[<img alt="Mastering Kali Linux For Advanced Penetration Testing" src="covers/9781801819770.jpg" width="200"/>](books/9781801819770.md)
+### ★★★★★ [Mastering Kali Linux For Advanced Penetration Testing](../books/9781801819770.md)
+[<img alt="Mastering Kali Linux For Advanced Penetration Testing" src="../covers/9781801819770.jpg" width="200"/>](../books/9781801819770.md)
 
-### ★★★★★ [Kali Linux Penetration Testing Bible](books/9781119719083.md)
-[<img alt="Kali Linux Penetration Testing Bible" src="covers/9781119719083.jpg" width="200"/>](books/9781119719083.md)
+### ★★★★★ [Kali Linux Penetration Testing Bible](../books/9781119719083.md)
+[<img alt="Kali Linux Penetration Testing Bible" src="../covers/9781119719083.jpg" width="200"/>](../books/9781119719083.md)
 
-### ★★★☆☆ [Linux Security and Administration](books/linux-security-and-administration.md)
-[<img alt="Linux Security and Administration" src="covers/linux-security-and-administration.jpg" width="200"/>](books/linux-security-and-administration.md)
+### ★★★☆☆ [Linux Security and Administration](../books/linux-security-and-administration.md)
+[<img alt="Linux Security and Administration" src="../covers/linux-security-and-administration.jpg" width="200"/>](../books/linux-security-and-administration.md)
