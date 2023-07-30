@@ -1389,6 +1389,126 @@
 
 ## Set Operations
 
+<details>
+<summary>Produce a range containing elements present in the first range but not in the second range?</summary>
+
+> | `std::set_difference` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> difference;
+>     std::ranges::set_difference(data1, data2, std::back_inserter(difference));
+>     // difference == {1,9};
+> }
+> ``````
+
+> Origin: 2.7.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present only in one of two ranges, but not both?</summary>
+
+> | `std::set_symmetric_difference` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> symmetric_difference;
+>     std::ranges::set_symmetric_difference(data1, data2, std::back_inserter(symmetric_difference));
+>     // symmetric_difference == {1,4,6,9};
+> }
+> ``````
+
+> Origin: 2.7.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present in either of the ranges?</summary>
+
+> | `std::set_union` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> union;
+>     std::ranges::set_union(data1, data2, std::back_inserter(union));
+>     // union == {1,3,4,5,6,7,9}
+> }
+> ``````
+
+> Origin: 2.7.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce a range containing elements present in both of the ranges?</summary>
+
+> | `std::set_intersection` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> data1{1,3,5,7,9};
+>     std::vector<long> data2{3,4,5,6,7};
+>     std::vector<long> intersection;
+>     std::ranges::set_intersection(data1, data2, std::back_inserter(intersection));
+>     // intersection == {3,5,7}
+> }
+> ``````
+
+> Origin: 2.7.4
+
+> References:
+---
+</details>
+
 ## Transformation Algorithms
 
 ## Left folds
