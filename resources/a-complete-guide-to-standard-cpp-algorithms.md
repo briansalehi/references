@@ -1244,6 +1244,149 @@
 
 ## Linear Operations on Sorted Ranges
 
+<details>
+<summary>Determine whether one range is contained within another range?</summary>
+
+> | `std::includes` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::ranges::includes({1,2,3,4,5}, {3,4});
+>     // true
+> }
+> ``````
+
+> Origin: 2.6.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Merge two sorted ranges into one?</summary>
+
+> | `std::merge` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+> #include <map>
+>
+> int main()
+> {
+>     std::map<long, std::string> data1{{1, "first"}, {2, "first"}, {3, "first"}};
+>     std::map<long, std::string> data2{{0, "second"}, {2, "second"}, {4, "second"}};
+>     std::vector<std::pair<long, std::string>> result1, result2;
+>     auto compare = [](auto const& left, auto const& right) { return left.first < right.first; };
+>
+>     std::ranges::merge(data1, data2, std::back_inserter(result1), compare);
+>     std::ranges::for_each(result1, [](auto const& p) { std::cout << "{" << p.first << ", " << p.second << "} "; });
+>     std::cout << "\n";
+>
+>     std::merge(std::execution::par_unseq, data1.begin(), data1.end(), data2.begin(), data2.end(), std::back_inserter(result2), compare);
+>     std::ranges::for_each(result2, [](auto const& p) { std::cout << "{" << p.first << ", " << p.second << "} "; });
+>     std::cout << "\n";
+> }
+> ``````
+
+> Origin: 2.6.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Merge two consecutive sub-ranges within a range?</summary>
+
+> | `std::inplace_merge` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,3,5,2,4,6};
+>     std::inplace_merge(range.begin(), range.begin()+3, range.end());
+>     // range == {1,2,3,4,5,6}
+> }
+> ``````
+
+> Origin: 2.6.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove consecutive duplicate values within a sorted range?</summary>
+
+> | `std::unique` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::unique_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range1{1,2,2,3,3,3,4,4,4,4,5,5,5,5,5};
+>     std::vector<long> range2{range1};
+>
+>     auto last = std::unique(range1.begin(), range1.end());
+>     range1.resize(std::distance(range1.begin(), last));
+>     // range1 == {1,2,3,4,5};
+>
+>     std::vector<long> result;
+>     std::ranges::unique_copy(range2, std::back_inserter(result));
+>     // range2 is untouched
+>     // result == {1,2,3,4,5};
+> }
+> ``````
+
+> Origin: 2.6.4
+
+> References:
+---
+</details>
+
 ## Set Operations
 
 ## Transformation Algorithms
