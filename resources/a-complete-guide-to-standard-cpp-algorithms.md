@@ -1509,13 +1509,474 @@
 ---
 </details>
 
-## Transformation Algorithms
+## Transformation Algorithms <sup>(completed, edited)</sup>
+
+<details>
+<summary>Apply a transformation function to each element within a range?</summary>
+
+> | `std::transform` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,1,1,1,1};
+>
+>     // unary version
+>     std::transform(range.begin(), range.end(), range.begin(), [](long e) { return e + 1; });
+>     // {2,2,2,2,2}
+>     std::transform(range.begin(), range.end(), range.begin(), range.begin(), [](long left, long right) { return left + right; });
+>     // {4,4,4,4,4}
+>
+>     // binary version
+>     std::ranges::transform(range, range.begin(), [](long e) { return e / e; });
+>     // {1,1,1,1,1}
+>     std::ranges::transform(range, range, range.begin(), [](long left, long right) { return left + right; });
+>     // {2,2,2,2,2}
+> }
+> ``````
+
+> Origin: 2.8.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove elements that match the given value within a range?</summary>
+
+> | `std::remove` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     auto last = std::remove(range.begin(), range.end(), 3);
+>     range.erase(last, range.end());
+> }
+> ``````
+
+> Origin: 2.8.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove elements for which the given predicate evaluates true within a range?</summary>
+
+> | `std::remove_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     auto last = std::remove_if(range.begin(), range.end(), [limit=4](long v) { return v > limit; });
+>     range.erase(last, range.end());
+> }
+> ``````
+
+> Origin: 2.8.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements that match the given value within a range?</summary>
+
+> | `std::replace` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,1,2,1};
+>     std::ranges::replace(range, 2, 0);
+>     // {1,0,1,0,1}
+> }
+> ``````
+
+> Origin: 2.8.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements for which the given predicate evaluates to true within a range?</summary>
+
+> | `std::replace_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,1,2,1};
+>     std::ranges::replace_if(range, [](long v) { return v > 1; }, 0);
+>     // {1,0,1,0,1}
+> }
+> ``````
+
+> Origin: 2.8.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Reverse the order of elements in a range?</summary>
+
+> | `std::reverse` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::reverse(range);
+>     // {5,4,3,2,1}
+> }
+> ``````
+
+> Origin: 2.8.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements in the range from <code>[first, middle), [middle, last)</code> to <code>[middle, last), [first, middle)</code>?</summary>
+
+> | `std::rotate` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>
+>     std::rotate(range.begin(), std::next(range.begin(), 3), range.end());
+>     // {4,5,1,2,3}
+>
+>     std::ranges::rotate(range, std::next(range.begin(), 2));
+>     // {1,2,3,4,5}
+> }
+> ``````
+
+> Origin: 2.8.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Move elements in the provided range by the specified amount of positions into left or right?</summary>
+
+> | `std::shift_left` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | paralllel | C++20 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::shift_right` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | paralllel | C++20 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>
+>     std::shift_left(range.begin(), range.end(), 3);
+>     // {4,5,N,N,N}
+>
+>     std::shift_right(range.begin(), range.end(), 3);
+>     // {N,N,N,4,5}
+> }
+> ``````
+
+> Origin: 2.8.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements in the given array in a randomly order?</summary>
+
+> | `std::shuffle` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | N/A |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+> #include <random>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::random_device rd{};
+>     std::mt19937 generator{rd()};
+>     std::ranges::shuffle(range, generator);
+> }
+> ``````
+
+> Origin: 2.8.7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements of given array so that they are in their next or previous permutation?</summary>
+
+> | `std::next_permutation` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>     // range == {1,2,3};
+>     std::next_permutation(range.begin(), range.end());
+>     // range == {1,3,2};
+>     std::prev_permutation(range.begin(), range.end());
+>     // range == {1,2,3};
+> }
+> ``````
+
+> Origin: 2.8.8
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check whether two ranges have the same content but not necessarily the same order of elements?</summary>
+
+> | `std::is_permutation` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range1{1,2,3}, range2{1,3,2};
+>     std::ranges::is_permutation(range1, range2);
+>     // true
+> }
+> ``````
+
+> Origin: 2.8.9
+
+> References:
+---
+</details>
 
 ## Left folds
 
+<details>
+<summary>Accumulate the elements of a range?</summary>
+
+> | `std::accumulate` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     auto sum = std::accumulate(range.begin(), range.end(), 0);
+>     // sum == 6
+>
+>     auto product = std::accumulate(range.begin(), range.end(), 1, std::multiplies<long>{});
+>     // product == 6
+> }
+> ``````
+
+> Origin: 2.9.1
+
+> References:
+---
+</details>
+
 ## General Reductions
 
-## Boolean Reductions
+## Boolean Reductions <sup>(completed, edited)</sup>
+
+<details>
+<summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::all_of(range, [](long e) { return e > 0; });
+>     // all numbers are possitive: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Indicate if at least one element within a range evaluates to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::any_of(range, [](long e) { return e % 2 == 0; });
+>     // at least an even number exists: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Indicate if no elements within a range evaluates to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::none_of(range, [](long e) { return e < 0; });
+>     // not any number is negative: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
 
 ## Generators
 
@@ -1533,3 +1994,4 @@
 
 ## Views
 
+## Argument Dependent Lookup
