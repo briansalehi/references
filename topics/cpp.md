@@ -1393,3 +1393,882 @@
 ---
 </details>
 
+### Transformation Algorithms
+
+<details>
+<summary>Apply a transformation function to each element within a range?</summary>
+
+> | `std::transform` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,1,1,1,1};
+>
+>     // unary version
+>     std::transform(range.begin(), range.end(), range.begin(), [](long e) { return e + 1; });
+>     // {2,2,2,2,2}
+>     std::transform(range.begin(), range.end(), range.begin(), range.begin(), [](long left, long right) { return left + right; });
+>     // {4,4,4,4,4}
+>
+>     // binary version
+>     std::ranges::transform(range, range.begin(), [](long e) { return e / e; });
+>     // {1,1,1,1,1}
+>     std::ranges::transform(range, range, range.begin(), [](long left, long right) { return left + right; });
+>     // {2,2,2,2,2}
+> }
+> ``````
+
+> Origin: 2.8.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove elements that match the given value within a range?</summary>
+
+> | `std::remove` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     auto last = std::remove(range.begin(), range.end(), 3);
+>     range.erase(last, range.end());
+> }
+> ``````
+
+> Origin: 2.8.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove elements for which the given predicate evaluates true within a range?</summary>
+
+> | `std::remove_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     auto last = std::remove_if(range.begin(), range.end(), [limit=4](long v) { return v > limit; });
+>     range.erase(last, range.end());
+> }
+> ``````
+
+> Origin: 2.8.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements that match the given value within a range?</summary>
+
+> | `std::replace` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,1,2,1};
+>     std::ranges::replace(range, 2, 0);
+>     // {1,0,1,0,1}
+> }
+> ``````
+
+> Origin: 2.8.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements for which the given predicate evaluates to true within a range?</summary>
+
+> | `std::replace_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,1,2,1};
+>     std::ranges::replace_if(range, [](long v) { return v > 1; }, 0);
+>     // {1,0,1,0,1}
+> }
+> ``````
+
+> Origin: 2.8.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Reverse the order of elements in a range?</summary>
+
+> | `std::reverse` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::reverse(range);
+>     // {5,4,3,2,1}
+> }
+> ``````
+
+> Origin: 2.8.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements in the range from <code>[first, middle), [middle, last)</code> to <code>[middle, last), [first, middle)</code>?</summary>
+
+> | `std::rotate` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>
+>     std::rotate(range.begin(), std::next(range.begin(), 3), range.end());
+>     // {4,5,1,2,3}
+>
+>     std::ranges::rotate(range, std::next(range.begin(), 2));
+>     // {1,2,3,4,5}
+> }
+> ``````
+
+> Origin: 2.8.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Move elements in the provided range by the specified amount of positions into left or right?</summary>
+
+> | `std::shift_left` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | paralllel | C++20 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::shift_right` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | paralllel | C++20 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>
+>     std::shift_left(range.begin(), range.end(), 3);
+>     // {4,5,N,N,N}
+>
+>     std::shift_right(range.begin(), range.end(), 3);
+>     // {N,N,N,4,5}
+> }
+> ``````
+
+> Origin: 2.8.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements in the given array in a randomly order?</summary>
+
+> | `std::shuffle` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | N/A |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+> #include <random>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::random_device rd{};
+>     std::mt19937 generator{rd()};
+>     std::ranges::shuffle(range, generator);
+> }
+> ``````
+
+> Origin: 2.8.7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Rearrange elements of given array so that they are in their next or previous permutation?</summary>
+
+> | `std::next_permutation` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>     // range == {1,2,3};
+>     std::next_permutation(range.begin(), range.end());
+>     // range == {1,3,2};
+>     std::prev_permutation(range.begin(), range.end());
+>     // range == {1,2,3};
+> }
+> ``````
+
+> Origin: 2.8.8
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check whether two ranges have the same content but not necessarily the same order of elements?</summary>
+
+> | `std::is_permutation` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range1{1,2,3}, range2{1,3,2};
+>     std::ranges::is_permutation(range1, range2);
+>     // true
+> }
+> ``````
+
+> Origin: 2.8.9
+
+> References:
+---
+</details>
+
+### Boolean Reduction Algorithms
+
+<details>
+<summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::all_of(range, [](long e) { return e > 0; });
+>     // all numbers are possitive: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Indicate if at least one element within a range evaluates to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::any_of(range, [](long e) { return e % 2 == 0; });
+>     // at least an even number exists: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Indicate if no elements within a range evaluates to true for a predicate?</summary>
+
+> | `std::all_of` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3};
+>
+>     std::ranges::none_of(range, [](long e) { return e < 0; });
+>     // not any number is negative: true
+> }
+> ``````
+
+> Origin: 2.11.1
+
+> References:
+---
+</details>
+
+## Ranges
+
+## Views
+
+<details>
+<summary>Produce the view of the first elements and a range of second elements from a range of paired elements?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <string>
+> #include <vector>
+> #include <map>
+>
+> int main()
+> {
+>     std::map<long, std::string> map{ {0, "first"}, {1, "second"}, {2, "third"} };
+>
+>     std::ranges::copy(std::views::keys(map), std::ostream_iterator<long>(std::cout, " "));
+>     // 0 1 2
+>
+>     std::ranges::copy(std::views::values(map), std::ostream_iterator<long>(std::cout, " "));
+>     // first second third
+> }
+> ``````
+
+> Origin: 4.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Produce the view of Nth elements from a range of tuple-like elements?</summary>
+
+> ```cp
+> #include <iostream>
+> #include <iterator>p
+> #include <algorithm>
+> #include <ranges>
+> #include <string>
+> #include <vector>
+> #include <tuple>
+>
+> int main()
+> {
+>     std::vector<std::tuple<long, std::string, long>> range{ {0, "John", 4}, {1, "Laura", 5}, {2, "Alice", 5} };
+>
+>     std::vector<std::string> names;
+>     std::ranges::copy(range | std::views::elements<1>, std::ostream_iterator<long>(std::cout, " "));
+>     // John Laura Alice
+>
+>     std::vector<std::size_t> name_length;
+>     std::ranges::copy(range | std::views::elements<2>, std::ostream_iterator<long>(std::cout, " "));
+>     // 4 5 5
+> }
+> ``````
+
+> Origin: 4.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Apply a transformation functor to every element of the view of a range?</summary>
+
+> ```cp
+> #include <iostream>
+> #include <iterator>p
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>
+>     std::ranges::copy(std::views::transform(range, [](long e) -> long { return e*e; }), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 4 9 16 25
+>
+>     std::ranges::copy(range | std::views::transform([](long e) -> long { return e*e; }), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 4 9 16 25
+> }
+> ``````
+
+> Origin: 4.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Take first N elements of the view of a range?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(range | std::views::take(3), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 2 3
+> }
+> ``````
+
+> Origin: 4.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Take the sequence of elements from the view of a range for which the predicate evaluates to true?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(range | std::views::take_while([](long e) { return e <= 3; }), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 2 3
+> }
+> ``````
+
+> Origin: 4.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Drop the first N elements of the view of a range?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(range | std::views::drop(3), std::ostream_iterator<long>(std::cout, " "));
+>     // 4 5
+> }
+> ``````
+
+> Origin: 4.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Drop the sequence of elements from the view of a range for which the predicate evaluates to true?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(range | std::views::drop_while([](long e) { return e <= 3; }), std::ostream_iterator<long>(std::cout, " "));
+>     // 4 5
+> }
+> ``````
+
+> Origin: 4.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Filter the view of a range to consist all elements that satisfy the provided predicate?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5,6};
+>     std::ranges::copy(range | std::views::filter([](long e) { return e % 2 == 0; }), std::ostream_iterator<long>(std::cout, " "));
+>     // 2 4 6
+> }
+> ``````
+
+> Origin: 4.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Reverse the view of a range for bidirectional ranges?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(range | std::views::reverse, std::ostream_iterator<long>(std::cout, " "));
+>     // 5 4 3 2 1
+> }
+> ``````
+
+> Origin: 4.7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Adapt an iterator and the number of elements following it into the view of a range?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(std::views::counted(std::next(range.begin()), 3), std::ostream_iterator<long>(std::cout, " "));
+>     // 2 3 4
+> }
+> ``````
+
+> Origin: 4.8
+
+> References:
+---
+</details>
+
+<details>
+<summary>Adapt a view into a range with a begin and end iterator of matching types for non-range versions of algorithms?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     auto common = range | std::views::take(3) | std::views::common;
+>     std::copy(common.begin(), common.end(), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 2 3
+> }
+> ``````
+
+> Origin: 4.9
+
+> References:
+---
+</details>
+
+<details>
+<summary>Represent the view of all the elements of a range?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::copy(std::views::all(range), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 2 3 4 5
+> }
+> ``````
+
+> Origin: 4.10
+
+> References:
+---
+</details>
+
+<details>
+<summary>Split a single range into a view over sub-ranges? (incomplete)</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+> #include <string>
+> #include <charconv>
+>
+> int main()
+> {
+>     std::string version{"6.4.2"};
+>     std::ranges::copy(
+>         version |
+>         std::views::split('.') |
+>         std::views::transform([](auto v) {
+>             int token;
+>             std::from_chars(v.data(), v.data() + v.size(), token);
+>             return token;
+>         }),
+>         std::ostream_iterator<int>(std::cout, " ")
+>     );
+>     // 6 4 2
+> }
+> ``````
+
+> Origin: 4.11
+
+> References:
+---
+</details>
+
+<details>
+<summary>Flatten a splited view of a range?</summary>
+
+> incomplete
+
+> Origin: 4.11
+
+> References:
+---
+</details>
+
+<details>
+<summary>Represent an empty view?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::ranges::copy(std::views::empty<long>, std::ostream_iterator<long>(std::cout, " "));
+> }
+> ``````
+
+> Origin: 4.12
+
+> References:
+---
+</details>
+
+<details>
+<summary>Represent a single element view?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::ranges::copy(std::views::single(4), std::ostream_iterator<long>(std::cout, " "));
+>     // 4
+> }
+> ``````
+
+> Origin: 4.12
+
+> References:
+---
+</details>
+
+<details>
+<summary>Represent a view of the generated sequence formed by repeatedly incrementing an initial value?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::ranges::copy(std::views::iota(2,5), std::ostream_iterator<long>(std::cout, " "));
+>     // 2 3 4
+>
+>     std::ranges::copy(std::views::iota(4) | std::views::take(3), std::ostream_iterator<long>(std::cout, " "));
+>     // 4 5 6
+> }
+> ``````
+
+> Origin: 4.13
+
+> References:
+---
+</details>
+
+<details>
+<summary>Represent a view obtained by successively applying the istream input iterator?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <algorithm>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::ranges::copy(std::views::istream<long>(std::cin), std::ostream_iterator<long>(std::cout, " "));
+>     // 1 2 3 4
+> }
+> ``````
+
+> Origin: 4.14
+
+> References:
+---
+</details>
+
