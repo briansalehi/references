@@ -2373,17 +2373,155 @@
 ---
 </details>
 
-## Copy and Move
+## Copy and Move <sup>(completed)</sup>
 
-## Uninitialized Memory Algorithms
+<details>
+<summary>Copy a non-overlapping and overlapping ranges?</summary>
 
-## Heap Data Structure
+> | `std::copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<std::string> range{"a", "b", "c", "d", "e"};
+>     std::ranges::copy(range.begin(), std::next(range.begin(), 3), std::next(range.begin(), 3));
+>     // a b c a b c
+>     std::ranges::copy(std::next(range.begin()), std::end(range), std::begin(range));
+>     // b c a b c c
+> }
+> ``````
+
+> Origin: 2.13.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Move a non-overlapping and overlapping ranges?</summary>
+
+> | `std::move` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Significantly, whether `std::move` will move depends on the underlying element type.
+> If the underlying type is copy-only, `std::move` will behave identically to `std::copy`.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<std::string> range{"a", "b", "c", "d", "e"};
+>     std::ranges::move(range.begin(), std::next(range.begin(), 3), std::next(range.begin(), 3));
+>     // ? ? ? a b c
+> }
+> ``````
+
+> Origin: 2.13.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy and move a non-overlapping and overlapping ranges in the opposite direction?</summary>
+
+> | `std::copy_backward` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::move_backward` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<std::string> range{"a", "b", "c", "d", "e"};
+>     std::vector<std::string> output(9, "");
+>     std::ranges::copy_backward(std::begin(range), std::end(range), std::begin(output));
+>     // output = {? ? ? ? a b c a b c}
+>     std::ranges::copy_backward(std::begin(range), std::prev(std::end(range)), std::end(range));
+>     // range = {a a b c d e}
+> }
+> ``````
+
+> Origin: 2.13.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy only a limited elements of a non-overlapping and overlapping ranges?</summary>
+
+> | `std::copy_n` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The algorithm cannot check whether the requested count is valid and does not go out of bounds, so this burden is on the caller.
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+>
+> int main()
+> {
+>     std::vector<std::string> range{"a", "b", "c", "d", "e"};
+>     std::vector<std::string> output;
+>     std::ranges::copy_n(std::begin(range), 3, std::back_inserter(output));
+>     // output == {a b c}
+> }
+> ``````
+
+> Origin: 2.13.3
+
+> References:
+---
+</details>
+
+## Uninitialized Memory Algorithms <sup>(completed)</sup>
+
+## Heap Data Structure <sup>(completed)</sup>
 
 ## Search and Compare Algorithms
 
-## Min-Max Algorithms
+## Min-Max Algorithms <sup>(completed)</sup>
 
-## Ranges
+## Ranges <sup>(completed)</sup>
 
 ## Views <sup>(published)</sup>
 
