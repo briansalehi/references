@@ -496,7 +496,7 @@
 ---
 </details>
 
-## Sorting <sup>(completed, edited, published)</sup>
+## Sorting <sup>(published)</sup>
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?</summary>
@@ -893,7 +893,7 @@
 ---
 </details>
 
-## Partitioning <sup>(completed, edited, published)</sup>
+## Partitioning <sup>(published)</sup>
 
 <details>
 <summary>Reorder a vector of objects partitioned in two sections?</summary>
@@ -1073,7 +1073,7 @@
 ---
 </details>
 
-## Divide and Conquer <sup>(completed, edited, published)</sup>
+## Divide and Conquer <sup>(published)</sup>
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -1242,7 +1242,7 @@
 ---
 </details>
 
-## Linear Operations on Sorted Ranges <sup>(completed, edited, published)</sup>
+## Linear Operations on Sorted Ranges <sup>(published)</sup>
 
 <details>
 <summary>Determine whether one range is contained within another range?</summary>
@@ -1387,7 +1387,7 @@
 ---
 </details>
 
-## Set Operations <sup>(completed, edited, published)</sup>
+## Set Operations <sup>(published)</sup>
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -1509,7 +1509,7 @@
 ---
 </details>
 
-## Transformation Algorithms <sup>(completed, edited, published)</sup>
+## Transformation Algorithms <sup>(published)</sup>
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -1889,7 +1889,7 @@
 
 ## General Reductions
 
-## Boolean Reductions <sup>(completed, edited, published)</sup>
+## Boolean Reductions <sup>(published)</sup>
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -1992,7 +1992,7 @@
 
 ## Ranges
 
-## Views <sup>(completed, edited, published)</sup>
+## Views <sup>(published)</sup>
 
 <details>
 <summary>Produce the view of the first elements and a range of second elements from a range of paired elements using views?</summary>
