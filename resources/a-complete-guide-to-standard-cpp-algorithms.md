@@ -1509,7 +1509,7 @@
 ---
 </details>
 
-## Transformation Algorithms <sup>(completed, edited)</sup>
+## Transformation Algorithms <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -1889,7 +1889,7 @@
 
 ## General Reductions
 
-## Boolean Reductions <sup>(completed, edited)</sup>
+## Boolean Reductions <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -1992,7 +1992,7 @@
 
 ## Ranges
 
-## Views
+## Views <sup>(completed, edited, published)</sup>
 
 <details>
 <summary>Produce the view of the first elements and a range of second elements from a range of paired elements using views?</summary>
