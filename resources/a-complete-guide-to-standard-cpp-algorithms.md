@@ -1853,7 +1853,7 @@
 ---
 </details>
 
-## Left folds
+## Left folds <sup>(completed)</sup>
 
 <details>
 <summary>Accumulate the elements of a range?</summary>
@@ -1887,7 +1887,255 @@
 ---
 </details>
 
-## General Reductions
+<details>
+<summary>Accumulate pairs of elements over two ranges into a single value?</summary>
+
+> | `std::inner_product` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> widths{1,1,1,1,1};
+>     std::vector<long> heights{2,2,2,2,2};
+>
+>     auto sum_area = std::inner_product(widths.begin(), widths.end(), heights.begin(), 0);
+>     // sum_area == 10
+>
+>     std::vector<long> range{6,4,3,7,2,1};
+>     auto sum_diffs = std::inner_product(range.begin(), range.end(), std::next(range.begin()), 0, std::plus<long>{}, [](long l, long r) { return std::abs(l-r); });
+>     // sum_diffs == 14
+> }
+> ``````
+
+> Origin: 2.9.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Accumulate pairs of elements over two ranges and copy into the output range?</summary>
+
+> | `std::partial_sum` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range(5,1);
+>     std::partial_sum(range.begin(), range.end(), range.begin());
+>     // range == {1,2,3,4,5}
+>
+>     std::vector<long> output;
+>     std::partial_sum(range.begin(), range.end(), std::back_inserter(output), std::multiplies<long>{});
+>     // output == {1,2,6,24,,120}
+> }
+> ``````
+
+> Origin: 2.9.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Calculate the difference of adjacent elements within a raneg?</summary>
+
+> | `std::adjacent_difference` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <execution>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::adjacent_difference(range.begin(), range.end(), range.begin());
+>     // range == {1,1,1,1,1}
+>
+>     std::adjacent_difference(std::execution::par_unseq, range.begin(), range.end(), range.begin());
+>     // range == {1,1,1,1,1}
+>
+>     std::vector<long> fibonacci(10,1);
+>     std::adjacent_difference(fibonacci.begin(), std::prev(fibonacci.end()), std::next(fibonacci.begin()), std::plus<long>());
+>     // fibonacci == {1,1,2,3,5,8,13,21,34,55}
+> }
+> ``````
+
+> Origin: 2.9.4
+
+> References:
+---
+</details>
+
+## General Reductions <sup>(completed)</sup>
+
+<details>
+<summary>Reduce a range?</summary>
+
+> | `std::reduce` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     long sum = std::reduce(range.begin(), range.end(), 0);
+>     // sum == 15
+>
+>     long multiplies = std::reduce(range.begin(), range.end(), 1, std::multiplies<long>{});
+>     // sum == 120
+> }
+> ``````
+
+> Origin: 2.10.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Calculate a sum of all elements?</summary>
+
+> | `std::transform_reduce` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     long sum = std::transform_reduce(range.begin(), range.end(), 0, std::plus<long>{}, [](long e) { return e * 2; });
+>     // sum == 30
+> }
+> ``````
+
+> Origin: 2.10.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Accumulate the values of a range by summing each value with its previous elements?</summary>
+
+> | `std::inclusive_scan` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> | `std::exclusive_scan` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::vector<long> inclusive;
+>     std::inclusive_scan(range.begin(), range.end(), std::back_inserter(inclusive));
+>     // range == {1 3 6 10 15}
+>
+>     std::vector<long> exclusive;
+>     std::exclusive_scan(range.begin(), range.end(), std::back_inserter(exclusive), 0);
+>     // range == {0 1 3 6 10}
+> }
+> ``````
+
+> Origin: 2.10.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Accumulate the values of a range by summing each value with its previous elements by applying a custom predicate?</summary>
+
+> | `std::transform_inclusive_scan` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> | `std::transform_exclusive_scan` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | N/A |
+>
+> ```cpp
+> #include <algorithm>
+> #include <numeric>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::vector<long> inclusive;
+>     std::transform_inclusive_scan(range.begin(), range.end(), std::back_inserter(inclusive), std::plus<>{});
+>     std::transform_inclusive_scan(range.begin(), range.end(), std::back_inserter(inclusive), std::plus<>{}, [](long v) { return std::abs(v); });
+>
+>     std::vector<long> exclusive;
+>     std::transform_exclusive_scan(range.begin(), range.end(), std::back_inserter(exclusive), 0);
+>     std::transform_exclusive_scan(range.begin(), range.end(), std::back_inserter(exclusive), 0, std::plus<>{}, [](long v) { return std::abs(v); });
+> }
+> ``````
+
+> Origin: 2.10.4
+
+> References:
+---
+</details>
 
 ## Boolean Reductions <sup>(published)</sup>
 
@@ -1978,7 +2226,152 @@
 ---
 </details>
 
-## Generators
+## Generators <sup>(completed)</sup>
+
+<details>
+<summary>Fill a range by consecutively assigning the given value to each element?</summary>
+
+> | `std::fill` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range(5,0);
+>     std::ranges::fill(range, 1);
+>     // range == {1,1,1,1,1}
+> }
+> ``````
+
+> Origin: 2.12.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Fill a range by consecutively assigning the given value to a limited number of elements?</summary>
+
+> | `std::fill_n` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range(5,0);
+>     std::ranges::fill_n(range, 3, 1);
+>     // range == {1,1,1,0,0}
+> }
+> ``````
+
+> Origin: 2.12.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Fill a range by consecutively assigning the result of the provided generator?</summary>
+
+> | `std::generate` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range(5,0);
+>     std::ranges::generate(range, []() { return 1; });
+>     // range == {1,1,1,1,1}
+> }
+> ``````
+
+> Origin: 2.12.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Fill the specified number of elements within a range by consecutively assigning the result of the provided generator?</summary>
+
+> | `std::generate_n` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range(5,0);
+>     std::ranges::generate_n(range, 3, []() { return 1; });
+>     // range == {1,1,1,0,0}
+> }
+> ``````
+
+> Origin: 2.12.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Generate elements by consecutively assigning the result of applying the prefix <code>operator++</code>, starting with the initial value?</summary>
+
+> | `std::iota` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++23 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<long> range(5,0);
+>     std::ranges::iota(range, 1);
+>     std::ranges::copy(range, std::ostream_iterator<long>(std::cout, " "));
+> }
+> ``````
+
+> Origin: 2.12.3
+
+> References:
+---
+</details>
 
 ## Copy and Move
 
