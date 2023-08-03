@@ -2513,15 +2513,560 @@
 ---
 </details>
 
-## Uninitialized Memory Algorithms <sup>(completed)</sup>
+<details>
+<summary>Selectively copy elements for which the predicate returns true?</summary>
+
+> | `std::copy_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <iostream>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5,6};
+>     auto is_even = [](long e) { return e % 2 == 0; };
+>     std::ranges::copy_if(range, std::ostream_iterator<long>(std::cout, " "), is_even); std::cout << "\n";
+>     // 2 4 6
+> }
+> ``````
+
+> Origin: 2.13.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Selectively copy elements for which the predicate returns false?</summary>
+
+> | `std::remove_copy_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <iostream>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5,6};
+>     auto is_even = [](long e) { return e % 2 == 0; };
+>     std::ranges::remove_copy_if(range, std::ostream_iterator<long>(std::cout, " "), is_even); std::cout << "\n";
+>     // 1 3 5
+> }
+> ``````
+
+> Origin: 2.13.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Selectively copy elements that do not match the provided value?</summary>
+
+> | `std::remove_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <iostream>
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5,6};
+>     auto is_even = [](long e) { return e % 2 == 0; };
+>     std::ranges::remove_copy(range, std::ostream_iterator<long>(std::cout, " "), 5); std::cout << "\n";
+>     // 1 2 3 4 6
+> }
+> ``````
+
+> Origin: 2.13.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy a random selection N elements from the source range to the destination range utilising the provided random number generator?</summary>
+
+> | `std::sample` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | N/A |
+> | constexpr | N/A |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <ranges>
+> #include <random>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range(10,0);
+>     std::iota(range.begin(), range.end(), 1);
+>     std::random_device rd{};
+>     std::mt19937 random_generator(rd());
+>     std::ranges::sample(range, std::ostream_iterator<long>(std::cout, " "), 5, random_generator);
+>     // R R R R R
+> }
+> ``````
+
+> Origin: 2.13.5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements in a range matching a value?</summary>
+
+> | `std::replace_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::replace_copy(range, std::ostream_iterator<long>(std::cout, " "), 5, 0); std::cout << "\n";
+>     // 1 2 3 4 0
+> }
+> ``````
+
+> Origin: 2.13.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Replace elements in a range for which the predicate evaluates to true?</summary>
+
+> | `std::replace_copy_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::replace_copy_if(range, std::ostream_iterator<long>(std::cout, " "), [](long e) { return e % 2 == 0; }, 0); std::cout << "\n";
+>     // 1 0 3 0 5
+> }
+> ``````
+
+> Origin: 2.13.6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy elements of a range into another in reverse order?</summary>
+
+> | `std::reverse_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::reverse_copy(range, std::ostream_iterator<long>(std::cout, " "));
+>     // 5 4 3 2 1
+> }
+> ``````
+
+> Origin: 2.13.7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Copy elements <code>[middle, last)</code>, followed by <code>[first, middle)</code> from a range into another?</summary>
+
+> | `std::rotate_copy` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> Mirrors the behavior of the `std::rotate` algorithm.
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::rotate_copy(range, std::next(std::begin(range), 2), std::ostream_iterator<long>(std::cout, " "));
+>     // 3 4 5 1 2
+> }
+> ``````
+
+> Origin: 2.13.8
+
+> References:
+---
+</details>
+
+## Uninitialized Memory Algorithms
+
+<details>
+<summary>Construct and destroy a single element at a given address?</summary>
+
+> | `std::construct_at` | standard |
+> | --- | --- |
+> | introduced | C++20 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::destroy_at` | standard |
+> | --- | --- |
+> | introduced | C++17 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <string>
+> 
+> int main()
+> {
+>     alignas(alignof(std::string)) char mem[sizeof(std::string)];
+>     auto *ptr = reinterpret_cast<std::string*>(mem);
+>     std::construct_at(ptr, 8, 'X');
+>     // *ptr == "XXXXXXXX", ptr->length() == 8
+>     std::destroy_at(ptr);
+> }
+> ``````
+
+> Origin: 2.14.1
+
+> References:
+---
+</details>
 
 ## Heap Data Structure <sup>(completed)</sup>
 
+<details>
+<summary>Reorder elements in the given range such that the elements maintain the max-heap property?</summary>
+
+> | `std::make_heap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The element at index $`i`$ compares greater or equal to the elements at indexes $`2i+1`$ and $`2i+2`$.
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::make_heap(range);
+>     // 5 4 3 1 2
+>     std::ranges::make_heap(range, std::greater<long>{});
+>     // 1 2 3 4 5
+> }
+> ``````
+
+> Origin: 2.15.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Push and pop values to heap?</summary>
+
+> | `std::push_heap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> | `std::pop_heap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::make_heap(range);
+>     // 5 4 3 1 2
+> 
+>     range.push_back(7);
+>     std::ranges::push_heap(range);
+>     // 7 4 5 1 2 3
+> 
+>     range.push_back(6);
+>     std::ranges::push_heap(range);
+>     // 7 4 6 1 2 3 5
+> 
+>     std::ranges::pop_heap(range);
+>     // 6 4 5 1 2 3 7
+> 
+>     std::ranges::pop_heap(range.begin(), std::prev(range.end()));
+>     // 5 4 3 1 2 6 7
+> }
+> ``````
+
+> Origin: 2.15.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Sort the elements in a heap?</summary>
+
+> | `std::sort_heap` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::make_heap(range);
+>     // 5 4 3 1 2
+>     std::ranges::sort_heap(range);
+>     // 1 2 3 4 5
+> }
+> ``````
+
+> Origin: 2.15.2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a range is a heap?</summary>
+
+> | `std::is_heap` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::make_heap(range);
+>     std::ranges::is_heap(range);
+>     // true
+> }
+> ``````
+
+> Origin: 2.15.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check how further a range is a heap?</summary>
+
+> | `std::is_heap_until` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+> 
+> int main()
+> {
+>     std::vector<long> range{1,2,3,4,5};
+>     std::ranges::make_heap(range);
+>     auto it = std::ranges::is_heap_until(range);
+>     // it == range.end()
+> }
+> ``````
+
+> Origin: 2.15.3
+
+> References:
+---
+</details>
+
 ## Search and Compare Algorithms
 
-## Min-Max Algorithms <sup>(completed)</sup>
+<details>
+<summary>Find the first element matching the given value within a range?</summary>
 
-## Ranges <sup>(completed)</sup>
+> | `std::find` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> #include <algorithm>
+> #include <iostream>
+> #include <iterator>
+> #include <ranges>
+> #include <vector>
+> #include <string>
+> 
+> int main()
+> {
+>     std::string data{"first;second;third;"};
+>     std::vector<std::string> out;
+>     auto it = data.begin();
+>     auto token = data.begin();
+> 
+>     while ((token = std::ranges::find(it, data.end(), ';')) != data.end())
+>     {
+>         out.push_back("");
+>         std::copy(it, token, std::back_inserter(out.back()));
+>         it = std::next(token);
+>     }
+>     std::ranges::copy(out, std::ostream_iterator<std::string>(std::cout, " "));
+> }
+> ``````
+
+> Origin: 2.16.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find the first element for which the predicate evaluates to true?</summary>
+
+> | `std::find_if` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> ``````
+
+> Origin: 2.16.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find the first element for which the predicate evaluates to false?</summary>
+
+> | `std::find_if_not` | standard |
+> | --- | --- |
+> | introduced | C++11 |
+> | paralllel | C++17 |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> ```cpp
+> ``````
+
+> Origin: 2.16.1
+
+> References:
+---
+</details>
+
+## Min-Max Algorithms
+
+## Ranges
 
 ## Views <sup>(published)</sup>
 
