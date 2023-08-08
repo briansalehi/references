@@ -1237,6 +1237,30 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
+> ```cpp
+> #include <algorithm>
+> #include <ranges>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> range{1,2,2,3,3,3,4,4,4,4,5,5,5,5,5};
+>
+>     auto last = std::unique(range.begin(), range.end());
+>     range.resize(std::distance(range.begin(), last));
+>     // range == {1,2,3,4,5};
+> }
+> ``````
+
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove consecutive duplicate values within a sorted range and copy the results into an output range?</summary>
+
 > | `std::unique_copy` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1251,16 +1275,9 @@
 >
 > int main()
 > {
->     std::vector<long> range1{1,2,2,3,3,3,4,4,4,4,5,5,5,5,5};
->     std::vector<long> range2{range1};
->
->     auto last = std::unique(range1.begin(), range1.end());
->     range1.resize(std::distance(range1.begin(), last));
->     // range1 == {1,2,3,4,5};
->
->     std::vector<long> result;
->     std::ranges::unique_copy(range2, std::back_inserter(result));
->     // range2 is untouched
+>     std::vector<long> range{1,2,2,3,3,3,4,4,4,4,5,5,5,5,5}, result;
+>     std::ranges::unique_copy(range, std::back_inserter(result));
+>     // range is untouched
 >     // result == {1,2,3,4,5};
 > }
 > ``````
