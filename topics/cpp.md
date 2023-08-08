@@ -598,7 +598,7 @@
 > }
 > ``````
 
-> Origin: 2.3.4
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.4
 
 > References:
 ---
@@ -1427,7 +1427,7 @@
 > }
 > ``````
 
-> Origin: 2.8.1
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.1
 
 > References:
 ---
@@ -1455,7 +1455,7 @@
 > }
 > ``````
 
-> Origin: 2.8.2
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
 > References:
 ---
@@ -1483,7 +1483,7 @@
 > }
 > ``````
 
-> Origin: 2.8.2
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
 > References:
 ---
@@ -1511,7 +1511,7 @@
 > }
 > ``````
 
-> Origin: 2.8.3
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
 > References:
 ---
@@ -1539,7 +1539,7 @@
 > }
 > ``````
 
-> Origin: 2.8.3
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
 > References:
 ---
@@ -1567,7 +1567,7 @@
 > }
 > ``````
 
-> Origin: 2.8.4
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.4
 
 > References:
 ---
@@ -1600,7 +1600,7 @@
 > }
 > ``````
 
-> Origin: 2.8.5
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.5
 
 > References:
 ---
@@ -1639,7 +1639,7 @@
 > }
 > ``````
 
-> Origin: 2.8.6
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.6
 
 > References:
 ---
@@ -1670,7 +1670,7 @@
 > }
 > ``````
 
-> Origin: 2.8.7
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.7
 
 > References:
 ---
@@ -1702,7 +1702,7 @@
 > }
 > ``````
 
-> Origin: 2.8.8
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.8
 
 > References:
 ---
@@ -1731,7 +1731,7 @@
 > }
 > ``````
 
-> Origin: 2.8.9
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.9
 
 > References:
 ---
@@ -1762,7 +1762,7 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -1791,7 +1791,7 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -1820,7 +1820,7 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -1854,7 +1854,7 @@
 > }
 > ``````
 
-> Origin: 4.1
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.1
 
 > References:
 ---
@@ -1886,7 +1886,7 @@
 > }
 > ``````
 
-> Origin: 4.2
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.2
 
 > References:
 ---
@@ -1914,7 +1914,7 @@
 > }
 > ``````
 
-> Origin: 4.3
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.3
 
 > References:
 ---
@@ -1938,7 +1938,7 @@
 > }
 > ``````
 
-> Origin: 4.4
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.4
 
 > References:
 ---
@@ -1962,7 +1962,7 @@
 > }
 > ``````
 
-> Origin: 4.4
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.4
 
 > References:
 ---
@@ -1986,7 +1986,7 @@
 > }
 > ``````
 
-> Origin: 4.5
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.5
 
 > References:
 ---
@@ -2010,7 +2010,7 @@
 > }
 > ``````
 
-> Origin: 4.5
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.5
 
 > References:
 ---
@@ -2034,7 +2034,7 @@
 > }
 > ``````
 
-> Origin: 4.6
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.6
 
 > References:
 ---
@@ -2058,7 +2058,7 @@
 > }
 > ``````
 
-> Origin: 4.7
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.7
 
 > References:
 ---
@@ -2082,7 +2082,7 @@
 > }
 > ``````
 
-> Origin: 4.8
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.8
 
 > References:
 ---
@@ -2107,7 +2107,7 @@
 > }
 > ``````
 
-> Origin: 4.9
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.9
 
 > References:
 ---
@@ -2131,7 +2131,7 @@
 > }
 > ``````
 
-> Origin: 4.10
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.10
 
 > References:
 ---
@@ -2165,7 +2165,7 @@
 > }
 > ``````
 
-> Origin: 4.11
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.11
 
 > References:
 ---
@@ -2176,7 +2176,7 @@
 
 > incomplete
 
-> Origin: 4.11
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.11
 
 > References:
 ---
@@ -2197,7 +2197,7 @@
 > }
 > ``````
 
-> Origin: 4.12
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.12
 
 > References:
 ---
@@ -2219,7 +2219,7 @@
 > }
 > ``````
 
-> Origin: 4.12
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.12
 
 > References:
 ---
@@ -2244,7 +2244,7 @@
 > }
 > ``````
 
-> Origin: 4.13
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.13
 
 > References:
 ---
@@ -2266,7 +2266,7 @@
 > }
 > ``````
 
-> Origin: 4.14
+> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.14
 
 > References:
 ---

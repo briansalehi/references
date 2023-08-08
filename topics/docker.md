@@ -39,7 +39,7 @@
 > docker info
 > ``````
 
-> Origin: 6
+> Origin: Docker Deep Dive - Chapter 6
 
 > References:
 > - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
@@ -102,7 +102,7 @@
 > **label:** Filters images based on the presence of a label or label and value.
 > This command does not display labels in its output.
 > ```sh
-> docker image list --filter=reference="*:latest"
+> docker image list --filter reference="*:latest"
 > ``````
 
 > Origin: Docker Deep Dive - Chapter 6
