@@ -145,7 +145,17 @@
 > ```sh
 > docker search nigelpoulton
 > ``````
->
+
+> Origin: Docker Deep Dive - Chapter 6
+
+> References:
+> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+---
+</details>
+
+<details>
+<summary>Filter the result of image search on registeries?</summary>
+
 > Use `--filter is-official=true` so that only official repos are displayed.
 >
 > ```sh
