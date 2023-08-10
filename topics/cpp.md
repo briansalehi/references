@@ -10,12 +10,12 @@
 > ```cpp
 > #include <vector>
 > #include <map>
-> 
+>
 > std::vector<int> get_numbers()
 > {
 >     return std::vector<int>{1, 2, 3, 4, 5};
 > }
-> 
+>
 > std::map<int, double> get_doubles()
 > {
 >     return std::map<int, double>{
@@ -24,21 +24,21 @@
 >         {2, 2.2}
 >     };
 > }
-> 
+>
 > int main()
 > {
 >     auto numbers = std::vector<int>{1, 2, 3, 4, 5};
 >     auto copies = std::vector<int>(numbers.size() * 4);
-> 
+>
 >     for (int element: numbers)
 >         copies.push_back(element);
-> 
+>
 >     for (int& element: numbers)
 >         copies.push_back(element);
-> 
+>
 >     for (auto&& element: get_numbers())
 >         copies.push_back(element);
-> 
+>
 >     for (auto&& [key, value]: get_doubles())
 >         copies.push_back(key);
 > }
@@ -58,93 +58,93 @@
 > #include <iostream>
 > #include <stdexcept>
 > #include <iterator>
-> 
+>
 > template <typename T, std::size_t const S>
 > class dummy_array
 > {
 >     T data[S] = {};
-> 
+>
 > public:
 >     T const& at(std::size_t const index) const
 >     {
 >         if (index < S) return data[index];
 >         throw std::out_of_range("index out of range");
 >     }
-> 
+>
 >     void insert(std::size_t const index, T const& value)
 >     {
 >         if (index < S) data[index] = value;
 >         else throw std::out_of_range("index out of range");
 >     }
-> 
+>
 >     std::size_t size() const { return S; }
 > };
-> 
+>
 > template <typename T, typename C, std::size_t const S>
 > class dummy_array_iterator_type
 > {
 > public:
 >     dummy_array_iterator_type(C& collection, std::size_t const index): index{index}, collection{collection}
 >     {}
-> 
+>
 >     bool operator !=(dummy_array_iterator_type const& other) const
 >     {
 >         return index != other.index;
 >     }
-> 
+>
 >     T const& operator *() const
 >     {
 >         return collection.at(index);
 >     }
-> 
+>
 >     dummy_array_iterator_type& operator ++()
 >     {
 >         ++index;
 >         return *this;
 >     }
-> 
+>
 >     dummy_array_iterator_type operator ++(int)
 >     {
 >         auto temp = *this;
 >         ++*temp;
 >         return temp;
 >     }
-> 
+>
 > private:
 >     std::size_t index;
 >     C& collection;
 > };
-> 
+>
 > template <typename T, std::size_t const S>
 > using dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;
-> 
+>
 > template <typename T, std::size_t const S>
 > using dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;
-> 
+>
 > template <typename T, std::size_t const S>
 > inline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)
 > {
 >     return dummy_array_iterator<T, S>(collection, 0);
 > }
-> 
+>
 > template <typename T, std::size_t const S>
 > inline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)
 > {
 >     return dummy_array_iterator<T, S>(collection, collection.size());
 > }
-> 
+>
 > template <typename T, std::size_t const S>
 > inline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)
 > {
 >     return dummy_array_const_iterator<T, S>(collection, 0);
 > }
-> 
+>
 > template <typename T, std::size_t const S>
 > inline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)
 > {
 >     return dummy_array_const_iterator<T, S>(collection, collection.size());
 > }
-> 
+>
 > int main()
 > {
 >     dummy_array<int, 5> numbers;
@@ -153,7 +153,7 @@
 >     numbers.insert(2, 3);
 >     numbers.insert(3, 4);
 >     numbers.insert(4, 5);
-> 
+>
 >     for (auto&& element: numbers)
 >         std::cout << element << ' ';
 >     std::cout << '\n';
@@ -175,32 +175,32 @@
 <summary>Evaluate alignment of structures considering the size of their members?</summary>
 
 > The alignment must match the size of the largest member in order to avoid performance issues.
-> 
+>
 > ```cpp
 > struct foo1         // size = 1, alignment = 1
 > {                   // foo1:    +-+
 >     char a;         // members: |a|
 > };
-> 
+>
 > struct foo2         // size = 2, alignment = 1
 > {                   // foo1:    +-+-+
 >     char a;         // members: |a|b|
 >     char b;
 > };
-> 
+>
 > struct foo3         // size = 8, alignment = 4
 > {                   // foo1:    +----+----+
 >     char a;         // members: |a...|bbbb|
 >     int  b;
 > };
-> 
+>
 > struct foo3_
 > {
 >     char a;         // 1 byte
 >     char _pad0[3];  // 3 bytes
 >     int  b;         // 4 byte
 > };
-> 
+>
 > struct foo4         // size = 24, alignment = 8
 > {                   // foo4:    +--------+--------+--------+--------+
 >     int a;          // members: |aaaa....|cccc....|dddddddd|e.......|
@@ -209,7 +209,7 @@
 >     double d;
 >     bool e;
 > };
-> 
+>
 > struct foo4_
 > {
 >     int a;          // 4 bytes
@@ -234,14 +234,14 @@
 <summary>Query alignment of object types?</summary>
 
 > `alignof` can only be applied to type-ids, and not to variables or class data members.
-> 
+>
 > ```cpp
 > struct alignas(4) foo
 > {
 >     char a;
 >     char b;
 > };
-> 
+>
 > alignof(foo);   // 4
 > alignof(foo&);  // 4
 > alignof(char);  // 1
@@ -266,7 +266,7 @@
 > Only valid values of object alignment are the powers of two.
 >
 > Program is ill-formed if largest `alignas` on a declaration is smaller than natural alignment without any `alignas` specifier.
-> 
+>
 > ```cpp
 > // alignas specifier applied to struct
 > struct alignas(4) foo1  // size = 4, aligned as = 4
@@ -274,21 +274,21 @@
 >     char a;             // members: |a.b.|
 >     char b;
 > };
-> 
+>
 > struct foo1_            // size = 4, aligned as = 1
 > {
 >     char a;             // 1 byte
 >     char b;             // 1 byte
 >     char _pad0[2];      // 2 bytes
 > };
-> 
+>
 > // alignas specifier applied to member data declarations
 > struct foo2             // size = 16, aligned as = 8
 > {                       // foo2:    +--------+--------+
 >     alignas(2) char a;  // members: |aa......|bbbb....|
 >     alignas(8) int b;
 > };
-> 
+>
 > struct foo2_            // size = 16, aligned as = 4
 > {
 >     char a;             // 2 bytes
@@ -296,7 +296,7 @@
 >     int b;              // 4 bytes
 >     char _pad1[4];      // 4 bytes
 > };
-> 
+>
 > // the alignas specifier applied to the struct is less than alignas
 > // specifier applied to member data declaration, thus will be ignored.
 > struct alignas(4) foo3  // size = 16, aligned as = 8
@@ -304,7 +304,7 @@
 >     alignas(2) char a;  // members: |aa......|bbbbbbbb|
 >     alignas(8) int b;
 > };
-> 
+>
 > struct foo3_            // size = 16, aligned as = 4
 > {
 >     char a;             // 2 byte
@@ -312,7 +312,7 @@
 >     int b;              // 4 bytes
 >     char _pad1[4];      // 4 bytes
 > };
-> 
+>
 > alignas(8) int a;       // size = 4, alignment = 8
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
@@ -333,7 +333,7 @@
 <summary>Declare an object with internal linkage without being static?</summary>
 
 > Unnamed namespaces as well as all namespaces declared directly or indirectly within an unnamed namespace have internal linkage, which means that any name that is declared within an unnamed namespace has internal linkage.
-> 
+>
 > ```cpp
 > namespace
 > {
@@ -341,7 +341,7 @@
 > }
 >
 > f(); // OK
-> 
+>
 > namespace A
 > {
 >     void f() { } // A::f
@@ -364,18 +364,18 @@
 
 > Prior to C++11, non-type template arguments could not be named with internal linkage, so `static` variables were not allowed.
 > VC++ compiler still doesn't support it.
-> 
+>
 > ```cpp
 > template <int const& Size>
 > class test {};
-> 
+>
 > static int Size1 = 10; // internal linkage due static
-> 
+>
 > namespace
 > {
 >     int Size2 = 10; // internal linkage due unnamed namespace
 > }
-> 
+>
 > test<Size1> t1; // error only on VC++
 > test<Size2> t2; // okay
 > ``````
@@ -399,7 +399,7 @@
 > * Define the content of the library inside a namespace
 > * Define each version of the library or parts of it inside an inner inline namespace
 > * Use preprocessor macros to enable a particular version of the library
-> 
+>
 > ```cpp
 > namespace incorrect_implementation
 > {
@@ -408,13 +408,13 @@
 >         template <typename T>
 >         int test(T value) { return 1; }
 >     }
-> 
+>
 >     namespace v2
 >     {
 >         template <typename T>
 >         int test(T value) { return 2; }
 >     }
-> 
+>
 >     #ifndef _lib_version_1
 >         using namespace v1;
 >     #endif
@@ -423,24 +423,24 @@
 >         using namespace v2;
 >     #endif
 > }
-> 
+>
 > namespace broken_client_code
 > {
 >     // okay
 >     auto x = incorrect_implementation::test(42);
-> 
+>
 >     struct foo { int a; };
-> 
+>
 >     // breaks
 >     namespace incorrect_implementation
 >     {
 >         template <>
 >         int test(foo value) { return value.a; }
 >     }
-> 
+>
 >     // won't compile
 >     auto y = incorrect_implementation::test(foor{42});
-> 
+>
 >     // library leaks implementation details
 >     namespace incorrect_implementation
 >     {
@@ -450,7 +450,7 @@
 >             int test(foo value) { return value.a; }
 >         }
 >     }
-> 
+>
 >     // okay, but client needs to be aware of implementation details
 >     auto y = incorrect_implementation::test(foor{42});
 > }
@@ -464,7 +464,7 @@
 >         int test(T value) { return 1; }
 >     }
 >     #endif
-> 
+>
 >     #ifndef _lib_version_2
 >     inline namespace v2
 >     {
@@ -473,20 +473,20 @@
 >     }
 >     #endif
 > }
-> 
+>
 > namespace working_client_code
 > {
 >     // okay
 >     auto x = correct_implementation::test(42);
-> 
+>
 >     struct foo { int a; };
-> 
+>
 >     namespace correct_implementation
 >     {
 >         template <>
 >         int test(foo value) { return value.a; }
 >     }
-> 
+>
 >     // okay
 >     auto y = correct_implementation::test(foor{42});
 > }
@@ -505,45 +505,45 @@
 <summary>Initialize objects using automatic compiler type deduction?</summary>
 
 > Benefits of using `auto`:
-> 
+>
 > * It is not possible to leave a variable uninitialized with `auto`.
 > * It prevents narrowing conversion of data types. (?)
 > * It makes generic programming easy.
 > * It can be used where we don't care about types.
-> 
+>
 > Preconditions of using `auto`:
-> 
+>
 > * `auto` does not retain cv-ref qualifiers.
 > * `auto` cannot be used for non-movable objects.
 > * `auto` cannot be used for multi-word types like long long.
-> 
+>
 > ```cpp
 > #include <string>
 > #include <vector>
 > #include <memory>
-> 
+>
 > int main()
 > {
 >     auto i = 42; // int
 >     auto d = 42.5; // double
 >     auto c = "text"; // char const*
 >     auto z = {1, 2, 3}; // std::initializer_list<int>
-> 
+>
 >     auto b = new char[10]{0}; // char*
 >     auto s = std::string{"text"}; // std::string
 >     auto v = std::vector<int>{1, 2, 3}; // std::vector<int>
 >     auto p = std::make_shared<int>(42); // std::shared_ptr<int>
-> 
+>
 >     auto upper = [](char const c) { return toupper(c); };
 >     auto add = [](auto const a, auto const b) { return a + b; };
-> 
+>
 >     template <typename F, typename F>
 >     auto apply(F&& f, T value)
 >     {
 >         return f(value);
 >     }
 > }
-> 
+>
 > class foo
 > {
 >     int _x;
@@ -551,7 +551,7 @@
 >     foo(int const x = 0): _x{x} {}
 >     int& get() { return _x; }
 > };
-> 
+>
 > decltype(auto) proxy_gen(foo& f) { return f.get(); }
 > // ^__ decltype() preserves cv-ref qualification of return type
 > ``````
@@ -571,15 +571,15 @@
 > * Only by C++20 structured bindings can include `static` or `thread_local` specifiers in the declaration.
 > * Only by C++20 `[[maybe_unused]]` attribute can be used in the declaration.
 > * Only by C++20 a lambda can capture structure binding identifiers.
-> 
+>
 > ```cpp
 > #include <iostream>
 > #include <set>
-> 
+>
 > int main()
 > {
 >     std::set<int> numbers;
-> 
+>
 >     if (auto const [iter, inserted] = numbers.insert(1); inserted)
 >         std::cout << std::distance(numbers.cbegin(), iter);
 > }
@@ -599,13 +599,13 @@
 
 > ```cpp
 > #include <bitset>
-> 
+>
 > using byte = std::bitset<8>;
 > using fn = void(byte, double);
 > using fn_ptr = void(*)(byte, double);
-> 
+>
 > void func(byte b, double d) { /* ... */ }
-> 
+>
 > int main()
 > {
 >     byte b{001101001};
@@ -630,41 +630,41 @@
 > * copy initialization initializes an object from another object.
 > * brace initialization prevents narrowing conversion of data types.
 > * all elements of list initialization should be of the same type.
-> 
+>
 > ```cpp
 > #include <iostream>
 > #include <initializer_list>
 > #include <string>
 > #include <vector>
 > #include <map>
-> 
+>
 > void func(int const a, int const b, int const c)
 > {
 >     std::cout << a << b << c << '\n';
 > }
-> 
+>
 > void func(std::initializer_list<int> const list)
 > {
 >     for (auto const& e: list)
 >         std::cout << e;
 >     std::cout << '\n';
 > }
-> 
+>
 > int main()
 > {
 >     std::string s1("text"); // direct initialization
 >     std::string s2 = "text"; // copy initialization
 >     std::string s3{"text"}; // direct list-initialization
 >     std::string s4 = {"text"}; // copy list-initialization
-> 
+>
 >     std::vector<int> v{1, 2, 3};
 >     std::map<int, std::string> m{{1, "one"}, {2, "two"}};
-> 
+>
 >     func({1, 2, 3}); // call std::initializer_list<int> overload
-> 
+>
 >     std::vector v1{4}; // size = 1
 >     std::vector v2(4); // size = 4
-> 
+>
 >     auto a = {42}; // std::initializer_list<int>
 >     auto b{42}; // int
 >     auto c = {4, 2}; //std::initializer_list<int>
@@ -689,16 +689,16 @@
 >     // default member initialization
 >     const int height = 14;
 >     const int width = 80;
-> 
+>
 >     v_align valign = v_align::middle;
 >     h_align halign = h_align::left;
-> 
+>
 >     std::string text;
-> 
+>
 >     // constructor initialization list
 >     base(std::string const& t): text{t}
 >     {}
-> 
+>
 >     base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}
 >     {}
 > };
@@ -721,19 +721,19 @@
 > Scoped enumerations have an underlying type so they can be forward declared.
 >
 > Values of scoped enumerations do not convert implicitly to int.
-> 
+>
 > ```cpp
 > enum class status: unsigned int; // forward declared
-> 
+>
 > status do_something(); // function declaration/prototype
-> 
+>
 > enum class status : unsigned int
 > {
 >     success = 0,
 >     failed = 1,
 >     unknown = 0xffff0000U
 > };
-> 
+>
 > status do_something() { return status::success; }
 > ``````
 
@@ -749,14 +749,14 @@
 
 > ```cpp
 > #include <string>
-> 
+>
 > enum class status : unsigned int
 > {
 >     success = 0,
 >     failure = 1,
 >     unknown = 0xffff0000U
 > };
-> 
+>
 > std::string_view to_string(status const s)
 > {
 >     switch (s)
@@ -785,7 +785,7 @@
 
 > ```cpp
 > #include <memory>
-> 
+>
 > class string_buffer
 > {
 > public:
@@ -795,16 +795,16 @@
 >     explicit operator bool() const { return false; }
 >     explicit operator char* const () const { return nullptr; }
 > };
-> 
+>
 > int main()
 > {
 >     std::shared_ptr<char> str;
 >     string_buffer b1;            // calls string_buffer()
 >     string_buffer b2(20);        // calls string_buffer(std::size_t const)
 >     string_buffer b3(str.get()); // calls string_buffer(char const*)
-> 
+>
 >     enum item_size { small, medium, large };
-> 
+>
 >     // implicit conversion cases when explicit not specified
 >     string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)
 >     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
@@ -831,18 +831,18 @@
 >     virtual void bar() {}
 >     virtual void baz() = 0;
 > };
-> 
+>
 > class alpha: public base
 > {
 >     virtual void bar() override {}
 >     virtual void baz() override {}
 > };
-> 
+>
 > class beta: public alpha
 > {
 >     virtual void foo() override {}
 > };
-> 
+>
 > beta object;
 > ``````
 
@@ -864,19 +864,19 @@
 >     virtual void bar() {}
 >     virtual void baz() = 0;
 > };
-> 
+>
 > class alpha: public base
 > {
 >     virtual void foo() override {}
 >     virtual void baz() override final {}
 > };
-> 
+>
 > class beta: public alpha
 > {
 >     // won't compile
 >     virtual void baz() override {}
 > };
-> 
+>
 > int main()
 > {
 >     beta object;
@@ -904,13 +904,13 @@
 >     virtual void bar() {}
 >     virtual void baz() = 0;
 > };
-> 
+>
 > class derived final: public base
 > {
 >     virtual void foo() override {}
 >     virtual void baz() override {}
 > };
-> 
+>
 > // won't compile
 > class prime: public derived
 > {
@@ -936,7 +936,7 @@
 > When compiler encouters it, it builds a set of deduction guides which can be complemented by user with user defined deduction rules.
 >
 > **CTAD** does not occur if the template argument list is present.
-> 
+>
 > ```cpp
 > std::pair p{42, "demo"};    // std::pair<int, char const*>
 > std::vector v{1, 2};        // std::vector<int>
@@ -948,15 +948,15 @@
 > struct container
 > {
 >     container(T t) {}
->  
+>
 >     template<class Iter>
 >     container(Iter beg, Iter end);
 > };
->  
+>
 > // additional deduction guide
 > template<class Iter>
 > container(Iter b, Iter e) -> container<typename std::iterator_traits<Iter>::value_type>;
->  
+>
 > // uses
 > container c(7); // OK: deduces T=int using an implicitly-generated guide
 > std::vector<double> v = {/* ... */};
@@ -3253,6 +3253,319 @@
 > ``````
 
 > Origin: A Complete Guide to Standard C++ Algorithms - Section 4.14
+
+> References:
+---
+</details>
+
+## Threads
+
+### Constructing Threads
+
+<details>
+<summary>Construct a thread and wait to the end of its normal execution?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <chrono>
+>
+> void do_something()
+> {
+>     using namespace std::chrono_literals;
+>     std::this_thread::sleep_for(1s);
+> }
+>
+> int main()
+> {
+>     std::thread worker{do_something};
+>     worker.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread
+---
+</details>
+
+<details>
+<summary>Launch a thread executing all sorts of callable objects?</summary>
+
+> ```cpp
+> #include <thread>
+>
+> void do_something() {}
+> void do_something_else() {}
+>
+> struct background_task
+> {
+>     void operator()()
+>     {
+>         do_something();
+>         do_something_else();
+>     }
+> };
+>
+> int main()
+> {
+>     std::thread thread_f(do_something);
+>     thread_f.join();
+>
+>     background_task callable;
+>     std::thread thread_c(callable);
+>     thread_c.join();
+>
+>     // no to mistakenly call a thread like this:
+>     //   std::thread thread_x(background_task());
+>     // which can be correctly expressed like:
+>     //   std::thread thread_x((background_task()));
+>     //   std::thread thread_x{background_task()};
+>
+>     std::thread thread_l([]{
+>         do_something();
+>         do_something_else();
+>     });
+>     thread_l.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/thread
+---
+</details>
+
+<details>
+<summary>Pass arguments to a thread?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <memory>
+> #include <string>
+> #include <string_view>
+>
+> void rvalue_write(std::string&&) { } // rvalue only
+> void lvalue_write(std::string&) { } // lvalue only
+> void pointer_write(std::string_view) { } // pointer only
+> void smart_write(std::unique_ptr<std::string>) { } // non-copyable object only
+>
+> struct X
+> {
+>     void do_lengthy_work(std::string&) {}
+> };
+>
+> int main()
+> {
+>     // implicit cast from const char* to std::string
+>     std::thread write_thread(rvalue_write, "text");
+>     write_thread.join();
+>
+>     char text[1024];
+>     sprintf(text, "%i", 1);
+>
+>     // use of local object in joinable thread
+>     std::thread pointer_thread(pointer_write, text);
+>     pointer_thread.join();
+>
+>     // use of copied local object before background thread invokation
+>     std::thread local_thread(rvalue_write, std::string{text});
+>     local_thread.detach();
+>
+>     // pass by lvalue reference to avoid copy
+>     std::string str{text};
+>     std::thread ref_thread(lvalue_write, std::ref(str));
+>     ref_thread.join();
+>
+>     // bind method to thread
+>     X some_work;
+>     std::thread binding_thread(&X::do_lengthy_work, &some_work, std::ref(str));
+>     binding_thread.join();
+>
+>     // explicitly move non-copyable objects
+>     std::unique_ptr<std::string> non_copyable{new std::string{str}};
+>     std::thread smart_thread(smart_write, std::move(non_copyable));
+>     smart_thread.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+### Joining Threads
+
+<details>
+<summary>Wait for a thread in case an exception is thrown?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <stdexcept>
+>
+> void do_something() { }
+> void do_something_impossible() { throw std::runtime_error("fatal"); }
+>
+> int main()
+> {
+>     std::thread t(do_something);
+>
+>     try
+>     {
+>         do_something_impossible();
+>     }
+>     catch (std::exception const& exp)
+>     {
+>         t.join(); // reaches due exceptional exit but joins anyway
+>         throw;
+>     }
+>
+>     t.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/thread
+---
+</details>
+
+<details>
+<summary>Write a thread guard to join on destruction?</summary>
+
+> ```cpp
+> #include <thread>
+>
+> void do_something() { }
+>
+> class thread_guard
+> {
+>     std::thread& _t;
+>
+> public:
+>     explicit thread_guard(std::thread& t): _t{t} {}
+>     virtual ~thread_guard() { if (_t.joinable()) _t.join(); }
+>     thread_guard(thread_guard const&) = delete;
+>     thread_guard& operator =(thread_guard const&) = delete;
+> };
+>
+> int main()
+> {
+>     std::thread t(do_something);
+>     thread_guard joining_thread{t};
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+### Detaching Threads
+
+<details>
+<summary>Run a thread in background?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <cassert>
+>
+> void do_background_work() { }
+>
+> int main()
+> {
+>     std::thread task{do_background_work};
+>     task.detach();
+>     assert(!task.joinable());
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+### Moving Threads
+
+<details>
+<summary>Transfer the ownership of a thread into another?</summary>
+
+> ```cpp
+> #include <thread>
+>
+> void do_work() { }
+>
+> int main()
+> {
+>     std::thread t1{do_work}; // t1 joinable
+>     std::thread t2{std::move(t1)}; // t1 empty, t2 joinable
+>     t1 = std::thread{do_work}; // t1 joinable
+>     std::thread t3 = std::move(t2); // t3 joinable, t2 empty
+>     t2 = std::move(t1); // t2 joinable, t1 empty
+>
+>     // t1 is already empty
+>     t2.join();
+>     t3.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Retrieve the maximum number of threads efficiently running at runtime?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <vector>
+>
+> void task() { }
+>
+> int main()
+> {
+>     unsigned int const min_threads = 2;
+>     unsigned int const hw_threads = std::thread::hardware_concurrency();
+>     unsigned int const num_threads = hw_threads ? hw_threads : min_threads;
+>
+>     std::vector<std::thread> threads(num_threads-1); // count main thread as well
+>
+>     for (std::thread& t: threads)
+>         t = std::thread{task};
+>
+>     for (std::thread& t: threads)
+>         t.join();
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Retrieve the ID of a thread?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <iostream>
+>
+> int main()
+> {
+>     std::thread::id main_thread_id = std::this_thread::get_id();
+>     std::cout << main_thread_id << std::endl;
+> }
+> ``````
+
+> Origin: C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
