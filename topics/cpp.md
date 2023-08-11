@@ -776,6 +776,142 @@
 ---
 </details>
 
+## Literals
+
+### Cooked User-Defined Literals
+
+<details>
+<summary>What types can be used to create a cooked user-defined literal?</summary>
+
+> ```cpp
+> T operator ""_suffix(unsigned long long int); // biggest integral type
+> T operator ""_suffix(long double); // biggest floating-point type
+> T operator ""_suffix(char);
+> T operator ""_suffix(wchar_t);
+> T operator ""_suffix(char16_t);
+> T operator ""_suffix(char32_t);
+> T operator ""_suffix(char const *, std::size_t);
+> T operator ""_suffix(wchar_t const *, std::size_t);
+> T operator ""_suffix(char16_t const *, std::size_t);
+> T operator ""_suffix(char32_t const *, std::size_t);
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/user_literal
+> - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
+<details>
+<summary>How to create a compile-time generated user-defined literal?</summary>
+
+> ```cpp
+> namespace units
+> {
+>     inline namespace literals
+>     {
+>         inline namespace units_literals
+>         {
+>             constexpr size_t operator ""_KB(unsigned long long const size)
+>             {
+>                 return static_cast<size_t>(size * 1024);
+>             }
+>         }
+>     }
+> }
+>
+> int main()
+> {
+>     using namespace units::units_literals;
+>
+>     size_t bytes = "1024"_KB;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/user_literal
+---
+</details>
+
+### Raw User-Defined Literals
+
+<details>
+<summary>What signatues can a literal operator or a literal operator template have to overload a user-defined literal?</summary>
+
+> Always define literals in a separate namespace to avoid name clashes.
+>
+> ```cpp
+> T operator ""_suffix(char const*);
+>
+> template <char...>
+> T operator ""_suffix();
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/user_literal
+---
+</details>
+
+<details>
+<summary>How literal operators or literal operator templates can be used to construct a numberic value by its binary representation?</summary>
+
+> ```cpp
+> namespace binary
+> {
+>     using numeric = unsigned int;
+>
+>     inline namespace binary_literals
+>     {
+>         namespace binary_internals
+>         {
+>             template <typename T, char... bits>
+>             struct bit_seq;
+>
+>             template <typename T, '0', char... bits>
+>             struct bit_seq
+>             {
+>                 static constexpr T value { bit_seq<T, bits...>::value };
+>             };
+>
+>             template <typename T, '1', char... bits>
+>             struct bit_seq
+>             {
+>                 static constexpr T value {
+>                     bit_seq<T, bits...>::value | static_cast<T>(1 << sizeof...(bits))
+>                 };
+>             };
+>
+>             template <typename T>
+>             struct bit_seq<T>
+>             {
+>                 static constexpr T value{0};
+>             };
+>         }
+>
+>         template <char... bits>
+>         constexpr numeric operator ""_byte()
+>         {
+>             static_assert(sizeof...(bits) <= 32, "binary literals only hold 32 bits");
+>
+>             return binary_internals::bit_seq<numeric, bits...>::value;
+>         }
+>     }
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/user_literal
+---
+</details>
+
 ## Classes
 
 ### Default Constructors
@@ -924,6 +1060,921 @@
 > - https://en.cppreference.com/w/cpp/language/derived_class
 ---
 </details>
+
+## Strings
+
+### Numeric Conversion
+
+<details>
+<summary>Convert integeral and floating-point types into strings?</summary>
+
+> ```cpp
+> auto si  = std::to_string(42); // "42"
+> auto sl  = std::to_string(42L); // "42"
+> auto su  = std::to_string(42u); // "42"
+> auto sd  = std::to_wstring(42.0); // "42.000000"
+> auto sld = std::to_wstring(42.0L); // "42.000000"
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string/to_string
+> - https://en.cppreference.com/w/cpp/headers/basic_string
+---
+</details>
+
+<details>
+<summary>Convert string to numeric types?</summary>
+
+> ```cpp
+> auto i1 = std::stoi("42");
+> auto i2 = std::stoi("101010", nullptr, 2);
+> auto i3 = std::stoi("052", nullptr, 8);
+> auto i7 = std::stoi("052", nullptr, 0);
+> auto i4 = std::stoi("0x2A", nullptr, 16);
+> auto i9 = std::stoi("0x2A", nullptr, 0);
+> auto i10 = std::stoi("101010", nullptr, 2);
+> auto i11 = std::stoi("22", nullptr, 20);
+> auto i12 = std::stoi("-22", nullptr, 20);
+>
+> auto d1 = std::stod("123.45"); // d1 = 123.45000000000000
+> auto d2 = std::stod("1.2345e+2"); // d2 = 123.45000000000000
+> auto d3 = std::stod("0xF.6E6666p3"); // d3 = 123.44999980926514
+> ``````
+>
+> 1. The first parameter is the input string.
+> 2. The second parameter is a pointer that, when not null, will receive the number of characters that were processed. This can include any leading whitespaces that were discarded, the sign, and the base prefix, so it should not be confused with the number of digits the integral value has.
+> 3. A number indicating the base; by default, this is 10. Valid numbers of 2 to 36.
+>
+> ```cpp
+> template <typename T, typename = typename T = std::is_integral_v<T>>
+> T stoi(std::string const& str, std::size_t* pos = 0, T base = 10);
+>
+> template <typename F, typename = typename F = std::is_floating_point_v<F>>
+> F stof(std::string const& str, std::size_t* pos = 0);
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com/w/cpp/string/basic_string/stoul
+> - https://en.cppreference.com/w/cpp/string/basic_string/stof
+> - https://en.cppreference.com/w/cpp/headers/basic_string
+---
+</details>
+
+<details>
+<summary>What are the valid input characters for integral type to string conversion functions?</summary>
+
+> * A sign, plus (+) or minus (-) (optional)
+> * Prefix 0 to indicate an octal base (optional)
+> * Prefix 0x or 0X to indicate a hexadecimal base (optional)
+> * A sequence of digits
+>
+> ```cpp
+> auto i1 = std::stoi("42"); // 42
+> auto i2 = std::stoi("    42"); // 42
+> auto i3 = std::stoi("    42fortytwo"); // 42
+> auto i4 = std::stoi("+42"); // 42
+> auto i5 = std::stoi("-42"); // -42
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com/w/cpp/headers/basic_string
+---
+</details>
+
+<details>
+<summary>What exceptions are thrown by numeric to string conversion functions on failure?</summary>
+
+> * `std::invalid_argument`: conversion cannot be performed.
+> * `std::out_of_range`: converted value is outside the range of the result type.
+>
+> ```cpp
+> try
+> {
+>     auto i1 = std::stoi("");
+> }
+> catch (std::invalid_argument const& exp)
+> {
+>     std::cerr << exp.what() << '\n';
+> }
+>
+> try
+> {
+>     auto i2 = std::stoi("12345678901234");
+>     auto i3 = std::stoi("12345678901234");
+> }
+> catch (std::out_of_range const& exp)
+> {
+>     std::cerr << exp.what() << '\n';
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com/w/cpp/headers/basic_string
+---
+</details>
+
+<details>
+<summary>What are the valid input characters for floating-point type to string conversion functions?</summary>
+
+> * Decimal floating-point expression (optional sign, sequence of decimal digits with optional point, optional e or E, followed by exponent with optional sign).
+> * Binary floating-point expression (optional sign, 0x or 0X prefix, sequence of hexadecimal digits with optional point, optional p or P, followed by exponent with optional sign).
+> * Infinity expression (optional sign followed by case-insensitive INF or INFINITY).
+> * A non-number expression (optional sign followed by case-insensitive NAN and possibly other alphanumeric characters).
+>
+> ```cpp
+> auto d1 = std::stod("123.45");       // d1 = 123.45000000000000
+> auto d2 = std::stod("+123.45");      // d2 = 123.45000000000000
+> auto d3 = std::stod("-123.45");      // d3 = -123.45000000000000
+> auto d4 = std::stod(" 123.45");      // d4 = 123.45000000000000
+> auto d5 = std::stod(" -123.45abc");  // d5 = -123.45000000000000
+> auto d6 = std::stod("1.2345e+2");    // d6 = 123.45000000000000
+> auto d7 = std::stod("0xF.6E6666p3"); // d7 = 123.44999980926514
+> auto d8 = std::stod("INF");          // d8 = inf
+> auto d9 = std::stod("-infinity");    // d9 = -inf
+> auto d10 = std::stod("NAN");         // d10 = nan
+> auto d11 = std::stod("-nanabc");     // d11 = -nan
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/floating_literal
+> - https://en.cppreference.com/w/cpp/headers/basic_string
+---
+</details>
+
+### String Literals
+
+<details>
+<summary>Express all different string literals?</summary>
+
+> ```cpp
+> #include <string>
+> #include <string_view>
+>
+> using namespace std::string_literals;
+>
+> auto s1{ "text"s }; // std::string
+> auto s2{ L"text"s }; // std::wstring
+> auto s3{ u8"text"s }; // std::u8string
+> auto s3{ u"text"s }; // std::u16string
+> auto s4{ U"text"s }; // std::u32string
+>
+> using namespace std::string_view_literals;
+>
+> auto s5{ "text"sv }; // std::string_view
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/string_literal
+> - https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s
+> - https://en.cppreference.com/w/cpp/string/basic_string_view/operator%22%22sv
+> - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
+### Raw String Literals
+
+<details>
+<summary>Create string literals containing special characters without escaping them?</summary>
+
+> ```cpp
+> #include <string>
+>
+> using namespace std::string_literals;
+>
+> auto filename { R"(C:\Users\Brian\Documents\)"s };
+> auto pattern { R"((\w[\w\d]*)=(\d+))"s };
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/string_literal
+---
+</details>
+
+<details>
+<summary>Express different types of strings that raw string literals can generate?</summary>
+
+> ```cpp
+> #include <string>
+>
+> using namespace std::string_literals;
+>
+> auto s1{ R"(text)"s }; // std::string
+> auto s2{ LR"(text)"s }; // std::wstring
+> auto s3{ u8R"(text)"s }; // std::u8string
+> auto s3{ uR"(text)"s }; // std::u16string
+> auto s4{ UR"(text)"s }; // std::u32string
+>
+> using namespace std::string_view_literals;
+>
+> auto s5{ R"text"sv }; // std::string_view
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/string_literal
+---
+</details>
+
+## String View
+
+<details>
+<summary>Avoid string copies over function call?</summary>
+
+> Passing `std::basic_string_view` to functions and returning `std::basic_string_view` still creates temporaries of this type, but these are small-sized objects on the stack (a pointer and a size could be 16 bytes for 64-bit platforms); therefore, they should incur fewer performance costs than allocating heap space and copying data.
+>
+> ```cpp
+> #include <string_view>
+>
+> std::string_view trim_view(std::string_view str)
+> {
+>     auto const pos1{ str.find_first_not_of(" ") };
+>     auto const pos2{ str.find_last_not_of(" ") };
+>     str.remove_suffix(str.length() - pos2 - 1);
+>     str.remove_prefix(pos1);
+>     return str;
+> }
+>
+> auto sv1{ trim_view("sample") };
+> auto sv2{ trim_view(" sample") };
+> auto sv3{ trim_view("sample ") };
+> auto sv4{ trim_view(" sample ") };
+>
+> std::string s1{ sv1 };
+> std::string s2{ sv2 };
+> std::string s3{ sv3 };
+> std::string s4{ sv4 };
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/string_view
+---
+</details>
+
+<details>
+<summary>How to construct a `std::string` from a `std::string_view`?</summary>
+
+> Converting from an `std::basic_string_view` to an `std::basic_string` is not possible.
+> You must explicitly construct an `std::basic_string` object from a `std::basic_string_view`.
+>
+> ```cpp
+> std::string_view sv{ "demo" };
+> std::string s{ sv };
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/string_view
+---
+</details>
+
+## Regular Expressions
+
+<details>
+<summary>Construct a regex?</summary>
+
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> using namespace std::string_literals;
+>
+> std::string pattern{R"(...)"};
+>
+> std::regex srx{pattern};
+> std::regex lrx{R"(...)"s};
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/regex
+---
+</details>
+
+<details>
+<summary>Make regular expressions case insensitive?</summary>
+
+> ```cpp
+> std::regex irx{R"(...)"s, std::regex_constants::icase};
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/syntax_option_type
+---
+</details>
+
+<details>
+<summary>Verify existance of a pattern in a string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> template <typename CharT>
+> using tstring = std::baisc_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> using tregex = std::basic_regex<CharT>;
+>
+> template <typename CharT>
+> bool matches(tstring<CharT> const& text, tstring<CharT const& pattern)
+> {
+>     std::basic_regex<CharT> rx{pattern, std::regex_constants::icase};
+>     return std::regex_match(text, rx);
+> }
+>
+> int main()
+> {
+>     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
+>
+>     if(matches(text, pattern))
+>         std::cout << text << '\n';
+>     else
+>         std::cerr << "invalid repository link!\n";
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/regex_match
+> - https://cppreference.com/w/cpp/regex/match_results
+> - https://cppreference.com/w/cpp/regex/basic_regex
+---
+</details>
+
+<details>
+<summary>Retrieve submatches of a pattern matched within a string?</summary>
+
+> The `std::regex_match()` method has overloads that take a reference to a `std::match_results` object to store the result of the match.
+>
+> If there is no match, then `std::match_results` is empty and its size is 0. Otherwise, its size is 1, plus the number of matched subexpressions.
+>
+> The class template `std::sub_match` represents a sequence of characters that matches a capture group; this class is actually derived from std::pair, and its first and second members represent iterators to the first and the one- past-end characters in the match sequence. If there is no match sequence, the two iterators are equal:
+>
+> * `typedef sub_match<const char *> csub_match;`
+> * `typedef sub_match<const wchar_t *> wcsub_match;`
+> * `typedef sub_match<string::const_iterator> ssub_match;`
+> * `typedef sub_match<wstring::const_iterator> wssub_match;`
+>
+> The class template `std::match_results` is a collection of matches; the first element is always a full match in the target, while the other elements are matches of subexpressions:
+>
+> * `typedef match_results<const char *> cmatch;`
+> * `typedef match_results<const wchar_t *> wcmatch;`
+> * `typedef match_results<string::const_iterator> smatch;`
+> * `typedef match_results<wstring::const_iterator> wsmatch;`
+>
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> int main()
+> {
+>     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
+>
+>     std::regex rx{pattern, std::regex_constants::icase};
+>     std::smatch matches;
+>     bool matched = std::regex_match(text, matches, rx);
+>
+>     if (auto [match, protocol, domain, username, project] = matches; matched)
+>         std::cout << project << " owned by " << username
+>                   << " hosted on " << domain
+>                   << " using " << protocol << " protocol\n";
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/sub_match
+> - https://cppreference.com/w/cpp/regex/match_results
+> - https://cppreference.com/w/cpp/regex/regex_match
+> - https://cppreference.com/w/cpp/regex/basic_regex
+---
+</details>
+
+<details>
+<summary>How many regular expression engines are available in C++?</summary>
+
+> The C++ standard library supports six regular expression engines:
+>
+> * ECMAScript (default)
+> * basic POSIX
+> * extended POSIX
+> * awk
+> * grep
+> * egrep (grep with the option -E)
+>
+> ```cpp
+> #include <regex>
+>
+> std::regex pattern{R"(...)", std::regex_constants::egrep};
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/syntax_option_type
+> - https://cppreference.com/w/cpp/regex/basic_regex
+---
+</details>
+
+<details>
+<summary>Search for the first occurance of a pattern in a string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> std::string text {
+> R"(
+> # server address
+> address = 123.40.94.215
+> port=22
+>
+> # time to live
+> ttl = 5
+> )"};
+>
+> int main()
+> {
+>     std::string pattern{R"(^(?!#)(\w+)\s*=\s*([\w\d]+[\w\d._,:-]*)$)"};
+>     std::regex rx{pattern, std::regex_constants::icase};
+>     std::smatch match{};
+>
+>     if (std::string variable, value; std::regex_search(text, match, rx))
+>     {
+>         variable = match[1];
+>         value = match[2];
+>     }
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/regex_search
+> - https://cppreference.com/w/cpp/regex/basic_regex
+---
+</details>
+
+<details>
+<summary>Find all occurences of a pattern in a given text?</summary>
+
+> The iterators available in the regular expressions standard library are as follows:
+>
+> * `std::regex_interator`: A constant forward iterator used to iterate through the occurrences of a pattern in a string. It has a pointer to an `std::basic_regex` that must live until the iterator is destroyed. Upon creation and when incremented, the iterator calls `std::regex_search()` and stores a copy of the `std::match_results` object returned by the algorithm.
+> * `std::regex_token_iterator`: A constant forward iterator used to iterate through the submatches of every match of a regular expression in a string. Internally, it uses a `std::regex_iterator` to step through the submatches. Since it stores a pointer to an `std::basic_regex` instance, the regular expression object must live until the iterator is destroyed.
+>
+> The token iterators can return the unmatched parts of the string if the index of the subexpressions is -1, in which case it returns an `std::match_results` object that corresponds to the sequence of characters between the last match and the end of the sequence:
+>
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> std::string text {
+> R"(
+> # server address
+> address = 123.40.94.215
+> port=22
+>
+> # time to live
+> ttl = 5
+> )"};
+>
+> int main()
+> {
+>     std::string pattern{R"(^(?!#)(\w+)\s*=\s*([\w\d]+[\w\d._,:-]*)$)"};
+>     std::regex rx{pattern, std::regex_constants::icase};
+>     std::sregex_iterator end{};
+>
+>     // iterate through regex matches
+>     for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx};
+>             it ! end; ++it)
+>     {
+>         std::string variable = (*it)[1];
+>         std::string value = (*it)[2];
+>     }
+>
+>     // iterate through unmatched tokens
+>     for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx, -1};
+>             it ! end; ++it)
+>     {
+>         std::string variable = (*it)[1];
+>         std::string value = (*it)[2];
+>     }
+>
+>     // iterate through tokens of regex matches
+>     std::sregex_token_iterator tend{};
+>     for (auto it = std::sregex_token_iterator{std::begin(text), std::end(text), rx};
+>             it ! tend; ++it)
+>     {
+>         std::string token = *it;
+>     }
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+* https://cppreference.com/w/cpp/regex/sregex_iterator
+* https://cppreference.com/w/cpp/regex/sregex_token_iterator
+---
+</details>
+
+<details>
+<summary>Replace the content of a string with a pattern?</summary>
+
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> int main()
+> {
+>     std::string text{"this is a example with a error"};
+>     std::regex rx{R"(\ba ((a|e|i|o|u)\w+))"};
+>     std::regex_replace(text, rx, "an $1");
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/regex_replace
+---
+</details>
+
+<details>
+<summary>Reposition submatches of a string?</summary>
+
+> Apart from the identifiers of the subexpressions (`$1`, `$2`, and so on), there are other identifiers for the entire match (`$&`), the part of the string before the first match ($\`), and the part of the string after the last match (`$'`).
+>
+> ```cpp
+> #include <string>
+> #include <regex>
+>
+> int main()
+> {
+>     std::string text{"current date: 3 10 2022"};
+>     std::regex pattern{R"((\d{1,2})\s*(\d{1,2})\s*(\d{2,4}))"};
+>     std::string reformatted = std::regex_replace(text, pattern, R"([$`] $2 $1 $3 [$'])");
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://cppreference.com/w/cpp/regex/regex_replace
+---
+</details>
+
+## Numeric
+
+<details>
+<summary>Get the smallest and largest finite numbers of a type?</summary>
+
+> Standard types that are not arithmetic types, such as `std::complex<T>` or `std::nullptr_t`, do not have `std::numeric_limits` specializations.
+>
+> ```cpp
+> #include <limits>
+>
+> auto min_int = std::numeric_limits<int>::min();
+> auto max_int = std::numeric_limits<int>::max();
+>
+> auto min_double = std::numeric_limits<double>::min();
+> auto low_double = std::numeric_limits<double>::lowest();
+> auto max_double = std::numeric_limits<double::lowest();
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/headers/limits
+---
+</details>
+
+<details>
+<summary>Specify a simple implementation of finding the minimum number in a range of a generic type?</summary>
+
+> Objects in a range should have `<` comparison operator overloaded.
+>
+> ```cpp
+> #include <limits>
+>
+> template <typename T, typename Iter>
+> T minimum(Iter const start, Iter const end)
+> {
+>     T latest_minimum = std::numeric_limits<T>::max();
+>
+>     for (autp i = start; i < end; ++i)
+>         if (*i < latest_minimum)
+>             latest_minimum = *i;
+>
+>     return latest_minimum;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Retrieve the maximum number of digits for integral and floating-point types?</summary>
+
+> `digits` represents the number of bits (excluding the sign bit if present) and padding bits (if any) for integral types and the number of bits of the mantissa for floating-point types.
+>
+> ```cpp
+> #include <limits>
+>
+> auto s = std::numeric_limits<short>::digits;
+> auto d = std::numeric_limits<double>::digits;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Retrieve the longest possible digits of a decimal type that can be represented without a change?</summary>
+
+> ```cpp
+> #include <limits>
+>
+> auto s = std::numeric_limits<short>::digits10;
+> auto d = std::numeric_limits<double>::digits10;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Verify if a numeric type is signed?</summary>
+
+> ```cpp
+> #include <limits>
+>
+> auto value_is_signed = std::numeric_limist<T>::is_signed;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Verify if a numeric type is an integer?</summary>
+
+> ```cpp
+> #include <limits>
+>
+> auto value_is_integer = std::numeric_limist<T>::is_integer;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Verify if a floating-point value is exact?</summary>
+
+> ```cpp
+> #include <limits>
+>
+> auto value_is_exact = std::numeric_limist<T>::is_exact;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+<details>
+<summary>Verify if a floating-point value holds infinity value?</summary>
+
+> ```cpp
+> #include <limits>
+>
+> auto value_has_infinity = std::numeric_limist<T>::has_infinity;
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/header/limits
+---
+</details>
+
+## Complex
+
+<details>
+<summary>Express all different <code>std::complex</code> literals?</summary>
+
+> ```cpp
+> #include <complex>
+>
+> using namespace std::complex_literals;
+>
+> auto c{ 12.0 + 4.2i }; // std::complex<double>
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
+> - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
+## Random
+
+<details>
+<summary>Get the minimum and maximum value that a random engine can generate?</summary>
+
+> Except for `random_device`, all engines produce numbers in a uniform distribution.
+>
+> ```cpp
+> #include <random>
+>
+> auto min = std::mt19937::min();
+> auto max = std::mt19937::max();
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com/w/cpp/numeric/random
+---
+</details>
+
+<details>
+<summary>Seed a random generator to initialize the algorithm corporated within it?</summary>
+
+> Random generators can be seeded using their constructors or the `seed()` method.  
+> Note that `random_device` cannot be seeded.
+>
+> ```cpp
+> #include <random>
+>
+> std::random_device seeder;
+> std::mt19937 generator1{seeder()};
+>
+> std::mt19937 generator2;
+> generator2.seed(seeder());
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/numeric/random/random_device
+> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com/w/cpp/numeric/random
+---
+</details>
+
+<details>
+<summary>Call for a new number from random engines?</summary>
+
+> The function call operators of random engines are overloaded and generate a new number uniformly distributed between `min()` and `max()`:
+>
+> ```cpp
+> #include <random>
+>
+> std::random_device seeder;
+> std::mt19937 generator{seeder()};
+> auto number = generator();
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/numeric/random/random_device
+> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com/w/cpp/numeric/random
+---
+</details>
+
+<details>
+<summary>Discard the generated number of a random engine?</summary>
+
+> ```cpp
+> #include <random>
+>
+> std::mt19937 generator{};
+> generator.discard(4); // discard 4 numbers
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com/w/cpp/numeric/random
+---
+</details>
+
+<details>
+<summary>Initialize all bits of the internal state of a psudo-random number generator?</summary>
+
+> The Mersenne twister engine has a bias toward producing some values repeatedly and omitting others, thus generating numbers not in a uniform distribution, but rather in a binomial or Poisson distribution.
+>
+> ```cpp
+> #include <random>
+> #include <functional>
+>
+> int main()
+> {
+>     std::random_device seeder;
+>
+>     std::array<int, std::mt19937::state_size> seed_data{};
+>     std::generate(std::begin(seed_data), std::end(seed_data), std::ref(seeder));
+>     std::seed_seq seeds(std::begin(seed_data), std::end(seed_data));
+>     std::mt19937 generator{seeds};
+>     std::uniform_int_distribution<> dist{0, 10}; // [0, 10)
+>     int random_number = dist(generator);
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com/w/cpp/numeric/random
+---
+</details>
+
+## Chrono
+
+<details>
+<summary>Express all different chrono literals?</summary>
+
+> ```cpp
+> #include <chrono>
+>
+> using namespace std::chrono_literals;
+>
+> auto timer {2h + 42min + 15s}; // std::chrono::duration<long long>
+>
+> auto year { 2035y }; // std::chrono::year (c++20)
+> auto day { 15d }; // std::chrono::day (c++20)
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
+> - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
 
 ## Templates
 
@@ -2811,6 +3862,182 @@
 > Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
+---
+</details>
+
+### String Algorithms
+
+<details>
+<summary>Convert a string to lowercase or uppercase?</summary>
+
+> ```cpp
+> #include <string>
+>
+> template <typename CharT>
+> using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> inline tstring<CharT> to_upper(tstring<CharT> text)
+> {
+>     std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
+>     return text;
+> }
+>
+> template <typename CharT>
+> inline tstring<CharT> to_upper(tstring<CharT>&& text)
+> {
+>     std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
+>     return text;
+> }
+>
+> template <typename CharT>
+> inline tstring<CharT> to_lower(tstring<CharT> text)
+> {
+>     std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
+>     return text;
+> }
+>
+> template <typename CharT>
+> inline tstring<CharT> to_lower(tstring<CharT>&& text)
+> {
+>     std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
+>     return text;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com/w/cpp/algorithm/transform
+> - https://en.cppreference.com/w/cpp/algorithm/ranges/transform
+---
+</details>
+
+<details>
+<summary>Reverse a string?</summary>
+
+> ```cpp
+> #include <string>
+>
+> template <typename CharT>
+> using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> inline tstring<CharT> reverse(tstring<CharT> text)
+> {
+>     std::reverse(std::begin(text), std::end(text));
+>     return text;
+> }
+>
+> template <typename CharT>
+> inline tstring<CharT> reverse(tstring<CharT>&& text)
+> {
+>     std::reverse(std::begin(text), std::end(text));
+>     return text;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com/w/cpp/algorithm/reverse
+> - https://en.cppreference.com/w/cpp/algorithm/reverse_copy
+> - https://en.cppreference.com/w/cpp/algorithm/ranges/reverse
+---
+</details>
+
+<details>
+<summary>Trim a string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <utility>
+>
+> template <typename CharT>
+> using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> inline tstring<CharT> trim(tstring<CharT> const& text)
+> {
+>     tstring<CharT>::size first{text.find_first_not_of(' ')};
+>     tstring<CharT>::size last{text.find_last_not_of(' ')};
+>     return text.substr(first, (last - first + 1));
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string
+---
+</details>
+
+<details>
+<summary>Remove all occurances of a character from a string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <algorithm>
+>
+> template <typename CharT>
+> using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> inline tstring<CharT> remove(tstring<CharT> text, CharT const character)
+> {
+>     auto last = std::remove_if(std::begin(text), std::end(text), [character](CharT const c) { return c == character; });
+>     text.erase(last, std::end(text));
+>     return text;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com/w/cpp/algorithm/remove
+> - https://en.cppreference.com/w/cpp/algorithm/ranges/remove
+---
+</details>
+
+<details>
+<summary>Split a string based on user specified delimiter?</summary>
+
+> ```cpp
+> #include <string>
+> #include <sstream>
+> #include <vector>
+>
+> template <typename CharT>
+> using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> using tstringstream = std::basic_stringstream<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
+>
+> template <typename CharT>
+> inline std::vector<tstring<CharT>> split(tstring<CharT> text, CharT const delimiter)
+> {
+>     auto sstream = tstringstream<CharT>{text};
+>     auto tokens = std::vector<tstring<CharT>>{};
+>     auto token = tstring<CharT>{};
+>
+>     while (std::getline(sstream, token, delimiter))
+>     {
+>         if (!token.empty())
+>             tokens.push_back(token);
+>     }
+>
+>     return tokens;
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com/w/cpp/io/basic_stringstream
 ---
 </details>
 
