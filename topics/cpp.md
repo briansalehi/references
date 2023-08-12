@@ -236,13 +236,14 @@
 > `alignof` can only be applied to type-ids, and not to variables or class data members.
 >
 > ```cpp
-> struct alignas(4) foo
-> {
->     char a;
+> struct alignas(4) foo     // size: 4, alignment: 4
+> {                         // foo:     +----+
+>     char a;               // members: |ab..|
 >     char b;
 > };
 >
 > alignof(foo);   // 4
+> sizeof(foo);    // 4
 > alignof(foo&);  // 4
 > alignof(char);  // 1
 > alignof(int);   // 4
