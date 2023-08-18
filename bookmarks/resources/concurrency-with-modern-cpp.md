@@ -16,7 +16,7 @@ Nothing to import.
 > #include <atomic>
 > #include <thread>
 > #include <chrono>
-> 
+>
 > class task_unit
 > {
 > public:
@@ -26,22 +26,22 @@ Nothing to import.
 >         std::this_thread::sleep_for(std::chrono::seconds{1});
 >         unlock();
 >     }
-> 
+>
 > private:
 >     void lock() { while (flag.test_and_set()); }
 >     void unlock() { flag.clear(); }
-> 
+>
 > private:
 >     std::atomic_flag flag;
 > };
-> 
+>
 > int main()
 > {
 >     task_unit task;
-> 
+>
 >     std::thread taskA{&task_unit::do_something, &task};
 >     std::thread taskB{&task_unit::do_something, &task};
-> 
+>
 >     taskA.join();
 >     taskB.join();
 > }
@@ -65,7 +65,7 @@ Nothing to import.
 > #include <thread>
 > #include <chrono>
 > #include <mutex>
-> 
+>
 > class task_unit
 > {
 > public:
@@ -75,18 +75,18 @@ Nothing to import.
 >         std::this_thread::sleep_for(std::chrono::seconds{1});
 >         _lock.unlock();
 >     }
-> 
+>
 > private:
 >     std::mutex _lock;
 > };
-> 
+>
 > int main()
 > {
 >     task_unit task;
-> 
+>
 >     std::thread taskA{&task_unit::do_something, &task};
 >     std::thread taskB{&task_unit::do_something, &task};
-> 
+>
 >     taskA.join();
 >     taskB.join();
 > }

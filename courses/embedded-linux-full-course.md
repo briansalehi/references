@@ -303,7 +303,7 @@
 > ``````
 >
 > Configuration files are stored in `configs/` directory.
-> 
+>
 > To check if your desired board is already supported by U-boot, check if there is a match for that board in the `boards.cfg` file.
 >
 > To use one of the configuration entries in `configs/` use `make` utility:
@@ -333,7 +333,7 @@
 > ```uboot
 > ext4load usb 0:1 0x21000000 zImage
 > ``````
-> 
+>
 > There are similarly other tools:
 >
 > * fatinfo,  fatls,  fatsize,  fatwrite, ...
@@ -680,7 +680,7 @@
 > wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
 > wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
-> 
+>
 > Then partition the SD card which is used to attach to the device:
 >
 > ```sh

@@ -344,13 +344,13 @@
 <summary>How to remove an image in docker?</summary>
 
 > Containers run until the app they are executing exits.
-> 
+>
 > You can manually stop a running container with the `docker container stop` tcommand.
-> 
+>
 > To get rid of a container forever, you have to explicitly remove it.
 >
 > You can list multiple images on the same command by separating them with whitespace:
-> 
+>
 > ```sh
 > docker image rm ubuntu:22.4
 > docker image rm f70734b6a266 a4d3716dbb72
@@ -410,7 +410,7 @@
 
 > If you’re logged on to the container and type exit, you’ll terminate the Bash process and the container will exit (terminate).
 > This is because a container cannot exist without its designated main process.
-> 
+>
 > Press `Ctrl-P` then `Ctrl-Q` to exit the container without terminating its main process.
 > Doing this will place you back in the shell of your Docker host and leave the container running in the background.
 
@@ -611,7 +611,7 @@
 
 > The `RUN` instruction uses the Alpine apk package manager to install node js and nodejs-npm into the image.
 > It creates a new image layer directly above the Alpine base layer, and installs the packages in this layer.
-> 
+>
 > Then the `RUN` npm install instruction creates a new layer and uses `npm` to install application dependencies listed in the `package.json` file in the build context.
 > It runs within the context of the `WORKDIR` set in the previous instruction, and installs the dependencies into the newly created layer.
 >
@@ -683,7 +683,7 @@
 
 > Finally, the `ENTRYPOINT` instruction is used to set the main application that the image (container) should run.
 > This is also added as metadata and not an image layer.
-> 
+>
 > ```docker
 > ENTRYPOINT ["node", "./app.js"]
 > ``````

@@ -2528,7 +2528,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5,6};
@@ -2559,7 +2559,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5,6};
@@ -2590,7 +2590,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5,6};
@@ -2622,7 +2622,7 @@
 > #include <ranges>
 > #include <random>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range(10,0);
@@ -2656,7 +2656,7 @@
 > #include <iterator>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2687,7 +2687,7 @@
 > #include <iterator>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2718,7 +2718,7 @@
 > #include <iterator>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2751,7 +2751,7 @@
 > #include <iterator>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2788,7 +2788,7 @@
 > ```cpp
 > #include <algorithm>
 > #include <string>
-> 
+>
 > int main()
 > {
 >     alignas(alignof(std::string)) char mem[sizeof(std::string)];
@@ -2825,7 +2825,7 @@
 > #include <iterator>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2863,24 +2863,24 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
 >     std::ranges::make_heap(range);
 >     // 5 4 3 1 2
-> 
+>
 >     range.push_back(7);
 >     std::ranges::push_heap(range);
 >     // 7 4 5 1 2 3
-> 
+>
 >     range.push_back(6);
 >     std::ranges::push_heap(range);
 >     // 7 4 6 1 2 3 5
-> 
+>
 >     std::ranges::pop_heap(range);
 >     // 6 4 5 1 2 3 7
-> 
+>
 >     std::ranges::pop_heap(range.begin(), std::prev(range.end()));
 >     // 5 4 3 1 2 6 7
 > }
@@ -2906,7 +2906,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2937,7 +2937,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -2967,7 +2967,7 @@
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
-> 
+>
 > int main()
 > {
 >     std::vector<long> range{1,2,3,4,5};
@@ -3002,14 +3002,14 @@
 > #include <ranges>
 > #include <vector>
 > #include <string>
-> 
+>
 > int main()
 > {
 >     std::string data{"first;second;third;"};
 >     std::vector<std::string> out;
 >     auto it = data.begin();
 >     auto token = data.begin();
-> 
+>
 >     while ((token = std::ranges::find(it, data.end(), ';')) != data.end())
 >     {
 >         out.push_back("");

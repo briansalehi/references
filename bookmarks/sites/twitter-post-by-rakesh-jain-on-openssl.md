@@ -73,7 +73,7 @@
 <summary>Verify an openssl certificate?</summary>
 
 > Display detailed certificate information, including issuer, subject, validity, and public key details.
-> 
+>
 > ```sh
 > openssl x509 -in certificate.crt -noout -text
 > ``````
