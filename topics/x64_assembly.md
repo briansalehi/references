@@ -322,7 +322,7 @@
 ---
 </details>
 
-## Binary Representations
+## Numeric Representations
 
 <details>
 <summary>Convert decimal, binary, and hexadecimal representations of integral and floating point numbers?</summary>
@@ -333,6 +333,37 @@
 
 > References:
 > - [IEEE-754](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/)
+---
+</details>
+
+<details>
+<summary>Indicate that a literal number is in octal base in x64 assembly?</summary>
+
+> By appending `q` to the number.
+> 
+> ```nasm
+> section .data
+>     O_CREATE equ 00000100q
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
+
+<details>
+<summary>Indicate that a literal number is in hexadecimal base in x64 assembly?</summary>
+
+> By appending an `h` at the end of a number:
+> 
+> ```nasm
+> 2000000h
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 25
+
+> References:
 ---
 </details>
 
@@ -408,6 +439,17 @@
 </details>
 
 ## Invoking System Calls
+
+<details>
+<summary>What header contains Linux system calls?</summary>
+
+> `/usr/include/asm/unistd_64.h`
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
 
 <details>
 <summary>Write exit procedure in x64 Assembly?</summary>
@@ -1714,6 +1756,145 @@
 ---
 </details>
 
+## Inline Functions
+
+<details>
+<summary>Use an assembly function in a C source?</summary>
+
+> ```nasm
+> section .text
+> 	global sum
+> 
+> sum:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov rax, rdi
+>     add rax, rsi
+> 
+>     leave
+>     ret
+> ``````
+> 
+> ```sh
+> nasm -f elf64 -g -F dwarf sum.asm
+> ``````
+> 
+> ```c
+> #include <stdio.h>
+> 
+> extern int sum(int, int);
+> 
+> int main(void)
+> {
+>     int result = sum(4, 2);
+>     printf("%i\n", result);
+> }
+> ``````
+> 
+> ```sh
+> gcc -g -o program main.c sum.o
+> ./program
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 22
+
+> References:
+---
+</details>
+
+<details>
+<summary>How many of inline assembly types are available?</summary>
+
+> There are two types of inline assembly: **basic** and **extended**.
+>
+> Compilers will not optimize assembly parts of the program, so using inline assembly is not advices.
+> There will be no error checking on inline assembly code.
+
+> Origin: Beginning x64 Assembly Programming - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write a basic inline assembly in C programs?</summary>
+
+> Instructions should be terminated by `;`.
+> `-mintel` compiler option is required.
+> Switching to Intel assembly syntax is required as the first argument of `__asm__`.
+>
+> ```c
+> int main(void)
+> {
+>     __asm__(
+>         ".intel_syntax noprefix;"
+>         "xor rax, rax;"
+>     );
+> }
+> ``````
+> 
+> ```sh
+> gcc -o program main.c -masm=intel -no-pie
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write extended inline assembly in C programs? (needs work)</summary>
+
+> General syntax of extended inline assembly is as follows:
+> 
+> ```c
+> __asm__(
+>     assembler code
+>     : output operands
+>     : input operands
+>     : list of clobbered registers
+> );
+> ``````
+> 
+> * After the assembler code, additional and optional information is used.
+> * Instruction orders must be respected.
+> 
+> ```c
+> __asm__(
+>     ".intel_syntax noprefix;"
+>     "mov rbx, rdx;"
+>     "imul rbx, rcx;"
+>     "mov rax, rbx;"
+>     :"=a"(eproduct)
+>     :"d"(x), "c"(y)
+>     :"rbx"
+> );
+> 
+> printf("The extended inline product is %i\n", eproduct);
+> ``````
+> 
+> `a`, `d`, `c` are register constraints, and they map to the registers `rax`, `rdx`, `rcx`, respectively.
+> `:"=a"(eproduct)` means that the output will be in `rax`, and `rax` will refer to the variable `eproduct`. Register `rdx` refers to `x`, and `rcx` refers to `y`, which are the input variables.
+> `rbx` is considered clobbered in the code and will be restored to its original value, because it was declared in the list of clobbering registers.
+> 
+> ```txt
+> a -> rax, eax, ax, al
+> b -> rbx, ebx, bx, bl
+> c -> rcx, ecx, cx, cl
+> d -> rdx, edx, dx, dl
+> S -> rsi, esi, si
+> D -> rdi, edi, di
+> r -> any register
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 23
+
+> References:
+---
+</details>
+
 ## Macros
 
 <details>
@@ -1758,6 +1939,36 @@
 > ``````
 
 > Origin: Beginning x64 Assembly Programming - Chapter 18
+
+> References:
+---
+</details>
+
+<details>
+<summary>Conditionally compile a part of x64 assembly program?</summary>
+
+> ```nasm
+> section .data
+>     CONDITION equ 1
+> 
+> section .text
+>     global main
+> 
+> main:
+>     push rbp
+>     mov rbp, rsp
+> 
+> %IF CONDITION
+>     xor rdi, rdi
+> %ELSE
+>     mov rdi, 1
+> %ENDIF
+> 
+>     leave
+>     ret
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -1954,5 +2165,525 @@
 ---
 </details>
 
+## Command Line Arguments
+
+<details>
+<summary>What registers are used to read command line arguments from an x64 assembly program?</summary>
+
+> * `rdi`: argc or number of arguments
+> * `rsi`: argv or address of array each, cell is an 8bytes of address to an argument string
+
+> Origin: Beginning x64 Assembly Programming - Chapter 21
+
+> References:
+---
+</details>
+
+<details>
+<summary>Read command line arguments from an x64 assembly program?</summary>
+
+> ```nasm
+> extern printf
+> 
+> section .data
+>     fmt db "%s", 10, 0
+> 
+> section .text
+>     global main
+> 
+> main:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov r12, rdi
+>     mov r13, rsi
+>     xor r14, r14
+> 
+> .arg:
+>     mov rdi, fmt
+>     mov rsi, qword[r13 + r14 * 8]
+>     call printf
+> 
+>     inc r14
+>     cmp r14, r12
+>     jl .arg
+> 
+>     leave
+>     ret
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 21
+
+> References:
+---
+</details>
+
+<details>
+<summary>Inspect the command line arguments stored in registers in a GNU debugger?</summary>
+
+> ```gdb
+> info registers rdi rsi rsp
+> x/1xg <the pointer in rdi>
+> x/s <address where the pointer in rdi points to>
+> x/s <address where the pointer in rdi points to + 8>
+> x/s <address where the pointer in rdi points to + 16>
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 21
+
+> References:
+---
+</details>
+
 ## File Operations
+
+<details>
+<summary>What header contains file operation constants?</summary>
+
+> `/usr/include/asm-generic/fcntl.h`
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
+
+<details>
+<summary>Open and close a file in x64 assembly?</summary>
+
+> ```nasm
+> section .data
+>     CREATE equ 1            ; use for conditional assembly
+>     NR_create equ 85        ; create system call
+> 
+> section .text
+>     global create
+> 
+> ; \pre rdi address of filename string
+> ; \post rax error code
+> create:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov rax, NR_create
+>     mov rsi, S_IRUSR | S_IWUSR
+>     syscall
+> 
+>     leave
+>     ret
+> ``````
+> 
+> ```nasm
+> section .data
+>     CREATE equ 1            ; use for conditional assembly
+>     NR_create equ 85        ; create system call
+> 
+> section .text
+>     global create
+> 
+> ; \pre rdi file descriptor
+> ; \post rax error code
+> create:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov rax, NR_create
+>     mov rsi, S_IRUSR | S_IWUSR
+>     syscall
+> 
+>     leave
+>     ret
+> ``````
+> 
+> ```nasm
+> extern create
+> extern close
+> 
+> section .text
+>     global main
+> 
+> main:
+>     section .data
+>         fd dq 0                 ; to hold file descriptor
+> 
+>     section .text
+>         push rbp
+>         mov rbp, rsp
+> 
+>     %IF CREATE
+>         mov rdi, filename
+>         call create
+>         mov qword[fd], rax      ; save file descriptor
+>     %ENDIF
+> 
+>     %IF CLOSE
+>         mov rdi, qword[fd]      ; file descriptor
+>         call close
+>     %ENDIF
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write content to a file in x64 assembly?</summary>
+
+> ```nasm
+> section .data
+>     CREATE equ 1            ; use for conditional assembly
+> 
+> section .text
+>     global create
+> 
+> create:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     leave
+>     ret
+> ``````
+> 
+> ```nasm
+> extern create
+> extern close
+> extern write
+> 
+> section .text
+>     global main
+> 
+> main:
+>     section .data
+>         fd dq 0                 ; to hold file descriptor
+> 
+>     section .text
+>         push rbp
+>         mov rbp, rsp
+> 
+>     %IF CREATE
+>         mov rdi, filename
+>         call create
+>         mov qword[fd], rax      ; save file descriptor
+>     %ENDIF
+> 
+>     %IF WRITE
+>         mov rdi, qword[fd]      ; file descriptor
+>         mov rsi, text           ; address of string
+>         mov rdx, qword[length]  ; length of string
+>         call write
+>     %ENDIF
+> 
+>     %IF CLOSE
+>         mov rdi, qword[fd]      ; file descriptor
+>         call close
+>     %ENDIF
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
+
+<details>
+<summary>Truncate a file in x64 assembly?</summary>
+
+> ```nasm
+> section .data
+>     CREATE equ 1            ; use for conditional assembly
+> 
+> section .text
+>     global create
+> 
+> create:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     leave
+>     ret
+> ``````
+> 
+> ```nasm
+> extern create
+> extern close
+> extern write
+> 
+> section .text
+>     global main
+> 
+> main:
+>     section .data
+>         fd dq 0                 ; to hold file descriptor
+> 
+>     section .text
+>         push rbp
+>         mov rbp, rsp
+> 
+>     %IF CREATE
+>         mov rdi, filename
+>         call create
+>         mov qword[fd], rax      ; save file descriptor
+>     %ENDIF
+> 
+>     %IF WRITE
+>         mov rdi, qword[fd]      ; file descriptor
+>         mov rsi, text           ; address of string
+>         mov rdx, qword[length]  ; length of string
+>         call write
+>     %ENDIF
+> 
+>     %IF CLOSE
+>         mov rdi, qword[fd]      ; file descriptor
+>         call close
+>     %ENDIF
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 20
+
+> References:
+---
+</details>
+
+## Vector Registeres Support
+
+<details>
+<summary>Obtain the CPU information of the processor in x64 assembly?</summary>
+
+> You first put a specific parameter in `eax`, then execute the instruction `cpuid`, and finally check the returned value in `ecx` and `edx`.
+> Indeed, `cpuid` uses 32-bit registers.
+>
+> Based on processor manual, SSE bits are as follows:
+>
+> * **sse**: edx:25
+> * **sse2**: edx:26
+> * **sse3**: ecx:1
+> * **ssse3**: ecx:1 and ecx:8
+> * **sse4.1**: ecx:19
+> * **sse4.2**: ecx:20
+> 
+> ```nasm
+> section .text
+>     global main
+> 
+> main:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov eax, 1
+>     cpuid
+> 
+>     leave
+>     ret
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 25
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check the processors which version of SSE extensions do they support?</summary>
+
+> ```nasm
+> extern printf
+> 
+> section .data
+>     fmt_sse42 db "sse4_2", 10, 0
+>     fmt_sse41 db "sse4_1", 10, 0
+>     fmt_ssse3 db "ssse3", 10, 0
+>     fmt_sse3 db "sse3", 10, 0
+>     fmt_sse2 db "sse2", 10, 0
+>     fmt_sse db "sse", 10, 0
+>     fmt_sep db ",", 10, 0
+> 
+> section .text
+>     global main
+> 
+> main:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     mov eax, 1
+>     cpuid
+>     mov r12, rcx      ; store the half result of cpuid
+>     mov r13, rdx      ; store the half result of cpuid
+> 
+>     call sse
+>     call sse2
+>     call sse3
+>     call ssse3
+>     call sse41
+>     call sse42
+> 
+>     xor rax, rax
+>     leave
+>     ret
+> 
+> sse:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     ; call also be done with bt instruction: bt r13, 25
+>     test r13, 2000000h  ; test bit 25
+>     jz .sse_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_sse
+>     call printf
+> 
+> .sse_unsupported:
+>     leave
+>     ret
+>     
+> sse2:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     test r13, 4000000h  ; test bit 26
+>     jz .sse2_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_sse2
+>     call printf
+> 
+> .sse2_unsupported:
+>     leave
+>     ret
+> 
+> sse3:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     test r12, 1         ; test bit 0
+>     jz .sse3_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_sse3
+>     call printf
+> 
+> .sse3_unsupported:
+>     leave
+>     ret
+> 
+> ssse3:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     test r12, 9         ; test bit 0
+>     jz .ssse3_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_ssse3
+>     call printf
+> 
+> .ssse3_unsupported:
+>     leave
+>     ret
+> 
+> sse41:
+>     push rbp
+>     mov rbp, rsp
+> 
+>     test r12, 80000h    ; test bit 19
+>     jz .sse41_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_sse41
+>     call printf
+> 
+> .sse41_unsupported:
+>     leave
+>     ret
+> 
+> sse42:
+>     push rbp
+>     mov rbp, rsp
+>     test r12, 100000h   ; test bit 20
+>     jz .sse42_unsupported
+> 
+>     xor rax, rax
+>     mov rdi, fmt_sse42
+>     call printf
+> 
+> .sse42_unsupported:
+>     leave
+>     ret
+> ``````
+
+> Origin: Beginning x64 Assembly Programming - Chapter 25
+
+> References:
+---
+</details>
+
+<details>
+<summary>How many registers of SSE are available on any processor supporting it?</summary>
+
+> 16 additional 128-bit registers of `xmm`:
+> 
+> * xmm0
+> * ...
+> * xmm15
+
+> Origin: Beginning x64 Assembly Programming - Chapter 26
+
+> References:
+> - https://en.wikipedia.org/wiki/Flynn's_taxonomy
+
+---
+</details>
+
+<details>
+<summary>What are the two types of data that can be stored on SSE registers?</summary>
+
+> The `xmm` registers can contain **scalar data** or **packed data**.  
+>
+> Scalar data means just one value.  
+> Packed data means multiple values related to each other.
+
+> Origin: Beginning x64 Assembly Programming - Chapter 26
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are AVX registers and how much data can they hold?</summary>
+
+> The **AVX** registers are called `ymm` registers and have 256 bits, double the size of `xmm` registers.
+>
+> There is also **AVX-512** which provides 512 bits registers and are called `zmm` registers.
+
+> Origin: Beginning x64 Assembly Programming - Chapter 26
+
+> References:
+---
+</details>
+
+<details>
+<summary>How does alignment of data in <code>.data</code> and <code>.bss</code> sections can improve performance of a program?</summary>
+
+> Data in section `.data` and `.bss` should be aligned on a 16-byte border so that registers can be filled with data once for each block of data.
+
+> Origin: Beginning x64 Assembly Programming - Chapter 26
+
+> References:
+---
+</details>
+
+<details>
+<summary>How can we align data in <code>.data</code> and <code>.bss</code> sections in specific byte sizes?</summary>
+
+> In **NASM** the assembly directive `align 16` and `alignb 16` can be used in front of the data.
+>
+> For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**, data needs to be aligned on a 64 bytes border.
+
+> Origin: Beginning x64 Assembly Programming - Chapter 26
+
+> References:
+---
+</details>
 
