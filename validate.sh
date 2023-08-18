@@ -202,12 +202,12 @@ then
     file_list="$FILE_PATH"
 elif [ "${DIR_MODE:-0}" -eq 1 ]
 then
-    file_list="$(find "${DIR_PATH:-books/}" -name \*.md -type f -not -name README.md)"
+    file_list="$(find "${DIR_PATH:-.}" -name \*.md -type f -not -name README.md)"
 else
     usage
 fi
 
-if [ -d .git ] && [ -d books/ ]
+if [ -d .git ] && [ -d bookmarks/ ] && [ -d topics/ ]
 then
     while read -r file
     do
