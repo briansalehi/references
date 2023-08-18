@@ -1741,7 +1741,7 @@
 > section .text
 >     ...
 > ``````
-
+>
 > *main.nasm*>
 > ```nasm
 > extern pi
@@ -2632,7 +2632,6 @@
 
 > References:
 > - https://en.wikipedia.org/wiki/Flynn's_taxonomy
-
 ---
 </details>
 
