@@ -1,4 +1,5 @@
-# [Embedded Linux Full Course](#)
+# Embedded Linux Full Course
+<img src="covers/linux.jpg" width="200"/>
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>

@@ -21,6 +21,9 @@ Covers kernel development.
 ## ★★★★★ [Mastering Embedded Linux Programming](resources/9781789530384.md)
 [<img src="covers/9781789530384.jpg" width="200"/>](resources/9781789530384.md)
 
+## ★★★★★ [Embedded Linux Development Using Yocto Project](resources/9781804615065.md)
+[<img src="covers/9781804615065.jpg" width="200"/>](resources/9781804615065.md)
+
 ## ★★★★★ [Linux Device Driver Development](resources/9781803240060.md)
 [<img src="covers/9781803240060.jpg" width="200"/>](resources/9781803240060.md)
 
