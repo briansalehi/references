@@ -1,331 +1,5 @@
 # C++ Programming
 
-## Statements
-
-### Range-based loop
-
-<details>
-<summary>Iterate over a range without invoking iterator functions?</summary>
-
-> ```cpp
-> #include <vector>
-> #include <map>
->
-> std::vector<int> get_numbers()
-> {
->     return std::vector<int>{1, 2, 3, 4, 5};
-> }
->
-> std::map<int, double> get_doubles()
-> {
->     return std::map<int, double>{
->         {0, 0.0},
->         {1, 1.1},
->         {2, 2.2}
->     };
-> }
->
-> int main()
-> {
->     auto numbers = std::vector<int>{1, 2, 3, 4, 5};
->     auto copies = std::vector<int>(numbers.size() * 4);
->
->     for (int element: numbers)
->         copies.push_back(element);
->
->     for (int& element: numbers)
->         copies.push_back(element);
->
->     for (auto&& element: get_numbers())
->         copies.push_back(element);
->
->     for (auto&& [key, value]: get_doubles())
->         copies.push_back(key);
-> }
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/range-for
----
-</details>
-
-<details>
-<summary>Enable iteration mechanism for custom types?</summary>
-
-> ```cpp
-> #include <iostream>
-> #include <stdexcept>
-> #include <iterator>
->
-> template <typename T, std::size_t const S>
-> class dummy_array
-> {
->     T data[S] = {};
->
-> public:
->     T const& at(std::size_t const index) const
->     {
->         if (index < S) return data[index];
->         throw std::out_of_range("index out of range");
->     }
->
->     void insert(std::size_t const index, T const& value)
->     {
->         if (index < S) data[index] = value;
->         else throw std::out_of_range("index out of range");
->     }
->
->     std::size_t size() const { return S; }
-> };
->
-> template <typename T, typename C, std::size_t const S>
-> class dummy_array_iterator_type
-> {
-> public:
->     dummy_array_iterator_type(C& collection, std::size_t const index): index{index}, collection{collection}
->     {}
->
->     bool operator !=(dummy_array_iterator_type const& other) const
->     {
->         return index != other.index;
->     }
->
->     T const& operator *() const
->     {
->         return collection.at(index);
->     }
->
->     dummy_array_iterator_type& operator ++()
->     {
->         ++index;
->         return *this;
->     }
->
->     dummy_array_iterator_type operator ++(int)
->     {
->         auto temp = *this;
->         ++*temp;
->         return temp;
->     }
->
-> private:
->     std::size_t index;
->     C& collection;
-> };
->
-> template <typename T, std::size_t const S>
-> using dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;
->
-> template <typename T, std::size_t const S>
-> using dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;
->
-> template <typename T, std::size_t const S>
-> inline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)
-> {
->     return dummy_array_iterator<T, S>(collection, 0);
-> }
->
-> template <typename T, std::size_t const S>
-> inline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)
-> {
->     return dummy_array_iterator<T, S>(collection, collection.size());
-> }
->
-> template <typename T, std::size_t const S>
-> inline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)
-> {
->     return dummy_array_const_iterator<T, S>(collection, 0);
-> }
->
-> template <typename T, std::size_t const S>
-> inline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)
-> {
->     return dummy_array_const_iterator<T, S>(collection, collection.size());
-> }
->
-> int main()
-> {
->     dummy_array<int, 5> numbers;
->     numbers.insert(0, 1);
->     numbers.insert(1, 2);
->     numbers.insert(2, 3);
->     numbers.insert(3, 4);
->     numbers.insert(4, 5);
->
->     for (auto&& element: numbers)
->         std::cout << element << ' ';
->     std::cout << '\n';
-> }
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/range-for
----
-</details>
-
-## Objects
-
-### Alignment
-
-<details>
-<summary>Evaluate alignment of structures considering the size of their members?</summary>
-
-> The alignment must match the size of the largest member in order to avoid performance issues.
->
-> ```cpp
-> struct foo1         // size = 1, alignment = 1
-> {                   // foo1:    +-+
->     char a;         // members: |a|
-> };
->
-> struct foo2         // size = 2, alignment = 1
-> {                   // foo1:    +-+-+
->     char a;         // members: |a|b|
->     char b;
-> };
->
-> struct foo3         // size = 8, alignment = 4
-> {                   // foo1:    +----+----+
->     char a;         // members: |a...|bbbb|
->     int  b;
-> };
->
-> struct foo3_
-> {
->     char a;         // 1 byte
->     char _pad0[3];  // 3 bytes
->     int  b;         // 4 byte
-> };
->
-> struct foo4         // size = 24, alignment = 8
-> {                   // foo4:    +--------+--------+--------+--------+
->     int a;          // members: |aaaa....|cccc....|dddddddd|e.......|
->     char b;
->     float c;
->     double d;
->     bool e;
-> };
->
-> struct foo4_
-> {
->     int a;          // 4 bytes
->     char b;         // 1 byte
->     char _pad0[3];  // 3 bytes
->     float c;        // 4 bytes
->     char _pad1[4];  // 4 bytes
->     double d;       // 8 bytes
->     bool e;         // 1 byte
->     char _pad2[7];  // 7 bytes
-> };
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
----
-</details>
-
-<details>
-<summary>Query alignment of object types?</summary>
-
-> `alignof` can only be applied to type-ids, and not to variables or class data members.
->
-> ```cpp
-> struct alignas(4) foo     // size: 4, alignment: 4
-> {                         // foo:     +----+
->     char a;               // members: |ab..|
->     char b;
-> };
->
-> alignof(foo);   // 4
-> sizeof(foo);    // 4
-> alignof(foo&);  // 4
-> alignof(char);  // 1
-> alignof(int);   // 4
-> alignof(int*);  // 8 (64-bit)
-> alignof(int[4]);// 4 (natural alignment of element is 4)
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/alignof
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
----
-</details>
-
-<details>
-<summary>Set alignment of object types?</summary>
-
-> `alignas` takes an expression evaluating 0 or valid value for alignment, a type-id, or a parameter pack.
->
-> Only valid values of object alignment are the powers of two.
->
-> Program is ill-formed if largest `alignas` on a declaration is smaller than natural alignment without any `alignas` specifier.
->
-> ```cpp
-> // alignas specifier applied to struct
-> struct alignas(4) foo1  // size = 4, aligned as = 4
-> {                       // foo1:    +----+
->     char a;             // members: |a.b.|
->     char b;
-> };
->
-> struct foo1_            // size = 4, aligned as = 1
-> {
->     char a;             // 1 byte
->     char b;             // 1 byte
->     char _pad0[2];      // 2 bytes
-> };
->
-> // alignas specifier applied to member data declarations
-> struct foo2             // size = 16, aligned as = 8
-> {                       // foo2:    +--------+--------+
->     alignas(2) char a;  // members: |aa......|bbbb....|
->     alignas(8) int b;
-> };
->
-> struct foo2_            // size = 16, aligned as = 4
-> {
->     char a;             // 2 bytes
->     char _pad0[6];      // 6 bytes
->     int b;              // 4 bytes
->     char _pad1[4];      // 4 bytes
-> };
->
-> // the alignas specifier applied to the struct is less than alignas
-> // specifier applied to member data declaration, thus will be ignored.
-> struct alignas(4) foo3  // size = 16, aligned as = 8
-> {                       // foo3:    +--------+--------+
->     alignas(2) char a;  // members: |aa......|bbbbbbbb|
->     alignas(8) int b;
-> };
->
-> struct foo3_            // size = 16, aligned as = 4
-> {
->     char a;             // 2 byte
->     char _pad0[6];      // 6 bytes
->     int b;              // 4 bytes
->     char _pad1[4];      // 4 bytes
-> };
->
-> alignas(8) int a;       // size = 4, alignment = 8
-> alignas(256) long b[4]; // size = 32, alignment = 256
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/alignas
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
----
-</details>
-
 ## Declarations
 
 ### Namespaces
@@ -777,6 +451,332 @@
 ---
 </details>
 
+## Statements
+
+### Range-based loop
+
+<details>
+<summary>Iterate over a range without invoking iterator functions?</summary>
+
+> ```cpp
+> #include <vector>
+> #include <map>
+>
+> std::vector<int> get_numbers()
+> {
+>     return std::vector<int>{1, 2, 3, 4, 5};
+> }
+>
+> std::map<int, double> get_doubles()
+> {
+>     return std::map<int, double>{
+>         {0, 0.0},
+>         {1, 1.1},
+>         {2, 2.2}
+>     };
+> }
+>
+> int main()
+> {
+>     auto numbers = std::vector<int>{1, 2, 3, 4, 5};
+>     auto copies = std::vector<int>(numbers.size() * 4);
+>
+>     for (int element: numbers)
+>         copies.push_back(element);
+>
+>     for (int& element: numbers)
+>         copies.push_back(element);
+>
+>     for (auto&& element: get_numbers())
+>         copies.push_back(element);
+>
+>     for (auto&& [key, value]: get_doubles())
+>         copies.push_back(key);
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/range-for
+---
+</details>
+
+<details>
+<summary>Enable iteration mechanism for custom types?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <stdexcept>
+> #include <iterator>
+>
+> template <typename T, std::size_t const S>
+> class dummy_array
+> {
+>     T data[S] = {};
+>
+> public:
+>     T const& at(std::size_t const index) const
+>     {
+>         if (index < S) return data[index];
+>         throw std::out_of_range("index out of range");
+>     }
+>
+>     void insert(std::size_t const index, T const& value)
+>     {
+>         if (index < S) data[index] = value;
+>         else throw std::out_of_range("index out of range");
+>     }
+>
+>     std::size_t size() const { return S; }
+> };
+>
+> template <typename T, typename C, std::size_t const S>
+> class dummy_array_iterator_type
+> {
+> public:
+>     dummy_array_iterator_type(C& collection, std::size_t const index): index{index}, collection{collection}
+>     {}
+>
+>     bool operator !=(dummy_array_iterator_type const& other) const
+>     {
+>         return index != other.index;
+>     }
+>
+>     T const& operator *() const
+>     {
+>         return collection.at(index);
+>     }
+>
+>     dummy_array_iterator_type& operator ++()
+>     {
+>         ++index;
+>         return *this;
+>     }
+>
+>     dummy_array_iterator_type operator ++(int)
+>     {
+>         auto temp = *this;
+>         ++*temp;
+>         return temp;
+>     }
+>
+> private:
+>     std::size_t index;
+>     C& collection;
+> };
+>
+> template <typename T, std::size_t const S>
+> using dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;
+>
+> template <typename T, std::size_t const S>
+> using dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;
+>
+> template <typename T, std::size_t const S>
+> inline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)
+> {
+>     return dummy_array_iterator<T, S>(collection, 0);
+> }
+>
+> template <typename T, std::size_t const S>
+> inline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)
+> {
+>     return dummy_array_iterator<T, S>(collection, collection.size());
+> }
+>
+> template <typename T, std::size_t const S>
+> inline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)
+> {
+>     return dummy_array_const_iterator<T, S>(collection, 0);
+> }
+>
+> template <typename T, std::size_t const S>
+> inline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)
+> {
+>     return dummy_array_const_iterator<T, S>(collection, collection.size());
+> }
+>
+> int main()
+> {
+>     dummy_array<int, 5> numbers;
+>     numbers.insert(0, 1);
+>     numbers.insert(1, 2);
+>     numbers.insert(2, 3);
+>     numbers.insert(3, 4);
+>     numbers.insert(4, 5);
+>
+>     for (auto&& element: numbers)
+>         std::cout << element << ' ';
+>     std::cout << '\n';
+> }
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/range-for
+---
+</details>
+
+## Objects
+
+### Alignment
+
+<details>
+<summary>Evaluate alignment of structures considering the size of their members?</summary>
+
+> The alignment must match the size of the largest member in order to avoid performance issues.
+>
+> ```cpp
+> struct foo1         // size = 1, alignment = 1
+> {                   // foo1:    +-+
+>     char a;         // members: |a|
+> };
+>
+> struct foo2         // size = 2, alignment = 1
+> {                   // foo1:    +-+-+
+>     char a;         // members: |a|b|
+>     char b;
+> };
+>
+> struct foo3         // size = 8, alignment = 4
+> {                   // foo1:    +----+----+
+>     char a;         // members: |a...|bbbb|
+>     int  b;
+> };
+>
+> struct foo3_
+> {
+>     char a;         // 1 byte
+>     char _pad0[3];  // 3 bytes
+>     int  b;         // 4 byte
+> };
+>
+> struct foo4         // size = 24, alignment = 8
+> {                   // foo4:    +--------+--------+--------+--------+
+>     int a;          // members: |aaaa....|cccc....|dddddddd|e.......|
+>     char b;
+>     float c;
+>     double d;
+>     bool e;
+> };
+>
+> struct foo4_
+> {
+>     int a;          // 4 bytes
+>     char b;         // 1 byte
+>     char _pad0[3];  // 3 bytes
+>     float c;        // 4 bytes
+>     char _pad1[4];  // 4 bytes
+>     double d;       // 8 bytes
+>     bool e;         // 1 byte
+>     char _pad2[7];  // 7 bytes
+> };
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/object#Alignment
+---
+</details>
+
+<details>
+<summary>Query alignment of object types?</summary>
+
+> `alignof` can only be applied to type-ids, and not to variables or class data members.
+>
+> ```cpp
+> struct alignas(4) foo     // size: 4, alignment: 4
+> {                         // foo:     +----+
+>     char a;               // members: |ab..|
+>     char b;
+> };
+>
+> alignof(foo);   // 4
+> sizeof(foo);    // 4
+> alignof(foo&);  // 4
+> alignof(char);  // 1
+> alignof(int);   // 4
+> alignof(int*);  // 8 (64-bit)
+> alignof(int[4]);// 4 (natural alignment of element is 4)
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/alignof
+> - https://en.cppreference.com/w/cpp/language/object#Alignment
+---
+</details>
+
+<details>
+<summary>Set alignment of object types?</summary>
+
+> `alignas` takes an expression evaluating 0 or valid value for alignment, a type-id, or a parameter pack.
+>
+> Only valid values of object alignment are the powers of two.
+>
+> Program is ill-formed if largest `alignas` on a declaration is smaller than natural alignment without any `alignas` specifier.
+>
+> ```cpp
+> // alignas specifier applied to struct
+> struct alignas(4) foo1  // size = 4, aligned as = 4
+> {                       // foo1:    +----+
+>     char a;             // members: |a.b.|
+>     char b;
+> };
+>
+> struct foo1_            // size = 4, aligned as = 1
+> {
+>     char a;             // 1 byte
+>     char b;             // 1 byte
+>     char _pad0[2];      // 2 bytes
+> };
+>
+> // alignas specifier applied to member data declarations
+> struct foo2             // size = 16, aligned as = 8
+> {                       // foo2:    +--------+--------+
+>     alignas(2) char a;  // members: |aa......|bbbb....|
+>     alignas(8) int b;
+> };
+>
+> struct foo2_            // size = 16, aligned as = 4
+> {
+>     char a;             // 2 bytes
+>     char _pad0[6];      // 6 bytes
+>     int b;              // 4 bytes
+>     char _pad1[4];      // 4 bytes
+> };
+>
+> // the alignas specifier applied to the struct is less than alignas
+> // specifier applied to member data declaration, thus will be ignored.
+> struct alignas(4) foo3  // size = 16, aligned as = 8
+> {                       // foo3:    +--------+--------+
+>     alignas(2) char a;  // members: |aa......|bbbbbbbb|
+>     alignas(8) int b;
+> };
+>
+> struct foo3_            // size = 16, aligned as = 4
+> {
+>     char a;             // 2 byte
+>     char _pad0[6];      // 6 bytes
+>     int b;              // 4 bytes
+>     char _pad1[4];      // 4 bytes
+> };
+>
+> alignas(8) int a;       // size = 4, alignment = 8
+> alignas(256) long b[4]; // size = 32, alignment = 256
+> ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/alignas
+> - https://en.cppreference.com/w/cpp/language/object#Alignment
+---
+</details>
+
 ## Literals
 
 ### Cooked User-Defined Literals
@@ -910,6 +910,163 @@
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/user_literal
+---
+</details>
+
+## Move Semantics
+
+<details>
+<summary>Use move semantics to optimize out life ended objects?</summary>
+
+> ```cpp
+> #include <vector>
+> #include <string>
+>
+> std::vector<std::string> f()
+> {
+>     std::vector<std::string> cells; // default constructed vector without allocations
+>     cells.reserve(3);               // allocate 3 elements of std::string
+>     std::string s{"data"};          // default constructed std::string
+>     cells.push_back(s);             // 1st vector element copy constructed
+>     cells.push_back(s+s);           // default construction of temporary object; move construction of 2nd vector element
+>     cells.push_back(std::move(s));  // move constructed 3rd vector element; empty out s object
+>     return cells;                   // optimize out vector as return value
+> }
+>
+> int main()
+> {
+>     std::vector<std::string> v;
+>     v = f();                        // move assigned constructed vector by return value
+> }
+> ``````
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/utility/move
+---
+</details>
+
+<details>
+<summary>Enable move semantics for a class?</summary>
+
+> ```cpp
+> #include <utility>
+>
+> class bag
+> {
+> private:
+>     unsigned int _count;
+>     int* _storage;
+>
+> public:
+>     bag(int const& number): _count{0}, _storage{nullptr}
+>     {
+>         _count++;
+>         _storage = new int{number};
+>     }
+>
+>     virtual ~bag()
+>     {
+>         if (_count)
+>             delete _storage;
+>     }
+>
+>     bag(bag const& other): _count{other._count}
+>     {
+>         _storage = new int{*other._storage};
+>     }
+>
+>     bag(bag&& other): _count{other._count}, _storage{other._storage}
+>     {
+>         other._count = 0;
+>         other._storage = nullptr;
+>     }
+> };
+>
+> int main()
+> {
+>     bag a{1};
+>     bag b{std::move(a)};
+> }
+> ``````
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/move_constructor
+> - https://en.cppreference.com/w/cpp/language/move_assignment
+---
+</details>
+
+<details>
+<summary>What happens to an object when move semantics is not available?</summary>
+
+> The rule is that for a temporary object or an object marked with `std::move()`, if available,
+> a function declaring parameters as an rvalue reference is preferred.
+> However, if no such function exists, the usual copy semantics is used as a fallback.
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What happens to a constant object when moved?</summary>
+
+> The objects declared with const cannot be moved because any optimizing implementation requires that the passed argument can be modified.
+>
+> ```cpp
+> std::vector<std::string> coll;
+> const std::string s{"data"};
+> coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)
+> ``````
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Why return values should not be marked as <code>const</code>?</summary>
+
+> Declaring the return value as a whole to be `const` disables move semantics and it also disables **return value optimization**.  
+> `const` should be used to declare parts of return type instead, such as the object a returned reference or poionter refers to.  
+>
+> ```cpp
+> const std::string getValues(); // BAD: disables move semantics for return value
+> const std::string& getRef();   // OK
+> const std::string* getPtr();   // OK
+> ``````
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>What should be the state of an object after it has been moved?</summary>
+
+> The implementer has to ensure that the passed argument is in a valid state after the call.
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>When do compilers automatically switch to move semantics?</summary>
+
+> - When the value of a temporary object is passed that will automatically be destroyed after the statement.
+> - When a non-`const` object marked with `std::move()`.
+
+> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+
+> References:
 ---
 </details>
 
