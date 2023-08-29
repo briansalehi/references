@@ -1,8 +1,6 @@
 # C++ Programming
 
-## Declarations
-
-### Namespaces
+## Unnamed Namespaces
 
 <details>
 <summary>Declare an object with internal linkage without being static?</summary>
@@ -61,6 +59,8 @@
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 ---
 </details>
+
+## Inline Namespaces
 
 <details>
 <summary>Define symbol versioning of a library without breaking client code when implementing template specializations?</summary>
@@ -174,7 +174,7 @@
 ---
 </details>
 
-### Automatic Type Deduction
+## Automatic Type Deduction
 
 <details>
 <summary>Initialize objects using automatic compiler type deduction?</summary>
@@ -238,7 +238,7 @@
 ---
 </details>
 
-### Structured Binding
+## Structured Binding
 
 <details>
 <summary>Bind multiple returned values into existing objects?</summary>
@@ -267,7 +267,7 @@
 ---
 </details>
 
-### Type Alias
+## Type Aliases
 
 <details>
 <summary>Create type aliases for objects and functions?</summary>
@@ -296,7 +296,7 @@
 ---
 </details>
 
-### Uniform Initialization
+## Uniform Initialization
 
 <details>
 <summary>Uniformly initialize objects of any type?</summary>
@@ -353,7 +353,7 @@
 ---
 </details>
 
-### Non-static Member Variables
+## Non-static Member Declaration
 
 <details>
 <summary>Initialize non-static member variables of a class?</summary>
@@ -386,7 +386,7 @@
 ---
 </details>
 
-### Enumerations
+## Enumerations
 
 <details>
 <summary>Specify the underlying type for an enumeration type?</summary>
@@ -451,9 +451,7 @@
 ---
 </details>
 
-## Statements
-
-### Range-based loop
+## Range-based loop
 
 <details>
 <summary>Iterate over a range without invoking iterator functions?</summary>
@@ -618,9 +616,7 @@
 ---
 </details>
 
-## Objects
-
-### Alignment
+## Object Alignment
 
 <details>
 <summary>Evaluate alignment of structures considering the size of their members?</summary>
@@ -777,9 +773,7 @@
 ---
 </details>
 
-## Literals
-
-### Cooked User-Defined Literals
+## Cooked User-Defined Literals
 
 <details>
 <summary>What types can be used to create a cooked user-defined literal?</summary>
@@ -838,7 +832,7 @@
 ---
 </details>
 
-### Raw User-Defined Literals
+## Raw User-Defined Literals
 
 <details>
 <summary>What signatues can a literal operator or a literal operator template have to overload a user-defined literal?</summary>
@@ -1070,9 +1064,7 @@
 ---
 </details>
 
-## Classes
-
-### Default Constructors
+## Class Default Constructors
 
 <details>
 <summary>Avoid implicit conversion of classes?</summary>
@@ -1113,7 +1105,7 @@
 ---
 </details>
 
-### Virtual Functions
+## Virtual Functions
 
 <details>
 <summary>Ensure correct virtual declaration of methods base and derived classes?</summary>
@@ -1186,7 +1178,7 @@
 ---
 </details>
 
-### Inheritance
+## Inheritance
 
 <details>
 <summary>Prevent inheritance of a class?</summary>
@@ -1219,9 +1211,7 @@
 ---
 </details>
 
-## Strings
-
-### Numeric Conversion
+## Numeric to String Conversion
 
 <details>
 <summary>Convert integeral and floating-point types into strings?</summary>
@@ -1372,7 +1362,7 @@
 ---
 </details>
 
-### String Literals
+## String Literals
 
 <details>
 <summary>Express all different string literals?</summary>
@@ -1404,7 +1394,7 @@
 ---
 </details>
 
-### Raw String Literals
+## Raw String Literals
 
 <details>
 <summary>Create string literals containing special characters without escaping them?</summary>
@@ -1759,8 +1749,8 @@
 > Origin: Modern C++ Programming Cookbook - Chapter 2
 
 > References:
-* https://cppreference.com/w/cpp/regex/sregex_iterator
-* https://cppreference.com/w/cpp/regex/sregex_token_iterator
+> - https://cppreference.com/w/cpp/regex/sregex_iterator
+> - https://cppreference.com/w/cpp/regex/sregex_token_iterator
 ---
 </details>
 
@@ -2133,10 +2123,7 @@
 ---
 </details>
 
-
-## Templates
-
-### Class Template Argument Deduction
+## Class Template Argument Deduction
 
 <details>
 <summary>Write a class template deduction guides for compilers?</summary>
@@ -2272,9 +2259,7 @@
 ---
 </details>
 
-## Algorithms
-
-### Iterating Algorithms
+## Iterating Algorithms
 
 <details>
 <summary>Using the standard algorithms, sum the values of a container?</summary>
@@ -2435,7 +2420,7 @@
 ---
 </details>
 
-### Swapping Algorithms
+## Swapping Algorithms
 
 <details>
 <summary>Swap two values using standard algorithms?</summary>
@@ -2535,7 +2520,7 @@
 ---
 </details>
 
-### Sorting Algorithms
+## Sorting Algorithms
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
@@ -2952,7 +2937,7 @@
 ---
 </details>
 
-### Partitioning Algorithms
+## Partitioning Algorithms
 
 <details>
 <summary>Partition a range into two based on a criterion?</summary>
@@ -3137,7 +3122,7 @@
 ---
 </details>
 
-### Sorted Range Algorithms
+## Sorted Range Algorithms
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -3306,7 +3291,7 @@
 ---
 </details>
 
-### Linear Operation Algorithms
+## Linear Operation Algorithms
 
 <details>
 <summary>Determine whether a sorted range is contained within another sorted range?</summary>
@@ -3468,7 +3453,7 @@
 ---
 </details>
 
-### Set Operation Algorithms
+## Set Operation Algorithms
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -3590,7 +3575,7 @@
 ---
 </details>
 
-### Transformation Algorithms
+## Transformation Algorithms
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -3934,7 +3919,7 @@
 ---
 </details>
 
-### Boolean Reduction Algorithms
+## Boolean Reduction Algorithms
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -4023,7 +4008,7 @@
 ---
 </details>
 
-### String Algorithms
+## String Algorithms
 
 <details>
 <summary>Convert a string to lowercase or uppercase?</summary>
@@ -4643,9 +4628,7 @@
 ---
 </details>
 
-## Threads
-
-### Constructing Threads
+## Constructing Threads
 
 <details>
 <summary>Construct a thread and wait to the end of its normal execution?</summary>
@@ -4781,7 +4764,7 @@
 ---
 </details>
 
-### Joining Threads
+## Joining Threads
 
 <details>
 <summary>Wait for a thread in case an exception is thrown?</summary>
@@ -4850,7 +4833,7 @@
 ---
 </details>
 
-### Detaching Threads
+## Detaching Threads
 
 <details>
 <summary>Run a thread in background?</summary>
@@ -4875,7 +4858,7 @@
 ---
 </details>
 
-### Moving Threads
+## Moving Threads
 
 <details>
 <summary>Transfer the ownership of a thread into another?</summary>
