@@ -30,8 +30,8 @@ Covers kernel development.
 ## ★★★★★ [Mastering Linux Device Driver Development](resources/9781789342208.md)
 [<img src="covers/9781789342208.jpg" width="200"/>](resources/9781789342208.md)
 
-## ★★★★★ [Linux Kernel Programming](resources/9781789953435.md)
-[<img src="covers/9781789953435.jpg" width="200"/>](resources/9781789953435.md)
+## ★★★★★ [Linux Kernel Programming](resources/9781803232225.md)
+[<img src="covers/9781803232225.jpg" width="200"/>](resources/9781803232225.md)
 
 ## ★★★★★ [Linux Kernel Programming Part 2](resources/9781801079518.md)
 [<img src="covers/9781801079518.jpg" width="200"/>](resources/9781801079518.md)
