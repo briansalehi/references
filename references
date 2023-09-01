@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+xdg-open "https://github.com/briansalehi/references/blob/main/topics/README.md" &> /dev/null &
