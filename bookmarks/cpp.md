@@ -14,6 +14,7 @@ Covers the standard C++ programming language and its libraries.
 * [C++17 STL Cookbook](#-c++17-stl-cookbook)
 * [Modern C++ Programming Cookbook](#-modern-c++-programming-cookbook)
 * [Deciphering Object-Oriented Programming with C++](#-deciphering-object-oriented-programming-with-c++)
+* [Hands-On Design Patterns with C++](#-hands-on-design-patterns-with-c)
 * [Design Patterns in Modern C++20](#-design-patterns-in-modern-c++20)
 * [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](#-pro-tbb-c++-parallel-programming-with-threading-building-blocks)
 * [Boost.Asio C++ Network Programming](#-boost.asio-c++-network-programming)
@@ -55,6 +56,9 @@ Covers the standard C++ programming language and its libraries.
 
 ### ★★★ [Deciphering Object-Oriented Programming with C++](resources/9781804613900.md)
 [<img src="covers/9781804613900.jpg" width="200"/>](resources/9781804613900.md)
+
+### ★★★★★ [Hands-On Design Patterns with C++](resources/9781804611555.md)
+[<img src="covers/9781804611555.jpg" width="200"/>](resources/9781804611555.md)
 
 ### ★★★ [Design Patterns in Modern C++20](resources/9781484272947.md)
 [<img src="covers/9781484272947.jpg" width="200"/>](resources/9781484272947.md)
