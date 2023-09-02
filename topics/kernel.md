@@ -550,27 +550,27 @@
 <details>
 <summary>What is the basic layout of the kernel source tree?</summary>
 
-> `arch/`: To be as generic as possible, architecture-specific code.
-> `block/`: Codes for block storage devices.
-> `crypto/`: Cryptographic API and the encryption algorithm's code.
-> `certs/`: Certificates and sign files to enable a module signature to make the kernel load signed modules.
-> `documentation/`: Descriptions of the APIs that are used for different kernel frameworks and subsystems.
-> `drivers/`: Device driver, organized into various subdirectories.
-> `fs/`: Implementations of different filesystems that the kernel supports, such as NTFS, FAT, ETX{2,3,4}, sysfs, procfs, NFS, and so on.
-> `include/`: Kernel header files.
-> `init/`: Initialization and startup code.
-> `ipc/`: Implementation of the inter-process communication (IPC) mechanisms, such as message queues, semaphores, and shared memory.
-> `kernel/`: Architecture-independent portions of the base kernel.
-> `lib/`: Library routines and some helper functions including generic **kernel object (kobject)** handlers and **cyclic redundancy code (CRC)** computation functions.
-> `mm/`: Memory management code.
-> `net/`: Networking (whatever network type it is) protocol code.
-> `samples/`: Device driver samples for various subsystems.
-> `scripts/`: Scripts and tools that are used alongside the kernel.
-> `security/`: Security framework code.
-> `sound/`: Audio subsystem code.
-> `tools/`: Linux kernel development and testing tools for various subsystems, such as USB, vhost test modules, GPIO, IIO, and SPI, among others.
-> `usr/`: `initramfs` implementation.
-> `virt/`: Virtualization directory, which contains the kernel virtual machine (KVM) module for a hypervisor.
+> - `arch/`: To be as generic as possible, architecture-specific code.
+> - `block/`: Codes for block storage devices.
+> - `crypto/`: Cryptographic API and the encryption algorithm's code.
+> - `certs/`: Certificates and sign files to enable a module signature to make the kernel load signed modules.
+> - `documentation/`: Descriptions of the APIs that are used for different kernel frameworks and subsystems.
+> - `drivers/`: Device driver, organized into various subdirectories.
+> - `fs/`: Implementations of different filesystems that the kernel supports, such as NTFS, FAT, ETX{2,3,4}, sysfs, procfs, NFS, and so on.
+> - `include/`: Kernel header files.
+> - `init/`: Initialization and startup code.
+> - `ipc/`: Implementation of the inter-process communication (IPC) mechanisms, such as message queues, semaphores, and shared memory.
+> - `kernel/`: Architecture-independent portions of the base kernel.
+> - `lib/`: Library routines and some helper functions including generic **kernel object (kobject)** handlers and **cyclic redundancy code (CRC)** computation functions.
+> - `mm/`: Memory management code.
+> - `net/`: Networking (whatever network type it is) protocol code.
+> - `samples/`: Device driver samples for various subsystems.
+> - `scripts/`: Scripts and tools that are used alongside the kernel.
+> - `security/`: Security framework code.
+> - `sound/`: Audio subsystem code.
+> - `tools/`: Linux kernel development and testing tools for various subsystems, such as USB, vhost test modules, GPIO, IIO, and SPI, among others.
+> - `usr/`: `initramfs` implementation.
+> - `virt/`: Virtualization directory, which contains the kernel virtual machine (KVM) module for a hypervisor.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
