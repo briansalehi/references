@@ -1553,7 +1553,7 @@
 > Origin: Modern C++ Programming Cookbook - Chapter 2
 
 > References:
-> - https://en.cppreference.com/w/cpp/regex
+> - https://en.cppreference.com/w/cpp/regex/basic_regex
 ---
 </details>
 
@@ -1585,7 +1585,7 @@
 > using tregex = std::basic_regex<CharT>;
 >
 > template <typename CharT>
-> bool matches(tstring<CharT> const& text, tstring<CharT const& pattern)
+> bool matches(tstring<CharT> const& text, tstring<CharT> const& pattern)
 > {
 >     std::basic_regex<CharT> rx{pattern, std::regex_constants::icase};
 >     return std::regex_match(text, rx);
