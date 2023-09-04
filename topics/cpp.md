@@ -1464,11 +1464,6 @@
 > auto sv2{ trim_view(" sample") };
 > auto sv3{ trim_view("sample ") };
 > auto sv4{ trim_view(" sample ") };
->
-> std::string s1{ sv1 };
-> std::string s2{ sv2 };
-> std::string s3{ sv3 };
-> std::string s4{ sv4 };
 > ``````
 
 > Origin: Modern C++ Programming Cookbook - Chapter 2
@@ -1478,6 +1473,48 @@
 ---
 </details>
 
+<details>
+<summary>Find the first and last occurance of a character in a <code>string_view</code>?</summary>
+
+> ```cpp
+> #include <string_view>
+>
+> std::string_view message{"  something to show  "};
+>
+> std::size_t suffix{ str.find_last_not_of(" ") };
+> std::size_t prefix{ str.find_first_not_of(" ") };
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/string_view
+---
+</details>
+
+<details>
+<summary>Remove tailing and trailing characters from a <code>string_view</code>?</summary>
+
+> ```cpp
+> #include <string_view>
+>
+> std::string_view message{"  something to show  "};
+>
+> std::size_t suffix{ str.find_last_not_of(" ") };
+> std::size_t prefix{ str.find_first_not_of(" ") };
+>
+> str.remove_suffix(str.length() - pos2 - 1);
+> str.remove_prefix(pos1);
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/string/string_view
+---
+</details>
 <details>
 <summary>How to construct a `std::string` from a `std::string_view`?</summary>
 
