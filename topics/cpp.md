@@ -1516,7 +1516,7 @@
 ---
 </details>
 <details>
-<summary>How to construct a `std::string` from a `std::string_view`?</summary>
+<summary>Construct a <code>std::string</code> from a <code>std::string_view</code>?</summary>
 
 > Converting from an `std::basic_string_view` to an `std::basic_string` is not possible.
 > You must explicitly construct an `std::basic_string` object from a `std::basic_string_view`.
