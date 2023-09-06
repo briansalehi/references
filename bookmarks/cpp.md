@@ -18,6 +18,7 @@ Covers the standard C++ programming language and its libraries.
 * [Design Patterns in Modern C++20](#-design-patterns-in-modern-c++20)
 * [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](#-pro-tbb-c++-parallel-programming-with-threading-building-blocks)
 * [Boost.Asio C++ Network Programming](#-boost.asio-c++-network-programming)
+* [Boost.Asio C++ Network Programming Cookbook](#-boost.asio-c++-network-programming-cookbook)
 * [Boost Libraries](#-boost-libraries)
 * [Qt Manual](#-qt-manual)
 * [OpenCV Manual](#-opencv-manual)
