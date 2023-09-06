@@ -8,6 +8,7 @@ Covers development tools required for an embedded software engineer.
 * [Modern Vim](#-modern-vim)
 * [Mastering Vim](#-mastering-vim)
 * [GDB Tips](#-gdb-tips)
+* [GDB Pocket Reference](#-gdb-pocket-reference)
 * [Pro Git](#-pro-git)
 * [Professional CMake](#-professional-cmake)
 * [CMake Cookbook](#-cmake-cookbook)
@@ -33,6 +34,9 @@ Covers development tools required for an embedded software engineer.
 
 ### ★★★★★ [GNU Debugger Tips](resources/gdb-tips.md)
 [<img src="covers/gdb-tips.jpg" width="200"/>](resources/gdb-tips.md)
+
+### ★★★★★ [GNU Pocket Reference](resources/9780596100278.md)
+[<img src="covers/9780596100278.jpg" width="200"/>](resources/9780596100278.md)
 
 ## Version Control System
 
