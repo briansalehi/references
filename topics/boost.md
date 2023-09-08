@@ -327,3 +327,79 @@
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/deadline_timer.html
 ---
 </details>
+
+## Synchronous TCP Client
+
+<details>
+<summary>Write a client establishing a synchronous tcp connection to a server?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <chrono>
+> #include <string>
+> #include <boost/asio.hpp>
+>
+> void initialize_service(boost::asio::io_context& service)
+> {
+>     service.run();
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context service;
+>     boost::asio::io_context::strand strand{service};
+>
+>     std::thread worker{initialize_service, std::ref(service)};
+>     boost::asio::ip::tcp::socket socket{service};
+>
+>     try
+>     {
+>         boost::asio::ip::tcp::resolver resolver{service};
+>         boost::asio::ip::tcp::resolver::query query{"example.com", std::to_string(80)};
+>         boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);
+>         boost::asio::ip::tcp::endpoint endpoint = *iterator;
+>
+>         socket.connect(endpoint);
+>         socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>         socket.close();
+>     }
+>     catch (std::exception const& exp)
+>     {
+>         std::cerr << exp.what() << std::endl;
+>     }
+>
+>     worker.join();
+>     service.stop();
+> }
+> ``````
+
+> Origin: 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write a client establishing a synchronous tcp connection to a server?</summary>
+
+> ```cpp
+> ``````
+
+> Origin: 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write a server accepting asynchronous tcp requests?</summary>
+
+> ```cpp
+> ``````
+
+> Origin: Boost.Asio C++ Network Programming - Chapter 6
+
+> References:
+---
+</details>
