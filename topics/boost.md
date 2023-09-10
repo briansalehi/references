@@ -328,6 +328,14 @@
 ---
 </details>
 
+## Endpoint
+
+## Active Socket
+
+## Passive Socket
+
+## Resolving DNS
+
 ## Synchronous TCP Client
 
 <details>

@@ -69,10 +69,10 @@ Covers the standard C++ programming language and its libraries.
 
 ## Boost Libraries
 
-### ★★ [Boost.Asio C++ Network Programming](resources/9781782163268.md)
+### ★★★ [Boost.Asio C++ Network Programming](resources/9781782163268.md)
 [<img src="covers/9781782163268.jpg" width="200"/>](resources/9781782163268.md)
 
-### ★★★ [Boost.Asio C++ Network Programming Cookbook](resources/9781783986545.md)
+### ★★★★★ [Boost.Asio C++ Network Programming Cookbook](resources/9781783986545.md)
 [<img src="covers/9781783986545.jpg" width="200"/>](resources/9781783986545.md)
 
 ### ★★★★★ [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
