@@ -1854,19 +1854,8 @@
 > auto low_double = std::numeric_limits<double>::lowest();
 > auto max_double = std::numeric_limits<double::lowest();
 > ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 2
-
-> References:
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/headers/limits
----
-</details>
-
-<details>
-<summary>Specify a simple implementation of finding the minimum number in a range of a generic type?</summary>
-
-> Objects in a range should have `<` comparison operator overloaded.
+>
+> In this example objects in a range should have `<` comparison operator overloaded.
 >
 > ```cpp
 > #include <limits>
@@ -1883,6 +1872,18 @@
 >     return latest_minimum;
 > }
 > ``````
+
+> Origin: Modern C++ Programming Cookbook - Chapter 2
+
+> References:
+> - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com/w/cpp/headers/limits
+---
+</details>
+
+<details>
+<summary>Implement a function that finds the minimum number in a range?</summary>
+
 
 > Origin: Modern C++ Programming Cookbook - Chapter 2
 
