@@ -3,6 +3,7 @@
 is_broken=0
 line_number=0
 faults=0
+sum_faults=0
 is_detail_scope=0
 is_empty_scope=0
 is_body_scope=0
@@ -260,6 +261,8 @@ then
                 printf '[\e[1;32m%*s%-4s%*s\e[0m] \e[1;33m%s\e[0m\n' 3 " " "OK" 1 " " "$file" >&2
             fi
         fi
+
+        sum_faults=$((sum_faults + faults))
     done <<< "$file_list"
 fi
 
