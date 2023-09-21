@@ -1882,18 +1882,6 @@
 </details>
 
 <details>
-<summary>Implement a function that finds the minimum number in a range?</summary>
-
-
-> Origin: Modern C++ Programming Cookbook - Chapter 2
-
-> References:
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
----
-</details>
-
-<details>
 <summary>Retrieve the maximum number of digits for integral and floating-point types?</summary>
 
 > `digits` represents the number of bits (excluding the sign bit if present) and padding bits (if any) for integral types and the number of bits of the mantissa for floating-point types.
