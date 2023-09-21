@@ -266,4 +266,9 @@ then
     done <<< "$file_list"
 fi
 
-[ "$faults" -gt 0 ] && exit 2
+if [ "$faults" -gt 0 ]
+then
+    exit 2
+else
+    exit 0
+fi
