@@ -6,4 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash ./${{ github.workspace }}/validate.sh topics --quiet
+
+      - name: logging
+        run: echo "validating topics..."
+
+      - name: validation
+        run: |
+          bash validate.sh topics --quiet
