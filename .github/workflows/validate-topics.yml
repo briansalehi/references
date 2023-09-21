@@ -4,7 +4,6 @@ on: [push]
 jobs:
   validate-topics:
     runs-on: ubuntu-latest
-    working-directory: ${{ github.workspace }}/
     steps:
       - uses: actions/checkout@v4
-      - run: ./validate.sh topics --quiet
+      - run: bash ./${{ github.workspace }}/validate.sh topics --quiet
