@@ -5,4 +5,4 @@ jobs:
   validate-topics:
     runs-on: ubuntu-latest
     steps:
-      run: bash validate.sh topics --quiet
+      - run: bash validate.sh topics --quiet
