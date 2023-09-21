@@ -262,3 +262,5 @@ then
         fi
     done <<< "$file_list"
 fi
+
+[ "$faults" -gt 0 ] && exit 2
