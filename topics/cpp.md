@@ -5,7 +5,9 @@
 <details>
 <summary>Declare an object with internal linkage without being static?</summary>
 
-> Unnamed namespaces as well as all namespaces declared directly or indirectly within an unnamed namespace have internal linkage, which means that any name that is declared within an unnamed namespace has internal linkage.
+> Unnamed namespaces as well as all namespaces declared directly or indirectly
+> within an unnamed namespace have internal linkage, which means that any name
+> that is declared within an unnamed namespace has internal linkage.
 >
 > ```cpp
 > namespace
@@ -25,7 +27,8 @@
 > f(); // Error: ::(unique)::f and A::f both in scope
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
@@ -35,7 +38,8 @@
 <details>
 <summary>Initialize a non-type template argument with an object of internal linkage?</summary>
 
-> Prior to C++11, non-type template arguments could not be named with internal linkage, so `static` variables were not allowed.
+> Prior to C++11, non-type template arguments could not be named with internal
+> linkage, so `static` variables were not allowed.
 > VC++ compiler still doesn't support it.
 >
 > ```cpp
@@ -53,7 +57,8 @@
 > test<Size2> t2; // okay
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
@@ -65,14 +70,18 @@
 <details>
 <summary>Define symbol versioning of a library without breaking client code when implementing template specializations?</summary>
 
-> Members of an inline namespace are treated as if they are members of the enclosing namespace.
-> This property is transitive: if a namespace N contains an inline namespace M, which in turn contains an inline namespace O, then the members of O can be used as though they were members of M or N. 
+> Members of an inline namespace are treated as if they are members of the
+> enclosing namespace. This property is transitive: if a namespace N contains
+> an inline namespace M, which in turn contains an inline namespace O, then the
+> members of O can be used as though they were members of M or N.
 >
 > Common use cases of inline namespaces are:
 >
-> * Specialization of a template is required to be done in the same namespace where the template was declared.
+> * Specialization of a template is required to be done in the same namespace
+>   where the template was declared.
 > * Define the content of the library inside a namespace
-> * Define each version of the library or parts of it inside an inner inline namespace
+> * Define each version of the library or parts of it inside an inner inline
+>   namespace
 > * Use preprocessor macros to enable a particular version of the library
 >
 > ```cpp
@@ -167,7 +176,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
@@ -231,7 +241,8 @@
 > // ^__ decltype() preserves cv-ref qualification of return type
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/auto
@@ -243,7 +254,8 @@
 <details>
 <summary>Bind multiple returned values into existing objects?</summary>
 
-> * Only by C++20 structured bindings can include `static` or `thread_local` specifiers in the declaration.
+> * Only by C++20 structured bindings can include `static` or `thread_local`
+>   specifiers in the declaration.
 > * Only by C++20 `[[maybe_unused]]` attribute can be used in the declaration.
 > * Only by C++20 a lambda can capture structure binding identifiers.
 >
@@ -260,7 +272,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/structured_binding
@@ -289,7 +302,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/type_alias
@@ -301,7 +315,8 @@
 <details>
 <summary>Uniformly initialize objects of any type?</summary>
 
-> * direct initialization initializes an object from an explicit set of constructor arguments.
+> * direct initialization initializes an object from an explicit set of
+>   constructor arguments.
 > * copy initialization initializes an object from another object.
 > * brace initialization prevents narrowing conversion of data types.
 > * all elements of list initialization should be of the same type.
@@ -346,43 +361,11 @@
 >     auto d{4, 2}; // error, too many elements
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/initialization
----
-</details>
-
-## Non-static Member Declaration
-
-<details>
-<summary>Initialize non-static member variables of a class?</summary>
-
-> ```cpp
-> struct base
-> {
->     // default member initialization
->     const int height = 14;
->     const int width = 80;
->
->     v_align valign = v_align::middle;
->     h_align halign = h_align::left;
->
->     std::string text;
->
->     // constructor initialization list
->     base(std::string const& t): text{t}
->     {}
->
->     base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}
->     {}
-> };
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/data_members
 ---
 </details>
 
@@ -412,7 +395,8 @@
 > status do_something() { return status::success; }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/enum
@@ -444,10 +428,406 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration
+---
+</details>
+
+## Three-Way Comparison Operator
+
+<details>
+<summary>Enable all comparison operators for an object type?</summary>
+
+> Before C++20 you had to define six operators for a type to provide full
+> support for all possible comparisons of its objects. The problem is that even
+> though most of the operators are defined in terms of either `operator ==` or
+> `operator <`, the definitions are tedious and they add a lot of visual
+> clutter.
+>
+> ```cpp
+> class Value
+> {
+>     long id;
+>
+> public:
+>     bool operator==(Value const& rhs) const { return id == rhs.id; }
+>     bool operator!=(Value const& rhs) const { return !(*this == rhs); }
+>     bool operator< (Value const& rhs) const { return id < rhs.id; }
+>     bool operator<=(Value const& rhs) const { return !(*this < rhs); }
+>     bool operator> (Value const& rhs) const { return rhs < *this; }
+>     bool operator>=(Value const& rhs) const { return !(rhs < *this); }
+> };
+> ``````
+>
+> In addition, for a well implemented type, you might need:
+>
+> - Declare the operators with `noexcept` if they cannot throw.
+> - Declare the operators with `constexpr` if they can be used at compile time.
+> - Declare the operators as hidden friends (declare them with `friend` inside
+>   the class structure so that both operands become parameters and support
+>   implicit conversions if the constructors are not `explicit`).
+> - Declare the operators with `[[nodiscard]]` to warn if the return value is
+>   not used.
+>
+> ```cpp
+> class Value
+> {
+>     long id;
+>
+> public:
+>     [[nodiscard]] friend constexpr bool operator==(Value const& lhs, Value const& rhs) noexcept { return lhs.id == rhs.id; }
+>     [[nodiscard]] friend constexpr bool operator!=(Value const& lhs, Value const& rhs) noexcept { return !(lhs == rhs); }
+>     [[nodiscard]] friend constexpr bool operator< (Value const& lhs, Value const& rhs) noexcept { return lhs.id < rhs.id; }
+>     [[nodiscard]] friend constexpr bool operator<=(Value const& lhs, Value const& rhs) noexcept { return !(lhs < rhs); }
+>     [[nodiscard]] friend constexpr bool operator> (Value const& lhs, Value const& rhs) noexcept { return rhs < lhs; }
+>     [[nodiscard]] friend constexpr bool operator>=(Value const& lhs, Value const& rhs) noexcept { return !(rhs < lhs); }
+> };
+> ``````
+>
+> Since C++20 `operator ==` also implies `operator !=`, therefore, for `a` of
+> type `TypeA` and `b` of `TypeB`, the compiler will be able to compile `a !=
+> b` if there is:
+>
+> - a freestanding `operator !=(TypeA, TypeB)`
+> - a freestanding `operator ==(TypeA, TypeB)`
+> - a freestanding `operator ==(TypeB, TypeA)`
+> - a member function `TypeA::operator!=(TypeB)`
+> - a member function `TypeA::operator==(TypeB)`
+> - a member function `TypeB::operator==(TypeA)`
+>
+> Having both a freestanding and a member function is an ambiguity error.
+>
+> Since C++20 it is enough to declare `operator <=>` with `=default` so that
+> the defaulted member `operator <=>` generates a corresponding member
+> `operator ==`:
+>
+> ```cpp
+> class Value
+> {
+>     auto operator<=>(Value const& rhs) const = default;
+>     auto operator<=>(Value const& rhs) const = default; // implicitly generated
+> };
+> ``````
+>
+> Both operators use their default implementation to compare objects member by
+> member. The order to the members in the class matter.
+>
+> In addition, even when declaring the spaceship operator as a member function,
+> the generated operators:
+>
+> - are `noexcept` if comparing the members never throws
+> - are `constexpr` if comparing the members is possible at compile time
+> - implicit type conversions for the first operand are also supported if a
+>   corresponding implicit type conversion is defined
+> - may warn if the result of a comparison is not used (compiler dependent)
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Implement an object comparable with all six comparison operators?</summary>
+
+> If the `operator <=>` for `x <= y` does not find a matching definition of
+> `operator <=`, it might be rewritten as `(x <=> y) <= 0` or even `0 <= (y <=>
+> x)`. By this rewriting, the `operator <=>` performs a three-way comparison,
+> which yields a value that can be compared with 0:
+>
+> - If the value of `x <=> y` compares equal to 0, `x` and `y` are equal or equivalent.
+> - If the value of `x <=> y` compares less than 0, `x` is less than `y`.
+> - If the value of `x <=> y` compares greater than 0, `x` is greater than `y`.
+>
+> The return type of `operator <=>` is not an integral value. The return type
+> is a type that signals the comparison category, which could be the *strong
+> ordering*, *weak ordering*, or *partial ordering*. These types support the
+> comparison with 0 to deal with the result.
+>
+> You have to include a specific header file to deal with the result of
+> `operator <=>`.
+>
+> ```cpp
+> #include <compare>
+>
+> class Value
+> {
+>     long id;
+>
+> public:
+>     std::strong_ordering operator<=>(Value const& rhs) const
+>     {
+>         return id < rhs.id ? std::strong_ordering::less :
+>             id > rhs.id ? std::strong_ordering::greater :
+>                 std::strong_ordering::equivalent;
+>     }
+> };
+> ``````
+>
+> However, it is usually easier to define the operator by mapping it to results
+> of underlying types.
+>
+> ```cpp
+> #include <compare>
+>
+> class Value
+> {
+>     long id;
+>
+> public:
+>     auto operator<=>(Value const& rhs) const
+>     {
+>         return id <=> rhs.id;
+>     }
+> };
+> ``````
+>
+> The member function has to take the second parameter as `const` lvalue
+> reference with `=default`. A friend function might also take both parameters
+> by value.
+
+> Origins:
+> - Origin: C++20: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the possible comparison categories?</summary>
+
+> - **strong ordering**: any value of a given type is either *less than* or
+>   *equal to* or *greater than* any other value of this type. If a value is
+>   neither less nor greater is has to be equal.
+>   + `std::strong_ordering:less`
+>   + `std::strong_ordering:equal` or `std::strong_ordering::equivalent`
+>   + `std::strong_ordering:greater`
+> - **weak ordering**: any value of a given type is either *less than*,
+>   *equivalent to* or *greater than* any other value of this type. However,
+>   equivalent values do not have to be equal (have the same value).
+>   + `std::weak_ordering::less`
+>   + `std::weak_ordering::equivalent`
+>   + `std::weak_ordering::less`
+> - **partial ordering**: any value of a given type could either be *less
+>   than*, *equivalent to* or *greater than* any other value of this type.
+>   However it could also happen that you cannot specify a specific order
+>   between two values.
+>   + `std::partial_ordering::less`
+>   + `std::partial_ordering::equivalent`
+>   + `std::partial_ordering::less`
+>   + `std::partial_ordering::unordered`
+>
+> As an example, a floating-point type has a special value `NaN`. Any
+> comparison with `NaN` yields `false`. So in this case a comparison might
+> yield that two values are unordered and the comparison operator might return
+> one of four values.
+>
+> Stronger comparison types have implicit type conversions to weaker comparison
+> types.
+>
+> Relational comparison with `nullptr` results compiler error.
+>
+> Comparison types themselves can be compared against a specific return value.
+> Due to implicit type conversions to weaker ordering types `x <=> y ==
+> std::partial_ordering::equivalent` will compile even if the `operator <=>`
+> yields a `std::strong_ordering` or `std::weak_ordering` value. However, the
+> other way around does not work. Comparison with 0 is always possible and
+> usually easier.
+
+> Origins:
+> - Origin: C++20: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Compare two objects that might result any of the comparison categories?</summary>
+
+> The return type does not compile if the attributes have different comparison
+> categories. In that case use the weakest comparison type as the return type.
+>
+> ```cpp
+> #include <compare>
+> #include <string>
+>
+> class Person
+> {
+>     std::string name;
+>     double weight;
+>
+> public:
+>     std::partial_ordering operator<=>(Person const& rhs) const
+>     {
+>         auto cmp1 = name <=> rhs.name;
+>         if (name != 0) return cmp1; // std::strong_ordering
+>
+>         return weight <=> rhs.weight; // std::partial_ordering
+>     }
+> };
+> ``````
+>
+> If you do not know the comparison types, use
+> `std::common_comparison_category<>` type trait that computes the strongest
+> comparison category.
+>
+> ```cpp
+> #include <compare>
+> #include <string>
+>
+> class Person
+> {
+>     std::string name;
+>     double weight;
+>
+> public:
+>     auto operator<=>(Person const& rhs) const
+>         -> std::common_comparison_category_t<decltype(name <=> rhs.name),
+>                                              decltype(weight <=> rhs.name)>
+>     {
+>         auto cmp1 = name <=> rhs.name;
+>         if (name != 0) return cmp1; // std::strong_ordering
+>
+>         return weight <=> rhs.weight; // std::partial_ordering
+>     }
+> };
+> ``````
+
+> Origins:
+> - Origin: C++20: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Compare two derived objects having a base class?</summary>
+
+> If `operator <=>` is defaulted and the object has a base class having the
+> `operator <=>` defined, that operator is called. Otherwise, `operator ==` and
+> `operator <` are called to decide whether the objects are `equivalent`,
+> `less`, `greater` or `unordered`. In that case, the return type of the
+> defaulted `operator <=>` calling these operators cannot be `auto`.
+>
+> ```cpp
+> struct Base
+> {
+>     bool operator==(Base const&) const;
+>     bool operator<(Base const&) const;
+> };
+>
+> struct Derived: public Base
+> {
+>     std::strong_ordering operator<=>(Derived const&) const = default;
+> };
+>
+> Derived d1, d2;
+> d1 > d2; // calls Base::operator== and Base::operator<
+> ``````
+>
+> If `operator ==` yields true, we know that the result of `>` is `false`,
+> otherwise `operator <` is called to find out the expression is `true` or
+> `false`.
+>
+> ```cpp
+> struct Derived: public Base
+> {
+>     std::partial_ordering operator<=>(Derived const&) const = default;
+> };
+> ``````
+>
+> The compiler might call `operator <` twice to find out whether there is any
+> order at all.
+>
+> ```cpp
+> struct Base
+> {
+>     bool operator==(Base const&) const;
+>     bool operator<(Base const&) const;
+> };
+>
+> struct Derived: public Base
+> {
+>     auto operator<=>(Derived const&) const = default;
+> };
+> ``````
+>
+> The compiler does not compile because it cannot decide which ordering
+> category the base class has.
+>
+> Checks for equality work for Derived because `operator ==` automatically
+> declared equivalent to `operator <=>`:
+>
+> ```cpp
+> struct Derived: public Base
+> {
+>     auto operator<=>(Derived const&) const = default;
+>     bool operator==(Derived const&) const = default;
+> };
+>
+> Derived d1, d2;
+> d1 > d2; // ERROR: cannot deduce comparison category of operator <=>
+> d1 == d2; // OK: only tries operator <=> and Base::operator==
+> ``````
+
+> Origins:
+> - Origin: C++20: The Complete Guide - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the compatibility defect of comparison operators in C++20?</summary>
+
+> When we have a trivial class that stores an integral value and has an
+> implicit constructor and is comparable with integral values only enable
+> implicit type conversions for the second operand. So, a global operator that
+> swaps the order of the arguments might be defined:
+>
+> ```cpp
+> class MyType
+> {
+>     int i;
+>
+> public:
+>     bool operator==(MyType const&) const;
+> };
+>
+> bool operator==(int i, MyType const& t)
+> {
+>     return t == i; // OK with C++17
+> }
+> ``````
+>
+> Usually, the class should better define the `operator ==` as **hidden
+> friend** declared with `friend` inside the class so that both operators
+> become parameters and support implicit type conversions. However, this is a
+> valid approach to have the same effect.
+>
+> This code no longer works in C++20 due to endless recursion. The reason is
+> that inside the global function the expression `t == i` can also call the
+> global `operator ==` itself, because the compiler also tries to rewrit the
+> call as `t == i`:
+>
+> ```cpp
+> bool operator==(int i, MyType const& t)
+> {
+>     return t == i; // finds operator==(i, t) in addition to t.operator(MyType{i})
+> }
+> ``````
+>
+> Unfortunately, the rewritten statement is a better match, because it does not
+> need the implicit type conversion.
+
+> Origins:
+> - Origin: C++20: The Complete Guide - Chapter 1
+
+> References:
 ---
 </details>
 
@@ -493,7 +873,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/range-for
@@ -609,7 +990,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/range-for
@@ -621,7 +1003,8 @@
 <details>
 <summary>Evaluate alignment of structures considering the size of their members?</summary>
 
-> The alignment must match the size of the largest member in order to avoid performance issues.
+> The alignment must match the size of the largest member in order to avoid
+> performance issues.
 >
 > ```cpp
 > struct foo1         // size = 1, alignment = 1
@@ -670,7 +1053,8 @@
 > };
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
@@ -680,7 +1064,8 @@
 <details>
 <summary>Query alignment of object types?</summary>
 
-> `alignof` can only be applied to type-ids, and not to variables or class data members.
+> `alignof` can only be applied to type-ids, and not to variables or class data
+> members.
 >
 > ```cpp
 > struct alignas(4) foo     // size: 4, alignment: 4
@@ -698,7 +1083,8 @@
 > alignof(int[4]);// 4 (natural alignment of element is 4)
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/alignof
@@ -709,11 +1095,13 @@
 <details>
 <summary>Set alignment of object types?</summary>
 
-> `alignas` takes an expression evaluating 0 or valid value for alignment, a type-id, or a parameter pack.
+> `alignas` takes an expression evaluating 0 or valid value for alignment, a
+> type-id, or a parameter pack.
 >
 > Only valid values of object alignment are the powers of two.
 >
-> Program is ill-formed if largest `alignas` on a declaration is smaller than natural alignment without any `alignas` specifier.
+> Program is ill-formed if largest `alignas` on a declaration is smaller than
+> natural alignment without any `alignas` specifier.
 >
 > ```cpp
 > // alignas specifier applied to struct
@@ -765,7 +1153,8 @@
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/alignas
@@ -791,7 +1180,8 @@
 > T operator ""_suffix(char32_t const *, std::size_t);
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/user_literal
@@ -825,7 +1215,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/user_literal
@@ -846,7 +1237,8 @@
 > T operator ""_suffix();
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/user_literal
@@ -900,7 +1292,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/user_literal
@@ -934,7 +1327,8 @@
 > }
 > ``````
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/utility/move
@@ -985,7 +1379,8 @@
 > }
 > ``````
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/move_constructor
@@ -996,11 +1391,13 @@
 <details>
 <summary>What happens to an object when move semantics is not available?</summary>
 
-> The rule is that for a temporary object or an object marked with `std::move()`, if available,
-> a function declaring parameters as an rvalue reference is preferred.
-> However, if no such function exists, the usual copy semantics is used as a fallback.
+> The rule is that for a temporary object or an object marked with
+> `std::move()`, if available, a function declaring parameters as an rvalue
+> reference is preferred. However, if no such function exists, the usual copy
+> semantics is used as a fallback.
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -1017,7 +1414,8 @@
 > coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)
 > ``````
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1.4
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1.4
 
 > References:
 ---
@@ -1026,8 +1424,10 @@
 <details>
 <summary>Why return values should not be marked as <code>const</code>?</summary>
 
-> Declaring the return value as a whole to be `const` disables move semantics and it also disables **return value optimization**.  
-> `const` should be used to declare parts of return type instead, such as the object a returned reference or poionter refers to.  
+> Declaring the return value as a whole to be `const` disables move semantics
+> and it also disables **return value optimization**.  `const` should be used
+> to declare parts of return type instead, such as the object a returned
+> reference or poionter refers to.
 >
 > ```cpp
 > const std::string getValues(); // BAD: disables move semantics for return value
@@ -1035,7 +1435,8 @@
 > const std::string* getPtr();   // OK
 > ``````
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1.4
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1.4
 
 > References:
 ---
@@ -1044,9 +1445,11 @@
 <details>
 <summary>What should be the state of an object after it has been moved?</summary>
 
-> The implementer has to ensure that the passed argument is in a valid state after the call.
+> The implementer has to ensure that the passed argument is in a valid state
+> after the call.
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -1055,53 +1458,14 @@
 <details>
 <summary>When do compilers automatically switch to move semantics?</summary>
 
-> - When the value of a temporary object is passed that will automatically be destroyed after the statement.
+> - When the value of a temporary object is passed that will automatically be
+>   destroyed after the statement.
 > - When a non-`const` object marked with `std::move()`.
 
-> Origin: C++ Move Semantics: The Complete Guide - Chapter 1
+> Origins:
+> - C++ Move Semantics: The Complete Guide - Chapter 1
 
 > References:
----
-</details>
-
-## Class Default Constructors
-
-<details>
-<summary>Avoid implicit conversion of classes?</summary>
-
-> ```cpp
-> #include <memory>
->
-> class string_buffer
-> {
-> public:
->     explicit string_buffer() {}
->     explicit string_buffer(std::size_t const size) {}
->     explicit string_buffer(char const* const ptr) {}
->     explicit operator bool() const { return false; }
->     explicit operator char* const () const { return nullptr; }
-> };
->
-> int main()
-> {
->     std::shared_ptr<char> str;
->     string_buffer b1;            // calls string_buffer()
->     string_buffer b2(20);        // calls string_buffer(std::size_t const)
->     string_buffer b3(str.get()); // calls string_buffer(char const*)
->
->     enum item_size { small, medium, large };
->
->     // implicit conversion cases when explicit not specified
->     string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)
->     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
-> }
-> ``````
-
-> Origin: Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/explicit
-> - https://en.cppreference.com/w/cpp/language/converting_constructor
 ---
 </details>
 
@@ -1132,7 +1496,8 @@
 > beta object;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/override
@@ -1169,7 +1534,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/final
@@ -1203,7 +1569,8 @@
 > };
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/final
@@ -1224,7 +1591,8 @@
 > auto sld = std::to_wstring(42.0L); // "42.000000"
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string/to_string
@@ -1252,8 +1620,12 @@
 > ``````
 >
 > 1. The first parameter is the input string.
-> 2. The second parameter is a pointer that, when not null, will receive the number of characters that were processed. This can include any leading whitespaces that were discarded, the sign, and the base prefix, so it should not be confused with the number of digits the integral value has.
-> 3. A number indicating the base; by default, this is 10. Valid numbers of 2 to 36.
+> 2. The second parameter is a pointer that, when not null, will receive the
+>    number of characters that were processed. This can include any leading
+>    whitespaces that were discarded, the sign, and the base prefix, so it
+>    should not be confused with the number of digits the integral value has.
+> 3. A number indicating the base; by default, this is 10. Valid numbers of 2
+>    to 36.
 >
 > ```cpp
 > template <typename T, typename = typename T = std::is_integral_v<T>>
@@ -1263,7 +1635,8 @@
 > F stof(std::string const& str, std::size_t* pos = 0);
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
@@ -1289,7 +1662,8 @@
 > auto i5 = std::stoi("-42"); // -42
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
@@ -1300,8 +1674,9 @@
 <details>
 <summary>What exceptions are thrown by numeric to string conversion functions on failure?</summary>
 
-> * `std::invalid_argument`: conversion cannot be performed.
-> * `std::out_of_range`: converted value is outside the range of the result type.
+> - `std::invalid_argument`: conversion cannot be performed.
+> - `std::out_of_range`: converted value is outside the range of the result
+>   type.
 >
 > ```cpp
 > try
@@ -1324,7 +1699,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
@@ -1335,10 +1711,16 @@
 <details>
 <summary>What are the valid input characters for floating-point type to string conversion functions?</summary>
 
-> * Decimal floating-point expression (optional sign, sequence of decimal digits with optional point, optional e or E, followed by exponent with optional sign).
-> * Binary floating-point expression (optional sign, 0x or 0X prefix, sequence of hexadecimal digits with optional point, optional p or P, followed by exponent with optional sign).
-> * Infinity expression (optional sign followed by case-insensitive INF or INFINITY).
-> * A non-number expression (optional sign followed by case-insensitive NAN and possibly other alphanumeric characters).
+> - Decimal floating-point expression (optional sign, sequence of decimal
+>   digits with optional point, optional `e` or `E`, followed by exponent with
+>   optional sign).
+> - Binary floating-point expression (optional sign, `0x` or `0X` prefix,
+>   sequence of hexadecimal digits with optional point, optional `p` or `P`,
+>   followed by exponent with optional sign).
+> - Infinity expression (optional sign followed by case-insensitive `INF` or
+>   `INFINITY`).
+> - A non-number expression (optional sign followed by case-insensitive `NAN`
+>   and possibly other alphanumeric characters).
 >
 > ```cpp
 > auto d1 = std::stod("123.45");       // d1 = 123.45000000000000
@@ -1354,7 +1736,8 @@
 > auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/floating_literal
@@ -1384,7 +1767,8 @@
 > auto s5{ "text"sv }; // std::string_view
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/string_literal
@@ -1408,7 +1792,8 @@
 > auto pattern { R"((\w[\w\d]*)=(\d+))"s };
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/string_literal
@@ -1434,7 +1819,8 @@
 > auto s5{ R"text"sv }; // std::string_view
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/string_literal
@@ -1446,7 +1832,11 @@
 <details>
 <summary>Avoid string copies over function call?</summary>
 
-> Passing `std::basic_string_view` to functions and returning `std::basic_string_view` still creates temporaries of this type, but these are small-sized objects on the stack (a pointer and a size could be 16 bytes for 64-bit platforms); therefore, they should incur fewer performance costs than allocating heap space and copying data.
+> Passing `std::basic_string_view` to functions and returning
+> `std::basic_string_view` still creates temporaries of this type, but these
+> are small-sized objects on the stack (a pointer and a size could be 16 bytes
+> for 64-bit platforms); therefore, they should incur fewer performance costs
+> than allocating heap space and copying data.
 >
 > ```cpp
 > #include <string_view>
@@ -1466,7 +1856,8 @@
 > auto sv4{ trim_view(" sample ") };
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/string_view
@@ -1518,15 +1909,17 @@
 <details>
 <summary>Construct a <code>std::string</code> from a <code>std::string_view</code>?</summary>
 
-> Converting from an `std::basic_string_view` to an `std::basic_string` is not possible.
-> You must explicitly construct an `std::basic_string` object from a `std::basic_string_view`.
+> Converting from an `std::basic_string_view` to an `std::basic_string` is not
+> possible. You must explicitly construct an `std::basic_string` object from a
+> `std::basic_string_view`.
 >
 > ```cpp
 > std::string_view sv{ "demo" };
 > std::string s{ sv };
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/string_view
@@ -1550,7 +1943,8 @@
 > std::regex lrx{R"(...)"s};
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/regex/basic_regex
@@ -1564,7 +1958,8 @@
 > std::regex irx{R"(...)"s, std::regex_constants::icase};
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
@@ -1603,7 +1998,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/regex_match
@@ -1615,18 +2011,26 @@
 <details>
 <summary>Retrieve submatches of a pattern matched within a string?</summary>
 
-> The `std::regex_match()` method has overloads that take a reference to a `std::match_results` object to store the result of the match.
+> The `std::regex_match()` method has overloads that take a reference to a
+> `std::match_results` object to store the result of the match.
 >
-> If there is no match, then `std::match_results` is empty and its size is 0. Otherwise, its size is 1, plus the number of matched subexpressions.
+> If there is no match, then `std::match_results` is empty and its size is 0.
+> Otherwise, its size is 1, plus the number of matched subexpressions.
 >
-> The class template `std::sub_match` represents a sequence of characters that matches a capture group; this class is actually derived from std::pair, and its first and second members represent iterators to the first and the one- past-end characters in the match sequence. If there is no match sequence, the two iterators are equal:
+> The class template `std::sub_match` represents a sequence of characters that
+> matches a capture group; this class is actually derived from std::pair, and
+> its first and second members represent iterators to the first and the one-
+> past-end characters in the match sequence. If there is no match sequence, the
+> two iterators are equal:
 >
 > * `typedef sub_match<const char *> csub_match;`
 > * `typedef sub_match<const wchar_t *> wcsub_match;`
 > * `typedef sub_match<string::const_iterator> ssub_match;`
 > * `typedef sub_match<wstring::const_iterator> wssub_match;`
 >
-> The class template `std::match_results` is a collection of matches; the first element is always a full match in the target, while the other elements are matches of subexpressions:
+> The class template `std::match_results` is a collection of matches; the first
+> element is always a full match in the target, while the other elements are
+> matches of subexpressions:
 >
 > * `typedef match_results<const char *> cmatch;`
 > * `typedef match_results<const wchar_t *> wcmatch;`
@@ -1652,7 +2056,8 @@
 >                   << " using " << protocol << " protocol\n";
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/sub_match
@@ -1680,7 +2085,8 @@
 > std::regex pattern{R"(...)", std::regex_constants::egrep};
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
@@ -1719,7 +2125,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/regex_search
@@ -1730,12 +2137,24 @@
 <details>
 <summary>Find all occurences of a pattern in a given text?</summary>
 
-> The iterators available in the regular expressions standard library are as follows:
+> The iterators available in the regular expressions standard library are as
+> follows:
 >
-> * `std::regex_interator`: A constant forward iterator used to iterate through the occurrences of a pattern in a string. It has a pointer to an `std::basic_regex` that must live until the iterator is destroyed. Upon creation and when incremented, the iterator calls `std::regex_search()` and stores a copy of the `std::match_results` object returned by the algorithm.
-> * `std::regex_token_iterator`: A constant forward iterator used to iterate through the submatches of every match of a regular expression in a string. Internally, it uses a `std::regex_iterator` to step through the submatches. Since it stores a pointer to an `std::basic_regex` instance, the regular expression object must live until the iterator is destroyed.
+> * `std::regex_interator`: A constant forward iterator used to iterate through
+>   the occurrences of a pattern in a string. It has a pointer to an
+>   `std::basic_regex` that must live until the iterator is destroyed. Upon
+>   creation and when incremented, the iterator calls `std::regex_search()` and
+>   stores a copy of the `std::match_results` object returned by the algorithm.
+> * `std::regex_token_iterator`: A constant forward iterator used to iterate
+>   through the submatches of every match of a regular expression in a string.
+>   Internally, it uses a `std::regex_iterator` to step through the submatches.
+>   Since it stores a pointer to an `std::basic_regex` instance, the regular
+>   expression object must live until the iterator is destroyed.
 >
-> The token iterators can return the unmatched parts of the string if the index of the subexpressions is -1, in which case it returns an `std::match_results` object that corresponds to the sequence of characters between the last match and the end of the sequence:
+> The token iterators can return the unmatched parts of the string if the index
+> of the subexpressions is -1, in which case it returns an `std::match_results`
+> object that corresponds to the sequence of characters between the last match
+> and the end of the sequence:
 >
 > ```cpp
 > #include <string>
@@ -1783,7 +2202,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/sregex_iterator
@@ -1806,7 +2226,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/regex_replace
@@ -1816,7 +2237,10 @@
 <details>
 <summary>Reposition submatches of a string?</summary>
 
-> Apart from the identifiers of the subexpressions (`$1`, `$2`, and so on), there are other identifiers for the entire match (`$&`), the part of the string before the first match ($\`), and the part of the string after the last match (`$'`).
+> Apart from the identifiers of the subexpressions (`$1`, `$2`, and so on),
+> there are other identifiers for the entire match (`$&`), the part of the
+> string before the first match ($\`), and the part of the string after the
+> last match (`$'`).
 >
 > ```cpp
 > #include <string>
@@ -1830,7 +2254,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://cppreference.com/w/cpp/regex/regex_replace
@@ -1842,7 +2267,8 @@
 <details>
 <summary>Get the smallest and largest finite numbers of a type?</summary>
 
-> Standard types that are not arithmetic types, such as `std::complex<T>` or `std::nullptr_t`, do not have `std::numeric_limits` specializations.
+> Standard types that are not arithmetic types, such as `std::complex<T>` or
+> `std::nullptr_t`, do not have `std::numeric_limits` specializations.
 >
 > ```cpp
 > #include <limits>
@@ -1873,7 +2299,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1884,7 +2311,9 @@
 <details>
 <summary>Retrieve the maximum number of digits for integral and floating-point types?</summary>
 
-> `digits` represents the number of bits (excluding the sign bit if present) and padding bits (if any) for integral types and the number of bits of the mantissa for floating-point types.
+> `digits` represents the number of bits (excluding the sign bit if present)
+> and padding bits (if any) for integral types and the number of bits of the
+> mantissa for floating-point types.
 >
 > ```cpp
 > #include <limits>
@@ -1893,7 +2322,8 @@
 > auto d = std::numeric_limits<double>::digits;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1911,7 +2341,8 @@
 > auto d = std::numeric_limits<double>::digits10;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1928,7 +2359,8 @@
 > auto value_is_signed = std::numeric_limist<T>::is_signed;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1945,7 +2377,8 @@
 > auto value_is_integer = std::numeric_limist<T>::is_integer;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1962,7 +2395,8 @@
 > auto value_is_exact = std::numeric_limist<T>::is_exact;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -1979,7 +2413,8 @@
 > auto value_has_infinity = std::numeric_limist<T>::has_infinity;
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
@@ -2000,7 +2435,8 @@
 > auto c{ 12.0 + 4.2i }; // std::complex<double>
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
@@ -2022,7 +2458,8 @@
 > auto max = std::mt19937::max();
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
@@ -2033,8 +2470,8 @@
 <details>
 <summary>Seed a random generator to initialize the algorithm corporated within it?</summary>
 
-> Random generators can be seeded using their constructors or the `seed()` method.  
-> Note that `random_device` cannot be seeded.
+> Random generators can be seeded using their constructors or the `seed()`
+> method. Note that `random_device` cannot be seeded.
 >
 > ```cpp
 > #include <random>
@@ -2046,7 +2483,8 @@
 > generator2.seed(seeder());
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
@@ -2058,7 +2496,8 @@
 <details>
 <summary>Call for a new number from random engines?</summary>
 
-> The function call operators of random engines are overloaded and generate a new number uniformly distributed between `min()` and `max()`:
+> The function call operators of random engines are overloaded and generate a
+> new number uniformly distributed between `min()` and `max()`:
 >
 > ```cpp
 > #include <random>
@@ -2068,7 +2507,8 @@
 > auto number = generator();
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
@@ -2087,7 +2527,8 @@
 > generator.discard(4); // discard 4 numbers
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
@@ -2098,7 +2539,9 @@
 <details>
 <summary>Initialize all bits of the internal state of a psudo-random number generator?</summary>
 
-> The Mersenne twister engine has a bias toward producing some values repeatedly and omitting others, thus generating numbers not in a uniform distribution, but rather in a binomial or Poisson distribution.
+> The Mersenne twister engine has a bias toward producing some values
+> repeatedly and omitting others, thus generating numbers not in a uniform
+> distribution, but rather in a binomial or Poisson distribution.
 >
 > ```cpp
 > #include <random>
@@ -2117,7 +2560,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
@@ -2141,11 +2585,88 @@
 > auto day { 15d }; // std::chrono::day (c++20)
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
+## Class Default Constructors
+
+<details>
+<summary>Avoid implicit conversion of classes?</summary>
+
+> ```cpp
+> #include <memory>
+>
+> class string_buffer
+> {
+> public:
+>     explicit string_buffer() {}
+>     explicit string_buffer(std::size_t const size) {}
+>     explicit string_buffer(char const* const ptr) {}
+>     explicit operator bool() const { return false; }
+>     explicit operator char* const () const { return nullptr; }
+> };
+>
+> int main()
+> {
+>     std::shared_ptr<char> str;
+>     string_buffer b1;            // calls string_buffer()
+>     string_buffer b2(20);        // calls string_buffer(std::size_t const)
+>     string_buffer b3(str.get()); // calls string_buffer(char const*)
+>
+>     enum item_size { small, medium, large };
+>
+>     // implicit conversion cases when explicit not specified
+>     string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)
+>     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
+> }
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/explicit
+> - https://en.cppreference.com/w/cpp/language/converting_constructor
+---
+</details>
+
+## Non-static Member Declaration
+
+<details>
+<summary>Initialize non-static member variables of a class?</summary>
+
+> ```cpp
+> struct base
+> {
+>     // default member initialization
+>     const int height = 14;
+>     const int width = 80;
+>
+>     v_align valign = v_align::middle;
+>     h_align halign = h_align::left;
+>
+>     std::string text;
+>
+>     // constructor initialization list
+>     base(std::string const& t): text{t}
+>     {}
+>
+>     base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}
+>     {}
+> };
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/data_members
 ---
 </details>
 
@@ -2154,8 +2675,10 @@
 <details>
 <summary>Write a class template deduction guides for compilers?</summary>
 
-> The type of objects without template arguments are not types, but act as a placeholder for a type that activates CTAD.
-> When compiler encouters it, it builds a set of deduction guides which can be complemented by user with user defined deduction rules.
+> The type of objects without template arguments are not types, but act as a
+> placeholder for a type that activates CTAD. When compiler encouters it, it
+> builds a set of deduction guides which can be complemented by user with user
+> defined deduction rules.
 >
 > **CTAD** does not occur if the template argument list is present.
 >
@@ -2186,7 +2709,8 @@
 > container e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 1
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
@@ -2200,10 +2724,13 @@
 <details>
 <summary>What is a sentinel in ranges library?</summary>
 
-> A *range* is denoted by a pair of *iterators*, or more generally, since C++20, an *iterator* and a *sentinel*.
+> A *range* is denoted by a pair of *iterators*, or more generally, since
+> C++20, an *iterator* and a *sentinel*.
 >
-> To reference the entire content of a data structure, we can use the `begin()` and `end()` methods that return an iterator to the first element and an iterator one past the last element, respectively.
-> Hence, the range [begin, end) contains all data structure elements.
+> To reference the entire content of a data structure, we can use the `begin()`
+> and `end()` methods that return an iterator to the first element and an
+> iterator one past the last element, respectively. Hence, the range [begin,
+> end) contains all data structure elements.
 >
 > ```cpp
 > #include <algorithm>
@@ -2217,9 +2744,10 @@
 > }
 > ``````
 >
-> *Sentinels* follow the same idea. However, they do not need to be of an *iterator* type.
-> Instead, they only need to be comparable to an *iterator*.
-> The exclusive end of the range is then the first iterator that compares equal to the sentinel.
+> *Sentinels* follow the same idea. However, they do not need to be of an
+> *iterator* type. Instead, they only need to be comparable to an *iterator*.
+> The exclusive end of the range is then the first iterator that compares equal
+> to the sentinel.
 >
 > ```cpp
 > #include <iostream>
@@ -2244,7 +2772,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 1.2
 
 > References:
 ---
@@ -2279,7 +2808,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 1.3
 
 > References:
 ---
@@ -2297,7 +2827,8 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The C++11 standard introduced the range-based for loop, which mostly replaced the uses of `std::for_each`.
+> The C++11 standard introduced the range-based for loop, which mostly replaced
+> the uses of `std::for_each`.
 >
 > ```cp
 > #include <algorithm>
@@ -2330,7 +2861,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 1.1
 
 > References:
 ---
@@ -2339,7 +2871,8 @@
 <details>
 <summary>Iterate over a range with <i>unsequenced parallel execution</i> model?</summary>
 
-> As long as the operations are independent, there is no need for synchronization primitives.
+> As long as the operations are independent, there is no need for
+> synchronization primitives.
 >
 > ```cpp
 > #include <algorithm>
@@ -2377,7 +2910,8 @@
 >
 > Note: parallel execution requires *libtbb* library to be linked.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 1.1
 
 > References:
 ---
@@ -2407,7 +2941,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.1.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.1.1
 
 > References:
 ---
@@ -2423,7 +2958,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> While `std::for_each` operates on the entire range, the interval $[begin, end)$, while the `std::for_each_n` operates on the range $[first, first + n)$.
+> While `std::for_each` operates on the entire range, the interval $[begin,
+> end)$, while the `std::for_each_n` operates on the range $[first, first +
+> n)$.
 >
 > ```cpp
 > #include <algorithm>
@@ -2438,9 +2975,13 @@
 > }
 > ``````
 >
-> Importantly, because the algorithm does not have access to the end iterator of the source range, it does no out-of-bounds checking, and it is the responsibility of the caller to ensure that the range $[first, first + n)$ is valid.
+> Importantly, because the algorithm does not have access to the end iterator
+> of the source range, it does no out-of-bounds checking, and it is the
+> responsibility of the caller to ensure that the range $[first, first + n)$ is
+> valid.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.1
 
 > References:
 ---
@@ -2458,7 +2999,8 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> Correctly calling swap requires pulling the default `std::swap` version to the local scope.
+> Correctly calling swap requires pulling the default `std::swap` version to
+> the local scope.
 >
 > ```cpp
 > #include <algorithm>
@@ -2476,7 +3018,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.2.1
 
 > References:
 ---
@@ -2492,7 +3035,8 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::iter_swap` is an indirect swap, swapping values behind two forward iterators.
+> The `std::iter_swap` is an indirect swap, swapping values behind two forward
+> iterators.
 >
 > ```cpp
 > #include <algorithm>
@@ -2512,7 +3056,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.2.2
 
 > References:
 ---
@@ -2540,7 +3085,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.2.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.2.3
 
 > References:
 ---
@@ -2551,11 +3097,14 @@
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
 
-> Implementing a `strict_weak_ordering` for a custom type, at minimum requires providing an overload of `operator<`.
+> Implementing a `strict_weak_ordering` for a custom type, at minimum requires
+> providing an overload of `operator<`.
 >
-> A good default for a `strict_weak_ordering` implementation is *lexicographical ordering*.
+> A good default for a `strict_weak_ordering` implementation is
+> *lexicographical ordering*.
 >
-> Since C++20 introduced the spaceship operator, user-defined types can easily access the default version of *lexicographical ordering*.
+> Since C++20 introduced the spaceship operator, user-defined types can easily
+> access the default version of *lexicographical ordering*.
 >
 > ```cpp
 > struct Point {
@@ -2583,13 +3132,15 @@
 > };
 > ``````
 >
-> The type returned for the spaceship operator is the common comparison category type for the bases and members, one of:
+> The type returned for the spaceship operator is the common comparison
+> category type for the bases and members, one of:
 >
 > * `std::strong_ordering`
 > * `std::weak_ordering`
 > * `std::partial_ordering`
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3
 
 > References:
 ---
@@ -2598,7 +3149,8 @@
 <details>
 <summary>Compare if one range is lexicographically less than another?</summary>
 
-> Lexicographical `strict_weak_ordering` for ranges is exposed through the `std::lexicographical_compare` algorithm.
+> Lexicographical `strict_weak_ordering` for ranges is exposed through the
+> `std::lexicographical_compare` algorithm.
 >
 > | `std::lexicographical_compare` | standard |
 > | --- | --- |
@@ -2640,7 +3192,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.1
 
 > References:
 ---
@@ -2656,8 +3209,8 @@
 > | paralllel | N/A |
 > | rangified | N/A |
 >
-> The `std::lexicographical_compare_three_way` is the spaceship operator equivalent to `std::lexicographical_compare`.
-> It returns one of:
+> The `std::lexicographical_compare_three_way` is the spaceship operator
+> equivalent to `std::lexicographical_compare`. It returns one of:
 >
 > * `std::strong_ordering`
 > * `std::weak_ordering`
@@ -2686,7 +3239,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.2
 
 > References:
 ---
@@ -2695,12 +3249,15 @@
 <details>
 <summary>What iterator type does the sort function operate on?</summary>
 
-> The `std::sort` algorithm is the canonical `O(N log N)` sort (typically implemented as *intro-sort*).
+> The `std::sort` algorithm is the canonical `O(N log N)` sort (typically
+> implemented as *intro-sort*).
 >
-> Due to the `O(N log N)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
-> Notably, `std::list` offers a method with an approximate `O(N log N)` complexity.
+> Due to the `O(N log N)` complexity guarantee, `std::sort` only operates on
+> `random_access` ranges. Notably, `std::list` offers a method with an
+> approximate `O(N log N)` complexity.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
 > References:
 ---
@@ -2743,7 +3300,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
 > References:
 ---
@@ -2752,8 +3310,10 @@
 <details>
 <summary>Sort a range providing an additional guarantee of preserving the relative order of equal elements?</summary>
 
-> The `std::sort` is free to re-arrange equivalent elements, which can be undesirable when re-sorting an already sorted range.
-> The `std::stable_sort` provides the additional guarantee of preserving the relative order of equal elements.
+> The `std::sort` is free to re-arrange equivalent elements, which can be
+> undesirable when re-sorting an already sorted range. The `std::stable_sort`
+> provides the additional guarantee of preserving the relative order of equal
+> elements.
 >
 > | `std::stable_sort` | standard |
 > | --- | --- |
@@ -2789,7 +3349,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.4
 
 > References:
 ---
@@ -2825,7 +3386,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.5
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.5
 
 > References:
 ---
@@ -2854,7 +3416,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.6
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.6
 
 > References:
 ---
@@ -2870,8 +3433,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::partial_sort` algorithm reorders the range’s elements such that the leading sub-range is in the same order it would when fully sorted.
-> However, the algorithm leaves the rest of the range in an unspecified order.
+> The `std::partial_sort` algorithm reorders the range’s elements such that the
+> leading sub-range is in the same order it would when fully sorted. However,
+> the algorithm leaves the rest of the range in an unspecified order.
 >
 > ```cpp
 > #include <algorithm>
@@ -2890,9 +3454,11 @@
 > }
 > ``````
 >
-> The benefit of using a partial sort is faster runtime — approximately `O(N log K)`, where `K` is the number of elements sorted.
+> The benefit of using a partial sort is faster runtime — approximately `O(N
+> log K)`, where `K` is the number of elements sorted.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.7
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.7
 
 > References:
 ---
@@ -2908,8 +3474,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::partial_sort_copy` algorithm has the same behaviour as `std::partial_sort`; however, it does not operate inline.
-> Instead, the algorithm writes the results to a second range.
+> The `std::partial_sort_copy` algorithm has the same behaviour as
+> `std::partial_sort`; however, it does not operate inline. Instead, the
+> algorithm writes the results to a second range.
 >
 > ```cpp
 > #include <algorithm>
@@ -2929,7 +3496,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.3.8
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.3.8
 
 > References:
 ---
@@ -2957,7 +3525,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 1.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 1.4
 
 > References:
 ---
@@ -2975,8 +3544,10 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::partition` algorithm provides the basic partitioning functionality, reordering elements based on a unary predicate.
-> The algorithm returns the partition point, an iterator to the first element for which the predicate returned `false`.
+> The `std::partition` algorithm provides the basic partitioning functionality,
+> reordering elements based on a unary predicate. The algorithm returns the
+> partition point, an iterator to the first element for which the predicate
+> returned `false`.
 >
 > ```cpp
 > #include <algorithm>
@@ -3001,7 +3572,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.4.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.4.1
 
 > References:
 ---
@@ -3017,17 +3589,21 @@
 > | constexpr | N/A |
 > | rangified | C++20 |
 >
-> The `std::partition` algorithm is permitted to rearrange the elements with the only guarantee that elements for which the predicate evaluated to true will precede elements for which the predicate evaluated to false.
-> But this behaviour might be undesirable, for example, for UI elements.
+> The `std::partition` algorithm is permitted to rearrange the elements with
+> the only guarantee that elements for which the predicate evaluated to true
+> will precede elements for which the predicate evaluated to false. But this
+> behaviour might be undesirable, for example, for UI elements.
 >
-> The `std::stable_partition` algorithm adds the guarantee of preserving the relative order of elements in both partitions.
+> The `std::stable_partition` algorithm adds the guarantee of preserving the
+> relative order of elements in both partitions.
 >
 > ```cpp
 > auto& widget = get_widget();
 > std::ranges::stable_partition(widget.items, &Item::is_selected);
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.4.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.4.2
 
 > References:
 ---
@@ -3058,7 +3634,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.4.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.4.3
 
 > References:
 ---
@@ -3074,7 +3651,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::partition_copy` is a variant of `std::partition` that, instead of reordering elements, will output the partitioned elements to the two output ranges denoted by two iterators.
+> The `std::partition_copy` is a variant of `std::partition` that, instead of
+> reordering elements, will output the partitioned elements to the two output
+> ranges denoted by two iterators.
 >
 > ```cpp
 > #include <algorithm>
@@ -3096,7 +3675,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.4.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.4.4
 
 > References:
 ---
@@ -3112,7 +3692,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The `std::nth_element` algorithm is a partitioning algorithm that ensures that the element in the nth position is the element that would be in this position if the range was sorted.
+> The `std::nth_element` algorithm is a partitioning algorithm that ensures
+> that the element in the nth position is the element that would be in this
+> position if the range was sorted.
 >
 > ```cpp
 > #include <algorithm>
@@ -3139,10 +3721,14 @@
 > }
 > ``````
 >
-> Because of its selection/partitioning nature, `std::nth_element` offers a better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗ logk)`.
-> However, note that the standard only mandates average `O(n)` complexity, and `std::nth_element` implementations can have high overhead, so always test to determine which provides better performance for your use case.
+> Because of its selection/partitioning nature, `std::nth_element` offers a
+> better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗
+> logk)`. However, note that the standard only mandates average `O(n)`
+> complexity, and `std::nth_element` implementations can have high overhead, so
+> always test to determine which provides better performance for your use case.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.4.5
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.4.5
 
 > References:
 ---
@@ -3196,9 +3782,11 @@
 > }
 > ``````
 >
-> While both algorithms will operate on any `forward_range`, the logarithmic divide and conquer behavior is only available for `random_access_range`.
+> While both algorithms will operate on any `forward_range`, the logarithmic
+> divide and conquer behavior is only available for `random_access_range`.
 >
-> Data structures like `std::set`, `std::multiset`, `std::map`, `std::multimap` offer their `O(log N)` implementations of lower and upper bound as methods.
+> Data structures like `std::set`, `std::multiset`, `std::map`, `std::multimap`
+> offer their `O(log N)` implementations of lower and upper bound as methods.
 >
 > ```sh
 > #include <algorithm>
@@ -3216,7 +3804,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.5.1
 
 > References:
 ---
@@ -3246,7 +3835,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.5.2
 
 > References:
 ---
@@ -3262,7 +3852,9 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> Despite the naming, `std::partition_point` works very similaryly to `std::upper_bound`, however instead of searching for a particular value, it searches using a predicate.
+> Despite the naming, `std::partition_point` works very similaryly to
+> `std::upper_bound`, however instead of searching for a particular value, it
+> searches using a predicate.
 >
 > ```cpp
 > #include <algorithm>
@@ -3276,7 +3868,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
 
 > References:
 ---
@@ -3292,7 +3885,8 @@
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> This function checks whether the requested value is present in the sorted range or not.
+> This function checks whether the requested value is present in the sorted
+> range or not.
 >
 > ```cpp
 > #include <algorithm>
@@ -3309,9 +3903,13 @@
 > }
 > ``````
 >
-> `std::binary_search` is equivalent to calling `std::equal_range` and checking whether the returned is non-empty; however, `std::binary_search` offers a single lookup performance, where `std::equal_range` does two lookups to determine the lower and upper bounds.
+> `std::binary_search` is equivalent to calling `std::equal_range` and checking
+> whether the returned is non-empty; however, `std::binary_search` offers a
+> single lookup performance, where `std::equal_range` does two lookups to
+> determine the lower and upper bounds.
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.5.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.5.4
 
 > References:
 ---
@@ -3341,7 +3939,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.6.1
 
 > References:
 ---
@@ -3384,7 +3983,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.6.2
 
 > References:
 ---
@@ -3412,7 +4012,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.6.3
 
 > References:
 ---
@@ -3443,7 +4044,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
 
 > References:
 ---
@@ -3473,7 +4075,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.6.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
 
 > References:
 ---
@@ -3505,7 +4108,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.7.1
 
 > References:
 ---
@@ -3535,7 +4139,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.7.2
 
 > References:
 ---
@@ -3565,7 +4170,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.7.3
 
 > References:
 ---
@@ -3595,7 +4201,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.7.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.7.4
 
 > References:
 ---
@@ -3635,7 +4242,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.1
 
 > References:
 ---
@@ -3663,7 +4271,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
 > References:
 ---
@@ -3691,7 +4300,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
 > References:
 ---
@@ -3719,7 +4329,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
 > References:
 ---
@@ -3747,7 +4358,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
 > References:
 ---
@@ -3775,7 +4387,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.4
 
 > References:
 ---
@@ -3808,7 +4421,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.5
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.5
 
 > References:
 ---
@@ -3847,7 +4461,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.6
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.6
 
 > References:
 ---
@@ -3878,7 +4493,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.7
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.7
 
 > References:
 ---
@@ -3910,7 +4526,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.8
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.8
 
 > References:
 ---
@@ -3939,7 +4556,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.8.9
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.8.9
 
 > References:
 ---
@@ -3970,7 +4588,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -3999,7 +4618,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -4028,7 +4648,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 2.11.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
 > References:
 ---
@@ -4074,7 +4695,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
@@ -4107,7 +4729,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
@@ -4136,7 +4759,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
@@ -4162,7 +4786,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
@@ -4202,7 +4827,8 @@
 > }
 > ``````
 
-> Origin: Modern C++ Programming Cookbook - Chapter 2
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
@@ -4236,7 +4862,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.1
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.1
 
 > References:
 ---
@@ -4268,7 +4895,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.2
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.2
 
 > References:
 ---
@@ -4296,7 +4924,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.3
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.3
 
 > References:
 ---
@@ -4320,7 +4949,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
 > References:
 ---
@@ -4344,7 +4974,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.4
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
 > References:
 ---
@@ -4368,7 +4999,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.5
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
 > References:
 ---
@@ -4392,7 +5024,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.5
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
 > References:
 ---
@@ -4416,7 +5049,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.6
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.6
 
 > References:
 ---
@@ -4440,7 +5074,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.7
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.7
 
 > References:
 ---
@@ -4464,7 +5099,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.8
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.8
 
 > References:
 ---
@@ -4489,7 +5125,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.9
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.9
 
 > References:
 ---
@@ -4513,7 +5150,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.10
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.10
 
 > References:
 ---
@@ -4547,7 +5185,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.11
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
 > References:
 ---
@@ -4558,7 +5197,8 @@
 
 > incomplete
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.11
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
 > References:
 ---
@@ -4579,7 +5219,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.12
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
 > References:
 ---
@@ -4601,7 +5242,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.12
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
 > References:
 ---
@@ -4626,7 +5268,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.13
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.13
 
 > References:
 ---
@@ -4648,7 +5291,8 @@
 > }
 > ``````
 
-> Origin: A Complete Guide to Standard C++ Algorithms - Section 4.14
+> Origins:
+> - A Complete Guide to Standard C++ Algorithms - Section 4.14
 
 > References:
 ---
@@ -4676,7 +5320,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 1
+> Origins:
+> - C++ Concurrency in Action - Chapter 1
 
 > References:
 > - https://en.cppreference.com/w/cpp/thread
@@ -4724,7 +5369,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/thread/thread
@@ -4784,7 +5430,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
@@ -4820,7 +5467,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 > - https://en.cppreference.com/w/cpp/thread/thread
@@ -4853,7 +5501,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
@@ -4878,7 +5527,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
@@ -4908,7 +5558,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
@@ -4939,7 +5590,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---
@@ -4959,7 +5611,8 @@
 > }
 > ``````
 
-> Origin: C++ Concurrency in Action - Chapter 2
+> Origins:
+> - C++ Concurrency in Action - Chapter 2
 
 > References:
 ---

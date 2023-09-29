@@ -55,7 +55,8 @@
 > gdb --quiet executable
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 > - [GDB User Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/)
@@ -71,7 +72,8 @@
 > `help list` or `h l`
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -85,7 +87,8 @@
 > set listsize 20
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -101,7 +104,8 @@
 > help set disassembly-flavor
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -114,7 +118,8 @@
 > echo 'set disassembly-flavor intel' >> $HOME/.gdbinit
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -129,7 +134,8 @@
 > help disassemble
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -146,7 +152,8 @@
 > help x
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -160,7 +167,8 @@
 > help break
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -174,7 +182,8 @@
 > help run
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -190,7 +199,8 @@
 > help info all-registers
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -210,7 +220,8 @@
 > help info source
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -228,7 +239,8 @@
 > help delete breakpoint
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -247,7 +259,8 @@
 > help finish
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -261,7 +274,8 @@
 > help print
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -275,7 +289,8 @@
 > help tui
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 3
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 ---
@@ -290,7 +305,8 @@
 > readelf --file-header ./program
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -303,7 +319,8 @@
 > readelf --symbols ./program | grep -E 'main|start|Num:.*' --color
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -316,7 +333,8 @@
 > readelf --symbols ./program | sort -k 2 -r
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -329,7 +347,8 @@
 
 >
 
-> Origin: Beginning x64 Assembly Programming - Chapter 2
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 2
 
 > References:
 > - [IEEE-754](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/)
@@ -346,7 +365,8 @@
 >     O_CREATE equ 00000100q
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -361,7 +381,8 @@
 > 2000000h
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 25
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 25
 
 > References:
 ---
@@ -389,7 +410,8 @@
 > * r14
 > * r15
 
-> Origin: Beginning x64 Assembly Programming - Chapter 2
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 2
 
 > References:
 ---
@@ -400,7 +422,8 @@
 
 > `rip`
 
-> Origin: Beginning x64 Assembly Programming - Chapter 2
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 2
 
 > References:
 ---
@@ -419,7 +442,8 @@
 > Direction|DF|10|Direction of string operations (increment or decrement)
 > Overflow|OF|11|Previous instruction resulted in overflow
 
-> Origin: Beginning x64 Assembly Programming - Chapter 2
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 2
 
 > References:
 ---
@@ -432,7 +456,8 @@
 > `ymm`
 > `zmm`
 
-> Origin: Beginning x64 Assembly Programming - Chapter 2
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 2
 
 > References:
 ---
@@ -445,7 +470,8 @@
 
 > `/usr/include/asm/unistd_64.h`
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -466,7 +492,8 @@
 >     syscall
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 1
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 1
 
 > References:
 ---
@@ -483,7 +510,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 4
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 4
 
 > References:
 ---
@@ -523,7 +551,8 @@
 >     syscall
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 4
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 4
 
 > References:
 ---
@@ -537,7 +566,8 @@
 >     word_array times 5 dw 0 ; array of 5 words containing 0
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -554,7 +584,8 @@
 >     qvar resq 100
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -609,7 +640,8 @@
 >     syscall
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 4
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 4
 
 > References:
 ---
@@ -652,7 +684,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 9
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 9
 
 > References:
 ---
@@ -694,7 +727,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 9
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 9
 
 > References:
 ---
@@ -736,7 +770,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 9
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 9
 
 > References:
 ---
@@ -747,8 +782,10 @@
 
 > * `mul` multiplies unsigned integers
 > * `imul` multiplies signed integers
-> * `imul` will store the lower 64 bits of the resulting product in rax and the upper 64 bits in rdx.
-> * `idiv` will divide the dividen in rdx:rax by the divisor in the source operand and store the integer result in rax.
+> * `imul` will store the lower 64 bits of the resulting product in rax and the
+>   upper 64 bits in rdx.
+> * `idiv` will divide the dividen in rdx:rax by the divisor in the source
+>   operand and store the integer result in rax.
 >
 > ```nasm
 > section .data
@@ -785,7 +822,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 9
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 9
 
 > References:
 ---
@@ -796,21 +834,24 @@
 <details>
 <summary>Specify how many bits each floating point number occupies for exponent and fraction?</summary>
 
-> A single-precision number is 32 bits, 1 sign bit, 8 exponent bits, and 23 fraction bits.
+> A single-precision number is 32 bits, 1 sign bit, 8 exponent bits, and 23
+> fraction bits.
 >
 > ```txt
 > S   EEEEEEEE        FFFFFFFFFFFFFFFFFFFFFFF
 > 0   1      8        9                     31
 > ``````
 >
-> A double-precision number is 64 bits, 1 sign bit, 11 exponent bits, and 52 fraction bits.
+> A double-precision number is 64 bits, 1 sign bit, 11 exponent bits, and 52
+> fraction bits.
 >
 > ```txt
 > S   EEEEEEEEEEE     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 > 0   1         11    12                                                 63
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 11
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 11
 
 > References:
 ---
@@ -845,7 +886,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 11
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 11
 
 > References:
 ---
@@ -880,7 +922,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 11
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 11
 
 > References:
 ---
@@ -910,7 +953,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 11
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 11
 
 > References:
 ---
@@ -971,7 +1015,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 16
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 16
 
 > References:
 ---
@@ -1008,7 +1053,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 17
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 17
 
 > References:
 ---
@@ -1042,7 +1088,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 17
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 17
 
 > References:
 ---
@@ -1109,7 +1156,8 @@
 > info rflags
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 7
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 7
 
 > References:
 ---
@@ -1165,7 +1213,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 7
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 7
 
 > References:
 ---
@@ -1221,7 +1270,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 7
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 7
 
 > References:
 ---
@@ -1259,7 +1309,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 8
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 8
 
 > References:
 ---
@@ -1329,7 +1380,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 10
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 10
 
 > References:
 ---
@@ -1354,7 +1406,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 12
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 12
 
 > References:
 ---
@@ -1363,8 +1416,9 @@
 <details>
 <summary>Align the stack with stack frame after function call?</summary>
 
-> Each function call results in 8 bytes return address being pushed on the stack.
-> It is necessary to make sure to restore the stack to the appropriate value before we leave a function.
+> Each function call results in 8 bytes return address being pushed on the
+> stack. It is necessary to make sure to restore the stack to the appropriate
+> value before we leave a function.
 >
 > ```nasm
 > section .text
@@ -1394,7 +1448,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 13
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 13
 
 > References:
 ---
@@ -1417,7 +1472,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 12
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 12
 
 > References:
 ---
@@ -1426,7 +1482,8 @@
 <details>
 <summary>Use calling convention to return error code from a function?</summary>
 
-> Use `xmm0` register for floating-point values and `rax` register for other values.
+> Use `xmm0` register for floating-point values and `rax` register for other
+> values.
 >
 > ```nasm
 > section .data
@@ -1467,7 +1524,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 12
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 12
 
 > References:
 ---
@@ -1477,10 +1535,16 @@
 <summary>Use calling conventions to transfer variables from callee to caller functions?</summary>
 
 > * Following calling conventions are for System V AMD64 ABI:
-> * For integral types, registers are `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9` respectively, and additional arguments are passed via the stack and in reverse order so that we can pop off in the right order.
-> * Function's return address `rip` is pushed on the stack, just after the arguments.
-> * In function, then `rbp` is pushed, there maybe another 8 bytes needed to be pushed to align the stack in 16 bytes.
-> * For floating point types, registers are `xmm0` to `xmm7`, additional arguments are passed via the stack but not with `push` instruction. Will be discussed later.
+> * For integral types, registers are `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`
+>   respectively, and additional arguments are passed via the stack and in
+>   reverse order so that we can pop off in the right order.
+> * Function's return address `rip` is pushed on the stack, just after the
+>   arguments.
+> * In function, then `rbp` is pushed, there maybe another 8 bytes needed to be
+>   pushed to align the stack in 16 bytes.
+> * For floating point types, registers are `xmm0` to `xmm7`, additional
+>   arguments are passed via the stack but not with `push` instruction. Will be
+>   discussed later.
 >
 > ```nasm
 > section .text
@@ -1553,7 +1617,8 @@
 >         ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 15
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 15
 
 > References:
 ---
@@ -1615,7 +1680,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 12
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 12
 
 > References:
 ---
@@ -1722,7 +1788,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 14
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 14
 
 > References:
 ---
@@ -1750,7 +1817,8 @@
 >     ...
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 14
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 14
 
 > References:
 ---
@@ -1797,7 +1865,8 @@
 > ./program
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 22
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 22
 
 > References:
 ---
@@ -1808,10 +1877,12 @@
 
 > There are two types of inline assembly: **basic** and **extended**.
 >
-> Compilers will not optimize assembly parts of the program, so using inline assembly is not advices.
-> There will be no error checking on inline assembly code.
+> Compilers will not optimize assembly parts of the program, so using inline
+> assembly is not advices. There will be no error checking on inline assembly
+> code.
 
-> Origin: Beginning x64 Assembly Programming - Chapter 23
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 23
 
 > References:
 ---
@@ -1820,9 +1891,9 @@
 <details>
 <summary>Write a basic inline assembly in C programs?</summary>
 
-> Instructions should be terminated by `;`.
-> `-mintel` compiler option is required.
-> Switching to Intel assembly syntax is required as the first argument of `__asm__`.
+> Instructions should be terminated by `;`. `-mintel` compiler option is
+> required. Switching to Intel assembly syntax is required as the first
+> argument of `__asm__`.
 >
 > ```c
 > int main(void)
@@ -1838,7 +1909,8 @@
 > gcc -o program main.c -masm=intel -no-pie
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 23
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 23
 
 > References:
 ---
@@ -1875,9 +1947,12 @@
 > printf("The extended inline product is %i\n", eproduct);
 > ``````
 >
-> `a`, `d`, `c` are register constraints, and they map to the registers `rax`, `rdx`, `rcx`, respectively.
-> `:"=a"(eproduct)` means that the output will be in `rax`, and `rax` will refer to the variable `eproduct`. Register `rdx` refers to `x`, and `rcx` refers to `y`, which are the input variables.
-> `rbx` is considered clobbered in the code and will be restored to its original value, because it was declared in the list of clobbering registers.
+> `a`, `d`, `c` are register constraints, and they map to the registers `rax`,
+> `rdx`, `rcx`, respectively. `:"=a"(eproduct)` means that the output will be
+> in `rax`, and `rax` will refer to the variable `eproduct`. Register `rdx`
+> refers to `x`, and `rcx` refers to `y`, which are the input variables. `rbx`
+> is considered clobbered in the code and will be restored to its original
+> value, because it was declared in the list of clobbering registers.
 >
 > ```txt
 > a -> rax, eax, ax, al
@@ -1889,7 +1964,8 @@
 > r -> any register
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 23
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 23
 
 > References:
 ---
@@ -1938,7 +2014,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 18
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 18
 
 > References:
 ---
@@ -1968,7 +2045,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -1999,7 +2077,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 19
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 19
 
 > References:
 ---
@@ -2027,7 +2106,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 19
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 19
 
 > References:
 ---
@@ -2076,7 +2156,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 19
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 19
 
 > References:
 ---
@@ -2159,7 +2240,8 @@
 >         ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 19
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 19
 
 > References:
 ---
@@ -2173,7 +2255,8 @@
 > * `rdi`: argc or number of arguments
 > * `rsi`: argv or address of array each, cell is an 8bytes of address to an argument string
 
-> Origin: Beginning x64 Assembly Programming - Chapter 21
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 21
 
 > References:
 ---
@@ -2212,7 +2295,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 21
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 21
 
 > References:
 ---
@@ -2229,7 +2313,8 @@
 > x/s <address where the pointer in rdi points to + 16>
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 21
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 21
 
 > References:
 ---
@@ -2242,7 +2327,8 @@
 
 > `/usr/include/asm-generic/fcntl.h`
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -2322,7 +2408,8 @@
 >     %ENDIF
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -2381,7 +2468,8 @@
 >     %ENDIF
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -2440,7 +2528,8 @@
 >     %ENDIF
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 20
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 20
 
 > References:
 ---
@@ -2451,8 +2540,9 @@
 <details>
 <summary>Obtain the CPU information of the processor in x64 assembly?</summary>
 
-> You first put a specific parameter in `eax`, then execute the instruction `cpuid`, and finally check the returned value in `ecx` and `edx`.
-> Indeed, `cpuid` uses 32-bit registers.
+> You first put a specific parameter in `eax`, then execute the instruction
+> `cpuid`, and finally check the returned value in `ecx` and `edx`. Indeed,
+> `cpuid` uses 32-bit registers.
 >
 > Based on processor manual, SSE bits are as follows:
 >
@@ -2478,7 +2568,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 25
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 25
 
 > References:
 ---
@@ -2613,7 +2704,8 @@
 >     ret
 > ``````
 
-> Origin: Beginning x64 Assembly Programming - Chapter 25
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 25
 
 > References:
 ---
@@ -2628,7 +2720,8 @@
 > * ...
 > * xmm15
 
-> Origin: Beginning x64 Assembly Programming - Chapter 26
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 26
 
 > References:
 > - https://en.wikipedia.org/wiki/Flynn's_taxonomy
@@ -2638,12 +2731,13 @@
 <details>
 <summary>What are the two types of data that can be stored on SSE registers?</summary>
 
-> The `xmm` registers can contain **scalar data** or **packed data**.  
+> The `xmm` registers can contain **scalar data** or **packed data**.
 >
-> Scalar data means just one value.  
+> Scalar data means just one value.
 > Packed data means multiple values related to each other.
 
-> Origin: Beginning x64 Assembly Programming - Chapter 26
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 26
 
 > References:
 ---
@@ -2652,11 +2746,14 @@
 <details>
 <summary>What are AVX registers and how much data can they hold?</summary>
 
-> The **AVX** registers are called `ymm` registers and have 256 bits, double the size of `xmm` registers.
+> The **AVX** registers are called `ymm` registers and have 256 bits, double
+> the size of `xmm` registers.
 >
-> There is also **AVX-512** which provides 512 bits registers and are called `zmm` registers.
+> There is also **AVX-512** which provides 512 bits registers and are called
+> `zmm` registers.
 
-> Origin: Beginning x64 Assembly Programming - Chapter 26
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 26
 
 > References:
 ---
@@ -2665,9 +2762,11 @@
 <details>
 <summary>How does alignment of data in <code>.data</code> and <code>.bss</code> sections can improve performance of a program?</summary>
 
-> Data in section `.data` and `.bss` should be aligned on a 16-byte border so that registers can be filled with data once for each block of data.
+> Data in section `.data` and `.bss` should be aligned on a 16-byte border so
+> that registers can be filled with data once for each block of data.
 
-> Origin: Beginning x64 Assembly Programming - Chapter 26
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 26
 
 > References:
 ---
@@ -2676,11 +2775,14 @@
 <details>
 <summary>How can we align data in <code>.data</code> and <code>.bss</code> sections in specific byte sizes?</summary>
 
-> In **NASM** the assembly directive `align 16` and `alignb 16` can be used in front of the data.
+> In **NASM** the assembly directive `align 16` and `alignb 16` can be used in
+> front of the data.
 >
-> For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**, data needs to be aligned on a 64 bytes border.
+> For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**,
+> data needs to be aligned on a 64 bytes border.
 
-> Origin: Beginning x64 Assembly Programming - Chapter 26
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 26
 
 > References:
 ---

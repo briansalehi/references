@@ -1,7 +1,7 @@
 # C++20: The Complete Guide
 <img src="../covers/cxx20-the-complete-guide.jpg" width="200"/>
 
-## Chapter 1/19 <sup>(completed)</sup>
+## Chapter 1/19 <sup>(published)</sup>
 
 <details>
 <summary>Enable all comparison operators for an object type?</summary>
@@ -389,9 +389,141 @@
 ---
 </details>
 
-## Chapter 2/19
-## Chapter 3/19
+## Chapter 2/19 <sup>(writing)</sup>
+
+<details>
+<summary>Declare an abbreviated function template?</summary>
+
+> Since C++14, lambdas can be declared with `auto` placeholder as their
+> parameters representing any type, provided the operations inside the lambda
+> are supported.
+>
+> ```cpp
+> auto print = [](auto const& container) {
+>     for (auto const& e: container)
+>         std:: cout << e << '\n';
+> }
+>
+> std::vector numbers{1,2,3,4,5};
+> print(numbers); // compiles the lambda for std::vector<int>
+> print(std::string("hello")); // compiles the lambda for std::string
+> ``````
+>
+> Since C++20, `auto` can also be used for all functions including member
+> functions and operators.
+>
+> ```cpp
+> void print(auto const& container)
+> {
+>     for (auto const& e: container)
+>         std:: cout << e << ' ';
+>     std:: cout << '\n';
+> }
+> ``````
+>
+> This declaration is just a shortcut for declaring a template function.
+>
+> ```cpp
+> template <typename C>
+> void print(C const& container)
+> {
+>     for (auto const& e: container)
+>         std:: cout << e << ' ';
+>     std:: cout << '\n';
+> }
+> ``````
+
+> Origin: Origin: C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the restrictions of using abbreviated function template?</summary>
+
+> Because functions with `auto` are function templates, all rules of using function templates apply. You cannot implement an abbreviated function template in one translation unit while calling it in a different translation unit.
+>
+> Abbreviated function templates need not to be declared as `inline` because function templates are always inline.
+>
+> Template parameters can be specified explicitly.
+>
+> ```cpp
+> void print(auto value)
+> {
+>     std::cout << value << '\n';
+> }
+>
+> print(42);
+> print<char>(42);
+> ``````
+
+> Origin: Origin: C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Directly and indirectly call an abbreviated function template?</summary>
+
+> You cannot pass a function with `auto` as a parameter without specifying the
+> generic parameter.
+>
+> ```cpp
+> bool is_less(auto const& lhs, auto const& rhs)
+> {
+>     return lhs.get_value() < rhs.get_value();
+> }
+>
+> std::sort(container.begin(), container.end(), is_less);
+> // ERROR: can't deduce type of parameter
+> ``````
+>
+> Because the function template is not called directly, the compiler cannot
+> deduce the template parameters to compile the call. Therefore, the template
+> parameters have to be specified explicitly.
+>
+> ```cpp
+> std::sort(container.begin(), container.end(), is_less<container::value_type>);
+> ``````
+>
+> Though, this can be prevented by passing a lambda.
+>
+> ```cpp
+> auto is_less = [](auto const& lhs, auto const& rhs)
+> {
+>     return lhs.get_value() < rhs.get_value();
+> }
+>
+> std::sort(container.begin(), container.end(), is_less);
+> ``````
+
+> Origin: Origin: C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Explicitly specify an abbreviated function template?</summary>
+
+> ```cpp
+> ``````
+
+> Origin: Origin: C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+
+## Chapter 3/19 <sup>(writing)</sup>
+
+
+
 ## Chapter 4/19
+
 ## Chapter 5/19
 
 <details>

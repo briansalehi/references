@@ -5,11 +5,12 @@
 <details>
 <summary>What is the objective of <code>io_service</code> in boost?</summary>
 
-> The I/O service is a channel that is used to access operating system resources
-> and establish communication between our program and the operating system that
-> performs I/O requests.
+> The I/O service is a channel that is used to access operating system
+> resources and establish communication between our program and the operating
+> system that performs I/O requests.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
@@ -23,7 +24,8 @@
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
@@ -58,7 +60,8 @@
 > the work is underway. Also, it will make sure that the `io_service::run()`
 > function exits when there is no unfinished work remaining.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
@@ -86,7 +89,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
@@ -131,7 +135,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
@@ -177,7 +182,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
@@ -225,7 +231,8 @@
 > function object that will automatically pass the wrapped handler to the strand
 > object's dispatch function when it is called.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context__strand.html
@@ -275,7 +282,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > References:
 ---
@@ -321,7 +329,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > References:
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/deadline_timer.html
@@ -382,7 +391,8 @@
 > }
 > ``````
 
-> Origin: 6
+> Origins:
+> - 6
 
 > References:
 ---
@@ -394,7 +404,8 @@
 > ```cpp
 > ``````
 
-> Origin: 6
+> Origins:
+> - 6
 
 > References:
 ---
@@ -406,7 +417,8 @@
 > ```cpp
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > References:
 ---

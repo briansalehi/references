@@ -1,5 +1,5 @@
 name: validate-topics
-run-name: ${{ github.actor }} validates topics
+run-name: topic structure validation test
 on: [push]
 jobs:
   validate-topics:
@@ -11,5 +11,4 @@ jobs:
         run: echo "validating topics..."
 
       - name: validation
-        run: |
-          bash validate.sh topics --quiet
+        run: bash validate.sh topics --quiet

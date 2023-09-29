@@ -10,7 +10,8 @@
 > 3. Writing Embedded Applications
 > 4. Debugging and Optimizing Performance
 
-> Origin: Mastering Embedded Linux Programming - Chapter 1
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 1
 
 > References:
 ---
@@ -25,7 +26,8 @@
 > 4. Root filesystem
 > 5. Embedded Applications
 
-> Origin: Mastering Embedded Linux Programming - Chapter 1
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 1
 
 > References:
 ---
@@ -40,7 +42,8 @@
 > 4. Serial port
 > 5. Debugging interface (e.g. JTAG)
 
-> Origin: Mastering Embedded Linux Programming - Chapter 1
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 1
 
 > References:
 ---
@@ -49,10 +52,13 @@
 <details>
 <summary>What toolchains are available to build cross-toolchains with?</summary>
 
-> Toolchain can be completely built manually by [Cross Linux From Scratch](https://trac.clfs.org).
-> Another alternative to build toolchains is [crosstool-NG](https://crosstool-ng.github.io).
+> - Toolchain can be completely built manually by [Cross Linux From
+>   Scratch](https://trac.clfs.org).
+> - Another alternative to build toolchains is
+>   [crosstool-NG](https://crosstool-ng.github.io).
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -68,7 +74,8 @@
 > * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
 > * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -80,9 +87,11 @@
 > * CPU Architecture + Endianness (e.g. `x86_64`, `mipsel`, `armeb`)
 > * Vendor (e.g. `buildroot`)
 > * Kernel (e.g. `linux`)
-> * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`, `musleabihf`)
+> * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`,
+>   `musleabihf`)
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -95,7 +104,8 @@
 > gcc -dumpmachine
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -108,7 +118,8 @@
 > ${CROSS_COMPILE}gcc -v
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -121,7 +132,8 @@
 > ${CROSS_COMPILE}gcc -mcpu=cortex-a5 main.c -o app
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -134,7 +146,8 @@
 > ${CROSS_COMPILE}gcc --target-help
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -147,7 +160,8 @@
 > ${CROSS_COMPILE}gcc -print-sysroot
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -170,7 +184,8 @@
 > ./ct-ng --version
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -185,7 +200,8 @@
 > ./ct-ng list-samples
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -201,7 +217,8 @@
 > ./ct-ng show-arm-unknown-linux-gnueabi
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -212,7 +229,8 @@
 <details>
 <summary>Build a cross-toolchain for Raspberry Pi Zero?</summary>
 
-> Considering the processor used in this device which is `bmc2835` having an armv6 core, we should use the following target:
+> Considering the processor used in this device which is `bmc2835` having an
+> armv6 core, we should use the following target:
 >
 > ```sh
 > ./ct-ng distclean
@@ -230,7 +248,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -255,7 +274,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -278,7 +298,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -294,7 +315,8 @@
 > * libpthread
 > * librt
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -307,7 +329,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep "Shared library"
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -320,7 +343,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep "program interpreter"
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -333,7 +357,8 @@
 > ${CROSS_COMPILE}gcc -static main.c -o app
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -348,7 +373,8 @@
 > ls -l usr/lib/libc.a
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -364,7 +390,8 @@
 > ${CROSS_COMPILE}gcc main.c -ltest -L../libs -I../include -o app
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -382,7 +409,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep interpreter
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -396,7 +424,8 @@
 > libjpeg.so.8
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -418,7 +447,8 @@
 > make CROSS_COMPILE=armv6-rpi-linux-gnueabihf-
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -431,7 +461,8 @@
 > CC=armv6-rpi-linux-gnueabihf-gcc ./configure --host=armv6-rpi-linux-gnueabihf
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -451,7 +482,8 @@
 > armv6-rpi-linux-gnueabihf main.c -o sqlite-test -lsqlite3
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -468,7 +500,8 @@
 > ${CROSS_COMPILE}gcc $(pkg-config sqlite3 --cflags --libs) main.c -o sqlite-test
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -484,7 +517,8 @@
 > cmake --build build --parallel 8 --target install
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 2
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 2
 
 > References:
 ---
@@ -497,7 +531,8 @@
 
 > Follow up overviews of each kernel release on **KernelNewbies** to see changes.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 > - https://kernelnewbies.org/LinuxVersions
@@ -513,7 +548,8 @@
 >
 > The cloning process can be trimmed by setting `--depth 1` option.
 >
-> It is best practice to use **LTS** kernel releases for production, so checkout to the latest stable tag:
+> It is best practice to use **LTS** kernel releases for production, so
+> checkout to the latest stable tag:
 >
 > ```sh
 > git checkout v5.4
@@ -535,13 +571,15 @@
 > git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 > ``````
 >
-> To use long-term releases of the kernel, below repository should be used instead:
+> To use long-term releases of the kernel, below repository should be used
+> instead:
 >
 > ```sh
 > git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -553,24 +591,33 @@
 > - `arch/`: To be as generic as possible, architecture-specific code.
 > - `block/`: Codes for block storage devices.
 > - `crypto/`: Cryptographic API and the encryption algorithm's code.
-> - `certs/`: Certificates and sign files to enable a module signature to make the kernel load signed modules.
-> - `documentation/`: Descriptions of the APIs that are used for different kernel frameworks and subsystems.
+> - `certs/`: Certificates and sign files to enable a module signature to make
+>   the kernel load signed modules.
+> - `documentation/`: Descriptions of the APIs that are used for different
+>   kernel frameworks and subsystems.
 > - `drivers/`: Device driver, organized into various subdirectories.
-> - `fs/`: Implementations of different filesystems that the kernel supports, such as NTFS, FAT, ETX{2,3,4}, sysfs, procfs, NFS, and so on.
+> - `fs/`: Implementations of different filesystems that the kernel supports,
+>   such as NTFS, FAT, ETX{2,3,4}, sysfs, procfs, NFS, and so on.
 > - `include/`: Kernel header files.
 > - `init/`: Initialization and startup code.
-> - `ipc/`: Implementation of the inter-process communication (IPC) mechanisms, such as message queues, semaphores, and shared memory.
+> - `ipc/`: Implementation of the inter-process communication (IPC) mechanisms,
+>   such as message queues, semaphores, and shared memory.
 > - `kernel/`: Architecture-independent portions of the base kernel.
-> - `lib/`: Library routines and some helper functions including generic **kernel object (kobject)** handlers and **cyclic redundancy code (CRC)** computation functions.
+> - `lib/`: Library routines and some helper functions including generic
+>   **kernel object (kobject)** handlers and **cyclic redundancy code (CRC)**
+>   computation functions.
 > - `mm/`: Memory management code.
 > - `net/`: Networking (whatever network type it is) protocol code.
 > - `samples/`: Device driver samples for various subsystems.
 > - `scripts/`: Scripts and tools that are used alongside the kernel.
 > - `security/`: Security framework code.
 > - `sound/`: Audio subsystem code.
-> - `tools/`: Linux kernel development and testing tools for various subsystems, such as USB, vhost test modules, GPIO, IIO, and SPI, among others.
+> - `tools/`: Linux kernel development and testing tools for various
+>   subsystems, such as USB, vhost test modules, GPIO, IIO, and SPI, among
+>   others.
 > - `usr/`: `initramfs` implementation.
-> - `virt/`: Virtualization directory, which contains the kernel virtual machine (KVM) module for a hypervisor.
+> - `virt/`: Virtualization directory, which contains the kernel virtual
+>   machine (KVM) module for a hypervisor.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -584,9 +631,11 @@
 <details>
 <summary>What is the name of the kernel configuration mechanism and how can it be used?</summary>
 
-> The configuration mechanism is called `Kconfig`, and the build system that it integrates with it is called `Kbuild`.
+> The configuration mechanism is called `Kconfig`, and the build system that it
+> integrates with it is called `Kbuild`.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 > - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
@@ -602,14 +651,18 @@
 > ARCH=<XXXX> CROSS_COMPILE=<YYYY> make help
 > ``````
 >
-> If these variables are not specified, the native host machine is going to be targeted.
+> If these variables are not specified, the native host machine is going to be
+> targeted.
 >
 > ```sh
 > make help
 > ``````
 >
-> When `ARCH` is omitted or not set, it will default to the host where `make` is executed. It will default to `$(uname -m)`.  
-> When `CROSS_COMPILE` is omitted or not set, `$(CROSS_COMPILE)gcc` will result in `gcc`, and will be the same for other tools, for example `$(CROSS_COMPILE)ld` will result in `ld`.
+> When `ARCH` is omitted or not set, it will default to the host where `make`
+> is executed. It will default to `$(uname -m)`.  When `CROSS_COMPILE` is
+> omitted or not set, `$(CROSS_COMPILE)gcc` will result in `gcc`, and will be
+> the same for other tools, for example `$(CROSS_COMPILE)ld` will result in
+> `ld`.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -621,9 +674,11 @@
 <details>
 <summary>What are possible values to the <code>ARCH</code> environment variable using in building the kernel source?</summary>
 
-> The value you put into `ARCH` is one of the subdirectories you find in the `arch` directory in the kernel source tree.
+> The value you put into `ARCH` is one of the subdirectories you find in the
+> `arch` directory in the kernel source tree.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -660,15 +715,18 @@
 <details>
 <summary>Generate a preconfigured <code>.config</code> file tuned for a specific platform in the kernel source tree?</summary>
 
-> It is very difficult to know which configuration is going to work on your platform.
-> In most cases, there will be no need to start a configuration from scratch.
-> There are default and functional configuration files available in each arch directory that you can use as a starting point (it is important to start with a configuration that already works):
+> It is very difficult to know which configuration is going to work on your
+> platform. In most cases, there will be no need to start a configuration from
+> scratch. There are default and functional configuration files available in
+> each arch directory that you can use as a starting point (it is important to
+> start with a configuration that already works):
 >
 > ```sh
 > ls arch/<arch>/configs/
 > ``````
 >
-> The kernel configuration command, given a default configuration file, is as follows:
+> The kernel configuration command, given a default configuration file, is as
+> follows:
 >
 > ```sh
 > ARCH=<arch> make <defconfig>
@@ -687,7 +745,9 @@
 <details>
 <summary>Revert configuration changes in kernel source tree after generating new <code>.config</code> file?</summary>
 
-> Running `make defconfig` or any alternatives will generate a new `.config` file in the main (root) directory, while the old `.config` will be renamed `.config.old`.
+> Running `make defconfig` or any alternatives will generate a new `.config`
+> file in the main (root) directory, while the old `.config` will be renamed
+> `.config.old`.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -703,15 +763,18 @@
 > make savedefconfig
 > ``````
 >
-> This command will create a minimal (since it won't store non-default settings) configuration file.
-> The generated default configuration file will be called `defconfig` and stored at the root of the source tree.
-> You can store it in another location using the following command:
+> This command will create a minimal (since it won't store non-default
+> settings) configuration file. The generated default configuration file will
+> be called `defconfig` and stored at the root of the source tree. You can
+> store it in another location using the following command:
 >
 > ```sh
 > mv defconfig arch/<arch>/configs/myown_defconfig
 > ``````
 >
-> This way, you can share a reference configuration inside the kernel sources and other developers can now get the same `.config` file as you by running the following command:
+> This way, you can share a reference configuration inside the kernel sources
+> and other developers can now get the same `.config` file as you by running
+> the following command:
 >
 > ```sh
 > ARCH=<arch> make myown_defconfig
@@ -763,7 +826,8 @@
 > make oldconfig
 > ``````
 >
-> You can avoid prompting new configuration options by setting their default values:
+> You can avoid prompting new configuration options by setting their default
+> values:
 >
 > ```sh
 > make olddefconfig
@@ -785,7 +849,8 @@
 <details>
 <summary>Use the kernel configuration file on a running machine as an initial configurtion?</summary>
 
-> Debian and Ubuntu Linux distributions save the `.config` file in the `/boot` directory:
+> Debian and Ubuntu Linux distributions save the `.config` file in the `/boot`
+> directory:
 >
 > ```sh
 > cp /boot/config-$(uname -r) .config
@@ -793,7 +858,8 @@
 >
 > The other distributions may not do this.
 >
-> When `IKCONFIG` and `IKCONFIG_PROC` kernel configuration options enabled, the configuration file can also be found in:
+> When `IKCONFIG` and `IKCONFIG_PROC` kernel configuration options enabled, the
+> configuration file can also be found in:
 >
 > ```sh
 > /proc/configs.gz
@@ -810,7 +876,8 @@
 <summary>What kernel configuration options allows accessing kernel configuration file on runtime?</summary>
 
 > * `IKCONFIG`: This is a boolean option to enable this feature.
-> * `IKCONFIG_PROC`: Boolean option, when set to `y` the `config.gz` file becomes available in `/proc`.
+> * `IKCONFIG_PROC`: Boolean option, when set to `y` the `config.gz` file
+>   becomes available in `/proc`.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -823,7 +890,8 @@
 <summary>What kernel configuration option allows extending the kernel command line from within the configuration?</summary>
 
 > * `CMDLINE_EXTEND`: This is a boolean option to enable this feature.
-> * `CMDLINE`: This options is a string containing the actual command-line extension value.
+> * `CMDLINE`: This options is a string containing the actual command-line
+>   extension value.
 >
 > For example:
 >
@@ -841,7 +909,10 @@
 <details>
 <summary>What kernel configuration option makes the kernel symbol table available in <code>/proc/kallsyms</code>?</summary>
 
-> `CONFIG_KALLSYMS`: This is very useful for tracers and other tools that need to map kernel symbols to addresses. It is used while you're printing oops messages. Without this, oops listings would produce hexadecimal output, which is difficult to interpret.
+> `CONFIG_KALLSYMS`: This is very useful for tracers and other tools that need
+> to map kernel symbols to addresses. It is used while you're printing oops
+> messages. Without this, oops listings would produce hexadecimal output, which
+> is difficult to interpret.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -955,7 +1026,8 @@
 >
 > This config can be found in `.config` file as `CONFIG_EXAMPLE=y`.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -970,7 +1042,8 @@
 > * `hex`: unsigned integer value using hexadecimal notation.
 > * `string`: string value.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -989,7 +1062,8 @@
 >
 > `EXAMPLE` will not be shown in menu if `DEPENDENCY` is not set.
 >
-> Reverse dependencies can be expressed by `select` construct, as an example in `arch/arm`
+> Reverse dependencies can be expressed by `select` construct, as an example in
+> `arch/arm`
 >
 > ```kconfig
 > config ARM
@@ -1001,7 +1075,8 @@
 >
 > Selecting any config as reverse dependency, sets its value as `y`.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1014,7 +1089,8 @@
 > * `xconfig`
 > * `gconfig`
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1023,7 +1099,9 @@
 <details>
 <summary>Find all possible kernel configuration targets in the source tree?</summary>
 
-> There is a set of known working configuration files in `arch/$ARCH/configs`, each containing suitable configuration values for a single SoC or a group of SoCs.
+> There is a set of known working configuration files in `arch/$ARCH/configs`,
+> each containing suitable configuration values for a single SoC or a group of
+> SoCs.
 >
 > To make configuration for `arm64` SoCs:
 >
@@ -1031,13 +1109,15 @@
 > make ARCH=arm64 defconfig
 > ``````
 >
-> To make configuration for SoC of `raspberry pi zero`, considering its `bcm2835` 32-bits processor:
+> To make configuration for SoC of `raspberry pi zero`, considering its
+> `bcm2835` 32-bits processor:
 >
 > ```sh
 > make ARCH=arm bcm2835_defconfig
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1052,7 +1132,8 @@
 > make ARCH=arm menuconfig
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1067,13 +1148,15 @@
 > make ARCH=arm oldconfig
 > ``````
 >
-> Use `olddefconfig` target to use a preconfigured `.config` file and set new parameters as default.
+> Use `olddefconfig` target to use a preconfigured `.config` file and set new
+> parameters as default.
 >
 > ```sh
 > make ARCH=arm olddefconfig
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1082,9 +1165,11 @@
 <details>
 <summary>What file holds configuration options generated by beginning the kernel build and where is the file?</summary>
 
-> A header file `include/generated/autoconf.h` contains `#define` preprocessors to be included in the kernel source.
+> A header file `include/generated/autoconf.h` contains `#define` preprocessors
+> to be included in the kernel source.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1093,15 +1178,16 @@
 <details>
 <summary>Identify which kernel version and kernel release do we have in kernel source tree?</summary>
 
-> This is reported at runtime through the `uname` command.  
-> It is also used in naming the directory where kernel modules are stored.
+> This is reported at runtime through the `uname` command.  It is also used in
+> naming the directory where kernel modules are stored.
 >
 > ```sh
 > make ARCH=arm kernelversion
 > make ARCH=arm kernelrelease
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1110,10 +1196,11 @@
 <details>
 <summary>By which configuration option can kernel release be appended with release information?</summary>
 
-> `CONFIG_LOCALVERSION` option is the release information string to be appended to kernel release.  
-> Kernel version can never be appended.
+> `CONFIG_LOCALVERSION` option is the release information string to be appended
+> to kernel release.  Kernel version can never be appended.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1122,14 +1209,16 @@
 <details>
 <summary>How does the <code>Kbuild</code> work with configuration options to properly build kernel?</summary>
 
-> `Kbuild` takes configurations from `.config` file and follows below pattern in make files such as `drivers/char/Makefile`:
+> `Kbuild` takes configurations from `.config` file and follows below pattern
+> in make files such as `drivers/char/Makefile`:
 >
 > ```make
 > obj-y += mem.o random.o
 > obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1141,7 +1230,8 @@
 > * `ARCH`: architecture name
 > * `CROSS_COMPILE`: toolchain prefix ending with a hyphen, visible in `PATH`
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1152,7 +1242,8 @@
 
 > By enabling `CONFIG_DEBUG_INFO` configuration option.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1161,13 +1252,16 @@
 <details>
 <summary>Solve different relocation addresses of the kernel with multi-platform ARM <code>uImage</code>?</summary>
 
-> The relocation address is coded into the `uImage` header by the `mkimage` command when the kernel is built, but fails with multiple reloaction addresses.
+> The relocation address is coded into the `uImage` header by the `mkimage`
+> command when the kernel is built, but fails with multiple reloaction
+> addresses.
 >
 > ```sh
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1184,10 +1278,13 @@
 > make ARCH=aarch64 CROSS_COMPILE=aarch64-unknown-linux-gnueabihf-
 > ``````
 >
-> * For **x86** architectures, this target points to `vmlinux`, `bzImage`, and `modules` targets.  
-> * For **ARM** or **aarch64** architectures, it corresponds to `vmlinuz`, `zImage`, `modules`, and `dtbs` targets.
-> * **U-Boot** traditionally uses `uImage`, but newer versions can load `zImage`.
-> * **Most other bootloaders**: `zImage`
+> - For **x86** architectures, this target points to `vmlinux`, `bzImage`, and
+>   `modules` targets.
+> - For **ARM** or **aarch64** architectures, it corresponds to `vmlinuz`,
+>   `zImage`, `modules`, and `dtbs` targets.
+> - **U-Boot** traditionally uses `uImage`, but newer versions can load
+>   `zImage`.
+> - **Most other bootloaders**: `zImage`
 >
 > ```sh
 > make ARCH=arm CROSS_COMPILE=armv6-rpi-linux-gnueabihf- zImage
@@ -1204,7 +1301,8 @@
 <details>
 <summary>Specify the numbers of jobs allowed to build the kernel with?</summary>
 
-> `make` can leverage the host's CPU performance by running multiple jobs in parallel:
+> `make` can leverage the host's CPU performance by running multiple jobs in
+> parallel:
 >
 > ```sh
 > make -j8
@@ -1224,7 +1322,8 @@
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1233,14 +1332,18 @@
 <details>
 <summary>What kernel build artifacts will be stored in the source tree?</summary>
 
-> * `arch/$ARCH/boot`: the directory containing vmlinux image converted for bootloaders.
-> * `arch/$ARCH/boot/Image`: An uncompressed kernel image that can be booted.
-> * `arch/$ARCH/boot/*Image*`: A compressed kernel image that can also be booted.
-> * `arch/$ARCH/boot/dts/*.dtb`: Provides compiled device tree blobs for the selected CPU variant.
-> * `vmlinux`: A raw, uncompressed, and unstripped kernel image in ELF format suited for debugging by `kgdb` but generally not used for booting purposes.
-> * `zImage`: compressed version of `Image`.
-> * `uImage`: `zImage` plus a 64-byte U-Boot header.
-> * `System.map`: the symbol table in a human-readable form.
+> - `arch/$ARCH/boot`: the directory containing vmlinux image converted for
+>   bootloaders.
+> - `arch/$ARCH/boot/Image`: An uncompressed kernel image that can be booted.
+> - `arch/$ARCH/boot/*Image*`: A compressed kernel image that can also be
+>   booted.
+> - `arch/$ARCH/boot/dts/*.dtb`: Provides compiled device tree blobs for the
+>   selected CPU variant.
+> - `vmlinux`: A raw, uncompressed, and unstripped kernel image in ELF format
+>   suited for debugging by `kgdb` but generally not used for booting purposes.
+> - `zImage`: compressed version of `Image`.
+> - `uImage`: `zImage` plus a 64-byte U-Boot header.
+> - `System.map`: the symbol table in a human-readable form.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -1258,7 +1361,8 @@
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1267,25 +1371,39 @@
 <details>
 <summary>What are the steps required to build a kernel for the Raspberry Pi 4?</summary>
 
-> Raspberry Pi is a little different here. So prebuilt binaries or patched sources are preferred:
+> Raspberry Pi is a little different here. So prebuilt binaries or patched
+> sources are preferred:
 >
-> * Clone a stable branch of Raspberry Pi Foundations' kernel fork into a `linux` directory.
-> * Export contents of the `boot` subdirectory from Raspberry Pi Foundation's `firmware` repo to a `boot` directory.
-> * Delete existing kernel images, device tree blobs, and device tree overlays from the `boot` directory.
-> * From the `linux` directory, build the 64-bit kernel, modules, and device tree for the Raspberry Pi 4.
-> * Copy the newly built kernel image, device tree blobs, and device tree overlays from `arch/arm64/boot/` to the `boot` directory.
-> * Write `config.txt` and `cmdline.txt` files out to the boot directory for the Raspberry Pi's bootloader to read and pass to the kernel.
+> - Clone a stable branch of Raspberry Pi Foundations' kernel fork into a
+>   `linux` directory.
+> - Export contents of the `boot` subdirectory from Raspberry Pi Foundation's
+>   `firmware` repo to a `boot` directory.
+> - Delete existing kernel images, device tree blobs, and device tree overlays
+>   from the `boot` directory.
+> - From the `linux` directory, build the 64-bit kernel, modules, and device
+>   tree for the Raspberry Pi 4.
+> - Copy the newly built kernel image, device tree blobs, and device tree
+>   overlays from `arch/arm64/boot/` to the `boot` directory.
+> - Write `config.txt` and `cmdline.txt` files out to the boot directory for
+>   the Raspberry Pi's bootloader to read and pass to the kernel.
 >
 > Prebuilt toolchain:
 >
-> [AArch64 GNU/Linux target (aarch64-none-linux-gnu)](https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869)
+> [AArch64 GNU/Linux target
+> (aarch64-none-linux-gnu)](https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869)
 >
-> * Clone a stable branch of Raspberry Pi Foundations' kernel fork into a `linux` directory.
-> * Export contents of the `boot` subdirectory from Raspberry Pi Foundation's `firmware` repo to a `boot` directory.
-> * Delete existing kernel images, device tree blobs, and device tree overlays from the `boot` directory.
-> * From the `linux` directory, build the 64-bit kernel, modules, and device tree for the Raspberry Pi 4.
-> * Copy the newly built kernel image, device tree blobs, and device tree overlays from `arch/arm64/boot/` to the `boot` directory.
-> * Write `config.txt` and `cmdline.txt` files out to the boot directory for the Raspberry Pi's bootloader to read and pass to the kernel.
+> - Clone a stable branch of Raspberry Pi Foundations' kernel fork into a
+>   `linux` directory.
+> - Export contents of the `boot` subdirectory from Raspberry Pi Foundation's
+>   `firmware` repo to a `boot` directory.
+> - Delete existing kernel images, device tree blobs, and device tree overlays
+>   from the `boot` directory.
+> - From the `linux` directory, build the 64-bit kernel, modules, and device
+>   tree for the Raspberry Pi 4.
+> - Copy the newly built kernel image, device tree blobs, and device tree
+>   overlays from `arch/arm64/boot/` to the `boot` directory.
+> - Write `config.txt` and `cmdline.txt` files out to the boot directory for
+>   the Raspberry Pi's bootloader to read and pass to the kernel.
 >
 > Patched kernel source for Raspberry Pi:
 >
@@ -1315,7 +1433,8 @@
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1350,7 +1469,8 @@
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1368,7 +1488,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- dts
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1385,7 +1506,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- dts
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1396,7 +1518,9 @@
 <details>
 <summary>Install the kernel binary file on native and non-native targets?</summary>
 
-> In native installation following command copies artifacts like `/boot/vmlinuz-<version>`, `/boot/System.map-<version>`, and `/boot/config-<version>` files on the host.
+> In native installation following command copies artifacts like
+> `/boot/vmlinuz-<version>`, `/boot/System.map-<version>`, and
+> `/boot/config-<version>` files on the host.
 >
 > ```sh
 > sudo make install
@@ -1419,8 +1543,8 @@
 > sudo make modules_install
 > ``````
 >
-> The resulting modules will be installed in `/lib/modules/$(uname -r)/kernel/`, in the same directory structure as their corresponding source.
->
+> The resulting modules will be installed in `/lib/modules/$(uname
+> -r)/kernel/`, in the same directory structure as their corresponding source.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -1450,7 +1574,8 @@
 > make -j 8 ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- INSTALL_MOD_PATH=/run/media/user/rootfs install_modules
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1459,7 +1584,8 @@
 <details>
 <summary>Override the installation path of compiled module binaries?</summary>
 
-> The resulting modules will be installed in `/lib/modules/$(uname -r)/kernel/`, in the same directory structure as their corresponding source.
+> The resulting modules will be installed in `/lib/modules/$(uname
+> -r)/kernel/`, in the same directory structure as their corresponding source.
 >
 > ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- make modules
@@ -1483,12 +1609,22 @@
 
 > Module files are installed in `/lib/modules/<version>/`:
 >
-> * `modules.builtin`: This lists all the kernel objects (.ko) that are built into the kernel. It is used by the module loading utility (modprobe, for example) so that it does not fail when it's trying to load something that's already built in. `modules.builtin.bin` is its binary counterpart.
-> * `modules.alias`: This contains the aliases for module loading utilities, which are used to match drivers and devices.
-> * `modules.dep`: This lists modules, along with their dependencies. `modules.dep.bin` is its binary counterpart.
-> * `modules.symbols`: This tells us which module a given symbol belongs to. They are in the form of `alias symbol:<symbol> <modulename>`. An example is `alias symbol:v4l2_async_notifier_register videodev`. `modules.symbols.bin` is the binary counterpart of this file.
+> - `modules.builtin`: This lists all the kernel objects (.ko) that are built
+>   into the kernel. It is used by the module loading utility (modprobe, for
+>   example) so that it does not fail when it's trying to load something that's
+>   already built in. `modules.builtin.bin` is its binary counterpart.
+> - `modules.alias`: This contains the aliases for module loading utilities,
+>   which are used to match drivers and devices.
+> - `modules.dep`: This lists modules, along with their dependencies.
+>   `modules.dep.bin` is its binary counterpart.
+> - `modules.symbols`: This tells us which module a given symbol belongs to.
+>   They are in the form of `alias symbol:<symbol> <modulename>`. An example is
+>   `alias symbol:v4l2_async_notifier_register videodev`. `modules.symbols.bin`
+>   is the binary counterpart of this file.
 >
-> And the rest of module files will be stored in `/lib/modules/<version>/kernel/` in the same directory structure as their corresponding source.
+> And the rest of module files will be stored in
+> `/lib/modules/<version>/kernel/` in the same directory structure as their
+> corresponding source.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
@@ -1502,11 +1638,13 @@
 <details>
 <summary>Clean kernel source tree from build artifacts?</summary>
 
-> * `clean`: remove object files and most intermediates.
-> * `mrproper`: remove all intermediate files and `.config` file.
-> * `distclean`: remove all, also delete editor backup files, patch files, and other artifacts.
+> - `clean`: remove object files and most intermediates.
+> - `mrproper`: remove all intermediate files and `.config` file.
+> - `distclean`: remove all, also delete editor backup files, patch files, and
+>   other artifacts.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1519,7 +1657,8 @@
 
 > * https://github.com/devicetree-org/devicetree-specification/releases
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1528,8 +1667,8 @@
 <details>
 <summary>What are the common properties of device tree specification?</summary>
 
-> * Device tree begins with a root node.
-> * **reg** property referes to a range of units in a register space.
+> - Device tree begins with a root node.
+> - **reg** property referes to a range of units in a register space.
 >
 > ```dts
 > /dts-v1/;
@@ -1554,7 +1693,8 @@
 > };
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
@@ -1564,10 +1704,10 @@
 <details>
 <summary>Specify an interrupt controller in a device tree source?</summary>
 
-> * Labels used can be expressed in connections to reference to a node.
-> * Labels are also referred to as **phandles**.
-> * **interrupt-controller** property identifies not as interrupt controller.
-> * **interrupt-parrent** property references the interrupt controller.
+> - Labels used can be expressed in connections to reference to a node.
+> - Labels are also referred to as **phandles**.
+> - **interrupt-controller** property identifies not as interrupt controller.
+> - **interrupt-parrent** property references the interrupt controller.
 >
 > ```dts
 > /dts-v1/;
@@ -1589,7 +1729,8 @@
 > };
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1602,7 +1743,8 @@
 > /include/ "vexpress-v2m.dtsi"
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1611,7 +1753,8 @@
 <details>
 <summary>Overlay nodes on top of another to create a composite tree in which the outer layers extend or modify the inner ones?</summary>
 
-> * The **status** is disabled, meaning that no device driver should be bound to it.
+> - The **status** is disabled, meaning that no device driver should be bound
+>   to it.
 >
 > ```dts
 > mmc1: mmc@48060000 {
@@ -1628,7 +1771,8 @@
 > };
 > ``````
 >
-> * The **status** property is set to *okay*, which causes the MMC device driver to bind with this interface.
+> - The **status** property is set to *okay*, which causes the MMC device
+>   driver to bind with this interface.
 >
 > ```dtsi
 > &mmc1 {
@@ -1640,7 +1784,9 @@
 > };
 > ``````
 >
-> * The **mmc1** interface is connected to a different voltage regulator on the BeagleBone Black as expressed in am335x-boneblack.dts, which associates it with the voltage regulator via the **vmmcsd_fixed** label:
+> - The **mmc1** interface is connected to a different voltage regulator on the
+>   BeagleBone Black as expressed in am335x-boneblack.dts, which associates it
+>   with the voltage regulator via the **vmmcsd_fixed** label:
 >
 > ```dtsi
 > &mmc1 {
@@ -1648,7 +1794,8 @@
 > };
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1735,7 +1882,8 @@
 > }
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1750,7 +1898,8 @@
 > dtc beaglebone-black.dts -o beaglebone-black.dtb
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1778,14 +1927,18 @@
 >
 > The results of the compilation:
 >
-> * `u-boot`: U-Boot in ELF object format, suitable for use with a debugger
-> * `u-boot.map`: The symbol table
-> * `u-boot.bin`: U-Boot in raw binary format, suitable for running on your device
-> * `u-boot.img`: This is `u-boot.bin` with a U-Boot header added, suitable for uploading to a running copy of U-Boot
-> * `u-boot.srec`: U-Boot in Motoral S-record (**SRECORD** or **SRE**) format, suitable for transferring over a serial connection
-> * `MLO`: The BeagleBone Black also requires a **SPL** which is built here
+> - `u-boot`: U-Boot in ELF object format, suitable for use with a debugger
+> - `u-boot.map`: The symbol table
+> - `u-boot.bin`: U-Boot in raw binary format, suitable for running on your
+>   device
+> - `u-boot.img`: This is `u-boot.bin` with a U-Boot header added, suitable for
+>   uploading to a running copy of U-Boot
+> - `u-boot.srec`: U-Boot in Motoral S-record (**SRECORD** or **SRE**) format,
+>   suitable for transferring over a serial connection
+> - `MLO`: The BeagleBone Black also requires a **SPL** which is built here
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1796,11 +1949,18 @@
 <details>
 <summary>Describe the boot sequence in an embedded device?</summary>
 
-> * **Phase 1 Rom Code**: loads a small chunk of code from first few pages of NAND, from flash memory connected through **Serial Peripheral Interface**, or from the first sector of an MMC device, or from a file named ML on the first partition of an MMC device.
-> * **Phase 2 Secondary Program Loader (SPL)**: sets up memory controller and other essential parts of the system in preparation for loading the **TPL** into DRAM.
-> * **Phase 3 Tertiary Program Loader (TPL)**: full bootloader such as U-Boot loads the kernel + optional FDT and initramfs into DRAM.
+> - **Phase 1 Rom Code**: loads a small chunk of code from first few pages of
+>   NAND, from flash memory connected through **Serial Peripheral Interface**,
+>   or from the first sector of an MMC device, or from a file named ML on the
+>   first partition of an MMC device.
+> - **Phase 2 Secondary Program Loader (SPL)**: sets up memory controller and
+>   other essential parts of the system in preparation for loading the **TPL**
+>   into DRAM.
+> - **Phase 3 Tertiary Program Loader (TPL)**: full bootloader such as U-Boot
+>   loads the kernel + optional FDT and initramfs into DRAM.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1809,13 +1969,17 @@
 <details>
 <summary>Describe what parameters should be passed to the kernel on moving from the bootloader to a kernel?</summary>
 
-> * The machine number, which is used on PowerPC and Arm platform without support for a device tree, to Identify the type of SoC.
-> * Basic details of the hardware that's been detected so far, including the size and location of the physical RAM and the CPU's clock speed.
-> * The kernel command line.
-> * Optionally, the location and size of a device tree binary.
-> * Optionally, the location and size of an initial RAM disk, called the **initial RAM file system (initramfs)**.
+> - The machine number, which is used on PowerPC and Arm platform without
+>   support for a device tree, to Identify the type of SoC.
+> - Basic details of the hardware that's been detected so far, including the
+>   size and location of the physical RAM and the CPU's clock speed.
+> - The kernel command line.
+> - Optionally, the location and size of a device tree binary.
+> - Optionally, the location and size of an initial RAM disk, called the
+>   **initial RAM file system (initramfs)**.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1824,13 +1988,15 @@
 <details>
 <summary>Use U-Boot to read flash memory over serial console?</summary>
 
-> Read `0x200000` bytes from offset `0x400000` from the start of the NAND memory into RAM address `0x82000000`
+> Read `0x200000` bytes from offset `0x400000` from the start of the NAND
+> memory into RAM address `0x82000000`
 >
 > ```sh
 > nand read 82000000 400000 200000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1847,7 +2013,8 @@
 > printenv # print all environment variables
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1861,7 +2028,8 @@
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1876,7 +2044,8 @@
 > iminfo 82000000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1896,7 +2065,8 @@
 > nand read 82000000 280000 400000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1910,7 +2080,8 @@
 > bootm 82000000 - 83000000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1923,7 +2094,8 @@
 > setenv bootcmd nand read 82000000 400000 200000\;bootm 82000000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 3
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 3
 
 > References:
 ---
@@ -1939,7 +2111,8 @@
 > bootz 0x80200000 - 0x80f00000
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1952,7 +2125,8 @@
 > QEMU_AUDIO_DRV=none qemu-system-arm -m 256M -nographic -M versatilepb -kernel zImage -apend "console=ttyAMA0,115200" -dtb versatile-pb.dts"
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1963,20 +2137,23 @@
 <details>
 <summary>What are the essential kernel command lines?</summary>
 
-> * `debug`: set console log level.
-> * `init`: the `init` program to run from a mounted root filesystem which defaults to `/sbin/init`.
-> * `lpj`: sets `loops_per_jiffy` to a given constant.
-> * `panic`: behavior when the kernel panics. above zero is number of seconds before reboot, zero waits forever, and below zero reboots instantly.
-> * `quiet`: no log levels.
-> * `rdinit`: the `init` program to run from a ramdisk. defaults to `/init`.
-> * `ro`: mounts root device as read-only.
-> * `root`: the device on which to mount the root filesystem.
-> * `rootdelay`: number of seconds to wait before mounting root device.
-> * `rootfstype`: filesystem type for the root device.
-> * `rootwait`: wait indefinitely for the root device to be detected.
-> * `rw`: mounts root device as read-write (default).
+> - `debug`: set console log level.
+> - `init`: the `init` program to run from a mounted root filesystem which
+>   defaults to `/sbin/init`.
+> - `lpj`: sets `loops_per_jiffy` to a given constant.
+> - `panic`: behavior when the kernel panics. above zero is number of seconds
+>   before reboot, zero waits forever, and below zero reboots instantly.
+> - `quiet`: no log levels.
+> - `rdinit`: the `init` program to run from a ramdisk. defaults to `/init`.
+> - `ro`: mounts root device as read-only.
+> - `root`: the device on which to mount the root filesystem.
+> - `rootdelay`: number of seconds to wait before mounting root device.
+> - `rootfstype`: filesystem type for the root device.
+> - `rootwait`: wait indefinitely for the root device to be detected.
+> - `rw`: mounts root device as read-write (default).
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1985,10 +2162,11 @@
 <details>
 <summary>Reduce the time of calculating the constant <code>loops_per_jiffy</code> variable on boot time?</summary>
 
-> By setting `lpj=4980736` to the kernel parameter.  
+> By setting `lpj=4980736` to the kernel parameter.
 > The number should be different on each device.
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -1999,19 +2177,25 @@
 <details>
 <summary>What is the early user space after kernel is booted?</summary>
 
-> The kernel has to mount a root filesystem and execute the first user space process via a ramdisk or by mounting a real filesystem on a block device.
+> The kernel has to mount a root filesystem and execute the first user space
+> process via a ramdisk or by mounting a real filesystem on a block device.
 >
-> The code for this process is in `init/main.c`, starting with `rest_init()` function which creates the first thread with PID 1 and runs the code in `kernel_init()`.
+> The code for this process is in `init/main.c`, starting with `rest_init()`
+> function which creates the first thread with PID 1 and runs the code in
+> `kernel_init()`.
 >
-> If there is a ramdisk, it will try to execute the program `/init`, which will take on the task of setting up the user space.
+> If there is a ramdisk, it will try to execute the program `/init`, which will
+> take on the task of setting up the user space.
 >
-> If the kernel fails to find and run `/init`, it tries to mount a filesystem by calling the `prepare_namespace()` function in `init/do_mounts.c`.
+> If the kernel fails to find and run `/init`, it tries to mount a filesystem
+> by calling the `prepare_namespace()` function in `init/do_mounts.c`.
 >
 > ```sh
 > root=/dev/ mmcblk0p1
 > ``````
 
-> Origin: Mastering Embedded Linux Programming - Chapter 4
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -2024,21 +2208,32 @@
 
 > We can enumerate two synchronization mechanisms, as follows:
 >
-> 1. **Locks**: Used for mutual exclusion. When one contender holds the lock, no other can hold it (others are excluded). The most known locks in the kernel are **spinlocks** and **mutexes**.
+> 1. **Locks**: Used for mutual exclusion. When one contender holds the lock,
+>    no other can hold it (others are excluded). The most known locks in the
+>    kernel are **spinlocks** and **mutexes**.
 >
-> A resource is said to be shared when it is accessible by several contenders, whether exclusively or not.
-> When it is exclusive, access must be synchronized so that only the allowed contender(s) may own the resource.
+> A resource is said to be shared when it is accessible by several contenders,
+> whether exclusively or not. When it is exclusive, access must be synchronized
+> so that only the allowed contender(s) may own the resource.
 >
-> The operating system performs mutual exclusion by atomically modifying a variable that holds the current state of the resource, making this visible to all contenders that might access the variable at the same time.
+> The operating system performs mutual exclusion by atomically modifying a
+> variable that holds the current state of the resource, making this visible to
+> all contenders that might access the variable at the same time.
 >
-> 2. **Conditional variables**: For waiting for a change. These are implemented differently in the kernel as **wait queues** and **completion queues**.
+> 2. **Conditional variables**: For waiting for a change. These are implemented
+>    differently in the kernel as **wait queues** and **completion queues**.
 >
-> Apart from dealing with the exclusive ownership of a given shared resource, there are situations where it is better to wait for the state of the resource to change.
+> Apart from dealing with the exclusive ownership of a given shared resource,
+> there are situations where it is better to wait for the state of the resource
+> to change.
 >
-> The Linux kernel does not implement conditional variables, but to achieve the same or even better, the kernel provides the following mechanisms:
+> The Linux kernel does not implement conditional variables, but to achieve the
+> same or even better, the kernel provides the following mechanisms:
 >
-> * **Wait queue**: To wait for a change — designed to work in concert with locks.
-> * **Completion queue**: To wait for the completion of a given computation, mostly used with DMAs.
+> * **Wait queue**: To wait for a change — designed to work in concert with
+>   locks.
+> * **Completion queue**: To wait for the completion of a given computation,
+>   mostly used with DMAs.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2053,14 +2248,20 @@
 <details>
 <summary>What is a spinlock?</summary>
 
-> A *spinlock* is a hardware-based locking primitive that depends on hardware capabilities to provide atomic operations (such as `test_and_set`, which in a non-atomic implementation would result in read, modify, and write operations).
-> It is the simplest and the base locking primitive.
+> A *spinlock* is a hardware-based locking primitive that depends on hardware
+> capabilities to provide atomic operations (such as `test_and_set`, which in a
+> non-atomic implementation would result in read, modify, and write
+> operations). It is the simplest and the base locking primitive.
 >
-> When *CPUB* is running, and task B wants to acquire the spinlock while *CPUA* has already called this spinlock's locking function, *CPUB* will simply spin around a `while` loop until the other CPU releases the lock.
+> When *CPUB* is running, and task B wants to acquire the spinlock while *CPUA*
+> has already called this spinlock's locking function, *CPUB* will simply spin
+> around a `while` loop until the other CPU releases the lock.
 >
-> This spinning will only happen on multi-core machines because, on a single-core machine, it cannot happen.
+> This spinning will only happen on multi-core machines because, on a
+> single-core machine, it cannot happen.
 >
-> A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex* which is a lock held by a task.
+> A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex*
+> which is a lock held by a task.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2075,10 +2276,13 @@
 
 > A spinlock operates by disabling the scheduler on the local CPU.
 >
-> This also means that a task currently running on that CPU cannot be preempted except by **interrupt requests (IRQs)** if they are not disabled on the local CPU.
-> In other words, spinlocks protect resources that only one CPU can take/access at a time.
+> This also means that a task currently running on that CPU cannot be preempted
+> except by **interrupt requests (IRQs)** if they are not disabled on the local
+> CPU. In other words, spinlocks protect resources that only one CPU can
+> take/access at a time.
 >
-> This makes spinlocks suitable for **symmetrical multiprocessing (SMP)** safety and for executing atomic tasks.
+> This makes spinlocks suitable for **symmetrical multiprocessing (SMP)**
+> safety and for executing atomic tasks.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2099,7 +2303,9 @@
 >
 > This macro is defined in `include/linux/spinlock_types.h`.
 >
-> For dynamic (runtime) allocation, it's better to embed the spinlock into a bigger structure, allocating memory for this structure and then calling `spin_lock_init()` on the spinlock element:
+> For dynamic (runtime) allocation, it's better to embed the spinlock into a
+> bigger structure, allocating memory for this structure and then calling
+> `spin_lock_init()` on the spinlock element:
 >
 > ```c
 > struct bigger_struct {
@@ -2129,7 +2335,8 @@
 <details>
 <summary>Lock a previously defined spinlock in module source?</summary>
 
-> We can lock/unlock the spinlock using `spin_lock()` and `spin_unlock()` inline functions, both defined in `include/linux/spinlock.h`:
+> We can lock/unlock the spinlock using `spin_lock()` and `spin_unlock()`
+> inline functions, both defined in `include/linux/spinlock.h`:
 >
 > ```c
 > static __always_inline void spin_unlock(spinlock_t *lock);
@@ -2147,12 +2354,15 @@
 <details>
 <summary>What are the limitations of locking/unlocking spinlocks in a kernel module?</summary>
 
-> Though a spinlock prevents preemption on the local CPU, it does not prevent this CPU from being hogged by an interrupt.
+> Though a spinlock prevents preemption on the local CPU, it does not prevent
+> this CPU from being hogged by an interrupt.
 >
-> Imagine a situation where the CPU holds a *"spinlock"* on behalf of task A in order to protect a given resource, and an interrupt occurs.
-> The CPU will stop its current task and branch to this interrupt handler.
-> Now, imagine if this IRQ handler needs to acquire this same spinlock.
-> It will infinitely spin in place, trying to acquire a lock already locked by a task that it has preempted which results in a deadlock.
+> Imagine a situation where the CPU holds a *"spinlock"* on behalf of task A in
+> order to protect a given resource, and an interrupt occurs. The CPU will stop
+> its current task and branch to this interrupt handler. Now, imagine if this
+> IRQ handler needs to acquire this same spinlock. It will infinitely spin in
+> place, trying to acquire a lock already locked by a task that it has
+> preempted which results in a deadlock.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2165,8 +2375,10 @@
 <details>
 <summary>Prevent deadlock caused by IRQs when using spinlocks?</summary>
 
-> To address this issue, the Linux kernel provides `_irq` variant functions for spinlocks, which, in addition to disabling/enabling preemption, also disable/enable interrupts on the local CPU.
-> These functions are `spin_lock_irq()` and `spin_unlock_irq()`, defined as follows:
+> To address this issue, the Linux kernel provides `_irq` variant functions for
+> spinlocks, which, in addition to disabling/enabling preemption, also
+> disable/enable interrupts on the local CPU. These functions are
+> `spin_lock_irq()` and `spin_unlock_irq()`, defined as follows:
 >
 > ```c
 > static void spin_unlock_irq(spinlock_t *lock)
@@ -2184,8 +2396,11 @@
 <details>
 <summary>How does spinlocks affect preemtion after locking and unlocking?</summary>
 
-> `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
-> `spin_unlock()` is then a preemption point and might re-enable preemption.
+> `spin_lock()` and all its variants automatically call `preempt_disable()`,
+> which disables preemption on the local CPU, while `spin_unlock()` and its
+> variants call `preempt_enable()`, which tries to enable preemption, and which
+> internally calls schedule() if enabled. `spin_unlock()` is then a preemption
+> point and might re-enable preemption.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2198,20 +2413,30 @@
 <details>
 <summary>Store and restore previous IRQs status when using spinlocks?</summary>
 
-> `spin_lock_irq()` function is unsafe when called from IRQs off-context as its counterpart `spin_unlock_irq()` will dumbly enable IRQs, with the risk of enabling those that were not enabled while `spin_lock_irq()` was invoked.
-> It makes sense to use `spin_lock_irq()` only when you know that interrupts are enabled.
+> `spin_lock_irq()` function is unsafe when called from IRQs off-context as its
+> counterpart `spin_unlock_irq()` will dumbly enable IRQs, with the risk of
+> enabling those that were not enabled while `spin_lock_irq()` was invoked. It
+> makes sense to use `spin_lock_irq()` only when you know that interrupts are
+> enabled.
 >
-> To achieve this, the kernel provides `_irqsave` variant functions that behave exactly like the `_irq` ones, with saving and restoring interrupts status features in addition.
-> These are `spin_lock_irqsave()` and `spin_lock_irqrestore()`, defined as follows:
+> To achieve this, the kernel provides `_irqsave` variant functions that behave
+> exactly like the `_irq` ones, with saving and restoring interrupts status
+> features in addition. These are `spin_lock_irqsave()` and
+> `spin_lock_irqrestore()`, defined as follows:
 >
 > ```c
 > spin_lock_irqsave(spinlock_t *lock, unsigned long flags)
 > spin_unlock_irqrestore(spinlock_t *lock, unsigned long flags)
 > ``````
 >
-> `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls `schedule()` if enabled depending on the current value of the counter, whose current value should be 0.</br>
-> It tries because it depends on whether other spinlocks are locked, which would affect the value of the preemption counter.
-> `spin_unlock()` is then a preemption point and might re-enable preemption.
+> `spin_lock()` and all its variants automatically call `preempt_disable()`,
+> which disables preemption on the local CPU, while `spin_unlock()` and its
+> variants call `preempt_enable()`, which tries to enable preemption, and which
+> internally calls `schedule()` if enabled depending on the current value of
+> the counter, whose current value should be 0.</br> It tries because it
+> depends on whether other spinlocks are locked, which would affect the value
+> of the preemption counter. `spin_unlock()` is then a preemption point and
+> might re-enable preemption.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2224,14 +2449,21 @@
 <details>
 <summary>How a critical section can be protected from being preemted by kernel?</summary>
 
-> Though disabling interrupts may prevent kernel preemption nothing prevents the protected section from invoking the `schedule()` function.
-> The kernel disables or enables the scheduler, and thus preemtion, by increasing or decreasing a kernel global and per-CPU variable called `preempt_count` with 0 as default value.
-> This variable is checked by the `schedule()` function and when it is greater than 0, the scheduler simply returns and does nothing.
-> This variable is incremented at each invocation of a `spin_lock*()` family function.
-> On the other side, releasing a spinlock decrements it from 1, and whenever it reaches 0, the scheduler is invoked, meaning that your critical section would not be that atomic.
+> Though disabling interrupts may prevent kernel preemption nothing prevents
+> the protected section from invoking the `schedule()` function. The kernel
+> disables or enables the scheduler, and thus preemtion, by increasing or
+> decreasing a kernel global and per-CPU variable called `preempt_count` with 0
+> as default value. This variable is checked by the `schedule()` function and
+> when it is greater than 0, the scheduler simply returns and does nothing.
+> This variable is incremented at each invocation of a `spin_lock*()` family
+> function. On the other side, releasing a spinlock decrements it from 1, and
+> whenever it reaches 0, the scheduler is invoked, meaning that your critical
+> section would not be that atomic.
 >
-> Thus, disabling interrupts protects you from kernel preemption only in cases where the protected code does not trigger preemption itself.
-> That said, code that locked a spinlock may not sleep as there would be no way to wake it up as timer interrupts and/or schedulers are disabled on the local CPU.
+> Thus, disabling interrupts protects you from kernel preemption only in cases
+> where the protected code does not trigger preemption itself. That said, code
+> that locked a spinlock may not sleep as there would be no way to wake it up
+> as timer interrupts and/or schedulers are disabled on the local CPU.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2244,20 +2476,23 @@
 <details>
 <summary>Acquire a lock only if it is not already held by another contender?</summary>
 
-> Such methods try to acquire the lock and immediately return a status value, showing whether the lock has been successfully locked or not.
+> Such methods try to acquire the lock and immediately return a status value,
+> showing whether the lock has been successfully locked or not.
 >
-> Both spinlock and mutex APIs provide a trylock method.
-> These are, respectively, `spin_trylock()` and `mutex_trylock()`
+> Both spinlock and mutex APIs provide a trylock method. These are,
+> respectively, `spin_trylock()` and `mutex_trylock()`
 >
-> Both methods return 0 on failure (the lock is already locked) or 1 on success (lock acquired).
-> Thus, it makes sense to use these functions along with an if statement:
+> Both methods return 0 on failure (the lock is already locked) or 1 on success
+> (lock acquired). Thus, it makes sense to use these functions along with an if
+> statement:
 >
 > ```c
 > int mutex_trylock(struct mutex *lock)
 > ``````
 >
-> `spin_trylock()` will lock the spinlock if it is not already locked, just as the `spin_lock()` method does.
-> However, it immediately returns 0 without spinning in cases where the spinlock is already locked:
+> `spin_trylock()` will lock the spinlock if it is not already locked, just as
+> the `spin_lock()` method does. However, it immediately returns 0 without
+> spinning in cases where the spinlock is already locked:
 >
 > ```c
 > static DEFINE_SPINLOCK(foo_lock);
@@ -2290,10 +2525,12 @@
 <details>
 <summary>What is a mutex and how does it operate?</summary>
 
-> It behaves exactly like a *spinlock*, with the only difference being that your code can sleep.
-> A spinlock is a lock held by a CPU, a mutex, on the other hand, is a lock held by a task.
+> It behaves exactly like a *spinlock*, with the only difference being that
+> your code can sleep. A spinlock is a lock held by a CPU, a mutex, on the
+> other hand, is a lock held by a task.
 >
-> A mutex is a simple data structure that embeds a wait queue to put contenders to sleep and a spinlock to protect access to this wait queue.
+> A mutex is a simple data structure that embeds a wait queue to put contenders
+> to sleep and a spinlock to protect access to this wait queue.
 >
 > ```c
 > struct mutex {
@@ -2326,7 +2563,9 @@
 > static DEFINE_MUTEX(my_mutex);
 > ``````
 >
-> A second approach the kernel offers is dynamic initialization, possible thanks to a call to a `__mutex_init()` low-level function, which is actually wrapped by a much more user-friendly macro, `mutex_init()`.
+> A second approach the kernel offers is dynamic initialization, possible
+> thanks to a call to a `__mutex_init()` low-level function, which is actually
+> wrapped by a much more user-friendly macro, `mutex_init()`.
 >
 > ```c
 > struct fake_data {
@@ -2354,7 +2593,8 @@
 <details>
 <summary>Acquire a mutex in the kernel?</summary>
 
-> Acquiring (aka locking) a mutex is as simple as calling one of the following three functions:
+> Acquiring (aka locking) a mutex is as simple as calling one of the following
+> three functions:
 >
 > ```c
 > void mutex_lock(struct mutex *lock);
@@ -2362,14 +2602,19 @@
 > int mutex_lock_killable(struct mutex *lock);
 > ``````
 >
-> With `mutex_lock()`, your task will be put in an uninterruptible sleep state (`TASK_UNINTERRUPTIBLE`) while waiting for the mutex to be released if it is held by another task.
+> With `mutex_lock()`, your task will be put in an uninterruptible sleep state
+> (`TASK_UNINTERRUPTIBLE`) while waiting for the mutex to be released if it is
+> held by another task.
 >
-> `mutex_lock_interruptible()` will put your task in an interruptible sleep state, in which the sleep can be interrupted by any signal.
+> `mutex_lock_interruptible()` will put your task in an interruptible sleep
+> state, in which the sleep can be interrupted by any signal.
 >
-> `mutex_lock_killable()` will allow your sleeping task to be interrupted only by signals that actually kill the task.
+> `mutex_lock_killable()` will allow your sleeping task to be interrupted only
+> by signals that actually kill the task.
 >
 > Each of these functions returns 0 if the lock has been acquired successfully.
-> Moreover, interruptible variants return `-EINTR` when the locking attempt was interrupted by a signal.
+> Moreover, interruptible variants return `-EINTR` when the locking attempt was
+> interrupted by a signal.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2382,7 +2627,8 @@
 <details>
 <summary>Release an acquired mutex in the kernel?</summary>
 
-> Whichever locking function is used, only the mutex owner should release the mutex using `mutex_unlock()`:
+> Whichever locking function is used, only the mutex owner should release the
+> mutex using `mutex_unlock()`:
 >
 > ```c
 > void mutex_unlock(struct mutex *lock);
@@ -2403,7 +2649,8 @@
 > static bool mutex_is_locked(struct mutex *lock);
 > ``````
 >
-> This function simply checks if the mutex owner is `NULL` and returns `true` if so or `false` otherwise.
+> This function simply checks if the mutex owner is `NULL` and returns `true`
+> if so or `false` otherwise.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2416,19 +2663,26 @@
 <details>
 <summary>What are specific rules while using mutexes in the kernel?</summary>
 
-> The most important ones are enumerated in the `include/linux/mutex.h` kernel mutex API header file, and some of these are outlined here:
+> The most important ones are enumerated in the `include/linux/mutex.h` kernel
+> mutex API header file, and some of these are outlined here:
 >
-> * A mutex can be held by one and only one task at a time.
-> * Once held, the mutex can only be unlocked by the owner which is the task that locked it.
-> * Multiple, recursive, or nested locks/unlocks are not allowed.
-> * A mutex object must be initialized via the API. It must not be initialized by copying nor by using `memset()`, just as held mutexes must not be reinitialized.
-> * A task that holds a mutex may not exit, just as memory areas where held locks reside must not be freed.
-> * Mutexes may not be used in hardware or software interrupt contexts such as tasklets and timers.
+> - A mutex can be held by one and only one task at a time.
+> - Once held, the mutex can only be unlocked by the owner which is the task
+>   that locked it.
+> - Multiple, recursive, or nested locks/unlocks are not allowed.
+> - A mutex object must be initialized via the API. It must not be initialized
+>   by copying nor by using `memset()`, just as held mutexes must not be
+>   reinitialized.
+> - A task that holds a mutex may not exit, just as memory areas where held
+>   locks reside must not be freed.
+> - Mutexes may not be used in hardware or software interrupt contexts such as
+>   tasklets and timers.
 >
 > All this makes mutexes suitable for the following cases:
 >
-> * Locking only in the user context.
-> * If the protected resource is not accessed from an IRQ handler and the operations need not be atomic.
+> - Locking only in the user context.
+> - If the protected resource is not accessed from an IRQ handler and the
+>   operations need not be atomic.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2441,7 +2695,11 @@
 <details>
 <summary>What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?</summary>
 
-> It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
+> It may be cheaper to use spinlocks for very small critical sections since the
+> spinlock only suspends the scheduler and starts spinning, compared to the
+> cost of using a mutex, which needs to suspend the current task and insert it
+> into the mutex's wait queue, requiring the scheduler to switch to another
+> task and rescheduling the sleeping task once the mutex is released.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2473,7 +2731,8 @@
 <details>
 <summary>What does the term sleeping mean in the kernel?</summary>
 
-> The term sleeping refers to a mechanism by which a task voluntarily relaxes the processor, with the possibility of another task being scheduled.
+> The term sleeping refers to a mechanism by which a task voluntarily relaxes
+> the processor, with the possibility of another task being scheduled.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2485,16 +2744,23 @@
 <details>
 <summary>What passive waiting mechanisms are implemented in the kernel?</summary>
 
-> - **Sleeping APIs:** simple sleeping consist of a task sleeping and being awakened after a given duration to passively delay an operation.
-> - **Wait queues:** conditional sleeping mechanism based on external events such as data availability.
+> - **Sleeping APIs:** simple sleeping consist of a task sleeping and being
+>   awakened after a given duration to passively delay an operation.
+> - **Wait queues:** conditional sleeping mechanism based on external events
+>   such as data availability.
 >
-> Simple sleeps are implemented in the kernel using dedicated APIs; waking up from such sleeps is implicit and handled by the kernel itself after the duration expires.
+> Simple sleeps are implemented in the kernel using dedicated APIs; waking up
+> from such sleeps is implicit and handled by the kernel itself after the
+> duration expires.
 >
-> The other sleeping mechanism is conditioned on an event and the waking up is explicit unless a sleeping timeout is specified.
-> When timeout is not specified, another task must explicitly wake us up based on a condition, else we sleep forever.
+> The other sleeping mechanism is conditioned on an event and the waking up is
+> explicit unless a sleeping timeout is specified. When timeout is not
+> specified, another task must explicitly wake us up based on a condition, else
+> we sleep forever.
 >
-> Both sleeping APIs and wait queues implement what we can call **passive waiting**.
-> The difference between the two is how the waking up process occurs.
+> Both sleeping APIs and wait queues implement what we can call **passive
+> waiting**. The difference between the two is how the waking up process
+> occurs.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2506,9 +2772,12 @@
 <details>
 <summary>What queues are implemented in the kernel to hold tasks?</summary>
 
-> The kernel scheduler manages a list of tasks in a `TASK_RUNNING` state to run, known as a **runqueue**.
+> The kernel scheduler manages a list of tasks in a `TASK_RUNNING` state to
+> run, known as a **runqueue**.
 >
-> On the other hand, sleeping tasks, whether interruptible or not (in a `TASK_INTERRUPTIBLE` or `TASK_UNINTERRUPTIBLE` state), have their own queues, known as **waitqueues**.
+> On the other hand, sleeping tasks, whether interruptible or not (in a
+> `TASK_INTERRUPTIBLE` or `TASK_UNINTERRUPTIBLE` state), have their own queues,
+> known as **waitqueues**.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2522,7 +2791,9 @@
 <details>
 <summary>What is a wait queue?</summary>
 
-> Wait queues are higher-level mechanism essentially used to process blocking input/output, to wait for a condition to be true, to wait for a given event to occur, or to sense data or resource availability.
+> Wait queues are higher-level mechanism essentially used to process blocking
+> input/output, to wait for a condition to be true, to wait for a given event
+> to occur, or to sense data or resource availability.
 >
 > Wait queues are implemented in `include/linux/wait.h`:
 >
@@ -2533,7 +2804,8 @@
 > };
 > ``````
 >
-> A wait queue is nothing but a list with sleeping processes in it waiting to be awakened and a spinlock to protect access to this list.
+> A wait queue is nothing but a list with sleeping processes in it waiting to
+> be awakened and a spinlock to protect access to this list.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2566,19 +2838,24 @@
 <details>
 <summary>Put a process to sleep waiting for an event to occur?</summary>
 
-> Any process that wants to sleep waiting for `some_event` to occur can invoke either `wait_event_interruptible()` or `wait_event()`.
+> Any process that wants to sleep waiting for `some_event` to occur can invoke
+> either `wait_event_interruptible()` or `wait_event()`.
 >
-> Most of the time, the event is just the fact that a resource becomes available, thus it makes sense for a process to go to sleep after a first check of the availability of that resource.
+> Most of the time, the event is just the fact that a resource becomes
+> available, thus it makes sense for a process to go to sleep after a first
+> check of the availability of that resource.
 >
 > ```c
 > wait_event(&some_event, (event_occured == 1));
 > wait_event_interruptible(&some_event, (event_occured == 1));
 > ``````
 >
-> Both functions will put the process to sleep only if the expression evaluates `false`.
+> Both functions will put the process to sleep only if the expression evaluates
+> `false`.
 >
-> `wait_event()` puts the process into an exclusive wait, aka uninterruptible sleep, and can't thus be interrupted by the signal.
-> It should be used only for critical tasks.
+> `wait_event()` puts the process into an exclusive wait, aka uninterruptible
+> sleep, and can't thus be interrupted by the signal. It should be used only
+> for critical tasks.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2608,10 +2885,13 @@
 <details>
 <summary>What values does the <code>wait_event_timeout()</code> function return?</summary>
 
-> This function has two behaviors, depending on the timeout having elapsed or not.
+> This function has two behaviors, depending on the timeout having elapsed or
+> not.
 >
-> - **Timeout elapsed:** the function returns 0 if the condition is evaluated to `false` or 1 if it is evaluated `true`.
-> - **Timeout not elapsed yet:** the function returns the remaining time (in jiffies at least 1) if the condition is evaluated to `true`.
+> - **Timeout elapsed:** the function returns 0 if the condition is evaluated
+>   to `false` or 1 if it is evaluated `true`.
+> - **Timeout not elapsed yet:** the function returns the remaining time (in
+>   jiffies at least 1) if the condition is evaluated to `true`.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2625,16 +2905,22 @@
 <details>
 <summary>Wake up a process waiting on a wait queue?</summary>
 
-> After a change on any variable that could affect the result of the wait queue, call the appropriate `wake_up*` family function.
+> After a change on any variable that could affect the result of the wait
+> queue, call the appropriate `wake_up*` family function.
 >
-> In order to wake up a process sleeping on a wait queue, you should call either of the following functions.
-> Whenever you call any of these functions, the condition is re-evaluated again.
-> If the condition is `true` at that time, then a process (or all processes for the `_all()` variant) in the wait queue will be awakened, and its state set to `TASK_RUNNING`; otherwise, nothing happens.
+> In order to wake up a process sleeping on a wait queue, you should call
+> either of the following functions. Whenever you call any of these functions,
+> the condition is re-evaluated again. If the condition is `true` at that time,
+> then a process (or all processes for the `_all()` variant) in the wait queue
+> will be awakened, and its state set to `TASK_RUNNING`; otherwise, nothing
+> happens.
 >
 > - `wake_up()`: wake only one process from the wait queue
 > - `wake_up_all()`: wake all processes from the wait queue
-> - `wake_up_interruptible()`: wake only one process from the wait queue that is in interruptible sleep
-> - `wake_up_interruptible_all()`: wake all processes from the wait queue that are in interruptible sleep
+> - `wake_up_interruptible()`: wake only one process from the wait queue that
+>   is in interruptible sleep
+> - `wake_up_interruptible_all()`: wake all processes from the wait queue that
+>   are in interruptible sleep
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
@@ -2646,9 +2932,11 @@
 <details>
 <summary>What values do <code>wait_up</code> family functions return?</summary>
 
-> Because they can be interrupted by signals, you should check the return value of the `_interruptible` variants.
+> Because they can be interrupted by signals, you should check the return value
+> of the `_interruptible` variants.
 >
-> A nonezero means your sleep has been interrupted by some sort of signal, and the driver should return `ERESTARTSYS`.
+> A nonezero means your sleep has been interrupted by some sort of signal, and
+> the driver should return `ERESTARTSYS`.
 
 > Origins:
 > - Linux Device Driver Development - Chapter 3
