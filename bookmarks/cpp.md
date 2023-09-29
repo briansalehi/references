@@ -40,17 +40,26 @@ Covers the standard C++ programming language and its libraries.
 ### ★★★★★ [C++17: The Complete Guide](resources/9783967300178.md)
 [<img src="covers/9783967300178.jpg" width="200"/>](resources/9783967300178.md)
 
+### ★★★★★ [C++17 STL Cookbook](resources/9781787120495.md)
+[<img src="covers/9781787120495.jpg" width="200"/>](resources/9781787120495.md)
+
 ### ★★★★★ [C++20: The Complete Guide](resources/cxx20-the-complete-guide.md)
 [<img src="covers/cxx20-the-complete-guide.jpg" width="200"/>](resources/cxx20-the-complete-guide.md)
+
+### ★★★★★ [C++20 STL Cookbook](resources/9781803248714.md)
+[<img src="covers/9781803248714.jpg" width="200"/>](resources/9781803248714.md)
+
+### ★★★★★ [C++20: Get the Details](resources/cxx20-get-the-details.md)
+[<img src="covers/cxx20-get-the-details.jpg" width="200"/>](resources/cxx20-get-the-details.md)
+
+### ★★★★★ [Beginning C++20: From Novice to Professional](resources/9781484258842.md)
+[<img src="covers/9781484258842.jpg" width="200"/>](resources/9781484258842.md)
 
 ### ★★★★★ [C++ Move Semantics: The Complete Guide](resources/9783967309003.md)
 [<img src="covers/9783967309003.jpg" width="200"/>](resources/9783967309003.md)
 
 ### ★★★★★ [C++ Templates: The Complete Guide](resources/9780321714121.md)
 [<img src="covers/9780321714121.jpg" width="200"/>](resources/9780321714121.md)
-
-### ★★★★★ [C++17 STL Cookbook](resources/9781787120495.md)
-[<img src="covers/9781787120495.jpg" width="200"/>](resources/9781787120495.md)
 
 ### ★★★★★ [Modern C++ Programming Cookbook](resources/9781800208988.md)
 [<img src="covers/9781800208988.jpg" width="200"/>](resources/9781800208988.md)

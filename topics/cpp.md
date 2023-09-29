@@ -591,7 +591,7 @@
 > by value.
 
 > Origins:
-> - Origin: C++20: The Complete Guide - Chapter 1
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -639,7 +639,7 @@
 > usually easier.
 
 > Origins:
-> - Origin: C++20: The Complete Guide - Chapter 1
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -698,7 +698,7 @@
 > ``````
 
 > Origins:
-> - Origin: C++20: The Complete Guide - Chapter 1
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -775,7 +775,7 @@
 > ``````
 
 > Origins:
-> - Origin: C++20: The Complete Guide - Chapter 1
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -825,7 +825,7 @@
 > need the implicit type conversion.
 
 > Origins:
-> - Origin: C++20: The Complete Guide - Chapter 1
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
