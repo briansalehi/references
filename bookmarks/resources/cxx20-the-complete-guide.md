@@ -89,7 +89,8 @@
 >   corresponding implicit type conversion is defined
 > - may warn if the result of a comparison is not used (compiler dependent)
 
-> Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -154,7 +155,8 @@
 > reference with `=default`. A friend function might also take both parameters
 > by value.
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -201,7 +203,8 @@
 > other way around does not work. Comparison with 0 is always possible and
 > usually easier.
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -259,7 +262,8 @@
 > };
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -334,7 +338,8 @@
 > d1 == d2; // OK: only tries operator <=> and Base::operator==
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -383,7 +388,8 @@
 > Unfortunately, the rewritten statement is a better match, because it does not
 > need the implicit type conversion.
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 1
+> Origins:
+> - C++20: The Complete Guide - Chapter 1
 
 > References:
 ---
@@ -433,18 +439,23 @@
 > }
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 2
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
 
 > References:
 ---
 </details>
 
 <details>
-<summary>What are the restrictions of using abbreviated function template?</summary>
+<summary>What restrictions does abbreviated function template have?</summary>
 
-> Because functions with `auto` are function templates, all rules of using function templates apply. You cannot implement an abbreviated function template in one translation unit while calling it in a different translation unit.
+> Because functions with `auto` are function templates, all rules of using
+> function templates apply. You cannot implement an abbreviated function
+> template in one translation unit while calling it in a different translation
+> unit.
 >
-> Abbreviated function templates need not to be declared as `inline` because function templates are always inline.
+> Abbreviated function templates need not to be declared as `inline` because
+> function templates are always inline.
 >
 > Template parameters can be specified explicitly.
 >
@@ -458,14 +469,15 @@
 > print<char>(42);
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 2
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
 
 > References:
 ---
 </details>
 
 <details>
-<summary>Directly and indirectly call an abbreviated function template?</summary>
+<summary>Pass an abbreviated function template to a function?</summary>
 
 > You cannot pass a function with `auto` as a parameter without specifying the
 > generic parameter.
@@ -499,7 +511,8 @@
 > std::sort(container.begin(), container.end(), is_less);
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 2
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
 
 > References:
 ---
@@ -511,7 +524,8 @@
 > ```cpp
 > ``````
 
-> Origin: Origin: C++20: The Complete Guide - Chapter 2
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
 
 > References:
 ---
@@ -520,7 +534,350 @@
 
 ## Chapter 3/19 <sup>(writing)</sup>
 
+<details>
+<summary>How many ways constraints can be applied to a template?</summary>
 
+> - Using `requires` clause
+> - Using concepts
+> - Using `requires` expression
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Constraint a template function with a requirement to not be available if raw pointers are passed?</summary>
+
+> ```cpp
+> template <typename T>
+> requires (!std::is_pointer_v<T>)
+> T get_max(T a, T b)
+> {
+>     return a > b ? a : b;
+> }
+>
+> int x{42}, y{77};
+>
+> std::cout << get_max(x, y) << '\n'; // OK
+> std::cout << get_max(&x, &y) << '\n'; // ERROR: constraint not met
+> ``````
+>
+> When raw pointers are passed, the compiler behaves as if the template were
+> not there.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Implement a concept to constraint passing only raw pointers?</summary>
+
+> A `concept` is a template that introduces a name for one or more requirements
+> that apply to the passed template parameters so that we can use these
+> requirements as constraints.
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Apply a concept restricting parameters only to take raw pointers to a template?</summary>
+
+> Note that requires clauses that just constrain a template with a concept (or
+> multiple concepts combined with `&&`) no longer need parentheses.
+>
+> A negated concept always needs parentheses.
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> template <typename T>
+> requires (!is_pointer<T>)
+> T get_max(T a, T b)
+> {
+>     return a > b ? a : b;
+> }
+>
+> template <typename T>
+> requires is_pointer<T>
+> T get_max(T a, T b)
+> {
+>     return get_max(*a, *b);
+> }
+>
+> int x{42}, y{77};
+>
+> std::cout << get_max(x, y) << '\n'; // calls get_max() for non-pointers
+> std::cout << get_max(&x, &y) << '\n'; // calls get_max() for pointers
+> ``````
+>
+> The second call delegates the computations of both function templates.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Using overload resolution with concepts implement two function templates for pointers and non-pointers?</summary>
+
+> Overload resolution considers templates with constraints as more specialized
+> than templates without constraints. Therefore, it is enough to constrain the
+> implementation only for pointers.
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> template <typename T>
+> void print(T value)
+> {
+>     std::cout << value << '\n';
+> }
+>
+> template <typename T>
+> requires is_pointer<T>
+> void print(T value)
+> {
+>     print(*value);
+> }
+>
+> int x{42};
+>
+> print(x);  // print() for a value of type T
+> print(&x); // print() for pointers (higher priority)
+> ``````
+>
+> However, be careful: overloading once using references and once using
+> non-references might cause ambiguities.
+>
+> By using concepts, we can even prefer some constraints over others. However,
+> this requires the use of concepts that **subsume** other concepts.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>How many ways concepts can be applied into templates?</summary>
+
+> Specifying concepts as a type constraint in template parameters:
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> template <is_pointer T>
+> auto print(T value)
+> {
+>     std::cout << value << '\n';
+> }
+> ``````
+>
+> Specifying concepts as a type constraint behind parameters with `auto`:
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> auto print(is_pointer auto value)
+> {
+>     std::cout << value << '\n';
+> }
+> ``````
+>
+> This also works for parameters passed by reference:
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> auto print(is_pointer auto const& value)
+> {
+>     std::cout << value << '\n';
+> }
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>In how many ways a template can be constrained?</summary>
+
+> - Specifying requires clause with constraints or concepts
+> - Using concepts in template parameters
+> - Using concepts behind parameter types
+> - Specifying trailing requires clause after parameters list
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the advantage of using trailing requires clause over regular requires clause?</summary>
+
+> It has the benefit that it can use the name of a parameter or combine even
+> multiple parameter names to formulate constraints.
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = std::is_pointer_v<T>;
+>
+> template <typename L, typename R>
+> concept is_comparable_with = std::totally_ordered_with<L, R>;
+>
+> auto get_max(is_point auto a, is_pointer auto b)
+> requires is_comparable_with<decltype(*a), decltype(*b)>
+> {
+>     return get_max(*a, *b);
+> }
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Constraint a template to take only two comparable types?</summary>
+
+> ```cpp
+> auto compare(auto lhs, auto rhs)
+> requires std::totally_ordered_with<decltype(lhs), decltype(rhs)>
+> {
+>     return lhs < rhs ? rhs : lhs;
+> }
+> ``````
+>
+> The concept `std::totally_ordered_with` takes two template parameters to
+> check whether the values of the passed types are comparable with the
+> operators `==`, `!=`, `<`, `<=`, `>`, and `>=`.
+>
+> The concept `std::three_way_comparable_with` requires that the new `operator
+> <=>` is supported.
+>
+> To check support for comparisons of two objects of the same type, we can use
+> the concept `std::totally_ordered`.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Constraint a template to only accept objects supporting pointer deference operator?</summary>
+
+> Here, we are using the requires keyword again to introduce a **requires
+> expression**, which can define one or more requirements for types and
+> parameters.
+>
+> ```cpp
+> template <typename T>
+> concept is_pointer = requires(T p) {
+>     *p; // expression *p has to be well-formed
+>     p == nullptr; // can compare with nullptr
+>     (p < p) -> std::same_as<bool>; // operator < yields bool
+> };
+> ``````
+>
+> Note that we do not need two parameters of type `T` to check whether
+> `operator <` can be called.
+>
+> The runtime value does not matter. However, note that there are some
+> restrictions for how to specify what an expression yields (e.g., you cannot
+> specify just `bool` without `std::same_as<>` there).
+>
+> We require here that we can compare `p` with `nullptr`. However, that rules
+> out iterators, because in general, they cannot be compared with `nullptr`
+> (except when they happen to be implemented as raw pointers, as in the case
+> for type `std::array<>`).
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>What difference does it take for constraints to declare parameters as value or reference?</summary>
+
+> This is a compile-time constraint that has no impact on the generated code;
+> we only decide for which types the code compiles. Therefore, it does not
+> matter whether we declare the parameters as a value or as a reference.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Constraint a template with a requires expression?</summary>
+
+> ```cpp
+> template <typename T>
+> concept is_pointer = requires(T p) {
+>     *p;
+>     p == nullptr;
+>     (p < p) -> std::same_as<bool>;
+> };
+>
+> template <typename T>
+> requires is_pointer<T>
+> void print(T value)
+> {
+>     std::cout << *value << '\n';
+> }
+>
+> template <typename T>
+> requires requires(T p) { *p; }
+> void print(T value)
+> {
+>     std::cout << *value << '\n';
+> }
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 3
+
+> References:
+---
+</details>
+
+Next: 3.1.2
 
 ## Chapter 4/19
 
@@ -529,87 +886,135 @@
 <details>
 <summary>What are the preconditions and requirements of <code>std::ranges::sort()</code> to accept a container?</summary>
 
-* To have random access iterators, iterators that can be used to read, write, jump back and forth, and compute distance.
-* To be sortable and support comparison operators.
+> - To have random access iterators, iterators that can be used to read, write,
+>   jump back and forth, and compute distance.
+> - To be sortable and support comparison operators.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>How to use ranges to sort a container?</summary>
 
-```cpp
-#include <algorithm>
-#include <vector>
-#include <ranges>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<int> numbers{3,5,1,2,4};
+>     std::ranges::sort(numbers);
+> }
+> ``````
 
-int main()
-{
-    std::vector<int> numbers{3,5,1,2,4};
-    std::ranges::sort(numbers);
-}
-```
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?</summary>
 
 > Views
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>How to iterate over first 5 elements of a range using view adaptors?</summary>
 
-```cpp
+> ```cpp
 std::ranges::take(container, 5);
-```
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
-
 <details>
-<summary>How to sort only the first 5 elements of a container using ranges</summary>
+<summary>How to sort only the first 5 elements of a container using ranges?</summary>
 
-```cpp
-#include <vector>
-#include <ranges>
+> ```cpp
+> #include <vector>
+> #include <ranges>
+>
+> int main()
+> {
+>     std::vector<int> numbers{42,80,13,26,51,9,38};
+>     std::ranges::sort(std::views::take(numbers, 5));
+> }
+> ``````
 
-int main()
-{
-    std::vector<int> numbers{42,80,13,26,51,9,38};
-    std::ranges::sort(std::views::take(numbers, 5));
-}
-```
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>How to generate a sequence of values using views?</summary>
 
-```cpp
-std::views::iota(1, 11); // [1,10]
-```
+> ```cpp
+> std::views::iota(1, 11); // [1,10]
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>How to use combination of ranges and views that don't generate values to make filtering blocks?</summary>
 
-```cpp
-// nested form
-auto v = std::views::take(
-            std::views::transform(
-                std::views::filter(container, [](auto e) { return e % 3 == 0; }),
-                [](auto e) { return e * e; }),
-            3);
+> ```cpp
+> // nested form
+> auto v = std::views::take(
+>             std::views::transform(
+>                 std::views::filter(container, [](auto e) { return e % 3 == 0; }),
+>                 [](auto e) { return e * e; }),
+>             3);
+>
+> // piped form
+> auto v = container | std::views::filter([](auto e) { return e % 2 == 0; })
+>                    | std::views::transform([](auto e) { return e * e; })
+>                    | std::views::take(3);
+> ``````
 
-// piped form
-auto v = container | std::views::filter([](auto e) { return e % 2 == 0; })
-                   | std::views::transform([](auto e) { return e * e; })
-                   | std::views::take(3);
-```
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 <details>
 <summary>How to use a sentinel as an end of a range in iterating over a container?</summary>
 
-```cpp
-```
+> ```cpp
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 5
+
+> References:
+---
 </details>
 
 ## Chapter 6/19
