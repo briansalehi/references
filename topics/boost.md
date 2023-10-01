@@ -392,7 +392,70 @@
 > ``````
 
 > Origins:
-> - 6
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write a server accepting synchronous tcp requests?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <string>
+> #include <functional>
+> #include <boost/asio.hpp>
+>
+> static constexpr auto port{8888};
+> static constexpr auto address{"127.0.0.1"};
+>
+> void connection_worker(boost::asio::io_context& context)
+> {
+>     context.run();
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context context{};
+>     boost::asio::io_context::strand strand{context};
+>     boost::asio::ip::tcp::socket socket{context};
+>     boost::asio::ip::tcp::resolver resolver{context};
+>     boost::asio::ip::tcp::acceptor acceptor{context};
+>
+>     std::thread worker(connection_worker, std::ref(context));
+>
+>     boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};
+>     boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};
+>     boost::asio::ip::tcp::endpoint endpoint{*iterator};
+>
+>     acceptor.open(endpoint.protocol());
+>     acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+>     acceptor.bind(endpoint);
+>     acceptor.listen(boost::asio::socket_base::max_connections);
+>
+>     boost::asio::ip::address local_addr{endpoint.address()};
+>     boost::asio::ip::port_type local_port{port};
+>     std::clog << "listening " << local_addr << ":" << local_port << std::endl;
+>
+>     acceptor.accept(socket);
+>
+>     boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};
+>     boost::asio::ip::address client_addr{client.address()};
+>     boost::asio::ip::port_type client_port{client.port()};
+>     std::clog << "client " << client_addr << ":" << client_port << std::endl;
+>
+>     acceptor.close();
+>     socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>     socket.close();
+>     context.stop();
+>     worker.join();
+> }
+> ``````
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > References:
 ---
@@ -405,7 +468,7 @@
 > ``````
 
 > Origins:
-> - 6
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 6
 
 > References:
 ---
@@ -423,3 +486,311 @@
 > References:
 ---
 </details>
+
+## Synchronous TCP Connection
+
+<details>
+<summary>Write a client establishing a synchronous tcp connection to a server?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <string>
+> #include <boost/asio.hpp>
+>
+> void initialize_service(boost::asio::io_context& service)
+> {
+>     service.run();
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context service;
+>     boost::asio::io_context::strand strand{service};
+>
+>     std::thread worker{initialize_service, std::ref(service)};
+>
+>     boost::asio::ip::tcp::socket socket{service};
+>     boost::asio::ip::tcp::resolver resolver{service};
+>     boost::asio::ip::tcp::resolver::query query{"127.0.0.1", std::to_string(9090)};
+>     boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);
+>     boost::asio::ip::tcp::endpoint endpoint = *iterator;
+>
+>     socket.connect(endpoint);
+>     socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>     socket.close();
+>
+>     worker.join();
+>     service.stop();
+> }
+> ``````
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
+
+> References:
+---
+</details>
+
+## Asynchronous TCP Connection
+
+<details>
+<summary>Write a client establishing an asynchronous tcp connection to a server?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <iostream>
+> #include <functional>
+> #include <boost/asio.hpp>
+>
+> void connection_worker(boost::asio::io_context& context)
+> {
+>     context.run();
+> }
+>
+> void on_connect(boost::asio::ip::tcp::endpoint const& endpoint)
+> {
+>     std::cout << "connected to " << endpoint.address().to_string() << std::endl;
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context context{};
+>     boost::asio::io_context::strand strand{context};
+>     std::thread worker{connection_worker, std::ref(context)};
+>
+>     boost::asio::ip::tcp::socket socket{context};
+>     boost::asio::ip::tcp::resolver resolver{context};
+>
+>     boost::asio::ip::tcp::resolver::query query{"127.0.0.1", "9000"};
+>     boost::asio::ip::tcp::resolver::iterator endpoints = resolver.resolve(query);
+>
+>     boost::asio::ip::tcp::endpoint endpoint = *endpoints;
+>     socket.async_connect(endpoint, std::bind(on_connect, std::ref(endpoint)));
+>
+>     socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>     socket.close();
+>     worker.join();
+>     context.stop();
+> }
+> ``````
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Write a server accepting asynchronous tcp requests?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <memory>
+> #include <thread>
+> #include <string>
+> #include <functional>
+> #include <boost/asio.hpp>
+>
+> static constexpr auto port{8888};
+> static constexpr auto address{"127.0.0.1"};
+>
+> void connection_worker(boost::asio::io_context& context)
+> {
+>     context.run();
+> }
+>
+> void on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)
+> {
+>     boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};
+>     boost::asio::ip::address client_addr{client.address()};
+>     boost::asio::ip::port_type client_port{client.port()};
+>     std::clog << "client " << client_addr << ":" << client_port << std::endl;
+>
+>     socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>     socket.close();
+>     work.reset();
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context context{};
+>     boost::asio::io_context::strand strand{context};
+>     auto work{std::make_shared<boost::asio::io_context::work>(context)};
+>     boost::asio::ip::tcp::socket socket{context};
+>     boost::asio::ip::tcp::resolver resolver{context};
+>     boost::asio::ip::tcp::acceptor acceptor{context};
+>
+>     std::thread worker(connection_worker, std::ref(context));
+>
+>     boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};
+>     boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};
+>     boost::asio::ip::tcp::endpoint endpoint{*iterator};
+>
+>     acceptor.open(endpoint.protocol());
+>     acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+>     acceptor.bind(endpoint);
+>     acceptor.listen(boost::asio::socket_base::max_connections);
+>
+>     boost::asio::ip::address local_addr{endpoint.address()};
+>     boost::asio::ip::port_type local_port{port};
+>     std::clog << "listening " << local_addr << ":" << local_port << std::endl;
+>
+>     acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));
+>
+>     worker.join();
+>     acceptor.close();
+>     context.stop();
+> }
+> ``````
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
+
+> References:
+---
+</details>
+
+## Writing into and Reading from Socket
+
+<details>
+<summary>Write and read from server socket?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <algorithm>
+> #include <numeric>
+> #include <memory>
+> #include <thread>
+> #include <string>
+> #include <vector>
+> #include <list>
+> #include <functional>
+> #include <boost/asio.hpp>
+>
+> static constexpr auto port{8888};
+> static constexpr auto address{"127.0.0.1"};
+>
+> std::vector<std::uint8_t> receive_buffer(4096);
+> std::size_t receive_buffer_index{};
+> std::list<std::vector<std::uint8_t>> send_buffer;
+>
+> void connection_worker(boost::asio::io_context&);
+> void on_send(boost::asio::ip::tcp::socket&, std::list<std::vector<std::uint8_t>>::iterator);
+> void send(boost::asio::ip::tcp::socket&, void const*, std::size_t);
+> void on_receive(boost::asio::ip::tcp::socket&, std::size_t);
+> void receive(boost::asio::ip::tcp::socket&);
+> void on_accept(boost::asio::ip::tcp::socket&, std::shared_ptr<boost::asio::io_context::work>);
+>
+> void connection_worker(boost::asio::io_context& context)
+> {
+>     context.run();
+> }
+>
+> void on_send(boost::asio::ip::tcp::socket& socket, std::list<std::vector<std::uint8_t>>::iterator node)
+> {
+>     send_buffer.erase(node);
+>
+>     if (!send_buffer.empty())
+>     {
+>         boost::asio::async_write(
+>             socket,
+>             boost::asio::buffer(send_buffer.front()),
+>             std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())
+>         );
+>     }
+> }
+>
+> void send(boost::asio::ip::tcp::socket& socket, void const* buffer, std::size_t length)
+> {
+>     std::vector<std::uint8_t> output;
+>     std::copy((std::uint8_t const*)buffer, (std::uint8_t const*)buffer + length, std::back_inserter(output));
+>
+>     send_buffer.push_back(output);
+>
+>     boost::asio::async_write(
+>         socket,
+>         boost::asio::buffer(send_buffer.front()),
+>         std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())
+>     );
+> }
+>
+> void on_receive(boost::asio::ip::tcp::socket& socket, std::size_t bytes_transferred)
+> {
+>     receive_buffer_index += bytes_transferred;
+>
+>     for (std::size_t index{}; index < receive_buffer_index; ++index)
+>     {
+>         std::cout << (char)receive_buffer[index] << " ";
+>     }
+>     std::cout << std::endl;
+>     receive_buffer_index = 0;
+>
+>     receive(socket);
+> }
+>
+> void receive(boost::asio::ip::tcp::socket& socket)
+> {
+>     socket.async_read_some(
+>         boost::asio::buffer(
+>             &receive_buffer[receive_buffer_index],
+>             receive_buffer.size() - receive_buffer_index
+>         ),
+>         std::bind(on_receive, std::ref(socket), 1)
+>     );
+> }
+>
+> void on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)
+> {
+>     boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};
+>     boost::asio::ip::address client_addr{client.address()};
+>     boost::asio::ip::port_type client_port{client.port()};
+>     std::clog << "client " << client_addr << ":" << client_port << std::endl;
+>
+>     send(socket, "payload", 7);
+>     receive(socket);
+>
+>     socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+>     socket.close();
+>     work.reset();
+> }
+>
+> int main()
+> {
+>     boost::asio::io_context context{};
+>     boost::asio::io_context::strand strand{context};
+>     auto work{std::make_shared<boost::asio::io_context::work>(context)};
+>     boost::asio::ip::tcp::socket socket{context};
+>     boost::asio::ip::tcp::resolver resolver{context};
+>     boost::asio::ip::tcp::acceptor acceptor{context};
+>
+>     std::thread worker(connection_worker, std::ref(context));
+>
+>     boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};
+>     boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};
+>     boost::asio::ip::tcp::endpoint endpoint{*iterator};
+>
+>     acceptor.open(endpoint.protocol());
+>     acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+>     acceptor.bind(endpoint);
+>     acceptor.listen(boost::asio::socket_base::max_connections);
+>
+>     boost::asio::ip::address local_addr{endpoint.address()};
+>     boost::asio::ip::port_type local_port{port};
+>     std::clog << "listening " << local_addr << ":" << local_port << std::endl;
+>
+>     acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));
+>
+>     worker.join();
+>     acceptor.close();
+>     context.stop();
+> }
+> ``````
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 6
+
+> References:
+---
+</details>
+
