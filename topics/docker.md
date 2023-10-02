@@ -429,6 +429,100 @@
 ---
 </details>
 
+## Image Verification
+
+<details>
+<summary>Verify the integrity of images?</summary>
+
+> **Docker Content Trust (DCT)** lets us sign our own images and verify the
+> integrity and publisher of images we consume.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Configure <b>Docker Content Trust</b> to sign images?</summary>
+
+> To follow along, you’ll need a cryptographic key-pair to sign images.
+>
+> ```sh
+> docker trust key generate brian
+> ``````
+>
+> If you already have a key-pair, you can import and load it with:
+>
+> ```sh
+> docker trust key load key.pem --name brian
+> ``````
+>
+> Now that we’ve loaded a valid key-pair, we’ll associate it with the image
+> repository we’ll push signed images to. This example uses the
+> nigelpoulton/ddd-trust repo on Docker Hub and the brian.pub key that was
+> created in the previous step.
+>
+> ```sh
+> docker trust signer add --key brian.pub brian briansalehi/ddd-trust
+> ``````
+>
+> The following command will sign the briansalehi/ddd-trust:signed image and
+> push it to Docker Hub. You’ll need to tag an image on your system with the
+> name of the repo you just associated your key-pair with.
+>
+> Push the signed image:
+>
+> ```sh
+> docker trust sign briansalehi/ddd-trust:signed
+> ``````
+>
+> The push operation will create the repo on Docker Hub and push the image.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Inspect signing data of an image?</summary>
+
+> ```sh
+> docker trust inspect nigelpoulton/ddd-trust:signed --pretty
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Permanently configure docker to verify image push and pull operations?</summary>
+
+> You can force a Docker host to always sign and verify image push and pull
+> operations by exporting the `DOCKER_CONTENT_TRUST` environment variable with
+> a value of 1. In the real world, you’ll want to make this a more permanent
+> feature of Docker hosts.
+>
+> ```sh
+> export DOCKER_CONTENT_TRUST=1
+> ``````
+>
+> Once DCT is enabled like this, you’ll no longer be able to pull and work with
+> unsigned images.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
 ## Container Running
 
 <details>
@@ -1409,6 +1503,465 @@
 
 > Origins:
 > - Docker Deep Dive - Chapter 10
+
+> References:
+---
+</details>
+
+## Swarm Joining
+
+<details>
+<summary>Join new managers in a swarm?</summary>
+
+> First extract the manager token:
+>
+> *manager1*
+> ```sh
+> docker swarm join-token manager
+> ``````
+>
+> Then using then token join new nodes as managers:
+>
+> *node1*
+> ```sh
+> docker swarm join --token <manager-join-token> <ip-of-existing-manager>:<swarm-port>
+> ``````
+>
+> Every join token has 4 distinct fields separated by dashes (-):
+> `PREFIX - VERSION - SWARM ID - TOKEN`
+> - The prefix is always `SWMTKN`. This allows you to pattern-match against it
+>   and prevent people from accidentally posting it publicly.
+> - The `VERSION` field indicates the version of the swarm.
+> - The `SWARM ID` field is a hash of the swarm’s certificate.
+> - The `TOKEN` field is worker or manager token.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Revoke compromised token and issue new swarm join-token?</summary>
+
+> ```sh
+> docker swarm join-token --rotate manager
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+## Swarm Security
+
+<details>
+<summary>What analyzing tool scans images for vulnerability?</summary>
+
+> Docker Swarm Mode is secure by default. Image vulnerability scanning analyses
+> images, detects known vulnerabilities, and provides detailed reports and
+> fixes.
+>
+> Scanners work by building a list of all software in an image and then comparing the packages against databases of known vulnerabilities.
+> Most vulnerability scanners will rank vulnerabilities and provide advice and help on fixes.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>What kernel feature provides container isolation?</summary>
+
+> Kernel namespaces are the main technology used to build containers. They
+> virtualise operating system constructs such as process trees and filesystems
+> in the same way that hypervisors virtualise physical resources such as CPUS
+> and disks. If namespaces are about isolation, control groups (cgroups) are
+> about limits.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>What kernel feature provides container resource management?</summary>
+
+> Containers are isolated from each other but all share a common set of
+> resources — things like CPU, RAM, network and disk I/O. Cgroups let us set
+> limits so a single container cannot consume them all and cause a denial of
+> service (DoS) attack.
+>
+> Docker uses seccomp to limit the syscalls a container can make to the host’s
+> kernel. At the time of writing, Docker’s default seccomp profile disables 44
+> syscalls. Modern Linux systems have over 300 syscalls.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Secure the network connections of a swarm?</summary>
+
+> **Docker secrets** let us securely share sensitive data with applications.
+> They’re stored in the encrypted cluster store, encrypted over the network,
+> kept in in-memory filesystems when in use, and operate a least-privilege
+> model.
+>
+> Run the following command from the node you want to be the first manager in
+> the new swarm.
+>
+> *manager1*
+> ```sh
+> docker swarm init
+> ``````
+>
+> That’s literally all you need to do to configure a secure swarm.
+>
+> *manager1* is configured as the first manager of the swarm and also as the
+> root certificate authority (CA). The swarm itself has been given a
+> cryptographic cluster ID.
+>
+> *manager1* has issued itself with a client certificate that identifies it as
+> a manager, certificate rotation has been configured with the default value of
+> 90 days, and a cluster database has been configured and encrypted. A set of
+> secure tokens have also been created so that additional managers and workers
+> can be securely joined.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Inspect a node’s client certificate?</summary>
+
+> ```sh
+> sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+## Swarm Modification
+
+<details>
+<summary>Configure the swarm certificate rotation period?</summary>
+
+> ```sh
+> docker swarm update
+> ``````
+>
+> The following example changes the certificate rotation period to 30 days.
+>
+> docker swarm update --cert-expiry 720h
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+<details>
+<summary>Manage CA related configuration?</summary>
+
+> ```sh
+docker swarm ca --help
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+
+## Swarm Secret
+
+<details>
+<summary>Create a secret on swarm to store credentials?</summary>
+
+> Many applications have sensitive data such as passwords, certificates, and
+> SSH keys. Secrets require swarm as they leverage the cluster store. The
+> secret is shown as the key symbol and the container icons with the dashed
+> line are not part of the service that has access to the secret.
+>
+> You can create and manage secrets with the docker secret command. You can
+> then attach them to services by passing the `--secret` flag:
+>
+> ```sh
+> docker service create --secret
+> ``````
+>
+> The secret is mounted into the containers of the blue service as an
+> unencrypted ﬁle at `/run/secrets/`. This is an in-memory *tmpfs* filesystem.
+
+> Origins:
+> - Docker Deep Dive - Chapter 15
+
+> References:
+---
+</details>
+## Plugin Installation
+
+<details>
+<summary>Install a plugin on docker?</summary>
+
+> ```sh
+> docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Plugin Listing
+
+<details>
+<summary>List available plugins?</summary>
+
+> ```sh
+> docker plugin ls
+> docker plugin list
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Creation
+
+<details>
+<summary>Create a volume?</summary>
+
+> By default, Docker creates new volumes with the built-in *local* driver.
+>
+> ```sh
+> docker volume create my-storage
+> ``````
+>
+> As the name suggests, volumes created with the *local* driver are only
+> available to containers on the same node as the volume. You can use the `-d`
+> ﬂag to specify a diﬀerent driver.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+<details>
+<summary>Create a volume in Dockerfile?</summary>
+
+> ```docker
+> VOLUME <container-mount-point>
+> ``````
+>
+> Interestingly, you cannot specify a directory on the host when deﬁning a
+> volume in a Dockerﬁle. This is because host directories are different
+> depending on what OS your Docker host is running – it could break your builds
+> if you speciﬁed a directory on a Docker host that doesn’t exist. As a result,
+> deﬁning a volume in a Dockerfile requires you to specify host directories at
+> deploy-time.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+<details>
+<summary>Create a volume with an installed plugin?</summary>
+
+> ```sh
+> docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
+> docker volume create --driver pure --opt size=25GB fast-volume
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Listing
+
+<details>
+<summary>List available volumes?</summary>
+
+> ```sh
+> docker volume ls
+> docker volume list
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Inspecting
+
+<details>
+<summary>Inspect into a volume?</summary>
+
+> ```sh
+> docker volume inspect my-storage
+> ``````
+>
+> If both the `Driver` and `Scope` properties are *local*, it means the volume
+> was created with the local driver and is only available to containers on this
+> Docker host.
+>
+> The `Mountpoint` property tells us where in the Docker host’s filesystem the
+> volume exists.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Deletion
+
+<details>
+<summary>Delete a volume?</summary>
+
+> ```sh
+> docker volume rm
+> docker volume remove
+> ``````
+>
+> This option lets you specify exactly which volumes you want to delete. It
+> won't delete a volume that is in use by a container or service replica.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+<details>
+<summary>Delete all volumes?</summary>
+
+> ```sh
+> docker volume prune
+> ``````
+>
+> `prune` will delete all volumes that are not mounted into a container or
+> service replica.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Attachment
+
+<details>
+<summary>Attach a volume to a container?</summary>
+
+> Create a volume, then you create a container and mount the volume into it.
+> The volume is mounted into a directory in the container’s filesystem, and
+> anything written to that directory is stored in the volume. If you delete the
+> container, the volume and its data will still exist.
+>
+> ```sh
+> docker container run --detach --interactive --tty --name my-service --mount source=my-storage,target=/storage alpine
+> ``````
+>
+> * If you specify an existing volume, Docker will use the existing volume.
+> * If you specify a volume that doesn’t exist, Docker will create it for you.
+>
+> In case `my-storage` didn't exist, it will be created:
+>
+> ```sh
+> docker volume ls
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+<details>
+<summary>Attach a volume to a cluster?</summary>
+
+> ```sh
+> docker service create --name my-service --mount source=bizvol,target=/vol alpine sleep 1d
+> ``````
+>
+> `--replica` flag was not set, so only a single service replica was deployed.
+>
+> Running service can be found in cluster by following command:
+>
+> ```sh
+> docker service ps my-service
+> ``````
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
+
+> References:
+---
+</details>
+
+## Volume Corruption
+
+<details>
+<summary>What is the potential data corruption on a shared volume between nodes?</summary>
+
+> Assuming an application running on two nodes of a cluster and both have write
+> access to the shared volume.
+>
+> The application running on node-1 updates some data in the shared volume.
+> However, instead of writing the update directly to the volume, it holds it in
+> its local buﬀer for faster recall. At this point, the application in node-1
+> thinks the data has been written to the volume. However, before node-1
+> flushes its buffers and commits the data to the volume, the app on node-2
+> updates the same data with a diﬀerent value and commits it directly to the
+> volume. At this point, both applications think they’ve updated the data in
+> the volume, but in reality only the application in node-2 has. A few seconds
+> later, on node-1 flushes the data to the volume, overwriting the changes made
+> by the application in node-2. However, the application in node-2 is totally
+> unaware of this! This is one of the ways data corruption happens. To prevent
+> this, you need to write your applications in a way to avoid things like this.
+
+> Origins:
+> - Docker Deep Dive - Chapter 13
 
 > References:
 ---

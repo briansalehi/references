@@ -63,5 +63,8 @@ Covers development tools required for an embedded software engineer.
 [<img src="covers/9781521822807.jpg" width="200"/>](resources/9781521822807.md)
 
 ### ★★★★ [Docker in Practice](resources/9781617294808.md)
-[<img src="covers/9781617294808.jpg" width="200"/>](resources/.md)
+[<img src="covers/9781617294808.jpg" width="200"/>](resources/9781617294808.md)
+
+### ★★★★ [Docker: Up & Running](resources/9781098131760.md)
+[<img src="covers/9781098131760.jpg" width="200"/>](resources/9781098131760.md)
 
