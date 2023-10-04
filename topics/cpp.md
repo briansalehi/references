@@ -1,5 +1,186 @@
 # C++ Programming
 
+## Building Executable
+
+<details>
+<summary>Build an executable from C++ source?</summary>
+
+>
+> ```sh
+> g++ -o program source.cpp -std=c++20
+> ``````
+>
+> ```sh
+> clang++ -o program source.cpp -std=c++20
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 1
+
+> References:
+---
+</details>
+
+## Variable Initialization
+
+<details>
+<summary>Initialize scoped and global variables?</summary>
+
+> ```cpp
+> #include <iostream>
+>
+> int global_number = 42;
+>
+> int function()
+> {
+>     int local_number = 77;
+>     return local_number;
+> }
+>
+> int main()
+> {
+>     std::cout << function() << '\n';
+>     std::cout << global_number << '\n';
+>     return 0;
+> }
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Constant Initialization
+
+<details>
+<summary>How many constants are available in C++?</summary>
+
+> - Literal constants
+> - Constants defined by `const`
+> - Constant expressions defined by `constexpr`
+> - Immediate functions marked by `consteval`
+> - Enumerations
+> - Scoped Enumerations
+> - Preprocessor macro `#define`
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Initialize a constant?</summary>
+
+> ```cpp
+> const double pi = 22.0 / 7;
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Function Declaration
+
+<details>
+<summary>Declare and define a function separately?</summary>
+
+> ```cpp
+> void do_something();
+>
+> int main()
+> {
+>     do_something();
+> }
+>
+> void do_something()
+> {
+> }
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 2
+
+> References:
+---
+</details>
+
+## Constant Expressions
+
+<details>
+<summary>Declare a function evaluated at compile time?</summary>
+
+> ```cpp
+constexpr double get_pi()
+{
+    return 22.0 / 7;
+}
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Constant Evaluation
+
+<details>
+<summary>Ensure compile time evaluation of a function?</summary>
+
+> ```cpp
+consteval double divide(double a, double b)
+{
+    return a / b;
+}
+
+consteval double get_pi()
+{
+    return divide(22.0, 7); // OK
+}
+
+double dividen{22.0}, divisor{7.0};
+divide(dividen, divisor); // ERROR: non-const arguments to consteval
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Namespace Abbreviation
+
+<details>
+<summary>Abbreviate namespaces to avoid repetition?</summary>
+
+> ```cpp
+> #include <iostream>
+>
+> int main()
+> {
+>     using std::cout;
+>     using std::endl;
+>
+>     cout << 42 << endl;
+> }
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 2
+
+> References:
+---
+</details>
+
 ## Unnamed Namespaces
 
 <details>
@@ -243,6 +424,7 @@
 
 > Origins:
 > - Modern C++ Programming Cookbook - Chapter 1
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/auto
@@ -277,6 +459,22 @@
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/structured_binding
+---
+</details>
+
+## Typedef
+
+<details>
+<summary>Define a new type based on predefined types?</summary>
+
+> ```cpp
+> typedef unsigned long positive_t;
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
 ---
 </details>
 
@@ -363,6 +561,7 @@
 
 > Origins:
 > - Modern C++ Programming Cookbook - Chapter 1
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > References:
 > - https://en.cppreference.com/w/cpp/language/initialization
@@ -1161,6 +1360,29 @@
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
 </details>
+
+## Operators
+
+<details>
+<summary>Determine the size of an expression?</summary>
+
+> ```cpp
+#include <iostream>
+
+int main()
+{
+    std::cout << sizeof(long double) << '\n';
+}
+> ``````
+
+> Origins:
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Operator Overloading
 
 ## Cooked User-Defined Literals
 

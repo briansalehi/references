@@ -2,30 +2,6 @@
 
 Covers the standard C++ programming language and its libraries.
 
-## Table of Content
-
-* [C++ Concurrency in Action](#-c++-concurrency-in-action)
-* [Concurrency with Modern C++](#-concurrency-with-modern-c++)
-* [The C++ Standard Library](#-the-c++-standard-library)
-* [C++17: The Complete Guide](#-c++17-the-complete-guide)
-* [C++20: The Complete Guide](#-c++20-the-complete-guide)
-* [C++ Move Semantics: The Complete Guide](#-c++-move-semantics-the-complete-guide)
-* [C++ Templates: The Complete Guide](#-c++-templates-the-complete-guide)
-* [C++17 STL Cookbook](#-c++17-stl-cookbook)
-* [Modern C++ Programming Cookbook](#-modern-c++-programming-cookbook)
-* [Deciphering Object-Oriented Programming with C++](#-deciphering-object-oriented-programming-with-c++)
-* [Hands-On Design Patterns with C++](#-hands-on-design-patterns-with-c)
-* [Design Patterns in Modern C++20](#-design-patterns-in-modern-c++20)
-* [Pro Tbb: C++ Parallel Programming with Threading Building Blocks](#-pro-tbb-c++-parallel-programming-with-threading-building-blocks)
-* [Boost.Asio C++ Network Programming](#-boost.asio-c++-network-programming)
-* [Boost.Asio C++ Network Programming Cookbook](#-boost.asio-c++-network-programming-cookbook)
-* [Boost Libraries](#-boost-libraries)
-* [Qt Manual](#-qt-manual)
-* [OpenCV Manual](#-opencv-manual)
-* [Learning OpenCV 3](#-learning-opencv-3)
-
----
-
 ## Standard C++
 
 ### ★★★★★ [C++ Concurrency in Action](resources/9781617294693.md)
@@ -36,6 +12,9 @@ Covers the standard C++ programming language and its libraries.
 
 ### ★★★★★ [The C++ Standard Library](resources/9780321623218.md)
 [<img src="covers/9780321623218.jpg" width="200"/>](resources/9780321623218.md)
+
+### ★★★★★ [Teach Yourself C++ in One Hour a Day](resources/9780137334681.md)
+[<img src="covers/9780137334681.jpg" width="200"/>](resources/9780137334681.md)
 
 ### ★★★★★ [C++17: The Complete Guide](resources/9783967300178.md)
 [<img src="covers/9783967300178.jpg" width="200"/>](resources/9783967300178.md)
@@ -110,3 +89,4 @@ Covers the standard C++ programming language and its libraries.
 * http://stroustrup.com
 * http://josuttis.com
 * http://simontoth.eu
+
