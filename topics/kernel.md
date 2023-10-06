@@ -167,9 +167,7 @@
 ---
 </details>
 
-## Crosstool-ng
-
-### Crosstool-ng Installation
+## Crosstool-ng Installation
 
 <details>
 <summary>Build and install <i>crosstool-ng</i>?</summary>
@@ -191,7 +189,7 @@
 ---
 </details>
 
-### Crosstool-ng Configuration
+## Crosstool-ng Configuration
 
 <details>
 <summary>Print the list of crosstool-ng sample configurations?</summary>
@@ -224,7 +222,7 @@
 ---
 </details>
 
-### Building Toolchain
+## Building Toolchain
 
 <details>
 <summary>Build a cross-toolchain for Raspberry Pi Zero?</summary>
@@ -305,7 +303,7 @@
 ---
 </details>
 
-### Using Toolchains
+## Using Toolchains
 
 <details>
 <summary>What are the main C library components?</summary>
