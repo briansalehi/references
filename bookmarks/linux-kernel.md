@@ -1,23 +1,5 @@
 # Linux Kernel Development
 
-Covers kernel development.
-
-## Table of Content
-
-* [Mastering Embedded Linux Programming](#-mastering-embedded-linux-programming)
-* [Linux Device Driver Development](#-linux-device-driver-development)
-* [Mastering Linux Device Driver Development](#-mastering-linux-device-driver-development)
-* [Linux Kernel Programming](#-linux-kernel-programming)
-* [Linux Kernel Programming Part 2](#-linux-kernel-programming-part-2)
-* [Linux Kernel Debugging](#-linux-kernel-debugging)
-* [Linux Driver Development for Embedded Processors](#-linux-driver-development-for-embedded-processors)
-* [Mastering Linux Kernel Development](#-mastering-linux-kernel-development)
-* [Linux Kernel Development](#-linux-kernel-development)
-* [Learning eBPF](#-learning-ebpf)
-* [Embedded Linux Full Course](#-embedded-linux-full-course)
-
----
-
 ## ★★★★★ [Mastering Embedded Linux Programming](resources/9781789530384.md)
 [<img src="covers/9781789530384.jpg" width="200"/>](resources/9781789530384.md)
 
