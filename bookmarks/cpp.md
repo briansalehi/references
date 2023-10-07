@@ -74,7 +74,8 @@ Covers the standard C++ programming language and its libraries.
 
 ## User Interface Libraries
 
-### [Qt Manual](https://doc.qt.io)
+### ★★★★★ [Qt6 Manual](https://doc.qt.io)
+### ★★★★★ [Qt6 QML](resources/qt6-qml.md)
 
 ## Other Resources
 
