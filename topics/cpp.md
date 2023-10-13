@@ -136,18 +136,18 @@ constexpr double get_pi()
 <summary>Ensure compile time evaluation of a function?</summary>
 
 > ```cpp
-consteval double divide(double a, double b)
-{
-    return a / b;
-}
-
-consteval double get_pi()
-{
-    return divide(22.0, 7); // OK
-}
-
-double dividen{22.0}, divisor{7.0};
-divide(dividen, divisor); // ERROR: non-const arguments to consteval
+> consteval double divide(double a, double b)
+> {
+>     return a / b;
+> }
+>
+> consteval double get_pi()
+> {
+>     return divide(22.0, 7); // OK
+> }
+>
+> double dividen{22.0}, divisor{7.0};
+> divide(dividen, divisor); // ERROR: non-const arguments to consteval
 > ``````
 
 > Origins:
@@ -1367,12 +1367,12 @@ divide(dividen, divisor); // ERROR: non-const arguments to consteval
 <summary>Determine the size of an expression?</summary>
 
 > ```cpp
-#include <iostream>
-
-int main()
-{
-    std::cout << sizeof(long double) << '\n';
-}
+> #include <iostream>
+>
+> int main()
+> {
+>     std::cout << sizeof(long double) << '\n';
+> }
 > ``````
 
 > Origins:
