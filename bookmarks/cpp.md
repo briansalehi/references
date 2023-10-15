@@ -1,7 +1,5 @@
 # C++ Programming
 
-Covers the standard C++ programming language and its libraries.
-
 ## Standard C++
 
 ### ★★★★★ [C++ Concurrency in Action](resources/9781617294693.md)
@@ -33,6 +31,9 @@ Covers the standard C++ programming language and its libraries.
 
 ### ★★★★★ [Beginning C++20: From Novice to Professional](resources/9781484258842.md)
 [<img src="covers/9781484258842.jpg" width="200"/>](resources/9781484258842.md)
+
+### ★★★★★ [Beginning C++23: From Novice to Professional](resources/9781484293423.md)
+[<img src="covers/9781484293423.jpg" width="200"/>](resources/9781484293423.md)
 
 ### ★★★★★ [C++ Move Semantics: The Complete Guide](resources/9783967309003.md)
 [<img src="covers/9783967309003.jpg" width="200"/>](resources/9783967309003.md)
