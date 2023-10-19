@@ -627,7 +627,7 @@
 ## Linux Kernel Configuration System
 
 <details>
-<summary>What is the name of the kernel configuration mechanism and how can it be used?</summary>
+<summary>What is the name of the kernel configuration mechanism?</summary>
 
 > The configuration mechanism is called `Kconfig`, and the build system that it
 > integrates with it is called `Kbuild`.
@@ -641,7 +641,7 @@
 </details>
 
 <details>
-<summary>What environment variables are required for <code>make</code> to configure and build a kernel image?</summary>
+<summary>What environment variables are used to configure the kernel for cross compiling?</summary>
 
 > Cross-compiler prefix and the architecture of the target must be specified.
 >
@@ -670,7 +670,7 @@
 </details>
 
 <details>
-<summary>What are possible values to the <code>ARCH</code> environment variable using in building the kernel source?</summary>
+<summary>What values does <code>ARCH</code> take in the kernel configuration stage?</summary>
 
 > The value you put into `ARCH` is one of the subdirectories you find in the
 > `arch` directory in the kernel source tree.
@@ -683,7 +683,7 @@
 </details>
 
 <details>
-<summary>What <code>make</code> target options can be used to configure the kernel?</summary>
+<summary>Start configuring the kernel with graphical environments?</summary>
 
 > ```sh
 > make menuconfig   # ncurses-based interface
@@ -699,7 +699,7 @@
 </details>
 
 <details>
-<summary>Where will be the kernel configurations stored?</summary>
+<summary>Where is the kernel configuration file?</summary>
 
 > Selected options will be stored in `.config` file, at the root of the source tree.
 
@@ -711,7 +711,7 @@
 </details>
 
 <details>
-<summary>Generate a preconfigured <code>.config</code> file tuned for a specific platform in the kernel source tree?</summary>
+<summary>Where default configuration files are stored?</summary>
 
 > It is very difficult to know which configuration is going to work on your
 > platform. In most cases, there will be no need to start a configuration from
@@ -722,14 +722,39 @@
 > ```sh
 > ls arch/<arch>/configs/
 > ``````
->
+
+> Origins:
+> - Linux Device Driver Development - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Configure the kernel using a default configuration file for a specific platform?</summary>
+
 > The kernel configuration command, given a default configuration file, is as
 > follows:
 >
 > ```sh
 > ARCH=<arch> make <defconfig>
+> ``````
+>
+> To configure for `x86_64` build:
+>
+> ```sh
 > ARCH=x86_64 make defconfig
+> ``````
+>
+> To configure for `arm64` cross-compilation:
+>
+> ```sh
 > ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnueabi- make defconfig
+> ``````
+>
+> To configure for `arm` cross-compilation:
+>
+> ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- make bcm2835_defconfig
 > ``````
 
