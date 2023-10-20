@@ -664,6 +664,7 @@
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
@@ -672,6 +673,12 @@
 <details>
 <summary>What values does <code>ARCH</code> take in the kernel configuration stage?</summary>
 
+> `ARCH` environment variable needs to be set for almost all `make` targets:
+>
+> ```sh
+> make ARCH=arm menuconfig
+> ``````
+>
 > The value you put into `ARCH` is one of the subdirectories you find in the
 > `arch` directory in the kernel source tree.
 
@@ -733,6 +740,10 @@
 <details>
 <summary>Configure the kernel for a specific platform using default configuration files?</summary>
 
+> There is a set of known working configuration files in `arch/$ARCH/configs`,
+> each containing suitable configuration values for a single SoC or a group of
+> SoCs.
+>
 > The kernel configuration command, given a default configuration file, is as
 > follows:
 >
@@ -756,6 +767,54 @@
 >
 > ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- make bcm2835_defconfig
+> ``````
+
+> Origins:
+> - Linux Device Driver Development - Chapter 1
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Select default configuration for <code>x86_64</code> platform?</summary>
+
+> Assuming that host is a 64bit machine, `ARCH` is set to `x86`:
+>
+> ```sh
+> make x86_64_defconfig
+> ``````
+
+> Origins:
+> - Linux Device Driver Development - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Select default configuration for <code>Raspberry Pi Zero</code> evaluation board?</summary>
+
+> To make configuration for SoC of `raspberry pi zero`, considering its
+> `bcm2835` 32-bits processor:
+>
+> ```sh
+> make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- bcm2835_defconfig
+> ``````
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Select default configuration for <code>BeagleBone Black</code> evaluation board?</summary>
+
+> ```sh
+> make ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnueabihf- defconfig
 > ``````
 
 > Origins:
@@ -811,39 +870,9 @@
 </details>
 
 <details>
-<summary>Generate a default configuration file for <code>x86_64</code> target in the kernel source tree?</summary>
+<summary>Update an already existing kernel configuration file with new released options?</summary>
 
-> Assuming that host is a 64bit machine, `ARCH` is set to `x86`:
->
-> ```sh
-> make x86_64_defconfig
-> ``````
-
-> Origins:
-> - Linux Device Driver Development - Chapter 1
-
-> References:
----
-</details>
-
-<details>
-<summary>Generate a default configuration file for <code>BeagleBone Black</code> target in kernel source tree?</summary>
-
-> ```sh
-> make ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnueabihf- make defconfig
-> ``````
-
-> Origins:
-> - Linux Device Driver Development - Chapter 1
-
-> References:
----
-</details>
-
-<details>
-<summary>Include new kernel configurations into an old <code>.config</code> file?</summary>
-
-> Following target prompts for every new configuration option:
+> Following target prompts for every new configuration options:
 >
 > ```sh
 > make oldconfig
@@ -864,28 +893,29 @@
 
 > Origins:
 > - Linux Device Driver Development - Chapter 1
+> - Mastering Embedded Linux Programming - Chapter 4
 
 > References:
 ---
 </details>
 
 <details>
-<summary>Use the kernel configuration file on a running machine as an initial configurtion?</summary>
+<summary>Extract the kernel configuration file from the running machine?</summary>
 
 > Debian and Ubuntu Linux distributions save the `.config` file in the `/boot`
 > directory:
 >
 > ```sh
-> cp /boot/config-$(uname -r) .config
+> cp /boot/config-$(uname -r) ${KERNEL_SRC}/.config
 > ``````
 >
 > The other distributions may not do this.
 >
 > When `IKCONFIG` and `IKCONFIG_PROC` kernel configuration options enabled, the
-> configuration file can also be found in:
+> configuration file can also be found in `/proc/configs.gz` file:
 >
 > ```sh
-> /proc/configs.gz
+> zcat /proc/configs.gz > ${KERNEL_SRC}/.config
 > ``````
 
 > Origins:
@@ -896,7 +926,7 @@
 </details>
 
 <details>
-<summary>What kernel configuration options allows accessing kernel configuration file on runtime?</summary>
+<summary>Configure kernel to make its configuration options available in <code>/proc</code>?</summary>
 
 > * `IKCONFIG`: This is a boolean option to enable this feature.
 > * `IKCONFIG_PROC`: Boolean option, when set to `y` the `config.gz` file
@@ -910,7 +940,7 @@
 </details>
 
 <details>
-<summary>What kernel configuration option allows extending the kernel command line from within the configuration?</summary>
+<summary>Configure kernel to allow extending command line options from within the configuration?</summary>
 
 > * `CMDLINE_EXTEND`: This is a boolean option to enable this feature.
 > * `CMDLINE`: This options is a string containing the actual command-line
@@ -930,7 +960,7 @@
 </details>
 
 <details>
-<summary>What kernel configuration option makes the kernel symbol table available in <code>/proc/kallsyms</code>?</summary>
+<summary>Configure kernel to make kernel symbol table available through procfs?</summary>
 
 > `CONFIG_KALLSYMS`: This is very useful for tracers and other tools that need
 > to map kernel symbols to addresses. It is used while you're printing oops
@@ -1031,6 +1061,102 @@
 </details>
 
 <details>
+<summary>Print the version or release of configured kernel?</summary>
+
+> ```sh
+> make ARCH=arm kernelversion
+> ``````
+>
+> Release value can be changed in kernel configuration:
+>
+> ```sh
+> make ARCH=arm kernelrelease
+> ``````
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Append local version to the kernel release string?</summary>
+
+> `CONFIG_LOCALVERSION` option is the release information string to be appended
+> to kernel release.  Kernel version can never be appended.
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>What header file contains kernel configuration options?</summary>
+
+> Header file `include/generated/autoconf.h` contains `#define` preprocessors
+> to be included in the kernel source.
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Add make object in Makefile for a configuration option?</summary>
+
+> `Kbuild` takes configurations from `.config` file and follows below pattern
+> in make files such as `drivers/char/Makefile`:
+>
+> ```make
+> obj-y += mem.o random.o
+> obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
+> ``````
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Make debug symbols available in the kernel image?</summary>
+
+> * `CONFIG_DEBUG_INFO`
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Solve different relocation addresses of the kernel with multi-platform ARM <code>uImage</code>?</summary>
+
+> The relocation address is coded into the `uImage` header by the `mkimage`
+> command when the kernel is built, but fails with multiple reloaction
+> addresses.
+>
+> ```sh
+> make ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
+> ``````
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+## Kconfig Semantics
+
+<details>
 <summary>What are the constructs of each menu in a <code>Kconfig</code> file?</summary>
 
 > Each `config` identifier is constructed as follows:
@@ -1057,7 +1183,7 @@
 </details>
 
 <details>
-<summary>What types can each <code>config</code> have in a <code>Kconfig</code> menu?</summary>
+<summary>What types are available for kernel configuration options in a Kconfig menu?</summary>
 
 > * `bool`: either `y` or not defined.
 > * `tristate`: feature can be built as a kernel module or built into the main kernel image.
@@ -1073,7 +1199,7 @@
 </details>
 
 <details>
-<summary>What construct can be used to express dependencies or reverse dependencies for a <code>config</code> in a <code>Kconfig</code> menu?</summary>
+<summary>Make a kernel configuration option dependent on another?</summary>
 
 > Dependencies can be expressed by `depends on` construct:
 >
@@ -1084,10 +1210,20 @@
 > ``````
 >
 > `EXAMPLE` will not be shown in menu if `DEPENDENCY` is not set.
->
+
+> Origins:
+> - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Enforce selection of an option in its parent option when it has reverse dependency?</summary>
+
 > Reverse dependencies can be expressed by `select` construct, as an example in
-> `arch/arm`
 >
+> `arch/arm`
 > ```kconfig
 > config ARM
 >     bool
@@ -1097,191 +1233,6 @@
 > ``````
 >
 > Selecting any config as reverse dependency, sets its value as `y`.
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>What configuration utilities are available to use for configuring kernel build?</summary>
-
-> * `menuconfig`: requires `ncurses`, `flex`, and `bison` packages.
-> * `xconfig`
-> * `gconfig`
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>Find all possible kernel configuration targets in the source tree?</summary>
-
-> There is a set of known working configuration files in `arch/$ARCH/configs`,
-> each containing suitable configuration values for a single SoC or a group of
-> SoCs.
->
-> To make configuration for `arm64` SoCs:
->
-> ```sh
-> make ARCH=arm64 defconfig
-> ``````
->
-> To make configuration for SoC of `raspberry pi zero`, considering its
-> `bcm2835` 32-bits processor:
->
-> ```sh
-> make ARCH=arm bcm2835_defconfig
-> ``````
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>Use GNU <code>make</code> to configure kernel source tree for a specific architecture?</summary>
-
-> `ARCH` environment variable needs to be set for almost all `make` targets:
->
-> ```sh
-> make ARCH=arm menuconfig
-> ``````
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>What configuration target takes an old <code>.config</code> file and asks for options added in new kernel?</summary>
-
-> The `oldconfig` target validates modified `.config`.
->
-> ```sh
-> make ARCH=arm oldconfig
-> ``````
->
-> Use `olddefconfig` target to use a preconfigured `.config` file and set new
-> parameters as default.
->
-> ```sh
-> make ARCH=arm olddefconfig
-> ``````
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>What file holds configuration options generated by beginning the kernel build and where is the file?</summary>
-
-> A header file `include/generated/autoconf.h` contains `#define` preprocessors
-> to be included in the kernel source.
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>Identify which kernel version and kernel release do we have in kernel source tree?</summary>
-
-> This is reported at runtime through the `uname` command.  It is also used in
-> naming the directory where kernel modules are stored.
->
-> ```sh
-> make ARCH=arm kernelversion
-> make ARCH=arm kernelrelease
-> ``````
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>By which configuration option can kernel release be appended with release information?</summary>
-
-> `CONFIG_LOCALVERSION` option is the release information string to be appended
-> to kernel release.  Kernel version can never be appended.
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>How does the <code>Kbuild</code> work with configuration options to properly build kernel?</summary>
-
-> `Kbuild` takes configurations from `.config` file and follows below pattern
-> in make files such as `drivers/char/Makefile`:
->
-> ```make
-> obj-y += mem.o random.o
-> obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
-> ``````
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>By assuming to have a complete <code>.config</code> file in the kernel source, what are the required environment variables to be given to <code>make</code> to build the kernel?</summary>
-
-> * `ARCH`: architecture name
-> * `CROSS_COMPILE`: toolchain prefix ending with a hyphen, visible in `PATH`
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>Make debug symbols available in the kernel image?</summary>
-
-> By enabling `CONFIG_DEBUG_INFO` configuration option.
-
-> Origins:
-> - Mastering Embedded Linux Programming - Chapter 4
-
-> References:
----
-</details>
-
-<details>
-<summary>Solve different relocation addresses of the kernel with multi-platform ARM <code>uImage</code>?</summary>
-
-> The relocation address is coded into the `uImage` header by the `mkimage`
-> command when the kernel is built, but fails with multiple reloaction
-> addresses.
->
-> ```sh
-> make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
-> ``````
 
 > Origins:
 > - Mastering Embedded Linux Programming - Chapter 4
