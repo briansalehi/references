@@ -525,7 +525,7 @@
 ## Linux Kernel Source Tree
 
 <details>
-<summary>What is an appropriate path to keep track of kernel release changes?</summary>
+<summary>Keep track of kernel release changes?</summary>
 
 > Follow up overviews of each kernel release on **KernelNewbies** to see changes.
 
@@ -538,7 +538,7 @@
 </details>
 
 <details>
-<summary>Download the kernel source repository?</summary>
+<summary>Aquire the kernel source repository?</summary>
 
 > ```sh
 > git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
@@ -561,7 +561,7 @@
 </details>
 
 <details>
-<summary>What is the first required action to aquire appropriate kernel source either for kernel development or embedded use?</summary>
+<summary>Aquire the kernel source for long-term service?</summary>
 
 > To follow kernel mainline, below repository should be used:
 >
@@ -711,7 +711,7 @@
 </details>
 
 <details>
-<summary>Where default configuration files are stored?</summary>
+<summary>Where are the default configuration files stored?</summary>
 
 > It is very difficult to know which configuration is going to work on your
 > platform. In most cases, there will be no need to start a configuration from
@@ -731,7 +731,7 @@
 </details>
 
 <details>
-<summary>Configure the kernel using a default configuration file for a specific platform?</summary>
+<summary>Configure the kernel for a specific platform using default configuration files?</summary>
 
 > The kernel configuration command, given a default configuration file, is as
 > follows:
@@ -766,7 +766,7 @@
 </details>
 
 <details>
-<summary>Revert configuration changes in kernel source tree after generating new <code>.config</code> file?</summary>
+<summary>Restore previous configuration changes?</summary>
 
 > Running `make defconfig` or any alternatives will generate a new `.config`
 > file in the main (root) directory, while the old `.config` will be renamed
