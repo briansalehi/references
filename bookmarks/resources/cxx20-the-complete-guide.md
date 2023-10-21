@@ -395,7 +395,7 @@
 ---
 </details>
 
-## Chapter 2/19 <sup>(writing)</sup>
+## Chapter 2/19 <sup>(completed)</sup>
 
 <details>
 <summary>Declare an abbreviated function template?</summary>
@@ -447,7 +447,7 @@
 </details>
 
 <details>
-<summary>What restrictions does abbreviated function template have?</summary>
+<summary>What restrictions do abbreviated function templates have compared to generic lambdas?</summary>
 
 > Because functions with `auto` are function templates, all rules of using
 > function templates apply. You cannot implement an abbreviated function
@@ -477,7 +477,7 @@
 </details>
 
 <details>
-<summary>Pass an abbreviated function template to a function?</summary>
+<summary>Pass an abbreviated function template as a parameter?</summary>
 
 > You cannot pass a function with `auto` as a parameter without specifying the
 > generic parameter.
@@ -510,18 +510,32 @@
 >
 > std::sort(container.begin(), container.end(), is_less);
 > ``````
-
-> Origins:
-> - C++20: The Complete Guide - Chapter 2
-
-> References:
----
-</details>
-
-<details>
-<summary>Explicitly specify an abbreviated function template?</summary>
-
+>
+> The reason is that the lambda is an object that does not have a generic type.
+> Only the use of the object as a function is generic.
+>
+> On the other hand, the explicit specification of an abbreviated function
+> template parameter is easier:
+>
 > ```cpp
+> void print(auto const& arg)
+> {
+>     ...
+> }
+>
+> print<std::string>("something to see");
+> ``````
+>
+> While for a generic lambda, the function call operator `operator()` is
+> generic. Therefore, you have to pass the requested type as an argument to
+> `operator()` to specify the template parameter explicitly:
+>
+> ```cpp
+> auto print = [](auto const& arg) {
+>     ...
+> });
+>
+> print.operator()<std::string>("something to see");
 > ``````
 
 > Origins:
@@ -531,6 +545,131 @@
 ---
 </details>
 
+<details>
+<summary>What are the rules for abbreviated function template parameters?</summary>
+
+> - For each parameter declared with `auto`, the function has an implicit
+>   template parameter.
+>
+> - The parameters can be a parameter pack:
+>
+> ```cpp
+> void foo(auto... args);
+> ``````
+>
+> This is equivalent to the following (without introducing Types):
+>
+> ```cpp
+> template<typename... Types>
+> void foo(Types... args);
+> ``````
+>
+> - Using `decltype(auto)` is not allowed.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Partially specify abbreviated function template parameters?</summary>
+
+> ```cpp
+> void foo(auto x, auto y)
+> {
+>   ...
+> }
+>
+> foo("hello", 42);                     // x has type const char*, y has type int
+> foo<std::string>("hello", 42);        // x has type std::string, y has type int
+> foo<std::string, long>("hello", 42);  // x has type std::string, y has type long
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Combine template and <code>auto</code> parameters?</summary>
+
+> Abbreviated function templates can still have explicitly specified template
+> parameters. Therefore, the following declarations are equivalent:
+>
+> ```cpp
+> template<typename T>
+> void foo(auto x, T y, auto z);
+>
+> template<typename T, typename T2, typename T3>
+> void foo(T2 x, T y, T3 z);
+> ``````
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Specify parameter types for a mixed template and <code>auto</code> parameters?</summary>
+
+> ```cpp
+> template<std::integral T>
+> void foo(auto x, T y, std::convertible_to<T> auto z)
+> {
+>   ...
+> }
+>
+> foo(64, 65, 'c');              // OK, x is int, T and y are int, z is char
+> foo(64, 65, "c");              // ERROR: "c" cannot be converted to type int
+> foo<long,char>(64, 65, 'c');   // NOTE: x is char, T and y are long, z is char
+> ``````
+>
+> Note that the last statement specifies the type of the parameters in the
+> wrong order.
+>
+> ```cpp
+> #include <vector>
+> #include <ranges>
+>
+> void addValInto(const auto& val, auto& coll)
+> {
+>   coll.insert(val);
+> }
+>
+> template<typename Coll>   // Note: different order of template parameters
+> requires std::ranges::random_access_range<Coll>
+> void addValInto(const auto& val, Coll& coll)
+> {
+>   coll.push_back(val);
+> }
+>
+> int main()
+> {
+>   std::vector<int> coll;
+>   addValInto(42, coll);   // ERROR: ambiguous
+> }
+> ``````
+>
+> Due to using `auto` only for the first parameter in the second declaration of
+> `addValInto()`, the order of the template parameters differs. this means that
+> overload resolution does not prefer the second declaration over the first one
+> and we get an ambiguity error.
+>
+> For this reason, be careful when mixing template and `auto` parameters.
+
+> Origins:
+> - C++20: The Complete Guide - Chapter 2
+
+> References:
+- http://wg21.link/p2113r0
+---
+</details>
 
 ## Chapter 3/19 <sup>(writing)</sup>
 
