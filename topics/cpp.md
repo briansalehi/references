@@ -3040,7 +3040,7 @@ constexpr double get_pi()
 ## Iterating Algorithms
 
 <details>
-<summary>Using the standard algorithms, sum the values of a container?</summary>
+<summary>Invoke a functor for each range element in or out of order?</summary>
 
 > | `std::for_each` | standard |
 > | --- | --- |
@@ -3049,20 +3049,16 @@ constexpr double get_pi()
 > | constexpr | C++20 |
 > | rangified | C++20 |
 >
-> The C++11 standard introduced the range-based for loop, which mostly replaced
-> the uses of `std::for_each`.
+> Invokes the provided functor on each range element in order, ignoring the result.
+>
+> While the range-based for-loop has mostly replaced the use cases for
+> `std::for_each`, it still comes in handy as a trivial parallelization tool
+> and in its C++20 range version with projections.
 >
 > ```cp
 > #include <algorithm>
 > #include <ranges>
 > #include <vector>
->
-> template <typename T>
-> struct sum_predicate
-> {
->     T sum;
->     void operator()(T const& e) { sum += e; }
-> };
 >
 > int main()
 > {
@@ -3072,19 +3068,76 @@ constexpr double get_pi()
 >     sum = std::for_each(numbers.begin(), numbers.end(), sum_predicate<long>{});
 >     // sum == 15, using a unary predicate
 >
->     std::for_each(numbers.begin(), numbers.end(), [&sum](auto e){ sum += e; });
+>     std::for_each(numbers.begin(), numbers.end(), [&sum](auto v) { sum += v; });
 >     // sum == 30, using a lambda
 >
->     std::ranges::for_each(numbers, [&sum](auto e){ count++; sum += e; });
+>     std::ranges::for_each(numbers, [&sum](auto v) { count++; sum += v; });
 >     // sum == 45, using ranges
 >
->     for (auto e: numbers) { sum += e; }
+>     for (auto v: numbers) { sum += v; }
 >     // sum == 60, using range-based for
+> }
+> ``````
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<int> data{1, 2, 3, 4, 5};
+>
+>     std::for_each(data.begin(), data.end(), [i = 5](int& v) mutable { v += i--; });
+>     // data == {6, 6, 6, 6, 6}
+> }
+> ``````
+>
+> ```cp
+> #include <algorithm>
+> #include <execution>
+> #include <vector>
+>
+> int main()
+> {
+>     struct Custom {};
+>     void process(Custom&) {}
+>     std::vector<Custom> rng(10, Custom{});
+>
+>     // parallel execution C++17
+>     std::for_each(std::execution::par_unseq, // parallel, in any order
+>             rng.begin(), rng.end(), // all elements
+>             process // invoke process on each element
+>             );
+> }
+> ``````
+>
+> ```cp
+> #include <algorithm>
+> #include <vector>
+> #include <optional>
+>
+> int main()
+> {
+>     std::vector<std::optional<int>> opt{{},2,{},4,{}};
+>     // range version with projection C++20
+>
+>     std::ranges::for_each(opt,
+>         [](int v) {
+>             // iterate over projected values
+>             // {0, 2, 0, 4, 0}
+>         },
+>         [](std::optional<int>& v){
+>             // projection that will return
+>             // the contained value or zero
+>             return v.value_or(0);
+>         }
+>     );
 > }
 > ``````
 
 > Origins:
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
+> - C++ Daily Bites - #60
 
 > References:
 ---
@@ -4078,20 +4131,39 @@ constexpr double get_pi()
 > `std::upper_bound`, however instead of searching for a particular value, it
 > searches using a predicate.
 >
+> This algorithm will return either an iterator to the first element that
+> doesn't satisfy the provided predicate or the end iterator of the input range
+> if all elements do.
+>
+> The input range or the projected range must be partitioned with respect to
+> the predicate.
+>
 > ```cpp
 > #include <algorithm>
 > #include <vector>
 >
 > int main()
 > {
->     std::vector<long> data{1,2,3,4,5,6,6,6,7,8,9};
+>     std::vector<long> sorted{1,2,3,4,5,6,7,8,9};
+>
 >     auto point = std::partition_point(data.begin(), data.end(), [](long v) { return v < 6; });
->     // std::distance(data.begin(), point) = 5
+>     std::assert(std::distance(data.begin(), point) == 5);
+>
+>     auto lower_five = std::lower_bound(sorted.begin(), sorted.end(), 5);
+>     auto least_five = std::partition_point(sorted.begin(), sorted.end(), [](long v) { return v < 5; });
+>     std::assert(*lower_five == *least_five);
+>
+>     auto square = std::ranges::partition_point(sorted,
+>         [](long v) { return v < 16; },
+>         [](long v) { return v * v; } // project to {1,4,9,16,25,...}
+>     );
+>     std::assert(*square == 16);
 > }
 > ``````
 
 > Origins:
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
+> - C++ Daily Bites #297
 
 > References:
 ---
@@ -5835,6 +5907,58 @@ constexpr double get_pi()
 
 > Origins:
 > - C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+## Future
+
+<details>
+<summary>Send a signal from 1 to N threads?</summary>
+
+> If you require simple one-shot signalling between threads, the `void`
+> specializations of `std::future` and `std::shared_future` can serve as solid
+> high-level choices for 1:1 and 1:N signalling.
+>
+> ```cpp
+> #include <thread>
+> #include <future>
+>
+> // executes first stage eagerly, but wait for signal to continue the second stage
+> auto wait_for_signal = [](auto future) {
+>     // first stage
+>     future.wait(); // wait for signal
+>     // second stage
+> };
+>
+> { // 1:1 example
+>     std::promise<void> sender;
+>
+>     auto t = std::jthread(wait_for_signal, sender.get_future());
+>
+>     // first stage eagerly executing
+>     sender.set_value(); // unblock the second stage by sending a signal
+> }
+>
+> { // 1:N example
+>     std::promise<void> sender;
+>
+>     // promise::get_future() can only be called once
+>     std::shared_future<void> receiver(sender.get_future());
+>
+>     // start four threads, each running two-stage runner
+>     std::vector<std::jthread> runners;
+>
+>     // eagerly execute first stage for all four threads
+>     std::generate_n(std::back_inserter(runners), 4, [&]{ return std::jthread(wait_for_signal, receiver); });
+>
+>     sender.set_value(); // unblock the second stage by sending a signal
+> }
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #293
 
 > References:
 ---
