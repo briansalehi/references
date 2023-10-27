@@ -4163,7 +4163,7 @@ constexpr double get_pi()
 
 > Origins:
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
-> - C++ Daily Bites #297
+> - C++ Daily Bites - #297
 
 > References:
 ---
@@ -5963,4 +5963,115 @@ constexpr double get_pi()
 > References:
 ---
 </details>
+
+## Design Patterns
+
+## Monostate Pattern
+
+<details>
+<summary>Write an object ensuring only one instance of its internal state exists?</summary>
+
+> The Monostate pattern (not to be confused with `std::monostate`) is a pattern
+> with similar goals to a Singleton. Where a Singleton only permits a single
+> instance, the Monostate pattern can be instantiated many times while ensuring
+> only one instance of its internal state.
+>
+> ```cpp
+> #include <mutex>
+> #include <string>
+>
+> struct MonoConfig
+> {
+>     MonoConfig()
+>     {
+>         // ensure a single initialization outside of the static chain, if we
+>         // don't need multi-threaded safety we can downgrade to a boolean flag
+>         std::call_once(flag_, populate_config);
+>     }
+>
+>     // interface to acess the monostate
+>     std::uint64_t get_id() const { return field1; }
+>     const std::string& get_label() const { return field2; }
+>
+> private:
+>     static std::once_flag flag_;
+>     static std::uint64_t field1;
+>     static std::string field2;
+>
+>     static void populate_config()
+>     {
+>         /* read the fields from config source */
+>         field1 = 42;
+>         field2 = "Hello World";
+>     };
+> };
+>
+> // All static members left default initialized
+> std::once_flag MonoConfig::flag_;
+> std::uint64_t MonoConfig::field1;
+> std::string MonoConfig::field2;
+>
+> // create instance of the monostate object
+> MonoConfig config;
+>
+> // access the global state
+> config.get_label();
+>
+> // creating additional instances is a no-op. note that when stored as a member,
+> // it will still take up minimum 1 byte unless we use [[no_unique_address]].
+> MonoConfig a, b, c, d, e, f, g, i, j, k;
+> ``````
+>
+> A Monostate with all the downsides of a global state can be a better fit for
+> testability.
+>
+> ```cpp
+> #include <memory>
+>
+> // when combined with the PIMPL pattern we can mock/fake the global state
+> struct ImplIface {};
+>
+> struct Actual : ImplIface
+> {
+>     static std::unique_ptr<ImplIface> make()
+>     {
+>         return std::make_unique<Actual>();
+>     }
+> };
+>
+> struct Testing : ImplIface
+> {
+>     static std::unique_ptr<ImplIface> make()
+>     {
+>         return std::make_unique<Testing>();
+>     }
+> };
+>
+> // Switch active type based on testing/production
+> using ActiveType = Testing;
+>
+> struct MonoPIMPL
+> {
+>     MonoPIMPL()
+>     {
+>         std::call_once(flag_, [] { impl_ = ActiveType::make(); });
+>     }
+>
+>     /* expose ImplIface as any other PIMPL */
+> private:
+>     static std::once_flag flag_;
+>     static std::unique_ptr<ImplIface> impl_;
+> };
+>
+> std::once_flag MonoPIMPL::flag_;
+> std::unique_ptr<ImplIface> MonoPIMPL::impl_;
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #61
+
+> References:
+---
+</details>
+
 
