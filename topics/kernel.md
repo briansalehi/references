@@ -1624,6 +1624,38 @@
 ---
 </details>
 
+## Module Loading
+
+<details>
+<summary>Secure kernel from loading malicious modules?</summary>
+
+> During build, kernel module signing facility signs modules and during module loading the signature is checked.
+>
+> ```.config
+> CONFIG_MODULE_SIG = 'y'
+> CONFIG_MODULE_SIG_ALL='y'
+> CONFIG_MODULE_SIG_SHA512='y'
+> CONFIG_MODULE_SIG_FORCE='y'
+> ``````
+>
+> You must create the signing authority or SubCA certificate. For that you need
+> to first create the asymmetric keys and CSR. The CSR will get signed from
+> root CA or upper level signing authority. The signed CSR will call it as
+> signing authority for kernel module signing. All the root CA and signing
+> authority must be aligned with the organization or product group who is going
+> to protect their assets.
+>
+> Above signing setup is one time process. You should have a script to take
+> care of your kernel module signing.
+
+
+> Origins:
+> - LinkedIn Post by Mohammad Jamal M.
+
+> References:
+---
+</details>
+
 ## Device Tree Specification
 
 <details>
