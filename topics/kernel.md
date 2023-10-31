@@ -2987,7 +2987,7 @@
 ---
 </details>
 
-## Device Driver Development
+## Module Structure
 
 <details>
 <summary>How many module types are available?</summary>
