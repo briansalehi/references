@@ -2,23 +2,6 @@
 
 Covers development tools required for an embedded software engineer.
 
-## Table of Content
-
-* [Practical Vim](#-practical-vim)
-* [Modern Vim](#-modern-vim)
-* [Mastering Vim](#-mastering-vim)
-* [GDB Tips](#-gdb-tips)
-* [GDB Pocket Reference](#-gdb-pocket-reference)
-* [Pro Git](#-pro-git)
-* [Professional CMake](#-professional-cmake)
-* [CMake Cookbook](#-cmake-cookbook)
-* [CMake Best Practices](#-cmake-best-practices)
-* [Modern CMake for C++](#-modern-cmake-for-c++)
-* [Docker Deep Dive](#-docker-deep-dive)
-* [Docker in Practice](#-docker-in-practice)
-
----
-
 ## Code Editors
 
 ### ★★★★★ [Practical Vim](resources/9781934356982.md)
