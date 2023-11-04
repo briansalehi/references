@@ -74,6 +74,8 @@
 > listings as `<none>:<none>`. A common way they occur is when building a new
 > image giving it a tag that already exists.
 >
+> **dangling:** Accepts true or false
+>
 > ```sh
 > docker image list --filter dangling=true
 > ``````
@@ -87,29 +89,44 @@
 </details>
 
 <details>
-<summary>Filter out the image listing?</summary>
+<summary>List images built before another available image was built?</summary>
 
-> **dangling:** Accepts true or false
->
-> ```sh
-> docker image list --filter dangling=true
-> docker image list --filter dangling=false
-> ``````
->
 > **before:** Requires an image name or ID as argument, and returns all images
 > created before it.
 >
 > ```sh
 > docker image list --filter before=container_name
 > ``````
->
+
+> Origins:
+> - Docker Deep Dive - Chapter 6
+
+> References:
+> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+---
+</details>
+
+<details>
+<summary>List images built since another available image was built?</summary>
+
 > **since:** Same as above, but returns images created after the specified
 > image.
 >
 > ```sh
-> docker image list --filter after=container_name
+> docker image list --filter since=container_name
 > ``````
 >
+> Origins:
+> - Docker Deep Dive - Chapter 6
+
+> References:
+> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+---
+</details>
+
+<details>
+<summary>List images containing a string in their label?</summary>
+
 > **label:** Filters images based on the presence of a label or label and
 > value. This command does not display labels in its output.
 >
@@ -126,7 +143,7 @@
 </details>
 
 <details>
-<summary>Format the output of image lists?</summary>
+<summary>Customize the output format of the image list?</summary>
 
 > You can use the `--format` flag to format output using Go templates. For
 > example, the following command will only return the size property of images
@@ -172,17 +189,39 @@
 </details>
 
 <details>
-<summary>Filter the result of image search on registeries?</summary>
+<summary>Limit the image search results to 10 entries?</summary>
+
+> By default, Docker will only display 25 lines of results. However, you can
+> use the `--limit` flag to change that.
+
+> Origins:
+> - Docker Deep Dive - Chapter 6
+
+> References:
+> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+---
+</details>
+
+<details>
+<summary>Filter the result of image search results to official images only?</summary>
 
 > Use `--filter is-official=true` so that only official repos are displayed.
 >
 > ```sh
 > docker search alpine --filter is-official=true
 > ``````
->
-> By default, Docker will only display 25 lines of results. However, you can
-> use the `--limit` flag to increase that to a maximum of 100.
->
+
+> Origins:
+> - Docker Deep Dive - Chapter 6
+
+> References:
+> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+---
+</details>
+
+<details>
+<summary>Filter the result of image search results to automated build images only?</summary>
+
 > ```sh
 > docker search alpine --filter is-automated=true --limit 100
 > ``````
@@ -656,10 +695,10 @@
 >
 > * always
 > * unless-stopped
-> * on-failed
+> * on-failure
 >
 > ```sh
-> docker container run --interactive --tty --restart on-failed alpine /bin/bash
+> docker container run --interactive --tty --restart on-failure alpine /bin/bash
 > ``````
 
 > Origins:
@@ -670,7 +709,7 @@
 </details>
 
 <details>
-<summary>Express the behavior of <code>always</code> docker restart policy?</summary>
+<summary>Run a container with persistent restart policy on failure or system restart?</summary>
 
 > The `always` policy always restarts a stopped container unless it has been
 > explicitly stopped. However, if you restart the Docker daemon, the container
@@ -692,7 +731,7 @@
 </details>
 
 <details>
-<summary>Express the <code>unless-stopped</code> docker restart policy?</summary>
+<summary>Run a container always restarting except when manually stopped?</summary>
 
 > The main difference between the `always` and `unless-stopped` policies is
 > that containers with the `unless-stopped` policy will not be restarted when
@@ -710,7 +749,7 @@
 </details>
 
 <details>
-<summary>Express the <code>on-failure</code> docker restart policy?</summary>
+<summary>Run a container restarting on failure only?</summary>
 
 > The `on-failure` policy will restart a container if it exits with a non-zero
 > exit code. It will also restart containers when the Docker daemon restarts,
