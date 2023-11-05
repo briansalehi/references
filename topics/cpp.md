@@ -365,6 +365,379 @@ constexpr double get_pi()
 ---
 </details>
 
+## Modules
+
+<details>
+<summary>What are the main module properties?</summary>
+
+> - Modules are only imported once and the order they're imported in does not matter.
+> - Modules do not require splitting interfaces and implementation in different source files, although this is still possible.
+> - Modules reduce compilation time. The entities exported from a module are described in a binary file that the compiler can process faster than traditional precompiled headers.
+> - Exported files can potentially be used to build integrations with C++ code from other languages.
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+<details>
+<summary>Import a module in a translation unit?</summary>
+
+> ```cpp
+> import std;
+>
+> int main()
+> {
+>     std::cout << std::format("{}\n", "modules are working");
+> }
+> ``````
+>
+> Headers can also be imported:
+>
+> ```cpp
+> import std;
+> import "geometry.hpp"
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+## Module Interface Unit
+
+<details>
+<summary>What are the constituents of a module?</summary>
+
+> - The **global module fragment**, introduced with a `module;` statement. This
+>   part is optional and, if present, may only contain preprocessor directives.
+>   Everything that is added here is said to belong to the *global module*,
+>   which is the collection of all the global module fragments and all
+>   translation units that are not modules.
+>
+> - The **module declaration**, which is a required statement of the form
+>   `export module name;`.
+> - The **module preamble**, which is optional, and may only contain import
+>   declarations.
+> - The **module purview**, which is the content of the unit, starting with the
+>   module declaration and extending to the end of the module unit.
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+<details>
+<summary>Express a module to be used within another translation unit?</summary>
+
+> Export a module by creating a **Module Interface Unit (MIU)** that can
+> contain functions, types, constants, and even macros.
+>
+> ```cpp
+> module;               // global module fragment
+>
+> #define X
+> #include "code.h"
+>
+> export module geometry;   // module declaration
+>
+> import std;      // module preamble
+>
+> // module purview
+>
+> export template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
+> struct point
+> {
+>     T x;
+>     T y;
+> };
+>
+> export using int_point = point<int>;
+>
+> export constexpr int_point int_point_zero{0, 0};
+>
+> export template <typename T>
+> double distance(point<T> const& p1, point<T> const& p2)
+> {
+>     return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+> }
+> ``````
+>
+> ```cpp
+> import std;
+> import geometry;
+>
+> int main()
+> {
+>     int_point p{3, 4};
+>     std::cout << distance(int_point_zero, p) << std::endl;
+> }
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+## Module Interface Partition
+
+<details>
+<summary>What is a module partition?</summary>
+
+> The source code of a module may become large and difficult to maintain.
+> Moreover, a module may be composed of logically separate parts. To help with
+> scenarios like that, modules support composition from parts called
+> **partitions**.
+>
+> Although module partitions are distinct files, they are not available as
+> separate modules or submodules to translation units using a module. They are
+> exported together as a single, aggregated module.
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is a module interface partition?</summary>
+
+> A module unit that is a partition that exports entities is called a **module
+> interface partition**.
+>
+> Here the `geometry-core.cppm` and `geometry-literals.cppm` are internal partitions.
+>
+> *geometry-core.cppm*
+> ```cpp
+> export module geometry:core;
+>
+> import std.core;
+>
+> export template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
+> struct point
+> {
+>     T x;
+>     T y;
+> };
+> ``````
+>
+> *geometry-literals.cppm*
+> ```cpp
+> export module geometry.literals;
+>
+> import std.core;
+>
+> namespace geometry_literals
+> {
+>     export point<int> operator ""_p(const char* ptr, std::size_t const size)
+>     {
+>         int x{}, y{};
+>         ...
+>         return {x , y};
+>     }
+> }
+> ``````
+>
+> In the primary module interface unit, import and then export the partitions
+> with statements of the form `export import :partitionname`.
+>
+> *geometry.cppm*
+> ```cpp
+> export module geometry;
+>
+> export import :core;
+> export import :literals;
+> ``````
+>
+> The code importing a module composed from multiple partitions only sees the
+> module as a whole if it was built from a single module unit:
+>
+> ```cpp
+> import std.core;
+> import geometry;
+>
+> int main()
+> {
+>     point<int> p{4, 2};
+>
+>     {
+>         using namespace geometry_literals;
+>         point<int> origin{"0,0"_p};
+>     }
+> }
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+## Module Implementation Partition
+
+<details>
+<summary>What is a module implementation partition?</summary>
+
+> Apart from *module interface partition*, there could also be internal
+> partitions that do not export anything. Such partition unit is called a
+> **module implementation partition**.
+>
+> It is possible to create internal partitions that do not export anything, but
+> contain code that can be used in the same module.
+>
+> Such partition must start with a statement of the form `module
+> modulename:partitionname;`.
+>
+> *geometry-details.cppm*
+> ```cpp
+> module geometry:details;
+>
+> import std.core;
+>
+> std::pair<int, int> split(char const* ptr, std::size_t const size)
+> {
+>     int x{}, y{};
+>     ...
+>     return {x, y};
+> }
+> ``````
+>
+> *geometry-literals.cppm*
+> ```cpp
+> export module geometry:literals;
+>
+> import :core;
+> import :details;
+>
+> namespace geometry_literals
+> {
+>     export point<int> operator ""_p(const char* ptr, std::size_t size)
+>     {
+>         auto [x, y] = split(ptr, size);
+>         return {x, y};
+>     }
+> }
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the difference between module partitions and submodules?</summary>
+
+> Partitions are division of a module. However, they are not submodules. They
+> do not logically exist outside of the module. There is no concept of a
+> submodule in the C++ language.
+>
+> This snippet uses module interface partition and module implementation partition.
+>
+> *sample-core.cppm*
+> ```cpp
+> export module sample:core;
+>
+> export constexpr double fraction{7 / 5};
+> ``````
+>
+> *sample-details.cppm*
+> ```cpp
+> module sample:details;
+>
+> import :core;
+>
+> constexpr double power{fraction * fraction};
+> ``````
+>
+> *sample.cppm*
+> ```cpp
+> export module sample;
+>
+> export import :core;
+> ``````
+>
+> *consumer.cpp*
+> ```cpp
+> import std.core;
+> import sample;
+>
+> std::cout << power << "\n";
+> ``````
+>
+> Next snippet is the same implementation but with modules instead of partitions:
+>
+> *sample-core.cppm*
+> ```cpp
+> export module sample.core;
+>
+> export constexpr double fraction{7 / 5};
+> ``````
+>
+> *sample-details.cppm*
+> ```cpp
+> module sample.details;
+>
+> import sample.core;
+>
+> constexpr double power{fraction * fraction};
+> ``````
+>
+> *sample.cppm*
+> ```cpp
+> export module sample;
+>
+> export import sample.core;
+> ``````
+>
+> *consumer.cpp*
+> ```cpp
+> import std.core;
+> import sample;
+>
+> std::cout << power << "\n";
+> ``````
+>
+> So far, we have two modules: `sample.core` and `sample`. Here `sample`
+> imports and then re-exports the entire content of `sample.core`. Because of
+> this, the core in the `consumer.cpp` does not need to change. By solely
+> importing the `sample` module, we get access to the content of the
+> `sample.core` module.
+>
+> However, if we do not define the `sample` module anymore, then we need to explicitly import `sample.core` module:
+>
+> *consumer.cpp*
+> ```cpp
+> import std.core;
+> import sample.core;
+>
+> std::cout << power << "\n";
+> ``````
+>
+> Choosing between using partitions or multiple modules for componentizing your
+> source code should depend on the particularities of your project. If you use
+> multiple smaller modules, you provide better granularity for imports. This
+> can be important if you're developing a large library because users should
+> only import things they use.
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 12
+
+> References:
+---
+</details>
+
 ## Automatic Type Deduction
 
 <details>
