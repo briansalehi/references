@@ -1910,7 +1910,7 @@ docker swarm ca --help
 </details>
 
 <details>
-<summary>Delete all volumes?</summary>
+<summary>Delete all unmounted volumes?</summary>
 
 > ```sh
 > docker volume prune
