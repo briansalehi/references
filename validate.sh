@@ -50,8 +50,9 @@ function check_contiguous_summary() {
     is_empty_scope=0
 }
 
+# shellcheck disable=SC2317
 function check_out_of_scope_line() {
-    if [ -n "$line" ] && ! [ "$line" = "Nothing to import." ]
+    if [ -n "$line" ] && [ "$line" != "Nothing to import." ]
     then
         error "out of scope line"
     fi
@@ -166,6 +167,7 @@ do
         -q|--quiet) QUIET_MODE=1 ;;
         -h|--help) HELP_MODE=1 ;;
         -f|--file) FILE_MODE=1; FILE_PATH="$2"; shift ;;
+        -w|-Werror|--error|--werror) WERROR=1 ;;
         -d|--dir|--directory) DIR_MODE=1; DIR_PATH="$2"; shift ;;
         -g|--debug) DEBUG_BEGIN_LINE="$2"; DEBUG_END_LINE="$3"; shift; shift ;;
         *)
@@ -221,6 +223,8 @@ then
         while read -r line
         do
             ((line_number++))
+
+            [ -v WERROR ] && [ "$faults" -gt 0 ] && exit 1
 
             [ -n "$DEBUG_BEGIN_LINE" ] && [ "$DEBUG_BEGIN_LINE" -eq "$line_number" ] && set -x
 
