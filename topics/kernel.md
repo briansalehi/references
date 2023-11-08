@@ -2024,9 +2024,9 @@
 <summary>Specify a kernel object with multiple source files in <code>Makefile</code>?</summary>
 
 > ```Makefile
-multifile-objs := callsub.o mysub.o
-obj-m += multifile.o
-
+> multifile-objs := callsub.o mysub.o
+> obj-m += multifile.o
+>
 > default all: modules
 > install: modules_install
 >
