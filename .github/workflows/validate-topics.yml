@@ -2,7 +2,7 @@ name: validate-topics
 run-name: topic structure validation test
 on: [push]
 jobs:
-  validate-topics:
+  validation:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
