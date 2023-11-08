@@ -12,7 +12,6 @@ jobs:
 
       - name: validation
         run: bash validate.sh topics --quiet
-
   validate-resources:
     runs-on: ubuntu-latest
     stesps:
