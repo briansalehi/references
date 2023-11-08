@@ -1660,7 +1660,112 @@
 ---
 </details>
 
+## Module Listing
+
+<details>
+<summary>List all loaded modules on system?</summary>
+
+> ```sh
+> lsmod
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+## Module Information Retrieval
+
+<details>
+<summary>Get information of a module?</summary>
+
+> ```sh
+> modinfo btusb
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Inspect the given parameters of a loaded module?</summary>
+
+> ```sh
+> modinfo -p btusb
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Where do module parameters linger on the system?</summary>
+
+> ```sh
+> /sys/module/btusb/parameters/
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+---
+</details>
+
 ## Module Loading
+
+<details>
+<summary>Load a module into the kernel?</summary>
+
+> This command requires privileged access and does not resolve module
+> dependencies.
+>
+> ```sh
+> sudo insmod sample.ko
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Load a module into the kernel with parameters?</summary>
+
+> ```sh
+> insmod sample.ko param1=value param2=value
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Load a module and all of its dependencies?</summary>
+
+> ```sh
+> sudo modprobe sample
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
 
 <details>
 <summary>Secure kernel from loading malicious modules?</summary>
@@ -1687,6 +1792,288 @@
 
 > Origins:
 > - LinkedIn Post by Mohammad Jamal M.
+
+> References:
+---
+</details>
+
+## Module Dependencies
+
+<details>
+<summary>How does <code>modprobe</code> retrieve module dependencies?</summary>
+
+> It probes all modules by running `depmod` utility and writes the results into
+> `/usr/lib/modules/$(uname -r)/modules.dep` file and its binary counterpart
+> `/usr/lib/modules/$(uname -r)/modules.dep.bin`. Each entry consists of a
+> module name followed by its dependencies in front of a colon.
+>
+> ```sh
+> grep 'btusb.ko' /usr/lib/modules/$(uname -r)/modules.dep
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Manually retrieve module dependencies?</summary>
+
+> `depmod` command probes all modules by default when no kernel object file is
+> given. Try `-n` for dry run.
+>
+> ```sh
+> depmod -n
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+## Module Removal
+
+<details>
+<summary>Remove loadable modules from the kernel?</summary>
+
+> This command requires privileged access to the system. It also does not
+> unload dependencies.
+>
+> ```sh
+> sudo rmmod sample
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove a loadable module and its dependencies?</summary>
+
+> ```sh
+> sudo modprobe -r sample
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
+
+> References:
+---
+</details>
+
+## Module Configuration
+
+<details>
+<summary>Where is the modules configuration file located?</summary>
+
+> ```sh
+> /etc/modules.d
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+> - [modprobe.d(5)](https://manpages.org/modprobed/5)
+> - [modprobe.conf(5)](https://manpages.org/modprobeconf/5)
+---
+</details>
+
+<details>
+<summary>Supply automatic module parameters?</summary>
+
+> ```sh
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Put multiple modules into blacklist?</summary>
+
+> ```sh
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
+
+> References:
+---
+</details>
+
+## Module Skeleton
+
+<details>
+<summary>What is the signature of module initial function?</summary>
+
+> Initialization function names usually include `init` or `module`.
+>
+> ```c
+> static int __init sample_module(void);
+> module_init(sample_module);
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the signature of module cleanup function?</summary>
+
+> ```c
+> static void __exit module_cleanup(void);
+> module_exit(module_cleanup);
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the minimal skeleton for a module?</summary>
+
+> The least a module should have is initial and cleanup functions, and the
+> licensing of the module. Specifying license is mandatory for modules to be
+> loadable into the kernel.
+>
+> ```c
+> #include <linux/module.h>
+>
+> static int __init sample_module(void)
+> {
+> }
+>
+> static void __exit sample_cleanup(void)
+> {
+> }
+>
+> module_init(sample_module);
+> module_exit(sample_cleanup);
+>
+> MODULE_LICENSE("GPL");
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+## Makefile Skeleton
+
+<details>
+<summary>What is the least requirement for a <code>Makefile</code> to build a loadable module?</summary>
+
+> `linux-headers-$(uname -r)` package is required for `make` command to build a
+> loadable module. This package makes the `build/` directory in
+> `/usr/lib/modules/$(uname -r)/` where headers are located, and the kernel
+> configuration file exists.
+>
+> ```sh
+> make -C /usr/lib/modules/$(uname -r)/build M=$PWD modules
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the minimal skeleton of Makefile for a module?</summary>
+
+> ```Makefile
+> obj-m += sample.o
+>
+> default all: modules
+> install: modules_install
+>
+> KERNEL_SRC ?= /usr/lib/modules/$(shell uname -r)/build
+>
+> modules modules_install clean:
+>     $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Specify a kernel object with multiple source files in <code>Makefile</code>?</summary>
+
+> ```Makefile
+multifile-objs := callsub.o mysub.o
+obj-m += multifile.o
+
+> default all: modules
+> install: modules_install
+>
+> KERNEL_SRC ?= /usr/lib/modules/$(shell uname -r)/build
+>
+> modules modules_install clean:
+>     $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
+
+> References:
+---
+</details>
+
+## Module Parameters
+
+<details>
+<summary>Write a module accepting parameters?</summary>
+
+> ```c
+> #include <linux/module.h>
+> #include <linux/moduleparam.h>
+>
+> static int value = 0;
+>
+> module_param(value, int, S_IRWXU);
+> MODULE_PARM_DESC(value, "Sample parameter");
+>
+> static int __init sample_module(void)
+> {
+>     pr_info("sample module loaded\n");
+>     return 0;
+> }
+>
+> static void __exit sample_cleanup(void)
+> {
+> }
+>
+> module_init(sample_module);
+> module_exit(sample_cleanup);
+> MODULE_LICENSE("GPL");
+> ``````
+
+> Origins:
+> - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
 > References:
 ---

@@ -3740,6 +3740,62 @@ constexpr double get_pi()
 ---
 </details>
 
+<details>
+<summary>Specialize swap for user-defined types?</summary>
+
+> Customizing swap for user-defined types and correctly calling swap with a
+> fallback can be tricky. If we are not using the C++20 range version, we need
+> to correctly implement the customized version as a friend function (making it
+> visible only to ADL) and pull in the default swap when calling it (to get the
+> fallback).
+>
+> ```cpp
+> #include <algorithm>
+>
+> namespace MyNamespace
+> {
+> struct MyClass
+> {
+>     // Use inline friend function to implement custom swap.
+>     friend void swap(MyClass&, MyClass&) { }
+> };
+>
+> struct MyOtherClass {};
+> } // MyNamespace
+>
+> MyNamespace::MyClass a, b;
+> MyNamespace::MyOtherClass x, y;
+>
+> // Fully qualified call, will always call std::swap
+> std::swap(a,b); // calls std::swap
+> std::swap(x,y); // calls std::swap
+>
+> // No suitable swap for MyOtherClass.
+> swap(a,b); // calls MyNamespace::swap
+> // swap(x,y); // would not compile
+>
+> // Pull std::swap as the default into local scope:
+> swap(a,b); // calls MyNamespace::swap
+> swap(x,y); // would not compile
+>
+> // Pull std::swap as the default into local scope:
+>
+> using std::swap;
+> swap(a,b); // calls MyNamespace::swap
+> swap(x,y); // calls std::swap
+>
+> // C++20 std::ranges::swap which will do the correct thing:
+> std::ranges::swap(x,y); // default swap
+> std::ranges::swap(a,b); // calls MyNamespace::swap
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #62
+
+> References:
+---
+</details>
+
 ## Sorting Algorithms
 
 <details>
