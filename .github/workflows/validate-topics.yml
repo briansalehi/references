@@ -1,5 +1,5 @@
 name: validate-topics
-run-name: topic structure validation test
+run-name: topic validation
 on: [push]
 jobs:
   validation:

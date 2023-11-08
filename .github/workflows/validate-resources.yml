@@ -1,5 +1,5 @@
 name: validate-resources
-run-name: resource structure validation test
+run-name: resource validation
 on: [push]
 jobs:
   validation:
