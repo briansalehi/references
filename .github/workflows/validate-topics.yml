@@ -1,4 +1,4 @@
-name: validate
+name: validate-topics
 run-name: topic structure validation test
 on: [push]
 jobs:
@@ -12,13 +12,3 @@ jobs:
 
       - name: validation
         run: bash validate.sh topics --quiet
-  validate-resources:
-    runs-on: ubuntu-latest
-    stesps:
-      - uses: actions/checkout@v4
-
-      - name: logging
-        run: echo "validation resources..."
-
-      - name: validation
-        run: bash validate.sh bookmarks/resources --quiet

@@ -1,0 +1,14 @@
+name: validate-resources
+run-name: resource structure validation test
+on: [push]
+jobs:
+  validate-resources:
+    runs-on: ubuntu-latest
+    stesps:
+      - uses: actions/checkout@v4
+
+      - name: logging
+        run: echo "validation resources..."
+
+      - name: validation
+        run: bash validate.sh bookmarks/resources --quiet
