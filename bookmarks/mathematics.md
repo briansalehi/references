@@ -1,14 +1,5 @@
 # Mathematics
 
-Covers mathematics.
-
-## Table of Content
-
-* [Introduction to Linear and Matrix Algebra](#-introduction-to-linear-and-matrix-algebra)
-* [Thomas' Calculus](#-thomas-calculus)
-
----
-
 ## Linear Algebra
 
 ### ★★★★★ [Introduction to Linear and Matrix Algebra](resources/9783030528119.md)
