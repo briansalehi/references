@@ -540,6 +540,14 @@
 <details>
 <summary>Aquire the kernel source repository?</summary>
 
+> The source can be downloaded as an archive but without any git history:
+>
+> ```sh
+> wget https://cdn.kernel.org/pub/linux/kernel/v5.4/linux-v5.4.tar.xz
+> ``````
+>
+> Using git, the source can be cloned:
+>
 > ```sh
 > git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 > ``````
@@ -1977,7 +1985,24 @@
 ---
 </details>
 
-## Makefile Skeleton
+## Module Building
+
+<details>
+<summary>Manually create a device node?</summary>
+
+> Empty device nodes can be created by `mknod <node_name> <c|b> <major> <minor>
+>
+> ```sh
+> mknod sample-char c 1 1
+> mknod sample-block b 1 1
+> ``````
+
+> Origins:
+> - LinkedIn Course: Linux Device Drivers - Chapter 3
+
+> References:
+---
+</details>
 
 <details>
 <summary>What is the least requirement for a <code>Makefile</code> to build a loadable module?</summary>
@@ -2625,6 +2650,34 @@
 
 > Origins:
 > - Mastering Embedded Linux Programming - Chapter 4
+
+> References:
+---
+</details>
+
+## Udev
+
+<details>
+<summary>Configure udev in order to give devices another name?</summary>
+
+> To configure `udev`, you have to write a new rule for it in
+> `/etc/udev/rules.d/` directory.
+>
+> */etc/udev/rules.d/70-persistent-ipoib.rules*
+> ```conf
+> SUBSYSTEM="net", ACTION="add", DRIVERS="?*", ATTR{address}="" ATTR{type}="1", KERNEL="enp33", NAME="eth0"
+> ``````
+>
+> Reboot is required in order to apply new rules, but there is a short hand for
+> applying them on live system.
+>
+> ```sh
+> udevadm control --reload-rules
+> udevadm trigger
+> ``````
+
+> Origins:
+> - LinkedIn Course: LPIC-2 Linux Engineer (201-450) Cert Prep: 2 Linux Kernel - Kernel Modules
 
 > References:
 ---
@@ -4887,3 +4940,33 @@
 ---
 </details>
 
+## Kernel Tracing
+
+<details>
+<summary>Where does the kernel log?</summary>
+
+> The `dmesg` or `journalctl` commands are most commonly used to inspect kernel logs.
+>
+> ```sh
+> sudo journalctl -k
+> sudo journalctl --dmesg
+> ``````
+
+> Origins:
+> - LinkedIn Course: Linux Device Drivers - Chapter 2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Where is the tracing directory usually mounted?</summary>
+
+> Tracing is located at `/sys/kernel/debug/tracing` directory.
+
+> Origins:
+> - LinkedIn Course: Linux Device Drivers - Chapter 2
+
+> References:
+---
+</details>
