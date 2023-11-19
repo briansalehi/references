@@ -1008,6 +1008,159 @@ constexpr double get_pi()
 ---
 </details>
 
+## std::variant
+
+<details>
+<summary>Construct a variant to hold three different types?</summary>
+
+> `std::variant` is the C++17 type-safe alternative to union which supports
+> non-trivial custom types.
+>
+> Variant is never empty. Without arguments, it default constructs the first
+> type.
+>
+> ```cpp
+> #include <variant>
+> #include <string>
+>
+> std::variant<int, double, std::string> v;
+>
+> bool x = std::holds_alternative<std::string>(v);
+> // x == true
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #64
+
+> References:
+---
+</details>
+
+<details>
+<summary>Change the active type of a variant?</summary>
+
+> Assignment sets the variant type:
+>
+> ```cpp
+> #include <variant>
+> #include <string>
+>
+> std::variant<int, double, std::string> v;
+> v = 10;
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #64
+
+> References:
+---
+</details>
+
+<details>
+<summary>Retreive value of the active type within a variant?</summary>
+
+> Elements can be extracted by type or index; however, only the active type can
+> be accessed.
+>
+> ```cpp
+> #include <variant>
+> #include <string>
+>
+> std::variant<int, double, std::string> v{10};
+> int number;
+>
+> number = std::get<int>(v);
+> number = std::get<0>(v); // same as above but with index
+> ``````
+>
+> `std::variant` throws when we attempt to access the wrong type:
+>
+> ```cpp
+> #include <variant>
+> #include <string>
+>
+> std::variant<int, double, std::string> v{10};
+>
+> double value = std::get<double>(v);
+> // throws std::bad_variant_access
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #64
+
+> References:
+---
+</details>
+
+<details>
+<summary>Access the content of a variant with visitor approach?</summary>
+
+> When working with `std::variant`, querying the current content can become
+> cumbersome. As an alternative, especially for cases when type deduction is
+> involved, we can use the `std::visit`.
+>
+> The `std::visit` requires as an argument an invocable that is compatible with
+> each of the contained types.
+>
+> ```cpp
+> #include <variant>
+> #include <string>
+> #include <iostream>
+>
+> std::varian<int, double, std::string> v{"sample string"};
+>
+> std::visit([](auto&& x) {
+>     std::cout << x << '\n';
+> }, v);
+> // prints "sample string"
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #66
+
+> References:
+---
+</details>
+
+<details>
+<summary>Create a helper to be compatible with any of the variant types?</summary>
+
+> ```cpp
+> #include <variant>
+> #include <string>
+> #include <iostream>
+>
+> std::variant<int, double, std::string> v;
+>
+> template <typename ...Ts>
+> struct overloaded : Ts...
+> {
+>     using Ts::operator()...;
+> };
+>
+> v = 3.14;
+>
+> std::visit(overloaded{
+>     [](int& x) {
+>         std::cout << "int: " << x << '\n';
+>     },
+>     [](double& x) {
+>         std::cout << "double: " << x << '\n';
+>     },
+>     [](std::string& x) {
+>         std::cout << "std::string: " << x << '\n';
+>     }
+> }, v);
+// prints "double: 3.14"
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #66
+
+> References:
+---
+</details>
+
 ## Three-Way Comparison Operator
 
 <details>
