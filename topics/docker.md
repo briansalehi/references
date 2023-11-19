@@ -1839,7 +1839,7 @@
 <summary>Manage CA related configuration?</summary>
 
 > ```sh
-docker swarm ca --help
+> docker swarm ca --help
 > ``````
 
 > Origins:

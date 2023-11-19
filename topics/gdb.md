@@ -8,7 +8,8 @@
 > - `start`: starts debugging session by running program line-by-line.
 > - `run`: starts debugging session running program as usual.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -25,7 +26,8 @@
 > - `next`: Executes program similar to `step`, but it only continues to the
 >   next line in the current stack frame and will not step into functions.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -40,7 +42,8 @@
 > will be displayed enter `show listsize`. To adjust the lines of source code
 > displayed enter `set listsize 20`.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -58,7 +61,8 @@
 > break source.cpp:main+50
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -69,7 +73,8 @@
 
 > `delete 1`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -82,7 +87,8 @@
 
 > `print `
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -93,7 +99,8 @@
 
 > `whatis random_number`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -106,7 +113,8 @@
 
 > `set var random_number = 5`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---
@@ -119,7 +127,8 @@
 
 > `shell pwd`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > References:
 ---

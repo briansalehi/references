@@ -117,10 +117,10 @@
 <summary>Declare a function evaluated at compile time?</summary>
 
 > ```cpp
-constexpr double get_pi()
-{
-    return 22.0 / 7;
-}
+> constexpr double get_pi()
+> {
+>     return 22.0 / 7;
+> }
 > ``````
 
 > Origins:
@@ -1151,7 +1151,7 @@ constexpr double get_pi()
 >         std::cout << "std::string: " << x << '\n';
 >     }
 > }, v);
-// prints "double: 3.14"
+> // prints "double: 3.14"
 > ``````
 
 > Origins:

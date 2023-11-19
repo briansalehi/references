@@ -1778,7 +1778,8 @@
 <details>
 <summary>Secure kernel from loading malicious modules?</summary>
 
-> During build, kernel module signing facility signs modules and during module loading the signature is checked.
+> During build, kernel module signing facility signs modules and during module
+> loading the signature is checked.
 >
 > ```.config
 > CONFIG_MODULE_SIG = 'y'
@@ -1796,7 +1797,6 @@
 >
 > Above signing setup is one time process. You should have a script to take
 > care of your kernel module signing.
-
 
 > Origins:
 > - LinkedIn Post by Mohammad Jamal M.

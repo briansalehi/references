@@ -31,13 +31,16 @@
 >     mov rdi, 0
 >     syscall
 > ``````
-
+>
 > ```make
 > sample: sample.o
 >     gcc -Wall -g3 -Og -no-pie sample.o -o sample
 > sample.o: sample.asm
 >     nasm -f elf64 -g -F dwarf sample.asm -l sample.lst
 > ``````
+
+> Origins:
+> - Beginning x64 Assembly Programming - Chapter 3
 
 > References:
 > - [nasm reference manual](https://www.nasm.us/doc/)
