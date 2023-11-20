@@ -4,6 +4,9 @@ VERBOSE="${VERBOSE:-false}"
 base_path="/tmp/animus"
 
 unpack_practice() {
+    local buffer="$1"
+    local subject="$2"
+    local topic="$3"
     local line
     local body
     local origins
@@ -16,7 +19,8 @@ unpack_practice() {
 
     read -r # empty line
 
-    echo -e "\e[1;34m\t${question}\e[0m"
+    echo -e "> ${subject} » ${topic}" >> "${buffer}"
+    echo -e "# ${question}\n\n" >> "${buffer}"
 
     read -r line
     while [ "${line:0:1}" == ">" ]
@@ -27,10 +31,10 @@ unpack_practice() {
         # filters
         [ "${line}" == "\`\`\`\`\`\`" ] && line="\`\`\`"
 
-        body+="\t\t${line}\n"
+        body+="${line}\n"
         read -r line
     done
-    echo -e "$body"
+    echo -e "$body" >> "${buffer}"
 
     read -r line
     if [ "$line" != "> Origins:" ]
@@ -39,13 +43,15 @@ unpack_practice() {
         exit 127
     fi
 
+    origins="## Origins\n\n"
+
     read -r line
     while [ "${line:0:1}" == ">" ]
     do
         length="${#line}"
-        line="${line:4:length}"
+        line="${line:2:length}"
 
-        origins+="\t\t${line}\n"
+        origins+="${line}\n"
         read -r line
     done
 
@@ -56,13 +62,15 @@ unpack_practice() {
         exit 126
     fi
 
+    references="## References\n\n"
+
     read -r line
     while [ "${line:0:1}" == ">" ]
     do
         length="${#line}"
-        line="${line:4:length}"
+        line="${line:2:length}"
 
-        references+="\t\t${line}\n"
+        references+="${line}\n"
         read -r line
     done
 
@@ -71,27 +79,29 @@ unpack_practice() {
 
     if [ -n "${origins}" ]
     then
-        echo -e "${origins}"
+        echo -e "${origins}" >> "${buffer}"
     else
-        $VERBOSE && echo -e "\e[1;35m""\t\tNo origins""\e[0m" >&2
+        $VERBOSE && echo -e "\e[1;35m""No origins""\e[0m" >&2
     fi
 
     if [ -n "${references}" ]
     then
-        echo -e "${references}"
+        echo -e "${references}" >> "${buffer}"
     else
-        $VERBOSE && echo -e "\e[1;35m""\t\tNo references""\e[0m" >&2
+        $VERBOSE && echo -e "\e[1;35m""No references""\e[0m" >&2
     fi
 }
 
-iterate_topics() {
+unpack_topics() {
     local subject_path="$1"
     local subject_file="$2"
+    local subject="$3"
     local practice_path
     local practice_hash
     local record_list="/tmp/animus-data"
     local topic_file
     local number=0
+    local index
     local buffer="/tmp/animus-buffer"
     local topic
     local line
@@ -104,8 +114,9 @@ iterate_topics() {
         elif [ "${line:0:3}" == "## " ]
         then
             number=$((number + 1))
+            index="$(printf "%02d" $number)"
             topic="${line#* }"
-            topic_file="${number}.${topic// /-}"
+            topic_file="${index}.${topic// /-}"
 
             $VERBOSE && echo -e "\e[1;33m""${topic}""\e[0m"
 
@@ -115,8 +126,7 @@ iterate_topics() {
             fi
         elif [ "${line}" == "<details>" ]
         then
-            practice="$(unpack_practice)"
-            echo -e "$practice" > "${buffer}"
+            unpack_practice "${buffer}" "${subject}" "${topic}"
 
             practice_hash="$(md5sum "$buffer" | cut -d' ' -f1)"
             practice_path="${base_path}/${subject_file}/${topic_file}/${practice_hash}"
@@ -130,12 +140,12 @@ iterate_topics() {
     done < "$subject_path"
 }
 
-iterate_subjects() {
+unpack_subjects() {
     local subject_path
     local subject_file
     local subject
 
-    for subject_path in topics/*
+    for subject_path in topics/[a-z]*.md
     do
         read -r subject < "$subject_path"
         subject="${subject#* }"
@@ -148,8 +158,44 @@ iterate_subjects() {
             mkdir -p "${base_path}/${subject_file}"
         fi
 
-        iterate_topics "$subject_path" "$subject_file"
+        unpack_topics "$subject_path" "$subject_file" "$subject"
     done
 }
 
-iterate_subjects
+begin_review() {
+    local -a subject_list
+    local subject
+    local topic
+    local -a topic_list
+    local topic_budget
+    local -a practice_list
+    local practice
+
+    readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1 -type d)
+
+    for subject in "${subject_list[@]}"
+    do
+        readarray -t topic_list < <(find "${subject}" -mindepth 1 -maxdepth 1 -type d | sort)
+
+        for topic in "${topic_list[@]}"
+        do
+            readarray -t practice_list < <(find "${topic}" -type f)
+
+            for practice in "${practice_list[@]}"
+            do
+                echo "$practice"
+            done
+
+            topic_budget="${#topic_list[*]}"
+            echo "${topic_budget}" >/dev/null
+        done
+    done
+}
+
+#if [ -d "${base_path}" ]
+#then
+#    rm -r "${base_path}"
+#fi
+#
+#unpack_subjects
+begin_review
