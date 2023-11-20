@@ -1,6 +1,6 @@
 # Boost
 
-## Asynchronous I/O Context
+## Asynchronous IO Context
 
 <details>
 <summary>What is the objective of <code>io_service</code> in boost?</summary>
