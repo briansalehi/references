@@ -145,6 +145,7 @@ unpack_subjects() {
     local subject_file
     local subject
 
+    $VERBOSE && echo -e "\e[1;35m""Unpacking practice files""\e[0m"
     for subject_path in topics/[a-z]*.md
     do
         read -r subject < "$subject_path"
@@ -162,6 +163,67 @@ unpack_subjects() {
     done
 }
 
+prompt_subject_options() {
+    local subject="$1"
+    local response
+
+    echo -e "\nWhat to do with subject ${subject_name}?\n" >&2
+    select response in "Select $subject" "Next Subject"
+    do
+        echo "$response"
+        break
+    done
+}
+
+prompt_topic_options() {
+    local topic_name="$1"
+    local response
+
+    echo -e "\nWhat to do with topic ${topic_name%%.*}. ${topic_name#*.}?\n" >&2
+    select response in "Select ${topic_name#*.}" "Next Topic"
+    do
+        echo "$response"
+        break
+    done
+}
+
+prompt_practice_options() {
+    local topic_name="$1"
+    local success="$2"
+    local response
+
+    echo -e "\nWhat to do with this practice?\n" >&2
+    select response in "Keep working on ${topic_name#*.}" "Next Topic"
+    do
+        echo "$response"
+        break
+    done
+}
+
+preview_practice() {
+    local practice="$1"
+    local buffer="$2"
+    local response
+
+    if ! [ -f "$practice" ] || ! [ -f "$buffer" ]
+    then
+        echo -e "\e[1;31m""Practice file missing""\e[0m" >&2
+    elif ! [ -f "$buffer" ]
+    then
+        echo -e "\e[1;31m""Buffer is missing""\e[0m" >&2
+    fi
+
+    cp "$practice" "$buffer"
+
+    # shellcheck disable=SC2009
+    if ! ps -ef | grep -w livedown | grep -qv grep
+    then
+        livedown start "$buffer" --open &>/dev/null &
+    fi
+
+    return 0
+}
+
 begin_review() {
     local -a subject_list
     local subject
@@ -170,32 +232,77 @@ begin_review() {
     local topic_budget
     local -a practice_list
     local practice
+    local subject_task
+    local topic_task
+    local practice_task
+    local success
+    local subject_name
+    local topic_name
+    local buffer="/tmp/animus.html"
 
-    readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1 -type d)
+    readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1)
 
     for subject in "${subject_list[@]}"
     do
-        readarray -t topic_list < <(find "${subject}" -mindepth 1 -maxdepth 1 -type d | sort)
+        subject_name="$(basename "$subject" | tr '-' ' ')"
+        subject_task="$(prompt_subject_options "$subject_name")"
+
+        case "${subject_task}" in
+            "Next Subject") continue ;;
+        esac
+
+        readarray -t topic_list < <(find "${subject}" -mindepth 1 -maxdepth 1 | sort)
 
         for topic in "${topic_list[@]}"
         do
+            topic_name="$(basename "$topic" | tr '-' ' ')"
+            topic_task="$(prompt_topic_options "$topic_name")"
+
+            case "${topic_task}" in
+                "Next Topic") continue ;;
+            esac
+
             readarray -t practice_list < <(find "${topic}" -type f)
+
+            if [ "${#practice_list[*]}" -eq 0 ]
+            then
+                echo -e "\e[1;31m""${topic_name} has no practice""\e[0m" >&2
+            fi
 
             for practice in "${practice_list[@]}"
             do
-                echo "$practice"
+                success=false
+
+                if preview_practice "${practice}" "${buffer}"
+                then
+                    success=true
+                fi
+
+                practice_task="$(prompt_practice_options "${topic_name}" "$success")"
+
+                case "${practice_task}" in
+                    "Next Topic") break ;;
+                esac
+
+                echo -e "$practice"
             done
 
             topic_budget="${#topic_list[*]}"
             echo "${topic_budget}" >/dev/null
         done
     done
+
+    # shellcheck disable=SC2009
+    if ps -ef | grep -w livedown | grep -qv grep
+    then
+        livedown stop
+    fi
 }
 
-#if [ -d "${base_path}" ]
-#then
-#    rm -r "${base_path}"
-#fi
-#
-#unpack_subjects
+if [ -d "${base_path}" ]
+then
+    rm -r "${base_path}"
+fi
+
+unpack_subjects
 begin_review
