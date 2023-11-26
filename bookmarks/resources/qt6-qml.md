@@ -1,22 +1,18 @@
 # Qt6 QML
 
-## Chapter 1/21 Welcome!
+## Chapter 1/20 Qt and QtQuick <sup>(ignored)</sup>
 
 Nothing to import.
 
-## Chapter 2/21 Qt and Qt Quick
+## Chapter 2/20 Getting Started <sup>(ignored)</sup>
 
 Nothing to import.
 
-## Chapter 3/21 Quick Start
+## Chapter 3/20 Qt Creator IDE <sup>(ignored)</sup>
 
 Nothing to import.
 
-## Chapter 4/21 Qt Creator IDE
-
-Nothing to import.
-
-## Chapter 5/21 Quick Starter
+## Chapter 4/20 Quick Starter <sup>(completed)</sup>
 
 ### QML Syntax
 
@@ -642,19 +638,769 @@ Export properties of a component to be used as an API?
 ---
 </details>
 
-## Chapter 6/21 Fluid Elements
-## Chapter 7/21 UI Controls
-## Chapter 8/21 Model-View-Delegate
-## Chapter 9/21 Canvas Element
-## Chapter 10/21 Shapes
-## Chapter 11/21 Effects in QML
-## Chapter 12/21 Multimedia
-## Chapter 13/21 Qt Quick 3D
-## Chapter 14/21 Networking
-## Chapter 15/21 Storage
-## Chapter 16/21 Dynamic QML
-## Chapter 17/21 JavaScript
-## Chapter 18/21 Qt and C++
-## Chapter 19/21 Extending QML with C++
-## Chapter 20/21 Qt for Python
-## Chapter 21/21 Qt for MCUs
+### Layout Items
+
+<details>
+<summary>What are the anchoring properties for visual elements?</summary>
+
+> An element has 6 major anchor lines, `top` , `bottom` , `left` , `right` , `horizontalCenter` , `verticalCenter` .
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>What additional anchor property does a text element have?</summary>
+
+> There is the `baseline` anchor for text in `Text` elements.
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the offsets of anchors?</summary>
+
+> Each anchor line comes with an offset. In the case of the `top` , `bottom` ,
+> `left` , and `right` anchors, they are called **margins**. For
+> `horizontalCenter` , `verticalCenter` and `baseline` they are called
+> **offsets**.
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+### Keyboard Input
+
+<details>
+<summary>What input constraints does <code>TextInput</code> support?</summary>
+
+> - `validator`
+> - `inputMask`
+> - `echoMode`
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+Get a line of text from user?
+
+<details>
+<summary>Make a tab <code>KeyNavigation</code> for multiple <code>TextInput</code> elements in a column?</summary>
+
+> *UserInput.qml*
+> ```qml
+> import QtQuick
+>
+> FocusScope {
+>     width: 200
+>     height: input.height + 8
+>
+>     Rectangle {
+>         anchors.fill: parent
+>         color: 'lightsteelblue'
+>         border.color: 'gray'
+>     }
+>
+>     property alias text: input.text
+>     property alias input: input
+>
+>     TextInput {
+>         id: input
+>         height: 50
+>         anchors.fill: parent
+>         anchors.margins: 4
+>         focus: true
+>     }
+> }
+> ``````
+>
+> *Main.qml*
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 640
+>     height: 480
+>     visible: true
+>     title: qsTr("Credentials")
+>
+>     Column {
+>         UserInput {
+>             id: input1
+>             KeyNavigation.tab: input2
+>             text: 'Username'
+>             focus: true
+>         }
+>
+>         UserInput {
+>             id: input2
+>             KeyNavigation.tab: input1
+>             text: 'Password'
+>         }
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Get multi-line input from user?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 200
+>     height: 300
+>     visible: true
+>     title: qsTr("Note")
+>
+>     Rectangle {
+>         anchors.fill: parent
+>         color: 'linen'
+>
+>         Text {
+>             anchors.top: parent.top
+>             anchors.horizontalCenter: parent.horizontalCenter
+>             color: 'black'
+>             font.family: 'OpenSans'
+>             font.pixelSize: 18
+>             text: 'Note to Self'
+>         }
+>         Editor {
+>             id: editor
+>             anchors.verticalCenter: parent.verticalCenter
+>             anchors.horizontalCenter: parent.horizontalCenter
+>             anchors.fill: parent
+>             anchors.topMargin: 30
+>             anchors.margins: 20
+>             focus: true
+>         }
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+### Key Elements
+
+<details>
+<summary>What property can record key presses?</summary>
+
+> The attached property `Keys` allows executing code based on certain key
+> presses.
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Record user key presses?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 200
+>     height: 300
+>     visible: true
+>     title: qsTr("Keys")
+>
+>     Rectangle {
+>         anchors.fill: parent
+>         color: 'linen'
+>         focus: true
+>
+>         Text {
+>             id: label
+>             color: 'black'
+>             anchors.top: parent.top
+>             anchors.topMargin: 10
+>             anchors.left: parent.left
+>             anchors.leftMargin: 10
+>             text: 'No key presses'
+>         }
+>
+>         Keys.onReturnPressed: label.text = 'Enter pressed'
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+### QML Performance
+
+<details>
+<summary>How to precompile QML to avoid the initial startup penalty induced by the initial parsing?</summary>
+
+> This requires you to put your code into a Qt resource file, and is described
+> in detail in the [Compiling QML Ahead of
+> Time](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation).
+
+> Origins:
+> - Qt6 QML - Chapter 5
+
+> References:
+---
+</details>
+
+## Chapter 5/20 Fluid Elements <sup>(completed)</sup>
+
+### Animations
+
+<details>
+<summary>Where do animations apply?</summary>
+
+> Animations are applied to property changes. An animation defines the
+> interpolation curve from one value to another value when a property value
+> changes.
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Animate an object rotating horizontally?</summary>
+
+> This animation requires changes on `x,y` and `rotation` properties.
+>
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 800
+>     height: 400
+>     visible: true
+>     title: qsTr("Box Game")
+>
+>     Rectangle {
+>         id: root
+>         color: '#383838'
+>         anchors.fill: parent
+>
+>         property int padding: 10
+>         property int duration: 5000
+>         property bool running: false
+>
+>         Rectangle {
+>             id: box
+>             x: root.padding
+>             y: root.height - width - 5
+>             width: 50
+>             height: 50
+>             color: 'lightsteelblue'
+>
+>             NumberAnimation on x {
+>                 to: root.width - box.width - root.padding
+>                 duration: root.duration * 2
+>                 running: root.running
+>             }
+>
+>             RotationAnimation on rotation {
+>                 to: 360
+>                 duration: root.duration
+>                 running: root.running
+>             }
+>         }
+>
+>         MouseArea {
+>             anchors.fill: root
+>             onClicked: root.running = true
+>         }
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Animate an object to fade away?</summary>
+
+> This animation requires changes on `opacity` and `scale` properties.
+>
+> ```qml
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>How many types of animation elements exist?</summary>
+
+> - `PropertyAnimation`: animates changes in property values.
+> - `NumberAnimation`: animates changes in qreal-type values.
+> - `ColorAnimation`: animates changes in color values.
+> - `RotationAnimation`: animates changes in rotation values.
+>
+> Qt Quick also provides more specialized animations for specific use cases:
+>
+> - `PauseAnimation`: provides a pause for an animation.
+> - `SequentialAnimation`: allows animations to be run sequentially.
+> - `ParallelAnimation`: allows animations to be run in parallel.
+> - `AnchorAnimation`: animates changes in anchor values.
+> - `ParentAnimation`: animates changes in parent values.
+> - `SmoothedAnimation`: allows a property to smoothly track a value.
+> - `SprintAnimation`: allows a property to track a value in a spring-like motion.
+> - `PathAnimation`: animates an item alongside a path.
+> - `Vector3dAnimation`: animates changes in QVector3d values
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>What action elements are used to change a property or to run a script during an ongoing animation?</summary>
+
+> While working on more complex animations, there is sometimes a need to change
+> a property or to run a script during an ongoing animation. For this Qt Quick
+> offers the action elements, which can be used everywhere where the other
+> animation elements can be used:
+>
+> - `PropertyAction`: specifies immediate property changes during animation.
+> - `ScriptAction`: defines scripts to be run during an animation.
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the possible ways of applying animations?</summary>
+
+> - **Animation on property:** runs automatically after the element is fully
+>   loaded.
+> - **Behavior on property:** runs automatically when the property value
+>   changes
+> - **Standalone Animation:** runs when the animation is explicitly started
+>   using `start()` or `running` is set to true.
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Enable wrapping on Text elements?</summary>
+
+> ```qml
+> Text {
+>     wrapMode: Text.WordWrap
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+### Easing Curves
+
+<details>
+<summary>How many easing curves are available for animations?</summary>
+
+> - `Easing.Linear`
+> - `Easing.InExpo`
+> - `Easing.OutExpo`
+> - `Easing.InOutExpo`
+> - `Easing.InOutCubic`
+> - `Easing.SineCurve`
+> - `Easing.InOutCirc`
+> - `Easing.InOutElastic`
+> - `Easing.InOutBack`
+> - `Easing.InOutBounce`
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Animate an object moving horizontally with an easing curve?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 640
+>     height: 480
+>     visible: true
+>     title: qsTr("Linear")
+>
+>     Rectangle {
+>         id: root
+>         anchors.fill: parent
+>         color: '#383838'
+>
+>         property int padding: 20
+>
+>         Rectangle {
+>             id: box
+>             width: 40
+>             height: 40
+>             x: root.padding
+>             anchors.verticalCenter: parent.verticalCenter
+>             color: 'lightsteelblue'
+>
+>             Behavior on x {
+>                 NumberAnimation {
+>                     id: animation
+>                     duration: 2000
+>                     easing.type: Easing.InOutCubic
+>                 }
+>             }
+>         }
+>
+>         MouseArea {
+>             anchors.fill: parent
+>             onClicked: {
+>                 box.x = root.width - box.width - root.padding
+>             }
+>         }
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>What type can be used to fine-tune the animations?</summary>
+
+> Besides the `duration` and `easing.type` , you are able to fine-tune
+> animations. For example, the general `PropertyAnimation` type (from which
+> most animations inherit) additionally supports `easing.amplitude` ,
+> `easing.overshoot` , and `easing.period` properties, which allow you to
+> fine-tune the behavior of particular easing curves.
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+> - [Easing Table](http://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop)
+---
+</details>
+
+### Grouped Animations
+
+<details>
+<summary>How many ways exist to group animations?</summary>
+
+> You might want to run several animations at the same time or one after
+> another or even execute a script between two animations.
+>
+> Grouping can be done in two ways: parallel or sequential.
+>
+> You can use the `SequentialAnimation` or the `ParallelAnimation` element,
+> which act as animation containers for other animation elements.
+>
+> These grouped animations are animations themselves and can be used exactly as
+> such.
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Animate an object to cross the window diagonally?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     id: window
+>     width: 640
+>     height: 480
+>     visible: true
+>     title: qsTr("Parallel")
+>
+>     Rectangle {
+>         id: root
+>         color: '#383838'
+>         anchors.fill: parent
+>
+>         property int padding: 20
+>         property int duration: 2000
+>     }
+>
+>     MouseArea {
+>         anchors.fill: parent
+>         onClicked: { diagonal_movement.start(); }
+>     }
+>
+>     Rectangle {
+>         id: box
+>         color: 'lightsteelblue'
+>         width: 42
+>         height: 42
+>
+>         x: root.padding
+>         y: root.height - height - root.padding
+>     }
+>
+>     ParallelAnimation {
+>         id: diagonal_movement
+>
+>         NumberAnimation {
+>             target: box
+>             properties: 'x'
+>             to: root.width - box.width - root.padding
+>             duration: root.duration
+>             easing.type: Easing.InOutCubic
+>         }
+>
+>         NumberAnimation {
+>             target: box
+>             properties: 'y'
+>             to: root.padding
+>             duration: root.duration
+>             easing.type: Easing.InOutCubic
+>         }
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Animate a ball moving forward and bouncing on the floor twice?</summary>
+
+> ```qml
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+### States
+
+<details>
+<summary>What is the basic form of a state?</summary>
+
+> A state defines a set of property changes and can be triggered by a certain
+> condition.
+>
+> You define states in QML with the `State` element, which needs to be bound to
+> the `states` array of any item element.
+>
+> A state is identified through a state name, and in its simplest form,
+> consists of a series of property changes on elements.
+>
+> The default state is defined by the initial properties of the element and is
+> named `""` (an empty string).
+>
+> ```qml
+> Item {
+>     id: root
+>     states: [
+>         State {
+>             name: "go"
+>             PropertyChanges { ... }
+>         },
+>         State {
+>             name: "stop"
+>             PropertyChanges { ... }
+>         }
+>     ]
+> }
+> ``````
+>
+> A state is changed by assigning a new state name to the `state` property of
+> the element in which the states are defined.
+>
+> ```qml
+> Item {
+>     id: root
+>     states: [
+>         ...
+>     ]
+>     Button {
+>         id: goButton
+>         ...
+>         onClicked: root.state = "go"
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>Describe two different states of an object having different colors?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     width: 640
+>     height: 480
+>     visible: true
+>     title: qsTr("States")
+>
+>     Rectangle {
+>         id: root
+>         color: '#393939'
+>         anchors.fill: parent
+>
+>         MouseArea {
+>             anchors.fill: parent
+>             onClicked: {
+>                 ball.state = (ball.state === 'bright' ? 'dark' : 'bright')
+>             }
+>         }
+>     }
+>
+>     Rectangle {
+>         id: ball
+>         color: 'lightsteelblue'
+>         width: 42
+>         height: width
+>         radius: width / 2
+>         anchors.centerIn: parent
+>         state: 'bright'
+>
+>         states: [
+>             State {
+>                 name: 'bright'
+>                 PropertyChanges {
+>                     target: ball
+>                     color: 'lightsteelblue'
+>                 }
+>             },
+>             State {
+>                 name: 'dark'
+>                 PropertyChanges {
+>                     target: ball
+>                     color: 'darkblue'
+>                 }
+>             }
+>         ]
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+### Transitions
+
+<details>
+<summary>What is the basic form of a transition?</summary>
+
+> A transition is executed by a state change.
+>
+> You can define on which state change a particular transition can be applied
+> using the `from:` and `to:` properties.
+>
+> For example, `from: "*"; to: "*"` means "from any state to any other state",
+> and is the default value for `from` and `to` . This means the transition will
+> be applied to every state switch.
+>
+> ```qml
+transitions: [
+    Transition {
+        from: "*"; to: "*"
+        ColorAnimation { target: element1; properties: "color"; duration: 2000 }
+        ColorAnimation { target: element2; properties: "color"; duration: 2000 }
+    }
+]
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+## Chapter 6/20 QtQuick Controls <sup>(writing)</sup>
+## Chapter 7/20 Model-View-Delegate
+## Chapter 8/20 Canvas Element
+## Chapter 9/20 Shapes
+## Chapter 10/20 Effects in QML
+## Chapter 11/20 Multimedia
+## Chapter 12/20 Qt Quick 3D
+## Chapter 13/20 Networking
+## Chapter 14/20 Storage
+## Chapter 15/20 Dynamic QML
+## Chapter 16/20 JavaScript
+## Chapter 17/20 Qt and C++
+## Chapter 18/20 Extending QML with C++
+## Chapter 19/20 Qt for Python
+## Chapter 20/20 Qt for MCUs
