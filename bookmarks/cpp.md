@@ -83,7 +83,7 @@
 
 ### ★★★★★ [Qt6 Manual](https://doc.qt.io)
 
-### ★★★★★ [Qt6 QML](resources/qt6-qml.md)
+### ★★★★★ [Qt6 QML Book](resources/qt6-qml.md)
 
 ### ★★★★★ [Cross-Platform Development with Qt6 and Modern C++](resources/9781800204584.md)
 [<img src="covers/9781800204584.jpg" width="200"/>](resources/9781800204584.md)
