@@ -1390,6 +1390,53 @@ transitions: [
 </details>
 
 ## Chapter 6/20 QtQuick Controls <sup>(writing)</sup>
+
+<details>
+<summary>What modules can be imported to use UI Controls?</summary>
+
+> - `QtQuick.Controls`
+> - `QtQuick.Templates`
+> - `QtQuick.Controls.Imagine`
+> - `QtQuick.Controls.Material`
+> - `QtQuick.Controls.Universal`
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+<details>
+<summary>What QtQuick Template is offten used to create a desktop application?</summary>
+
+> ```qml
+> import QtQuick
+> import QtQuick.Controls
+>
+> ApplicationWindow {
+>     visible: true
+>     width: 800
+>     height: 600
+>     // ...
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 6
+
+> References:
+---
+</details>
+
+Create a menu bar in on window?
+
+Create a toolbar on window?
+
+Create a status bar on window?
+
+Create a dialog to open specific file types?
+
 ## Chapter 7/20 Model-View-Delegate
 ## Chapter 8/20 Canvas Element
 ## Chapter 9/20 Shapes
