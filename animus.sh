@@ -19,7 +19,14 @@ unpack_practice() {
 
     read -r # empty line
 
-    echo -e "> ${subject} » ${topic}" >> "${buffer}"
+    #echo -e "> ${subject} » ${topic}" >> "${buffer}"
+    {
+        echo '<style>'
+        echo 'h1,h2,h3,p,ul,li { color: #cacaca; }'
+        echo 'pre { background: #202020; }'
+        echo 'body { background: #383838; }'
+        echo '</style>'
+    } >> "${buffer}"
     echo -e "# ${question}\n\n" >> "${buffer}"
 
     read -r line
@@ -167,8 +174,8 @@ prompt_subject_options() {
     local subject="$1"
     local response
 
-    echo -e "\nWhat to do with subject ${subject_name}?\n" >&2
-    select response in "Select $subject" "Next Subject"
+    echo -e "\nSubject: \e[1;33m${subject_name}\e[0m?\n" >&2
+    select response in "Enter Subject" "Next Subject"
     do
         echo "$response"
         break
@@ -179,8 +186,8 @@ prompt_topic_options() {
     local topic_name="$1"
     local response
 
-    echo -e "\nWhat to do with topic ${topic_name%%.*}. ${topic_name#*.}?\n" >&2
-    select response in "Select ${topic_name#*.}" "Next Topic"
+    echo -e "\nTopic: \e[1;33m${topic_name%%.*}. ${topic_name#*.}\e[0m?\n" >&2
+    select response in "Select Topic" "Next Topic" "Next Subject"
     do
         echo "$response"
         break
@@ -192,8 +199,8 @@ prompt_practice_options() {
     local success="$2"
     local response
 
-    echo -e "\nWhat to do with this practice?\n" >&2
-    select response in "Keep working on ${topic_name#*.}" "Next Topic"
+    echo -e "\nPractice: ?\n" >&2
+    select response in "Keep working" "Next Topic"
     do
         echo "$response"
         break
@@ -260,6 +267,7 @@ begin_review() {
 
             case "${topic_task}" in
                 "Next Topic") continue ;;
+                "Next Subject") break ;;
             esac
 
             readarray -t practice_list < <(find "${topic}" -type f)
