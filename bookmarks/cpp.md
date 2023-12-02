@@ -11,6 +11,9 @@
 ### ★★★★★ [The C++ Standard Library](resources/9780321623218.md)
 [<img src="covers/9780321623218.jpg" width="200"/>](resources/9780321623218.md)
 
+### ★★★★★ [Professional C++](resources/9781119695400.md)
+[<img src="covers/9781119695400.jpg" width="200"/>](resources/9781119695400.md)
+
 ### ★★★★★ [Teach Yourself C++ in One Hour a Day](resources/9780137334681.md)
 [<img src="covers/9780137334681.jpg" width="200"/>](resources/9780137334681.md)
 
