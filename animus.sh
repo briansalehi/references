@@ -225,7 +225,7 @@ preview_practice() {
     # shellcheck disable=SC2009
     if ! ps -ef | grep -w livedown | grep -qv grep
     then
-        livedown start "$buffer" --open &>/dev/null &
+        livedown start "$buffer" &>/dev/null &
     fi
 
     return 0
