@@ -148,12 +148,13 @@ unpack_topics() {
 }
 
 unpack_subjects() {
+    local base="${1:-topics/*.md}"
     local subject_path
     local subject_file
     local subject
 
     $VERBOSE && echo -e "\e[1;35m""Unpacking practice files""\e[0m"
-    for subject_path in topics/[a-z]*.md
+    for subject_path in ${base}
     do
         read -r subject < "$subject_path"
         subject="${subject#* }"
@@ -312,5 +313,5 @@ then
     rm -r "${base_path}"
 fi
 
-unpack_subjects
+unpack_subjects "$1"
 begin_review
