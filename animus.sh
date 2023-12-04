@@ -276,7 +276,7 @@ begin_review() {
             echo -e "\e[1;34m""Auto Selected Subject «\e[1;33m ${subject_name} \e[1;34m»""\e[0m\n" >&2
         elif [ $subject_index -eq 0 ]
         then
-            subject_task="$(generic_select "Subject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Exit Training")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Exit Training")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -286,7 +286,7 @@ begin_review() {
             echo
         elif [ $((subject_index + 1)) -eq ${#subject_list[*]} ]
         then
-            subject_task="$(generic_select "Subject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -295,7 +295,7 @@ begin_review() {
             esac
             echo
         else
-            subject_task="$(generic_select "Subject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -319,7 +319,7 @@ begin_review() {
                 echo -e "\e[1;31m""${topic_name%%.*}. ${topic_name#*.} has no practice""\e[0m" >&2
             elif [ $topic_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
             then
-                topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
@@ -329,7 +329,7 @@ begin_review() {
                 echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
             then
-                topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
@@ -338,7 +338,7 @@ begin_review() {
                 esac
                 echo
             else
-                topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
