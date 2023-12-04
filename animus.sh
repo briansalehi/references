@@ -286,7 +286,7 @@ begin_review() {
             echo
         elif [ $((subject_index + 1)) -eq ${#subject_list[*]} ]
         then
-            subject_task="$(generic_select "Subject \e[1;33m${subject_name}" "Select Subject" "Previous Subject" "Finish Training")"
+            subject_task="$(generic_select "Subject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -329,7 +329,7 @@ begin_review() {
                 echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
             then
-                topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Previous Topic" "Next Subject")"
+                topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
@@ -351,18 +351,11 @@ begin_review() {
 
             while [ $practice_index -ge 0 ] && [ $practice_index -lt ${#practice_list[*]} ]
             do
-                practice="${practice_list[$practice_index]}"
-                preview_practice "${practice}" "${buffer}"
-
-                export PS3="Practice $((practice_index+1))/${#practice_list[*]}>> "
+                preview_practice "${practice_list[$practice_index]}" "${buffer}"
 
                 if [ $practice_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
                 then
-                    select response in "Next Practice" "Next Topic"
-                    do
-                        echo "$response"
-                        break
-                    done
+                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Next Topic")"
 
                     case "${response}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
@@ -371,11 +364,7 @@ begin_review() {
                     echo
                 elif [ ${#practice_list[*]} -gt 1 ] && [ $((practice_index + 1)) -eq ${#practice_list[*]} ]
                 then
-                    select response in "Previous Practice" "Next Topic"
-                    do
-                        echo "$response"
-                        break
-                    done
+                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Topic" "Previous Practice")"
 
                     case "${response}" in
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
@@ -383,11 +372,7 @@ begin_review() {
                     esac
                     echo
                 else
-                    select response in "Next Practice" "Previous Practice" "Next Topic"
-                    do
-                        echo "$response"
-                        break
-                    done
+                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Previous Practice" "Next Topic")"
 
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
@@ -396,8 +381,6 @@ begin_review() {
                     esac
                     echo
                 fi
-
-                echo -e "$practice"
             done
         done
     done
