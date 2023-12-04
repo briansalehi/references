@@ -280,8 +280,8 @@ begin_review() {
 
             case "${subject_task}" in
                 "Select Subject") subject_index=$((subject_index + 1)) ;;
-                "Next Subject") subject_index=$((subject_index + 1)); continue ;;
-                "Exit Training") break ;;
+                "Next Subject") subject_index=$((subject_index + 1)); echo; continue ;;
+                "Exit Training") echo; break ;;
             esac
             echo
         elif [ $((subject_index + 1)) -eq ${#subject_list[*]} ]
@@ -290,8 +290,8 @@ begin_review() {
 
             case "${subject_task}" in
                 "Select Subject") subject_index=$((subject_index + 1)) ;;
-                "Previous Subject") subject_index=$((subject_index - 1)); continue ;;
-                "Finish Training") break ;;
+                "Previous Subject") subject_index=$((subject_index - 1)); echo; continue ;;
+                "Finish Training") echo; break ;;
             esac
             echo
         else
@@ -299,9 +299,9 @@ begin_review() {
 
             case "${subject_task}" in
                 "Select Subject") subject_index=$((subject_index + 1)) ;;
-                "Next Subject") subject_index=$((subject_index + 1)); continue ;;
-                "Previous Subject") subject_index=$((subject_index - 1)); continue ;;
-                "Exit Training") break ;;
+                "Next Subject") subject_index=$((subject_index + 1)); echo; continue ;;
+                "Previous Subject") subject_index=$((subject_index - 1)); echo; continue ;;
+                "Exit Training") echo; break ;;
             esac
             echo
         fi
@@ -323,8 +323,8 @@ begin_review() {
 
                 case "${topic_task}" in
                     "Select Topic") topic_index=$((topic_index + 1)) ;;
-                    "Next Topic") topic_index=$((topic_index + 1)); continue ;;
-                    "Next Subject") break ;;
+                    "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
+                    "Next Subject") echo; break ;;
                 esac
                 echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
@@ -333,8 +333,8 @@ begin_review() {
 
                 case "${topic_task}" in
                     "Select Topic") topic_index=$((topic_index + 1)) ;;
-                    "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
-                    "Next Subject") break ;;
+                    "Previous Topic") topic_index=$((topic_index - 1)); echo; continue ;;
+                    "Next Subject") echo; break ;;
                 esac
                 echo
             else
@@ -342,9 +342,9 @@ begin_review() {
 
                 case "${topic_task}" in
                     "Select Topic") topic_index=$((topic_index + 1)) ;;
-                    "Next Topic") topic_index=$((topic_index + 1)); continue ;;
-                    "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
-                    "Next Subject") break ;;
+                    "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
+                    "Previous Topic") topic_index=$((topic_index - 1)); echo; continue ;;
+                    "Next Subject") echo; break ;;
                 esac
                 echo
             fi
@@ -359,7 +359,7 @@ begin_review() {
 
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
-                        "Next Topic") break ;;
+                        "Next Topic") echo; break ;;
                     esac
                     echo
                 elif [ ${#practice_list[*]} -gt 1 ] && [ $((practice_index + 1)) -eq ${#practice_list[*]} ]
@@ -368,7 +368,7 @@ begin_review() {
 
                     case "${practice_task}" in
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
-                        "Next Topic") break ;;
+                        "Next Topic") echo; break ;;
                     esac
                     echo
                 else
@@ -377,7 +377,7 @@ begin_review() {
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
-                        "Next Topic") break ;;
+                        "Next Topic") echo; break ;;
                     esac
                     echo
                 fi
