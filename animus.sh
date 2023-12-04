@@ -326,6 +326,7 @@ begin_review() {
                     "Next Topic") topic_index=$((topic_index + 1)); continue ;;
                     "Next Subject") break ;;
                 esac
+                echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
             then
                 topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Previous Topic" "Next Subject")"
@@ -335,6 +336,7 @@ begin_review() {
                     "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
                     "Next Subject") break ;;
                 esac
+                echo
             else
                 topic_task="$(generic_select "Topic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
 
@@ -344,6 +346,7 @@ begin_review() {
                     "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
                     "Next Subject") break ;;
                 esac
+                echo
             fi
 
             while [ $practice_index -ge 0 ] && [ $practice_index -lt ${#practice_list[*]} ]
@@ -365,6 +368,7 @@ begin_review() {
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
                         "Next Topic") break ;;
                     esac
+                    echo
                 elif [ ${#practice_list[*]} -gt 1 ] && [ $((practice_index + 1)) -eq ${#practice_list[*]} ]
                 then
                     select response in "Previous Practice" "Next Topic"
@@ -377,6 +381,7 @@ begin_review() {
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
                         "Next Topic") break ;;
                     esac
+                    echo
                 else
                     select response in "Next Practice" "Previous Practice" "Next Topic"
                     do
@@ -389,6 +394,7 @@ begin_review() {
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
                         "Next Topic") break ;;
                     esac
+                    echo
                 fi
 
                 echo -e "$practice"
