@@ -279,8 +279,8 @@ begin_review() {
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Exit Training")"
 
             case "${subject_task}" in
-                "Select Subject") ;;
-                "Next Subject") subject_index=$((subject_index + 1)) ;;
+                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Next Subject") subject_index=$((subject_index + 1)); continue ;;
                 "Exit Training") break ;;
             esac
             echo
@@ -289,18 +289,18 @@ begin_review() {
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
 
             case "${subject_task}" in
-                "Select Subject") ;;
-                "Previous Subject") subject_index=$((subject_index - 1)) ;;
-                "Finish Training") subject_index=$((subject_index + 1)) ;;
+                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Previous Subject") subject_index=$((subject_index - 1)); continue ;;
+                "Finish Training") break ;;
             esac
             echo
         else
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
 
             case "${subject_task}" in
-                "Select Subject") ;;
-                "Next Subject") subject_index=$((subject_index + 1)) ;;
-                "Previous Subject") subject_index=$((subject_index - 1)) ;;
+                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Next Subject") subject_index=$((subject_index + 1)); continue ;;
+                "Previous Subject") subject_index=$((subject_index - 1)); continue ;;
                 "Exit Training") break ;;
             esac
             echo
@@ -322,7 +322,7 @@ begin_review() {
                 topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
 
                 case "${topic_task}" in
-                    "Select Topic") ;;
+                    "Select Topic") topic_index=$((topic_index + 1)) ;;
                     "Next Topic") topic_index=$((topic_index + 1)); continue ;;
                     "Next Subject") break ;;
                 esac
@@ -332,7 +332,7 @@ begin_review() {
                 topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
 
                 case "${topic_task}" in
-                    "Select Topic") ;;
+                    "Select Topic") topic_index=$((topic_index + 1)) ;;
                     "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
                     "Next Subject") break ;;
                 esac
@@ -341,7 +341,7 @@ begin_review() {
                 topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
 
                 case "${topic_task}" in
-                    "Select Topic") ;;
+                    "Select Topic") topic_index=$((topic_index + 1)) ;;
                     "Next Topic") topic_index=$((topic_index + 1)); continue ;;
                     "Previous Topic") topic_index=$((topic_index - 1)); continue ;;
                     "Next Subject") break ;;
@@ -382,7 +382,9 @@ begin_review() {
                     echo
                 fi
             done
+            echo
         done
+        echo
     done
 
     # shellcheck disable=SC2009
