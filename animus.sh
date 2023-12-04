@@ -355,24 +355,24 @@ begin_review() {
 
                 if [ $practice_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
                 then
-                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Next Topic")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Next Topic")"
 
-                    case "${response}" in
+                    case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
                         "Next Topic") break ;;
                     esac
                     echo
                 elif [ ${#practice_list[*]} -gt 1 ] && [ $((practice_index + 1)) -eq ${#practice_list[*]} ]
                 then
-                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Topic" "Previous Practice")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Topic" "Previous Practice")"
 
-                    case "${response}" in
+                    case "${practice_task}" in
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
                         "Next Topic") break ;;
                     esac
                     echo
                 else
-                    response="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Previous Practice" "Next Topic")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Previous Practice" "Next Topic")"
 
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
