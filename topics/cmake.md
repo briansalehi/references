@@ -128,7 +128,7 @@
 <summary>List cache variables?</summary>
 
 > ```sh
-> cmake -L[A][H] <path-to-source>
+> cmake -L[A][H] <CMAKE_BINARY_DIR>
 > ``````
 >
 > Such a list will contain cache variables that aren't marked as `ADVANCED`. We
@@ -150,7 +150,7 @@
 <summary>Remove one or more cache variables?</summary>
 
 > ```sh
-> cmake -U <globbing_expr> <path-to-source>
+> cmake -U <globbing_expr> <CMAKE_BINARY_DIR>
 > ``````
 >
 > Here, the globbing expression supports the `*` wildcard and any `?` character
