@@ -19,14 +19,6 @@ unpack_practice() {
 
     read -r # empty line
 
-    #echo -e "> ${subject} » ${topic}" >> "${buffer}"
-    {
-        echo '<style>'
-        echo 'h1,h2,h3,p,ul,li { color: #cacaca; }'
-        echo 'pre { background: #202020; }'
-        echo 'body { background: #383838; }'
-        echo '</style>'
-    } >> "${buffer}"
     echo -e "# ${question}\n\n" >> "${buffer}"
 
     read -r line
@@ -227,7 +219,6 @@ generic_select() {
 preview_practice() {
     local practice="$1"
     local buffer="$2"
-    local response
 
     if ! [ -f "$practice" ] || ! [ -f "$buffer" ]
     then
@@ -237,7 +228,15 @@ preview_practice() {
         echo -e "\e[1;31m""Buffer is missing""\e[0m" >&2
     fi
 
-    cp "$practice" "$buffer"
+    {
+        echo '<style>'
+        echo 'h1,h2,h3,p,ul,li { color: #cacaca; }'
+        echo 'pre { background: #202020; }'
+        echo 'body { background: #383838; }'
+        echo '</style>'
+        echo
+        cat "$practice"
+    } > "${buffer}"
 
     # shellcheck disable=SC2009
     if ! ps -ef | grep -w livedown | grep -qv grep
@@ -267,6 +266,7 @@ begin_review() {
 
     readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1)
 
+    subject_index=0
     while [ $subject_index -ge 0 ] && [ $subject_index -lt ${#subject_list[*]} ]
     do
         subject_name="$(basename "${subject_list[$subject_index]}" | tr '-' ' ')"
@@ -279,7 +279,7 @@ begin_review() {
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Exit Training")"
 
             case "${subject_task}" in
-                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Select Subject") ;;
                 "Next Subject") subject_index=$((subject_index + 1)); echo; continue ;;
                 "Exit Training") echo; break ;;
             esac
@@ -289,7 +289,7 @@ begin_review() {
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
 
             case "${subject_task}" in
-                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Select Subject") ;;
                 "Previous Subject") subject_index=$((subject_index - 1)); echo; continue ;;
                 "Finish Training") echo; break ;;
             esac
@@ -298,7 +298,7 @@ begin_review() {
             subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
 
             case "${subject_task}" in
-                "Select Subject") subject_index=$((subject_index + 1)) ;;
+                "Select Subject") ;;
                 "Next Subject") subject_index=$((subject_index + 1)); echo; continue ;;
                 "Previous Subject") subject_index=$((subject_index - 1)); echo; continue ;;
                 "Exit Training") echo; break ;;
@@ -307,7 +307,9 @@ begin_review() {
         fi
 
         readarray -t topic_list < <(find "${subject_list[$subject_index]}" -mindepth 1 -maxdepth 1 | sort)
+        subject_index=$((subject_index + 1))
 
+        topic_index=0
         while [ $topic_index -ge 0 ] && [ $topic_index -lt ${#topic_list[*]} ]
         do
             topic_name="$(basename "${topic_list[$topic_index]}" | tr '-' ' ')"
@@ -319,36 +321,38 @@ begin_review() {
                 echo -e "\e[1;31m""${topic_name%%.*}. ${topic_name#*.} has no practice""\e[0m" >&2
             elif [ $topic_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
             then
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
 
                 case "${topic_task}" in
-                    "Select Topic") topic_index=$((topic_index + 1)) ;;
+                    "Select Topic") ;;
                     "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
                     "Next Subject") echo; break ;;
                 esac
                 echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
             then
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
 
                 case "${topic_task}" in
-                    "Select Topic") topic_index=$((topic_index + 1)) ;;
+                    "Select Topic") ;;
                     "Previous Topic") topic_index=$((topic_index - 1)); echo; continue ;;
                     "Next Subject") echo; break ;;
                 esac
                 echo
             else
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
 
                 case "${topic_task}" in
-                    "Select Topic") topic_index=$((topic_index + 1)) ;;
+                    "Select Topic") ;;
                     "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
                     "Previous Topic") topic_index=$((topic_index - 1)); echo; continue ;;
                     "Next Subject") echo; break ;;
                 esac
                 echo
             fi
+            topic_index=$((topic_index + 1))
 
+            practice_index=0
             while [ $practice_index -ge 0 ] && [ $practice_index -lt ${#practice_list[*]} ]
             do
                 preview_practice "${practice_list[$practice_index]}" "${buffer}"
