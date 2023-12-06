@@ -167,7 +167,7 @@
 <summary>Get general information about variables, commands, macros, and other settings?</summary>
 
 > ```sh
-> cmake --system-information [file]
+> cmake --system-information [output-file]
 > ``````
 >
 > The optional file argument allows you to store the output in a file.
