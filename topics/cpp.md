@@ -1233,7 +1233,7 @@
 > class Value
 > {
 >     auto operator<=>(Value const& rhs) const = default;
->     auto operator<=>(Value const& rhs) const = default; // implicitly generated
+>     auto operator==(Value const& rhs) const = default; // implicitly generated
 > };
 > ``````
 >
@@ -1336,14 +1336,14 @@
 >   equivalent values do not have to be equal (have the same value).
 >   + `std::weak_ordering::less`
 >   + `std::weak_ordering::equivalent`
->   + `std::weak_ordering::less`
+>   + `std::weak_ordering::greater`
 > - **partial ordering**: any value of a given type could either be *less
 >   than*, *equivalent to* or *greater than* any other value of this type.
 >   However it could also happen that you cannot specify a specific order
 >   between two values.
 >   + `std::partial_ordering::less`
 >   + `std::partial_ordering::equivalent`
->   + `std::partial_ordering::less`
+>   + `std::partial_ordering::greater`
 >   + `std::partial_ordering::unordered`
 >
 > As an example, a floating-point type has a special value `NaN`. Any
@@ -1510,9 +1510,8 @@
 <summary>What is the compatibility defect of comparison operators in C++20?</summary>
 
 > When we have a trivial class that stores an integral value and has an
-> implicit constructor and is comparable with integral values only enable
-> implicit type conversions for the second operand. So, a global operator that
-> swaps the order of the arguments might be defined:
+> implicit constructor only enable implicit type conversions for the second
+> operand.
 >
 > ```cpp
 > class MyType
@@ -1520,9 +1519,18 @@
 >     int i;
 >
 > public:
+>     // implicit constructor from int
+>     MyType(int i);
+>
+>     // before C++20 enables implicit conversion for the second operand
 >     bool operator==(MyType const&) const;
 > };
+> ``````
 >
+> A freestanding `operator==` that swaps the order of the arguments might be
+> defined as well.
+>
+> ```cpp
 > bool operator==(int i, MyType const& t)
 > {
 >     return t == i; // OK with C++17
@@ -1530,24 +1538,37 @@
 > ``````
 >
 > Usually, the class should better define the `operator ==` as **hidden
-> friend** declared with `friend` inside the class so that both operators
-> become parameters and support implicit type conversions. However, this is a
-> valid approach to have the same effect.
+> friend** which is declared as a `friend` inside the class so that both
+> operators become parameters and support implicit type conversions. However,
+> this is a valid approach to have the same effect.
 >
 > This code no longer works in C++20 due to endless recursion. The reason is
 > that inside the global function the expression `t == i` can also call the
-> global `operator ==` itself, because the compiler also tries to rewrit the
-> call as `t == i`:
+> global `operator ==` itself, because the compiler also tries to rewrite the
+> call as `i == t`:
 >
 > ```cpp
 > bool operator==(int i, MyType const& t)
 > {
->     return t == i; // finds operator==(i, t) in addition to t.operator(MyType{i})
+>     return t == i;
+>     // tries operator==(i, t) in addition to t.operator(MyType{i})
 > }
 > ``````
 >
 > Unfortunately, the rewritten statement is a better match, because it does not
 > need the implicit type conversion.
+>
+> To fix this defect, either use an explicit conversion, or a feature test
+> macro to disable the new feature.
+>
+> ```cpp
+> bool operator==(int i, MyType const& t)
+> {
+>     return t == MyType{i};
+>     // doesn't try operator==(i, t) causing infinit recursion
+>     // only uses t.operator(MyType{i});
+> }
+> ``````
 
 > Origins:
 > - C++20: The Complete Guide - Chapter 1
