@@ -8217,7 +8217,128 @@
 <details>
 <summary>Provide an interface to create variations of an object without exposing implementation details?</summary>
 
+> *main.cpp*
 > ```cpp
+> #include <streamer.hpp>
+> #include <mpeg.hpp>
+>
+> #include <iostream>
+> #include <memory>
+>
+> int main()
+> {
+>     dp::streamer streamer;
+>     std::shared_ptr<dp::video> video{streamer.record("mpeg")};
+>     std::cout << video->length().count() << std::endl;
+> }
+> ``````
+>
+> *mpeg.cpp*
+> ```cpp
+> #include <mpeg.hpp>
+>
+> using namespace dp;
+>
+> mpeg::mpeg(std::chrono::seconds const& length)
+>     : _length{length}
+> {
+> }
+>
+> std::chrono::seconds mpeg::length() const noexcept
+> {
+>     return _length;
+> }
+> ``````
+>
+> *mpeg.hpp*
+> ```cpp
+> #pragma once
+>
+> #include <video.hpp>
+>
+> namespace dp
+> {
+> class mpeg : public video
+> {
+> public:
+>     explicit mpeg(std::chrono::seconds const& length);
+>     std::chrono::seconds length() const noexcept override;
+>
+> private:
+>     std::chrono::seconds _length;
+> };
+> } // dp
+> ``````
+>
+> *streamer.cpp*
+> ```cpp
+> #include <streamer.hpp>
+> #include <mpeg.hpp>
+>
+> #include <cstring>
+>
+> using namespace dp;
+>
+> std::shared_ptr<video> streamer::record(char const type[4])
+> {
+>     std::shared_ptr<video> stream_buffer{};
+>
+>     if (strcmp(type, "mpeg") == 0)
+>     {
+>         stream_buffer = std::make_shared<mpeg>(std::chrono::seconds{120});
+>     }
+>
+>     return stream_buffer;
+> }
+> ``````
+>
+> *streamer.hpp*
+> ```cpp
+> #pragma once
+>
+> #include <video_stream.hpp>
+>
+> namespace dp
+> {
+> class streamer : public video_stream
+> {
+> public:
+>     std::shared_ptr<video> record(char const type[4]) override;
+> };
+> } // dp
+> ``````
+>
+> *video.hpp*
+> ```cpp
+> #pragma once
+>
+> #include <chrono>
+>
+> namespace dp
+> {
+> struct video
+> {
+>     virtual std::chrono::seconds length() const noexcept = 0;
+> };
+> } // dp
+> ``````
+>
+> *video_stream.hpp*
+> ```cpp
+> #pragma once
+>
+> #include <memory>
+>
+> namespace dp
+> {
+> class video;
+>
+> class video_stream
+> {
+> public:
+>     virtual std::shared_ptr<video> record(char const type[4]) = 0;
+> };
+> }
 > ``````
 
 > Origins:
