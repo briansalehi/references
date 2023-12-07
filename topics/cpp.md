@@ -8130,3 +8130,109 @@
 ---
 </details>
 
+## Design Patterns
+
+<details>
+<summary>What are the common design pattern categories?</summary>
+
+> - Creational Patterns
+> - Behavioral Patterns
+> - Structural Patterns
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+## Creational Design Patterns
+
+<details>
+<summary>What are the common creational patterns?</summary>
+
+> - Factory Method
+> - Abstract Factory
+> - Builder
+> - Prototype
+> - Singleton
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+## Factory Method Design Pattern
+
+<details>
+<summary>What are the benefits of the factory method design pattern?</summary>
+
+> - Encapsulates object creation in one method
+> - Provides interface to create subclasses
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the use cases of abstract factory pattern?</summary>
+
+> When there are different products sharing similar properties and there might
+> be more products later to be added to the program. In that case, an abstract
+> product generalizing all similar products should be created. And then, all
+> variations of concrete products inherit from abstract product.
+>
+> ```uml
+> @startuml
+> abstract Product {
+> }
+> concrete ProductVariation1 {
+> }
+> concrete ProductVariation2 {
+> }
+> abstract Creator {
+> }
+> concrete ConcreteCreator {
+>     + getProduct(): Product
+> }
+> @enduml
+> ``````
+>
+> On the other hand, There should be an abstract creator class that provides
+> product generation methods. Then, there should be a concrete factory which
+> composes a factory method returning abstract product.
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Provide an interface to create variations of an object without exposing implementation details?</summary>
+
+> ```cpp
+> ``````
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+## Abstract Factory Design Pattern
+
+## Builder Design Pattern
+
+## Prototype Design Pattern
+
+## Singleton Design Pattern
+
+## Behavioral Design Patterns
