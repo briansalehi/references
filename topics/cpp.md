@@ -8352,6 +8352,108 @@
 
 ## Builder Design Pattern
 
+<details>
+<summary>What is the main advantage of using builder design pattern?</summary>
+
+> With builder pattern, we can build a product one component at a time.
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>Provide an export to different file format mechanism?</summary>
+
+> ```uml
+> @startuml
+> abstract practice {
+>     # question(): string
+>     # answer(): string
+>     # origins(): string[]
+>     # references(): string[]
+>     # hash(): string
+> }
+>
+> class markdown_practice {
+>     - question: string
+>     - answer: string
+>     - origins: string[]
+>     - references: string[]
+>     - id: hash
+>     # question(): string
+>     # answer(): string
+>     # origins(): string[]
+>     # references(): string[]
+>     # hash(): string
+> }
+>
+> practice <|-- markdown_practice
+>
+> class html_practice {
+>     - question: string
+>     - answer: string
+>     - origins: string[]
+>     - references: string[]
+>     - id: hash
+>     # question(): string
+>     # answer(): string
+>     # origins(): string[]
+>     # references(): string[]
+>     # hash(): string
+> }
+>
+> practice <|-- html_practice
+>
+> abstract builder {
+>     # create_title(string): void
+>     # write_answer(string): void
+>     # list_origins(string[]): void
+>     # list_references(string[]): void
+>     # get_practice(): practice*
+> }
+>
+> practice ..right..> builder
+>
+> class markdown_builder {
+>     # create_title(string): void
+>     # write_answer(string): void
+>     # list_origins(string[]): void
+>     # list_references(string[]): void
+>     # get_practice(): markdown_practice*
+> }
+>
+> builder <|-- markdown_builder
+>
+> class html_builder {
+>     # create_title(string): void
+>     # write_answer(string): void
+>     # list_origins(string[]): void
+>     # list_references(string[]): void
+>     # get_practice(): html_practice*
+> }
+>
+> builder <|-- html_builder
+>
+> class director {
+>     + html_practice(): html_practice*
+>     + markdown_practice(): markdown_practice*
+> }
+>
+> markdown_builder ..> director
+> html_builder ..> director
+> @enduml
+> ``````
+
+> Origins:
+> - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
+
+> References:
+---
+</details>
+
 ## Prototype Design Pattern
 
 ## Singleton Design Pattern
