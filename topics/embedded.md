@@ -525,6 +525,26 @@
 ## Yocto Project
 
 <details>
+<summary>When are the release cycles of the Yocto Project?</summary>
+
+> The Yocto Project has a release every six months, in April and October.
+>
+> The support for the stable release is for 7 months, offering 1 month of
+> overlapped support for every stable release. The LTS release has a minimal
+> support period of 2 years, optionally extended. After the official support
+> period ends, it moves to Community support and finally reaches End Of Life
+> (EOL).
+>
+> `Initial Release -> Stable Release -> Community -> End of Life`
+
+> Origins:
+> - Embedded Linux Development Using Yocto Project - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
 <summary>What are the input requirements for the Yocto Project?</summary>
 
 > - Applications to install
@@ -555,14 +575,30 @@
 </details>
 
 <details>
-<summary>What is the Yocto Project's reference build system?</summary>
+<summary>What is the default referencing build system for the Yocto Project?</summary>
 
-> The build system used within the Yocto Project is *Poky* which is composed by
-> a set of files to provide the information required for the build system to
-> work.
+> Poky is the default Yocto Project reference distribution, which uses
+> OpenEmbedded build system technology.
 
 > Origins:
 > - Heading for the Yocto Project - Chapter 1
+> - Embedded Linux Development Using Yocto Project - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the constituents of the Poky build tool?</summary>
+
+> It is platform-independent and performs cross-compiling using the BitBake
+> tool, OpenEmbedded Core, and a default set of metadata.
+>
+> In addition, it provides the mechanism to build and combine thousands of
+> distributed open source projects to form a fully customizable, complete, and
+> coherent Linux software stack.
+
+> Origins:
 
 > References:
 ---
@@ -571,16 +607,79 @@
 <details>
 <summary>What are the constituents of the Poky build system?</summary>
 
-> - **Metadata** tool is a collection of Shell and Python scripts, and a custom
->   configuration language, informing the steps needed to build, download the
->   source code and other tasks related to a specific software application or
->   library.
-> - **BitBake** is the build orchastration tool, responsible to generate, order
->   and run the tasks based on the information gathered from the metadata
->   files.
+> Poky is composed of a collection of tools, configuration files, and recipe
+> data (known as metadata).
+>
+> |Poky Build Tool|
+> |---|
+> |BitBake Tool (bitbake)|
+> |OpenEmbedded Core (meta)|
+> |Poky Distribution Metadata (meta-poky)|
+> |Yocto Project Reference BSP (meta-yocto-bsp)|
 
 > Origins:
 > - Heading for the Yocto Project - Chapter 1
+> - Embedded Linux Development Using Yocto Project - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the role of BitBake in the Yocto Project?</summary>
+
+> BitBake is a task scheduler and execution system that parses Python and Shell
+> Script code. The code that is parsed generates and runs tasks, which are a
+> set of steps ordered per the code’s dependencies.
+>
+> BitBake evaluates all available metadata, managing dynamic variable
+> expansion, dependencies, and code generation. In addition, it keeps track of
+> all tasks to ensure their completion, maximizing the use of processing
+> resources to reduce build time and predictability.
+>
+> The source code is in the `bitbake` subdirectory of Poky.
+
+> Origins:
+> - Heading for the Yocto Project - Chapter 1
+> - Embedded Linux Development Using Yocto Project - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the role of OpenEmbedded Core in the Yocto Project?</summary>
+
+> The OpenEmbedded Core metadata collection provides the engine of the Poky
+> build system. It provides the core features and aims to be generic and as
+> lean as possible. It supports seven different processor architectures (ARM,
+> ARM64, x86, x86-64, PowerPC, PowerPC 64, MIPS, MIPS64, RISC-V32, and RISC-V
+> 64), only supporting platforms to be emulated by QEMU.
+>
+> The OpenEmbedded Core houses its metadata inside the `meta` subdirectory of
+> Poky.
+
+> Origins:
+> - Embedded Linux Development Using Yocto Project - Chapter 1
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the role of Metadata in the Yocto Project?</summary>
+
+> The metadata includes recipes and configuration files. It is composed of a
+> mix of Python and Shell Script text files, providing a tremendously flexible
+> tool. Poky uses this metadata to extend OpenEmbedded Core.
+>
+> BitBake uses these scripts to inform the steps needed to build, download the
+> source code and other tasks related to a specific software application or
+> library.
+
+> Origins:
+> - Heading for the Yocto Project - Chapter 1
+> - Embedded Linux Development Using Yocto Project - Chapter 1
 
 > References:
 ---
@@ -589,20 +688,19 @@
 <details>
 <summary>What are the building blocks of the Metadata component in the Poky build system?</summary>
 
-> There are two sub-modules in the Metadata component:
+> Includes two different layers, which are other metadata subsets, shown as follows:
 >
-> - **OpenEmbedded-Core:** the core infrastructure for the cross-compilation
->   environment and offers the basic set of applications, libraries and
->   utilities ready to used in Linux-based operating systems. Six different
->   processor architectures (ARM, ARM64, x86, x86-64, PowerPC, MIPS and MIPS64)
->   are supported in the system, and all tests and development is done using
->   emulated machines, on QEMU.
-> - **Yocto Project's Specific Metadata:** provided by the Yocto Project to
->   configure the build system to fulfill Yocto Project needs and includes a
->   set of board support packages (BSP).
+> - `meta-poky`: This layer provides the default and supported distribution
+>   policies, visual branding, and metadata tracking information (maintainers,
+>   upstream status, and so on). This is to serve as a curated template that
+>   could be used by distribution builders to seed their custom distribution.
+> - `meta-yocto-bsp`: This provides the Board Support Package (BSP) used as the
+>   reference hardware for the Yocto Project development and Quality Assurance
+>   (QA) process.
 
 > Origins:
 > - Heading for the Yocto Project - Chapter 1
+> - Embedded Linux Development Using Yocto Project - Chapter 1
 
 > References:
 ---
