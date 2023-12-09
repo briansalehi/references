@@ -6,6 +6,8 @@
 ## ★★★★★ [Embedded Linux Development Using Yocto Project](resources/9781804615065.md)
 [<img src="covers/9781804615065.jpg" width="200"/>](resources/9781804615065.md)
 
+## ★★★★★ [Heading for the Yocto Project](resources/heading-for-the-yocto-project.md)
+
 ## ★★★★★ [Linux Device Driver Development](resources/9781803240060.md)
 [<img src="covers/9781803240060.jpg" width="200"/>](resources/9781803240060.md)
 
