@@ -247,6 +247,15 @@ preview_practice() {
     return 0
 }
 
+is_valid_range() {
+    if is_numeric "$1" && is_in_range "$1" "$2" "$3"
+    then
+        return 0
+    fi
+
+    return 1
+}
+
 begin_review() {
     local -a subject_list
     local subject
@@ -263,6 +272,7 @@ begin_review() {
     local subject_index=0
     local topic_index=0
     local practice_index=0
+    local skip_request=0
 
     readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1)
 
@@ -319,17 +329,26 @@ begin_review() {
             if [ "${#practice_list[*]}" -eq 0 ]
             then
                 echo -e "\e[1;31m""${topic_name%%.*}. ${topic_name#*.} has no practice""\e[0m" >&2
-            elif [ $topic_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
+            elif [ $topic_index -eq 0 ] && [ ${#topic_list[*]} -gt 1 ]
             then
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Skip to" "Next Subject")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
                     "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
                     "Next Subject") echo; break ;;
+                    "Skip to")
+                        read -rp "Expected Chapter: " skip_request </dev/tty
+                        while ! is_valid_range "$skip_request" 1 "${#topic_list[*]}"
+
+                        do
+                            read -rp "Expected Chapter: " skip_request </dev/tty
+                        done
+                        topic_index=$((skip_request--))
+                        continue ;;
                 esac
                 echo
-            elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#practice_list[*]} ]
+            elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#topic_list[*]} ]
             then
                 topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
 
