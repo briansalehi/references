@@ -6028,7 +6028,7 @@
 ---
 </details>
 
-## Constructing Threads
+## Threads Construction
 
 <details>
 <summary>Construct a thread and wait to the end of its normal execution?</summary>
@@ -6167,7 +6167,7 @@
 ---
 </details>
 
-## Joining Threads
+## Threads Joining
 
 <details>
 <summary>Wait for a thread in case an exception is thrown?</summary>
@@ -6238,7 +6238,7 @@
 ---
 </details>
 
-## Detaching Threads
+## Threads Detaching
 
 <details>
 <summary>Run a thread in background?</summary>
@@ -6264,7 +6264,7 @@
 ---
 </details>
 
-## Moving Threads
+## Threads Moving
 
 <details>
 <summary>Transfer the ownership of a thread into another?</summary>
@@ -6294,6 +6294,8 @@
 > References:
 ---
 </details>
+
+## Thread Accessibility
 
 <details>
 <summary>Retrieve the maximum number of threads efficiently running at runtime?</summary>
