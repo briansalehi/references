@@ -3171,7 +3171,125 @@
 ---
 </details>
 
-## Chrono
+## Chrono Duration
+
+<details>
+<summary>Take the difference of two time points?</summary>
+
+> Difference of time points is a duration.
+>
+> ```cpp
+> #include <chrono>
+> #include <thread>
+>
+> using namespace std::chrono_literals;
+>
+> auto tp1 = std::chrono::steady_clock::now();
+> std::this_thread::sleep_for(1ms);
+> auto tp2 = std::chrono::steady_clock::now();
+>
+> auto duration = tp2 - tp1;
+> std::cout << duration << "\n";
+> // example output: 1115389ns
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+<details>
+<summary>Explicitly specify duration type?</summary>
+
+> ```cpp
+> #include <chrono>
+> #include <thread>
+>
+> using namespace std::chrono_literals;
+>
+> auto tp1 = std::chrono::steady_clock::now();
+> std::this_thread::sleep_for(1ms);
+> auto tp2 = std::chrono::steady_clock::now();
+>
+> // explicit type of duration, base type double, with micro precision
+> std::chrono::duration<double, std::micro> sleep_duration = tp2 - tp1;
+> std::cout << sleep_duration << "\n";
+> // example output: 1115.39µs
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+<details>
+<summary>Explicitly convert a duration into a different duration unit?</summary>
+
+> Duractions can be converted between each other using `duration_cast`.
+>
+> ```cpp
+> #include <chrono>
+> #include <thread>
+>
+> using namespace std::chrono_literals;
+>
+> auto tp1 = std::chrono::steady_clock::now();
+> std::this_thread::sleep_for(1ms);
+> auto tp2 = std::chrono::steady_clock::now();
+>
+> auto micro = std::chrono::duration_cast<std::chrono::microseconds>(tp2 - tp1);
+> std::cout << micro << "\n";
+> // example output: 1115µs
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+## Chrono Time Point
+
+## Chrono Clocks
+
+<details>
+<summary>Check whether a clock is steady?</summary>
+
+> ```cpp
+> #include <chrono>
+>
+> bool system_is_steady = std::chrono::system_clock::is_steady;
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+<details>
+<summary>Query a clock's time resolution?</summary>
+
+> ```cpp
+> #include <chrono>
+>
+> auto resolution = std::chrono::system_clock::duration{1};
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+## Chrono Literals
 
 <details>
 <summary>Express all different chrono literals?</summary>
@@ -3193,6 +3311,59 @@
 > References:
 > - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
+---
+</details>
+
+## Chrono Date
+
+## Chrono Date Literals
+
+<details>
+<summary>What are the calendar string literals?</summary>
+
+> - `operator""y`
+> - `operator""d`
+
+> Origins:
+> - C++ Daily Bites - #73
+
+> References:
+---
+</details>
+
+<details>
+<summary>Specify the date information about a specific day in a year?</summary>
+
+> ```cpp
+> // A day in a year can be specified using literals and operator/
+> auto christmas_eve = 2023y/std::chrono::December/24d;
+> // decltype(christmas_eve) == std::chrono::year_month_day
+>
+> auto specific_day = std::chrono::weekday{std::chrono::sys_days{christmas_eve}};
+> // specific_day == std::chrono::Sunday
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #74
+
+> References:
+---
+</details>
+
+<details>
+<summary>Iterate over the days of a month within a year?</summary>
+
+> ```cpp
+> for (auto date{2023y/std::chrono::April/1d}; date.month() == std::chrono::April; date = std::chrono::sys_days{date} + days{1})
+> {
+>     // iterate over all days in April 2023
+> }
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #74
+
+> References:
 ---
 </details>
 
