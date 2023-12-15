@@ -6338,6 +6338,31 @@
 ---
 </details>
 
+<details>
+<summary>Create a joining thread followed by RAII principle?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <chrono>
+>
+> void do_something()
+> {
+>     std::this_thread::sleep_for(std::chrono::seconds{1});
+> }
+>
+> int main()
+> {
+>     std::jthread t0{do_something};
+> }
+> ``````
+
+> Origins:
+> - YouTube: Learning C++20: jthreads and stop tokens by CoffeeBeforeArch
+
+> References:
+---
+</details>
+
 ## Threads Joining
 
 <details>
@@ -6466,7 +6491,41 @@
 ---
 </details>
 
-## Thread Accessibility
+## Thread Stop Request
+
+<details>
+<summary>Send a stop request to a thread?</summary>
+
+> ```cpp
+> #include <thread>
+>
+> void do_something(std::stop_token token)
+> {
+>     while (true)
+>     {
+>         std::this_thread::sleep_for(std::chrono::seconds{1});
+>
+>         if (token.stop_requested())
+>             break;
+>     }
+> }
+>
+> int main()
+> {
+>     std::thread worker{do_something};
+>     std::this_thread::sleep_for(std::chrono::seconds{3});
+>     worker.request_stop();
+> }
+> ``````
+
+> Origins:
+> - YouTube: Learning C++20: jthreads and stop tokens by CoffeeBeforeArch
+
+> References:
+---
+</details>
+
+## Thread Hardware
 
 <details>
 <summary>Retrieve the maximum number of threads efficiently running at runtime?</summary>
