@@ -1577,6 +1577,129 @@
 ---
 </details>
 
+## Class Default Constructors
+
+<details>
+<summary>Avoid implicit conversion of classes?</summary>
+
+> ```cpp
+> #include <memory>
+>
+> class string_buffer
+> {
+> public:
+>     explicit string_buffer() {}
+>     explicit string_buffer(std::size_t const size) {}
+>     explicit string_buffer(char const* const ptr) {}
+>     explicit operator bool() const { return false; }
+>     explicit operator char* const () const { return nullptr; }
+> };
+>
+> int main()
+> {
+>     std::shared_ptr<char> str;
+>     string_buffer b1;            // calls string_buffer()
+>     string_buffer b2(20);        // calls string_buffer(std::size_t const)
+>     string_buffer b3(str.get()); // calls string_buffer(char const*)
+>
+>     enum item_size { small, medium, large };
+>
+>     // implicit conversion cases when explicit not specified
+>     string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)
+>     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
+> }
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/explicit
+> - https://en.cppreference.com/w/cpp/language/converting_constructor
+---
+</details>
+
+## Class Non-static Member Declaration
+
+<details>
+<summary>Initialize non-static member variables of a class?</summary>
+
+> ```cpp
+> struct base
+> {
+>     // default member initialization
+>     const int height = 14;
+>     const int width = 80;
+>
+>     v_align valign = v_align::middle;
+>     h_align halign = h_align::left;
+>
+>     std::string text;
+>
+>     // constructor initialization list
+>     base(std::string const& t): text{t}
+>     {}
+>
+>     base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}
+>     {}
+> };
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/data_members
+---
+</details>
+
+## Class Template Argument Deduction
+
+<details>
+<summary>Write a class template deduction guides for compilers?</summary>
+
+> The type of objects without template arguments are not types, but act as a
+> placeholder for a type that activates CTAD. When compiler encouters it, it
+> builds a set of deduction guides which can be complemented by user with user
+> defined deduction rules.
+>
+> **CTAD** does not occur if the template argument list is present.
+>
+> ```cpp
+> std::pair p{42, "demo"};    // std::pair<int, char const*>
+> std::vector v{1, 2};        // std::vector<int>
+> ``````
+>
+> ```cpp
+> // declaration of the template
+> template<class T>
+> struct container
+> {
+>     container(T t) {}
+>
+>     template<class Iter>
+>     container(Iter beg, Iter end);
+> };
+>
+> // additional deduction guide
+> template<class Iter>
+> container(Iter b, Iter e) -> container<typename std::iterator_traits<Iter>::value_type>;
+>
+> // uses
+> container c(7); // OK: deduces T=int using an implicitly-generated guide
+> std::vector<double> v = {/* ... */};
+> auto d = container(v.begin(), v.end()); // OK: deduces T=double
+> container e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type
+> ``````
+
+> Origins:
+> - Modern C++ Programming Cookbook - Chapter 1
+
+> References:
+> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+---
+</details>
+
 ## Range-based loop
 
 <details>
@@ -2177,6 +2300,40 @@
 > References:
 > - https://en.cppreference.com/w/cpp/language/final
 > - https://en.cppreference.com/w/cpp/language/derived_class
+---
+</details>
+
+## Streams
+
+## Input Streams
+
+## Output Streams
+
+## File Streams
+
+## Sync Streams
+
+<details>
+<summary>Synchronize an stream to be flushed when went out of scope regarding RAII idiom?</summary>
+
+> ```cpp
+> #include <syncstream>
+> #include <iostream>
+>
+> int main()
+> {
+>     std::osyncstream output_stream{std::cout};
+>     output_stream << "This literal string will be";
+>     output_stream << std::endl; // no effect
+>     output_stream << "written into output stream";
+>     // flushes on destruction
+> }
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
 ---
 </details>
 
@@ -3364,129 +3521,6 @@
 > - C++ Daily Bites - #74
 
 > References:
----
-</details>
-
-## Class Default Constructors
-
-<details>
-<summary>Avoid implicit conversion of classes?</summary>
-
-> ```cpp
-> #include <memory>
->
-> class string_buffer
-> {
-> public:
->     explicit string_buffer() {}
->     explicit string_buffer(std::size_t const size) {}
->     explicit string_buffer(char const* const ptr) {}
->     explicit operator bool() const { return false; }
->     explicit operator char* const () const { return nullptr; }
-> };
->
-> int main()
-> {
->     std::shared_ptr<char> str;
->     string_buffer b1;            // calls string_buffer()
->     string_buffer b2(20);        // calls string_buffer(std::size_t const)
->     string_buffer b3(str.get()); // calls string_buffer(char const*)
->
->     enum item_size { small, medium, large };
->
->     // implicit conversion cases when explicit not specified
->     string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)
->     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
-> }
-> ``````
-
-> Origins:
-> - Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/explicit
-> - https://en.cppreference.com/w/cpp/language/converting_constructor
----
-</details>
-
-## Non-static Member Declaration
-
-<details>
-<summary>Initialize non-static member variables of a class?</summary>
-
-> ```cpp
-> struct base
-> {
->     // default member initialization
->     const int height = 14;
->     const int width = 80;
->
->     v_align valign = v_align::middle;
->     h_align halign = h_align::left;
->
->     std::string text;
->
->     // constructor initialization list
->     base(std::string const& t): text{t}
->     {}
->
->     base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}
->     {}
-> };
-> ``````
-
-> Origins:
-> - Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/data_members
----
-</details>
-
-## Class Template Argument Deduction
-
-<details>
-<summary>Write a class template deduction guides for compilers?</summary>
-
-> The type of objects without template arguments are not types, but act as a
-> placeholder for a type that activates CTAD. When compiler encouters it, it
-> builds a set of deduction guides which can be complemented by user with user
-> defined deduction rules.
->
-> **CTAD** does not occur if the template argument list is present.
->
-> ```cpp
-> std::pair p{42, "demo"};    // std::pair<int, char const*>
-> std::vector v{1, 2};        // std::vector<int>
-> ``````
->
-> ```cpp
-> // declaration of the template
-> template<class T>
-> struct container
-> {
->     container(T t) {}
->
->     template<class Iter>
->     container(Iter beg, Iter end);
-> };
->
-> // additional deduction guide
-> template<class Iter>
-> container(Iter b, Iter e) -> container<typename std::iterator_traits<Iter>::value_type>;
->
-> // uses
-> container c(7); // OK: deduces T=int using an implicitly-generated guide
-> std::vector<double> v = {/* ... */};
-> auto d = container(v.begin(), v.end()); // OK: deduces T=double
-> container e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type
-> ``````
-
-> Origins:
-> - Modern C++ Programming Cookbook - Chapter 1
-
-> References:
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
 
@@ -6575,6 +6609,354 @@
 
 > Origins:
 > - C++ Concurrency in Action - Chapter 2
+
+> References:
+---
+</details>
+
+## Mutex
+
+## Conditional Variable
+
+<details>
+<summary>Synchronize two threads signaling each other using condition variables?</summary>
+
+> ```cpp
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+## Semaphore
+
+<details>
+<summary>What is the difference between a mutex and a semaphore?</summary>
+
+> A mutex must be locked and unlocked in the same thread. But a semaphore can
+> be acquired in one thread, and released in another.
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+## Semaphore Properties
+
+<details>
+<summary>Retrieve the maximum value of internal counter a semaphore can have?</summary>
+
+> ```cpp
+> std::ptrdiff_t least_max_value = std::counting_semaphore::max();
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/counting_semaphore/max
+---
+</details>
+
+## Counting Semaphore
+
+<details>
+<summary>What operations are available on counting semaphores?</summary>
+
+> |Method|
+> |---|
+> |`std::counting_semaphore::max()`|
+> |`release(std::ptrdiff_t update = 1)`|
+> |`acquire()`|
+> |`try_acquire()`|
+> |`try_acquire_for(duration)`|
+> |`try_acquire_until(timepoint)`|
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+---
+</details>
+
+<details>
+<summary>Synchronize threads writing on a shared container using semaphores?</summary>
+
+> In this sample, the counting semaphore is initialized with 0. Because of this
+> initialization, the `secondary_initialization()` method cannot acquire semaphore,
+> therefore the thread blocks. On the other hand, the `primary_initialization()` method
+> releases the semaphore, therefore its counter is incremented and the
+> `secondary_initialization()` method continues to run.
+>
+> ```cpp
+> #include <iostream>
+> #include <semaphore>
+> #include <thread>
+> #include <vector>
+>
+> template <typename T>
+> class data_structure
+> {
+> private:
+>     std::vector<T> underlying_container;
+>     std::counting_semaphore<1> underlying_synchronization;
+>
+> public:
+>     data_structure():
+>         underlying_container{},
+>         underlying_synchronization{0}
+>     {
+>     }
+>
+>     void prepare()
+>     {
+>         std::jthread t0{&data_structure::secondary_initialization, this};
+>         std::jthread t1{&data_structure::primary_initialization, this};
+>     }
+>
+>     std::vector<T> get() const { return underlying_container; }
+>
+> private:
+>     void secondary_initialization()
+>     {
+>         underlying_synchronization.acquire();
+>         underlying_container[1] = 2;
+>     }
+>
+>     void primary_initialization()
+>     {
+>         underlying_container = {1, 0, 3};
+>         underlying_synchronization.release();
+>     }
+> };
+>
+> int main()
+> {
+>     data_structure<long> data{};
+>     data.prepare();
+>     for (auto element: data.get())
+>         std::cout << element << " ";
+>     std::cout << "\n";
+> }
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+>   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/counting_semaphore
+>   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/release
+>   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/acquire
+---
+</details>
+
+## Binary Semaphore
+
+<details>
+<summary>Write two blocking threads only to unlock when signaled by each other?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <chrono>
+> #include <semaphore>
+>
+> std::binary_semaphore signal_main2thread{0}, signal_thread2main{0};
+>
+> void thread_task()
+> {
+>     signal_main2thread.acquire();
+>     std::this_thread::sleep_for(std::chrono::seconds{1});
+>     signal_thread2main.release();
+> }
+>
+> int main()
+> {
+>     std::jthread thread_worker{thread_task};
+>     signal_main2thread.release();
+>     signal_thread2main.acquire();
+> }
+> ``````
+
+> Origins:
+> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+
+> References:
+> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+---
+</details>
+
+## Latch
+
+<details>
+<summary>What are the use cases of a latch?</summary>
+
+> Latches are useful for managing one task leveraged by multiple threads.
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+<details>
+<summary>When does a latch block?</summary>
+
+> A thread waits at a synchronization point until the internal counter becomes
+> zero. So latches are almost opposites of the semaphore in counting.
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+<details>
+<summary>What operations are available to a latch?</summary>
+
+> |Method|Description|
+> |---|---|
+> |`count_down(std::ptrdiff_t update = 1)`|Decrements internal counter `update` times without blocking the caller|
+> |`try_wait()`|Returns `true` if internal counter equals zero|
+> |`wait()`|Immediately returns if internal counter equals zero, blocks otherwise|
+> |`arrive_and_wait(std::ptrdiff_t update = 1)`|Equivalent to subsequent call to `count_down(update)` and `wait()`|
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+<details>
+<summary>Synchronize multiple threads using a latch?</summary>
+
+> ```cpp
+> #include <thread>
+> #include <latch>
+> #include <mutex>
+> #include <vector>
+>
+> std::size_t thread_max{std::thread::hardware_concurrency()};
+> std::mutex exclusive{};
+> std::latch works{static_cast<std::ptrdiff_t>(thread_max)};
+> std::vector<long> shared_storage(thread_max);
+>
+> void set_data(std::size_t index, long value)
+> {
+>     std::lock_guard<std::mutex> automatic_locker{exclusive};
+>     shared_storage.at(index) = value;
+>     works.count_down();
+> }
+>
+> int main()
+> {
+>     std::vector<std::jthread> thread_pool(thread_max);
+>
+>     for (std::size_t thread_index{}; thread_index != thread_max; ++thread_index)
+>     {
+>         thread_pool.emplace_back(set_data, thread_index, thread_index);
+>     }
+>
+>     works.wait();
+>     // blocks until all <thread_max> threads have set data
+>     // {0, 1, 2, 3, 4, 5, 6, 7} on a machine with 8 cores
+> }
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+## Barrier
+
+<details>
+<summary>What are the use cases of a barrier?</summary>
+
+> Barriers are helpful to manage repetitive task leveraged by multiple threads.
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+<details>
+<summary>What operations are available to a barrier?</summary>
+
+> The constructor of a barrier takes a callable. In the completion phase, the
+> callable is executed by an arbitrary thread.
+>
+> |Method|Description|
+> |---|---|
+> |`arrive(std::ptrdiff_t update = 1)`|Decrement internal counter `update` times|
+> |`wait()`|Blocks at the synchronization point until the completion step is done|
+> |`arrive_and_wait()`|Equivalent to subsequent call to `arrive()` and `wait()`|
+> |`arrive_and_drop()`|Decrements the internal counter for the current phase and the subsequent phase by one|
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+
+> References:
+---
+</details>
+
+<details>
+<summary>Synchronize threads with a barrier?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <mutex>
+> #include <barrier>
+> #include <vector>
+>
+> std::barrier works{6};
+> std::mutex exclusive{};
+> std::vector<long> shared_storage(6);
+>
+> void part_time_job(std::size_t index, long value)
+> {
+>     std::lock_guard<std::mutex> automatic_locker{exclusive};
+>     shared_storage.at(index) = value;
+>     works.arrive_and_drop();
+>     // decrement internal counter when done
+> }
+>
+> void full_time_job(std::size_t index, long value)
+> {
+>         std::lock_guard<std::mutex> automatic_locker{exclusive};
+>
+>         shared_storage.at(index) = value;
+>         works.arrive_and_wait();
+>
+>         shared_storage.at(index) = value;
+>         works.arrive_and_wait();
+> }
+>
+> int main()
+> {
+>     std::vector<std::jthread> thread_pool(6);
+>
+>     for (std::size_t index{}; index != 6; ++index)
+>         thread_pool.emplace_back(full_time_job, index, index);
+> }
+> ``````
+
+> Origins:
+> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
 > References:
 ---

@@ -117,4 +117,7 @@
 
 > Origins:
 > - YouTube: Debugging memory issues with Valgrind and GDB - DevConf.CZ 2023
+
+> References:
+---
 </details>
