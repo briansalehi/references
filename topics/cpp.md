@@ -2337,6 +2337,205 @@
 ---
 </details>
 
+## String Streams
+
+<details>
+<summary>Take the string stream contents as an string?</summary>
+
+> String stream operations are slow. To enhance the performance of operations,
+> you have the `view()` member function coming in C++20. This can be used as an
+> alternative to `str()`. In short, rather than creating a copy of the internal
+> string, you will get a view instead, so there is no need to dynamically
+> allocate memory.
+>
+> ```cpp
+> #include <iostream>
+> #include <sstream>
+>
+> // make allocations obvious
+> void* operator new(std::size_t sz){
+>     std::cout << "Allocating " << sz << " bytes\n";
+>     return std::malloc(sz);
+> }
+>
+> int main() {
+>     std::stringstream str;
+>     str << "Using C++20 standard";
+>     // allocates
+>
+>     std::cout << str.str() << '\n';
+>     // allocates
+>
+>     std::cout << str.view() << '\n';
+>     // doesn't allocate
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Use move semantics to avoid copies on string stream construction?</summary>
+
+> Using C++20 there is an extra constructor that can take an rvalue reference
+> to the string object, and thus it might not require an additional copy:
+>
+> ```cpp
+> #include <iostream>
+> #include <sstream>
+>
+> // make allocations obvious
+> void* operator new(std::size_t sz){
+>     std::cout << "Allocating " << sz << " bytes\n";
+>     return std::malloc(sz);
+> }
+>
+> int main() {
+>     std::stringstream str {std::string("hello C++ programming World")};
+> }
+> ``````
+>
+> Compiled with C++17, two allocations can be witnessed. But compiled with
+> C++20, duplicate copy no longer takes place.
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+## Span Streams
+
+<details>
+<summary>Use a preallocated buffer as the internal memory for a stream object?</summary>
+
+> Staring with C++23, you can take complete control over the internal memory of
+> a stream.
+>
+> ```cpp
+> #include <iostream>
+> #include <sstream>
+> #include <spanstream> // new header
+>
+> // make allocations obvious
+> void* operator new(std::size_t sz){
+>     std::cout << "Allocating " << sz << " bytes\n";
+>     return std::malloc(sz);
+> }
+>
+> int main() {
+>     std::stringstream ss;
+>     ss << "one string that doesn't fit into SSO";
+>     ss << "another string that hopefully won't fit";
+>     // allocates memory
+>
+>     char buffer[128]{};
+>     std::span<char> internal_memory(buffer);
+>     std::basic_spanstream<char> ss2(internal_memory);
+>     ss2 << "one string that doesn't fit into SSO";
+>     ss2 << "another string that hopefully won't fit";
+>     // doesn't allocate new memory
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+## Strings
+
+<details>
+<summary>Find a substring within another string?</summary>
+
+> To find a substring prior standard C++23:
+>
+> ```cpp
+> #include <string>
+> #include <iostream>
+>
+> int main() {
+>     std::string message{"Using prior C++23 standard."};
+>
+>     if (message.find("C++") != std::string::npos)
+>         std::cout << "You are using C++\n";
+> }
+> ``````
+>
+> Using C++23:
+>
+> ```cpp
+> #include <string>
+> #include <iostream>
+>
+> int main() {
+>     std::string message{"Using C++23 standard."};
+>
+>     if (message.contains("C++"))
+>         std::cout << "You are using C++\n";
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a string has expected prefix?</summary>
+
+> Using C++23:
+>
+> ```cpp
+> #include <string_view>
+>
+> bool secure_protocol(std::string_view url)
+> {
+>     if (url.starts_with("https"))
+>         return true;
+>
+>     return false;
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a string has expected postfix?</summary>
+
+> ```cpp
+> #include <string_view>
+>
+> bool org_domain(std::string_view url)
+> {
+>     if (url.ends_with(".org"))
+>         return true;
+>
+>     return false;
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
 ## Numeric to String Conversion
 
 <details>
@@ -3511,9 +3710,12 @@
 <summary>Iterate over the days of a month within a year?</summary>
 
 > ```cpp
-> for (auto date{2023y/std::chrono::April/1d}; date.month() == std::chrono::April; date = std::chrono::sys_days{date} + days{1})
+> #include <chrono>
+>
+> auto date{2024y/std::chrono::April/1d};
+> for (; date.month() == std::chrono::April; date += std::chrono::days{1})
 > {
->     // iterate over all days in April 2023
+>     // iterate over all days in April 2024
 > }
 > ``````
 
@@ -3525,6 +3727,74 @@
 </details>
 
 ## Ranges
+
+## Ranges Algorithms
+
+<details>
+<summary>Check if a range starts with an expected subrange?</summary>
+
+> Starting with C++23, basic strings support `starts_with()` operation:
+>
+> ```cpp
+> #include <ranges>
+>
+> std::ranges::starts_with("Hello World", "Hello");
+> // true
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a range ends with an expected subrange?</summary>
+
+> Starting with C++23, basic strings support `ends_with()` operation:
+>
+> ```cpp
+> #include <ranges>
+> #include <vector>
+>
+> std::vector nums {1, 2, 3, 4};
+> std::ranges::ends_with(v, {3, 4});
+> // true
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Convert a resulting range to another type?</summary>
+
+> C++23 standard includes `std::ranges::to<>`.
+>
+> ```cpp
+> #include <ranges>
+> #include <string>
+>
+> int main()
+> {
+>     std::string alphabet = std::views::iota('a', 'z')
+>                          | std::views::transform([](auto const v){ return v - 32; })
+>                          | std::ranges::to<std::string>();
+>
+>     std::string abc = alphabet | std::views::take(3) | std::ranges::to<std::string>();
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
 
 ## Sentinels
 
@@ -3622,7 +3892,7 @@
 ---
 </details>
 
-## Iterating Algorithms
+## Algorithms Iterating
 
 <details>
 <summary>Invoke a functor for each range element in or out of order?</summary>
@@ -3847,7 +4117,7 @@
 ---
 </details>
 
-## Swapping Algorithms
+## Algorithms Swapping
 
 <details>
 <summary>Swap two values using standard algorithms?</summary>
@@ -4008,7 +4278,7 @@
 ---
 </details>
 
-## Sorting Algorithms
+## Algorithms Sorting
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
@@ -4448,7 +4718,7 @@
 ---
 </details>
 
-## Partitioning Algorithms
+## Algorithms Partitioning
 
 <details>
 <summary>Partition a range into two based on a criterion?</summary>
@@ -4650,7 +4920,7 @@
 ---
 </details>
 
-## Sorted Range Algorithms
+## Algorithms Sorted Range
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -4850,7 +5120,7 @@
 ---
 </details>
 
-## Linear Operation Algorithms
+## Algorithms Linear Operation
 
 <details>
 <summary>Determine whether a sorted range is contained within another sorted range?</summary>
@@ -5017,7 +5287,7 @@
 ---
 </details>
 
-## Set Operation Algorithms
+## Algorithms Set Operation
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -5143,7 +5413,7 @@
 ---
 </details>
 
-## Transformation Algorithms
+## Algorithms Transformation
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -5498,7 +5768,7 @@
 ---
 </details>
 
-## Boolean Reduction Algorithms
+## Algorithms Boolean Reduction
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -5590,7 +5860,7 @@
 ---
 </details>
 
-## String Algorithms
+## Algorithms Strings
 
 <details>
 <summary>Convert a string to lowercase or uppercase?</summary>
@@ -5768,6 +6038,56 @@
 > References:
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/io/basic_stringstream
+---
+</details>
+
+<details>
+<summary>What ranges operations are supported by strings?</summary>
+
+> Following string operations are available in C++23:
+>
+> - `std::basic_string<CharT,Traits,Allocator>::insert_range`
+> - `std::basic_string<CharT,Traits,Allocator>::append_range`
+> - `std::basic_string<CharT,Traits,Allocator>::replace_with_range`
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Insert a range within an string?</summary>
+
+> Using C++23:
+>
+> ```cpp
+> #include <iostream>
+> #include <iterator>
+> #include <string>
+>
+> int main() {
+>     auto const missing = {'l', 'i', 'b', '_'};
+>     std::string library_name{"__cpp_containers_ranges"};
+>
+>     auto const pos = library_name.find("container");
+>     auto iter = std::next(library_name.begin(), pos);
+>
+> #ifdef __cpp_lib_containers_ranges
+>     library_name.insert_range(iter, missing);
+> #else
+>     library_name.insert(iter, missing.begin(), missing.end());
+> #endif
+>
+>     std::cout << library_name;
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
 ---
 </details>
 
