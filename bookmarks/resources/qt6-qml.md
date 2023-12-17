@@ -1373,13 +1373,13 @@ Get a line of text from user?
 > be applied to every state switch.
 >
 > ```qml
-transitions: [
-    Transition {
-        from: "*"; to: "*"
-        ColorAnimation { target: element1; properties: "color"; duration: 2000 }
-        ColorAnimation { target: element2; properties: "color"; duration: 2000 }
-    }
-]
+> transitions: [
+>     Transition {
+>         from: "*"; to: "*"
+>         ColorAnimation { target: element1; properties: "color"; duration: 2000 }
+>         ColorAnimation { target: element2; properties: "color"; duration: 2000 }
+>     }
+> ]
 > ``````
 
 > Origins:
