@@ -3,7 +3,7 @@
 ## Memcheck
 
 <details>
-<summary>Check for memory leaks of a program?</summary>
+<summary>Detect common memory faults in a program?</summary>
 
 > Valgrind is capable of checking for memory leaks on a binary file.
 >
@@ -98,6 +98,8 @@
 > References:
 ---
 </details>
+
+## Cachegrind
 
 ## Running with GDB
 

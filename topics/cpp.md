@@ -2884,6 +2884,124 @@
 ---
 </details>
 
+## Text Formatting
+
+<details>
+<summary>What are the advantages of using format compared to printf?</summary>
+
+> - You cannot format objects of user-defined types with printf.
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
+<details>
+<summary>Format a text by positioning multiple values in a text in a specific order?</summary>
+
+> `std::format` supports positional arguments i.e. referring to an argument by
+> its index separated from format specifiers by the `:` character.
+>
+> ```cpp
+> #include <iostream>
+> #include <format>
+>
+> std::clog << std::format("{0:02x} {1:02x} {2:02x}\n", v0, v1, v2);
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
+<details>
+<summary>Format a 2-digit integer in hexadecimal with zero padding?</summary>
+
+> ```cpp
+> #include <format>
+>
+> std::format("{02x}\n", value);
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
+<details>
+<summary>Enable formating of a custom type?</summary>
+
+> ```cpp
+> #include <format>
+> #include <ostream>
+>
+> enum class color_code : std::uint_least8_t {};
+>
+> std::ostream& operator<<(std::ostream& os, color_code s)
+> {
+>     return os << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned>(s);
+> }
+>
+> template <>
+> struct std::formatter<color_code> : std::formatter<unsigned>
+> {
+>     auto format(color_code const& code, format_context& ctx) {
+>         return format_to(ctx.out(), "{:02x}", static_cast<unsigned>(code));
+>     }
+> };
+>
+> std::format("{}\n", color_code);
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
+<details>
+<summary>Format the current date?</summary>
+
+> ```cpp
+> #include <format>
+> #include <chrono>
+>
+> std::format("{:%F %T} UTC", std::chrono::system_clock::now());
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
+## Text Printing
+
+<details>
+<summary>Print a text to standard output?</summary>
+
+> ```cpp
+> #include <iostream>
+> #include <format>
+>
+> std::print("{} <{}>", "Brian Salehi", "salehibrian@gmail.com");
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+
+> References:
+---
+</details>
+
 ## Regular Expressions
 
 <details>
