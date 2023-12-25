@@ -1,7 +1,6 @@
-# Practical Binary Analysis
-<img src="../covers/9781593279127.jpg" width="200"/>
+# Software Security
 
-## Chapter 1/13 Anatomy of a Binary <sup>(published)</sup>
+## Binary Analysis
 
 <details>
 <summary>What are the main phases of compiling a C code?</summary>
@@ -256,15 +255,3 @@
 ---
 </details>
 
-## Chapter 2/13 The ELF Format
-## Chapter 3/13 The PE Format
-## Chapter 4/13 Building a Binary Loader Using libbfd
-## Chapter 5/13 Basic Binary Analysis in Linux
-## Chapter 6/13 Disassembly and Binary Analysis Fundamentals
-## Chapter 7/13 Simple Code Injection Techniques for ELF
-## Chapter 8/13 Customizing Disassembly
-## Chapter 9/13 Binary Instruction
-## Chapter 10/13 Principles of Dynamic Taint Analysis
-## Chapter 11/13 Practical Dynamic Taint Analysis with libdft
-## Chapter 12/13 Principles of Symbolic Execution
-## Chapter 13/13 Practical Symbolic Execution with Triton
