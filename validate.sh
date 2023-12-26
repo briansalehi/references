@@ -167,6 +167,9 @@ do
         -q|--quiet) QUIET_MODE=1 ;;
         -h|--help) HELP_MODE=1 ;;
         -f|--file) FILE_MODE=1; FILE_PATH="$2"; shift ;;
+        -u|--unpublished) UNPUBLISHED=1 ;;
+        -c|--completed) COMPLETED=1 ;;
+        -i|--writing|--incomplete) WRITING=1 ;;
         -w|-Werror|--error|--werror) WERROR=1 ;;
         -d|--dir|--directory) DIR_MODE=1; DIR_PATH="$2"; shift ;;
         -g|--debug) DEBUG_BEGIN_LINE="$2"; DEBUG_END_LINE="$3"; shift; shift ;;
@@ -200,6 +203,37 @@ then
     usage
 fi
 
+if [ "${UNPUBLISHED:-0}" -eq 1 ] || [ "${COMPLETED:-0}" -eq 1 ] || [ "${WRITING:-0}" -eq 1 ]
+then
+    while read -r filename
+    do
+        if [ "${UNPUBLISHED:-0}" -eq 1 ]
+        then
+            filter="complete|completed|writing"
+        elif [ "${COMPLETED:-0}" -eq 1 ]
+        then
+            filter="complete|completed"
+        elif [ "${WRITING:-0}" -eq 1 ]
+        then
+            filter="writing"
+        fi
+
+        while read -r record
+        do
+            [ -z "$record" ] && continue
+            line="$(cut -d':' -f1 <<< "$record")"
+            chapter="$(cut -d'#' -f3- <<< "$record" | cut -d'<' -f1)"
+            status="$(cut -d'>' -f2 <<< "$record" | cut -d '<' -f1)"
+
+            echo -e "\e[1;34m$filename +$line:\e[1;33m $chapter \e[1;31m$status\e[0m" >&2
+        done <<< "$(grep -En "<sup>\(($filter)\)</sup>" "$filename")"
+    done <<< "$(find bookmarks/resources/ -type f -name '*.md')"
+
+    exit 0
+else
+    echo -e "\e[1;31m""bookmarks and topics directories missing""\e[0m" >&2
+fi
+
 if [ "${FILE_MODE:-0}" -eq 1 ]
 then
     file_list="$FILE_PATH"
@@ -212,63 +246,68 @@ fi
 
 if [ -d .git ] && [ -d bookmarks/ ] && [ -d topics/ ]
 then
-    while read -r file
+    echo -e "\e[1;32m""processing""\e[0m" >&2
+else
+    echo -e "\e[1;31m""root directory requirements not met""\e[0m" >&2
+    exit 3
+fi
+
+while read -r file
+do
+    is_broken=0
+    line_number=0
+    faults=0
+
+    [ "${QUIET_MODE:-0}" -eq 0 ] && echo -e "\e[1;33m""$file""\e[0m" >&2
+
+    while read -r line
     do
-        is_broken=0
-        line_number=0
-        faults=0
+        ((line_number++))
 
-        [ "${QUIET_MODE:-0}" -eq 0 ] && echo -e "\e[1;33m""$file""\e[0m" >&2
+        [ -v WERROR ] && [ "$faults" -gt 0 ] && exit 1
 
-        while read -r line
-        do
-            ((line_number++))
+        [ -n "$DEBUG_BEGIN_LINE" ] && [ "$DEBUG_BEGIN_LINE" -eq "$line_number" ] && set -x
 
-            [ -v WERROR ] && [ "$faults" -gt 0 ] && exit 1
-
-            [ -n "$DEBUG_BEGIN_LINE" ] && [ "$DEBUG_BEGIN_LINE" -eq "$line_number" ] && set -x
-
-            if [ "$line" = "<details>" ]
-            then
-                check_unclosing_details
-            elif [ "$is_empty_scope" -eq 1 ]
-            then
-                check_contiguous_summary
-            elif [ "${line:0:9}" = "<summary>" ]
-            then
-                check_surrounding_details
-            elif [ "${line:0:1}" = ">" ]
-            then
-                check_scope_validity
-            elif [ "$line" = "---" ]
-            then
-                check_horizontal_reach
-            elif [ "$line" = "</details>" ]
-            then
-                check_missing_scopes
-            elif [ -z "$line" ]
-            then
-                check_separator_reached
-            # else
-            #     check_out_of_scope_line
-            fi
-
-            [ -n "$DEBUG_END_LINE" ] && [ "$DEBUG_END_LINE" -eq "$line_number" ] && set +x
-        done < "$file"
-
-        if [ "${QUIET_MODE:-0}" -eq 1 ] && [ -z "${DEBUG_END_LINE}" ] && [ -z "${DEBUG_BEGIN_LINE}" ]
+        if [ "$line" = "<details>" ]
         then
-            if [ "${is_broken:-0}" -eq 1 ]
-            then
-                printf '[\e[1;31m%*s%-6s%*s\e[0m] \e[1;33m%s\e[0m \e[1;35m(%d faults)\e[0m\n' 1 " " "BROKEN" 1 " " "$file" "$faults" >&2
-            else
-                printf '[\e[1;32m%*s%-4s%*s\e[0m] \e[1;33m%s\e[0m\n' 3 " " "OK" 1 " " "$file" >&2
-            fi
+            check_unclosing_details
+        elif [ "$is_empty_scope" -eq 1 ]
+        then
+            check_contiguous_summary
+        elif [ "${line:0:9}" = "<summary>" ]
+        then
+            check_surrounding_details
+        elif [ "${line:0:1}" = ">" ]
+        then
+            check_scope_validity
+        elif [ "$line" = "---" ]
+        then
+            check_horizontal_reach
+        elif [ "$line" = "</details>" ]
+        then
+            check_missing_scopes
+        elif [ -z "$line" ]
+        then
+            check_separator_reached
+        # else
+        #     check_out_of_scope_line
         fi
 
-        sum_faults=$((sum_faults + faults))
-    done <<< "$file_list"
-fi
+        [ -n "$DEBUG_END_LINE" ] && [ "$DEBUG_END_LINE" -eq "$line_number" ] && set +x
+    done < "$file"
+
+    if [ "${QUIET_MODE:-0}" -eq 1 ] && [ -z "${DEBUG_END_LINE}" ] && [ -z "${DEBUG_BEGIN_LINE}" ]
+    then
+        if [ "${is_broken:-0}" -eq 1 ]
+        then
+            printf '[\e[1;31m%*s%-6s%*s\e[0m] \e[1;33m%s\e[0m \e[1;35m(%d faults)\e[0m\n' 1 " " "BROKEN" 1 " " "$file" "$faults" >&2
+        else
+            printf '[\e[1;32m%*s%-4s%*s\e[0m] \e[1;33m%s\e[0m\n' 3 " " "OK" 1 " " "$file" >&2
+        fi
+    fi
+
+    sum_faults=$((sum_faults + faults))
+done <<< "$file_list"
 
 if [ "$faults" -gt 0 ]
 then
