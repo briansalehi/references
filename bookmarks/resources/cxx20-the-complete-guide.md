@@ -430,7 +430,7 @@
 > This declaration is just a shortcut for declaring a template function.
 >
 > ```cpp
-> template <typename C>
+> template<typename C>
 > void print(C const& container)
 > {
 >     for (auto const& e: container)
@@ -691,7 +691,7 @@
 <summary>Constraint a template function with a requirement to not be available if raw pointers are passed?</summary>
 
 > ```cpp
-> template <typename T>
+> template<typename T>
 > requires (!std::is_pointer_v<T>)
 > T get_max(T a, T b)
 > {
@@ -722,7 +722,7 @@
 > requirements as constraints.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 > ``````
 
@@ -742,17 +742,17 @@
 > A negated concept always needs parentheses.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
-> template <typename T>
+> template<typename T>
 > requires (!is_pointer<T>)
 > T get_max(T a, T b)
 > {
 >     return a > b ? a : b;
 > }
 >
-> template <typename T>
+> template<typename T>
 > requires is_pointer<T>
 > T get_max(T a, T b)
 > {
@@ -782,16 +782,16 @@
 > implementation only for pointers.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
-> template <typename T>
+> template<typename T>
 > void print(T value)
 > {
 >     std::cout << value << '\n';
 > }
 >
-> template <typename T>
+> template<typename T>
 > requires is_pointer<T>
 > void print(T value)
 > {
@@ -823,7 +823,7 @@
 > Specifying concepts as a type constraint in template parameters:
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
 > template <is_pointer T>
@@ -836,7 +836,7 @@
 > Specifying concepts as a type constraint behind parameters with `auto`:
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
 > auto print(is_pointer auto value)
@@ -848,7 +848,7 @@
 > This also works for parameters passed by reference:
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
 > auto print(is_pointer auto const& value)
@@ -886,10 +886,10 @@
 > multiple parameter names to formulate constraints.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 >
-> template <typename L, typename R>
+> template<typename L, typename R>
 > concept is_comparable_with = std::totally_ordered_with<L, R>;
 >
 > auto get_max(is_point auto a, is_pointer auto b)
@@ -942,7 +942,7 @@
 > parameters.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = requires(T p) {
 >     *p; // expression *p has to be well-formed
 >     p == nullptr; // can compare with nullptr
@@ -987,21 +987,21 @@
 <summary>Constraint a template with a requires expression?</summary>
 
 > ```cpp
-> template <typename T>
+> template<typename T>
 > concept is_pointer = requires(T p) {
 >     *p;
 >     p == nullptr;
 >     (p < p) -> std::same_as<bool>;
 > };
 >
-> template <typename T>
+> template<typename T>
 > requires is_pointer<T>
 > void print(T value)
 > {
 >     std::cout << *value << '\n';
 > }
 >
-> template <typename T>
+> template<typename T>
 > requires requires(T p) { *p; }
 > void print(T value)
 > {

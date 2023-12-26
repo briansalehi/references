@@ -270,13 +270,13 @@
 > {
 >     namespace v1
 >     {
->         template <typename T>
+>         template<typename T>
 >         int test(T value) { return 1; }
 >     }
 >
 >     namespace v2
 >     {
->         template <typename T>
+>         template<typename T>
 >         int test(T value) { return 2; }
 >     }
 >
@@ -325,7 +325,7 @@
 >     #ifndef _lib_version_1
 >     inline namespace v1
 >     {
->         template <typename T>
+>         template<typename T>
 >         int test(T value) { return 1; }
 >     }
 >     #endif
@@ -333,7 +333,7 @@
 >     #ifndef _lib_version_2
 >     inline namespace v2
 >     {
->         template <typename T>
+>         template<typename T>
 >         int test(T value) { return 2; }
 >     }
 >     #endif
@@ -451,7 +451,7 @@
 >
 > // module purview
 >
-> export template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
+> export template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
 > struct point
 > {
 >     T x;
@@ -462,7 +462,7 @@
 >
 > export constexpr int_point int_point_zero{0, 0};
 >
-> export template <typename T>
+> export template<typename T>
 > double distance(point<T> const& p1, point<T> const& p2)
 > {
 >     return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
@@ -522,7 +522,7 @@
 >
 > import std.core;
 >
-> export template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
+> export template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>
 > struct point
 > {
 >     T x;
@@ -776,7 +776,7 @@
 >     auto upper = [](char const c) { return toupper(c); };
 >     auto add = [](auto const a, auto const b) { return a + b; };
 >
->     template <typename F, typename F>
+>     template<typename F, typename F>
 >     auto apply(F&& f, T value)
 >     {
 >         return f(value);
@@ -1151,7 +1151,7 @@
 >
 > std::variant<int, double, std::string> v;
 >
-> template <typename ...Ts>
+> template<typename ...Ts>
 > struct overloaded : Ts...
 > {
 >     using Ts::operator()...;
@@ -1724,7 +1724,7 @@
 >   are double-checked.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > void foo(T t)
 > {
 >     undeclared(); // first-stage compile-time error
@@ -1765,7 +1765,7 @@
 > left undetermined, parameterized as template parameters.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > T max(T a, T b)
 > {
 >     return b < a ? a : b;
@@ -1802,7 +1802,7 @@
 <summary>Use a function template with different types?</summary>
 
 > ```cpp
-> template <typename T>
+> template<typename T>
 > T max(T a, T b) { return b < a ? a : b; }
 >
 > ::max(7, 42); // 42
@@ -1834,7 +1834,7 @@
 > the parameters match for `int const&`.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > T max(T const& a, T const& b) { return a < b ? b : a; }
 >
 > max(7, 42); // T is int
@@ -1860,7 +1860,7 @@
 >   the same template parameter `T` the decayed types must match.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > T max(T a, T b) { return a < b ? b : a; }
 >
 > int const c = 42;
@@ -1906,7 +1906,7 @@
 > ```cpp
 > #include <type_traits>
 >
-> template <typename T, typename R>
+> template<typename T, typename R>
 > auto max(T a, R b) -> std::common_type_t<T, R>
 > {
 >     return a < b ? b : a;
@@ -1928,7 +1928,7 @@
 > Type deduction does not work for default call arguments.
 >
 > ```cpp
-> template <typename T>
+> template<typename T>
 > void f(T = "");
 >
 > f(1);   // OK: f<int>(1)
@@ -1938,7 +1938,7 @@
 > You have to declare a default function template parameter.
 >
 > ```cpp
-> template <typename T = std::string>
+> template<typename T = std::string>
 > void f(T = "");
 >
 > f();    // OK: f<std::string>()
@@ -1957,7 +1957,7 @@
 <summary>Declare a function template with multiple template parameters?</summary>
 
 > ```cpp
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > T1 max(T1 a, T2 b)
 > {
 >     return b < a ? a : b;
@@ -2001,7 +2001,7 @@
 > As a consequence, you have to specify the template argument list explicitly:
 >
 > ```cpp
-> template <typename T1, typename T2, typename RT>
+> template<typename T1, typename T2, typename RT>
 > RT max(T1 a, T2 b);
 >
 > ::max<int, double, double>(4, 7.2); // OK, but tedious
@@ -2033,7 +2033,7 @@
 > Since C++14, this is possible by simply not declaring any return type:
 >
 > ```cpp
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > auto max(T1 a, T2 b);
 > ``````
 >
@@ -2052,7 +2052,7 @@
 <summary>Use trailing return type to deduce the return type of a function template?</summary>
 
 > ```cpp
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > auto max(T1 a, T2 b) -> decltype(b < a ? a : b);
 > ``````
 >
@@ -2061,7 +2061,7 @@
 > enough:
 >
 > ```cpp
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > auto max(T1 a, T2 b) -> decltype(true ? a : b);
 > ``````
 
@@ -2083,7 +2083,7 @@
 > ```cpp
 > #include <type_traits>
 >
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > auto max(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type;
 > ``````
 >
@@ -2116,7 +2116,7 @@
 > ```cpp
 > #include <type_traits>
 >
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > typename std::common_type<T1, T2>::type max(T1 a, T2 b);
 > ``````
 >
@@ -2126,7 +2126,7 @@
 > ```cpp
 > #include <type_traits>
 >
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > std::common_type_t<T1, T2> max(T1 a, T2 b);
 >
 > Note that `std::common_type<>` decays.
@@ -2149,7 +2149,7 @@
 > ```cpp
 > #include <type_traits>
 >
-> template <typename T1, typename T2,
+> template<typename T1, typename T2,
 >           typename RT = std::decay_t<decltype(true ? T1() : T2())>>
 > ``````
 >
@@ -2159,7 +2159,7 @@
 > ```cpp
 > RT max(T1 a, T2 b);
 >
-> template <typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>
+> template<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>
 > RT max(T1 a, T2 b);
 > ``````
 
@@ -2177,7 +2177,7 @@
 > template parameters even if parameters without default arguments follow:
 >
 > ```cpp
-> template <typename RT = long, typename T1, typename T2>
+> template<typename RT = long, typename T1, typename T2>
 > RT max(T1 a, T2 b);
 >
 > int i;
@@ -2204,7 +2204,7 @@
 > ```cpp
 > int max(int a, int b);
 >
-> template <typename T>
+> template<typename T>
 > T max(T a, T b);
 > ``````
 >
@@ -2255,10 +2255,10 @@
 > to process normally to prefer none and result in an ambiguity error.
 >
 > ```cpp
-> template <typename T1, typename T2>
+> template<typename T1, typename T2>
 > auto max(T1 a, T2 b);
 >
-> template <typename RT, typename T1, typename T2>
+> template<typename RT, typename T1, typename T2>
 > RT max(T1 a, T2 b);
 >
 > ::max(4, 7.2);  // calls first overload
@@ -2283,13 +2283,13 @@
 > #include <cstring>
 > #include <string>
 >
-> template <typename T>
+> template<typename T>
 > T max(T a, T b)
 > {
 >     return b < a ? a : b;
 > }
 >
-> template <typename T>
+> template<typename T>
 > T* max(T* a, T* b)
 > {
 >     return *b < *a ? a : b;
@@ -2331,7 +2331,7 @@
 > ```cpp
 > #include <cstring>
 >
-> template <typename T>
+> template<typename T>
 > T const& max(T const& a, T const& b)
 > {
 >     return b < a ? a : b;
@@ -2342,7 +2342,7 @@
 >     return std::strcmp(b, a) < 0 ? a : b;
 > }
 >
-> template <typename T>
+> template<typename T>
 > T const& max(T const& a, T const& b, T const& c)
 > {
 >     return max(max(a, b), c); // error if max(a,b) uses call-by-value
@@ -2519,7 +2519,7 @@
 > #include <stdexcept>
 > #include <iterator>
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > class dummy_array
 > {
 >     T data[S] = {};
@@ -2540,7 +2540,7 @@
 >     std::size_t size() const { return S; }
 > };
 >
-> template <typename T, typename C, std::size_t const S>
+> template<typename T, typename C, std::size_t const S>
 > class dummy_array_iterator_type
 > {
 > public:
@@ -2575,31 +2575,31 @@
 >     C& collection;
 > };
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > using dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > using dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > inline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)
 > {
 >     return dummy_array_iterator<T, S>(collection, 0);
 > }
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > inline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)
 > {
 >     return dummy_array_iterator<T, S>(collection, collection.size());
 > }
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > inline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)
 > {
 >     return dummy_array_const_iterator<T, S>(collection, 0);
 > }
 >
-> template <typename T, std::size_t const S>
+> template<typename T, std::size_t const S>
 > inline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)
 > {
 >     return dummy_array_const_iterator<T, S>(collection, collection.size());
@@ -2910,16 +2910,16 @@
 >     {
 >         namespace binary_internals
 >         {
->             template <typename T, char... bits>
+>             template<typename T, char... bits>
 >             struct bit_seq;
 >
->             template <typename T, '0', char... bits>
+>             template<typename T, '0', char... bits>
 >             struct bit_seq
 >             {
 >                 static constexpr T value { bit_seq<T, bits...>::value };
 >             };
 >
->             template <typename T, '1', char... bits>
+>             template<typename T, '1', char... bits>
 >             struct bit_seq
 >             {
 >                 static constexpr T value {
@@ -2927,7 +2927,7 @@
 >                 };
 >             };
 >
->             template <typename T>
+>             template<typename T>
 >             struct bit_seq<T>
 >             {
 >                 static constexpr T value{0};
@@ -3347,10 +3347,10 @@
 >    to 36.
 >
 > ```cpp
-> template <typename T, typename = typename T = std::is_integral_v<T>>
+> template<typename T, typename = typename T = std::is_integral_v<T>>
 > T stoi(std::string const& str, std::size_t* pos = 0, T base = 10);
 >
-> template <typename F, typename = typename F = std::is_floating_point_v<F>>
+> template<typename F, typename = typename F = std::is_floating_point_v<F>>
 > F stof(std::string const& str, std::size_t* pos = 0);
 > ``````
 
@@ -3810,13 +3810,13 @@
 > #include <string>
 > #include <regex>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::baisc_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tregex = std::basic_regex<CharT>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > bool matches(tstring<CharT> const& text, tstring<CharT> const& pattern)
 > {
 >     std::basic_regex<CharT> rx{pattern, std::regex_constants::icase};
@@ -4123,7 +4123,7 @@
 > ```cpp
 > #include <limits>
 >
-> template <typename T, typename Iter>
+> template<typename T, typename Iter>
 > T minimum(Iter const start, Iter const end)
 > {
 >     T latest_minimum = std::numeric_limits<T>::max();
@@ -4711,7 +4711,7 @@
 > #include <ranges>
 > #include <vector>
 >
-> template <typename T>
+> template<typename T>
 > struct sentinel
 > {
 >     using iter_t = typename std::vector<T>::iterator;
@@ -6747,31 +6747,31 @@
 > ```cpp
 > #include <string>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> to_upper(tstring<CharT> text)
 > {
 >     std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
 >     return text;
 > }
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> to_upper(tstring<CharT>&& text)
 > {
 >     std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
 >     return text;
 > }
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> to_lower(tstring<CharT> text)
 > {
 >     std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
 >     return text;
 > }
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> to_lower(tstring<CharT>&& text)
 > {
 >     std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
@@ -6795,17 +6795,17 @@
 > ```cpp
 > #include <string>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> reverse(tstring<CharT> text)
 > {
 >     std::reverse(std::begin(text), std::end(text));
 >     return text;
 > }
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> reverse(tstring<CharT>&& text)
 > {
 >     std::reverse(std::begin(text), std::end(text));
@@ -6831,10 +6831,10 @@
 > #include <string>
 > #include <utility>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> trim(tstring<CharT> const& text)
 > {
 >     tstring<CharT>::size first{text.find_first_not_of(' ')};
@@ -6858,10 +6858,10 @@
 > #include <string>
 > #include <algorithm>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline tstring<CharT> remove(tstring<CharT> text, CharT const character)
 > {
 >     auto last = std::remove_if(std::begin(text), std::end(text), [character](CharT const c) { return c == character; });
@@ -6888,13 +6888,13 @@
 > #include <sstream>
 > #include <vector>
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > using tstringstream = std::basic_stringstream<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 >
-> template <typename CharT>
+> template<typename CharT>
 > inline std::vector<tstring<CharT>> split(tstring<CharT> text, CharT const delimiter)
 > {
 >     auto sstream = tstringstream<CharT>{text};
@@ -7899,7 +7899,7 @@
 > #include <thread>
 > #include <vector>
 >
-> template <typename T>
+> template<typename T>
 > class data_structure
 > {
 > private:

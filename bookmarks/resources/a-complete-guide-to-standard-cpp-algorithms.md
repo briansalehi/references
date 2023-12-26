@@ -10,7 +10,7 @@
 > #include <algorithm>
 > #include <vector>
 >
-> template <typename T, typename S = std::size_t>
+> template<typename T, typename S = std::size_t>
 > struct sum_predicate
 > {
 >     S count;
@@ -144,7 +144,7 @@
 > #include <ranges>
 > #include <vector>
 >
-> template <typename T>
+> template<typename T>
 > struct sentinel
 > {
 >     using iter_t = typename std::vector<T>::iterator;
