@@ -8,6 +8,7 @@ unpack_practice() {
     local subject="$2"
     local topic="$3"
     local line
+    local lineno
     local body
     local origins
     local references
@@ -21,9 +22,11 @@ unpack_practice() {
 
     echo -e "# ${question}\n\n" >> "${buffer}"
 
+    lineno=0
     read -r line
     while [ "${line:0:1}" == ">" ]
     do
+        _=$((lineno++))
         length="${#line}"
         line="${line:2:length}"
 
@@ -38,15 +41,17 @@ unpack_practice() {
     read -r line
     if [ "$line" != "> Origins:" ]
     then
-        echo -e "\e[1;31m""Origins displacement occured!""\e[0m" >&2
+        echo -e "\e[1;31m""Origins displacement occured on line $lineno""\e[0m" >&2
         exit 127
     fi
 
     origins="## Origins\n\n"
 
+    lineno=0
     read -r line
     while [ "${line:0:1}" == ">" ]
     do
+        _=$((lineno++))
         length="${#line}"
         line="${line:2:length}"
 
@@ -57,7 +62,7 @@ unpack_practice() {
     read -r line
     if [ "$line" != "> References:" ]
     then
-        echo -e "\e[1;31m""References displacement occured!""\e[0m" >&2
+        echo -e "\e[1;31m""References displacement occured on line $lineno""\e[0m" >&2
         exit 126
     fi
 
@@ -446,8 +451,13 @@ then
     shift
     unpack_subjects "$1"
     begin_review
-elif [[ -d "${base_path}" ]]
+elif [[ $# -eq 0 ]] && [[ -d "${base_path}" ]]
 then
+    begin_review
+elif [[ $# -gt 0 ]] && [[ -d "${base_path}" ]]
+then
+    rm -r "${base_path}"
+    unpack_subjects "$1"
     begin_review
 else
     unpack_subjects "$1"
