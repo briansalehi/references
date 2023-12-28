@@ -209,7 +209,7 @@ generic_select() {
 
     while ! is_numeric "$option_index" || ! is_in_range "$option_index" 1 "${#options[*]}"
     do
-        echo -ne "${title}\e[0m>> " >&2
+        echo -ne "${title} " >&2
         read -r option_index
     done
 
@@ -283,20 +283,36 @@ begin_review() {
 
         if [ $subject_index -eq 0 ] && [ ${#subject_list[*]} -eq 1 ]
         then
-            echo -e "\e[1;34m""Auto Selected Subject «\e[1;33m ${subject_name} \e[1;34m»""\e[0m\n" >&2
+            echo -e "\e[1;35mAuto Selected Subject «\e[1;34m ${subject_name} \e[1;35m»\e[0m""\e[0m\n" >&2
         elif [ $subject_index -eq 0 ]
         then
-            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Exit Training")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;34m$((subject_index + 1))/${#subject_list[*]}. ${subject_name} \e[1;35m»\e[0m" "Select Subject" "Next Subject" "Skip to" "Exit Training")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
                 "Next Subject") subject_index=$((subject_index + 1)); echo; continue ;;
+                "Skip to")
+                    for sindex in $(seq 0 "$((${#subject_list[*]}-1))")
+                    do
+                        sname="${subject_list[$sindex]}"
+                        sname="${sname##*/}"
+                        echo -e "\t\e[3;35m$((sindex+1)). $sname\e[0m"
+                    done
+                    read -rp "Expected Section: " skip_request </dev/tty
+                    while ! is_valid_range "$skip_request" 1 "${#subject_list[*]}"
+
+                    do
+                        read -rp "Expected Section: " skip_request </dev/tty
+                    done
+                    subject_index=$((--skip_request))
+                    skip_request=
+                    continue ;;
                 "Exit Training") echo; break ;;
             esac
             echo
         elif [ $((subject_index + 1)) -eq ${#subject_list[*]} ]
         then
-            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Finish Training" "Previous Subject")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;34m$((subject_index + 1))/${#subject_list[*]}. ${subject_name} \e[1;35m»\e[0m" "Select Subject" "Finish Training" "Previous Subject")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -305,7 +321,7 @@ begin_review() {
             esac
             echo
         else
-            subject_task="$(generic_select "\e[1;35mSubject \e[1;33m${subject_name}" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
+            subject_task="$(generic_select "\e[1;35mSubject \e[1;34m$((subject_index + 1))/${#subject_list[*]}. ${subject_name} \e[1;35m»\e[0m" "Select Subject" "Next Subject" "Previous Subject" "Exit Training")"
 
             case "${subject_task}" in
                 "Select Subject") ;;
@@ -331,26 +347,33 @@ begin_review() {
                 echo -e "\e[1;31m""${topic_name%%.*}. ${topic_name#*.} has no practice""\e[0m" >&2
             elif [ $topic_index -eq 0 ] && [ ${#topic_list[*]} -gt 1 ]
             then
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Skip to" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.} \e[1;35m»\e[0m" "Select Topic" "Next Topic" "Skip to" "Next Subject")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
                     "Next Topic") topic_index=$((topic_index + 1)); echo; continue ;;
                     "Next Subject") echo; break ;;
                     "Skip to")
+                        for tindex in $(seq 0 "$((${#topic_list[*]}-1))")
+                        do
+                            tname="${topic_list[$tindex]}"
+                            tname="${tname##*/}"
+                            echo -e "\t\e[3;35m$((tindex+1)). $tname\e[0m"
+                        done
                         read -rp "Expected Chapter: " skip_request </dev/tty
                         while ! is_valid_range "$skip_request" 1 "${#topic_list[*]}"
 
                         do
                             read -rp "Expected Chapter: " skip_request </dev/tty
                         done
-                        topic_index=$((skip_request--))
+                        topic_index=$((--skip_request))
+                        skip_request=
                         continue ;;
                 esac
                 echo
             elif [ $topic_index -gt 1 ] && [ $((topic_index+1)) -eq ${#topic_list[*]} ]
             then
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Subject" "Previous Topic")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.} \e[1;35m»\e[0m" "Select Topic" "Next Subject" "Previous Topic")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
@@ -359,7 +382,7 @@ begin_review() {
                 esac
                 echo
             else
-                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.}" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
+                topic_task="$(generic_select "\e[1;35mTopic \e[1;33m$((topic_index + 1))/${#topic_list[*]}. ${topic_name#*.} \e[1;35m»\e[0m" "Select Topic" "Next Topic" "Previous Topic" "Next Subject")"
 
                 case "${topic_task}" in
                     "Select Topic") ;;
@@ -378,7 +401,7 @@ begin_review() {
 
                 if [ $practice_index -eq 0 ] && [ ${#practice_list[*]} -gt 1 ]
                 then
-                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Next Topic")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]} \e[1;35m»\e[0m" "Next Practice" "Next Topic")"
 
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
@@ -387,7 +410,7 @@ begin_review() {
                     echo
                 elif [ ${#practice_list[*]} -gt 1 ] && [ $((practice_index + 1)) -eq ${#practice_list[*]} ]
                 then
-                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Topic" "Previous Practice")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]} \e[1;35m»\e[0m" "Next Topic" "Previous Practice")"
 
                     case "${practice_task}" in
                         "Previous Practice") practice_index=$((practice_index - 1)) ;;
@@ -395,7 +418,7 @@ begin_review() {
                     esac
                     echo
                 else
-                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]}" "Next Practice" "Previous Practice" "Next Topic")"
+                    practice_task="$(generic_select "\e[1;35mPractice \e[1;33m$((practice_index+1))/${#practice_list[*]} \e[1;35m»\e[0m" "Next Practice" "Previous Practice" "Next Topic")"
 
                     case "${practice_task}" in
                         "Next Practice") practice_index=$((practice_index + 1)) ;;
@@ -413,14 +436,20 @@ begin_review() {
     # shellcheck disable=SC2009
     if ps -ef | grep -w livedown | grep -qv grep
     then
-        livedown stop
+        livedown stop &>/dev/null
     fi
 }
 
-if [ -d "${base_path}" ]
+if [[ "$1" == "reset" ]] && [[ -d "${base_path}" ]]
 then
     rm -r "${base_path}"
+    shift
+    unpack_subjects "$1"
+    begin_review
+elif [[ -d "${base_path}" ]]
+then
+    begin_review
+else
+    unpack_subjects "$1"
+    begin_review
 fi
-
-unpack_subjects "$1"
-begin_review

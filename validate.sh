@@ -230,8 +230,6 @@ then
     done <<< "$(find bookmarks/resources/ -type f -name '*.md')"
 
     exit 0
-else
-    echo -e "\e[1;31m""bookmarks and topics directories missing""\e[0m" >&2
 fi
 
 if [ "${FILE_MODE:-0}" -eq 1 ]
