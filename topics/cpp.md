@@ -7251,6 +7251,52 @@
 ---
 </details>
 
+## Algorithms Permutation Transform
+
+<details>
+<summary>Find the next and previous permutations of a container?</summary>
+
+> | `std::prev_permutation` | standard |
+> | --- | --- |
+> | introduced | C++98 |
+> | paralllel | N/A |
+> | constexpr | C++20 |
+> | rangified | C++20 |
+>
+> The `std::next_permutation` and `std::prev_permutation` algorithms reorder
+> elements of a range into the next/previous lexicographical permutation.
+>
+> If no such permutation exists, both algorithms roll over and return `false`.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <bitset>
+>
+> std::vector<int> data{1, 2, 3};
+> do {
+>     // Iterate over:
+>     // 123, 132, 213, 231, 312, 321
+> } while(std::next_permutation(data.begin(), data.end()));
+> // data == {1, 2, 3}
+>
+> std::vector<bool> bits(4);
+> bits[0] = 1;
+> bits[1] = 1;
+> do {
+>     // Iterate over all 4 bit numbers with 2 bits set to 1
+>     // 1100, 1010, 1001, 0110, 0101, 0011
+> } while (std::prev_permutation(bits.begin(), bits.end()));
+> // bits == {1, 1, 0, 0}
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #365
+
+> References:
+---
+</details>
+
 <details>
 <summary>Rearrange elements of given array so that they are in their next or previous permutation?</summary>
 
