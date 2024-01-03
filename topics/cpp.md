@@ -8585,6 +8585,60 @@
 ---
 </details>
 
+## Future
+
+<details>
+<summary>Send a signal from 1 to N threads?</summary>
+
+> If you require simple one-shot signalling between threads, the `void`
+> specializations of `std::future` and `std::shared_future` can serve as solid
+> high-level choices for 1:1 and 1:N signalling.
+>
+> ```cpp
+> #include <thread>
+> #include <future>
+>
+> // executes first stage eagerly, but wait for signal to continue the second stage
+> auto wait_for_signal = [](auto future) {
+>     // first stage
+>     future.wait(); // wait for signal
+>     // second stage
+> };
+>
+> { // 1:1 example
+>     std::promise<void> sender;
+>
+>     auto t = std::jthread(wait_for_signal, sender.get_future());
+>
+>     // first stage eagerly executing
+>     sender.set_value(); // unblock the second stage by sending a signal
+> }
+>
+> { // 1:N example
+>     std::promise<void> sender;
+>
+>     // promise::get_future() can only be called once
+>     std::shared_future<void> receiver(sender.get_future());
+>
+>     // start four threads, each running two-stage runner
+>     std::vector<std::jthread> runners;
+>
+>     // eagerly execute first stage for all four threads
+>     std::generate_n(std::back_inserter(runners), 4, [&]{ return std::jthread(wait_for_signal, receiver); });
+>
+>     sender.set_value(); // unblock the second stage by sending a signal
+> }
+> ``````
+
+> Origins:
+> - C++ Daily Bites - #293
+
+> References:
+---
+</details>
+
+## Promise
+
 ## Semaphore
 
 <details>
@@ -8911,58 +8965,6 @@
 
 > Origins:
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
-> References:
----
-</details>
-
-## Future
-
-<details>
-<summary>Send a signal from 1 to N threads?</summary>
-
-> If you require simple one-shot signalling between threads, the `void`
-> specializations of `std::future` and `std::shared_future` can serve as solid
-> high-level choices for 1:1 and 1:N signalling.
->
-> ```cpp
-> #include <thread>
-> #include <future>
->
-> // executes first stage eagerly, but wait for signal to continue the second stage
-> auto wait_for_signal = [](auto future) {
->     // first stage
->     future.wait(); // wait for signal
->     // second stage
-> };
->
-> { // 1:1 example
->     std::promise<void> sender;
->
->     auto t = std::jthread(wait_for_signal, sender.get_future());
->
->     // first stage eagerly executing
->     sender.set_value(); // unblock the second stage by sending a signal
-> }
->
-> { // 1:N example
->     std::promise<void> sender;
->
->     // promise::get_future() can only be called once
->     std::shared_future<void> receiver(sender.get_future());
->
->     // start four threads, each running two-stage runner
->     std::vector<std::jthread> runners;
->
->     // eagerly execute first stage for all four threads
->     std::generate_n(std::back_inserter(runners), 4, [&]{ return std::jthread(wait_for_signal, receiver); });
->
->     sender.set_value(); // unblock the second stage by sending a signal
-> }
-> ``````
-
-> Origins:
-> - C++ Daily Bites - #293
 
 > References:
 ---
