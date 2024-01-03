@@ -21,6 +21,48 @@
 ---
 </details>
 
+## Fundamental Data Types
+
+<details>
+<summary>What is the behavior of a fundamental data type when it's default initialized?</summary>
+
+> Unlike some other languages, the fundamental types (`bool`, `char`, `int`,
+> `float`,...) in C++ do not receive special treatment with the following
+> exceptions:
+>
+> - Fundamental types have their semantics defined in the C++ standard.
+> - Default initializing a variable of a fundamental type does not perform any
+>   initialization.
+> - Arguments to operators for fundamental types are prvalues.
+>
+> ```cpp
+> #include <string>
+>
+> int v; // left uninitialized
+>
+> // Only well-defined since C++17
+> int x = 1;
+> (x = 2) = x; // x == 1
+>
+> // right side evalutes: 1 (prvalue)
+> // left side evaluates: ref to x (x==2)
+> // assignment evaluates: ref to x (x==1)
+>
+> std::string y = "a";
+> (y = "b") = y; // y == "b"
+>
+> // right side evaluates: ref to y
+> // left side evalutes: ref y (y=="b")
+> // assignment evaluates: ref to y (y=="b")
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #366
+
+> References:
+---
+</details>
+
 ## Variable Initialization
 
 <details>
@@ -8176,7 +8218,7 @@
 </details>
 
 <details>
-<summary>Launch a thread executing all sorts of callable objects?</summary>
+<summary>What kind of callable objects does a thread take?</summary>
 
 > ```cpp
 > #include <thread>
@@ -8225,7 +8267,7 @@
 </details>
 
 <details>
-<summary>Pass arguments to a thread?</summary>
+<summary>What are the requirements of passing different value categories as thread arguments?</summary>
 
 > ```cpp
 > #include <thread>
