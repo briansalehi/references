@@ -5480,6 +5480,44 @@
 ---
 </details>
 
+## Overlapping Iterators
+
+<details>
+<summary>When do input and output iterators overlap?</summary>
+
+> When copying ranges, we need to take care when the input and output ranges
+> overlap. For `std::copy`, only the tail of the destination range can overlap
+> the source range; for `std::copy_backward`, only the head of the destination
+> range can overlap the source range.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> std::vector<int> data{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+>
+> // OK for std::copy
+> //         [ source range      ]
+> // [ destination range ]
+> std::copy(data.begin() + 1, data.end(), data.begin());
+> // data == {2, 3, 4, 5, 6, 7, 8, 9, 9}
+>
+> data = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+>
+> // OK for std::copy_backward
+> // [ source range      ]
+> //         [ destination range ]
+> std::copy_backward(data.begin(), data.begin() + 8, data.end());
+> // data == {1, 1, 2, 3, 4, 5, 6, 7, 8}
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #367
+
+> References:
+---
+</details>
+
 ## Algorithms Iterating
 
 <details>
