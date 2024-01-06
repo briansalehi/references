@@ -128,6 +128,105 @@
 ---
 </details>
 
+## Aggregate Initialization
+
+<details>
+<summary>What are the possible ways of initializing aggregate objects?</summary>
+
+> Aggregate types can be initialized using special aggregate initialization.
+> This initializes members in their declaration order. Members that are not
+> explicitly initialized and do not have a default member initializer are
+> initialized using empty copy-list-initialization (i.e. `T x={}`).
+>
+> ```cpp
+> #include <string>
+> #include <vector>
+>
+> struct Data
+> {
+>     int x;
+>     double y;
+>     std::string label = "Hello World!"; // only permitted since C++14
+>     std::vector<int> arr;
+> };
+>
+> struct X
+> {
+>     int a;
+>     int b;
+> };
+>
+> struct Y
+> {
+>     X x;
+>     X y;
+> };
+>
+> // Initialization is done in declaration order:
+> Data a = {10, 2.3};
+> // a.x == 10, a.y == 2.3
+> // a.label == "Hello World!", a.arr == std::vector<int>{}
+>
+> // Nested brackets can be omitted:
+> Y b = { 10, 20, 30 };
+> // b.x == {10, 20}, b.y == {30, int{} == 0}
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #368
+
+> References:
+---
+</details>
+
+## Designated Initialization
+
+<details>
+<summary>What object types are able to initialize specific members explicitly?</summary>
+
+> C++20 introduced designated initializers for aggregate initialization. This
+> allows for better control over which elements of the aggregate will be
+> explicitly initialized.
+>
+> ```cpp
+> #include <string>
+>
+> struct Data {
+>     int a;
+>     double b;
+>     std::string c;
+> };
+>
+> Data x = { .b = 2.4 };
+> // x == { 0, 2.4, "" }
+>
+> // Typical use case with default-heavy aggregate:
+> struct Configuration {
+>     enum class options { enabled, disabled };
+>     struct Coords { int x; int y; };
+
+>     options used_option = options::enabled;
+>     std::string label = "default label";
+>     Coords coords = { 10, 20 };
+> };
+>
+> Configuration config = { .label = "some label" };
+> // config == {options::enabled, "some label", {10, 20}};
+>
+> // A clunky but functional option for named agruments in C++
+> struct Arg { const std::string& label; int64_t id; };
+> void some_func(Arg arg) {}
+>
+> some_func({.label = config.label, .id = 42});
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #369
+
+> References:
+---
+</details>
+
 ## Function Declaration
 
 <details>
