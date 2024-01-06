@@ -8464,7 +8464,7 @@
 </details>
 
 <details>
-<summary>Create a joining thread followed by RAII principle?</summary>
+<summary>Create a thread that joins automatically followed by RAII principle?</summary>
 
 > ```cpp
 > #include <thread>
@@ -8482,7 +8482,7 @@
 > ``````
 
 > Origins:
-> - YouTube: Learning C++20: jthreads and stop tokens by CoffeeBeforeArch
+> - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
 > References:
 ---
@@ -8616,7 +8616,7 @@
 ---
 </details>
 
-## Thread Stop Request
+## Threads Stop Request
 
 <details>
 <summary>Send a stop request to a thread?</summary>
@@ -8644,13 +8644,13 @@
 > ``````
 
 > Origins:
-> - YouTube: Learning C++20: jthreads and stop tokens by CoffeeBeforeArch
+> - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
 > References:
 ---
 </details>
 
-## Thread Hardware
+## Hardware Concurrency
 
 <details>
 <summary>Retrieve the maximum number of threads efficiently running at runtime?</summary>
