@@ -204,7 +204,7 @@
 > struct Configuration {
 >     enum class options { enabled, disabled };
 >     struct Coords { int x; int y; };
-
+>
 >     options used_option = options::enabled;
 >     std::string label = "default label";
 >     Coords coords = { 10, 20 };
@@ -5616,6 +5616,12 @@
 > References:
 ---
 </details>
+
+## Data Structures
+
+## Singly Linked List
+
+## Doubly Linked List
 
 ## Algorithms Iterating
 

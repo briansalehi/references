@@ -225,7 +225,7 @@ preview_practice() {
     local practice="$1"
     local buffer="$2"
 
-    if ! [ -f "$practice" ] || ! [ -f "$buffer" ]
+    if ! [ -f "$practice" ]
     then
         echo -e "\e[1;31m""Practice file missing""\e[0m" >&2
     elif ! [ -f "$buffer" ]
@@ -246,7 +246,7 @@ preview_practice() {
     # shellcheck disable=SC2009
     if ! ps -ef | grep -w livedown | grep -qv grep
     then
-        livedown start "$buffer" &>/dev/null &
+        livedown start "$buffer" "${WEB}" &>/dev/null &
     fi
 
     return 0
@@ -445,21 +445,37 @@ begin_review() {
     fi
 }
 
-if [[ "$1" == "reset" ]] && [[ -d "${base_path}" ]]
-then
-    rm -r "${base_path}"
+while [[ $# -gt 0 ]]
+do
+    case "$1" in
+        -r|--reset|reset) RESET=1 ;;
+        -h|--help|help) HELP=1 ;;
+        -w|--web|web) WEB='--open' ;;
+        *) DESTINATION="$1" ;;
+    esac
     shift
-    unpack_subjects "$1"
-    begin_review
-elif [[ $# -eq 0 ]] && [[ -d "${base_path}" ]]
+done
+
+if [[ -v HELP ]]
 then
-    begin_review
-elif [[ $# -gt 0 ]] && [[ -d "${base_path}" ]]
+    echo "$0 [--reset] [--help] [--error] [--web]"
+    exit 1
+fi
+
+if [[ -v RESET ]] && [[ -d "${base_path}" ]]
 then
     rm -r "${base_path}"
-    unpack_subjects "$1"
+    unpack_subjects "$DESTINATION"
+    begin_review
+elif ! [[ -e "$DESTINATION" ]] && [[ -d "${base_path}" ]]
+then
+    begin_review
+elif [[ -e "$DESTINATION" ]] && [[ -d "${base_path}" ]]
+then
+    rm -r "${base_path}"
+    unpack_subjects "$DESTINATION"
     begin_review
 else
-    unpack_subjects "$1"
+    unpack_subjects "$DESTINATION"
     begin_review
 fi
