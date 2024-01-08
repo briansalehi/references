@@ -579,7 +579,7 @@
 </details>
 
 <details>
-<summary>Import a module in a translation unit?</summary>
+<summary>Import a standard module in a translation unit?</summary>
 
 > ```cpp
 > import std;
@@ -604,8 +604,6 @@
 ---
 </details>
 
-## Module Interface Unit
-
 <details>
 <summary>What are the constituents of a module?</summary>
 
@@ -628,6 +626,41 @@
 > References:
 ---
 </details>
+
+<details>
+<summary>What C++ entities can be exported as module interface?</summary>
+
+> Entities can be exported only when:
+>
+> - have a name
+> - have external linkage
+>
+> Names of namespaces containing export declarations are implicitly exported as
+> well.
+
+> Origins:
+> - https://www.youtube.com/watch?v=Kqo-jIq4V3I
+
+> References:
+---
+</details>
+
+<details>
+<summary>What C++ entities cannot be exported as module interface?</summary>
+
+> - Names with internal linkage or no linkage cannot be exported.
+> - An export group must not contain declarations that cannot be exported, e.g.
+>   `static_assert` or anonymous names.
+> - The module declaration must not be the result of macro expansion.
+
+> Origins:
+> - https://www.youtube.com/watch?v=Kqo-jIq4V3I
+
+> References:
+---
+</details>
+
+## Module Interface Unit
 
 <details>
 <summary>Express a module to be used within another translation unit?</summary>
