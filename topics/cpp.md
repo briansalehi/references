@@ -298,6 +298,61 @@
 ---
 </details>
 
+## Raw Pointer
+
+## Smart Pointer
+
+## Unique Pointer
+
+<details>
+<summary>Transfer ownership of a pointer without making a copy of it?</summary>
+
+> Besides being a simple smart pointer, `std::unique_ptr` is also an important
+> semantic tool, marking an ownership handoff.
+>
+> ```cpp
+> #include <memory>
+>
+> struct Data{};
+>
+> // Function returning a unique_ptr handing off ownership to caller.
+> std::unique_ptr<Data> producer() { return std::make_unique<Data>(); }
+>
+> // Function accepting a unique_ptr taking over ownership.
+> void consumer(std::unique_ptr<Data> data) {}
+>
+> // Helps with Single Reponsibility Principle
+> // by separating resource management from logic
+> struct Holder {
+>     Holder() : data_{std::make_unique<Data>()} {}
+>     // implicitly defaulted move constructor && move assignment
+>     // implicitly deleted copy constructor && copy assignment
+> private:
+>     std::unique_ptr<Data> data_;
+> };
+>
+> // shared_ptr has a fast constructor from unique_ptr
+> std::shared_ptr<Data> sptr = producer();
+>
+> // Even in cases when manual resource management is required,
+> // a unique_ptr on the interface might be preferable:
+> void manual_handler(std::unique_ptr<Data> ptr) {
+>     Data* raw = ptr.release();
+>     // manual resource management
+> }
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #363
+
+> References:
+---
+</details>
+
+## Shared Pointer
+
+## Weak Pointer
+
 ## Namespace Abbreviation
 
 <details>
@@ -4019,7 +4074,50 @@
 ---
 </details>
 
-## Strings
+## Containers
+
+<details>
+<summary>Insert elements into containers by constructing them on insertion?</summary>
+
+> In C++11, all containers received emplace variants of their typical
+> insert/push methods. The emplace variants can construct the element in place,
+> saving a move or copy.
+>
+> ```cpp
+> #include <vector>
+> #include <string>
+>
+> std::vector<std::string> vec;
+>
+> {
+>     std::string s("Hello World!");
+>     vec.push_back(s); // Copy
+>     vec.push_back(std::move(s)); // Move
+> }
+>
+> {
+>     std::string s("Hello World!");
+>     vec.emplace_back(s); // Copy (same as push_back)
+>     vec.emplace_back(std::move(s)); // Move (same as push_back)
+>
+>     // In-place construction, no move or copy:
+>     vec.emplace_back("Hello World!");
+>
+>     // Note the difference, this is still a move:
+>     vec.emplace_back(std::string{"Hello World!"});
+> }
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #333
+
+> References:
+---
+</details>
+
+## Vector
+
+## String
 
 <details>
 <summary>Find a substring within another string?</summary>
@@ -4452,6 +4550,36 @@
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
+
+## String Operations
+
+<details>
+<summary>Check existance of a substring at the beginning or the end of a string?</summary>
+
+> ```cpp
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #371
+</details>
+> C++20 added prefix and suffix checking methods: starts_with and ends_with to both std::string and std::string_view.
+> #include <string>
+> #include <string_view>
+>
+> std::string str("the quick brown fox jumps over the lazy dog");
+> bool t1 = str.starts_with("the quick"); // const char* overload
+>                                         // t1 == true
+> bool t2 = str.ends_with('g'); // char overload
+>                               // t2 == true
+>
+> std::string_view needle = "lazy dog";
+> bool t3 = str.ends_with(needle); // string_view overload
+>                                  // t3 == true
+>
+> std::string_view haystack = "you are a lazy cat";
+> // both starts_with and ends_with also available for string_view
+> bool t4 = haystack.ends_with(needle);
+> // t4 == false
 
 ## Text Formatting
 
@@ -5415,69 +5543,37 @@
 
 ## Ranges
 
-## Ranges Algorithms
-
 <details>
-<summary>Check if a range starts with an expected subrange?</summary>
+<summary>Retrieve the size information of a passed-in range or an array as a signed integer?</summary>
 
-> Starting with C++23, basic strings support `starts_with()` operation:
+> `std::ssize()` is a C++20 function template that returns the size information
+> of the passed-in range or array as a signed integer (typically
+> `std::ptrdiff_t`). The range version `std::ranges::ssize()` instead uses the
+> range-style "customization point object" approach while maintaining the same
+> functionality. This allows for simpler code when working with raw indexes.
 >
 > ```cpp
-> #include <ranges>
->
-> std::ranges::starts_with("Hello World", "Hello");
-> // true
-> ``````
-
-> Origins:
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
-> References:
----
-</details>
-
-<details>
-<summary>Check if a range ends with an expected subrange?</summary>
-
-> Starting with C++23, basic strings support `ends_with()` operation:
->
-> ```cpp
-> #include <ranges>
 > #include <vector>
+> #include <iostream>
 >
-> std::vector nums {1, 2, 3, 4};
-> std::ranges::ends_with(v, {3, 4});
-> // true
-> ``````
-
-> Origins:
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
-> References:
----
-</details>
-
-<details>
-<summary>Convert a resulting range to another type?</summary>
-
-> C++23 standard includes `std::ranges::to<>`.
+> int main() {
+>     std::vector<int> data{1, 2, 3, 4, 5, 6};
 >
-> ```cpp
-> #include <ranges>
-> #include <string>
->
-> int main()
-> {
->     std::string alphabet = std::views::iota('a', 'z')
->                          | std::views::transform([](auto const v){ return v - 32; })
->                          | std::ranges::to<std::string>();
->
->     std::string abc = alphabet | std::views::take(3) | std::ranges::to<std::string>();
+>     // z is the literal suffix for signed size type
+>     for (auto i = 0z; i < ssize(data); i++) {
+>         int sum = 0;
+>         if (i - 1 >= 0)
+>             sum += data[i-1];
+>         sum += data[i];
+>         if (i + 1 < ssize(data))
+>             sum += data[i+1];
+>         std::cout << "" << sum << "\n";
+>     } // prints 3, 6, 9, 12, 15, 11
 > }
 > ``````
 
 > Origins:
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - Daily C++ Bites - #362
 
 > References:
 ---
@@ -5622,6 +5718,120 @@
 ## Singly Linked List
 
 ## Doubly Linked List
+
+## Algorithms Ranges
+
+<details>
+<summary>Check if a range starts with an expected subrange?</summary>
+
+> Starting with C++23, basic strings support `starts_with()` operation:
+>
+> ```cpp
+> #include <ranges>
+>
+> std::ranges::starts_with("Hello World", "Hello");
+> // true
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Check if a range ends with an expected subrange?</summary>
+
+> Starting with C++23, basic strings support `ends_with()` operation:
+>
+> ```cpp
+> #include <ranges>
+> #include <vector>
+>
+> std::vector nums {1, 2, 3, 4};
+> std::ranges::ends_with(v, {3, 4});
+> // true
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+<details>
+<summary>Convert a resulting range to another type?</summary>
+
+> C++23 standard includes `std::ranges::to<>`.
+>
+> ```cpp
+> #include <ranges>
+> #include <string>
+>
+> int main()
+> {
+>     std::string alphabet = std::views::iota('a', 'z')
+>                          | std::views::transform([](auto const v){ return v - 32; })
+>                          | std::ranges::to<std::string>();
+>
+>     std::string abc = alphabet | std::views::take(3) | std::ranges::to<std::string>();
+> }
+> ``````
+
+> Origins:
+> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+
+> References:
+---
+</details>
+
+## Equality Checking Algorithms
+
+<details>
+<summary>Check if the contents of two containers of different types are equal?</summary>
+
+> Containers of the same type can be easily compared using comparison
+> operators. When we need to compare the content of containers of different
+> types, we can use the `std::equal` and `std::is_permutation` algorithms.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+> #include <set>
+>
+> std::vector<int> data1{2, 1, 3, 4, 5};
+> std::vector<int> data2{2, 4, 1, 3, 5};
+>
+> // Linear comparison:
+> bool cmp1 = std::equal(data1.begin(), data1.end(), data2.begin());
+> // cmp1 == false
+>
+> bool cmp2 = (data1 == data2);
+> // cmp2 == false (same as std::equal if types match)
+>
+> // Elements match but are potentially out of order:
+> bool cmp3 = std::is_permutation(data1.begin(), data1.end(), data2.begin());
+> // cmp3 == true
+>
+> std::set<int> data3{1, 2, 3, 4, 5};
+>
+> // Linear comparison:
+> bool cmp4 = std::ranges::equal(data1, data3);
+> // cmp4 == false
+>
+> // Elements match but are potentially out of order:
+> bool cmp5 = std::ranges::is_permutation(data1, data3);
+> // cmp5 == true
+> ``````
+
+> Origins:
+> - Daily C++ Bites - #361
+
+> References:
+---
+</details>
 
 ## Algorithms Iterating
 
