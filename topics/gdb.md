@@ -1,5 +1,118 @@
 # GNU Debugger
 
+## Debug Information Generation
+
+<details>
+<summary>Generate DWARF debugging information in an executable?</summary>
+
+> To debug with `gdb`, compile with `-g`.
+> This generates *DWARF* information, which is used by the debugger to understand what the program is doing.
+>
+> ```sh
+> gcc -g -o program source.c
+> ``````
+>
+> Use `-O` to compile with optimizations, but this can adversely affect the debug experience i.e. `-O` and `-g` are orthogonal and independent.
+> To get a reasonable level of performance and a good debug experience, use `-Og`.
+> And to get an even better debug experience, use `-g3` rather than just `-g`.
+>
+> ```sh
+> gcc -g3 -Og -o program source.c
+> ``````
+>
+> > You can use the readelf utility to look at the debug info.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #1
+
+> References:
+---
+</details>
+
+## Text User Interface
+
+<details>
+<summary>Start the text user interface in gdb?</summary>
+
+> TUI (Text User Interface) mode allows you to see the context of what you’re debugging!
+>
+> ```sh
+> gdb -tui ./executable
+> ``````
+>
+> You can also type `layout src` to switch to the TUI mode.
+>
+> ```gdb
+> layout src
+> ``````
+>
+> The shortcut `ctrl–x a` will also start the TUI.
+>
+> `ctrl+l` to redraw the screen reset in TUI mode.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #2
+
+> References:
+---
+</details>
+
+<details>
+<summary>Enter SingleKey mode?</summary>
+
+> Press `ctrl-x s` in TUI mode to enable SingleKey mode. In this mode you can
+> use `r` to `run`, `c` to `continue`, `s` for `step`, and `q` to leave
+> SingleKey mode, without pressing enter.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #65
+
+> References:
+---
+</details>
+
+<details>
+<summary>Cycle through assembly and source code windows in GDB TUI?</summary>
+
+> `ctrl-x 2`
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #3
+
+> References:
+---
+</details>
+
+<details>
+<summary>Switch focus between GDB TUI windows?</summary>
+
+> ```gdb
+> (gdb) focus src
+> (gdb) focus cmd
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #3
+
+> References:
+---
+</details>
+
+## Command History
+
+<details>
+<summary>Navigate through command history?</summary>
+
+> - `ctrl-p` for previous commands
+> - `ctrl-n` for next commands
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #3
+
+> References:
+---
+</details>
+
 ## Starting Execution
 
 <details>
@@ -15,7 +128,7 @@
 ---
 </details>
 
-## Attach Process
+## Attaching Process
 
 <details>
 <summary>Start debugging an already running process?</summary>
@@ -31,18 +144,18 @@
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
 </details>
 
-## Detach Process
+## Detaching Process
 
 <details>
 <summary>Detach debugger from a debugging process?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) detach
 > ``````
 >
@@ -50,25 +163,7 @@
 > debugger attached to it at first place.
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
-
-> References:
----
-</details>
-
-## Stepping Through Execution
-
-<details>
-<summary>Step through program execution in debugging session?</summary>
-
-> - `continue`: Will resume the execution of the program until it completes.
-> - `step`: Executes program one more step. Step might be one line of source
->   code or one machine instruction.
-> - `next`: Executes program similar to `step`, but it only continues to the
->   next line in the current stack frame and will not step into functions.
-
-> Origins:
-> - Boost.Asio C++ Network Programming - Chapter 7
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -90,16 +185,48 @@
 ---
 </details>
 
-## Breakpoints Creation
+## Breakpoints
+
+<details>
+<summary>How many breakpoints does GDB offer?</summary>
+
+> 1. Hardware watchpoints: `watch foo`
+> 2. Software watchpoints: `watch $rax`
+> 3. Location watchpoints: `watch -l foo`
+> 4. Read-only watchpoint: `rwatch foo`
+> 5. Access watchpoints: `awatch foo`
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Get information about breakpoints, watchpoints and catchpoints?</summary>
+
+> ```gdb
+> (gdb) info breakpoints
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #13
+
+> References:
+---
+</details>
+
+## Breakpoint Creation
 
 <details>
 <summary>Set breakpoints on a program?</summary>
 
 > ```gdb
-> break 50`
-> break *main
-> break *main+50
-> break source.cpp:main+50
+> (gdb) break 50
+> (gdb) break *main
+> (gdb) break *main+50
+> (gdb) break source.cpp:main+50
 > ``````
 
 > Origins:
@@ -109,12 +236,41 @@
 ---
 </details>
 
-## Breakpoints Removal
+<details>
+<summary>Run program with an immediate stop on main function?</summary>
+
+> Use `start` to put temporary breakpoint on main and then run the program or
+> `starti` to stop at the very first instruction of the program.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #4
+
+> References:
+---
+</details>
+
+<details>
+<summary>Use regex to select multiple breakpoints for an operation?</summary>
+
+> ```gdb
+> (gdb) rbreak std::sto[ifd]
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #14
+
+> References:
+---
+</details>
+
+## Breakpoint Removal
 
 <details>
 <summary>Delete a breakpoint from a program?</summary>
 
-> `delete 1`
+> ```gdb
+> (gdb) delete 1
+> ``````
 
 > Origins:
 > - Boost.Asio C++ Network Programming - Chapter 7
@@ -123,33 +279,76 @@
 ---
 </details>
 
-## Breakpoints Conditional
+## Breakpoint Conditional
 
 <details>
-<summary>Conditionally break execution only when iteration index has increased to 3?</summary>
+<summary>Set condition for a breakpoint?</summary>
 
-> ```sh
-> (gdb) break source.cpp:10 if index == 3
+> ```gdb
+> (gdb) condition 3 e == 42
+> (gdb) break func(long) if e == 42
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - GDB Tips by Greg Law - Tip #15
 
 > References:
 ---
 </details>
 
-## Breakpoints Availability
+<details>
+<summary>Conditionally break execution only when iteration index has increased to 3?</summary>
+
+> ```gdb
+> (gdb) break source.cpp:10 if index == 3
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+
+> References:
+---
+</details>
+
+## Breakpoint Skipping
+
+<details>
+<summary>Skip over a number of breakpoint hits?</summary>
+
+> To ignore the next 10000000 times that breakpoint 1 is hit.
+>
+> ```gdb
+> (gdb) ignore 1 10000000
+> (gdb) info break 1
+> ``````
+>
+> breakpoint already hit 1000 times
+>
+> ```gdb
+> (gdb) ignore 1 999
+> (gdb) run
+> ``````
+
+> Origin:
+> - 5
+> - 6
+
+> References:
+---
+</details>
+
+
+## Breakpoint Availability
 
 <details>
 <summary>Disable an already existing breakpoint?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) disable <breakpoint index>
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -158,28 +357,30 @@
 <details>
 <summary>Enable an already disabled breakpoint?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) enable <breakpoint index>
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
 </details>
 
-## Breakpoints Saving
+## Breakpoint Saving
 
 <details>
 <summary>Save breakpoints of a debugging session?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) save breakpoints program.gdb
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - GDB Tips by Greg Law - Tip #13
+> - GDB Tips by Greg Law - Tip #61
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -188,12 +389,13 @@
 <details>
 <summary>Restore saved breakpoints on a debugging session?</summary>
 
-> ```sh
-> source program.gdb
+> ```gdb
+> (gdb) source program.gdb
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - GDB Tips by Greg Law - Tip #61
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -202,15 +404,145 @@
 <details>
 <summary>Manually write the content of a file in which breakpoints were saved?</summary>
 
-> ```
-> break source.cpp:8
-> break source.cpp:22
+> ```gdb
+> (gdb) break source.cpp:8
+> (gdb) break source.cpp:22
 > ``````
 >
 > Note that lines might have been changed during sessions.
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+
+> References:
+---
+</details>
+
+## Watchpoint Creation
+
+<details>
+<summary>Watch changes of a variable only when a criteria is met?</summary>
+
+> `(gdb) watch foo[90].number if bar[90].number == 255`
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Track a particular location in memory rather than the value of an expression?</summary>
+
+> ```gdb
+> (gdb) watch -l expression
+> ``````
+>
+> Convinience variables also work nicely with location watchpoints:
+>
+> ```gdb
+> (gdb) print * __errno_location()
+> $2 = 0
+> (gdb) watch -l $2
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #9
+> - GDB Tips by Greg Law - Tip #10
+
+> References:
+---
+</details>
+
+## Execution Flow
+
+<details>
+<summary>Step through program execution in debugging session?</summary>
+
+> - `continue`: Will resume the execution of the program until it completes.
+> - `step`: Executes program one more step. Step might be one line of source
+>   code or one machine instruction.
+> - `next`: Executes program similar to `step`, but it only continues to the
+>   next line in the current stack frame and will not step into functions.
+
+> Origins:
+> - Boost.Asio C++ Network Programming - Chapter 7
+
+> References:
+---
+</details>
+
+## Memory Examination
+
+<details>
+<summary>Examine a memory address or register?</summary>
+
+> Display the memory contents at a given address using `x [address]` short for
+> `examine`. You can customise the output with an optional format and length
+> argument.
+>
+> ```gdb
+> (gdb) x/[length][format] [address]
+> (gdb) x/2x 0x0ffffffff7c544f0
+> (gdb) x/2x $rsp
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #63
+
+> References:
+---
+</details>
+
+## Thread Tracking
+
+<details>
+<summary>Get information of threads?</summary>
+
+> To get information about the spawned threads:
+>
+> ```gdb
+> (gdb) info threads
+> ``````
+>
+> This will show thread ID, how the OS sees them, and the name the thread was
+> given by the program.
+>
+> Stepping through a thread that releases other threads, gets all threads out
+> of sync. This can be changed with `set scheduler-locking on`, meaning only
+> the current thread will run. Beware of deadlock through, the thread you're
+> running might block on a lock held by another not running thread.
+>
+> A middle ground can be found with `set scheduler-locking step`, which has
+> scheduler-locking on when using `step`, but disables it when you use
+> `continue`, allowing you to travel between breakpoints without having to
+> constantly switch between the threads.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #64
+
+> References:
+---
+</details>
+
+## Backtrace
+
+<details>
+<summary>List the innermost or outermost frames of backtrace?</summary>
+
+> If you want to examine the backtrace of multiple frames but you're very deep
+> in the stack, you can use `backtrace n` to show the n innermost frames.
+> Similarly, you can use `stacktrace -n` to show the n outermost frames.
+>
+> ```gdb
+> (gdb) bt full
+> (gdb) bt 1
+> (gdb) bt -1
+> ``````
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #59
 
 > References:
 ---
@@ -226,7 +558,7 @@
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -240,7 +572,7 @@
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -249,12 +581,12 @@
 <details>
 <summary>Load the stored coredump into debugging session?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) target core program.core
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -266,13 +598,13 @@
 > When frame is selected from a core dump, program will be set to the
 > corresponding state.
 >
-> ```sh
+> ```gdb
 > (gdb) frame 0
 > (gdb) p variable_causing_trouble
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -283,12 +615,12 @@
 <details>
 <summary>Create a core dump from the state of an executable in debugging session?</summary>
 
-> ```sh
+> ```gdb
 > (gdb) gcore program.core
 > ``````
 
 > Origins:
-> - YouTube: Advanced Debugging with GDB by Write your own Operating System
+> - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > References:
 ---
@@ -299,7 +631,9 @@
 <details>
 <summary>Print the value of an object?</summary>
 
-> `print `
+> ```gdb
+> (gdb) print bag_size
+> ```````
 
 > Origins:
 > - Boost.Asio C++ Network Programming - Chapter 7
@@ -311,7 +645,9 @@
 <details>
 <summary>Inspect the type of a variable?</summary>
 
-> `whatis random_number`
+> ```gdb
+> (gdb) whatis random_number
+> ``````
 
 > Origins:
 > - Boost.Asio C++ Network Programming - Chapter 7
@@ -325,7 +661,9 @@
 <details>
 <summary>Modify the value of a variable?</summary>
 
-> `set var random_number = 5`
+> ```gdb
+> (gdb) set var random_number = 5
+> ``````
 
 > Origins:
 > - Boost.Asio C++ Network Programming - Chapter 7
@@ -339,10 +677,42 @@
 <details>
 <summary>Run shell commands in debugging session?</summary>
 
-> `shell pwd`
+> ```gdb
+> (gdb) shell pwd
+> ``````
 
 > Origins:
 > - Boost.Asio C++ Network Programming - Chapter 7
+
+> References:
+---
+</details>
+
+## Debugger Configuration
+
+<details>
+<summary>Automatically run commands on GDB startup?</summary>
+
+> If you have commands you want to run every time you debug, or if you want to
+> definne a function to pretty print a specific data structure, you can put
+> them in `.gdbinit` file on the top project directory, or in your home
+> directory.
+>
+> *.gdbinit*
+> ```gdb
+> set logging enabled on
+> ``````
+>
+> You may need to enable auto-loading for the directory by adding the following line in `~/.config/gdb/gdbinit` file.
+>
+> ```gdb
+> set auto-load-safe-path /path/to/dir
+> ``````
+>
+> You can also enable it for all directories with `set auto-load-safe-path /`.
+
+> Origins:
+> - GDB Tips by Greg Law - Tip #62
 
 > References:
 ---
