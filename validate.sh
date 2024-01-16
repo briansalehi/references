@@ -13,7 +13,7 @@ is_reference_scope=0
 is_extra_scope=0
 
 function usage() {
-    echo "Usage: $(basename "$(readlink -f "$0")") [-h,--help] [-q,--quiet] [-f,--file <filename>] [-d,--dir,--directory <dirname>] [-g,--debug <begin> <end>]" >&2
+    echo "Usage: $(basename "$(readlink -f "$0")") [-h,--help] [-q,--quiet] [-w,-Werror,--error] [-f,--file <filename>] [-d,--dir,--directory <dirname>] [-g,--debug <begin> <end>] [-u,--unpublished] [-i,--writing,--incomplete]" >&2
     exit 1
 }
 
