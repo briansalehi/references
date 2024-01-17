@@ -374,3 +374,97 @@
 </details>
 
 ## Mouse Area
+
+<details>
+<summary>Make an area of window clickable?</summary>
+
+> The mouse area is often used together with a visible item to execute commands
+> when the user interacts with the visual part.
+>
+> ```qml
+> import QtQuick
+>
+> Rectangle {
+>     id: button
+>     width: 60
+>     height: 25
+>     color: 'lightsteelblue'
+>     MouseArea {
+>         id: clickable_area
+>         anchors.fill: parent
+>         onClicked: image.visibility = !image.visilibity
+>     }
+> }
+> ``````
+
+> Origins:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+
+> References:
+---
+</details>
+
+## Component
+
+<details>
+<summary>How many types of components are available?</summary>
+
+> QML provides different ways to create components:
+>
+> - File-based component
+> -
+
+> Origins:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+
+> References:
+---
+</details>
+
+<details>
+<summary>Make a reusable element?</summary>
+
+> ```qml
+> ``````
+
+> Origins:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+
+> References:
+---
+</details>
+
+<details>
+<summary>Propegate clicked signal to root level component?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Rectangle {
+>     id: root
+>     width: 100
+>     height: 300
+>     color: 'lightsteelblue'
+>
+>     property alias text: label.text
+>     signal clicked
+>
+>     Text {
+>         id: label
+>         anchors.centerIn: parent
+>         text: 'start'
+>     }
+>
+>     MouseArea {
+>         anchors.fill: parent
+>         onClicked: { root.clicked() }
+>     }
+> }
+> ``````
+
+> Origins:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+
+> References:
+---
+</details>
