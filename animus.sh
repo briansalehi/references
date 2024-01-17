@@ -41,7 +41,7 @@ unpack_practice() {
     read -r line
     if [ "$line" != "> Origins:" ]
     then
-        echo -e "\e[1;31m""Origins displacement occured on line $lineno""\e[0m" >&2
+        echo -e "\e[1;31m""Origins displacement occured on line $lineno of $(head -n1 $buffer)""\e[0m" >&2
         exit 127
     fi
 

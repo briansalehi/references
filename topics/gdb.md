@@ -20,7 +20,7 @@
 > gcc -g3 -Og -o program source.c
 > ``````
 >
-> > You can use the readelf utility to look at the debug info.
+> You can use the readelf utility to look at the debug info.
 
 > Origins:
 > - GDB Tips by Greg Law - Tip #1
@@ -329,9 +329,9 @@
 > (gdb) run
 > ``````
 
-> Origin:
-> - 5
-> - 6
+> Origins:
+> - GDB Tips by Greg Law - Tip #5
+> - GDB Tips by Greg Law - Tip #6
 
 > References:
 ---
