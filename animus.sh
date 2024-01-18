@@ -20,6 +20,7 @@ unpack_practice() {
 
     read -r # empty line
 
+    echo -e "<title>Animus</title>" >> "${buffer}"
     echo -e "# ${question}\n\n" >> "${buffer}"
 
     lineno=0
