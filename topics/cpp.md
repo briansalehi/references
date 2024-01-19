@@ -6699,7 +6699,28 @@
 
 ## Doubly Linked List
 
-## Algorithms Ranges
+## Comparing Algorithms
+
+<details>
+<summary>Find the biggest and smallest element within a range or parameters?</summary>
+
+> ```cpp
+> #include <algorithm>
+>
+> std::min(42, 87);
+> std::min({2,5,8,23,43});
+> std::max(34, 47);
+> std::max({4,8,12,42});
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=7FORoVmSw4E
+
+> References:
+---
+</details>
+
+## Ranges Algorithms
 
 <details>
 <summary>Check if a range starts with an expected subrange?</summary>
@@ -6813,7 +6834,7 @@
 ---
 </details>
 
-## Algorithms Iterating
+## Iterating Algorithms
 
 <details>
 <summary>Invoke a functor for each range element in or out of order?</summary>
@@ -7038,7 +7059,7 @@
 ---
 </details>
 
-## Algorithms Swapping
+## Swapping Algorithms
 
 <details>
 <summary>Swap two values using standard algorithms?</summary>
@@ -7199,7 +7220,7 @@
 ---
 </details>
 
-## Algorithms Sorting
+## Sorting Algorithms
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
@@ -7639,7 +7660,7 @@
 ---
 </details>
 
-## Algorithms Partitioning
+## Partitioning Algorithms
 
 <details>
 <summary>Partition a range into two based on a criterion?</summary>
@@ -7841,7 +7862,7 @@
 ---
 </details>
 
-## Algorithms Sorted Range
+## Sorted Range Algorithms
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -8041,7 +8062,7 @@
 ---
 </details>
 
-## Algorithms Linear Operation
+## Linear Operation Algorithms
 
 <details>
 <summary>Determine whether a sorted range is contained within another sorted range?</summary>
@@ -8208,7 +8229,7 @@
 ---
 </details>
 
-## Algorithms Set Operation
+## Set Operation Algorithms
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -8334,7 +8355,7 @@
 ---
 </details>
 
-## Algorithms Transformation
+## Transformation Algorithms
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -8626,7 +8647,7 @@
 ---
 </details>
 
-## Algorithms Permutation Transform
+## Permutation Transform Algorithms
 
 <details>
 <summary>Find the next and previous permutations of a container?</summary>
@@ -8735,7 +8756,7 @@
 ---
 </details>
 
-## Algorithms Boolean Reduction
+## Boolean Reduction Algorithms
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -8827,7 +8848,7 @@
 ---
 </details>
 
-## Algorithms Strings
+## Strings Algorithms
 
 <details>
 <summary>Convert a string to lowercase or uppercase?</summary>
