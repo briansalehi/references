@@ -252,7 +252,7 @@
 ---
 </details>
 
-## Constant Expressions
+## Constant Expression
 
 <details>
 <summary>Declare a function evaluated at compile time?</summary>
@@ -293,6 +293,84 @@
 
 > Origins:
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
+
+> References:
+---
+</details>
+
+## Conditional Constant Evaluation
+
+<details>
+<summary>What conditional statement can be used to separate a function into compiletime and runtime evaluation?</summary>
+
+> C++23 brings `if consteval` conditional statement.
+>
+> This `if` statement takes no condition but would only evaluate during
+> constant evaluation. Otherwise, the `else` statement is evaluated.
+>
+> ```cpp
+> consteval int f(int i) { return i; }
+>
+> constexpr int g(int i)
+> {
+>     if consteval
+>     {
+>         return f(i) + 1; // immediate function context
+>     }
+>     else
+>     {
+>         return 42;
+>     }
+> }
+>
+> consteval int h(int i)
+> {
+>     return f(i) + 1; // immediate function context
+> }
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the equivalent form of <code>if consteval</code> prior standard 23?</summary>
+
+> ```cpp
+> if (std::is_constant_evaluated())
+> {
+>     /* A */
+> }
+> else
+> {
+>     /* B */
+> }
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the advantages of using <code>if consteval</code> compared to <code>std::is_constant_evaluated()</code>?</summary>
+
+> - `if consteval` is part of the core language, so no header needed
+> - `if consteval` cannot be used wrong, but `is_constant_evaluated()` can:
+>
+> ```cpp
+> if constexpr (std::is_constant_evaluated()) { /*A*/ } else { /*B*/ };
+> ``````
+>
+> - Within `if consteval` block you can call immediate `consteval` functions.
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
 > References:
 ---
