@@ -2,10 +2,8 @@
 
 ## Configuring Project
 
-## Building Project
-
 <details>
-<summary>Execute the CMake configuration stage?</summary>
+<summary>Initiate project configuration with cmake?</summary>
 
 > ```sh
 > cmake -S ./project -B ./build
@@ -57,7 +55,7 @@
 </details>
 
 <details>
-<summary>Prepopulate cached information by providing the initial cache script?</summary>
+<summary>Initialize project configuration by providing a pre-cached configuration file?</summary>
 
 > We can provide a path to the CMake script, which (only) contains a list of
 > `set()` commands to specify variables that will be used to initialize an
@@ -74,8 +72,10 @@
 ---
 </details>
 
+## Cache Manipulation
+
 <details>
-<summary>Specify cached information by providing command line arguments?</summary>
+<summary>Modify project cache variables in configuration stage?</summary>
 
 > The initialization and modification of existing cache variables can be done
 > in command line, as follows:
@@ -98,7 +98,7 @@
 </details>
 
 <details>
-<summary>Specify the build configuration?</summary>
+<summary>Specify the path to build directory in configuration stage?</summary>
 
 > For single-configuration generators (such as Make and Ninja), you'll need to
 > specify it during the configuration phase with the `CMAKE_BUILD_TYPE`
@@ -125,7 +125,26 @@
 </details>
 
 <details>
-<summary>List cache variables?</summary>
+<summary>Remove one or more of configuration cache variables?</summary>
+
+> ```sh
+> cmake -U <globbing_expr> <CMAKE_BINARY_DIR>
+> ``````
+>
+> Here, the globbing expression supports the `*` wildcard and any `?` character
+> symbols. Both of the `-U` and `-D` options can be repeated multiple times.
+
+> Origins:
+> - Modern CMake for C++ - Chapter 1
+
+> References:
+---
+</details>
+
+## Listing Cache Information
+
+<details>
+<summary>List configuration cache variables?</summary>
 
 > ```sh
 > cmake -L[A][H] <CMAKE_BINARY_DIR>
@@ -146,22 +165,7 @@
 ---
 </details>
 
-<details>
-<summary>Remove one or more cache variables?</summary>
-
-> ```sh
-> cmake -U <globbing_expr> <CMAKE_BINARY_DIR>
-> ``````
->
-> Here, the globbing expression supports the `*` wildcard and any `?` character
-> symbols. Both of the `-U` and `-D` options can be repeated multiple times.
-
-> Origins:
-> - Modern CMake for C++ - Chapter 1
-
-> References:
----
-</details>
+## Listing Build Information
 
 <details>
 <summary>Get general information about variables, commands, macros, and other settings?</summary>
@@ -181,6 +185,8 @@
 > References:
 ---
 </details>
+
+## Logging
 
 <details>
 <summary>Filter the CMake log output by log level in the command line?</summary>
@@ -247,6 +253,8 @@
 ---
 </details>
 
+## Trace Mode
+
 <details>
 <summary>Enable trace mode?</summary>
 
@@ -267,7 +275,7 @@
 </details>
 
 <details>
-<summary>Where to write project presets?</summary>
+<summary>Where does cmake write project presets?</summary>
 
 > Developers can simplify how users interact with their projects and provide a
 > `CMakePresets.json` file that specifies some defaults.
@@ -278,6 +286,8 @@
 > References:
 ---
 </details>
+
+## Presets
 
 <details>
 <summary>List all of the available presets?</summary>
@@ -310,6 +320,23 @@
 > References:
 ---
 </details>
+
+<details>
+<summary>What preset paths are available in scripts?</summary>
+
+> Since there is no concept of a source/build tree in scripts, variables that
+> usually hold references to these paths will contain the current working
+> directory instead: `CMAKE_BINARY_DIR`, `CMAKE_SOURCE_DIR`,
+> `CMAKE_CURRENT_BINARY_DIR`, and `CMAKE_CURRENT_SOURCE_DIR`.
+
+> Origins:
+> - Modern CMake for C++ - Chapter 1
+
+> References:
+---
+</details>
+
+## Building Project
 
 <details>
 <summary>Execute the build stage of the project?</summary>
@@ -383,6 +410,8 @@
 ---
 </details>
 
+## Cache Cleaning
+
 <details>
 <summary>Remove all artifacts from the build directory?</summary>
 
@@ -429,6 +458,8 @@
 > References:
 ---
 </details>
+
+## Installing Targets
 
 <details>
 <summary>Execute CMake to install targets?</summary>
@@ -523,8 +554,8 @@
 <summary>Instruct CMake to log a detailed output of the installation stage?</summary>
 
 > ```sh
-> cmake --build <dir> -v
-> cmake --build <dir> --verbose
+> cmake --install <build_dir> -v
+> cmake --install <build_dir> --verbose
 > ``````
 >
 > The same effect can be achieved if the `VERBOSE` environment variable is set.
@@ -539,6 +570,8 @@
 > References:
 ---
 </details>
+
+## CMake Script
 
 <details>
 <summary>Run CMake scripts?</summary>
@@ -577,6 +610,8 @@
 ---
 </details>
 
+## Extenal Command
+
 <details>
 <summary>Execute external commands with CMake?</summary>
 
@@ -608,6 +643,8 @@
 ---
 </details>
 
+## Manual
+
 <details>
 <summary>Get help from CMake documentation?</summary>
 
@@ -622,6 +659,8 @@
 > References:
 ---
 </details>
+
+## Testing
 
 <details>
 <summary>Run test on a built project?</summary>
@@ -640,8 +679,10 @@
 ---
 </details>
 
+## Subdirectories
+
 <details>
-<summary>Include another listfile in `CMakeLists.txt`?</summary>
+<summary>Include another listfile in <code>CMakeLists.txt</code>?</summary>
 
 > Files that contain the CMake language are called listfiles and can be
 > included one in another, by calling `include()` and `find_package()`, or
@@ -668,20 +709,6 @@
 </details>
 
 <details>
-<summary>Choose a preset for a project?</summary>
-
-> Users can choose presets through the GUI or use the command line to
-> `--list-presets` and select a preset for the buildsystem with the
-> `--preset=<preset>` option.
-
-> Origins:
-> - Modern CMake for C++ - Chapter 1
-
-> References:
----
-</details>
-
-<details>
 <summary>What are the actual requirements for the script file provided?</summary>
 
 > Not that many: a script can be as complex as you like or an empty file.
@@ -691,21 +718,6 @@
 >
 > When running scripts, CMake won't execute any of the usual stages (such as
 > configuration or generation), and it won't use the cache.
-
-> Origins:
-> - Modern CMake for C++ - Chapter 1
-
-> References:
----
-</details>
-
-<details>
-<summary>What preset paths are available in scripts?</summary>
-
-> Since there is no concept of a source/build tree in scripts, variables that
-> usually hold references to these paths will contain the current working
-> directory instead: `CMAKE_BINARY_DIR`, `CMAKE_SOURCE_DIR`,
-> `CMAKE_CURRENT_BINARY_DIR`, and `CMAKE_CURRENT_SOURCE_DIR`.
 
 > Origins:
 > - Modern CMake for C++ - Chapter 1
