@@ -1944,6 +1944,98 @@
 ---
 </details>
 
+## This Deduction
+
+<details>
+<summary>Replace ref-quialified overloads of a method with one generic overload?</summary>
+
+> Using 4 overloads for all possible combinations of ref-quilified methods is
+> code dupliation.
+>
+> ```cpp
+> class box
+> {
+> public:
+>     box(std::string label): m_label{std::move(label)} {}
+>     std::string& label() & { return m_label; }
+>     std::string const& label() const& { return m_label; }
+>     std::string&& label() && { return std::move(m_label); }
+>     std::string const&& label() const&& { return std::move(m_label); }
+> private:
+>     std::string m_label;
+> };
+> ``````
+>
+> Since C++23 we can replace all 4 overloads with one:
+>
+> ```cpp
+> class box
+> {
+> public:
+>     box(std::string label): m_label(std::move(label)} {}
+>     template<typename S> auto&& label(this S&& self)
+>     {
+>         return std::forward<S>(self).m_label;
+>     }
+> };
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the equivalent form of ref-quialified function?</summary>
+
+> C++23 allows you to write ref-qualified members differently:
+>
+> ```cpp
+> void f() &;
+> void g() const&;
+> void h() &&;
+> ``````
+>
+> Instead:
+>
+> ```cpp
+> void f(this Data&);
+> void g(this Data const&);
+> void h(this Data&&);
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+
+> References:
+---
+</details>
+
+<details>
+<summary>Access the object containing the lambda within a recursive lambda?</summary>
+
+> C++23 allows for recursive lambda expressions.
+>
+> `this` in a lambda accesses the object that contains the lambda, not the
+> lambda instance itself.
+>
+> ```cpp
+> auto fibonacci = [](this auto self, int n)
+> {
+>     if (n < 2) { return n; }
+>     return self(n - 1) + self(n - 2);
+> };
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+
+> References:
+---
+</details>
+
 ## Templates
 
 <details>
@@ -2506,7 +2598,7 @@
 > ``````
 >
 > Becuase automatic type conversino is not considered for deduced template
-> parameters but is considered for ordinary funcction parameters, the last call
+> parameters but is considered for ordinary function parameters, the last call
 > uses the nontemplate function.
 >
 > ```cpp
@@ -12049,6 +12141,40 @@
 
 > Origins:
 > - C++17: The Complete Guide - Chapter 20
+
+> References:
+---
+</details>
+
+## Logging
+
+<details>
+<summary>Make a log function revealing source location of the error?</summary>
+
+> ```cpp
+> #include <source_location>
+> #include <string_view>
+> #include <iostream>
+>
+> void log(std::string_view const message, std::source_location const location = std::source_location::current)
+> {
+>     std::cerr << location.file_name() << ": " << location.line() << "\n\t"
+>         << location.function_name() << ": " << message << "\n";
+> }
+>
+> void do_something()
+> {
+>     log("something is done here");
+> }
+>
+> int main()
+> {
+>     do_something();
+> }
+> ``````
+
+> Origins:
+> - https://www.youtube.com/watch?v=762owEyCI4o
 
 > References:
 ---
