@@ -20,7 +20,6 @@ unpack_practice() {
 
     read -r # empty line
 
-    echo -e "<title>Animus</title>" >> "${buffer}"
     echo -e "# ${question}\n\n" >> "${buffer}"
 
     lineno=0
@@ -262,6 +261,15 @@ is_valid_range() {
     return 1
 }
 
+print_index() {
+    local index="$1"
+    local last_index="$2"
+    local digits
+
+    digits="${#last_index}"
+    printf "%0${digits}d" "$index"
+}
+
 begin_review() {
     local -a subject_list
     local subject
@@ -302,7 +310,7 @@ begin_review() {
                     do
                         sname="${subject_list[$sindex]}"
                         sname="${sname##*/}"
-                        echo -e "\t\e[3;35m$((sindex+1)). $sname\e[0m"
+                        echo -e "\t\e[3;35m$(print_index $((sindex+1)) ${#subject_list[*]}). ${sname//-/ }\e[0m"
                     done
                     read -rp "Expected Section: " skip_request </dev/tty
                     while ! is_valid_range "$skip_request" 1 "${#subject_list[*]}"
@@ -364,7 +372,7 @@ begin_review() {
                         do
                             tname="${topic_list[$tindex]}"
                             tname="${tname##*/}"
-                            echo -e "\t\e[3;35m$((tindex+1)). $tname\e[0m"
+                            echo -e "\t\e[3;35m$(print_index $((tindex+1)) ${#topic_list[*]}). ${tname//-/ }\e[0m"
                         done
                         read -rp "Expected Chapter: " skip_request </dev/tty
                         while ! is_valid_range "$skip_request" 1 "${#topic_list[*]}"
