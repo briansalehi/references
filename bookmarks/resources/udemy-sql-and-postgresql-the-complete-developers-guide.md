@@ -547,17 +547,496 @@
 ---
 </details>
 
-## Chapter 5/37 <sup>(writing)</sup>
+## Chapter 5/37 <sup>(complete)</sup>
 
+## Grouping
 
+<details>
+<summary>What are the main characteristics of grouping operation?</summary>
 
-## Chapter 6/37
-## Chapter 7/37
-## Chapter 8/37
-## Chapter 9/37
-## Chapter 10/37
-## Chapter 11/37
-## Chapter 12/37
+> - Reduces many rows down to fewer rows
+> - Done by using the 'GROUP BY' keyword
+> - Visualizing the result is key to use
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>What steps are taken to group a table by a specific column?</summary>
+
+> 1. Group records by a specific column, e.g. `user_id`
+> 2. Find the set of all unqiue values in that column
+> 3. Take each record and assign to a group based on grouped unique values
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Group records of a table by one of its colums?</summary>
+
+> ```sql
+> select user_id
+> from comments
+> group by user_id;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Filtering Groups
+
+<details>
+<summary>What is the use case of having clause?</summary>
+
+> When we are talking about filtering along with an aggregate function, we
+> should be filtering aggregated results with `having` clause.
+>
+> For example, find the number of comments for each photo where *the photo_id
+> is less than 3* and *the photo has more than 2 comments*.
+>
+> In this example, the first condition involves with filtering what is going to
+> be grouped, so we use a `where` clause for it. The second condition on the
+> other hand, is regarding aggregated results, which we should be using a
+> `having` clause to apply it.
+>
+> ```sql
+> select photo_id, count(*) as comments
+> from comments
+> where photo_id < 3
+> group by photo_id
+> having count(*) > 2;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>Filter a set a groups of records grouped by a specific column?</summary>
+
+> ```sql
+> select authors.name, count(books.id) as releases
+> from authors
+> join books on authors.
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Aggregation
+
+<details>
+<summary>What are the main characterestics of aggregation operations?</summary>
+
+> - Reduces many values down to one
+> - Done by using aggregate functions
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Aggregation Functions
+
+<details>
+<summary>What are the common aggregate functions?</summary>
+
+> - `count()`
+> - `min()`
+> - `max()`
+> - `sum()`
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Count Aggregate Function
+
+<details>
+<summary>Count how many comments each user have posted?</summary>
+
+> ```sql
+> select user_id, count(*)
+> from comments
+> group by user_id;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the behavior of count aggregate function when grouped column has a null value?</summary>
+
+> Records having null value on grouped column will be ignored. To take them
+> into account, you should not use any specific column in `count()` aggregate
+> function and use `*` instead.
+>
+> ```sql
+> select user_id, count(*)
+> from comments
+> group by user_id;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Min and Max Aggregate Function
+
+<details>
+<summary>Find the most commented photo of a photo sharing app?</summary>
+
+> ```sql
+> select max(content)
+> from comments
+> group by photo_id;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Sum Aggregate Function
+
+<details>
+<summary>Find the sum of all comments from each photo record in a photo sharing app?</summary>
+
+> ```sql
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
+
+> References:
+---
+</details>
+
+## Chapter 6/37 <sup>(ignored)</sup>
+## Chapter 7/37 <sup>(complete)</sup>
+
+## Ordering Result Set
+
+<details>
+<summary>Reorder records of the result set with ascending and descending order?</summary>
+
+> ```sql
+> select *
+> from products
+> order by price asc;
+> ``````
+>
+> ```sql
+> select *
+> from products
+> order by price desc;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Set a second ordering rule for result set?</summary>
+
+> ```sql
+> select *
+> from products
+> order by price asc, weight desc;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+## Limiting Result Set
+
+<details>
+<summary>What is the use case of limit?</summary>
+
+> Only gives the number of records requested.
+>
+> ```sql
+> select *
+> from users
+> limit 10;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Where should the limit clause be located in query?</summary>
+
+> `limit` clause goes at the end of query string after `group by` clause if
+> exists, and before `offset`.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+## Offseting Result Set
+
+<details>
+<summary>What is the use case of offset?</summary>
+
+> As many number of records as you want can be skipped with `offset` clause.
+>
+> ```sql
+> select *
+> from users
+> offset 40;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+<details>
+<summary>Where should the offset clause be located within a query?</summary>
+
+> At the end, after `sort by`, `group by`, `having`, and `limit` clauses.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
+
+> References:
+---
+</details>
+
+## Chapter 8/37 <sup>(complete)</sup>
+
+## Union
+
+<details>
+<summary>What is the use case of union clause?</summary>
+
+> There are some cases where two different result sets need to be combined to
+> form the desired result set. For example:
+>
+> *Find the 4 products with the highest price, and the 4 products with the
+> highest price/weight ratio*.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the prerequisite of a union?</summary>
+
+> All columns of queries should match.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+<details>
+<summary>Combine two different result sets with and without duplicates?</summary>
+
+> ```sql
+> (
+>     select product_id
+>     from products
+>     order by price desc
+>     limit 4
+> )
+> union
+> (
+>     select product_id
+>     from products
+>     order by price / weight desc
+>     limit 4
+> );
+> ``````
+>
+> To retrieve duplicates use `union all` clause.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+<details>
+<summary>When would parenthesis be mandatory for union queries?</summary>
+
+> When the last query has `order by` or `limit` or `offset` clauses, the union
+> doesn't know if these clauses should be used on the last query or the entire
+> statement. This is why when we have these clauses in query, we should use
+> parenthesis. Otherwise, union works fine without parenthesis.
+>
+> ```sql
+> select * from products;
+> union
+> select * from products;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+## Intersect
+
+<details>
+<summary>Collect the intersection of two result sets?</summary>
+
+> ```sql
+> select * from products order by price desc limit 4;
+> intersect
+> select * from products order by price / weight desc limit 4;
+> ``````
+>
+> Use `intersect all` to have duplicates appearing in both sides.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+## Exception
+
+<details>
+<summary>Find the records appearing in first result set and not in second result set?</summary>
+
+> ```sql
+> select * from products order by price desc limit 4;
+> except
+> select * from products order by price / weight desc limit 4;
+> ``````
+>
+> Above clause removes duplicates. Use `except all` to also show duplicates.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
+
+> References:
+---
+</details>
+
+## Chapter 9/37 <sup>(writing)</sup>
+
+## Subquery
+
+<details>
+<summary>Where are subqueries mostly used?</summary>
+
+> When a condition requires a value or a set of values that must be collected
+> by another query as a prerequisite, we can use subqueries.
+>
+> ```sql
+> select name, price
+> from products
+> where price > (select max(price) from products where manufacturer = 'Samsung');
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
+
+> References:
+---
+</details>
+
+## Single Value Subquery
+
+<details>
+<summary>Use a subquery to give a single value in select clause?</summary>
+
+> ```sql
+> select name, price, (select max(price) from products) as max_price
+> from products;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
+
+> References:
+---
+</details>
+
+## One Column Subquery
+
+<details>
+<summary>Use a subquery in from clause as a source of data?</summary>
+
+> ```sql
+> select name, price_weight_ratio
+> from (select name, price / weight as price_weight_ratio from produts
+> where price_weight_ratio > 5;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
+
+> References:
+---
+</details>
+
+## Multi Record Subquery
+
+## Chapter 10/37 <sup>(writing)</sup>
+## Chapter 11/37 <sup>(writing)</sup>
+## Chapter 12/37 <sup>(writing)</sup>
 ## Chapter 13/37
 ## Chapter 14/37
 ## Chapter 15/37
