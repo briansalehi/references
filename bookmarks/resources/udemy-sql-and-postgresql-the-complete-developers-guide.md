@@ -1037,16 +1037,278 @@
 ## Chapter 10/37 <sup>(writing)</sup>
 ## Chapter 11/37 <sup>(writing)</sup>
 ## Chapter 12/37 <sup>(writing)</sup>
-## Chapter 13/37
-## Chapter 14/37
-## Chapter 15/37
-## Chapter 16/37
-## Chapter 17/37
-## Chapter 18/37
-## Chapter 19/37
-## Chapter 20/37
-## Chapter 21/37
-## Chapter 22/37
+## Chapter 13/37 <sup>(writing)</sup>
+## Chapter 14/37 <sup>(complete)</sup>
+
+## Not Null
+
+<details>
+<summary>When creating a table define a column not taking null value?</summary>
+
+> ```sql
+> create table products (
+>     id serial primary key,
+>     name varchar(50),
+>     price integer not null,
+>     weight integer
+> );
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Modify a table after creation and set a column not to take null value?</summary>
+
+> ```sql
+> alter table products alter column price set not null;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Updating Column
+
+<details>
+<summary>Update all null values of a column to set 0 instead?</summary>
+
+> ```sql
+> update table products set price = 0 where price is null;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Data Validation
+
+<details>
+<summary>What input data validation constraints do we have in database side?</summary>
+
+> - Check if the value is already defined (not null)
+> - Check if the value is unique in its column (unique)
+> - Check if the value is within desired range (comparison operators)
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Default Value
+
+<details>
+<summary>Set a default value for a column?</summary>
+
+> ```sql
+> create table products (
+>     id serial primary key,
+>     name varchar(50),
+>     price integer default 100,
+>     weight integer default 0 not null
+> );
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Alter a column to add default value?</summary>
+
+> ```sql
+> alter table products alter column price set default 0;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Unique Values
+
+<details>
+<summary>Define a column as having only unique values?</summary>
+
+> ```sql
+> create table products (
+>     id serial primary key,
+>     name varchar(50) unique,
+>     price integer,
+>     weight integer,
+> );
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Add a uniqueness constraint to a column?</summary>
+
+> ```sql
+> alter table products add unique (name);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Remove uniqueness constraint on a column?</summary>
+
+> ```sql
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Multiple Column Unique Value
+
+<details>
+<summary>Define a column to take unique values in combination of multiple columns?</summary>
+
+> ```sql
+create table products (
+    id serial primary key,
+    name varchar(50),
+    price integer not null,
+    weight integer,
+    unique(name, price)
+):
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Add uniqueness value to multiple columns?</summary>
+
+> ```sql
+> alter table products add unique(name, price);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Checking Value
+
+<details>
+<summary>Define a column with a check constraint on its value?</summary>
+
+> ```sql
+> create table products (
+>     id serial primary key,
+>     name varchar(50),
+>     price integer default 0 not null check (price > 0)
+>     weight integer default 0 not null (weight > 0)
+> );
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+<details>
+<summary>Add a check constraint after column is created?</summary>
+
+> ```sql
+> alter table products add check(price > 0);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Checking Multiple Column
+
+<details>
+<summary>Define multiple columns with a check on all of them?</summary>
+
+> ```sql
+create table products (
+    id serial primary key,
+    name varchar(50) not null,
+    creation timestamp not null,
+    delivery timestamp not null,
+    check(delivery > creation)
+);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Database Diagram
+
+<details>
+<summary>Name a few web services for drawing database diagrams?</summary>
+
+> - dbdiagram.io
+> - drawsql.app
+> - sqldbm.com
+> - quickdatabasediagrams.com
+> - ondras.zarovi.cz/sql/demo
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
+
+> References:
+---
+</details>
+
+## Chapter 15/37 <sup>(writing)</sup>
+## Chapter 16/37 <sup>(writing)</sup>
+## Chapter 17/37 <sup>(writing)</sup>
+## Chapter 18/37 <sup>(writing)</sup>
+## Chapter 19/37 <sup>(writing)</sup>
+## Chapter 20/37 <sup>(writing)</sup>
+## Chapter 21/37 <sup>(writing)</sup>
+## Chapter 22/37 <sup>(writing)</sup>
 ## Chapter 23/37
 ## Chapter 24/37
 ## Chapter 25/37
