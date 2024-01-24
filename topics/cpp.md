@@ -10494,6 +10494,21 @@
 ---
 </details>
 
+## Coroutines
+
+<details>
+<summary>What functions are coroutines?</summary>
+
+> A function is a coroutine if its function body encloses a
+> coroutine-return-statement, an await-expression, or a yield-expression.
+
+> Origins:
+> - https://www.youtube.com/watch?v=RBldGKfLb9I
+
+> References:
+---
+</details>
+
 ## Design Patterns
 
 ## Monostate Pattern
