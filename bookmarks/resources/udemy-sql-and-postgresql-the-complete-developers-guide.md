@@ -1283,6 +1283,8 @@ create table products (
 ---
 </details>
 
+## Chapter 15/37 <sup>(complete)</sup>
+
 ## Database Diagram
 
 <details>
@@ -1301,14 +1303,34 @@ create table products (
 ---
 </details>
 
-## Chapter 15/37 <sup>(writing)</sup>
-## Chapter 16/37 <sup>(writing)</sup>
-## Chapter 17/37 <sup>(writing)</sup>
-## Chapter 18/37 <sup>(writing)</sup>
-## Chapter 19/37 <sup>(writing)</sup>
-## Chapter 20/37 <sup>(writing)</sup>
-## Chapter 21/37 <sup>(writing)</sup>
-## Chapter 22/37 <sup>(writing)</sup>
+## Chapter 16/37 <sup>(complete)</sup>
+
+<details>
+<summary>In case of associative constraints, check if either of two columns exist in a row?</summary>
+
+> ```sql
+> alter table likes add check (
+>     (
+>         coalesce((post_id)::boolean::integer, 0)
+>         +
+>         coalesce((comment_id)::boolean::integer, 0)
+>     ) = 1
+> );
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 16
+
+> References:
+---
+</details>
+
+## Chapter 17/37 <sup>(ignored)</sup>
+## Chapter 18/37 <sup>(ignored)</sup>
+## Chapter 19/37 <sup>(ignored)</sup>
+## Chapter 20/37 <sup>(ignored)</sup>
+## Chapter 21/37 <sup>(ignored)</sup>
+## Chapter 22/37
 ## Chapter 23/37
 ## Chapter 24/37
 ## Chapter 25/37
