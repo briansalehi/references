@@ -7,6 +7,7 @@
 * [Embedded Linux](embedded.md)
 * [GDB](gdb.md)
 * [Linux Kernel](kernel.md)
+* [Linux Administration](linux.md)
 * [Mathematics](mathematics.md)
 * [OpenCV](opencv.md)
 * [OpenSSL](openssl.md)
