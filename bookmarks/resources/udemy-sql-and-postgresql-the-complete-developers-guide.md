@@ -1330,10 +1330,368 @@ create table products (
 ## Chapter 19/37 <sup>(ignored)</sup>
 ## Chapter 20/37 <sup>(ignored)</sup>
 ## Chapter 21/37 <sup>(ignored)</sup>
-## Chapter 22/37
-## Chapter 23/37
-## Chapter 24/37
-## Chapter 25/37
+## Chapter 22/37 <sup>(complete)</sup>
+
+<details>
+<summary>Find where the data directory is in an instance?</summary>
+
+> ```psql
+> show data_directory;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
+
+> References:
+---
+</details>
+
+<details>
+<summary>Retrieve the name and identifier of databases in an instance?</summary>
+
+> ```psql
+> select oid, datname from pg_database;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
+
+> References:
+---
+</details>
+
+<details>
+<summary>Retrieve information about the objects inside a database?</summary>
+
+> ```psql
+> select * from pg_class;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the building blocks of a database file?</summary>
+
+> - **Heap File**: The file stored in the base directory within data directory that contains all the data of a table.
+> - **Block** or **Page**: 8KB chunks of heap file each storing some number of rows.
+> - **Tuple** or **Item**: Individual row from the table.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the structure of each block in postgres?</summary>
+
+> |Block 1|Block 1|Block 1|Block 1|
+> |---|---|---|---|
+> |Information about this block|->|->|->|
+> |->|->|Loc of item 1|Loc of item 2|
+> |Free Space|Free Space|Free Space|Free Space|
+> |Free Space|Free Space|Free Space|Free Space|
+> |Data for tuple 2|
+> |Data for tuple 1|
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
+
+> References:
+> - https://www.postgresql.org/docs/current/storage-page-layout.html
+---
+</details>
+
+## Chapter 23/37 <sup>(complete)</sup>
+
+<details>
+<summary>What is an index?</summary>
+
+> Data structure that efficiently tells us what block a record is stored at.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Create an index for a table?</summary>
+
+> ```psql
+> create index users_username_idx on users(username);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Drop an index?</summary>
+
+> ```psql
+> drop index users_username_idx;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Analyze a query?</summary>
+
+> ```psql
+> explain analyze select * from users where username = 'briansalehi';
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Estimate the overall size of an index on memory?</summary>
+
+> ```psql
+> select pg_relation_size('users');
+> select pg_relation_size('users_username_idx');
+> select pg_size_pretty(pg_relation_size('users'));
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Convert a size value to human readable memory size?</summary>
+
+> ```psql
+> select pg_size_pretty(1024);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>What index types are supported by postgres?</summary>
+
+> - B-Tree
+> - Hash
+> - GiST
+> - SP-GiST
+> - GIN
+> - BRIN
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>When do indexes are automatically created?</summary>
+
+> When primary key exists, and when a column has unique constraint on it.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Query all the auto generated indexes?</summary>
+
+> ```psql
+> select relname from pg_class where relkind = 'i';
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the data structure behind an index?</summary>
+
+> |`users_username_idx`|
+> |Meta Page|
+> |Leaf Page|
+> |Leaf Page|
+> |Root Page|
+> |Leaf Page|
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Create an extension that helps on examining pages?</summary>
+
+> ```psql
+> create extension pageinspect;
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find the root node of an index?</summary>
+
+> ```psql
+> select root from bt_metap('users_username_idx');
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Find all the leaf nodes of an index?</summary>
+
+> The `ctid` column holds the indexes of leaf nodes in the index.
+>
+> ```psql
+> select * from bt_page_itesm('users_username_idx', 3);
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>Inspect the ctid column of a table?</summary>
+
+> All tables have a hidden `ctid` column which we can query.
+>
+> ```psql
+> select ctid, * from users where username = 'briansalehi';
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>What the first row in the page items table does?</summary>
+
+> The first row points to the first item of the next page for performance
+> reasons.
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>What are the stages of query execution in postgres?</summary>
+
+> 1. Parsing (Parser)
+> 2. Rewriting
+> 3. Planning (Planner)
+> 4. Executing (Executor)
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+<details>
+<summary>What is the difference between plain explain and explain analyze?</summary>
+
+> - `explain`: build a query plan and display info about it
+> - `explain analyze`: build a query plan, run it, and info about it
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+## Chapter 24/37 <sup>(complete)</sup>
+
+<details>
+<summary>Inspect the statistics of a table?</summary>
+
+> ```psql
+> select * from pg_stats where tablename = 'users';
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
+
+> References:
+---
+</details>
+
+## Chapter 25/37 <sup>(complete)</sup>
+
+<details>
+<summary>How does postgres calculate the cost of page loading and rows?</summary>
+
+> ```
+> (# pages read sequencially) * seq_page_cost
+> + (# pages read at random) * random_page_cost
+> + (# rows scanned) * cpu_tuple_cost
+> + (# index entries scanned) + cpu_index_tuple_cost
+> + (# times function/operator evaluated) + cpu_operator_cost
+> = cost
+> ``````
+
+> Origins:
+> - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 25
+
+> References:
+---
+</details>
+
 ## Chapter 26/37
 ## Chapter 27/37
 ## Chapter 28/37
