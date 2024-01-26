@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2010
+readarray -t animus_base < <(find "$HOME"/.local/share/flashback/topics/ -type f -name '*.md' | sort)
+
 VERBOSE="${VERBOSE:-false}"
-base_path="/tmp/animus"
+RUNTIME_PATH="/tmp/animus"
 
 unpack_practice() {
     local buffer="$1"
@@ -41,7 +44,7 @@ unpack_practice() {
     read -r line
     if [ "$line" != "> Origins:" ]
     then
-        echo -e "\e[1;31m""Origins displacement occured on line $lineno of $(head -n1 $buffer)""\e[0m" >&2
+        echo -e "\e[1;31m""Origins displacement occured on line $lineno of $(head -n1 "$buffer")""\e[0m" >&2
         exit 127
     fi
 
@@ -132,7 +135,7 @@ unpack_topics() {
                 topic="${line#* }"
             fi
 
-            topic_file="${base_path}/${subject_file}/${index}.${topic// /-}"
+            topic_file="${RUNTIME_PATH}/${subject_file}/${index}.${topic// /-}"
 
             $VERBOSE && echo -e "\e[1;35m""  Unpacking Topic «\e[1;34m${topic}\e[1;35m» in \e[1;34m${topic_file}""\e[0m"
 
@@ -158,12 +161,19 @@ unpack_topics() {
 }
 
 unpack_subjects() {
-    local base="${1:-topics/*.md}"
+    local -a base <<< "$1"
     local subject_path
     local subject_file
     local subject
 
-    for subject_path in ${base}
+    if [ ${#base[*]} -eq 0 ]
+    then
+        read -ra base <<< "${animus_base[*]}"
+    fi
+
+    echo "${animus_base[*]}" > /tmp/animus.log
+
+    for subject_path in "${base[@]}"
     do
         read -r subject < "$subject_path"
         subject="${subject#* }"
@@ -171,9 +181,9 @@ unpack_subjects() {
 
         $VERBOSE && echo -e "\e[1;35m""Unpacking «\e[1;34m${subject}\e[1;35m» in \e[1;34m${subject_file}""\e[0m"
 
-        if ! [ -d "${base_path}/${subject}" ]
+        if ! [ -d "${RUNTIME_PATH}/${subject}" ]
         then
-            mkdir -p "${base_path}/${subject_file}"
+            mkdir -p "${RUNTIME_PATH}/${subject_file}"
         fi
 
         unpack_topics "$subject_path" "$subject_file" "$subject"
@@ -288,7 +298,7 @@ begin_review() {
     local practice_index=0
     local skip_request=0
 
-    readarray -t subject_list < <(find "${base_path}" -mindepth 1 -maxdepth 1)
+    readarray -t subject_list < <(find "${RUNTIME_PATH}" -mindepth 1 -maxdepth 1)
 
     subject_index=0
     while [ $subject_index -ge 0 ] && [ $subject_index -lt ${#subject_list[*]} ]
@@ -471,17 +481,20 @@ then
     exit 1
 fi
 
-if [[ -v RESET ]] && [[ -d "${base_path}" ]]
+# user requested reset, base should be rebuilt
+if [[ -v RESET ]] && [[ -d "${RUNTIME_PATH}" ]]
 then
-    rm -r "${base_path}"
+    rm -r "${RUNTIME_PATH}"
     unpack_subjects "$DESTINATION"
     begin_review
-elif ! [[ -e "$DESTINATION" ]] && [[ -d "${base_path}" ]]
+# user did not supply base path, but base already exists
+elif ! [[ -e "$DESTINATION" ]] && [[ -d "${RUNTIME_PATH}" ]]
 then
     begin_review
-elif [[ -e "$DESTINATION" ]] && [[ -d "${base_path}" ]]
+# user supplied base path, previous path needs to be removed before start
+elif [[ -e "$DESTINATION" ]] && [[ -d "${RUNTIME_PATH}" ]]
 then
-    rm -r "${base_path}"
+    rm -r "${RUNTIME_PATH}"
     unpack_subjects "$DESTINATION"
     begin_review
 else
