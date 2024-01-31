@@ -12,3 +12,4 @@
 * [Mathematics](mathematics.md)
 * [Python (staged)](python.md)
 * [Security](security.md)
+* [Qt](qt.md)
