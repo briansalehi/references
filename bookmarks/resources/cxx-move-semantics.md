@@ -27,7 +27,8 @@
 >     v = f();                        // move assigned constructed vector by return value
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -85,7 +86,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
 > - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
@@ -126,7 +128,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -144,11 +147,13 @@
 > const std::string& getRef();   // OK
 > const std::string* getPtr();   // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -198,7 +203,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -273,7 +279,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -337,7 +344,8 @@
 > - A `const` or non-`const` object marked with `std::move()`
 >
 > However, there is no useful semantic meaning of this case.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -373,7 +381,8 @@
 > Move semantics does not guarantee that any optimization happens at all or
 > what the effect of any optimization is. All we know is that the passed object
 > is subsequently in a valid but unspecified state.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -436,7 +445,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
 > ---
@@ -481,7 +491,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -961,7 +972,8 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1553,7 +1565,8 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+>
+> ---
 > **References**
 > ---
 </details>

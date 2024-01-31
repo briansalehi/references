@@ -339,7 +339,8 @@
 >     return f(i) + 1; // immediate function context
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 > ---
@@ -363,7 +364,8 @@
 
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -498,7 +500,8 @@
 >
 > f(); // Error: ::(unique)::f and A::f both in scope
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 >
@@ -532,7 +535,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 > ---
@@ -652,7 +656,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
 > ---

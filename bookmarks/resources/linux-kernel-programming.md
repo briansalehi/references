@@ -111,7 +111,8 @@
 > ```sh
 > arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-binutils
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -238,10 +239,12 @@
 > ```sh
 > git log --date-order --graph --tags --simplify-by-decoration
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -276,7 +279,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -306,7 +310,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -319,10 +324,12 @@
 > * building
 > * installing targets
 > * setting up bootloaders
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -337,7 +344,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -352,7 +360,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -424,7 +433,8 @@
 > * scripts: various useful scripts
 > * security: the **Linux Security Module (LSM)**, containing **Mandatory Access Control (MAX)** and **Discretionary Access Control (DAC)** frameworks.
 > * tools: various tools
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -442,10 +452,12 @@
 > ``````
 >
 > Output will be generated in `Documentation/output/latex` and `Documentation/output/html`.
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Kernel Documentation](https://kernel.org/doc/html/latest)
 > ---
@@ -526,7 +538,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -558,7 +571,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -573,7 +587,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -618,7 +633,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [embedonix.com](https://embedonix.com/articles/linux/emulating-raspberry-pi-on-linux/)
 > - [qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel/wiki)
@@ -634,7 +650,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [jaycarlson.net](https://jaycarlson.net/embedded-linux/)
 > ---
@@ -648,7 +665,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - https://www.kernel.org/doc/html/latest/process/deprecated.html#deprecated-interfaces-language-features-attributes-and-conventions
 ---
@@ -658,10 +676,12 @@
 <summary>External resources:</summary>
 
 >
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Low-Level Programming University](https://github.com/gurugio/lowlevelprogramming-university)
 > - [Julia Evans: You can be a kernel hacker!](https://jvns.ca/blog/2014/09/18/you-can-be-a-kernel-hacker/)

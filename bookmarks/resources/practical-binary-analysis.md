@@ -99,10 +99,12 @@
 > combined to form a complete binary executable. On the other hand there are
 > position-independent (relocatable) executables, which you can call them apart
 > from ordinary shared libraries because they have an entry point address.
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -117,7 +119,8 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -133,7 +136,8 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -178,7 +182,8 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -244,7 +249,8 @@
 > ```sh
 > readelf --relocs example.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 > ---

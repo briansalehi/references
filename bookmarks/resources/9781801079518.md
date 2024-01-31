@@ -159,10 +159,12 @@
 > Critically, they organize and recognize the devices on them. If a new device
 > surfaces, like a pen drive, the USB bus driver will recognize the fact and
 > bind it to its device driver.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -183,10 +185,12 @@
 > driver for network adapter on the PCI bus will typically register itself to
 > the kernel's network inftrastructure (via `register_netdev()`) and the PCI
 > bus (`pci_register_driver()`).
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > - kernel.org/doc/html/latest/driver-api/index.html
 ---
@@ -201,10 +205,12 @@
 > a modern **SoC** are not on any physical bus, and thus their drivers are
 > typically platform drivers. To get started, look under the kernel source tree
 > in `drivers/` for code invoking the `platform_driver_register()` API.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > - https://kernel.org/doc/html/latest/driver-model/platform.html
 ---
@@ -229,10 +235,12 @@
 > example, it returns `EINVAL` when `read()` function pointer is `NULL`. This
 > misleads user space process to think of *"Invalid argument"* error, which
 > isn't the case.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -255,10 +263,12 @@
 > ```c
 > return nonseekable_open(struct inode *inode, struct file *fp);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > - https://lwn.net/Articles/97154/
 > - https://lwn.net/Articles/97180/
@@ -453,7 +463,8 @@
 
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -541,7 +552,8 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -594,10 +606,12 @@
 
 > ```c
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>

@@ -387,7 +387,8 @@
 >
 > Unfortunately, the rewritten statement is a better match, because it does not
 > need the implicit type conversion.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 > ---
@@ -438,10 +439,12 @@
 >     std:: cout << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -468,7 +471,8 @@
 > print(42);
 > print<char>(42);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 > ---
@@ -537,7 +541,8 @@
 >
 > print.operator()<std::string>("something to see");
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 > ---
@@ -565,7 +570,8 @@
 > ``````
 >
 > - Using `decltype(auto)` is not allowed.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
@@ -586,7 +592,8 @@
 > foo<std::string>("hello", 42);        // x has type std::string, y has type int
 > foo<std::string, long>("hello", 42);  // x has type std::string, y has type long
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 > ---
@@ -607,7 +614,8 @@
 > template<typename T, typename T2, typename T3>
 > void foo(T2 x, T y, T3 z);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 > ---
@@ -666,7 +674,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 - http://wg21.link/p2113r0
 ---
@@ -712,7 +721,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -732,7 +742,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -862,7 +873,8 @@
 >     std::cout << value << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 > ---
@@ -877,7 +889,8 @@
 > - Using concepts in template parameters
 > - Using concepts behind parameter types
 > - Specifying trailing requires clause after parameters list
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 > ---
@@ -904,7 +917,8 @@
 >     return get_max(*a, *b);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 > ---
@@ -936,7 +950,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -972,7 +987,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1021,7 +1037,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1042,7 +1059,8 @@ Next: 3.1.2
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1078,7 +1096,8 @@ Next: 3.1.2
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1093,7 +1112,8 @@ std::ranges::take(container, 5);
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>

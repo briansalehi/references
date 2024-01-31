@@ -343,10 +343,12 @@ cmake --system-information [file]
 > ```sh
 > cmake --build <dir> -- <build-tool-options>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -364,7 +366,8 @@ cmake --system-information [file]
 >
 > The alternative is to set it with the `CMAKE_BUILD_PARALLEL_LEVEL`
 > environment variable.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -448,7 +451,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --install <dir> [<options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -493,7 +497,8 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -526,7 +531,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --install <dir> --prefix <prefix>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -547,7 +553,8 @@ cmake --system-information [file]
 > ```sh
 > VERBOSE=1 cmake --build <dir>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -585,10 +592,12 @@ cmake --system-information [file]
 >
 > CMake will create `CMAKE_ARGV<n>` variables for all arguments passed to the
 > script (including the `--` token).
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -606,7 +615,8 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -621,7 +631,8 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -712,7 +723,8 @@ cmake --system-information [file]
 >
 > When running scripts, CMake won't execute any of the usual stages (such as
 > configuration or generation), and it won't use the cache.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -727,7 +739,8 @@ cmake --system-information [file]
 > usually hold references to these paths will contain the current working
 > directory instead: `CMAKE_BINARY_DIR`, `CMAKE_SOURCE_DIR`,
 > `CMAKE_CURRENT_BINARY_DIR`, and `CMAKE_CURRENT_SOURCE_DIR`.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -739,10 +752,12 @@ cmake --system-information [file]
 <summary>Use a utility in script?</summary>
 
 > To use a utility module, we need to call an `include(<MODULE>)` command.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>

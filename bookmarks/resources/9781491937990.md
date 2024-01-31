@@ -91,7 +91,8 @@ Nothing to import.
 > |Value constructor|`cv::Size2f{w, h}`|
 > |Member access|`sz.width` `sz.height`|
 > |Compute area|`sz.area()`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 > ---
@@ -123,10 +124,12 @@ Nothing to import.
 > |Enlarge rectangle by size|`r += s`|
 > |Compare rectangles for exact quality|`r1 == r2`|
 > |Compare rectangles for inequality|`r1 != r2`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -216,7 +219,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -268,7 +272,8 @@ Utility functions are left out.
 > the first three channels defaulting to only the first channel in the case of
 > single channel images. They also support a color, thickness, a line type, and
 > subpixel alignment of objects.
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
 > ---
@@ -336,7 +341,8 @@ Utility functions are left out.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>

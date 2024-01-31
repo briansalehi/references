@@ -344,7 +344,8 @@
 > ```sh
 > docker search alpine --filter is-official=true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 > ---
@@ -470,7 +471,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1224,7 +1226,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
 > ---
 </details>

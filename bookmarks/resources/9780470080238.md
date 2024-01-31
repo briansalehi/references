@@ -115,10 +115,12 @@
 > As shown by the core, machine was trying to execute address
 > `0x0000000a0000000a` which is the value we filled by overwriting on the
 > stack.
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -165,10 +167,12 @@
 > |A||
 > |B||
 > ||High Memory Addresses and Bottom of the Stack|
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -214,10 +218,12 @@
 > While this overflow can be useful in creating a denial of service, we can
 > move on to controlling the path of execution, or basically, controlling what
 > gets loaded into `EIP`, the instruction pointer.
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -238,10 +244,12 @@
 > ```sh
 > printf 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCC\xed\x83\x04\x08' | ./overflow
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -253,10 +261,12 @@
 >
 > We should separate each byte from end to the beginning separated by `\x`
 > resulting in `\xed\x83\x04\x3d`.
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -316,7 +326,8 @@
 > ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

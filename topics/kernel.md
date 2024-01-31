@@ -1315,10 +1315,12 @@
 > ```sh
 > sudo modprobe sample
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1369,7 +1371,8 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1438,10 +1441,12 @@
 > ```sh
 > /etc/modules.d
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+>
+> ---
 > **References**
 > - [modprobe.d(5)](https://manpages.org/modprobed/5)
 > - [modprobe.conf(5)](https://manpages.org/modprobeconf/5)
@@ -1719,7 +1724,8 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+>
+> ---
 > **References**
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
 > ---
@@ -2400,7 +2406,8 @@
 >     return bs;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2631,7 +2638,8 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -3266,7 +3274,8 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -4161,7 +4170,8 @@
 
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > ---
@@ -4589,7 +4599,8 @@
 > unsigned long msecs_to_jiffies(const unsigned int m)
 > unsigned long usecs_to_jiffies(const unsigned int u)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 >
@@ -4626,7 +4637,8 @@
 > Because they can be interrupted by signals, you should check the return value of the `_interruptible` variants.
 >
 > A nonezero means your sleep has been interrupted by some sort of signal, and the driver should return `ERESTARTSYS`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > ---

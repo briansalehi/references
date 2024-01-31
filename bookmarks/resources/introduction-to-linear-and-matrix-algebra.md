@@ -723,10 +723,12 @@
 > [Pu] = uuT = 1/√14 [(1,2,3)]\[1 2 3] = 1/14 [(1,2,3) (2,4,6) (3,6,9)]
 > This linear transformation squishes all of R^3 down onto the line in the direction of w.
 > So [Pu]w = w in this example.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -735,10 +737,12 @@
 <summary>What is the linear transformation of reflection of a space through a line in the direction of the unit vector u?</summary>
 
 > [Fu] = 2uuT-I
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -747,7 +751,8 @@
 <summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of u = (0,1) \in R^2?</summary>
 
 > [Fu] = 2uuT-I = 2[(0,1)]\[0 1] - [(1,0) (0,1)] = [(-1,0) (0,1)]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
@@ -858,7 +863,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -873,7 +879,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -906,7 +913,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>

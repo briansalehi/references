@@ -483,10 +483,12 @@
 >     // p2.get() == p2_pre, *p2 == 1
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.2.2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -516,7 +518,8 @@
 > ---
 > **Resources**
 > - 2.2.3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -628,7 +631,8 @@
 > ---
 > **Resources**
 > - 2.3.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -672,7 +676,8 @@
 >     // cmp2 = std::strong_ordering::greater
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.2
 > ---
@@ -687,7 +692,8 @@
 >
 > Due to the `O(n log n)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
 > Notably, `std::list` offers a method with an approximate `O(N log N)` complexity.
-
+>
+> ---
 > **Resources**
 > - 2.3.3
 > ---
@@ -852,7 +858,8 @@
 > ---
 > **Resources**
 > - 2.3.6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -892,7 +899,8 @@
 > ---
 > **Resources**
 > -  2.3.7
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1197,7 +1205,8 @@
 > ---
 > **Resources**
 > - 2.5.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1261,7 +1270,8 @@
 > ---
 > **Resources**
 > - 2.5.3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1581,7 +1591,8 @@
 > ---
 > **Resources**
 > - 2.7.4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1653,7 +1664,8 @@
 > ---
 > **Resources**
 > - 2.8.2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2021,7 +2033,8 @@
 > ---
 > **Resources**
 > - 2.9.2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2283,7 +2296,8 @@
 > ---
 > **Resources**
 > - 2.11.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2538,7 +2552,8 @@
 > ---
 > **Resources**
 > - 2.13.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -3699,7 +3714,8 @@
 >     // 4 5 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.13
 > ---

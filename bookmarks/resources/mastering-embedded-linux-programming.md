@@ -43,10 +43,12 @@
 > 3. Non-volatile storage
 > 4. Serial port
 > 5. Debugging interface (e.g. JTAG)
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -81,7 +83,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -96,7 +99,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -112,7 +116,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -180,7 +185,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -307,7 +313,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -322,7 +329,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -384,7 +392,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -577,7 +586,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -661,7 +671,8 @@
 > ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
 > ---
@@ -961,7 +972,8 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1547,7 +1559,8 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
 > ---
 </details>

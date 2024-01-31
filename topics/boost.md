@@ -399,10 +399,12 @@
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -466,7 +468,8 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -586,7 +589,8 @@
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 > ---

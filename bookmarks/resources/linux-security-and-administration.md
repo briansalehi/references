@@ -139,10 +139,12 @@ Nothing to import.
 > ```sh
 > sudo systemctl reload ssh
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -163,7 +165,8 @@ Nothing to import.
 > ```sh
 > sudo apt install libpam-cracklib
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -196,7 +199,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [pam.d(5)](https://manpages.org/pamd/5)
 > - [pam.conf(5)](https://manpages.org/pamconf/5)
@@ -238,7 +242,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [ssh(1)](https://manpages.org/ssh/1)
 > - [sshd(8)](https://manpages.org/sshd/8)
@@ -325,10 +330,12 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --list-all
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -339,10 +346,12 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --list-all-zones
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -351,7 +360,8 @@ Nothing to import.
 <summary>How to make changes permanently on firewalld?</summary>
 
 > Use `--permanent` optional argument to make changes take effect even after reboot.
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -411,7 +421,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --get-default
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -445,7 +456,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --get-active-zones
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -493,10 +505,12 @@ Nothing to import.
 > sudo firewall-cmd --reload
 > sudo systemctl disable --now <service>
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -508,7 +522,8 @@ Nothing to import.
 > sudo firewall-cmd --add-port 1622/tcp --permanent
 > sudo firewall-cmd --reload
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -523,10 +538,12 @@ Nothing to import.
 > sudo firewall-cmd --remove-port 1622/tcp --permanent
 > sudo fierwall-cmd --reload
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -558,7 +575,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -633,7 +651,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -688,7 +707,8 @@ Nothing to import.
 > auth    sufficient  pam_unix.so likeauth nullok
 > password    sufficient  pam_unix.so nullok use_authtok sha256 shadow remember=5
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -732,7 +752,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>

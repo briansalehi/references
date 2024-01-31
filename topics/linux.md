@@ -183,10 +183,12 @@
 > mdadm --zero-superblock /dev/sdX
 > mdadm --detail --scan >> /etc/mdadm.conf
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
-
+>
+> ---
 > **References**
 > ---
 </details>

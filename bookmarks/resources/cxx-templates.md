@@ -27,7 +27,8 @@
 > because this use of `class` can be misleading, you should prefer the use of
 > `typename`. The keyword `struct` cannot be used in place of `typename` when
 > declaring type parameters.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 > ---
@@ -78,7 +79,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -114,7 +116,8 @@
 > * Before C++17, type `T` also had to be copyable to be able to pass in
 >   arguments, but since C++17 you can pass rvalues even if neither a copy nor
 >   a move constructor is valid.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -166,7 +169,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -273,7 +277,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -348,7 +353,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -537,7 +543,8 @@
 >
 > However, this approach only makes sence, if there is a natural default for a
 > template parameter.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 > ---
@@ -661,7 +668,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -720,7 +728,8 @@
 > Unfortunately, the error is quite subtle and may not manifest itself in all
 > cases. In general, a conforming compiler isn’t even permitted to reject this
 > code.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 > ---
@@ -756,7 +765,8 @@
 >     return b < a ? a : b;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 > ---
@@ -952,7 +962,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1041,7 +1052,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1162,7 +1174,8 @@
 > Stack<int> AnotherStack = IntStack;   // OK in all standard versions
 > Stack IntegralStack = AnotherStack;    // OK since C++17
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 > ---
@@ -1192,7 +1205,8 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1309,10 +1323,12 @@
 > ```cpp
 > Stack StringStack{"no surprises now!"};  // Stack<std::string>
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

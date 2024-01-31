@@ -715,10 +715,12 @@ Nested mutex and hierarchichal locks are skipped.
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>

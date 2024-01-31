@@ -3987,7 +3987,8 @@ Note that `random_device` cannot be seeded.
 > import std;
 > import "geometry.hpp"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 > ---

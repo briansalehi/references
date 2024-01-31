@@ -139,10 +139,12 @@
 >   \end{cases}
 > \end{equation}
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -151,7 +153,8 @@
 <summary>Graph the function $$\begin{equation}f(x) = \begin{cases}1/x & x < 0 \\ x & 0 \le x \end{cases}\end{equation}$$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -172,7 +175,8 @@
 
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -181,7 +185,8 @@
 <summary>What symmetries, if any, do the graphs of functions $y = x^3/8$, $y = -x^{3/2}$ and $y = (-x)^{2/3}$ have?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -210,10 +215,12 @@
 > A function of the form $f(x) = mx+b$, where $m$ and $b$ are fixed constants, is called a linear function.
 >
 > The function $f(x) = x$ where $m = 1$ and $b = 0$ is called the identity function.
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -256,7 +263,8 @@
 > ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -288,7 +296,8 @@
 > where $n$ is a nonnegative integer and the numbers $a_0,a_1,a_2,...,a_n$ are real constants called the **coefficients** of the polynomial.
 >
 > All polynomials have domain $(-\inf,\inf)$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -312,7 +321,8 @@
 > ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -364,7 +374,8 @@
 > These are the functions $f(x) = log_{a}x$, where the base $a \ne 1$ is a positive constant.
 >
 > They are the inverse functions of the exponential functions.
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -382,7 +393,8 @@
 >
 > The catenary is one example of a transcendental function.
 > Its graph has the shape of a cable, like a telephone line or electric cable, strung from one support to another and hanging freely under its own weight.
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---

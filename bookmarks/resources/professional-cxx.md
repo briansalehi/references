@@ -187,7 +187,8 @@
 > std::vector<double> v{42};
 > print_value(std::cbegin(v));
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 > ---
@@ -271,7 +272,8 @@
 >
 > std::vector<int> inputs = get_input(std::istream_iterator<int>{std::cin}, std::istream_iterator<int>{});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 > ---
@@ -306,7 +308,8 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -342,7 +345,8 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -376,7 +380,8 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -478,7 +483,8 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+>
+> ---
 > **References**
 > ---
 </details>

@@ -63,10 +63,12 @@
 > {
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -114,7 +116,8 @@
 >     std::cout << sizeof(long double) << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -130,10 +133,12 @@
 > long large_number = 200000000;
 > int regular_number{large_number}; // ERROR: Type long narrowed to int
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -144,7 +149,8 @@
 > ```cpp
 > auto flag = true; // bool
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 > ---
@@ -162,7 +168,8 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -181,7 +188,8 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -192,7 +200,8 @@
 > ```cpp
 > const double pi = 22.0 / 7;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 > ---
@@ -213,7 +222,8 @@ constexpr double get_pi()
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -235,10 +245,12 @@ constexpr double get_pi()
 > double dividen{22.0}, divisor{7.0};
 > divide(dividen, divisor); // ERROR: non-const arguments to consteval
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -261,7 +273,8 @@ constexpr double get_pi()
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>

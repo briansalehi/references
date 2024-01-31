@@ -79,10 +79,12 @@ Nothing to import.
 >
 > The `-it` flags tell Docker to make the container interactive and to attach
 > the current shell to the container’s terminal.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container run](https://docs.docker.com/engine/reference/commandline/container_run/)
 > ---
@@ -102,7 +104,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -118,10 +121,12 @@ Nothing to import.
 > ```sh
 > docker container exec --interactive --tty container_name /usr/bin/bash
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container exec](https://docs.docker.com/engine/reference/commandline/container_exec/)
 > ---
@@ -139,10 +144,12 @@ Nothing to import.
 > ```sh
 > docker container stop my-container
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container stop](https://docs.docker.com/engine/reference/commandline/container_stop/)
 > ---
@@ -157,10 +164,12 @@ Nothing to import.
 > ```sh
 > docker container start my-container
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container start](https://docs.docker.com/engine/reference/commandline/container_start/)
 > ---
@@ -214,10 +223,12 @@ Nothing to import.
 > ```sh
 > docker container list --all
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
 > ---
@@ -235,10 +246,12 @@ Nothing to import.
 > ```sh
 > docker info
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
 > ---
@@ -277,7 +290,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
 > ---
@@ -294,7 +308,8 @@ Nothing to import.
 > ```sh
 > docker image pull gcr.io/google-containers/git-sync:v3.1.5
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -318,7 +333,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
@@ -342,7 +358,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image prune](https://docs.docker.com/engine/reference/commandline/image_prune/)
 ---
@@ -376,7 +393,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 > ---
@@ -433,7 +451,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 > ---
@@ -453,7 +472,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -487,7 +507,8 @@ Nothing to import.
 > docker image pull alpine:latest
 > docker image list --digests alpine:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 > ---
@@ -513,7 +534,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -630,7 +652,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -997,7 +1020,8 @@ Nothing to import.
 
 > The configuration and state of a *swarm* is held in a distributed *etcd* database located on all *managers*.
 > It's installed as part of the swarm and just takes care of itself.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 > ---
@@ -1012,7 +1036,8 @@ Nothing to import.
 > Once they're added to a *swarm* they're automatically switched into **swarm mode**.
 >
 > Joining a Docker host to an existing *swarm* switches them into *swarm mode* as part of the operation.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 >
@@ -1257,7 +1282,8 @@ Nothing to import.
 > ```sh
 > docker service create --name my-service --publish 80:80 --replicas 5 repository/project:v1
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 > ---
@@ -1432,7 +1458,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1598,7 +1625,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2107,7 +2135,8 @@ docker swarm ca --help
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
 > ---
 </details>

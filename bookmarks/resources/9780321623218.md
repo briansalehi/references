@@ -43,10 +43,12 @@ Nothing to be imported.
 >     f(nullptr); // calls f(void*)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
 > - [nullptr](https://en.cppreference.com/w/cpp/language/nullptr "cpp/language/nullptr")
 > ---
@@ -72,7 +74,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
 > - [Placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto "cpp/language/auto")
 > - [Function return type deduction](https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function")
@@ -97,10 +100,12 @@ Nothing to be imported.
 >     int xd{2.3}; // error
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
 > - [Initialization](https://en.cppreference.com/w/cpp/language/initialization "cpp/language/initialization")
 > - [Default initialization](https://en.cppreference.com/w/cpp/language/default_initialization "cpp/language/default_initialization")
@@ -142,10 +147,12 @@ Nothing to be imported.
 >     fp(base{1, 2, 3});  // Okay, explicit conversion of {1, 2, 3} to base
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Member initializer list](https://en.cppreference.com/w/cpp/language/constructor "cpp/language/constructor")
 > ---
@@ -165,7 +172,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Range-based for loop](https://en.cppreference.com/w/cpp/language/range-for "cpp/language/range-for")
 > ---
@@ -180,7 +188,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
 > - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
@@ -226,10 +235,12 @@ Nothing to be imported.
 >     std::cout << R"(quotes can be "freely" used with raw string literals)" << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [String literal](https://en.cppreference.com/w/cpp/language/string_literal "cpp/language/string_literal")
 > ---
@@ -250,7 +261,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [noexcept operator](https://en.cppreference.com/w/cpp/language/noexcept "cpp/language/noexcept")
 > - [noexcept specifier](https://en.cppreference.com/w/cpp/language/noexcept_spec "cpp/language/noexcept_spec")
@@ -268,7 +280,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -294,7 +307,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Constant expressions](https://en.cppreference.com/w/cpp/language/constant_expression "cpp/language/constant_expression")
 > - [Constexpr specifier](https://en.cppreference.com/w/cpp/language/constexpr "cpp/language/constexpr")
@@ -376,7 +390,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Template parameters](https://en.cppreference.com/w/cpp/language/template_parameters "cpp/language/template_parameters") (see [Default template arguments](https://en.cppreference.com/w/cpp/language/template_parameters#Default_template_arguments))
 > ---
@@ -397,7 +412,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Lambda expressions](https://en.cppreference.com/w/cpp/language/lambda "cpp/language/lambda")
 > ---
@@ -441,7 +457,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -481,7 +498,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Function declaration](https://en.cppreference.com/w/cpp/language/function "cpp/language/function") (see [Return type deduction](https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function"))
 > ---
@@ -541,7 +559,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [Templates](https://en.cppreference.com/w/cpp/language/templates "cpp/language/templates")
 > - [Template parameters](https://en.cppreference.com/w/cpp/language/template_parameters "cpp/language/template_parameters") (see [Non-type template parameter](https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter))
@@ -573,7 +592,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [typename keyword](https://en.cppreference.com/w/cpp/keyword/typename "cpp/keyword/typename")
 > ---
@@ -705,7 +725,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [exit](https://en.cppreference.com/w/cpp/utility/program/exit "cpp/utility/program/exit")
 > - [atexit](https://en.cppreference.com/w/cpp/utility/program/atexit "cpp/utility/program/atexit")
@@ -757,7 +778,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [namespace alias](https://en.cppreference.com/w/cpp/language/namespace_alias "cpp/language/namespace_alias")
 > ---
@@ -781,7 +803,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [using keyword](https://en.cppreference.com/w/cpp/keyword/using "cpp/keyword/using")
 > - [using declaration](https://en.cppreference.com/w/cpp/language/using_declaration "cpp/language/using_declaration")
@@ -805,7 +828,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [namespaces](https://en.cppreference.com/w/cpp/language/namespace "cpp/language/namespace") (see [using directive](https://en.cppreference.com/w/cpp/language/namespace#Using-directives))
 > ---
@@ -918,7 +942,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [std::pair](https://en.cppreference.com/w/cpp/utility/pair "cpp/utility/pair")
 > ---
@@ -1008,7 +1033,8 @@ Nothing to be imported.
 >     std::cout << "i: " << i << std::endl; // 2
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 >
@@ -1030,7 +1056,8 @@ Nothing to be imported.
 > std::get<0>(p);
 > std::get<1>(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -1169,7 +1196,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple "cpp/utility/tuple")
 ---
@@ -1999,7 +2027,8 @@ behavior clearer.
 > std::async(std::launch::async, do_something);
 > // runs sequentially
 > ``````
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 >

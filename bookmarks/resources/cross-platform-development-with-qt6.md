@@ -55,10 +55,12 @@ Qt Widgets left incomplete.
 > - `bool`
 > - `real`
 > - `list`
-
+>
+> ---
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>

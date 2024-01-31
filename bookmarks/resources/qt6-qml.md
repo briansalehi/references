@@ -135,10 +135,12 @@ Nothing to import.
 >     visible: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
@@ -177,7 +179,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
@@ -202,7 +205,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
@@ -217,7 +221,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
@@ -237,10 +242,12 @@ Nothing to import.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
@@ -258,7 +265,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 ---
@@ -286,7 +294,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
@@ -303,10 +312,12 @@ Nothing to import.
 >
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -342,7 +353,8 @@ Make rectangle edges curved?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -384,7 +396,8 @@ Create an image element to show some image?
 >     clip: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -423,10 +436,12 @@ Export properties of a component to be used as an API?
 >
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -441,7 +456,8 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -691,7 +707,8 @@ Export properties of a component to be used as an API?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -756,7 +773,8 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -858,7 +876,8 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1012,7 +1031,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -1027,7 +1047,8 @@ Get a line of text from user?
 
 > The attached property `Keys` allows executing code based on certain key
 > presses.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -1066,7 +1087,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 > ---
@@ -1086,7 +1108,8 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1228,7 +1251,8 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1246,7 +1270,8 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1341,7 +1366,8 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1522,7 +1548,8 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>

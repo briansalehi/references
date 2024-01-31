@@ -43,10 +43,12 @@
 > This spinning will only happen on multi-core machines because, on a single-core machine, it cannot happen.
 >
 > A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex* which is a lock held by a task.
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -102,7 +104,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -138,7 +141,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -157,7 +161,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -217,7 +222,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -243,10 +249,12 @@
 > ``````
 >
 > The mutex APIs can be found in the `include/linux/mutex.h` header file.
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -276,7 +284,8 @@
 >     [...]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 > ---
@@ -303,10 +312,12 @@
 >
 > Each of these functions returns 0 if the lock has been acquired successfully.
 > Moreover, interruptible variants return `-EINTR` when the locking attempt was interrupted by a signal.
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -378,7 +389,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -421,7 +433,8 @@
 
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>

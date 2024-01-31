@@ -15,10 +15,12 @@
 > 7. **Interface:** Made up of the publicly accessible methods and data.
 > 8. **Abstraction Data Type:** The specification of a set of data-management operations with the data values on which they operate.
 > 9. **Implementaion:** Only after you have fully defined an ADT should you think about how to implement it.
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -136,7 +138,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -261,7 +264,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>

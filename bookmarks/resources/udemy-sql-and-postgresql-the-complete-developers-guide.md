@@ -595,10 +595,12 @@
 > 1. Group records by a specific column, e.g. `user_id`
 > 2. Find the set of all unqiue values in that column
 > 3. Take each record and assign to a group based on grouped unique values
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -643,7 +645,8 @@
 > group by photo_id
 > having count(*) > 2;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -693,7 +696,8 @@
 > - `min()`
 > - `max()`
 > - `sum()`
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 > ---
@@ -711,10 +715,12 @@
 > from comments
 > group by user_id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1142,7 +1148,8 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1479,7 +1486,8 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
-
+>
+> ---
 > **References**
 > - https://www.postgresql.org/docs/current/storage-page-layout.html
 ---

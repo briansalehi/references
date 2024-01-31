@@ -175,10 +175,12 @@
 > ```sh
 > ARCH=<arch> make myown_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -298,7 +300,8 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -337,7 +340,8 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -502,7 +506,8 @@
 > ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- INSTALL_MOD_PATH=<dir> make modules_install
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > ---
@@ -574,7 +579,8 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -771,7 +777,8 @@
 > Building a module this way does not allow integration into the kernel configuration/compilation process, and the module needs to be built separately.
 > It must be noted that with this solution, the module cannot be statically linked in the final kernel image – that is, it cannot be built in.
 > Out-of-tree compilation only allows **loadable kernel modules** to be produced.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 > ---
@@ -1150,7 +1157,8 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

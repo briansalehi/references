@@ -587,7 +587,8 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -617,7 +618,8 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -653,7 +655,8 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+>
+> ---
 > **References**
 > ---
 </details>

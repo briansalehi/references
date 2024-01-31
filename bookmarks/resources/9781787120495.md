@@ -39,10 +39,12 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -67,7 +69,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 > ---
@@ -108,7 +111,8 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -148,7 +152,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 > ---
@@ -187,7 +192,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 > ---
@@ -240,7 +246,8 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 > ---
@@ -322,7 +329,8 @@
 >     std::cout << ((perms & std::filesystem::perms::others_exec)  == std::filesystem::perms::none ? '-' : 'x');
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 > ---
@@ -366,7 +374,8 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+>
+> ---
 > **References**
 > ---
 </details>

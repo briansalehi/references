@@ -159,10 +159,12 @@
 > x/x $rip
 > help x
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -177,7 +179,8 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -193,7 +196,8 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -228,7 +232,8 @@
 > help info threads
 > help info source
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 > ---
@@ -286,7 +291,8 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -298,10 +304,12 @@
 > tui enable
 > help tui
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -538,7 +546,8 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2802,10 +2811,12 @@
 > * xmm0
 > * ...
 > * xmm15
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
-
+>
+> ---
 > **References**
 > - https://en.wikipedia.org/wiki/Flynn's_taxonomy
 > ---
@@ -2835,7 +2846,8 @@
 >
 > There is also **AVX-512** which provides 512 bits registers and are called
 > `zmm` registers.
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 > ---

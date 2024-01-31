@@ -15,10 +15,12 @@
 >     std::string date = std::format("{}/{}/{}", 2023, 10, 1);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -166,7 +168,8 @@
 >     return std::accumulate(buffer.begin(), buffer.end(), 0);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
 > ---
