@@ -245,6 +245,8 @@ Nothing to import.
 <details>
 <summary>What element is the most basic type to be inherited by other visual elements?</summary>
 
+> **Description**
+>
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
@@ -261,6 +263,8 @@ Nothing to import.
 <details>
 <summary>What are the basic properties of item element?</summary>
 
+> **Description**
+>
 > - **Geometry:** `x` and `y`, `width` and `height`, and `z` for stacking order
 >   of lift elements up or down from their natural ordering.
 > - **Layout Handling:** `anchors` (left, right, top, bottom, vertical,
