@@ -4,21 +4,21 @@ Covers development tools required for an embedded software engineer.
 
 ## Code Editors
 
-### ★★★★★ [Practical Vim](resources/9781934356982.md)
+### ★★★ [Practical Vim](resources/9781934356982.md)
 [<img src="covers/9781934356982.jpg" width="200"/>](resources/9781934356982.md)
 
-### ★★★★★ [Modern Vim](resources/9781680502626.md)
+### ★★★ [Modern Vim](resources/9781680502626.md)
 [<img src="covers/9781680502626.jpg" width="200"/>](resources/9781680502626.md)
 
-### ★★★★★ [Mastering Vim](resources/9781789341096.md)
+### ★★★ [Mastering Vim](resources/9781789341096.md)
 [<img src="covers/9781789341096.jpg" width="200"/>](resources/9781789341096.md)
 
 ## Debuggers
 
-### ★★★★★ [GNU Debugger Tips](resources/gdb-tips.md)
+### ★★★ [GNU Debugger Tips](resources/gdb-tips.md)
 [<img src="covers/gdb-tips.jpg" width="200"/>](resources/gdb-tips.md)
 
-### ★★★★★ [GNU Pocket Reference](resources/9780596100278.md)
+### ★★★ [GNU Pocket Reference](resources/9780596100278.md)
 [<img src="covers/9780596100278.jpg" width="200"/>](resources/9780596100278.md)
 
 ## Version Control System
@@ -28,31 +28,31 @@ Covers development tools required for an embedded software engineer.
 
 ## Build Tools
 
-### ★★★★ [Professional CMake](resources/9781925904208.md)
+### ★★ [Professional CMake](resources/9781925904208.md)
 [<img src="covers/9781925904208.jpg" width="200"/>](resources/9781925904208.md)
 
-### ★★★★ [CMake Cookbook](resources/9781788470711.md)
+### ★★ [CMake Cookbook](resources/9781788470711.md)
 [<img src="covers/9781788470711.jpg" width="200"/>](resources/9781788470711.md)
 
-### ★★★★★ [CMake Best Practices](resources/9781803239729.md)
+### ★★★ [CMake Best Practices](resources/9781803239729.md)
 [<img src="covers/9781803239729.jpg" width="200"/>](resources/9781803239729.md)
 
-### ★★★★★ [Modern CMake for C++](resources/9781801070058.md)
+### ★★★ [Modern CMake for C++](resources/9781801070058.md)
 [<img src="covers/9781801070058.jpg" width="200"/>](resources/9781801070058.md)
 
 ## Containerization
 
-### ★★★★ [Docker Deep Dive](resources/9781521822807.md)
+### ★★ [Docker Deep Dive](resources/9781521822807.md)
 [<img src="covers/9781521822807.jpg" width="200"/>](resources/9781521822807.md)
 
-### ★★★★ [Docker in Practice](resources/9781617294808.md)
+### ★★ [Docker in Practice](resources/9781617294808.md)
 [<img src="covers/9781617294808.jpg" width="200"/>](resources/9781617294808.md)
 
-### ★★★★ [Docker: Up & Running](resources/9781098131821.md)
+### ★★ [Docker: Up & Running](resources/9781098131821.md)
 [<img src="covers/9781098131821.jpg" width="200"/>](resources/9781098131821.md)
 
-### ★★★★ [Learn Docker in a month of Lunches](resources/9781617297052.md)
+### ★★ [Learn Docker in a month of Lunches](resources/9781617297052.md)
 [<img src="covers/9781617297052.jpg" width="200"/>](resources/9781617297052.md)
 
-### ★★★★ [Docker for Developers](resources/9781789536058.md)
+### ★★ [Docker for Developers](resources/9781789536058.md)
 [<img src="covers/9781789536058.jpg" width="200"/>](resources/9781789536058.md)

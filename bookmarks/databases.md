@@ -13,7 +13,7 @@ Covers database concepts, languages, and popular projects.
 
 ## PostgreSQL
 
-## ★★★★★ [The Art of PostgreSQL](resources/the-art-of-postgresql.md)
+## ★★★ [The Art of PostgreSQL](resources/the-art-of-postgresql.md)
 [<img alt="The Art of PostgreSQL" src="covers/the-art-of-postgresql.jpg" width="200"/>](resources/the-art-of-postgresql.md)
 
 ## ★★★☆☆ [Learn PostgreSQL](resources/9781838985288.md)
