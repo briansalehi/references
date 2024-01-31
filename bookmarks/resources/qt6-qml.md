@@ -263,7 +263,7 @@ Nothing to import.
 <details>
 <summary>What are the basic properties of item element?</summary>
 
-> </br>
+</br>
 > - **Geometry:** `x` and `y`, `width` and `height`, and `z` for stacking order
 >   of lift elements up or down from their natural ordering.
 > - **Layout Handling:** `anchors` (left, right, top, bottom, vertical,
