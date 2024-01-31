@@ -12,7 +12,7 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

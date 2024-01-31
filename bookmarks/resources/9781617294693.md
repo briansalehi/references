@@ -24,7 +24,7 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 1
-
+> ---
 > **References**
 > - [Thread Library](https://en.cppreference.com/w/cpp/thread)
 ---
@@ -119,7 +119,7 @@
 > ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
 > - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
 > ---

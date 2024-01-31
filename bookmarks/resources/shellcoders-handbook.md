@@ -62,7 +62,7 @@
 > ---
 > **Resources**
 > - The Shellcoder's Handbook: Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -299,7 +299,7 @@
 > ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+> ---
 > **References**
 > ---
 </details>

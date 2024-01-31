@@ -120,7 +120,7 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
 > ---
 </details>

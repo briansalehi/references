@@ -72,7 +72,7 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
 > ---
 </details>

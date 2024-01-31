@@ -36,7 +36,7 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
 > ---
 </details>

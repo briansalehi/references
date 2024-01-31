@@ -83,10 +83,11 @@ Nothing to import.
 >     pixelSize: 24
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---

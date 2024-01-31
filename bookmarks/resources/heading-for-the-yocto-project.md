@@ -12,7 +12,7 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

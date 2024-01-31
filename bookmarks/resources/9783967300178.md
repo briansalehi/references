@@ -24,7 +24,7 @@
 
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
 > - [structured binding](https://en.cppreference.com/w/cpp/language/structured_binding "cpp/language/structured_binding")
 ---

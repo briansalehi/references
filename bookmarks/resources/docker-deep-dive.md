@@ -40,7 +40,7 @@ Nothing to import.
 
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker version](https://docs.docker.com/engine/reference/commandline/version/)
 > ---

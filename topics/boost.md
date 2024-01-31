@@ -12,7 +12,7 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
 ---
@@ -28,7 +28,7 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
 > ---
@@ -240,7 +240,7 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context__strand.html
 ---
@@ -292,7 +292,7 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
 > ---
 </details>
@@ -340,7 +340,7 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/deadline_timer.html
 > ---

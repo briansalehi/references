@@ -1159,7 +1159,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
 > ---
 </details>

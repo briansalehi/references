@@ -16,7 +16,7 @@
 
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

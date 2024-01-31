@@ -16,7 +16,7 @@
 
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -52,7 +52,7 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

@@ -496,7 +496,7 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -916,7 +916,7 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
 > ---
 </details>

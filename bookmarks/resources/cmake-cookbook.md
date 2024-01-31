@@ -108,7 +108,7 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -136,7 +136,7 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -156,7 +156,7 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

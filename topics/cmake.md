@@ -12,7 +12,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -96,7 +96,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -216,7 +216,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -256,7 +256,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -292,7 +292,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -736,7 +736,7 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

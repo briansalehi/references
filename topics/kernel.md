@@ -108,7 +108,7 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -124,7 +124,7 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
 > - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
 > ---
@@ -156,7 +156,7 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
 > ---
 </details>
@@ -268,7 +268,7 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
 > ---
 </details>

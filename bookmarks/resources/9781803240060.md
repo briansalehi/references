@@ -96,7 +96,7 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>

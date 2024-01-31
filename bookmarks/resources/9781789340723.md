@@ -47,7 +47,7 @@
 > ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -111,7 +111,7 @@
 > ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
@@ -156,7 +156,7 @@
 > ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > ---
 </details>
