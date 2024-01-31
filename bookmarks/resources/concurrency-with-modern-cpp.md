@@ -144,7 +144,8 @@ Nothing to import.
 >     taskB.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.2.1.1
 >
