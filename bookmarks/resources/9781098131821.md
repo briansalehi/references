@@ -23,7 +23,7 @@ Nothing to import.
 > - Docker: Up & Running - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -40,9 +40,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/14 <sup>(published)</sup>
@@ -56,7 +56,7 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
 > - https://docs.docker.com/engine/deprecated/
 ---
@@ -74,7 +74,7 @@ Nothing to import.
 > - Docker: Up & Running - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -111,9 +111,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -128,7 +128,7 @@ Nothing to import.
 > - Docker: Up & Running - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,7 +143,7 @@ Nothing to import.
 > - Docker: Up & Running - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -159,9 +159,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/14 <sup>(writing)</sup>

@@ -15,9 +15,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,9 +30,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -45,9 +45,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,9 +60,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -75,9 +75,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -92,9 +92,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -110,7 +110,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -138,7 +138,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -158,7 +158,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -180,9 +180,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -197,9 +197,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -212,9 +212,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -239,7 +239,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -255,7 +255,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -288,7 +288,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -320,9 +320,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -339,7 +339,7 @@
 > - CMake Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -362,9 +362,9 @@
 > ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/15

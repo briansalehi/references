@@ -27,9 +27,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -48,7 +48,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -64,9 +64,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -104,7 +104,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -120,9 +120,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -140,7 +140,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -159,7 +159,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -171,9 +171,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -197,9 +197,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -219,7 +219,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -248,7 +248,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -279,9 +279,9 @@
 
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -308,7 +308,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -323,9 +323,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -340,9 +340,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -365,9 +365,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -380,7 +380,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -423,7 +423,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/14

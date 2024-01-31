@@ -60,9 +60,9 @@
 
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -120,9 +120,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -175,9 +175,9 @@
 
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -207,9 +207,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -267,9 +267,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -295,9 +295,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -360,9 +360,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -390,9 +390,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -423,9 +423,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -458,7 +458,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -495,7 +495,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -524,9 +524,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -572,9 +572,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -690,9 +690,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -729,9 +729,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -775,9 +775,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -803,9 +803,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -915,7 +915,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -941,9 +941,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -960,9 +960,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/12 <sup>(published)</sup>
@@ -1107,9 +1107,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [\<limits\>](https://en.cppreference.com/w/cpp/headers/limits "cpp/headers/limits")
@@ -1140,7 +1140,7 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1160,7 +1160,7 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1178,7 +1178,7 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1193,9 +1193,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1210,9 +1210,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1227,9 +1227,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1244,9 +1244,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1264,9 +1264,9 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1290,7 +1290,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1309,9 +1309,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1327,9 +1327,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1358,7 +1358,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1380,9 +1380,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1414,9 +1414,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1440,9 +1440,9 @@ Note that `random_device` cannot be seeded.
 
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1463,7 +1463,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1479,9 +1479,9 @@ Note that `random_device` cannot be seeded.
 
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1499,9 +1499,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1554,9 +1554,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1574,9 +1574,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1601,9 +1601,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1647,9 +1647,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1679,9 +1679,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1706,9 +1706,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1733,9 +1733,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1772,9 +1772,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1795,9 +1795,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [Regular Expressions Library](https://cppreference.com/w/cpp/regex "cpp/regex")
@@ -1814,7 +1814,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 * [std::regex\_constants](https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type")
@@ -1854,9 +1854,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::basic\_regex](https://cppreference.com/w/cpp/regex/basic_regex "cpp/regex/basic_regex")
@@ -1905,9 +1905,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::sub\_match](https://cppreference.com/w/cpp/regex/sub_match "cpp/regex/sub_match")
@@ -1935,7 +1935,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 * [std::regex\_constants](https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type")
@@ -1974,9 +1974,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::regex\_search](https://cppreference.com/w/cpp/regex/regex_search "cpp/regex/regex_search")
@@ -2040,9 +2040,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::sregex\_iterator](https://cppreference.com/w/cpp/regex/sregex_iterator "cpp/regex/sregex_iterator")
@@ -2066,9 +2066,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::regex\_replace](https://cppreference.com/w/cpp/regex/regex_replace "cpp/regex/regex_replace")
@@ -2094,7 +2094,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2130,7 +2130,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2144,12 +2144,13 @@ Note that `random_device` cannot be seeded.
 > std::size_t suffix{ str.find_last_not_of(" ") };
 > std::size_t prefix{ str.find_first_not_of(" ") };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2170,9 +2171,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2188,9 +2189,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/12 <sup>(writing)</sup>
@@ -2210,9 +2212,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2232,9 +2234,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2252,9 +2255,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2275,9 +2278,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2312,9 +2315,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2337,9 +2340,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2364,9 +2368,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2387,9 +2391,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2417,9 +2421,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2448,9 +2452,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2472,9 +2477,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2486,12 +2492,13 @@ Note that `random_device` cannot be seeded.
 > std::make_unique<int> ptr(42);
 > auto lambda = [p = std::move(ptr)]() { return ++*p; };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2522,9 +2529,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2545,9 +2552,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2561,12 +2568,13 @@ Note that `random_device` cannot be seeded.
 >     int result = generic_sum(40, 2);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2608,9 +2616,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2630,12 +2639,13 @@ Note that `random_device` cannot be seeded.
 >     return do_something(std::forward<T>(args)...);
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2669,9 +2679,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2710,9 +2720,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2735,9 +2745,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2793,9 +2803,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2850,9 +2861,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2881,9 +2892,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2920,9 +2932,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2948,9 +2960,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2974,12 +2986,14 @@ Note that `random_device` cannot be seeded.
 >     int sum = folding(counter, occurances, 0);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3024,9 +3038,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3080,12 +3094,13 @@ Note that `random_device` cannot be seeded.
 >     int r4 = object.x;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/12 <sup>(writing)</sup>
@@ -3103,9 +3118,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3131,9 +3146,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3175,9 +3190,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3197,9 +3212,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3214,9 +3229,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3231,9 +3246,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3255,7 +3270,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3283,9 +3298,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3317,12 +3332,13 @@ Note that `random_device` cannot be seeded.
 > auto v1 = mul(1, 2); // OK
 > auto v2 = mul(1.0, 2.0); // error: no matching overloaded function found
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3370,9 +3386,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3383,12 +3399,13 @@ Note that `random_device` cannot be seeded.
 >
 > get_value(); // warning
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3407,9 +3424,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3432,9 +3449,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3452,9 +3470,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3479,9 +3497,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3503,9 +3521,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/12
@@ -3535,9 +3553,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3563,9 +3581,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3591,9 +3609,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3616,12 +3634,13 @@ Note that `random_device` cannot be seeded.
 >     file.close();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3658,9 +3677,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3695,9 +3715,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3715,9 +3735,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::basic\_fstream](https://en.cppreference.com/w/cpp/io/basic_fstream "cpp/io/basic_fstream")
@@ -3737,9 +3757,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::basic\_fstream constructor](https://en.cppreference.com/w/cpp/io/basic_fstream/basic_fstream "cpp/io/basic_fstream/basic_fstream")
@@ -3758,9 +3778,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [std::ios\_base::openmode](https://en.cppreference.com/w/cpp/io/ios_base/openmode "cpp/io/ios_base/openmode")
@@ -3793,9 +3813,10 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3827,9 +3848,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3855,9 +3876,9 @@ Note that `random_device` cannot be seeded.
 
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3887,9 +3908,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3923,7 +3944,7 @@ Note that `random_device` cannot be seeded.
 > - x
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 8/12
@@ -3943,9 +3964,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3969,9 +3990,9 @@ Note that `random_device` cannot be seeded.
 
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4023,9 +4044,9 @@ Note that `random_device` cannot be seeded.
 
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4047,9 +4068,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4063,12 +4084,14 @@ Note that `random_device` cannot be seeded.
 > Although module partitions are distinct files, they are not available as
 > separate modules or submodules to translation units using a module. They are
 > exported together as a single, aggregated module.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4138,12 +4161,14 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4189,12 +4214,14 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4291,12 +4318,13 @@ Note that `random_device` cannot be seeded.
 > multiple smaller modules, you provide better granularity for imports. This
 > can be important if you're developing a large library because users should
 > only import things they use.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4308,8 +4336,9 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 

@@ -18,7 +18,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -35,7 +35,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ### Device Driver Namespaces
@@ -54,7 +54,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -72,7 +72,7 @@
 
 > **References**
 > - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
----
+> ---
 </details>
 
 <details>
@@ -85,9 +85,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -116,7 +116,7 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
 > - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
 ---
@@ -134,9 +134,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -150,7 +150,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -164,7 +164,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -234,7 +234,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -262,7 +262,7 @@
 > **References**
 > - https://lwn.net/Articles/97154/
 > - https://lwn.net/Articles/97180/
----
+> ---
 </details>
 
 ### Misc Driver Registration
@@ -324,9 +324,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Misc Driver Initialization
@@ -349,9 +349,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Misc Driver File Operations
@@ -425,9 +425,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -455,7 +455,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -519,9 +519,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -543,7 +543,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ### Misc Driver Data Transferring
@@ -584,9 +584,9 @@
 > ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -599,7 +599,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/7

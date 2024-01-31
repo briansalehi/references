@@ -38,7 +38,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -63,7 +63,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -83,7 +83,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 ### Argument Dependent Lookups (ADL)
@@ -107,9 +107,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -128,7 +128,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 ### Iterator Distances
@@ -145,9 +145,9 @@
 
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Iterator Traits
@@ -190,9 +190,9 @@
 
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Stream Iterators
@@ -210,9 +210,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Output Stream Iterator
@@ -242,9 +242,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Input Stream Iterator
@@ -274,9 +274,9 @@
 
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Iterator Adapters
@@ -308,7 +308,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 ### Insert Iterators
@@ -344,7 +344,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -378,7 +378,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -420,9 +420,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Reverse Iterators
@@ -444,9 +444,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -480,7 +480,7 @@
 > - Professional C++ - Chapter 17
 
 > **References**
----
+> ---
 </details>
 
 ### Move Iterators
@@ -518,9 +518,9 @@
 > ---
 > **Resources**
 > - Professional C++ - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 18/34

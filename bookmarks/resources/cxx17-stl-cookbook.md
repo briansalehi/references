@@ -44,7 +44,7 @@
 > - C++17 STL Cookbook - Chapter 10
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -70,9 +70,9 @@
 
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -110,7 +110,7 @@
 > - C++17 STL Cookbook - Chapter 10
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -151,9 +151,9 @@
 
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -190,9 +190,9 @@
 
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -214,9 +214,9 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -243,9 +243,9 @@
 
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -267,9 +267,9 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -294,9 +294,9 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -325,9 +325,9 @@
 
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -343,9 +343,9 @@
 > ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -368,6 +368,6 @@
 > - C++17 STL Cookbook - Chapter 10
 
 > **References**
----
+> ---
 </details>
 

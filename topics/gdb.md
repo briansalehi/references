@@ -24,9 +24,9 @@
 
 > **Resources**
 > - GDB Tips by Greg Law - Tip #1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Text User Interface
@@ -54,7 +54,7 @@
 > - GDB Tips by Greg Law - Tip #2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -67,9 +67,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #65
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -80,9 +80,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -92,12 +92,13 @@
 > (gdb) focus src
 > (gdb) focus cmd
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Command History
@@ -107,12 +108,13 @@
 
 > - `ctrl-p` for previous commands
 > - `ctrl-n` for next commands
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Starting Execution
@@ -125,9 +127,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Attaching Process
@@ -144,12 +146,13 @@
 > sudo gdb
 > (gdb) attach 12345
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Detaching Process
@@ -167,9 +170,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Source Listing
@@ -180,12 +183,13 @@
 > `list` displays 10 lines of source code. To see how many lines of source code
 > will be displayed enter `show listsize`. To adjust the lines of source code
 > displayed enter `set listsize 20`.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Breakpoints
@@ -203,7 +207,7 @@
 > - GDB Tips by Greg Law - Tip #7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -218,7 +222,7 @@
 > - GDB Tips by Greg Law - Tip #13
 
 > **References**
----
+> ---
 </details>
 
 ## Breakpoint Creation
@@ -236,9 +240,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -249,9 +253,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -264,9 +268,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Breakpoint Removal
@@ -281,9 +285,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Breakpoint Conditional
@@ -299,9 +303,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -314,9 +318,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Breakpoint Skipping
@@ -337,13 +341,14 @@
 > (gdb) ignore 1 999
 > (gdb) run
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #5
 > - GDB Tips by Greg Law - Tip #6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 
@@ -359,9 +364,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -370,12 +375,13 @@
 > ```gdb
 > (gdb) enable <breakpoint index>
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > **References**
----
+> ---
 </details>
 
 ## Breakpoint Saving
@@ -386,14 +392,15 @@
 > ```gdb
 > (gdb) save breakpoints program.gdb
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #13
 > - GDB Tips by Greg Law - Tip #61
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -407,9 +414,9 @@
 > **Resources**
 > - GDB Tips by Greg Law - Tip #61
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -425,9 +432,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Watchpoint Creation
@@ -440,9 +447,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -464,9 +471,9 @@
 > **Resources**
 > - GDB Tips by Greg Law - Tip #9
 > - GDB Tips by Greg Law - Tip #10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Execution Flow
@@ -479,12 +486,13 @@
 >   code or one machine instruction.
 > - `next`: Executes program similar to `step`, but it only continues to the
 >   next line in the current stack frame and will not step into functions.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Memory Examination
@@ -505,9 +513,9 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #63
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Thread Tracking
@@ -537,9 +545,10 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #64
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Backtrace
@@ -556,12 +565,13 @@
 > (gdb) bt 1
 > (gdb) bt -1
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #59
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Core Dump Control
@@ -578,7 +588,7 @@
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -591,9 +601,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -608,7 +618,7 @@
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -625,9 +635,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Core Dump Generation
@@ -644,7 +654,7 @@
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
 > **References**
----
+> ---
 </details>
 
 ## Memory Inspection
@@ -659,9 +669,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -670,12 +680,14 @@
 > ```gdb
 > (gdb) whatis random_number
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Memory Modification
@@ -690,9 +702,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Shell Command Execution
@@ -707,9 +719,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Debugger Configuration
@@ -740,5 +752,5 @@
 > - GDB Tips by Greg Law - Tip #62
 
 > **References**
----
+> ---
 </details>

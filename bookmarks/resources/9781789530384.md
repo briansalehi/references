@@ -15,7 +15,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,9 +30,9 @@
 > ---
 > **Resources**
 > - 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -48,7 +48,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/19 <sup>(published)</sup>
@@ -63,10 +63,10 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
 > - [LLVM support for kernel build](https://kernel.org/doc/html/latest/kbuild/llvm.html)
----
+> ---
 </details>
 
 <details>
@@ -83,7 +83,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -98,7 +98,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -114,7 +114,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -122,12 +122,13 @@
 
 > Toolchain can be completely built manually by [Cross Linux From Scratch](https://trac.clfs.org).
 > Another alternative to build toolchains is [crosstool-NG](https://crosstool-ng.github.io).
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -146,9 +147,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -161,9 +162,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -175,12 +176,13 @@
 > ./ct-ng show-arm-cortex_a8-linux-gnueabi
 > ./ct-ng show-arm-unknown-linux-gnueabi
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -207,9 +209,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -230,12 +232,13 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -254,12 +257,13 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -272,9 +276,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -283,12 +287,13 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -mcpu=cortex-a5 main.c -o app
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -303,7 +308,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -318,7 +323,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -332,9 +337,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -347,9 +352,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -358,12 +363,13 @@
 > ```sh
 > ${CROSS_COMPILE}readelf -a app | grep "program interpreter"
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -378,7 +384,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -395,7 +401,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -411,9 +417,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -427,12 +433,13 @@
 > ${CROSS_COMPILE}readelf -a app | grep library
 > ${CROSS_COMPILE}readelf -a app | grep interpreter
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -442,12 +449,13 @@
 > ${CROSS_COMPILE}readelf -a /usr/lib/x86_64-linux-gnu/libjpeg.so.8.2.2 | grep SONAME
 > libjpeg.so.8
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -469,9 +477,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -491,9 +499,9 @@
 > ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -502,12 +510,13 @@
 > ```sh
 > CC=armv6-rpi-linux-gnueabihf-gcc ./configure --host=armv6-rpi-linux-gnueabihf
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -523,12 +532,14 @@
 >
 > armv6-rpi-linux-gnueabihf main.c -o sqlite-test -lsqlite3
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -541,12 +552,13 @@
 > export PKG_CONFIG_LIBDIR=$(${CROSS_COMPILE}gcc -print-sysroot)/usr/lib/pkgconfig
 > ${CROSS_COMPILE}gcc $(pkg-config sqlite3 --cflags --libs) main.c -o sqlite-test
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -564,7 +576,7 @@
 > - 2
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/19 <sup>(published)</sup>
@@ -575,12 +587,13 @@
 > * **Phase 1 Rom Code**: loads a small chunk of code from first few pages of NAND, from flash memory connected through **Serial Peripheral Interface**, or from the first sector of an MMC device, or from a file named ML on the first partition of an MMC device.
 > * **Phase 2 Secondary Program Loader (SPL)**: sets up memory controller and other essential parts of the system in preparation for loading the **TPL** into DRAM.
 > * **Phase 3 Tertiary Program Loader (TPL)**: full bootloader such as U-Boot loads the kernel + optional FDT and initramfs into DRAM.
-
+>
+> ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -595,9 +608,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -608,9 +621,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -648,7 +661,7 @@
 
 > **References**
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
----
+> ---
 </details>
 
 <details>
@@ -682,9 +695,10 @@
 > ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -697,9 +711,10 @@
 > ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -745,9 +760,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -760,9 +775,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -795,9 +810,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -812,9 +827,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -831,9 +846,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -847,9 +862,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -864,9 +879,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -886,9 +901,10 @@
 > ---
 > **Resources**
 > - 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -902,9 +918,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -917,9 +933,9 @@
 > ---
 > **Resources**
 > - 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/19 <sup>(completed)</sup>
@@ -944,7 +960,7 @@
 > - 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -955,10 +971,10 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
 > - https://kernelnewbies.org/LinuxVersions
----
+> ---
 </details>
 
 <details>
@@ -979,9 +995,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -992,7 +1008,7 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
 > - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
 ---
@@ -1006,9 +1022,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1029,12 +1046,14 @@
 > ``````
 >
 > This config can be found in `.config` file as `CONFIG_EXAMPLE=y`.
-
+>
+> ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1049,9 +1068,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1082,9 +1101,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1097,9 +1116,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1122,9 +1141,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1135,12 +1155,13 @@
 > ```sh
 > make ARCH=arm menuconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1161,9 +1182,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1174,9 +1196,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1193,9 +1215,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1207,9 +1229,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1225,9 +1247,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1239,9 +1261,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1258,9 +1280,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1275,9 +1298,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1294,9 +1317,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1307,9 +1330,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1322,9 +1345,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1351,9 +1374,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1366,9 +1389,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1425,9 +1449,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1462,9 +1486,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1482,9 +1507,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1503,7 +1529,7 @@
 > - 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1518,7 +1544,7 @@
 > - 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1534,9 +1560,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1549,9 +1575,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1572,9 +1598,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1596,9 +1623,10 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1610,9 +1638,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1624,9 +1652,9 @@
 > ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1709,12 +1737,13 @@
 >     […]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/19

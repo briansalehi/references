@@ -23,7 +23,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 * [Using <code>sparse</code>](https://docs.kernel.org/dev-tools/sparse.html#using-sparse)
@@ -39,7 +39,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 * [LTTng Documentation](https://lttng.org/docs)
@@ -51,9 +51,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -63,9 +63,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -75,9 +75,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -99,10 +99,10 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
 > - [Linux Driver Verification](https://linuxtesting.org)
----
+> ---
 </details>
 
 <details>
@@ -114,9 +114,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -129,9 +129,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -154,9 +154,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -169,9 +169,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -182,7 +182,7 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
 > - [Linux Trace Toolkit next generation (LTTng)](https://lttng.org/docs)
 ---
@@ -197,9 +197,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -210,9 +210,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/13
@@ -227,9 +227,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -243,7 +243,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -259,9 +259,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -278,7 +278,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -291,9 +291,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -308,7 +308,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -324,7 +324,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -339,7 +339,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -354,7 +354,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -367,9 +367,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -380,9 +380,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -395,9 +395,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -427,9 +427,9 @@
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -448,7 +448,7 @@
 
 > **References**
 > - [Kernel Documentation](https://kernel.org/doc/html/latest)
----
+> ---
 </details>
 
 <details>
@@ -479,9 +479,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -494,9 +494,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -510,9 +510,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -528,7 +528,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -542,9 +542,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -560,7 +560,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -575,7 +575,7 @@
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -591,9 +591,9 @@
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/13
@@ -622,7 +622,7 @@
 > **References**
 > - [embedonix.com](https://embedonix.com/articles/linux/emulating-raspberry-pi-on-linux/)
 > - [qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel/wiki)
----
+> ---
 </details>
 
 <details>
@@ -637,7 +637,7 @@
 
 > **References**
 > - [jaycarlson.net](https://jaycarlson.net/embedded-linux/)
----
+> ---
 </details>
 
 <details>

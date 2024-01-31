@@ -12,7 +12,7 @@
 
 > **References**
 > - https://kernelnewbies.org/LinuxVersions
----
+> ---
 </details>
 
 <details>
@@ -44,7 +44,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -68,7 +68,7 @@
 > - Mastering Embedded Linux Programming - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -110,7 +110,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Linux Kernel Configuration System
@@ -127,7 +127,7 @@
 
 > **References**
 > - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
----
+> ---
 </details>
 
 <details>
@@ -158,7 +158,7 @@
 > - Mastering Embedded Linux Programming - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -176,9 +176,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,7 +195,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -206,9 +206,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -227,9 +227,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -270,7 +270,7 @@
 > - Mastering Embedded Linux Programming - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -285,9 +285,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -303,9 +303,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -320,7 +320,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -329,12 +329,13 @@
 > Running `make defconfig` or any alternatives will generate a new `.config`
 > file in the main (root) directory, while the old `.config` will be renamed
 > `.config.old`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -364,9 +365,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -395,9 +396,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -422,9 +423,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -436,9 +437,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -457,9 +459,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -473,9 +476,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -488,7 +491,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -499,9 +502,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -512,9 +515,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -525,9 +528,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -535,24 +538,27 @@
 
 > * `FUNCTION_TRACER`: allows tracing functions.
 > * `FUNCTION_GRAPH_TRACER`: This also shows a call graph.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What kernel configuration option allows tracking off periods of IRQs in the kernel?</summary>
 
 > `IRQSOFF_TRACER`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -564,9 +570,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -581,12 +587,13 @@
 > ```sh
 > make ARCH=arm kernelrelease
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -598,9 +605,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -612,9 +620,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -631,9 +640,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -644,9 +653,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -663,9 +672,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -676,9 +685,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -689,9 +699,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -702,9 +712,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kconfig Semantics
@@ -731,9 +742,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -748,9 +759,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -768,9 +780,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -792,9 +805,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Linux Kernel Build System
@@ -824,9 +838,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -842,9 +856,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -857,9 +871,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -881,9 +895,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -897,9 +911,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -970,9 +985,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1007,9 +1022,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1027,9 +1042,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1046,9 +1061,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Installing Kernel Build Artifacts
@@ -1068,9 +1083,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1083,12 +1099,14 @@
 >
 > The resulting modules will be installed in `/lib/modules/$(uname
 > -r)/kernel/`, in the same directory structure as their corresponding source.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1114,9 +1132,9 @@
 
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1134,12 +1152,14 @@
 > ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- INSTALL_MOD_PATH=<dir> make modules_install
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1167,9 +1187,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Cleaning Up Kernel Source Tree
@@ -1185,9 +1205,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Listing
@@ -1202,9 +1222,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Information Retrieval
@@ -1219,9 +1239,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1234,9 +1254,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1248,9 +1268,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Loading
@@ -1268,9 +1289,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1283,9 +1304,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1299,7 +1320,7 @@
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1327,9 +1348,9 @@
 > ---
 > **Resources**
 > - LinkedIn Post by Mohammad Jamal M.
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Dependencies
@@ -1350,7 +1371,7 @@
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1368,7 +1389,7 @@
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
 > **References**
----
+> ---
 </details>
 
 ## Module Removal
@@ -1386,9 +1407,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1401,9 +1423,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Configuration
@@ -1434,7 +1457,7 @@
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1446,9 +1469,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Skeleton
@@ -1466,9 +1490,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1482,9 +1506,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1514,9 +1539,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Building
@@ -1534,9 +1559,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1554,9 +1579,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1577,9 +1602,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1601,9 +1626,9 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Parameters
@@ -1638,9 +1663,10 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Device Tree Specification
@@ -1653,9 +1679,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1693,7 +1720,7 @@
 
 > **References**
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
----
+> ---
 </details>
 
 <details>
@@ -1727,9 +1754,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1742,9 +1769,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1794,9 +1821,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1883,9 +1910,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Compiling Device Tree Source
@@ -1900,9 +1927,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Building Bootloader
@@ -1940,9 +1967,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Booting the Kernel
@@ -1963,9 +1990,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1983,9 +2010,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2000,9 +2027,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2015,12 +2042,13 @@
 > setenv foo # reset foo
 > printenv # print all environment variables
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2030,12 +2058,13 @@
 > mkimage --help
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2050,9 +2079,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2072,9 +2101,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2088,9 +2117,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2099,12 +2129,13 @@
 > ```sh
 > setenv bootcmd nand read 82000000 400000 200000\;bootm 82000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2120,9 +2151,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2135,9 +2166,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kernel Command Line
@@ -2163,9 +2194,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2177,9 +2208,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Initial RAM Filesystem
@@ -2206,9 +2237,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Udev
@@ -2235,9 +2267,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: LPIC-2 Linux Engineer (201-450) Cert Prep: 2 Linux Kernel - Kernel Modules
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kernel Locking
@@ -2278,9 +2310,10 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Spinlocks
@@ -2307,9 +2340,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2329,9 +2362,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2369,9 +2402,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2384,13 +2417,15 @@
 > static __always_inline void spin_unlock(spinlock_t *lock);
 > static __always_inline void spin_lock(spinlock_t *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2405,13 +2440,14 @@
 > IRQ handler needs to acquire this same spinlock. It will infinitely spin in
 > place, trying to acquire a lock already locked by a task that it has
 > preempted which results in a deadlock.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2430,9 +2466,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2447,9 +2483,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2483,9 +2519,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2510,9 +2546,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2558,9 +2594,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Mutexes
@@ -2588,13 +2624,14 @@
 > ``````
 >
 > The mutex APIs can be found in the `include/linux/mutex.h` header file.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2624,13 +2661,15 @@
 >     [...]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2663,9 +2702,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2682,9 +2721,10 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2701,9 +2741,10 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2729,13 +2770,15 @@
 > - Locking only in the user context.
 > - If the protected resource is not accessed from an IRQ handler and the
 >   operations need not be atomic.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2751,9 +2794,9 @@
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kernel Timer
@@ -2769,9 +2812,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kernel Sleeping
@@ -2785,9 +2828,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2813,9 +2856,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2831,9 +2874,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Wait Queue
@@ -2860,9 +2903,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2876,12 +2919,13 @@
 > wait_queue_head_t dynamic_event;
 > init_waitqueue_head(&dynamic_event);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Wait Event
@@ -2911,9 +2955,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2930,9 +2974,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2949,9 +2993,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Wake Up
@@ -2978,9 +3022,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2995,9 +3039,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Structure
@@ -3017,9 +3061,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3050,9 +3094,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3065,9 +3109,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3104,9 +3148,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3117,9 +3161,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3131,9 +3176,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3146,9 +3191,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3162,9 +3207,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3186,9 +3232,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3202,9 +3249,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3218,7 +3266,7 @@
 > - Linux Device Driver Development - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3257,9 +3305,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3274,9 +3322,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3303,9 +3351,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3340,9 +3388,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3353,12 +3401,13 @@
 > ccflags-y += -I$(src)/src/hal/include
 > ldflags-y := -T$(src)foo_sections.lds
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3374,9 +3423,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3398,12 +3447,13 @@
 > obj-m: [target].o
 >     make -C /usr/src/linux M=$(PWD) [target]`.
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3419,9 +3469,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3458,9 +3508,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3505,9 +3555,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3520,9 +3570,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3537,9 +3587,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3559,9 +3610,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3573,9 +3624,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3593,9 +3645,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3617,12 +3669,13 @@
 > `modprobe` then parses the `modules.alias` file in order to match the driver associated with the device.
 > Before loading the module, `modprobe` will look for its dependencies in `module.dep`.
 > If it finds any, they will be loaded prior to the associated module loading; otherwise, the module is loaded directly.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3641,9 +3694,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3665,9 +3718,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3691,9 +3744,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3704,9 +3757,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3724,9 +3777,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3767,9 +3820,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3823,9 +3876,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3836,9 +3889,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3851,9 +3904,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3872,9 +3925,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3894,9 +3947,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3909,9 +3962,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3929,12 +3982,13 @@
 > ```sh
 > #define pr_fmt(fmt) "Bluetooth: " fmt
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Synchronization
@@ -3963,9 +4017,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3983,9 +4037,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4001,9 +4055,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4039,9 +4093,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4057,9 +4111,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4075,9 +4130,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4094,9 +4149,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4107,9 +4162,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4133,9 +4188,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4153,9 +4208,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4183,9 +4239,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4217,9 +4273,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4245,9 +4301,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4262,9 +4318,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4279,9 +4335,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4304,9 +4360,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4317,9 +4373,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4361,9 +4418,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4374,9 +4431,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4396,9 +4453,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4411,9 +4469,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4435,9 +4493,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4451,12 +4509,13 @@
 > wait_queue_head_t dynamic_event;
 > init_waitqueue_head(&dynamic_event);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4475,12 +4534,13 @@
 >
 > `wait_event()` puts the process into an exclusive wait, aka uninterruptible sleep, and can't thus be interrupted by the signal.
 > It should be used only for critical tasks.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4497,9 +4557,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4513,9 +4574,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4528,9 +4590,10 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4550,9 +4613,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4564,9 +4627,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Kernel Tracing
@@ -4584,9 +4647,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4597,7 +4660,8 @@
 > ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>

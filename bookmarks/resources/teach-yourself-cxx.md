@@ -20,7 +20,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/31 <sup>(published)</sup>
@@ -43,9 +43,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -68,7 +68,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/31 <sup>(published)</sup>
@@ -98,9 +98,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -119,7 +119,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -135,7 +135,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -147,9 +147,9 @@
 
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -164,7 +164,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -183,7 +183,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,9 +195,9 @@
 
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -215,7 +215,7 @@ constexpr double get_pi()
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -240,7 +240,7 @@ constexpr double get_pi()
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -263,7 +263,7 @@ constexpr double get_pi()
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/31

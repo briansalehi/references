@@ -23,7 +23,7 @@
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -38,7 +38,7 @@
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -51,9 +51,9 @@
 > ---
 > **Resources**
 > - YouTube: Detecting Memory Leaks With Valgrind
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Helgrind
@@ -70,9 +70,9 @@
 > ---
 > **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -84,9 +84,9 @@
 > ---
 > **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -99,9 +99,9 @@
 > ---
 > **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Cachegrind
@@ -125,7 +125,7 @@
 > ---
 > **Resources**
 > - YouTube: Debugging memory issues with Valgrind and GDB - DevConf.CZ 2023
-
+> ---
 > **References**
 ---
 </details>

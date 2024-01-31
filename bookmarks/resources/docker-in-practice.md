@@ -15,7 +15,7 @@
 > - Docker in Practice - Chapter 1.2.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -69,9 +69,9 @@
 
 > **Resources**
 > - Docker in Practice - Chapter 1.2.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -103,9 +103,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -122,9 +122,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -135,9 +135,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -155,7 +155,7 @@
 > - Docker in Practice - Chapter 1.2.4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -169,9 +169,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -189,9 +189,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/16 <sup>(writing)</sup>
@@ -219,9 +219,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -251,9 +251,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -270,7 +270,7 @@
 > - Docker in Practice - Chapter 2.2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -291,9 +291,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -307,9 +307,9 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -324,7 +324,7 @@
 > - Docker in Practice - Chapter 2.5
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/16

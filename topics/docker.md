@@ -11,10 +11,10 @@
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
 > - https://docs.docker.com/engine/deprecated/
----
+> ---
 </details>
 
 <details>
@@ -23,12 +23,13 @@
 > ```sh
 > sudo systemctl enable --now docker
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -44,9 +45,9 @@
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Client
@@ -77,10 +78,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker version](https://docs.docker.com/engine/reference/commandline/version/)
----
+> ---
 </details>
 
 <details>
@@ -95,7 +96,7 @@
 > - Docker: Up & Running - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -104,13 +105,14 @@
 > ```sh
 > docker info
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
----
+> ---
 </details>
 
 ## Context Listing
@@ -125,9 +127,9 @@
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Context Creation
@@ -147,12 +149,13 @@
 >
 > Take note of the entry that has an asterisk next to it, which designates
 > the current context.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Context Switch
@@ -167,9 +170,9 @@
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Image Listing
@@ -185,10 +188,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -207,10 +210,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -229,7 +232,7 @@
 
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -245,10 +248,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -290,7 +293,7 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
@@ -311,10 +314,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
----
+> ---
 </details>
 
 <details>
@@ -326,7 +329,7 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 ---
@@ -343,10 +346,10 @@
 
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
----
+> ---
 </details>
 
 <details>
@@ -359,10 +362,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
----
+> ---
 </details>
 
 ## Image Pulling
@@ -377,10 +380,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 <details>
@@ -401,10 +404,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 <details>
@@ -423,10 +426,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 ## Image Inspecting
@@ -445,9 +448,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -468,7 +471,7 @@
 > - Docker Deep Dive - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -482,9 +485,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -501,12 +504,13 @@
 > ```sh
 > docker manifest inspect golang
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Image Building
@@ -549,9 +553,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Image Removing
@@ -573,12 +577,14 @@
 > docker image rm ubuntu:22.4
 > docker image rm f70734b6a266 a4d3716dbb72
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -600,7 +606,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image prune](https://docs.docker.com/engine/reference/commandline/image_prune/)
 ---
@@ -617,9 +624,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -661,9 +668,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -675,9 +683,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -698,9 +706,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Container Running
@@ -722,7 +730,7 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker container run](https://docs.docker.com/engine/reference/commandline/container_run/)
 ---
@@ -742,9 +750,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -762,7 +771,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container exec](https://docs.docker.com/engine/reference/commandline/container_exec/)
 ---
@@ -784,10 +794,11 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container stop](https://docs.docker.com/engine/reference/commandline/container_stop/)
----
+> ---
 </details>
 
 <details>
@@ -803,10 +814,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker container start](https://docs.docker.com/engine/reference/commandline/container_start/)
----
+> ---
 </details>
 
 <details>
@@ -822,7 +833,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container rm](https://docs.docker.com/engine/reference/commandline/container_rm/)
 ---
@@ -846,12 +858,13 @@
 > ```sh
 > docker container run --interactive --tty --restart on-failure alpine /bin/bash
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -872,9 +885,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -891,9 +904,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -910,9 +923,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Container Listing
@@ -952,9 +965,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -978,9 +992,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1002,9 +1017,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1018,12 +1034,14 @@
 > COPY . /src
 > WORKDIR /src
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1040,9 +1058,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1055,12 +1073,13 @@
 > ```docker
 > ENTRYPOINT ["node", "./app.js"]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1087,9 +1106,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Structure
@@ -1103,9 +1122,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1116,9 +1135,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1127,12 +1147,13 @@
 > The configuration and state of a *swarm* is held in a distributed *etcd*
 > database located on all *managers*. It's installed as part of the swarm and
 > just takes care of itself.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1148,9 +1169,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Initializing
@@ -1165,9 +1186,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1180,9 +1201,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Listing
@@ -1203,7 +1224,7 @@
 > - Docker Deep Dive - Chapter 10
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1220,9 +1241,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1241,9 +1262,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1260,9 +1281,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1287,9 +1308,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1308,9 +1329,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1332,9 +1354,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1347,9 +1370,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1379,9 +1402,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1393,9 +1416,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1404,12 +1428,13 @@
 > ```sh
 > docker service create --name my-service --publish 80:80 --replicas 5 repository/project:v1
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1422,9 +1447,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1437,9 +1463,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1452,9 +1479,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1471,9 +1499,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1489,9 +1517,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1504,9 +1532,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1518,12 +1546,14 @@
 >
 > An overlay network creates a new layer 2 network that we can place containers
 > on, and all containers on it will be able to communicate.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1536,9 +1566,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1551,9 +1582,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1570,9 +1601,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1588,9 +1619,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1604,9 +1636,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1622,9 +1654,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1647,9 +1679,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1665,9 +1697,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1679,9 +1711,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1728,9 +1760,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Joining
@@ -1759,12 +1792,14 @@
 > - The `VERSION` field indicates the version of the swarm.
 > - The `SWARM ID` field is a hash of the swarm’s certificate.
 > - The `TOKEN` field is worker or manager token.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1777,9 +1812,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Security
@@ -1797,9 +1833,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1814,9 +1851,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1834,9 +1871,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1870,9 +1907,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1885,9 +1922,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Modification
@@ -1902,12 +1939,13 @@
 > The following example changes the certificate rotation period to 30 days.
 >
 > docker swarm update --cert-expiry 720h
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1920,9 +1958,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swarm Secret
@@ -1948,9 +1986,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Plugin Installation
@@ -1965,12 +2004,14 @@
 >
 > **Plugins** are executable programs that conform to a specification for
 > receiving and returning data to Docker.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1983,9 +2024,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Plugin Listing
@@ -2001,9 +2042,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Creation
@@ -2024,9 +2066,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2046,9 +2088,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2062,9 +2105,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Listing
@@ -2080,9 +2124,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Inspecting
@@ -2104,9 +2148,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Deletion
@@ -2125,9 +2169,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2143,9 +2187,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Attachment
@@ -2174,9 +2218,9 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2197,9 +2241,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Volume Corruption
@@ -2226,9 +2271,10 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Network Listing
@@ -2247,8 +2293,8 @@
 > ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 

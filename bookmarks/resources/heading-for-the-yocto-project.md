@@ -14,7 +14,7 @@
 > - Heading for the Yocto Project - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,7 +30,7 @@
 > - Heading for the Yocto Project - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -43,9 +43,9 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -62,9 +62,9 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -84,9 +84,9 @@
 
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/4 <sup>(ignored)</sup>
@@ -119,7 +119,7 @@ Nothing to import.
 > - Heading for the Yocto Project - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/4 <sup>(ignored)</sup>

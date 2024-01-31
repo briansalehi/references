@@ -24,9 +24,9 @@ Nothing to import.
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -49,9 +49,9 @@ Nothing to import.
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -74,7 +74,7 @@ Nothing to import.
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -94,9 +94,9 @@ Nothing to import.
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -128,7 +128,7 @@ Nothing to import.
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -150,9 +150,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,7 +195,7 @@ Nothing to import.
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -218,7 +218,7 @@ Nothing to import.
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -242,9 +242,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 Helper functions are left out.
@@ -271,9 +271,9 @@ Utility functions are left out.
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -294,7 +294,7 @@ Utility functions are left out.
 > - Learning OpenCV 3 - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -338,7 +338,7 @@ Utility functions are left out.
 > - Learning OpenCV 3 - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -350,9 +350,9 @@ Utility functions are left out.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -394,9 +394,9 @@ Utility functions are left out.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 Draw a clip line on an image?

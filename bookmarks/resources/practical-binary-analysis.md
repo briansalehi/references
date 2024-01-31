@@ -15,7 +15,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -44,7 +44,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,7 +60,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -74,7 +74,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -104,7 +104,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -119,7 +119,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -135,7 +135,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -146,9 +146,9 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -164,7 +164,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -180,7 +180,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,9 +195,9 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -210,9 +210,9 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -225,9 +225,9 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -247,9 +247,9 @@
 
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -264,7 +264,7 @@
 > - Practical Binary Analysis - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/13 The ELF Format

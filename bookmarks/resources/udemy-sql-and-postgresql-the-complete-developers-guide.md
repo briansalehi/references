@@ -9,9 +9,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## CRUD Operations
@@ -25,9 +25,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -44,7 +44,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,7 +60,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Calculated Columns
@@ -86,9 +86,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -100,9 +100,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## String Operations
@@ -123,7 +123,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/37 <sup>(complete)</sup>
@@ -139,9 +139,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -159,9 +159,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -174,9 +174,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -189,9 +189,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Comparison Operators
@@ -212,9 +212,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Compound Operators
@@ -234,9 +234,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Calculated Conditions
@@ -251,9 +251,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Update Records
@@ -270,7 +270,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 ## Delete Records
@@ -285,9 +285,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -300,9 +300,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/37 <sup>(complete)</sup>
@@ -320,9 +320,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Primary Key
@@ -339,9 +339,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -360,9 +360,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Foreign Key
@@ -379,9 +379,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -398,9 +398,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Foreign Key Insertion
@@ -420,9 +420,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Constraints
@@ -439,9 +439,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -461,9 +461,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Join Query
@@ -480,9 +480,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Default Value
@@ -503,7 +503,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/37 <sup>(complete)</sup>
@@ -547,9 +547,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -565,9 +565,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/37 <sup>(complete)</sup>
@@ -584,9 +584,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -600,7 +600,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -615,9 +615,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filtering Groups
@@ -648,7 +648,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -659,12 +659,13 @@
 > from authors
 > join books on authors.
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Aggregation
@@ -674,12 +675,13 @@
 
 > - Reduces many values down to one
 > - Done by using aggregate functions
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Aggregation Functions
@@ -694,9 +696,9 @@
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Count Aggregate Function
@@ -714,7 +716,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -735,7 +737,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 ## Min and Max Aggregate Function
@@ -752,9 +754,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Sum Aggregate Function
@@ -768,9 +770,10 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 6/37 <sup>(ignored)</sup>
@@ -798,7 +801,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -809,12 +812,13 @@
 > from products
 > order by price asc, weight desc;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Limiting Result Set
@@ -833,9 +837,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -847,9 +851,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Offseting Result Set
@@ -868,9 +872,10 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -881,9 +886,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 8/37 <sup>(complete)</sup>
@@ -902,9 +907,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -915,9 +920,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -944,9 +949,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -966,9 +971,10 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Intersect
@@ -983,12 +989,13 @@
 > ``````
 >
 > Use `intersect all` to have duplicates appearing in both sides.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Exception
@@ -1003,12 +1010,14 @@
 > ``````
 >
 > Above clause removes duplicates. Use `except all` to also show duplicates.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 9/37 <sup>(writing)</sup>
@@ -1030,9 +1039,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Single Value Subquery
@@ -1048,9 +1057,10 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## One Column Subquery
@@ -1067,9 +1077,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Multi Record Subquery
@@ -1093,12 +1103,14 @@
 >     weight integer
 > );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1111,9 +1123,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Updating Column
@@ -1130,7 +1142,7 @@
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
 > **References**
----
+> ---
 </details>
 
 ## Data Validation
@@ -1141,12 +1153,13 @@
 > - Check if the value is already defined (not null)
 > - Check if the value is unique in its column (unique)
 > - Check if the value is within desired range (comparison operators)
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Default Value
@@ -1162,12 +1175,13 @@
 >     weight integer default 0 not null
 > );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1180,9 +1194,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Unique Values
@@ -1202,9 +1216,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1217,9 +1231,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1231,9 +1245,9 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Multiple Column Unique Value
@@ -1250,12 +1264,13 @@ create table products (
     unique(name, price)
 ):
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1268,9 +1283,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Checking Value
@@ -1290,9 +1305,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1305,9 +1320,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Checking Multiple Column
@@ -1327,9 +1342,9 @@ create table products (
 
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 15/37 <sup>(complete)</sup>
@@ -1348,9 +1363,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 16/37 <sup>(complete)</sup>
@@ -1371,9 +1387,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 16
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 17/37 <sup>(ignored)</sup>
@@ -1393,9 +1409,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1408,9 +1425,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1423,9 +1441,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1438,9 +1456,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1474,9 +1493,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1485,12 +1504,14 @@ create table products (
 > ```psql
 > create index users_username_idx on users(username);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1503,9 +1524,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1518,9 +1539,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1535,9 +1557,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1550,9 +1572,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1568,9 +1590,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1581,9 +1603,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1596,9 +1619,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1614,9 +1638,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1625,12 +1649,13 @@ create table products (
 > ```psql
 > create extension pageinspect;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1643,9 +1668,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1660,9 +1685,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1677,9 +1702,10 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1691,9 +1717,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1707,9 +1733,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1721,9 +1747,9 @@ create table products (
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 24/37 <sup>(complete)</sup>
@@ -1734,12 +1760,14 @@ create table products (
 > ```psql
 > select * from pg_stats where tablename = 'users';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 25/37 <sup>(complete)</sup>
@@ -1755,12 +1783,14 @@ create table products (
 > + (# times function/operator evaluated) + cpu_operator_cost
 > = cost
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 25
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 26/37

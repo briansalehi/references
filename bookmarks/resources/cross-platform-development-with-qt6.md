@@ -18,7 +18,7 @@
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -35,7 +35,7 @@
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/12 <sup>(ignored)</sup>
@@ -60,7 +60,7 @@ Qt Widgets left incomplete.
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/12

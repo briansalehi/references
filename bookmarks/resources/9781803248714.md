@@ -20,7 +20,7 @@
 > - C++20 STL Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -39,9 +39,9 @@
 > ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,9 +60,9 @@
 > ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -90,9 +90,9 @@
 > ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,9 +143,9 @@
 > ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -169,9 +169,9 @@
 
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/11

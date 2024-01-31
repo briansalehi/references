@@ -43,7 +43,7 @@ Nothing to import.
 
 > **References**
 > - [docker version](https://docs.docker.com/engine/reference/commandline/version/)
----
+> ---
 </details>
 
 <details>
@@ -60,7 +60,7 @@ Nothing to import.
 
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -85,7 +85,7 @@ Nothing to import.
 
 > **References**
 > - [docker container run](https://docs.docker.com/engine/reference/commandline/container_run/)
----
+> ---
 </details>
 
 <details>
@@ -104,7 +104,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -124,7 +124,7 @@ Nothing to import.
 
 > **References**
 > - [docker container exec](https://docs.docker.com/engine/reference/commandline/container_exec/)
----
+> ---
 </details>
 
 <details>
@@ -145,7 +145,7 @@ Nothing to import.
 
 > **References**
 > - [docker container stop](https://docs.docker.com/engine/reference/commandline/container_stop/)
----
+> ---
 </details>
 
 <details>
@@ -163,7 +163,7 @@ Nothing to import.
 
 > **References**
 > - [docker container start](https://docs.docker.com/engine/reference/commandline/container_start/)
----
+> ---
 </details>
 
 <details>
@@ -184,7 +184,7 @@ Nothing to import.
 
 > **References**
 > - [docker container rm](https://docs.docker.com/engine/reference/commandline/container_rm/)
----
+> ---
 </details>
 
 <details>
@@ -200,7 +200,7 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+> ---
 > **References**
 > - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
 ---
@@ -220,7 +220,7 @@ Nothing to import.
 
 > **References**
 > - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
----
+> ---
 </details>
 
 ## Chapter 5/16 <sup>(ignored)</sup>
@@ -241,7 +241,7 @@ Nothing to import.
 
 > **References**
 > - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
----
+> ---
 </details>
 
 <details>
@@ -255,10 +255,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 <details>
@@ -280,7 +280,7 @@ Nothing to import.
 
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 <details>
@@ -300,7 +300,7 @@ Nothing to import.
 
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
----
+> ---
 </details>
 
 <details>
@@ -379,7 +379,7 @@ Nothing to import.
 
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -401,10 +401,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
----
+> ---
 </details>
 
 <details>
@@ -436,7 +436,7 @@ Nothing to import.
 
 > **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
----
+> ---
 </details>
 
 <details>
@@ -455,7 +455,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -474,9 +474,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -490,9 +490,9 @@ Nothing to import.
 
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -515,7 +515,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -555,9 +555,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -575,12 +575,13 @@ Nothing to import.
 > docker image rm ubuntu:22.4
 > docker image rm f70734b6a266 a4d3716dbb72
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 7/16 <sup>(published)</sup>
@@ -602,12 +603,13 @@ Nothing to import.
 >
 > ```sh
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -630,7 +632,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -647,9 +649,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -666,9 +668,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -683,12 +686,13 @@ Nothing to import.
 > ```docker
 > Cmd /bin/bash
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 8/16 <sup>(published)
@@ -734,12 +738,13 @@ Nothing to import.
 > It's important that you understand containers are persistent in nature.
 > Containers are designed to be immutable objects and it’s not a good practice to write data to them.
 > For this reason, Docker provides volumes that exist separately from the container, but can be mounted into the container at runtime.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -752,12 +757,13 @@ Nothing to import.
 > ``````
 >
 > You can inspect the built image to verify the configuration of the image.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -779,12 +785,13 @@ Nothing to import.
 > ```sh
 > docker login
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -800,9 +807,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -817,9 +824,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -830,9 +838,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -852,9 +860,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -867,9 +876,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -883,9 +892,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -902,12 +911,13 @@ Nothing to import.
 > copied, and compares that to a checksum of the same f i le in the cached
 > layer.
 > If the checksums do not match, the cache is invalidated and a new layer is built.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -922,9 +932,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -942,9 +953,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 9/16
@@ -961,9 +973,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -974,9 +987,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -987,9 +1000,9 @@ Nothing to import.
 
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1002,9 +1015,10 @@ Nothing to import.
 
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1017,9 +1031,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1031,9 +1046,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1049,9 +1064,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1063,12 +1078,14 @@ Nothing to import.
 > docker swarm join-token worker
 > docker swarm join-token manager
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1081,12 +1098,13 @@ Nothing to import.
 > ``````
 >
 > The `--advertise-addr` and `--listen-addr` flags are optional, but it's best practice to be as specific as possible when it comes to network configuration.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1101,9 +1119,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1122,9 +1141,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1136,12 +1156,13 @@ Nothing to import.
 >
 > To prevent situations like these, Docker allows to lock a swarm with the Autolock feature.
 > This forces restarted managers to present the cluster unlock key before being admitted back into the cluster.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1162,9 +1183,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1173,12 +1195,14 @@ Nothing to import.
 > ```sh
 > docker swarm unlock-key
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1203,12 +1227,14 @@ Nothing to import.
 > ``````
 >
 > Confirm that *manager* has re-joined by listing swarm nodes.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1220,9 +1246,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1234,9 +1260,9 @@ Nothing to import.
 
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1249,9 +1275,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1264,9 +1290,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1279,9 +1305,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1296,9 +1322,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1314,9 +1341,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1327,9 +1354,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1344,9 +1371,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1355,24 +1382,26 @@ Nothing to import.
 > ```sh
 > docker network ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>How to create a docker service and attach it to a network?</summary>
 
 > docker service create --name my-service --network my-network --publish 80:80 --replicas 10 repository/project:v1
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1382,12 +1411,13 @@ Nothing to import.
 > The alternative mode is *host mode* which only publishes the service on swarm nodes running replicas.
 >
 > In *ingress mode* every node gets a mapping and can therefore redirect your request to a node that is running the service.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1404,7 +1434,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 10
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1418,9 +1448,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1435,9 +1465,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1460,9 +1490,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1475,9 +1505,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1489,9 +1519,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1539,7 +1569,7 @@ Nothing to import.
 > - Docker Deep Dive - Chapter 10
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 11/16
@@ -1563,12 +1593,13 @@ Nothing to import.
 >
 > As the name suggests, volumes created with the *local* driver are only available to containers on the same node as the volume.
 > You can use the `-d` ﬂag to specify a diﬀerent driver.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1578,12 +1609,14 @@ Nothing to import.
 > docker volume ls
 > docker volume list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1596,12 +1629,13 @@ Nothing to import.
 > If both the `Driver` and `Scope` properties are *local*, it means the volume was created with the local driver and is only available to containers on this Docker host.
 >
 > The `Mountpoint` property tells us where in the Docker host’s filesystem the volume exists.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1614,12 +1648,14 @@ Nothing to import.
 >
 > This option lets you specify exactly which volumes you want to delete.
 > It won't delete a volume that is in use by a container or service replica.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1634,9 +1670,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1653,9 +1689,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1681,9 +1718,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1704,9 +1742,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1719,9 +1757,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1735,9 +1773,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1751,9 +1789,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1773,9 +1811,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 14/16
@@ -1797,9 +1836,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1807,12 +1847,13 @@ Nothing to import.
 
 > **Docker Content Trust (DCT)** lets us sign our own images and verify the
 > integrity and publisher of images we consume.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1827,9 +1868,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1843,12 +1884,14 @@ Nothing to import.
 > Docker uses seccomp to limit the syscalls a container can make to the host’s
 > kernel. At the time of writing, Docker’s default seccomp profile disables 44
 > syscalls. Modern Linux systems have over 300 syscalls.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1882,9 +1925,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1915,9 +1959,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1930,9 +1974,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1945,9 +1989,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1964,9 +2008,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1979,9 +2023,9 @@ docker swarm ca --help
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2023,9 +2067,9 @@ docker swarm ca --help
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2038,9 +2082,10 @@ docker swarm ca --help
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2063,7 +2108,7 @@ docker swarm ca --help
 > - Docker Deep Dive - Chapter 15
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2087,9 +2132,9 @@ docker swarm ca --help
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 16/16 <sup>(ignored)</sup>

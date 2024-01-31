@@ -91,9 +91,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -159,7 +159,7 @@
 > - C++20: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -205,9 +205,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -264,9 +264,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -340,9 +340,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -390,9 +390,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/19 <sup>(completed)</sup>
@@ -443,7 +443,7 @@
 > - C++20: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -471,9 +471,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -540,9 +540,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -570,7 +570,7 @@
 > - C++20: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -589,9 +589,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -610,9 +610,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -684,9 +684,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -714,7 +714,7 @@
 > - C++20: The Complete Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -734,7 +734,7 @@
 > - C++20: The Complete Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -774,9 +774,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -818,9 +818,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -865,9 +865,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -880,9 +880,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -907,9 +907,9 @@
 
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -938,7 +938,7 @@
 > - C++20: The Complete Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -974,7 +974,7 @@
 > - C++20: The Complete Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -987,9 +987,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1023,7 +1023,7 @@
 > - C++20: The Complete Guide - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 Next: 3.1.2
@@ -1044,7 +1044,7 @@ Next: 3.1.2
 > - C++20: The Complete Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1065,9 +1065,9 @@ Next: 3.1.2
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1080,7 +1080,7 @@ Next: 3.1.2
 > - C++20: The Complete Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1095,7 +1095,7 @@ std::ranges::take(container, 5);
 > - C++20: The Complete Guide - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1115,9 +1115,9 @@ std::ranges::take(container, 5);
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1130,9 +1130,9 @@ std::ranges::take(container, 5);
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1155,9 +1155,9 @@ std::ranges::take(container, 5);
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1169,9 +1169,9 @@ std::ranges::take(container, 5);
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 6/19

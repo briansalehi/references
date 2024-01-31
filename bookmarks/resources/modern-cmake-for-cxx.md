@@ -14,7 +14,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -31,9 +31,9 @@
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -51,9 +51,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -70,9 +70,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -95,7 +95,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -120,9 +120,9 @@
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,9 +143,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -160,9 +160,9 @@
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -180,9 +180,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -207,9 +207,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -221,9 +221,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -247,9 +247,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -267,9 +267,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -280,9 +280,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -295,9 +295,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -314,9 +314,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -330,7 +330,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -348,7 +348,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -367,9 +367,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -387,9 +387,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -403,9 +403,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -420,7 +420,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -437,9 +437,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -451,9 +451,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -474,9 +474,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -495,7 +495,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -512,9 +512,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -529,9 +529,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -550,9 +550,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -565,9 +565,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -590,7 +590,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -608,7 +608,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -623,7 +623,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -639,7 +639,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -655,9 +655,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -683,9 +683,9 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -699,7 +699,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -715,9 +715,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -730,9 +730,9 @@ cmake --system-information [file]
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -744,7 +744,7 @@ cmake --system-information [file]
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/13

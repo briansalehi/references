@@ -39,9 +39,9 @@ Nothing to import.
 
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -147,10 +147,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
----
+> ---
 </details>
 
 <details>
@@ -195,10 +195,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
----
+> ---
 </details>
 
 ## Chapter 5/7 <sup>(published)</sup>
@@ -245,9 +245,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -294,9 +294,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -340,9 +340,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 6/7 <sup>(published)</sup>
@@ -385,9 +385,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -434,9 +434,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -500,7 +500,7 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 
@@ -570,9 +570,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -714,7 +714,7 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 7/7 <sup>(published)</sup>
@@ -728,9 +728,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -745,9 +745,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -760,9 +760,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -779,7 +779,7 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -789,9 +789,9 @@ Nothing to import.
 
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -803,7 +803,7 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
----
+> ---
 </details>
 
 
@@ -815,9 +815,9 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -830,7 +830,7 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -843,5 +843,5 @@ Nothing to import.
 > - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
----
+> ---
 </details>

@@ -23,7 +23,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -54,9 +54,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -80,9 +80,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -98,7 +98,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -109,9 +109,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -137,9 +137,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -150,9 +150,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -180,7 +180,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,9 +195,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -210,9 +210,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -239,9 +239,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -264,9 +264,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -278,9 +278,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -300,7 +300,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -311,9 +311,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -324,9 +324,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -339,7 +339,7 @@
 > - Linux Device Driver Development - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -350,9 +350,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -363,9 +363,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -377,9 +377,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -390,9 +390,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -404,9 +404,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -430,9 +430,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -446,9 +446,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -465,9 +465,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -483,9 +483,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -505,9 +505,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -521,12 +521,13 @@
 > * `modules.symbols`: This tells us which module a given symbol belongs to. They are in the form of `alias symbol:<symbol> <modulename>`. An example is `alias symbol:v4l2_async_notifier_register videodev`. `modules.symbols.bin` is the binary counterpart of this file.
 >
 > And the rest of module files will be stored in `/lib/modules/<version>/kernel/` in the same directory structure as their corresponding source.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/17 <sup>(published)</sup>
@@ -547,9 +548,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -560,9 +561,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -575,7 +576,7 @@
 > - Linux Device Driver Development - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -586,9 +587,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -620,9 +622,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -636,9 +638,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -671,24 +674,26 @@
 > unloading support is not enabled because, in both cases, the exit function
 > is never called.
 > `__exit` has no effect on loadable modules.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What section is used in kernel objects to store module information?</summary>
 
 > A kernel module uses its `.modinfo` section to store information about the module.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -700,9 +705,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -715,9 +720,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -731,9 +736,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -754,9 +759,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -769,9 +774,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -783,9 +788,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -824,9 +829,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -841,9 +846,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -866,12 +872,13 @@
 > ``````
 >
 > `$(CONFIG_MYMODULE)` evaluates to either y, m, or nothing (blank), according to its value during the kernel configuration.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -902,12 +909,13 @@
 > obj-m := 8123.o
 > 8123-y := 8123_if.o 8123_pci.o 8123_bin.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -924,7 +932,7 @@
 > - Linux Device Driver Development - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -941,9 +949,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -969,9 +977,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -983,12 +991,13 @@
 > sudo insmod helloworld.ko
 > sudo rmmod helloworld
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1025,9 +1034,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1072,9 +1081,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1087,9 +1097,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1100,12 +1110,13 @@
 > ```config
 > CONFIG_CMDLINE=... my_module.param=value
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1121,12 +1132,13 @@
 > `EXPORT_SYMBOL()` or its `GPL` counterpart are Linux kernel macros that make a symbol available to loadable kernel modules or dynamically loaded modules (provided that said modules add an extern declaration – that is, include the headers corresponding to the compilation units that exported the symbols).
 >
 > Code that is built into the kernel itself (as opposed to loadable kernel modules) can, of course, access any non-static symbol via an extern declaration, as with conventional C code.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1140,7 +1152,7 @@
 > - Linux Device Driver Development - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1154,12 +1166,13 @@
 > ``````
 >
 > `modprobe` is a clever command that parses the `modules.dep` file in order to load dependencies first, prior to loading the given module.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1181,12 +1194,13 @@
 > `modprobe` then parses the `modules.alias` file in order to match the driver associated with the device.
 > Before loading the module, `modprobe` will look for its dependencies in `module.dep`.
 > If it finds any, they will be loaded prior to the associated module loading; otherwise, the module is loaded directly.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1205,9 +1219,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1229,9 +1243,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1255,9 +1269,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1268,9 +1282,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1288,9 +1302,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1331,9 +1346,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1387,9 +1402,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1400,9 +1415,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1411,12 +1426,13 @@
 > * `pr_<level>(...)`: This is used in regular modules that are not device drivers.
 > * `dev_<level>(struct device *dev, ...)`: This is to be used in device drivers that are not network devices.
 > * `netdev_<level>(struct net_device *dev, ...)`: This is used in `netdev` drivers exclusively.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1435,9 +1451,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1457,9 +1473,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1468,12 +1484,13 @@
 > ```sh
 > echo 4 > /proc/sys/kernel/printk
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1495,9 +1512,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/17 <sup>(published)</sup>
@@ -1526,9 +1543,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1542,12 +1559,13 @@
 > This spinning will only happen on multi-core machines because, on a single-core machine, it cannot happen.
 >
 > A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex* which is a lock held by a task.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1563,9 +1581,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1597,12 +1615,13 @@
 >     return bs;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1618,9 +1637,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1636,9 +1656,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1655,9 +1676,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1665,12 +1686,14 @@
 
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1694,9 +1717,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1714,9 +1737,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1740,12 +1763,13 @@
 > ``````
 >
 > The mutex APIs can be found in the `include/linux/mutex.h` header file.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1773,12 +1797,14 @@
 >     [...]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1803,9 +1829,9 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1820,9 +1846,9 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1836,9 +1862,10 @@
 
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1857,24 +1884,27 @@
 >
 > * Locking only in the user context.
 > * If the protected resource is not accessed from an IRQ handler and the operations need not be atomic.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?</summary>
 
 > It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1912,24 +1942,26 @@
 >     spin_unlock(&foo_lock);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What does the term sleeping mean in the kernel?</summary>
 
 > The term sleeping refers to a mechanism by which a task voluntarily relaxes the processor, with the possibility of another task being scheduled.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1945,12 +1977,14 @@
 >
 > Both sleeping APIs and wait queues implement what we can call **passive waiting**.
 > The difference between the two is how the waking up process occurs.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1959,12 +1993,14 @@
 > The kernel scheduler manages a list of tasks in a `TASK_RUNNING` state to run, known as a **runqueue**.
 >
 > On the other hand, sleeping tasks, whether interruptible or not (in a `TASK_INTERRUPTIBLE` or `TASK_UNINTERRUPTIBLE` state), have their own queues, known as **waitqueues**.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1986,9 +2022,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2002,12 +2039,13 @@
 > wait_queue_head_t dynamic_event;
 > init_waitqueue_head(&dynamic_event);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2026,12 +2064,13 @@
 >
 > `wait_event()` puts the process into an exclusive wait, aka uninterruptible sleep, and can't thus be interrupted by the signal.
 > It should be used only for critical tasks.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2044,12 +2083,13 @@
 > ``````
 >
 > Time unit for `timeout` is a jiffy.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2059,12 +2099,14 @@
 >
 > - **Timeout elapsed:** the function returns 0 if the condition is evaluated to `false` or 1 if it is evaluated `true`.
 > - **Timeout not elapsed yet:** the function returns the remaining time (in jiffies at least 1) if the condition is evaluated to `true`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2074,12 +2116,14 @@
 > unsigned long msecs_to_jiffies(const unsigned int m)
 > unsigned long usecs_to_jiffies(const unsigned int u)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2095,12 +2139,14 @@
 > - `wake_up_all()`: wake all processes from the wait queue
 > - `wake_up_interruptible()`: wake only one process from the wait queue that is in interruptible sleep
 > - `wake_up_interruptible_all()`: wake all processes from the wait queue that are in interruptible sleep
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2113,9 +2159,10 @@
 > ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/17

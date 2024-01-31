@@ -28,7 +28,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -39,10 +39,10 @@ Nothing to import.
 
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -63,10 +63,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -88,7 +88,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -115,10 +115,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -159,10 +159,10 @@ Nothing to import.
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
+> ---
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -180,7 +180,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -205,7 +205,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -220,7 +220,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
@@ -289,7 +289,7 @@ Nothing to import.
 
 > **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
----
+> ---
 </details>
 
 ### Rectangle Element
@@ -308,7 +308,7 @@ Nothing to import.
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 Change the border color of a rectangle?
@@ -345,9 +345,9 @@ Make rectangle edges curved?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Text Element
@@ -387,9 +387,9 @@ Create an image element to show some image?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### MouseArea Element
@@ -428,7 +428,7 @@ Export properties of a component to be used as an API?
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -443,7 +443,7 @@ Export properties of a component to be used as an API?
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -463,9 +463,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Positioning Elements
@@ -548,9 +548,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -627,9 +627,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -694,9 +694,9 @@ Export properties of a component to be used as an API?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -758,7 +758,7 @@ Export properties of a component to be used as an API?
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 ### Repeater
@@ -843,9 +843,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Layout Items
@@ -860,7 +860,7 @@ Export properties of a component to be used as an API?
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -871,9 +871,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -887,9 +887,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Keyboard Input
@@ -904,9 +904,9 @@ Export properties of a component to be used as an API?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 Get a line of text from user?
@@ -971,9 +971,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1015,9 +1015,9 @@ Get a line of text from user?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Key Elements
@@ -1030,9 +1030,9 @@ Get a line of text from user?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1069,9 +1069,9 @@ Get a line of text from user?
 
 > **Resources**
 > - Qt6 QML - Chapter 5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### QML Performance
@@ -1088,7 +1088,7 @@ Get a line of text from user?
 > - Qt6 QML - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/20 Fluid Elements <sup>(completed)</sup>
@@ -1105,9 +1105,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1165,9 +1165,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1181,9 +1181,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1209,9 +1209,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1230,7 +1230,7 @@ Get a line of text from user?
 > - Qt6 QML - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1248,7 +1248,7 @@ Get a line of text from user?
 > - Qt6 QML - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1263,9 +1263,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Easing Curves
@@ -1287,9 +1287,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1343,7 +1343,7 @@ Get a line of text from user?
 > - Qt6 QML - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1358,7 +1358,7 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
 > - [Easing Table](http://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop)
 ---
@@ -1383,9 +1383,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1450,9 +1450,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1464,9 +1464,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### States
@@ -1524,7 +1524,7 @@ Get a line of text from user?
 > - Qt6 QML - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1580,12 +1580,13 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Transitions
@@ -1615,9 +1616,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 6/20 QtQuick Controls <sup>(writing)</sup>
@@ -1634,9 +1635,9 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1657,9 +1658,10 @@ Get a line of text from user?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 6
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 Create a menu bar in on window?

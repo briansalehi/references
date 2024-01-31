@@ -15,9 +15,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,9 +30,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,9 +60,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -80,7 +80,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -100,9 +100,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -119,7 +119,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -140,9 +140,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -168,7 +168,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -206,9 +206,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -243,9 +243,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -275,7 +275,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -294,9 +294,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -309,9 +309,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -350,7 +350,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -370,9 +370,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -395,9 +395,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -430,9 +430,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -463,9 +463,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -483,9 +483,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -514,9 +514,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -540,9 +540,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -591,9 +591,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -617,9 +617,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -663,7 +663,7 @@
 > - C++ Templates: The Complete Guide - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -723,9 +723,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -759,9 +759,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/28 Class Templates <sup>(published)</sup>
@@ -795,9 +795,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -835,9 +835,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -865,9 +865,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -917,9 +917,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -954,7 +954,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -989,9 +989,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1043,7 +1043,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1094,7 +1094,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1112,9 +1112,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1148,7 +1148,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1165,9 +1165,9 @@
 
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1194,7 +1194,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1239,9 +1239,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1284,9 +1284,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1314,7 +1314,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1339,9 +1339,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1376,12 +1376,13 @@
 > The standard library class `std::array<>` is also an aggregate, parametrized
 > for both the element type and the size. The C++17 standard library also
 > defines a deduction guide for it.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/28 Nontype Template Parameters <sup>(writing)</sup>
@@ -1412,12 +1413,13 @@
 >     std::size_t size() const;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/28 Variadic Templates

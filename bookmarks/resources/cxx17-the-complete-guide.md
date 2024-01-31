@@ -54,9 +54,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -123,9 +123,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -144,9 +144,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -174,9 +174,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -188,9 +188,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/29
@@ -212,9 +212,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 11/29
@@ -240,7 +240,7 @@
 > - C++17 The Complete Guide - Chapter 15
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -271,9 +271,9 @@
 > ---
 > **Resources**
 > - C++17 The Complete Guide - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 16/29
@@ -299,9 +299,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -330,9 +330,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -350,9 +350,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -385,9 +385,9 @@
 
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -403,9 +403,9 @@
 
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Filesystem Error Handling
@@ -435,7 +435,7 @@
 > - C++17: The Complete Guide - Chapter 20
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -464,9 +464,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Types
@@ -495,7 +495,7 @@
 > - C++17: The Complete Guide - Chapter 20
 
 > **References**
----
+> ---
 </details>
 
 ### Path Construction
@@ -519,9 +519,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -540,7 +540,7 @@
 > - C++17: The Complete Guide - Chapter 20
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -554,12 +554,13 @@
 >
 > auto working_directory{std::filesystem::current_path()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -574,9 +575,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Inspection
@@ -592,9 +593,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -609,9 +611,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -647,12 +649,13 @@
 > p.begin();
 > p.end();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -667,9 +670,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Conversion
@@ -690,9 +693,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Relativity
@@ -719,9 +722,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Generic Paths
@@ -758,9 +761,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Expansion
@@ -785,9 +788,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -811,9 +814,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -827,9 +830,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Modification
@@ -855,7 +858,7 @@
 > - C++17: The Complete Guide - Chapter 20
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -872,9 +875,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -888,9 +891,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -904,9 +908,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -920,9 +924,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Reduction
@@ -938,9 +942,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -954,9 +958,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Path Comparison
@@ -969,9 +973,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1004,9 +1008,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1028,9 +1032,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Existence Checking
@@ -1045,9 +1049,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Type Checking
@@ -1067,9 +1071,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1082,9 +1086,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1096,12 +1100,13 @@
 > std::filesystem::is_fifo(p);
 > std::filesystem::is_socket(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Filesystem Attributes Querying
@@ -1116,9 +1121,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1135,9 +1141,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1150,9 +1156,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1179,7 +1185,7 @@
 > - C++17: The Complete Guide - Chapter 20
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1200,12 +1206,13 @@
 >     };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Filesystem Attributes Modification
@@ -1221,12 +1228,13 @@
 > ```cpp
 > std::filesystem::rename(old, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1236,12 +1244,13 @@
 > std::filesystem::last_write_time(p, newtime);
 > std::filesystem::last_write_time(p, std::filesystem::file_time_type::clock::now());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1266,9 +1275,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1281,9 +1291,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1296,9 +1307,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Filesystem Existence Checking
@@ -1330,9 +1342,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Status
@@ -1352,9 +1364,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1367,9 +1379,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1382,9 +1394,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1404,12 +1416,13 @@
 > std::filesystem::is_fifo(fs);
 > std::filesystem::is_socket(fs);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1439,9 +1452,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1456,9 +1469,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1476,12 +1490,13 @@
 >     std::cout << "\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Permissions
@@ -1533,9 +1548,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Creation
@@ -1552,9 +1568,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Directory Creation
@@ -1582,9 +1599,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1593,12 +1611,14 @@
 > ```cpp
 > std::filesystem::create_directories(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Symbolic Link Creation
@@ -1617,9 +1637,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1632,9 +1653,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Hard Link Creation
@@ -1645,12 +1667,14 @@
 > ```cpp
 > std::filesystem::create_hard_link(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Copy
@@ -1666,9 +1690,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1682,9 +1707,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1717,9 +1742,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1734,9 +1760,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### File Removal
@@ -1751,9 +1777,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1770,9 +1796,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Filesystem Path Conversion
@@ -1789,9 +1815,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1814,9 +1840,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1830,9 +1856,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1846,9 +1872,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Directory Iteration
@@ -1868,9 +1895,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1882,9 +1909,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1911,9 +1939,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Directory Entries
@@ -1960,9 +1988,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 21/29

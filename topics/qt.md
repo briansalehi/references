@@ -15,9 +15,9 @@
 > ---
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -35,7 +35,7 @@
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Qt Widgets
@@ -54,7 +54,7 @@
 > - https://www.qt.io/product/qt6/qml-book
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -74,9 +74,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Core Elements
@@ -95,7 +95,7 @@
 > - https://www.qt.io/product/qt6/qml-book
 
 > **References**
----
+> ---
 </details>
 
 ## Item
@@ -114,7 +114,7 @@
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -130,9 +130,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Window
@@ -147,9 +147,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -171,9 +171,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Rectangle
@@ -190,9 +190,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -212,9 +212,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Text
@@ -255,7 +255,7 @@
 > - https://www.qt.io/product/qt6/qml-book
 
 > **References**
----
+> ---
 </details>
 
 ## Property Alias
@@ -274,9 +274,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Signals
@@ -291,9 +291,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -324,9 +324,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Image
@@ -367,9 +367,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -383,7 +383,7 @@
 > - https://www.qt.io/product/qt6/qml-book
 
 > **References**
----
+> ---
 </details>
 
 ## Mouse Area
@@ -414,7 +414,7 @@
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
 > **References**
----
+> ---
 </details>
 
 ## Component
@@ -430,9 +430,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -444,9 +444,9 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -480,7 +480,7 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
-
+> ---
 > **References**
----
+> ---
 </details>

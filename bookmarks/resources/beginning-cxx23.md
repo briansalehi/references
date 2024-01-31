@@ -20,7 +20,7 @@
 > - Beginning C++23: From Novice to Professional - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/21

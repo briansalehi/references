@@ -35,7 +35,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -60,7 +60,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -87,9 +87,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -114,7 +114,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -171,9 +171,9 @@
 > ---
 > **Resources**
 > - 1.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -205,9 +205,9 @@
 
 > **Resources**
 > - 1.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -234,7 +234,7 @@
 > - 1.4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -265,9 +265,9 @@
 > ---
 > **Resources**
 > - 1.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -300,7 +300,7 @@
 > - 2.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -345,9 +345,9 @@
 > ---
 > **Resources**
 > - 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -377,9 +377,9 @@
 > ---
 > **Resources**
 > - 2.1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -411,9 +411,9 @@
 
 > **Resources**
 > - 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swaps <sup>(completed => edited => published)</sup>
@@ -449,9 +449,9 @@
 > ---
 > **Resources**
 > - 2.2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -488,7 +488,7 @@
 > - 2.2.2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -518,7 +518,7 @@
 > - 2.2.3
 
 > **References**
----
+> ---
 </details>
 
 ## Sorting <sup>(published)</sup>
@@ -567,9 +567,9 @@
 > ---
 > **Resources**
 > - 2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -630,7 +630,7 @@
 > - 2.3.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -675,9 +675,9 @@
 
 > **Resources**
 > - 2.3.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -690,9 +690,9 @@
 
 > **Resources**
 > - 2.3.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -735,9 +735,9 @@
 > ---
 > **Resources**
 > - 2.3.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -783,9 +783,9 @@
 > ---
 > **Resources**
 > - 2.3.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -821,9 +821,9 @@
 > ---
 > **Resources**
 > - 2.3.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -854,7 +854,7 @@
 > - 2.3.6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -894,7 +894,7 @@
 > -  2.3.7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -931,9 +931,9 @@
 > ---
 > **Resources**
 > - 2.3.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Partitioning <sup>(published)</sup>
@@ -979,9 +979,9 @@
 > ---
 > **Resources**
 > - 2.4.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1007,9 +1007,9 @@
 > ---
 > **Resources**
 > - 2.4.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1040,9 +1040,9 @@
 > ---
 > **Resources**
 > - 2.4.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1080,9 +1080,9 @@
 > ---
 > **Resources**
 > - 2.4.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1121,9 +1121,9 @@
 > ---
 > **Resources**
 > - 2.4.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Divide and Conquer <sup>(published)</sup>
@@ -1199,7 +1199,7 @@
 > - 2.5.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1229,9 +1229,9 @@
 > ---
 > **Resources**
 > - 2.5.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1263,7 +1263,7 @@
 > - 2.5.3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1298,9 +1298,9 @@
 > ---
 > **Resources**
 > - 2.5.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Linear Operations on Sorted Ranges <sup>(published)</sup>
@@ -1330,9 +1330,9 @@
 > ---
 > **Resources**
 > - 2.6.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1375,9 +1375,9 @@
 > ---
 > **Resources**
 > - 2.6.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1405,9 +1405,9 @@
 > ---
 > **Resources**
 > - 2.6.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1451,9 +1451,9 @@
 > ---
 > **Resources**
 > - 2.6.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Set Operations <sup>(published)</sup>
@@ -1485,9 +1485,9 @@
 > ---
 > **Resources**
 > - 2.7.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1517,9 +1517,9 @@
 > ---
 > **Resources**
 > - 2.7.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1549,9 +1549,9 @@
 > ---
 > **Resources**
 > - 2.7.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1583,7 +1583,7 @@
 > - 2.7.4
 
 > **References**
----
+> ---
 </details>
 
 ## Transformation Algorithms <sup>(published)</sup>
@@ -1623,9 +1623,9 @@
 > ---
 > **Resources**
 > - 2.8.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1655,7 +1655,7 @@
 > - 2.8.2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1683,9 +1683,9 @@
 > ---
 > **Resources**
 > - 2.8.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1709,12 +1709,13 @@
 >     // {1,0,1,0,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1742,9 +1743,9 @@
 > ---
 > **Resources**
 > - 2.8.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1772,9 +1773,9 @@
 > ---
 > **Resources**
 > - 2.8.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1807,9 +1808,9 @@
 > ---
 > **Resources**
 > - 2.8.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1850,7 +1851,7 @@
 > - 2.8.6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1883,7 +1884,7 @@
 > - 2.8.7
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1915,9 +1916,9 @@
 > ---
 > **Resources**
 > - 2.8.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1946,9 +1947,9 @@
 > ---
 > **Resources**
 > - 2.8.9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Left folds <sup>(completed)</sup>
@@ -1978,12 +1979,13 @@
 >     // product == 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.9.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2014,12 +2016,13 @@
 >     // sum_diffs == 14
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.9.2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2054,7 +2057,7 @@
 > - 2.9.3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2087,12 +2090,13 @@
 >     // fibonacci == {1,1,2,3,5,8,13,21,34,55}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.9.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## General Reductions <sup>(completed)</sup>
@@ -2122,12 +2126,13 @@
 >     // sum == 120
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.10.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2152,12 +2157,13 @@
 >     // sum == 30
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.10.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2194,12 +2200,14 @@
 >     // range == {0 1 3 6 10}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.10.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2236,12 +2244,13 @@
 >     std::transform_exclusive_scan(range.begin(), range.end(), std::back_inserter(exclusive), 0, std::plus<>{}, [](long v) { return std::abs(v); });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.10.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Boolean Reductions <sup>(published)</sup>
@@ -2274,7 +2283,7 @@
 > - 2.11.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2303,9 +2312,9 @@
 > ---
 > **Resources**
 > - 2.11.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2334,9 +2343,9 @@
 > ---
 > **Resources**
 > - 2.11.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Generators <sup>(completed)</sup>
@@ -2363,12 +2372,13 @@
 >     // range == {1,1,1,1,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.12.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2393,12 +2403,13 @@
 >     // range == {1,1,1,0,0}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.12.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2423,12 +2434,13 @@
 >     // range == {1,1,1,1,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.12.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2453,12 +2465,13 @@
 >     // range == {1,1,1,0,0}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.12.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2483,12 +2496,13 @@
 >     std::ranges::copy(range, std::ostream_iterator<long>(std::cout, " "));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.12.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Copy and Move <sup>(completed)</sup>
@@ -2518,12 +2532,13 @@
 >     // b c a b c c
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2552,12 +2567,13 @@
 >     // ? ? ? a b c
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2593,12 +2609,14 @@
 >     // range = {a a b c d e}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2627,12 +2645,13 @@
 >     // output == {a b c}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2659,12 +2678,14 @@
 >     // 2 4 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2695,9 +2716,9 @@
 > ---
 > **Resources**
 > - 2.13.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2728,9 +2749,10 @@
 > ---
 > **Resources**
 > - 2.13.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2764,9 +2786,9 @@
 > ---
 > **Resources**
 > - 2.13.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2797,9 +2819,10 @@
 > ---
 > **Resources**
 > - 2.13.6
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2830,9 +2853,9 @@
 > ---
 > **Resources**
 > - 2.13.6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2863,9 +2886,9 @@
 > ---
 > **Resources**
 > - 2.13.7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2898,9 +2921,10 @@
 > ---
 > **Resources**
 > - 2.13.8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Uninitialized Memory Algorithms
@@ -2939,9 +2963,9 @@
 > ---
 > **Resources**
 > - 2.14.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Heap Data Structure <sup>(completed)</sup>
@@ -2978,9 +3002,9 @@
 > ---
 > **Resources**
 > - 2.15.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3030,9 +3054,9 @@
 > ---
 > **Resources**
 > - 2.15.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3063,9 +3087,9 @@
 > ---
 > **Resources**
 > - 2.15.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3091,12 +3115,13 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.15.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3126,9 +3151,10 @@
 > ---
 > **Resources**
 > - 2.15.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Search and Compare Algorithms
@@ -3171,9 +3197,9 @@
 > ---
 > **Resources**
 > - 2.16.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3188,12 +3214,13 @@
 >
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.16.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3212,9 +3239,9 @@
 > ---
 > **Resources**
 > - 2.16.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Min-Max Algorithms
@@ -3250,9 +3277,9 @@
 > ---
 > **Resources**
 > - 4.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3284,9 +3311,9 @@
 > ---
 > **Resources**
 > - 4.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3314,9 +3341,9 @@
 > ---
 > **Resources**
 > - 4.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3340,9 +3367,9 @@
 > ---
 > **Resources**
 > - 4.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3362,12 +3389,13 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3391,9 +3419,9 @@
 > ---
 > **Resources**
 > - 4.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3413,12 +3441,13 @@
 >     // 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3442,9 +3471,10 @@
 > ---
 > **Resources**
 > - 4.6
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3468,9 +3498,10 @@
 > ---
 > **Resources**
 > - 4.7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3494,9 +3525,9 @@
 > ---
 > **Resources**
 > - 4.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3521,9 +3552,9 @@
 > ---
 > **Resources**
 > - 4.9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3547,9 +3578,9 @@
 > ---
 > **Resources**
 > - 4.10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3583,9 +3614,9 @@
 > ---
 > **Resources**
 > - 4.11
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3596,9 +3627,9 @@
 > ---
 > **Resources**
 > - 4.11
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3619,9 +3650,9 @@
 > ---
 > **Resources**
 > - 4.12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3643,9 +3674,9 @@
 > ---
 > **Resources**
 > - 4.12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3669,9 +3700,9 @@
 
 > **Resources**
 > - 4.13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3693,9 +3724,10 @@
 > ---
 > **Resources**
 > - 4.14
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Argument Dependent Lookup

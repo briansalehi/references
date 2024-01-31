@@ -64,7 +64,7 @@
 
 > **References**
 > - [GDB User Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/)
----
+> ---
 </details>
 
 <details>
@@ -79,9 +79,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -95,9 +95,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -114,7 +114,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -127,9 +127,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -144,9 +144,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -164,7 +164,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -179,7 +179,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -195,7 +195,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -210,9 +210,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -231,9 +231,9 @@
 
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -250,9 +250,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -270,9 +270,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -288,7 +288,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -303,7 +303,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 ## Analyzing Binary Objects
@@ -314,12 +314,13 @@
 > ```sh
 > readelf --file-header ./program
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -331,9 +332,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -346,9 +347,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Numeric Representations
@@ -361,10 +363,11 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
-
+>
+> ---
 > **References**
 > - [IEEE-754](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/)
----
+> ---
 </details>
 
 <details>
@@ -380,9 +383,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -397,9 +400,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Registers
@@ -427,9 +431,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -440,9 +444,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -461,9 +465,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -476,9 +480,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Invoking System Calls
@@ -487,12 +491,13 @@
 <summary>What header contains Linux system calls?</summary>
 
 > `/usr/include/asm/unistd_64.h`
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -513,9 +518,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -534,7 +540,7 @@
 > - Beginning x64 Assembly Programming - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 ## Memory Sections
@@ -574,9 +580,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -590,9 +596,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -605,12 +611,13 @@
 >     dvar resd 1
 >     qvar resq 100
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## External Functions
@@ -665,9 +672,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Integral Arithmetic Operations
@@ -710,9 +717,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -750,12 +757,14 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -797,9 +806,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -850,9 +859,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Floating Point Arithmetic Operations
@@ -879,9 +888,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -916,9 +925,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -953,9 +963,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -985,9 +995,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Bitwise Operations
@@ -1048,9 +1058,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 16
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1087,9 +1098,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1123,9 +1134,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Execution Flow Control
@@ -1192,9 +1203,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Repeating Execution
@@ -1250,9 +1262,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1308,9 +1320,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Memory Operations
@@ -1348,9 +1361,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Stack Operations
@@ -1420,9 +1434,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 10
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Stack Alignment
@@ -1443,12 +1457,14 @@
 >
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1489,9 +1505,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Procedures
@@ -1514,9 +1530,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1567,9 +1583,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1661,9 +1677,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Local Memory Sections
@@ -1725,9 +1741,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## External Linkage
@@ -1834,9 +1850,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1864,9 +1880,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Inline Functions
@@ -1913,9 +1929,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 22
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1930,9 +1946,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1959,9 +1975,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2015,9 +2031,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Macros
@@ -2066,9 +2082,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 18
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2094,12 +2110,14 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Input/Output System Calls
@@ -2130,9 +2148,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2160,9 +2178,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Stack Overflow
@@ -2207,12 +2225,13 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2291,12 +2310,13 @@
 >         leave
 >         ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Command Line Arguments
@@ -2306,12 +2326,13 @@
 
 > * `rdi`: argc or number of arguments
 > * `rsi`: argv or address of array each, cell is an 8bytes of address to an argument string
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2350,9 +2371,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2369,9 +2390,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Operations
@@ -2384,9 +2405,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2466,9 +2487,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2527,9 +2549,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2588,9 +2610,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Vector Registeres Support
@@ -2629,9 +2651,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2766,9 +2788,10 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2785,7 +2808,7 @@
 
 > **References**
 > - https://en.wikipedia.org/wiki/Flynn's_taxonomy
----
+> ---
 </details>
 
 <details>
@@ -2799,9 +2822,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2815,9 +2838,9 @@
 
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2829,9 +2852,9 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2846,8 +2869,8 @@
 > ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
-
+> ---
 > **References**
----
+> ---
 </details>
 

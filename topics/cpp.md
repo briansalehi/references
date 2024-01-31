@@ -5,7 +5,6 @@
 <details>
 <summary>Build an executable from C++ source?</summary>
 
->
 > ```sh
 > g++ -o program source.cpp -std=c++20
 > ``````
@@ -18,7 +17,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Fundamental Data Types
@@ -59,9 +58,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #366
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Variable Initialization
@@ -91,9 +90,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Constant Initialization
@@ -114,7 +113,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -127,9 +126,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Aggregate Initialization
@@ -179,9 +178,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #368
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Designated Initialization
@@ -228,9 +227,10 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #369
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Function Declaration
@@ -254,9 +254,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Constant Expression
@@ -274,9 +274,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Constant Evaluation
@@ -302,9 +302,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Conditional Constant Evaluation
@@ -340,9 +340,9 @@
 
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -363,7 +363,7 @@
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -381,9 +381,10 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Raw Pointer
@@ -433,9 +434,10 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #363
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Shared Pointer
@@ -462,9 +464,10 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Unnamed Namespaces
@@ -499,7 +502,7 @@
 
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
----
+> ---
 </details>
 
 <details>
@@ -529,7 +532,7 @@
 
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
----
+> ---
 </details>
 
 ## Inline Namespaces
@@ -649,7 +652,7 @@
 
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
----
+> ---
 </details>
 
 ## Modules
@@ -665,9 +668,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -692,9 +695,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -716,9 +719,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -731,12 +734,13 @@
 >
 > Names of namespaces containing export declarations are implicitly exported as
 > well.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kqo-jIq4V3I
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -746,12 +750,13 @@
 > - An export group must not contain declarations that cannot be exported, e.g.
 >   `static_assert` or anonymous names.
 > - The module declaration must not be the result of macro expansion.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kqo-jIq4V3I
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Interface Unit
@@ -806,9 +811,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Interface Partition
@@ -828,9 +833,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -904,9 +910,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Module Implementation Partition
@@ -958,9 +964,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1061,9 +1068,9 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Automatic Type Deduction
@@ -1127,10 +1134,10 @@
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/auto
----
+> ---
 </details>
 
 <details>
@@ -1148,9 +1155,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Structured Binding
@@ -1179,10 +1186,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/structured_binding
----
+> ---
 </details>
 
 ## Typedef
@@ -1197,9 +1204,10 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Type Aliases
@@ -1226,7 +1234,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/type_alias
 ---
@@ -1287,10 +1295,10 @@
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/initialization
----
+> ---
 </details>
 
 ## Enumerations
@@ -1322,7 +1330,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/enum
 ---
@@ -1356,7 +1364,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration
 ---
@@ -1386,9 +1395,10 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #64
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1407,9 +1417,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #64
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1444,9 +1454,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #64
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1475,9 +1485,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #66
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1515,9 +1525,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #66
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Optional Return Type
@@ -1555,12 +1565,14 @@
 >     // the callable has to return a std::expected, but can change
 >     // the type: std::expected<V,T> -> std::expected<V,U>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #364
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Three-Way Comparison Operator
@@ -1654,9 +1666,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1721,9 +1733,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1770,9 +1782,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1830,9 +1842,9 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1904,12 +1916,13 @@
 > d1 > d2; // ERROR: cannot deduce comparison category of operator <=>
 > d1 == d2; // OK: only tries operator <=> and Base::operator==
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1975,12 +1988,14 @@
 >     // only uses t.operator(MyType{i});
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Default Constructors
@@ -2015,14 +2030,15 @@
 >     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/explicit
 > - https://en.cppreference.com/w/cpp/language/converting_constructor
----
+> ---
 </details>
 
 ## Class Non-static Member Declaration
@@ -2054,7 +2070,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/data_members
 ---
@@ -2099,9 +2115,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2126,9 +2142,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2150,9 +2166,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Templates
@@ -2170,9 +2186,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Typename
@@ -2187,9 +2203,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Template Translation Phases
@@ -2219,9 +2235,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2233,12 +2249,14 @@
 > the declaration of a function is sufficient to compile its use. The simplest
 > approach to handle this problem is to implement each template inside a header
 > file.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Function Template Definition
@@ -2260,9 +2278,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2274,12 +2292,14 @@
 > * Before C++17, type `T` also had to be copyable to be able to pass in
 >   arguments, but since C++17 you can pass rvalues even if neither a copy nor
 >   a move constructor is valid.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Function Template Usage
@@ -2298,12 +2318,14 @@
 >
 > Each call to `max()` template is qualified with `::` to ensure template is
 > found in the global namespace, not possibly the one in `std` namespace.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Function Template Argument Deduction
@@ -2325,12 +2347,14 @@
 >
 > max(7, 42); // T is int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2367,9 +2391,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2403,9 +2427,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2433,9 +2457,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Multiple Function Template Parameters
@@ -2456,9 +2481,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2471,9 +2496,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2510,9 +2535,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Automatic Return Type Deduction
@@ -2530,12 +2555,14 @@
 > Deducing the return type from the function body has to be possible.
 > Therefore, the code must be available and multiple return statements have to
 > match.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2554,12 +2581,14 @@
 > template<typename T1, typename T2>
 > auto max(T1 a, T2 b) -> decltype(true ? a : b);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2592,9 +2621,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2626,9 +2656,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Default Template Arguments
@@ -2659,9 +2690,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2686,9 +2717,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Overloading Function Templates
@@ -2735,12 +2767,13 @@
 > ::max<double>(7, 42);   // calls max<double> no argument deduction
 > ::max('a', 42.7);   // calls the nontemplate for two ints
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2764,9 +2797,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2804,12 +2837,13 @@
 > ::max(p1, p2);  // calls max<int>() for two pointers
 > ::max("mathematics", "math");   // calls max() for two C-strings
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2870,9 +2904,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2907,9 +2941,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Template
@@ -2939,12 +2973,13 @@
 > ``````
 >
 > The keyword `class` can be used instead of `typename`.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -2982,9 +3017,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3012,9 +3048,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Template Friend Function
@@ -3066,9 +3103,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Template Specialization
@@ -3103,9 +3141,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3140,9 +3178,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3192,9 +3230,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Template Default Parameters
@@ -3241,12 +3280,13 @@
 >     return container.empty();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Alias Templates
@@ -3266,9 +3306,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -3300,9 +3340,9 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Class Template Argument Deduction
@@ -3318,13 +3358,15 @@
 > Stack<int> AnotherStack = IntStack;   // OK in all standard versions
 > Stack IntegralStack = AnotherStack;    // OK since C++17
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3349,10 +3391,11 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3397,10 +3440,11 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3443,10 +3487,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 ## Class Template Argument Deduction Guides
@@ -3475,10 +3519,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3521,10 +3565,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3549,10 +3593,11 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 <details>
@@ -3591,10 +3636,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
----
+> ---
 </details>
 
 ## Range-based loop
@@ -3642,7 +3687,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/range-for
 ---
@@ -3760,10 +3806,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/range-for
----
+> ---
 </details>
 
 ## Object Alignment
@@ -3824,7 +3871,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
@@ -3855,11 +3902,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/alignof
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
----
+> ---
 </details>
 
 <details>
@@ -3926,11 +3973,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/alignas
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
----
+> ---
 </details>
 
 ## Operators
@@ -3950,9 +3997,9 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Operator Overloading
@@ -3982,7 +4029,7 @@
 > **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
----
+> ---
 </details>
 
 <details>
@@ -4013,10 +4060,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
----
+> ---
 </details>
 
 ## Raw User-Defined Literals
@@ -4036,10 +4083,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
----
+> ---
 </details>
 
 <details>
@@ -4092,7 +4140,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 ---
@@ -4124,11 +4173,13 @@
 >     v = f();                        // move assigned constructed vector by return value
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
 ---
@@ -4182,11 +4233,12 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
 > - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
----
+> ---
 </details>
 
 <details>
@@ -4200,9 +4252,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4217,9 +4269,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4233,9 +4285,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Fallback Copy
@@ -4252,9 +4305,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4274,9 +4328,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4292,13 +4346,15 @@
 > const std::string& getRef();   // OK
 > const std::string* getPtr();   // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Moved From State
@@ -4313,9 +4369,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4342,9 +4398,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Rvalue Reference
@@ -4374,9 +4431,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4443,9 +4500,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Generated Special Member Functions
@@ -4463,9 +4520,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4481,10 +4538,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > - [Copy Constructors](https://en.cppreference.com/w/cpp/language/copy_constructor)
----
+> ---
 </details>
 
 <details>
@@ -4502,7 +4559,7 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
 ---
@@ -4518,7 +4575,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > [Destructor](https://en.cppreference.com/w/cpp/language/destructor)
 ---
@@ -4546,9 +4604,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4566,9 +4625,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4583,10 +4643,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > - [The Rule of Three/Five/Zero](https://en.cppreference.com/w/cpp/language/rule_of_three)
----
+> ---
 </details>
 
 ## Move Operation Pitfalls
@@ -4614,9 +4674,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4646,9 +4706,9 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4705,9 +4765,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4729,10 +4789,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+>
+> ---
 > **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
----
+> ---
 </details>
 
 ## Disabling Move Operations
@@ -4763,9 +4824,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4806,9 +4867,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -4836,7 +4898,8 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+>
+> ---
 > **References**
 > - [Destructors](https://en.cppreference.com/w/cpp/language/destructor)
 ---
@@ -4876,9 +4939,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5044,9 +5108,9 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5061,12 +5125,13 @@
 > - In general, creating and initializing new values from parameters, for which
 >   move operations are cheap, should take the arguments by value and move.
 >   However, do not take by value and move to update/modify existing values.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Virtual Functions
@@ -5099,7 +5164,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/override
 > - https://en.cppreference.com/w/cpp/language/virtual
@@ -5138,12 +5203,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/final
 > - https://en.cppreference.com/w/cpp/language/override
 > - https://en.cppreference.com/w/cpp/language/virtual
----
+> ---
 </details>
 
 ## Inheritance
@@ -5174,11 +5239,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/final
 > - https://en.cppreference.com/w/cpp/language/derived_class
----
+> ---
 </details>
 
 ## Streams
@@ -5211,9 +5276,9 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## String Streams
@@ -5253,9 +5318,10 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5285,9 +5351,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Span Streams
@@ -5327,9 +5393,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Containers
@@ -5368,9 +5434,10 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #333
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Vector
@@ -5407,12 +5474,13 @@
 >         std::cout << "You are using C++\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5431,12 +5499,13 @@
 >     return false;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5457,9 +5526,10 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Numeric to String Conversion
@@ -5478,11 +5548,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/to_string
 > - https://en.cppreference.com/w/cpp/headers/basic_string
----
+> ---
 </details>
 
 <details>
@@ -5523,7 +5594,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/string/basic_string/stoul
@@ -5551,7 +5622,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/headers/basic_string
@@ -5585,14 +5656,15 @@
 >     std::cerr << exp.what() << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/headers/basic_string
----
+> ---
 </details>
 
 <details>
@@ -5626,11 +5698,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/floating_literal
 > - https://en.cppreference.com/w/cpp/headers/basic_string
----
+> ---
 </details>
 
 ## String Literals
@@ -5658,13 +5731,14 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 > - https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s
 > - https://en.cppreference.com/w/cpp/string/basic_string_view/operator%22%22sv
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
----
+> ---
 </details>
 
 ## Raw String Literals
@@ -5684,7 +5758,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 ---
@@ -5712,7 +5786,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 ---
@@ -5750,7 +5825,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
@@ -5771,10 +5846,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
----
+> ---
 </details>
 
 <details>
@@ -5795,10 +5870,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
----
+> ---
 </details>
 <details>
 <summary>Construct a <code>std::string</code> from a <code>std::string_view</code>?</summary>
@@ -5815,10 +5890,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
----
+> ---
 </details>
 
 ## String Operations
@@ -5851,9 +5926,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #371
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Text Formatting
@@ -5866,9 +5941,10 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5887,9 +5963,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5904,9 +5980,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5937,9 +6013,10 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -5955,9 +6032,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Text Printing
@@ -5975,9 +6052,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Regular Expressions
@@ -6000,7 +6077,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/regex/basic_regex
 ---
@@ -6016,10 +6094,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
----
+> ---
 </details>
 
 <details>
@@ -6057,12 +6136,13 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/regex_match
 > - https://cppreference.com/w/cpp/regex/match_results
 > - https://cppreference.com/w/cpp/regex/basic_regex
----
+> ---
 </details>
 
 <details>
@@ -6116,13 +6196,13 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/sub_match
 > - https://cppreference.com/w/cpp/regex/match_results
 > - https://cppreference.com/w/cpp/regex/regex_match
 > - https://cppreference.com/w/cpp/regex/basic_regex
----
+> ---
 </details>
 
 <details>
@@ -6146,11 +6226,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
 > - https://cppreference.com/w/cpp/regex/basic_regex
----
+> ---
 </details>
 
 <details>
@@ -6187,7 +6267,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/regex_search
 > - https://cppreference.com/w/cpp/regex/basic_regex
@@ -6261,14 +6341,16 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/sregex_iterator
 > - https://cppreference.com/w/cpp/regex/sregex_token_iterator
----
+> ---
 </details>
 
 <details>
@@ -6285,10 +6367,12 @@
 >     std::regex_replace(text, rx, "an $1");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/regex_replace
 ---
@@ -6317,10 +6401,10 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://cppreference.com/w/cpp/regex/regex_replace
----
+> ---
 </details>
 
 ## Numeric
@@ -6363,11 +6447,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/headers/limits
----
+> ---
 </details>
 
 <details>
@@ -6387,11 +6471,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
----
+> ---
 </details>
 
 <details>
@@ -6407,7 +6491,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
@@ -6426,11 +6510,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
----
+> ---
 </details>
 
 <details>
@@ -6445,7 +6530,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
@@ -6464,11 +6550,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
----
+> ---
 </details>
 
 <details>
@@ -6483,11 +6569,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
----
+> ---
 </details>
 
 ## Complex
@@ -6502,10 +6588,12 @@
 >
 > auto c{ 12.0 + 4.2i }; // std::complex<double>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
@@ -6529,7 +6617,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
@@ -6555,12 +6644,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
----
+> ---
 </details>
 
 <details>
@@ -6580,7 +6669,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
@@ -6601,7 +6691,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
@@ -6635,7 +6726,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
@@ -6667,9 +6758,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -6694,9 +6785,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -6722,9 +6813,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chrono Time Point
@@ -6739,12 +6830,14 @@
 >
 > bool system_is_steady = std::chrono::system_clock::is_steady;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -6759,9 +6852,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chrono Literals
@@ -6783,11 +6876,11 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
----
+> ---
 </details>
 
 ## Chrono Date
@@ -6803,9 +6896,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #73
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -6823,9 +6916,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #74
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -6844,9 +6937,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #74
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Ranges
@@ -6883,9 +6976,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #362
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Sentinels
@@ -6944,9 +7037,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Iterators
@@ -6981,9 +7074,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Overlapping Iterators
@@ -7020,9 +7114,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #367
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Data Structures
@@ -7048,9 +7142,10 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=7FORoVmSw4E
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Ranges Algorithms
@@ -7070,9 +7165,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7088,12 +7183,13 @@
 > std::ranges::ends_with(v, {3, 4});
 > // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7118,9 +7214,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Equality Checking Algorithms
@@ -7165,9 +7261,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #361
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Iterating Algorithms
@@ -7272,9 +7368,10 @@
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
 > - C++ Daily Bites - #60
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7322,9 +7419,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7354,9 +7451,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7394,9 +7491,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Swapping Algorithms
@@ -7433,9 +7530,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7472,9 +7569,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7502,9 +7599,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7559,9 +7656,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #62
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Sorting Algorithms
@@ -7614,9 +7711,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7664,12 +7761,13 @@
 >     // cmp5 = true, cmp6 = false
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7715,9 +7813,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7733,9 +7831,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7778,9 +7876,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7828,9 +7926,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7866,9 +7965,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.5
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7897,9 +7997,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.6
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7939,9 +8040,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -7979,9 +8080,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8009,9 +8110,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Partitioning Algorithms
@@ -8053,12 +8154,14 @@
 >     std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\n"; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8086,9 +8189,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8119,9 +8223,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8161,9 +8265,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8214,9 +8319,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Sorted Range Algorithms
@@ -8292,9 +8397,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8324,9 +8430,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8377,9 +8483,10 @@
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
 > - C++ Daily Bites - #297
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8418,9 +8525,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Linear Operation Algorithms
@@ -8450,9 +8558,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8494,9 +8602,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8524,9 +8632,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8557,9 +8665,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8585,12 +8694,13 @@
 >     // result == {1,2,3,4,5};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Set Operation Algorithms
@@ -8618,12 +8728,13 @@
 >     // difference == {1,9};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8653,9 +8764,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8685,9 +8797,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8717,9 +8829,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Transformation Algorithms
@@ -8759,9 +8871,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8788,9 +8900,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8818,9 +8931,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8848,9 +8962,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8878,9 +8993,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8908,9 +9024,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.4
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8943,9 +9060,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -8984,9 +9101,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9017,9 +9134,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Permutation Transform Algorithms
@@ -9064,9 +9181,9 @@
 > ---
 > **Resources**
 > - Daily C++ Bites - #365
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9098,9 +9215,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9129,9 +9246,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Boolean Reduction Algorithms
@@ -9162,9 +9279,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9193,9 +9311,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9224,9 +9343,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Strings Algorithms
@@ -9272,12 +9391,12 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/transform
 > - https://en.cppreference.com/w/cpp/algorithm/ranges/transform
----
+> ---
 </details>
 
 <details>
@@ -9307,13 +9426,13 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/reverse
 > - https://en.cppreference.com/w/cpp/algorithm/reverse_copy
 > - https://en.cppreference.com/w/cpp/algorithm/ranges/reverse
----
+> ---
 </details>
 
 <details>
@@ -9338,7 +9457,7 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 ---
@@ -9366,7 +9485,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/remove
@@ -9404,10 +9524,11 @@
 >     return tokens;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/io/basic_stringstream
@@ -9426,9 +9547,10 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9461,9 +9583,9 @@
 > ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Views
@@ -9495,9 +9617,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9529,9 +9651,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9559,9 +9681,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9585,9 +9707,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9611,9 +9733,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9637,9 +9759,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9663,9 +9786,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9689,9 +9812,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9715,9 +9838,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9740,9 +9863,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.8
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9767,9 +9890,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.9
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9789,12 +9912,14 @@
 >     // 1 2 3 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.10
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9828,9 +9953,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9841,9 +9967,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9864,9 +9991,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9888,9 +10015,10 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9915,9 +10043,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -9939,9 +10067,9 @@
 > ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Threads Construction
@@ -9965,10 +10093,11 @@
 >     worker.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 1
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread
 ---
@@ -10018,10 +10147,11 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
----
+> ---
 </details>
 
 <details>
@@ -10080,9 +10210,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10106,9 +10236,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Threads Joining
@@ -10144,10 +10274,11 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
----
+> ---
 </details>
 
 <details>
@@ -10179,9 +10310,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Threads Detaching
@@ -10202,12 +10333,13 @@
 >     assert(!task.joinable());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Threads Moving
@@ -10237,9 +10369,10 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Threads Stop Request
@@ -10272,9 +10405,10 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Hardware Concurrency
@@ -10307,9 +10441,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10329,9 +10463,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Mutex
@@ -10347,9 +10481,9 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Future
@@ -10400,9 +10534,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #293
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Promise
@@ -10417,9 +10551,10 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Semaphore Properties
@@ -10434,7 +10569,8 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore/max
 ---
@@ -10457,10 +10593,10 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
----
+> ---
 </details>
 
 <details>
@@ -10527,7 +10663,7 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 >   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/counting_semaphore
@@ -10566,7 +10702,8 @@
 > ---
 > **Resources**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 ---
@@ -10582,9 +10719,10 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10596,9 +10734,10 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10614,9 +10753,9 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10658,9 +10797,9 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Barrier
@@ -10669,12 +10808,14 @@
 <summary>What are the use cases of a barrier?</summary>
 
 > Barriers are helpful to manage repetitive task leveraged by multiple threads.
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10693,9 +10834,10 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10743,9 +10885,9 @@
 > ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Coroutines
@@ -10759,9 +10901,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=RBldGKfLb9I
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Design Patterns
@@ -10870,9 +11012,9 @@
 > ---
 > **Resources**
 > - C++ Daily Bites - #61
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Terminalogy
@@ -10892,9 +11034,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10923,9 +11065,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10943,9 +11085,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10979,9 +11121,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -10998,9 +11140,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filesystem Error Handling
@@ -11028,9 +11171,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11059,9 +11203,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Types
@@ -11088,9 +11232,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Construction
@@ -11114,9 +11259,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11133,9 +11278,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11153,9 +11299,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11170,9 +11316,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Inspection
@@ -11188,9 +11334,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11201,12 +11348,13 @@
 > p.is_absolute(); // false
 > p.is_relative(); // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11246,9 +11394,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11263,9 +11411,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Conversion
@@ -11286,9 +11434,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Relativity
@@ -11315,9 +11464,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Generic Paths
@@ -11354,9 +11503,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Expansion
@@ -11381,9 +11530,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11403,12 +11552,14 @@
 > std::filesystem::path p3{".git"};
 > p.append(p3.begin(), p3.end());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11421,9 +11572,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Modification
@@ -11447,9 +11599,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11466,9 +11618,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11482,9 +11635,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11498,9 +11652,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11514,9 +11668,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Reduction
@@ -11532,9 +11686,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11548,9 +11703,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Path Comparison
@@ -11559,12 +11715,14 @@
 <summary>What comparison operators are supported by path objects?</summary>
 
 > `==` , `!=` , `<` , `>` , `<=` , `>=` , `compare(p2)` , `compare(sv)` and `equivalent(p1, p2)` are available.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11597,9 +11755,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11621,9 +11779,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Existence Checking
@@ -11638,9 +11796,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Type Checking
@@ -11660,9 +11819,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11674,9 +11833,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11692,9 +11851,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filesystem Attributes Querying
@@ -11709,9 +11869,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11728,9 +11888,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11743,9 +11904,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11770,9 +11931,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11793,12 +11954,14 @@
 >     };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filesystem Attributes Modification
@@ -11814,12 +11977,14 @@
 > ```cpp
 > std::filesystem::rename(old, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11829,12 +11994,14 @@
 > std::filesystem::last_write_time(p, newtime);
 > std::filesystem::last_write_time(p, std::filesystem::file_time_type::clock::now());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11859,9 +12026,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11874,9 +12041,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11885,12 +12052,13 @@
 > ```cpp
 > std::filesystem::current_path(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filesystem Existence Checking
@@ -11918,12 +12086,13 @@
 >     std::filesystem::exists(symlink_status(existing_symlink));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Status
@@ -11943,9 +12112,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11958,9 +12127,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11973,9 +12143,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -11999,9 +12170,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12031,9 +12202,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12044,12 +12215,13 @@
 > std::filesysetm::file_status fs = std::filesystem::status(p);
 > std::filesystem::perms file_permissions = fs.permissions();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12071,9 +12243,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Permissions
@@ -12125,9 +12297,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Creation
@@ -12144,9 +12316,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Directory Creation
@@ -12174,9 +12346,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12189,9 +12361,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Symbolic Link Creation
@@ -12210,9 +12382,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12225,9 +12397,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Hard Link Creation
@@ -12242,9 +12414,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Copy
@@ -12260,9 +12432,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12276,9 +12448,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12311,9 +12484,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12328,9 +12501,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## File Removal
@@ -12345,9 +12519,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12360,12 +12534,13 @@
 > ```cpp
 > std::filesystem::remove_all(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Filesystem Path Conversion
@@ -12382,9 +12557,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12407,9 +12583,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12419,12 +12595,13 @@
 > std::filesystem::relative(p);
 > std::filesystem::proximate(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12434,12 +12611,13 @@
 > std::filesystem::relative(p, base);
 > std::filesystem::proximate(p, base);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Directory Iteration
@@ -12455,12 +12633,13 @@
 >     std::cout << entry.lexically_normal().string() << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12472,9 +12651,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12501,9 +12681,10 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Directory Entries
@@ -12550,9 +12731,9 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Logging
@@ -12581,12 +12762,13 @@
 >     do_something();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=762owEyCI4o
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Design Patterns
@@ -12601,9 +12783,10 @@
 > ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Creational Design Patterns
@@ -12620,9 +12803,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Factory Method Design Pattern
@@ -12636,9 +12819,10 @@
 > ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12668,12 +12852,13 @@
 > On the other hand, There should be an abstract creator class that provides
 > product generation methods. Then, there should be a concrete factory which
 > composes a factory method returning abstract product.
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12806,9 +12991,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Abstract Factory Design Pattern
@@ -12823,9 +13008,9 @@
 > ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -12910,12 +13095,14 @@
 > html_builder ..> director
 > @enduml
 > ``````
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Prototype Design Pattern

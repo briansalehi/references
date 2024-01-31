@@ -15,7 +15,7 @@
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,7 +30,7 @@
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -43,9 +43,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -56,9 +56,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -70,9 +70,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -84,9 +84,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Vector Addition
@@ -101,9 +101,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -123,7 +123,7 @@
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -138,7 +138,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -151,9 +151,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Scalar to Vector Multiplication
@@ -179,9 +179,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -197,9 +197,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -234,7 +234,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ### Vector Subtraction
@@ -251,9 +251,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -264,9 +264,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Linear Combination of Vectors
@@ -293,9 +293,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Standard Basis Vectors
@@ -320,7 +320,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -332,9 +332,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -345,9 +345,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -360,7 +360,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/12 <sup>(writing)</sup>
@@ -380,9 +380,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -394,9 +394,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -410,7 +410,7 @@
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -428,7 +428,7 @@
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -440,9 +440,9 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/12
@@ -459,9 +459,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -475,9 +475,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -491,9 +491,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -504,9 +504,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -525,9 +525,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -540,9 +540,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -555,9 +555,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -570,7 +570,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -585,9 +585,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -604,9 +604,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -624,7 +624,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -639,9 +639,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -656,9 +656,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -680,9 +680,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -695,7 +695,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -709,9 +709,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -728,7 +728,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -740,7 +740,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -750,9 +750,9 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -764,9 +764,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -780,9 +780,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -795,7 +795,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -806,9 +806,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -819,9 +819,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -834,7 +834,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -845,9 +845,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -860,7 +860,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -875,7 +875,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -887,9 +887,9 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -908,7 +908,7 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/12

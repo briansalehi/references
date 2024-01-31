@@ -19,10 +19,10 @@
 
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 1
-
+> ---
 > **References**
 > - https://linux-mm.org
----
+> ---
 </details>
 
 <details>
@@ -45,9 +45,9 @@
 > ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -63,7 +63,7 @@
 > - The Shellcoder's Handbook: Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/27 Stack Overflows <sup>(writing)</sup>
@@ -86,9 +86,9 @@
 > ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -120,7 +120,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -170,7 +170,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -219,7 +219,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -243,7 +243,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -258,7 +258,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -290,7 +290,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -318,7 +318,7 @@
 > - The Shellcoder's Handbook - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/27 Shellcode

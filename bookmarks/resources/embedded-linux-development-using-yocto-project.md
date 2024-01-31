@@ -14,7 +14,7 @@
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -40,9 +40,9 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -62,9 +62,9 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -83,7 +83,7 @@
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -105,9 +105,9 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -128,7 +128,7 @@
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/17

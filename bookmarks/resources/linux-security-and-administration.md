@@ -15,9 +15,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [sudo(8)](https://manpages.org/sudo/8)
@@ -30,9 +30,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 * [visudo(8)](https://manpages.org/visudo/8)
@@ -55,10 +55,10 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
 > - [useradd(8)](https://manpages.org/useradd/8)
----
+> ---
 </details>
 
 
@@ -103,7 +103,7 @@ Nothing to import.
 
 > **References**
 > - [sshd\_config(5)](https://manpages.org/sshd_config/5)
----
+> ---
 </details>
 
 <details>
@@ -120,9 +120,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -144,7 +144,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -169,7 +169,7 @@ Nothing to import.
 
 > **References**
 > - [pam(8)](https://manpages.org/pam/8)
----
+> ---
 </details>
 
 <details>
@@ -200,7 +200,7 @@ Nothing to import.
 > **References**
 > - [pam.d(5)](https://manpages.org/pamd/5)
 > - [pam.conf(5)](https://manpages.org/pamconf/5)
----
+> ---
 </details>
 
 <details>
@@ -269,9 +269,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -284,9 +284,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -299,9 +299,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -314,9 +314,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -330,7 +330,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -344,7 +344,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -354,9 +354,9 @@ Nothing to import.
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -369,9 +369,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -384,9 +384,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -400,9 +400,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -414,9 +414,9 @@ Nothing to import.
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -434,9 +434,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -450,7 +450,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -463,9 +463,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -480,9 +480,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -498,7 +498,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -511,9 +511,9 @@ Nothing to import.
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -528,7 +528,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/12
@@ -543,9 +543,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -560,7 +560,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -579,9 +579,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -635,7 +635,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -653,9 +653,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -668,9 +668,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -691,9 +691,9 @@ Nothing to import.
 
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -734,7 +734,7 @@ Nothing to import.
 > -
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -747,9 +747,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 5/12 (ignored)
@@ -767,12 +767,13 @@ Nothing to import.
 > * zip (4-zip)
 > * 7za (7-zip)
 > * openssl
-
+>
+> ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -793,12 +794,13 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [gnupg(7)](https://manpages.org/gnupg/7)
 > - [gpgconf(1)](https://manpages.org/gnupg/1)
 > - [gpg-agent(1)](https://manpages.org/gnupg/1)
----
+> ---
 </details>
 
 <details>
@@ -819,9 +821,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -840,7 +842,8 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [bcrypt(1)](https://manpages.org/bcrypt/1)
 ---
@@ -860,12 +863,13 @@ Nothing to import.
 > ```sh
 > bcrypt <file>.bfe
 > ``````
-
+>
+> ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -886,9 +890,10 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -909,9 +914,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -925,9 +930,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -941,9 +946,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 7/12 (ignored)
@@ -970,9 +975,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -985,9 +990,9 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1002,9 +1007,10 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 9/12
@@ -1021,13 +1027,14 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [acl(5)](https://manpages.org/acl/5)
 > - [getfacl(1)](https://manpages.org/getfacl/1)
 > - [setfacl(1)](https://manpages.org/setfacl/1)
 > - [chacl(1)](https://manpages.org/chacl/1)
----
+> ---
 </details>
 
 ## Chapter 10/12 (ignored)
@@ -1050,7 +1057,7 @@ Nothing to import.
 > ---
 > **Resources**
 > -
-
+> ---
 > **References**
----
+> ---
 </details>

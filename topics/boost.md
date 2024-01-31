@@ -31,7 +31,7 @@
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
----
+> ---
 </details>
 
 ## Asynchronous Event Processing Loop
@@ -65,10 +65,10 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
----
+> ---
 </details>
 
 <details>
@@ -95,10 +95,10 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
----
+> ---
 </details>
 
 ## Queueing Asynchronous Tasks
@@ -145,7 +145,7 @@
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
----
+> ---
 </details>
 
 <details>
@@ -193,7 +193,7 @@
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
----
+> ---
 </details>
 
 ## Serializing Event Processing Loop
@@ -294,7 +294,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 5
 
 > **References**
----
+> ---
 </details>
 
 ## Deadline Timer
@@ -343,7 +343,7 @@
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/deadline_timer.html
----
+> ---
 </details>
 
 ## Endpoint
@@ -404,7 +404,7 @@
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -468,7 +468,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -480,9 +480,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -494,9 +494,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Synchronous TCP Connection
@@ -539,9 +539,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Asynchronous TCP Connection
@@ -589,9 +589,9 @@
 
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -660,9 +660,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Writing into and Reading from Socket
@@ -804,8 +804,8 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+> ---
 > **References**
----
+> ---
 </details>
 

@@ -11,9 +11,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -32,9 +32,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Running RAID
@@ -49,9 +49,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## RAID Status
@@ -67,9 +67,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -83,9 +83,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Making RAID Permanent
@@ -100,9 +100,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Monitoring RAID
@@ -120,9 +120,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -135,9 +135,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Stopping RAID
@@ -152,9 +152,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -167,9 +167,9 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Removing RAID
@@ -188,7 +188,7 @@
 > - mdadm(1)
 
 > **References**
----
+> ---
 </details>
 
 ## Extending RAID
@@ -204,7 +204,7 @@
 > ---
 > **Resources**
 > - mdadm(1)
-
+> ---
 > **References**
----
+> ---
 </details>

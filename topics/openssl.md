@@ -15,9 +15,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## CA Certificate
@@ -31,9 +31,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -48,7 +48,7 @@
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -62,9 +62,9 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -84,7 +84,7 @@
 
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
-
+> ---
 > **References**
----
+> ---
 </details>

@@ -31,10 +31,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
----
+> ---
 </details>
 
 <details>
@@ -104,9 +104,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -128,7 +128,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -150,7 +150,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -163,9 +163,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -179,9 +179,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/15 <sup>(published)</sup>
@@ -200,7 +200,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -214,9 +214,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -244,9 +244,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -275,7 +275,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -341,9 +341,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -377,9 +377,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/15 <sup>(published)</sup>
@@ -399,7 +399,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -415,10 +415,10 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > - [Copy Constructors](https://en.cppreference.com/w/cpp/language/copy_constructor)
----
+> ---
 </details>
 
 <details>
@@ -439,7 +439,7 @@
 
 > **References**
 > - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
----
+> ---
 </details>
 
 <details>
@@ -452,7 +452,7 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
 > [Destructor](https://en.cppreference.com/w/cpp/language/destructor)
 ---
@@ -483,7 +483,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -503,13 +503,14 @@
 >     // NO destructor declared
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -527,9 +528,9 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -559,9 +560,9 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -620,7 +621,7 @@
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -649,9 +650,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -692,9 +693,9 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -709,10 +710,11 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > - [The Rule of Three/Five/Zero](https://en.cppreference.com/w/cpp/language/rule_of_three)
----
+> ---
 </details>
 
 ## Chapter 4/15 <sup>(published)</sup>
@@ -736,10 +738,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+>
+> ---
 > **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
----
+> ---
 </details>
 
 <details>
@@ -905,9 +908,9 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -935,10 +938,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
-
+> ---
 > **References**
 > - [Destructors](https://en.cppreference.com/w/cpp/language/destructor)
----
+> ---
 </details>
 
 <details>
@@ -959,7 +962,7 @@
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
 > **References**
----
+> ---
 </details>
 
 Slicing objects and polymorphic classes skipped.
@@ -1043,10 +1046,10 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
-
+> ---
 > **References**
 > - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
----
+> ---
 </details>
 
 <details>
@@ -1096,10 +1099,11 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
-
+>
+> ---
 > **References**
 > - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
----
+> ---
 </details>
 
 <details>
@@ -1119,10 +1123,10 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
-
+> ---
 > **References**
 > - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
----
+> ---
 </details>
 
 <details>
@@ -1138,10 +1142,11 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
-
+>
+> ---
 > **References**
 > - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
----
+> ---
 </details>
 
 <details>
@@ -1205,10 +1210,11 @@ Slicing objects and polymorphic classes skipped.
 >         MyType(MyType&&) = default;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
-
+> ---
 > **References**
 > - [Assignment operators](https://en.cppreference.com/w/cpp/language/operator_assignment)
 ---
@@ -1274,36 +1280,39 @@ Slicing objects and polymorphic classes skipped.
 > implement the move constructor yourself. For classes where all members
 > guarantee not to throw in the move constructor, a generated or defaulted move
 > constructor will give the guarantee as a whole.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What condition can be specified for <code>noexcept</code>?</summary>
 
 > The `noexcept` condition must be a compile-time expression that yields a value convertible to `bool`.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
 <summary>What does <code>noexcept</code> change when overloading functions?</summary>
 
 > You cannot overload functions that have only different `noexcept` conditions.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1354,9 +1363,9 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1385,12 +1394,13 @@ Slicing objects and polymorphic classes skipped.
 >     std::cout << std::is_nothrow_move_assignable<B>::value << '\n'; // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1414,9 +1424,9 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1442,9 +1452,9 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 8/15 <sup>(writing)</sup>
@@ -1469,9 +1479,9 @@ void do_something(T&& x)
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1495,9 +1505,9 @@ void do_something(T&& x)
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 10/15
@@ -1544,7 +1554,7 @@ void do_something(T&& x)
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1573,9 +1583,10 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1591,9 +1602,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1616,9 +1627,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1647,9 +1658,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1658,12 +1669,13 @@ void do_something(T&& x)
 > If you pass a move-only object to a sink function and want to ensure that you
 > have lost ownership (file closed, memory freed, etc.), explicitly release the
 > resource directly afterwards.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 14/15 <sup>(completed)</sup>
@@ -1712,12 +1724,13 @@ void do_something(T&& x)
 >     // coll2 (5 elems): ’?’ ’?’ ’love’ ’is’ ’all’
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 14
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1768,9 +1781,10 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 14
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1806,9 +1820,10 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 14
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 15/15 <sup>(completed)</sup>
@@ -1841,9 +1856,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1865,9 +1880,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1892,9 +1907,9 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -1924,7 +1939,7 @@ void do_something(T&& x)
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
-
+> ---
 > **References**
----
+> ---
 </details>

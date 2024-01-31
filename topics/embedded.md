@@ -14,7 +14,7 @@
 > - Mastering Embedded Linux Programming - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -30,7 +30,7 @@
 > - Mastering Embedded Linux Programming - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -45,9 +45,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -63,7 +63,7 @@
 > - Mastering Embedded Linux Programming - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 ## Toolchains
@@ -79,9 +79,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -98,7 +98,7 @@
 > - Mastering Embedded Linux Programming - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -107,12 +107,13 @@
 > ```sh
 > gcc -dumpmachine
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -124,9 +125,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -139,9 +140,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -154,9 +155,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -169,9 +170,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Crosstool-ng Installation
@@ -194,7 +195,7 @@
 > - Mastering Embedded Linux Programming - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 ## Crosstool-ng Configuration
@@ -209,9 +210,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -227,9 +228,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Building Toolchain
@@ -259,9 +260,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -286,9 +287,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -311,9 +313,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Using Toolchains
@@ -329,9 +331,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -344,9 +346,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -359,9 +361,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -373,9 +375,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -390,9 +393,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -410,7 +413,7 @@
 > - Mastering Embedded Linux Programming - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -428,9 +431,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -444,9 +447,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -464,12 +467,13 @@
 > ```sh
 > make CROSS_COMPILE=armv6-rpi-linux-gnueabihf-
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -482,9 +486,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -504,9 +508,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -523,9 +527,9 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -541,9 +545,10 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Yocto Project
@@ -564,9 +569,9 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -579,9 +584,9 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -596,9 +601,9 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -606,13 +611,14 @@
 
 > Poky is the default Yocto Project reference distribution, which uses
 > OpenEmbedded build system technology.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -627,9 +633,9 @@
 >
 > ---
 > **Resources**
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -649,9 +655,9 @@
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -672,9 +678,10 @@
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -692,9 +699,9 @@
 > ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -712,9 +719,10 @@
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -734,9 +742,9 @@
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -761,8 +769,8 @@
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 

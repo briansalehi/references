@@ -15,9 +15,9 @@
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -40,9 +40,9 @@
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -63,9 +63,9 @@
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -85,9 +85,9 @@
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -119,7 +119,7 @@
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,7 +143,7 @@
 > - Learning OpenCV 3 - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -184,9 +184,9 @@
 
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -207,9 +207,9 @@
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -233,9 +233,9 @@
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Drawing

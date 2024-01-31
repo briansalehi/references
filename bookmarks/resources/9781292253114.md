@@ -20,7 +20,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -31,9 +31,9 @@
 > ---
 > **Resources**
 > - 
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -44,9 +44,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -59,7 +59,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -75,7 +75,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -85,9 +85,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -99,7 +99,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -109,9 +109,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -123,7 +123,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -144,7 +144,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -154,9 +154,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -174,7 +174,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -184,9 +184,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -199,9 +199,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -215,7 +215,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -230,9 +230,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -243,9 +243,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -258,7 +258,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -269,9 +269,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -291,9 +291,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -314,7 +314,7 @@
 > - 1.1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -327,9 +327,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -340,9 +340,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -353,9 +353,9 @@
 > ---
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -367,9 +367,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 
@@ -385,9 +385,9 @@
 
 > **Resources**
 > - 1.1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/17

@@ -16,7 +16,7 @@
 > **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 > - [tmux wiki](https://github.com/tmux/tmux/wiki)
----
+> ---
 </details>
 
 <details>
@@ -31,10 +31,10 @@
 > ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
-
+> ---
 > **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
----
+> ---
 </details>
 
 ## Server
@@ -55,7 +55,7 @@
 
 > **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
----
+> ---
 </details>
 
 ## Client

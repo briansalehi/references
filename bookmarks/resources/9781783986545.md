@@ -14,7 +14,7 @@
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -34,9 +34,9 @@
 
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 
@@ -90,9 +90,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -120,7 +120,7 @@
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,7 +143,7 @@
 > - 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -185,9 +185,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -234,9 +234,9 @@
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 2/6

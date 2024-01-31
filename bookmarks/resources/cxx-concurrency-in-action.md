@@ -75,10 +75,10 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
 > - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
----
+> ---
 </details>
 
 <details>
@@ -120,7 +120,7 @@
 
 > **References**
 > - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
----
+> ---
 </details>
 
 <details>
@@ -156,7 +156,7 @@
 
 > **References**
 > - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
----
+> ---
 </details>
 
 <details>
@@ -187,9 +187,9 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -211,9 +211,9 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -271,9 +271,9 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -300,9 +300,9 @@
 
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -335,7 +335,7 @@
 > C++ Concurrency in Action - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -355,9 +355,9 @@
 > ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/11 <sup>(writing)</sup>
@@ -411,9 +411,9 @@
 
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Race Condition
@@ -444,9 +444,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -520,9 +520,9 @@
 
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Lock Guard
@@ -554,7 +554,7 @@
 > - C++ Concurrency in Action - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -570,9 +570,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -640,9 +640,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ### Scoped Lock
@@ -668,9 +668,9 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+> ---
 > **References**
----
+> ---
 </details>
 
 Nested mutex and hierarchichal locks are skipped.
@@ -720,7 +720,7 @@ Nested mutex and hierarchichal locks are skipped.
 > - C++ Concurrency in Action - Chapter 3
 
 > **References**
----
+> ---
 </details>
 
 ## Chapter 4/11

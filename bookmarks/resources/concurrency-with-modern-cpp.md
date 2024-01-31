@@ -20,7 +20,7 @@ Nothing to import.
 > - Concurrency with Modern C++ - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -39,7 +39,7 @@ Nothing to import.
 > - Concurrency with Modern C++ - Chapter 2
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -100,7 +100,7 @@ Nothing to import.
 
 > **References**
 > - [std::atomic\_flag](https://en.cppreference.com/w/cpp/atomic/atomic_flag)
----
+> ---
 </details>
 
 <details>
@@ -145,7 +145,7 @@ Nothing to import.
 
 > **References**
 > - [std::mutex](https://en.cppreference.com/w/cpp/thread/mutex)
----
+> ---
 </details>
 
 <details>
@@ -214,9 +214,9 @@ Nothing to import.
 
 > **Resources**
 > - Concurrency with Modern C++ - Chapter 2
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Chapter 3/17

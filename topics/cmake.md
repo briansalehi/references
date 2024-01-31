@@ -14,7 +14,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -31,9 +31,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -51,9 +51,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -70,9 +70,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Cache Manipulation
@@ -98,7 +98,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -124,9 +124,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -143,7 +143,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Listing Cache Information
@@ -165,9 +165,9 @@
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Listing Build Information
@@ -187,9 +187,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Logging
@@ -218,7 +218,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -229,9 +229,9 @@
 
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -258,7 +258,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Trace Mode
@@ -278,9 +278,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -294,7 +294,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Presets
@@ -308,9 +308,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -323,12 +323,13 @@
 > These values override the system defaults and the environment. However, at
 > the same time, they can be overridden with any arguments that are explicitly
 > passed on the command line.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -341,9 +342,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Building Project
@@ -358,9 +359,10 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -377,9 +379,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -399,9 +401,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -419,9 +421,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Cache Cleaning
@@ -437,9 +439,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -452,9 +454,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -471,9 +473,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Installing Targets
@@ -488,9 +490,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -511,9 +513,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -530,9 +532,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -549,9 +551,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -567,9 +569,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -589,9 +591,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## CMake Script
@@ -606,9 +608,10 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -630,9 +633,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Extenal Command
@@ -650,9 +653,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -665,9 +668,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Manual
@@ -682,9 +685,10 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
----
+> ---
 </details>
 
 ## Testing
@@ -704,7 +708,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 ## Subdirectories
@@ -734,7 +738,7 @@
 > - Modern CMake for C++ - Chapter 1
 
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -751,9 +755,9 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
 <details>
@@ -764,8 +768,8 @@
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+> ---
 > **References**
----
+> ---
 </details>
 
