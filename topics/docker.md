@@ -87,6 +87,8 @@
 <details>
 <summary>Connect docker client to a remote server?</summary>
 
+> **Description**
+>
 > ```sh
 > docker -H 10.0.0.10:12375 version
 > ``````
@@ -102,6 +104,8 @@
 <details>
 <summary>Retrieve detailed information of the installed docker client?</summary>
 
+> **Description**
+>
 > ```sh
 > docker info
 > ``````
@@ -120,6 +124,8 @@
 <details>
 <summary>List all the contexts available to client?</summary>
 
+> **Description**
+>
 > ```sh
 > docker context list
 > ``````
@@ -180,6 +186,8 @@
 <details>
 <summary>List available Docker images?</summary>
 
+> **Description**
+>
 > ```sh
 > docker image ls
 > docker image list
@@ -219,6 +227,8 @@
 <details>
 <summary>List images built before another available image was built?</summary>
 
+> **Description**
+>
 > **before:** Requires an image name or ID as argument, and returns all images
 > created before it.
 >
@@ -324,6 +334,8 @@
 <details>
 <summary>Limit the image search results to 10 entries?</summary>
 
+> **Description**
+>
 > By default, Docker will only display 25 lines of results. However, you can
 > use the `--limit` flag to change that.
 >
@@ -339,6 +351,8 @@
 <details>
 <summary>Filter the result of image search results to official images only?</summary>
 
+> **Description**
+>
 > Use `--filter is-official=true` so that only official repos are displayed.
 >
 > ```sh
@@ -357,6 +371,8 @@
 <details>
 <summary>Filter the result of image search results to automated build images only?</summary>
 
+> **Description**
+>
 > ```sh
 > docker search alpine --filter is-automated=true --limit 100
 > ``````
@@ -375,6 +391,8 @@
 <details>
 <summary>Pull an image from official repositories?</summary>
 
+> **Description**
+>
 > ```sh
 > docker image pull mongo:4.2.6
 > ``````
@@ -480,6 +498,8 @@
 <details>
 <summary>See the digests of an image?</summary>
 
+> **Description**
+>
 > ```sh
 > docker image pull alpine:latest
 > docker image list --digests alpine:latest
@@ -621,6 +641,8 @@
 <details>
 <summary>Verify the integrity of images?</summary>
 
+> **Description**
+>
 > **Docker Content Trust (DCT)** lets us sign our own images and verify the
 > integrity and publisher of images we consume.
 >
@@ -762,6 +784,8 @@
 <details>
 <summary>Attach host's shell to the shell of a running container?</summary>
 
+> **Description**
+>
 > This command runs a new process inside of a running container. It’s useful
 > for attaching the shell of your Docker host to a terminal inside of a running
 > container. For this to work, the image used to create the container must
@@ -807,6 +831,8 @@
 <details>
 <summary>Start a stopped container?</summary>
 
+> **Description**
+>
 > This command will restart a stopped (Exited) container. You can give this
 > command the name or ID of a container.
 >
@@ -873,6 +899,8 @@
 <details>
 <summary>Run a container with persistent restart policy on failure or system restart?</summary>
 
+> **Description**
+>
 > The `always` policy always restarts a stopped container unless it has been
 > explicitly stopped. However, if you restart the Docker daemon, the container
 > will be automatically restarted when the daemon comes back up.
@@ -915,6 +943,8 @@
 <details>
 <summary>Run a container restarting on failure only?</summary>
 
+> **Description**
+>
 > The `on-failure` policy will restart a container if it exits with a non-zero
 > exit code. It will also restart containers when the Docker daemon restarts,
 > even containers that were in the `stopped` state.
@@ -936,6 +966,8 @@
 <details>
 <summary>List running and stopped Docker containers?</summary>
 
+> **Description**
+>
 > Lists all containers in the running (UP) state. If you add the `-a` flag you
 > will also see containers in the stopped (Exited) state.
 >
@@ -978,6 +1010,8 @@
 <details>
 <summary>Specify required packages to be installed on an image in Dockerfile?</summary>
 
+> **Description**
+>
 > The `RUN` instruction uses the Alpine apk package manager to install node js
 > and nodejs-npm into the image. It creates a new image layer directly above
 > the Alpine base layer, and installs the packages in this layer.
@@ -1005,6 +1039,8 @@
 <details>
 <summary>Import source files of a project to an image in Dockerfile?</summary>
 
+> **Description**
+>
 > The `COPY . /src` instruction creates another new layer and copies in the
 > application and dependency files from the build context.
 >
@@ -1089,6 +1125,8 @@
 <details>
 <summary>Express the command for default arguments given to the executable within an image?</summary>
 
+> **Description**
+>
 > When building a Docker image, you can embed an instruction that lists the
 > default app for any containers that use the image. You can inspect an image
 > to see this.
@@ -1134,6 +1172,8 @@
 <details>
 <summary>How many types of swarm nodes exist?</summary>
 
+> **Description**
+>
 > Nodes are either configured as *managers* or *workers*.
 >
 > ---
@@ -1215,6 +1255,8 @@
 <details>
 <summary>List available swarm nodes?</summary>
 
+> **Description**
+>
 > ```sh
 > docker node ls
 > ``````
@@ -1254,6 +1296,8 @@
 <details>
 <summary>Join Docker nodes to a swarm?</summary>
 
+> **Description**
+>
 > In a *worker* node use extracted token to join to the swarm:
 >
 > ```sh
@@ -1275,6 +1319,8 @@
 <details>
 <summary>How does the <b>High Availability</b> mechanism in swarms work?</summary>
 
+> **Description**
+>
 > Swarm implements a form of active-passive multi-manager high availability
 > mechanism. This means that although you have multiple *managers*, only one of
 > them is *active* at any given moment. This active *manager* is called the
@@ -1368,6 +1414,8 @@
 <details>
 <summary>Check the current swarm unlock key?</summary>
 
+> **Description**
+>
 > ```sh
 > docker swarm unlock-key
 > ``````
@@ -1383,6 +1431,8 @@
 <details>
 <summary>Re-join Docker nodes to a locked swarm?</summary>
 
+> **Description**
+>
 > Restart docker daemon one of the *manager* nodes:
 >
 > ```sh
@@ -1461,6 +1511,8 @@
 <details>
 <summary>List the service replicas in docker?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service ps my-service
 > ``````
@@ -1512,6 +1564,8 @@
 <details>
 <summary>Scale up and scale down a docker serivce in a swarm?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service scale my-service=10
 > docker service scale my-service=2
@@ -1530,6 +1584,8 @@
 <details>
 <summary>Remove a docker service from a swarm?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service rm my-service
 > ``````
@@ -1545,6 +1601,8 @@
 <details>
 <summary>Create an overlay network for a docker service?</summary>
 
+> **Description**
+>
 > ```sh
 > docker network create --driver overlay my-network
 > ``````
@@ -1614,6 +1672,8 @@
 <details>
 <summary>Create docker service replicas on <b>host mode</b>?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service create --name my-service --network my-network --publish published=80,target=80,mode=host --replicas 12
 > ``````
@@ -1692,6 +1752,8 @@
 <details>
 <summary>Why swarm backups are important?</summary>
 
+> **Description**
+>
 > Managing your swarm and applications declaratively is a great way to prevent
 > the need to recover from a backup. For example, storing conﬁguration objects
 > outside of the swarm in a source code repository will enable you to redeploy
@@ -1710,6 +1772,8 @@
 <details>
 <summary>Where a swarm backup file will be written?</summary>
 
+> **Description**
+>
 > Swarm conﬁguration and state is stored in `/var/lib/docker/swarm` on every
 > manager node. A swarm backup is a copy of all the ﬁles in this directory.
 >
@@ -1776,6 +1840,8 @@
 <details>
 <summary>Join new managers in a swarm?</summary>
 
+> **Description**
+>
 > First extract the manager token:
 >
 > *manager1*
@@ -1884,6 +1950,8 @@
 <details>
 <summary>Secure the network connections of a swarm?</summary>
 
+> **Description**
+>
 > **Docker secrets** let us securely share sensitive data with applications.
 > They’re stored in the encrypted cluster store, encrypted over the network,
 > kept in in-memory filesystems when in use, and operate a least-privilege
@@ -1920,6 +1988,8 @@
 <details>
 <summary>Inspect a node’s client certificate?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text
 > ``````
@@ -1956,6 +2026,8 @@
 <details>
 <summary>Manage CA related configuration?</summary>
 
+> **Description**
+>
 > ```sh
 > docker swarm ca --help
 > ``````
@@ -2022,6 +2094,8 @@
 <details>
 <summary>Install a plugin on docker?</summary>
 
+> **Description**
+>
 > ```sh
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > ``````
@@ -2058,6 +2132,8 @@
 <details>
 <summary>Create a volume?</summary>
 
+> **Description**
+>
 > By default, Docker creates new volumes with the built-in *local* driver.
 >
 > ```sh
@@ -2079,6 +2155,8 @@
 <details>
 <summary>Create a volume in Dockerfile?</summary>
 
+> **Description**
+>
 > ```docker
 > VOLUME <container-mount-point>
 > ``````
@@ -2121,6 +2199,8 @@
 <details>
 <summary>List available volumes?</summary>
 
+> **Description**
+>
 > ```sh
 > docker volume ls
 > docker volume list
@@ -2139,6 +2219,8 @@
 <details>
 <summary>Inspect into a volume?</summary>
 
+> **Description**
+>
 > ```sh
 > docker volume inspect my-storage
 > ``````
@@ -2163,6 +2245,8 @@
 <details>
 <summary>Delete a volume?</summary>
 
+> **Description**
+>
 > ```sh
 > docker volume rm
 > docker volume remove
@@ -2202,6 +2286,8 @@
 <details>
 <summary>Attach a volume to a container?</summary>
 
+> **Description**
+>
 > Create a volume, then you create a container and mount the volume into it.
 > The volume is mounted into a directory in the container’s filesystem, and
 > anything written to that directory is stored in the volume. If you delete the

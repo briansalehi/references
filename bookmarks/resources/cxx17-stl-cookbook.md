@@ -15,6 +15,8 @@
 <details>
 <summary>Check if <code>/usr/src/linux/version</code> file exists?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <filesystem>
 >
@@ -81,6 +83,8 @@
 <details>
 <summary>Get the canonical form of a path?</summary>
 
+> **Description**
+>
 > `std::filesystem::canonical()` throws a `std::filesystem_error` type
 > exception if the path we want to canonicalize does not exist.
 >
@@ -120,6 +124,8 @@
 <details>
 <summary>Get the canonical form of a path relative to another path?</summary>
 
+> **Description**
+>
 > `std::filesystem::canonical()` accepts a path as an optional second argument.
 >
 > ```cpp
@@ -204,6 +210,8 @@
 <details>
 <summary>Concatenate two paths?</summary>
 
+> **Description**
+>
 > `std::filesystem::path` overloads `operator/` and `operator+` for path
 > concatenation, but `operator/` uses path separators between junctions and
 > `operator+` only acts as string concatanation.
@@ -228,6 +236,8 @@
 <details>
 <summary>Check if two paths are addressing the same location?</summary>
 
+> **Description**
+>
 > `std::filesystem::equivalent()` canonicalizes the paths, which it accepts as
 > arguments and returns true if they describe the same path after all.
 >
@@ -258,6 +268,8 @@
 <details>
 <summary>Get the type of a file from its path?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <filesystem>
 >
@@ -282,6 +294,8 @@
 <details>
 <summary>Make the type checking of a file cheaper by not calling system calls?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <filesystem>
 >
@@ -309,6 +323,8 @@
 <details>
 <summary>Check if the permission of a file includes user, group, and others access?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <fstream>
 > #include <iostream>

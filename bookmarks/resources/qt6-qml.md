@@ -96,6 +96,8 @@ Nothing to import.
 <details>
 <summary>How javascript functions can be declared in QML?</summary>
 
+> **Description**
+>
 > ```qml
 > Text {
 >     id: label
@@ -126,6 +128,8 @@ Nothing to import.
 <details>
 <summary>Define a globaly accessible root element in QML code?</summary>
 
+> **Description**
+>
 > ```qml
 > import QtQuick
 >
@@ -786,6 +790,8 @@ Export properties of a component to be used as an API?
 <details>
 <summary>Fill out a grid with blue squares using a repeater?</summary>
 
+> **Description**
+>
 > An element often used with positioners is the `Repeater`. It works like a
 > for-loop and iterates over a model. In the simplest case a model is just a
 > value providing the number of loops.
@@ -873,6 +879,8 @@ Export properties of a component to be used as an API?
 <details>
 <summary>What are the anchoring properties for visual elements?</summary>
 
+> **Description**
+>
 > An element has 6 major anchor lines, `top` , `bottom` , `left` , `right` , `horizontalCenter` , `verticalCenter` .
 >
 > ---
@@ -900,6 +908,8 @@ Export properties of a component to be used as an API?
 <details>
 <summary>What are the offsets of anchors?</summary>
 
+> **Description**
+>
 > Each anchor line comes with an offset. In the case of the `top` , `bottom` ,
 > `left` , and `right` anchors, they are called **margins**. For
 > `horizontalCenter` , `verticalCenter` and `baseline` they are called
@@ -918,6 +928,8 @@ Export properties of a component to be used as an API?
 <details>
 <summary>What input constraints does <code>TextInput</code> support?</summary>
 
+> **Description**
+>
 > - `validator`
 > - `inputMask`
 > - `echoMode`
@@ -1047,6 +1059,8 @@ Get a line of text from user?
 <details>
 <summary>What property can record key presses?</summary>
 
+> **Description**
+>
 > The attached property `Keys` allows executing code based on certain key
 > presses.
 >
@@ -1242,6 +1256,8 @@ Get a line of text from user?
 <details>
 <summary>What action elements are used to change a property or to run a script during an ongoing animation?</summary>
 
+> **Description**
+>
 > While working on more complex animations, there is sometimes a need to change
 > a property or to run a script during an ongoing animation. For this Qt Quick
 > offers the action elements, which can be used everywhere where the other
@@ -1281,6 +1297,8 @@ Get a line of text from user?
 <details>
 <summary>Enable wrapping on Text elements?</summary>
 
+> **Description**
+>
 > ```qml
 > Text {
 >     wrapMode: Text.WordWrap
@@ -1377,6 +1395,8 @@ Get a line of text from user?
 <details>
 <summary>What type can be used to fine-tune the animations?</summary>
 
+> **Description**
+>
 > Besides the `duration` and `easing.type` , you are able to fine-tune
 > animations. For example, the general `PropertyAnimation` type (from which
 > most animations inherit) additionally supports `easing.amplitude` ,
@@ -1419,6 +1439,8 @@ Get a line of text from user?
 <details>
 <summary>Animate an object to cross the window diagonally?</summary>
 
+> **Description**
+>
 > ```qml
 > import QtQuick
 >
@@ -1623,6 +1645,8 @@ Get a line of text from user?
 <details>
 <summary>What is the basic form of a transition?</summary>
 
+> **Description**
+>
 > A transition is executed by a state change.
 >
 > You can define on which state change a particular transition can be applied

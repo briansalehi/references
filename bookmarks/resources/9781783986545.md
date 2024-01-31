@@ -6,6 +6,8 @@
 <details>
 <summary>What API does the boost library represent for TCP/IP standard?</summary>
 
+> **Description**
+>
 > The TCP/IP standard does not standardize the protocol API implementation;
 > therefore, several API implementations exist. However, the one based on
 > Berkeley Sockets API is the most widely used.
@@ -21,6 +23,8 @@
 <details>
 <summary>Represent the IP address and port of an endpoint?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <boost/asio.hpp>
 >
@@ -45,6 +49,8 @@
 <details>
 <summary>Create an endpoint to designate the address of a network node?</summary>
 
+> **Description**
+>
 > A pair of values consisting of an IP address and a protocol port number that
 > uniquely identifies a particular application running on a particular host in
 > a computer network is called an endpoint.
@@ -129,6 +135,8 @@
 <details>
 <summary>How many sockets are available?</summary>
 
+> **Description**
+>
 > Basically, there are two types of sockets. A socket intended to be used to
 > send and receive data to and from a remote application or to initiate a
 > connection establishment process with it is called an active socket, whereas
@@ -198,6 +206,8 @@
 <details>
 <summary>Create a passive socket in server code?</summary>
 
+> **Description**
+>
 > A passive socket or acceptor socket is a type of socket that is used to wait
 > for connection establishment requests from remote applications that
 > communicate over the TCP protocol.

@@ -6,6 +6,8 @@
 <details>
 <summary>What aspects of a solution identifies good design?</summary>
 
+> **Description**
+>
 > 1. **Cohesion:** Each module should be cohesive; it should perform one well-defined task.
 > 2. **Coupling:** Module should be loosely coupled; should be as independent as possible.
 > 3. **Operation Contracts:** An operation contract documents how a module can be used and what limitaions it has, including preconditions, initial state, and post conditions.
@@ -147,6 +149,8 @@
 <details>
 <summary>Step through the process of designing the interface of a bag as a container and test it:</summary>
 
+> **Description**
+>
 > 1. Specify what data the problem operates on: **bag**
 >
 > 2. Specify what operations does the problem requires:

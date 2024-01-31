@@ -33,6 +33,8 @@
 <details>
 <summary>Insert data into a table?</summary>
 
+> **Description**
+>
 > ```sql
 > insert into cities (name, country, population, area)
 > values ('Tehran', 'Iran', 15000000, 40000),
@@ -168,6 +170,8 @@
 <details>
 <summary>Filter query result by checking the existance of a column in a set of values?</summary>
 
+> **Description**
+>
 > ```sql
 > select name, country from cities where country in ('USA', 'Germany', 'France');
 > ``````
@@ -183,6 +187,8 @@
 <details>
 <summary>Reverse the filtering of a query by checking the none-existance of a column in a set of values?</summary>
 
+> **Description**
+>
 > ```sql
 > select name, country from cities where country not in ('USA', 'Germany', 'France');
 > ``````
@@ -279,6 +285,8 @@
 <details>
 <summary>Delete a row from a table?</summary>
 
+> **Description**
+>
 > ```sql
 > delete from cities where name = 'Tehran';
 > ``````
@@ -294,6 +302,8 @@
 <details>
 <summary>Delete all rows of a table?</summary>
 
+> **Description**
+>
 > ```sql
 > delete from cities;
 > ``````
@@ -348,6 +358,8 @@
 <details>
 <summary>What is the common way of making a primary key auto generate a unique id in postgres?</summary>
 
+> **Description**
+>
 > Using `serial` in postgres, we will have a value typed as integral and auto
  generate unique IDs.
 >
@@ -579,6 +591,8 @@
 <details>
 <summary>What are the main characteristics of grouping operation?</summary>
 
+> **Description**
+>
 > - Reduces many rows down to fewer rows
 > - Done by using the 'GROUP BY' keyword
 > - Visualizing the result is key to use
@@ -594,6 +608,8 @@
 <details>
 <summary>What steps are taken to group a table by a specific column?</summary>
 
+> **Description**
+>
 > 1. Group records by a specific column, e.g. `user_id`
 > 2. Find the set of all unqiue values in that column
 > 3. Take each record and assign to a group based on grouped unique values
@@ -660,6 +676,8 @@
 <details>
 <summary>Filter a set a groups of records grouped by a specific column?</summary>
 
+> **Description**
+>
 > ```sql
 > select authors.name, count(books.id) as releases
 > from authors
@@ -774,6 +792,8 @@
 <details>
 <summary>Find the sum of all comments from each photo record in a photo sharing app?</summary>
 
+> **Description**
+>
 > ```sql
 > ``````
 >
@@ -837,6 +857,8 @@
 <details>
 <summary>What is the use case of limit?</summary>
 
+> **Description**
+>
 > Only gives the number of records requested.
 >
 > ```sql
@@ -909,6 +931,8 @@
 <details>
 <summary>What is the use case of union clause?</summary>
 
+> **Description**
+>
 > There are some cases where two different result sets need to be combined to
 > form the desired result set. For example:
 >
@@ -939,6 +963,8 @@
 <details>
 <summary>Combine two different result sets with and without duplicates?</summary>
 
+> **Description**
+>
 > ```sql
 > (
 >     select product_id
@@ -993,6 +1019,8 @@
 <details>
 <summary>Collect the intersection of two result sets?</summary>
 
+> **Description**
+>
 > ```sql
 > select * from products order by price desc limit 4;
 > intersect
@@ -1014,6 +1042,8 @@
 <details>
 <summary>Find the records appearing in first result set and not in second result set?</summary>
 
+> **Description**
+>
 > ```sql
 > select * from products order by price desc limit 4;
 > except
@@ -1038,6 +1068,8 @@
 <details>
 <summary>Where are subqueries mostly used?</summary>
 
+> **Description**
+>
 > When a condition requires a value or a set of values that must be collected
 > by another query as a prerequisite, we can use subqueries.
 >
@@ -1179,6 +1211,8 @@
 <details>
 <summary>Set a default value for a column?</summary>
 
+> **Description**
+>
 > ```sql
 > create table products (
 >     id serial primary key,
@@ -1236,6 +1270,8 @@
 <details>
 <summary>Add a uniqueness constraint to a column?</summary>
 
+> **Description**
+>
 > ```sql
 > alter table products add unique (name);
 > ``````
@@ -1251,6 +1287,8 @@
 <details>
 <summary>Remove uniqueness constraint on a column?</summary>
 
+> **Description**
+>
 > ```sql
 > ``````
 >
@@ -1305,6 +1343,8 @@ create table products (
 <details>
 <summary>Define a column with a check constraint on its value?</summary>
 
+> **Description**
+>
 > ```sql
 > create table products (
 >     id serial primary key,
@@ -1431,6 +1471,8 @@ create table products (
 <details>
 <summary>Retrieve the name and identifier of databases in an instance?</summary>
 
+> **Description**
+>
 > ```psql
 > select oid, datname from pg_database;
 > ``````
@@ -1515,6 +1557,8 @@ create table products (
 <details>
 <summary>Create an index for a table?</summary>
 
+> **Description**
+>
 > ```psql
 > create index users_username_idx on users(username);
 > ``````
@@ -1626,6 +1670,8 @@ create table products (
 <details>
 <summary>Query all the auto generated indexes?</summary>
 
+> **Description**
+>
 > ```psql
 > select relname from pg_class where relkind = 'i';
 > ``````
@@ -1707,6 +1753,8 @@ create table products (
 <details>
 <summary>Inspect the ctid column of a table?</summary>
 
+> **Description**
+>
 > All tables have a hidden `ctid` column which we can query.
 >
 > ```psql
@@ -1725,6 +1773,8 @@ create table products (
 <details>
 <summary>What the first row in the page items table does?</summary>
 
+> **Description**
+>
 > The first row points to the first item of the next page for performance
 > reasons.
 >
@@ -1755,6 +1805,8 @@ create table products (
 <details>
 <summary>What is the difference between plain explain and explain analyze?</summary>
 
+> **Description**
+>
 > - `explain`: build a query plan and display info about it
 > - `explain analyze`: build a query plan, run it, and info about it
 >

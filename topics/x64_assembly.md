@@ -87,6 +87,8 @@
 <details>
 <summary>Change the line number of source listing?</summary>
 
+> **Description**
+>
 > ```gdb
 > show listsize
 > set listsize 20
@@ -174,6 +176,8 @@
 <details>
 <summary>Set breakpoints in gdb?</summary>
 
+> **Description**
+>
 > ```gdb
 > break main
 > help break
@@ -207,6 +211,8 @@
 <details>
 <summary>Inspect registers in gdb?</summary>
 
+> **Description**
+>
 > ```gdb
 > info registers
 > info all-registers
@@ -246,6 +252,8 @@
 <details>
 <summary>Manipulate breakpoints in gdb?</summary>
 
+> **Description**
+>
 > ```gdb
 > disable breakpoint 1
 > enable breakpoint 1
@@ -285,6 +293,8 @@
 <details>
 <summary>Print variables through debugging session?</summary>
 
+> **Description**
+>
 > ```gdb
 > print
 > help print
@@ -321,6 +331,8 @@
 <details>
 <summary>Read the ELF header of an executable object?</summary>
 
+> **Description**
+>
 > ```sh
 > readelf --file-header ./program
 > ``````
@@ -336,6 +348,8 @@
 <details>
 <summary>Read symbols of an executable object?</summary>
 
+> **Description**
+>
 > ```sh
 > readelf --symbols ./program | grep -E 'main|start|Num:.*' --color
 > ``````
@@ -462,6 +476,8 @@
 <details>
 <summary>Name the flag registers?</summary>
 
+> **Description**
+>
 > Name|Symbol|Bit|Content
 > ---|---|---|---
 > Carry|CF|0|Previous instruction had a carry
@@ -483,6 +499,8 @@
 <details>
 <summary>Name SIMD registers?</summary>
 
+> **Description**
+>
 > `xmm`
 > `ymm`
 > `zmm`
@@ -513,6 +531,8 @@
 <details>
 <summary>Write exit procedure in x64 Assembly?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .data
 > section .bss
@@ -537,6 +557,8 @@
 <details>
 <summary>Exit program without directly writing the exit syscall?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .text
 >     global main
@@ -615,6 +637,8 @@
 <details>
 <summary>Preserve uninitialized variables in a writable memory section?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .bss
 >     bvar resb 10
@@ -636,6 +660,8 @@
 <details>
 <summary>Use external functions from C in x64 assembly code?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -693,6 +719,8 @@
 <details>
 <summary>Add and subtract two integral integers?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .data
 >     number1 dq 36
@@ -825,6 +853,8 @@
 <details>
 <summary>Multiply and divide two integral integers?</summary>
 
+> **Description**
+>
 > * `mul` multiplies unsigned integers
 > * `imul` multiplies signed integers
 > * `imul` will store the lower 64 bits of the resulting product in rax and the
@@ -945,6 +975,8 @@
 <details>
 <summary>Multiply and divide two floating point numbers?</summary>
 
+> **Description**
+>
 > * Single precision floating point arithmetic instructions are postfixed with ss
 > * Double precision floating point arithmetic instructions are postfixed with sd
 >
@@ -1155,6 +1187,8 @@
 <details>
 <summary>Conditionally change the execution flow?</summary>
 
+> **Description**
+>
 > * je: jump if equal
 > * jne: jump if not equal
 > * jg: jump if greater
@@ -1281,6 +1315,8 @@
 <details>
 <summary>Repeat execution of a code section by automatically counting down?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -1383,6 +1419,8 @@
 <details>
 <summary>Temporarily store values on memory within the scope of a function?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .data
 >     text db "Brian Salehi", 10, 0
@@ -1455,6 +1493,8 @@
 <details>
 <summary>Write a stack frame for a function?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .text
 >     global main
@@ -1602,6 +1642,8 @@
 <details>
 <summary>Use calling conventions to transfer variables from callee to caller functions?</summary>
 
+> **Description**
+>
 > * Following calling conventions are for System V AMD64 ABI:
 > * For integral types, registers are `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`
 >   respectively, and additional arguments are passed via the stack and in
@@ -1698,6 +1740,8 @@
 <details>
 <summary>Declare function local variables?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -1869,6 +1913,8 @@
 <details>
 <summary>Expose a variable to external linkage?</summary>
 
+> **Description**
+>
 > *header.nasm*
 > ```nasm
 > global pi
@@ -1965,6 +2011,8 @@
 <details>
 <summary>Write a basic inline assembly in C programs?</summary>
 
+> **Description**
+>
 > Instructions should be terminated by `;`. `-mintel` compiler option is
 > required. Switching to Intel assembly syntax is required as the first
 > argument of `__asm__`.
@@ -2052,6 +2100,8 @@
 <details>
 <summary>Use inline procedures to avoid runtime overhead of function calls?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -2136,6 +2186,8 @@
 <details>
 <summary>Write into the standard output stream?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .text
 >     global write
@@ -2199,6 +2251,8 @@
 <details>
 <summary>Prevent stack overflow by counting input string before printing it?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .text
 >     global read
@@ -2349,6 +2403,8 @@
 <details>
 <summary>Read command line arguments from an x64 assembly program?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -2424,6 +2480,8 @@
 <details>
 <summary>Open and close a file in x64 assembly?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .data
 >     CREATE equ 1            ; use for conditional assembly
@@ -2568,6 +2626,8 @@
 <details>
 <summary>Truncate a file in x64 assembly?</summary>
 
+> **Description**
+>
 > ```nasm
 > section .data
 >     CREATE equ 1            ; use for conditional assembly
@@ -2631,6 +2691,8 @@
 <details>
 <summary>Obtain the CPU information of the processor in x64 assembly?</summary>
 
+> **Description**
+>
 > You first put a specific parameter in `eax`, then execute the instruction
 > `cpuid`, and finally check the returned value in `ecx` and `edx`. Indeed,
 > `cpuid` uses 32-bit registers.
@@ -2670,6 +2732,8 @@
 <details>
 <summary>Check the processors which version of SSE extensions do they support?</summary>
 
+> **Description**
+>
 > ```nasm
 > extern printf
 >
@@ -2808,6 +2872,8 @@
 <details>
 <summary>How many registers of SSE are available on any processor supporting it?</summary>
 
+> **Description**
+>
 > 16 additional 128-bit registers of `xmm`:
 >
 > * xmm0
@@ -2874,6 +2940,8 @@
 <details>
 <summary>How can we align data in <code>.data</code> and <code>.bss</code> sections in specific byte sizes?</summary>
 
+> **Description**
+>
 > In **NASM** the assembly directive `align 16` and `alignb 16` can be used in
 > front of the data.
 >

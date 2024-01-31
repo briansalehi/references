@@ -6,6 +6,8 @@
 <details>
 <summary>Specify the execution procedure of an executable?</summary>
 
+> **Description**
+>
 > - The operating system creates an address space in which the program will run.
 > - This address space indluces the actual program instructions as well as any required data.
 > - Three segment types are created: `.text` (read-only), `.bss` (writable), `.data` (writable).
@@ -54,6 +56,8 @@
 <details>
 <summary>Specify register groups in assembly language?</summary>
 
+> **Description**
+>
 > - General purpose registers: `rbp`, `rsp`, `rax`, `rbx`, `rcx`, `rdx`, `rdi`, `rsi`, `r8`, `r9`,...
 > - Segment registers: `cs`, `ds`, `ss`
 > - Control registers: `rip`
@@ -72,6 +76,8 @@
 <details>
 <summary>When buffers become vulnerable to stack overflows?</summary>
 
+> **Description**
+>
 > C has no bounds-checking on buffers.
 >
 > ```c
@@ -129,6 +135,8 @@
 <details>
 <summary>What values does the calling convention put on the stack?</summary>
 
+> **Description**
+>
 > When a function has completed executing its instructions, it returns control
 > to the original function caller.
 >
@@ -258,6 +266,8 @@
 <details>
 <summary>Translate a hexadecimal address into shellcode?</summary>
 
+> **Description**
+>
 > Assuming the address we want to use is `0x080483ed`.
 >
 > We should separate each byte from end to the beginning separated by `\x`

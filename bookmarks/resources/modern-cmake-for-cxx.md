@@ -6,6 +6,8 @@
 <details>
 <summary>Execute the CMake configuration stage?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake -S ./project -B ./build
 > ``````
@@ -21,6 +23,8 @@
 <details>
 <summary>Specify the generator used for building the project?</summary>
 
+> **Description**
+>
 > Selecting and configuring a generator decides which build tool from our
 > system will be used for building. This can be overridden by the
 > `CMAKE_GENERATOR` environment variable or by specifying the generator
@@ -132,6 +136,8 @@
 <details>
 <summary>List cache variables?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake -L[A][H] <path-to-source>
 > ``````
@@ -234,6 +240,8 @@ cmake --system-information [file]
 <details>
 <summary>Display log context with each <code>message()</code> call?</summary>
 
+> **Description**
+>
 > To debug very complex projects, the `CMAKE_MESSAGE_CONTEXT` variable can be
 > used like a stack. Whenever your code enters a specific context, you can add
 > a descriptive name to the stack and remove it when leaving. By doing this,
@@ -261,6 +269,8 @@ cmake --system-information [file]
 <details>
 <summary>Enable trace mode?</summary>
 
+> **Description**
+>
 > If all logging options fail there is always trace mode.
 >
 > Trace mode will print every command with the filename and exact line number
@@ -345,6 +355,8 @@ cmake --system-information [file]
 <details>
 <summary>Provide special arguments to the native builder?</summary>
 
+> **Description**
+>
 > CMake allows you to specify key build parameters that work for every builder.
 > If you need to provide special arguments to your chosen, native builder, pass
 > them at the end of the command after the `--` token.
@@ -387,6 +399,8 @@ cmake --system-information [file]
 <details>
 <summary>Explicitly specify targets to build?</summary>
 
+> **Description**
+>
 > Every project is made up of one or more parts, called targets. Usually, we'll
 > want to build all of them; However, on occasion, we might be interested in
 > skipping some or explicitly building a target that was deliberately excluded
@@ -423,6 +437,8 @@ cmake --system-information [file]
 <details>
 <summary>Execute build stage by first cleaning the build directory?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake --build <dir> --clean-first
 > ``````
@@ -516,6 +532,8 @@ cmake --system-information [file]
 <details>
 <summary>Set default permissions of installed files?</summary>
 
+> **Description**
+>
 > If installation is carried on a Unix-like platform, you can specify default
 > permissions for the installed directories, with the following option, using
 > the format of `u=rwx,g=rx,o=rx`:
@@ -615,6 +633,8 @@ cmake --system-information [file]
 <details>
 <summary>Execute external commands with CMake?</summary>
 
+> **Description**
+>
 > On rare occasions, we might need to run a single command in a
 > platform-independent way – perhaps copy a file or compute a checksum.
 >
@@ -729,6 +749,8 @@ cmake --system-information [file]
 <details>
 <summary>What are the actual requirements for the script file provided?</summary>
 
+> **Description**
+>
 > Not that many: a script can be as complex as you like or an empty file.
 > However, it is recommended that you call the `cmake_minimum_required()`
 > command at the beginning of the script. This command tells CMake which

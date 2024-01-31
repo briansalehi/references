@@ -72,6 +72,8 @@
 <details>
 <summary>What are the building blocks of the Metadata component in the Poky build system?</summary>
 
+> **Description**
+>
 > There are two sub-modules in the Metadata component:
 >
 > - **OpenEmbedded-Core:** the core infrastructure for the cross-compilation

@@ -6,6 +6,8 @@
 <details>
 <summary>Install OpenCV library?</summary>
 
+> **Description**
+>
 > ```sh
 > git clone https://github.com/opencv/opencv.git
 > cmake -S opencv -B opencv-build -D CMAKE_BUILD_TYPE=Release -D CMAKE_PREFIX_PATH=/usr/local
@@ -24,6 +26,8 @@
 <details>
 <summary>Include OpenCV headers in source file?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <opencv2/core.hpp>
 > ``````
@@ -39,6 +43,8 @@
 <details>
 <summary>Print the size of a matrix?</summary>
 
+> **Description**
+>
 > ```cpp
 > cv::Mat image;
 > std::cout << image.rows << " x " << image.cols << '\n';;
@@ -396,6 +402,8 @@
 <details>
 <summary>Convert an image into another image of different type?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <opencv2/core.hpp>
 > #include <opencv2/imgproc.hpp>
@@ -474,6 +482,8 @@
 <details>
 <summary>Specify columns and rows of an image as region of interest?</summary>
 
+> **Description**
+>
 > ```cpp
 > cv::Mat region = image.rowRange(start, end);
 > cv::Mat region = image.colRange(start, end);

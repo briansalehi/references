@@ -69,6 +69,8 @@
 <details>
 <summary>What two vectors are considered equal?</summary>
 
+> **Description**
+>
 > Vectors having same length and direction are equal.
 >
 > ---
@@ -99,6 +101,8 @@
 <details>
 <summary>What is the result of addition of two vectors $v = (v₁, v₂)$ and $w = (w₁, w₂)$?</summary>
 
+> **Description**
+>
 > Sum vectors can be calculated by summing two vectors entry-wise.
 >
 > $v + w = (v₁ + w₁, v₂ + w₂)$
@@ -153,6 +157,8 @@
 <details>
 <summary>Practice: Compute the following vector sums $(2, 5, −1) + (1, −1, 2)$ and $(1, 2) + (3, 1) + (2, -1)$?</summary>
 
+> **Description**
+>
 > **Solution:**
 >
 > 1. $(2, 5, −1) + (1, −1, 2) = (2 + 1, 5 − 1, −1 + 2) = (3, 4, 1)$
@@ -252,6 +258,8 @@
 <details>
 <summary>What is the result of subtraction of vector $v = (v₁, v₂)$ to vector $w = (w₁, w₂)$?</summary>
 
+> **Description**
+>
 > Subtraction of these two vectors are geometrically a vector from the head of
 > $w$ to the head of $v$.
 >
@@ -285,6 +293,8 @@
 <details>
 <summary>What are linear combinations of vectors $v_1 , v_2 , ... , v_k$?</summary>
 
+> **Description**
+>
 > A **linear combination** of the vectors $v_1 , v_2 , ... , v_k \in R^n$ is
 > any vector of the form:
 >
@@ -450,6 +460,8 @@
 <details>
 <summary>Practice: compute $\frac{1}{2}(-1,-3,2).(6,-4,2)$?</summary>
 
+> **Description**
+>
 > $\frac{1}{2}(-6, 12, 4) = \frac{1}{2}(10) = 5$
 >
 > ---
@@ -483,6 +495,8 @@
 <details>
 <summary>Determine whether or not function $T(v_1, v_2) = (1+v_1, 2+v_2)$ when $T: R^2 → R^2$ is a linear transformation?</summary>
 
+> **Description**
+>
 > This transformation is **not** linear.
 > One way to see this is to notice that $2T(0,0) = 2(1,2) = (2,4)$
 > But $T(2(0,0)) = T(0,0) = (1,2)$
@@ -567,6 +581,8 @@
 <details>
 <summary>Find a general formula for $T(v₁,v₂)$ when $T: R^2 → R^2$ is a linear transformation for which we have its standard basis vector transformations $T(e₁)=(1,1)$ and $T(e₂)=(-1,1)$.</summary>
 
+> **Description**
+>
 > ```math
 > T(v₁,v₂) = T(v₁e₁+v₂e₂) = v₁T(e₁)+v₂T(e₂) = v₁(1,1)+v₂(-1,1) = (v₁-v₂,v₁+v₂)
 > ``````
@@ -582,6 +598,8 @@
 <details>
 <summary>What method is used to construct a matrix called the standard matrix of $T$ that does the linear transformation by matrix multiplication?</summary>
 
+> **Description**
+>
 > A function $T: R^n → R^n$ is a linear transformation if and only if there exists a matrix $[T] \in Mm,n$ such that $T(v) = [T]v$ for all $v \in R^n$ and it is
 > $[T] = [T(e₁)|T(e₂)|…|T(en)]$
 >
@@ -597,6 +615,8 @@
 <details>
 <summary>Find the standard matrix of linear transformation $T(v₁,v₂) = (v₁+2v₂, 3v₁+4v₂)$ when $v₁,v₂ \in R^2$?</summary>
 
+> **Description**
+>
 > By computing $T(e₁)=(1,3)$ and $T(e₂)=(2,4)$ and placing these as columns into a matrix, in that order:
 >
 > ```math
@@ -633,6 +653,8 @@
 <details>
 <summary>What mathematical operations on standard matrix of linear transformations and scalars are allowed?</summary>
 
+> **Description**
+>
 > add, subtract and multiply linear transformations by scalars, just like matrices.
 >
 > ```math
@@ -669,6 +691,8 @@
 <details>
 <summary>What is the result of multiplication of identify linear transformation function to any vector?</summary>
 
+> **Description**
+>
 > The vector itself:
 >
 > ```math
@@ -759,6 +783,8 @@
 <details>
 <summary>What is the linear transformation of reflection of a space through a line in the direction of the unit vector u?</summary>
 
+> **Description**
+>
 > [Fu] = 2uuT-I
 >
 > ---
@@ -786,6 +812,8 @@
 <details>
 <summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of w = (1,1,1) \in R^2?</summary>
 
+> **Description**
+>
 > [Fu] = 2uuT-I = 2[(1,1,1)]\[1 1 1]/3 - [(1,0,0) (0,1,0) (0,0,1)] = ⅓[(-1,2,2) (2,-1,2) (2,2,-1)]
 > [Fu]w = w
 >
@@ -816,6 +844,8 @@
 <details>
 <summary>What is the linear transformation of rotation in two dimensions?</summary>
 
+> **Description**
+>
 > [Rθ] = Rθ(e₁)|Rθ(e₂)] = [(cos(θ),sin(θ)) (-sin(θ),cos(θ))]
 >
 > ---
@@ -843,6 +873,8 @@
 <details>
 <summary>Find the standard matrix of the linear transformation that rotates R^2 by π/6 radians clockwise?</summary>
 
+> **Description**
+>
 > [R^(-π/6)]
 >
 > ---
@@ -870,6 +902,8 @@
 <details>
 <summary>Rotate vector w = (√3,3) by π/6 radians clockwise?</summary>
 
+> **Description**
+>
 > [R^-π/6]
 >
 > ---
@@ -897,6 +931,8 @@
 <details>
 <summary>Rotate v = (3,-1,2) around the z-axis by an angle of θ = 2π/3 in the direction from the positive x-axis to the positive y-axis?</summary>
 
+> **Description**
+>
 > Since the goal is to compute R^2π/3\_xy(v), we start by constructing standard matrix of R^2π/3\_xy:
 > [R^2π/3\_xy] = [(cos(2π/3),sin(2π/3),0) (-sin(2π/3),cos(2π/3),0) (0,0,1)]
 > [R^2π/3\_xy]v = solve it
@@ -927,6 +963,8 @@
 <details>
 <summary>Find the standard matrix of the linear transformation T that reflects R^2 through the line y = ¾x and then stretches it in the x-direction by a factor of 2 and in the y-direction by a factor of 3?</summary>
 
+> **Description**
+>
 > Compute the two standard matrices individually and then multiply them together:
 > A unit vector on the line y = ¾x is u = (⅗,⅘), and the reflection Fu has standard matrix:
 > [Fu] = 2[(⅗,⅘)]\[⅗ ⅘] - [(1,0) (0,1)]

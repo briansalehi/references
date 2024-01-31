@@ -90,6 +90,8 @@
 <details>
 <summary>Switch focus between GDB TUI windows?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) focus src
 > (gdb) focus cmd
@@ -108,6 +110,8 @@
 <details>
 <summary>Navigate through command history?</summary>
 
+> **Description**
+>
 > - `ctrl-p` for previous commands
 > - `ctrl-n` for next commands
 >
@@ -162,6 +166,8 @@
 <details>
 <summary>Detach debugger from a debugging process?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) detach
 > ``````
@@ -216,6 +222,8 @@
 <details>
 <summary>Get information about breakpoints, watchpoints and catchpoints?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) info breakpoints
 > ``````
@@ -234,6 +242,8 @@
 <details>
 <summary>Set breakpoints on a program?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) break 50
 > (gdb) break *main
@@ -252,6 +262,8 @@
 <details>
 <summary>Run program with an immediate stop on main function?</summary>
 
+> **Description**
+>
 > Use `start` to put temporary breakpoint on main and then run the program or
 > `starti` to stop at the very first instruction of the program.
 > ---
@@ -282,6 +294,8 @@
 <details>
 <summary>Delete a breakpoint from a program?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) delete 1
 > ``````
@@ -315,6 +329,8 @@
 <details>
 <summary>Conditionally break execution only when iteration index has increased to 3?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) break source.cpp:10 if index == 3
 > ``````
@@ -411,6 +427,8 @@
 <details>
 <summary>Restore saved breakpoints on a debugging session?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) source program.gdb
 > ``````
@@ -447,6 +465,8 @@
 <details>
 <summary>Watch changes of a variable only when a criteria is met?</summary>
 
+> **Description**
+>
 > `(gdb) watch foo[90].number if bar[90].number == 255`
 >
 > ---
@@ -486,6 +506,8 @@
 <details>
 <summary>Step through program execution in debugging session?</summary>
 
+> **Description**
+>
 > - `continue`: Will resume the execution of the program until it completes.
 > - `step`: Executes program one more step. Step might be one line of source
 >   code or one machine instruction.
@@ -528,6 +550,8 @@
 <details>
 <summary>Get information of threads?</summary>
 
+> **Description**
+>
 > To get information about the spawned threads:
 >
 > ```gdb
@@ -561,6 +585,8 @@
 <details>
 <summary>List the innermost or outermost frames of backtrace?</summary>
 
+> **Description**
+>
 > If you want to examine the backtrace of multiple frames but you're very deep
 > in the stack, you can use `backtrace n` to show the n innermost frames.
 > Similarly, you can use `stacktrace -n` to show the n outermost frames.
@@ -600,6 +626,8 @@
 <details>
 <summary>Store the core dump of your program into a file?</summary>
 
+> **Description**
+>
 > ```sh
 > coredumpctl dump $PWD/program --output program.core
 > ``````
@@ -615,6 +643,8 @@
 <details>
 <summary>Load the stored coredump into debugging session?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) target core program.core
 > ``````
@@ -720,6 +750,8 @@
 <details>
 <summary>Run shell commands in debugging session?</summary>
 
+> **Description**
+>
 > ```gdb
 > (gdb) shell pwd
 > ``````

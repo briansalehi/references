@@ -6,6 +6,8 @@
 <details>
 <summary>What are the main phases of compiling a C code?</summary>
 
+> **Description**
+>
 > 1. Preprocessing
 > 2. Compilation
 > 3. Assembly
@@ -102,6 +104,8 @@
 <details>
 <summary>How many relocatable files exist?</summary>
 
+> **Description**
+>
 > There are position-independent (relocatable) object files which can be
 > combined to form a complete binary executable. On the other hand there are
 > position-independent (relocatable) executables, which you can call them apart
@@ -135,6 +139,8 @@
 <details>
 <summary>What formats are used to represent debugging symbols for executables?</summary>
 
+> **Description**
+>
 > For ELF binaries, debugging symbols are typically generated in the DWARF
 > format, while PE binaries usually use the proprietary PDB format. DWARF
 > information is usually embedded within the binary, while PDB comes in the
@@ -165,6 +171,8 @@
 <details>
 <summary>Strip all the debugging symbols of an executable?</summary>
 
+> **Description**
+>
 > ```sh
 > strip --strip-all a.out
 > readelf --syms a.out
@@ -216,6 +224,8 @@
 <details>
 <summary>Disassembly an object file?</summary>
 
+> **Description**
+>
 > ```sh
 > objdump -M intel -d example.o
 > ``````
@@ -231,6 +241,8 @@
 <details>
 <summary>List all the relocation symbols present in an object file?</summary>
 
+> **Description**
+>
 > ```sh
 > readelf --relocs example.o
 > ``````
@@ -246,6 +258,8 @@
 <details>
 <summary>What address do relocation offsets are pointing to in relocation table of an object file?</summary>
 
+> **Description**
+>
 > The leftmost column of each line in the `readelf --relocs` output is the
 > offset in the object file where the resolved reference must be filled in. The
 > offset equals to the offset of the instruction that needs to be fixed, plus

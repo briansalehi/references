@@ -6,6 +6,8 @@
 <details>
 <summary>How to use <code>sparse</code> as the <b>static analyzer</b> in kbuild?</summary>
 
+> **Description**
+>
 > To check recompiled headers:
 >
 > ```sh
@@ -72,6 +74,8 @@
 <details>
 <summary>What kernel version started supporting BPF?</summary>
 
+> **Description**
+>
 > v4.0
 
 > **Resources**
@@ -84,6 +88,8 @@
 <details>
 <summary>What is the important dependency of BPF on a Linux system?</summary>
 
+> **Description**
+>
 > linux-headers
 >
 > ---
@@ -111,6 +117,8 @@
 <details>
 <summary>What is the name of cross toolchain required to build the kernel?</summary>
 
+> **Description**
+>
 > ```sh
 > arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-binutils
 > ``````
@@ -126,6 +134,8 @@
 <details>
 <summary>What is the name of emulator required to run kernel on it?</summary>
 
+> **Description**
+>
 > ```sh
 > qemu-system-arm
 > ``````
@@ -141,6 +151,8 @@
 <details>
 <summary>Use static analysis tools for Kernel source:</summary>
 
+> **Description**
+>
 > Open source tools:
 >
 > * [Sparse](https://sparse.wiki.kernel.org/index.php/Main_Page)
@@ -195,6 +207,8 @@
 <details>
 <summary>Performance analysis tool for kernel:</summary>
 
+> **Description**
+>
 > * bpftrace package ([bcc](https://github.com/iovisor/bcc) clang dependent)
 > * [manual bcc installation](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 >
@@ -255,6 +269,8 @@
 <details>
 <summary>What is the kernel development workflow?</summary>
 
+> **Description**
+>
 > 1. The 5.x stable release is made. Thus, the merge window for the 5.x+1 (mainline) kernel has begun.
 > 2. The merge window remains open for about 2 weeks and new patches are merged into the mainline.
 > 3. Once (typically) 2 weeks have elapsed, the merge window is closed.
@@ -273,6 +289,8 @@
 <details>
 <summary>How many kernel release types exist?</summary>
 
+> **Description**
+>
 > * -next trees
 > * prepatches, also known as -rc or mainline
 > * stable kernels
@@ -291,6 +309,8 @@
 <details>
 <summary>How to retrieve current list kernel releases?</summary>
 
+> **Description**
+>
 > ```sh
 > curl -L https://kernel.org/finger_banner
 > ``````
@@ -306,6 +326,8 @@
 <details>
 <summary>What script can be used to safely download and verify kernel source tree?</summary>
 
+> **Description**
+>
 > ```txt
 > https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
 > ``````
@@ -372,6 +394,8 @@
 <details>
 <summary>How to make sure about the version of the cloned kernel source tree?</summary>
 
+> **Description**
+>
 > ```sh
 > head Makefile
 > ``````
@@ -387,6 +411,8 @@
 <details>
 <summary>Where is the list of kernel maintainers?</summary>
 
+> **Description**
+>
 > MAINTAINERS
 >
 > ---
@@ -534,6 +560,8 @@
 <details>
 <summary>Where can platform specific configuration files be found in the kernel source tree?</summary>
 
+> **Description**
+>
 > ```sh
 > ls arch/<arch>/configs/
 > make <platform>_defconfig
@@ -567,6 +595,8 @@
 <details>
 <summary>How to use existing kernel configuration in the kbuild?</summary>
 
+> **Description**
+>
 > ```sh
 > cp /boot/config-5.0.0 .config
 > make oldconfig
@@ -600,6 +630,8 @@
 <details>
 <summary>How many option types are available in <code>menuconfig</code> target?</summary>
 
+> **Description**
+>
 > * `[.]` boolean option
 > * `<.>` three state option, having `<*>` state as ON, `<m>` state as Module, `<>` state as OFF
 > * `{.}` required by a dependency as a module or compiled
@@ -648,6 +680,8 @@
 <details>
 <summary>Choose between microprocessors for embedded Linux project:</summary>
 
+> **Description**
+>
 >
 
 >

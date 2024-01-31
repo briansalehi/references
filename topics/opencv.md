@@ -48,6 +48,8 @@
 <details>
 <summary>What operations are supported by <code>cv::Scalar</code> class?</summary>
 
+> **Description**
+>
 > A four-dimensional point class derived from `cv::Vec<double, 4>` inheriting
 > all of the vector algebra operations, member access functions, and other
 > properties.
@@ -93,6 +95,8 @@
 <details>
 <summary>What operations are supported by <code>cv::Rect</code> class?</summary>
 
+> **Description**
+>
 > Similar to `cv::Point` class there are `x` and `y` data members in `cv::Rect`
 > class. Additionally, there are `width` and `height` data members.
 >
@@ -126,6 +130,8 @@
 <details>
 <summary>What operations are supported by <code>cv::RotatedRect</code> class?</summary>
 
+> **Description**
+>
 > A non-template class holding a `cv::Point2f` member called `center`, a
 > `cv::Size2f` called `size`, and one additional `float` called `angle`, with
 > the latter representing the rotation of the rectangle around `center`.
@@ -150,6 +156,8 @@
 <details>
 <summary>What operations are supported by <code>cv::Matx</code> template class?</summary>
 
+> **Description**
+>
 > A matrix whose dimensions are known at compile time. The fixed vector class
 > derives from the fixed matrix class, and other classes either derive frmo the
 > fixed vector class or they rely on casting to the fixed vector class for many

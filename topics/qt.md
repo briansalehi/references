@@ -45,6 +45,8 @@
 <details>
 <summary>What is the interpreter of QML?</summary>
 
+> **Description**
+>
 > A runtime called the QmlEngine which loads the initial QML code. The
 > developer can register C++ types with the runtime to interface with the
 > native code. The `qml` tool is a pre-made runtime which is used directly.
@@ -60,6 +62,8 @@
 <details>
 <summary>What is the base code for a QML app?</summary>
 
+> **Description**
+>
 > ```qml
 > import QtQuick
 >
@@ -84,6 +88,8 @@
 <details>
 <summary>What elements are grouped as core in QML?</summary>
 
+> **Description**
+>
 > - `Item`
 > - `Rectangle`
 > - `Text`
@@ -183,6 +189,8 @@
 <details>
 <summary>What properties does a rectangle support?</summary>
 
+> **Description**
+>
 > `Rectangle` extends `Item` and adds following properties:
 >
 > - `color`
@@ -378,6 +386,8 @@
 <details>
 <summary>What are the properties of an image component?</summary>
 
+> **Description**
+>
 > ```qml
 > ``````
 >
@@ -426,6 +436,8 @@
 <details>
 <summary>How many types of components are available?</summary>
 
+> **Description**
+>
 > QML provides different ways to create components:
 >
 > - File-based component
@@ -456,6 +468,8 @@
 <details>
 <summary>Propegate clicked signal to root level component?</summary>
 
+> **Description**
+>
 > ```qml
 > import QtQuick
 >

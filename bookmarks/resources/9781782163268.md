@@ -18,6 +18,8 @@ Nothing to import.
 <details>
 <summary>What is the objective of <code>io_context</code> in boost?</summary>
 
+> **Description**
+>
 > The I/O context is a channel that is used to access operating system resources
 > and establish communication between our program and the operating system that
 > performs I/O requests.
@@ -33,6 +35,8 @@ Nothing to import.
 <details>
 <summary>What is the objective of <code>io_object</code> in boost?</summary>
 
+> **Description**
+>
 > The I/O object has the role of submitting I/O requests. For instance, the
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
@@ -48,6 +52,8 @@ Nothing to import.
 <details>
 <summary>Start an event processing loop on a worker thread?</summary>
 
+> **Description**
+>
 > Running the `io_service` object's event processing loop will block the
 > execution of the thread and will run ready handlers until there are no more
 > ready handlers remaining or until the `io_service` object has been stopped.
@@ -114,6 +120,8 @@ Nothing to import.
 <details>
 <summary>Start an event processing loop to run queued tasks?</summary>
 
+> **Description**
+>
 > The `post()` function requests the service to run its works after queueing up
 > all the work. So it does not run the works immediately.
 >
@@ -159,6 +167,8 @@ Nothing to import.
 <details>
 <summary>Start an event processing loop to run tasks out of queue?</summary>
 
+> **Description**
+>
 > The `dispatch()` function requests the service to run its works right away
 > without queueing up.
 >
@@ -396,6 +406,8 @@ Nothing to import.
 <details>
 <summary>Write a client establishing an asynchronous tcp connection to a server?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <iostream>
@@ -582,6 +594,8 @@ Nothing to import.
 <details>
 <summary>Write and read from server socket?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <algorithm>
@@ -741,6 +755,8 @@ Nothing to import.
 <details>
 <summary>Step through program execution in debugging session?</summary>
 
+> **Description**
+>
 > - `continue`: Will resume the execution of the program until it completes.
 > - `step`: Executes program one more step. Step might be one line of source
 >   code or one machine instruction.
@@ -792,6 +808,8 @@ Nothing to import.
 <details>
 <summary>Delete a breakpoint from a program?</summary>
 
+> **Description**
+>
 > `delete 1`
 >
 > ---
@@ -846,6 +864,8 @@ Nothing to import.
 <details>
 <summary>Run shell commands in debugging session?</summary>
 
+> **Description**
+>
 > `shell pwd`
 >
 > ---

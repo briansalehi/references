@@ -6,6 +6,8 @@
 <details>
 <summary>Use structured binding to initialize multiple entities?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <map>
@@ -33,6 +35,8 @@
 <details>
 <summary>Use const and reference qualifiers with structured binding?</summary>
 
+> **Description**
+>
 > ```cpp
 > struct some_data
 > {
@@ -246,6 +250,8 @@
 <details>
 <summary>How can <code>std::optional<></code> be used as return values?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <optional>
 > #include <string_view>
@@ -393,6 +399,8 @@
 <details>
 <summary>How many error handling approaches are available on filesystem library?</summary>
 
+> **Description**
+>
 > Because dealing with exception is not always appropriate, the filesystem
 > library uses a mixed approach when dealing with the filesystem.
 >
@@ -414,6 +422,8 @@
 <details>
 <summary>Handle a filesystem operation error with exceptions?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <filesystem>
@@ -570,6 +580,8 @@
 <details>
 <summary>Get the path of temporary directory?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <filesystem>
 >
@@ -606,6 +618,8 @@
 <details>
 <summary>Yield whether a path is absolute or relative?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"assets/image.png"};
 > p.is_absolute(); // false
@@ -684,6 +698,8 @@
 <details>
 <summary>Yield a path as string objects of any byte size?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"/etc/os-release"};
 >
@@ -888,6 +904,8 @@
 <details>
 <summary>Replace filename in a path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_filename("window.cpp"); // /src/project/window.cpp
@@ -921,6 +939,8 @@
 <details>
 <summary>Convert directory separators inside a path to the native format?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p;
 > p.make_preferred();
@@ -939,6 +959,8 @@
 <details>
 <summary>Remove filename from a path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.remove_filename(); // /src/project/
@@ -1047,6 +1069,8 @@
 <details>
 <summary>Check for existance of a file?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::exists(p);
 > ``````
@@ -1119,6 +1143,8 @@
 <details>
 <summary>Check if a file is empty?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesytem::is_empty(p);
 > ``````
@@ -1197,6 +1223,8 @@
 <details>
 <summary>Yield information about the disk space available at a given path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::space_info = std::filesystem::space(p);
 > ``````
@@ -1290,6 +1318,8 @@
 <details>
 <summary>Resize a regular file?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::resize_file(p, newSize);
 > ``````
@@ -1434,6 +1464,8 @@
 <details>
 <summary>Yield the type of a file using file status?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{};
 > std::filesystem::file_status fs = std::filesystem::status(p);
@@ -1614,6 +1646,8 @@
 <details>
 <summary>Create a tree of nested directories?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::create_directories(p);
 > ``````
@@ -1632,6 +1666,8 @@
 <details>
 <summary>Create a symbolic link to a regular file?</summary>
 
+> **Description**
+>
 > If path already exists as a symbolic link to a non-existing file, it will try
 > to create the symbolic link at the location where already the symbolic link
 > exists and raise a corresponding exception.
@@ -1776,6 +1812,8 @@
 <details>
 <summary>Remove a file?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::remove(p);
 > ``````
@@ -1791,6 +1829,8 @@
 <details>
 <summary>Recursively remove a directory and all of its contents?</summary>
 
+> **Description**
+>
 > Removes a file or recursively a directory. It returns as `uintmax_t` value
 > how many files were removed. It returns 0 if there was no file and
 > `uintmax_t(-1)` if an error occured and no exception is thrown.
@@ -1812,6 +1852,8 @@
 <details>
 <summary>Yield the file an existing symbolic link refers to?</summary>
 
+> **Description**
+>
 > The symbolic link and the file it refers to must already exist.
 >
 > ```cpp
@@ -1854,6 +1896,8 @@
 <details>
 <summary>Yield the relative path from current directory to a path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::relative(p);
 > std::filesystem::proximate(p);

@@ -57,6 +57,8 @@ Nothing to be imported.
 <details>
 <summary>Use automatic type deduction with auto:</summary>
 
+> **Description**
+>
 > ```cpp
 > int main()
 > {
@@ -249,6 +251,8 @@ Nothing to be imported.
 <details>
 <summary>Check whether *move assignment* for two passed types of a template function is possible:</summary>
 
+> **Description**
+>
 > ```cpp
 > class pair
 > {
@@ -318,6 +322,8 @@ Nothing to be imported.
 <details>
 <summary>Use parameter pack in variadic templates:</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 >
@@ -684,6 +690,8 @@ Nothing to be imported.
 <details>
 <summary>Explicitly initialize fundamendal types in template:</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T>
 > void f()
@@ -741,6 +749,8 @@ Nothing to be imported.
 <details>
 <summary>Use namespace to avoid name colision:</summary>
 
+> **Description**
+>
 > ```cpp
 > namespace x
 > {
@@ -855,6 +865,8 @@ Nothing to be imported.
 <details>
 <summary>Use exceptions to handle unexpected conditions:</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <stdexcept>
 > #include <iostream>
@@ -972,6 +984,8 @@ Nothing to be imported.
 <details>
 <summary>How to construct a <code>std::pair</code> using its copy constructor or copy assignment operator?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <utility>
 > #include <string>
@@ -1047,6 +1061,8 @@ Nothing to be imported.
 <details>
 <summary>How member variables of <code>std::pair</code> struct can be accessed?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <utility>
 >
@@ -1068,6 +1084,8 @@ Nothing to be imported.
 <details>
 <summary>What comparison operators does the <code>std::pair</code> support?</summary>
 
+> **Description**
+>
 > * equality
 > * inequality
 > * lower than
@@ -1113,6 +1131,8 @@ Nothing to be imported.
 <details>
 <summary>Which containers use <code>std::pair</code> to manage their elements?</summary>
 
+> **Description**
+>
 > Map container family:
 >
 > * `std::map`
@@ -1179,6 +1199,8 @@ Nothing to be imported.
 <details>
 <summary>How a <code>std::tuple</code> can be constructed?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 >
@@ -1206,6 +1228,8 @@ Nothing to be imported.
 <details>
 <summary>How to construct tuples using <code>make\_tuple</code> function helper?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 >
@@ -1251,6 +1275,8 @@ Nothing to be imported.
 <details>
 <summary>What comparison operators does a tuple support?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 >
@@ -1299,6 +1325,8 @@ Nothing to be imported.
 <details>
 <summary>How to assign tuple elements directly on objects using <code>tie</code>?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 >
@@ -1317,6 +1345,8 @@ Nothing to be imported.
 <details>
 <summary>How does explicit constructor of a tuple can be initialized with initializer lists?</summary>
 
+> **Description**
+>
 > Explicit construction exists to avoid having single values implicitly converted into a tuple with one element. But this has consequences when using initializer lists, because they cannot be used with assignment syntax as it's considered to be an implicit conversion.
 >
 > You can’t pass an initializer list where a tuple is expected. But pairs and containers can be initialized that way.
@@ -1377,6 +1407,8 @@ Nothing to be imported.
 <details>
 <summary>How to retrieve the type of tuple elements?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 >
@@ -1401,6 +1433,8 @@ Nothing to be imported.
 <details>
 <summary>How to concatanate elements of two tupples to create another?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <tuple>
 > #include <cassert>
@@ -1446,6 +1480,8 @@ Nothing to be imported.
 <details>
 <summary>What ownership concepts do smart pointers implement in standard library?</summary>
 
+> **Description**
+>
 > Shared Ownership
 > Exclusive Ownership
 >
@@ -1500,6 +1536,8 @@ Nothing to be imported.
 <details>
 <summary>What class should be inheritted to enable sharing this pointer?</summary>
 
+> **Description**
+>
 > `std::enable_shared_from_this`
 >
 > ---
@@ -1590,6 +1628,8 @@ Nothing to be imported.
 <details>
 <summary>What is the advantage of using std::make\_shared helper function?</summary>
 
+> **Description**
+>
 > This way of creation is faster and safer because it uses one instead of two allocations: one for the object and one for the shared data the shared pionter uses to control the object.
 >
 > ```cpp
@@ -1611,6 +1651,8 @@ Nothing to be imported.
 <details>
 <summary>How to assign a new pointer to <code>std::shared\_ptr</code> when it was default constructed or previous object which the pointer was pointing to is destroyed?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <memory>
 > #include <string>
@@ -1632,6 +1674,8 @@ Nothing to be imported.
 <details>
 <summary>How to count the references of a <code>std::shared\_ptr</code> object?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <memory>
 > #include <string>
@@ -1707,6 +1751,8 @@ Nothing to be imported.
 <details>
 <summary>How to create a shared pointer with a custom deleter?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <memory>
 > #include <string>
@@ -1761,6 +1807,8 @@ Nothing to be imported.
 <details>
 <summary>Use asynchronous call to a function and retrieve return value as result?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <future>
@@ -2040,6 +2088,8 @@ behavior clearer.
 <details>
 <summary>What are the use cases of using deferred launch policy over async calls?</summary>
 
+> **Description**
+>
 > You can enforce a deferred execution by passing `std::launch::deferred`
 > policy to `async()`. This guarantees that function never gets called without
 > `get()`. This policy especially allows to program *lazy evaluation*.
@@ -2061,6 +2111,8 @@ behavior clearer.
 <details>
 <summary>What happens when exceptions raise in async called functions?</summary>
 
+> **Description**
+>
 > When `get()` is called and the background operation was or gets terminated by
 > an exception, which was/is not handled inside the thread, this exception gets
 > propegated again. As a result, to deal with exceptions of background
@@ -2127,6 +2179,8 @@ behavior clearer.
 <details>
 <summary>What methods a future provides on its interface to wait for the execution?</summary>
 
+> **Description**
+>
 > The waiting interface is callable more than once and might be combined with a
 > duration or timepoint to limit the amount of waiting time.
 >

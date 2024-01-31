@@ -6,6 +6,8 @@
 <details>
 <summary>Use <code>auto</code> to initialize objects in different forms?</summary>
 
+> **Description**
+>
 > Benefits of using `auto`:
 >
 > * It is not possible to leave a variable uninitialized with `auto`.
@@ -96,6 +98,8 @@
 <details>
 <summary>Create alias templates?</summary>
 
+> **Description**
+>
 > Preconditions of alias templates:
 >
 > * Alias templates cannot be partially or explicitly specialized.
@@ -129,6 +133,8 @@
 <details>
 <summary>Use uniform initialization to initialize objects of types?</summary>
 
+> **Description**
+>
 > * direct initialization initializes an object from an explicit set of constructor arguments.
 > * copy initialization initializes an object from another object.
 > * brace initialization prevents narrowing conversion of data types.
@@ -504,6 +510,8 @@
 <details>
 <summary>Use final to prevent inheritance of a class?</summary>
 
+> **Description**
+>
 > ```cpp
 > class base
 > {
@@ -786,6 +794,8 @@
 <details>
 <summary>Use an unnamed namespace to use an internal linkage variable as a non-type template argument?</summary>
 
+> **Description**
+>
 > * Prior to C++11, non-type template arguments could not be named with internal linkage, so `static` variables were not allowed. VC++ compiler still doesn't support it.
 >
 > ```cpp
@@ -924,6 +934,8 @@
 <details>
 <summary>Use structured bindings to handle multi-return values<span style="color:green">(c++17)</span>?</summary>
 
+> **Description**
+>
 > * Only by C++20 structured bindings can include `static` or `thread_local` specifiers in the declaration.
 > * Only by C++20 `[[maybe_unused]]` attribute can be used in the declaration.
 > * Only by C++20 a lambda can capture structure binding identifiers.
@@ -1005,6 +1017,8 @@ auto d3 = std::stod("0xF.6E6666p3"); // d3 = 123.44999980926514
 <details>
 <summary>What is the second and third parameters of `std::ston` functions family?</summary>
 
+> **Description**
+>
 * The input string.
 * A pointer that, when not null, will receive the number of characters that were
 processed. This can include any leading whitespaces that were discarded,
@@ -1041,6 +1055,8 @@ auto i5 = std::stoi("-42"); // -42
 <details>
 <summary>What exceptions do numeric to string conversion functions throw when conversion fails?</summary>
 
+> **Description**
+>
 * `std::invalid_argument`: conversion cannot be performed.
 * `std::out_of_range`: converted value is outside the range of the result type.
 
@@ -1149,6 +1165,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 <details>
 <summary>How can we retrieve the number of bits excluding the sign bit if present, for integral types and the number of bits of the mantissa for floating-point types?</summary>
 
+> **Description**
+>
 > `digits` represents the number of bits (excluding the sign bit if present) and padding bits (if any) for integral types and the number of bits of the mantissa for floating-point types.
 >
 > ```cpp
@@ -1170,6 +1188,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 <details>
 <summary>How can we retrieve the longest possible digits of a decimal type that can be represented without a change?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <limits>
 >
@@ -1206,6 +1226,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 <details>
 <summary>How `std::numeric_limits<T>` class template can be used to verify a numeric type is an integer?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <limits>
 >
@@ -1257,6 +1279,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 <details>
 <summary>How can we get the minimum and maximum value that a random engine can generate?</summary>
 
+> **Description**
+>
 > Except for `random_device`, all engines produce numbers in a uniform distribution.
 >
 > ```cpp
@@ -1371,6 +1395,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What types can be used to create a cooked user-defined literal?</summary>
 
+> **Description**
+>
 > ```cpp
 > T operator ""_suffix(unsigned long long int); // biggest integral type
 > T operator ""_suffix(long double); // biggest floating-point type
@@ -1395,6 +1421,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to create a user-defined literal in order to construct a type in compile time?</summary>
 
+> **Description**
+>
 > ```cpp
 > namespace units
 > {
@@ -1479,6 +1507,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>Express how literals can be used to construct a `std::complex` object?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <complex>
 >
@@ -1518,6 +1548,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How literal operators or literal operator templates can be used to construct a numberic value by its binary representation?</summary>
 
+> **Description**
+>
 > ```cpp
 > namespace binary
 > {
@@ -1593,6 +1625,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>Express different types of strings that raw string literals can generate?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 >
@@ -1620,6 +1654,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>Convert a string to lowercase or uppercase?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 >
@@ -1698,6 +1734,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to trim a string?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <utility>
@@ -1725,6 +1763,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to remove all occurances of a character from a string?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <algorithm>
@@ -1752,6 +1792,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to split a string based on user specified delimiter?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <sstream>
@@ -1791,6 +1833,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How a `regex` object can be constructed?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <regex>
@@ -1998,6 +2042,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to find all occurences of a regular expression in a given text?</summary>
 
+> **Description**
+>
 > The iterators available in the regular expressions standard library are as follows:
 >
 > * `std::regex_interator`: A constant forward iterator used to iterate through the occurrences of a pattern in a string. It has a pointer to an `std::basic_regex` that must live until the iterator is destroyed. Upon creation and when incremented, the iterator calls `std::regex_search()` and stores a copy of the `std::match_results` object returned by the algorithm.
@@ -2196,6 +2242,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to construct a `std::basic_string` from a `std::basic_string_view`?</summary>
 
+> **Description**
+>
 > Converting from an `std::basic_string_view` to an `std::basic_string` is not possible. You must explicitly construct an `std::basic_string` object from a `std::basic_string_view`.
 >
 > ```cpp
@@ -2217,6 +2265,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to notify compiler to default construct a class member function?</summary>
 
+> **Description**
+>
 > Only class member functions can be `defaulted`.
 >
 > ```cpp
@@ -2280,6 +2330,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to specify that a class is not copyable and implicitly not movable?</summary>
 
+> **Description**
+>
 > Declare the copy constructor and the copy assignment operator as `deleted`.
 >
 > ```cpp
@@ -2340,6 +2392,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to declare a class member function `defaulted` outside of the body of that class?</summary>
 
+> **Description**
+>
 > Functions can be declared =default outside the body of a class if and only if they are inlined.
 >
 > ```cpp
@@ -2478,6 +2532,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What is the general form of a lambda expression and how would each part affect its behavior?</summary>
 
+> **Description**
+>
 > * `capture-list` can be empty.
 > * `parameters` can be empty.
 > * `ret` value of the function can be obmitted.
@@ -2577,6 +2633,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to write a template lambda to make sure two or more arguments of it actually have the same type? <span style="color:green">(c++20)</span></summary>
 
+> **Description**
+>
 > ```cpp
 > int main()
 > {
@@ -2745,6 +2803,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to write a fold expression to simplify a variadic function template that adds arbitrary values?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename ...Ts>
 > auto add(Ts ...args) { return (... + args); }
@@ -2829,6 +2889,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to implement a higher-order mapping function to apply a function to the elements of a range and return a new range in the same order?</summary>
 
+> **Description**
+>
 > A higher-order function is a function that takes one or more other functions as arguments and applies them to a range (a list, vector, map, tree, and so on), thus producing either a new range or a value.
 >
 > To implement the map function, you should:
@@ -2886,6 +2948,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to use a higher-order mapping function to retain a vector of absolute values from a vector of integral numbers?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <algorithm>
 > #include <functional>
@@ -2985,6 +3049,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to use a higher-order folding function template to count the number of words in a text based on their already computed appearances, available in a `std::map<string, int>`?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <algorithm>
 > #include <string>
@@ -3063,6 +3129,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to uniformly call a variadic function template? <span style="color:green">(needs work)</span></summary>
 
+> **Description**
+>
 > ```cpp
 > #include <functional>
 > #include <tuple>
@@ -3171,6 +3239,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to write target-specific code based on compiler and system architecture?</summary>
 
+> **Description**
+>
 > ```cpp
 > void show_architecture()
 > {
@@ -3237,6 +3307,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How can stringizing operator be used to create an identifier?</summary>
 
+> **Description**
+>
 > ```cpp
 > #define MAKE_STR2(x) #x
 >
@@ -3294,6 +3366,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to use compile-time assertion to to make sure a class can be used with POD types?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T>
 > class pod_wrapper
@@ -3324,6 +3398,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to conditionally compile a class by enabling its template parameter types?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T, typename = typename std::enable_if_t<std::is_standard_layout_v<T>, T>>
 > class pod_wrapper
@@ -3429,6 +3505,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to use attributes to prevent user from discarding enumeration as function return types?</summary>
 
+> **Description**
+>
 > ```cpp
 > enum class [[nodiscard]] ReturnCodes{ OK, NoData, Error };
 >
@@ -3450,6 +3528,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to use attributes to mark a function as deprecated?</summary>
 
+> **Description**
+>
 > ```cpp
 > [[deprecated("Use func2()")]] void func() { }
 >
@@ -3579,6 +3659,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to append data into a <code>std::ofstream</code> object?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <fstream>
 >
@@ -3741,6 +3823,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What template parameters does the <code>std::basic\_fstream</code> and its input/output ancestor classes can take and what are their typedef abbreviations?</summary>
 
+> **Description**
+>
 > ```cpp
 > typedef basic_ifstream<char>    ifstream;
 > typedef basic_ifstream<wchar_t> wifstream;
@@ -3786,6 +3870,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What are the different open modes of a <code>std::basic\_fstream</code> file object?</summary>
 
+> **Description**
+>
 > * `std::ios_base::app`
 > * `std::ios_base::binary`
 > * `std::ios_base::in`
@@ -3840,6 +3926,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What exceptions does <code>std::basic\_fstream</code> throw when read or write operations fail?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <fstream>
 > #include <string>
@@ -3903,6 +3991,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>How to assign the content of a <code>std::basic\_ifstream</code> object into a <code>std::vector</code> object?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <vector>
 > #include <fstream>
@@ -4248,6 +4338,8 @@ Note that `random_device` cannot be seeded.
 <details>
 <summary>What is the difference between module partitions and submodules?</summary>
 
+> **Description**
+>
 > Partitions are division of a module. However, they are not submodules. They
 > do not logically exist outside of the module. There is no concept of a
 > submodule in the C++ language.

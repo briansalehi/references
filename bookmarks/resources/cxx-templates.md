@@ -6,6 +6,8 @@
 <details>
 <summary>What are the alternatives to templates which should be avoided by using templates?</summary>
 
+> **Description**
+>
 > 1. You implement the same behavior repeatedly for each different types, you
 >    make the same mistakes.
 > 2. You write general code for a common base type such as `void*`, you lose
@@ -24,6 +26,8 @@
 <details>
 <summary>What are the alternatives to typename keyword?</summary>
 
+> **Description**
+>
 > Historically, `class` keyword can be used instead of `typename`. However,
 > because this use of `class` can be misleading, you should prefer the use of
 > `typename`. The keyword `struct` cannot be used in place of `typename` when
@@ -111,6 +115,8 @@
 <details>
 <summary>What requirements should the type of a function template parameter meet?</summary>
 
+> **Description**
+>
 > * You can use any type, as long as the it provides the operations that the
 >   template uses.
 > * Value of type `T` must also be copyable in order to be returned.
@@ -129,6 +135,8 @@
 <details>
 <summary>Use a function template with different types?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T>
 > T max(T a, T b) { return b < a ? a : b; }
@@ -219,6 +227,8 @@
 <details>
 <summary>What are the common ways to handle type conversions during type deduction of function template arguments?</summary>
 
+> **Description**
+>
 > 1. Cast the arguments so that they both match:
 >
 > ```cpp
@@ -363,6 +373,8 @@
 <details>
 <summary>What are the disadvantages of using automatic deduction of return types when multiple function template parameters are used?</summary>
 
+> **Description**
+>
 > Since C++14, this is possible by simply not declaring any return type:
 >
 > ```cpp
@@ -498,6 +510,8 @@
 <details>
 <summary>What are the use cases of default template arguments?</summary>
 
+> **Description**
+>
 > Default template arguments can be used with any kind of template. They may
 > even refer to previous template parameters.
 >
@@ -633,6 +647,8 @@
 <details>
 <summary>What are the common use cases of overloading function templates?</summary>
 
+> **Description**
+>
 > A useful example would be to overload the maximum template for pointers and
 > ordinary C-strings.
 >
@@ -678,6 +694,8 @@
 <details>
 <summary>What is the drawback of overloading function templates?</summary>
 
+> **Description**
+>
 > In general, it is a good idea not to change more than necessary when
 > overloading function templates. You should limit your changes to the number
 > of parameters or to specifying template parameters explicitly. Otherwise,
@@ -741,6 +759,8 @@
 <details>
 <summary>When a template function overload would be missed by a call?</summary>
 
+> **Description**
+>
 > Ensure that all overloaded versions of a function are declared before the
 > function is called. This is because the fact that not all overloaded
 > functions are visible when a corresponding function call is made may matter.
@@ -780,6 +800,8 @@
 <details>
 <summary>Declare a class template?</summary>
 
+> **Description**
+>
 > Before the declaration, you have to declare one or multiple identifiers as a
 > type parameters.
 >
@@ -936,6 +958,8 @@
 <details>
 <summary>Specialize a class template for a specific type?</summary>
 
+> **Description**
+>
 > To specialize a class template, you have to declare the class with a leading
 > `template<>` and a specialization of the types for which the class template
 > is specialized. The types are used as a template argument and must be
@@ -972,6 +996,8 @@
 <details>
 <summary>Partially specialize a class template for pointers?</summary>
 
+> **Description**
+>
 > You can provide special implementation for particular circumstances, but some
 > template parameters must still be defined by the user.
 >
@@ -1062,6 +1088,8 @@
 <details>
 <summary>Define default values for class template parameters?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T, typename C = std::vector<T>>
 > class Stack
@@ -1113,6 +1141,8 @@
 <details>
 <summary>Define an alias template?</summary>
 
+> **Description**
+>
 > Unlike a `typedef`, an alias declaration can be templated to provide a
 > convenient name for a family of types. This is also available since C++11 and
 > is called an alias template.
@@ -1167,6 +1197,8 @@
 <details>
 <summary>Under what condition class templates do not require specifying template parameters?</summary>
 
+> **Description**
+>
 > Since C++17, the constraint that you always have to specify the template
 > arguments explicitly was relaxed.
 >
@@ -1215,6 +1247,8 @@
 <details>
 <summary>What is the drawback of supporting class template argument deduction by providing constructors passing initial argument?</summary>
 
+> **Description**
+>
 > 1. You have to request the default constructor to be available with its
 >    default behavior, because the default constructor is available only if no
 >    other constructor is defined:

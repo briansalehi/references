@@ -6,6 +6,8 @@
 <details>
 <summary>Generate a string formatted with an integral value?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <format>
@@ -153,6 +155,8 @@
 <details>
 <summary>Evaluate string and vector operations at compile time?</summary>
 
+> **Description**
+>
 > C++20 allows the use of constexpr in several new contexts.
 >
 > ```cpp

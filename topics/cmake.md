@@ -39,6 +39,8 @@
 <details>
 <summary>Externally specify the toolset and platform in configuration stage?</summary>
 
+> **Description**
+>
 > Some generators (such as Visual Studio) support a more in-depth specification
 > of a toolset (compiler) and platform (compiler or SDK). Additionally, these
 > have respective environment variables that override the default values:
@@ -132,6 +134,8 @@
 <details>
 <summary>Remove one or more of configuration cache variables?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake -U <globbing_expr> <CMAKE_BINARY_DIR>
 > ``````
@@ -237,6 +241,8 @@
 <details>
 <summary>Display log context with each <code>message()</code> call?</summary>
 
+> **Description**
+>
 > To debug very complex projects, the `CMAKE_MESSAGE_CONTEXT` variable can be
 > used like a stack. Whenever your code enters a specific context, you can add
 > a descriptive name to the stack and remove it when leaving. By doing this,
@@ -387,6 +393,8 @@
 <details>
 <summary>Specify the number of jobs that should build the project simultaneously?</summary>
 
+> **Description**
+>
 > Builders know the structure of project dependencies, so they can
 > simultaneously process steps that have their dependencies met to save time.
 >
@@ -447,6 +455,8 @@
 <details>
 <summary>Execute build stage by first cleaning the build directory?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake --build <dir> --clean-first
 > ``````
@@ -462,6 +472,8 @@
 <details>
 <summary>Instruct CMake to be verbose in build stage?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake --build <dir> --verbose
 > cmake --build <dir> -v
@@ -483,6 +495,8 @@
 <details>
 <summary>Execute CMake to install targets?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake --install <dir> [<options>]
 > ``````
@@ -498,6 +512,8 @@
 <details>
 <summary>Execute CMake to install targets with a specific build type?</summary>
 
+> **Description**
+>
 > We can specify which build type we want to use for our installation. The
 > available types include:
 >
@@ -540,6 +556,8 @@
 <details>
 <summary>Set default permissions of installed files?</summary>
 
+> **Description**
+>
 > If installation is carried on a Unix-like platform, you can specify default
 > permissions for the installed directories, with the following option, using
 > the format of `u=rwx,g=rx,o=rx`:
@@ -678,6 +696,8 @@
 <details>
 <summary>Get help from CMake documentation?</summary>
 
+> **Description**
+>
 > ```sh
 > cmake ––help[-<topic>]
 > cmake --help-commands file
@@ -696,6 +716,8 @@
 <details>
 <summary>Run test on a built project?</summary>
 
+> **Description**
+>
 > The simplest way to run tests for a built project is to call ctest in the
 > generated build tree:
 >
@@ -744,6 +766,8 @@
 <details>
 <summary>What are the actual requirements for the script file provided?</summary>
 
+> **Description**
+>
 > Not that many: a script can be as complex as you like or an empty file.
 > However, it is recommended that you call the `cmake_minimum_required()`
 > command at the beginning of the script. This command tells CMake which

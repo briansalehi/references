@@ -6,6 +6,8 @@
 <details>
 <summary>Build an executable from C++ source?</summary>
 
+> **Description**
+>
 >
 > ```sh
 > g++ -o program source.cpp -std=c++20
@@ -51,6 +53,8 @@
 <details>
 <summary>Declare and define a function separately?</summary>
 
+> **Description**
+>
 > ```cpp
 > void do_something();
 >
@@ -78,6 +82,8 @@
 <details>
 <summary>Initialize scoped and global variables?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 >
@@ -108,6 +114,8 @@
 <details>
 <summary>Determine the size of an expression?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 >
@@ -177,6 +185,8 @@
 <details>
 <summary>How many constants are available in C++?</summary>
 
+> **Description**
+>
 > - Literal constants
 > - Constants defined by `const`
 > - Constant expressions defined by `constexpr`
@@ -231,6 +241,8 @@ constexpr double get_pi()
 <details>
 <summary>Ensure compile time evaluation of a function?</summary>
 
+> **Description**
+>
 > ```cpp
 > consteval double divide(double a, double b)
 > {
@@ -258,6 +270,8 @@ constexpr double get_pi()
 <details>
 <summary>Declare a type containing limited constants?</summary>
 
+> **Description**
+>
 > An enumeration comprises a set of constants called enumerators.
 >
 > ```cpp

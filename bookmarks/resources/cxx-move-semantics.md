@@ -6,6 +6,8 @@
 <details>
 <summary>Where does move semantics apply optimizations compared to prior C++11 standard?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <vector>
 > #include <string>
@@ -114,6 +116,8 @@
 <details>
 <summary>What happens to an object declared with <code>const</code> when moved?</summary>
 
+> **Description**
+>
 > The objects declared with const cannot be moved because any optimizing
 > implementation requires that the passed argument can be modified.
 >
@@ -228,6 +232,8 @@
 <details>
 <summary>What is the behavior of a parameter that is declared as an rvalue reference?</summary>
 
+> **Description**
+>
 > The parameter can bind only to a temporary object that does not have a name
 > or to an object marked with `std::move()`.
 >
@@ -258,6 +264,8 @@
 <details>
 <summary>What is the moved-from object state?</summary>
 
+> **Description**
+>
 > Moved-from objects are still valid objects for which at least the destructor
 > will be called. However, they should also be valid in the sense that they
 > have a consisten state and all operations work as expected. The only thing
@@ -288,6 +296,8 @@
 <details>
 <summary>What are the major ways of call-by-reference and what kind of arguments does each take?</summary>
 
+> **Description**
+>
 > **const lvalue reference**
 >
 > The function has only read access to the passed argument.
@@ -357,6 +367,8 @@
 <details>
 <summary>When does the call-by-value become cheap with move semantics?</summary>
 
+> **Description**
+>
 > With move semantics call-by-value can become cheap if a temporary object is
 > passed or the passed argument is marked with `std::move()`. Retuurning a
 > local object by value can be optimized away. However, if it is not optimized
@@ -396,6 +408,8 @@
 <details>
 <summary>Why does automatic move operations disable when user declares special member functions?</summary>
 
+> **Description**
+>
 > If classes have changed the usual behavior of copying or assignment, they
 > probably also have to do some things different when optimizing these
 > operations. Any form of an explicit declaration of a copy constructor, copy
@@ -414,6 +428,8 @@
 <details>
 <summary>Based on the exact rules for <i>generated special member functions</i> when would copy constructor and copy assignment operator automatically be generated?</summary>
 
+> **Description**
+>
 > The copy constructor is automatically generated when all of the following
 > conditions are met:
 >
@@ -471,6 +487,8 @@
 <details>
 <summary>What does it mean to say move semantics is not passed through?</summary>
 
+> **Description**
+>
 > Move constructor is called when the caller no longer needs the value. Inside
 > the move constructor, we hdecide where an how long we need it. In particular,
 > we might need the value multiple times and not lose it with its first use.
@@ -579,6 +597,8 @@
 <details>
 <summary>Why deleting moving operations does not make semantic sence?</summary>
 
+> **Description**
+>
 > if you declare the move constructor as deleted, you cannot move (you have
 > disabled this operation; any fallback is not used) and cannot copy (because a
 > declared move constructor disables copy operations).
@@ -639,6 +659,8 @@
 <details>
 <summary>How to properly disable move semantics in an object without disabling fallback mechanism?</summary>
 
+> **Description**
+>
 > Declaring the special move member functions as deleted is usually not the
 > right way to do it because it disables the fallback mechanism. The right way
 > to disable move semantics while providing copy semantics is to declare one of
@@ -1068,6 +1090,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>How many reference qualified member functions can we implement and how would each of them be called?</summary>
 
+> **Description**
+>
 > Since C++98 we can overload member functions for implementing a const and
 > non-const version.
 >
@@ -1122,6 +1146,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>Is it possible to overload for both reference and non-reference qualifiers?</summary>
 
+> **Description**
+>
 > Overloading for both reference and value qualifiers is not allowed.
 >
 > ```cpp
@@ -1239,6 +1265,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>Why <i>strong exception handling guarantee</i> is required for <code>std::vector</code> to use move operations instead of copying objects?</summary>
 
+> **Description**
+>
 > When an exception is thrown in the middle of the reallocation of the vector
 > the C++ standard library guarantees to roll back the vector to its previous
 > state. However, when using move semantics if an exception is thrown during
@@ -1305,6 +1333,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>What condition can be specified for <code>noexcept</code>?</summary>
 
+> **Description**
+>
 > The `noexcept` condition must be a compile-time expression that yields a value convertible to `bool`.
 >
 > ---
@@ -1419,6 +1449,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>What are the <i>strong exception handling guarantees</i> for classes having special member functions defaulted?</summary>
 
+> **Description**
+>
 > The noexcept condition is even generated when these special member functions
 > are user-declared with `=default`.
 >
@@ -1476,6 +1508,8 @@ Slicing objects and polymorphic classes skipped.
 <details>
 <summary>What are the prerequisites of having a perfect universal reference?</summary>
 
+> **Description**
+>
 > 1. There should be a template parameter.
 > 2. The parameter should be declared with two ampersands.
 > 3. Inside the function definition, parameter should be forwarded.
@@ -1500,6 +1534,8 @@ void do_something(T&& x)
 <details>
 <summary>Perfect forward a return value?</summary>
 
+> **Description**
+>
 > 1. Declare returned value as `auto&&`, a universal reference without a template parameter.
 > 2. Forward the returned value.
 >
@@ -1680,6 +1716,8 @@ void do_something(T&& x)
 <details>
 <summary>How to ensure that we have lost the ownership of a move-only object when passed to a function?</summary>
 
+> **Description**
+>
 > If you pass a move-only object to a sink function and want to ensure that you
 > have lost ownership (file closed, memory freed, etc.), explicitly release the
 > resource directly afterwards.
@@ -1845,6 +1883,8 @@ void do_something(T&& x)
 <details>
 <summary>When do containers support move semantics?</summary>
 
+> **Description**
+>
 > All containers support move semantics when doing the following:
 >
 > * Copying the containers
@@ -1878,6 +1918,8 @@ void do_something(T&& x)
 <details>
 <summary>What is the time complexity of move constructors in containers?</summary>
 
+> **Description**
+>
 > For the move constructor:
 >
 > ```cpp
@@ -1902,6 +1944,8 @@ void do_something(T&& x)
 <details>
 <summary>What does the C++ standard guarantee for move assignment operators of containers?</summary>
 
+> **Description**
+>
 > For the move assignment operator:
 >
 > ```cpp
@@ -1929,6 +1973,8 @@ void do_something(T&& x)
 <details>
 <summary>How many ways are there for elements to be moved into a container?</summary>
 
+> **Description**
+>
 > All containers support moving a new element into the container.
 >
 > 1. Insert Functions: all containers have corresponding overloads.

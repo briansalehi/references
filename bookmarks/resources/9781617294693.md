@@ -6,6 +6,8 @@
 <details>
 <summary>How to create a thread?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <thread>
@@ -225,6 +227,8 @@
 <details>
 <summary>How to pass arguments to a thread?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <memory>
@@ -462,6 +466,8 @@
 <details>
 <summary>Protect the interface of a data structure that provides a method to return elements and suffers from data race when shared between two threads?</summary>
 
+> **Description**
+>
 > To protect the data we should change the design of the interface. There are
 > commonly two methods to protect data from race condition when returning:
 >

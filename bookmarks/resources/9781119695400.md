@@ -24,6 +24,8 @@
 <details>
 <summary>What are the standard iterators?</summary>
 
+> **Description**
+>
 > |Iterator Category|Operations Required|
 > |---|---|
 > |Input Iterator|Read-only access: `operator*` `operator->`<br>forward only: `operator++`<br>assignable: `operator=`<br>copyable<br>comparable for equality: `operator==` `operator!=`|
@@ -69,6 +71,8 @@
 <details>
 <summary>What non-member functions are provided by standard to return supported iterators?</summary>
 
+> **Description**
+>
 > `<iterator>` provides the following global nonmember functions to retrieve
 > specific iterators for a container:
 >
@@ -201,6 +205,8 @@
 <details>
 <summary>What stream iterators are provided by the standard?</summary>
 
+> **Description**
+>
 > The standard library provides four stream iterators:
 >
 > - `std::istream_iterator`
@@ -354,6 +360,8 @@
 <details>
 <summary>Use iterator adapters to populate containers only supporting <code>push_front()</code>?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iterator>
 > #include <algorithm>
@@ -435,6 +443,8 @@
 <details>
 <summary>What are the use cases of reverse iterators?</summary>
 
+> **Description**
+>
 > The standard library provides an `std::reverse_iterator` class template that
 > iterates through bidirectional or random-access iterator in a reverse
 > direction.

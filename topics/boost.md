@@ -21,6 +21,8 @@
 <details>
 <summary>What is the objective of <code>io_object</code> in boost?</summary>
 
+> **Description**
+>
 > The I/O object has the role of submitting I/O requests. For instance, the
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
@@ -39,6 +41,8 @@
 <details>
 <summary>Start an event processing loop on a worker thread?</summary>
 
+> **Description**
+>
 > Running the `io_service` object's event processing loop will block the
 > execution of the thread and will run ready handlers until there are no more
 > ready handlers remaining or until the `io_service` object has been stopped.
@@ -201,6 +205,8 @@
 <details>
 <summary>Serialize concurrent execution of an event processing loop?</summary>
 
+> **Description**
+>
 > Strand is a class in the <code>io_service</code> object that provides handler
 > execution serialization. It can be used to ensure the work we have will be
 > executed serially.
@@ -477,6 +483,8 @@
 <details>
 <summary>Write a client establishing a synchronous tcp connection to a server?</summary>
 
+> **Description**
+>
 > ```cpp
 > ``````
 >
@@ -507,6 +515,8 @@
 <details>
 <summary>Write a client establishing a synchronous tcp connection to a server?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <string>
@@ -552,6 +562,8 @@
 <details>
 <summary>Write a client establishing an asynchronous tcp connection to a server?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <iostream>

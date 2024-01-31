@@ -6,6 +6,8 @@
 <details>
 <summary>What is the default referencing build system in the Yocto Project?</summary>
 
+> **Description**
+>
 > Poky is the default Yocto Project reference distribution, which uses
 > OpenEmbedded build system technology.
 >
@@ -48,6 +50,8 @@
 <details>
 <summary>What are the responsibilities of BitBake in the Yocto Project?</summary>
 
+> **Description**
+>
 > BitBake is a task scheduler and execution system that parses Python and Shell
 > Script code. The code that is parsed generates and runs tasks, which are a
 > set of steps ordered per the code’s dependencies.

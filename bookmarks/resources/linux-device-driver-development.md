@@ -6,6 +6,8 @@
 <details>
 <summary>Download the Linux kernel for building?</summary>
 
+> **Description**
+>
 > ```sh
 > git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 > ``````
@@ -117,6 +119,8 @@
 <details>
 <summary>Generate a preconfigured <code>.config</code> file tuned for a specific platform in the kernel source tree?</summary>
 
+> **Description**
+>
 > It is very difficult to know which configuration is going to work on your platform.
 > In most cases, there will be no need to start a configuration from scratch.
 > There are default and functional configuration files available in each arch directory that you can use as a starting point (it is important to start with a configuration that already works):
@@ -249,6 +253,8 @@
 <details>
 <summary>Use the kernel configuration file on a running machine as an initial configurtion?</summary>
 
+> **Description**
+>
 > Debian and Ubuntu Linux distributions save the `.config` file in the `/boot` directory:
 >
 > ```sh
@@ -288,6 +294,8 @@
 <details>
 <summary>What kernel configuration option allows extending the kernel command line from within the configuration?</summary>
 
+> **Description**
+>
 > * `CMDLINE_EXTEND`: This is a boolean option to enable this feature.
 > * `CMDLINE`: This options is a string containing the actual command-line extension value.
 >
@@ -309,6 +317,8 @@
 <details>
 <summary>What kernel configuration option makes the kernel symbol table available in <code>/proc/kallsyms</code>?</summary>
 
+> **Description**
+>
 > `CONFIG_KALLSYMS`: This is very useful for tracers and other tools that need to map kernel symbols to addresses. It is used while you're printing oops messages. Without this, oops listings would produce hexadecimal output, which is difficult to interpret.
 >
 > ---
@@ -375,6 +385,8 @@
 <details>
 <summary>What kernel configuration option allows tracing any non-inline function in the kernel?</summary>
 
+> **Description**
+>
 > * `FUNCTION_TRACER`: allows tracing functions.
 > * `FUNCTION_GRAPH_TRACER`: This also shows a call graph.
 >
@@ -402,6 +414,8 @@
 <details>
 <summary>What kernel configuration option allows measuring preemption off latency and schedule latency tracing?</summary>
 
+> **Description**
+>
 > * `PREEMPT_TRACER`
 > * `SCHED_TRACER`
 >
@@ -477,6 +491,8 @@
 <details>
 <summary>Build and install kernel modules?</summary>
 
+> **Description**
+>
 > ```sh
 > make modules
 > sudo make modules_install
@@ -495,6 +511,8 @@
 <details>
 <summary>Override the installation path of compiled module binaries after the <code>modules_install</code> target is executed?</summary>
 
+> **Description**
+>
 > The resulting modules will be installed in `/lib/modules/$(uname -r)/kernel/`, in the same directory structure as their corresponding source.
 >
 > ```sh
@@ -540,6 +558,8 @@
 <details>
 <summary>How many module types are available?</summary>
 
+> **Description**
+>
 > Static modules are available at any time in the kernel image and thus can't
 > be unloaded, at the cost of extra size to the final kernel image. A static
 > module is also known as a built-in module, since it is part of the final
@@ -561,6 +581,8 @@
 <details>
 <summary>What kernel configuration option enables module loading on runtime?</summary>
 
+> **Description**
+>
 > `CONFIG_MODULES=y`
 >
 > ---
@@ -588,6 +610,8 @@
 <details>
 <summary>What kernel configuration option ignores safely unloading modules having dependencies?</summary>
 
+> **Description**
+>
 > `CONFIG_MODULE_FORCE_UNLOAD=y`
 >
 > ---
@@ -636,6 +660,8 @@
 <details>
 <summary>What functions are the entry points of all kernel modules?</summary>
 
+> **Description**
+>
 > * `module_init()` is used to declare the function that should be called when the module is loaded.
 > * `module_exit()` is used only when the module can be built as a loadable kernel module.
 >
@@ -705,6 +731,8 @@
 <details>
 <summary>What macros are commonly used in kernel modules to store module information?</summary>
 
+> **Description**
+>
 > Any `MODULE_*` macro will update the content of `.modinfo` section with the values passed as parameters.
 > Some of these macros are `MODULE_DESCRIPTION()`, `MODULE_AUTHOR()`, and `MODULE_LICENSE()`.
 >
@@ -750,6 +778,8 @@
 <details>
 <summary>What are the differences of <code>EXPORT_SYMBOL</code> and <code>EXPORT_SYMBOL_GPL</code> macros exporting symbols based on license?</summary>
 
+> **Description**
+>
 > The license will define how your source code should be shared (or not) with other developers.
 > `MODULE_LICENSE()` tells the kernel what license our module is under.
 > It has an effect on your module behavior, since a license that is not compatible with
@@ -789,6 +819,8 @@
 <details>
 <summary>What is the <b>built-in</b> kernel module building?</summary>
 
+> **Description**
+>
 > With this building method the code is inside the kernel tree, which allows you to upstream your code, since it is well integrated into the kernel configuration/compilation process.
 > This solution allows you to produce either a statically linked module (also known as **built-in**) or a **loadable kernel module**.
 >
@@ -891,6 +923,8 @@
 <details>
 <summary>Specify multiple source files in a custom <code>Makefile</code> for a specific target?</summary>
 
+> **Description**
+>
 > ```make
 > <module_name>-y := <file1>.o <file2>.o
 > ``````
@@ -945,6 +979,8 @@
 <details>
 <summary>Include other kernel source directories within a <code>Makefile</code>?</summary>
 
+> **Description**
+>
 > Included directories should contain `Makefile` or `Kbuild` files.
 >
 > ```make
@@ -1362,6 +1398,8 @@
 <details>
 <summary>What is the standard way of handling null pointer errors in kernel modules?</summary>
 
+> **Description**
+>
 > When it comes to returning an error from functions that are supposed to return a pointer, functions often return the `NULL` pointer.
 > It is functional but it is a quite meaningless approach, since we do not exactly know why this `NULL` pointer is returned.
 > For that purpose, the kernel provides three functions, `ERR_PTR`, `IS_ERR`, and `PTR_ERR`, defined as follows:
@@ -1431,6 +1469,8 @@
 <details>
 <summary>What are the recommended helper functions alternative to <code>printk()</code>?</summary>
 
+> **Description**
+>
 > * `pr_<level>(...)`: This is used in regular modules that are not device drivers.
 > * `dev_<level>(struct device *dev, ...)`: This is to be used in device drivers that are not network devices.
 > * `netdev_<level>(struct net_device *dev, ...)`: This is used in `netdev` drivers exclusively.
@@ -1446,6 +1486,8 @@
 <details>
 <summary>What are the log levels of kernel printing helper functions?</summary>
 
+> **Description**
+>
 > * `pr_devel`: Dead code not being compiled, unless `DEBUG` is defined.
 > * `pr_debug`, `dev_dbg`, `netdev_dbg`: Used for debug messages.
 > * `pr_info`, `dev_info`, `netdev_info`: Used for informational purposes, such as start up information at driver initialization.
@@ -1467,6 +1509,8 @@
 <details>
 <summary>What is the default kernel log level?</summary>
 
+> **Description**
+>
 > Whenever a message is printed, the kernel compares the message log level with the current console log level;
 > if the former is higher (lower value) than the last, the message will be immediately printed to the console.
 > You can check your log-level parameters with the following:
@@ -1530,6 +1574,8 @@
 <details>
 <summary>How many synchronization mechanisms for accessibility of shared resources are available in the kernel?</summary>
 
+> **Description**
+>
 > We can enumerate two synchronization mechanisms, as follows:
 >
 > 1. **Locks**: Used for mutual exclusion. When one contender holds the lock, no other can hold it (others are excluded). The most known locks in the kernel are **spinlocks** and **mutexes**.
@@ -1635,6 +1681,8 @@
 <details>
 <summary>Lock a previously defined spinlock in module source?</summary>
 
+> **Description**
+>
 > We can lock/unlock the spinlock using `spin_lock()` and `spin_unlock()` inline functions, both defined in `include/linux/spinlock.h`:
 >
 > ```c
@@ -1692,6 +1740,8 @@
 <details>
 <summary>How does spinlocks affect preemtion after locking and unlocking?</summary>
 
+> **Description**
+>
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
 >
@@ -1707,6 +1757,8 @@
 <details>
 <summary>Store and restore previous IRQs status when using spinlocks?</summary>
 
+> **Description**
+>
 > `spin_lock_irq()` function is unsafe when called from IRQs off-context as its counterpart `spin_unlock_irq()` will dumbly enable IRQs, with the risk of enabling those that were not enabled while `spin_lock_irq()` was invoked.
 > It makes sense to use `spin_lock_irq()` only when you know that interrupts are enabled.
 >
@@ -1818,6 +1870,8 @@
 <details>
 <summary>Acquire a mutex in the kernel?</summary>
 
+> **Description**
+>
 > Acquiring (aka locking) a mutex is as simple as calling one of the following three functions:
 >
 > ```c
@@ -1863,6 +1917,8 @@
 <details>
 <summary>Check mutex locking availability before acquiring it?</summary>
 
+> **Description**
+>
 > ```c
 > static bool mutex_is_locked(struct mutex *lock);
 > ``````
@@ -1881,6 +1937,8 @@
 <details>
 <summary>What are specific rules while using mutexes in the kernel?</summary>
 
+> **Description**
+>
 > The most important ones are enumerated in the `include/linux/mutex.h` kernel mutex API header file, and some of these are outlined here:
 >
 > * A mutex can be held by one and only one task at a time.
@@ -1920,6 +1978,8 @@
 <details>
 <summary>Acquire a lock only if it is not already held by another contender?</summary>
 
+> **Description**
+>
 > Such methods try to acquire the lock and immediately return a status value, showing whether the lock has been successfully locked or not.
 >
 > Both spinlock and mutex APIs provide a trylock method.
@@ -1977,6 +2037,8 @@
 <details>
 <summary>What passive waiting mechanisms are implemented in the kernel?</summary>
 
+> **Description**
+>
 > - **Sleeping APIs:** simple sleeping consist of a task sleeping and being awakened after a given duration to passively delay an operation.
 > - **Wait queues:** conditional sleeping mechanism based on external events such as data availability.
 >
@@ -2016,6 +2078,8 @@
 <details>
 <summary>What is a wait queue?</summary>
 
+> **Description**
+>
 > Wait queues are higher-level mechanism essentially used to process blocking input/output, to wait for a condition to be true, to wait for a given event to occur, or to sense data or resource availability.
 >
 > Wait queues are implemented in `include/linux/wait.h`:
@@ -2061,6 +2125,8 @@
 <details>
 <summary>Put a process to sleep waiting for an event to occur?</summary>
 
+> **Description**
+>
 > Any process that wants to sleep waiting for `some_event` to occur can invoke either `wait_event_interruptible()` or `wait_event()`.
 >
 > Most of the time, the event is just the fact that a resource becomes available, thus it makes sense for a process to go to sleep after a first check of the availability of that resource.
@@ -2139,6 +2205,8 @@
 <details>
 <summary>Wake up a process waiting on a wait queue?</summary>
 
+> **Description**
+>
 > After a change on any variable that could affect the result of the wait queue, call the appropriate `wake_up*` family function.
 >
 > In order to wake up a process sleeping on a wait queue, you should call either of the following functions.

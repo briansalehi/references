@@ -6,6 +6,8 @@
 <details>
 <summary>Use modules to import the entire standard library functionality?</summary>
 
+> **Description**
+>
 > ```cpp
 > import std;   // brings the entire standard library
 >

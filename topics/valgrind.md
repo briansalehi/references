@@ -63,6 +63,8 @@
 <details>
 <summary>Count the number of instructions used in a program?</summary>
 
+> **Description**
+>
 > ```sh
 > valgrind --tool callgrind ./program
 > ``````
@@ -78,6 +80,8 @@
 <details>
 <summary>Use interactive control to use callgrind dump file?</summary>
 
+> **Description**
+>
 > ```sh
 > ``````
 >
@@ -111,6 +115,8 @@
 <details>
 <summary>Attach gdb remote session to valgrind?</summary>
 
+> **Description**
+>
 > ```sh
 > gdb ./program
 > (gdb) set remote exec-file ./program

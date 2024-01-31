@@ -111,6 +111,8 @@ Nothing to import.
 <details>
 <summary>How to use <code>std::mutex</code> to make spinlock mechanism?</summary>
 
+> **Description**
+>
 > Using `std::atomic_flag` is more straightforward and fast.
 >
 > ```cpp

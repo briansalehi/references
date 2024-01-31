@@ -57,6 +57,8 @@ Nothing to import.
 <details>
 <summary>What operations are supported by <code>cv::Scalar</code> class?</summary>
 
+> **Description**
+>
 > A four-dimensional point class derived from `cv::Vec<double, 4>` inheriting
 > all of the vector algebra operations, member access functions, and other
 > properties.
@@ -81,6 +83,8 @@ Nothing to import.
 <details>
 <summary>What operations are supported by <code>cv::Size</code> class?</summary>
 
+> **Description**
+>
 > The size classes are similar to point classes, and can be cast to and from
 > them. The primary difference is that the point data members are named `x` and
 > `y`, while the size data members are named `width` and `height`.
@@ -138,6 +142,8 @@ Nothing to import.
 <details>
 <summary>What operations are supported by <code>cv::RotatedRect</code> class?</summary>
 
+> **Description**
+>
 > A non-template class holding a `cv::Point2f` member called `center`, a
 > `cv::Size2f` called `size`, and one additional `float` called `angle`, with
 > the latter representing the rotation of the rectangle around `center`.
@@ -162,6 +168,8 @@ Nothing to import.
 <details>
 <summary>What operations are supported by <code>cv::Matx</code> template class?</summary>
 
+> **Description**
+>
 > A matrix whose dimensions are known at compile time. The fixed vector class
 > derives from the fixed matrix class, and other classes either derive frmo the
 > fixed vector class or they rely on casting to the fixed vector class for many
@@ -270,6 +278,8 @@ Utility functions are left out.
 <details>
 <summary>What image channels are affected by drawing functions?</summary>
 
+> **Description**
+>
 > Drawing functions work with images of any depth, but most of them affect only
 > the first three channels defaulting to only the first channel in the case of
 > single channel images. They also support a color, thickness, a line type, and

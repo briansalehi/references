@@ -39,6 +39,8 @@
 <details>
 <summary>Dump the x509 Certificate text?</summary>
 
+> **Description**
+>
 > ```sh
 > openssl x509 -in ca.pem -text
 > ``````
@@ -54,6 +56,8 @@
 <details>
 <summary>Generate a CA Certificate Sign request file?</summary>
 
+> **Description**
+>
 > ```sh
 > openssl genrsa -out cert-key.pem
 > openssl req -new -sha256 -subj "/CN=customsubject" -key cert-key.pem -out cert.csr

@@ -81,6 +81,8 @@ Nothing to import.
 <details>
 <summary>How to disable remote root login to prevent full system access from users?</summary>
 
+> **Description**
+>
 > Set following configuration variable to `no` in `sshd` configuration:
 >
 > ```sh
@@ -210,6 +212,8 @@ Nothing to import.
 <details>
 <summary>How to restrict SSH access to only users in <i>sshusers</i> group on a remote server?</summary>
 
+> **Description**
+>
 > Create a new group called `sshusers`:
 >
 > ```sh
@@ -282,6 +286,8 @@ Nothing to import.
 <details>
 <summary>How to get all the zones from firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > firewall-cmd --get-zones
 > ``````
@@ -297,6 +303,8 @@ Nothing to import.
 <details>
 <summary>How to list all the allowed services in a specific zone from firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --zone public --list-services
 > ``````
@@ -312,6 +320,8 @@ Nothing to import.
 <details>
 <summary>How to list all the allowed ports in a specific zone from firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --zone public --list-ports
 > ``````
@@ -327,6 +337,8 @@ Nothing to import.
 <details>
 <summary>How to list all the information of the default zone from firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --list-all
 > ``````
@@ -372,6 +384,8 @@ Nothing to import.
 <details>
 <summary>How to create a new zone on firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --new-zone corp --permanent
 > ``````
@@ -387,6 +401,8 @@ Nothing to import.
 <details>
 <summary>How to reload firewalld so that new configuration is applied?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --reload
 > ``````
@@ -402,6 +418,8 @@ Nothing to import.
 <details>
 <summary>How to add a service to the newly created zone in firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --zone corp --add-service ssh --permanent
 > sudo firewall-cmd --reload
@@ -453,6 +471,8 @@ Nothing to import.
 <details>
 <summary>How to list zones and the interfaces associated with them in firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --get-active-zones
 > ``````
@@ -468,6 +488,8 @@ Nothing to import.
 <details>
 <summary>How to retrieve all the services available on the network to specify in firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --get-services
 > ``````
@@ -483,6 +505,8 @@ Nothing to import.
 <details>
 <summary>How to allow a service in the default zone of firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo systemctl enable --now <service>
 > sudo firewall-cmd --add-service <service> --permanent
@@ -534,6 +558,8 @@ Nothing to import.
 <details>
 <summary>How to remove a port in the default zone of firewalld?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo firewall-cmd --remove-port 1622/tcp --permanent
 > sudo fierwall-cmd --reload
@@ -660,6 +686,8 @@ Nothing to import.
 <details>
 <summary>How to disable IPv4 or IPv6 on a server?</summary>
 
+> **Description**
+>
 > ```sh
 > sudoedit /etc/sysconfig/network
 > ``````
@@ -873,6 +901,8 @@ Nothing to import.
 <details>
 <summary>How to encrypt or decrypt files using bcrypt?</summary>
 
+> **Description**
+>
 > Encrypt:
 >
 > ```sh
@@ -981,6 +1011,8 @@ Nothing to import.
 <details>
 <summary>What kernel module can be used to encrypt block devices and what is the userspace interface for it?</summary>
 
+> **Description**
+>
 > dm-crypt
 >
 > *archlinux*
@@ -1071,6 +1103,8 @@ Nothing to import.
 <details>
 <summary>What tools are used to scan a system on network?</summary>
 
+> **Description**
+>
 > - ping
 > - traceroute
 > - nmap

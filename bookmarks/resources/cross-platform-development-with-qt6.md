@@ -6,6 +6,8 @@
 <details>
 <summary>Where the Qt installer can be found?</summary>
 
+> **Description**
+>
 > - Open source: qt.io/download-open-source
 > - Commercial: qt.io/download
 >
@@ -24,6 +26,8 @@
 <details>
 <summary>How to update Qt components after manual installation?</summary>
 
+> **Description**
+>
 > You can select new components to download and install or unselect them to
 > remove them from your installation.
 >

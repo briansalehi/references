@@ -42,6 +42,8 @@
 <details>
 <summary>What is the role of tmux server and clients?</summary>
 
+> **Description**
+>
 > tmux keeps all its state in a single main process, called the tmux server.
 > This runs in the background and manages all the programs running inside tmux
 > and keeps track of their output. The tmux server is started automatically
@@ -84,6 +86,8 @@
 <details>
 <summary>Create a new window?</summary>
 
+> **Description**
+>
 > ```sh
 > tmux new-window -n window-name
 > ``````

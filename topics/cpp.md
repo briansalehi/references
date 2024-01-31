@@ -27,6 +27,8 @@
 <details>
 <summary>What is the behavior of a fundamental data type when it's default initialized?</summary>
 
+> **Description**
+>
 > Unlike some other languages, the fundamental types (`bool`, `char`, `int`,
 > `float`,...) in C++ do not receive special treatment with the following
 > exceptions:
@@ -102,6 +104,8 @@
 <details>
 <summary>How many constants are available in C++?</summary>
 
+> **Description**
+>
 > - Literal constants
 > - Constants defined by `const`
 > - Constant expressions defined by `constexpr`
@@ -267,6 +271,8 @@
 <details>
 <summary>Declare a function evaluated at compile time?</summary>
 
+> **Description**
+>
 > ```cpp
 > constexpr double get_pi()
 > {
@@ -315,6 +321,8 @@
 <details>
 <summary>What conditional statement can be used to separate a function into compiletime and runtime evaluation?</summary>
 
+> **Description**
+>
 > C++23 brings `if consteval` conditional statement.
 >
 > This `if` statement takes no condition but would only evaluate during
@@ -375,6 +383,8 @@
 <details>
 <summary>What are the advantages of using <code>if consteval</code> compared to <code>std::is_constant_evaluated()</code>?</summary>
 
+> **Description**
+>
 > - `if consteval` is part of the core language, so no header needed
 > - `if consteval` cannot be used wrong, but `is_constant_evaluated()` can:
 >
@@ -402,6 +412,8 @@
 <details>
 <summary>Transfer ownership of a pointer without making a copy of it?</summary>
 
+> **Description**
+>
 > Besides being a simple smart pointer, `std::unique_ptr` is also an important
 > semantic tool, marking an ownership handoff.
 >
@@ -516,6 +528,8 @@
 <details>
 <summary>Initialize a non-type template argument with an object of internal linkage?</summary>
 
+> **Description**
+>
 > Prior to C++11, non-type template arguments could not be named with internal
 > linkage, so `static` variables were not allowed.
 > VC++ compiler still doesn't support it.
@@ -549,6 +563,8 @@
 <details>
 <summary>Define symbol versioning of a library without breaking client code when implementing template specializations?</summary>
 
+> **Description**
+>
 > Members of an inline namespace are treated as if they are members of the
 > enclosing namespace. This property is transitive: if a namespace N contains
 > an inline namespace M, which in turn contains an inline namespace O, then the
@@ -756,6 +772,8 @@
 <details>
 <summary>What C++ entities cannot be exported as module interface?</summary>
 
+> **Description**
+>
 > - Names with internal linkage or no linkage cannot be exported.
 > - An export group must not contain declarations that cannot be exported, e.g.
 >   `static_assert` or anonymous names.
@@ -774,6 +792,8 @@
 <details>
 <summary>Express a module to be used within another translation unit?</summary>
 
+> **Description**
+>
 > Export a module by creating a **Module Interface Unit (MIU)** that can
 > contain functions, types, constants, and even macros.
 >
@@ -831,6 +851,8 @@
 <details>
 <summary>What is a module partition?</summary>
 
+> **Description**
+>
 > The source code of a module may become large and difficult to maintain.
 > Moreover, a module may be composed of logically separate parts. To help with
 > scenarios like that, modules support composition from parts called
@@ -852,6 +874,8 @@
 <details>
 <summary>What is a module interface partition?</summary>
 
+> **Description**
+>
 > A module unit that is a partition that exports entities is called a **module
 > interface partition**.
 >
@@ -930,6 +954,8 @@
 <details>
 <summary>What is a module implementation partition?</summary>
 
+> **Description**
+>
 > Apart from *module interface partition*, there could also be internal
 > partitions that do not export anything. Such partition unit is called a
 > **module implementation partition**.
@@ -1386,6 +1412,8 @@
 <details>
 <summary>Construct a variant to hold three different types?</summary>
 
+> **Description**
+>
 > `std::variant` is the C++17 type-safe alternative to union which supports
 > non-trivial custom types.
 >
@@ -1503,6 +1531,8 @@
 <details>
 <summary>Create a helper to be compatible with any of the variant types?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <variant>
 > #include <string>
@@ -1590,6 +1620,8 @@
 <details>
 <summary>Enable all comparison operators for an object type?</summary>
 
+> **Description**
+>
 > Before C++20 you had to define six operators for a type to provide full
 > support for all possible comparisons of its objects. The problem is that even
 > though most of the operators are defined in terms of either `operator ==` or
@@ -1800,6 +1832,8 @@
 <details>
 <summary>Compare two objects that might result any of the comparison categories?</summary>
 
+> **Description**
+>
 > The return type does not compile if the attributes have different comparison
 > categories. In that case use the weakest comparison type as the return type.
 >
@@ -1860,6 +1894,8 @@
 <details>
 <summary>Compare two derived objects having a base class?</summary>
 
+> **Description**
+>
 > If `operator <=>` is defaulted and the object has a base class having the
 > `operator <=>` defined, that operator is called. Otherwise, `operator ==` and
 > `operator <` are called to decide whether the objects are `equivalent`,
@@ -1938,6 +1974,8 @@
 <details>
 <summary>What is the compatibility defect of comparison operators in C++20?</summary>
 
+> **Description**
+>
 > When we have a trivial class that stores an integral value and has an
 > implicit constructor only enable implicit type conversions for the second
 > operand.
@@ -2013,6 +2051,8 @@
 <details>
 <summary>Avoid implicit conversion of classes?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <memory>
 >
@@ -2091,6 +2131,8 @@
 <details>
 <summary>Replace ref-quialified overloads of a method with one generic overload?</summary>
 
+> **Description**
+>
 > Using 4 overloads for all possible combinations of ref-quilified methods is
 > code dupliation.
 >
@@ -2133,6 +2175,8 @@
 <details>
 <summary>What is the equivalent form of ref-quialified function?</summary>
 
+> **Description**
+>
 > C++23 allows you to write ref-qualified members differently:
 >
 > ```cpp
@@ -2160,6 +2204,8 @@
 <details>
 <summary>Access the object containing the lambda within a recursive lambda?</summary>
 
+> **Description**
+>
 > C++23 allows for recursive lambda expressions.
 >
 > `this` in a lambda accesses the object that contains the lambda, not the
@@ -2223,6 +2269,8 @@
 <details>
 <summary>What are the translation phases of a template?</summary>
 
+> **Description**
+>
 > - Without instantiation at definition time, the template code itself is
 >   checked for correctness ignoring the template parameters.
 >   + Syntax errors are discovered, such as missing semicolons.
@@ -2253,6 +2301,8 @@
 <details>
 <summary>What happens when a function template triggers its instantiation?</summary>
 
+> **Description**
+>
 > When a function template is used in a way that triggers its instantiation, a
 > compiler at some point will need to see that template's definition. This
 > breaks the usual compile and link distinction for ordinary functions, when
@@ -2274,6 +2324,8 @@
 <details>
 <summary>What is the signature of a function template?</summary>
 
+> **Description**
+>
 > Function template defintion specifies a family of functions with parameters
 > left undetermined, parameterized as template parameters.
 >
@@ -2343,6 +2395,8 @@
 <details>
 <summary>How does the compile deduce the type of function template arguments?</summary>
 
+> **Description**
+>
 > When we call a function template, the template parameters are determined by
 > the arguments we pass. However, template parameters might only be part of the
 > arguments type.
@@ -2370,6 +2424,8 @@
 <details>
 <summary>What are the limits of type conversion during type deduction of function template arguments?</summary>
 
+> **Description**
+>
 > - When declaring call parameters by reference, even trivial conversion do not
 >   apply to type dedution. Two arguments declared with the same template
 >   parameter `T` must match exactly.
@@ -2409,6 +2465,8 @@
 <details>
 <summary>What are the common ways to handle type conversions during type deduction of function template arguments?</summary>
 
+> **Description**
+>
 > 1. Cast the arguments so that they both match:
 >
 > ```cpp
@@ -2445,6 +2503,8 @@
 <details>
 <summary>How does the compiler deduce the default function template parameters?</summary>
 
+> **Description**
+>
 > Type deduction does not work for default call arguments.
 >
 > ```cpp
@@ -2478,6 +2538,8 @@
 <details>
 <summary>Declare a function template with multiple template parameters?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T1, typename T2>
 > T1 max(T1 a, T2 b)
@@ -2499,6 +2561,8 @@
 <details>
 <summary>What are the common ways of handling return type deduction for function templates having multiple function template parameters?</summary>
 
+> **Description**
+>
 > - Introduce an additional template parameter for the return type
 > - Let the compiler find out the return type.
 > - Declare the return type to be the common type of the parameter types.
@@ -2514,6 +2578,8 @@
 <details>
 <summary>What are the disadvantages of using additional template parameter for return types when having multiple function template parameters?</summary>
 
+> **Description**
+>
 > In cases when there is no connection between template and call parameters and
 > when template parameters cannot be determined, you must specify the template
 > argument explicitly with the call. For example, the additional template
@@ -2604,6 +2670,8 @@
 <details>
 <summary>What is the drawback of using trailing return type?</summary>
 
+> **Description**
+>
 > It might happen that the return type is a reference type, because under some
 > conditions the template parameter might be a reference. For this reason you
 > should return the type decayed from the template paramter, which looks as
@@ -2640,6 +2708,8 @@
 <details>
 <summary>Use common type as the return type of a function template?</summary>
 
+> **Description**
+>
 > `std::common_type` is a type trait, defined in `<type_traits>`, which yields
 > a structure having a `type` static member for the resulting type. Thus, it
 > needs a `typename` beforehand in order to access its type.
@@ -2859,6 +2929,8 @@
 <details>
 <summary>What is the drawback of overloading function templates?</summary>
 
+> **Description**
+>
 > In general, it is a good idea not to change more than necessary when
 > overloading function templates. You should limit your changes to the number
 > of parameters or to specifying template parameters explicitly. Otherwise,
@@ -2922,6 +2994,8 @@
 <details>
 <summary>When a template function overload would be missed by a call?</summary>
 
+> **Description**
+>
 > Ensure that all overloaded versions of a function are declared before the
 > function is called. This is because the fact that not all overloaded
 > functions are visible when a corresponding function call is made may matter.
@@ -2961,6 +3035,8 @@
 <details>
 <summary>Declare a class template?</summary>
 
+> **Description**
+>
 > Before the declaration, you have to declare one or multiple identifiers as a
 > type parameters.
 >
@@ -3036,6 +3112,8 @@
 <details>
 <summary>Define the member functions of a class template outside of the scope of the class?</summary>
 
+> **Description**
+>
 > To define a member function of a class template, you have to specify that it
 > is a template, and you have to use the full type qualification of the class
 > template.
@@ -3069,6 +3147,8 @@
 <details>
 <summary>Declare a friend function template in a class template?</summary>
 
+> **Description**
+>
 > To declare a friend function and define it afterwards, we have two options:
 >
 > 1. We can implicitly declare a new function template, which must use a
@@ -3159,6 +3239,8 @@
 <details>
 <summary>Partially specialize a class template for pointers?</summary>
 
+> **Description**
+>
 > You can provide special implementation for particular circumstances, but some
 > template parameters must still be defined by the user.
 >
@@ -3324,6 +3406,8 @@
 <details>
 <summary>Use alias templates for member types of class templates?</summary>
 
+> **Description**
+>
 > Alias templates are especially helpful to define shortcuts for types that are
 > members of class templates.
 >
@@ -3360,6 +3444,8 @@
 <details>
 <summary>Under what condition class templates do not require specifying template parameters?</summary>
 
+> **Description**
+>
 > Since C++17, the constraint that you always have to specify the template
 > arguments explicitly was relaxed.
 >
@@ -3411,6 +3497,8 @@
 <details>
 <summary>What is the drawback of supporting class template argument deduction by providing constructors passing initial argument?</summary>
 
+> **Description**
+>
 > 1. You have to request the default constructor to be available with its
 >    default behavior, because the default constructor is available only if no
 >    other constructor is defined:
@@ -3657,6 +3745,8 @@
 <details>
 <summary>Iterate over a range without invoking iterator functions?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <vector>
 > #include <map>
@@ -3828,6 +3918,8 @@
 <details>
 <summary>Evaluate alignment of structures considering the size of their members?</summary>
 
+> **Description**
+>
 > The alignment must match the size of the largest member in order to avoid
 > performance issues.
 >
@@ -4104,6 +4196,8 @@
 <details>
 <summary>How literal operators or literal operator templates can be used to construct a numberic value by its binary representation?</summary>
 
+> **Description**
+>
 > ```cpp
 > namespace binary
 > {
@@ -4347,6 +4441,8 @@
 <details>
 <summary>Why return values should not be marked as <code>const</code>?</summary>
 
+> **Description**
+>
 > Declaring the return value as a whole to be `const` disables move semantics
 > and it also disables **return value optimization**. `const` should be used to
 > declare parts of return type instead, such as the object a returned reference
@@ -4521,6 +4617,8 @@
 <details>
 <summary>Why does automatic move operations disable when user declares special member functions?</summary>
 
+> **Description**
+>
 > If classes have changed the usual behavior of copying or assignment, they
 > probably also have to do some things different when optimizing these
 > operations. Any form of an explicit declaration of a copy constructor, copy
@@ -4539,6 +4637,8 @@
 <details>
 <summary>Based on the exact rules for <i>generated special member functions</i> when would copy constructor and copy assignment operator automatically be generated?</summary>
 
+> **Description**
+>
 > The copy constructor is automatically generated when all of the following
 > conditions are met:
 >
@@ -4596,6 +4696,8 @@
 <details>
 <summary>What special member functions are generated by default for a class?</summary>
 
+> **Description**
+>
 > By default, both copying and moving special member functions are generated
 > for class.
 >
@@ -4665,6 +4767,8 @@
 <details>
 <summary>What does it mean to say move semantics is not passed through?</summary>
 
+> **Description**
+>
 > Move constructor is called when the caller no longer needs the value. Inside
 > the move constructor, we hdecide where an how long we need it. In particular,
 > we might need the value multiple times and not lose it with its first use.
@@ -4725,6 +4829,8 @@
 <details>
 <summary>Why deleting moving operations does not make semantic sence?</summary>
 
+> **Description**
+>
 > if you declare the move constructor as deleted, you cannot move (you have
 > disabled this operation; any fallback is not used) and cannot copy (because a
 > declared move constructor disables copy operations).
@@ -4812,6 +4918,8 @@
 <details>
 <summary>How to properly disable move semantics in an object without disabling fallback mechanism?</summary>
 
+> **Description**
+>
 > Declaring the special move member functions as deleted is usually not the
 > right way to do it because it disables the fallback mechanism. The right way
 > to disable move semantics while providing copy semantics is to declare one of
@@ -4887,6 +4995,8 @@
 <details>
 <summary>Does <code>virtual</code> destructor in a base class disable automatic move operations in its derived classes?</summary>
 
+> **Description**
+>
 > Usually, in polymorphic derived classes there is no need to declare special
 > member functions, especially virtual destructor.
 >
@@ -4959,6 +5069,8 @@
 <details>
 <summary>When would passing by value becomes cheaper than passing by const lvalue references?</summary>
 
+> **Description**
+>
 > Constructing an object only by const lvalue references will allocate four
 > memory spaces which two of them are unnecessary. Also move operation does not
 > work here because parameters are const.
@@ -5127,6 +5239,8 @@
 <details>
 <summary>When to take arguments by value and when to take by references?</summary>
 
+> **Description**
+>
 > - Constructors that initialize members from parameters, for which move
 >   operations are cheap, should take the argument by value and move it to the
 >   member.
@@ -5643,6 +5757,8 @@
 <details>
 <summary>What exceptions are thrown by numeric to string conversion functions on failure?</summary>
 
+> **Description**
+>
 > - `std::invalid_argument`: conversion cannot be performed.
 > - `std::out_of_range`: converted value is outside the range of the result
 >   type.
@@ -5757,6 +5873,8 @@
 <details>
 <summary>Create string literals containing special characters without escaping them?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 >
@@ -5778,6 +5896,8 @@
 <details>
 <summary>Express different types of strings that raw string literals can generate?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 >
@@ -5889,6 +6009,8 @@
 <details>
 <summary>Construct a <code>std::string</code> from a <code>std::string_view</code>?</summary>
 
+> **Description**
+>
 > Converting from an `std::basic_string_view` to an `std::basic_string` is not
 > possible. You must explicitly construct an `std::basic_string` object from a
 > `std::basic_string_view`.
@@ -5961,6 +6083,8 @@
 <details>
 <summary>Format a text by positioning multiple values in a text in a specific order?</summary>
 
+> **Description**
+>
 > `std::format` supports positional arguments i.e. referring to an argument by
 > its index separated from format specifiers by the `:` character.
 >
@@ -5982,6 +6106,8 @@
 <details>
 <summary>Format a 2-digit integer in hexadecimal with zero padding?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <format>
 >
@@ -6033,6 +6159,8 @@
 <details>
 <summary>Format the current date?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <format>
 > #include <chrono>
@@ -6159,6 +6287,8 @@
 <details>
 <summary>Retrieve submatches of a pattern matched within a string?</summary>
 
+> **Description**
+>
 > The `std::regex_match()` method has overloads that take a reference to a
 > `std::match_results` object to store the result of the match.
 >
@@ -6219,6 +6349,8 @@
 <details>
 <summary>How many regular expression engines are available in C++?</summary>
 
+> **Description**
+>
 > The C++ standard library supports six regular expression engines:
 >
 > * ECMAScript (default)
@@ -6288,6 +6420,8 @@
 <details>
 <summary>Find all occurences of a pattern in a given text?</summary>
 
+> **Description**
+>
 > The iterators available in the regular expressions standard library are as
 > follows:
 >
@@ -6423,6 +6557,8 @@
 <details>
 <summary>Get the smallest and largest finite numbers of a type?</summary>
 
+> **Description**
+>
 > Standard types that are not arithmetic types, such as `std::complex<T>` or
 > `std::nullptr_t`, do not have `std::numeric_limits` specializations.
 >
@@ -6468,6 +6604,8 @@
 <details>
 <summary>Retrieve the maximum number of digits for integral and floating-point types?</summary>
 
+> **Description**
+>
 > `digits` represents the number of bits (excluding the sign bit if present)
 > and padding bits (if any) for integral types and the number of bits of the
 > mantissa for floating-point types.
@@ -6492,6 +6630,8 @@
 <details>
 <summary>Retrieve the longest possible digits of a decimal type that can be represented without a change?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <limits>
 >
@@ -6552,6 +6692,8 @@
 <details>
 <summary>Verify if a floating-point value is exact?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <limits>
 >
@@ -6639,6 +6781,8 @@
 <details>
 <summary>Seed a random generator to initialize the algorithm corporated within it?</summary>
 
+> **Description**
+>
 > Random generators can be seeded using their constructors or the `seed()`
 > method. Note that `random_device` cannot be seeded.
 >
@@ -6666,6 +6810,8 @@
 <details>
 <summary>Call for a new number from random engines?</summary>
 
+> **Description**
+>
 > The function call operators of random engines are overloaded and generate a
 > new number uniformly distributed between `min()` and `max()`:
 >
@@ -6777,6 +6923,8 @@
 <details>
 <summary>Explicitly specify duration type?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <chrono>
 > #include <thread>
@@ -6804,6 +6952,8 @@
 <details>
 <summary>Explicitly convert a duration into a different duration unit?</summary>
 
+> **Description**
+>
 > Duractions can be converted between each other using `duration_cast`.
 >
 > ```cpp
@@ -6873,6 +7023,8 @@
 <details>
 <summary>Express all different chrono literals?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <chrono>
 >
@@ -6915,6 +7067,8 @@
 <details>
 <summary>Specify the date information about a specific day in a year?</summary>
 
+> **Description**
+>
 > ```cpp
 > // A day in a year can be specified using literals and operator/
 > auto christmas_eve = 2023y/std::chrono::December/24d;
@@ -7164,6 +7318,8 @@
 <details>
 <summary>Check if a range starts with an expected subrange?</summary>
 
+> **Description**
+>
 > Starting with C++23, basic strings support `starts_with()` operation:
 >
 > ```cpp
@@ -7206,6 +7362,8 @@
 <details>
 <summary>Convert a resulting range to another type?</summary>
 
+> **Description**
+>
 > C++23 standard includes `std::ranges::to<>`.
 >
 > ```cpp
@@ -7470,6 +7628,8 @@
 <details>
 <summary>Iterate over a limited number of elements within a range?</summary>
 
+> **Description**
+>
 > | `std::for_each_n` | standard |
 > | --- | --- |
 > | introduced | C++17 |
@@ -7512,6 +7672,8 @@
 <details>
 <summary>Swap two values using standard algorithms?</summary>
 
+> **Description**
+>
 > | `std::swap` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -7677,6 +7839,8 @@
 <details>
 <summary>What is the minimum requirement for a type to be comparable for sorting algorithms?</summary>
 
+> **Description**
+>
 > Implementing a `strict_weak_ordering` for a custom type, at minimum requires
 > providing an overload of `operator<`.
 >
@@ -8178,6 +8342,8 @@
 <details>
 <summary>Guarantee the ordering of equal elements when partitioning a range?</summary>
 
+> **Description**
+>
 > | `std::stable_partition` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8340,6 +8506,8 @@
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
 
+> **Description**
+>
 > | `std::lower_bound` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8547,6 +8715,8 @@
 <details>
 <summary>Determine whether a sorted range is contained within another sorted range?</summary>
 
+> **Description**
+>
 > | `std::includes` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8577,6 +8747,8 @@
 <details>
 <summary>Merge two sorted ranges into one?</summary>
 
+> **Description**
+>
 > | `std::merge` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8685,6 +8857,8 @@
 <details>
 <summary>Remove consecutive duplicate values within a sorted range and copy the results into an output range?</summary>
 
+> **Description**
+>
 > | `std::unique_copy` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8751,6 +8925,8 @@
 <details>
 <summary>Produce a range containing elements present only in one of two ranges, but not both?</summary>
 
+> **Description**
+>
 > | `std::set_symmetric_difference` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8784,6 +8960,8 @@
 <details>
 <summary>Produce a range containing elements present in either of the ranges?</summary>
 
+> **Description**
+>
 > | `std::set_union` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8850,6 +9028,8 @@
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
 
+> **Description**
+>
 > | `std::transform` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -8982,6 +9162,8 @@
 <details>
 <summary>Replace elements for which the given predicate evaluates to true within a range?</summary>
 
+> **Description**
+>
 > | `std::replace_if` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -9120,6 +9302,8 @@
 <details>
 <summary>Rearrange elements in the given array in a randomly order?</summary>
 
+> **Description**
+>
 > | `std::shuffle` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -9234,6 +9418,8 @@
 <details>
 <summary>Check whether two ranges have the same content but not necessarily the same order of elements?</summary>
 
+> **Description**
+>
 > | `std::is_permutation` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -9267,6 +9453,8 @@
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
 
+> **Description**
+>
 > | `std::all_of` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -9477,6 +9665,8 @@
 <details>
 <summary>Remove all occurances of a character from a string?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <string>
 > #include <algorithm>
@@ -9549,6 +9739,8 @@
 <details>
 <summary>What ranges operations are supported by strings?</summary>
 
+> **Description**
+>
 > Following string operations are available in C++23:
 >
 > - `std::basic_string<CharT,Traits,Allocator>::insert_range`
@@ -9567,6 +9759,8 @@
 <details>
 <summary>Insert a range within an string?</summary>
 
+> **Description**
+>
 > Using C++23:
 >
 > ```cpp
@@ -9636,6 +9830,8 @@
 <details>
 <summary>Produce the view of Nth elements from a range of tuple-like elements?</summary>
 
+> **Description**
+>
 > ```cp
 > #include <iostream>
 > #include <iterator>p
@@ -9726,6 +9922,8 @@
 <details>
 <summary>Take the sequence of elements from the view of a range for which the predicate evaluates to true?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9831,6 +10029,8 @@
 <details>
 <summary>Reverse the view of a range for bidirectional ranges?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9882,6 +10082,8 @@
 <details>
 <summary>Adapt a view into a range with a begin and end iterator of matching types for non-range versions of algorithms?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9909,6 +10111,8 @@
 <details>
 <summary>Represent the view of all the elements of a range?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9936,6 +10140,8 @@
 <details>
 <summary>Split a single range into a view over sub-ranges? (incomplete)</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9987,6 +10193,8 @@
 <details>
 <summary>Represent an empty view?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10035,6 +10243,8 @@
 <details>
 <summary>Represent a view of the generated sequence formed by repeatedly incrementing an initial value?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10062,6 +10272,8 @@
 <details>
 <summary>Represent a view obtained by successively applying the istream input iterator?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10257,6 +10469,8 @@
 <details>
 <summary>Wait for a thread in case an exception is thrown?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <stdexcept>
@@ -10557,6 +10771,8 @@
 <details>
 <summary>What is the difference between a mutex and a semaphore?</summary>
 
+> **Description**
+>
 > A mutex must be locked and unlocked in the same thread. But a semaphore can
 > be acquired in one thread, and released in another.
 > ---
@@ -10725,6 +10941,8 @@
 <details>
 <summary>What are the use cases of a latch?</summary>
 
+> **Description**
+>
 > Latches are useful for managing one task leveraged by multiple threads.
 >
 > ---
@@ -10818,6 +11036,8 @@
 <details>
 <summary>What are the use cases of a barrier?</summary>
 
+> **Description**
+>
 > Barriers are helpful to manage repetitive task leveraged by multiple threads.
 >
 > ---
@@ -10854,6 +11074,8 @@
 <details>
 <summary>Synchronize threads with a barrier?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <thread>
@@ -11298,6 +11520,8 @@
 <details>
 <summary>Get current path of the executing process?</summary>
 
+> **Description**
+>
 > Note that `current_path()` is an expensive operation because it is based on
 > operating system calls.
 >
@@ -11337,6 +11561,8 @@
 <details>
 <summary>Yield whether a path is empty?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p;
 > p.empty(); // true
@@ -11655,6 +11881,8 @@
 <details>
 <summary>Replace extension in a path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension("hpp"); // /src/project/main.hpp
@@ -11706,6 +11934,8 @@
 <details>
 <summary>Remove extension from a path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension(); // /src/project/main
@@ -11739,6 +11969,8 @@
 <details>
 <summary>Compare two paths <code>tmp/f</code> and <code>tmp/./f</code>?</summary>
 
+> **Description**
+>
 > Using `==` , `!=` and `compare()` the following paths are all different:
 >
 > ```
@@ -11838,6 +12070,8 @@
 <details>
 <summary>Check if a file is neither a regular nor a directory nor a symbolic link?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::is_other(p);
 > ``````
@@ -12018,6 +12252,8 @@
 <details>
 <summary>Replace the permissions of a file?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::permissions(p, perms);
 > std::filesystem::permissions(p, perms, mode);
@@ -12045,6 +12281,8 @@
 <details>
 <summary>Resize a regular file?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::resize_file(p, newSize);
 > ``````
@@ -12060,6 +12298,8 @@
 <details>
 <summary>Change the current directory of the process?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::current_path(p);
 > ``````
@@ -12111,6 +12351,8 @@
 <details>
 <summary>Use filesystem operations without following symbolic links?</summary>
 
+> **Description**
+>
 > Use `symlink_status()` function to return a `file_status` object and call
 > these functions with it.
 >
@@ -12147,6 +12389,8 @@
 <details>
 <summary>Yield the status of a file without following symbolic links?</summary>
 
+> **Description**
+>
 > ```cp
 > std::filesystem::symlink_status(p);
 > ``````
@@ -12189,6 +12433,8 @@
 <details>
 <summary>Yield the type of a file using file status?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::path p{};
 > std::filesystem::file_status fs = std::filesystem::status(p);
@@ -12264,6 +12510,8 @@
 <details>
 <summary>Yield which permissions does a file have?</summary>
 
+> **Description**
+>
 > |Enum|Octal|POSIX|
 > |---|---|---|
 > |`none`|0||
@@ -12318,6 +12566,8 @@
 <details>
 <summary>Create a regular file?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <fstream>
 >
@@ -12435,6 +12685,8 @@
 <details>
 <summary>Copy from a file of any type?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::copy(from, to);
 > std::filesystem::copy(from, to, options);
@@ -12468,6 +12720,8 @@
 <details>
 <summary>Why there is copy options?</summary>
 
+> **Description**
+>
 > Copy functions:
 >
 > - Don't work with special file types.
@@ -12618,6 +12872,8 @@
 <details>
 <summary>Yield the relative path from a base path to another path?</summary>
 
+> **Description**
+>
 > ```cpp
 > std::filesystem::relative(p, base);
 > std::filesystem::proximate(p, base);
@@ -12636,6 +12892,8 @@
 <details>
 <summary>Iterate over the entries of a directory?</summary>
 
+> **Description**
+>
 > The most convenient way to do is to use a range-based for loop.
 >
 > ```cpp
@@ -13014,6 +13272,8 @@
 <details>
 <summary>What is the main advantage of using builder design pattern?</summary>
 
+> **Description**
+>
 > With builder pattern, we can build a product one component at a time.
 >
 > ---

@@ -6,6 +6,8 @@
 <details>
 <summary>How many ways exist to create a docker image?</summary>
 
+> **Description**
+>
 > 1. **Docker commands:** run a container and input the commands to create new image with `docker commit`.
 > 2. **Dockerfile:** Build from a known base image, and specify the build with a limited set of simple commands.
 > 3. **Dockerfile and configuration management (CM) tool:** Same as Dockerfile, but you hand over control of the build to a more sophisticated CM tool.
@@ -114,6 +116,8 @@
 <details>
 <summary>How to run a container?</summary>
 
+> **Description**
+>
 > ```sh
 > docker run -i -t -p 8000:8000 --name example todoapp
 > docker container run ...
@@ -165,6 +169,8 @@
 <details>
 <summary>How to restart a stopped container?</summary>
 
+> **Description**
+>
 > ```sh
 > docker start example
 > docker container start ...
@@ -231,6 +237,8 @@
 <details>
 <summary>How to run a container in background?</summary>
 
+> **Description**
+>
 > ```sh
 > docker run -d -p 1234:1234 --name daemon ubuntu:20.04 nc -l 1234
 > docker run --detach -publish 1234:1234 --name daemon ...

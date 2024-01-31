@@ -6,6 +6,8 @@
 <details>
 <summary>How many synchronization mechanisms for accessibility of shared resources are available in the kernel?</summary>
 
+> **Description**
+>
 > We can enumerate two synchronization mechanisms, as follows:
 >
 > 1. **Locks**: Used for mutual exclusion. When one contender holds the lock, no other can hold it (others are excluded). The most known locks in the kernel are **spinlocks** and **mutexes**.
@@ -150,6 +152,8 @@
 <details>
 <summary>Prevent deadlock caused by IRQs when using spinlocks?</summary>
 
+> **Description**
+>
 > To address this issue, the Linux kernel provides `_irq` variant functions for spinlocks, which, in addition to disabling/enabling preemption, also disable/enable interrupts on the local CPU.
 > These functions are `spin_lock_irq()` and `spin_unlock_irq()`, defined as follows:
 >
@@ -210,6 +214,8 @@
 <details>
 <summary>How a critical section can be protected from being preemted by kernel?</summary>
 
+> **Description**
+>
 > Though disabling interrupts may prevent kernel preemption nothing prevents the protected section from invoking the `schedule()` function.
 > The kernel disables or enables the scheduler, and thus preemtion, by increasing or decreasing a kernel global and per-CPU variable called `preempt_count` with 0 as default value.
 > This variable is checked by the `schedule()` function and when it is greater than 0, the scheduler simply returns and does nothing.
@@ -231,6 +237,8 @@
 <details>
 <summary>What is a mutex and how does it operate?</summary>
 
+> **Description**
+>
 > It behaves exactly like a *spinlock*, with the only difference being that your code can sleep.
 > A spinlock is a lock held by a CPU, a mutex, on the other hand, is a lock held by a task.
 >
@@ -342,6 +350,8 @@
 <details>
 <summary>Check mutex locking availability before acquiring it?</summary>
 
+> **Description**
+>
 > ```c
 > static bool mutex_is_locked(struct mutex *lock);
 > ``````
@@ -384,6 +394,8 @@
 <details>
 <summary>What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?</summary>
 
+> **Description**
+>
 > It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
 >
 > ---

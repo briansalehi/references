@@ -21,6 +21,8 @@
 <details>
 <summary>What are the building blocks of an embedded Linux system?</summary>
 
+> **Description**
+>
 > 1. Toolchain
 > 2. Bootloader
 > 3. Kernel
@@ -90,6 +92,8 @@
 <details>
 <summary>What components in the tuple are used to prefixed in GNU toolchains?</summary>
 
+> **Description**
+>
 > * CPU Architecture + Endianness (e.g. `x86_64`, `mipsel`, `armeb`)
 > * Vendor (e.g. `buildroot`)
 > * Kernel (e.g. `linux`)
@@ -108,6 +112,8 @@
 <details>
 <summary>Print the tuple embedded in GNU GCC compiler?</summary>
 
+> **Description**
+>
 > ```sh
 > gcc -dumpmachine
 > ``````
@@ -123,6 +129,8 @@
 <details>
 <summary>Get the version and configurations of a native or cross-compiled GCC compiler?</summary>
 
+> **Description**
+>
 > ```sh
 > ${CROSS_COMPILE}gcc -v
 > ``````
@@ -243,6 +251,8 @@
 <details>
 <summary>Build a cross-toolchain for Raspberry Pi Zero?</summary>
 
+> **Description**
+>
 > Considering the processor used in this device which is `bmc2835` having an
 > armv6 core, we should use the following target:
 >
@@ -273,6 +283,8 @@
 <details>
 <summary>Build a cross-toolchain for BeagleBone Black?</summary>
 
+> **Description**
+>
 > ```sh
 > ./ct-ng distclean
 > ./ct-ng show-arm-cortex_a8-linux-gnueabi
@@ -522,6 +534,8 @@
 <details>
 <summary>Prepare <code>pkg-config</code> to look up library dependencies in a sysroot?</summary>
 
+> **Description**
+>
 > In order for `pkg-config` to address library and header files belonging to *sqlite3*, it should be able to see `<sysroot>/usr/lib/pkgconfig/sqlite3.pc`:
 >
 > ```sh
@@ -615,6 +629,8 @@
 <details>
 <summary>What is the default referencing build system for the Yocto Project?</summary>
 
+> **Description**
+>
 > Poky is the default Yocto Project reference distribution, which uses
 > OpenEmbedded build system technology.
 >
@@ -630,6 +646,8 @@
 <details>
 <summary>What are the constituents of the Poky build tool?</summary>
 
+> **Description**
+>
 > It is platform-independent and performs cross-compiling using the BitBake
 > tool, OpenEmbedded Core, and a default set of metadata.
 >
@@ -669,6 +687,8 @@
 <details>
 <summary>What is the role of BitBake in the Yocto Project?</summary>
 
+> **Description**
+>
 > BitBake is a task scheduler and execution system that parses Python and Shell
 > Script code. The code that is parsed generates and runs tasks, which are a
 > set of steps ordered per the code’s dependencies.
@@ -693,6 +713,8 @@
 <details>
 <summary>What is the role of OpenEmbedded Core in the Yocto Project?</summary>
 
+> **Description**
+>
 > The OpenEmbedded Core metadata collection provides the engine of the Poky
 > build system. It provides the core features and aims to be generic and as
 > lean as possible. It supports seven different processor architectures (ARM,
@@ -756,6 +778,8 @@
 <details>
 <summary>What are the different roles and their tasks in Linux-based software development teams?</summary>
 
+> **Description**
+>
 > - **Low level developers**
 >   + Board bring-up
 >   + Bootloader development

@@ -21,6 +21,8 @@
 <details>
 <summary>Stop compiler processing source after preprocessing phase?</summary>
 
+> **Description**
+>
 > ```c
 > #include <stdio.h>
 >
@@ -96,6 +98,8 @@
 <details>
 <summary>How many relocatable files exist?</summary>
 
+> **Description**
+>
 > There are position-independent (relocatable) object files which can be
 > combined to form a complete binary executable. On the other hand there are
 > position-independent (relocatable) executables, which you can call them apart
@@ -111,6 +115,8 @@
 <details>
 <summary>View the symbolic information of an executable?</summary>
 
+> **Description**
+>
 > ```sh
 > readelf --syms a.out
 > ``````
@@ -126,6 +132,8 @@
 <details>
 <summary>What formats are used to represent debugging symbols for executables?</summary>
 
+> **Description**
+>
 > For ELF binaries, debugging symbols are typically generated in the DWARF
 > format, while PE binaries usually use the proprietary PDB format. DWARF
 > information is usually embedded within the binary, while PDB comes in the
@@ -171,6 +179,8 @@
 <details>
 <summary>Specify the assembly flavor for objdump utility?</summary>
 
+> **Description**
+>
 > ```sh
 > objdump -M intel
 > objdump -M att

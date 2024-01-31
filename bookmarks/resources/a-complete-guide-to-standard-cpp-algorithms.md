@@ -6,6 +6,8 @@
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?</summary>
 
+> **Description**
+>
 > ```cp
 > #include <algorithm>
 > #include <vector>
@@ -66,6 +68,8 @@
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with unsequenced parallel execution model to sum values of a container?</summary>
 
+> **Description**
+>
 > Note that variables are now shared state and need to be `std::atomic<>` or protected by a `std::mutex<>`.
 >
 > ```cp
@@ -216,6 +220,8 @@
 <details>
 <summary>How to think of standard algorithms in terms of ranges instead of iterators?</summary>
 
+> **Description**
+>
 > The benefit of thinking about the returned value as the end iterator of a range is that it removes the potential for corner cases.
 >
 > ```cp
@@ -312,6 +318,8 @@
 <details>
 <summary>How to use parallel executaion on <code>std::for_each</code> to invoke an expensive operation for each element of a container?</summary>
 
+> **Description**
+>
 > As long as the operations are independent, there is no need for synchronization primitives.
 >
 > ```cpp
@@ -585,6 +593,8 @@
 <details>
 <summary>Compare if one range is lexicographically less than another using <code>std::lexicographical_compare</code> and <code>std::ranges::lexicographical_compare</code>?</summary>
 
+> **Description**
+>
 > Lexicographical `strict_weak_ordering` for ranges is exposed through the `std::lexicographical_compare` algorithm.
 >
 > | feature | standard |
@@ -711,6 +721,8 @@
 <details>
 <summary>Sort a range using <code>std::sort</code>?</summary>
 
+> **Description**
+>
 > | feature | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -756,6 +768,8 @@
 <details>
 <summary>Sort a range of paired values providing an additional guarantee of preserving the relative order of equal elements?</summary>
 
+> **Description**
+>
 > The `std::sort` is free to re-arrange equivalent elements, which can be undesirable when re-sorting an already sorted range.
 > The `std::stable_sort` provides the additional guarantee of preserving the relative order of equal elements.
 >
@@ -804,6 +818,8 @@
 <details>
 <summary>Check if a range is already sorted in ascending order?</summary>
 
+> **Description**
+>
 > | feature | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -915,6 +931,8 @@
 <details>
 <summary>Partially sort a range within a given sub-range and write results to another range?</summary>
 
+> **Description**
+>
 > | feature | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1002,6 +1020,8 @@
 <details>
 <summary>Guarantee the ordering of equal elements in partitioning a range?</summary>
 
+> **Description**
+>
 > | feature | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1146,6 +1166,8 @@
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
 
+> **Description**
+>
 > | `std::lower_bound` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1221,6 +1243,8 @@
 <details>
 <summary>Return both lower and upper bounds of a value within a range?</summary>
 
+> **Description**
+>
 > | `std::equal_range` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1542,6 +1566,8 @@
 <details>
 <summary>Produce a range containing elements present in either of the ranges?</summary>
 
+> **Description**
+>
 > | `std::set_union` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1680,6 +1706,8 @@
 <details>
 <summary>Remove elements for which the given predicate evaluates true within a range?</summary>
 
+> **Description**
+>
 > | `std::remove_if` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1710,6 +1738,8 @@
 <details>
 <summary>Replace elements that match the given value within a range?</summary>
 
+> **Description**
+>
 > | `std::replace` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1740,6 +1770,8 @@
 <details>
 <summary>Replace elements for which the given predicate evaluates to true within a range?</summary>
 
+> **Description**
+>
 > | `std::replace_if` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1770,6 +1802,8 @@
 <details>
 <summary>Reverse the order of elements in a range?</summary>
 
+> **Description**
+>
 > | `std::reverse` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -1800,6 +1834,8 @@
 <details>
 <summary>Rearrange elements in the range from <code>[first, middle), [middle, last)</code> to <code>[middle, last), [first, middle)</code>?</summary>
 
+> **Description**
+>
 > | `std::rotate` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -1911,6 +1947,8 @@
 <details>
 <summary>Rearrange elements of given array so that they are in their next or previous permutation?</summary>
 
+> **Description**
+>
 > | `std::next_permutation` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -2013,6 +2051,8 @@
 <details>
 <summary>Accumulate pairs of elements over two ranges into a single value?</summary>
 
+> **Description**
+>
 > | `std::inner_product` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -2193,6 +2233,8 @@
 <details>
 <summary>Accumulate the values of a range by summing each value with its previous elements?</summary>
 
+> **Description**
+>
 > | `std::inclusive_scan` | standard |
 > | --- | --- |
 > | introduced | C++17 |
@@ -2409,6 +2451,8 @@
 <details>
 <summary>Fill a range by consecutively assigning the given value to a limited number of elements?</summary>
 
+> **Description**
+>
 > | `std::fill_n` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -2502,6 +2546,8 @@
 <details>
 <summary>Generate elements by consecutively assigning the result of applying the prefix <code>operator++</code>, starting with the initial value?</summary>
 
+> **Description**
+>
 > | `std::iota` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -2535,6 +2581,8 @@
 <details>
 <summary>Copy a non-overlapping and overlapping ranges?</summary>
 
+> **Description**
+>
 > | `std::copy` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -2784,6 +2832,8 @@
 <details>
 <summary>Copy a random selection N elements from the source range to the destination range utilising the provided random number generator?</summary>
 
+> **Description**
+>
 > | `std::sample` | standard |
 > | --- | --- |
 > | introduced | C++17 |
@@ -2820,6 +2870,8 @@
 <details>
 <summary>Replace elements in a range matching a value?</summary>
 
+> **Description**
+>
 > | `std::replace_copy` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -2958,6 +3010,8 @@
 <details>
 <summary>Construct and destroy a single element at a given address?</summary>
 
+> **Description**
+>
 > | `std::construct_at` | standard |
 > | --- | --- |
 > | introduced | C++20 |
@@ -3036,6 +3090,8 @@
 <details>
 <summary>Push and pop values to heap?</summary>
 
+> **Description**
+>
 > | `std::push_heap` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -3153,6 +3209,8 @@
 <details>
 <summary>Check how further a range is a heap?</summary>
 
+> **Description**
+>
 > | `std::is_heap_until` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -3231,6 +3289,8 @@
 <details>
 <summary>Find the first element for which the predicate evaluates to true?</summary>
 
+> **Description**
+>
 > | `std::find_if` | standard |
 > | --- | --- |
 > | introduced | C++98 |
@@ -3252,6 +3312,8 @@
 <details>
 <summary>Find the first element for which the predicate evaluates to false?</summary>
 
+> **Description**
+>
 > | `std::find_if_not` | standard |
 > | --- | --- |
 > | introduced | C++11 |
@@ -3279,6 +3341,8 @@
 <details>
 <summary>Produce the view of the first elements and a range of second elements from a range of paired elements using views?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3345,6 +3409,8 @@
 <details>
 <summary>Apply a transformation functor to every element of the view of a range?</summary>
 
+> **Description**
+>
 > ```cp
 > #include <iostream>
 > #include <iterator>p
@@ -3375,6 +3441,8 @@
 <details>
 <summary>Take first N elements of the view of a range?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3453,6 +3521,8 @@
 <details>
 <summary>Drop the sequence of elements from the view of a range for which the predicate evaluates to true?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3612,6 +3682,8 @@
 <details>
 <summary>Split a single range into a view over sub-ranges? (incomplete)</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3648,6 +3720,8 @@
 <details>
 <summary>Flatten a splited view of a range?</summary>
 
+> **Description**
+>
 > incomplete
 >
 > ---
@@ -3684,6 +3758,8 @@
 <details>
 <summary>Represent a single element view?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3708,6 +3784,8 @@
 <details>
 <summary>Represent a view of the generated sequence formed by repeatedly incrementing an initial value?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -3735,6 +3813,8 @@
 <details>
 <summary>Represent a view obtained by successively applying the istream input iterator?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>

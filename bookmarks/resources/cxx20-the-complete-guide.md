@@ -6,6 +6,8 @@
 <details>
 <summary>Enable all comparison operators for an object type?</summary>
 
+> **Description**
+>
 > Before C++20 you had to define six operators for a type to provide full
 > support for all possible comparisons of its objects. The problem is that even
 > though most of the operators are defined in terms of either `operator ==` or
@@ -168,6 +170,8 @@
 <details>
 <summary>What are the possible comparison categories?</summary>
 
+> **Description**
+>
 > - **strong ordering**: any value of a given type is either *less than* or
 >   *equal to* or *greater than* any other value of this type. If a value is
 >   neither less nor greater is has to be equal.
@@ -354,6 +358,8 @@
 <details>
 <summary>What is the compatibility defect of comparison operators in C++20?</summary>
 
+> **Description**
+>
 > When we have a trivial class that stores an integral value and has an
 > implicit constructor and is comparable with integral values only enable
 > implicit type conversions for the second operand. So, a global operator that
@@ -489,6 +495,8 @@
 <details>
 <summary>Pass an abbreviated function template as a parameter?</summary>
 
+> **Description**
+>
 > You cannot pass a function with `auto` as a parameter without specifying the
 > generic parameter.
 >
@@ -633,6 +641,8 @@
 <details>
 <summary>Specify parameter types for a mixed template and <code>auto</code> parameters?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<std::integral T>
 > void foo(auto x, T y, std::convertible_to<T> auto z)
@@ -693,6 +703,8 @@
 <details>
 <summary>How many ways constraints can be applied to a template?</summary>
 
+> **Description**
+>
 > - Using `requires` clause
 > - Using concepts
 > - Using `requires` expression
@@ -708,6 +720,8 @@
 <details>
 <summary>Constraint a template function with a requirement to not be available if raw pointers are passed?</summary>
 
+> **Description**
+>
 > ```cpp
 > template<typename T>
 > requires (!std::is_pointer_v<T>)
@@ -936,6 +950,8 @@
 <details>
 <summary>Constraint a template to take only two comparable types?</summary>
 
+> **Description**
+>
 > ```cpp
 > auto compare(auto lhs, auto rhs)
 > requires std::totally_ordered_with<decltype(lhs), decltype(rhs)>
@@ -966,6 +982,8 @@
 <details>
 <summary>Constraint a template to only accept objects supporting pointer deference operator?</summary>
 
+> **Description**
+>
 > Here, we are using the requires keyword again to introduce a **requires
 > expression**, which can define one or more requirements for types and
 > parameters.
@@ -1059,6 +1077,8 @@ Next: 3.1.2
 <details>
 <summary>What are the preconditions and requirements of <code>std::ranges::sort()</code> to accept a container?</summary>
 
+> **Description**
+>
 > - To have random access iterators, iterators that can be used to read, write,
 >   jump back and forth, and compute distance.
 > - To be sortable and support comparison operators.
@@ -1098,6 +1118,8 @@ Next: 3.1.2
 <details>
 <summary>What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?</summary>
 
+> **Description**
+>
 > Views
 >
 > ---
@@ -1128,6 +1150,8 @@ std::ranges::take(container, 5);
 <details>
 <summary>How to sort only the first 5 elements of a container using ranges?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <vector>
 > #include <ranges>

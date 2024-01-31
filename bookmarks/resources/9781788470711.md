@@ -6,6 +6,8 @@
 <details>
 <summary>What should be the bare minimum content of a <code>CMakeLists.txt</code> file?</summary>
 
+> **Description**
+>
 > ```cmake
 > cmake_minimum_required(VERSION 3.20 FATAL)
 > project(Flashback LANGUAGES CXX)
@@ -144,6 +146,8 @@
 <details>
 <summary>Create static and shared libraries?</summary>
 
+> **Description**
+>
 > ```cmake
 > cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 > project(Sample LANGUAGES CXX)
@@ -261,6 +265,8 @@
 <details>
 <summary>Use conditional statements to either make libraries and link to program or build them into one executable?</summary>
 
+> **Description**
+>
 > ```cmake
 > cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 > project(Sample LANGUAGES CXX)
@@ -294,6 +300,8 @@
 <details>
 <summary>What is the better alternative to making variables optional for user than using if expressions?</summary>
 
+> **Description**
+>
 > Introducing variables with a given truth value hardcoded, prevents users of
 > your code from easily toggling these variables. Also, cmake does not
 > communicate to the reader that this is a value that is expected to be
@@ -345,6 +353,8 @@
 <details>
 <summary>Make an option dependent to another?</summary>
 
+> **Description**
+>
 > ```cmake
 > include(CMakeDependentOption)
 >

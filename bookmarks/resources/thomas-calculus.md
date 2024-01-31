@@ -6,6 +6,8 @@
 <details>
 <summary>Why $y^2 = x^2$ is not a function?</summary>
 
+> **Description**
+>
 > A function $f$ from a set $D$ to a set $Y$ is a rule that assigns a unique value $f(x)$ in $Y$ to each $x$ in $D$.
 >
 > The value of one variable quantity, say $y$, depends on the value of another variable quantity, which we often call $x$.
@@ -39,6 +41,8 @@
 <details>
 <summary>A point $P$ in the first quadrant lies on the graph of the function $f(x) = \sqrt{x}$. Express the coordinates of $P$ as functions of the slope of the line joining $P$ to the origin?</summary>
 
+> **Description**
+>
 > 
 >
 > ---
@@ -96,6 +100,8 @@
 <details>
 <summary>Find the domain of $y = \frac{x+3}{4 - \sqrt{x^2-9}}$?</summary>
 
+> **Description**
+>
 > 
 >
 > ---
@@ -123,6 +129,8 @@
 <details>
 <summary>What is the vertical line test?</summary>
 
+> **Description**
+>
 > A function $f$ can have only one value $f(x)$ for each $x$ in its domain, so no vertical line can interact the graph of a function more than once.
 >
 > ---
@@ -237,6 +245,8 @@
 <details>
 <summary>When two variables become proportional to each other?</summary>
 
+> **Description**
+>
 > Two variables $y$ and $x$ are **proportional** to one another if one is always a constant multiple of the other.
 >
 > $y = kx$ for some nonzero constant $k$
@@ -267,6 +277,8 @@
 <details>
 <summary>A box with an open top is to be constructed from a rectangular piece of cardboard with dimensions 14 cm. by 22 cm. by cutting out equal squares of side $x$ at each corner and then folding up the sides as in the figure. Express the volume $V$ of the box as a function of $x$?</summary>
 
+> **Description**
+>
 > 
 >
 > ---
@@ -294,6 +306,8 @@
 <details>
 <summary>What functions are polynomial functions?</summary>
 
+> **Description**
+>
 > A function $p$ is a **polynomial** if
 >
 > ```math
@@ -339,6 +353,8 @@
 <details>
 <summary>What functions are algebraic functions?</summary>
 
+> **Description**
+>
 > Any function constructed from polynomials using algebraic operations (addition, subtraction, multiplication, division, and taking roots) lies within the class of **algebraic functions**.
 >
 > All rational functions are algebraic, but also included are more complicated functions such as $y^3 - 9xy + x^3 = 0$.
@@ -354,6 +370,8 @@
 <details>
 <summary>What functions are trigonometric functions?</summary>
 
+> **Description**
+>
 > Six basic trigonometric functions are $sin(x)$, $cos(x)$, $tan(x)$, $cot(x)$, $arctan(x)$, $arccot(x)$.
 >
 > ---
@@ -396,6 +414,8 @@
 <details>
 <summary>What functions are transcendental functions?</summary>
 
+> **Description**
+>
 > These are functions that are not algebraic.
 >
 > They include the trigonometric, inverse trigonometric, exponential, and logarithmic functions, and many other functions as well.

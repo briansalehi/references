@@ -18,6 +18,8 @@
 <details>
 <summary>Aquire the kernel source repository?</summary>
 
+> **Description**
+>
 > The source can be downloaded as an archive but without any git history:
 >
 > ```sh
@@ -201,6 +203,8 @@
 <details>
 <summary>Where is the kernel configuration file?</summary>
 
+> **Description**
+>
 > Selected options will be stored in `.config` file, at the root of the source tree.
 >
 > ---
@@ -276,6 +280,8 @@
 <details>
 <summary>Select default configuration for <code>x86_64</code> platform?</summary>
 
+> **Description**
+>
 > Assuming that host is a 64bit machine, `ARCH` is set to `x86`:
 >
 > ```sh
@@ -468,6 +474,8 @@
 <details>
 <summary>Configure kernel to make kernel symbol table available through procfs?</summary>
 
+> **Description**
+>
 > `CONFIG_KALLSYMS`: This is very useful for tracers and other tools that need
 > to map kernel symbols to addresses. It is used while you're printing oops
 > messages. Without this, oops listings would produce hexadecimal output, which
@@ -510,6 +518,8 @@
 <details>
 <summary>What kernel configuration option enables system request key combinations to recover system after crash?</summary>
 
+> **Description**
+>
 > `CONFIG_MAGIC_SYSRQ`: This is a boolean option to enable this feature.
 >
 > ---
@@ -564,6 +574,8 @@
 <details>
 <summary>What kernel configuration option allows measuring preemption off latency and schedule latency tracing?</summary>
 
+> **Description**
+>
 > * `PREEMPT_TRACER`
 > * `SCHED_TRACER`
 >
@@ -648,6 +660,8 @@
 <details>
 <summary>Make debug symbols available in the kernel image?</summary>
 
+> **Description**
+>
 > * `CONFIG_DEBUG_INFO`
 >
 > ---
@@ -723,6 +737,8 @@
 <details>
 <summary>What are the constructs of each menu in a <code>Kconfig</code> file?</summary>
 
+> **Description**
+>
 > Each `config` identifier is constructed as follows:
 >
 > ```kconfig
@@ -750,6 +766,8 @@
 <details>
 <summary>What types are available for kernel configuration options in a Kconfig menu?</summary>
 
+> **Description**
+>
 > * `bool`: either `y` or not defined.
 > * `tristate`: feature can be built as a kernel module or built into the main kernel image.
 > * `int`: integer value using decimal notation.
@@ -768,6 +786,8 @@
 <details>
 <summary>Make a kernel configuration option dependent on another?</summary>
 
+> **Description**
+>
 > Dependencies can be expressed by `depends on` construct:
 >
 > ```kconfig
@@ -789,6 +809,8 @@
 <details>
 <summary>Enforce selection of an option in its parent option when it has reverse dependency?</summary>
 
+> **Description**
+>
 > Reverse dependencies can be expressed by `select` construct, as an example in
 >
 > `arch/arm`
@@ -816,6 +838,8 @@
 <details>
 <summary>What <code>make</code> target should be used to build the kernel in the source tree?</summary>
 
+> **Description**
+>
 > If not specified, the `make` target is `all`.
 >
 > ```sh
@@ -846,6 +870,8 @@
 <details>
 <summary>Specify the numbers of jobs allowed to build the kernel with?</summary>
 
+> **Description**
+>
 > `make` can leverage the host's CPU performance by running multiple jobs in
 > parallel:
 >
@@ -864,6 +890,8 @@
 <details>
 <summary>See the actual commands being executed in kernel build process in case build fails?</summary>
 
+> **Description**
+>
 > ```sh
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage
 > ``````
@@ -879,6 +907,8 @@
 <details>
 <summary>What kernel build artifacts will be stored in the source tree?</summary>
 
+> **Description**
+>
 > - `arch/$ARCH/boot`: the directory containing vmlinux image converted for
 >   bootloaders.
 > - `arch/$ARCH/boot/Image`: An uncompressed kernel image that can be booted.
@@ -903,6 +933,8 @@
 <details>
 <summary>Use <code>mkimage</code> to create a compressed kernel image from an uncompressed kernel image?</summary>
 
+> **Description**
+>
 > ```sh
 > mkimage --help
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
@@ -993,6 +1025,8 @@
 <details>
 <summary>What are the steps required to build a kernel for the Raspberry Pi Zero?</summary>
 
+> **Description**
+>
 > Prebuilt toolchain:
 > [AArch32 target with hard float (arm-none-linux-gnueabihf)](AArch32 target with hard float (arm-none-linux-gnueabihf))
 >
@@ -1050,6 +1084,8 @@
 <details>
 <summary>What are the steps required to build a kernel for the QEMU?</summary>
 
+> **Description**
+>
 > ```sh
 > cd linux-stable
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- distclean
@@ -1071,6 +1107,8 @@
 <details>
 <summary>Install the kernel binary file on native and non-native targets?</summary>
 
+> **Description**
+>
 > In native installation following command copies artifacts like
 > `/boot/vmlinuz-<version>`, `/boot/System.map-<version>`, and
 > `/boot/config-<version>` files on the host.
@@ -1092,6 +1130,8 @@
 <details>
 <summary>Install kernel modules?</summary>
 
+> **Description**
+>
 > ```sh
 > make modules
 > sudo make modules_install
@@ -1233,6 +1273,8 @@
 <details>
 <summary>Get information of a module?</summary>
 
+> **Description**
+>
 > ```sh
 > modinfo btusb
 > ``````
@@ -1248,6 +1290,8 @@
 <details>
 <summary>Inspect the given parameters of a loaded module?</summary>
 
+> **Description**
+>
 > ```sh
 > modinfo -p btusb
 > ``````
@@ -1263,6 +1307,8 @@
 <details>
 <summary>Where do module parameters linger on the system?</summary>
 
+> **Description**
+>
 > ```sh
 > /sys/module/btusb/parameters/
 > ``````
@@ -1329,6 +1375,8 @@
 <details>
 <summary>Secure kernel from loading malicious modules?</summary>
 
+> **Description**
+>
 > During build, kernel module signing facility signs modules and during module
 > loading the signature is checked.
 >
@@ -1488,6 +1536,8 @@
 <details>
 <summary>What is the signature of module initial function?</summary>
 
+> **Description**
+>
 > Initialization function names usually include `init` or `module`.
 >
 > ```c
@@ -1506,6 +1556,8 @@
 <details>
 <summary>What is the signature of module cleanup function?</summary>
 
+> **Description**
+>
 > ```c
 > static void __exit module_cleanup(void);
 > module_exit(module_cleanup);
@@ -1557,6 +1609,8 @@
 <details>
 <summary>Manually create a device node?</summary>
 
+> **Description**
+>
 > Empty device nodes can be created by `mknod <node_name> <c|b> <major> <minor>
 >
 > ```sh
@@ -1575,6 +1629,8 @@
 <details>
 <summary>What is the least requirement for a <code>Makefile</code> to build a loadable module?</summary>
 
+> **Description**
+>
 > `linux-headers-$(uname -r)` package is required for `make` command to build a
 > loadable module. This package makes the `build/` directory in
 > `/usr/lib/modules/$(uname -r)/` where headers are located, and the kernel
@@ -1644,6 +1700,8 @@
 <details>
 <summary>Write a module accepting parameters?</summary>
 
+> **Description**
+>
 > ```c
 > #include <linux/module.h>
 > #include <linux/moduleparam.h>
@@ -1929,6 +1987,8 @@
 <details>
 <summary>Compile a device tree source?</summary>
 
+> **Description**
+>
 > ```sh
 > dtc beaglebone-black.dts -o beaglebone-black.dtb
 > ``````
@@ -1986,6 +2046,8 @@
 <details>
 <summary>Describe the boot sequence in an embedded device?</summary>
 
+> **Description**
+>
 > - **Phase 1 Rom Code**: loads a small chunk of code from first few pages of
 >   NAND, from flash memory connected through **Serial Peripheral Interface**,
 >   or from the first sector of an MMC device, or from a file named ML on the
@@ -2007,6 +2069,8 @@
 <details>
 <summary>Describe what parameters should be passed to the kernel on moving from the bootloader to a kernel?</summary>
 
+> **Description**
+>
 > - The machine number, which is used on PowerPC and Arm platform without
 >   support for a device tree, to Identify the type of SoC.
 > - Basic details of the hardware that's been detected so far, including the
@@ -2079,6 +2143,8 @@
 <details>
 <summary>Load a kernel image in a U-Boot shell environment?</summary>
 
+> **Description**
+>
 > ```sh
 > mmc rescan
 > fatload mmc 0:1 82000000 uimage
@@ -2118,6 +2184,8 @@
 <details>
 <summary>Boot Linux kernel after loading it within U-Boot shell environment?</summary>
 
+> **Description**
+>
 > ```sh
 > # bootm [kernel address] [ramdist address] [dtb address]
 > bootm 82000000 - 83000000
@@ -2211,6 +2279,8 @@
 <details>
 <summary>Reduce the time of calculating the constant <code>loops_per_jiffy</code> variable on boot time?</summary>
 
+> **Description**
+>
 > By setting `lpj=4980736` to the kernel parameter.
 > The number should be different on each device.
 >
@@ -2286,6 +2356,8 @@
 <details>
 <summary>How many synchronization mechanisms for accessibility of shared resources are available in the kernel?</summary>
 
+> **Description**
+>
 > We can enumerate two synchronization mechanisms, as follows:
 >
 > 1. **Locks**: Used for mutual exclusion. When one contender holds the lock,
@@ -2379,6 +2451,8 @@
 <details>
 <summary>Define a spinlock?</summary>
 
+> **Description**
+>
 > A spinlock is created either statically using a `DEFINE_SPINLOCK` macro:
 >
 > ```c
@@ -2463,6 +2537,8 @@
 <details>
 <summary>Prevent deadlock caused by IRQs when using spinlocks?</summary>
 
+> **Description**
+>
 > To address this issue, the Linux kernel provides `_irq` variant functions for
 > spinlocks, which, in addition to disabling/enabling preemption, also
 > disable/enable interrupts on the local CPU. These functions are
@@ -2484,6 +2560,8 @@
 <details>
 <summary>How does spinlocks affect preemtion after locking and unlocking?</summary>
 
+> **Description**
+>
 > `spin_lock()` and all its variants automatically call `preempt_disable()`,
 > which disables preemption on the local CPU, while `spin_unlock()` and its
 > variants call `preempt_enable()`, which tries to enable preemption, and which
@@ -2721,6 +2799,8 @@
 <details>
 <summary>Release an acquired mutex in the kernel?</summary>
 
+> **Description**
+>
 > Whichever locking function is used, only the mutex owner should release the
 > mutex using `mutex_unlock()`:
 >
@@ -2847,6 +2927,8 @@
 <details>
 <summary>What passive waiting mechanisms are implemented in the kernel?</summary>
 
+> **Description**
+>
 > - **Sleeping APIs:** simple sleeping consist of a task sleeping and being
 >   awakened after a given duration to passively delay an operation.
 > - **Wait queues:** conditional sleeping mechanism based on external events
@@ -2895,6 +2977,8 @@
 <details>
 <summary>What is a wait queue?</summary>
 
+> **Description**
+>
 > Wait queues are higher-level mechanism essentially used to process blocking
 > input/output, to wait for a condition to be true, to wait for a given event
 > to occur, or to sense data or resource availability.
@@ -2922,6 +3006,8 @@
 <details>
 <summary>Initialize a wait queue?</summary>
 
+> **Description**
+>
 > We can declare and initialize a wait queue either statically or dynamically.
 >
 > ```c
@@ -3060,6 +3146,8 @@
 <details>
 <summary>How many module types are available?</summary>
 
+> **Description**
+>
 > Static modules are available at any time in the kernel image and thus can't
 > be unloaded, at the cost of extra size to the final kernel image. A static
 > module is also known as a built-in module, since it is part of the final
@@ -3195,6 +3283,8 @@
 <details>
 <summary>What is the real underlying macro provided by the kernel to add an entry to the <code>.modinfo</code> section?</summary>
 
+> **Description**
+>
 > ```c
 > MODULE_INFO(tag, info);
 > ``````
@@ -3210,6 +3300,8 @@
 <details>
 <summary>What utility dumps the <code>.modinfo</code> section of kernel modules?</summary>
 
+> **Description**
+>
 > ```sh
 > ${CROSS_COMPILE}objdump -d -j .modinfo <module_name>.ko
 > ${CROSS_COMPILE}objdump --disassembly --section .modinfo <module_name>.ko
@@ -3252,6 +3344,8 @@
 <details>
 <summary>What is the <b>out-of-tree</b> kernel module building?</summary>
 
+> **Description**
+>
 > When code is outside of the kernel source tree, it is known as **out-of-tree** building.
 > Building a module this way does not allow integration into the kernel configuration/compilation process, and the module needs to be built separately.
 > It must be noted that with this solution, the module cannot be statically linked in the final kernel image – that is, it cannot be built in.
@@ -3342,6 +3436,8 @@
 <details>
 <summary>Write configuration dependent target in <code>Makefile</code> for a <b>built-in</b> kernel module?</summary>
 
+> **Description**
+>
 > We must specify the name of the module(s) to be built, along with the list of requisite source files:
 >
 > ```make
@@ -3408,6 +3504,8 @@
 <details>
 <summary>Specify compiler and linker flags in <code>Makefile</code> for kernel module building?</summary>
 
+> **Description**
+>
 > ```make
 > ccflags-y := -I$(src)/include
 > ccflags-y += -I$(src)/src/hal/include
@@ -3471,6 +3569,8 @@
 <details>
 <summary>Load and unload an <b>out-of-tree</b> built kernel module?</summary>
 
+> **Description**
+>
 > ```sh
 > sudo journalctl -fk
 >
@@ -3489,6 +3589,8 @@
 <details>
 <summary>Write <code>Makefile</code> for a <b>built-in</b> kernel module?</summary>
 
+> **Description**
+>
 > In-tree module building requires dealing with an additional file, `Kconfig`, which allows us to expose the module features in the configuration menu.
 >
 > Given your filename, `sample.c`, which contains the source code of your special character driver, it should be moved to the `drivers/char` directory in the kernel source.
@@ -3528,6 +3630,8 @@
 <details>
 <summary>Define parameters in kernel modules?</summary>
 
+> **Description**
+>
 > ```c
 > #include <linux/module.h>
 > #include <linux/init.h>
@@ -3630,6 +3734,8 @@
 <details>
 <summary>How does <code>depmod</code> utility determine module dependencies?</summary>
 
+> **Description**
+>
 > It does that by reading each module in `/lib/modules/<kernel_release>/` to determine what symbols it should export and what symbols it needs.
 > The result of that process is written to a `modules.dep` file, and its binary version, `modules.dep.bin`.
 >
@@ -3645,6 +3751,8 @@
 <details>
 <summary>How does <code>modprobe</code> utility loads modules?</summary>
 
+> **Description**
+>
 > During development, you usually use `insmod` in order to load a module.
 > `insmod` should be given the path of the module to load, as follows:
 >
@@ -3693,6 +3801,8 @@
 <details>
 <summary>Load a module at boot time?</summary>
 
+> **Description**
+>
 > If you want some modules to be loaded at boot time, just create a `/etc/modules-load.d/<filename>.conf` file and add the module names that should be loaded, one per line:
 >
 > ```conf
@@ -3714,6 +3824,8 @@
 <details>
 <summary>Unload an automatically loaded module?</summary>
 
+> **Description**
+>
 > The usual command to unload a module is `rmmod`.
 > This is preferable to unloading a module loaded with the `insmod` command:
 >
@@ -3738,6 +3850,8 @@
 <details>
 <summary>List loaded modules?</summary>
 
+> **Description**
+>
 > ```sh
 > lsmod
 > ``````
@@ -3777,6 +3891,8 @@
 <details>
 <summary>What is the standard way to return an error in kernel modules?</summary>
 
+> **Description**
+>
 > The standard way to return an error is to do so in the form of `return –ERROR`, especially when it comes to answering system calls.
 > For example, for an I/O error, the error code is `EIO`, and you should return `-EIO`, as follows:
 >
@@ -3840,6 +3956,8 @@
 <details>
 <summary>What is the standard way of handling null pointer errors in kernel modules?</summary>
 
+> **Description**
+>
 > When it comes to returning an error from functions that are supposed to return a pointer, functions often return the `NULL` pointer.
 > It is functional but it is a quite meaningless approach, since we do not exactly know why this `NULL` pointer is returned.
 > For that purpose, the kernel provides three functions, `ERR_PTR`, `IS_ERR`, and `PTR_ERR`, defined as follows:
@@ -3909,6 +4027,8 @@
 <details>
 <summary>What are the recommended helper functions alternative to <code>printk()</code>?</summary>
 
+> **Description**
+>
 > * `pr_<level>(...)`: This is used in regular modules that are not device drivers.
 > * `dev_<level>(struct device *dev, ...)`: This is to be used in device drivers that are not network devices.
 > * `netdev_<level>(struct net_device *dev, ...)`: This is used in `netdev` drivers exclusively.
@@ -3924,6 +4044,8 @@
 <details>
 <summary>What are the log levels of kernel printing helper functions?</summary>
 
+> **Description**
+>
 > * `pr_devel`: Dead code not being compiled, unless `DEBUG` is defined.
 > * `pr_debug`, `dev_dbg`, `netdev_dbg`: Used for debug messages.
 > * `pr_info`, `dev_info`, `netdev_info`: Used for informational purposes, such as start up information at driver initialization.
@@ -3945,6 +4067,8 @@
 <details>
 <summary>What is the default kernel log level?</summary>
 
+> **Description**
+>
 > Whenever a message is printed, the kernel compares the message log level with the current console log level;
 > if the former is higher (lower value) than the last, the message will be immediately printed to the console.
 > You can check your log-level parameters with the following:
@@ -4008,6 +4132,8 @@
 <details>
 <summary>How many synchronization mechanisms for accessibility of shared resources are available in the kernel?</summary>
 
+> **Description**
+>
 > We can enumerate two synchronization mechanisms, as follows:
 >
 > 1. **Locks**: Used for mutual exclusion. When one contender holds the lock, no other can hold it (others are excluded). The most known locks in the kernel are **spinlocks** and **mutexes**.
@@ -4113,6 +4239,8 @@
 <details>
 <summary>Lock a previously defined spinlock in module source?</summary>
 
+> **Description**
+>
 > We can lock/unlock the spinlock using `spin_lock()` and `spin_unlock()` inline functions, both defined in `include/linux/spinlock.h`:
 >
 > ```c
@@ -4209,6 +4337,8 @@
 <details>
 <summary>How a critical section can be protected from being preemted by kernel?</summary>
 
+> **Description**
+>
 > Though disabling interrupts may prevent kernel preemption nothing prevents the protected section from invoking the `schedule()` function.
 > The kernel disables or enables the scheduler, and thus preemtion, by increasing or decreasing a kernel global and per-CPU variable called `preempt_count` with 0 as default value.
 > This variable is checked by the `schedule()` function and when it is greater than 0, the scheduler simply returns and does nothing.
@@ -4230,6 +4360,8 @@
 <details>
 <summary>What is a mutex and how does it operate?</summary>
 
+> **Description**
+>
 > It behaves exactly like a *spinlock*, with the only difference being that your code can sleep.
 > A spinlock is a lock held by a CPU, a mutex, on the other hand, is a lock held by a task.
 >
@@ -4260,6 +4392,8 @@
 <details>
 <summary>Initialize a mutex in the kernel?</summary>
 
+> **Description**
+>
 > As for other kernel core data structures, there is a static initialization:
 >
 > ```c
@@ -4356,6 +4490,8 @@
 <details>
 <summary>What are specific rules while using mutexes in the kernel?</summary>
 
+> **Description**
+>
 > The most important ones are enumerated in the `include/linux/mutex.h` kernel mutex API header file, and some of these are outlined here:
 >
 > * A mutex can be held by one and only one task at a time.
@@ -4395,6 +4531,8 @@
 <details>
 <summary>Acquire a lock only if it is not already held by another contender?</summary>
 
+> **Description**
+>
 > Such methods try to acquire the lock and immediately return a status value, showing whether the lock has been successfully locked or not.
 >
 > Both spinlock and mutex APIs provide a trylock method.
@@ -4452,6 +4590,8 @@
 <details>
 <summary>What passive waiting mechanisms are implemented in the kernel?</summary>
 
+> **Description**
+>
 > - **Sleeping APIs:** simple sleeping consist of a task sleeping and being awakened after a given duration to passively delay an operation.
 > - **Wait queues:** conditional sleeping mechanism based on external events such as data availability.
 >
@@ -4596,6 +4736,8 @@
 <details>
 <summary>Convert standard time units to jiffies?</summary>
 
+> **Description**
+>
 > ```c
 > unsigned long msecs_to_jiffies(const unsigned int m)
 > unsigned long usecs_to_jiffies(const unsigned int u)
@@ -4635,6 +4777,8 @@
 <details>
 <summary>What values do <code>wait_up</code> family functions return?</summary>
 
+> **Description**
+>
 > Because they can be interrupted by signals, you should check the return value of the `_interruptible` variants.
 >
 > A nonezero means your sleep has been interrupted by some sort of signal, and the driver should return `ERESTARTSYS`.

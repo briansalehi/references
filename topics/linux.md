@@ -42,6 +42,8 @@
 <details>
 <summary>Create an array of drives with RAID level 5?</summary>
 
+> **Description**
+>
 > ```sh
 > mdadm --create --verbose /dev/md0 --level 5 --raid-devices 3 /dev/sda /dev/sdb /dev/sdc
 > ``````
@@ -75,6 +77,8 @@
 <details>
 <summary>Retrieve RAID details?</summary>
 
+> **Description**
+>
 > ```sh
 > mdadm --detail --scan
 > mdadm --detail /dev/md0
@@ -93,6 +97,8 @@
 <details>
 <summary>Make a RAID array permanent?</summary>
 
+> **Description**
+>
 > ```sh
 > mdadm --detail --scan >> /etc/mdadm.conf
 > ``````
@@ -177,6 +183,8 @@
 <details>
 <summary>Remove an array component from a RAID?</summary>
 
+> **Description**
+>
 > ```sh
 > mdadm --manage /dev/md0 --fail /dev/sdX
 > mdadm --manage /dev/md0 --remove /dev/sdX
@@ -198,6 +206,8 @@
 <details>
 <summary>Add an storage drive into the array?</summary>
 
+> **Description**
+>
 > ```sh
 > fdisk /dev/sdd
 > mdadm --manage /dev/md0 --add /dev/sdd

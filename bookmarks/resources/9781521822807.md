@@ -18,6 +18,8 @@ Nothing to import.
 <details>
 <summary>How to check if docker is connected to server?</summary>
 
+> **Description**
+>
 > Checking docker version should retrieve both client and server versions.
 >
 > ```sh
@@ -114,6 +116,8 @@ Nothing to import.
 <details>
 <summary>How to attach host's shell to the shell of a running container?</summary>
 
+> **Description**
+>
 > This command runs a new process inside of a running container.
 > It’s useful for attaching the shell of your Docker host to a terminal
 > inside of a running container.
@@ -159,6 +163,8 @@ Nothing to import.
 <details>
 <summary>How to start a stopped container?</summary>
 
+> **Description**
+>
 > This command will restart a stopped (Exited) container.
 > You can give this command the name or ID of a container.
 >
@@ -201,6 +207,8 @@ Nothing to import.
 <details>
 <summary>How to list containers in docker?</summary>
 
+> **Description**
+>
 > Lists all containers in the running (UP) state.
 > If you add the -a flag you will also see containers in the stopped (Exited) state.
 >
@@ -279,6 +287,8 @@ Nothing to import.
 <details>
 <summary>How to pull an image from unofficial repositories?</summary>
 
+> **Description**
+>
 > Pulling images from an unofficial repository is essentially the same as pulling from official ones.
 > You just need to prepend the repository name with a DockerHub username or organization name.
 >
@@ -324,6 +334,8 @@ Nothing to import.
 <details>
 <summary>What is a dangling image in docker and how can we list them?</summary>
 
+> **Description**
+>
 > A dangling image is an image that is no longer tagged, and appears in
 > listings as `<none>:<none>`.
 > A common way they occur is when building a new image giving it a tag
@@ -522,6 +534,8 @@ Nothing to import.
 <details>
 <summary>How does docker use manifests to fetch host compatible image layers when pulling images?</summary>
 
+> **Description**
+>
 > Assume you are running Docker on a Raspberry Pi (Linux running on ARM
 > architecture). When you pull an image, your Docker client makes the relevant
 > calls to the Docker Registry API exposed by DockerHub. If a manifest list
@@ -546,6 +560,8 @@ Nothing to import.
 <details>
 <summary>How to create an image for different platforms and architectures?</summary>
 
+> **Description**
+>
 > You can create your own builds for diff erent platforms and architectures with
 >
 > ```sh
@@ -588,6 +604,8 @@ Nothing to import.
 <details>
 <summary>How to remove an image in docker?</summary>
 
+> **Description**
+>
 > Containers run until the app they are executing exits.
 >
 > You can manually stop a running container with thedocker container stopcommand.
@@ -726,6 +744,8 @@ Nothing to import.
 <details>
 <summary>How to write a Dockerfile for a Linux based image containing a nodejs program?</summary>
 
+> **Description**
+>
 > ```docker
 > FROM alpine
 > LABEL maintainer="maintainer@domain.tld"
@@ -795,6 +815,8 @@ Nothing to import.
 <details>
 <summary>What are the prerequisites of pushing images into DockerHub?</summary>
 
+> **Description**
+>
 > In order to push an image to DockerHub, you need to login with your Docker ID.
 >
 > Before you can push an image, you need to tag it in a special way.
@@ -1008,6 +1030,8 @@ Nothing to import.
 <details>
 <summary>How many types of swarm nodes exist?</summary>
 
+> **Description**
+>
 > Nodes are configured as *managers* or *workers*.
 >
 > ---
@@ -1035,6 +1059,8 @@ Nothing to import.
 <details>
 <summary>What are different swarm modes?</summary>
 
+> **Description**
+>
 > Docker nodes that are not part of a *swarm* are said to be in a **single-engine** mode.
 > Once they're added to a *swarm* they're automatically switched into **swarm mode**.
 >
@@ -1068,6 +1094,8 @@ Nothing to import.
 <details>
 <summary>What is the default port for <b>Docker Swarm</b>?</summary>
 
+> **Description**
+>
 > The default port that *swarm mode* operates on is 2377.
 > This is customizable, but it's convention to use 2377/tcp for secured client-to-swarm connections.
 >
@@ -1119,6 +1147,8 @@ Nothing to import.
 <details>
 <summary>How to join Docker nodes to a swarm?</summary>
 
+> **Description**
+>
 > In a *worker* node use extracted token to join to the swarm:
 >
 > ```sh
@@ -1236,6 +1266,8 @@ Nothing to import.
 <details>
 <summary>How to re-join Docker nodes to a locked swarm?</summary>
 
+> **Description**
+>
 > Restart docker daemon one of the *manager* nodes:
 >
 > ```sh
@@ -1452,6 +1484,8 @@ Nothing to import.
 <details>
 <summary>How to create docker service replicas on <b>host mode</b>?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service create --name my-service --network my-network --publish published=80,target=80,mode=host --replicas 12
 > ``````
@@ -1470,6 +1504,8 @@ Nothing to import.
 <details>
 <summary>How to push an update image to the swarm in a staged manner?</summary>
 
+> **Description**
+>
 > ```sh
 > docker service update --image repository/project:v2 --update-parallelism 2 --update-delay 20s my-project
 > docker service inspect --pretty my-project
@@ -1503,6 +1539,8 @@ Nothing to import.
 <details>
 <summary>How to configure docker daemon to log on different logging drivers?</summary>
 
+> **Description**
+>
 > By using flags to override configuration file:
 >
 > ```sh
@@ -1557,6 +1595,8 @@ Nothing to import.
 <details>
 <summary>How to perform a docker swarm backup and restore operation?</summary>
 
+> **Description**
+>
 > You have to stop the Docker daemon on the node you are backing up.
 > It’s a good idea to perform the backup from non-leader managers.
 > This is because stopping Docker on the leader will initiate a leader election.
@@ -1710,6 +1750,8 @@ Nothing to import.
 <details>
 <summary>Create a volume in Dockerfile?</summary>
 
+> **Description**
+>
 > ```docker
 > VOLUME <container-mount-point>
 > ``````
@@ -1782,6 +1824,8 @@ Nothing to import.
 <details>
 <summary>Install a plugin on docker?</summary>
 
+> **Description**
+>
 > ```sh
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > ``````
@@ -1797,6 +1841,8 @@ Nothing to import.
 <details>
 <summary>List available plugins?</summary>
 
+> **Description**
+>
 > ```sh
 > docker plugin ls
 > docker plugin list
@@ -1908,6 +1954,8 @@ Nothing to import.
 <details>
 <summary>What kernel feature provides container resource management?</summary>
 
+> **Description**
+>
 > Containers are isolated from each other but all share a common set of
 > resources — things like CPU, RAM, network and disk I/O. Cgroups let us set
 > limits so a single container cannot consume them all and cause a denial of
@@ -1929,6 +1977,8 @@ Nothing to import.
 <details>
 <summary>Secure the network connections of a swarm?</summary>
 
+> **Description**
+>
 > **Docker secrets** let us securely share sensitive data with applications.
 > They’re stored in the encrypted cluster store, encrypted over the network,
 > kept in in-memory filesystems when in use, and operate a least-privilege

@@ -24,6 +24,8 @@
 <details>
 <summary>How does <b>Linux Device Model</b> expose device driver details to user space?</summary>
 
+> **Description**
+>
 > **LDM** creates a complex hierarchical tree unifying system components, all
 > peripheral devices, and their drivers. This tree is exposed to user space via
 > the *sysfs* pseudo-filesystem analogous to how *procfs* exposes some kernel
@@ -60,6 +62,8 @@
 <details>
 <summary>What is a device driver namespace?</summary>
 
+> **Description**
+>
 > A namespace contains the device type and major-minor pair, which form a
 > hierarchy. Devices are organized within a tree-like hierarchy within the
 > kernel. This hierarchy is first divided based on device type, block or char.
@@ -78,6 +82,8 @@
 <details>
 <summary>What is the difference between block and char devices in namespaces?</summary>
 
+> **Description**
+>
 > Block devices have the kernel-level capability to be mounted and thus become
 > part of the user-accessible filesystem. Character devices cannot be mounted;
 > thus, storage devices tend to be block-based.
@@ -93,6 +99,8 @@
 <details>
 <summary>What distinguishes device classes in the kernel?</summary>
 
+> **Description**
+>
 > From 2.6 Linux onward, the `{major:minor}` pair is a single unsigned 32-bit
 > quantity within the inode, a bitmask (it's the `dev_t i_rdev` member). Of
 > these 32 bits, the MSB 12 bits represent the major number and the remaining
@@ -174,6 +182,8 @@
 <details>
 <summary>What is the initial step of a device driver once a device binds?</summary>
 
+> **Description**
+>
 > After its corresponding bus driver binds the device to its correct device
 > driver, the kernel driver framework invokes the registered `probe()` method
 > of the driver. This probe method now sets up the device, allocating
@@ -201,6 +211,8 @@
 <details>
 <summary>What is a good starting step to learn writing device drivers?</summary>
 
+> **Description**
+>
 > Write a platform driver, register it with the kernel's `misc` framework and
 > the **platform bus**, a pseudo-bus infrastructure that supports devices that
 > do not physically reside on any physical bus. Several peripherals built into
@@ -282,6 +294,8 @@
 <details>
 <summary>Register a misc driver in the kernel?</summary>
 
+> **Description**
+>
 > ```c
 > #include <linux/miscdevice.h>
 > #include <linux/fs.h>
