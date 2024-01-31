@@ -16,29 +16,229 @@ Nothing to import.
 
 ### QML Syntax
 
-Import a QML module to create a window?
+<details>
+<summary>Import a QML module to create a window?</summary>
 
-Define a globaly accessible root element in QML code?
+> ```qml
+> import QtQuick
+> ``````
 
-Specify exact coordinations of an element?
+> Origins:
+> - Qt6 QML - Chapter 4
 
-Create a new custom property?
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
 
-Create an alias property pointing to another element's property?
+<details>
+<summary>What identifies an element in QML?</summary>
 
-Attach the signal of a property when its width and height changes?
+> `id` is a very special property-like value, it is used to reference elements
+> inside a QML file (document). An `id` needs to be unique inside a document.
 
-What is the requirement of an element in order to receive key events?
+> Origins:
+> - Qt6 QML - Chapter 4
 
-Change the color of an element when it is focused and when it is not?
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
 
-Apply a key navigation on an element to change on tab key press?
+<details>
+<summary>What is the binding mechanism?</summary>
 
-Bind a property to another?
+> A property can depend on one or many other properties. This is called
+> binding. A bound property is updated when its dependent properties change. It
+> works like a contract. For example the `height` should always be two times
+> the `width`.
+>
+> ```qml
+> Rectangle {
+>     width: 100
+>     height: width * 2
+> }
+> ``````
 
-Focus on an element to receive how many spacebar key pressed by user?
+> Origins:
+> - Qt6 QML - Chapter 4
 
-Write a javascript function to show each time user presses escape key on main window?
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>What is a group property?</summary>
+
+> Some properties are grouped properties. This feature is used when a property
+> is more structured and related properties should be grouped together. Another
+> way of writing grouped properties is:
+>
+> ```qml
+> font {
+>     family: "Ubuntu"
+>     pixelSize: 24
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>How javascript functions can be declared in QML?</summary>
+
+> ```qml
+> Text {
+>     id: label
+>
+>     property int spacePresses: 0
+>
+>     text: "Space pressed: " + spacePresses + " times"
+>
+>     Keys.onSpacePressed: {
+>         increment()
+>     }
+>
+>     function increment() {
+>         spacePresses = spacePresses + 1
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>Define a globaly accessible root element in QML code?</summary>
+
+> ```qml
+> import QtQuick
+>
+> Window {
+>     id: root
+>     width: 480
+>     height: 600
+>     title: qsTr('Milestone')
+>     visible: true
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>Specify exact coordinations of an element?</summary>
+
+> ```qml
+> Rectangle {
+>     x: 24
+>     y: 16
+>     width: 100
+>     height: 100
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>Create a new custom property?</summary>
+
+> ```qml
+> Rectangle {
+>     property int max_text_length: 80
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>Create an alias property pointing to another element's property?</summary>
+
+> ```qml
+> Rectangle {
+>
+>     property alias text_length: label.length
+>
+>     Text {
+>         id: label
+>         text: 'sample text'
+>         property int length: 40
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>Attach the signal of a property when its width and height changes?</summary>
+
+> ```qml
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
+
+<details>
+<summary>What is the requirement of an element in order to receive key events?</summary>
+
+> The element should have the `focus` property set.
+>
+> ```qml
+> Text {
+>     focus: true
+>
+>     Keys.onEscapePressed: {
+>         label.text = ''
+>     }
+> }
+> ``````
+
+> Origins:
+> - Qt6 QML - Chapter 4
+
+> References:
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+---
+</details>
 
 ### Item Element
 
@@ -48,15 +248,13 @@ Write a javascript function to show each time user presses escape key on main wi
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
->
-> ```qml
-> ``````
-
+> ---
 > Origins:
 > - Qt6 QML - Chapter 5
-
+> ---
 > References:
----
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
 </details>
 
 <details>
@@ -77,15 +275,13 @@ Write a javascript function to show each time user presses escape key on main wi
 > - **State Definition:** `states` list property with the supported list of
 >   states, current `state` property, and the `transitions` list property to
 >   animate state changes.
->
-> ```qml
-> ``````
-
+> ---
 > Origins:
 > - Qt6 QML - Chapter 5
-
+> ---
 > References:
----
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
 </details>
 
 ### Rectangle Element
