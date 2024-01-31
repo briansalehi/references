@@ -3,7 +3,6 @@
 
 ## Chapter 1/17 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/17 <sup>(writing)</sup>
 

@@ -3,7 +3,6 @@
 
 ## Chapter 1/12 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/12
 
@@ -803,7 +802,6 @@ Nothing to import.
 
 ## Chapter 5/12 (ignored)
 
-Nothing to import.
 
 ## Chapter 6/12
 
@@ -1004,7 +1002,6 @@ Nothing to import.
 
 ## Chapter 7/12 (ignored)
 
-Nothing to import.
 
 ## Chapter 8/12
 
@@ -1092,11 +1089,9 @@ Nothing to import.
 
 ## Chapter 10/12 (ignored)
 
-Nothing to import.
 
 ## Chapter 11/12 (ignored)
 
-Nothing to import.
 
 ## Chapter 12/12
 

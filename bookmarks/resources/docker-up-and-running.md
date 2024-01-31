@@ -3,7 +3,6 @@
 
 ## Chapter 1/14 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/14 <sup>(published)</sup>
 

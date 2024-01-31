@@ -45,7 +45,6 @@
 
 ## Chapter 2/12 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/12 <sup>(writing)</sup>
 

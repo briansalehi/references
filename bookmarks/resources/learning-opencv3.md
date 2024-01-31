@@ -3,11 +3,9 @@
 
 ## Chapter 1/23 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/23 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/23 <sup>(published)</sup>
 

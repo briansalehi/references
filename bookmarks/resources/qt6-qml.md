@@ -2,15 +2,12 @@
 
 ## Chapter 1/20 Qt and QtQuick <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/20 Getting Started <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/20 Qt Creator IDE <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 4/20 Quick Starter <sup>(completed)</sup>
 

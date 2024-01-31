@@ -3,15 +3,12 @@
 
 ## Chapter 1/16 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/16 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/16 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 4/16 <sup>(published)</sup>
 
@@ -246,7 +243,6 @@ Nothing to import.
 
 ## Chapter 5/16 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 6/16 <sup>(published)</sup>
 

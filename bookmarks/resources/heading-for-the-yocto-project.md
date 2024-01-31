@@ -96,7 +96,6 @@
 
 ## Chapter 2/4 <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/4 <sup>(published)</sup>
 
@@ -130,4 +129,3 @@ Nothing to import.
 
 ## Chapter 4/4 <sup>(ignored)</sup>
 
-Nothing to import.

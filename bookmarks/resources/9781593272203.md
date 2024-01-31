@@ -3,11 +3,9 @@
 
 ## Chapter 1/64 History and Standards <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 2/64 Fundamental Concepts <sup>(ignored)</sup>
 
-Nothing to import.
 
 ## Chapter 3/64 <sup>(writing)</sup>
 ## Chapter 4/64
