@@ -12,7 +12,8 @@
 >    type checking and lose the control of maitaining derived classes.
 > 3. You use special preprocessors, code is replaced by stupid text replacement
 >    mechanism that has no idea of scope and types.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 > ---

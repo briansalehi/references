@@ -16,7 +16,8 @@
 > ```sh
 > readelf --symbols a.out | sort -k 2 -r
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 1
 > ---

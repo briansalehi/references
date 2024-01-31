@@ -72,7 +72,8 @@
 >     thread_l.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 > ---

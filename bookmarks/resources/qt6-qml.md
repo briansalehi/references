@@ -36,7 +36,8 @@ Nothing to import.
 
 > `id` is a very special property-like value, it is used to reference elements
 > inside a QML file (document). An `id` needs to be unique inside a document.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 > ---

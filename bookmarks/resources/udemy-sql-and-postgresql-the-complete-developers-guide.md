@@ -136,7 +136,8 @@
 > ```sql
 > select name, area from cities where area > 40000;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 > ---

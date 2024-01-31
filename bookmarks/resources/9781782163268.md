@@ -36,7 +36,8 @@ Nothing to import.
 > The I/O object has the role of submitting I/O requests. For instance, the
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 > ---

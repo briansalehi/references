@@ -12,7 +12,8 @@
 > cmake --build opencv-build --release Release --target all -j $(nproc)
 > cmake --install opencv-build -j $(nproc)
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 > ---
@@ -88,7 +89,8 @@
 > cv::waitKey(0); // wait indefinitely for key press
 > cv::destroyWindow(window_name);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 > ---

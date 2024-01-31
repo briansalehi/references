@@ -12,7 +12,8 @@
 > ```sh
 > clang++ -o program source.cpp -std=c++20
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
 >

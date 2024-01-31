@@ -88,7 +88,8 @@
 > - implicit type conversions for the first operand are also supported if a
 >   corresponding implicit type conversion is defined
 > - may warn if the result of a comparison is not used (compiler dependent)
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 > ---
