@@ -11,19 +11,19 @@
 
 ## Chapter 4/20 Quick Starter <sup>(completed)</sup>
 
-### QML Syntax
+## QML Syntax
 
 <details>
 <summary>Import a QML module to create a window?</summary>
 
+> **Description**
+>
 > ```qml
 > import QtQuick
 > ``````
-
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -31,14 +31,14 @@
 <details>
 <summary>What identifies an element in QML?</summary>
 
+> **Description**
+>
 > `id` is a very special property-like value, it is used to reference elements
 > inside a QML file (document). An `id` needs to be unique inside a document.
 >
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -46,6 +46,8 @@
 <details>
 <summary>What is the binding mechanism?</summary>
 
+> **Description**
+>
 > A property can depend on one or many other properties. This is called
 > binding. A bound property is updated when its dependent properties change. It
 > works like a contract. For example the `height` should always be two times
@@ -61,8 +63,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -70,6 +70,8 @@
 <details>
 <summary>What is a group property?</summary>
 
+> **Description**
+>
 > Some properties are grouped properties. This feature is used when a property
 > is more structured and related properties should be grouped together. Another
 > way of writing grouped properties is:
@@ -84,8 +86,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -116,8 +116,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -142,16 +140,15 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
 <details>
 <summary>Specify exact coordinations of an element?</summary>
 
+> **Description**
+>
 > ```qml
 > Rectangle {
 >     x: 24
@@ -164,8 +161,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -173,6 +168,8 @@
 <details>
 <summary>Create a new custom property?</summary>
 
+> **Description**
+>
 > ```qml
 > Rectangle {
 >     property int max_text_length: 80
@@ -182,9 +179,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -192,6 +186,8 @@
 <details>
 <summary>Create an alias property pointing to another element's property?</summary>
 
+> **Description**
+>
 > ```qml
 > Rectangle {
 >
@@ -208,9 +204,6 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -218,15 +211,14 @@
 <details>
 <summary>Attach the signal of a property when its width and height changes?</summary>
 
+> **Description**
+>
 > ```qml
 > ``````
 >
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
@@ -234,6 +226,8 @@
 <details>
 <summary>What is the requirement of an element in order to receive key events?</summary>
 
+> **Description**
+>
 > The element should have the `focus` property set.
 >
 > ```qml
@@ -249,18 +243,17 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
----
+> ---
 </details>
 
-### Item Element
+## Item
 
 <details>
 <summary>What element is the most basic type to be inherited by other visual elements?</summary>
 
+> **Description**
+>
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
@@ -268,16 +261,15 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
----
+> ---
 </details>
 
 <details>
 <summary>What are the basic properties of item element?</summary>
 
+> **Description**
+>
 > - **Geometry:** `x` and `y`, `width` and `height`, and `z` for stacking order
 >   of lift elements up or down from their natural ordering.
 > - **Layout Handling:** `anchors` (left, right, top, bottom, vertical,
@@ -297,41 +289,61 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
->
-> ---
-> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
-### Rectangle Element
+## Rectangle
 
 <details>
 <summary>What are the additional basic properties of a rectangle over item element?</summary>
 
+> **Description**
+>
 > Rectangle extends `Item` and adds a fill color to it. Additionally it
 > supports borders defined by `border.color` and `border.width`. To create
 > rounded rectangles you can use the `radius` property.
 >
 > ```qml
+> Rectangle {
+>     color: 'lightsteelblue'
+>     border.color: 'gray'
+>     border.width: 3
+> }
 > ``````
 >
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
->
-> ---
-> **References**
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
-Change the border color of a rectangle?
+<details>
+<summary>Make rectangle edges curved?</summary>
 
-Make rectangle edges curved?
+> **Description**
+>
+> ```qml
+> Rectangle {
+>     height: 100
+>     width: 300
+>     radius: 5
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
 <details>
 <summary>Make a custom gradient over a rectangle?</summary>
 
+> **Description**
+>
 > A gradient is defined by a series of gradient stops. Each stop has a position
 > and a color. The position marks the position on the y-axis (`0 = top, 1 =
 > bottom`). The color of the `GradientStop` marks the color at that position.
@@ -360,32 +372,161 @@ Make rectangle edges curved?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> ---
-> **References**
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
-### Text Element
+## Text
 
-Display a text on main window?
+<details>
+<summary>Display a text on main window?</summary>
 
-Break a long text with an elide in the middle?
+> **Description**
+>
+> ```qml
+> Text {
+>     id: label
+>     color: 'black'
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
-Select a font for a text element?
+<details>
+<summary>Break a long text with an elide in the middle?</summary>
 
-Change the font size of a text element?
+> **Description**
+>
+> ```qml
+> Text {
+>     id: label
+>     text: 'very long string'
+>     elide: Text.ElideMiddle
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
-Set alignment for a text element?
+<details>
+<summary>Select a font family and font size for a text element?</summary>
 
-Use style to color a text element?
+> **Description**
+>
+> ```qml
+> Text {
+>     id: label
+>     color: 'black'
+>     font.family: 'FreeSans'
+>     font.pixelSize: 18
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
-### Image Element
+<details>
+<summary>Set alignment for a text element?</summary>
 
-What are the common image formats supported by QML?
+> **Description**
+>
+> - `AlignTop`
+> - `AlignBottom`
+> - `AlignHCenter`
+> - `AlignVCenter`
+>
+> ```qml
+> Text {
+>     id: label
+>     verticalAlignment: Text.AlignHCenter
+>     horizontalAlignment: Text.AlignVCenter
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
-Load an image as a resource?
+<details>
+<summary>Use style to color a text element?</summary>
 
-Create an image element to show some image?
+> **Description**
+>
+> ```qml
+> Text {
+>     id: label
+>     style: Text.Sunken
+>     styleColor: '#FF4488'
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
+
+## Image
+
+<details>
+<summary>What are the common image formats supported by QML?</summary>
+
+> **Description**
+>
+> - PNG
+> - JPG
+> - GIF
+> - BMP
+> - WEBP
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
+
+<details>
+<summary>Load an image as a resource?</summary>
+
+> **Description**
+>
+> ```qml
+Image {
+    id: profile_picture
+    x: 15
+    y: 15
+    source: 'qrc:images/user.jpg'
+    height: 120
+    width: 90
+    clip: true
+    fillMode: Image.PreserveAspectCrop
+}
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
 <details>
 <summary>Crop an image reaching outside of boudaries?</summary>
@@ -403,24 +544,119 @@ Create an image element to show some image?
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> ---
-> **References**
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
-### MouseArea Element
+<details>
+<summary>What are the possible values for image fill modes?</summary>
 
-Get notified when user clicks on an element?
+> **Description**
+>
+> | Constant | Description |
+> |---|---|
+> | Image.Stretch | the image is scaled to fit |
+> | Image.PreserveAspectFit | the image is scaled uniformly to fit without cropping |
+> | Image.PreserveAspectCrop | the image is scaled uniformly to fill, cropping if necessary |
+> | Image.Tile | the image is duplicated horizontally and vertically |
+> | Image.TileVertically | the image is stretched horizontally and tiled vertically |
+> | Image.TileHorizontally | the image is stretched vertically and tiled horizontally |
+> | Image.Pad | the image is not transformed |
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+> **References**
+> - https://doc.qt.io/qt-6/qml-qtquick-image.html#fillMode-prop
+> ---
+</details>
 
-### Components
+## MouseArea
 
-What is a component?
+<details>
+<summary>Get notified when user clicks on an element?</summary>
 
-Create a button component to be used on other components?
+> **Description**
+>
+> ```qml
+> MouseArea {
+>     id: clickable
+>     anchors.fill: parent
+>     onClicked: root.clicked()
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> ---
+</details>
 
-Export properties of a component to be used as an API?
+## Components
 
-### Transformation
+<details>
+<summary>What is a component?</summary>
+
+> **Description**
+>
+> A component is a reusable element written in a file and later used in another
+> QML document using the name of the component file.
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> ---
+</details>
+
+<details>
+<summary>Create a button component to be used on other components?</summary>
+
+> **Description**
+>
+> *Button.qml*
+> ```qml
+> Rectangle {
+>     id: button
+>     signal clicked
+>
+>     MouseArea {
+>         anchors.fill: parent
+>         onClicked: { button.clicked(); }
+>     }
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> ---
+</details>
+
+<details>
+<summary>Export properties of a component to be used as an API?</summary>
+
+> **Description**
+>
+> ```qml
+> Rectangle {
+>     id: button
+>     property alias color: child.color
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Qt6 QML - Chapter 4
+> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> ---
+</details>
+
+## Transformation
 
 <details>
 <summary>What are the simple transformation properties?</summary>
@@ -487,7 +723,7 @@ Export properties of a component to be used as an API?
 > ---
 </details>
 
-### Positioning Elements
+## Positioning Elements
 
 <details>
 <summary>Position multiple elements in a row?</summary>
@@ -782,7 +1018,7 @@ Export properties of a component to be used as an API?
 > ---
 </details>
 
-### Repeater
+## Repeater
 
 <details>
 <summary>Fill out a grid with blue squares using a repeater?</summary>
@@ -871,7 +1107,7 @@ Export properties of a component to be used as an API?
 > ---
 </details>
 
-### Layout Items
+## Layout Items
 
 <details>
 <summary>What are the anchoring properties for visual elements?</summary>
@@ -920,7 +1156,7 @@ Export properties of a component to be used as an API?
 > ---
 </details>
 
-### Keyboard Input
+## Keyboard Input
 
 <details>
 <summary>What input constraints does <code>TextInput</code> support?</summary>
@@ -1051,7 +1287,7 @@ Get a line of text from user?
 > ---
 </details>
 
-### Key Elements
+## Key Elements
 
 <details>
 <summary>What property can record key presses?</summary>
@@ -1109,7 +1345,7 @@ Get a line of text from user?
 > ---
 </details>
 
-### QML Performance
+## QML Performance
 
 <details>
 <summary>How to precompile QML to avoid the initial startup penalty induced by the initial parsing?</summary>
@@ -1129,7 +1365,7 @@ Get a line of text from user?
 
 ## Chapter 5/20 Fluid Elements <sup>(completed)</sup>
 
-### Animations
+## Animations
 
 <details>
 <summary>Where do animations apply?</summary>
@@ -1310,7 +1546,7 @@ Get a line of text from user?
 > ---
 </details>
 
-### Easing Curves
+## Easing Curves
 
 <details>
 <summary>How many easing curves are available for animations?</summary>
@@ -1409,7 +1645,7 @@ Get a line of text from user?
 ---
 </details>
 
-### Grouped Animations
+## Grouped Animations
 
 <details>
 <summary>How many ways exist to group animations?</summary>
@@ -1516,7 +1752,7 @@ Get a line of text from user?
 > ---
 </details>
 
-### States
+## States
 
 <details>
 <summary>What is the basic form of a state?</summary>
@@ -1637,7 +1873,7 @@ Get a line of text from user?
 > ---
 </details>
 
-### Transitions
+## Transitions
 
 <details>
 <summary>What is the basic form of a transition?</summary>
