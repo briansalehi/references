@@ -250,7 +250,6 @@ Nothing to import.
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
->
 > ---
 > **Origins**
 > - Qt6 QML - Chapter 5
@@ -263,7 +262,6 @@ Nothing to import.
 <details>
 <summary>What are the basic properties of item element?</summary>
 
-</br>
 > - **Geometry:** `x` and `y`, `width` and `height`, and `z` for stacking order
 >   of lift elements up or down from their natural ordering.
 > - **Layout Handling:** `anchors` (left, right, top, bottom, vertical,
