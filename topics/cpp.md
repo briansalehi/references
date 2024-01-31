@@ -4025,7 +4025,8 @@
 > ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 > - https://en.cppreference.com/w/cpp/symbol_index/literals

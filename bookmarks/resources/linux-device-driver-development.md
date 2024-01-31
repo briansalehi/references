@@ -1826,7 +1826,8 @@
 >
 > Each of these functions returns 0 if the lock has been acquired successfully.
 > Moreover, interruptible variants return `-EINTR` when the locking attempt was interrupted by a signal.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > ---
@@ -1859,7 +1860,8 @@
 > ``````
 >
 > This function simply checks if the mutex owner is `NULL` and returns `true` if so or `false` otherwise.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 >

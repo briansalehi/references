@@ -2204,7 +2204,8 @@ behavior clearer.
 >
 > Using `wait_for()` or `wait_until()` especially allows to program so-called
 > *speculative execution*.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 >
