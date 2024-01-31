@@ -98,8 +98,8 @@ Nothing to import.
 >     taskB.join();
 > }
 > ``````
-
-> Origin:
+> ---
+> **Resources**
 > - 2.3.2.1
 >
 > ---
@@ -145,7 +145,7 @@ Nothing to import.
 > }
 > ``````
 
-> Origin:
+> **Resources**
 > - 2.3.2.1.1
 >
 > ---
