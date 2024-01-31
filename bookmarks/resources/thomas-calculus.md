@@ -15,7 +15,8 @@
 >
 > The symbol $f$ represents the function, the letter $x$ is the **independent variable** representing the input value to $f$, and $y$ is the **dependent variable** or ouput value of $f$ at $x$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -26,7 +27,8 @@
 
 > 
 
-> Origin: 
+> **Resources**
+> - 
 
 > **References**
 ---
@@ -37,7 +39,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -48,7 +51,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -63,7 +67,8 @@
 >
 > ${(x, f(x)) | x ∈ D}$
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -74,7 +79,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -85,7 +91,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -96,7 +103,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -107,7 +115,8 @@
 
 > A function $f$ can have only one value $f(x)$ for each $x$ in its domain, so no vertical line can interact the graph of a function more than once.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -127,7 +136,8 @@
 > \end{equation}
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -138,7 +148,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -155,7 +166,8 @@
 > 1. if $f(x_2) > f(x_1)$ whenever $x_1 < x_2$, then $f(x)$ is said to be **increasing** on $I$.
 > 2. if $f(x_2) < f(x_1)$ whenever $x_1 < x_2$, then $f(x)$ is said to be **decreasing** on $I$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -166,7 +178,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -179,7 +192,8 @@
 >
 > The graph of an even function is symmetric about the $y$ axis, and the graph of an odd function is symmetric about the origin.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -192,7 +206,8 @@
 >
 > The function $f(x) = x$ where $m = 1$ and $b = 0$ is called the identity function.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -207,7 +222,8 @@
 >
 > If the variable $y$ is proportional to the reciprocal $1/x$, then it is said that $y$ is **inversely proportional** to $x$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -218,7 +234,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -229,7 +246,8 @@
 
 > 
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -240,7 +258,8 @@
 
 > A function $f(x) = x^n$, where $a$ is a constant, is called a **power function**.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -261,7 +280,8 @@
 >
 > All polynomials have domain $(-\inf,\inf)$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -280,7 +300,8 @@
 > \end{equation}
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -293,7 +314,8 @@
 >
 > All rational functions are algebraic, but also included are more complicated functions such as $y^3 - 9xy + x^3 = 0$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -304,7 +326,8 @@
 
 > Six basic trigonometric functions are $sin(x)$, $cos(x)$, $tan(x)$, $cot(x)$, $arctan(x)$, $arccot(x)$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -315,7 +338,8 @@
 
 > A function of the form $f(x) = a^x$, where $a > 0$ and $a \ne 1$, is called an **exponential function** with base $a$.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -328,7 +352,8 @@
 >
 > They are the inverse functions of the exponential functions.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -345,7 +370,8 @@
 > The catenary is one example of a transcendental function.
 > Its graph has the shape of a cable, like a telephone line or electric cable, strung from one support to another and hanging freely under its own weight.
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---

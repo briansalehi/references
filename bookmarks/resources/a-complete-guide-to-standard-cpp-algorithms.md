@@ -30,7 +30,8 @@
 > }
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -53,7 +54,8 @@
 > }
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -80,7 +82,8 @@
 > }
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -104,7 +107,8 @@
 > }
 > ``````
 
-> Origin: 1.1
+> **Resources**
+> - 1.1
 
 > **References**
 ---
@@ -161,7 +165,8 @@
 > }
 > ``````
 
-> Origin: 1.2
+> **Resources**
+> - 1.2
 
 > **References**
 ---
@@ -194,7 +199,8 @@
 > }
 > ``````
 
-> Origin: 1.3
+> **Resources**
+> - 1.3
 
 > **References**
 ---
@@ -220,7 +226,8 @@
 > }
 > ``````
 
-> Origin: 1.4
+> **Resources**
+> - 1.4
 
 > **References**
 ---
@@ -251,7 +258,8 @@
 > What if the algorithm doesn’t find any element out of order as a corner case?
 > The returned value will be the end iterator of the source range, meaning that the range returned is simply the entire source range.
 
-> Origin: 1.4
+> **Resources**
+> - 1.4
 
 > **References**
 ---
@@ -282,7 +290,8 @@
 > }
 > ``````
 
-> Origin: 2.1
+> **Resources**
+> - 2.1
 
 > **References**
 ---
@@ -327,7 +336,8 @@
 > }
 > ``````
 
-> Origin: 2.1
+> **Resources**
+> - 2.1
 
 > **References**
 ---
@@ -357,7 +367,8 @@
 > }
 > ``````
 
-> Origin: 2.1.1
+> **Resources**
+> - 2.1.1
 
 > **References**
 ---
@@ -390,7 +401,8 @@
 >
 > Importantly, because the algorithm does not have access to the end iterator of the source range, it does no out-of-bounds checking, and it is the responsibility of the caller to ensure that the range $[first, first + n)$ is valid.
 
-> Origin: 2.1
+> **Resources**
+> - 2.1
 
 > **References**
 ---
@@ -426,7 +438,8 @@
 > }
 > ``````
 
-> Origin: 2.2.1
+> **Resources**
+> - 2.2.1
 
 > **References**
 ---
@@ -462,7 +475,8 @@
 > }
 > ``````
 
-> Origin: 2.2.2
+> **Resources**
+> - 2.2.2
 
 > **References**
 ---
@@ -490,7 +504,8 @@
 > }
 > ``````
 
-> Origin: 2.2.3
+> **Resources**
+> - 2.2.3
 
 > **References**
 ---
@@ -539,7 +554,8 @@
 > * `std::weak_ordering`
 > * `std::partial_ordering`
 
-> Origin: 2.3
+> **Resources**
+> - 2.3
 
 > **References**
 ---
@@ -598,7 +614,8 @@
 > }
 > ``````
 
-> Origin: 2.3.1
+> **Resources**
+> - 2.3.1
 
 > **References**
 ---
@@ -644,7 +661,8 @@
 > }
 > ``````
 
-> Origin: 2.3.2
+> **Resources**
+> - 2.3.2
 
 > **References**
 ---
@@ -658,7 +676,8 @@
 > Due to the `O(n log n)` complexity guarantee, `std::sort` only operates on `random_access` ranges.
 > Notably, `std::list` offers a method with an approximate `O(N log N)` complexity.
 
-> Origin: 2.3.3
+> **Resources**
+> - 2.3.3
 
 > **References**
 ---
@@ -701,7 +720,8 @@
 > }
 > ``````
 
-> Origin: 2.3.3
+> **Resources**
+> - 2.3.3
 
 > **References**
 ---
@@ -747,7 +767,8 @@
 > }
 > ``````
 
-> Origin: 2.3.4
+> **Resources**
+> - 2.3.4
 
 > **References**
 ---
@@ -783,7 +804,8 @@
 > }
 > ``````
 
-> Origin: 2.3.5
+> **Resources**
+> - 2.3.5
 
 > **References**
 ---
@@ -812,7 +834,8 @@
 > }
 > ``````
 
-> Origin: 2.3.6
+> **Resources**
+> - 2.3.6
 
 > **References**
 ---
@@ -850,7 +873,8 @@
 >
 > The benefit of using a partial sort is faster runtime — approximately `O(N log K)`, where `K` is the number of elements sorted.
 
-> Origin:  2.3.7
+> **Resources**
+> -  2.3.7
 
 > **References**
 ---
@@ -887,7 +911,8 @@
 > }
 > ``````
 
-> Origin: 2.3.8
+> **Resources**
+> - 2.3.8
 
 > **References**
 ---
@@ -933,7 +958,8 @@
 > }
 > ``````
 
-> Origin: 2.4.1
+> **Resources**
+> - 2.4.1
 
 > **References**
 ---
@@ -959,7 +985,8 @@
 > std::ranges::stable_partition(widget.items, &Item::is_selected);
 > ``````
 
-> Origin: 2.4.2
+> **Resources**
+> - 2.4.2
 
 > **References**
 ---
@@ -990,7 +1017,8 @@
 > }
 > ``````
 
-> Origin: 2.4.3
+> **Resources**
+> - 2.4.3
 
 > **References**
 ---
@@ -1028,7 +1056,8 @@
 > }
 > ``````
 
-> Origin: 2.4.4
+> **Resources**
+> - 2.4.4
 
 > **References**
 ---
@@ -1067,7 +1096,8 @@
 > Because of its selection/partitioning nature, `std::nth_element` offers a better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗ logk)`.
 > However, note that the standard only mandates average `O(n)` complexity, and `std::nth_element` implementations can have high overhead, so always test to determine which provides better performance for your use case.
 
-> Origin: 2.4.5
+> **Resources**
+> - 2.4.5
 
 > **References**
 ---
@@ -1141,7 +1171,8 @@
 > }
 > ``````
 
-> Origin: 2.5.1
+> **Resources**
+> - 2.5.1
 
 > **References**
 ---
@@ -1171,7 +1202,8 @@
 > }
 > ``````
 
-> Origin: 2.5.2
+> **Resources**
+> - 2.5.2
 
 > **References**
 ---
@@ -1201,7 +1233,8 @@
 > }
 > ``````
 
-> Origin: 2.5.3
+> **Resources**
+> - 2.5.3
 
 > **References**
 ---
@@ -1236,7 +1269,8 @@
 >
 > `std::binary_search` is equivalent to calling `std::equal_range` and checking whether the returned is non-empty; however, `std::binary_search` offers a single lookup performance, where `std::equal_range` does two lookups to determine the lower and upper bounds.
 
-> Origin: 2.5.4
+> **Resources**
+> - 2.5.4
 
 > **References**
 ---
@@ -1266,7 +1300,8 @@
 > }
 > ``````
 
-> Origin: 2.6.1
+> **Resources**
+> - 2.6.1
 
 > **References**
 ---
@@ -1309,7 +1344,8 @@
 > }
 > ``````
 
-> Origin: 2.6.2
+> **Resources**
+> - 2.6.2
 
 > **References**
 ---
@@ -1337,7 +1373,8 @@
 > }
 > ``````
 
-> Origin: 2.6.3
+> **Resources**
+> - 2.6.3
 
 > **References**
 ---
@@ -1381,7 +1418,8 @@
 > }
 > ``````
 
-> Origin: 2.6.4
+> **Resources**
+> - 2.6.4
 
 > **References**
 ---
@@ -1413,7 +1451,8 @@
 > }
 > ``````
 
-> Origin: 2.7.1
+> **Resources**
+> - 2.7.1
 
 > **References**
 ---
@@ -1443,7 +1482,8 @@
 > }
 > ``````
 
-> Origin: 2.7.2
+> **Resources**
+> - 2.7.2
 
 > **References**
 ---
@@ -1473,7 +1513,8 @@
 > }
 > ``````
 
-> Origin: 2.7.3
+> **Resources**
+> - 2.7.3
 
 > **References**
 ---
@@ -1503,7 +1544,8 @@
 > }
 > ``````
 
-> Origin: 2.7.4
+> **Resources**
+> - 2.7.4
 
 > **References**
 ---
@@ -1543,7 +1585,8 @@
 > }
 > ``````
 
-> Origin: 2.8.1
+> **Resources**
+> - 2.8.1
 
 > **References**
 ---
@@ -1571,7 +1614,8 @@
 > }
 > ``````
 
-> Origin: 2.8.2
+> **Resources**
+> - 2.8.2
 
 > **References**
 ---
@@ -1599,7 +1643,8 @@
 > }
 > ``````
 
-> Origin: 2.8.2
+> **Resources**
+> - 2.8.2
 
 > **References**
 ---
@@ -1627,7 +1672,8 @@
 > }
 > ``````
 
-> Origin: 2.8.3
+> **Resources**
+> - 2.8.3
 
 > **References**
 ---
@@ -1655,7 +1701,8 @@
 > }
 > ``````
 
-> Origin: 2.8.3
+> **Resources**
+> - 2.8.3
 
 > **References**
 ---
@@ -1683,7 +1730,8 @@
 > }
 > ``````
 
-> Origin: 2.8.4
+> **Resources**
+> - 2.8.4
 
 > **References**
 ---
@@ -1716,7 +1764,8 @@
 > }
 > ``````
 
-> Origin: 2.8.5
+> **Resources**
+> - 2.8.5
 
 > **References**
 ---
@@ -1755,7 +1804,8 @@
 > }
 > ``````
 
-> Origin: 2.8.6
+> **Resources**
+> - 2.8.6
 
 > **References**
 ---
@@ -1786,7 +1836,8 @@
 > }
 > ``````
 
-> Origin: 2.8.7
+> **Resources**
+> - 2.8.7
 
 > **References**
 ---
@@ -1818,7 +1869,8 @@
 > }
 > ``````
 
-> Origin: 2.8.8
+> **Resources**
+> - 2.8.8
 
 > **References**
 ---
@@ -1847,7 +1899,8 @@
 > }
 > ``````
 
-> Origin: 2.8.9
+> **Resources**
+> - 2.8.9
 
 > **References**
 ---
@@ -1881,7 +1934,8 @@
 > }
 > ``````
 
-> Origin: 2.9.1
+> **Resources**
+> - 2.9.1
 
 > **References**
 ---
@@ -1916,7 +1970,8 @@
 > }
 > ``````
 
-> Origin: 2.9.2
+> **Resources**
+> - 2.9.2
 
 > **References**
 ---
@@ -1949,7 +2004,8 @@
 > }
 > ``````
 
-> Origin: 2.9.3
+> **Resources**
+> - 2.9.3
 
 > **References**
 ---
@@ -1986,7 +2042,8 @@
 > }
 > ``````
 
-> Origin: 2.9.4
+> **Resources**
+> - 2.9.4
 
 > **References**
 ---
@@ -2020,7 +2077,8 @@
 > }
 > ``````
 
-> Origin: 2.10.1
+> **Resources**
+> - 2.10.1
 
 > **References**
 ---
@@ -2049,7 +2107,8 @@
 > }
 > ``````
 
-> Origin: 2.10.2
+> **Resources**
+> - 2.10.2
 
 > **References**
 ---
@@ -2090,7 +2149,8 @@
 > }
 > ``````
 
-> Origin: 2.10.3
+> **Resources**
+> - 2.10.3
 
 > **References**
 ---
@@ -2131,7 +2191,8 @@
 > }
 > ``````
 
-> Origin: 2.10.4
+> **Resources**
+> - 2.10.4
 
 > **References**
 ---
@@ -2162,7 +2223,8 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> **Resources**
+> - 2.11.1
 
 > **References**
 ---
@@ -2191,7 +2253,8 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> **Resources**
+> - 2.11.1
 
 > **References**
 ---
@@ -2220,7 +2283,8 @@
 > }
 > ``````
 
-> Origin: 2.11.1
+> **Resources**
+> - 2.11.1
 
 > **References**
 ---
@@ -2251,7 +2315,8 @@
 > }
 > ``````
 
-> Origin: 2.12.1
+> **Resources**
+> - 2.12.1
 
 > **References**
 ---
@@ -2280,7 +2345,8 @@
 > }
 > ``````
 
-> Origin: 2.12.2
+> **Resources**
+> - 2.12.2
 
 > **References**
 ---
@@ -2309,7 +2375,8 @@
 > }
 > ``````
 
-> Origin: 2.12.1
+> **Resources**
+> - 2.12.1
 
 > **References**
 ---
@@ -2338,7 +2405,8 @@
 > }
 > ``````
 
-> Origin: 2.12.2
+> **Resources**
+> - 2.12.2
 
 > **References**
 ---
@@ -2367,7 +2435,8 @@
 > }
 > ``````
 
-> Origin: 2.12.3
+> **Resources**
+> - 2.12.3
 
 > **References**
 ---
@@ -2401,7 +2470,8 @@
 > }
 > ``````
 
-> Origin: 2.13.1
+> **Resources**
+> - 2.13.1
 
 > **References**
 ---
@@ -2434,7 +2504,8 @@
 > }
 > ``````
 
-> Origin: 2.13.1
+> **Resources**
+> - 2.13.1
 
 > **References**
 ---
@@ -2474,7 +2545,8 @@
 > }
 > ``````
 
-> Origin: 2.13.2
+> **Resources**
+> - 2.13.2
 
 > **References**
 ---
@@ -2507,7 +2579,8 @@
 > }
 > ``````
 
-> Origin: 2.13.3
+> **Resources**
+> - 2.13.3
 
 > **References**
 ---
@@ -2538,7 +2611,8 @@
 > }
 > ``````
 
-> Origin: 2.13.4
+> **Resources**
+> - 2.13.4
 
 > **References**
 ---
@@ -2569,7 +2643,8 @@
 > }
 > ``````
 
-> Origin: 2.13.4
+> **Resources**
+> - 2.13.4
 
 > **References**
 ---
@@ -2600,7 +2675,8 @@
 > }
 > ``````
 
-> Origin: 2.13.4
+> **Resources**
+> - 2.13.4
 
 > **References**
 ---
@@ -2634,7 +2710,8 @@
 > }
 > ``````
 
-> Origin: 2.13.5
+> **Resources**
+> - 2.13.5
 
 > **References**
 ---
@@ -2665,7 +2742,8 @@
 > }
 > ``````
 
-> Origin: 2.13.6
+> **Resources**
+> - 2.13.6
 
 > **References**
 ---
@@ -2696,7 +2774,8 @@
 > }
 > ``````
 
-> Origin: 2.13.6
+> **Resources**
+> - 2.13.6
 
 > **References**
 ---
@@ -2727,7 +2806,8 @@
 > }
 > ``````
 
-> Origin: 2.13.7
+> **Resources**
+> - 2.13.7
 
 > **References**
 ---
@@ -2760,7 +2840,8 @@
 > }
 > ``````
 
-> Origin: 2.13.8
+> **Resources**
+> - 2.13.8
 
 > **References**
 ---
@@ -2799,7 +2880,8 @@
 > }
 > ``````
 
-> Origin: 2.14.1
+> **Resources**
+> - 2.14.1
 
 > **References**
 ---
@@ -2836,7 +2918,8 @@
 > }
 > ``````
 
-> Origin: 2.15.1
+> **Resources**
+> - 2.15.1
 
 > **References**
 ---
@@ -2886,7 +2969,8 @@
 > }
 > ``````
 
-> Origin: 2.15.1
+> **Resources**
+> - 2.15.1
 
 > **References**
 ---
@@ -2917,7 +3001,8 @@
 > }
 > ``````
 
-> Origin: 2.15.2
+> **Resources**
+> - 2.15.2
 
 > **References**
 ---
@@ -2947,7 +3032,8 @@
 > }
 > ``````
 
-> Origin: 2.15.3
+> **Resources**
+> - 2.15.3
 
 > **References**
 ---
@@ -2977,7 +3063,8 @@
 > }
 > ``````
 
-> Origin: 2.15.3
+> **Resources**
+> - 2.15.3
 
 > **References**
 ---
@@ -3020,7 +3107,8 @@
 > }
 > ``````
 
-> Origin: 2.16.1
+> **Resources**
+> - 2.16.1
 
 > **References**
 ---
@@ -3039,7 +3127,8 @@
 > ```cpp
 > ``````
 
-> Origin: 2.16.1
+> **Resources**
+> - 2.16.1
 
 > **References**
 ---
@@ -3058,7 +3147,8 @@
 > ```cpp
 > ``````
 
-> Origin: 2.16.1
+> **Resources**
+> - 2.16.1
 
 > **References**
 ---
@@ -3094,7 +3184,8 @@
 > }
 > ``````
 
-> Origin: 4.1
+> **Resources**
+> - 4.1
 
 > **References**
 ---
@@ -3126,7 +3217,8 @@
 > }
 > ``````
 
-> Origin: 4.2
+> **Resources**
+> - 4.2
 
 > **References**
 ---
@@ -3154,7 +3246,8 @@
 > }
 > ``````
 
-> Origin: 4.3
+> **Resources**
+> - 4.3
 
 > **References**
 ---
@@ -3178,7 +3271,8 @@
 > }
 > ``````
 
-> Origin: 4.4
+> **Resources**
+> - 4.4
 
 > **References**
 ---
@@ -3202,7 +3296,8 @@
 > }
 > ``````
 
-> Origin: 4.4
+> **Resources**
+> - 4.4
 
 > **References**
 ---
@@ -3226,7 +3321,8 @@
 > }
 > ``````
 
-> Origin: 4.5
+> **Resources**
+> - 4.5
 
 > **References**
 ---
@@ -3250,7 +3346,8 @@
 > }
 > ``````
 
-> Origin: 4.5
+> **Resources**
+> - 4.5
 
 > **References**
 ---
@@ -3274,7 +3371,8 @@
 > }
 > ``````
 
-> Origin: 4.6
+> **Resources**
+> - 4.6
 
 > **References**
 ---
@@ -3298,7 +3396,8 @@
 > }
 > ``````
 
-> Origin: 4.7
+> **Resources**
+> - 4.7
 
 > **References**
 ---
@@ -3322,7 +3421,8 @@
 > }
 > ``````
 
-> Origin: 4.8
+> **Resources**
+> - 4.8
 
 > **References**
 ---
@@ -3347,7 +3447,8 @@
 > }
 > ``````
 
-> Origin: 4.9
+> **Resources**
+> - 4.9
 
 > **References**
 ---
@@ -3371,7 +3472,8 @@
 > }
 > ``````
 
-> Origin: 4.10
+> **Resources**
+> - 4.10
 
 > **References**
 ---
@@ -3405,7 +3507,8 @@
 > }
 > ``````
 
-> Origin: 4.11
+> **Resources**
+> - 4.11
 
 > **References**
 ---
@@ -3416,7 +3519,8 @@
 
 > incomplete
 
-> Origin: 4.11
+> **Resources**
+> - 4.11
 
 > **References**
 ---
@@ -3437,7 +3541,8 @@
 > }
 > ``````
 
-> Origin: 4.12
+> **Resources**
+> - 4.12
 
 > **References**
 ---
@@ -3459,7 +3564,8 @@
 > }
 > ``````
 
-> Origin: 4.12
+> **Resources**
+> - 4.12
 
 > **References**
 ---
@@ -3484,7 +3590,8 @@
 > }
 > ``````
 
-> Origin: 4.13
+> **Resources**
+> - 4.13
 
 > **References**
 ---
@@ -3506,7 +3613,8 @@
 > }
 > ``````
 
-> Origin: 4.14
+> **Resources**
+> - 4.14
 
 > **References**
 ---

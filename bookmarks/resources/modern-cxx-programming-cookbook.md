@@ -58,7 +58,8 @@
 > // ^__ decltype() preserves cv-ref qualification of return type
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -84,7 +85,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -115,7 +117,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -169,7 +172,8 @@
 >     auto d{4, 2}; // error, too many elements
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -199,7 +203,8 @@
 > };
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -257,7 +262,8 @@
 > };
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -283,7 +289,8 @@
 > alignof(int[4]);// 4 (natural alignment of element is 4)
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -346,7 +353,8 @@
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -374,7 +382,8 @@
 > status do_something() { return status::success; }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -405,7 +414,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -436,7 +446,8 @@
 > beta object;
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -471,7 +482,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -500,7 +512,8 @@
 > };
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -546,7 +559,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -662,7 +676,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -699,7 +714,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -743,7 +759,8 @@
 > print(); // external linkage, local visibility
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -769,7 +786,8 @@
 > test<Size2> t2; // okay
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -877,7 +895,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -903,7 +922,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -920,7 +940,8 @@
 > std::vector v{1, 2};        // std::vector<int>
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -1065,7 +1086,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto max_double = std::numeric_limits<double::lowest();
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1094,7 +1116,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1112,7 +1135,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto d = std::numeric_limits<double>::digits;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1128,7 +1152,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto d = std::numeric_limits<double>::digits10;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1143,7 +1168,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto value_is_signed = std::numeric_limist<T>::is_signed;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1158,7 +1184,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto value_is_integer = std::numeric_limist<T>::is_integer;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1173,7 +1200,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto value_is_exact = std::numeric_limist<T>::is_exact;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1188,7 +1216,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto value_has_infinity = std::numeric_limist<T>::has_infinity;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1206,7 +1235,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto max = std::mt19937::max();
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1228,7 +1258,8 @@ Note that `random_device` cannot be seeded.
 > generator2.seed(seeder());
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1247,7 +1278,8 @@ Note that `random_device` cannot be seeded.
 > auto number = generator();
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1263,7 +1295,8 @@ Note that `random_device` cannot be seeded.
 > generator.discard(4); // discard 4 numbers
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1291,7 +1324,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1313,7 +1347,8 @@ Note that `random_device` cannot be seeded.
 > T operator ""_suffix(char32_t const *, std::size_t);
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1345,7 +1380,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1370,7 +1406,8 @@ Note that `random_device` cannot be seeded.
 > auto s5{ "text"sv }; // std::string_view
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1390,7 +1427,8 @@ Note that `random_device` cannot be seeded.
 > auto day { 15d }; // std::chrono::day (c++20)
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1407,7 +1445,8 @@ Note that `random_device` cannot be seeded.
 > auto c{ 12.0 + 4.2i }; // std::complex<double>
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1425,7 +1464,8 @@ Note that `random_device` cannot be seeded.
 > T operator ""_suffix();
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1478,7 +1518,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1496,7 +1537,8 @@ Note that `random_device` cannot be seeded.
 > auto pattern { R"((\w[\w\d]*)=(\d+))"s };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1521,7 +1563,8 @@ Note that `random_device` cannot be seeded.
 > auto s5{ R"text"sv }; // std::string_view
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1565,7 +1608,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1595,7 +1639,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1620,7 +1665,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1645,7 +1691,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1682,7 +1729,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1703,7 +1751,8 @@ Note that `random_device` cannot be seeded.
 > std::regex lrx{R"(...)"s};
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1718,7 +1767,8 @@ Note that `random_device` cannot be seeded.
 > std::regex irx{R"(...)"s, std::regex_constants::icase};
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1758,7 +1808,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1807,7 +1858,8 @@ Note that `random_device` cannot be seeded.
 >                   << " using " << protocol << " protocol\n";
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1834,7 +1886,8 @@ Note that `random_device` cannot be seeded.
 > std::regex pattern{R"(...)", std::regex_constants::egrep};
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1873,7 +1926,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1937,7 +1991,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1961,7 +2016,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -1986,7 +2042,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2020,7 +2077,8 @@ Note that `random_device` cannot be seeded.
 > std::string s4{ sv4 };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2038,7 +2096,8 @@ Note that `random_device` cannot be seeded.
 > std::size_t prefix{ str.find_first_not_of(" ") };
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -2059,7 +2118,8 @@ Note that `random_device` cannot be seeded.
 > str.remove_prefix(pos1);
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -2075,7 +2135,8 @@ Note that `random_device` cannot be seeded.
 > std::string s{ sv };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2095,7 +2156,8 @@ Note that `random_device` cannot be seeded.
 > };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2115,7 +2177,8 @@ Note that `random_device` cannot be seeded.
 > void func(int) = delete;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2133,7 +2196,8 @@ Note that `random_device` cannot be seeded.
 >
 > The rule of thumb, also known as The Rule of Five, for class special member functions is that if you explicitly define any copy constructor, move constructor, copy assignment operator, move assignment operator, or destructor, then you must either explicitly define or default all of them.
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2154,7 +2218,8 @@ Note that `random_device` cannot be seeded.
 > };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2189,7 +2254,8 @@ Note that `random_device` cannot be seeded.
 > };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2212,7 +2278,8 @@ Note that `random_device` cannot be seeded.
 > inline base& base::operator =(base const&) = default;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2237,7 +2304,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2258,7 +2326,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2286,7 +2355,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2315,7 +2385,8 @@ Note that `random_device` cannot be seeded.
 > * `[x=expr](){}`: `x` is a data member of the lambda's closure initialized from the expression `expr` suited for move-semantics. <span style="color:green">(c++14)</span>
 > * `[&x=expr](){}`: `x` is a reference data member of the lambda's closure initialized from the expression `expr` suited for move-semantics. <span style="color:green">(c++14)</span>
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2337,7 +2408,8 @@ Note that `random_device` cannot be seeded.
 > [capture-list](params) mutable constexpr exception attr -> ret { body; }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2353,7 +2425,8 @@ Note that `random_device` cannot be seeded.
 > auto lambda = [p = std::move(ptr)]() { return ++*p; };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2384,7 +2457,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2405,7 +2479,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2423,7 +2498,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2465,7 +2541,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2489,7 +2566,8 @@ Note that `random_device` cannot be seeded.
 > };
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2523,7 +2601,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2562,7 +2641,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2585,7 +2665,8 @@ Note that `random_device` cannot be seeded.
 > auto add(Ts ...args) { return (args + ... + 1); }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2641,7 +2722,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2696,7 +2778,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2725,7 +2808,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2762,7 +2846,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2788,7 +2873,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2816,7 +2902,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2861,7 +2948,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2919,7 +3007,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2937,7 +3026,8 @@ Note that `random_device` cannot be seeded.
 > #endif
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -2963,7 +3053,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3005,7 +3096,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3025,7 +3117,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3040,7 +3133,8 @@ Note that `random_device` cannot be seeded.
 > #define MAKE_STR(x) MAKE_STR2(x)
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3055,7 +3149,8 @@ Note that `random_device` cannot be seeded.
 > #define MERGE(x, y) MERGE2(x, y)
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3075,7 +3170,8 @@ Note that `random_device` cannot be seeded.
 > static_assert(sizeof(item) == 16, "size of item must be 16 bytes");
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3103,7 +3199,8 @@ Note that `random_device` cannot be seeded.
 > pod_wrapper<std::string> w3; // error: POD type expected
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3139,7 +3236,8 @@ Note that `random_device` cannot be seeded.
 > auto v2 = mul(1.0, 2.0); // error: no matching overloaded function found
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3187,7 +3285,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3202,7 +3301,8 @@ Note that `random_device` cannot be seeded.
 > get_value(); // warning
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3221,7 +3321,8 @@ Note that `random_device` cannot be seeded.
 > Item get_item() { return Item{}; }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3244,7 +3345,8 @@ Note that `random_device` cannot be seeded.
 > foo f;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3262,7 +3364,8 @@ Note that `random_device` cannot be seeded.
 > [[maybe_unused]] auto i = get_value1();
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3287,7 +3390,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3309,7 +3413,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3339,7 +3444,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3365,7 +3471,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3391,7 +3498,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3418,7 +3526,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3455,7 +3564,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3490,7 +3600,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3508,7 +3619,8 @@ Note that `random_device` cannot be seeded.
 > typedef basic_fstream<wchar_t>  wfstream;
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3528,7 +3640,8 @@ Note that `random_device` cannot be seeded.
 > template <class Path> std::basic_fstream(Path const&, sdt::ios_base::openmode);
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3547,7 +3660,8 @@ Note that `random_device` cannot be seeded.
 > * `std::ios_base::trunc`
 > * `std::ios_base::ate`
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3580,7 +3694,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3612,7 +3727,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3639,7 +3755,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3669,7 +3786,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---
@@ -3701,7 +3819,8 @@ Note that `random_device` cannot be seeded.
 > }
 > ``````
 
-> Origin: x
+> **Resources**
+> - x
 
 > **References**
 ---

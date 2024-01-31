@@ -22,7 +22,8 @@ Nothing to import.
 > and establish communication between our program and the operating system that
 > performs I/O requests.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
@@ -36,7 +37,8 @@ Nothing to import.
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 ---
@@ -68,7 +70,8 @@ Nothing to import.
 > the work is underway. Also, it will make sure that the `io_service::run()`
 > function exits when there is no unfinished work remaining.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
@@ -96,7 +99,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
@@ -139,7 +143,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
@@ -185,7 +190,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 4
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 4
 
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
@@ -233,7 +239,8 @@ Nothing to import.
 > function object that will automatically pass the wrapped handler to the strand
 > object's dispatch function when it is called.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > **References**
 ---
@@ -280,7 +287,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > **References**
 ---
@@ -324,7 +332,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 5
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 5
 
 > **References**
 ---
@@ -367,7 +376,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
 ---
@@ -414,7 +424,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
 ---
@@ -476,7 +487,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
 ---
@@ -546,7 +558,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
 ---
@@ -686,7 +699,8 @@ Nothing to import.
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 6
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 6
 
 > **References**
 ---
@@ -700,7 +714,8 @@ Nothing to import.
 > - `start`: starts debugging session by running program line-by-line.
 > - `run`: starts debugging session running program as usual.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -715,7 +730,8 @@ Nothing to import.
 > - `next`: Executes program similar to `step`, but it only continues to the
 >   next line in the current stack frame and will not step into functions.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -728,7 +744,8 @@ Nothing to import.
 > will be displayed enter `show listsize`. To adjust the lines of source code
 > displayed enter `set listsize 20`.
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -744,7 +761,8 @@ Nothing to import.
 > break source.cpp:main+50
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -755,7 +773,8 @@ Nothing to import.
 
 > `delete 1`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -766,7 +785,8 @@ Nothing to import.
 
 > `print `
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -778,7 +798,8 @@ Nothing to import.
 
 > `set var random_number = 5`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -789,7 +810,8 @@ Nothing to import.
 
 > `whatis random_number`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---
@@ -800,7 +822,8 @@ Nothing to import.
 
 > `shell pwd`
 
-> Origin: Boost.Asio C++ Network Programming - Chapter 7
+> **Resources**
+> - Boost.Asio C++ Network Programming - Chapter 7
 
 > **References**
 ---

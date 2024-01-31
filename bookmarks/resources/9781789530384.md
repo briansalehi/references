@@ -11,7 +11,8 @@
 > 3. Writing Embedded Applications
 > 4. Debugging and Optimizing Performance
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -26,7 +27,8 @@
 > 4. Root filesystem
 > 5. Embedded Applications
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -41,7 +43,8 @@
 > 4. Serial port
 > 5. Debugging interface (e.g. JTAG)
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -56,7 +59,8 @@
 > * gcc **(base-devel)**: [https://gcc.gnu.org](https://gcc.gnu.org)
 > * C library + Linux header files
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 > - [LLVM support for kernel build](https://kernel.org/doc/html/latest/kbuild/llvm.html)
@@ -72,7 +76,8 @@
 > * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`, `musleabihf`)
 >
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -85,7 +90,8 @@
 > gcc -dumpmachine
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -99,7 +105,8 @@
 > * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
 > * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -111,7 +118,8 @@
 > Toolchain can be completely built manually by [Cross Linux From Scratch](https://trac.clfs.org).
 > Another alternative to build toolchains is [crosstool-NG](https://crosstool-ng.github.io).
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -130,7 +138,8 @@
 > ./ct-ng --version
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -143,7 +152,8 @@
 > ./ct-ng list-samples
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -159,7 +169,8 @@
 > ./ct-ng show-arm-unknown-linux-gnueabi
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -186,7 +197,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -211,7 +223,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -234,7 +247,8 @@
 > ./ct-ng build
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -247,7 +261,8 @@
 > ${CROSS_COMPILE}gcc -v
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -260,7 +275,8 @@
 > ${CROSS_COMPILE}gcc -mcpu=cortex-a5 main.c -o app
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -273,7 +289,8 @@
 > ${CROSS_COMPILE}gcc --target-help
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -286,7 +303,8 @@
 > ${CROSS_COMPILE}gcc -print-sysroot
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -300,7 +318,8 @@
 > * libpthread
 > * librt
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -313,7 +332,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep "Shared library"
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -326,7 +346,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep "program interpreter"
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -339,7 +360,8 @@
 > ${CROSS_COMPILE}gcc -static main.c -o app
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -354,7 +376,8 @@
 > ls -l usr/lib/libc.a
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -370,7 +393,8 @@
 > ${CROSS_COMPILE}gcc main.c -ltest -L../libs -I../include -o app
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -388,7 +412,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep interpreter
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -402,7 +427,8 @@
 > libjpeg.so.8
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -424,7 +450,8 @@
 > make CROSS_COMPILE=armv6-rpi-linux-gnueabihf-
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -444,7 +471,8 @@
 > make install
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -457,7 +485,8 @@
 > CC=armv6-rpi-linux-gnueabihf-gcc ./configure --host=armv6-rpi-linux-gnueabihf
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -477,7 +506,8 @@
 > armv6-rpi-linux-gnueabihf main.c -o sqlite-test -lsqlite3
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -494,7 +524,8 @@
 > ${CROSS_COMPILE}gcc $(pkg-config sqlite3 --cflags --libs) main.c -o sqlite-test
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -510,7 +541,8 @@
 > cmake --build build --parallel 8 --target install
 > ``````
 
-> Origin: 2
+> **Resources**
+> - 2
 
 > **References**
 ---
@@ -525,7 +557,8 @@
 > * **Phase 2 Secondary Program Loader (SPL)**: sets up memory controller and other essential parts of the system in preparation for loading the **TPL** into DRAM.
 > * **Phase 3 Tertiary Program Loader (TPL)**: full bootloader such as U-Boot loads the kernel + optional FDT and initramfs into DRAM.
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -540,7 +573,8 @@
 > * Optionally, the location and size of a device tree binary.
 > * Optionally, the location and size of an initial RAM disk, called the **initial RAM file system (initramfs)**.
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -551,7 +585,8 @@
 
 > * https://github.com/devicetree-org/devicetree-specification/releases
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -586,7 +621,8 @@
 > };
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 > - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
@@ -621,7 +657,8 @@
 > };
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -634,7 +671,8 @@
 > /include/ "vexpress-v2m.dtsi"
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -680,7 +718,8 @@
 > };
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -693,7 +732,8 @@
 > dtc beaglebone-black.dts -o beaglebone-black.dtb
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -726,7 +766,8 @@
 > * `u-boot.srec`: U-Boot in Motoral S-record (**SRECORD** or **SRE**) format, suitable for transferring over a serial connection
 > * `MLO`: The BeagleBone Black also requires a **SPL** which is built here
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -741,7 +782,8 @@
 > nand read 82000000 400000 200000
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -758,7 +800,8 @@
 > printenv # print all environment variables
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -772,7 +815,8 @@
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -787,7 +831,8 @@
 > iminfo 82000000
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -807,7 +852,8 @@
 > nand read 82000000 280000 400000
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -821,7 +867,8 @@
 > bootm 82000000 - 83000000
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -834,7 +881,8 @@
 > setenv bootcmd nand read 82000000 400000 200000\;bootm 82000000
 > ``````
 
-> Origin: 3
+> **Resources**
+> - 3
 
 > **References**
 ---
@@ -857,7 +905,8 @@
 > git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -868,7 +917,8 @@
 
 > Follow up overviews of each kernel release on **KernelNewbies** to see changes.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 > - https://kernelnewbies.org/LinuxVersions
@@ -890,7 +940,8 @@
 > * `scripts`: useful scripts, including the **device tree compiler**.
 > * `tools`: useful tools, including the Linux performance counters tool, `perf`.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -901,7 +952,8 @@
 
 > The configuration mechanism is called `Kconfig`, and the build system that it integrates with it is called `Kbuild`.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 > - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
@@ -913,7 +965,8 @@
 
 > The value you put into `ARCH` is one of the subdirectories you find in the `arch` directory in the kernel source tree.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -938,7 +991,8 @@
 >
 > This config can be found in `.config` file as `CONFIG_EXAMPLE=y`.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -953,7 +1007,8 @@
 > * `hex`: unsigned integer value using hexadecimal notation.
 > * `string`: string value.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -984,7 +1039,8 @@
 >
 > Selecting any config as reverse dependency, sets its value as `y`.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -997,7 +1053,8 @@
 > * `xconfig`
 > * `gconfig`
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1020,7 +1077,8 @@
 > make ARCH=arm bcm2835_defconfig
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1035,7 +1093,8 @@
 > make ARCH=arm menuconfig
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1056,7 +1115,8 @@
 > make ARCH=arm olddefconfig
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1067,7 +1127,8 @@
 
 > A header file `include/generated/autoconf.h` contains `#define` preprocessors to be included in the kernel source.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1084,7 +1145,8 @@
 > make ARCH=arm kernelrelease
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1096,7 +1158,8 @@
 > `CONFIG_LOCALVERSION` option is the release information string to be appended to kernel release.
 > Kernel version can never be appended.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1112,7 +1175,8 @@
 > obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1124,7 +1188,8 @@
 > * `ARCH`: architecture name
 > * `CROSS_COMPILE`: toolchain prefix ending with a hyphen, visible in `PATH`
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1141,7 +1206,8 @@
 > make -j $(($(nproc) / 2)) ARCH=arm CROSS_COMPILE=armv6-rpi-linux-gnueabihf- zImage
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1156,7 +1222,8 @@
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1173,7 +1240,8 @@
 > * `zImage`: compressed version of `Image`.
 > * `uImage`: `zImage` plus a 64-byte U-Boot header.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1184,7 +1252,8 @@
 
 > By enabling `CONFIG_DEBUG_INFO` configuration option.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1197,7 +1266,8 @@
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1224,7 +1294,8 @@
 > make -j 8 ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- INSTALL_MOD_PATH=/run/media/user/rootfs install_modules
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1237,7 +1308,8 @@
 > * `mrproper`: remove all intermediate files and `.config` file.
 > * `distclean`: remove all, also delete editor backup files, patch files, and other artifacts.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1294,7 +1366,8 @@
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1329,7 +1402,8 @@
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1347,7 +1421,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- dts
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1364,7 +1439,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- dts
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1377,7 +1453,8 @@
 > Raspberry Pis use a proprietary bootloader provided by Broadcom instead of U-Boot.
 > Kernel will boot and ends with a kernel panic because of the abcense of root filesystem.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1393,7 +1470,8 @@
 > bootz 0x80200000 - 0x80f00000
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1406,7 +1484,8 @@
 > QEMU_AUDIO_DRV=none qemu-system-arm -m 256M -nographic -M versatilepb -kernel zImage -apend "console=ttyAMA0,115200" -dtb versatile-pb.dts"
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1427,7 +1506,8 @@
 > root=/dev/ mmcblk0p1
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1449,7 +1529,8 @@
 > * `rootwait`: wait indefinitely for the root device to be detected.
 > * `rw`: mounts root device as read-write (default).
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1461,7 +1542,8 @@
 > By setting `lpj=4980736` to the kernel parameter.
 > The number should be different on each device.
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1473,7 +1555,8 @@
 > ```sh
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---
@@ -1560,7 +1643,8 @@
 > }
 > ``````
 
-> Origin: 4
+> **Resources**
+> - 4
 
 > **References**
 ---

@@ -10,7 +10,8 @@
 > therefore, several API implementations exist. However, the one based on
 > Berkeley Sockets API is the most widely used.
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---
@@ -31,7 +32,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---
@@ -85,7 +87,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---
@@ -111,7 +114,8 @@
 > object returned by the `any()` method of either the `asio::ip::address_v4` or
 > `asio::ip::address_v6` class correspondingly.
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---
@@ -133,7 +137,8 @@
 > boost::asio::ip::tcp::acceptor{}; // passive socket
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -175,7 +180,8 @@
 > parameters, it has enough information to allocate a real socket object of the
 > underlying operating system.
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---
@@ -222,7 +228,8 @@
 > }
 > ``````
 
-> Origin: Boost.Asio C++ Network Programming Cookbook - Chapter 1
+> **Resources**
+> - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
 > **References**
 ---

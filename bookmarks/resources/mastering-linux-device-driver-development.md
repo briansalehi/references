@@ -24,7 +24,8 @@
 > * **Wait queue**: To wait for a change — designed to work in concert with locks.
 > * **Completion queue**: To wait for the completion of a given computation, mostly used with DMAs.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -42,7 +43,8 @@
 >
 > A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex* which is a lock held by a task.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -58,7 +60,8 @@
 >
 > This makes spinlocks suitable for **symmetrical multiprocessing (SMP)** safety and for executing atomic tasks.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -94,7 +97,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -110,7 +114,8 @@
 > static __always_inline void spin_lock(spinlock_t *lock);
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -126,7 +131,8 @@
 > Now, imagine if this IRQ handler needs to acquire this same spinlock.
 > It will infinitely spin in place, trying to acquire a lock already locked by a task that it has preempted which results in a deadlock.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -143,7 +149,8 @@
 > static void spin_lock_irq(spinlock_t *lock)
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -155,7 +162,8 @@
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -179,7 +187,8 @@
 > It tries because it depends on whether other spinlocks are locked, which would affect the value of the preemption counter.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -197,7 +206,8 @@
 > Thus, disabling interrupts protects you from kernel preemption only in cases where the protected code does not trigger preemption itself.
 > That said, code that locked a spinlock may not sleep as there would be no way to wake it up as timer interrupts and/or schedulers are disabled on the local CPU.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -225,7 +235,8 @@
 >
 > The mutex APIs can be found in the `include/linux/mutex.h` header file.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -257,7 +268,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -283,7 +295,8 @@
 > Each of these functions returns 0 if the lock has been acquired successfully.
 > Moreover, interruptible variants return `-EINTR` when the locking attempt was interrupted by a signal.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -298,7 +311,8 @@
 > void mutex_unlock(struct mutex *lock);
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -313,7 +327,8 @@
 >
 > This function simply checks if the mutex owner is `NULL` and returns `true` if so or `false` otherwise.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -336,7 +351,8 @@
 > * Locking only in the user context.
 > * If the protected resource is not accessed from an IRQ handler and the operations need not be atomic.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -347,7 +363,8 @@
 
 > It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
@@ -389,7 +406,8 @@
 > }
 > ``````
 
-> Origin: 1
+> **Resources**
+> - 1
 
 > **References**
 ---
