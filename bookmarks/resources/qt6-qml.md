@@ -245,19 +245,16 @@ Nothing to import.
 <details>
 <summary>What element is the most basic type to be inherited by other visual elements?</summary>
 
-> **Description**
->
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
->
-> ---
-> **Origins**
+
+> Origins:
 > - Qt6 QML - Chapter 5
-> ---
-> **References**
+
+> References:
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-> ---
+---
 </details>
 
 <details>
@@ -278,14 +275,13 @@ Nothing to import.
 > - **State Definition:** `states` list property with the supported list of
 >   states, current `state` property, and the `transitions` list property to
 >   animate state changes.
->
-> ---
-> **Origins**
+
+> Origins:
 > - Qt6 QML - Chapter 5
-> ---
-> **References**
+
+> References:
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-> ---
+---
 </details>
 
 ### Rectangle Element
