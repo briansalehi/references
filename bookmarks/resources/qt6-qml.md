@@ -250,6 +250,7 @@ Nothing to import.
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
+>
 > ---
 > **Origins**
 > - Qt6 QML - Chapter 5
@@ -277,6 +278,7 @@ Nothing to import.
 > - **State Definition:** `states` list property with the supported list of
 >   states, current `state` property, and the `transitions` list property to
 >   animate state changes.
+>
 > ---
 > **Origins**
 > - Qt6 QML - Chapter 5
