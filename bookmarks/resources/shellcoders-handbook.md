@@ -1,1 +1,343 @@
-9780470080238.md
+# The Shellcoder's Handbook
+<img src="../covers/9780470080238.jpg" width="200"/>
+
+## Chapter 1/27 Before You Begin <sup>(completed)</sup>
+
+<details>
+<summary>Specify the execution procedure of an executable?</summary>
+
+> - The operating system creates an address space in which the program will run.
+> - This address space indluces the actual program instructions as well as any required data.
+> - Three segment types are created: `.text` (read-only), `.bss` (writable), `.data` (writable).
+> - The `.bss` and `.data` segments are reserved for global variables.
+> - The `.data` segment contains static initialized data, and `.bss` segment contains uninitialized data, `.text` segment holds the program instructions.
+> - Stack and heap are initialized.
+>
+> ```sh
+> readelf --symbols a.out | sort -k 2 -r
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 1
+
+> **References**
+> - https://linux-mm.org
+---
+</details>
+
+<details>
+<summary>Which direction each of the sections grow in binary files?</summary>
+
+> ```sh
+> ↑ Lower addresses (0x08000000)
+>
+> Shared libraries
+> .text
+> .bss
+> Heap (grows ↓)
+> Stack (grows ↑)
+> env pointer
+> Argc
+>
+> ↓ Higher addresses (0xbfffffff)
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Specify register groups in assembly language?</summary>
+
+> - General purpose registers: `rbp`, `rsp`, `rax`, `rbx`, `rcx`, `rdx`, `rdi`, `rsi`, `r8`, `r9`,...
+> - Segment registers: `cs`, `ds`, `ss`
+> - Control registers: `rip`
+> - Other registers: `rflags`
+
+> **Resources**
+> - The Shellcoder's Handbook: Chapter 1
+
+> **References**
+---
+</details>
+
+## Chapter 2/27 Stack Overflows <sup>(writing)</sup>
+
+<details>
+<summary>When buffers become vulnerable to stack overflows?</summary>
+
+> C has no bounds-checking on buffers.
+>
+> ```c
+> #include <stdio.h>
+>
+> int main()
+> {
+>     int array[5] = {1,2,3,4,5};
+>     printf("%d\n", array[5]);
+> }
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Write past the array bounds in C?</summary>
+
+> ```c
+> int main()
+> {
+>     int array[5], index;
+>     for (index = 0; index != 255; ++index)
+>     {
+>         array[index] = 10;
+>     }
+> }
+> ``````
+>
+> Inspect the core dump for further understanding of what heppened on the
+> stack:
+>
+> ```sh
+> coredumpctl list a.out
+> ``````
+>
+> As shown by the core, machine was trying to execute address
+> `0x0000000a0000000a` which is the value we filled by overwriting on the
+> stack.
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>What values does the calling convention put on the stack?</summary>
+
+> When a function has completed executing its instructions, it returns control
+> to the original function caller.
+>
+> ```c
+> void function(int a, int b)
+> {
+>     int array[5];
+> }
+>
+> main()
+> {
+>     function(1, 2);
+> }
+> ``````
+>
+> The consecutive execution of the program now needs to be interrupted, and the
+> instructions in `function` need to be executed. The first step is to push the
+> arguments for function, `a` and `b`, backward onto the stack. When the
+> arguments are placed onto the stack, the `function` is called, placing the
+> return address, or `RET`, onto the stack. `RET` is the address stored in the
+> instruction pointer (`EIP`) at the time function is called.
+>
+> Before any function instructions can be executed, the prolog is executed. In
+> essence, the prolog stores some values onto the stack so that the function
+> can execute cleanly. The current value of `EBP` is pushed onto the stack,
+> because the value of `EBP` must be changed in order to reference values on
+> the stack. When the function has completed, we will need this stored value of
+> `EBP` in order to calculate address locations in main. Once `EBP` is stored
+> on the stack, we are free to copy the current stack pointer (`ESP`) into
+> `EBP`. Now we can easily reference addresses local to the stack.
+>
+> ||Low Memory Addresses and Top of the Stack|
+> |---|---|
+> |Array||
+> |EBP||
+> |RET||
+> |A||
+> |B||
+> ||High Memory Addresses and Bottom of the Stack|
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>What happens when data is writen past the array boundaries on the stack?</summary>
+
+> When examining the stack, we’re expecting to see the saved `EBP` and the
+> saved return address (`RET`). But after writing past the array, both `EBP`
+> and `RET` values will be overwritten by the value we put past the array.
+>
+> ```c
+> void function(void)
+> {
+>     //                  top of stack, low memory
+>     // 1   x 8 bytes    [index] 0x7fffffffe368
+>     // 30  x 8 bytes    [array] 0x7fffffffe360
+>     // rbp x 8 bytes            0x7fffffffe460
+>     // ret x 8 bytes
+>     //                  bottom of stack, high memory
+>
+>     long array[30];
+>
+>     unsigned long index = 0;
+>
+>     while (index != 33)
+>     {
+>         array[index] = 'C'; // value 0x43
+>         ++index;
+>     }
+> }
+>
+> main()
+> {
+>     function();
+> }
+> ``````
+>
+> We have now successfully overflowed a buffer, overwritten `EBP` and `RET`,
+> and therefore caused our overflowed value to be loaded into `EIP` after the
+> execution reaches to the end of the function.
+>
+> While this overflow can be useful in creating a denial of service, we can
+> move on to controlling the path of execution, or basically, controlling what
+> gets loaded into `EIP`, the instruction pointer.
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Control the execution path of a program vulnerable to buffer overflow?</summary>
+
+> When `RET` is read off the stack and placed into `EIP`, the instruction at
+> the address will be executed. This is how we will control execution.
+>
+> First, we need to decide what address to use. We need to determine the
+> address to jump to, so we will have to go back to gdb and find out what
+> address calls `function`.
+>
+> We then translate the address into shellcode and use `printf` to inject it
+> into the vulnerable program.
+>
+> ```sh
+> printf 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCC\xed\x83\x04\x08' | ./overflow
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Translate a hexadecimal address into shellcode?</summary>
+
+> Assuming the address we want to use is `0x080483ed`.
+>
+> We should separate each byte from end to the beginning separated by `\x`
+> resulting in `\xed\x83\x04\x3d`.
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Get shell access by exploiting a program vulnerable to buffer overflow?</summary>
+
+> We will have to inject actual machine instructions, or opcodes, into the
+> vulnerable input area. To do so, we must convert our shell-spawning code to
+> assembly, and then extract the opcodes from our human-readable assembly. We
+> will then have what is termed shellcode, or the opcodes that can be injected
+> into a vulnerable input area and executed.
+>
+> ```c
+> #include <stdlib.h>
+> #include <unistd.h>
+>
+> int main(void)
+> {
+>     char* name[2];
+>
+>     name[0] = "/bin/sh";
+>     name[1] = 0x0;
+>     execve(name[0], name, 0x0);
+>     exit(0);
+> }
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Inject an already prepared shellcode into a process?</summary>
+
+> ```c
+> char* shellcode = "\xff\xff\xfe\xf4\xe8\xff\x31\x48\x08\xec\x83\x48";
+> // shellcode for exit(0)
+>
+> int main(void)
+> {
+>     int *ret; // empty pointer sitting on stack after (caller address)
+>
+>     ret = (int *)&ret + 6;
+>     // \          \____________ address of ret + 6 becomes the address of (caller) on stack
+>     //  \______________________ put address of (caller) on ret to have access
+>
+>     (*ret) = (int)shellcode; // replace address of (caller) with address of shellcode
+>     // executes shellcode
+> }
+> ``````
+
+> **Resources**
+> - The Shellcoder's Handbook - Chapter 2
+
+> **References**
+---
+</details>
+
+## Chapter 3/27 Shellcode
+## Chapter 4/27 Introduction to Format String Bugs
+## Chapter 5/27 Introduction to Heap Overflows
+## Chapter 6/27 The Wild World of Windows
+## Chapter 7/27 Windows Shellcode
+## Chapter 8/27 Windows Overflows
+## Chapter 9/27 Overcoming Filters
+## Chapter 10/27 Introduction to Solaris Exploitation
+## Chapter 11/27 Advanced Solaris Exploitation
+## Chapter 12/27 OS X Shellcode
+## Chapter 13/27 Cisco IOS Exploitation
+## Chapter 14/27 Protection Mechanisms
+## Chapter 15/27 Establishing a Working Environment
+## Chapter 16/27 Fault Injection
+## Chapter 17/27 The Art of Fuzzing
+## Chapter 18/27 Source Code Auditing: Finding Vulnerabilities in C-Based Language
+## Chapter 19/27 Instrumented Investigation: A Manual Approach
+## Chapter 20/27 Tracing for Vulnerabilities
+## Chapter 21/27 Binary Auditing: Hacking Cloud Source Software
+## Chapter 22/27 Alternative Payload Strategies
+## Chapter 23/27 Writing Exploits that Work in the Wild
+## Chapter 24/27 Attacking Database Software
+## Chapter 25/27 Unix Kernel Overflows
+## Chapter 26/27 Exploiting Unix Kernel Vulnerabilities
+## Chapter 27/27 Hacking the Windows Kernel

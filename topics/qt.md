@@ -13,10 +13,10 @@
 > ./qt*.run
 > ``````
 
-> Origins:
+> **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -30,10 +30,10 @@
 > ${QT_DIR}/MaintenanceTool.exe
 > ``````
 
-> Origins:
+> **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -48,10 +48,10 @@
 > developer can register C++ types with the runtime to interface with the
 > native code. The `qml` tool is a pre-made runtime which is used directly.
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -69,10 +69,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -87,10 +87,10 @@
 > - `Image`
 > - `MouseArea`
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -106,10 +106,10 @@
 > The `Item` element is often used as a container for other elements, similar
 > to the `div` element in HTML.
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
-> References:
+> **References**
 ---
 </details>
 
@@ -123,10 +123,10 @@
 > - **Visual**: `opacity`, `visible`, `clip`, `smooth`
 > - **State**: `states`, `state`, `transitions`
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
-> References:
+> **References**
 ---
 </details>
 
@@ -139,10 +139,10 @@
 > - `visibilitity`
 > - `title`
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -162,10 +162,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
-> References:
+> **References**
 ---
 </details>
 
@@ -180,10 +180,10 @@
 > - `border`: `border.radius`, `border.color`
 > - `radius`
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
-> References:
+> **References**
 ---
 </details>
 
@@ -201,10 +201,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -241,10 +241,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -261,10 +261,10 @@
 > property alias <name>: <reference>
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -278,10 +278,10 @@
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -310,10 +310,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -353,10 +353,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -366,10 +366,10 @@
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
-> References:
+> **References**
 ---
 </details>
 
@@ -397,10 +397,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
-> References:
+> **References**
 ---
 </details>
 
@@ -414,10 +414,10 @@
 > - File-based component
 > -
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 
-> References:
+> **References**
 ---
 </details>
 
@@ -427,10 +427,10 @@
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 
-> References:
+> **References**
 ---
 </details>
 
@@ -462,9 +462,9 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 
-> References:
+> **References**
 ---
 </details>

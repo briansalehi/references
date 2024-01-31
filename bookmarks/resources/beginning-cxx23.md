@@ -1,1 +1,44 @@
-9781484293423.md
+# Beginning C++23: From Novice to Professional
+<img src="../covers/9781484293423.jpg" width="200"/>
+
+## Chapter 1/21 <sup>(writing)</sup>
+
+<details>
+<summary>Use modules to import the entire standard library functionality?</summary>
+
+> ```cpp
+> import std;   // brings the entire standard library
+>
+> int main()
+> {
+>     std::println("C++{}", 23);
+> }
+> ``````
+
+> **Resources**
+> - Beginning C++23: From Novice to Professional - Chapter 1
+
+> **References**
+---
+</details>
+
+## Chapter 2/21
+## Chapter 3/21
+## Chapter 4/21
+## Chapter 5/21
+## Chapter 6/21
+## Chapter 7/21
+## Chapter 8/21
+## Chapter 9/21
+## Chapter 10/21
+## Chapter 11/21
+## Chapter 12/21
+## Chapter 13/21
+## Chapter 14/21
+## Chapter 15/21
+## Chapter 16/21
+## Chapter 17/21
+## Chapter 18/21
+## Chapter 19/21
+## Chapter 20/21
+## Chapter 21/21

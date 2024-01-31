@@ -9,10 +9,10 @@
 > cmake -S ./project -B ./build
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -28,10 +28,10 @@
 > cmake -G <generator-name> <path-to-source>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -47,10 +47,10 @@
 > cmake -G <generator-name> -T <toolset-spec> -A <platform-name> <path-to-source>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -65,10 +65,10 @@
 > cmake -C <initial-cache-script> <path-to-source>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -90,10 +90,10 @@
 > If you omit the type, it will be set to the type of an already existing
 > variable; otherwise, it will be set to `UNINITIALIZED`.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -117,10 +117,10 @@
 > visible in cache variables list unless you specify one of the supported
 > types.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -134,10 +134,10 @@
 > Here, the globbing expression supports the `*` wildcard and any `?` character
 > symbols. Both of the `-U` and `-D` options can be repeated multiple times.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -158,10 +158,10 @@
 > Custom variables that are added manually with the `-D` option won't be
 > visible unless you specify one of the supported types.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -179,10 +179,10 @@
 > Running it in the build tree directory will print additional information
 > about the cache variables and build messages from the log files.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -207,10 +207,10 @@
 > * `DEBUG`
 > * `TRACE`
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -220,10 +220,10 @@
 > You can specify this setting permanently in the `CMAKE_MESSAGE_LOG_LEVEL`
 > cache variable.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -246,10 +246,10 @@
 > cmake --log-context <path-to-source>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -267,10 +267,10 @@
 > cmake --trace
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -280,10 +280,10 @@
 > Developers can simplify how users interact with their projects and provide a
 > `CMakePresets.json` file that specifies some defaults.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -296,10 +296,10 @@
 > cmake --list-presets
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -314,10 +314,10 @@
 > the same time, they can be overridden with any arguments that are explicitly
 > passed on the command line.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -329,10 +329,10 @@
 > directory instead: `CMAKE_BINARY_DIR`, `CMAKE_SOURCE_DIR`,
 > `CMAKE_CURRENT_BINARY_DIR`, and `CMAKE_CURRENT_SOURCE_DIR`.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -345,10 +345,10 @@
 > cmake --build <dir> [<options>] [-- <build-tool-options>]
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -363,10 +363,10 @@
 > cmake --build <dir> -- <build-tool-options>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -384,10 +384,10 @@
 > The alternative is to set it with the `CMAKE_BUILD_PARALLEL_LEVEL`
 > environment variable.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -403,10 +403,10 @@
 > cmake --build <dir> --target <target1> -t <target2> ...
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -420,10 +420,10 @@
 > cmake --build <dir> --target clean
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -434,10 +434,10 @@
 > cmake --build <dir> --clean-first
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -452,10 +452,10 @@
 > The same effect can be achieved by setting the `CMAKE_VERBOSE_MAKEFILE`
 > cached variable.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -468,10 +468,10 @@
 > cmake --install <dir> [<options>]
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -490,10 +490,10 @@
 > cmake --install <dir> --config <cfg>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -508,10 +508,10 @@
 > cmake --install <dir> --component <comp>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -526,10 +526,10 @@
 > cmake --install <dir>  --default-directory-permissions <permissions>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -543,10 +543,10 @@
 > cmake --install <dir> --prefix <prefix>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -564,10 +564,10 @@
 > VERBOSE=1 cmake --build <dir>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -580,10 +580,10 @@
 > cmake -D <var>=<value> -P <cmake-script-file> -- <unparsed options>...
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -603,10 +603,10 @@
 > CMake will create `CMAKE_ARGV<n>` variables for all arguments passed to the
 > script (including the `--` token).
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -622,10 +622,10 @@
 > cmake -E <command> [<options>]
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -636,10 +636,10 @@
 > cmake -E
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -653,10 +653,10 @@
 > cmake --help-commands file
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -672,10 +672,10 @@
 > ctest
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -701,10 +701,10 @@
 > `CMakeListst.txt` file from the api directory to perform steps that are
 > specific to the API part of our application.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -719,10 +719,10 @@
 > When running scripts, CMake won't execute any of the usual stages (such as
 > configuration or generation), and it won't use the cache.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -731,10 +731,10 @@
 
 > To use a utility module, we need to call an `include(<MODULE>)` command.
 
-> Origins:
+> **Resources**
 > - Modern CMake for C++ - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 

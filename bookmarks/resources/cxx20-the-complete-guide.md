@@ -89,10 +89,10 @@
 >   corresponding implicit type conversion is defined
 > - may warn if the result of a comparison is not used (compiler dependent)
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -155,10 +155,10 @@
 > reference with `=default`. A friend function might also take both parameters
 > by value.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -203,10 +203,10 @@
 > other way around does not work. Comparison with 0 is always possible and
 > usually easier.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -262,10 +262,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -338,10 +338,10 @@
 > d1 == d2; // OK: only tries operator <=> and Base::operator==
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -388,10 +388,10 @@
 > Unfortunately, the rewritten statement is a better match, because it does not
 > need the implicit type conversion.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -439,10 +439,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -469,10 +469,10 @@
 > print<char>(42);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -538,10 +538,10 @@
 > print.operator()<std::string>("something to see");
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -566,10 +566,10 @@
 >
 > - Using `decltype(auto)` is not allowed.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -587,10 +587,10 @@
 > foo<std::string, long>("hello", 42);  // x has type std::string, y has type long
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -608,10 +608,10 @@
 > void foo(T2 x, T y, T3 z);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -663,10 +663,10 @@
 >
 > For this reason, be careful when mixing template and `auto` parameters.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 - http://wg21.link/p2113r0
 ---
 </details>
@@ -680,10 +680,10 @@
 > - Using concepts
 > - Using `requires` expression
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -707,10 +707,10 @@
 > When raw pointers are passed, the compiler behaves as if the template were
 > not there.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -726,10 +726,10 @@
 > concept is_pointer = std::is_pointer_v<T>;
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -767,10 +767,10 @@
 >
 > The second call delegates the computations of both function templates.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -810,10 +810,10 @@
 > By using concepts, we can even prefer some constraints over others. However,
 > this requires the use of concepts that **subsume** other concepts.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -857,10 +857,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -872,10 +872,10 @@
 > - Using concepts behind parameter types
 > - Specifying trailing requires clause after parameters list
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -899,10 +899,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -927,10 +927,10 @@
 > To check support for comparisons of two objects of the same type, we can use
 > the concept `std::totally_ordered`.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -962,10 +962,10 @@
 > (except when they happen to be implemented as raw pointers, as in the case
 > for type `std::array<>`).
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -976,10 +976,10 @@
 > we only decide for which types the code compiles. Therefore, it does not
 > matter whether we declare the parameters as a value or as a reference.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1009,10 +1009,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1029,10 +1029,10 @@ Next: 3.1.2
 >   jump back and forth, and compute distance.
 > - To be sortable and support comparison operators.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1051,10 +1051,10 @@ Next: 3.1.2
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1063,10 +1063,10 @@ Next: 3.1.2
 
 > Views
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1077,10 +1077,10 @@ Next: 3.1.2
 std::ranges::take(container, 5);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1098,10 +1098,10 @@ std::ranges::take(container, 5);
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1112,10 +1112,10 @@ std::ranges::take(container, 5);
 > std::views::iota(1, 11); // [1,10]
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1136,10 +1136,10 @@ std::ranges::take(container, 5);
 >                    | std::views::take(3);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1149,10 +1149,10 @@ std::ranges::take(container, 5);
 > ```cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 

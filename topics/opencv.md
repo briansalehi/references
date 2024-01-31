@@ -13,10 +13,10 @@
 > - Class `cv::Rect<>`
 > - Class `cv::RotatedRect<>`
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -38,10 +38,10 @@
 > |Cross product|`p1.cross(p2)`|
 > |Query if Point is inside Rect|`p.inside(r)`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -61,10 +61,10 @@
 > |Conjugation|`s.conj()`|
 > |Real test|`s.isReal()`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -83,10 +83,10 @@
 > |Member access|`sz.width` `sz.height`|
 > |Compute area|`sz.area()`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -115,10 +115,10 @@
 > |Compare rectangles for exact quality|`r1 == r2`|
 > |Compare rectangles for inequality|`r1 != r2`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -138,10 +138,10 @@
 > |Member access|`rr.center` `rr.size` `rr.angle`|
 > |Return a list of corners|`rr.points{pts[4]}`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -181,10 +181,10 @@
 > |Solve linear system|`m31f = m33f.solve(rhs31f, method)`|
 > |Per-element multiplication|`m1.mul(m2)`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -203,10 +203,10 @@
 > |Member access|`v4f[i]` `v3w(j)`|
 > |Cross-product|`v3f.cross(u3f)`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -228,10 +228,10 @@
 > |Member access|`z1.re` `z2.im`|
 > |Complex conjugate|`z2 = z1.conj()`|
 
-> Origins:
+> **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 

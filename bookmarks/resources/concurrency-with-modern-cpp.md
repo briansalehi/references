@@ -16,10 +16,10 @@ Nothing to import.
 > - **Partial ordering of operations**: sequences of operations that must not be reordered.
 > - **Visible effects** of operations guarantees when operations on shared variables are visible to other threads.
 
-> Origins:
+> **Resources**
 > - Concurrency with Modern C++ - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -35,10 +35,10 @@ Nothing to import.
 > 3. Aquire-release Semantic
 > 4. Relaxed Semantic
 
-> Origins:
+> **Resources**
 > - Concurrency with Modern C++ - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -98,7 +98,7 @@ Nothing to import.
 > Origin:
 > - 2.3.2.1
 
-> References:
+> **References**
 > - [std::atomic\_flag](https://en.cppreference.com/w/cpp/atomic/atomic_flag)
 ---
 </details>
@@ -143,7 +143,7 @@ Nothing to import.
 > Origin:
 > - 2.3.2.1.1
 
-> References:
+> **References**
 > - [std::mutex](https://en.cppreference.com/w/cpp/thread/mutex)
 ---
 </details>
@@ -212,10 +212,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Concurrency with Modern C++ - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 

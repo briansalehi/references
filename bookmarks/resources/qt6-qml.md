@@ -23,10 +23,10 @@ Nothing to import.
 > import QtQuick
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -37,10 +37,10 @@ Nothing to import.
 > `id` is a very special property-like value, it is used to reference elements
 > inside a QML file (document). An `id` needs to be unique inside a document.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -60,10 +60,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -82,10 +82,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -111,10 +111,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -134,10 +134,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -154,10 +154,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -171,10 +171,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -195,10 +195,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -209,10 +209,10 @@ Nothing to import.
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -232,10 +232,10 @@ Nothing to import.
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 4
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 ---
 </details>
@@ -249,10 +249,10 @@ Nothing to import.
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 ---
 </details>
@@ -276,10 +276,10 @@ Nothing to import.
 >   states, current `state` property, and the `transitions` list property to
 >   animate state changes.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 ---
 </details>
@@ -296,10 +296,10 @@ Nothing to import.
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -335,10 +335,10 @@ Make rectangle edges curved?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -377,10 +377,10 @@ Create an image element to show some image?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -416,10 +416,10 @@ Export properties of a component to be used as an API?
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -430,10 +430,10 @@ Export properties of a component to be used as an API?
 > antialiasing: true
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -451,10 +451,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -535,10 +535,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -613,10 +613,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -680,10 +680,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -741,10 +741,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -827,10 +827,10 @@ Export properties of a component to be used as an API?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -841,10 +841,10 @@ Export properties of a component to be used as an API?
 
 > An element has 6 major anchor lines, `top` , `bottom` , `left` , `right` , `horizontalCenter` , `verticalCenter` .
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -853,10 +853,10 @@ Export properties of a component to be used as an API?
 
 > There is the `baseline` anchor for text in `Text` elements.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -868,10 +868,10 @@ Export properties of a component to be used as an API?
 > `horizontalCenter` , `verticalCenter` and `baseline` they are called
 > **offsets**.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -884,10 +884,10 @@ Export properties of a component to be used as an API?
 > - `inputMask`
 > - `echoMode`
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -950,10 +950,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -994,10 +994,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1009,10 +1009,10 @@ Get a line of text from user?
 > The attached property `Keys` allows executing code based on certain key
 > presses.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1048,10 +1048,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1064,10 +1064,10 @@ Get a line of text from user?
 > in detail in the [Compiling QML Ahead of
 > Time](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation).
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1082,10 +1082,10 @@ Get a line of text from user?
 > interpolation curve from one value to another value when a property value
 > changes.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1141,10 +1141,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1156,10 +1156,10 @@ Get a line of text from user?
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1183,10 +1183,10 @@ Get a line of text from user?
 > - `PathAnimation`: animates an item alongside a path.
 > - `Vector3dAnimation`: animates changes in QVector3d values
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1201,10 +1201,10 @@ Get a line of text from user?
 > - `PropertyAction`: specifies immediate property changes during animation.
 > - `ScriptAction`: defines scripts to be run during an animation.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1218,10 +1218,10 @@ Get a line of text from user?
 > - **Standalone Animation:** runs when the animation is explicitly started
 >   using `start()` or `running` is set to true.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1234,10 +1234,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1257,10 +1257,10 @@ Get a line of text from user?
 > - `Easing.InOutBack`
 > - `Easing.InOutBounce`
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1310,10 +1310,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1326,10 +1326,10 @@ Get a line of text from user?
 > `easing.overshoot` , and `easing.period` properties, which allow you to
 > fine-tune the behavior of particular easing curves.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 > - [Easing Table](http://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop)
 ---
 </details>
@@ -1350,10 +1350,10 @@ Get a line of text from user?
 > These grouped animations are animations themselves and can be used exactly as
 > such.
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1416,10 +1416,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1429,10 +1429,10 @@ Get a line of text from user?
 > ```qml
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1486,10 +1486,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1547,10 +1547,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1578,10 +1578,10 @@ Get a line of text from user?
 > ]
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1596,10 +1596,10 @@ Get a line of text from user?
 > - `QtQuick.Controls.Material`
 > - `QtQuick.Controls.Universal`
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1618,10 +1618,10 @@ Get a line of text from user?
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Qt6 QML - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 

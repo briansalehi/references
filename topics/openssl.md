@@ -12,10 +12,10 @@
 > openssl genrsa -aes256 -out ca-key.pem 4096
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
-> References:
+> **References**
 ---
 </details>
 
@@ -28,10 +28,10 @@
 > openssl req -new -x509 -sha256 -days 3650 -key ca-key.pem -out ca.pem
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
-> References:
+> **References**
 ---
 </details>
 
@@ -42,10 +42,10 @@
 > openssl x509 -in ca.pem -text
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
-> References:
+> **References**
 ---
 </details>
 
@@ -57,10 +57,10 @@
 > openssl req -new -sha256 -subj "/CN=customsubject" -key cert-key.pem -out cert.csr
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
-> References:
+> **References**
 ---
 </details>
 
@@ -79,9 +79,9 @@
 > cat ca.pem >> fullchain.cert
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
-> References:
+> **References**
 ---
 </details>

@@ -39,10 +39,10 @@
 >     nasm -f elf64 -g -F dwarf sample.asm -l sample.lst
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 > - [nasm reference manual](https://www.nasm.us/doc/)
 > - [gcc reference manual](https://gcc.gnu.org/onlinedocs/)
 > - [make reference manual](https://www.gnu.org/software/make/manual/html_node/)
@@ -58,10 +58,10 @@
 > gdb --quiet executable
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 > - [GDB User Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/)
 ---
 </details>
@@ -75,10 +75,10 @@
 > `help list` or `h l`
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -90,10 +90,10 @@
 > set listsize 20
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -107,10 +107,10 @@
 > help set disassembly-flavor
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -121,10 +121,10 @@
 > echo 'set disassembly-flavor intel' >> $HOME/.gdbinit
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -137,10 +137,10 @@
 > help disassemble
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -155,10 +155,10 @@
 > help x
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -170,10 +170,10 @@
 > help break
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -185,10 +185,10 @@
 > help run
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -202,10 +202,10 @@
 > help info all-registers
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -223,10 +223,10 @@
 > help info source
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -242,10 +242,10 @@
 > help delete breakpoint
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -262,10 +262,10 @@
 > help finish
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -277,10 +277,10 @@
 > help print
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -292,10 +292,10 @@
 > help tui
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -308,10 +308,10 @@
 > readelf --file-header ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -322,10 +322,10 @@
 > readelf --symbols ./program | grep -E 'main|start|Num:.*' --color
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -336,10 +336,10 @@
 > readelf --symbols ./program | sort -k 2 -r
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -350,10 +350,10 @@
 
 >
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
-> References:
+> **References**
 > - [IEEE-754](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/)
 ---
 </details>
@@ -368,10 +368,10 @@
 >     O_CREATE equ 00000100q
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -384,10 +384,10 @@
 > 2000000h
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
-> References:
+> **References**
 ---
 </details>
 
@@ -413,10 +413,10 @@
 > * r14
 > * r15
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -425,10 +425,10 @@
 
 > `rip`
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -445,10 +445,10 @@
 > Direction|DF|10|Direction of string operations (increment or decrement)
 > Overflow|OF|11|Previous instruction resulted in overflow
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -459,10 +459,10 @@
 > `ymm`
 > `zmm`
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -473,10 +473,10 @@
 
 > `/usr/include/asm/unistd_64.h`
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -495,10 +495,10 @@
 >     syscall
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -513,10 +513,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -554,10 +554,10 @@
 >     syscall
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -569,10 +569,10 @@
 >     word_array times 5 dw 0 ; array of 5 words containing 0
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -587,10 +587,10 @@
 >     qvar resq 100
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -643,10 +643,10 @@
 >     syscall
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -687,10 +687,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -730,10 +730,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -773,10 +773,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -825,10 +825,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -853,10 +853,10 @@
 > 0   1         11    12                                                 63
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -889,10 +889,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -925,10 +925,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -956,10 +956,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1018,10 +1018,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 16
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1056,10 +1056,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1091,10 +1091,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1159,10 +1159,10 @@
 > info rflags
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1216,10 +1216,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1273,10 +1273,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1312,10 +1312,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1383,10 +1383,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1409,10 +1409,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1451,10 +1451,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1475,10 +1475,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1527,10 +1527,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1620,10 +1620,10 @@
 >         ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1683,10 +1683,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1791,10 +1791,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1820,10 +1820,10 @@
 >     ...
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1868,10 +1868,10 @@
 > ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 22
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1884,10 +1884,10 @@
 > assembly is not advices. There will be no error checking on inline assembly
 > code.
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1912,10 +1912,10 @@
 > gcc -o program main.c -masm=intel -no-pie
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1967,10 +1967,10 @@
 > r -> any register
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2017,10 +2017,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 18
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2048,10 +2048,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2080,10 +2080,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2109,10 +2109,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2159,10 +2159,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2243,10 +2243,10 @@
 >         ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2258,10 +2258,10 @@
 > * `rdi`: argc or number of arguments
 > * `rsi`: argv or address of array each, cell is an 8bytes of address to an argument string
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2298,10 +2298,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2316,10 +2316,10 @@
 > x/s <address where the pointer in rdi points to + 16>
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2330,10 +2330,10 @@
 
 > `/usr/include/asm-generic/fcntl.h`
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2411,10 +2411,10 @@
 >     %ENDIF
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2471,10 +2471,10 @@
 >     %ENDIF
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2531,10 +2531,10 @@
 >     %ENDIF
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2571,10 +2571,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2707,10 +2707,10 @@
 >     ret
 > ``````
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2723,10 +2723,10 @@
 > * ...
 > * xmm15
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
-> References:
+> **References**
 > - https://en.wikipedia.org/wiki/Flynn's_taxonomy
 ---
 </details>
@@ -2739,10 +2739,10 @@
 > Scalar data means just one value.
 > Packed data means multiple values related to each other.
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2755,10 +2755,10 @@
 > There is also **AVX-512** which provides 512 bits registers and are called
 > `zmm` registers.
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2768,10 +2768,10 @@
 > Data in section `.data` and `.bss` should be aligned on a 16-byte border so
 > that registers can be filled with data once for each block of data.
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2784,10 +2784,10 @@
 > For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**,
 > data needs to be aligned on a 64 bytes border.
 
-> Origins:
+> **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
-> References:
+> **References**
 ---
 </details>
 

@@ -7,10 +7,10 @@
 
 > https://pg-sql.com
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -23,10 +23,10 @@
 > create table cities (name varchar(50), country varchar(50), population int, area int);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -39,10 +39,10 @@
 >        ('Munich', 'Germany', 8000000, 20000);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -54,10 +54,10 @@
 > select name, country from cities;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -81,10 +81,10 @@
 > select name, population / area from cities;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -95,10 +95,10 @@
 > select name, population / area as density from cities;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -116,10 +116,10 @@
 > select concat(firstname, ' ', lastname) as fullname from staff;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -134,10 +134,10 @@
 > select name, area from cities where area > 40000;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -153,10 +153,10 @@
 > The source `from` would be read first. Then, the filtering `where` reduces
 > the results. Finally, the columns would be selected.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -167,10 +167,10 @@
 > select name, country from cities where country in ('USA', 'Germany', 'France');
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -181,10 +181,10 @@
 > select name, country from cities where country not in ('USA', 'Germany', 'France');
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -203,10 +203,10 @@
 > - exists in list `in`
 > - not exists in list `not in`
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -224,10 +224,10 @@
 > select device, manufacturer from devices where country = 'USA' and manufacturer = 'ASUS';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -240,10 +240,10 @@
 > select name, country, population / area as density from cities where population / area > 40000;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -256,10 +256,10 @@
 > update cities set population = 20000000 where name = 'Tehran';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -272,10 +272,10 @@
 > delete from cities where name = 'Tehran';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -286,10 +286,10 @@
 > delete from cities;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -305,10 +305,10 @@
 > - many to one
 > - many to many
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -323,10 +323,10 @@
 > - Either an integer or a UUID
 > - Will never change
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -343,10 +343,10 @@
 > )
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -361,10 +361,10 @@
 > - Exactly equal to the primary key of the referenced row
 > - Will change if the relationship changes
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -379,10 +379,10 @@
 > )
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -400,10 +400,10 @@
 > insert into photos (url, user_id) values ('https://cdn1.example.com/image1.jpg', NULL);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -418,10 +418,10 @@
 > - `on delete set null`: set the foreign key value to NULL
 > - `on delete set default`: set the forign key value to a default value
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -439,10 +439,10 @@
 > )
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -457,10 +457,10 @@
 > join photos on users.id = photos.user_id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -477,10 +477,10 @@
 > )
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -523,10 +523,10 @@
 > full join photos on photos.user_id = users.id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -540,10 +540,10 @@
 > where photos.views > 2000;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -558,10 +558,10 @@
 > - Done by using the 'GROUP BY' keyword
 > - Visualizing the result is key to use
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -572,10 +572,10 @@
 > 2. Find the set of all unqiue values in that column
 > 3. Take each record and assign to a group based on grouped unique values
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -588,10 +588,10 @@
 > group by user_id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -619,10 +619,10 @@
 > having count(*) > 2;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -635,10 +635,10 @@
 > join books on authors.
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -650,10 +650,10 @@
 > - Reduces many values down to one
 > - Done by using aggregate functions
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -667,10 +667,10 @@
 > - `max()`
 > - `sum()`
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -685,10 +685,10 @@
 > group by user_id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -705,10 +705,10 @@
 > group by user_id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -723,10 +723,10 @@
 > group by photo_id;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -738,10 +738,10 @@
 > ```sql
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -765,10 +765,10 @@
 > order by price desc;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -781,10 +781,10 @@
 > order by price asc, weight desc;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -801,10 +801,10 @@
 > limit 10;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -814,10 +814,10 @@
 > `limit` clause goes at the end of query string after `group by` clause if
 > exists, and before `offset`.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -834,10 +834,10 @@
 > offset 40;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -846,10 +846,10 @@
 
 > At the end, after `sort by`, `group by`, `having`, and `limit` clauses.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -866,10 +866,10 @@
 > *Find the 4 products with the highest price, and the 4 products with the
 > highest price/weight ratio*.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -878,10 +878,10 @@
 
 > All columns of queries should match.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -906,10 +906,10 @@
 >
 > To retrieve duplicates use `union all` clause.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -927,10 +927,10 @@
 > select * from products;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -947,10 +947,10 @@
 >
 > Use `intersect all` to have duplicates appearing in both sides.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -967,10 +967,10 @@
 >
 > Above clause removes duplicates. Use `except all` to also show duplicates.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -990,10 +990,10 @@
 > where price > (select max(price) from products where manufacturer = 'Samsung');
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1007,10 +1007,10 @@
 > from products;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1025,10 +1025,10 @@
 > where price_weight_ratio > 5;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1054,10 +1054,10 @@
 > );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1068,10 +1068,10 @@
 > alter table products alter column price set not null;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1084,10 +1084,10 @@
 > update table products set price = 0 where price is null;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1100,10 +1100,10 @@
 > - Check if the value is unique in its column (unique)
 > - Check if the value is within desired range (comparison operators)
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1121,10 +1121,10 @@
 > );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1135,10 +1135,10 @@
 > alter table products alter column price set default 0;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1156,10 +1156,10 @@
 > );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1170,10 +1170,10 @@
 > alter table products add unique (name);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1183,10 +1183,10 @@
 > ```sql
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1205,10 +1205,10 @@ create table products (
 ):
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1219,10 +1219,10 @@ create table products (
 > alter table products add unique(name, price);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1240,10 +1240,10 @@ create table products (
 > );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1254,10 +1254,10 @@ create table products (
 > alter table products add check(price > 0);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1276,10 +1276,10 @@ create table products (
 );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1296,10 +1296,10 @@ create table products (
 > - quickdatabasediagrams.com
 > - ondras.zarovi.cz/sql/demo
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1318,10 +1318,10 @@ create table products (
 > );
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 16
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1339,10 +1339,10 @@ create table products (
 > show data_directory;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1353,10 +1353,10 @@ create table products (
 > select oid, datname from pg_database;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1367,10 +1367,10 @@ create table products (
 > select * from pg_class;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1381,10 +1381,10 @@ create table products (
 > - **Block** or **Page**: 8KB chunks of heap file each storing some number of rows.
 > - **Tuple** or **Item**: Individual row from the table.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1400,10 +1400,10 @@ create table products (
 > |Data for tuple 2|
 > |Data for tuple 1|
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
-> References:
+> **References**
 > - https://www.postgresql.org/docs/current/storage-page-layout.html
 ---
 </details>
@@ -1415,10 +1415,10 @@ create table products (
 
 > Data structure that efficiently tells us what block a record is stored at.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1429,10 +1429,10 @@ create table products (
 > create index users_username_idx on users(username);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1443,10 +1443,10 @@ create table products (
 > drop index users_username_idx;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1457,10 +1457,10 @@ create table products (
 > explain analyze select * from users where username = 'briansalehi';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1473,10 +1473,10 @@ create table products (
 > select pg_size_pretty(pg_relation_size('users'));
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1487,10 +1487,10 @@ create table products (
 > select pg_size_pretty(1024);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1504,10 +1504,10 @@ create table products (
 > - GIN
 > - BRIN
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1516,10 +1516,10 @@ create table products (
 
 > When primary key exists, and when a column has unique constraint on it.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1530,10 +1530,10 @@ create table products (
 > select relname from pg_class where relkind = 'i';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1547,10 +1547,10 @@ create table products (
 > |Root Page|
 > |Leaf Page|
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1561,10 +1561,10 @@ create table products (
 > create extension pageinspect;
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1575,10 +1575,10 @@ create table products (
 > select root from bt_metap('users_username_idx');
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1591,10 +1591,10 @@ create table products (
 > select * from bt_page_itesm('users_username_idx', 3);
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1607,10 +1607,10 @@ create table products (
 > select ctid, * from users where username = 'briansalehi';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1620,10 +1620,10 @@ create table products (
 > The first row points to the first item of the next page for performance
 > reasons.
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1635,10 +1635,10 @@ create table products (
 > 3. Planning (Planner)
 > 4. Executing (Executor)
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1648,10 +1648,10 @@ create table products (
 > - `explain`: build a query plan and display info about it
 > - `explain analyze`: build a query plan, run it, and info about it
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1664,10 +1664,10 @@ create table products (
 > select * from pg_stats where tablename = 'users';
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1685,10 +1685,10 @@ create table products (
 > = cost
 > ``````
 
-> Origins:
+> **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 25
 
-> References:
+> **References**
 ---
 </details>
 

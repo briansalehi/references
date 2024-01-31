@@ -9,10 +9,10 @@
 > touch ~/.tmux.conf
 > ``````
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 > - [tmux wiki](https://github.com/tmux/tmux/wiki)
 ---
@@ -28,10 +28,10 @@
 > set-option -g prefix2 C-f
 > ``````
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 ---
 </details>
@@ -49,10 +49,10 @@
 >
 > Users attach to the tmux server by starting a client.
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 ---
 </details>
@@ -68,10 +68,10 @@
 >
 > Shortcut: `C-s`
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 ---
 </details>
@@ -85,10 +85,10 @@
 >
 > Shortcut: `C-c`
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 ---
 </details>
@@ -100,10 +100,10 @@
 > - vertically split by `C-%`
 > - horizontally split by `C-"`
 
-> Origins:
+> **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
-> References:
+> **References**
 > - [tmux(1)](https://man.openbsd.org/tmux)
 ---
 </details>

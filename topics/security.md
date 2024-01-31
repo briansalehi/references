@@ -10,10 +10,10 @@
 > 3. Assembly
 > 4. Linking
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -38,10 +38,10 @@
 > Where `-E` tells gcc to stop after preprocessing and `-P` causes the compiler
 > to omit debugging information so that the output is a bit cleaner.
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -53,10 +53,10 @@
 > gcc -masm att
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -67,10 +67,10 @@
 > gcc -g -O0 -S -masm=intel -o main.s main.c
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -82,10 +82,10 @@
 > file main.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -97,10 +97,10 @@
 > position-independent (relocatable) executables, which you can call them apart
 > from ordinary shared libraries because they have an entry point address.
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -111,10 +111,10 @@
 > readelf --syms a.out
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -126,10 +126,10 @@
 > information is usually embedded within the binary, while PDB comes in the
 > form of a separate symbol file.
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -138,10 +138,10 @@
 
 > `libbfd` & `libdwarf`.
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -153,10 +153,10 @@
 > readelf --syms a.out
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -168,10 +168,10 @@
 > objdump -M att
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -184,10 +184,10 @@
 > objdump -sj .rodata example.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -198,10 +198,10 @@
 > objdump -M intel -d example.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -212,10 +212,10 @@
 > readelf --relocs example.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -234,10 +234,10 @@
 > readelf --relocs example.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -248,10 +248,10 @@
 > readelf --sections example.o
 > ``````
 
-> Origins:
+> **Resources**
 > - Practical Binary Analysis - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 

@@ -1,1 +1,15 @@
-9781801075039.md
+# Linux Kernel Debugging
+<img src="../covers/9781801075039.jpg" width="200"/>
+
+## Chapter 1/12
+## Chapter 2/12
+## Chapter 3/12
+## Chapter 4/12
+## Chapter 5/12
+## Chapter 6/12
+## Chapter 7/12
+## Chapter 8/12
+## Chapter 9/12
+## Chapter 10/12
+## Chapter 11/12
+## Chapter 12/12

@@ -8,10 +8,10 @@
 > **Redundant Array of Independent Drives** is a mechanism in which multiple
 > disks are combined for more reliablity and speed.
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -29,10 +29,10 @@
 > **RAID 6**
 > **RAID 10**
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -45,10 +45,10 @@
 > mdadm --create --verbose /dev/md0 --level 5 --raid-devices 3 /dev/sda /dev/sdb /dev/sdc
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -62,10 +62,10 @@
 > watch -n1 cat /proc/mdstat
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -77,10 +77,10 @@
 > mdadm --detail /dev/md0
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -93,10 +93,10 @@
 > mdadm --detail --scan >> /etc/mdadm.conf
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -112,10 +112,10 @@
 > mdadm --monitor --scan --test
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -126,10 +126,10 @@
 > mdadm --monitor --stop
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -142,10 +142,10 @@
 > mdadm --stop /dev/md0
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -156,10 +156,10 @@
 > mdadm --assemble /dev/md0 /dev/sda /dev/sdb /dev/sdc
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -175,10 +175,10 @@
 > mdadm --detail --scan >> /etc/mdadm.conf
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>
 
@@ -192,9 +192,9 @@
 > mdadm --manage /dev/md0 --add /dev/sdd
 > ``````
 
-> Origins:
+> **Resources**
 > - mdadm(1)
 
-> References:
+> **References**
 ---
 </details>

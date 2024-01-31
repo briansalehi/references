@@ -19,10 +19,10 @@
 > valgrind ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -33,10 +33,10 @@
 > valgrind --track-origins ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -47,10 +47,10 @@
 > valgrind --leak-check full ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Detecting Memory Leaks With Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -65,10 +65,10 @@
 > valgrind --tool callgrind ./program
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -78,10 +78,10 @@
 > ```sh
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -92,10 +92,10 @@
 > kcachegrind callgrind-dump.out.123
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: C++ Weekly - Ep 86 - Valgrind
 
-> References:
+> **References**
 ---
 </details>
 
@@ -117,9 +117,9 @@
 > (gdb) help helgrind
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Debugging memory issues with Valgrind and GDB - DevConf.CZ 2023
 
-> References:
+> **References**
 ---
 </details>

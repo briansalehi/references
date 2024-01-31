@@ -10,10 +10,10 @@
 > 3. Writing Embedded Applications
 > 4. Debugging and Optimizing Performance
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -26,10 +26,10 @@
 > 4. Root filesystem
 > 5. Embedded Applications
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -42,10 +42,10 @@
 > 4. Serial port
 > 5. Debugging interface (e.g. JTAG)
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -57,10 +57,10 @@
 > - Another alternative to build toolchains is
 >   [crosstool-NG](https://crosstool-ng.github.io).
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -74,10 +74,10 @@
 > * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
 > * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -90,10 +90,10 @@
 > * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`,
 >   `musleabihf`)
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -104,10 +104,10 @@
 > gcc -dumpmachine
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -118,10 +118,10 @@
 > ${CROSS_COMPILE}gcc -v
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -132,10 +132,10 @@
 > ${CROSS_COMPILE}gcc -mcpu=cortex-a5 main.c -o app
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -146,10 +146,10 @@
 > ${CROSS_COMPILE}gcc --target-help
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -160,10 +160,10 @@
 > ${CROSS_COMPILE}gcc -print-sysroot
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -182,10 +182,10 @@
 > ./ct-ng --version
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -198,10 +198,10 @@
 > ./ct-ng list-samples
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -215,10 +215,10 @@
 > ./ct-ng show-arm-unknown-linux-gnueabi
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -246,10 +246,10 @@
 > ./ct-ng build
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -272,10 +272,10 @@
 > ./ct-ng build
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -296,10 +296,10 @@
 > ./ct-ng build
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -313,10 +313,10 @@
 > * libpthread
 > * librt
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -327,10 +327,10 @@
 > ${CROSS_COMPILE}readelf -a app | grep "Shared library"
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -341,10 +341,10 @@
 > ${CROSS_COMPILE}readelf -a app | grep "program interpreter"
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -355,10 +355,10 @@
 > ${CROSS_COMPILE}gcc -static main.c -o app
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -371,10 +371,10 @@
 > ls -l usr/lib/libc.a
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -388,10 +388,10 @@
 > ${CROSS_COMPILE}gcc main.c -ltest -L../libs -I../include -o app
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -407,10 +407,10 @@
 > ${CROSS_COMPILE}readelf -a app | grep interpreter
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -422,10 +422,10 @@
 > libjpeg.so.8
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -445,10 +445,10 @@
 > make CROSS_COMPILE=armv6-rpi-linux-gnueabihf-
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -459,10 +459,10 @@
 > CC=armv6-rpi-linux-gnueabihf-gcc ./configure --host=armv6-rpi-linux-gnueabihf
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -480,10 +480,10 @@
 > armv6-rpi-linux-gnueabihf main.c -o sqlite-test -lsqlite3
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -498,10 +498,10 @@
 > ${CROSS_COMPILE}gcc $(pkg-config sqlite3 --cflags --libs) main.c -o sqlite-test
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -515,10 +515,10 @@
 > cmake --build build --parallel 8 --target install
 > ``````
 
-> Origins:
+> **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -537,10 +537,10 @@
 >
 > `Initial Release -> Stable Release -> Community -> End of Life`
 
-> Origins:
+> **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -551,10 +551,10 @@
 > - Architecture to use
 > - License restrictions
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -567,10 +567,10 @@
 > - List of licenses of packages included in the rootfs
 > - The source for distribution to comply on the copyleft requirements
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -580,11 +580,11 @@
 > Poky is the default Yocto Project reference distribution, which uses
 > OpenEmbedded build system technology.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -598,9 +598,9 @@
 > distributed open source projects to form a fully customizable, complete, and
 > coherent Linux software stack.
 
-> Origins:
+> **Resources**
 
-> References:
+> **References**
 ---
 </details>
 
@@ -617,11 +617,11 @@
 > |Poky Distribution Metadata (meta-poky)|
 > |Yocto Project Reference BSP (meta-yocto-bsp)|
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -639,11 +639,11 @@
 >
 > The source code is in the `bitbake` subdirectory of Poky.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -659,10 +659,10 @@
 > The OpenEmbedded Core houses its metadata inside the `meta` subdirectory of
 > Poky.
 
-> Origins:
+> **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -677,11 +677,11 @@
 > source code and other tasks related to a specific software application or
 > library.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -698,11 +698,11 @@
 >   reference hardware for the Yocto Project development and Quality Assurance
 >   (QA) process.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -725,10 +725,10 @@
 > - **Legal authority**
 >   + License management
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 

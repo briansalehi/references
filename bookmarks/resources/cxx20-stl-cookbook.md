@@ -1,1 +1,182 @@
-9781803248714.md
+# C++20 STL Cookbook
+<img src="covers/9781803248714.jpg" width="200"/>
+
+## Chapter 1/11 <sup>(writing)</sup>
+
+<details>
+<summary>Generate a string formatted with an integral value?</summary>
+
+> ```cpp
+> #include <string>
+> #include <format>
+>
+> int main()
+> {
+>     std::string date = std::format("{}/{}/{}", 2023, 10, 1);
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Specify the order of replacement values in a formatted string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <format>
+>
+> int main()
+> {
+>     std::string date = std::format("{0}/{1}/{2}", 2023, 10, 1);
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Align values to left, center, and right in a formatted string?</summary>
+
+> ```cpp
+> #include <string>
+> #include <format>
+>
+> int main()
+> {
+>     std::string date = std::format("{:.^15}", "message");
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Implement a simple <code>print()</code> function taking format parameters?</summary>
+
+> ```cpp
+> #include <string>
+> #include <format>
+> #include <cstdio>
+>
+> template<typename... Args>
+> void print(std::string_view const fmt_str, Args&&... args)
+> {
+>     auto fmt_args{std::make_format_args(args...)};
+>     std::string out{vformat(fmt_str, fmt_args)};
+>     fputs(out.c_str(), stdout);
+> }
+>
+> int main()
+> {
+>     print("message\n");
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Enable formatting for user defined types?</summary>
+
+> ```cpp
+> #include <string>
+> #include <string_view>
+> #include <format>
+> #include <cstdio>
+>
+> class Data
+> {
+>     std::string buffer;
+> };
+>
+> template <>
+> struct std::formatter<Data>
+> {
+>     template<typename Context>
+>     constexpr auto parse(Context& ctx)
+>     {
+>         return ctx.begin();
+>     }
+>
+>     template<typename Format>
+>     auto format(Data const& d, Format& ctx)
+>     {
+>         return formal_to(ctx.out(), "{}", d.buffer);
+>     }
+> };
+>
+> template<typename... Args>
+> void print(std::string_view const fmt_str, Args&&... args)
+> {
+>     auto fmt_args{std::make_format_args(args...)};
+>     std::string out{vformat(fmt_str, fmt_args)};
+>     fputs(out.c_str(), stdout);
+> }
+>
+> int main()
+> {
+>     Data data;
+>     print("{}", data);
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+<details>
+<summary>Evaluate string and vector operations at compile time?</summary>
+
+> C++20 allows the use of constexpr in several new contexts.
+>
+> ```cpp
+> constexpr auto use_string()
+> {
+>     std::string buffer{"sample"};
+>     return buffer.size();
+> }
+>
+> constexpr auto use_vector()
+> {
+>     std::vector<int> buffer{1,2,3,4,5};
+>     return std::accumulate(buffer.begin(), buffer.end(), 0);
+> }
+> ``````
+
+> **Resources**
+> - C++20 STL Cookbook - Chapter 1
+
+> **References**
+---
+</details>
+
+## Chapter 2/11
+## Chapter 3/11
+## Chapter 4/11
+## Chapter 5/11
+## Chapter 6/11
+## Chapter 7/11
+## Chapter 8/11
+## Chapter 9/11
+## Chapter 10/11
+## Chapter 11/11

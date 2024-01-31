@@ -9,10 +9,10 @@
 > - Architecture to use
 > - License restrictions
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -25,10 +25,10 @@
 > - List of licenses of packages included in the rootfs
 > - The source for distribution to comply on the copyleft requirements
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -39,10 +39,10 @@
 > a set of files to provide the information required for the build system to
 > work.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -57,10 +57,10 @@
 >   and run the tasks based on the information gathered from the metadata
 >   files.
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -79,10 +79,10 @@
 >   configure the build system to fulfill Yocto Project needs and includes a
 >   set of board support packages (BSP).
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -111,10 +111,10 @@ Nothing to import.
 > - **Legal authority**
 >   + License management
 
-> Origins:
+> **Resources**
 > - Heading for the Yocto Project - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 

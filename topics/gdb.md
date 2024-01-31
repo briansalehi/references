@@ -22,10 +22,10 @@
 >
 > You can use the readelf utility to look at the debug info.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -50,10 +50,10 @@
 >
 > `ctrl+l` to redraw the screen reset in TUI mode.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -64,10 +64,10 @@
 > use `r` to `run`, `c` to `continue`, `s` for `step`, and `q` to leave
 > SingleKey mode, without pressing enter.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #65
 
-> References:
+> **References**
 ---
 </details>
 
@@ -76,10 +76,10 @@
 
 > `ctrl-x 2`
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -91,10 +91,10 @@
 > (gdb) focus cmd
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -106,10 +106,10 @@
 > - `ctrl-p` for previous commands
 > - `ctrl-n` for next commands
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -121,10 +121,10 @@
 > - `start`: starts debugging session by running program line-by-line.
 > - `run`: starts debugging session running program as usual.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -143,10 +143,10 @@
 > (gdb) attach 12345
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -162,10 +162,10 @@
 > After detaching, the program will continue its normal flow as there was no
 > debugger attached to it at first place.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -178,10 +178,10 @@
 > will be displayed enter `show listsize`. To adjust the lines of source code
 > displayed enter `set listsize 20`.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -196,10 +196,10 @@
 > 4. Read-only watchpoint: `rwatch foo`
 > 5. Access watchpoints: `awatch foo`
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -210,10 +210,10 @@
 > (gdb) info breakpoints
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -229,10 +229,10 @@
 > (gdb) break source.cpp:main+50
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -242,10 +242,10 @@
 > Use `start` to put temporary breakpoint on main and then run the program or
 > `starti` to stop at the very first instruction of the program.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -256,10 +256,10 @@
 > (gdb) rbreak std::sto[ifd]
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -272,10 +272,10 @@
 > (gdb) delete 1
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -289,10 +289,10 @@
 > (gdb) break func(long) if e == 42
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -303,10 +303,10 @@
 > (gdb) break source.cpp:10 if index == 3
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -329,11 +329,11 @@
 > (gdb) run
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #5
 > - GDB Tips by Greg Law - Tip #6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -347,10 +347,10 @@
 > (gdb) disable <breakpoint index>
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -361,10 +361,10 @@
 > (gdb) enable <breakpoint index>
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -377,12 +377,12 @@
 > (gdb) save breakpoints program.gdb
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #13
 > - GDB Tips by Greg Law - Tip #61
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -393,11 +393,11 @@
 > (gdb) source program.gdb
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #61
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -411,10 +411,10 @@
 >
 > Note that lines might have been changed during sessions.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -425,10 +425,10 @@
 
 > `(gdb) watch foo[90].number if bar[90].number == 255`
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -447,11 +447,11 @@
 > (gdb) watch -l $2
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #9
 > - GDB Tips by Greg Law - Tip #10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -466,10 +466,10 @@
 > - `next`: Executes program similar to `step`, but it only continues to the
 >   next line in the current stack frame and will not step into functions.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -488,10 +488,10 @@
 > (gdb) x/2x $rsp
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #63
 
-> References:
+> **References**
 ---
 </details>
 
@@ -519,10 +519,10 @@
 > `continue`, allowing you to travel between breakpoints without having to
 > constantly switch between the threads.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #64
 
-> References:
+> **References**
 ---
 </details>
 
@@ -541,10 +541,10 @@
 > (gdb) bt -1
 > ``````
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #59
 
-> References:
+> **References**
 ---
 </details>
 
@@ -557,10 +557,10 @@
 > coredumpctl list
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -571,10 +571,10 @@
 > coredumpctl dump $PWD/program --output program.core
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -585,10 +585,10 @@
 > (gdb) target core program.core
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -603,10 +603,10 @@
 > (gdb) p variable_causing_trouble
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -619,10 +619,10 @@
 > (gdb) gcore program.core
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
-> References:
+> **References**
 ---
 </details>
 
@@ -635,10 +635,10 @@
 > (gdb) print bag_size
 > ```````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -649,10 +649,10 @@
 > (gdb) whatis random_number
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -665,10 +665,10 @@
 > (gdb) set var random_number = 5
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -681,10 +681,10 @@
 > (gdb) shell pwd
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -711,9 +711,9 @@
 >
 > You can also enable it for all directories with `set auto-load-safe-path /`.
 
-> Origins:
+> **Resources**
 > - GDB Tips by Greg Law - Tip #62
 
-> References:
+> **References**
 ---
 </details>

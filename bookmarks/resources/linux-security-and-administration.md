@@ -12,10 +12,10 @@ Nothing to import.
 
 > Using `sudo` accounts.
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -26,10 +26,10 @@ Nothing to import.
 
 > Using a limited access account and by separating fine grained privileges into activities, causes damage to whole system reduced.
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -50,10 +50,10 @@ Nothing to import.
 > usermod -a -G sudo <username>
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [useradd(8)](https://manpages.org/useradd/8)
 ---
 </details>
@@ -66,10 +66,10 @@ Nothing to import.
 > /etc/login.defs
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [login.defs(5)](https://manpages.org/logindefs/5)
 ---
 </details>
@@ -93,10 +93,10 @@ Nothing to import.
 > sudo systemctl restart sshd.service
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [sshd\_config(5)](https://manpages.org/sshd_config/5)
 ---
 </details>
@@ -112,10 +112,10 @@ Nothing to import.
 > Port 9292
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -134,10 +134,10 @@ Nothing to import.
 > sudo systemctl reload ssh
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -158,10 +158,10 @@ Nothing to import.
 > sudo apt install libpam-cracklib
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [pam(8)](https://manpages.org/pam/8)
 ---
 </details>
@@ -187,10 +187,10 @@ Nothing to import.
 > * `ocredit`: the least number of special characters(?) every password should have.
 > * `retry`: the number of times users can enter an incorrect password before getting locked.
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [pam.d(5)](https://manpages.org/pamd/5)
 > - [pam.conf(5)](https://manpages.org/pamconf/5)
 ---
@@ -228,10 +228,10 @@ Nothing to import.
 > entered correctly, but they will not be given access. This reduces the chance
 > of people hacking the server through brute force attacks.
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [ssh(1)](https://manpages.org/ssh/1)
 > - [sshd(8)](https://manpages.org/sshd/8)
 > - [sshd\_config(5)](https://manpages.org/sshd_config/5)
@@ -258,10 +258,10 @@ Nothing to import.
 > sudo systemctl enable --now firewalld
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -272,10 +272,10 @@ Nothing to import.
 > firewall-cmd --get-zones
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -286,10 +286,10 @@ Nothing to import.
 > sudo firewall-cmd --zone public --list-services
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -300,10 +300,10 @@ Nothing to import.
 > sudo firewall-cmd --zone public --list-ports
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -314,10 +314,10 @@ Nothing to import.
 > sudo firewall-cmd --list-all
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -328,10 +328,10 @@ Nothing to import.
 > sudo firewall-cmd --list-all-zones
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -340,10 +340,10 @@ Nothing to import.
 
 > Use `--permanent` optional argument to make changes take effect even after reboot.
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -354,10 +354,10 @@ Nothing to import.
 > sudo firewall-cmd --new-zone corp --permanent
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -368,10 +368,10 @@ Nothing to import.
 > sudo firewall-cmd --reload
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -383,10 +383,10 @@ Nothing to import.
 > sudo firewall-cmd --reload
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -397,10 +397,10 @@ Nothing to import.
 > sudo firewall-cmd --get-default
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -416,10 +416,10 @@ Nothing to import.
 > sudo firewall-cmd --set-default corp
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -430,10 +430,10 @@ Nothing to import.
 > sudo firewall-cmd --get-active-zones
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -444,10 +444,10 @@ Nothing to import.
 > sudo firewall-cmd --get-services
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -460,10 +460,10 @@ Nothing to import.
 > sudo firewall-cmd --reload
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -476,10 +476,10 @@ Nothing to import.
 > sudo systemctl disable --now <service>
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -491,10 +491,10 @@ Nothing to import.
 > sudo firewall-cmd --reload
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -506,10 +506,10 @@ Nothing to import.
 > sudo fierwall-cmd --reload
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -522,10 +522,10 @@ Nothing to import.
 > ssh-keygen -t rsa -b 4096 -C "user@domain.tld" -f ~/.ssh/user_rsa
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -536,10 +536,10 @@ Nothing to import.
 > ssh-copy-id -i ~/.ssh/user_rsa.pub -p <port> user@domain.tld
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -556,10 +556,10 @@ Nothing to import.
 > ss -tuwlpn
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -609,10 +609,10 @@ Nothing to import.
 > auth    required    pam_google_authenticator.so
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -628,10 +628,10 @@ Nothing to import.
 > IPV6INIT=no
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -642,10 +642,10 @@ Nothing to import.
 > sudo apt install selinux-basics selinux-policy-default auditd
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -665,10 +665,10 @@ Nothing to import.
 > password    sufficient  pam_unix.so nullok use_authtok sha256 shadow remember=5
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -705,10 +705,10 @@ Nothing to import.
 > sudo systemctl restart fail2ban
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -719,10 +719,10 @@ Nothing to import.
 > sudo fail2ban-client status ssh
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -742,10 +742,10 @@ Nothing to import.
 > * 7za (7-zip)
 > * openssl
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -764,10 +764,10 @@ Nothing to import.
 > sudo apt install gnupg
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [gnupg(7)](https://manpages.org/gnupg/7)
 > - [gpgconf(1)](https://manpages.org/gnupg/1)
 > - [gpg-agent(1)](https://manpages.org/gnupg/1)
@@ -789,10 +789,10 @@ Nothing to import.
 > gpg <file>
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -809,10 +809,10 @@ Nothing to import.
 > sudo apt install bcrypt
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [bcrypt(1)](https://manpages.org/bcrypt/1)
 ---
 </details>
@@ -832,10 +832,10 @@ Nothing to import.
 > bcrypt <file>.bfe
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -854,10 +854,10 @@ Nothing to import.
 > cdecrypt <file>.cpt
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -876,10 +876,10 @@ Nothing to import.
 > unzip <output.zip>
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -891,10 +891,10 @@ Nothing to import.
 > 7za output.zip
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -906,10 +906,10 @@ Nothing to import.
 > openssl enc -aes-256-cbc -d -in output.dat > file
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -934,10 +934,10 @@ Nothing to import.
 > sudo apt install cryptset
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -948,10 +948,10 @@ Nothing to import.
 > gunzip -c /proc/config.gz | grep CONFIG_DM_CRYPT
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -964,10 +964,10 @@ Nothing to import.
 > cryptsetup close encrypted_partition
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>
 
@@ -982,10 +982,10 @@ Nothing to import.
 > setfacl -x m::rx <file>
 > ``````
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 > - [acl(5)](https://manpages.org/acl/5)
 > - [getfacl(1)](https://manpages.org/getfacl/1)
 > - [setfacl(1)](https://manpages.org/setfacl/1)
@@ -1010,9 +1010,9 @@ Nothing to import.
 > - traceroute
 > - nmap
 
-> Origins:
+> **Resources**
 > -
 
-> References:
+> **References**
 ---
 </details>

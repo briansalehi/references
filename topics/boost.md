@@ -9,10 +9,10 @@
 > resources and establish communication between our program and the operating
 > system that performs I/O requests.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
 ---
 </details>
@@ -24,10 +24,10 @@
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
 ---
 </details>
@@ -60,10 +60,10 @@
 > the work is underway. Also, it will make sure that the `io_service::run()`
 > function exits when there is no unfinished work remaining.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
 ---
 </details>
@@ -89,10 +89,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
 ---
 </details>
@@ -135,10 +135,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
 ---
 </details>
@@ -182,10 +182,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
 ---
 </details>
@@ -231,10 +231,10 @@
 > function object that will automatically pass the wrapped handler to the strand
 > object's dispatch function when it is called.
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context__strand.html
 ---
 </details>
@@ -282,10 +282,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -329,10 +329,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
-> References:
+> **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/deadline_timer.html
 ---
 </details>
@@ -391,10 +391,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -454,10 +454,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -467,10 +467,10 @@
 > ```cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -480,10 +480,10 @@
 > ```cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -524,10 +524,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -574,10 +574,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -644,10 +644,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -787,10 +787,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 

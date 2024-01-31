@@ -14,10 +14,10 @@
 > clang++ -o program source.cpp -std=c++20
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -56,10 +56,10 @@
 > // assignment evaluates: ref to y (y=="b")
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #366
 
-> References:
+> **References**
 ---
 </details>
 
@@ -87,10 +87,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -107,10 +107,10 @@
 > - Scoped Enumerations
 > - Preprocessor macro `#define`
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -121,10 +121,10 @@
 > const double pi = 22.0 / 7;
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -172,10 +172,10 @@
 > // b.x == {10, 20}, b.y == {30, int{} == 0}
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #368
 
-> References:
+> **References**
 ---
 </details>
 
@@ -220,10 +220,10 @@
 > some_func({.label = config.label, .id = 42});
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #369
 
-> References:
+> **References**
 ---
 </details>
 
@@ -245,10 +245,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -264,10 +264,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -291,10 +291,10 @@
 > divide(dividen, divisor); // ERROR: non-const arguments to consteval
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -329,10 +329,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -350,10 +350,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -369,10 +369,10 @@
 >
 > - Within `if consteval` block you can call immediate `consteval` functions.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -420,10 +420,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #363
 
-> References:
+> **References**
 ---
 </details>
 
@@ -448,10 +448,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -482,10 +482,10 @@
 > f(); // Error: ::(unique)::f and A::f both in scope
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 ---
 </details>
@@ -512,10 +512,10 @@
 > test<Size2> t2; // okay
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 ---
 </details>
@@ -631,10 +631,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
 ---
 </details>
@@ -649,10 +649,10 @@
 > - Modules reduce compilation time. The entities exported from a module are described in a binary file that the compiler can process faster than traditional precompiled headers.
 > - Exported files can potentially be used to build integrations with C++ code from other languages.
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -675,10 +675,10 @@
 > import "geometry.hpp"
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -698,10 +698,10 @@
 > - The **module purview**, which is the content of the unit, starting with the
 >   module declaration and extending to the end of the module unit.
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -716,10 +716,10 @@
 > Names of namespaces containing export declarations are implicitly exported as
 > well.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Kqo-jIq4V3I
 
-> References:
+> **References**
 ---
 </details>
 
@@ -731,10 +731,10 @@
 >   `static_assert` or anonymous names.
 > - The module declaration must not be the result of macro expansion.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Kqo-jIq4V3I
 
-> References:
+> **References**
 ---
 </details>
 
@@ -787,10 +787,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -808,10 +808,10 @@
 > separate modules or submodules to translation units using a module. They are
 > exported together as a single, aggregated module.
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -883,10 +883,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -936,10 +936,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1038,10 +1038,10 @@
 > can be important if you're developing a large library because users should
 > only import things they use.
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1102,11 +1102,11 @@
 > // ^__ decltype() preserves cv-ref qualification of return type
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/auto
 ---
 </details>
@@ -1123,10 +1123,10 @@
 > auto a = ir;  // a is declared as new object of type int
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1153,10 +1153,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/structured_binding
 ---
 </details>
@@ -1170,10 +1170,10 @@
 > typedef unsigned long positive_t;
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1199,10 +1199,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/type_alias
 ---
 </details>
@@ -1258,11 +1258,11 @@
 >     auto d{4, 2}; // error, too many elements
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/initialization
 ---
 </details>
@@ -1293,10 +1293,10 @@
 > status do_something() { return status::success; }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/enum
 ---
 </details>
@@ -1326,10 +1326,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration
 ---
 </details>
@@ -1355,10 +1355,10 @@
 > // x == true
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #64
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1375,10 +1375,10 @@
 > v = 10;
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #64
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1411,10 +1411,10 @@
 > // throws std::bad_variant_access
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #64
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1441,10 +1441,10 @@
 > // prints "sample string"
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #66
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1480,10 +1480,10 @@
 > // prints "double: 3.14"
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #66
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1523,10 +1523,10 @@
 >     // the type: std::expected<V,T> -> std::expected<V,U>
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #364
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1618,10 +1618,10 @@
 >   corresponding implicit type conversion is defined
 > - may warn if the result of a comparison is not used (compiler dependent)
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1684,10 +1684,10 @@
 > reference with `=default`. A friend function might also take both parameters
 > by value.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1732,10 +1732,10 @@
 > other way around does not work. Comparison with 0 is always possible and
 > usually easier.
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1791,10 +1791,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1868,10 +1868,10 @@
 > d1 == d2; // OK: only tries operator <=> and Base::operator==
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1939,10 +1939,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1979,10 +1979,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/explicit
 > - https://en.cppreference.com/w/cpp/language/converting_constructor
 ---
@@ -2014,10 +2014,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/data_members
 ---
 </details>
@@ -2058,10 +2058,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2084,10 +2084,10 @@
 > void h(this Data&&);
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2107,10 +2107,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2126,10 +2126,10 @@
 > 3. You use special preprocessors, code is replaced by stupid text replacement
 >    mechanism that has no idea of scope and types.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2143,10 +2143,10 @@
 > `typename`. The keyword `struct` cannot be used in place of `typename` when
 > declaring type parameters.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2174,10 +2174,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2191,10 +2191,10 @@
 > approach to handle this problem is to implement each template inside a header
 > file.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2214,10 +2214,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2231,10 +2231,10 @@
 >   arguments, but since C++17 you can pass rvalues even if neither a copy nor
 >   a move constructor is valid.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2255,10 +2255,10 @@
 > Each call to `max()` template is qualified with `::` to ensure template is
 > found in the global namespace, not possibly the one in `std` namespace.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2282,10 +2282,10 @@
 > max(7, 42); // T is int
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2321,10 +2321,10 @@
 > max("text", s); // ERROR: T can be deduced as char const[5] or std::string
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2357,10 +2357,10 @@
 > max<double>(4, 7.2);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2386,10 +2386,10 @@
 > f();    // OK: f<std::string>()
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2408,10 +2408,10 @@
 > auto m = ::max(4, 7.2); // OK:: but max returns int
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2422,10 +2422,10 @@
 > - Let the compiler find out the return type.
 > - Declare the return type to be the common type of the parameter types.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2460,10 +2460,10 @@
 >
 > These modifications don't lead to significant advantages.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2483,10 +2483,10 @@
 > Therefore, the code must be available and multiple return statements have to
 > match.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2507,10 +2507,10 @@
 > auto max(T1 a, T2 b) -> decltype(true ? a : b);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2541,10 +2541,10 @@
 > auto a = ir;  // a is declared as new object of type int
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2574,10 +2574,10 @@
 >
 > Note that `std::common_type<>` decays.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2606,10 +2606,10 @@
 > RT max(T1 a, T2 b);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2632,10 +2632,10 @@
 > However, this approach only makes sence, if there is a natural default for a
 > template parameter.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2684,10 +2684,10 @@
 > ::max('a', 42.7);   // calls the nontemplate for two ints
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2709,10 +2709,10 @@
 > ::max<int>(4, 7.2); // ERROR: both function templates match
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2752,10 +2752,10 @@
 > ::max("mathematics", "math");   // calls max() for two C-strings
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2814,10 +2814,10 @@
 > cases. In general, a conforming compiler isn’t even permitted to reject this
 > code.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2850,10 +2850,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2885,10 +2885,10 @@
 >
 > The keyword `class` can be used instead of `typename`.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2924,10 +2924,10 @@
 > parameters, so it’s usually better to use the first form. However, outside
 > the class structure you'd need to specify it.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2953,10 +2953,10 @@
 > void Stack<T>::pop() { }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3006,10 +3006,10 @@
 > specialization of the nonmember function template as friend. Without `<T>` we
 > would declare a new nontemplate function.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3042,10 +3042,10 @@
 > void Stack<std::string>::push(std::string const&) { }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3078,10 +3078,10 @@
 > With partial specialization, we define a class template, still parametrized
 > for `T` but specialized for a pointer (`Stack<T*>`).
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3129,10 +3129,10 @@
 > class Stack<T*, T*>;
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3181,10 +3181,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3202,10 +3202,10 @@
 > using matrix = std::vector<std::vector<T>>;
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3235,10 +3235,10 @@
 > std::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3256,10 +3256,10 @@
 > Stack IntegralStack = AnotherStack;    // OK since C++17
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3283,10 +3283,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3330,10 +3330,10 @@
 > with the initial value 5, the vector would get an initial size of five
 > elements when `container(value)` is used.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3375,10 +3375,10 @@
 > In this case, don't forget to use move semantics to avoid unnecessary copy of
 > the argument.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3406,10 +3406,10 @@
 > Stack StringStack{"no surprises now!"};  // Stack<std::string>
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3451,10 +3451,10 @@
 > container e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3478,10 +3478,10 @@
 > literal to a constructor expecting a `std::string`. So you have to initialize
 > the object with brace initialization.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3519,10 +3519,10 @@
 > for both the element type and the size. The C++17 standard library also
 > defines a deduction guide for it.
 
-> Origins:
+> **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 ---
 </details>
@@ -3569,10 +3569,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/range-for
 ---
 </details>
@@ -3686,10 +3686,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/range-for
 ---
 </details>
@@ -3749,10 +3749,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
 </details>
@@ -3779,10 +3779,10 @@
 > alignof(int[4]);// 4 (natural alignment of element is 4)
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/alignof
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
@@ -3849,10 +3849,10 @@
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/alignas
 > - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
@@ -3872,10 +3872,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -3899,10 +3899,10 @@
 > T operator ""_suffix(char32_t const *, std::size_t);
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
 ---
@@ -3934,10 +3934,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 ---
 </details>
@@ -3956,10 +3956,10 @@
 > T operator ""_suffix();
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 ---
 </details>
@@ -4011,10 +4011,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/user_literal
 ---
 </details>
@@ -4046,11 +4046,11 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
 ---
 </details>
@@ -4099,11 +4099,11 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
 > - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
 ---
@@ -4116,11 +4116,11 @@
 >   destroyed after the statement.
 > - When a non-`const` object marked with `std::move()`.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4132,11 +4132,11 @@
 > using `std::move()`, you should explicitly include `<utility>` to make your
 > program portable.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4147,11 +4147,11 @@
 > function(static_cast<decltype(object)&&>(object)
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4165,11 +4165,11 @@
 > reference is preferred. However, if no such function exists, the usual copy
 > semantics is used as a fallback.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4186,11 +4186,11 @@
 > coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4208,11 +4208,11 @@
 > const std::string* getPtr();   // OK
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4224,11 +4224,11 @@
 > The implementer has to ensure that the passed argument is in a valid state
 > after the call.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4252,11 +4252,11 @@
 > s = "new value";  // OK
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4283,11 +4283,11 @@
 > foo(returnStringByValue());     // OK
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4351,11 +4351,11 @@
 >
 > However, there is no useful semantic meaning of this case.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4370,11 +4370,11 @@
 > assignment operator, or destructor disables move semantics, even if
 > declarations are marked with `=default`.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4387,11 +4387,11 @@
 > * No <b>move constructor</b> is user-declared
 > * No <b>move assignment operator</b> is user-declared
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > - [Copy Constructors](https://en.cppreference.com/w/cpp/language/copy_constructor)
 ---
 </details>
@@ -4407,11 +4407,11 @@
 > * No another <b>move operation</b> is user-declared
 > * No <b>destructor</b> is user-declared
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
 ---
 </details>
@@ -4422,11 +4422,11 @@
 > Declaring destructors in anyway disables the automatic generation of move
 > operations.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > [Destructor](https://en.cppreference.com/w/cpp/language/destructor)
 ---
 </details>
@@ -4449,11 +4449,11 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4469,10 +4469,10 @@
 > - Member with reference semantics are used (pointers, smart pointers, ...)
 > - Objects have no default constructed state
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4484,11 +4484,11 @@
 > destructor) or none of them. Declaration means either to implement, set as
 > default, or set as deleted.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 > - [The Rule of Three/Five/Zero](https://en.cppreference.com/w/cpp/language/rule_of_three)
 ---
 </details>
@@ -4514,11 +4514,11 @@
 > rvalue reference restricts what we can pass to this function but behaves just
 > like any other non-`const` object of this type.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4546,10 +4546,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4603,11 +4603,11 @@
 >
 > In this case, `=delete` disables the fallback mechanism.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4627,10 +4627,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
-> References:
+> **References**
 > - [std::move](https://en.cppreference.com/w/cpp/utility/move)
 ---
 </details>
@@ -4659,11 +4659,11 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4701,11 +4701,11 @@
 > Invoice i1{std::move(i)}; // OK, moves id, copies cust
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4731,10 +4731,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
-> References:
+> **References**
 > - [Destructors](https://en.cppreference.com/w/cpp/language/destructor)
 ---
 </details>
@@ -4769,11 +4769,11 @@
 > what the effect of any optimization is. All we know is that the passed object
 > is subsequently in a valid but unspecified state.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4937,10 +4937,10 @@
 > need new memory allocation anyway. When modifying an existing value, this
 > policy might be counterproductive.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4957,10 +4957,10 @@
 >   move operations are cheap, should take the arguments by value and move.
 >   However, do not take by value and move to update/modify existing values.
 
-> Origins:
+> **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -4991,10 +4991,10 @@
 > beta object;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/override
 > - https://en.cppreference.com/w/cpp/language/virtual
 ---
@@ -5029,10 +5029,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/final
 > - https://en.cppreference.com/w/cpp/language/override
 > - https://en.cppreference.com/w/cpp/language/virtual
@@ -5064,10 +5064,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/final
 > - https://en.cppreference.com/w/cpp/language/derived_class
 ---
@@ -5100,10 +5100,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5141,10 +5141,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5172,10 +5172,10 @@
 > Compiled with C++17, two allocations can be witnessed. But compiled with
 > C++20, duplicate copy no longer takes place.
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5213,10 +5213,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5254,10 +5254,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #333
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5296,10 +5296,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5320,10 +5320,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5342,10 +5342,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5362,10 +5362,10 @@
 > auto sld = std::to_wstring(42.0L); // "42.000000"
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/to_string
 > - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
@@ -5406,10 +5406,10 @@
 > F stof(std::string const& str, std::size_t* pos = 0);
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/string/basic_string/stoul
 > - https://en.cppreference.com/w/cpp/string/basic_string/stof
@@ -5433,10 +5433,10 @@
 > auto i5 = std::stoi("-42"); // -42
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
@@ -5470,10 +5470,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string/stol
 > - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
@@ -5507,10 +5507,10 @@
 > auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/floating_literal
 > - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
@@ -5538,10 +5538,10 @@
 > auto s5{ "text"sv }; // std::string_view
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 > - https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s
 > - https://en.cppreference.com/w/cpp/string/basic_string_view/operator%22%22sv
@@ -5563,10 +5563,10 @@
 > auto pattern { R"((\w[\w\d]*)=(\d+))"s };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 ---
 </details>
@@ -5590,10 +5590,10 @@
 > auto s5{ R"text"sv }; // std::string_view
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/language/string_literal
 ---
 </details>
@@ -5627,10 +5627,10 @@
 > auto sv4{ trim_view(" sample ") };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
@@ -5647,10 +5647,10 @@
 > std::size_t prefix{ str.find_first_not_of(" ") };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
@@ -5670,10 +5670,10 @@
 > str.remove_prefix(pos1);
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
@@ -5689,10 +5689,10 @@
 > std::string s{ sv };
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
@@ -5724,10 +5724,10 @@
 > // t4 == false
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #371
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5738,10 +5738,10 @@
 
 > - You cannot format objects of user-defined types with printf.
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5758,10 +5758,10 @@
 > std::clog << std::format("{0:02x} {1:02x} {2:02x}\n", v0, v1, v2);
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5774,10 +5774,10 @@
 > std::format("{02x}\n", value);
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5806,10 +5806,10 @@
 > std::format("{}\n", color_code);
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5823,10 +5823,10 @@
 > std::format("{:%F %T} UTC", std::chrono::system_clock::now());
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5842,10 +5842,10 @@
 > std::print("{} <{}>", "Brian Salehi", "salehibrian@gmail.com");
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
-> References:
+> **References**
 ---
 </details>
 
@@ -5866,10 +5866,10 @@
 > std::regex lrx{R"(...)"s};
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/regex/basic_regex
 ---
 </details>
@@ -5881,10 +5881,10 @@
 > std::regex irx{R"(...)"s, std::regex_constants::icase};
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
 ---
 </details>
@@ -5921,10 +5921,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/regex_match
 > - https://cppreference.com/w/cpp/regex/match_results
 > - https://cppreference.com/w/cpp/regex/basic_regex
@@ -5979,10 +5979,10 @@
 >                   << " using " << protocol << " protocol\n";
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/sub_match
 > - https://cppreference.com/w/cpp/regex/match_results
 > - https://cppreference.com/w/cpp/regex/regex_match
@@ -6008,10 +6008,10 @@
 > std::regex pattern{R"(...)", std::regex_constants::egrep};
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/syntax_option_type
 > - https://cppreference.com/w/cpp/regex/basic_regex
 ---
@@ -6048,10 +6048,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/regex_search
 > - https://cppreference.com/w/cpp/regex/basic_regex
 ---
@@ -6125,10 +6125,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/sregex_iterator
 > - https://cppreference.com/w/cpp/regex/sregex_token_iterator
 ---
@@ -6149,10 +6149,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/regex_replace
 ---
 </details>
@@ -6177,10 +6177,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://cppreference.com/w/cpp/regex/regex_replace
 ---
 </details>
@@ -6222,10 +6222,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/headers/limits
 ---
@@ -6245,10 +6245,10 @@
 > auto d = std::numeric_limits<double>::digits;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6264,10 +6264,10 @@
 > auto d = std::numeric_limits<double>::digits10;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6282,10 +6282,10 @@
 > auto value_is_signed = std::numeric_limist<T>::is_signed;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6300,10 +6300,10 @@
 > auto value_is_integer = std::numeric_limist<T>::is_integer;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6318,10 +6318,10 @@
 > auto value_is_exact = std::numeric_limist<T>::is_exact;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6336,10 +6336,10 @@
 > auto value_has_infinity = std::numeric_limist<T>::has_infinity;
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/types/numeric_limits
 > - https://en.cppreference.com/w/cpp/header/limits
 ---
@@ -6358,10 +6358,10 @@
 > auto c{ 12.0 + 4.2i }; // std::complex<double>
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
 ---
@@ -6381,10 +6381,10 @@
 > auto max = std::mt19937::max();
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
 ---
@@ -6406,10 +6406,10 @@
 > generator2.seed(seeder());
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
@@ -6430,10 +6430,10 @@
 > auto number = generator();
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/random_device
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
@@ -6450,10 +6450,10 @@
 > generator.discard(4); // discard 4 numbers
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
 ---
@@ -6483,10 +6483,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 > - https://en.cppreference.com/w/cpp/numeric/random
 ---
@@ -6514,10 +6514,10 @@
 > // example output: 1115389ns
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6540,10 +6540,10 @@
 > // example output: 1115.39µs
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6567,10 +6567,10 @@
 > // example output: 1115µs
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6587,10 +6587,10 @@
 > bool system_is_steady = std::chrono::system_clock::is_steady;
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6603,10 +6603,10 @@
 > auto resolution = std::chrono::system_clock::duration{1};
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6626,10 +6626,10 @@
 > auto day { 15d }; // std::chrono::day (c++20)
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
 > - https://en.cppreference.com/w/cpp/symbol_index/literals
 ---
@@ -6645,10 +6645,10 @@
 > - `operator""y`
 > - `operator""d`
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #73
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6664,10 +6664,10 @@
 > // specific_day == std::chrono::Sunday
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #74
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6684,10 +6684,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #74
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6722,10 +6722,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #362
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6782,10 +6782,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6818,10 +6818,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6856,10 +6856,10 @@
 > // data == {1, 1, 2, 3, 4, 5, 6, 7, 8}
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #367
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6883,10 +6883,10 @@
 > std::max({4,8,12,42});
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=7FORoVmSw4E
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6904,10 +6904,10 @@
 > // true
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6925,10 +6925,10 @@
 > // true
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6951,10 +6951,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -6997,10 +6997,10 @@
 > // cmp5 == true
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #361
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7102,11 +7102,11 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
 > - C++ Daily Bites - #60
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7152,10 +7152,10 @@
 >
 > Note: parallel execution requires *libtbb* library to be linked.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7183,10 +7183,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7222,10 +7222,10 @@
 > responsibility of the caller to ensure that the range $[first, first + n)$ is
 > valid.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7260,10 +7260,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7298,10 +7298,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7327,10 +7327,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7383,10 +7383,10 @@
 > std::ranges::swap(a,b); // calls MyNamespace::swap
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #62
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7437,10 +7437,10 @@
 > * `std::weak_ordering`
 > * `std::partial_ordering`
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7490,10 +7490,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7537,10 +7537,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7554,10 +7554,10 @@
 > `random_access` ranges. Notably, `std::list` offers a method with an
 > approximate `O(N log N)` complexity.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7598,10 +7598,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7647,10 +7647,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7684,10 +7684,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7714,10 +7714,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7755,10 +7755,10 @@
 > The benefit of using a partial sort is faster runtime — approximately `O(N
 > log K)`, where `K` is the number of elements sorted.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7794,10 +7794,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7823,10 +7823,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7870,10 +7870,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7900,10 +7900,10 @@
 > std::ranges::stable_partition(widget.items, &Item::is_selected);
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7932,10 +7932,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -7973,10 +7973,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8025,10 +8025,10 @@
 > complexity, and `std::nth_element` implementations can have high overhead, so
 > always test to determine which provides better performance for your use case.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8102,10 +8102,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8133,10 +8133,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8184,11 +8184,11 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
 > - C++ Daily Bites - #297
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8225,10 +8225,10 @@
 > single lookup performance, where `std::equal_range` does two lookups to
 > determine the lower and upper bounds.
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8256,10 +8256,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8300,10 +8300,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8329,10 +8329,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8361,10 +8361,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8392,10 +8392,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8425,10 +8425,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8456,10 +8456,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8487,10 +8487,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8518,10 +8518,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8559,10 +8559,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8588,10 +8588,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8617,10 +8617,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8646,10 +8646,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8675,10 +8675,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8704,10 +8704,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8738,10 +8738,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8778,10 +8778,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8810,10 +8810,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8856,10 +8856,10 @@
 > // bits == {1, 1, 0, 0}
 > ``````
 
-> Origins:
+> **Resources**
 > - Daily C++ Bites - #365
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8889,10 +8889,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8919,10 +8919,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8951,10 +8951,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -8981,10 +8981,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9011,10 +9011,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9058,10 +9058,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/transform
 > - https://en.cppreference.com/w/cpp/algorithm/ranges/transform
@@ -9092,10 +9092,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/reverse
 > - https://en.cppreference.com/w/cpp/algorithm/reverse_copy
@@ -9122,10 +9122,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 ---
 </details>
@@ -9149,10 +9149,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/algorithm/remove
 > - https://en.cppreference.com/w/cpp/algorithm/ranges/remove
@@ -9190,10 +9190,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/string/basic_string
 > - https://en.cppreference.com/w/cpp/io/basic_stringstream
 ---
@@ -9208,10 +9208,10 @@
 > - `std::basic_string<CharT,Traits,Allocator>::append_range`
 > - `std::basic_string<CharT,Traits,Allocator>::replace_with_range`
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9242,10 +9242,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9275,10 +9275,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9308,10 +9308,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9337,10 +9337,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9362,10 +9362,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9387,10 +9387,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9412,10 +9412,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9437,10 +9437,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9462,10 +9462,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9487,10 +9487,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9512,10 +9512,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9538,10 +9538,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.9
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9563,10 +9563,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9598,10 +9598,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9610,10 +9610,10 @@
 
 > incomplete
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9632,10 +9632,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9655,10 +9655,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9681,10 +9681,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9704,10 +9704,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.14
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9733,10 +9733,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 1
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread
 ---
 </details>
@@ -9782,10 +9782,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
 ---
 </details>
@@ -9843,10 +9843,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9868,10 +9868,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9905,10 +9905,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
 ---
 </details>
@@ -9939,10 +9939,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9965,10 +9965,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -9996,10 +9996,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10030,10 +10030,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10064,10 +10064,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10085,10 +10085,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10102,10 +10102,10 @@
 > ```cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10154,10 +10154,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #293
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10171,10 +10171,10 @@
 > A mutex must be locked and unlocked in the same thread. But a semaphore can
 > be acquired in one thread, and released in another.
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10187,10 +10187,10 @@
 > std::ptrdiff_t least_max_value = std::counting_semaphore::max();
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore/max
 ---
 </details>
@@ -10209,10 +10209,10 @@
 > |`try_acquire_for(duration)`|
 > |`try_acquire_until(timepoint)`|
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 ---
 </details>
@@ -10278,10 +10278,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 >   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/counting_semaphore
 >   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/release
@@ -10316,10 +10316,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 
-> References:
+> **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 ---
 </details>
@@ -10331,10 +10331,10 @@
 
 > Latches are useful for managing one task leveraged by multiple threads.
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10344,10 +10344,10 @@
 > A thread waits at a synchronization point until the internal counter becomes
 > zero. So latches are almost opposites of the semaphore in counting.
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10361,10 +10361,10 @@
 > |`wait()`|Immediately returns if internal counter equals zero, blocks otherwise|
 > |`arrive_and_wait(std::ptrdiff_t update = 1)`|Equivalent to subsequent call to `count_down(update)` and `wait()`|
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10404,10 +10404,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10418,10 +10418,10 @@
 
 > Barriers are helpful to manage repetitive task leveraged by multiple threads.
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10438,10 +10438,10 @@
 > |`arrive_and_wait()`|Equivalent to subsequent call to `arrive()` and `wait()`|
 > |`arrive_and_drop()`|Decrements the internal counter for the current phase and the subsequent phase by one|
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10487,10 +10487,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10502,10 +10502,10 @@
 > A function is a coroutine if its function body encloses a
 > coroutine-return-statement, an await-expression, or a yield-expression.
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=RBldGKfLb9I
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10612,10 +10612,10 @@
 > std::unique_ptr<ImplIface> MonoPIMPL::impl_;
 > ``````
 
-> Origins:
+> **Resources**
 > - C++ Daily Bites - #61
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10633,10 +10633,10 @@
 > C:\Windows\Users\Brian\Desktop
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10663,10 +10663,10 @@
 > - The optional root root directory is a directory separator
 > - The relative path is a sequence of file names separated by directory separators
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10682,10 +10682,10 @@
 > - The path only ends with a directory separator if the trailing filename is a
 >   directory with a name other than `.` or `..`.
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10717,10 +10717,10 @@
 > remove("/tmp/note.txt"); // OOPS: calls C function remove()
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10735,10 +10735,10 @@
 > - By default, the operations throw `std::filesystem_error` exceptions on errors.
 > - By passing an additional out parameter, an error code can be used instead.
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10764,10 +10764,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10794,10 +10794,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10822,10 +10822,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10847,10 +10847,10 @@
 > std::filesystem::u32path{u32"/dev/null"s}; // std::u32string
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10865,10 +10865,10 @@
 > std::filesystem::path{filename.begin(), filename.end()};
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10884,10 +10884,10 @@
 > auto working_directory{std::filesystem::current_path()};
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10900,10 +10900,10 @@
 > auto temp{std::filesystem::temp_directory_path()};
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10917,10 +10917,10 @@
 > p.empty(); // true
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10933,10 +10933,10 @@
 > p.is_relative(); // true
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10974,10 +10974,10 @@
 > p.end();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -10990,10 +10990,10 @@
 > p.lexically_normal();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11012,10 +11012,10 @@
 > p.u32string();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11040,10 +11040,10 @@
 > std::filesystem::path{"a/b"}.lexically_proximate("c/d"}; // "a/b"
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11078,10 +11078,10 @@
 > p.preferred(); // \\dir\\subdir\\subsubdir\\\\.\\\\
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11104,10 +11104,10 @@
 > p.concat(p3.begin(), p3.end()); // project.git
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11129,10 +11129,10 @@
 > p.append(p3.begin(), p3.end());
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11144,10 +11144,10 @@
 > p.replace_extension(".cpp"); // /src/project/main.cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11169,10 +11169,10 @@
 > p.assign(p2.begin(), p2.end());
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11187,10 +11187,10 @@
 > std::swap(p1, p2);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11202,10 +11202,10 @@
 > p.replace_filename("window.cpp"); // /src/project/window.cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11217,10 +11217,10 @@
 > p.replace_extension("hpp"); // /src/project/main.hpp
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11232,10 +11232,10 @@
 > p.make_preferred();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11249,10 +11249,10 @@
 > p.remove_filename(); // /src/project/
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11264,10 +11264,10 @@
 > p.replace_extension(); // /src/project/main
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11278,10 +11278,10 @@
 
 > `==` , `!=` , `<` , `>` , `<=` , `>=` , `compare(p2)` , `compare(sv)` and `equivalent(p1, p2)` are available.
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11312,10 +11312,10 @@
 > p1.lexically_normal().compare(p2.lexically_normal()); // 0
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11335,10 +11335,10 @@
 > std::filesystem::equivalent(p1, p2);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11351,10 +11351,10 @@
 > std::filesystem::exists(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11372,10 +11372,10 @@
 > std::filesystem::is_directory(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11386,10 +11386,10 @@
 > std::filesystem::is_other(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11403,10 +11403,10 @@
 > std::filesystem::is_socket(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11419,10 +11419,10 @@
 > std::filesytem::is_empty(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11437,10 +11437,10 @@
 > auto bytes = std::filesystem::file_size(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11451,10 +11451,10 @@
 > std::filesystem::hard_link_count(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11477,10 +11477,10 @@
 > auto last_write_seconds = std::chrono::duration_cast<std::chrono::seconds>(diff).count();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11503,10 +11503,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11524,10 +11524,10 @@
 > std::filesystem::rename(old, new);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11539,10 +11539,10 @@
 > std::filesystem::last_write_time(p, std::filesystem::file_time_type::clock::now());
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11565,10 +11565,10 @@
 > std::filesystem::permissions(p, std::filesystem::perms::owner_write | std::filesystem::perms::others_all, std::filesystem::perm_options::remove);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11579,10 +11579,10 @@
 > std::filesystem::resize_file(p, newSize);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11593,10 +11593,10 @@
 > std::filesystem::current_path(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11626,10 +11626,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11647,10 +11647,10 @@
 >     ...
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11661,10 +11661,10 @@
 > std::filesystem::status(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11675,10 +11675,10 @@
 > std::filesystem::symlink_status(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11700,10 +11700,10 @@
 > std::filesystem::is_socket(fs);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11731,10 +11731,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11747,10 +11747,10 @@
 > std::filesystem::perms file_permissions = fs.permissions();
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11770,10 +11770,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11823,10 +11823,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11841,10 +11841,10 @@
 > std::fstream file{"/tmp/non-existing-file"};
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11870,10 +11870,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11884,10 +11884,10 @@
 > std::filesystem::create_directories(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11904,10 +11904,10 @@
 > std::filesystem::create_symlink(to, new);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11918,10 +11918,10 @@
 > std::filesystem::create_directory_symlink(to, new);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11934,10 +11934,10 @@
 > std::filesystem::create_hard_link(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11951,10 +11951,10 @@
 > std::filesystem::copy(from, to, options);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -11966,10 +11966,10 @@
 > std::filesystem::copy_file(from, to, options);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12000,10 +12000,10 @@
 > };
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12016,10 +12016,10 @@
 > std::filesystem::copy_symlink(from, to);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12032,10 +12032,10 @@
 > std::filesystem::remove(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12050,10 +12050,10 @@
 > std::filesystem::remove_all(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12068,10 +12068,10 @@
 > std::filesystem::read_symlink(symlink);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12092,10 +12092,10 @@
 > std::filesystem::weakly_canonical(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12107,10 +12107,10 @@
 > std::filesystem::proximate(p);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12122,10 +12122,10 @@
 > std::filesystem::proximate(p, base);
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12143,10 +12143,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12156,10 +12156,10 @@
 > ```cpp
 > ``````
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12184,10 +12184,10 @@
 > not allowed to iterate over. With `skip_permission_denied` iterating over a
 > denied directory, results in an exception.
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12232,10 +12232,10 @@
 > `assign()` and `replace_filename()` call the corresponding modifying path
 > operations but do not modify the files in the underlying filesystem.
 
-> Origins:
+> **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12266,10 +12266,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - https://www.youtube.com/watch?v=762owEyCI4o
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12282,10 +12282,10 @@
 > - Behavioral Patterns
 > - Structural Patterns
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12300,10 +12300,10 @@
 > - Prototype
 > - Singleton
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12315,10 +12315,10 @@
 > - Encapsulates object creation in one method
 > - Provides interface to create subclasses
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12350,10 +12350,10 @@
 > product generation methods. Then, there should be a concrete factory which
 > composes a factory method returning abstract product.
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12484,10 +12484,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12500,10 +12500,10 @@
 
 > With builder pattern, we can build a product one component at a time.
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 
@@ -12590,10 +12590,10 @@
 > @enduml
 > ``````
 
-> Origins:
+> **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
-> References:
+> **References**
 ---
 </details>
 

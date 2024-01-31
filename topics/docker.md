@@ -8,10 +8,10 @@
 > Some features may become deprecated on future releases. To see what has been
 > tagged for deprecation and eventual removal, refer to the documentation.
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 > - https://docs.docker.com/engine/deprecated/
 ---
 </details>
@@ -23,10 +23,10 @@
 > sudo systemctl enable --now docker
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -40,10 +40,10 @@
 > sudo dockerd -H unix:///var/run/docker.sock --config-file /etc/docker/daemon.json
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -72,10 +72,10 @@
 > su -l $USER
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker version](https://docs.docker.com/engine/reference/commandline/version/)
 ---
 </details>
@@ -87,10 +87,10 @@
 > docker -H 10.0.0.10:12375 version
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -101,10 +101,10 @@
 > docker info
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
 ---
 </details>
@@ -118,10 +118,10 @@
 > docker context list
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -143,10 +143,10 @@
 > Take note of the entry that has an asterisk next to it, which designates
 > the current context.
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -159,10 +159,10 @@
 > docker context use default
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 3
 
-> References:
+> **References**
 ---
 </details>
 
@@ -176,10 +176,10 @@
 > docker image list
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -197,10 +197,10 @@
 > docker image list --filter dangling=true
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -215,10 +215,10 @@
 > docker image list --filter before=container_name
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -233,10 +233,10 @@
 > docker image list --filter since=container_name
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -251,10 +251,10 @@
 > docker image list --filter reference="*:latest"
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -277,10 +277,10 @@
 > docker image list --format "{{.Repository}}: {{.Tag}}: {{.Size}}"
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
 </details>
@@ -297,10 +297,10 @@
 > docker search nigelpoulton
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 ---
 </details>
@@ -311,10 +311,10 @@
 > By default, Docker will only display 25 lines of results. However, you can
 > use the `--limit` flag to change that.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 ---
 </details>
@@ -328,10 +328,10 @@
 > docker search alpine --filter is-official=true
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 ---
 </details>
@@ -343,10 +343,10 @@
 > docker search alpine --filter is-automated=true --limit 100
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
 ---
 </details>
@@ -360,10 +360,10 @@
 > docker image pull mongo:4.2.6
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
 ---
 </details>
@@ -383,10 +383,10 @@
 > docker image pull nigelpoulton/tu-demo:v2
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
 ---
 </details>
@@ -404,10 +404,10 @@
 > docker image pull gcr.io/google-containers/git-sync:v3.1.5
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
 ---
 </details>
@@ -425,10 +425,10 @@
 > docker image inspect ubuntu:latest
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -445,10 +445,10 @@
 > The image is always the combination of all layers stacked in the order they
 > were added.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -460,10 +460,10 @@
 > docker image list --digests alpine:latest
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -482,10 +482,10 @@
 > docker manifest inspect golang
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -527,10 +527,10 @@
 > { "experimental": true }
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -554,10 +554,10 @@
 > docker image rm f70734b6a266 a4d3716dbb72
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 ---
 </details>
 
@@ -577,10 +577,10 @@
 > docker image prune --all
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 6
 
-> References:
+> **References**
 > - [docker image prune](https://docs.docker.com/engine/reference/commandline/image_prune/)
 ---
 </details>
@@ -593,10 +593,10 @@
 > **Docker Content Trust (DCT)** lets us sign our own images and verify the
 > integrity and publisher of images we consume.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -636,10 +636,10 @@
 >
 > The push operation will create the repo on Docker Hub and push the image.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -650,10 +650,10 @@
 > docker trust inspect nigelpoulton/ddd-trust:signed --pretty
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -672,10 +672,10 @@
 > Once DCT is enabled like this, you’ll no longer be able to pull and work with
 > unsigned images.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -695,10 +695,10 @@
 > The `-it` flags tell Docker to make the container interactive and to attach
 > the current shell to the container’s terminal.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container run](https://docs.docker.com/engine/reference/commandline/container_run/)
 ---
 </details>
@@ -714,10 +714,10 @@
 > main process. Doing this will place you back in the shell of your Docker host
 > and leave the container running in the background.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 ---
 </details>
 
@@ -733,10 +733,10 @@
 > docker container exec --interactive --tty container_name /usr/bin/bash
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container exec](https://docs.docker.com/engine/reference/commandline/container_exec/)
 ---
 </details>
@@ -754,10 +754,10 @@
 > docker container stop my-container
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container stop](https://docs.docker.com/engine/reference/commandline/container_stop/)
 ---
 </details>
@@ -772,10 +772,10 @@
 > docker container start my-container
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container start](https://docs.docker.com/engine/reference/commandline/container_start/)
 ---
 </details>
@@ -791,10 +791,10 @@
 > docker container rm container_name
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container rm](https://docs.docker.com/engine/reference/commandline/container_rm/)
 ---
 </details>
@@ -818,10 +818,10 @@
 > docker container run --interactive --tty --restart on-failure alpine /bin/bash
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -840,10 +840,10 @@
 > one. In fact, if you inspect it you can see there **startCount** has been
 > incremented.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -858,10 +858,10 @@
 > docker container run --interactive --tty --restart unless-stopped ubuntu /usr/bin
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -876,10 +876,10 @@
 > docker container run --interactive --tty --restart on-failure ubuntu /usr/bin
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -895,10 +895,10 @@
 > docker container list --all
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 4
 
-> References:
+> **References**
 > - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
 ---
 </details>
@@ -916,10 +916,10 @@
 > LABEL version="0.1"
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -941,10 +941,10 @@
 > RUN apk add --update nodejs nodejs-npm
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -964,10 +964,10 @@
 > COPY . /src
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -983,10 +983,10 @@
 > WORKDIR /src
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1001,10 +1001,10 @@
 > EXPOSE 8080
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1019,10 +1019,10 @@
 > ENTRYPOINT ["node", "./app.js"]
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 8
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1047,10 +1047,10 @@
 > /bin/bash /bin/cat /etc/hosts
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 7
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1062,10 +1062,10 @@
 > A *swarm* consists of one or more Docker nodes.
 > Using **Docker Swarm** these nodes can be orchestrated.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1074,10 +1074,10 @@
 
 > Nodes are either configured as *managers* or *workers*.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1088,10 +1088,10 @@
 > database located on all *managers*. It's installed as part of the swarm and
 > just takes care of itself.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1105,10 +1105,10 @@
 > Joining a Docker host to an existing *swarm* switches them into *swarm mode*
 > as part of the operation.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1121,10 +1121,10 @@
 > docker swarm init --advertise-addr 10.0.0.1:2377 --listen-addr 10.0.0.1:2377
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1135,10 +1135,10 @@
 > customizable, but it's convention to use the default for secured
 > client-to-swarm connections.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1155,10 +1155,10 @@
 > after the `ID` column indicates the node you are logged on to and executing
 > commands from.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1173,10 +1173,10 @@
 > docker swarm join-token manager
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1193,10 +1193,10 @@
 > practice to be as specific as possible when it comes to network
 > configuration.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1211,10 +1211,10 @@
 > or issues tasks to workers. If a *follower manager* (passive) receives
 > commands for the swarm, it proxies them across the *leader*.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1237,10 +1237,10 @@
 > then one side achieves quorum and full cluster management services remain
 > available.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1257,10 +1257,10 @@
 > Autolock feature. This forces restarted managers to present the cluster
 > unlock key before being admitted back into the cluster.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1280,10 +1280,10 @@
 > docker swarm update --autolock true
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1294,10 +1294,10 @@
 > docker swarm unlock-key
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1325,10 +1325,10 @@
 >
 > Confirm that *manager* has re-joined by listing swarm nodes.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1338,10 +1338,10 @@
 > 1. Imperatively on the command line with `docker service create`
 > 2. Declaratively with a stack ﬁle
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1352,10 +1352,10 @@
 > docker service create --name my-service --publish 80:80 --replicas 5 repository/project:v1
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1366,10 +1366,10 @@
 > docker service ls
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1380,10 +1380,10 @@
 > docker service ps my-service
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1394,10 +1394,10 @@
 > docker service inspect --pretty my-service
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1412,10 +1412,10 @@
 > swarm. To deploy a *global service* you need to pass the `--mode global` flag
 > to the `docker service create` command.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1429,10 +1429,10 @@
 > docker service ps my-service
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1443,10 +1443,10 @@
 > docker service rm my-service
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1460,10 +1460,10 @@
 > An overlay network creates a new layer 2 network that we can place containers
 > on, and all containers on it will be able to communicate.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1474,10 +1474,10 @@
 > docker network ls
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1488,10 +1488,10 @@
 > docker service create --name my-service --network my-network --publish 80:80 --replicas 10 repository/project:v1
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1506,10 +1506,10 @@
 > In *ingress mode* every node gets a mapping and can therefore redirect your
 > request to a node that is running the service.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1523,10 +1523,10 @@
 > Open a web browser and point it to the IP address of any of the nodes in the
 > swarm on port 80 to see the service running.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1538,10 +1538,10 @@
 > docker service inspect --pretty my-project
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1555,10 +1555,10 @@
 > You can follow the logs (`--follow`), tail them (`--tail`), and get extra
 > details (`--details`).
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1579,10 +1579,10 @@
 > }
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1596,10 +1596,10 @@
 > your environment declaratively and strictly using source control repos
 > requires discipline.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1609,10 +1609,10 @@
 > Swarm conﬁguration and state is stored in `/var/lib/docker/swarm` on every
 > manager node. A swarm backup is a copy of all the ﬁles in this directory.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1657,10 +1657,10 @@
 >
 > Add new manager and worker nodes and take fresh backups.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 10
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1691,10 +1691,10 @@
 > - The `SWARM ID` field is a hash of the swarm’s certificate.
 > - The `TOKEN` field is worker or manager token.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1705,10 +1705,10 @@
 > docker swarm join-token --rotate manager
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1724,10 +1724,10 @@
 > Scanners work by building a list of all software in an image and then comparing the packages against databases of known vulnerabilities.
 > Most vulnerability scanners will rank vulnerabilities and provide advice and help on fixes.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1740,10 +1740,10 @@
 > and disks. If namespaces are about isolation, control groups (cgroups) are
 > about limits.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1759,10 +1759,10 @@
 > kernel. At the time of writing, Docker’s default seccomp profile disables 44
 > syscalls. Modern Linux systems have over 300 syscalls.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1794,10 +1794,10 @@
 > secure tokens have also been created so that additional managers and workers
 > can be securely joined.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1808,10 +1808,10 @@
 > sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1828,10 +1828,10 @@
 >
 > docker swarm update --cert-expiry 720h
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1842,10 +1842,10 @@
 > docker swarm ca --help
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1869,10 +1869,10 @@
 > The secret is mounted into the containers of the blue service as an
 > unencrypted ﬁle at `/run/secrets/`. This is an in-memory *tmpfs* filesystem.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 15
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1889,10 +1889,10 @@
 > **Plugins** are executable programs that conform to a specification for
 > receiving and returning data to Docker.
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1903,10 +1903,10 @@
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1920,10 +1920,10 @@
 > docker plugin list
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1942,10 +1942,10 @@
 > available to containers on the same node as the volume. You can use the `-d`
 > ﬂag to specify a diﬀerent driver.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1963,10 +1963,10 @@
 > deﬁning a volume in a Dockerfile requires you to specify host directories at
 > deploy-time.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1978,10 +1978,10 @@
 > docker volume create --driver pure --opt size=25GB fast-volume
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -1995,10 +1995,10 @@
 > docker volume list
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2018,10 +2018,10 @@
 > The `Mountpoint` property tells us where in the Docker host’s filesystem the
 > volume exists.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2038,10 +2038,10 @@
 > This option lets you specify exactly which volumes you want to delete. It
 > won't delete a volume that is in use by a container or service replica.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2055,10 +2055,10 @@
 > `prune` will delete all volumes that are not mounted into a container or
 > service replica.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2085,10 +2085,10 @@
 > docker volume ls
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2107,10 +2107,10 @@
 > docker service ps my-service
 > ``````
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2135,10 +2135,10 @@
 > unaware of this! This is one of the ways data corruption happens. To prevent
 > this, you need to write your applications in a way to avoid things like this.
 
-> Origins:
+> **Resources**
 > - Docker Deep Dive - Chapter 13
 
-> References:
+> **References**
 ---
 </details>
 
@@ -2155,10 +2155,10 @@
 > each other directly. But to get to the host or the outside world, they go
 > over the `docker0` virtual bridge interface.
 
-> Origins:
+> **Resources**
 > - Docker: Up & Running - Chapter 2
 
-> References:
+> **References**
 ---
 </details>
 
