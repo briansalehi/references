@@ -411,7 +411,8 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

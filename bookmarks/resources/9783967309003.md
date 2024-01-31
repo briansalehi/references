@@ -619,7 +619,8 @@
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>

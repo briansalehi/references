@@ -1387,7 +1387,8 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1455,7 +1456,8 @@
 > ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
-
+>
+> ---
 > **References**
 > ---
 </details>

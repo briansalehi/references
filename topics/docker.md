@@ -267,7 +267,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
 ---
@@ -943,7 +944,8 @@
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
 ---

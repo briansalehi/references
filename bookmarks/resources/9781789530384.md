@@ -291,7 +291,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -367,7 +368,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -399,7 +401,8 @@
 > ---
 > **Resources**
 > - 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1159,7 +1162,8 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1527,7 +1531,8 @@
 > ---
 > **Resources**
 > - 4
-
+>
+> ---
 > **References**
 > ---
 </details>

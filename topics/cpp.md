@@ -15,7 +15,8 @@
 
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -111,7 +112,8 @@
 > ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -499,7 +501,8 @@
 
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 > ---

@@ -1183,7 +1183,8 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
 > ---
 </details>

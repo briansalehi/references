@@ -735,7 +735,8 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -799,7 +800,8 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
-
+>
+> ---
 > **References**
 > ---
 </details>

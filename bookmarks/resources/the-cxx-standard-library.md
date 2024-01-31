@@ -1011,7 +1011,8 @@ Nothing to be imported.
 
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [std::make\_pair](https://en.cppreference.com/w/cpp/utility/tuple/make_pair "cpp/utility/make_pair")
 ---
@@ -1279,7 +1280,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1387,7 +1389,8 @@ Nothing to be imported.
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [std::tuple\_cat](https://en.cppreference.com/w/cpp/utility/tuple/tuple_cat "cpp/utility/tuple/tuple_cat")
 ---
