@@ -430,7 +430,8 @@
 >     spin_unlock(&foo_lock);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 >

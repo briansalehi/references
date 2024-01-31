@@ -114,7 +114,8 @@
 > |Enlarge rectangle by size|`r += s`|
 > |Compare rectangles for exact quality|`r1 == r2`|
 > |Compare rectangles for inequality|`r1 != r2`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -181,7 +182,8 @@
 > |Invert Matrix|`n44f = m44f.inv(method = cv::DECOMP_LU)`|
 > |Solve linear system|`m31f = m33f.solve(rhs31f, method)`|
 > |Per-element multiplication|`m1.mul(m2)`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 > ---

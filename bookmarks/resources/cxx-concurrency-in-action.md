@@ -114,7 +114,8 @@
 >     task.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 
@@ -150,10 +151,12 @@
 >     t.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+>
+> ---
 > **References**
 > - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
 > ---
@@ -184,7 +187,8 @@
 >     thread_guard joining_thread{t};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 > ---
@@ -208,7 +212,8 @@
 >     assert(!task.joinable());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 > ---
@@ -268,7 +273,8 @@
 >     smart_thread.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 > ---
@@ -297,7 +303,8 @@
 >     t3.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 > ---
@@ -333,7 +340,8 @@
 > ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -408,7 +416,8 @@
 >     t3.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 > ---
@@ -517,7 +526,8 @@
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 > ---
@@ -552,7 +562,8 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>

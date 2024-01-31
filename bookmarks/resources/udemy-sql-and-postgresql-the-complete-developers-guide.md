@@ -544,7 +544,8 @@
 > from users
 > full join photos on photos.user_id = users.id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
 > ---
@@ -649,7 +650,8 @@
 > ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1348,7 +1350,8 @@ create table products (
     check(delivery > creation)
 );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 > ---

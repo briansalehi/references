@@ -154,10 +154,12 @@
 > The member function has to take the second parameter as `const` lvalue
 > reference with `=default`. A friend function might also take both parameters
 > by value.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -202,7 +204,8 @@
 > yields a `std::strong_ordering` or `std::weak_ordering` value. However, the
 > other way around does not work. Comparison with 0 is always possible and
 > usually easier.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 > ---
@@ -261,7 +264,8 @@
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 > ---
@@ -337,7 +341,8 @@
 > d1 > d2; // ERROR: cannot deduce comparison category of operator <=>
 > d1 == d2; // OK: only tries operator <=> and Base::operator==
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 > ---
@@ -574,7 +579,8 @@
 > ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

@@ -54,7 +54,8 @@ Nothing to import.
 > docker image ls
 > docker image list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -190,7 +191,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
-
+>
+> ---
 > **References**
 > - [docker container rm](https://docs.docker.com/engine/reference/commandline/container_rm/)
 > ---
@@ -312,7 +314,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
-
+>
+> ---
 > **References**
 > - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
 > ---

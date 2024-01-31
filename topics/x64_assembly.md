@@ -109,10 +109,12 @@
 > set disassembly-flavor att
 > help set disassembly-flavor
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>

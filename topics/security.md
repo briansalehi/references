@@ -9,7 +9,8 @@
 > 2. Compilation
 > 3. Assembly
 > 4. Linking
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -37,7 +38,8 @@
 >
 > Where `-E` tells gcc to stop after preprocessing and `-P` causes the compiler
 > to omit debugging information so that the output is a bit cleaner.
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 > ---
@@ -66,7 +68,8 @@
 > ```sh
 > gcc -g -O0 -S -masm=intel -o main.s main.c
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 > ---
@@ -81,7 +84,8 @@
 > gcc -g -O0 -c -o main.o main.c
 > file main.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 > ---
@@ -192,7 +196,8 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -222,7 +227,8 @@
 > ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>

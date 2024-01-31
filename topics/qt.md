@@ -109,10 +109,12 @@
 >
 > The `Item` element is often used as a container for other elements, similar
 > to the `div` element in HTML.
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -253,7 +255,8 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -412,7 +415,8 @@
 > ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
-
+>
+> ---
 > **References**
 > ---
 </details>

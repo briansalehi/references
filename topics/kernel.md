@@ -1129,7 +1129,8 @@
 > ```sh
 > make -j 8 ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- INSTALL_MOD_PATH=/run/media/user/rootfs install_modules
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 > ---

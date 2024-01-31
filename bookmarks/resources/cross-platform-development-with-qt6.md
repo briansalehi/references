@@ -30,7 +30,8 @@
 > ```sh
 > ${QT_DIR}/MaintenanceTool.exe
 > ``````
-
+>
+> ---
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 

@@ -10,10 +10,12 @@
 > 2. System Architecture and Design Choice
 > 3. Writing Embedded Applications
 > 4. Debugging and Optimizing Performance
-
+>
+> ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>

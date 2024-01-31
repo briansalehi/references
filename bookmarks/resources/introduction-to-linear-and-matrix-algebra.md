@@ -9,11 +9,13 @@
 <summary>What is the constituents of a vector?</summary>
 
 > A vector is an ordered list of numbers like $(3, 1)$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -24,11 +26,13 @@
 > ```math
 > v = (3, 2)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -52,7 +56,8 @@
 <summary>Where is the standard position of a vector?</summary>
 
 > We usually position vectors so their tail is located at the origin.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -97,7 +102,8 @@
 > Sum vectors can be calculated by summing two vectors entry-wise.
 >
 > $v + w = (v₁ + w₁, v₂ + w₂)$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -121,7 +127,8 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -133,10 +140,12 @@
 >
 > - Commutativity: $v + w = w + v$
 > - Associativity: $(v + w) + x = v + (w + x)$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -232,7 +241,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -261,7 +271,8 @@
 
 > $v − w$ is the vector pointing from the head of $w$ to the head of $v$ when
 > $v$ and $w$ are in standard position.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > ---
@@ -318,7 +329,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -358,7 +370,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -390,7 +403,8 @@
 
 > Intuitively, the dot product $v.w$ tells you how much $v$ points in the
 > direction of $w$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
@@ -408,7 +422,8 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -426,7 +441,8 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -501,7 +517,8 @@
 
 > This transformation **is** linear.
 > We can check the two defining properties of linear transformations.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
@@ -522,7 +539,8 @@
 > ```math
 > T(v) = T(v₁e₁+v₂e₂+…+vnen) = v₁T(e₁)+v₂T(e₂)+…+vnT(en)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
@@ -537,7 +555,8 @@
 >
 > Since $(2,3) = 2e₁+3e₂$, we know that:
 > $$T(2,3) = T(2e₁+3e₂) = 2T(e₁)+3T(e₂) = 2(1,1) + 3(-1,1) = (-1,5)$$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
@@ -565,10 +584,12 @@
 
 > A function $T: R^n → R^n$ is a linear transformation if and only if there exists a matrix $[T] \in Mm,n$ such that $T(v) = [T]v$ for all $v \in R^n$ and it is
 > $[T] = [T(e₁)|T(e₂)|…|T(en)]$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -622,7 +643,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -693,7 +715,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -798,7 +821,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -837,7 +861,8 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-
+>
+> ---
 > **References**
 > ---
 </details>

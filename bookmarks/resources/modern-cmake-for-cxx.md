@@ -9,7 +9,8 @@
 > ```sh
 > cmake -S ./project -B ./build
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -28,7 +29,8 @@
 > ```sh
 > cmake -G <generator-name> <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -90,7 +92,8 @@
 >
 > If you omit the type, it will be set to the type of an already existing
 > variable; otherwise, it will be set to `UNINITIALIZED`.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -117,7 +120,8 @@
 > Custom variables that are added manually with the `-D` option won't be
 > visible in cache variables list unless you specify one of the supported
 > types.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -157,7 +161,8 @@
 >
 > Here, the globbing expression supports the `*` wildcard and any `?` character
 > symbols. Both of the `-U` and `-D` options can be repeated multiple times.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -244,7 +249,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --log-context <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -277,7 +283,8 @@ cmake --system-information [file]
 
 > Developers can simplify how users interact with their projects and provide a
 > `CMakePresets.json` file that specifies some defaults.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 > ---
@@ -325,10 +332,12 @@ cmake --system-information [file]
 > ```sh
 > cmake --build <dir> [<options>] [-- <build-tool-options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -421,7 +430,8 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -648,7 +658,8 @@ cmake --system-information [file]
 > ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -705,10 +716,12 @@ cmake --system-information [file]
 > Users can choose presets through the GUI or use the command line to
 > `--list-presets` and select a preset for the buildsystem with the
 > `--preset=<preset>` option.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>

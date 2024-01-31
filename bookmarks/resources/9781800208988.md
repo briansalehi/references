@@ -84,7 +84,8 @@
 >     fn_ptr fp = func;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 > ---
@@ -172,7 +173,8 @@
 >     auto c = {4, 2}; //std::initializer_list<int>
 >     auto d{4, 2}; // error, too many elements
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 > ---
@@ -456,7 +458,8 @@
 > ---
 > **Resources**
 > - 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1158,7 +1161,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1176,7 +1180,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1353,10 +1358,12 @@ Note that `random_device` cannot be seeded.
 >     int random_number = dist(generator);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1437,7 +1444,8 @@ Note that `random_device` cannot be seeded.
 >
 > auto s5{ "text"sv }; // std::string_view
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 > ---
@@ -1458,10 +1466,12 @@ Note that `random_device` cannot be seeded.
 > auto year { 2035y }; // std::chrono::year (c++20)
 > auto day { 15d }; // std::chrono::day (c++20)
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1476,7 +1486,8 @@ Note that `random_device` cannot be seeded.
 >
 > auto c{ 12.0 + 4.2i }; // std::complex<double>
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 > ---
@@ -1812,7 +1823,8 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1930,10 +1942,12 @@ Note that `random_device` cannot be seeded.
 >
 > std::regex pattern{R"(...)", std::regex_constants::egrep};
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2089,10 +2103,12 @@ Note that `random_device` cannot be seeded.
 >     std::string reformatted = std::regex_replace(text, pattern, R"([$`] $2 $1 $3 [$'])");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -2128,7 +2144,8 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -3268,7 +3285,8 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -3873,7 +3891,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 > ---
@@ -3942,7 +3961,8 @@ Note that `random_device` cannot be seeded.
 > ---
 > **Resources**
 > - x
-
+>
+> ---
 > **References**
 > ---
 </details>

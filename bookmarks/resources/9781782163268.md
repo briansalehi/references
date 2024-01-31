@@ -69,7 +69,8 @@ Nothing to import.
 > make sure that the `io_service::run()` function will not exit during the time
 > the work is underway. Also, it will make sure that the `io_service::run()`
 > function exits when there is no unfinished work remaining.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -102,7 +103,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
-
+>
+> ---
 > **References**
 > - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
 ---
@@ -498,7 +500,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -712,7 +715,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -774,10 +778,12 @@ Nothing to import.
 > break *main+50
 > break source.cpp:main+50
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -786,7 +792,8 @@ Nothing to import.
 <summary>Delete a breakpoint from a program?</summary>
 
 > `delete 1`
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 > ---
@@ -798,10 +805,12 @@ Nothing to import.
 <summary>Print the value of an object?</summary>
 
 > `print `
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -841,7 +850,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
-
+>
+> ---
 > **References**
 > ---
 </details>

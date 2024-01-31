@@ -145,10 +145,12 @@
 > A fundamental **LDM** tenet is that every single device must reside on a bus.
 > USB devices will be on USB bus, PCI devices on PCI bus, I2C devices on I2C
 > bus, and so on. Available buses are available under `/sys/bus` directory.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -460,7 +462,8 @@
 >     return nonseekable_open(inode, fp);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 >

@@ -60,7 +60,8 @@
 <summary>What is the BPF frontend?</summary>
 
 > BCC or bpftrace
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -84,7 +85,8 @@
 <summary>What is the important dependency of BPF on a Linux system?</summary>
 
 > linux-headers
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -96,7 +98,8 @@
 <summary>What tool is used as automated test suite and static and dynamic analysis for kernel modules?</summary>
 
 > Linux Driver Verification (LDV)
-
+>
+> ---
 > **Resources**
 > -
 > ---
@@ -472,7 +475,8 @@
 > ---
 > **Resources**
 > -
-
+>
+> ---
 > **References**
 > - [ctags(1)](https://manpages.org/ctags/1)
 > - [cscope(1)](https://manpages.org/cscope/1)

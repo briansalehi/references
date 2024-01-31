@@ -70,10 +70,12 @@
 > In set notation the graph is
 >
 > ${(x, f(x)) | x ∈ D}$
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -82,7 +84,8 @@
 <summary>Find the natural domain and graph the $f(x) = 1 - 2x - x^2$ and $g(t) = 1/|t|$ functions?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -94,10 +97,12 @@
 <summary>Find the domain of $y = \frac{x+3}{4 - \sqrt{x^2-9}}$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -106,7 +111,8 @@
 <summary>Find the range of $y = 2 + \sqrt{9+x^2}$</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 > ---
@@ -118,10 +124,12 @@
 <summary>What is the vertical line test?</summary>
 
 > A function $f$ can have only one value $f(x)$ for each $x$ in its domain, so no vertical line can interact the graph of a function more than once.
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -172,7 +180,8 @@
 >
 > 1. if $f(x_2) > f(x_1)$ whenever $x_1 < x_2$, then $f(x)$ is said to be **increasing** on $I$.
 > 2. if $f(x_2) < f(x_1)$ whenever $x_1 < x_2$, then $f(x)$ is said to be **decreasing** on $I$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 >

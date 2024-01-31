@@ -9,7 +9,8 @@
 > 2. System Architecture and Design Choice
 > 3. Writing Embedded Applications
 > 4. Debugging and Optimizing Performance
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
@@ -25,7 +26,8 @@
 > 3. Kernel
 > 4. Root filesystem
 > 5. Embedded Applications
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
@@ -61,7 +63,8 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -96,7 +99,8 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -193,7 +197,8 @@
 > ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
-
+>
+> ---
 > **References**
 > ---
 </details>

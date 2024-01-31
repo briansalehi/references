@@ -109,10 +109,12 @@
 >     // count: 5, sum: 15
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -202,7 +204,8 @@
 >     ssize_t bidirectional_difference = std::distance(bidirectional.begin(), bidirectional_iterator); // OK: 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.3
 > ---
@@ -229,10 +232,12 @@
 >     // output range is implied as: std::next(out.begin(), std::distance(in.begin(), in.end()));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -298,7 +303,8 @@
 > ---
 > **Resources**
 > - 2.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -408,7 +414,8 @@
 > ``````
 >
 > Importantly, because the algorithm does not have access to the end iterator of the source range, it does no out-of-bounds checking, and it is the responsibility of the caller to ensure that the range $[first, first + n)$ is valid.
-
+>
+> ---
 > **Resources**
 > - 2.1
 > ---
@@ -1861,7 +1868,8 @@
 > ---
 > **Resources**
 > - 2.8.6
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -1894,7 +1902,8 @@
 > ---
 > **Resources**
 > - 2.8.7
-
+>
+> ---
 > **References**
 > ---
 </details>

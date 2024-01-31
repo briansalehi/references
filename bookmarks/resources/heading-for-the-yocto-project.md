@@ -25,10 +25,12 @@
 > - Root filesystem usually called rootfs containing the files
 > - List of licenses of packages included in the rootfs
 > - The source for distribution to comply on the copyleft requirements
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -81,7 +83,8 @@
 > - **Yocto Project's Specific Metadata:** provided by the Yocto Project to
 >   configure the build system to fulfill Yocto Project needs and includes a
 >   set of board support packages (BSP).
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > ---
@@ -117,7 +120,8 @@ Nothing to import.
 > ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 3
-
+>
+> ---
 > **References**
 > ---
 </details>

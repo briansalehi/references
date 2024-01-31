@@ -69,7 +69,8 @@ Nothing to import.
 > |Element-wise multiplication|`s1.mul(s2)`|
 > |Conjugation|`s.conj()`|
 > |Real test|`s.isReal()`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -193,7 +194,8 @@ Nothing to import.
 > |Invert Matrix|`n44f = m44f.inv(method = cv::DECOMP_LU)`|
 > |Solve linear system|`m31f = m33f.solve(rhs31f, method)`|
 > |Per-element multiplication|`m1.mul(m2)`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -297,7 +299,8 @@ Utility functions are left out.
 > ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 6
-
+>
+> ---
 > **References**
 > ---
 </details>

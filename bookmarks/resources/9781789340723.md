@@ -105,7 +105,8 @@
 > cv::Mat image = cv::imread("untouched.jpg", cv::IMREAD_COLOR);
 > cv::imwrite("filename.jpg", image);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -232,7 +233,8 @@
 >     cv::destroyWindow(window);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 > ---
@@ -433,7 +435,8 @@
 > ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -477,7 +480,8 @@
 > ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -502,7 +506,8 @@
 > cv::Mat mask{logo};
 > logo.copyTo(region, mask);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 > ---

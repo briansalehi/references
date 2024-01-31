@@ -10,10 +10,12 @@
 > 2. **Dockerfile:** Build from a known base image, and specify the build with a limited set of simple commands.
 > 3. **Dockerfile and configuration management (CM) tool:** Same as Dockerfile, but you hand over control of the build to a more sophisticated CM tool.
 > 4. **Scratch image and import a set of files:** From an empty image, import a TAR file with the required files.
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.1
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -66,7 +68,8 @@
 > ```docker
 > CMD ["npm", "start"]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.2
 > ---
@@ -153,7 +156,8 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -268,7 +272,8 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -322,7 +327,8 @@
 > ---
 > **Resources**
 > - Docker in Practice - Chapter 2.5
-
+>
+> ---
 > **References**
 > ---
 </details>

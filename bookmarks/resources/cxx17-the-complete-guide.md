@@ -400,7 +400,8 @@
 >
 > - By default, the operations throw `std::filesystem_error` exceptions on errors.
 > - By passing an additional out parameter, an error code can be used instead.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 > ---
@@ -433,7 +434,8 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -493,7 +495,8 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -538,7 +541,8 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -856,7 +860,8 @@
 > ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
-
+>
+> ---
 > **References**
 > ---
 </details>

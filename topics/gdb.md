@@ -49,10 +49,12 @@
 > The shortcut `ctrl–x a` will also start the TUI.
 >
 > `ctrl+l` to redraw the screen reset in TUI mode.
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #2
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -205,7 +207,8 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #7
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -220,7 +223,8 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #13
-
+>
+> ---
 > **References**
 > ---
 </details>
@@ -754,7 +758,8 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #62
-
+>
+> ---
 > **References**
 > ---
 </details>
