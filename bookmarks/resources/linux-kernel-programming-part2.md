@@ -29,7 +29,8 @@
 > the *sysfs* pseudo-filesystem analogous to how *procfs* exposes some kernel
 > and process/thread internal details to user space, and is typically mounted
 > under `/sys`.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -47,7 +48,8 @@
 >
 > * The type of file – either char or block
 > * The major and minor number
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -63,7 +65,8 @@
 > kernel. This hierarchy is first divided based on device type, block or char.
 > Within that we have n major numbers for each type, and each major number is
 > further classified via some m minor numbers.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -78,7 +81,8 @@
 > Block devices have the kernel-level capability to be mounted and thus become
 > part of the user-accessible filesystem. Character devices cannot be mounted;
 > thus, storage devices tend to be block-based.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -108,7 +112,8 @@
 > class (`#10`) live a lot of devices and their corresponding drivers. In
 > effect, they share the same major number and rely on a unique minor number to
 > identify themselves.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -125,7 +130,8 @@
 > - The **buses** on the system.
 > - The **devices** on them.
 > - The **device drivers** that drive the devices.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -314,7 +320,8 @@
 > modules modules_install help clean:
 >     $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -338,7 +345,8 @@
 > `device file`, or `device node` files typically live in the `/dev` directory,
 > and on modern systems are dynamic and auto-populated. The device node serves
 > as an entry point into the device driver.
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -413,7 +421,8 @@
 > MODULE_DESCRIPTION("Sample misc device");
 > MODULE_VERSION("0.1");
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -506,7 +515,8 @@
 > MODULE_LICENSE("GPL");
 > MODULE_AUTHOR("Brian Salehi <salehibrian@gmail.com>");
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -527,7 +537,8 @@
 > ```sh
 > dd if=/dev/urandom of=/dev/miscdev bs=4K count=1
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 
@@ -569,7 +580,8 @@
 >     return -EIO;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Kernel Programming Part 2 - Chapter 1
 

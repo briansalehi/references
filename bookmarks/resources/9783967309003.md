@@ -80,7 +80,8 @@
 >     bag b{std::move(a)};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -98,7 +99,8 @@
 > `std::move()`, if available, a function declaring parameters as an rvalue
 > reference is preferred. However, if no such function exists, the usual copy
 > semantics is used as a fallback.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -119,7 +121,8 @@
 >
 > coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -155,7 +158,8 @@
 
 > The implementer has to ensure that the passed argument is in a valid state
 > after the call.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -170,7 +174,8 @@
 > - When the value of a temporary object is passed that will automatically be
 >   destroyed after the statement.
 > - When a non-`const` object marked with `std::move()`.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -188,7 +193,8 @@
 > standard header is required t include `utility` header file. Therefore, when
 > using `std::move()`, you should explicitly include `<utility>` to make your
 > program portable.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -203,7 +209,8 @@
 > ```cpp
 > function(static_cast<decltype(object)&&>(object)
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -232,7 +239,8 @@
 > foo(std::move(s));      // OK
 > foo(returnStringByValue());     // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -260,7 +268,8 @@
 > std::cout << s.front() << '\n'; // ERROR (potentially undefined behavior)
 > s = "new value";  // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -383,7 +392,8 @@
 > operations. Any form of an explicit declaration of a copy constructor, copy
 > assignment operator, or destructor disables move semantics, even if
 > declarations are marked with `=default`.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -400,7 +410,8 @@
 >
 > * No <b>move constructor</b> is user-declared
 > * No <b>move assignment operator</b> is user-declared
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -420,7 +431,8 @@
 > * No <b>copy assignment operator</b> is user-declared
 > * No another <b>move operation</b> is user-declared
 > * No <b>destructor</b> is user-declared
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -435,7 +447,8 @@
 
 > Declaring destructors in anyway disables the automatic generation of move
 > operations.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -463,7 +476,8 @@
 > The important lesson to learn here is that a parameter being declared as an
 > rvalue reference restricts what we can pass to this function but behaves just
 > like any other non-`const` object of this type.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -509,7 +523,8 @@
 > - Values of members depend on each other
 > - Member with reference semantics are used (pointers, smart pointers, ...)
 > - Objects have no default constructed state
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
@@ -540,7 +555,8 @@
 >     return *this;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
@@ -597,7 +613,8 @@
 > ``````
 >
 > In this case, `=delete` disables the fallback mechanism.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -627,7 +644,8 @@
 >     Customer& operator=(const Customer&) = default;     // disable move semantics
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -669,7 +687,8 @@
 > Invoice i;
 > Invoice i1{std::move(i)}; // OK, moves id, copies cust
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -685,7 +704,8 @@
 > constructor, copy assignment operator, move assignment operator, and
 > destructor) or none of them. Declaration means either to implement, set as
 > default, or set as deleted.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -712,7 +732,8 @@
 >     return std::move(s); // BAD, returns std::string&&
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -880,7 +901,8 @@
 > only useful when we store the passed value somewhere as a new value where we
 > need new memory allocation anyway. When modifying an existing value, this
 > policy might be counterproductive.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -909,7 +931,8 @@
 >     virtual ~Derived() = default; // BAD, redundant, disables move
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -930,7 +953,8 @@
 > - In general, creating and initializing new values from parameters, for which
 >   move operations are cheap, should take the arguments by value and move.
 >   However, do not take by value and move to update/modify existing values.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -1015,7 +1039,8 @@ Slicing objects and polymorphic classes skipped.
 > if we have an object that is not about to die or marked with `std::move()`.
 >
 > We now have both good performance and safety.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 
@@ -1067,7 +1092,8 @@ Slicing objects and polymorphic classes skipped.
 >
 > Usually, we have only two or three of these overloads, such as using `&&` and
 > `const&` (and `&`) for getters.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 
@@ -1089,7 +1115,8 @@ Slicing objects and polymorphic classes skipped.
 >     void foo() const; // ERROR
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 
@@ -1107,7 +1134,8 @@ Slicing objects and polymorphic classes skipped.
 > Although we do have this feature, it is not used as much as it could be. In
 > particular, we should use it to ensure that operations that modify objects
 > are not called for temporary objects that are about to die.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 
@@ -1322,7 +1350,8 @@ Slicing objects and polymorphic classes skipped.
 >     void foo(int); // OK, hiding instead of overriding
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
 
@@ -1381,7 +1410,8 @@ Slicing objects and polymorphic classes skipped.
 >     B& operator= (B&&) = default;      // noexcept condition automatically generated
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
 
@@ -1408,7 +1438,8 @@ Slicing objects and polymorphic classes skipped.
 >
 > Before C++20, if the generated and specified `noexcept` condition contradict,
 > the defined function was deleted.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 7
 
@@ -1433,7 +1464,8 @@ void do_something(T&& x)
     do_special_task(std::forward<T>(x));
 }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -1458,7 +1490,8 @@ void do_something(T&& x)
 > auto&& value = compute(t);
 > process(std::forward<decltype(value)>(value));
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -1505,7 +1538,8 @@ void do_something(T&& x)
 > (because declaring special move members marks the copying members as
 > deleted). However, explicitly marking the copying special member function
 > with =delete makes the intention more clear.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
@@ -1535,7 +1569,8 @@ void do_something(T&& x)
 > ``````
 >
 > Again: the elements are still in the container with their moved-from state.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
@@ -1552,7 +1587,8 @@ void do_something(T&& x)
 > ```cpp
 > std::vector<MoveOnly> coll{ MoveOnly{}, ... }; // ERROR
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
@@ -1576,7 +1612,8 @@ void do_something(T&& x)
 >     ...
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
@@ -1606,7 +1643,8 @@ void do_something(T&& x)
 > }
 > MoveOnly m{source()}; // takes ownership of the associated value/resource
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 13
 
@@ -1726,7 +1764,8 @@ void do_something(T&& x)
 >                 }
 >               });
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 14
 
@@ -1763,7 +1802,8 @@ void do_something(T&& x)
 > change. We moved all elements to the initialized new container. Therefore,
 > the elements in the source range are in a moved-from state afterwards and we
 > do not know their values.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 14
 
@@ -1797,7 +1837,8 @@ void do_something(T&& x)
 > ...
 > v = createAndInsert(); // move assignment
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
 
@@ -1820,7 +1861,8 @@ void do_something(T&& x)
 > implementers have no other option but to steal the memory of elements as a
 > whole from the source object `cont1` to the destination object `cont2`,
 > leaving the source object `cont1` in an initial/empty state.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
 
@@ -1846,7 +1888,8 @@ void do_something(T&& x)
 > * Move element by element from the source cont1 to the destination cont2 and destroy all remaining elements not overwritten in the destination.
 >
 > Both ways require linear complexity, which is therefore specified.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
 
@@ -1877,7 +1920,8 @@ void do_something(T&& x)
 >
 > ```cpp
 >
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 15
 

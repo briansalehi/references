@@ -116,7 +116,8 @@
 >     vec_t<std::string> vs;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -202,7 +203,8 @@
 >     {}
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -261,7 +263,8 @@
 >     char _pad2[7];  // 7 bytes
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -288,7 +291,8 @@
 > alignof(int*);  // 8 (64-bit)
 > alignof(int[4]);// 4 (natural alignment of element is 4)
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -352,7 +356,8 @@
 > alignas(8) int a;       // size = 4, alignment = 8
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -381,7 +386,8 @@
 >
 > status do_something() { return status::success; }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -413,7 +419,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -445,7 +452,8 @@
 >
 > beta object;
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -481,7 +489,8 @@
 >     beta object;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -511,7 +520,8 @@
 > {
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -558,7 +568,8 @@
 >         copies.push_back(key);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -675,7 +686,8 @@
 >     std::cout << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -713,7 +725,8 @@
 >     string_buffer b5 = small;    // would call string_buffer(std::size_t const)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -758,7 +771,8 @@
 >
 > print(); // external linkage, local visibility
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -785,7 +799,8 @@
 > test<Size1> t1; // error only on VC++
 > test<Size2> t2; // okay
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -894,7 +909,8 @@
 >     auto y = correct_implementation::test(foor{42});
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -921,7 +937,8 @@
 >         std::cout << std::distance(numbers.cbegin(), iter);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -939,7 +956,8 @@
 > std::pair p{42, "demo"};    // std::pair<int, char const*>
 > std::vector v{1, 2};        // std::vector<int>
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -1085,7 +1103,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto low_double = std::numeric_limits<double>::lowest();
 > auto max_double = std::numeric_limits<double::lowest();
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1115,7 +1134,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 >     return latest_minimum;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1134,7 +1154,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto s = std::numeric_limits<short>::digits;
 > auto d = std::numeric_limits<double>::digits;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1151,7 +1172,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto s = std::numeric_limits<short>::digits10;
 > auto d = std::numeric_limits<double>::digits10;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1167,7 +1189,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 >
 > auto value_is_signed = std::numeric_limist<T>::is_signed;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1183,7 +1206,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 >
 > auto value_is_integer = std::numeric_limist<T>::is_integer;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1199,7 +1223,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 >
 > auto value_is_exact = std::numeric_limist<T>::is_exact;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1215,7 +1240,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 >
 > auto value_has_infinity = std::numeric_limist<T>::has_infinity;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1234,7 +1260,8 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > auto min = std::mt19937::min();
 > auto max = std::mt19937::max();
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1257,7 +1284,8 @@ Note that `random_device` cannot be seeded.
 > std::mt19937 generator2;
 > generator2.seed(seeder());
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1277,7 +1305,8 @@ Note that `random_device` cannot be seeded.
 > std::mt19937 generator{seeder()};
 > auto number = generator();
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1294,7 +1323,8 @@ Note that `random_device` cannot be seeded.
 > std::mt19937 generator{};
 > generator.discard(4); // discard 4 numbers
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1346,7 +1376,8 @@ Note that `random_device` cannot be seeded.
 > T operator ""_suffix(char16_t const *, std::size_t);
 > T operator ""_suffix(char32_t const *, std::size_t);
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1379,7 +1410,8 @@ Note that `random_device` cannot be seeded.
 >     size_t bytes = "1024"_KB;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1463,7 +1495,8 @@ Note that `random_device` cannot be seeded.
 > template <char...>
 > T operator ""_suffix();
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1517,7 +1550,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1536,7 +1570,8 @@ Note that `random_device` cannot be seeded.
 > auto filename { R"(C:\Users\Brian\Documents\)"s };
 > auto pattern { R"((\w[\w\d]*)=(\d+))"s };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1562,7 +1597,8 @@ Note that `random_device` cannot be seeded.
 >
 > auto s5{ R"text"sv }; // std::string_view
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1607,7 +1643,8 @@ Note that `random_device` cannot be seeded.
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1638,7 +1675,8 @@ Note that `random_device` cannot be seeded.
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1664,7 +1702,8 @@ Note that `random_device` cannot be seeded.
 >     return text.substr(first, (last - first + 1));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1690,7 +1729,8 @@ Note that `random_device` cannot be seeded.
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1728,7 +1768,8 @@ Note that `random_device` cannot be seeded.
 >     return tokens;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1750,7 +1791,8 @@ Note that `random_device` cannot be seeded.
 > std::regex srx{pattern};
 > std::regex lrx{R"(...)"s};
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1766,7 +1808,8 @@ Note that `random_device` cannot be seeded.
 > ```cpp
 > std::regex irx{R"(...)"s, std::regex_constants::icase};
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1807,7 +1850,8 @@ Note that `random_device` cannot be seeded.
 >         std::cerr << "invalid repository link!\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1857,7 +1901,8 @@ Note that `random_device` cannot be seeded.
 >                   << " hosted on " << domain
 >                   << " using " << protocol << " protocol\n";
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1925,7 +1970,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -1990,7 +2036,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2015,7 +2062,8 @@ Note that `random_device` cannot be seeded.
 >     std::regex_replace(text, rx, "an $1");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2076,7 +2124,8 @@ Note that `random_device` cannot be seeded.
 > std::string s3{ sv3 };
 > std::string s4{ sv4 };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2117,7 +2166,8 @@ Note that `random_device` cannot be seeded.
 > str.remove_suffix(str.length() - pos2 - 1);
 > str.remove_prefix(pos1);
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -2134,7 +2184,8 @@ Note that `random_device` cannot be seeded.
 > std::string_view sv{ "demo" };
 > std::string s{ sv };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2155,7 +2206,8 @@ Note that `random_device` cannot be seeded.
 >     foo() = default;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2176,7 +2228,8 @@ Note that `random_device` cannot be seeded.
 >
 > void func(int) = delete;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2195,7 +2248,8 @@ Note that `random_device` cannot be seeded.
 > * If a user-defined copy assignment operator or destructor exists, then the copy constructor is generated by default. <span style="color:green">(deprecated)</span>
 >
 > The rule of thumb, also known as The Rule of Five, for class special member functions is that if you explicitly define any copy constructor, move constructor, copy assignment operator, move assignment operator, or destructor, then you must either explicitly define or default all of them.
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2217,7 +2271,8 @@ Note that `random_device` cannot be seeded.
 >     non_copyable& operator =(non_copyable const&) = delete;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2253,7 +2308,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2277,7 +2333,8 @@ Note that `random_device` cannot be seeded.
 >
 > inline base& base::operator =(base const&) = default;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2303,7 +2360,8 @@ Note that `random_device` cannot be seeded.
 >         { return minimum <= n && n <= maximum; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2325,7 +2383,8 @@ Note that `random_device` cannot be seeded.
 >     int positives = std::count_if(std::begin(numbers), std::end(numbers), is_positive);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2354,7 +2413,8 @@ Note that `random_device` cannot be seeded.
 >     std::string sentence = std::accumulate(std::begin(words), std::end(words), 0, lsum);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2384,7 +2444,8 @@ Note that `random_device` cannot be seeded.
 > * `[&, =](){}`: **error**, cannot capture everything both by copy and by reference.
 > * `[x=expr](){}`: `x` is a data member of the lambda's closure initialized from the expression `expr` suited for move-semantics. <span style="color:green">(c++14)</span>
 > * `[&x=expr](){}`: `x` is a reference data member of the lambda's closure initialized from the expression `expr` suited for move-semantics. <span style="color:green">(c++14)</span>
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2407,7 +2468,8 @@ Note that `random_device` cannot be seeded.
 > ```cpp
 > [capture-list](params) mutable constexpr exception attr -> ret { body; }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2456,7 +2518,8 @@ Note that `random_device` cannot be seeded.
 >     auto lambda = base{42}.show();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2478,7 +2541,8 @@ Note that `random_device` cannot be seeded.
 >     vsize(42); // error
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2540,7 +2604,8 @@ Note that `random_device` cannot be seeded.
 >     generic_show(object);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2600,7 +2665,8 @@ Note that `random_device` cannot be seeded.
 >     auto f10 = lfib(10);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2640,7 +2706,8 @@ Note that `random_device` cannot be seeded.
 >     int result = add(0,1,2,3,4,5,6,7,8,9);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2664,7 +2731,8 @@ Note that `random_device` cannot be seeded.
 > template<typename ...Ts>
 > auto add(Ts ...args) { return (args + ... + 1); }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2721,7 +2789,8 @@ Note that `random_device` cannot be seeded.
 >                 less_pack<int>{__args2})).value;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2777,7 +2846,8 @@ Note that `random_device` cannot be seeded.
 >     return mapped;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2807,7 +2877,8 @@ Note that `random_device` cannot be seeded.
 >     std::vector<int> absolutes = mapping(std::abs<>(), numbers);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2845,7 +2916,8 @@ Note that `random_device` cannot be seeded.
 >     return init;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2872,7 +2944,8 @@ Note that `random_device` cannot be seeded.
 >     int sum = folding(std::plus<>(), numbers, 0);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -2947,7 +3020,8 @@ Note that `random_device` cannot be seeded.
 >     int r5 = std::invoke(lambda, 1, 2);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3025,7 +3099,8 @@ Note that `random_device` cannot be seeded.
 > /* ... */
 > #endif
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3052,7 +3127,8 @@ Note that `random_device` cannot be seeded.
 > #endif
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3095,7 +3171,8 @@ Note that `random_device` cannot be seeded.
 > #endif
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3116,7 +3193,8 @@ Note that `random_device` cannot be seeded.
 > #endif
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3132,7 +3210,8 @@ Note that `random_device` cannot be seeded.
 >
 > #define MAKE_STR(x) MAKE_STR2(x)
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3148,7 +3227,8 @@ Note that `random_device` cannot be seeded.
 >
 > #define MERGE(x, y) MERGE2(x, y)
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3169,7 +3249,8 @@ Note that `random_device` cannot be seeded.
 >
 > static_assert(sizeof(item) == 16, "size of item must be 16 bytes");
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3198,7 +3279,8 @@ Note that `random_device` cannot be seeded.
 > pod_wrapper<point> w2; // OK
 > pod_wrapper<std::string> w3; // error: POD type expected
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3284,7 +3366,8 @@ Note that `random_device` cannot be seeded.
 >     return binary_eval<byte8, bits...>();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3320,7 +3403,8 @@ Note that `random_device` cannot be seeded.
 >
 > Item get_item() { return Item{}; }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3344,7 +3428,8 @@ Note that `random_device` cannot be seeded.
 > // warning: 'foo' is deprecated
 > foo f;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3363,7 +3448,8 @@ Note that `random_device` cannot be seeded.
 >
 > [[maybe_unused]] auto i = get_value1();
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3389,7 +3475,8 @@ Note that `random_device` cannot be seeded.
 >         option2();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3412,7 +3499,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3443,7 +3531,8 @@ Note that `random_device` cannot be seeded.
 >     file.close();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3470,7 +3559,8 @@ Note that `random_device` cannot be seeded.
 >     file.close();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3497,7 +3587,8 @@ Note that `random_device` cannot be seeded.
 >     file.close();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3563,7 +3654,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3599,7 +3691,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3618,7 +3711,8 @@ Note that `random_device` cannot be seeded.
 > typedef basic_fstream<char>     fstream;
 > typedef basic_fstream<wchar_t>  wfstream;
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3639,7 +3733,8 @@ Note that `random_device` cannot be seeded.
 > std::basic_fstream(std::filesystem::path::value_type const*, std::ios_base::openmode);
 > template <class Path> std::basic_fstream(Path const&, sdt::ios_base::openmode);
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3659,7 +3754,8 @@ Note that `random_device` cannot be seeded.
 > * `std::ios_base::out`
 > * `std::ios_base::trunc`
 > * `std::ios_base::ate`
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3693,7 +3789,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3726,7 +3823,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3785,7 +3883,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3818,7 +3917,8 @@ Note that `random_device` cannot be seeded.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - x
 
@@ -3839,7 +3939,8 @@ Note that `random_device` cannot be seeded.
 > - Modules do not require splitting interfaces and implementation in different source files, although this is still possible.
 > - Modules reduce compilation time. The entities exported from a module are described in a binary file that the compiler can process faster than traditional precompiled headers.
 > - Exported files can potentially be used to build integrations with C++ code from other languages.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -3942,7 +4043,8 @@ Note that `random_device` cannot be seeded.
 >   declarations.
 > - The **module purview**, which is the content of the unit, starting with the
 >   module declaration and extending to the end of the module unit.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -4202,7 +4304,8 @@ Note that `random_device` cannot be seeded.
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 

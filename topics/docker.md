@@ -7,7 +7,8 @@
 
 > Some features may become deprecated on future releases. To see what has been
 > tagged for deprecation and eventual removal, refer to the documentation.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -39,7 +40,8 @@
 > ```sh
 > sudo dockerd -H unix:///var/run/docker.sock --config-file /etc/docker/daemon.json
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -71,7 +73,8 @@
 > ```sh
 > su -l $USER
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -86,7 +89,8 @@
 > ```sh
 > docker -H 10.0.0.10:12375 version
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -117,7 +121,8 @@
 > ```sh
 > docker context list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -158,7 +163,8 @@
 > ```sh
 > docker context use default
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -175,7 +181,8 @@
 > docker image ls
 > docker image list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -196,7 +203,8 @@
 > ```sh
 > docker image list --filter dangling=true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -214,7 +222,8 @@
 > ```sh
 > docker image list --filter before=container_name
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -232,7 +241,8 @@
 > ```sh
 > docker image list --filter since=container_name
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -250,7 +260,8 @@
 > ```sh
 > docker image list --filter reference="*:latest"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -276,7 +287,7 @@
 > ```sh
 > docker image list --format "{{.Repository}}: {{.Tag}}: {{.Size}}"
 > ``````
-
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -296,7 +307,8 @@
 > ```sh
 > docker search nigelpoulton
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -310,7 +322,8 @@
 
 > By default, Docker will only display 25 lines of results. However, you can
 > use the `--limit` flag to change that.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -342,7 +355,8 @@
 > ```sh
 > docker search alpine --filter is-automated=true --limit 100
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -359,7 +373,8 @@
 > ```sh
 > docker image pull mongo:4.2.6
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -382,7 +397,8 @@
 > ```sh
 > docker image pull nigelpoulton/tu-demo:v2
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -403,7 +419,8 @@
 > ```sh
 > docker image pull gcr.io/google-containers/git-sync:v3.1.5
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -424,7 +441,8 @@
 > ```sh
 > docker image inspect ubuntu:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -444,7 +462,8 @@
 > ``````
 > The image is always the combination of all layers stacked in the order they
 > were added.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -459,7 +478,8 @@
 > docker image pull alpine:latest
 > docker image list --digests alpine:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -526,7 +546,7 @@
 > ```txt
 > { "experimental": true }
 > ``````
-
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -576,7 +596,8 @@
 > ```sh
 > docker image prune --all
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -592,7 +613,8 @@
 
 > **Docker Content Trust (DCT)** lets us sign our own images and verify the
 > integrity and publisher of images we consume.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -635,7 +657,8 @@
 > ``````
 >
 > The push operation will create the repo on Docker Hub and push the image.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -649,7 +672,7 @@
 > ```sh
 > docker trust inspect nigelpoulton/ddd-trust:signed --pretty
 > ``````
-
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -671,7 +694,8 @@
 >
 > Once DCT is enabled like this, you’ll no longer be able to pull and work with
 > unsigned images.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -694,7 +718,8 @@
 >
 > The `-it` flags tell Docker to make the container interactive and to attach
 > the current shell to the container’s terminal.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -713,7 +738,8 @@
 > Press `Ctrl-P` then `Ctrl-Q` to exit the container without terminating its
 > main process. Doing this will place you back in the shell of your Docker host
 > and leave the container running in the background.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -732,7 +758,8 @@
 > ```sh
 > docker container exec --interactive --tty container_name /usr/bin/bash
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -753,7 +780,8 @@
 > ```sh
 > docker container stop my-container
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -771,7 +799,8 @@
 > ```sh
 > docker container start my-container
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -790,7 +819,7 @@
 > docker container stop container_name
 > docker container rm container_name
 > ``````
-
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -839,7 +868,8 @@
 > Be aware that Docker has restarted the same container and not created a new
 > one. In fact, if you inspect it you can see there **startCount** has been
 > incremented.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -857,7 +887,8 @@
 > ```sh
 > docker container run --interactive --tty --restart unless-stopped ubuntu /usr/bin
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -875,7 +906,8 @@
 > ```sh
 > docker container run --interactive --tty --restart on-failure ubuntu /usr/bin
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -894,7 +926,8 @@
 > ```sh
 > docker container list --all
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -915,7 +948,8 @@
 > LABEL description="Web service"
 > LABEL version="0.1"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -940,7 +974,8 @@
 > FROM alpine
 > RUN apk add --update nodejs nodejs-npm
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -963,7 +998,8 @@
 > ```docker
 > COPY . /src
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -1000,7 +1036,8 @@
 > ```docker
 > EXPOSE 8080
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -1046,7 +1083,8 @@
 > ```sh
 > /bin/bash /bin/cat /etc/hosts
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -1061,7 +1099,8 @@
 
 > A *swarm* consists of one or more Docker nodes.
 > Using **Docker Swarm** these nodes can be orchestrated.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1073,7 +1112,8 @@
 <summary>How many types of swarm nodes exist?</summary>
 
 > Nodes are either configured as *managers* or *workers*.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1104,7 +1144,8 @@
 >
 > Joining a Docker host to an existing *swarm* switches them into *swarm mode*
 > as part of the operation.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1120,7 +1161,8 @@
 > ```sh
 > docker swarm init --advertise-addr 10.0.0.1:2377 --listen-addr 10.0.0.1:2377
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1134,7 +1176,8 @@
 > The default port that *swarm mode* operates on is `2377/tcp`. This is
 > customizable, but it's convention to use the default for secured
 > client-to-swarm connections.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1154,7 +1197,8 @@
 > Nodes with nothing in the `MANAGER STATUS` column are *workers*. The asterisk
 > after the `ID` column indicates the node you are logged on to and executing
 > commands from.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1172,7 +1216,8 @@
 > docker swarm join-token worker
 > docker swarm join-token manager
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1192,7 +1237,8 @@
 > The `--advertise-addr` and `--listen-addr` flags are optional, but it's best
 > practice to be as specific as possible when it comes to network
 > configuration.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1210,7 +1256,8 @@
 > against the *swarm*. So, it's only ever the *leader* that changes the config,
 > or issues tasks to workers. If a *follower manager* (passive) receives
 > commands for the swarm, it proxies them across the *leader*.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1236,7 +1283,8 @@
 > impossible to have an equal number of managers on both sides of the parition,
 > then one side achieves quorum and full cluster management services remain
 > available.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1256,7 +1304,8 @@
 > To prevent situations like these, Docker allows to lock a swarm with the
 > Autolock feature. This forces restarted managers to present the cluster
 > unlock key before being admitted back into the cluster.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1279,7 +1328,8 @@
 > ```sh
 > docker swarm update --autolock true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1293,7 +1343,8 @@
 > ```sh
 > docker swarm unlock-key
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1324,7 +1375,8 @@
 > ``````
 >
 > Confirm that *manager* has re-joined by listing swarm nodes.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1337,7 +1389,8 @@
 
 > 1. Imperatively on the command line with `docker service create`
 > 2. Declaratively with a stack ﬁle
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1365,7 +1418,8 @@
 > ```sh
 > docker service ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1379,7 +1433,8 @@
 > ```sh
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1393,7 +1448,8 @@
 > ```sh
 > docker service inspect --pretty my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1411,7 +1467,8 @@
 > The other mode is *global*, which runs a single replica on every node in
 > swarm. To deploy a *global service* you need to pass the `--mode global` flag
 > to the `docker service create` command.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1428,7 +1485,8 @@
 > docker service ls
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1442,7 +1500,8 @@
 > ```sh
 > docker service rm my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1473,7 +1532,8 @@
 > ```sh
 > docker network ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1487,7 +1547,8 @@
 > ```sh
 > docker service create --name my-service --network my-network --publish 80:80 --replicas 10 repository/project:v1
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1505,7 +1566,8 @@
 >
 > In *ingress mode* every node gets a mapping and can therefore redirect your
 > request to a node that is running the service.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1522,7 +1584,8 @@
 >
 > Open a web browser and point it to the IP address of any of the nodes in the
 > swarm on port 80 to see the service running.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1537,7 +1600,8 @@
 > docker service update --image repository/project:v2 --update-parallelism 2 --update-delay 20s my-project
 > docker service inspect --pretty my-project
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1554,7 +1618,8 @@
 >
 > You can follow the logs (`--follow`), tail them (`--tail`), and get extra
 > details (`--details`).
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1578,7 +1643,8 @@
 >   "log-driver": "syslog"
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1595,7 +1661,8 @@
 > things like networks, services, secrets and other objects. However, managing
 > your environment declaratively and strictly using source control repos
 > requires discipline.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1608,7 +1675,8 @@
 
 > Swarm conﬁguration and state is stored in `/var/lib/docker/swarm` on every
 > manager node. A swarm backup is a copy of all the ﬁles in this directory.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1656,7 +1724,8 @@
 > ``````
 >
 > Add new manager and worker nodes and take fresh backups.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1704,7 +1773,8 @@
 > ```sh
 > docker swarm join-token --rotate manager
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1723,7 +1793,8 @@
 >
 > Scanners work by building a list of all software in an image and then comparing the packages against databases of known vulnerabilities.
 > Most vulnerability scanners will rank vulnerabilities and provide advice and help on fixes.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1739,7 +1810,8 @@
 > in the same way that hypervisors virtualise physical resources such as CPUS
 > and disks. If namespaces are about isolation, control groups (cgroups) are
 > about limits.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1758,7 +1830,8 @@
 > Docker uses seccomp to limit the syscalls a container can make to the host’s
 > kernel. At the time of writing, Docker’s default seccomp profile disables 44
 > syscalls. Modern Linux systems have over 300 syscalls.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1793,7 +1866,8 @@
 > 90 days, and a cluster database has been configured and encrypted. A set of
 > secure tokens have also been created so that additional managers and workers
 > can be securely joined.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1807,7 +1881,8 @@
 > ```sh
 > sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1841,7 +1916,8 @@
 > ```sh
 > docker swarm ca --help
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1868,7 +1944,8 @@
 >
 > The secret is mounted into the containers of the blue service as an
 > unencrypted ﬁle at `/run/secrets/`. This is an in-memory *tmpfs* filesystem.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1902,7 +1979,8 @@
 > ```sh
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1919,7 +1997,8 @@
 > docker plugin ls
 > docker plugin list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1941,7 +2020,8 @@
 > As the name suggests, volumes created with the *local* driver are only
 > available to containers on the same node as the volume. You can use the `-d`
 > ﬂag to specify a diﬀerent driver.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1962,7 +2042,8 @@
 > if you speciﬁed a directory on a Docker host that doesn’t exist. As a result,
 > deﬁning a volume in a Dockerfile requires you to specify host directories at
 > deploy-time.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1977,7 +2058,8 @@
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > docker volume create --driver pure --opt size=25GB fast-volume
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1994,7 +2076,8 @@
 > docker volume ls
 > docker volume list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2017,7 +2100,8 @@
 >
 > The `Mountpoint` property tells us where in the Docker host’s filesystem the
 > volume exists.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2037,7 +2121,8 @@
 >
 > This option lets you specify exactly which volumes you want to delete. It
 > won't delete a volume that is in use by a container or service replica.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2054,7 +2139,8 @@
 >
 > `prune` will delete all volumes that are not mounted into a container or
 > service replica.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2084,7 +2170,8 @@
 > ```sh
 > docker volume ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2106,7 +2193,8 @@
 > ```sh
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2134,7 +2222,8 @@
 > by the application in node-2. However, the application in node-2 is totally
 > unaware of this! This is one of the ways data corruption happens. To prevent
 > this, you need to write your applications in a way to avoid things like this.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -2154,7 +2243,8 @@
 > by default, all of the containers are on a network together and can talk to
 > each other directly. But to get to the host or the outside world, they go
 > over the `docker0` virtual bridge interface.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
 

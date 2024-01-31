@@ -35,7 +35,8 @@
 >     std::string date = std::format("{0}/{1}/{2}", 2023, 10, 1);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
 
@@ -55,7 +56,8 @@
 >     std::string date = std::format("{:.^15}", "message");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
 
@@ -84,7 +86,8 @@
 >     print("message\n");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
 
@@ -136,7 +139,8 @@
 >     print("{}", data);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20 STL Cookbook - Chapter 1
 

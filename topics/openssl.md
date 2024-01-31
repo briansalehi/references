@@ -11,7 +11,8 @@
 > ```sh
 > openssl genrsa -aes256 -out ca-key.pem 4096
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
@@ -27,7 +28,7 @@
 > ```sh
 > openssl req -new -x509 -sha256 -days 3650 -key ca-key.pem -out ca.pem
 > ``````
-
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
@@ -41,7 +42,8 @@
 > ```sh
 > openssl x509 -in ca.pem -text
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
@@ -56,7 +58,8 @@
 > openssl genrsa -out cert-key.pem
 > openssl req -new -sha256 -subj "/CN=customsubject" -key cert-key.pem -out cert.csr
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=VH4gXcvkmOY
 

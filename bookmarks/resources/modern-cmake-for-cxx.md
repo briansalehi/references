@@ -47,7 +47,8 @@
 > ```sh
 > cmake -G <generator-name> -T <toolset-spec> -A <platform-name> <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -65,7 +66,8 @@
 > ```sh
 > cmake -C <initial-cache-script> <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -137,7 +139,8 @@
 >
 > Custom variables that are added manually with the `-D` option won't be
 > visible unless you specify one of the supported types.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -173,7 +176,8 @@ cmake --system-information [file]
 >
 > Running it in the build tree directory will print additional information
 > about the cache variables and build messages from the log files.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -199,7 +203,8 @@ cmake --system-information [file]
 > * `VERBOSE`
 > * `DEBUG`
 > * `TRACE`
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -212,7 +217,8 @@ cmake --system-information [file]
 
 > You can specify this setting permanently in the `CMAKE_MESSAGE_LOG_LEVEL`
 > cache variable.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -257,7 +263,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --trace
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -284,7 +291,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --list-presets
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -302,7 +310,8 @@ cmake --system-information [file]
 > These values override the system defaults and the environment. However, at
 > the same time, they can be overridden with any arguments that are explicitly
 > passed on the command line.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -374,7 +383,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --build <dir> --target <target1> -t <target2> ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -389,7 +399,8 @@ cmake --system-information [file]
 > cmake --build <dir> -t clean
 > cmake --build <dir> --target clean
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -403,7 +414,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --build <dir> --clean-first
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -421,7 +433,8 @@ cmake --system-information [file]
 >
 > The same effect can be achieved by setting the `CMAKE_VERBOSE_MAKEFILE`
 > cached variable.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -457,7 +470,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --install <dir> --config <cfg>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -475,7 +489,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --install <dir> --component <comp>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -493,7 +508,8 @@ cmake --system-information [file]
 > ```sh
 > cmake --install <dir>  --default-directory-permissions <permissions>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -545,7 +561,8 @@ cmake --system-information [file]
 > ```sh
 > cmake -D <var>=<value> -P <cmake-script-file> -- <unparsed options>...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -585,7 +602,8 @@ cmake --system-information [file]
 > ```sh
 > cmake -E <command> [<options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -599,7 +617,8 @@ cmake --system-information [file]
 > ```sh
 > cmake -E
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -614,7 +633,8 @@ cmake --system-information [file]
 > cmake ––help[-<topic>]
 > cmake --help-commands file
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -631,7 +651,8 @@ cmake --system-information [file]
 > ```sh
 > ctest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -658,7 +679,8 @@ cmake --system-information [file]
 > We also have an `add_subdirectory(api)` command to include another
 > `CMakeListst.txt` file from the api directory to perform steps that are
 > specific to the API part of our application.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 

@@ -38,7 +38,8 @@
 > values ('Tehran', 'Iran', 15000000, 40000),
 >        ('Munich', 'Germany', 8000000, 20000);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
@@ -53,7 +54,8 @@
 > select * from cities;
 > select name, country from cities;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
@@ -80,7 +82,8 @@
 > ```sql
 > select name, population / area from cities;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 1
 
@@ -152,7 +155,8 @@
 >
 > The source `from` would be read first. Then, the filtering `where` reduces
 > the results. Finally, the columns would be selected.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -166,7 +170,8 @@
 > ```sql
 > select name, country from cities where country in ('USA', 'Germany', 'France');
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -180,7 +185,8 @@
 > ```sql
 > select name, country from cities where country not in ('USA', 'Germany', 'France');
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -202,7 +208,8 @@
 > - between two `between`
 > - exists in list `in`
 > - not exists in list `not in`
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -223,7 +230,8 @@
 > select device, manufacturer from devices where country = 'USA' or country = 'China';
 > select device, manufacturer from devices where country = 'USA' and manufacturer = 'ASUS';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -239,7 +247,8 @@
 > ```sql
 > select name, country, population / area as density from cities where population / area > 40000;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -255,7 +264,8 @@
 > ```sql
 > update cities set population = 20000000 where name = 'Tehran';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -271,7 +281,8 @@
 > ```sql
 > delete from cities where name = 'Tehran';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -285,7 +296,8 @@
 > ```sql
 > delete from cities;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 2
 
@@ -304,7 +316,8 @@
 > - one to many
 > - many to one
 > - many to many
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -322,7 +335,8 @@
 > - 99% of the time called id
 > - Either an integer or a UUID
 > - Will never change
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -342,7 +356,8 @@
 >     username varchar(50)
 > )
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -360,7 +375,8 @@
 > - Name varies, usually called something like `xyz_id`
 > - Exactly equal to the primary key of the referenced row
 > - Will change if the relationship changes
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -378,7 +394,8 @@
 >     user_id integer references users(id)
 > )
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -399,7 +416,8 @@
 > ```sql
 > insert into photos (url, user_id) values ('https://cdn1.example.com/image1.jpg', NULL);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -417,7 +435,8 @@
 > - `on delete cascade`: delete the referencing record too
 > - `on delete set null`: set the foreign key value to NULL
 > - `on delete set default`: set the forign key value to a default value
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -438,7 +457,8 @@
 >     user_id integer references on users(id) on delete restrict
 > )
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -456,7 +476,8 @@
 > from users
 > join photos on users.id = photos.user_id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -476,7 +497,8 @@
 >     user_id integer default 0 references on users(id) on delete set default
 > )
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 3
 
@@ -539,7 +561,8 @@
 > join photos on photos.user_id = users.id
 > where photos.views > 2000;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 4
 
@@ -557,7 +580,8 @@
 > - Reduces many rows down to fewer rows
 > - Done by using the 'GROUP BY' keyword
 > - Visualizing the result is key to use
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -587,7 +611,8 @@
 > from comments
 > group by user_id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -704,7 +729,8 @@
 > from comments
 > group by user_id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -722,7 +748,8 @@
 > from comments
 > group by photo_id;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -737,7 +764,8 @@
 
 > ```sql
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 5
 
@@ -764,7 +792,8 @@
 > from products
 > order by price desc;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
@@ -800,7 +829,8 @@
 > from users
 > limit 10;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
@@ -813,7 +843,8 @@
 
 > `limit` clause goes at the end of query string after `group by` clause if
 > exists, and before `offset`.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
@@ -833,7 +864,8 @@
 > from users
 > offset 40;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
@@ -845,7 +877,8 @@
 <summary>Where should the offset clause be located within a query?</summary>
 
 > At the end, after `sort by`, `group by`, `having`, and `limit` clauses.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 7
 
@@ -865,7 +898,8 @@
 >
 > *Find the 4 products with the highest price, and the 4 products with the
 > highest price/weight ratio*.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
@@ -877,7 +911,8 @@
 <summary>What is the prerequisite of a union?</summary>
 
 > All columns of queries should match.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
@@ -905,7 +940,8 @@
 > ``````
 >
 > To retrieve duplicates use `union all` clause.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
@@ -926,7 +962,8 @@
 > union
 > select * from products;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 8
 
@@ -989,7 +1026,8 @@
 > from products
 > where price > (select max(price) from products where manufacturer = 'Samsung');
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
@@ -1006,7 +1044,8 @@
 > select name, price, (select max(price) from products) as max_price
 > from products;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
@@ -1024,7 +1063,8 @@
 > from (select name, price / weight as price_weight_ratio from produts
 > where price_weight_ratio > 5;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 9
 
@@ -1067,7 +1107,8 @@
 > ```sql
 > alter table products alter column price set not null;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1083,7 +1124,8 @@
 > ```sql
 > update table products set price = 0 where price is null;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1134,7 +1176,8 @@
 > ```sql
 > alter table products alter column price set default 0;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1155,7 +1198,8 @@
 >     weight integer,
 > );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1169,7 +1213,8 @@
 > ```sql
 > alter table products add unique (name);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1182,7 +1227,8 @@
 
 > ```sql
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1218,7 +1264,8 @@ create table products (
 > ```sql
 > alter table products add unique(name, price);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1239,7 +1286,8 @@ create table products (
 >     weight integer default 0 not null (weight > 0)
 > );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1253,7 +1301,8 @@ create table products (
 > ```sql
 > alter table products add check(price > 0);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1295,7 +1344,8 @@ create table products (
 > - sqldbm.com
 > - quickdatabasediagrams.com
 > - ondras.zarovi.cz/sql/demo
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 14
 
@@ -1317,7 +1367,8 @@ create table products (
 >     ) = 1
 > );
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 16
 
@@ -1338,7 +1389,8 @@ create table products (
 > ```psql
 > show data_directory;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
@@ -1352,7 +1404,8 @@ create table products (
 > ```psql
 > select oid, datname from pg_database;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
@@ -1366,7 +1419,8 @@ create table products (
 > ```psql
 > select * from pg_class;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
@@ -1380,7 +1434,8 @@ create table products (
 > - **Heap File**: The file stored in the base directory within data directory that contains all the data of a table.
 > - **Block** or **Page**: 8KB chunks of heap file each storing some number of rows.
 > - **Tuple** or **Item**: Individual row from the table.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
@@ -1399,7 +1454,8 @@ create table products (
 > |Free Space|Free Space|Free Space|Free Space|
 > |Data for tuple 2|
 > |Data for tuple 1|
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 22
 
@@ -1414,7 +1470,8 @@ create table products (
 <summary>What is an index?</summary>
 
 > Data structure that efficiently tells us what block a record is stored at.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1442,7 +1499,8 @@ create table products (
 > ```psql
 > drop index users_username_idx;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1456,7 +1514,8 @@ create table products (
 > ```psql
 > explain analyze select * from users where username = 'briansalehi';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1472,7 +1531,8 @@ create table products (
 > select pg_relation_size('users_username_idx');
 > select pg_size_pretty(pg_relation_size('users'));
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1486,7 +1546,8 @@ create table products (
 > ```psql
 > select pg_size_pretty(1024);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1503,7 +1564,8 @@ create table products (
 > - SP-GiST
 > - GIN
 > - BRIN
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1515,7 +1577,8 @@ create table products (
 <summary>When do indexes are automatically created?</summary>
 
 > When primary key exists, and when a column has unique constraint on it.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1529,7 +1592,8 @@ create table products (
 > ```psql
 > select relname from pg_class where relkind = 'i';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1546,7 +1610,8 @@ create table products (
 > |Leaf Page|
 > |Root Page|
 > |Leaf Page|
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1574,7 +1639,8 @@ create table products (
 > ```psql
 > select root from bt_metap('users_username_idx');
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1590,7 +1656,8 @@ create table products (
 > ```psql
 > select * from bt_page_itesm('users_username_idx', 3);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1606,7 +1673,8 @@ create table products (
 > ```psql
 > select ctid, * from users where username = 'briansalehi';
 > ``````
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1619,7 +1687,8 @@ create table products (
 
 > The first row points to the first item of the next page for performance
 > reasons.
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1634,7 +1703,8 @@ create table products (
 > 2. Rewriting
 > 3. Planning (Planner)
 > 4. Executing (Executor)
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 
@@ -1647,7 +1717,8 @@ create table products (
 
 > - `explain`: build a query plan and display info about it
 > - `explain analyze`: build a query plan, run it, and info about it
-
+>
+> ---
 > **Resources**
 > - Udemy: SQL and PostgreSQL - The Complete Developer's Guide - Chapter 23
 

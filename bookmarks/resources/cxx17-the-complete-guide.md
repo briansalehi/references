@@ -50,7 +50,8 @@
 >     auto [a4, n4] = personal_data; // copy
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -82,7 +83,8 @@
 >     // rv_text and data.text no longer hold values
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -117,7 +119,8 @@
 >     auto [i, j, k] = C{}; // ERROR
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -137,7 +140,8 @@
 >     auto [i, j, k] = array;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -166,7 +170,8 @@
 >     auto const& [isbn, title] = book;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -179,7 +184,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 1
 
@@ -202,7 +208,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 10
 
@@ -227,7 +234,8 @@
 > std::optional<int> oi{42};
 > int i{*oi}; // 42
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 The Complete Guide - Chapter 15
 
@@ -259,7 +267,8 @@
 > asInt("forty two");    // std::nullopt
 > asInt("0x33");         // std::optional<int>(42)
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 The Complete Guide - Chapter 15
 
@@ -286,7 +295,8 @@
 > /home/brian/
 > C:\Windows\Users\Brian\Desktop
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -316,7 +326,8 @@
 > - The optional root name is implementation specific (e.g. `//host` on POSIX systems, `C:` on WIndows systems)
 > - The optional root root directory is a directory separator
 > - The relative path is a sequence of file names separated by directory separators
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -335,7 +346,8 @@
 >   beginning of a relative path.
 > - The path only ends with a directory separator if the trailing filename is a
 >   directory with a name other than `.` or `..`.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -417,7 +429,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -447,7 +460,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -475,7 +489,8 @@
 >     };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -500,7 +515,8 @@
 > std::filesystem::u16path{u16"/dev/null"s}; // std::u16string
 > std::filesystem::u32path{u32"/dev/null"s}; // std::u32string
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -518,7 +534,8 @@
 > std::string filename{"/dev/random"};
 > std::filesystem::path{filename.begin(), filename.end()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -553,7 +570,8 @@
 >
 > auto temp{std::filesystem::temp_directory_path()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -570,7 +588,8 @@
 > std::filesystem::path p;
 > p.empty(); // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -586,7 +605,8 @@
 > p.is_absolute(); // false
 > p.is_relative(); // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -643,7 +663,8 @@
 >
 > p.lexically_normal();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -665,7 +686,8 @@
 > p.u16string();
 > p.u32string();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -693,7 +715,8 @@
 > std::filesystem::path{"a/b"}.lexically_relative("c/d"}; // ""
 > std::filesystem::path{"a/b"}.lexically_proximate("c/d"}; // "a/b"
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -731,7 +754,8 @@
 > p.c_str(); // same
 > p.preferred(); // \\dir\\subdir\\subsubdir\\\\.\\\\
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -757,7 +781,8 @@
 > std::filesystem::path p3{".git"};
 > p.concat(p3.begin(), p3.end()); // project.git
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -782,7 +807,8 @@
 > std::filesystem::path p3{".git"};
 > p.append(p3.begin(), p3.end());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -797,7 +823,8 @@
 > std::filesystem::path p{"/src/project/main"};
 > p.replace_extension(".cpp"); // /src/project/main.cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -822,7 +849,8 @@
 > std::filesystem::path p2{"/src/projects/linux-hardened"};
 > p.assign(p2.begin(), p2.end());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -840,7 +868,8 @@
 > p1.swap(p2);
 > std::swap(p1, p2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -855,7 +884,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_filename("window.cpp"); // /src/project/window.cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -870,7 +900,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension("hpp"); // /src/project/main.hpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -885,7 +916,8 @@
 > std::filesystem::path p;
 > p.make_preferred();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -902,7 +934,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.remove_filename(); // /src/project/
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -917,7 +950,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension(); // /src/project/main
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -931,7 +965,8 @@
 <summary>What comparison operators are supported by path objects?</summary>
 
 > `==` , `!=` , `<` , `>` , `<=` , `>=` , `compare(p2)` , `compare(sv)` and `equivalent(p1, p2)` are available.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -965,7 +1000,8 @@
 > p1.lexically_normal() == p2.lexically_normal(); // true
 > p1.lexically_normal().compare(p2.lexically_normal()); // 0
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -988,7 +1024,8 @@
 > std::filesystem::exists(p2); // true
 > std::filesystem::equivalent(p1, p2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1004,7 +1041,8 @@
 > ```cpp
 > std::filesystem::exists(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1025,7 +1063,8 @@
 > std::filesystem::is_regular_file(p);
 > std::filesystem::is_directory(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1039,7 +1078,8 @@
 > ```cpp
 > std::filesystem::is_other(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1072,7 +1112,8 @@
 > ```cpp
 > std::filesytem::is_empty(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1090,7 +1131,8 @@
 > ```cpp
 > auto bytes = std::filesystem::file_size(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1104,7 +1146,8 @@
 > ```cpp
 > std::filesystem::hard_link_count(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1130,7 +1173,8 @@
 > auto diff = std::filesystem::file_time_type::clock::now() - last_write;
 > auto last_write_seconds = std::chrono::duration_cast<std::chrono::seconds>(diff).count();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1218,7 +1262,8 @@
 > // remove write access for group and any access for others
 > std::filesystem::permissions(p, std::filesystem::perms::owner_write | std::filesystem::perms::others_all, std::filesystem::perm_options::remove);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1232,7 +1277,8 @@
 > ```cpp
 > std::filesystem::resize_file(p, newSize);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1246,7 +1292,8 @@
 > ```cpp
 > std::filesystem::current_path(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1279,7 +1326,8 @@
 >     std::filesystem::exists(symlink_status(existing_symlink));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1300,7 +1348,8 @@
 > if (!exists(symlink_status(p)))
 >     ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1314,7 +1363,8 @@
 > ```cpp
 > std::filesystem::status(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1328,7 +1378,8 @@
 > ```cp
 > std::filesystem::symlink_status(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1384,7 +1435,8 @@
 >     case (file_type::none):         std::cout << "none"; break;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1400,7 +1452,8 @@
 > std::filesysetm::file_status fs = std::filesystem::status(p);
 > std::filesystem::perms file_permissions = fs.permissions();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1476,7 +1529,8 @@
 > {
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1494,7 +1548,8 @@
 >
 > std::fstream file{"/tmp/non-existing-file"};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1523,7 +1578,8 @@
 >     std::cerr << p << " already exists as a non-directory\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1557,7 +1613,8 @@
 > ```cpp
 > std::filesystem::create_symlink(to, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1571,7 +1628,8 @@
 > ```cpp
 > std::filesystem::create_directory_symlink(to, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1604,7 +1662,8 @@
 > std::filesystem::copy(from, to);
 > std::filesystem::copy(from, to, options);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1619,7 +1678,8 @@
 > std::filesystem::copy_file(from, to);
 > std::filesystem::copy_file(from, to, options);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1653,7 +1713,8 @@
 >     // the destination path is in the current directory
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1669,7 +1730,8 @@
 > ```cpp
 > std::filesystem::copy_symlink(from, to);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1685,7 +1747,8 @@
 > ```cpp
 > std::filesystem::remove(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1703,7 +1766,8 @@
 > ```cpp
 > std::filesystem::remove_all(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1721,7 +1785,8 @@
 > ```cpp
 > std::filesystem::read_symlink(symlink);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1745,7 +1810,8 @@
 > std::filesystem::canonical(p);
 > std::filesystem::weakly_canonical(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1760,7 +1826,8 @@
 > std::filesystem::relative(p);
 > std::filesystem::proximate(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1775,7 +1842,8 @@
 > std::filesystem::relative(p, base);
 > std::filesystem::proximate(p, base);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1796,7 +1864,8 @@
 >     std::cout << entry.lexically_normal().string() << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1809,7 +1878,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1837,7 +1907,8 @@
 > The default is not to follow symbolic links and to skip directories you are
 > not allowed to iterate over. With `skip_permission_denied` iterating over a
 > denied directory, results in an exception.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -1885,7 +1956,8 @@
 >
 > `assign()` and `replace_filename()` call the corresponding modifying path
 > operations but do not modify the files in the underlying filesystem.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 

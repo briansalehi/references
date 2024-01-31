@@ -662,7 +662,8 @@
 > and we get an ambiguity error.
 >
 > For this reason, be careful when mixing template and `auto` parameters.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 2
 
@@ -679,7 +680,8 @@
 > - Using `requires` clause
 > - Using concepts
 > - Using `requires` expression
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -706,7 +708,8 @@
 >
 > When raw pointers are passed, the compiler behaves as if the template were
 > not there.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -725,7 +728,8 @@
 > template<typename T>
 > concept is_pointer = std::is_pointer_v<T>;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -766,7 +770,8 @@
 > ``````
 >
 > The second call delegates the computations of both function templates.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -809,7 +814,8 @@
 >
 > By using concepts, we can even prefer some constraints over others. However,
 > this requires the use of concepts that **subsume** other concepts.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -926,7 +932,8 @@
 >
 > To check support for comparisons of two objects of the same type, we can use
 > the concept `std::totally_ordered`.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -961,7 +968,8 @@
 > out iterators, because in general, they cannot be compared with `nullptr`
 > (except when they happen to be implemented as raw pointers, as in the case
 > for type `std::array<>`).
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -975,7 +983,8 @@
 > This is a compile-time constraint that has no impact on the generated code;
 > we only decide for which types the code compiles. Therefore, it does not
 > matter whether we declare the parameters as a value or as a reference.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -1008,7 +1017,8 @@
 >     std::cout << *value << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 3
 
@@ -1028,7 +1038,8 @@ Next: 3.1.2
 > - To have random access iterators, iterators that can be used to read, write,
 >   jump back and forth, and compute distance.
 > - To be sortable and support comparison operators.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1050,7 +1061,8 @@ Next: 3.1.2
 >     std::ranges::sort(numbers);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1062,7 +1074,8 @@ Next: 3.1.2
 <summary>What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?</summary>
 
 > Views
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1076,7 +1089,8 @@ Next: 3.1.2
 > ```cpp
 std::ranges::take(container, 5);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1097,7 +1111,8 @@ std::ranges::take(container, 5);
 >     std::ranges::sort(std::views::take(numbers, 5));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1111,7 +1126,8 @@ std::ranges::take(container, 5);
 > ```cpp
 > std::views::iota(1, 11); // [1,10]
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1135,7 +1151,8 @@ std::ranges::take(container, 5);
 >                    | std::views::transform([](auto e) { return e * e; })
 >                    | std::views::take(3);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 
@@ -1148,7 +1165,8 @@ std::ranges::take(container, 5);
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 5
 

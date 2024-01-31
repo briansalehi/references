@@ -8,7 +8,8 @@
 > ```sh
 > touch ~/.tmux.conf
 > ``````
-
+>
+> ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
@@ -27,7 +28,7 @@
 > set-option -g prefix C-n
 > set-option -g prefix2 C-f
 > ``````
-
+> ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
@@ -67,7 +68,8 @@
 > ``````
 >
 > Shortcut: `C-s`
-
+>
+> ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
@@ -84,7 +86,8 @@
 > ``````
 >
 > Shortcut: `C-c`
-
+>
+> ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 
@@ -99,7 +102,8 @@
 > Shortcut:
 > - vertically split by `C-%`
 > - horizontally split by `C-"`
-
+>
+> ---
 > **Resources**
 > - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
 

@@ -83,7 +83,8 @@
 > ``````
 >
 > Each command results in a new image being created, and the image ID is output.
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.3
 
@@ -98,7 +99,8 @@
 > docker tag 67c76cea05bb todoapp
 > docker image tag ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.3
 
@@ -116,7 +118,8 @@
 >
 > The `-p` flag maps the container’s port 8000 to the port 8000 on the host machine.
 > The `--name` flag gives the container a unique name you can refer to later for convenience.
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
 
@@ -128,7 +131,8 @@
 <summary>How to terminate the process and the container?</summary>
 
 > Once the container has been started, you can press `Ctrl-C` to terminate the process and the container.
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
 
@@ -145,7 +149,8 @@
 > docker container ls ...
 > docker container list ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
 
@@ -160,7 +165,8 @@
 > docker start example
 > docker container start ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
 
@@ -179,7 +185,8 @@
 > The docker diff subcommand shows you which files have been affected since the image was instantiated as a container.
 > In this case, the todo directory has been changed (C), and the other listed files have been added (A).
 > No files have been deleted (D), which is the other possibility.
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 1.2.4
 
@@ -208,7 +215,8 @@
 > export DOCKER_HOST=tcp://<your host's ip>:2375
 > sudo --preserve-env=DOCKER_HOST docker <subcommand>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
 
@@ -239,7 +247,8 @@
 > docker container logs daemon
 > Look ma, I know docker!
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
 
@@ -255,7 +264,8 @@
 > docker logs daemon
 > docker container logs ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.2
 
@@ -277,7 +287,8 @@
 > docker container run --detach --restart=on-failure:10 --name daemon ubuntu /usr/bin/false
 > docker container logs daemon
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.1
 
@@ -292,7 +303,8 @@
 > socat -v UNIX-LISTEN:/tmp/dockerapi.sock,fork UNIX-CONNECT:/var/run/docker.sock &
 > docker -H unix:///tmp/dockerapi.sock ps -a
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.3
 
@@ -306,7 +318,8 @@
 > ```sh
 > docker search node
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker in Practice - Chapter 2.5
 

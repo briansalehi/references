@@ -23,7 +23,8 @@
 >
 > * **Wait queue**: To wait for a change — designed to work in concert with locks.
 > * **Completion queue**: To wait for the completion of a given computation, mostly used with DMAs.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -59,7 +60,8 @@
 > In other words, spinlocks protect resources that only one CPU can take/access at a time.
 >
 > This makes spinlocks suitable for **symmetrical multiprocessing (SMP)** safety and for executing atomic tasks.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -96,7 +98,8 @@
 >     return bs;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -113,7 +116,8 @@
 > static __always_inline void spin_unlock(spinlock_t *lock);
 > static __always_inline void spin_lock(spinlock_t *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -130,7 +134,8 @@
 > The CPU will stop its current task and branch to this interrupt handler.
 > Now, imagine if this IRQ handler needs to acquire this same spinlock.
 > It will infinitely spin in place, trying to acquire a lock already locked by a task that it has preempted which results in a deadlock.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -148,7 +153,8 @@
 > static void spin_unlock_irq(spinlock_t *lock)
 > static void spin_lock_irq(spinlock_t *lock)
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -161,7 +167,8 @@
 
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -186,7 +193,8 @@
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls `schedule()` if enabled depending on the current value of the counter, whose current value should be 0.</br>
 > It tries because it depends on whether other spinlocks are locked, which would affect the value of the preemption counter.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -205,7 +213,8 @@
 >
 > Thus, disabling interrupts protects you from kernel preemption only in cases where the protected code does not trigger preemption itself.
 > That said, code that locked a spinlock may not sleep as there would be no way to wake it up as timer interrupts and/or schedulers are disabled on the local CPU.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -310,7 +319,8 @@
 > ```c
 > void mutex_unlock(struct mutex *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -326,7 +336,8 @@
 > ``````
 >
 > This function simply checks if the mutex owner is `NULL` and returns `true` if so or `false` otherwise.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -350,7 +361,8 @@
 >
 > * Locking only in the user context.
 > * If the protected resource is not accessed from an IRQ handler and the operations need not be atomic.
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -362,7 +374,8 @@
 <summary>What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?</summary>
 
 > It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
-
+>
+> ---
 > **Resources**
 > - 1
 

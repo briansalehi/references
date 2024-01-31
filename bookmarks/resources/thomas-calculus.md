@@ -14,7 +14,8 @@
 > $y = f(x)$ ($y$ equals $f$ of $x$)
 >
 > The symbol $f$ represents the function, the letter $x$ is the **independent variable** representing the input value to $f$, and $y$ is the **dependent variable** or ouput value of $f$ at $x$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -26,7 +27,8 @@
 <summary>Find the domain and range of $\sqrt{x^2-3x}$ and $\frac{4}{3-t}$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 
 
@@ -38,7 +40,8 @@
 <summary>A point $P$ in the first quadrant lies on the graph of the function $f(x) = \sqrt{x}$. Express the coordinates of $P$ as functions of the slope of the line joining $P$ to the origin?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -50,7 +53,8 @@
 <summary>Consider the point $(x, y)$ lying on the graph of $y = 2x - 3$. Let $L$ be the distance between the points $(x, y)$ and $(4, 0)$. Write $L$ as a function of $y$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -191,7 +195,8 @@
 > A function $y = f(x)$ is an even function of $x$ if $f(-x) = f(x)$, odd function of $x$ if $f(-x) = -f(x)$, for every $x$ in the function's domain.
 >
 > The graph of an even function is symmetric about the $y$ axis, and the graph of an odd function is symmetric about the origin.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -221,7 +226,8 @@
 > $y = kx$ for some nonzero constant $k$
 >
 > If the variable $y$ is proportional to the reciprocal $1/x$, then it is said that $y$ is **inversely proportional** to $x$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -233,7 +239,8 @@
 <summary>The variables $r$ and $s$ are inversely proportional, and $r = 6$ when $s = 4$. Determine $s$ when $r = 10$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -245,7 +252,8 @@
 <summary>A box with an open top is to be constructed from a rectangular piece of cardboard with dimensions 14 cm. by 22 cm. by cutting out equal squares of side $x$ at each corner and then folding up the sides as in the figure. Express the volume $V$ of the box as a function of $x$?</summary>
 
 > 
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -257,7 +265,8 @@
 <summary>What function is a power function?</summary>
 
 > A function $f(x) = x^n$, where $a$ is a constant, is called a **power function**.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -299,7 +308,8 @@
 >   y &= \frac{11x+2}{2x^3-1}
 > \end{equation}
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -313,7 +323,8 @@
 > Any function constructed from polynomials using algebraic operations (addition, subtraction, multiplication, division, and taking roots) lies within the class of **algebraic functions**.
 >
 > All rational functions are algebraic, but also included are more complicated functions such as $y^3 - 9xy + x^3 = 0$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -325,7 +336,8 @@
 <summary>What functions are trigonometric functions?</summary>
 
 > Six basic trigonometric functions are $sin(x)$, $cos(x)$, $tan(x)$, $cot(x)$, $arctan(x)$, $arccot(x)$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -337,7 +349,8 @@
 <summary>What functions are exponential functions?</summary>
 
 > A function of the form $f(x) = a^x$, where $a > 0$ and $a \ne 1$, is called an **exponential function** with base $a$.
-
+>
+> ---
 > **Resources**
 > - 1.1
 

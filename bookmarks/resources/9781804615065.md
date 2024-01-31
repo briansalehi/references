@@ -8,7 +8,8 @@
 
 > Poky is the default Yocto Project reference distribution, which uses
 > OpenEmbedded build system technology.
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -35,7 +36,8 @@
 > In addition, it provides the mechanism to build and combine thousands of
 > distributed open source projects to form a fully customizable, complete, and
 > coherent Linux software stack.
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -56,7 +58,8 @@
 > resources to reduce build time and predictability.
 >
 > The source code is in the `bitbake` subdirectory of Poky.
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -98,7 +101,8 @@
 > - `meta-yocto-bsp`: This provides the Board Support Package (BSP) used as the
 >   reference hardware for the Yocto Project development and Quality Assurance
 >   (QA) process.
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -118,7 +122,8 @@
 > (EOL).
 >
 > `Initial Release -> Stable Release -> Community -> End of Life`
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 

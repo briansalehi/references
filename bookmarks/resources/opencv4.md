@@ -26,7 +26,8 @@
 > ```cpp
 > #include <opencv2/core.hpp>
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -41,7 +42,8 @@
 > cv::Mat image;
 > std::cout << image.rows << " x " << image.cols << '\n';;
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -56,7 +58,8 @@
 > cv::Mat colored = cv::imread("sample.bmp", cv::IMREAD_COLOR);
 > cv::Mat gray    = cv::imread("sample.bmp", cv::IMREAD_GRAYSCALE);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -128,7 +131,8 @@
 >     cv::imwrite(write_path, flipped);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -145,7 +149,8 @@
 > cv::Mat image = cv::imread("sample.png", cv::IMREAD_COLOR);
 > std::cout << image.channels() << '\n';
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -191,7 +196,8 @@
 >     cv::destroyWindow(window);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -261,7 +267,8 @@
 >     cv::destroyWindow(window);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -299,7 +306,8 @@
 >     cv::destroyWindow(window);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -329,7 +337,8 @@
 >     cv::Mat image{cv::Size{500, 500}, CV_8U, cv::Scalar{50, 50, 50}}; // gray single channel
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -349,7 +358,8 @@
 >     image.create(cv::Size{800, 800}, CV_8UC3, cv::Scalar{0, 0, 255}); // colored 3 channel
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -370,7 +380,8 @@
 >     image.copyTo(copied);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -389,7 +400,8 @@
 > cv::Mat gray{cv::Size{500, 500}, CV_8U, cv::Scalar{50}};
 > colored.convertTo(gray, CV_8U);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -417,7 +429,8 @@
 >     foreground.copyTo(region);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -444,7 +457,8 @@
 >     foreground.copyTo(region);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 
@@ -459,7 +473,8 @@
 > cv::Mat region = image.rowRange(start, end);
 > cv::Mat region = image.colRange(start, end);
 > ``````
-
+>
+> ---
 > **Resources**
 > - OpenCV 4 Computer Vision Programming Cookbook - Chapter 1
 

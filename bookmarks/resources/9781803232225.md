@@ -17,7 +17,8 @@
 > ```sh
 > make C=2 CHECK=/usr/bin/sparse ARCH=x86_64
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -32,7 +33,8 @@
 
 > - Extended Berkely Packet Filtering (eBPF)
 > - Linux Tracing Toolkit next generation (LTTng)
-
+>
+> ---
 > **Resources**
 > -
 
@@ -123,7 +125,8 @@
 > ```sh
 > qemu-system-arm
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -147,7 +150,8 @@
 > * [SonarQube](https://www.sonarqube.org/)
 > * [Coverity Scan](https://scan.coverity.com/)
 > * [Klocwork](https://www.meteonic.com/klocwork)
-
+>
+> ---
 > **Resources**
 > -
 
@@ -161,7 +165,8 @@
 > ```sh
 > make C=1 CHECK="/usr/bin/sparse"
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -173,7 +178,8 @@
 <summary>Trace and profiling tools for kernel:</summary>
 
 >
-
+>
+> ---
 > **Resources**
 > -
 
@@ -187,7 +193,8 @@
 
 > * bpftrace package ([bcc](https://github.com/iovisor/bcc) clang dependent)
 > * [manual bcc installation](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
-
+>
+> ---
 > **Resources**
 > -
 
@@ -199,7 +206,8 @@
 <summary>Linux Driver Verification (LDV) project:</summary>
 
 > * https://linuxtesting.org
-
+>
+> ---
 > **Resources**
 > -
 
@@ -215,7 +223,8 @@
 > ```sh
 > uname -r
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -246,7 +255,8 @@
 > 4. rc (aka mainline, prepatch) kernels start. 5.x+1-rc1, 5.x+1-rc2, ..., 5.x+1-rcn are released. This process takes anywhere between 6 to 8 weeks.
 > 5. The stable release has arrived: the new 5.x+1 stable kernel is released.
 > 6. The release is handed off to the "stable team". Significant bug or security fixes result in the release of 5.x+1.y : 5.x+1.1, 5.x+1.2, ... , 5.x+1.n. Maintained until the next stable release or End Of Life (EOL) date reached.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -262,7 +272,8 @@
 > * stable kernels
 > * distribution and LTS kernels
 > * Super LTS (STLS) kernels
-
+>
+> ---
 > **Resources**
 > -
 
@@ -276,7 +287,8 @@
 > ```sh
 > curl -L https://kernel.org/finger_banner
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -290,7 +302,8 @@
 > ```txt
 > https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -320,7 +333,8 @@
 > ```txt
 > https://mirrors.edge.kerne.org/pub/linux/kernel/v5.x/linux_5.4.0.tar.xz
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -334,7 +348,8 @@
 > ```sh
 > git clone https://git.kernel.org/pub/scm/linux/git/torvalds/linux.git
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -348,7 +363,8 @@
 > ```sh
 > head Makefile
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -360,7 +376,8 @@
 <summary>Where is the list of kernel maintainers?</summary>
 
 > MAINTAINERS
-
+>
+> ---
 > **Resources**
 > -
 
@@ -374,7 +391,8 @@
 > ```sh
 > scripts/get_maintainer.pl
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -438,7 +456,8 @@
 
 > * ctags
 > * cscope
-
+>
+> ---
 > **Resources**
 > -
 
@@ -456,7 +475,8 @@
 > make ctags
 > make cscope
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -470,7 +490,8 @@
 > ```sh
 > init/kconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -485,7 +506,8 @@
 > * oldconfig: asking for new configurations
 > * localmodconfig: restoring options from module list
 > * platform\_defconfig: creating config based on platform
-
+>
+> ---
 > **Resources**
 > -
 
@@ -500,7 +522,8 @@
 > ls arch/<arch>/configs/
 > make <platform>_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -515,7 +538,8 @@
 > lsmod > /tmp/modules.lst
 > make LSMOD=/tmp/modules.lst localmodconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -530,7 +554,8 @@
 > cp /boot/config-5.0.0 .config
 > make oldconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -544,7 +569,8 @@
 > ```sh
 > [menu,x,q]config
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -561,7 +587,8 @@
 > * `-*-` required by a dependency as compiled
 > * `(...)` alphanumeric input
 > * `<Menu entry> --->` sub-menu
-
+>
+> ---
 > **Resources**
 > -
 
@@ -587,7 +614,8 @@
 <summary>How to emulate raspberry pi on Linux?</summary>
 
 >
-
+>
+> ---
 > **Resources**
 > -
 
@@ -602,7 +630,8 @@
 
 >
 
-
+>
+> ---
 > **Resources**
 > -
 
@@ -615,7 +644,8 @@
 <summary>Deprecated things in kernel:</summary>
 
 >
-
+>
+> ---
 > **Resources**
 > -
 

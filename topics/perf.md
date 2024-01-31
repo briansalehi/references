@@ -8,7 +8,8 @@
 > ```sh
 > perf record -o /tmp/perf.data --call-graph dwarf --event instructions,cpu-cycles,cache-misses,branches,branch-misses --aio --sample-cpu <exec>
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Uw7FF5MLxZE
 

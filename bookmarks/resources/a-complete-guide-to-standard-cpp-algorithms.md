@@ -29,7 +29,8 @@
 >     // count: 5, sum: 15
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -53,7 +54,8 @@
 >     // count: 5, sum: 15
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -81,7 +83,8 @@
 >     // count: 5, sum: 15
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.1
 
@@ -164,7 +167,8 @@
 >     std::ranges::for_each(iter, sentinel<long>{iter, 3}, [](auto e) { std::cout << e << " "; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1.2
 
@@ -257,7 +261,8 @@
 >
 > What if the algorithm doesn’t find any element out of order as a corner case?
 > The returned value will be the end iterator of the source range, meaning that the range returned is simply the entire source range.
-
+>
+> ---
 > **Resources**
 > - 1.4
 
@@ -289,7 +294,8 @@
 >     for (auto e: numbers) { sum += e; }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.1
 
@@ -335,7 +341,8 @@
 >     std::for_each(std::execution::par_unseq, numbers.begin(), numbers.end(), [&sum](auto& e) { sum += e; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.1
 
@@ -366,7 +373,8 @@
 >     // sum: 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.1.1
 
@@ -437,7 +445,8 @@
 >                              // then it calls the default move-swap
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.2.1
 
@@ -503,7 +512,8 @@
 >     // numbers: {6,5,3,4,2,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.2.3
 
@@ -553,7 +563,8 @@
 > * `std::strong_ordering`
 > * `std::weak_ordering`
 > * `std::partial_ordering`
-
+>
+> ---
 > **Resources**
 > - 2.3
 
@@ -613,7 +624,8 @@
 >     // cmp1 = true, cmp2 = false
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.1
 
@@ -719,7 +731,8 @@
 >     std::ranges::sort(accounts, std::greater<>{}, &Account::value);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.3
 
@@ -766,7 +779,8 @@
 >     // guaranteed order: a-1, e-1, b-2, c-2, d-3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.4
 
@@ -803,7 +817,8 @@
 >     // test3 == true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.5
 
@@ -833,7 +848,8 @@
 >     // *iter = 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.6
 
@@ -872,7 +888,8 @@
 > ``````
 >
 > The benefit of using a partial sort is faster runtime — approximately `O(N log K)`, where `K` is the number of elements sorted.
-
+>
+> ---
 > **Resources**
 > -  2.3.7
 
@@ -910,7 +927,8 @@
 >     // top == { 9, 8, 7 }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.3.8
 
@@ -957,7 +975,8 @@
 >     std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\n"; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.4.1
 
@@ -984,7 +1003,8 @@
 > auto& widget = get_widget();
 > std::ranges::stable_partition(widget.items, &Item::is_selected);
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.4.2
 
@@ -1016,7 +1036,8 @@
 >     assert(test); // test = true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.4.3
 
@@ -1055,7 +1076,8 @@
 >     assert(odds.size() == 3);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.4.4
 
@@ -1095,7 +1117,8 @@
 >
 > Because of its selection/partitioning nature, `std::nth_element` offers a better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗ logk)`.
 > However, note that the standard only mandates average `O(n)` complexity, and `std::nth_element` implementations can have high overhead, so always test to determine which provides better performance for your use case.
-
+>
+> ---
 > **Resources**
 > - 2.4.5
 
@@ -1170,7 +1193,8 @@
 >     // std::distance(data.begin(), upper) == 8
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.5.1
 
@@ -1201,7 +1225,8 @@
 >     // std::distance(data.begin(), upper) == 8
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.5.2
 
@@ -1232,7 +1257,8 @@
 >     // std::distance(data.begin(), point) = 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.5.3
 
@@ -1268,7 +1294,8 @@
 > ``````
 >
 > `std::binary_search` is equivalent to calling `std::equal_range` and checking whether the returned is non-empty; however, `std::binary_search` offers a single lookup performance, where `std::equal_range` does two lookups to determine the lower and upper bounds.
-
+>
+> ---
 > **Resources**
 > - 2.5.4
 
@@ -1299,7 +1326,8 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.6.1
 
@@ -1343,7 +1371,8 @@
 >     std::cout << "\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.6.2
 
@@ -1372,7 +1401,8 @@
 >     // range == {1,2,3,4,5,6}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.6.3
 
@@ -1417,7 +1447,8 @@
 >     // result == {1,2,3,4,5};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.6.4
 
@@ -1450,7 +1481,8 @@
 >     // difference == {1,9};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.7.1
 
@@ -1481,7 +1513,8 @@
 >     // symmetric_difference == {1,4,6,9};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.7.2
 
@@ -1512,7 +1545,8 @@
 >     // union == {1,3,4,5,6,7,9}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.7.3
 
@@ -1543,7 +1577,8 @@
 >     // intersection == {3,5,7}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.7.4
 
@@ -1584,7 +1619,8 @@
 >     // {2,2,2,2,2}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.1
 
@@ -1613,7 +1649,8 @@
 >     range.erase(last, range.end());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.2
 
@@ -1642,7 +1679,8 @@
 >     range.erase(last, range.end());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.2
 
@@ -1700,7 +1738,8 @@
 >     // {1,0,1,0,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.3
 
@@ -1729,7 +1768,8 @@
 >     // {5,4,3,2,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.4
 
@@ -1763,7 +1803,8 @@
 >     // {1,2,3,4,5}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.5
 
@@ -1803,7 +1844,8 @@
 >     // {N,N,N,4,5}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.6
 
@@ -1835,7 +1877,8 @@
 >     std::ranges::shuffle(range, generator);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.7
 
@@ -1868,7 +1911,8 @@
 >     // range == {1,2,3};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.8
 
@@ -1898,7 +1942,8 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.8.9
 
@@ -2003,7 +2048,8 @@
 >     // output == {1,2,6,24,,120}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.9.3
 
@@ -2222,7 +2268,8 @@
 >     // all numbers are possitive: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.11.1
 
@@ -2252,7 +2299,8 @@
 >     // at least an even number exists: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.11.1
 
@@ -2282,7 +2330,8 @@
 >     // not any number is negative: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.11.1
 
@@ -2642,7 +2691,8 @@
 >     // 1 3 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.4
 
@@ -2674,7 +2724,8 @@
 >     // 1 2 3 4 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.4
 
@@ -2709,7 +2760,8 @@
 >     // R R R R R
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.5
 
@@ -2741,7 +2793,8 @@
 >     // 1 2 3 4 0
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.6
 
@@ -2773,7 +2826,8 @@
 >     // 1 0 3 0 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.6
 
@@ -2805,7 +2859,8 @@
 >     // 5 4 3 2 1
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.7
 
@@ -2839,7 +2894,8 @@
 >     // 3 4 5 1 2
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.13.8
 
@@ -2879,7 +2935,8 @@
 >     std::destroy_at(ptr);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.14.1
 
@@ -2917,7 +2974,8 @@
 >     // 1 2 3 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.15.1
 
@@ -2968,7 +3026,8 @@
 >     // 5 4 3 1 2 6 7
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.15.1
 
@@ -3000,7 +3059,8 @@
 >     // 1 2 3 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.15.2
 
@@ -3062,7 +3122,8 @@
 >     // it == range.end()
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.15.3
 
@@ -3106,7 +3167,8 @@
 >     std::ranges::copy(out, std::ostream_iterator<std::string>(std::cout, " "));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.16.1
 
@@ -3146,7 +3208,8 @@
 >
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2.16.1
 
@@ -3183,7 +3246,8 @@
 >     // first second third
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.1
 
@@ -3216,7 +3280,8 @@
 >     // 4 5 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.2
 
@@ -3245,7 +3310,8 @@
 >     // 1 4 9 16 25
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.3
 
@@ -3270,7 +3336,8 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.4
 
@@ -3320,7 +3387,8 @@
 >     // 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.5
 
@@ -3370,7 +3438,8 @@
 >     // 2 4 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.6
 
@@ -3395,7 +3464,8 @@
 >     // 5 4 3 2 1
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.7
 
@@ -3420,7 +3490,8 @@
 >     // 2 3 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.8
 
@@ -3446,7 +3517,8 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.9
 
@@ -3471,7 +3543,8 @@
 >     // 1 2 3 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.10
 
@@ -3506,7 +3579,8 @@
 >     // 6 4 2
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.11
 
@@ -3518,7 +3592,8 @@
 <summary>Flatten a splited view of a range?</summary>
 
 > incomplete
-
+>
+> ---
 > **Resources**
 > - 4.11
 
@@ -3540,7 +3615,8 @@
 >     std::ranges::copy(std::views::empty<long>, std::ostream_iterator<long>(std::cout, " "));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.12
 
@@ -3563,7 +3639,8 @@
 >     // 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.12
 
@@ -3612,7 +3689,8 @@
 >     // 1 2 3 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4.14
 

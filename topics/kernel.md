@@ -38,7 +38,8 @@
 > ```sh
 > git checkout v5.4
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -61,7 +62,8 @@
 > ```sh
 > git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -102,7 +104,8 @@
 > - `usr/`: `initramfs` implementation.
 > - `virt/`: Virtualization directory, which contains the kernel virtual
 >   machine (KVM) module for a hypervisor.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -117,7 +120,8 @@
 
 > The configuration mechanism is called `Kconfig`, and the build system that it
 > integrates with it is called `Kbuild`.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -147,7 +151,8 @@
 > omitted or not set, `$(CROSS_COMPILE)gcc` will result in `gcc`, and will be
 > the same for other tools, for example `$(CROSS_COMPILE)ld` will result in
 > `ld`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
@@ -167,7 +172,8 @@
 >
 > The value you put into `ARCH` is one of the subdirectories you find in the
 > `arch` directory in the kernel source tree.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -183,7 +189,8 @@
 > make xconfig      # X-based interface
 > make gconfig      # GTK-based interface
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -195,7 +202,8 @@
 <summary>Where is the kernel configuration file?</summary>
 
 > Selected options will be stored in `.config` file, at the root of the source tree.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -215,7 +223,8 @@
 > ```sh
 > ls arch/<arch>/configs/
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -254,7 +263,8 @@
 > ```sh
 > ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- make bcm2835_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
@@ -271,7 +281,8 @@
 > ```sh
 > make x86_64_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -288,7 +299,8 @@
 > ```sh
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- bcm2835_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -302,7 +314,8 @@
 > ```sh
 > make ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnueabihf- defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -347,7 +360,8 @@
 > ```sh
 > ARCH=<arch> make myown_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -376,7 +390,8 @@
 > ```sh
 > make oldnoconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
@@ -403,7 +418,8 @@
 > ```sh
 > zcat /proc/configs.gz > ${KERNEL_SRC}/.config
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -417,7 +433,7 @@
 > * `IKCONFIG`: This is a boolean option to enable this feature.
 > * `IKCONFIG_PROC`: Boolean option, when set to `y` the `config.gz` file
 >   becomes available in `/proc`.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -437,7 +453,8 @@
 > ```
 > CMDLINE="noinitrd usbcore.authorized_default=0"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -452,7 +469,8 @@
 > to map kernel symbols to addresses. It is used while you're printing oops
 > messages. Without this, oops listings would produce hexadecimal output, which
 > is difficult to interpret.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -464,7 +482,8 @@
 <summary>What kernel configuration option enables timing information while printing messages from the kernel?</summary>
 
 > `CONFIG_PRINTK_TIME`: This is a boolean option to enable this feature.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -476,7 +495,8 @@
 <summary>What kernel configuration option allows debugging input devices?</summary>
 
 > `CONFIG_INPUT_EVBUG`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -488,7 +508,8 @@
 <summary>What kernel configuration option enables system request key combinations to recover system after crash?</summary>
 
 > `CONFIG_MAGIC_SYSRQ`: This is a boolean option to enable this feature.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -500,7 +521,8 @@
 <summary>What kernel configuration option enables the <code>ftrace</code> tracer support?</summary>
 
 > `FTRACE` and `DYNAMIC_FTRACE`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -538,7 +560,8 @@
 
 > * `PREEMPT_TRACER`
 > * `SCHED_TRACER`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -571,7 +594,8 @@
 
 > `CONFIG_LOCALVERSION` option is the release information string to be appended
 > to kernel release.  Kernel version can never be appended.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -584,7 +608,8 @@
 
 > Header file `include/generated/autoconf.h` contains `#define` preprocessors
 > to be included in the kernel source.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -602,7 +627,8 @@
 > obj-y += mem.o random.o
 > obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -614,7 +640,8 @@
 <summary>Make debug symbols available in the kernel image?</summary>
 
 > * `CONFIG_DEBUG_INFO`
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -632,7 +659,8 @@
 > ```sh
 > make ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -644,7 +672,8 @@
 <summary>What kernel configuration option enables module loading on runtime?</summary>
 
 > `CONFIG_MODULES=y`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -656,7 +685,8 @@
 <summary>What kernel configuration option enables unloading modules on runtime?</summary>
 
 > `CONFIG_MODULE_UNLOAD=y`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -668,7 +698,8 @@
 <summary>What kernel configuration option ignores safely unloading modules having dependencies?</summary>
 
 > `CONFIG_MODULE_FORCE_UNLOAD=y`
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -696,7 +727,8 @@
 > ``````
 >
 > This config can be found in `.config` file as `CONFIG_EXAMPLE=y`.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -712,7 +744,8 @@
 > * `int`: integer value using decimal notation.
 > * `hex`: unsigned integer value using hexadecimal notation.
 > * `string`: string value.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -732,7 +765,7 @@
 > ``````
 >
 > `EXAMPLE` will not be shown in menu if `DEPENDENCY` is not set.
-
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -755,7 +788,8 @@
 > ``````
 >
 > Selecting any config as reverse dependency, sets its value as `y`.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -785,7 +819,8 @@
 > ```sh
 > make ARCH=arm CROSS_COMPILE=armv6-rpi-linux-gnueabihf- zImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
@@ -803,7 +838,8 @@
 > ```sh
 > make -j8
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -817,7 +853,8 @@
 > ```sh
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -840,7 +877,7 @@
 > - `zImage`: compressed version of `Image`.
 > - `uImage`: `zImage` plus a 64-byte U-Boot header.
 > - `System.map`: the symbol table in a human-readable form.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 > - Mastering Embedded Linux Programming - Chapter 4
@@ -856,7 +893,8 @@
 > mkimage --help
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -928,7 +966,8 @@
 > echo 'arm_64bit=1' >> ../boot/config.txt
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -964,7 +1003,8 @@
 > echo 'enable_uart=1' > ../boot/config.txt
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -983,7 +1023,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- modules -j $(($(nproc)/2))
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- dts
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -1001,7 +1042,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- modules -j $(($(nproc)/2))
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- dts
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -1023,7 +1065,7 @@
 > ``````
 >
 > However, an embedded installation usually uses a single file kernel.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -1121,7 +1163,8 @@
 > And the rest of module files will be stored in
 > `/lib/modules/<version>/kernel/` in the same directory structure as their
 > corresponding source.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 1
 
@@ -1138,7 +1181,8 @@
 > - `mrproper`: remove all intermediate files and `.config` file.
 > - `distclean`: remove all, also delete editor backup files, patch files, and
 >   other artifacts.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -1154,7 +1198,8 @@
 > ```sh
 > lsmod
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1170,7 +1215,8 @@
 > ```sh
 > modinfo btusb
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1184,7 +1230,8 @@
 > ```sh
 > modinfo -p btusb
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
@@ -1198,7 +1245,7 @@
 > ```sh
 > /sys/module/btusb/parameters/
 > ``````
-
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
@@ -1217,7 +1264,8 @@
 > ```sh
 > sudo insmod sample.ko
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1231,7 +1279,8 @@
 > ```sh
 > insmod sample.ko param1=value param2=value
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
@@ -1275,7 +1324,7 @@
 >
 > Above signing setup is one time process. You should have a script to take
 > care of your kernel module signing.
-
+> ---
 > **Resources**
 > - LinkedIn Post by Mohammad Jamal M.
 
@@ -1296,7 +1345,7 @@
 > ```sh
 > grep 'btusb.ko' /usr/lib/modules/$(uname -r)/modules.dep
 > ``````
-
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1313,7 +1362,8 @@
 > ```sh
 > depmod -n
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1332,7 +1382,8 @@
 > ```sh
 > sudo rmmod sample
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1346,7 +1397,8 @@
 > ```sh
 > sudo modprobe -r sample
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.3
 
@@ -1377,7 +1429,7 @@
 
 > ```sh
 > ``````
-
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
@@ -1390,7 +1442,8 @@
 
 > ```sh
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 1.4
 
@@ -1409,7 +1462,8 @@
 > static int __init sample_module(void);
 > module_init(sample_module);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1424,7 +1478,8 @@
 > static void __exit module_cleanup(void);
 > module_exit(module_cleanup);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1455,7 +1510,8 @@
 >
 > MODULE_LICENSE("GPL");
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1474,7 +1530,8 @@
 > mknod sample-char c 1 1
 > mknod sample-block b 1 1
 > ``````
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 3
 
@@ -1493,7 +1550,8 @@
 > ```sh
 > make -C /usr/lib/modules/$(uname -r)/build M=$PWD modules
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1515,7 +1573,8 @@
 > modules modules_install clean:
 >     $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1538,7 +1597,8 @@
 > modules modules_install clean:
 >     $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1574,7 +1634,8 @@
 > module_exit(sample_cleanup);
 > MODULE_LICENSE("GPL");
 > ``````
-
+>
+> ---
 > **Resources**
 > - Kevin Dankwardt's Linux Device Drivers - Chapter 2.1
 
@@ -1588,7 +1649,8 @@
 <summary>What is a Device Tree and where is its specification?</summary>
 
 > * https://github.com/devicetree-org/devicetree-specification/releases
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1624,7 +1686,8 @@
 >     };
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1660,7 +1723,8 @@
 >     };
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1674,7 +1738,8 @@
 > ```dts
 > /include/ "vexpress-v2m.dtsi"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1725,7 +1790,8 @@
 >     vmmc-supply = <&vmmcsd_fixed>;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1813,7 +1879,8 @@
 >     […]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -1829,7 +1896,8 @@
 > ```sh
 > dtc beaglebone-black.dts -o beaglebone-black.dtb
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1868,7 +1936,8 @@
 > - `u-boot.srec`: U-Boot in Motoral S-record (**SRECORD** or **SRE**) format,
 >   suitable for transferring over a serial connection
 > - `MLO`: The BeagleBone Black also requires a **SPL** which is built here
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1890,7 +1959,8 @@
 >   into DRAM.
 > - **Phase 3 Tertiary Program Loader (TPL)**: full bootloader such as U-Boot
 >   loads the kernel + optional FDT and initramfs into DRAM.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1909,7 +1979,8 @@
 > - Optionally, the location and size of a device tree binary.
 > - Optionally, the location and size of an initial RAM disk, called the
 >   **initial RAM file system (initramfs)**.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1926,7 +1997,7 @@
 > ```sh
 > nand read 82000000 400000 200000
 > ``````
-
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1975,7 +2046,8 @@
 > fatload mmc 0:1 82000000 uimage
 > iminfo 82000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -1996,7 +2068,8 @@
 > nand write 82000000 280000 400000
 > nand read 82000000 280000 400000
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -2011,7 +2084,8 @@
 > # bootm [kernel address] [ramdist address] [dtb address]
 > bootm 82000000 - 83000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 3
 
@@ -2042,7 +2116,8 @@
 > setenv bootargs console=ttyo0
 > bootz 0x80200000 - 0x80f00000
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -2056,7 +2131,8 @@
 > ```sh
 > QEMU_AUDIO_DRV=none qemu-system-arm -m 256M -nographic -M versatilepb -kernel zImage -apend "console=ttyAMA0,115200" -dtb versatile-pb.dts"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -2083,7 +2159,8 @@
 > - `rootfstype`: filesystem type for the root device.
 > - `rootwait`: wait indefinitely for the root device to be detected.
 > - `rw`: mounts root device as read-write (default).
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -2096,7 +2173,8 @@
 
 > By setting `lpj=4980736` to the kernel parameter.
 > The number should be different on each device.
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -2125,7 +2203,7 @@
 > ```sh
 > root=/dev/ mmcblk0p1
 > ``````
-
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 4
 
@@ -2153,7 +2231,8 @@
 > udevadm control --reload-rules
 > udevadm trigger
 > ``````
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: LPIC-2 Linux Engineer (201-450) Cert Prep: 2 Linux Kernel - Kernel Modules
 
@@ -2194,7 +2273,8 @@
 >   locks.
 > * **Completion queue**: To wait for the completion of a given computation,
 >   mostly used with DMAs.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2222,7 +2302,8 @@
 >
 > A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex*
 > which is a lock held by a task.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2243,7 +2324,8 @@
 >
 > This makes spinlocks suitable for **symmetrical multiprocessing (SMP)**
 > safety and for executing atomic tasks.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2344,7 +2426,7 @@
 > static void spin_unlock_irq(spinlock_t *lock)
 > static void spin_lock_irq(spinlock_t *lock)
 > ``````
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2361,7 +2443,7 @@
 > variants call `preempt_enable()`, which tries to enable preemption, and which
 > internally calls schedule() if enabled. `spin_unlock()` is then a preemption
 > point and might re-enable preemption.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2397,7 +2479,7 @@
 > depends on whether other spinlocks are locked, which would affect the value
 > of the preemption counter. `spin_unlock()` is then a preemption point and
 > might re-enable preemption.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2424,7 +2506,7 @@
 > where the protected code does not trigger preemption itself. That said, code
 > that locked a spinlock may not sleep as there would be no way to wake it up
 > as timer interrupts and/or schedulers are disabled on the local CPU.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2471,7 +2553,8 @@
 >     spin_unlock(&foo_lock);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2575,7 +2658,8 @@
 > Each of these functions returns 0 if the lock has been acquired successfully.
 > Moreover, interruptible variants return `-EINTR` when the locking attempt was
 > interrupted by a signal.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2593,7 +2677,8 @@
 > ```c
 > void mutex_unlock(struct mutex *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2611,7 +2696,8 @@
 >
 > This function simply checks if the mutex owner is `NULL` and returns `true`
 > if so or `false` otherwise.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2660,7 +2746,8 @@
 > cost of using a mutex, which needs to suspend the current task and insert it
 > into the mutex's wait queue, requiring the scheduler to switch to another
 > task and rescheduling the sleeping task once the mutex is released.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 > - Mastering Linux Device Driver Development - Chapter 1
@@ -2678,7 +2765,8 @@
 > unsigned long msecs_to_jiffies(const unsigned int m)
 > unsigned long usecs_to_jiffies(const unsigned int u)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2693,7 +2781,8 @@
 
 > The term sleeping refers to a mechanism by which a task voluntarily relaxes
 > the processor, with the possibility of another task being scheduled.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2721,7 +2810,7 @@
 > Both sleeping APIs and wait queues implement what we can call **passive
 > waiting**. The difference between the two is how the waking up process
 > occurs.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2738,7 +2827,8 @@
 > On the other hand, sleeping tasks, whether interruptible or not (in a
 > `TASK_INTERRUPTIBLE` or `TASK_UNINTERRUPTIBLE` state), have their own queues,
 > known as **waitqueues**.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2766,7 +2856,8 @@
 >
 > A wait queue is nothing but a list with sleeping processes in it waiting to
 > be awakened and a spinlock to protect access to this list.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2816,7 +2907,8 @@
 > `wait_event()` puts the process into an exclusive wait, aka uninterruptible
 > sleep, and can't thus be interrupted by the signal. It should be used only
 > for critical tasks.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2834,7 +2926,8 @@
 > ``````
 >
 > Time unit for `timeout` is a jiffy.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2852,7 +2945,8 @@
 >   to `false` or 1 if it is evaluated `true`.
 > - **Timeout not elapsed yet:** the function returns the remaining time (in
 >   jiffies at least 1) if the condition is evaluated to `true`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2881,7 +2975,7 @@
 >   is in interruptible sleep
 > - `wake_up_interruptible_all()`: wake all processes from the wait queue that
 >   are in interruptible sleep
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2897,7 +2991,8 @@
 >
 > A nonezero means your sleep has been interrupted by some sort of signal, and
 > the driver should return `ERESTARTSYS`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -2919,7 +3014,7 @@
 > Some features (such as device drivers, filesystems, and frameworks) can,
 > however, be compiled as loadable modules. Such modules are separated from the
 > final kernel image and are loaded on demand.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -2952,7 +3047,7 @@
 > MODULE_AUTHOR("Brian Salehi <salehibrian@gmail.com>");
 > MODULE_DESCRIPTION("Sample module to do nothing");
 > ``````
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -2967,7 +3062,7 @@
 > * `module_exit()` is used only when the module can be built as a loadable kernel module.
 >
 > Both methods are invoked only once, whatever the number of devices currently handled by the module, provided the module is a device driver.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3005,7 +3100,8 @@
 > unloading support is not enabled because, in both cases, the exit function
 > is never called.
 > `__exit` has no effect on loadable modules.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3017,7 +3113,8 @@
 <summary>What section is used in kernel objects to store module information?</summary>
 
 > A kernel module uses its `.modinfo` section to store information about the module.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3030,7 +3127,8 @@
 
 > Any `MODULE_*` macro will update the content of `.modinfo` section with the values passed as parameters.
 > Some of these macros are `MODULE_DESCRIPTION()`, `MODULE_AUTHOR()`, and `MODULE_LICENSE()`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3044,7 +3142,8 @@
 > ```c
 > MODULE_INFO(tag, info);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3059,7 +3158,8 @@
 > ${CROSS_COMPILE}objdump -d -j .modinfo <module_name>.ko
 > ${CROSS_COMPILE}objdump --disassembly --section .modinfo <module_name>.ko
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3082,7 +3182,8 @@
 >
 > Remember that the module without `MODULE_LICENSE()` is not considered open source and will taint the kernel too.
 > Available licenses can be found in `include/linux/module.h`, describing the license supported by the kernel.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3097,7 +3198,8 @@
 > Building a module this way does not allow integration into the kernel configuration/compilation process, and the module needs to be built separately.
 > It must be noted that with this solution, the module cannot be statically linked in the final kernel image – that is, it cannot be built in.
 > Out-of-tree compilation only allows **loadable kernel modules** to be produced.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3110,7 +3212,8 @@
 
 > With this building method the code is inside the kernel tree, which allows you to upstream your code, since it is well integrated into the kernel configuration/compilation process.
 > This solution allows you to produce either a statically linked module (also known as **built-in**) or a **loadable kernel module**.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3150,7 +3253,8 @@
 > make
 > make modules
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3166,7 +3270,8 @@
 > * `install`: Depends on `modules_install` target.
 > * `modules_install`: This installs the external module(s). The default location is `/lib/modules/<kernel_release>/extra/`. This path can be overridden by `INSTALL_MOD_PATH` option.
 > * `clean`: This removes all generated files.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3194,7 +3299,8 @@
 > ``````
 >
 > `$(CONFIG_MYMODULE)` evaluates to either y, m, or nothing (blank), according to its value during the kernel configuration.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3230,7 +3336,8 @@
 > obj-m := 8123.o
 > 8123-y := 8123_if.o 8123_pci.o 8123_bin.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3264,7 +3371,7 @@
 > ``````
 >
 > This means that the kernel build system should go into the directory named somedir and look for any `Makefile` or `Kbuild` files inside, processing it in order to decide what objects should be built.
-
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3308,7 +3415,8 @@
 > sudo insmod helloworld.ko
 > sudo rmmod helloworld
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3346,7 +3454,8 @@
 > ```config
 > CONFIG_SAMPLE=m
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3392,7 +3501,8 @@
 > ```sh
 > sudo insmod parameters.ko name="modified parameter"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3406,7 +3516,8 @@
 > It is also possible to find and edit the current values for the parameters of a loaded module from **Sysfs** in `/sys/module/<name>/parameters`.
 > In that directory, there is one file per parameter, containing the parameter value.
 > These parameter values can be changed if the associated files have write permissions
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3422,7 +3533,8 @@
 > ```config
 > CONFIG_CMDLINE=... my_module.param=value
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3443,7 +3555,8 @@
 > `EXPORT_SYMBOL()` or its `GPL` counterpart are Linux kernel macros that make a symbol available to loadable kernel modules or dynamically loaded modules (provided that said modules add an extern declaration – that is, include the headers corresponding to the compilation units that exported the symbols).
 >
 > Code that is built into the kernel itself (as opposed to loadable kernel modules) can, of course, access any non-static symbol via an extern declaration, as with conventional C code.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3456,7 +3569,8 @@
 
 > It does that by reading each module in `/lib/modules/<kernel_release>/` to determine what symbols it should export and what symbols it needs.
 > The result of that process is written to a `modules.dep` file, and its binary version, `modules.dep.bin`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3475,7 +3589,8 @@
 > ``````
 >
 > `modprobe` is a clever command that parses the `modules.dep` file in order to load dependencies first, prior to loading the given module.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3522,7 +3637,8 @@
 >
 > These configuration files are processed by `systemd-modules-load.service`, provided that `systemd` is the initialization manager on your machine.
 > On `SysVinit` systems, these files are processed by the `/etc/init.d/kmod` script.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3545,7 +3661,8 @@
 > ```sh
 > modprobe -r mymodule
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3570,7 +3687,8 @@
 >
 > The preceding output is raw and poorly formatted.
 > Therefore, it is preferable to use `lsmod`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3582,7 +3700,8 @@
 <summary>Where the error macros defined are defined?</summary>
 
 > Some of the errors are defined in `include/uapi/asm-generic/errno-base.h`, and the rest of the list can be found in `include/uapi/asm-generic/errno.h`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3601,7 +3720,8 @@
 > if(!dev)
 >     return –EIO
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3643,7 +3763,8 @@
 > By using the `goto` statement, we have straight control flow instead of a nest.
 >
 > That said, you should only use `goto` to move forward in a function, not backward, nor to implement loops (as is the case in an assembler).
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3698,7 +3819,8 @@
 >
 > For example, `add_work()` function is imperative and returns `0` for success or `-EBUSY` for failure.
 > On the other hand, `pci_dev_present()` function is a predicate and returns `1` if it succeeds in finding a matching device or `0` if it doesn't.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3710,7 +3832,8 @@
 <summary>Where are the <code>printk()</code> function log levels are defined?</summary>
 
 > Depending on how important the message to print is, `printk()` allowed you to choose between eight log-level messages, defined in `include/linux/kern_levels.h`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3724,7 +3847,8 @@
 > * `pr_<level>(...)`: This is used in regular modules that are not device drivers.
 > * `dev_<level>(struct device *dev, ...)`: This is to be used in device drivers that are not network devices.
 > * `netdev_<level>(struct net_device *dev, ...)`: This is used in `netdev` drivers exclusively.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3744,7 +3868,8 @@
 > * `pr_crit`, `dev_crit`, `netdev_crit`: A critical condition occured, such as a serious hardware/software failure.
 > * `pr_alert`, `dev_alert`, `netdev_alert`: Something bad happened and action must be taken immediately.
 > * `pr_emerg`, `dev_emerg`, `netdev_emerg`: The system is about to crash or is unstable.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3765,7 +3890,8 @@
 >
 > First number is current log level.
 > Second value is the default log level, according to the `CONFIG_MESSAGE_LOGLEVEL_DEFAULT` option.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3779,7 +3905,8 @@
 > ```sh
 > echo 4 > /proc/sys/kernel/printk
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 2
 
@@ -3832,7 +3959,8 @@
 >
 > * **Wait queue**: To wait for a change — designed to work in concert with locks.
 > * **Completion queue**: To wait for the completion of a given computation, mostly used with DMAs.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3851,7 +3979,8 @@
 > This spinning will only happen on multi-core machines because, on a single-core machine, it cannot happen.
 >
 > A *spinlock* is said to be a lock held by a CPU, in contrast to a *mutex* which is a lock held by a task.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3868,7 +3997,8 @@
 > In other words, spinlocks protect resources that only one CPU can take/access at a time.
 >
 > This makes spinlocks suitable for **symmetrical multiprocessing (SMP)** safety and for executing atomic tasks.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3905,7 +4035,8 @@
 >     return bs;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3922,7 +4053,8 @@
 > static __always_inline void spin_unlock(spinlock_t *lock);
 > static __always_inline void spin_lock(spinlock_t *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3939,7 +4071,8 @@
 > The CPU will stop its current task and branch to this interrupt handler.
 > Now, imagine if this IRQ handler needs to acquire this same spinlock.
 > It will infinitely spin in place, trying to acquire a lock already locked by a task that it has preempted which results in a deadlock.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3957,7 +4090,8 @@
 > static void spin_unlock_irq(spinlock_t *lock)
 > static void spin_lock_irq(spinlock_t *lock)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -3995,7 +4129,8 @@
 > `spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls `schedule()` if enabled depending on the current value of the counter, whose current value should be 0.</br>
 > It tries because it depends on whether other spinlocks are locked, which would affect the value of the preemption counter.
 > `spin_unlock()` is then a preemption point and might re-enable preemption.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4014,7 +4149,8 @@
 >
 > Thus, disabling interrupts protects you from kernel preemption only in cases where the protected code does not trigger preemption itself.
 > That said, code that locked a spinlock may not sleep as there would be no way to wake it up as timer interrupts and/or schedulers are disabled on the local CPU.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4043,7 +4179,8 @@
 > ``````
 >
 > The mutex APIs can be found in the `include/linux/mutex.h` header file.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4076,7 +4213,8 @@
 >     [...]
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4103,7 +4241,8 @@
 >
 > Each of these functions returns 0 if the lock has been acquired successfully.
 > Moreover, interruptible variants return `-EINTR` when the locking attempt was interrupted by a signal.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4119,7 +4258,8 @@
 > ```c
 > void mutex_unlock(struct mutex *lock);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4135,7 +4275,8 @@
 > ``````
 >
 > This function simply checks if the mutex owner is `NULL` and returns `true` if so or `false` otherwise.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4159,7 +4300,8 @@
 >
 > * Locking only in the user context.
 > * If the protected resource is not accessed from an IRQ handler and the operations need not be atomic.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4171,7 +4313,8 @@
 <summary>What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?</summary>
 
 > It may be cheaper to use spinlocks for very small critical sections since the spinlock only suspends the scheduler and starts spinning, compared to the cost of using a mutex, which needs to suspend the current task and insert it into the mutex's wait queue, requiring the scheduler to switch to another task and rescheduling the sleeping task once the mutex is released.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4214,7 +4357,8 @@
 >     spin_unlock(&foo_lock);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4226,7 +4370,8 @@
 <summary>What does the term sleeping mean in the kernel?</summary>
 
 > The term sleeping refers to a mechanism by which a task voluntarily relaxes the processor, with the possibility of another task being scheduled.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4247,7 +4392,8 @@
 >
 > Both sleeping APIs and wait queues implement what we can call **passive waiting**.
 > The difference between the two is how the waking up process occurs.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4261,7 +4407,8 @@
 > The kernel scheduler manages a list of tasks in a `TASK_RUNNING` state to run, known as a **runqueue**.
 >
 > On the other hand, sleeping tasks, whether interruptible or not (in a `TASK_INTERRUPTIBLE` or `TASK_UNINTERRUPTIBLE` state), have their own queues, known as **waitqueues**.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4284,7 +4431,8 @@
 > ``````
 >
 > A wait queue is nothing but a list with sleeping processes in it waiting to be awakened and a spinlock to protect access to this list.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4345,7 +4493,8 @@
 > ``````
 >
 > Time unit for `timeout` is a jiffy.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4360,7 +4509,8 @@
 >
 > - **Timeout elapsed:** the function returns 0 if the condition is evaluated to `false` or 1 if it is evaluated `true`.
 > - **Timeout not elapsed yet:** the function returns the remaining time (in jiffies at least 1) if the condition is evaluated to `true`.
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4396,7 +4546,8 @@
 > - `wake_up_all()`: wake all processes from the wait queue
 > - `wake_up_interruptible()`: wake only one process from the wait queue that is in interruptible sleep
 > - `wake_up_interruptible_all()`: wake all processes from the wait queue that are in interruptible sleep
-
+>
+> ---
 > **Resources**
 > - Linux Device Driver Development - Chapter 3
 
@@ -4429,7 +4580,8 @@
 > sudo journalctl -k
 > sudo journalctl --dmesg
 > ``````
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 2
 
@@ -4441,7 +4593,8 @@
 <summary>Where is the tracing directory usually mounted?</summary>
 
 > Tracing is located at `/sys/kernel/debug/tracing` directory.
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: Linux Device Drivers - Chapter 2
 

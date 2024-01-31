@@ -14,7 +14,8 @@
 > ```sh
 > clang++ -o program source.cpp -std=c++20
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 1
 
@@ -38,7 +39,8 @@
 >     cout << 42 << endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
@@ -92,7 +94,8 @@
 >     return 0;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -155,7 +158,8 @@
 > ```cpp
 > typedef unsigned long positive_t;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -173,7 +177,8 @@
 > - Enumerations
 > - Scoped Enumerations
 > - Preprocessor macro `#define`
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -204,7 +209,8 @@ constexpr double get_pi()
     return 22.0 / 7;
 }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -251,7 +257,8 @@ constexpr double get_pi()
 >     west
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 

@@ -59,7 +59,8 @@ Nothing to import.
 >     height: width * 2
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -110,7 +111,8 @@ Nothing to import.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -153,7 +155,8 @@ Nothing to import.
 >     height: 100
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -170,7 +173,8 @@ Nothing to import.
 >     property int max_text_length: 80
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -194,7 +198,8 @@ Nothing to import.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -208,7 +213,8 @@ Nothing to import.
 
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 4
 
@@ -248,7 +254,8 @@ Nothing to import.
 > `Item` is the base element for all visual elements as such all other visual
 > elements inherits from `Item`. The `Item` element is often used as a
 > container for other elements, similar to the div element in HTML.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -275,7 +282,8 @@ Nothing to import.
 > - **State Definition:** `states` list property with the supported list of
 >   states, current `state` property, and the `transitions` list property to
 >   animate state changes.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -429,7 +437,8 @@ Export properties of a component to be used as an API?
 > ```qml
 > antialiasing: true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -450,7 +459,8 @@ Export properties of a component to be used as an API?
 >     border.color: Qt.lighter(color)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -534,7 +544,8 @@ Export properties of a component to be used as an API?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -612,7 +623,8 @@ Export properties of a component to be used as an API?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -740,7 +752,8 @@ Export properties of a component to be used as an API?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -826,7 +839,8 @@ Export properties of a component to be used as an API?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -840,7 +854,8 @@ Export properties of a component to be used as an API?
 <summary>What are the anchoring properties for visual elements?</summary>
 
 > An element has 6 major anchor lines, `top` , `bottom` , `left` , `right` , `horizontalCenter` , `verticalCenter` .
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -852,7 +867,8 @@ Export properties of a component to be used as an API?
 <summary>What additional anchor property does a text element have?</summary>
 
 > There is the `baseline` anchor for text in `Text` elements.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -867,7 +883,8 @@ Export properties of a component to be used as an API?
 > `left` , and `right` anchors, they are called **margins**. For
 > `horizontalCenter` , `verticalCenter` and `baseline` they are called
 > **offsets**.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -883,7 +900,8 @@ Export properties of a component to be used as an API?
 > - `validator`
 > - `inputMask`
 > - `echoMode`
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -949,7 +967,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -1063,7 +1082,8 @@ Get a line of text from user?
 > This requires you to put your code into a Qt resource file, and is described
 > in detail in the [Compiling QML Ahead of
 > Time](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation).
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 5
 
@@ -1081,7 +1101,8 @@ Get a line of text from user?
 > Animations are applied to property changes. An animation defines the
 > interpolation curve from one value to another value when a property value
 > changes.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1140,7 +1161,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1155,7 +1177,8 @@ Get a line of text from user?
 >
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1182,7 +1205,8 @@ Get a line of text from user?
 > - `SprintAnimation`: allows a property to track a value in a spring-like motion.
 > - `PathAnimation`: animates an item alongside a path.
 > - `Vector3dAnimation`: animates changes in QVector3d values
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1200,7 +1224,8 @@ Get a line of text from user?
 >
 > - `PropertyAction`: specifies immediate property changes during animation.
 > - `ScriptAction`: defines scripts to be run during an animation.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1217,7 +1242,8 @@ Get a line of text from user?
 >   changes
 > - **Standalone Animation:** runs when the animation is explicitly started
 >   using `start()` or `running` is set to true.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1233,7 +1259,8 @@ Get a line of text from user?
 >     wrapMode: Text.WordWrap
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1256,7 +1283,8 @@ Get a line of text from user?
 > - `Easing.InOutElastic`
 > - `Easing.InOutBack`
 > - `Easing.InOutBounce`
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1309,7 +1337,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1325,7 +1354,8 @@ Get a line of text from user?
 > most animations inherit) additionally supports `easing.amplitude` ,
 > `easing.overshoot` , and `easing.period` properties, which allow you to
 > fine-tune the behavior of particular easing curves.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1349,7 +1379,8 @@ Get a line of text from user?
 >
 > These grouped animations are animations themselves and can be used exactly as
 > such.
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1415,7 +1446,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1428,7 +1460,8 @@ Get a line of text from user?
 
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1485,7 +1518,8 @@ Get a line of text from user?
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1577,7 +1611,8 @@ Get a line of text from user?
 >     }
 > ]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1595,7 +1630,8 @@ Get a line of text from user?
 > - `QtQuick.Controls.Imagine`
 > - `QtQuick.Controls.Material`
 > - `QtQuick.Controls.Universal`
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 
@@ -1617,7 +1653,8 @@ Get a line of text from user?
 >     // ...
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Qt6 QML - Chapter 6
 

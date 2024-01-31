@@ -11,7 +11,8 @@
 > project(Flashback LANGUAGES CXX)
 > add_executable(flashback src/main.cpp)
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -25,7 +26,8 @@
 > ```sh
 > cmake -S <source_dir> -B <build_dir>
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -39,7 +41,8 @@
 > ```sh
 > cmake --build <build_dir>
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -53,7 +56,8 @@
 > ```cpp
 > cmake --build <build_dir> --target <target>
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -67,7 +71,8 @@
 > ```cpp
 > cmake --build <build_dir> --target help
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -83,7 +88,8 @@
 > - `depend`: generate the dependencies, if any, for the source files.
 > - `rebuild_cache`: rebuild `CMakeCache.txt`.
 > - `edit_cache`: edit cache entries directly.
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -98,7 +104,8 @@
 > cmake -S <source_dir> -B <build_dir> -G <generator>
 > cmake -S . -B build -G 'Unix Makefiles'
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -125,7 +132,8 @@
 >   has no location. Useful to model usage requirements for a target that is
 >   outside our project.
 > 7. `ALIAS`: an alias for pre-existing library target within the project.
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -144,7 +152,8 @@
 > add_library(message-static STATIC message.hpp message.cpp)
 > target_link_libraries(program message-shared)
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -167,7 +176,8 @@
 > set_target_properties(message-static PROPERTIES OUTPUT_NAME "message")
 > target_link_libraries(program message-shared)
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -183,7 +193,8 @@
 > ```cmake
 > set_target_properties(target PROPERTIES POSITION_INDEPENDENT_CODE 1)
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -197,7 +208,8 @@
 > ```cmake
 > set_target_properties(target PROPERTIES OUTPUT_NAME "primary_target")
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -221,7 +233,8 @@
 > ```sh
 > cmake -S <source> -B <build> -D BUILD_SHARED_LIBS=ON
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -236,7 +249,8 @@
 >   or a non-zero number.
 > - A logical variable is false if is set to any of the `0, OFF, NO, FALSE, N,
 >   IGNORE, NOTFOUND`, an empty string, or a string ending with `-NOTFOUND`.
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -268,7 +282,8 @@
 > ```sh
 > objdump --syms build/program
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -301,7 +316,8 @@
 >     add_executable(program main.cpp ${message_files})
 > endif()
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -317,7 +333,8 @@
 > add_executable(runtime ${source_files})
 > add_library(library ${source_files})
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 
@@ -341,7 +358,8 @@
 > ```sh
 > cmake -S <source> -B <build> -D USE_LIBRARY=ON -D MAKE_SHARED_LIBRARY=ON
 > ``````
-
+>
+> ---
 > **Resources**
 > - CMake Cookbook - Chapter 1
 

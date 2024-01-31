@@ -329,7 +329,8 @@
 >         t.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 
@@ -350,7 +351,8 @@
 >     std::cout << main_thread_id << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > C++ Concurrency in Action - Chapter 2
 
@@ -438,7 +440,8 @@
 >
 > Unfortunately, it’s precisely this split that you’re trying to avoid in
 > eliminating the race condition!
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 
@@ -545,7 +548,8 @@
 > kernel have moved to a more fine-grained locking scheme, so the performance
 > of a four-processor system is much nearer the ideal of four times that of a
 > single-processor system, because there’s far less contention.
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 
@@ -562,7 +566,8 @@
 >
 > If you end up having to lock two or more mutexes for a given operation,
 > there’s another potential problem lurking in the wings, **deadlock**.
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 
@@ -631,7 +636,8 @@
 > indicate to the `std::lock_guard` objects that the mutexes are already
 > locked, and they should adopt the ownership of the existing lock on the mutex
 > rather than attempt to lock the mutex in the constructor.
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 
@@ -658,7 +664,8 @@
 > arguments. The mutexes supplied to the constructor are locked using the same
 > algorithm as std::lock, so that when the constructor completes they are all
 > locked, and they are then all unlocked in the destructor.
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 3
 

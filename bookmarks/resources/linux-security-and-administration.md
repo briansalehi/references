@@ -11,7 +11,8 @@ Nothing to import.
 <summary>What mechanism should be used to prevent users from logging into <b>root</b> account on a Linux system when high privileges are needed?</summary>
 
 > Using `sudo` accounts.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -25,7 +26,8 @@ Nothing to import.
 <summary>How to reduce the damage caused by privileged accessibilities on a system while these privileges are required?</summary>
 
 > Using a limited access account and by separating fine grained privileges into activities, causes damage to whole system reduced.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -49,7 +51,8 @@ Nothing to import.
 > ```sh
 > usermod -a -G sudo <username>
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -65,7 +68,8 @@ Nothing to import.
 > ```sh
 > /etc/login.defs
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -92,7 +96,8 @@ Nothing to import.
 > ```sh
 > sudo systemctl restart sshd.service
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -111,7 +116,8 @@ Nothing to import.
 > ```conf
 > Port 9292
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -186,7 +192,8 @@ Nothing to import.
 > * `dcredit`: the least number of numerals every password should have.
 > * `ocredit`: the least number of special characters(?) every password should have.
 > * `retry`: the number of times users can enter an incorrect password before getting locked.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -227,7 +234,8 @@ Nothing to import.
 > will be prevented to access to the server over SSH; their passwords may be
 > entered correctly, but they will not be given access. This reduces the chance
 > of people hacking the server through brute force attacks.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -257,7 +265,8 @@ Nothing to import.
 > ```sh
 > sudo systemctl enable --now firewalld
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -271,7 +280,8 @@ Nothing to import.
 > ```sh
 > firewall-cmd --get-zones
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -285,7 +295,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --zone public --list-services
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -299,7 +310,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --zone public --list-ports
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -353,7 +365,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --new-zone corp --permanent
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -367,7 +380,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --reload
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -382,7 +396,8 @@ Nothing to import.
 > sudo firewall-cmd --zone corp --add-service ssh --permanent
 > sudo firewall-cmd --reload
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -415,7 +430,8 @@ Nothing to import.
 > sudo firewall-cmd --change-interface <interface> --zone corp --permanent
 > sudo firewall-cmd --set-default corp
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -443,7 +459,8 @@ Nothing to import.
 > ```sh
 > sudo firewall-cmd --get-services
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -459,7 +476,8 @@ Nothing to import.
 > sudo firewall-cmd --add-service <service> --permanent
 > sudo firewall-cmd --reload
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -521,7 +539,8 @@ Nothing to import.
 > ```sh
 > ssh-keygen -t rsa -b 4096 -C "user@domain.tld" -f ~/.ssh/user_rsa
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -535,7 +554,8 @@ Nothing to import.
 > ```sh
 > ssh-copy-id -i ~/.ssh/user_rsa.pub -p <port> user@domain.tld
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -555,7 +575,8 @@ Nothing to import.
 > ```sh
 > ss -tuwlpn
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -608,7 +629,8 @@ Nothing to import.
 > ```conf
 > auth    required    pam_google_authenticator.so
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -627,7 +649,8 @@ Nothing to import.
 > NETWORKING_IPV6=no
 > IPV6INIT=no
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -641,7 +664,8 @@ Nothing to import.
 > ```sh
 > sudo apt install selinux-basics selinux-policy-default auditd
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -704,7 +728,8 @@ Nothing to import.
 > ```sh
 > sudo systemctl restart fail2ban
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -718,7 +743,8 @@ Nothing to import.
 > ```sh
 > sudo fail2ban-client status ssh
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -763,7 +789,8 @@ Nothing to import.
 > ```sh
 > sudo apt install gnupg
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -788,7 +815,8 @@ Nothing to import.
 > ```sh
 > gpg <file>
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -808,7 +836,8 @@ Nothing to import.
 > ```sh
 > sudo apt install bcrypt
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -853,7 +882,8 @@ Nothing to import.
 > ```sh
 > cdecrypt <file>.cpt
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -875,7 +905,8 @@ Nothing to import.
 > ```sh
 > unzip <output.zip>
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -890,7 +921,8 @@ Nothing to import.
 > 7za a -t zip -p -mem=aes256 output.zip files...
 > 7za output.zip
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -905,7 +937,8 @@ Nothing to import.
 > openssl enc -aes-256-cbc -in file -out output.dat
 > openssl enc -aes-256-cbc -d -in output.dat > file
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -933,7 +966,8 @@ Nothing to import.
 > ```sh
 > sudo apt install cryptset
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -947,7 +981,8 @@ Nothing to import.
 > ```sh
 > gunzip -c /proc/config.gz | grep CONFIG_DM_CRYPT
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -963,7 +998,8 @@ Nothing to import.
 > cryptsetup open /dev/sda1 encrypted_partition
 > cryptsetup close encrypted_partition
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -981,7 +1017,8 @@ Nothing to import.
 > setfacl -m u::r <file>
 > setfacl -x m::rx <file>
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1009,7 +1046,8 @@ Nothing to import.
 > - ping
 > - traceroute
 > - nmap
-
+>
+> ---
 > **Resources**
 > -
 

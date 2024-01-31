@@ -55,7 +55,8 @@
 > // left side evalutes: ref y (y=="b")
 > // assignment evaluates: ref to y (y=="b")
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #366
 
@@ -86,7 +87,8 @@
 >     return 0;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -106,7 +108,8 @@
 > - Enumerations
 > - Scoped Enumerations
 > - Preprocessor macro `#define`
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -120,7 +123,8 @@
 > ```cpp
 > const double pi = 22.0 / 7;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -171,7 +175,8 @@
 > Y b = { 10, 20, 30 };
 > // b.x == {10, 20}, b.y == {30, int{} == 0}
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #368
 
@@ -219,7 +224,8 @@
 >
 > some_func({.label = config.label, .id = 42});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #369
 
@@ -244,7 +250,8 @@
 > {
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
@@ -263,7 +270,8 @@
 >     return 22.0 / 7;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -290,7 +298,8 @@
 > double dividen{22.0}, divisor{7.0};
 > divide(dividen, divisor); // ERROR: non-const arguments to consteval
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -368,7 +377,8 @@
 > ``````
 >
 > - Within `if consteval` block you can call immediate `consteval` functions.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
@@ -419,7 +429,8 @@
 >     // manual resource management
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #363
 
@@ -447,7 +458,8 @@
 >     cout << 42 << endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 2
 
@@ -511,7 +523,7 @@
 > test<Size1> t1; // error only on VC++
 > test<Size2> t2; // okay
 > ``````
-
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -630,7 +642,8 @@
 >     auto y = correct_implementation::test(foor{42});
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -648,7 +661,8 @@
 > - Modules do not require splitting interfaces and implementation in different source files, although this is still possible.
 > - Modules reduce compilation time. The entities exported from a module are described in a binary file that the compiler can process faster than traditional precompiled headers.
 > - Exported files can potentially be used to build integrations with C++ code from other languages.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -674,7 +688,8 @@
 > import std;
 > import "geometry.hpp"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -697,7 +712,8 @@
 >   declarations.
 > - The **module purview**, which is the content of the unit, starting with the
 >   module declaration and extending to the end of the module unit.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -786,7 +802,8 @@
 >     std::cout << distance(int_point_zero, p) << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -807,7 +824,8 @@
 > Although module partitions are distinct files, they are not available as
 > separate modules or submodules to translation units using a module. They are
 > exported together as a single, aggregated module.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -882,7 +900,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -935,7 +954,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -1037,7 +1057,8 @@
 > multiple smaller modules, you provide better granularity for imports. This
 > can be important if you're developing a large library because users should
 > only import things they use.
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 12
 
@@ -1101,7 +1122,8 @@
 > decltype(auto) proxy_gen(foo& f) { return f.get(); }
 > // ^__ decltype() preserves cv-ref qualification of return type
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
@@ -1122,7 +1144,8 @@
 > int coust& ir = i;
 > auto a = ir;  // a is declared as new object of type int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -1152,7 +1175,8 @@
 >         std::cout << std::distance(numbers.cbegin(), iter);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -1169,7 +1193,8 @@
 > ```cpp
 > typedef unsigned long positive_t;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -1198,7 +1223,7 @@
 >     fn_ptr fp = func;
 > }
 > ``````
-
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -1257,7 +1282,8 @@
 >     auto c = {4, 2}; //std::initializer_list<int>
 >     auto d{4, 2}; // error, too many elements
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
@@ -1292,7 +1318,8 @@
 >
 > status do_something() { return status::success; }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -1325,7 +1352,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -1354,7 +1382,8 @@
 > bool x = std::holds_alternative<std::string>(v);
 > // x == true
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #64
 
@@ -1374,7 +1403,8 @@
 > std::variant<int, double, std::string> v;
 > v = 10;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #64
 
@@ -1410,7 +1440,8 @@
 > double value = std::get<double>(v);
 > // throws std::bad_variant_access
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #64
 
@@ -1440,7 +1471,8 @@
 > }, v);
 > // prints "sample string"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #66
 
@@ -1479,7 +1511,8 @@
 > }, v);
 > // prints "double: 3.14"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #66
 
@@ -1617,7 +1650,8 @@
 > - implicit type conversions for the first operand are also supported if a
 >   corresponding implicit type conversion is defined
 > - may warn if the result of a comparison is not used (compiler dependent)
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
@@ -1683,7 +1717,8 @@
 > The member function has to take the second parameter as `const` lvalue
 > reference with `=default`. A friend function might also take both parameters
 > by value.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
@@ -1731,7 +1766,8 @@
 > yields a `std::strong_ordering` or `std::weak_ordering` value. However, the
 > other way around does not work. Comparison with 0 is always possible and
 > usually easier.
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
@@ -1790,7 +1826,8 @@
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++20: The Complete Guide - Chapter 1
 
@@ -2013,7 +2050,8 @@
 >     {}
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -2057,7 +2095,8 @@
 >     }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
@@ -2083,7 +2122,8 @@
 > void g(this Data const&);
 > void h(this Data&&);
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
@@ -2106,7 +2146,8 @@
 >     return self(n - 1) + self(n - 2);
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=b0NkuoUkv0M
 
@@ -2125,7 +2166,8 @@
 >    type checking and lose the control of maitaining derived classes.
 > 3. You use special preprocessors, code is replaced by stupid text replacement
 >    mechanism that has no idea of scope and types.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2142,7 +2184,7 @@
 > because this use of `class` can be misleading, you should prefer the use of
 > `typename`. The keyword `struct` cannot be used in place of `typename` when
 > declaring type parameters.
-
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2173,7 +2215,8 @@
 >     undeclared(t); // second-stage compile-time error
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2213,7 +2256,8 @@
 >     return b < a ? a : b;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2320,7 +2364,7 @@
 > std::string s;
 > max("text", s); // ERROR: T can be deduced as char const[5] or std::string
 > ``````
-
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2356,7 +2400,7 @@
 >
 > max<double>(4, 7.2);
 > ``````
-
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2385,7 +2429,8 @@
 >
 > f();    // OK: f<std::string>()
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2407,7 +2452,8 @@
 >
 > auto m = ::max(4, 7.2); // OK:: but max returns int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2421,7 +2467,8 @@
 > - Introduce an additional template parameter for the return type
 > - Let the compiler find out the return type.
 > - Declare the return type to be the common type of the parameter types.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2459,7 +2506,8 @@
 > ``````
 >
 > These modifications don't lead to significant advantages.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2540,7 +2588,8 @@
 > int coust& ir = i;
 > auto a = ir;  // a is declared as new object of type int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2573,7 +2622,8 @@
 > ``````
 >
 > Note that `std::common_type<>` decays.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2605,7 +2655,8 @@
 > template<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>
 > RT max(T1 a, T2 b);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2631,7 +2682,8 @@
 >
 > However, this approach only makes sence, if there is a natural default for a
 > template parameter.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2708,7 +2760,8 @@
 > ::max<long double>(4, 7.2); // calls second overload
 > ::max<int>(4, 7.2); // ERROR: both function templates match
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2813,7 +2866,8 @@
 > Unfortunately, the error is quite subtle and may not manifest itself in all
 > cases. In general, a conforming compiler isn’t even permitted to reject this
 > code.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2849,7 +2903,8 @@
 >     return b < a ? a : b;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -2923,7 +2978,8 @@
 > But usually the `<T>` signals special handling of special template
 > parameters, so it’s usually better to use the first form. However, outside
 > the class structure you'd need to specify it.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -2952,7 +3008,8 @@
 > template<typename T>
 > void Stack<T>::pop() { }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3005,7 +3062,8 @@
 > Note the `<T>` behind the function name `operator<<`. Thus, we declare a
 > specialization of the nonmember function template as friend. Without `<T>` we
 > would declare a new nontemplate function.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3041,7 +3099,8 @@
 >
 > void Stack<std::string>::push(std::string const&) { }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3077,7 +3136,8 @@
 >
 > With partial specialization, we define a class template, still parametrized
 > for `T` but specialized for a pointer (`Stack<T*>`).
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3128,7 +3188,8 @@
 > template<typename T>
 > class Stack<T*, T*>;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3201,7 +3262,8 @@
 > template<typename T>
 > using matrix = std::vector<std::vector<T>>;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3234,7 +3296,8 @@
 > std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11
 > std::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3282,7 +3345,8 @@
 >     Stack(T const& value): container({value}) { }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3329,7 +3393,8 @@
 > constructor taking one integral argument as initial size, so that for a stack
 > with the initial value 5, the vector would get an initial size of five
 > elements when `container(value)` is used.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3374,7 +3439,8 @@
 >
 > In this case, don't forget to use move semantics to avoid unnecessary copy of
 > the argument.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3405,7 +3471,8 @@
 > ```cpp
 > Stack StringStack{"no surprises now!"};  // Stack<std::string>
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3450,7 +3517,8 @@
 > auto d = container(v.begin(), v.end()); // OK: deduces container<double>
 > container e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3477,7 +3545,8 @@
 > By language rules, you can't copy initialize an object by passing a string
 > literal to a constructor expecting a `std::string`. So you have to initialize
 > the object with brace initialization.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3518,7 +3587,8 @@
 > The standard library class `std::array<>` is also an aggregate, parametrized
 > for both the element type and the size. The C++17 standard library also
 > defines a deduction guide for it.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -3568,7 +3638,8 @@
 >         copies.push_back(key);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3685,7 +3756,8 @@
 >     std::cout << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3748,7 +3820,8 @@
 >     char _pad2[7];  // 7 bytes
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3778,7 +3851,8 @@
 > alignof(int*);  // 8 (64-bit)
 > alignof(int[4]);// 4 (natural alignment of element is 4)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3848,7 +3922,8 @@
 > alignas(8) int a;       // size = 4, alignment = 8
 > alignas(256) long b[4]; // size = 32, alignment = 256
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -3871,7 +3946,8 @@
 >     std::cout << sizeof(long double) << '\n';
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 
@@ -3898,7 +3974,8 @@
 > T operator ""_suffix(char16_t const *, std::size_t);
 > T operator ""_suffix(char32_t const *, std::size_t);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -3933,7 +4010,7 @@
 >     size_t bytes = "1024"_KB;
 > }
 > ``````
-
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -3955,7 +4032,8 @@
 > template <char...>
 > T operator ""_suffix();
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -4010,7 +4088,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -4098,7 +4177,8 @@
 >     bag b{std::move(a)};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4115,7 +4195,8 @@
 > - When the value of a temporary object is passed that will automatically be
 >   destroyed after the statement.
 > - When a non-`const` object marked with `std::move()`.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4131,7 +4212,8 @@
 > standard header is required t include `utility` header file. Therefore, when
 > using `std::move()`, you should explicitly include `<utility>` to make your
 > program portable.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4146,7 +4228,8 @@
 > ```cpp
 > function(static_cast<decltype(object)&&>(object)
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4164,7 +4247,8 @@
 > `std::move()`, if available, a function declaring parameters as an rvalue
 > reference is preferred. However, if no such function exists, the usual copy
 > semantics is used as a fallback.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4185,7 +4269,8 @@
 >
 > coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4223,7 +4308,8 @@
 
 > The implementer has to ensure that the passed argument is in a valid state
 > after the call.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4251,7 +4337,8 @@
 > std::cout << s.front() << '\n'; // ERROR (potentially undefined behavior)
 > s = "new value";  // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4282,7 +4369,8 @@
 > foo(std::move(s));      // OK
 > foo(returnStringByValue());     // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4350,7 +4438,8 @@
 > - A `const` or non-`const` object marked with `std::move()`
 >
 > However, there is no useful semantic meaning of this case.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4369,7 +4458,8 @@
 > operations. Any form of an explicit declaration of a copy constructor, copy
 > assignment operator, or destructor disables move semantics, even if
 > declarations are marked with `=default`.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4386,7 +4476,8 @@
 >
 > * No <b>move constructor</b> is user-declared
 > * No <b>move assignment operator</b> is user-declared
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4406,7 +4497,8 @@
 > * No <b>copy assignment operator</b> is user-declared
 > * No another <b>move operation</b> is user-declared
 > * No <b>destructor</b> is user-declared
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4421,7 +4513,8 @@
 
 > Declaring destructors in anyway disables the automatic generation of move
 > operations.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4448,7 +4541,8 @@
 >     // NO destructor declared
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4468,7 +4562,8 @@
 > - Values of members depend on each other
 > - Member with reference semantics are used (pointers, smart pointers, ...)
 > - Objects have no default constructed state
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
@@ -4483,7 +4578,8 @@
 > constructor, copy assignment operator, move assignment operator, and
 > destructor) or none of them. Declaration means either to implement, set as
 > default, or set as deleted.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4513,7 +4609,8 @@
 > The important lesson to learn here is that a parameter being declared as an
 > rvalue reference restricts what we can pass to this function but behaves just
 > like any other non-`const` object of this type.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4545,7 +4642,8 @@
 >     return *this;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 
@@ -4602,7 +4700,8 @@
 > ``````
 >
 > In this case, `=delete` disables the fallback mechanism.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4626,7 +4725,8 @@
 >     return std::move(s); // BAD, returns std::string&&
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -4658,7 +4758,8 @@
 >     Customer& operator=(const Customer&) = default;     // disable move semantics
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4700,7 +4801,8 @@
 > Invoice i;
 > Invoice i1{std::move(i)}; // OK, moves id, copies cust
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4730,7 +4832,8 @@
 >     virtual ~Derived() = default; // BAD, redundant, disables move
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -4768,7 +4871,8 @@
 > Move semantics does not guarantee that any optimization happens at all or
 > what the effect of any optimization is. All we know is that the passed object
 > is subsequently in a valid but unspecified state.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
@@ -4936,7 +5040,8 @@
 > only useful when we store the passed value somewhere as a new value where we
 > need new memory allocation anyway. When modifying an existing value, this
 > policy might be counterproductive.
-
+>
+> ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 
@@ -4990,7 +5095,8 @@
 >
 > beta object;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -5028,7 +5134,8 @@
 >     beta object;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -5063,7 +5170,8 @@
 > {
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 1
 
@@ -5099,7 +5207,8 @@
 >     // flushes on destruction
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -5140,7 +5249,8 @@
 >     // doesn't allocate
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -5171,7 +5281,8 @@
 >
 > Compiled with C++17, two allocations can be witnessed. But compiled with
 > C++20, duplicate copy no longer takes place.
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -5212,7 +5323,8 @@
 >     // doesn't allocate new memory
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -5253,7 +5365,7 @@
 >     vec.emplace_back(std::string{"Hello World!"});
 > }
 > ``````
-
+> ---
 > **Resources**
 > - Daily C++ Bites - #333
 
@@ -5341,7 +5453,8 @@
 >     return false;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -5361,7 +5474,8 @@
 > auto sd  = std::to_wstring(42.0); // "42.000000"
 > auto sld = std::to_wstring(42.0L); // "42.000000"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5405,7 +5519,8 @@
 > template<typename F, typename = typename F = std::is_floating_point_v<F>>
 > F stof(std::string const& str, std::size_t* pos = 0);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5432,7 +5547,8 @@
 > auto i4 = std::stoi("+42"); // 42
 > auto i5 = std::stoi("-42"); // -42
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5506,7 +5622,8 @@
 > auto d10 = std::stod("NAN");         // d10 = nan
 > auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5537,7 +5654,8 @@
 >
 > auto s5{ "text"sv }; // std::string_view
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5562,7 +5680,8 @@
 > auto filename { R"(C:\Users\Brian\Documents\)"s };
 > auto pattern { R"((\w[\w\d]*)=(\d+))"s };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5589,7 +5708,8 @@
 >
 > auto s5{ R"text"sv }; // std::string_view
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5626,7 +5746,8 @@
 > auto sv3{ trim_view("sample ") };
 > auto sv4{ trim_view(" sample ") };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5646,7 +5767,8 @@
 > std::size_t suffix{ str.find_last_not_of(" ") };
 > std::size_t prefix{ str.find_first_not_of(" ") };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5669,7 +5791,8 @@
 > str.remove_suffix(str.length() - pos2 - 1);
 > str.remove_prefix(pos1);
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5688,7 +5811,8 @@
 > std::string_view sv{ "demo" };
 > std::string s{ sv };
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5723,7 +5847,8 @@
 > bool t4 = haystack.ends_with(needle);
 > // t4 == false
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #371
 
@@ -5737,7 +5862,8 @@
 <summary>What are the advantages of using format compared to printf?</summary>
 
 > - You cannot format objects of user-defined types with printf.
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5757,7 +5883,8 @@
 >
 > std::clog << std::format("{0:02x} {1:02x} {2:02x}\n", v0, v1, v2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5773,7 +5900,8 @@
 >
 > std::format("{02x}\n", value);
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5805,7 +5933,8 @@
 >
 > std::format("{}\n", color_code);
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5822,7 +5951,8 @@
 >
 > std::format("{:%F %T} UTC", std::chrono::system_clock::now());
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5841,7 +5971,8 @@
 >
 > std::print("{} <{}>", "Brian Salehi", "salehibrian@gmail.com");
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 
@@ -5865,7 +5996,8 @@
 > std::regex srx{pattern};
 > std::regex lrx{R"(...)"s};
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5880,7 +6012,8 @@
 > ```cpp
 > std::regex irx{R"(...)"s, std::regex_constants::icase};
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5920,7 +6053,8 @@
 >         std::cerr << "invalid repository link!\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -5978,7 +6112,8 @@
 >                   << " hosted on " << domain
 >                   << " using " << protocol << " protocol\n";
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6007,7 +6142,8 @@
 >
 > std::regex pattern{R"(...)", std::regex_constants::egrep};
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6047,7 +6183,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6176,7 +6313,8 @@
 >     std::string reformatted = std::regex_replace(text, pattern, R"([$`] $2 $1 $3 [$'])");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6221,7 +6359,8 @@
 >     return latest_minimum;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6244,7 +6383,8 @@
 > auto s = std::numeric_limits<short>::digits;
 > auto d = std::numeric_limits<double>::digits;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6263,7 +6403,8 @@
 > auto s = std::numeric_limits<short>::digits10;
 > auto d = std::numeric_limits<double>::digits10;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6281,7 +6422,8 @@
 >
 > auto value_is_signed = std::numeric_limist<T>::is_signed;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6299,7 +6441,8 @@
 >
 > auto value_is_integer = std::numeric_limist<T>::is_integer;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6317,7 +6460,8 @@
 >
 > auto value_is_exact = std::numeric_limist<T>::is_exact;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6335,7 +6479,8 @@
 >
 > auto value_has_infinity = std::numeric_limist<T>::has_infinity;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6380,7 +6525,8 @@
 > auto min = std::mt19937::min();
 > auto max = std::mt19937::max();
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6405,7 +6551,8 @@
 > std::mt19937 generator2;
 > generator2.seed(seeder());
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6429,7 +6576,8 @@
 > std::mt19937 generator{seeder()};
 > auto number = generator();
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6449,7 +6597,8 @@
 > std::mt19937 generator{};
 > generator.discard(4); // discard 4 numbers
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6482,7 +6631,8 @@
 >     int random_number = dist(generator);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6513,7 +6663,8 @@
 > std::cout << duration << "\n";
 > // example output: 1115389ns
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
 
@@ -6539,7 +6690,8 @@
 > std::cout << sleep_duration << "\n";
 > // example output: 1115.39µs
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
 
@@ -6566,7 +6718,8 @@
 > std::cout << micro << "\n";
 > // example output: 1115µs
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
 
@@ -6602,7 +6755,8 @@
 >
 > auto resolution = std::chrono::system_clock::duration{1};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
 
@@ -6625,7 +6779,8 @@
 > auto year { 2035y }; // std::chrono::year (c++20)
 > auto day { 15d }; // std::chrono::day (c++20)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -6644,7 +6799,8 @@
 
 > - `operator""y`
 > - `operator""d`
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #73
 
@@ -6663,7 +6819,8 @@
 > auto specific_day = std::chrono::weekday{std::chrono::sys_days{christmas_eve}};
 > // specific_day == std::chrono::Sunday
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #74
 
@@ -6683,7 +6840,8 @@
 >     // iterate over all days in April 2024
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #74
 
@@ -6721,7 +6879,8 @@
 >     } // prints 3, 6, 9, 12, 15, 11
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #362
 
@@ -6781,7 +6940,8 @@
 >     std::ranges::for_each(iter, sentinel<long>{iter, 3}, [](auto e) { std::cout << e << " "; });
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.2
 
@@ -6817,7 +6977,8 @@
 >     ssize_t bidirectional_difference = std::distance(bidirectional.begin(), bidirectional_iterator); // OK: 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.3
 
@@ -6855,7 +7016,8 @@
 > std::copy_backward(data.begin(), data.begin() + 8, data.end());
 > // data == {1, 1, 2, 3, 4, 5, 6, 7, 8}
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #367
 
@@ -6882,7 +7044,8 @@
 > std::max(34, 47);
 > std::max({4,8,12,42});
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=7FORoVmSw4E
 
@@ -6903,7 +7066,8 @@
 > std::ranges::starts_with("Hello World", "Hello");
 > // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -6950,7 +7114,8 @@
 >     std::string abc = alphabet | std::views::take(3) | std::ranges::to<std::string>();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -6996,7 +7161,8 @@
 > bool cmp5 = std::ranges::is_permutation(data1, data3);
 > // cmp5 == true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #361
 
@@ -7101,7 +7267,8 @@
 >     );
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
 > - C++ Daily Bites - #60
@@ -7151,7 +7318,8 @@
 > ``````
 >
 > Note: parallel execution requires *libtbb* library to be linked.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.1
 
@@ -7182,7 +7350,8 @@
 >     // sum: 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1.1
 
@@ -7221,7 +7390,8 @@
 > of the source range, it does no out-of-bounds checking, and it is the
 > responsibility of the caller to ensure that the range $[first, first + n)$ is
 > valid.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.1
 
@@ -7259,7 +7429,8 @@
 >                              // then it calls the default move-swap
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.1
 
@@ -7297,7 +7468,8 @@
 >     // p2.get() == p2_pre, *p2 == 1
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.2
 
@@ -7326,7 +7498,8 @@
 >     // numbers: {6,5,3,4,2,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.2.3
 
@@ -7382,7 +7555,8 @@
 > std::ranges::swap(x,y); // default swap
 > std::ranges::swap(a,b); // calls MyNamespace::swap
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #62
 
@@ -7436,7 +7610,8 @@
 > * `std::strong_ordering`
 > * `std::weak_ordering`
 > * `std::partial_ordering`
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3
 
@@ -7536,7 +7711,8 @@
 >     // cmp2 = std::strong_ordering::greater
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.2
 
@@ -7553,7 +7729,8 @@
 > Due to the `O(N log N)` complexity guarantee, `std::sort` only operates on
 > `random_access` ranges. Notably, `std::list` offers a method with an
 > approximate `O(N log N)` complexity.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
@@ -7597,7 +7774,8 @@
 >     std::ranges::sort(accounts, std::greater<>{}, &Account::value);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.3
 
@@ -7646,7 +7824,8 @@
 >     // guaranteed order: a-1, e-1, b-2, c-2, d-3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.4
 
@@ -7683,7 +7862,8 @@
 >     // test3 == true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.5
 
@@ -7713,7 +7893,8 @@
 >     // *iter = 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.6
 
@@ -7754,7 +7935,8 @@
 >
 > The benefit of using a partial sort is faster runtime — approximately `O(N
 > log K)`, where `K` is the number of elements sorted.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.7
 
@@ -7793,7 +7975,8 @@
 >     // top == { 9, 8, 7 }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.3.8
 
@@ -7822,7 +8005,8 @@
 >         continue;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 1.4
 
@@ -7899,7 +8083,7 @@
 > auto& widget = get_widget();
 > std::ranges::stable_partition(widget.items, &Item::is_selected);
 > ``````
-
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.2
 
@@ -7931,7 +8115,8 @@
 >     assert(test); // test = true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.3
 
@@ -7972,7 +8157,8 @@
 >     assert(odds.size() == 3);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.4
 
@@ -8024,7 +8210,8 @@
 > logk)`. However, note that the standard only mandates average `O(n)`
 > complexity, and `std::nth_element` implementations can have high overhead, so
 > always test to determine which provides better performance for your use case.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.4.5
 
@@ -8101,7 +8288,8 @@
 >     // std::distance(data.begin(), upper) == 8
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.1
 
@@ -8132,7 +8320,8 @@
 >     // std::distance(data.begin(), upper) == 8
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.2
 
@@ -8183,7 +8372,8 @@
 >     std::assert(*square == 16);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.3
 > - C++ Daily Bites - #297
@@ -8224,7 +8414,8 @@
 > whether the returned is non-empty; however, `std::binary_search` offers a
 > single lookup performance, where `std::equal_range` does two lookups to
 > determine the lower and upper bounds.
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.5.4
 
@@ -8255,7 +8446,8 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.1
 
@@ -8299,7 +8491,7 @@
 >     std::cout << "\n";
 > }
 > ``````
-
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.2
 
@@ -8328,7 +8520,8 @@
 >     // range == {1,2,3,4,5,6}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.3
 
@@ -8360,7 +8553,8 @@
 >     // range == {1,2,3,4,5};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.6.4
 
@@ -8455,7 +8649,8 @@
 >     // symmetric_difference == {1,4,6,9};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.2
 
@@ -8486,7 +8681,8 @@
 >     // union == {1,3,4,5,6,7,9}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.3
 
@@ -8517,7 +8713,8 @@
 >     // intersection == {3,5,7}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.7.4
 
@@ -8558,7 +8755,8 @@
 >     // {2,2,2,2,2}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.1
 
@@ -8587,7 +8785,7 @@
 >     range.erase(last, range.end());
 > }
 > ``````
-
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
@@ -8616,7 +8814,8 @@
 >     range.erase(last, range.end());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.2
 
@@ -8645,7 +8844,8 @@
 >     // {1,0,1,0,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
@@ -8674,7 +8874,8 @@
 >     // {1,0,1,0,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.3
 
@@ -8703,7 +8904,8 @@
 >     // {5,4,3,2,1}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.4
 
@@ -8737,7 +8939,8 @@
 >     // {1,2,3,4,5}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.5
 
@@ -8777,7 +8980,8 @@
 >     // {N,N,N,4,5}
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.6
 
@@ -8809,7 +9013,8 @@
 >     std::ranges::shuffle(range, generator);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.7
 
@@ -8855,7 +9060,8 @@
 > } while (std::prev_permutation(bits.begin(), bits.end()));
 > // bits == {1, 1, 0, 0}
 > ``````
-
+>
+> ---
 > **Resources**
 > - Daily C++ Bites - #365
 
@@ -8888,7 +9094,8 @@
 >     // range == {1,2,3};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.8
 
@@ -8918,7 +9125,8 @@
 >     // true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.8.9
 
@@ -8950,7 +9158,8 @@
 >     // all numbers are possitive: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
@@ -8980,7 +9189,8 @@
 >     // at least an even number exists: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
@@ -9010,7 +9220,8 @@
 >     // not any number is negative: true
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 2.11.1
 
@@ -9057,7 +9268,8 @@
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -9091,7 +9303,8 @@
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -9121,7 +9334,8 @@
 >     return text.substr(first, (last - first + 1));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -9148,7 +9362,8 @@
 >     return text;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern C++ Programming Cookbook - Chapter 2
 
@@ -9207,7 +9422,8 @@
 > - `std::basic_string<CharT,Traits,Allocator>::insert_range`
 > - `std::basic_string<CharT,Traits,Allocator>::append_range`
 > - `std::basic_string<CharT,Traits,Allocator>::replace_with_range`
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -9241,7 +9457,8 @@
 >     std::cout << library_name;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 
@@ -9274,7 +9491,8 @@
 >     // first second third
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.1
 
@@ -9307,7 +9525,8 @@
 >     // 4 5 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.2
 
@@ -9336,7 +9555,8 @@
 >     // 1 4 9 16 25
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.3
 
@@ -9361,7 +9581,8 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
@@ -9386,7 +9607,8 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.4
 
@@ -9411,7 +9633,8 @@
 >     // 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
@@ -9436,7 +9659,8 @@
 >     // 4 5
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.5
 
@@ -9461,7 +9685,8 @@
 >     // 2 4 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.6
 
@@ -9486,7 +9711,8 @@
 >     // 5 4 3 2 1
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.7
 
@@ -9511,7 +9737,7 @@
 >     // 2 3 4
 > }
 > ``````
-
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.8
 
@@ -9537,7 +9763,8 @@
 >     // 1 2 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.9
 
@@ -9597,7 +9824,8 @@
 >     // 6 4 2
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
@@ -9609,7 +9837,8 @@
 <summary>Flatten a splited view of a range?</summary>
 
 > incomplete
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.11
 
@@ -9631,7 +9860,8 @@
 >     std::ranges::copy(std::views::empty<long>, std::ostream_iterator<long>(std::cout, " "));
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
@@ -9654,7 +9884,8 @@
 >     // 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.12
 
@@ -9680,7 +9911,8 @@
 >     // 4 5 6
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.13
 
@@ -9703,7 +9935,8 @@
 >     // 1 2 3 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - A Complete Guide to Standard C++ Algorithms - Section 4.14
 
@@ -9781,7 +10014,8 @@
 >     thread_l.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -9842,7 +10076,8 @@
 >     smart_thread.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -9867,7 +10102,8 @@
 >     std::jthread t0{do_something};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
@@ -9904,7 +10140,8 @@
 >     t.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -9938,7 +10175,8 @@
 >     thread_guard joining_thread{t};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -9995,7 +10233,8 @@
 >     t3.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -10029,7 +10268,8 @@
 >     worker.request_stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
 
@@ -10063,7 +10303,8 @@
 >         t.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -10084,7 +10325,8 @@
 >     std::cout << main_thread_id << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
 
@@ -10101,7 +10343,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10153,7 +10396,8 @@
 >     sender.set_value(); // unblock the second stage by sending a signal
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #293
 
@@ -10170,7 +10414,7 @@
 
 > A mutex must be locked and unlocked in the same thread. But a semaphore can
 > be acquired in one thread, and released in another.
-
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10186,7 +10430,8 @@
 > ```cpp
 > std::ptrdiff_t least_max_value = std::counting_semaphore::max();
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10208,7 +10453,8 @@
 > |`try_acquire()`|
 > |`try_acquire_for(duration)`|
 > |`try_acquire_until(timepoint)`|
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10277,7 +10523,8 @@
 >     std::cout << "\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10315,7 +10562,8 @@
 >     signal_thread2main.acquire();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 
@@ -10330,7 +10578,8 @@
 <summary>What are the use cases of a latch?</summary>
 
 > Latches are useful for managing one task leveraged by multiple threads.
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10343,7 +10592,8 @@
 
 > A thread waits at a synchronization point until the internal counter becomes
 > zero. So latches are almost opposites of the semaphore in counting.
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10360,7 +10610,8 @@
 > |`try_wait()`|Returns `true` if internal counter equals zero|
 > |`wait()`|Immediately returns if internal counter equals zero, blocks otherwise|
 > |`arrive_and_wait(std::ptrdiff_t update = 1)`|Equivalent to subsequent call to `count_down(update)` and `wait()`|
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10403,7 +10654,8 @@
 >     // {0, 1, 2, 3, 4, 5, 6, 7} on a machine with 8 cores
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10437,7 +10689,8 @@
 > |`wait()`|Blocks at the synchronization point until the completion step is done|
 > |`arrive_and_wait()`|Equivalent to subsequent call to `arrive()` and `wait()`|
 > |`arrive_and_drop()`|Decrements the internal counter for the current phase and the subsequent phase by one|
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10486,7 +10739,8 @@
 >         thread_pool.emplace_back(full_time_job, index, index);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
 
@@ -10501,7 +10755,8 @@
 
 > A function is a coroutine if its function body encloses a
 > coroutine-return-statement, an await-expression, or a yield-expression.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=RBldGKfLb9I
 
@@ -10611,7 +10866,8 @@
 > std::once_flag MonoPIMPL::flag_;
 > std::unique_ptr<ImplIface> MonoPIMPL::impl_;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Daily Bites - #61
 
@@ -10632,7 +10888,8 @@
 > /home/brian/
 > C:\Windows\Users\Brian\Desktop
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10662,7 +10919,8 @@
 > - The optional root name is implementation specific (e.g. `//host` on POSIX systems, `C:` on WIndows systems)
 > - The optional root root directory is a directory separator
 > - The relative path is a sequence of file names separated by directory separators
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10681,7 +10939,8 @@
 >   beginning of a relative path.
 > - The path only ends with a directory separator if the trailing filename is a
 >   directory with a name other than `.` or `..`.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10716,7 +10975,8 @@
 > create_directory("/tmp/notes"); // ERROR
 > remove("/tmp/note.txt"); // OOPS: calls C function remove()
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10734,7 +10994,8 @@
 >
 > - By default, the operations throw `std::filesystem_error` exceptions on errors.
 > - By passing an additional out parameter, an error code can be used instead.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10763,7 +11024,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10793,7 +11055,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10821,7 +11084,8 @@
 >     };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10846,7 +11110,8 @@
 > std::filesystem::u16path{u16"/dev/null"s}; // std::u16string
 > std::filesystem::u32path{u32"/dev/null"s}; // std::u32string
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10864,7 +11129,8 @@
 > std::string filename{"/dev/random"};
 > std::filesystem::path{filename.begin(), filename.end()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10883,7 +11149,8 @@
 >
 > auto working_directory{std::filesystem::current_path()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10899,7 +11166,8 @@
 >
 > auto temp{std::filesystem::temp_directory_path()};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10916,7 +11184,8 @@
 > std::filesystem::path p;
 > p.empty(); // true
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10973,7 +11242,8 @@
 > p.begin();
 > p.end();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -10989,7 +11259,8 @@
 >
 > p.lexically_normal();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11011,7 +11282,8 @@
 > p.u16string();
 > p.u32string();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11039,7 +11311,8 @@
 > std::filesystem::path{"a/b"}.lexically_relative("c/d"}; // ""
 > std::filesystem::path{"a/b"}.lexically_proximate("c/d"}; // "a/b"
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11077,7 +11350,8 @@
 > p.c_str(); // same
 > p.preferred(); // \\dir\\subdir\\subsubdir\\\\.\\\\
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11103,7 +11377,8 @@
 > std::filesystem::path p3{".git"};
 > p.concat(p3.begin(), p3.end()); // project.git
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11143,7 +11418,7 @@
 > std::filesystem::path p{"/src/project/main"};
 > p.replace_extension(".cpp"); // /src/project/main.cpp
 > ``````
-
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11168,7 +11443,8 @@
 > std::filesystem::path p2{"/src/projects/linux-hardened"};
 > p.assign(p2.begin(), p2.end());
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11186,7 +11462,8 @@
 > p1.swap(p2);
 > std::swap(p1, p2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11201,7 +11478,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_filename("window.cpp"); // /src/project/window.cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11216,7 +11494,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension("hpp"); // /src/project/main.hpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11231,7 +11510,8 @@
 > std::filesystem::path p;
 > p.make_preferred();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11248,7 +11528,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.remove_filename(); // /src/project/
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11263,7 +11544,8 @@
 > std::filesystem::path p{"/src/project/main.cpp"};
 > p.replace_extension(); // /src/project/main
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11311,7 +11593,8 @@
 > p1.lexically_normal() == p2.lexically_normal(); // true
 > p1.lexically_normal().compare(p2.lexically_normal()); // 0
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11334,7 +11617,8 @@
 > std::filesystem::exists(p2); // true
 > std::filesystem::equivalent(p1, p2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11350,7 +11634,8 @@
 > ```cpp
 > std::filesystem::exists(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11371,7 +11656,8 @@
 > std::filesystem::is_regular_file(p);
 > std::filesystem::is_directory(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11385,7 +11671,7 @@
 > ```cpp
 > std::filesystem::is_other(p);
 > ``````
-
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11402,7 +11688,8 @@
 > std::filesystem::is_fifo(p);
 > std::filesystem::is_socket(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11418,7 +11705,8 @@
 > ```cpp
 > std::filesytem::is_empty(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11436,7 +11724,8 @@
 > ```cpp
 > auto bytes = std::filesystem::file_size(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11450,7 +11739,8 @@
 > ```cpp
 > std::filesystem::hard_link_count(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11476,7 +11766,8 @@
 > auto diff = std::filesystem::file_time_type::clock::now() - last_write;
 > auto last_write_seconds = std::chrono::duration_cast<std::chrono::seconds>(diff).count();
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11564,7 +11855,8 @@
 > // remove write access for group and any access for others
 > std::filesystem::permissions(p, std::filesystem::perms::owner_write | std::filesystem::perms::others_all, std::filesystem::perm_options::remove);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11578,7 +11870,8 @@
 > ```cpp
 > std::filesystem::resize_file(p, newSize);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11646,7 +11939,8 @@
 > if (!exists(symlink_status(p)))
 >     ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11660,7 +11954,8 @@
 > ```cpp
 > std::filesystem::status(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11674,7 +11969,8 @@
 > ```cp
 > std::filesystem::symlink_status(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11699,7 +11995,8 @@
 > std::filesystem::is_fifo(fs);
 > std::filesystem::is_socket(fs);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11730,7 +12027,8 @@
 >     case (file_type::none):         std::cout << "none"; break;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11769,7 +12067,8 @@
 >     std::cout << "\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11822,7 +12121,8 @@
 > {
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11840,7 +12140,8 @@
 >
 > std::fstream file{"/tmp/non-existing-file"};
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11869,7 +12170,8 @@
 >     std::cerr << p << " already exists as a non-directory\n";
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11883,7 +12185,8 @@
 > ```cpp
 > std::filesystem::create_directories(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11903,7 +12206,8 @@
 > ```cpp
 > std::filesystem::create_symlink(to, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11917,7 +12221,8 @@
 > ```cpp
 > std::filesystem::create_directory_symlink(to, new);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11933,7 +12238,8 @@
 > ```cpp
 > std::filesystem::create_hard_link(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11950,7 +12256,8 @@
 > std::filesystem::copy(from, to);
 > std::filesystem::copy(from, to, options);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11965,7 +12272,8 @@
 > std::filesystem::copy_file(from, to);
 > std::filesystem::copy_file(from, to, options);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -11999,7 +12307,8 @@
 >     // the destination path is in the current directory
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12015,7 +12324,8 @@
 > ```cpp
 > std::filesystem::copy_symlink(from, to);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12031,7 +12341,8 @@
 > ```cpp
 > std::filesystem::remove(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12067,7 +12378,8 @@
 > ```cpp
 > std::filesystem::read_symlink(symlink);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12091,7 +12403,8 @@
 > std::filesystem::canonical(p);
 > std::filesystem::weakly_canonical(p);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12155,7 +12468,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12183,7 +12497,8 @@
 > The default is not to follow symbolic links and to skip directories you are
 > not allowed to iterate over. With `skip_permission_denied` iterating over a
 > denied directory, results in an exception.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12231,7 +12546,8 @@
 >
 > `assign()` and `replace_filename()` call the corresponding modifying path
 > operations but do not modify the files in the underlying filesystem.
-
+>
+> ---
 > **Resources**
 > - C++17: The Complete Guide - Chapter 20
 
@@ -12281,7 +12597,8 @@
 > - Creational Patterns
 > - Behavioral Patterns
 > - Structural Patterns
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
@@ -12299,7 +12616,8 @@
 > - Builder
 > - Prototype
 > - Singleton
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
@@ -12314,7 +12632,8 @@
 
 > - Encapsulates object creation in one method
 > - Provides interface to create subclasses
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
@@ -12483,7 +12802,8 @@
 > };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 
@@ -12499,7 +12819,8 @@
 <summary>What is the main advantage of using builder design pattern?</summary>
 
 > With builder pattern, we can build a product one component at a time.
-
+>
+> ---
 > **Resources**
 > - LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone - Chapter 1
 

@@ -32,7 +32,8 @@
 > |Bidirectional Iterator|Forward Iterator capability<br>bidirectional `operator++` `operator--`|
 > |Random Access Iterator|Bidirectional Iterator capability<br>assignable: `operator=` `operator+=` `operator-=`<br>arithmetic: `operator+` `operator-`<br>copyable<br>comparable `operator==` `operator!=` `operator>` `operator<` `operator<=` `operator>=`<br>element-wise access `operator[]`|
 > |Contiguous Iterator|Random access capability<br>logically adjacent elements of the container must be physically adjacent in memory|
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -56,7 +57,8 @@
 > std::vector<std::string>::const_iterator c_iter;
 > std::vector<double>::iterator iter;
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -101,7 +103,8 @@
 > auto iter = begin(scalar);
 > // compiler deduces std::vector<double>::iterator due argument type
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -119,7 +122,8 @@
 >
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -202,7 +206,8 @@
 > - `std::ostream_iterator`
 > - `std::istreambuf_iterator`
 > - `std::ostreambuf_iterator`
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -233,7 +238,8 @@
 > copy(std::begin(v), std::end(v), std::begin(copy));
 > copy(std::begin(v), std::end(v), std::ostream_iterator<int>{std::cout, " "});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -296,7 +302,8 @@
 > - `move_iterator`: the dereferencing operator for a `move_iterator`
 >   automatically converts the value to an rvalue reference, so it can be moved
 >   to a new destination.
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -331,7 +338,8 @@
 > ```cpp
 > std::copy(std::begin(v), std::end(v), std::back_insert_iterator{copy_v});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -364,7 +372,8 @@
 > ```cpp
 > std::copy(std::begin(q), std::end(q), std::front_insert_iterator{copy_q});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -407,7 +416,8 @@
 > ```cpp
 > std::copy(std::begin(s), std::end(s), std::insert_iterator{copy_s, std::begin(copy_s)});
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -430,7 +440,8 @@
 >
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -463,7 +474,8 @@
 >     auto second{ std::distance(std::begin(v), --iter2.base());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 
@@ -502,7 +514,8 @@
 > ```cpp
 > std::vector<MovableType> steals{std::move_iterator{std::begin(source)}, std::move_iterator{std::end(source)}};
 > ``````
-
+>
+> ---
 > **Resources**
 > - Professional C++ - Chapter 17
 

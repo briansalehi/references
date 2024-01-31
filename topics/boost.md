@@ -8,7 +8,8 @@
 > The I/O service is a channel that is used to access operating system
 > resources and establish communication between our program and the operating
 > system that performs I/O requests.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -23,7 +24,8 @@
 > The I/O object has the role of submitting I/O requests. For instance, the
 > `tcp::socket` object will provide a socket programming request from our
 > program to the operating system.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -59,7 +61,8 @@
 > make sure that the `io_service::run()` function will not exit during the time
 > the work is underway. Also, it will make sure that the `io_service::run()`
 > function exits when there is no unfinished work remaining.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -88,7 +91,8 @@
 >     // will be reached: non-blocking service
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -134,7 +138,8 @@
 >     worker.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -181,7 +186,8 @@
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -230,7 +236,8 @@
 > The `boost::asio::io_context::strand::wrap()` function creates a new handler
 > function object that will automatically pass the wrapped handler to the strand
 > object's dispatch function when it is called.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -281,7 +288,8 @@
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -328,7 +336,8 @@
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -453,7 +462,8 @@
 >     worker.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -466,7 +476,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 6
 
@@ -479,7 +490,8 @@
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -523,7 +535,8 @@
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -643,7 +656,8 @@
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -786,7 +800,8 @@
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 

@@ -98,7 +98,8 @@ Nothing to import.
 > Press Ctrl-P then Ctrl-Q to exit the container without terminating its main process.
 > Doing this will place you back in the shell of your Docker host and leave the
 > container running in the background.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -176,7 +177,8 @@ Nothing to import.
 > docker container stop container_name
 > docker container rm container_name
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -194,7 +196,8 @@ Nothing to import.
 > ```sh
 > docker container list --all
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 4
 
@@ -248,7 +251,8 @@ Nothing to import.
 > ```sh
 > docker image pull mongo:4.2.6
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -269,7 +273,8 @@ Nothing to import.
 > ```sh
 > docker image pull nigelpoulton/tu-demo:v2
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -309,7 +314,8 @@ Nothing to import.
 > ```sh
 > docker image list --filter dangling=true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -332,7 +338,8 @@ Nothing to import.
 > ```sh
 > docker image prune --all
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -365,7 +372,8 @@ Nothing to import.
 > ```sh
 > docker image list --filter=reference="*:latest"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -389,7 +397,8 @@ Nothing to import.
 > ```sh
 > docker image list --format "{{.Repository}}: {{.Tag}}: {{.Size}}"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -420,7 +429,8 @@ Nothing to import.
 > ```sh
 > docker search alpine --filter is-automated=true --limit 100
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -439,7 +449,8 @@ Nothing to import.
 > ```sh
 > docker image inspect ubuntu:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -459,7 +470,8 @@ Nothing to import.
 > ``````
 > The image is always the combination of all layers stacked in the order they were added.
 
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -497,7 +509,8 @@ Nothing to import.
 > ```sh
 > docker manifest inspect golang
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -538,7 +551,8 @@ Nothing to import.
 > ```txt
 > { "experimental": true }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 6
 
@@ -610,7 +624,8 @@ Nothing to import.
 >
 > Be aware that Docker has restarted the same container and not created a new one.
 > In fact, if you inspect it you can see there **startCount** has been incremented.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -628,7 +643,8 @@ Nothing to import.
 > ```sh
 > docker container run --interactive --tty --restart unless-stopped ubuntu /usr/bin
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -646,7 +662,8 @@ Nothing to import.
 > ```sh
 > docker container run --interactive --tty --restart on-failure ubuntu /usr/bin
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 7
 
@@ -779,7 +796,8 @@ Nothing to import.
 > ```sh
 > docker image push registry/repository/container:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -795,7 +813,8 @@ Nothing to import.
 > ```sh
 > docker image tag container:latest repository/container:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -807,7 +826,8 @@ Nothing to import.
 <summary>How to write comments in Dockerfile?</summary>
 
 > Comment lines start with the `#` character.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -828,7 +848,8 @@ Nothing to import.
 >
 > ```sh
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -842,7 +863,8 @@ Nothing to import.
 > ```sh
 > docker image history web:latest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -857,7 +879,8 @@ Nothing to import.
 >
 > ```sh
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -895,7 +918,8 @@ Nothing to import.
 > ```sh
 > docker image build --squash --tag container:latest .
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -914,7 +938,8 @@ Nothing to import.
 > ```sh
 > apt update && apt upgrade --yes && apt install --yes --no-install-recommends packages...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 8
 
@@ -932,7 +957,8 @@ Nothing to import.
 <summary>What is a <b>Docker Swarm</b>?</summary>
 
 > A *swarm* consists of one or more Docker nodes.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -944,7 +970,8 @@ Nothing to import.
 <summary>How many types of swarm nodes exist?</summary>
 
 > Nodes are configured as *managers* or *workers*.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -986,7 +1013,8 @@ Nothing to import.
 > ```sh
 > docker swarm init --advertise-addr 10.0.0.1:2377 --listen-addr 10.0.0.1:2377
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -999,7 +1027,8 @@ Nothing to import.
 
 > The default port that *swarm mode* operates on is 2377.
 > This is customizable, but it's convention to use 2377/tcp for secured client-to-swarm connections.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1016,7 +1045,8 @@ Nothing to import.
 >
 > Nodes with nothing in the `MANAGER STATUS` column are *workers*.
 > The asterisk after the `ID` column indicates the node you are logged on to and executing commands from.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1067,7 +1097,8 @@ Nothing to import.
 > This active *manager* is called the *leader*, and is the only *manager* that will ever issue live commands against the *swarm*.
 > So, it's only ever the *leader* that changes the config, or issues tasks to workers.
 > If a *follower manager* (passive) receives commands for the swarm, it proxies them across the *leader*.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1087,7 +1118,8 @@ Nothing to import.
 > But crucially, neither side has any way of knowing if the other are still alive and whether it holds a majority (quorum).
 > A swarm cluster continues to operate during split-brain condition, but you are no longer able to alter the configuration, or add and manage application workloads.
 > However, if you have 3 or 5 managers and the same network partition occurs, it is impossible to have an equal number of managers on both sides of the parition, then one side achieves quorum and full cluster management services remain available.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1126,7 +1158,8 @@ Nothing to import.
 > ```sh
 > docker swarm update --autolock true
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1183,7 +1216,8 @@ Nothing to import.
 
 > 1. Imperatively on the command line with `docker service create`
 > 2. Declaratively with a stack ﬁle
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1211,7 +1245,8 @@ Nothing to import.
 > ```sh
 > docker service ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1225,7 +1260,8 @@ Nothing to import.
 > ```sh
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1239,7 +1275,8 @@ Nothing to import.
 > ```sh
 > docker service inspect --pretty my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1255,7 +1292,8 @@ Nothing to import.
 >
 > The other mode is *global*, which runs a single replica on every node in swarm.
 > To deploy a *global service* you need to pass the `--mode global` flag to the `docker service create` command.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1272,7 +1310,8 @@ Nothing to import.
 > docker service ls
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1284,7 +1323,8 @@ Nothing to import.
 <summary>How to remove a docker service?</summary>
 
 > docker service rm my-service
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1300,7 +1340,8 @@ Nothing to import.
 > ``````
 >
 > An overlay network creates a new layer 2 network that we can place containers on, and all containers on it will be able to communicate.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1357,7 +1398,8 @@ Nothing to import.
 > ``````
 >
 > Open a web browser and point it to the IP address of any of the nodes in the swarm on port 80 to see the service running.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1372,7 +1414,8 @@ Nothing to import.
 > docker service update --image repository/project:v2 --update-parallelism 2 --update-delay 20s my-project
 > docker service inspect --pretty my-project
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1388,7 +1431,8 @@ Nothing to import.
 > ``````
 >
 > You can follow the logs (`--follow`), tail them (`--tail`), and get extra details (`--details`).
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1412,7 +1456,8 @@ Nothing to import.
 >   "log-driver": "syslog"
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1426,7 +1471,8 @@ Nothing to import.
 > Managing your swarm and applications declaratively is a great way to prevent the need to recover from a backup.
 > For example, storing conﬁguration objects outside of the swarm in a source code repository will enable you to redeploy things like networks, services, secrets and other objects.
 > However, managing your environment declaratively and strictly using source control repos requires discipline.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1439,7 +1485,8 @@ Nothing to import.
 
 > Swarm conﬁguration and state is stored in `/var/lib/docker/swarm` on every manager node.
 > A swarm backup is a copy of all the ﬁles in this directory.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1486,7 +1533,8 @@ Nothing to import.
 > ``````
 >
 > Add new manager and worker nodes and take fresh backups.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 10
 
@@ -1582,7 +1630,8 @@ Nothing to import.
 > ``````
 >
 > `prune` will delete all volumes that are not mounted into a container or service replica.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1600,7 +1649,8 @@ Nothing to import.
 > Interestingly, you cannot specify a directory on the host when deﬁning a volume in a Dockerﬁle.
 > This is because host directories are different depending on what OS your Docker host is running – it could break your builds if you speciﬁed a directory on a Docker host that doesn’t exist.
 > As a result, deﬁning a volume in a Dockerfile requires you to specify host directories at deploy-time.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1627,7 +1677,8 @@ Nothing to import.
 > ```sh
 > docker volume ls
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1649,7 +1700,8 @@ Nothing to import.
 > ```sh
 > docker service ps my-service
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1663,7 +1715,8 @@ Nothing to import.
 > ```sh
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1678,7 +1731,8 @@ Nothing to import.
 > docker plugin ls
 > docker plugin list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1693,7 +1747,8 @@ Nothing to import.
 > docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions
 > docker volume create --driver pure --opt size=25GB fast-volume
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1714,7 +1769,8 @@ Nothing to import.
 > A few seconds later, on node-1 flushes the data to the volume, overwriting the changes made by the application in node-2.
 > However, the application in node-2 is totally unaware of this! This is one of the ways data corruption happens.
 > To prevent this, you need to write your applications in a way to avoid things like this.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 13
 
@@ -1737,7 +1793,8 @@ Nothing to import.
 >
 > Scanners work by building a list of all software in an image and then comparing the packages against databases of known vulnerabilities.
 > Most vulnerability scanners will rank vulnerabilities and provide advice and help on fixes.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1766,7 +1823,8 @@ Nothing to import.
 > in the same way that hypervisors virtualise physical resources such as CPUS
 > and disks. If namespaces are about isolation, control groups (cgroups) are
 > about limits.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1820,7 +1878,8 @@ Nothing to import.
 > 90 days, and a cluster database has been configured and encrypted. A set of
 > secure tokens have also been created so that additional managers and workers
 > can be securely joined.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1852,7 +1911,8 @@ Nothing to import.
 > - The `VERSION` field indicates the version of the swarm.
 > - The `SWARM ID` field is a hash of the swarm’s certificate.
 > - The `TOKEN` field is worker or manager token.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1866,7 +1926,8 @@ Nothing to import.
 > ```sh
 > docker swarm join-token --rotate manager
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1880,7 +1941,8 @@ Nothing to import.
 > ```sh
 > sudo openssl x509 -in /var/lib/docker/swarm/certificates/swarm-node.crt -text
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1898,7 +1960,8 @@ Nothing to import.
 > The following example changes the certificate rotation period to 30 days.
 >
 > docker swarm update --cert-expiry 720h
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1912,7 +1975,8 @@ Nothing to import.
 > ```sh
 docker swarm ca --help
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1955,7 +2019,8 @@ docker swarm ca --help
 > ``````
 >
 > The push operation will create the repo on Docker Hub and push the image.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1969,7 +2034,8 @@ docker swarm ca --help
 > ```sh
 > docker trust inspect nigelpoulton/ddd-trust:signed --pretty
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -1991,7 +2057,8 @@ docker swarm ca --help
 >
 > Once DCT is enabled like this, you’ll no longer be able to pull and work with
 > unsigned images.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 
@@ -2016,7 +2083,8 @@ docker swarm ca --help
 >
 > The secret is mounted into the containers of the blue service as an
 > unencrypted ﬁle at `/run/secrets/`. This is an in-memory *tmpfs* filesystem.
-
+>
+> ---
 > **Resources**
 > - Docker Deep Dive - Chapter 15
 

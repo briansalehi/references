@@ -12,7 +12,7 @@
 > - Template class `cv::Size<>` with aliases in form of `cv::Size{2,3}{i,f,d}`
 > - Class `cv::Rect<>`
 > - Class `cv::RotatedRect<>`
-
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -60,7 +60,7 @@
 > |Element-wise multiplication|`s1.mul(s2)`|
 > |Conjugation|`s.conj()`|
 > |Real test|`s.isReal()`|
-
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -137,7 +137,8 @@
 > |Construct from two corners|`cv::RotatedRect{p1, p2}`|
 > |Member access|`rr.center` `rr.size` `rr.angle`|
 > |Return a list of corners|`rr.points{pts[4]}`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -202,7 +203,8 @@
 > |Value constructor|`cv::Vec2f{x0, x1}` `cv::Vec6d{x0,x1,x2,x3,x4,x5}`|
 > |Member access|`v4f[i]` `v3w(j)`|
 > |Cross-product|`v3f.cross(u3f)`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 
@@ -227,7 +229,8 @@
 > |Value constructor|`cv::Complexd{re)` `cv::Complexd{re, im}`|
 > |Member access|`z1.re` `z2.im`|
 > |Complex conjugate|`z2 = z1.conj()`|
-
+>
+> ---
 > **Resources**
 > - Learning OpenCV 3 - Chapter 3
 

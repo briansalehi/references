@@ -17,7 +17,8 @@ Nothing to import.
 > by default, all of the containers are on a network together and can talk to
 > each other directly. But to get to the host or the outside world, they go
 > over the `docker0` virtual bridge interface.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
 
@@ -35,7 +36,8 @@ Nothing to import.
 >
 > **Plugins** are executable programs that conform to a specification for
 > receiving and returning data to Docker.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 2
 
@@ -50,7 +52,8 @@ Nothing to import.
 
 > Some features may become deprecated on future releases. To see what has been
 > tagged for deprecation and eventual removal, refer to the documentation.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -65,7 +68,8 @@ Nothing to import.
 > ```sh
 > sudo systemctl enable --now docker
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -79,7 +83,8 @@ Nothing to import.
 > ```sh
 > docker -H 10.0.0.10:12375 version
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -102,7 +107,8 @@ Nothing to import.
 >
 > Take note of the entry that has an asterisk next to it, which designates
 > the current context.
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -116,7 +122,8 @@ Nothing to import.
 > ```sh
 > docker context list
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -130,7 +137,8 @@ Nothing to import.
 > ```sh
 > docker context use default
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 
@@ -147,7 +155,8 @@ Nothing to import.
 > ```sh
 > sudo dockerd -H unix:///var/run/docker.sock --config-file /etc/docker/daemon.json
 > ``````
-
+>
+> ---
 > **Resources**
 > - Docker: Up & Running - Chapter 3
 

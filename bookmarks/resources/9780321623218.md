@@ -68,7 +68,8 @@ Nothing to be imported.
 >     auto ld = 42.0L;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -160,7 +161,8 @@ Nothing to be imported.
 >         std::cout << item << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -174,7 +176,8 @@ Nothing to be imported.
 
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -202,7 +205,8 @@ Nothing to be imported.
 >     auto x = foo();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -242,7 +246,8 @@ Nothing to be imported.
 >                  is_nothrow_move_assignable<T2>::value);
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -259,7 +264,8 @@ Nothing to be imported.
 > 2. A library swap function, move constructor, or move assignment operator can be proven not to throw by applying the noexcept operator, it should be marked as conditionally noexcept.
 > 3. No library destructor should throw.
 > 4. Library functions designed for compatibility with C code may be marked as unconditionally noexcept.
-
+>
+> ---
 > **Resources**
 > -
 
@@ -284,7 +290,8 @@ Nothing to be imported.
 >     std::array<int, cube<int>(2)> numbers;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -315,7 +322,8 @@ Nothing to be imported.
 >     print("a", "b", "c");
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -339,7 +347,8 @@ Nothing to be imported.
 >     vector<int> numbers{1,2,3,4,5};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -363,7 +372,8 @@ Nothing to be imported.
 >     int result = sum<int>(1, 2);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -383,7 +393,8 @@ Nothing to be imported.
 >     [] { std::cout << "lambda" << std::endl; }();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -426,7 +437,8 @@ Nothing to be imported.
 >     s();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -447,7 +459,8 @@ Nothing to be imported.
 >     decltype(cells)::value_type item{};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -464,7 +477,8 @@ Nothing to be imported.
 > template<typename T1, typename T2>
 > auto add(T1 a, T2 b) -> decltype(x+y);
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -479,7 +493,8 @@ Nothing to be imported.
 > ```cpp
 > enum class state {stable, unstable, unknown};
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -499,7 +514,8 @@ Nothing to be imported.
 > enum class state : char {stable, unstable, unknown};
 > auto type = std::underlying_type<state>::type; // char
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -521,7 +537,8 @@ Nothing to be imported.
 >     std::cout << s << std::endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -552,7 +569,8 @@ Nothing to be imported.
 >     P<Q> x; // Okay
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -603,7 +621,8 @@ Nothing to be imported.
 >     rd.assign(ri); // Okay, int is assignable to double
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -633,7 +652,8 @@ Nothing to be imported.
 >     base<int> bi(bd); // calls class template constructor
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -656,7 +676,8 @@ Nothing to be imported.
 >     f<int>();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -680,7 +701,8 @@ Nothing to be imported.
 >     f();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -709,7 +731,8 @@ Nothing to be imported.
 >     int value = x::value;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -730,7 +753,8 @@ Nothing to be imported.
 >     namespace od = boost::program_options::options_description;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -753,7 +777,8 @@ Nothing to be imported.
 >     cout << "using declaration" << endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -776,7 +801,8 @@ Nothing to be imported.
 >     cout << "using directive" << endl;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -854,7 +880,8 @@ Nothing to be imported.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -885,7 +912,8 @@ Nothing to be imported.
 >     };
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -930,7 +958,8 @@ Nothing to be imported.
 > f(p3); // calls implicitly generated copy constructor
 > g(p3); // calls template constructor
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -947,7 +976,8 @@ Nothing to be imported.
 > std::pair<T1, T2> p(rvp);
 > p = rvp;
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1024,7 +1054,8 @@ Nothing to be imported.
 >
 > p1 <=> p2 // c++20
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1039,7 +1070,8 @@ Nothing to be imported.
 > p1.swap(p2);
 > std::swap(p1, p2);
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1100,7 +1132,8 @@ Nothing to be imported.
 >     std::pair<int, base> p2(std::piecewise_construct, std::make_tuple(42), t); // base(Args...)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1127,7 +1160,8 @@ Nothing to be imported.
 > t1 = t2;
 > t = p;
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1170,7 +1204,8 @@ Nothing to be imported.
 >     T3 v3 = std::get<2>(t);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1197,7 +1232,8 @@ Nothing to be imported.
 >
 > t1 <=> t2; // c++20
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1215,7 +1251,8 @@ Nothing to be imported.
 > t1.swap(t2);
 > std::swap(t1, t2);
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1232,7 +1269,8 @@ Nothing to be imported.
 >
 > std::tie(r1, std::ignore(r2), r3,...) = t;
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1289,7 +1327,8 @@ Nothing to be imported.
 >     std::size_t values = std::tuple_size<P>::value; // 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1312,7 +1351,8 @@ Nothing to be imported.
 >     using Z = std::tuple_element<2, P>::type; // T3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1336,7 +1376,8 @@ Nothing to be imported.
 >     static_assert(std::is_same_v<decltype(t), std::tuple<int, double, int>>);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1355,7 +1396,8 @@ Nothing to be imported.
 > std::tuple<int, double> t(p);
 > std::pair<int, double> p(std::make_tuple(42, 9.72));
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1368,7 +1410,8 @@ Nothing to be imported.
 
 > Shared Ownership
 > Exclusive Ownership
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1511,7 +1554,8 @@ Nothing to be imported.
 >
 > std::shared_ptr<std::string> rosa = std::make_shared<std::string>("rosa");
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1531,7 +1575,8 @@ Nothing to be imported.
 > person = new std::string("rosa"); // ERROR: no assignment for ordinary pointers
 > person.reset(new std::string("rosa")); // OK
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1603,7 +1648,8 @@ Nothing to be imported.
 >     std::size_t lucy_count = lucy.use_count(); // 4
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1640,7 +1686,8 @@ Nothing to be imported.
 >
 > std::size_t person_count = person.use_count(); // 0
 > ``````
-
+>
+> ---
 > **Resources**
 > -
 
@@ -1693,7 +1740,8 @@ Nothing to be imported.
 >     // 3
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1715,7 +1763,8 @@ Nothing to be imported.
 >    `async()`.
 > 2. It is necessary to ensure that sooner or later, the passed functionality
 >    gets called.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1737,7 +1786,8 @@ Nothing to be imported.
 > 3. If function was not started yet, it will be forced to start now and, like
 >    a synchronous function call, `get()` will block until it yields the
 >    result.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1754,7 +1804,8 @@ Nothing to be imported.
 
 > If just a background task was started that returns nothing it has to be
 > `std::future<void>`.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1811,7 +1862,8 @@ Nothing to be imported.
 >     // if t1 is not done at this point, destructor of t1 executes now
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://en.cppreference.com/w/cpp/thread/async
 > - [[futures.async]](https://timsong-cpp.github.io/cppwp/futures.async)
@@ -1836,7 +1888,8 @@ Nothing to be imported.
 > Because the evaluation order on the right side of the second statement is
 > unspecified, `result1.get()` might be called before `func2()` so that you
 > have sequential processing again.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1853,7 +1906,8 @@ Nothing to be imported.
 >
 > ```cpp
 > ``````
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1941,7 +1995,8 @@ behavior clearer.
 > std::future<void> result2{std::async(std::launch::deferred, do_something)};
 > auto value = optional_case() ? result1.get() : result2.get();
 > ``````
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -1985,7 +2040,8 @@ behavior clearer.
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 
@@ -2002,7 +2058,8 @@ behavior clearer.
 > future is in an invalid state, which can be checked only by calling `valid()`
 > for the future. Any call other than destruction will result in undefined
 > behavior.
-
+>
+> ---
 > **Resources**
 > - The C++ Standard Library - Chapter 18
 

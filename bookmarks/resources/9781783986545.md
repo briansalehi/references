@@ -86,7 +86,8 @@
 >     boost::asio::ip::tcp::endpoint endpoint{address, port};
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
@@ -113,7 +114,8 @@
 > wants to receive requests either on IPv4 or on IPv6 addresses by using the
 > object returned by the `any()` method of either the `asio::ip::address_v4` or
 > `asio::ip::address_v6` class correspondingly.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
@@ -179,7 +181,8 @@
 > to be communicating. When the Boost.Asio socket object is provided with these
 > parameters, it has enough information to allocate a real socket object of the
 > underlying operating system.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 
@@ -227,7 +230,8 @@
 >     acceptor.close();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming Cookbook - Chapter 1
 

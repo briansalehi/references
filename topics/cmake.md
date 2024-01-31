@@ -8,7 +8,8 @@
 > ```sh
 > cmake -S ./project -B ./build
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -27,7 +28,7 @@
 > ```sh
 > cmake -G <generator-name> <path-to-source>
 > ``````
-
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -46,7 +47,8 @@
 > ```sh
 > cmake -G <generator-name> -T <toolset-spec> -A <platform-name> <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -64,7 +66,8 @@
 > ```sh
 > cmake -C <initial-cache-script> <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -89,7 +92,8 @@
 >
 > If you omit the type, it will be set to the type of an already existing
 > variable; otherwise, it will be set to `UNINITIALIZED`.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -116,7 +120,8 @@
 > Custom variables that are added manually with the `-D` option won't be
 > visible in cache variables list unless you specify one of the supported
 > types.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -178,7 +183,8 @@
 >
 > Running it in the build tree directory will print additional information
 > about the cache variables and build messages from the log files.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -206,7 +212,8 @@
 > * `VERBOSE`
 > * `DEBUG`
 > * `TRACE`
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -245,7 +252,8 @@
 > ```sh
 > cmake --log-context <path-to-source>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -266,7 +274,8 @@
 > ```sh
 > cmake --trace
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -279,7 +288,8 @@
 
 > Developers can simplify how users interact with their projects and provide a
 > `CMakePresets.json` file that specifies some defaults.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -295,7 +305,7 @@
 > ```sh
 > cmake --list-presets
 > ``````
-
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -328,7 +338,7 @@
 > usually hold references to these paths will contain the current working
 > directory instead: `CMAKE_BINARY_DIR`, `CMAKE_SOURCE_DIR`,
 > `CMAKE_CURRENT_BINARY_DIR`, and `CMAKE_CURRENT_SOURCE_DIR`.
-
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -344,7 +354,8 @@
 > ```sh
 > cmake --build <dir> [<options>] [-- <build-tool-options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -362,7 +373,8 @@
 > ```sh
 > cmake --build <dir> -- <build-tool-options>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -383,7 +395,8 @@
 >
 > The alternative is to set it with the `CMAKE_BUILD_PARALLEL_LEVEL`
 > environment variable.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -402,7 +415,8 @@
 > ```sh
 > cmake --build <dir> --target <target1> -t <target2> ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -419,7 +433,8 @@
 > cmake --build <dir> -t clean
 > cmake --build <dir> --target clean
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -433,7 +448,8 @@
 > ```sh
 > cmake --build <dir> --clean-first
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -451,7 +467,8 @@
 >
 > The same effect can be achieved by setting the `CMAKE_VERBOSE_MAKEFILE`
 > cached variable.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -467,7 +484,8 @@
 > ```sh
 > cmake --install <dir> [<options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -489,7 +507,8 @@
 > ```sh
 > cmake --install <dir> --config <cfg>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -507,7 +526,8 @@
 > ```sh
 > cmake --install <dir> --component <comp>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -525,7 +545,8 @@
 > ```sh
 > cmake --install <dir>  --default-directory-permissions <permissions>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -542,7 +563,8 @@
 > ```sh
 > cmake --install <dir> --prefix <prefix>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -563,7 +585,8 @@
 > ```sh
 > VERBOSE=1 cmake --build <dir>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -579,7 +602,8 @@
 > ```sh
 > cmake -D <var>=<value> -P <cmake-script-file> -- <unparsed options>...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -602,7 +626,8 @@
 >
 > CMake will create `CMAKE_ARGV<n>` variables for all arguments passed to the
 > script (including the `--` token).
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -621,7 +646,8 @@
 > ```sh
 > cmake -E <command> [<options>]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -635,7 +661,8 @@
 > ```sh
 > cmake -E
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -652,7 +679,7 @@
 > cmake ––help[-<topic>]
 > cmake --help-commands file
 > ``````
-
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -671,7 +698,8 @@
 > ```sh
 > ctest
 > ``````
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -700,7 +728,8 @@
 > We also have an `add_subdirectory(api)` command to include another
 > `CMakeListst.txt` file from the api directory to perform steps that are
 > specific to the API part of our application.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -718,7 +747,8 @@
 >
 > When running scripts, CMake won't execute any of the usual stages (such as
 > configuration or generation), and it won't use the cache.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 
@@ -730,7 +760,8 @@
 <summary>Use a utility in script?</summary>
 
 > To use a utility module, we need to call an `include(<MODULE>)` command.
-
+>
+> ---
 > **Resources**
 > - Modern CMake for C++ - Chapter 1
 

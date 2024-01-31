@@ -38,7 +38,8 @@
 >
 > Where `-E` tells gcc to stop after preprocessing and `-P` causes the compiler
 > to omit debugging information so that the output is a bit cleaner.
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -53,7 +54,8 @@
 > gcc -masm intel
 > gcc -masm att
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -111,7 +113,8 @@
 > ```sh
 > readelf --syms a.out
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -126,7 +129,8 @@
 > format, while PE binaries usually use the proprietary PDB format. DWARF
 > information is usually embedded within the binary, while PDB comes in the
 > form of a separate symbol file.
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -138,7 +142,8 @@
 <summary>What library can be used to programmatically parse debugging symbols?</summary>
 
 > `libbfd` & `libdwarf`.
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -153,7 +158,8 @@
 > strip --strip-all a.out
 > readelf --syms a.out
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -168,7 +174,8 @@
 > objdump -M intel
 > objdump -M att
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -184,7 +191,8 @@
 > ```sh
 > objdump -sj .rodata example.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -198,7 +206,8 @@
 > ```sh
 > objdump -M intel -d example.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -212,7 +221,8 @@
 > ```sh
 > readelf --relocs example.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 
@@ -248,7 +258,8 @@
 > ```sh
 > readelf --sections example.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - Practical Binary Analysis - Chapter 1
 

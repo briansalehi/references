@@ -63,7 +63,8 @@
 > Press `ctrl-x s` in TUI mode to enable SingleKey mode. In this mode you can
 > use `r` to `run`, `c` to `continue`, `s` for `step`, and `q` to leave
 > SingleKey mode, without pressing enter.
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #65
 
@@ -75,7 +76,8 @@
 <summary>Cycle through assembly and source code windows in GDB TUI?</summary>
 
 > `ctrl-x 2`
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #3
 
@@ -120,7 +122,7 @@
 
 > - `start`: starts debugging session by running program line-by-line.
 > - `run`: starts debugging session running program as usual.
-
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -161,7 +163,8 @@
 >
 > After detaching, the program will continue its normal flow as there was no
 > debugger attached to it at first place.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -195,7 +198,7 @@
 > 3. Location watchpoints: `watch -l foo`
 > 4. Read-only watchpoint: `rwatch foo`
 > 5. Access watchpoints: `awatch foo`
-
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #7
 
@@ -209,7 +212,8 @@
 > ```gdb
 > (gdb) info breakpoints
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #13
 
@@ -228,7 +232,8 @@
 > (gdb) break *main+50
 > (gdb) break source.cpp:main+50
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -241,7 +246,7 @@
 
 > Use `start` to put temporary breakpoint on main and then run the program or
 > `starti` to stop at the very first instruction of the program.
-
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #4
 
@@ -255,7 +260,8 @@
 > ```gdb
 > (gdb) rbreak std::sto[ifd]
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #14
 
@@ -271,7 +277,8 @@
 > ```gdb
 > (gdb) delete 1
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -288,7 +295,8 @@
 > (gdb) condition 3 e == 42
 > (gdb) break func(long) if e == 42
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #15
 
@@ -302,7 +310,8 @@
 > ```gdb
 > (gdb) break source.cpp:10 if index == 3
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -346,7 +355,8 @@
 > ```gdb
 > (gdb) disable <breakpoint index>
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -392,7 +402,8 @@
 > ```gdb
 > (gdb) source program.gdb
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #61
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
@@ -410,7 +421,8 @@
 > ``````
 >
 > Note that lines might have been changed during sessions.
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -424,7 +436,8 @@
 <summary>Watch changes of a variable only when a criteria is met?</summary>
 
 > `(gdb) watch foo[90].number if bar[90].number == 255`
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #7
 
@@ -446,7 +459,8 @@
 > $2 = 0
 > (gdb) watch -l $2
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #9
 > - GDB Tips by Greg Law - Tip #10
@@ -487,7 +501,8 @@
 > (gdb) x/2x 0x0ffffffff7c544f0
 > (gdb) x/2x $rsp
 > ``````
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #63
 
@@ -518,7 +533,8 @@
 > scheduler-locking on when using `step`, but disables it when you use
 > `continue`, allowing you to travel between breakpoints without having to
 > constantly switch between the threads.
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #64
 
@@ -556,7 +572,8 @@
 > ```sh
 > coredumpctl list
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -570,7 +587,8 @@
 > ```sh
 > coredumpctl dump $PWD/program --output program.core
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -584,7 +602,8 @@
 > ```gdb
 > (gdb) target core program.core
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -602,7 +621,8 @@
 > (gdb) frame 0
 > (gdb) p variable_causing_trouble
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -618,7 +638,8 @@
 > ```gdb
 > (gdb) gcore program.core
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.youtube.com/watch?v=Rudz-uSdWHM
 
@@ -634,7 +655,8 @@
 > ```gdb
 > (gdb) print bag_size
 > ```````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -664,7 +686,8 @@
 > ```gdb
 > (gdb) set var random_number = 5
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -680,7 +703,8 @@
 > ```gdb
 > (gdb) shell pwd
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -710,7 +734,8 @@
 > ``````
 >
 > You can also enable it for all directories with `set auto-load-safe-path /`.
-
+>
+> ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #62
 

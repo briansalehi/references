@@ -38,7 +38,8 @@
 > sample.o: sample.asm
 >     nasm -f elf64 -g -F dwarf sample.asm -l sample.lst
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -74,7 +75,8 @@
 > list 10
 > `help list` or `h l`
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -89,7 +91,8 @@
 > show listsize
 > set listsize 20
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -120,7 +123,8 @@
 > ```sh
 > echo 'set disassembly-flavor intel' >> $HOME/.gdbinit
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -136,7 +140,8 @@
 > disassemble 'path/to/source.cpp'::func
 > help disassemble
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -169,7 +174,7 @@
 > break main
 > help break
 > ``````
-
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -184,7 +189,8 @@
 > run
 > help run
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -201,7 +207,7 @@
 > help info registers
 > help info all-registers
 > ``````
-
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -241,7 +247,7 @@
 > help enable breakpoint
 > help delete breakpoint
 > ``````
-
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -261,7 +267,7 @@
 > help step
 > help finish
 > ``````
-
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -276,7 +282,8 @@
 > print
 > help print
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 3
 
@@ -321,7 +328,7 @@
 > ```sh
 > readelf --symbols ./program | grep -E 'main|start|Num:.*' --color
 > ``````
-
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
@@ -335,7 +342,8 @@
 > ```sh
 > readelf --symbols ./program | sort -k 2 -r
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
@@ -349,7 +357,8 @@
 <summary>Convert decimal, binary, and hexadecimal representations of integral and floating point numbers?</summary>
 
 >
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
@@ -367,7 +376,8 @@
 > section .data
 >     O_CREATE equ 00000100q
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
@@ -383,7 +393,8 @@
 > ```nasm
 > 2000000h
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
@@ -412,7 +423,8 @@
 > * r13
 > * r14
 > * r15
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
@@ -424,7 +436,8 @@
 <summary>What is the name of <b>Instruction Pointer</b> register?</summary>
 
 > `rip`
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
@@ -444,7 +457,8 @@
 > Sign|SF|8|Previous instruction resulted in most significant bit equal to 1
 > Direction|DF|10|Direction of string operations (increment or decrement)
 > Overflow|OF|11|Previous instruction resulted in overflow
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
@@ -458,7 +472,8 @@
 > `xmm`
 > `ymm`
 > `zmm`
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 2
 
@@ -494,7 +509,8 @@
 >     mov rdi, 0
 >     syscall
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 1
 
@@ -512,7 +528,8 @@
 > main:
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
@@ -553,7 +570,8 @@
 >     mov rdi, 0
 >     syscall
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
@@ -568,7 +586,8 @@
 > section .data
 >     word_array times 5 dw 0 ; array of 5 words containing 0
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
@@ -642,7 +661,8 @@
 >     mov rdi, 0
 >     syscall
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 4
 
@@ -686,7 +706,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
@@ -772,7 +793,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
@@ -824,7 +846,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 9
 
@@ -852,7 +875,8 @@
 > S   EEEEEEEEEEE     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 > 0   1         11    12                                                 63
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
@@ -888,7 +912,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
@@ -924,7 +949,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
@@ -955,7 +981,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 11
 
@@ -1017,7 +1044,8 @@
 >     pop rbp
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 16
 
@@ -1055,7 +1083,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
 
@@ -1090,7 +1119,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 17
 
@@ -1158,7 +1188,8 @@
 > next
 > info rflags
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
@@ -1215,7 +1246,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
@@ -1272,7 +1304,8 @@
 >     xor rdi, rdi
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 7
 
@@ -1311,7 +1344,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 8
 
@@ -1382,7 +1416,8 @@
 >     xor rax, rax
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 10
 
@@ -1450,7 +1485,8 @@
 >     pop rbp
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 13
 
@@ -1474,7 +1510,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
@@ -1526,7 +1563,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
@@ -1619,7 +1657,8 @@
 >         pop rbp
 >         ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 15
 
@@ -1682,7 +1721,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 12
 
@@ -1790,7 +1830,8 @@
 >     pop rbp
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
 
@@ -1819,7 +1860,8 @@
 > section .text
 >     ...
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 14
 
@@ -1867,7 +1909,8 @@
 > gcc -g -o program main.c sum.o
 > ./program
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 22
 
@@ -1883,7 +1926,8 @@
 > Compilers will not optimize assembly parts of the program, so using inline
 > assembly is not advices. There will be no error checking on inline assembly
 > code.
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
@@ -1911,7 +1955,8 @@
 > ```sh
 > gcc -o program main.c -masm=intel -no-pie
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
@@ -1966,7 +2011,8 @@
 > D -> rdi, edi, di
 > r -> any register
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 23
 
@@ -2016,7 +2062,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 18
 
@@ -2079,7 +2126,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
@@ -2108,7 +2156,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 19
 
@@ -2297,7 +2346,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
 
@@ -2315,7 +2365,8 @@
 > x/s <address where the pointer in rdi points to + 8>
 > x/s <address where the pointer in rdi points to + 16>
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 21
 
@@ -2329,7 +2380,8 @@
 <summary>What header contains file operation constants?</summary>
 
 > `/usr/include/asm-generic/fcntl.h`
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
@@ -2410,7 +2462,8 @@
 >         call close
 >     %ENDIF
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
@@ -2470,7 +2523,8 @@
 >         call close
 >     %ENDIF
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
@@ -2530,7 +2584,8 @@
 >         call close
 >     %ENDIF
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 20
 
@@ -2570,7 +2625,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
@@ -2706,7 +2762,8 @@
 >     leave
 >     ret
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 25
 
@@ -2738,7 +2795,8 @@
 >
 > Scalar data means just one value.
 > Packed data means multiple values related to each other.
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
@@ -2767,7 +2825,8 @@
 
 > Data in section `.data` and `.bss` should be aligned on a 16-byte border so
 > that registers can be filled with data once for each block of data.
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 
@@ -2783,7 +2842,8 @@
 >
 > For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**,
 > data needs to be aligned on a 64 bytes border.
-
+>
+> ---
 > **Resources**
 > - Beginning x64 Assembly Programming - Chapter 26
 

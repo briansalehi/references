@@ -12,7 +12,7 @@
 > chmod u+x qt*.run
 > ./qt*.run
 > ``````
-
+> ---
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
@@ -29,7 +29,8 @@
 > ```sh
 > ${QT_DIR}/MaintenanceTool.exe
 > ``````
-
+>
+> ---
 > **Resources**
 > - Cross-Platform Development with Qt6 and Modern C++ - Chapter 1
 
@@ -47,7 +48,8 @@
 > A runtime called the QmlEngine which loads the initial QML code. The
 > developer can register C++ types with the runtime to interface with the
 > native code. The `qml` tool is a pre-made runtime which is used directly.
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -68,7 +70,8 @@
 >     title: qsTr("Sample")
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -86,7 +89,8 @@
 > - `Text`
 > - `Image`
 > - `MouseArea`
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -122,7 +126,8 @@
 > - **Transformation**: `scale`, `rotate`, `transform`, `transformOrigin`
 > - **Visual**: `opacity`, `visible`, `clip`, `smooth`
 > - **State**: `states`, `state`, `transitions`
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
@@ -138,7 +143,8 @@
 > - `visible`
 > - `visibilitity`
 > - `title`
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -161,7 +167,8 @@
 >     title: qsTr("Image Viewer")
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
@@ -179,7 +186,8 @@
 > - `color`
 > - `border`: `border.radius`, `border.color`
 > - `radius`
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
@@ -200,7 +208,8 @@
 >     color: 'lightsteelblue'
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -240,7 +249,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -260,7 +270,8 @@
 > ```qml
 > property alias <name>: <reference>
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -277,7 +288,7 @@
 >
 > ```qml
 > ``````
-
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -309,7 +320,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -352,7 +364,7 @@
 >     }
 > }
 > ``````
-
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -365,7 +377,8 @@
 
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book
 
@@ -396,7 +409,7 @@
 >     }
 > }
 > ``````
-
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 
@@ -413,7 +426,8 @@
 >
 > - File-based component
 > -
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 
@@ -426,7 +440,8 @@
 
 > ```qml
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 
@@ -461,7 +476,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 

@@ -38,7 +38,8 @@
 
 > The coordinates or entries of a vector only tell us how far the vector
 > stretches in the x- and y-directions; not where it is located.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -64,7 +65,8 @@
 <summary>What two vectors are considered equal?</summary>
 
 > Vectors having same length and direction are equal.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -77,7 +79,8 @@
 <summary>What is zero vector?</summary>
 
 > $(0, 0)$ denoted by 0 arrowed.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -113,7 +116,8 @@
 > If we instead work entirely with vectors in standard position, then $v + w$
 > is the vector that points along the diagonal between sides $v$ and $w$ of a
 > parallelogram.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -170,7 +174,8 @@
 > Multiplication of a vector to a negative scalar changes the direction of it.
 > If $c = −1$ then $cv$ is the vector whose entries are the negatives of $v$’s
 > entries, which we denote by $−v$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -188,7 +193,8 @@
 > - $c(v + w) = cv + cw$
 > - $(c + d)v = cv + dv$
 > - $c(dv) = (cd)v$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -222,7 +228,8 @@
 > x &= 41 (w − 3v)
 > \end{aligned}
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -239,7 +246,8 @@
 > $w$ to the head of $v$.
 >
 > $v - w = (v₁ - w₁, v₂ - w₂)$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
@@ -281,7 +289,8 @@
 > On the other hand $(1 , 2 , 3)$ is not a linear combination of the vectors
 > $c_1(1 , 1 , 0) + c_2(2 , 1 , 0)$ has a 0 in its third entry, and thus cannot
 > possibly equal $(1 , 2 , 3)$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -305,7 +314,8 @@
 > , 1)$. Similarly, in $R^3$ there are three such vectors: $e_1 = (1, 0, 0)$,
 > $e_2 = (0, 1, 0)$, and $e_3 = (0, 0, 1)$. In general, in $R^n$ there are $n$ of
 > these vectors, $e_1 , e_2 , ... , e_n$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -318,7 +328,8 @@
 
 > Every vector $v \in R^n$ can be written as a linear combination of them. In
 > particular, if $v = (v_1 , v_2 , ... , v_n)$ then $v = v_1e_1 + v_2e_2 + ... + v_ne_n$.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -330,7 +341,8 @@
 <summary>Practice: compute $3e_1 - 2e_2 + e_3 \in R^3$?</summary>
 
 > $3e_1 - 2e_2 + e_3 = 3(1,0,0) - 2(0,1,0) + (0,0,1) = (3,-2,1)$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -342,7 +354,8 @@
 <summary>Practice: Write $(3,5,-2,-1)$ as a linear combination of $e_1,e_2,e_3,e_4 \in R^4$?</summary>
 
 > $(3, 5, −2, −1) = 3e_1 + 5e_2 − 2e_3 − e_4$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 
@@ -362,7 +375,8 @@
 > $v.w = v_1w_1 + v_2w_2 + ... + v_nw_n$.
 >
 > So the result of the dot product of two vectors is a **scalar**.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
@@ -389,7 +403,8 @@
 <summary>How does dot product work on higher dimensions?</summary>
 
 > Drawing gets hard but algebraically works.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
@@ -406,7 +421,8 @@
 > - $v.w = w.v$ (Commutativity)
 > - $v.(w + z) = v.w + v.z$ (Distributivity)
 > - $(cv).w = c(v + w)$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
@@ -419,7 +435,8 @@
 <summary>Practice: compute $\frac{1}{2}(-1,-3,2).(6,-4,2)$?</summary>
 
 > $\frac{1}{2}(-6, 12, 4) = \frac{1}{2}(10) = 5$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
@@ -438,7 +455,8 @@
 >
 > $T(v+w) = T(v) + T(w)$ for all vectors $v,w \in R^n$</br>
 > $T(cv) = cT(v)$ for all vectors $v \in R^n$ and all scalars $c \in R$
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -453,7 +471,8 @@
 > One way to see this is to notice that $2T(0,0) = 2(1,2) = (2,4)$
 > But $T(2(0,0)) = T(0,0) = (1,2)$
 > Since these are not the same, $T$ is not linear.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -468,7 +487,8 @@
 > One way to see this is to notice that $2T(1,1) = 2(0,1) = (0,2)$
 > But $T(2(1,1)) = T(2,2) = (0,4)$
 > Since these are not the same, $T$ is not linear.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -531,7 +551,8 @@
 > ```math
 > T(v₁,v₂) = T(v₁e₁+v₂e₂) = v₁T(e₁)+v₂T(e₂) = v₁(1,1)+v₂(-1,1) = (v₁-v₂,v₁+v₂)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -560,7 +581,8 @@
 > ```math
 > [T] = [(1,3) (2,4)]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -578,7 +600,8 @@
 > ``````
 >
 > Notice that $T$ maps from $R^3$ to $R^2$, so $[T]$ is a $2x3$ matrix.
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -595,7 +618,8 @@
 > (S+T)(v) = S(v)+T(v)
 > (cT)(v) = cT(v)
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -611,7 +635,8 @@
 > ```math
 > Ov = 0
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -627,7 +652,8 @@
 > ```math
 > Iv = v
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -650,7 +676,8 @@
 > ```math
 > [T] = [c₁e₁|c₂e₂|…|cnen] = [(c₁,0,…,0) (0,c₂,…,0) … (0,…,cn)]
 > ``````
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -662,7 +689,8 @@
 <summary>How can we construct a linear transformation Pu that projects a vector onto a line?</summary>
 
 > [Pu] = uuT
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -677,7 +705,8 @@
 > [Pu] = uuT = [(1,0)]\[1 0] = [(1,0) (0,)]
 > [Pu]v = [(1,0) (0,0)]\[(v₁,v₂)] = [(v₁,0)]
 > We can visualize this project as just squashing everything down onto the x-axis, [Pu]e₁ = e₁ and [Pu]e₂ = 0
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -731,7 +760,8 @@
 
 > [Fu] = 2uuT-I = 2[(1,1,1)]\[1 1 1]/3 - [(1,0,0) (0,1,0) (0,0,1)] = ⅓[(-1,2,2) (2,-1,2) (2,2,-1)]
 > [Fu]w = w
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -746,7 +776,8 @@
 > u = (cos(π/3), sin(π/3)) = (1,√3)/2
 > [Fu] = 2uuT - I = ½[(1 √3)]\[1 √3] - [(1,0) (0,1)] = ½[(-1,√3) (√3,1)]
 > [Fu]v = [Fu]\[(-1,3)]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -758,7 +789,8 @@
 <summary>What is the linear transformation of rotation in two dimensions?</summary>
 
 > [Rθ] = Rθ(e₁)|Rθ(e₂)] = [(cos(θ),sin(θ)) (-sin(θ),cos(θ))]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -770,7 +802,8 @@
 <summary>Find the standard matrix of the linear transformation that rotates R^2 by π/4 radians counter-clockwise?</summary>
 
 > [R^(π/4)]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -782,7 +815,8 @@
 <summary>Find the standard matrix of the linear transformation that rotates R^2 by π/6 radians clockwise?</summary>
 
 > [R^(-π/6)]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -794,7 +828,8 @@
 <summary>Rotate vector v = (1,3) by π/4 radians counter-clockwise?</summary>
 
 > [R^π/4]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -806,7 +841,8 @@
 <summary>Rotate vector w = (√3,3) by π/6 radians clockwise?</summary>
 
 > [R^-π/6]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -818,7 +854,8 @@
 <summary>What is the linear transformation function of rotation in higher dimensions?</summary>
 
 > [R^θ\_yz] = [R^θ\_yz(e₁)|R^θ\_yz(e₂)|R^θ\_yz(e₃)] = [(1,0,0) (0,cos(θ),sin(θ)) (0,-sin(θ),cos(θ))]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -832,7 +869,8 @@
 > Since the goal is to compute R^2π/3\_xy(v), we start by constructing standard matrix of R^2π/3\_xy:
 > [R^2π/3\_xy] = [(cos(2π/3),sin(2π/3),0) (-sin(2π/3),cos(2π/3),0) (0,0,1)]
 > [R^2π/3\_xy]v = solve it
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -845,7 +883,8 @@
 
 > (S○T)(v) = S(T(v)) for all v \in R^n
 > [S○T] = [S]\[T]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 
@@ -863,7 +902,8 @@
 > [D] = [(2,0) (0,3)]
 > The standard matrix of the composite linear transformation T = D○Fu is thus the product of these two individual standard matrices:
 > [T] = [D]\[Fu]
-
+>
+> ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 

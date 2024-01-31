@@ -26,7 +26,8 @@
 > 3. Kernel
 > 4. Root filesystem
 > 5. Embedded Applications
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -58,7 +59,8 @@
 > * binutils **(base-devel)**: [https://gnu.org/software/binutils](https://gnu.org/software/binutils)
 > * gcc **(base-devel)**: [https://gcc.gnu.org](https://gcc.gnu.org)
 > * C library + Linux header files
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -75,7 +77,8 @@
 > * Kernel (e.g. `linux`)
 > * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`, `musleabihf`)
 >
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -89,7 +92,8 @@
 > ```sh
 > gcc -dumpmachine
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -104,7 +108,8 @@
 > * musl libs: [https://musl.libc.org](https://musl.libc.org)
 > * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
 > * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -137,7 +142,8 @@
 > make -j<cores>
 > ./ct-ng --version
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -151,7 +157,8 @@
 > ```sh
 > ./ct-ng list-samples
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -196,7 +203,8 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -260,7 +268,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -v
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -288,7 +297,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc --target-help
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -302,7 +312,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -print-sysroot
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -317,7 +328,8 @@
 > * libm
 > * libpthread
 > * librt
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -331,7 +343,8 @@
 > ```sh
 > ${CROSS_COMPILE}readelf -a app | grep "Shared library"
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -359,7 +372,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -static main.c -o app
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -375,7 +389,8 @@
 > cd $SYSROOT
 > ls -l usr/lib/libc.a
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -392,7 +407,8 @@
 > ${CROSS_COMPILE}ar rc libtest1.a test1.o test2.o
 > ${CROSS_COMPILE}gcc main.c -ltest -L../libs -I../include -o app
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -449,7 +465,8 @@
 > ```sh
 > make CROSS_COMPILE=armv6-rpi-linux-gnueabihf-
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -470,7 +487,8 @@
 > make
 > make install
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -540,7 +558,8 @@
 > cmake --build build --parallel 8 --target all
 > cmake --build build --parallel 8 --target install
 > ``````
-
+>
+> ---
 > **Resources**
 > - 2
 
@@ -572,7 +591,8 @@
 > * The kernel command line.
 > * Optionally, the location and size of a device tree binary.
 > * Optionally, the location and size of an initial RAM disk, called the **initial RAM file system (initramfs)**.
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -584,7 +604,8 @@
 <summary>What is a Device Tree and where is its specification?</summary>
 
 > * https://github.com/devicetree-org/devicetree-specification/releases
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -620,7 +641,8 @@
 >     };
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -656,7 +678,8 @@
 >     };
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -670,7 +693,8 @@
 > ```dts
 > /include/ "vexpress-v2m.dtsi"
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -717,7 +741,8 @@
 >     vmmc-supply = <&vmmcsd_fixed>;
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -731,7 +756,8 @@
 > ```sh
 > dtc beaglebone-black.dts -o beaglebone-black.dtb
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -765,7 +791,8 @@
 > * `u-boot.img`: This is `u-boot.bin` with a U-Boot header added, suitable for uploading to a running copy of U-Boot
 > * `u-boot.srec`: U-Boot in Motoral S-record (**SRECORD** or **SRE**) format, suitable for transferring over a serial connection
 > * `MLO`: The BeagleBone Black also requires a **SPL** which is built here
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -781,7 +808,8 @@
 > ```sh
 > nand read 82000000 400000 200000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -799,7 +827,8 @@
 > setenv foo # reset foo
 > printenv # print all environment variables
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -814,7 +843,8 @@
 > mkimage --help
 > mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -830,7 +860,8 @@
 > fatload mmc 0:1 82000000 uimage
 > iminfo 82000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -851,7 +882,8 @@
 > nand write 82000000 280000 400000
 > nand read 82000000 280000 400000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -866,7 +898,8 @@
 > # bootm [kernel address] [ramdist address] [dtb address]
 > bootm 82000000 - 83000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -880,7 +913,8 @@
 > ```sh
 > setenv bootcmd nand read 82000000 400000 200000\;bootm 82000000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 3
 
@@ -904,7 +938,8 @@
 > ```sh
 > git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -916,7 +951,8 @@
 <summary>What is an appropriate path to keep track of kernel release changes?</summary>
 
 > Follow up overviews of each kernel release on **KernelNewbies** to see changes.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -939,7 +975,8 @@
 > * `net`: network protocols.
 > * `scripts`: useful scripts, including the **device tree compiler**.
 > * `tools`: useful tools, including the Linux performance counters tool, `perf`.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -951,7 +988,8 @@
 <summary>What is the name of the kernel configuration mechanism and how can it be used?</summary>
 
 > The configuration mechanism is called `Kconfig`, and the build system that it integrates with it is called `Kbuild`.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -964,7 +1002,8 @@
 <summary>What are possible values to the <code>ARCH</code> environment variable using in building the kernel source?</summary>
 
 > The value you put into `ARCH` is one of the subdirectories you find in the `arch` directory in the kernel source tree.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1006,7 +1045,8 @@
 > * `int`: integer value using decimal notation.
 > * `hex`: unsigned integer value using hexadecimal notation.
 > * `string`: string value.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1038,7 +1078,8 @@
 > ``````
 >
 > Selecting any config as reverse dependency, sets its value as `y`.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1052,7 +1093,8 @@
 > * `menuconfig`: requires `ncurses`, `flex`, and `bison` packages.
 > * `xconfig`
 > * `gconfig`
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1076,7 +1118,8 @@
 > ```sh
 > make ARCH=arm bcm2835_defconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1114,7 +1157,8 @@
 > ```sh
 > make ARCH=arm olddefconfig
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1126,7 +1170,8 @@
 <summary>What file holds configuration options generated by beginning the kernel build and where is the file?</summary>
 
 > A header file `include/generated/autoconf.h` contains `#define` preprocessors to be included in the kernel source.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1144,7 +1189,8 @@
 > make ARCH=arm kernelversion
 > make ARCH=arm kernelrelease
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1157,7 +1203,8 @@
 
 > `CONFIG_LOCALVERSION` option is the release information string to be appended to kernel release.
 > Kernel version can never be appended.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1174,7 +1221,8 @@
 > obj-y += mem.o random.o
 > obj-$(CONFIG_TTY_PRINTK) += ttyprintk.o
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1187,7 +1235,8 @@
 
 > * `ARCH`: architecture name
 > * `CROSS_COMPILE`: toolchain prefix ending with a hyphen, visible in `PATH`
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1205,7 +1254,8 @@
 > ```sh
 > make -j $(($(nproc) / 2)) ARCH=arm CROSS_COMPILE=armv6-rpi-linux-gnueabihf- zImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1221,7 +1271,8 @@
 > ```sh
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- LOADADDR=0x80008000 uImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1239,7 +1290,8 @@
 > * `arch/$ARCH/boot/Image`: `vmlinux` converted to raw binary format.
 > * `zImage`: compressed version of `Image`.
 > * `uImage`: `zImage` plus a 64-byte U-Boot header.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1251,7 +1303,8 @@
 <summary>Make debug symbols available in the <code>vmlinux</code> kernel image?</summary>
 
 > By enabling `CONFIG_DEBUG_INFO` configuration option.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1265,7 +1318,8 @@
 > ```sh
 > make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1293,7 +1347,8 @@
 > ```sh
 > make -j 8 ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- INSTALL_MOD_PATH=/run/media/user/rootfs install_modules
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1307,7 +1362,8 @@
 > * `clean`: remove object files and most intermediates.
 > * `mrproper`: remove all intermediate files and `.config` file.
 > * `distclean`: remove all, also delete editor backup files, patch files, and other artifacts.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1365,7 +1421,8 @@
 > echo 'arm_64bit=1' >> ../boot/config.txt
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1401,7 +1458,8 @@
 > echo 'enable_uart=1' > ../boot/config.txt
 > echo 'console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootwait' > ../boot/cmdline.txt
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1420,7 +1478,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- modules -j $(($(nproc)/2))
 > make ARCH=arm CROSS_COMPILE=arm-cortex_a8-linux-gnueabihf- dts
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1438,7 +1497,8 @@
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- modules -j $(($(nproc)/2))
 > make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabihf- dts
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1452,7 +1512,8 @@
 > Nothing.
 > Raspberry Pis use a proprietary bootloader provided by Broadcom instead of U-Boot.
 > Kernel will boot and ends with a kernel panic because of the abcense of root filesystem.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1469,7 +1530,8 @@
 > setenv bootargs console=ttyo0
 > bootz 0x80200000 - 0x80f00000
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1483,7 +1545,8 @@
 > ```sh
 > QEMU_AUDIO_DRV=none qemu-system-arm -m 256M -nographic -M versatilepb -kernel zImage -apend "console=ttyAMA0,115200" -dtb versatile-pb.dts"
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1505,7 +1568,8 @@
 > ```sh
 > root=/dev/ mmcblk0p1
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1528,7 +1592,8 @@
 > * `rootfstype`: filesystem type for the root device.
 > * `rootwait`: wait indefinitely for the root device to be detected.
 > * `rw`: mounts root device as read-write (default).
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1541,7 +1606,8 @@
 
 > By setting `lpj=4980736` to the kernel parameter.
 > The number should be different on each device.
-
+>
+> ---
 > **Resources**
 > - 4
 
@@ -1554,7 +1620,8 @@
 
 > ```sh
 > ``````
-
+>
+> ---
 > **Resources**
 > - 4
 

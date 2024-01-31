@@ -14,7 +14,8 @@
 >     std::println("C++{}", 23);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Beginning C++23: From Novice to Professional - Chapter 1
 

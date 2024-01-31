@@ -98,7 +98,8 @@ Nothing to import.
 >     // will be reached: non-blocking service
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -142,7 +143,8 @@ Nothing to import.
 >     worker.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -189,7 +191,8 @@ Nothing to import.
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 4
 
@@ -238,7 +241,8 @@ Nothing to import.
 > The `boost::asio::io_context::strand::wrap()` function creates a new handler
 > function object that will automatically pass the wrapped handler to the strand
 > object's dispatch function when it is called.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -286,7 +290,8 @@ Nothing to import.
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -331,7 +336,8 @@ Nothing to import.
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 5
 
@@ -375,7 +381,8 @@ Nothing to import.
 >     service.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -423,7 +430,8 @@ Nothing to import.
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -486,7 +494,8 @@ Nothing to import.
 >     worker.join();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -557,7 +566,8 @@ Nothing to import.
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -698,7 +708,8 @@ Nothing to import.
 >     context.stop();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 6
 
@@ -713,7 +724,8 @@ Nothing to import.
 
 > - `start`: starts debugging session by running program line-by-line.
 > - `run`: starts debugging session running program as usual.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -729,7 +741,8 @@ Nothing to import.
 >   code or one machine instruction.
 > - `next`: Executes program similar to `step`, but it only continues to the
 >   next line in the current stack frame and will not step into functions.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -743,7 +756,8 @@ Nothing to import.
 > `list` displays 10 lines of source code. To see how many lines of source code
 > will be displayed enter `show listsize`. To adjust the lines of source code
 > displayed enter `set listsize 20`.
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -797,7 +811,8 @@ Nothing to import.
 <summary>Modify the value of a variable?</summary>
 
 > `set var random_number = 5`
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -809,7 +824,8 @@ Nothing to import.
 <summary>Inspect the type of a variable?</summary>
 
 > `whatis random_number`
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 
@@ -821,7 +837,8 @@ Nothing to import.
 <summary>Run shell commands in debugging session?</summary>
 
 > `shell pwd`
-
+>
+> ---
 > **Resources**
 > - Boost.Asio C++ Network Programming - Chapter 7
 

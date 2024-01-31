@@ -65,7 +65,8 @@
 >         date = date.next_day();
 >     }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -131,7 +132,8 @@
 >     write("you do not have an appointment at", prev_time, " on ", prev_date)
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 
@@ -255,7 +257,8 @@
 >     assert(numbers.empty());
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - 1
 

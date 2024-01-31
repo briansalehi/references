@@ -56,7 +56,8 @@
 >     undeclared(t); // second-stage compile-time error
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -73,7 +74,8 @@
 > the declaration of a function is sufficient to compile its use. The simplest
 > approach to handle this problem is to implement each template inside a header
 > file.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -94,7 +96,8 @@
 >     return b < a ? a : b;
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -133,7 +136,8 @@
 >
 > Each call to `max()` template is qualified with `::` to ensure template is
 > found in the global namespace, not possibly the one in `std` namespace.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -158,7 +162,8 @@
 >
 > max(7, 42); // T is int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -197,7 +202,8 @@
 > std::string s;
 > max("text", s); // ERROR: T can be deduced as char const[5] or std::string
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -233,7 +239,8 @@
 >
 > max<double>(4, 7.2);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -262,7 +269,8 @@
 >
 > f();    // OK: f<std::string>()
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -282,7 +290,8 @@
 >
 > auto m = ::max(4, 7.2); // OK:: but max returns int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -296,7 +305,8 @@
 > - Introduce an additional template parameter for the return type
 > - Let the compiler find out the return type.
 > - Declare the return type to be the common type of the parameter types.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -334,7 +344,8 @@
 > ``````
 >
 > These modifications don't lead to significant advantages.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -355,7 +366,8 @@
 > Deducing the return type from the function body has to be possible.
 > Therefore, the code must be available and multiple return statements have to
 > match.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -379,7 +391,8 @@
 > template<typename T1, typename T2>
 > auto max(T1 a, T2 b) -> decltype(true ? a : b);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -413,7 +426,8 @@
 > int coust& ir = i;
 > auto a = ir;  // a is declared as new object of type int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -445,7 +459,8 @@
 > std::common_type_t<T1, T2> max(T1 a, T2 b);
 >
 > Note that `std::common_type<>` decays.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -464,7 +479,8 @@
 > int coust& ir = i;
 > auto a = ir;  // a is declared as new object of type int
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -494,7 +510,8 @@
 > template<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>
 > RT max(T1 a, T2 b);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -570,7 +587,8 @@
 > ::max<double>(7, 42);   // calls max<double> no argument deduction
 > ::max('a', 42.7);   // calls the nontemplate for two ints
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -595,7 +613,8 @@
 > ::max<long double>(4, 7.2); // calls second overload
 > ::max<int>(4, 7.2); // ERROR: both function templates match
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -638,7 +657,8 @@
 > ::max(p1, p2);  // calls max<int>() for two pointers
 > ::max("mathematics", "math");   // calls max() for two C-strings
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
 
@@ -771,7 +791,8 @@
 > ``````
 >
 > The keyword `class` can be used instead of `typename`.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -810,7 +831,8 @@
 > But usually the `<T>` signals special handling of special template
 > parameters, so it’s usually better to use the first form. However, outside
 > the class structure you'd need to specify it.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -839,7 +861,8 @@
 > template<typename T>
 > void Stack<T>::pop() { }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -890,7 +913,8 @@
 > Note the `<T>` behind the function name `operator<<`. Thus, we declare a
 > specialization of the nonmember function template as friend. Without `<T>` we
 > would declare a new nontemplate function.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -924,7 +948,8 @@
 >
 > void Stack<std::string>::push(std::string const&) { }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -960,7 +985,8 @@
 >
 > With partial specialization, we define a class template, still parametrized
 > for `T` but specialized for a pointer (`Stack<T*>`).
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1011,7 +1037,8 @@
 > template<typename T>
 > class Stack<T*, T*>;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1061,7 +1088,8 @@
 >     return container.empty();
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1080,7 +1108,8 @@
 > template<typename T>
 > using matrix = std::vector<std::vector<T>>;
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1113,7 +1142,8 @@
 > std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11
 > std::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1158,7 +1188,8 @@
 >     Stack(T const& value): container({value}) { }
 > };
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1204,7 +1235,8 @@
 > constructor taking one integral argument as initial size, so that for a stack
 > with the initial value 5, the vector would get an initial size of five
 > elements when `container(value)` is used.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1248,7 +1280,8 @@
 >
 > In this case, don't forget to use move semantics to avoid unnecessary copy of
 > the argument.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 
@@ -1302,7 +1335,8 @@
 > By language rules, you can't copy initialize an object by passing a string
 > literal to a constructor expecting a `std::string`. So you have to initialize
 > the object with brace initialization.
-
+>
+> ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
 

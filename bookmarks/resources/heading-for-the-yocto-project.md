@@ -8,7 +8,8 @@
 > - Applications to install
 > - Architecture to use
 > - License restrictions
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
@@ -38,7 +39,8 @@
 > The build system used within the Yocto Project is *Poky* which is composed by
 > a set of files to provide the information required for the build system to
 > work.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
@@ -56,7 +58,8 @@
 > - **BitBake** is the build orchastration tool, responsible to generate, order
 >   and run the tasks based on the information gathered from the metadata
 >   files.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
@@ -110,7 +113,8 @@ Nothing to import.
 >   + Releases
 > - **Legal authority**
 >   + License management
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 3
 

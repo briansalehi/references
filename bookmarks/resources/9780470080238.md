@@ -41,7 +41,8 @@
 >
 > ↓ Higher addresses (0xbfffffff)
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 1
 
@@ -56,7 +57,8 @@
 > - Segment registers: `cs`, `ds`, `ss`
 > - Control registers: `rip`
 > - Other registers: `rflags`
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook: Chapter 1
 
@@ -80,7 +82,8 @@
 >     printf("%d\n", array[5]);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
 
@@ -281,7 +284,8 @@
 >     exit(0);
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
 
@@ -308,7 +312,8 @@
 >     // executes shellcode
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - The Shellcoder's Handbook - Chapter 2
 

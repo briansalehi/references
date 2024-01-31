@@ -41,7 +41,8 @@
 > 3. Non-volatile storage
 > 4. Serial port
 > 5. Debugging interface (e.g. JTAG)
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 1
 
@@ -56,7 +57,8 @@
 >   Scratch](https://trac.clfs.org).
 > - Another alternative to build toolchains is
 >   [crosstool-NG](https://crosstool-ng.github.io).
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -73,7 +75,8 @@
 > * musl libs: [https://musl.libc.org](https://musl.libc.org)
 > * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
 > * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -89,7 +92,8 @@
 > * Kernel (e.g. `linux`)
 > * Operating System + ABI (e.g. `gnueabi`, `gnueabihf`, `musleabi`,
 >   `musleabihf`)
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -117,7 +121,7 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -v
 > ``````
-
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -131,7 +135,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -mcpu=cortex-a5 main.c -o app
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -145,7 +150,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc --target-help
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -159,7 +165,8 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -print-sysroot
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -181,7 +188,8 @@
 > make -j<cores>
 > ./ct-ng --version
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -197,7 +205,8 @@
 > ```sh
 > ./ct-ng list-samples
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -214,7 +223,8 @@
 > ./ct-ng show-arm-cortex_a8-linux-gnueabi
 > ./ct-ng show-arm-unknown-linux-gnueabi
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -245,7 +255,8 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -271,7 +282,8 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -295,7 +307,8 @@
 > ```sh
 > ./ct-ng build
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -312,7 +325,8 @@
 > * libm
 > * libpthread
 > * librt
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -326,7 +340,8 @@
 > ```sh
 > ${CROSS_COMPILE}readelf -a app | grep "Shared library"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -340,7 +355,8 @@
 > ```sh
 > ${CROSS_COMPILE}readelf -a app | grep "program interpreter"
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -354,7 +370,7 @@
 > ```sh
 > ${CROSS_COMPILE}gcc -static main.c -o app
 > ``````
-
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -370,7 +386,8 @@
 > cd $SYSROOT
 > ls -l usr/lib/libc.a
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -387,7 +404,8 @@
 > ${CROSS_COMPILE}ar rc libtest1.a test1.o test2.o
 > ${CROSS_COMPILE}gcc main.c -ltest -L../libs -I../include -o app
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -406,7 +424,8 @@
 > ${CROSS_COMPILE}readelf -a app | grep library
 > ${CROSS_COMPILE}readelf -a app | grep interpreter
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -421,7 +440,8 @@
 > ${CROSS_COMPILE}readelf -a /usr/lib/x86_64-linux-gnu/libjpeg.so.8.2.2 | grep SONAME
 > libjpeg.so.8
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -458,7 +478,8 @@
 > ```sh
 > CC=armv6-rpi-linux-gnueabihf-gcc ./configure --host=armv6-rpi-linux-gnueabihf
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -479,7 +500,8 @@
 >
 > armv6-rpi-linux-gnueabihf main.c -o sqlite-test -lsqlite3
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -497,7 +519,8 @@
 > export PKG_CONFIG_LIBDIR=$(${CROSS_COMPILE}gcc -print-sysroot)/usr/lib/pkgconfig
 > ${CROSS_COMPILE}gcc $(pkg-config sqlite3 --cflags --libs) main.c -o sqlite-test
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -514,7 +537,8 @@
 > cmake --build build --parallel 8 --target all
 > cmake --build build --parallel 8 --target install
 > ``````
-
+>
+> ---
 > **Resources**
 > - Mastering Embedded Linux Programming - Chapter 2
 
@@ -536,7 +560,8 @@
 > (EOL).
 >
 > `Initial Release -> Stable Release -> Community -> End of Life`
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -550,7 +575,8 @@
 > - Applications to install
 > - Architecture to use
 > - License restrictions
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
@@ -566,7 +592,8 @@
 > - Root filesystem usually called rootfs containing the files
 > - List of licenses of packages included in the rootfs
 > - The source for distribution to comply on the copyleft requirements
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 
@@ -597,7 +624,8 @@
 > In addition, it provides the mechanism to build and combine thousands of
 > distributed open source projects to form a fully customizable, complete, and
 > coherent Linux software stack.
-
+>
+> ---
 > **Resources**
 
 > **References**
@@ -616,7 +644,8 @@
 > |OpenEmbedded Core (meta)|
 > |Poky Distribution Metadata (meta-poky)|
 > |Yocto Project Reference BSP (meta-yocto-bsp)|
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
@@ -638,7 +667,8 @@
 > resources to reduce build time and predictability.
 >
 > The source code is in the `bitbake` subdirectory of Poky.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
@@ -658,7 +688,8 @@
 >
 > The OpenEmbedded Core houses its metadata inside the `meta` subdirectory of
 > Poky.
-
+>
+> ---
 > **Resources**
 > - Embedded Linux Development Using Yocto Project - Chapter 1
 
@@ -676,7 +707,8 @@
 > BitBake uses these scripts to inform the steps needed to build, download the
 > source code and other tasks related to a specific software application or
 > library.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
@@ -697,7 +729,8 @@
 > - `meta-yocto-bsp`: This provides the Board Support Package (BSP) used as the
 >   reference hardware for the Yocto Project development and Quality Assurance
 >   (QA) process.
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 1
 > - Embedded Linux Development Using Yocto Project - Chapter 1
@@ -724,7 +757,8 @@
 >   + Releases
 > - **Legal authority**
 >   + License management
-
+>
+> ---
 > **Resources**
 > - Heading for the Yocto Project - Chapter 3
 

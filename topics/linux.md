@@ -7,7 +7,8 @@
 
 > **Redundant Array of Independent Drives** is a mechanism in which multiple
 > disks are combined for more reliablity and speed.
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -28,7 +29,7 @@
 > **RAID 5**
 > **RAID 6**
 > **RAID 10**
-
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -44,7 +45,8 @@
 > ```sh
 > mdadm --create --verbose /dev/md0 --level 5 --raid-devices 3 /dev/sda /dev/sdb /dev/sdc
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -61,7 +63,8 @@
 > cat /proc/mdstat
 > watch -n1 cat /proc/mdstat
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -76,7 +79,8 @@
 > mdadm --detail --scan
 > mdadm --detail /dev/md0
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -92,7 +96,8 @@
 > ```sh
 > mdadm --detail --scan >> /etc/mdadm.conf
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -111,7 +116,8 @@
 > ```sh
 > mdadm --monitor --scan --test
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -125,7 +131,8 @@
 > ```sh
 > mdadm --monitor --stop
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -141,7 +148,8 @@
 > ```sh
 > mdadm --stop /dev/md0
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -155,7 +163,8 @@
 > ```sh
 > mdadm --assemble /dev/md0 /dev/sda /dev/sdb /dev/sdc
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 
@@ -191,7 +200,8 @@
 > fdisk /dev/sdd
 > mdadm --manage /dev/md0 --add /dev/sdd
 > ``````
-
+>
+> ---
 > **Resources**
 > - mdadm(1)
 

@@ -104,7 +104,8 @@
 >     }
 > }
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
@@ -209,7 +210,8 @@
 > std::filesystem::path shell{parent + executable}; // /usr/binbash
 > std::filesystem::path shell{parent / executable}; // /usr/bin/bash
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
@@ -261,7 +263,8 @@
 > std::filesystem::is_socket("/dev/null"); // false
 > std::filesystem::other("/dev/null"); // false
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
@@ -287,7 +290,8 @@
 > std::filesystem::is_socket(executables_status);
 > std::filesystem::other(executables_status);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
@@ -335,7 +339,8 @@
 > std::filesystem::path file_path{"/usr/bin/g++"};
 > std::size_t size = std::filesystem::file_size(file_path);
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
@@ -357,7 +362,8 @@
 > std::filesystem::directory_iterator entry_iterator{std::filesystem::directory_iterator{directory_path}};
 > std::copy(entry_iterator, std::back_inserter(entries));
 > ``````
-
+>
+> ---
 > **Resources**
 > - C++17 STL Cookbook - Chapter 10
 
