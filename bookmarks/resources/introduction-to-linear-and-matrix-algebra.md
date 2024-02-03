@@ -450,8 +450,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -465,8 +463,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -476,8 +472,8 @@
 >
 > Let $\vec{v} \in R^n$ be a vector and let $c \in R$ be a scalar. Then
 >
-> a) $\parallel{c\vec{v}}\parallel = \abs{c}\parallel\vec{v}\parallel$
-> b) $\parallel\vec{v}\parallel = 0$ if and only if $\vec{v} = 0$
+> 1. $\parallel{c\vec{v}}\parallel = |c|\parallel\vec{v}\parallel$
+> 2. $\parallel\vec{v}\parallel = 0$ if and only if $\vec{v} = 0$
 >
 > ---
 > **Resources**
