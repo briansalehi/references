@@ -413,6 +413,8 @@
 > ---
 </details>
 
+## Vector Length
+
 <details>
 <summary>Compute the length of a vector?</summary>
 
