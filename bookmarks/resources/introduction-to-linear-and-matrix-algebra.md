@@ -14,9 +14,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -31,9 +28,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -48,8 +42,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -61,8 +53,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-> ---
-> **References**
 > ---
 </details>
 
@@ -78,8 +68,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -91,8 +79,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
-> ---
-> **References**
 > ---
 </details>
 
@@ -112,8 +98,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -131,9 +115,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -148,9 +129,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -166,8 +144,6 @@
 
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> ---
-> **References**
 > ---
 </details>
 
@@ -195,8 +171,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -212,8 +186,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> ---
-> **References**
 > ---
 </details>
 
@@ -247,9 +219,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -270,8 +239,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -283,8 +250,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> ---
-> **References**
 > ---
 </details>
 
@@ -315,8 +280,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > ---
-> **References**
-> ---
 </details>
 
 ### Standard Basis Vectors
@@ -339,9 +302,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -355,8 +315,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -368,8 +326,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -380,9 +336,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -404,8 +357,6 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -413,9 +364,6 @@
 
 > Intuitively, the dot product $v.w$ tells you how much $v$ points in the
 > direction of $w$.
->
-> ---
-> **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
@@ -432,9 +380,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -451,9 +396,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -469,7 +411,75 @@
 > - Introduction to Linear and Matrix Algebra - Chapter 2
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
+</details>
+
+<details>
+<summary>Compute the length of a vector?</summary>
+
+> **Description**
+>
+> The length of a vector $\vec{v} = (v_1, v_2, ..., v_n) \in R^n, denoted by
+> \parallel\vec{v}\parallel, is defined by:
+>
+> $\parallel\vec{v}\parallel = \sqrt{v.v} = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}$
+>
+> In two dimensions $\parallel\vec{v}\parallel = \sqrt{v_1^2 + v_2^2} = \sqrt{\vec{v}.\vec{v}}$.
+>
+> In three dimensions $\parallel\vec{v}\parallel = \sqrt{v_1^2 + v_2^2 + v_3^3} = \sqrt{\vec{v}.\vec{v}}$.
+>
+> No matter how many dimensions do we have, the square root of dot product
+> results in the length of a vector.
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5
+> ---
+</details>
+
+<details>
+<summary>Practice: compute the length of $\vec{v} = (3,4)$?</summary>
+
+> **Description**
+>
+> $\parallel\vec{v}\parallel = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
+> ---
 > **References**
+> ---
+</details>
+
+<details>
+<summary>Practice: compute the length of $\vec{v} = (\cos{\theta},\sin{\theta})$?</summary>
+
+> **Description**
+>
+> $\parallel\vec{v}\parallel = \sqrt{\cos{\theta}^2 + \sin{\theta}^2} = \sqrt{1} = 1$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What are the properties of vector length?</summary>
+
+> **Description**
+>
+> Let $\vec{v} \in R^n$ be a vector and let $c \in R$ be a scalar. Then
+>
+> a) $\parallel{c\vec{v}}\parallel = \abs{c}\parallel\vec{v}\parallel$
+> b) $\parallel\vec{v}\parallel = 0$ if and only if $\vec{v} = 0$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
 > ---
 </details>
 
@@ -488,8 +498,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -506,8 +514,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -522,8 +528,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -535,8 +539,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -558,8 +560,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -573,8 +573,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -591,8 +589,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -606,9 +602,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -627,8 +620,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -645,8 +636,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -665,9 +654,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -683,8 +669,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -702,8 +686,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -727,8 +709,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -739,9 +719,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -756,8 +733,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -774,9 +749,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -790,9 +762,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -804,8 +773,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -821,8 +788,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -837,8 +802,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -851,9 +814,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -865,8 +825,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -881,8 +839,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -893,9 +849,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -910,8 +863,6 @@
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
 > ---
-> **References**
-> ---
 </details>
 
 <details>
@@ -922,9 +873,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -940,9 +888,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
@@ -955,8 +900,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
-> ---
-> **References**
 > ---
 </details>
 
@@ -976,9 +919,6 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 4
->
-> ---
-> **References**
 > ---
 </details>
 
