@@ -539,7 +539,150 @@
 > ---
 </details>
 
-## Chapter 18/34
+## Chapter 18/34 Standard Library Containers <sup>(writing)</sup>
+
+### Containers
+
+<details>
+<summary>What semantics do standard containers use to take values?</summary>
+
+> **Description**
+>
+> Standard Library containers use value semantics on elements. Thus, when you
+> write classes that you intend to use with the Standard Library, you need to
+> make sure they are copyable.
+>
+> If you prefer reference semantics, you can store pointers to elements instead
+> of the elements themselves. To do so, store `std::reference_wrappers` in the
+> container. A `std::reference_wrapper` basically exists to make references
+> copyable and can be created using the std::ref() and cref() helper functions,
+> all defined in `<functional>` header.
+>
+> ---
+> **Resources**
+> - Professional C++ - Chapter 18
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/container
+> - [containers]
+> ---
+</details>
+
+<details>
+<summary>What are the default template parameters of standard containers?</summary>
+
+> **Description**
+>
+> One of the template type parameters for Standard Library containers is an
+> allocator. The container uses this allocator to allocate and deallocate
+> memory for elements.
+>
+> ```cpp
+> template<typename T, typename Allocator = std::allocator<T>> class vector;
+> ``````
+>
+> Some containers, such as a map, additionally accept a comparator as one of
+> the template type parameters. This comparator is used to order elements. This
+> default is to compare elements using `operator<`.
+>
+> ```cpp
+> template<typename Key, typename T, typename Compare = std::less<Key>,
+>     typename Allocator = std::allocator<std::pair<const Key, T>>> class map;
+> ``````
+>
+> ---
+> **Resources**
+> - Professional C++ - Chapter 18
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/container
+> - [containers]
+> ---
+</details>
+
+<details>
+<summary>What are the requirements on elements in standard containers?</summary>
+
+> **Description**
+>
+> - Default Constructor
+> - Copy Constructor
+> - Move Constructor
+> - Copy Assignment Operator
+> - Move Assignment Operator
+> - Destructor
+> - `operator==`
+> - `operator<`
+> - `operator>,<=,>=,!=`
+>
+> ---
+> **Resources**
+> - Professional C++ - Chapter 18
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/container
+> - [containers]
+> ---
+</details>
+
+### Sequential Containers
+
+<details>
+<summary>What are the sequential standard containers?</summary>
+
+> **Description**
+>
+> Following containers are sequential containers because they store a sequence of elements:
+>
+> - `std::vector`
+> - `std::deque`
+> - `std::list`
+> - `std::forward_list`
+> - `std::array`
+>
+> ---
+> **Resources**
+> - Professional C++ - Chapter 18
+> ---
+> **References**
+> ---
+</details>
+
+### Sequential Views
+
+### Container Adapters
+
+### Ordered Associative Containers
+
+### Unordered Associative Containers
+
+### Flat Associative Containers
+
+### Vector
+
+<details>
+<summary>What is the memory layout of a vector?</summary>
+
+> **Description**
+>
+> In a vector the elements are stored in contiguous memory. You can index into
+> a vector, as well as add new elements to the back or insert them anywhere.
+>
+> Vector is a class template with two type parameters, the element type and an
+> allocator type.
+>
+> ```cpp
+> template <typename T, typename Allocator = allocator<T>> class vector;
+> ``````
+>
+> ---
+> **Resources**
+> - Professional C++ - Chapter 18
+> ---
+> **References**
+> ---
+</details>
+
 ## Chapter 19/34
 ## Chapter 20/34
 ## Chapter 21/34
