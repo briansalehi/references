@@ -3,7 +3,7 @@
 
 ## Chapter 1/12 <sup>(writing)</sup>
 
-### Vector
+## Vector
 
 <details>
 <summary>What is the constituents of a vector?</summary>
@@ -82,7 +82,7 @@
 > ---
 </details>
 
-### Vector Addition
+## Vector Addition
 
 <details>
 <summary>What is the result of addition of two vectors $v = (v₁, v₂)$ and $w = (w₁, w₂)$?</summary>
@@ -147,7 +147,7 @@
 > ---
 </details>
 
-### Scalar to Vector Multiplication
+## Scalar to Vector Multiplication
 
 <details>
 <summary>What is the result of multiplication of scalar $c$ to vector $v = (v₁, v₂)$?</summary>
@@ -222,7 +222,7 @@
 > ---
 </details>
 
-### Vector Subtraction
+## Vector Subtraction
 
 <details>
 <summary>What is the result of subtraction of vector $v = (v₁, v₂)$ to vector $w = (w₁, w₂)$?</summary>
@@ -253,7 +253,7 @@
 > ---
 </details>
 
-### Linear Combination of Vectors
+## Linear Combination of Vectors
 
 <details>
 <summary>What are linear combinations of vectors $v_1 , v_2 , ... , v_k$?</summary>
@@ -282,7 +282,7 @@
 > ---
 </details>
 
-### Standard Basis Vectors
+## Standard Basis Vectors
 
 <details>
 <summary>What are the standard basis vectors?</summary>
@@ -339,8 +339,6 @@
 > ---
 </details>
 
-## Chapter 2/12 <sup>(writing)</sup>
-
 ## Dot Product
 
 <details>
@@ -354,7 +352,7 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
@@ -364,7 +362,7 @@
 
 > Intuitively, the dot product $v.w$ tells you how much $v$ points in the
 > direction of $w$.
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 > **References**
@@ -378,7 +376,7 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
@@ -394,7 +392,7 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
@@ -408,10 +406,12 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
+
+## Chapter 2/12 <sup>(writing)</sup>
 
 ## Vector Length
 
@@ -434,7 +434,7 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
 > - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5
 > ---
 </details>
@@ -448,7 +448,8 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -461,7 +462,8 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -477,12 +479,122 @@
 >
 > ---
 > **Resources**
-> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
-## Chapter 3/12
+## Vector Normalization
+
+<details>
+<summary>What is the normalization of a vector?</summary>
+
+> **Description**
+>
+> A vector with length 1 is a unit vector.
+>
+> Scaling $\vec{v}$ to have length 1 like this is called **normalizing**
+> $\vec{v}$, and this unit vector $\vec{w}$ is called the normalization of
+> $\vec{v}$.
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> ---
+</details>
+
+<details>
+<summary>Evaluate the unit vector of any non-zero vector?</summary>
+
+> **Description**
+>
+> Every non-zero vector $\vec{v} \in R^n$ can be devided by its length to get a
+> unit vector.
+>
+> $\vec{w} = \div{\vec{v},\parallel\vec{v}\parallel}$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> ---
+</details>
+
+<details>
+<summary>Practice: Normalize the vector $(3,4) \in R^2$?</summary>
+
+> **Description**
+>
+> $\vec{v} = (3,4)$
+>
+> $\vec{w} = \div{\vec{v},\parallel\vec{v}\parallel}$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 1
+> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> ---
+</details>
+
+## Cauchy Schwarz Inequality
+
+<details>
+<summary>What is the Cauchy Schwarz inequality theorem?</summary>
+
+> **Description**
+>
+> $|\vec{v}.\vec{w}| \le \parallel\vec{v}\parallel \parallel\vec{w}\parallel$
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
+> ---
+</details>
+
+## Triangle Inequality
+
+<details>
+<summary>What is the Triangle Inequality theorem?</summary>
+
+> **Description**
+>
+> Suppose that $\vec{v},\vec{w} \in R^n$ are vectors. Then
+> $\parallel\vec{v}+\vec{w}\parallel \le \parallel\vec{v}\parallel + \parallel\vec{w}\parallel$.
+>
+> ---
+> **Resources**
+> - Introduction to Linear and Matrix Algebra - Chapter 2
+> - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
+> ---
+</details>
+
+## Angle Between Vectors
+
+## Chapter 3/12 <sup>(writing)</sup>
+
+## Matrix
+
+## Matrix Addition
+
+## Matrix Scalar Multiplication
+
+## Matrix Multiplication
+
+## Identity Matrix
+
+## Row Column Vectors
+
+## Transpose
+
+## Block Matrix
+
+## Matrix Vector Multiplication
+
 ## Chapter 4/12 <sup>(writing)</sup>
+
+## Linear Transformation
 
 <details>
 <summary>What are the two properties of linear transformation functions?</summary>
