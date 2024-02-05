@@ -1438,7 +1438,7 @@
 
 ## Chapter 3/28 Nontype Template Parameters <sup>(writing)</sup>
 
-### Nontype Template Parameters
+## Nontype Class Template Parameters
 
 <details>
 <summary>What are the use cases of nontype template parameters?</summary>
@@ -1470,6 +1470,84 @@
 > - C++ Templates: The Complete Guide - Chapter 3
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/language/template_parameters
+> ---
+</details>
+
+<details>
+<summary>How nontype template parameters can be initialized?</summary>
+
+> **Description**
+>
+> ```cpp
+> namespace custom
+> {
+>     template<typename T, std::size_t S>
+>     stack
+>     {
+>         std::size_t elements;
+>         std::array<T, S> container;
+>     };
+> }
+>
+> custom::stack<long, 42> buffer{};
+> ``````
+>
+> ---
+> **Resources**
+> - C++ Templates: The Complete Guide - Chapter 3
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/language/template_parameters
+> ---
+</details>
+
+<details>
+<summary>What is the relation between objects of a class instantiated by different nontype template parameter values?</summary>
+
+> **Description**
+>
+> Each template instantiation is its own type.
+>
+> ```cpp
+> template<typename T, std::size_t S>
+> class stack;
+>
+> stack<long, 42> small_stack;
+> stack<long, 1000> big_stack;
+> ``````
+>
+> The two are different types and no implicit or explicit type conversion
+> between them is defined.
+>
+> ---
+> **Resources**
+> - C++ Templates: The Complete Guide - Chapter 3
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/language/template_parameters
+> ---
+</details>
+
+<details>
+<summary>What is the use case of nontype class template parameters with default values?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename T, std::size_t S = 100>
+> class stack;
+> ``````
+>
+> From a perspective of good design, this is not appropriate in many examples.
+> It is better when the programmer has to specify values explicitly.
+>
+> ---
+> **Resources**
+> - C++ Templates: The Complete Guide - Chapter 3
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/language/template_parameters
 > ---
 </details>
 
