@@ -5400,7 +5400,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > ---
@@ -10695,6 +10695,207 @@
 
 ## Mutex
 
+<details>
+<summary>What is the use case of a mutex?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <mutex>
+>
+> std::mutex exclusive{};
+>
+> int main()
+> {
+>     exclusive.lock();
+>     std::thread t{[&]() {
+>         exclusive.lock();
+>         exclusive.unlock();
+>         std::puts("do this task later");
+>     }};
+>     std::puts("do this task first");
+>     exclusive.unlock();
+>     t.join();
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> ---
+> **References**
+> ---
+</details>
+
+## Lock Guard
+
+<details>
+<summary>What is the downside of manually locking mutexes?</summary>
+
+> **Description**
+>
+> When exceptions thrown after a mutex is locked, that mutex will remain
+> locked. To avoid that, we use `std::lock_guard<>` class template to
+> automatically lock and unlock the mutex.
+>
+> ```cpp
+> #include <iostream>
+> #include <thread>
+> #include <mutex>
+>
+> std::mutex exclusive{};
+>
+> int main()
+> {
+>     exclusive.lock();
+>     std::thread t{[&](){
+>         std::lock_guard guard{exclusive};
+>         std::puts("do this later");
+>     }};
+>     std::puts("do this first");
+>     exclusive.unlock();
+>     t.join();
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
+## Scoped Lock
+
+<details>
+<summary>What is the use case of scoped lock?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <initializer_list>
+> #include <vector>
+> #include <thread>
+> #include <mutex>
+>
+> template<typename T>
+> class some_task
+> {
+> public:
+>     some_task(std::initializer_list<T> range): tokens{range} {}
+>     void append(some_task<T> const& other) noexcept
+>     {
+>         std::scoped_lock guard{exclusive, other.exclusive};
+>         tokens.insert(tokens.end(), other.tokens.begin(), other.tokens.end());
+>     }
+>     std::size_t size() const noexcept
+>     {
+>         std::lock_guard guard{exclusive};
+>         return tokens.size();
+>     }
+>
+> private:
+>     std::vector<T> tokens;
+>     std::mutex exclusive;
+> };
+>
+> template<typename T>
+> void merge_tasks(some_task<T>& a, some_task<T>& b)
+> {
+>     a.append(b);
+> }
+>
+> int main()
+> {
+>     some_task<long> A{1,2,3,4}, B{5,6,7,8};
+>     std::thread t1{&some_task<long>::size, A};
+>     std::thread t2{merge_tasks<long>, A, B};
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
+## Atomic
+
+<details>
+<summary>What data types can be used within atomic types?</summary>
+
+> **Description**
+>
+> Primitive types.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the use case of an atomic type?</summary>
+
+> **Description**
+>
+> Without atomic type, we need to use a locking mechanism like mutual
+> exclusions to avoid data races on the shared value. But using atomic types,
+> they are guaranteed to be accessed only by one thread at a time.
+>
+> ```cpp
+> #include <atomic>
+> #include <thread>
+>
+> std::atomic<long> shared_value{};
+>
+> void increment_shared()
+> {
+>     shared_value++;
+> }
+>
+> int main()
+> {
+>     std::thread t1{increment_shared};
+>     std::thread t2{increment_shared};
+>     t1.join();
+>     t2.join();
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What storage duration guarantees access without data races?</summary>
+
+> **Description**
+>
+> `static` local variables are guaranteed to only initialize once.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
 ## Conditional Variable
 
 <details>
@@ -10705,7 +10906,8 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -10777,7 +10979,7 @@
 > be acquired in one thread, and released in another.
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -10795,7 +10997,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -10819,7 +11021,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
@@ -10889,7 +11091,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/counting_semaphore
@@ -10947,7 +11149,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -10962,7 +11164,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -10981,7 +11183,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > ---
@@ -11025,7 +11227,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > ---
@@ -11042,7 +11244,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -11064,7 +11266,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -11117,7 +11319,7 @@
 >
 > ---
 > **Resources**
-> - YouTube: Concurrency in C++20: A Deep Dive - Rainer Grimm by Meeting Cpp
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > ---
