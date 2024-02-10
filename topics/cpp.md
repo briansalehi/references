@@ -9950,6 +9950,8 @@
 <details>
 <summary>Drop the first N elements of the view of a range?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -9977,6 +9979,8 @@
 <details>
 <summary>Drop the sequence of elements from the view of a range for which the predicate evaluates to true?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10003,6 +10007,8 @@
 <details>
 <summary>Filter the view of a range to consist all elements that satisfy the provided predicate?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10057,6 +10063,8 @@
 <details>
 <summary>Adapt an iterator and the number of elements following it into the view of a range?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10179,6 +10187,8 @@
 <details>
 <summary>Flatten a splited view of a range?</summary>
 
+> **Description**
+>
 > incomplete
 >
 > ---
@@ -10218,6 +10228,8 @@
 <details>
 <summary>Represent a single element view?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <iostream>
 > #include <iterator>
@@ -10300,6 +10312,8 @@
 <details>
 <summary>Construct a thread and wait to the end of its normal execution?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <chrono>
@@ -10329,6 +10343,8 @@
 <details>
 <summary>What kind of callable objects does a thread take?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 >
@@ -10380,6 +10396,8 @@
 <details>
 <summary>What are the requirements of passing different value categories as thread arguments?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <memory>
@@ -10441,6 +10459,8 @@
 <details>
 <summary>Create a thread that joins automatically followed by RAII principle?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <chrono>
@@ -10509,6 +10529,8 @@
 <details>
 <summary>Write a thread guard to join on destruction?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 >
@@ -10545,6 +10567,8 @@
 <details>
 <summary>Run a thread in background?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <cassert>
@@ -10572,6 +10596,8 @@
 <details>
 <summary>Transfer the ownership of a thread into another?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 >
@@ -10605,6 +10631,8 @@
 <details>
 <summary>Send a stop request to a thread?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 >
@@ -10641,6 +10669,8 @@
 <details>
 <summary>Retrieve the maximum number of threads efficiently running at runtime?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <vector>
@@ -10674,6 +10704,8 @@
 <details>
 <summary>Retrieve the ID of a thread?</summary>
 
+> **Description**
+>
 > ```cpp
 > #include <thread>
 > #include <iostream>
@@ -10768,6 +10800,8 @@
 > ---
 </details>
 
+## Unique Lock
+
 ## Scoped Lock
 
 <details>
@@ -10819,6 +10853,116 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=pfIC-kle4b0
+> ---
+> **References**
+> ---
+</details>
+
+## Shared Mutex
+
+<details>
+<summary>What is the use case of a shared mutex?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <thread>
+> #include <string>
+> #include <mutex>
+> #include <shared_mutex>
+> #include <map>
+>
+> class some_task
+> {
+> public:
+>     void set(std::string key, std::string value)
+>     {
+>         std::unique_lock<std::shared_mutex> guard(shared_exclusive);
+>         config.insert_or_assign(key, value);
+>     }
+>     std::string get(std::string const& key) const
+>     {
+>         std::shared_lock<std::shared_mutex> guard(shared_exclusive);
+>         return config.at(key);
+>     }
+> private:
+>     std::map<std::string, std::string> config;
+>     mutable std::shared_mutex shared_exclusive;
+> };
+>
+> int main()
+> {
+>     some_task task;
+>     std::thread t1{&some_task::set, &task, "pgdata", "/opt/pgroot/data"};
+>     t1.join();
+>     std::string storage_path = task.get("pgdata");
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> ---
+> **References**
+> ---
+</details>
+
+## Timed Mutex
+
+## Conditional Variable
+
+<details>
+<summary>Synchronize two threads signaling each other using condition variables?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <condition_variable>
+> #include <thread>
+> #include <vector>
+> #include <mutex>
+>
+> template<typename T>
+> class bag
+> {
+> public:
+>     void append(T value)
+>     {
+>         std::unique_lock<std::mutex> guard{exclusive};
+>         container.push_back(std::move(value));
+>         guard.unlock();
+>         condition.notify_one();
+>     }
+>
+>     T get() const
+>     {
+>         std::unique_lock<std::mutex> guard{exclusive};
+>         while (container.empty())
+>             condition.wait(guard);
+>         T value = std::move(container.back());
+>         return value;
+>     }
+>
+> private:
+>     mutable std::mutex exclusive;
+>     mutable std::condition_variable condition;
+>     std::vector<T> container;
+> };
+>
+>
+> int main()
+> {
+>     bag<long> numbers{};
+>     numbers.append(42);
+>     long n = numbers.get(); // 42
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -10896,18 +11040,111 @@
 > ---
 </details>
 
-## Conditional Variable
+## Thread Safe Static Initialization
 
 <details>
-<summary>Synchronize two threads signaling each other using condition variables?</summary>
+<summary>When is it safe to initialize a variable without using synchronization primitives?</summary>
 
+> **Description**
+>
+> The first thread to arrive will start initializing the static instance.
+>
 > ```cpp
+> #include <iostream>
+> #include <thread>
+>
+> template<typename T>
+> T do_something(T initial = {})
+> {
+>     static T instance{std::move(initial)};
+>     return instance;
+> }
+>
+> template<typename T>
+> class box
+> {
+> public:
+>     explicit box(T initial = {}): value{std::move(initial)} {}
+>     box(box<T> const& other): value{other.value} {}
+>     box<T>& operator=(box<T> const& other) { value = other.value; return *this; }
+>     static inline box<T>& get_instance(T initial = {})
+>     {
+>         static box<T> instance{std::move(initial)};
+>         std::cout << "initializing\n";
+>         return instance;
+>     }
+>     T value;
+> };
+>
+> template<typename T>
+> void initialize(box<T>& instance)
+> {
+>     instance = box<long>::get_instance(73);
+> }
+>
+> int main()
+> {
+>     long fvalue = do_something<long>(42);
+>     box<long> instance;
+>     std::thread t1{initialize<long>, std::ref(instance)};
+>     std::thread t2{initialize<long>, std::ref(instance)};
+>     t1.join();
+>     t2.join();
+>     std::cout << instance.value << std::endl;
+> }
 > ``````
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> ---
+> **References**
+> ---
+</details>
+
+## Once Flag
+
+<details>
+<summary>Initialize a member variable with thread safety?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <optional>
+> #include <thread>
+> #include <mutex>
+>
+> template<typename T>
+> class some_task
+> {
+> public:
+>     void initialize(T init = {}) { std::call_once(execution, [&]{ value = std::move(init); }); }
+>     std::optional<T> get() const { return value; }
+> private:
+>     std::once_flag execution;
+>     std::optional<T> value;
+> };
+>
+> template<typename T>
+> void initialize(some_task<T>& task, T value)
+> {
+>     task.initialize(std::move(value));
+> }
+>
+> int main()
+> {
+>     some_task<long> number;
+>     std::thread t1{initialize<long>, std::ref(number), 42};
+>     std::thread t2{initialize<long>, std::ref(number), 73};
+>     t1.join();
+>     t2.join();
+>     long value = *number.get(); // either 42 or 73 without data race
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -11170,6 +11407,8 @@
 > **References**
 > ---
 </details>
+
+## Latch Properties
 
 <details>
 <summary>What operations are available to a latch?</summary>
