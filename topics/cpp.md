@@ -7290,6 +7290,68 @@
 
 ## Doubly Linked List
 
+## Parallel Algorithms
+
+<details>
+<summary>What algorithms are parallel?</summary>
+
+> **Description**
+>
+> The algorithms that have the overload with `std::execution` enumeration as
+> first parameter.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{42,73,10,35,89,24};
+>     std::sort(std::execution::par, std::begin(numbers), std::end(numbers));
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the downside of having two separate parallel operations on a common container?</summary>
+
+> **Description**
+>
+> The overhead of creating and managing threads on two operations costs highly.
+> It would be better to join the operations in one parallel execution.
+>
+> ```cpp
+> #include <algorithm>
+> #include <vector>
+>
+> int main()
+> {
+>     std::vector<long> numbers{1,2,3,4,5,6};
+>
+>     // we have two separate parallel execution
+>     std::transform(std::execution::par, numbers.begin(), numbers.end());
+>     std::reduce(std::execution::par, numbers.begin(), numbers.end());
+>
+>     // instead we can combine the two
+>     std::transform_reduce(std::execution::par, numbers.begin(), numbers.end());
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
 ## Comparing Algorithms
 
 <details>
@@ -10307,7 +10369,7 @@
 > ---
 </details>
 
-## Threads Construction
+## Thread Construction
 
 <details>
 <summary>Construct a thread and wait to the end of its normal execution?</summary>
@@ -10398,6 +10460,13 @@
 
 > **Description**
 >
+> The callable and arguments are copied into storage local to the new thread.
+>
+> This helps avoid dangling references and race conditions.
+>
+> Use `std::ref()` when you really want a reference, or use a lambda as the
+> callable.
+>
 > ```cpp
 > #include <thread>
 > #include <memory>
@@ -10451,6 +10520,7 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -10478,13 +10548,46 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
+> - https://www.youtube.com/watch?v=Kj3F_7DFB0A
 > ---
 > **References**
 > ---
 </details>
 
-## Threads Joining
+## Thread Destructor
+
+<details>
+<summary>How does the destructor of a thread is called?</summary>
+
+> **Description**
+>
+> For `std::thread`, the `joinable()` member function is checked first. If the
+> thread is still joinable program will be terminated by calling
+> `std::abort()`. All threads need to be joined before the destructor gets
+> called, unless they are detached.
+>
+> For `std::jthread`, the `std::stop_source` member will be used to request a
+> stop. Then, the thread will be joined.
+>
+> ```cpp
+> #include <thread>
+>
+> int main()
+> {
+>     std::jthread worker{[]{ return; }};
+>     // destructor requests stop and joins
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+## Joining Threads
 
 <details>
 <summary>Wait for a thread in case an exception is thrown?</summary>
@@ -10562,7 +10665,7 @@
 > ---
 </details>
 
-## Threads Detaching
+## Detaching Threads
 
 <details>
 <summary>Run a thread in background?</summary>
@@ -10591,7 +10694,7 @@
 > ---
 </details>
 
-## Threads Moving
+## Moving Threads
 
 <details>
 <summary>Transfer the ownership of a thread into another?</summary>
@@ -10626,7 +10729,104 @@
 > ---
 </details>
 
-## Threads Stop Request
+## Stop Source
+
+<details>
+<summary>Why do we need to have a stopping mechanism on our thread?</summary>
+
+> **Description**
+>
+> Operating systems provide us with horrible killing mechanisms of stopping a
+> thread, but that prevents us from cleaning up.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the process of requesting a thread to stop?</summary>
+
+> **Description**
+>
+> - Create a `std::stop_source`
+> - Obtain a `std::stop_token` from the `std::stop_source`
+> - Pass the `std::stop_token` to a new thread or task
+> - When you want the operation to stop call `source.request_stop()`
+> - Periodically call `token.stop_requested()` to check
+>
+> ```cpp
+> #include <iostream>
+> #include <format>
+> #include <thread>
+> #include <chrono>
+>
+> bool state{false};
+>
+> bool preconditions_apply()
+> {
+>     return state;
+> }
+>
+> void do_something(std::stop_token caller)
+> {
+>     while (!caller.stop_requested())
+>     {
+>         /* process something */
+>     }
+>     std::cerr << std::format("{}\n", "Halting worker");
+> }
+>
+> void thread_controller(std::stop_source source)
+> {
+>     while (preconditions_apply())
+>     {
+>         std::this_thread::sleep_for(std::chrono::milliseconds{100});
+>     }
+>     source.request_stop();
+> }
+>
+> int main()
+> {
+>     state = true; // preconditions apply
+>     std::stop_source source_controller;
+>     std::jthread worker{do_something, source_controller.get_token()};
+>     std::jthread controller{thread_controller, std::ref(source_controller)};
+>     std::this_thread::sleep_for(std::chrono::milliseconds{1000});
+>     state = false; // break the contract
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What member function can be used to obtain stop source from a thread?</summary>
+
+> **Description**
+>
+> ```cpp
+> std::jthread x{[]{}};
+> x.get_stop_source();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+## Stop Token
 
 <details>
 <summary>Send a stop request to a thread?</summary>
@@ -10635,30 +10835,148 @@
 >
 > ```cpp
 > #include <thread>
->
-> void do_something(std::stop_token token)
-> {
->     while (true)
->     {
->         std::this_thread::sleep_for(std::chrono::seconds{1});
->
->         if (token.stop_requested())
->             break;
->     }
-> }
+> #include <chrono>
 >
 > int main()
 > {
->     std::thread worker{do_something};
->     std::this_thread::sleep_for(std::chrono::seconds{3});
->     worker.request_stop();
+>     std::jthread t{[](std::stop_token token) {
+>         while (token.stop_requested())
+>             break;
+>         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+>     }};
+>
+>     std::this_thread::sleep_for(std::chrono::milliseconds(500));
+>     t.request_stop();
 > }
 > ``````
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kj3F_7DFB0A&list=PLxNPSjHT5qvub0YaHcWQG9uX-8p_aKERd&index=1
+> - https://www.youtube.com/watch?v=Kj3F_7DFB0A
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 >
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the signature of callee function when constructing a jthread?</summary>
+
+> **Description**
+>
+> Callee function can optionally accept a `std::stop_token`. For backward
+> compatibility with existing code, functions without `std::stop_token`
+> argument will be called regularly as with `std::thread`.
+>
+> ```cpp
+> #include <thread>
+>
+> int main()
+> {
+>     std::stop_source caller_source;
+>     auto callable = [](std::stop_token caller) { while (!caller.stop_requested()); };
+>     std::jthread stoppable_thread{callable, caller_source.get_token()};
+>     std::jthread regular_thread{[]{ return; }};
+>     caller_source.request_stop();
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What member function can be used to obtain stop token from a thread?</summary>
+
+> **Description**
+>
+> ```cpp
+> std::jthread x{[]{}};
+> x.get_stop_token();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What method can be used to stop a thread directly by using its handle?</summary>
+
+> **Description**
+>
+> ```cpp
+> std::thread x{[]{}};
+> x.request_stop();
+> // ^ equivalent v
+> x.get_stop_source().request_stop();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+## Stop Callback
+
+<details>
+<summary>What is the use case of stop callbacks in threads?</summary>
+
+> **Description**
+>
+> `std::stop_callback{std::stop_token, Args... args}` class template can be
+> used to trigger a cancellation function when stop requested on a thread.
+>
+> ```cpp
+> #include <filesystem>
+> #include <fstream>
+> #include <thread>
+> #include <chrono>
+>
+> int main(int argc, char** argv)
+> {
+>     std::stop_source worker_controller{};
+>
+>     std::jthread worker{
+>         [](std::stop_token const& caller_token, std::filesystem::path file_path)
+>         {
+>             bool readable{};
+>             std::ifstream file_stream{file_path};
+>
+>             if (file_stream.is_open())
+>                 readable = true;
+>
+>             std::stop_callback close_stream{caller_token, [&]{ readable = false; }};
+>             while (readable)
+>             {
+>                 /* do something with the file */
+>             }
+>
+>             file_stream.close();
+>         }, worker_controller.get_token(), argv[0]
+>     };
+>
+>     worker.detach();
+>     std::this_thread::sleep_for(std::chrono::seconds{5});
+>     worker_controller.request_stop();
+>     std::this_thread::sleep_for(std::chrono::seconds{5});
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -10720,6 +11038,29 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+## Synchronization
+
+<details>
+<summary>What synchronization facilities are available in C++?</summary>
+
+> **Description**
+>
+> - `std::atomic`
+> - `std::mutex`
+> - `std::future` and `std::promise`
+> - `std::condition_variable`
+> - `std::semaphore` <sup>(C++20)</sup>
+> - `std::latch` <sup>(C++20)</sup>
+> - `std::barrier` <sup>(C++20)</sup>
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11153,6 +11494,33 @@
 ## Future
 
 <details>
+<summary>What is the use case of a future?</summary>
+
+> **Description**
+>
+> Future provides a mechanism for a one-shot transfer of data between threads.
+>
+> |Method|Description|
+> |---|---|
+> |`std::future<T>`|Default constructor creates an empty object with no state|
+> |`valid()`|Check if the future has state|
+> |`get()`|Wait for the data and retrieve it|
+> |`wait()`|Wait for the data to be ready|
+> |`std::future_status status = wait_for(duration)`|Wait for the data to be ready for the specified duration|
+> |`std::future_status status = wait_until(time_point)`|Wait for the data to be ready until the specified time|
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>Send a signal from 1 to N threads?</summary>
 
 > If you require simple one-shot signalling between threads, the `void`
@@ -11203,7 +11571,116 @@
 > ---
 </details>
 
+## Async
+
+<details>
+<summary>What is the API of async free function?</summary>
+
+> **Description**
+>
+> Launches a task that returns a value.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
 ## Promise
+
+<details>
+<summary>What is the API for promise?</summary>
+
+> **Description**
+>
+> |Method|Description|
+> |---|---|
+> |`std::promise<T>`|Default constructor creates an object with an empty state|
+> |`valid()`|Check if the promise has state|
+> |`set_value()`|Set the value in the state|
+> |`set_exception(exception_pointer)`|Set the exception in state|
+> |`get_future()`|Get the `std::future<T>` for the state|
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>How a promise can be used to transfer data between threads?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <iostream>
+> #include <format>
+> #include <thread>
+> #include <future>
+>
+> int main()
+> {
+>     std::promise<long> value_source;
+>     std::future<long> value_target{value_source.get_future()};
+>
+>     std::jthread provider{[&value_target]{
+>         std::cout << std::format("{}\n", value_target.get());
+>     }};
+>
+>     std::jthread consumer{[&value_source]{
+>         value_source.set_value(42);
+>     }};
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What happens when an exception is thrown in the future?</summary>
+
+> **Description**
+>
+> ```cpp
+std::promise<long> value_source;
+std::future<long> value_target{value_source.get_future()};
+
+std::jthread provider{[&value_target]{
+    std::cout << std::format("{}\n", value_target.get());
+    // throws exception
+}};
+
+std::jthread consumer{[&value_source]{
+    value_source.set_exception(
+        std::make_exception_ptr(std::exception{"reason"})
+    )
+}};
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> ---
+> **References**
+> ---
+</details>
+
+## Packaged Task
 
 ## Semaphore
 
@@ -11382,11 +11859,15 @@
 
 > **Description**
 >
-> Latches are useful for managing one task leveraged by multiple threads.
+> `std::latch` is a single-use counter that allows threads to wait for the
+> counter to reach zero.
+>
+> `std::latch` is useful for managing one task leveraged by multiple threads.
 >
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 >
 > ---
 > **References**
@@ -11394,27 +11875,33 @@
 </details>
 
 <details>
-<summary>When does a latch block?</summary>
+<summary>How does a latch operate?</summary>
 
 > A thread waits at a synchronization point until the internal counter becomes
 > zero. So latches are almost opposites of the semaphore in counting.
 >
+> - Create the latch with a **non-zero** counter
+> - One or more threads decrease the count
+> - Other threads may wait for the latch to be signalled
+> - When the count reaches zero it is permanently signalled and all waiting
+>   threads are woken.
+>
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 >
 > ---
 > **References**
 > ---
 </details>
-
-## Latch Properties
 
 <details>
 <summary>What operations are available to a latch?</summary>
 
 > |Method|Description|
 > |---|---|
+> |`std::latch{std::ptrdiff_t count}`|Create a latch with the specified count|
 > |`count_down(std::ptrdiff_t update = 1)`|Decrements internal counter `update` times without blocking the caller|
 > |`try_wait()`|Returns `true` if internal counter equals zero|
 > |`wait()`|Immediately returns if internal counter equals zero, blocks otherwise|
@@ -11423,6 +11910,7 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11467,6 +11955,7 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11479,12 +11968,15 @@
 
 > **Description**
 >
-> Barriers are helpful to manage repetitive task leveraged by multiple threads.
+> `std::barrier<>` is helpful to manage repetitive task leveraged by multiple
+> threads.
+>
+> Shortly, `std::barrier<>` is a reusable `std::latch`.
 >
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
->
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11493,20 +11985,29 @@
 <details>
 <summary>What operations are available to a barrier?</summary>
 
-> The constructor of a barrier takes a callable. In the completion phase, the
-> callable is executed by an arbitrary thread.
+> The constructor of a barrier takes a callable as the **completion function**.
+> In the completion phase, the callable is executed by an arbitrary thread.
 >
 > |Method|Description|
 > |---|---|
+> |`std::barrier<task_type>{count, task}`|Create a barrier with the specified count and completion function|
+> |`auto arrival_token = x.arrive()`|Decrease the count. Trigger completion phase if count reaches zero|
 > |`arrive(std::ptrdiff_t update = 1)`|Decrement internal counter `update` times|
-> |`wait()`|Blocks at the synchronization point until the completion step is done|
-> |`arrive_and_wait()`|Equivalent to subsequent call to `arrive()` and `wait()`|
-> |`arrive_and_drop()`|Decrements the internal counter for the current phase and the subsequent phase by one|
+> |`wait(arrival_token)`|Blocks at the synchronization point until the completion phase is done|
+> |`arrive_and_wait()`|Equivalent to subsequent call to `auto arrival_token = arrive()` and `wait(arrival_token)`|
+> |`arrive_and_drop()`|Decrease the internal counter permanently and potentially trigger the completion phase without waiting|
+>
+> - Construct a `std::barrier`, with a non-zero count and a completion
+>   function.
+> - One or more threads arrive at the barrier.
+> - Some of these threads wait for the barrier to be signalled.
+> - When the counter reaches zero, the barrier is signalled, the completion
+>   function is called and the counter is reset.
 >
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
->
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11559,6 +12060,7 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
