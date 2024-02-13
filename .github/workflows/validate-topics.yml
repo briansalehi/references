@@ -11,4 +11,4 @@ jobs:
         run: echo "validating topics..."
 
       - name: validation
-        run: bash validate.sh topics --quiet
+        run: ./validator --resource topics --quiet

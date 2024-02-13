@@ -11,4 +11,4 @@ jobs:
         run: echo "validating resources..."
 
       - name: validation
-        run: bash validate.sh bookmarks/resources --quiet
+        run: ./validator --resource bookmarks/resources --quiet
