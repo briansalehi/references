@@ -2340,6 +2340,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2358,7 +2359,34 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Abbreviated Function Template
+
+<details>
+<summary>What is the alternative to writing function templates without having typenames?</summary>
+
+> **Description**
 >
+> ```cpp
+> #include <iostream>
+>
+> void print_container(auto const& container)
+> {
+>     for (auto const& element: container)
+>     {
+>         std::cout << element << '\n';
+>     }
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2384,7 +2412,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
->
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2415,7 +2443,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
->
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2611,6 +2639,88 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
+> ---
+> **References**
+> ---
+</details>
+
+## NonType Template Parameter
+
+<details>
+<summary>What types are supported as non-type template arguments?</summary>
+
+> **Description**
+>
+> - Types for constant integral values (int, long, enum, ...)
+> - `std::nullptr_t`
+> - Pointers to be globally visible objects/function/members
+> - Lvalue references to objects or functions
+> - Floating point types (C++20)
+> - Data structures with public members (C++20)
+> - Lambdas (C++20)
+>
+> **Not supporting types:**
+>
+> - String literals
+> - Classes
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Variadic Template
+
+<details>
+<summary>What is a variadic template parameter?</summary>
+
+> **Description**
+>
+> It is a template parameter representing multiple parameters with different types.
+>
+> ```cpp
+> void print() { }
+>
+> template<typename T, typename... Types>
+> void print(T first, Types... rest)
+> {
+>     std::cout << first << '\n';
+>     print(rest...);
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What operator can be used to retrieve the number of arguments in a variadic template parameter?</summary>
+
+> **Description**
+>
+> ```cpp
+> void num_args() { }
+>
+> template<typename T, typename... Types>
+> void num_args(T first, Types... rest)
+> {
+>     std::cout << sizeof...(rest) + 1 << '\n';
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3030,6 +3140,128 @@
 > ---
 </details>
 
+## Concept
+
+<details>
+<summary>What is the use case of concepts?</summary>
+
+> **Description**
+>
+> For each function or class template, there are preconditions and
+> requirements. These requirements were implicitly handled before C++20, but
+> concepts make it easier to express requirements explicitly.
+>
+> ```cpp
+> template<typename T>
+> requires std::is_copyable<T> && supports_less_than<T>
+> T max_value(T a, T b)
+> {
+>     return b < a ? a : b;
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Concept Declaration
+
+<details>
+<summary>Write a custom concept?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename T>
+> concept supports_less_than = requires (T x) { x < x; };
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>How can we have two different bodies of a function with the same signature and let compiler know which is best match?</summary>
+
+> **Description**
+>
+> Having two different function bodies but with the same signature, would
+> result in ambigous overload and compiler will raise an error.
+>
+> To inform compiler about the best match of two overloads with same signature,
+> we can use concepts as a type constraint.
+>
+> ```cpp
+> template<typename T>
+> concept has_push_back = requires (Container c, Container::value_type v) { c.push_back(v); };
+>
+> template<typename T>
+> concept has_insert = requires (Container c, Container::value_type v) { c.insert(v); };
+>
+> void add(has_push_back auto& container, auto const& value)
+> {
+>     container.push_back(value);
+> }
+>
+> void add(has_insert auto& container, auto const& value)
+> {
+>     container.insert(value);
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>In how many was can we apply a concept as a type constraint on a function template?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename T>
+> concept has_push_back = requies (Container c, Container::value_type v) { c.push_back(v); };
+>
+> void add(has_push_back auto& container, auto const& value)
+> {
+>     container.push_back(value);
+> }
+>
+> void add(has_push_back auto& container, auto const& value)
+> {
+>     if constexpr (requires { container.push_back(value); })
+>     {
+>         container.push_back(value);
+>     }
+>     else
+>     {
+>         container.insert(value);
+>     }
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Standard Concepts
+
 ## Class Template
 
 <details>
@@ -3063,6 +3295,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3103,7 +3336,6 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
->
 > ---
 > **References**
 > ---
@@ -3136,7 +3368,44 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Class Template Argument
+
+<details>
+<summary>What is the requirements of the type used as class template arguments?</summary>
+
+> **Description**
 >
+> Class template arguments have to support all operations of member templates
+> that are **used**. They don't have to support all the operations that
+> **could** be used.
+>
+> ```cpp
+> template<typename T>
+> class stack
+> {
+> public:
+>     std::vector<T> container;
+> private:
+>     void print() const
+>     {
+>         for (T const& element: container)
+>         {
+>             std::cout << element << ' ';
+>             // requires operator<<() support for type T
+>         }
+>     }
+> };
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3458,10 +3727,118 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
->
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> ---
+</details>
+
+<details>
+<summary>How does compiler realize which constructor should be used as the result of arguments deduction?</summary>
+
+> **Description**
+>
+> Compiler tries to deduce class template arguments by first deducing the
+> constructor argument types which is a regular function template argument
+> deduction. If a constructor meets all the following requirements, then its
+> argument types will be used for class template arguments.
+>
+> 1. Number of arguments must match
+> 2. Types must fit (including implicit conversions)
+> 3. Choose best match:
+>   - Perfect match over template
+>   - Template over conversion
+>   - For non-empty brace initialization, `std::initializer_list<>` has highest
+>     priority
+>
+> ```cpp
+> namespace std
+> {
+>     template<typename ElemT, typename Allocator = allocator<T>>
+>     class vector
+>     {
+>     public:
+>         vector() noexcept(noexcept(Allocator()));
+>
+>         explicit vector(Allocator const&) noexcept;
+>
+>         explicit vector(size_t n, Allocator const& = Allocator());
+>
+>         vector(size_t n, ElemT const& value, Allocator const& = Allocator());
+>
+>         template<typename Iter>
+>         vector(Iter beg, Iter end, Allocator const& = Allocator());
+>
+>         vector(vector const& x);
+>
+>         vector(vector&&) noexcept;
+>
+>         vector(vector const&, Allocator const&);
+>
+>         vector(vector&&, Allocator const&);
+>
+>         vector(vector&&, Allocator const&);
+>
+>         vector(initializer_list<ElemT>, Allocator const& = Allocator());
+>     };
+> } // std
+>
+> int main()
+> {
+>     std::vector v1(42, 73);
+> }
+> ``````
+>
+> By following the overload resolution matching rules, the first rule *number
+> of arguments* specifies that we have 6 following matches that fit two
+> parameters:
+>
+> ```cpp
+> explicit vector(size_t n, Allocator const& = Allocator());
+>
+> vector(size_t n, ElemT const& value, Allocator const& = Allocator());
+>
+> template<typename Iter>
+> vector(Iter beg, Iter end, Allocator const& = Allocator());
+>
+> vector(vector&&, Allocator const&);
+>
+> vector(vector&&, Allocator const&);
+>
+> vector(initializer_list<ElemT>, Allocator const& = Allocator());
+> ``````
+>
+> By applying the second rule *types must fit* we will only have the following
+> 3 remaining overload resolutions:
+>
+> ```cpp
+> vector(size_t n, ElemT const& value, Allocator const& = Allocator());
+>
+> template<typename Iter>
+> vector(Iter beg, Iter end, Allocator const& = Allocator());
+>
+> vector(initializer_list<ElemT>, Allocator const& = Allocator());
+> ``````
+>
+> The second overload resolution might seem strange that integers fit two
+> iterators, but compiler only sees two matching arguments having the same type
+> which can also be `int`.
+>
+> Going further, the third rule of *choose the best match*, we would lose the
+> first two because if we have an initializer list for constructing an object,
+> the overload resolution having `std::initializer_list<>` is a best match. So
+> we would only have the last overload:
+>
+> ```cpp
+> vector(initializer_list<ElemT>, Allocator const& = Allocator());
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
 > ---
 </details>
 
@@ -3487,7 +3864,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
->
+> - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
