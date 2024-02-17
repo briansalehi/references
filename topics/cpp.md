@@ -7667,6 +7667,27 @@
 
 ## Doubly Linked List
 
+## Algorithms
+
+<details>
+<summary>What are general category of algorithms?</summary>
+
+> **Description**
+>
+> - Iteration over a sequence for arbitrary action on each element: `for_each`, `for_each_n`, `transform`
+> - Searching through a sequence: `find`, `find_if`, `find_end`, `search`, `count`, `any_of`, `adjacent_find`
+> - Mutate the sequence: `copy`, `copy_if`, `move`, `fill`, `replacd`, `generate`, `rotate`
+> - Sort in various ways: `sort`, `stable_sort`, `partial_sort`, `nth_element`, `is_sorted`
+> - Reduction and scans: `reduce`, `transform_reduce`, `inclusive_scan`, `exclusive_scan`
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
 ## Parallel Algorithms
 
 <details>
@@ -10773,6 +10794,7 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 1
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread
@@ -10825,7 +10847,7 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
->
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
@@ -10999,7 +11021,7 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
->
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/thread/thread
@@ -11066,6 +11088,7 @@
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -11423,6 +11446,25 @@
 ## Synchronization
 
 <details>
+<summary>What are the basic synchronization points in a concurrent program?</summary>
+
+> **Description**
+>
+> - Thread construction point
+> - Thread joining point
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>What synchronization facilities are available in C++?</summary>
 
 > **Description**
@@ -11479,6 +11521,26 @@
 > ---
 </details>
 
+<details>
+<summary>What methods does a mutex have?</summary>
+
+> **Description**
+>
+> - `void lock()`: blocks until the lock is acquired
+> - `bool try_lock()`: returns immediately; `true` if lock acquired, `false` if not
+> - `void unlock()`: release the lock; undefined behavior if current thread doesn't own the lock
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
 ## Lock Guard
 
 <details>
@@ -11517,8 +11579,6 @@
 > **References**
 > ---
 </details>
-
-## Unique Lock
 
 ## Scoped Lock
 
@@ -11576,6 +11636,28 @@
 > ---
 </details>
 
+<details>
+<summary>What is the advantage of scoped lock over lock guard?</summary>
+
+> **Description**
+>
+> Almost whenever possible, use `std::scoped_lock` instead of `std::lock_guard`
+> when C++17 can be used. `std::scoped_lock` takes multiple mutexes and handles
+> the proper locking sequence to avoid deadlock.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
+## Unique Lock
+
 ## Shared Mutex
 
 <details>
@@ -11625,9 +11707,110 @@
 > ---
 </details>
 
+## Shared Lock
+
+<details>
+<summary>What is the use case of a shared lock?</summary>
+
+> **Description**
+>
+> Constructor takes one shared mutex and calls `lock_shared()` on the mutex.
+>
+> The API of shared lock is similar to unique lock.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
 ## Timed Mutex
 
+## Shared Timed Mutex
+
+<details>
+<summary>What methods are available for a shared timed mutex?</summary>
+
+> **Description**
+>
+> - `try_lock_for(duration)`
+> - `try_lock_until(time_point)`
+> - `try_lock_shared_for(duration)`
+> - `try_lock_shared_until(time_point)`
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
+## Recursive Mutex
+
+<details>
+<summary>What is the use case of a recursive mutex?</summary>
+
+> **Description**
+>
+> Recursive mutexes can be used when a function requires locking multiple
+> times.
+>
+> Number of `lock()` calls must match exactly the number of `unlock()` calls.
+>
+> Only one thread can have exclusive ownership, or write access:
+>
+> ```cpp
+> m.lock();
+> ``````
+>
+> Many threads can get shared ownership, or read access:
+>
+> ```cpp
+> m.lock_shared();
+> ``````
+>
+> Calls to `lock_shared()` from other threads will succeed; calls to `lock()`
+> will block.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
 ## Conditional Variable
+
+<details>
+<summary>What are the use cases of conditional variable?</summary>
+
+> **Description**
+>
+> Conditional variables are complicated to use correctly.
+>
+> Useful when some threads are waiting for a condition and other threads make
+> that condition true.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
 
 <details>
 <summary>Synchronize two threads signaling each other using condition variables?</summary>
@@ -12099,6 +12282,27 @@ std::jthread consumer{[&value_source]{
 ## Counting Semaphore
 
 <details>
+<summary>What is the use case of a counting semaphore?</summary>
+
+> **Description**
+>
+> Counting semaphore is much more flexible than mutexes.
+>
+> Maintains an internal counter. `release()` increments the counter, and
+> `acquire()` decrements the counter, or block if `counter = 0`.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>What operations are available on counting semaphores?</summary>
 
 > |Method|
@@ -12245,7 +12449,7 @@ std::jthread consumer{[&value_source]{
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > - https://www.youtube.com/watch?v=A7sVFJLJM-A
->
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12267,7 +12471,7 @@ std::jthread consumer{[&value_source]{
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > - https://www.youtube.com/watch?v=A7sVFJLJM-A
->
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12354,6 +12558,7 @@ std::jthread consumer{[&value_source]{
 > **Resources**
 > - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
