@@ -6,6 +6,7 @@
 * [Docker](docker.md)
 * [Embedded Linux](embedded.md)
 * [GDB](gdb.md)
+* [Git](git.md)
 * [LaTeX](latex.md)
 * [Linux Kernel](kernel.md)
 * [Linux Administration](linux.md)
