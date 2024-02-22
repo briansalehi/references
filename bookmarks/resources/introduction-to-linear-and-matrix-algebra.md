@@ -121,7 +121,7 @@
 <details>
 <summary>What are the properties of vector addition?</summary>
 
-> Suppose $v, w, x \in R^n$ are vectors. Then the following properties hold:
+> Suppose $v, w, x \in \mathbb{R}^n$ are vectors. Then the following properties hold:
 >
 > - Commutativity: $v + w = w + v$
 > - Associativity: $(v + w) + x = v + (w + x)$
@@ -152,7 +152,7 @@
 <details>
 <summary>What is the result of multiplication of scalar $c$ to vector $v = (v₁, v₂)$?</summary>
 
-> Suppose $v = (v_1 , v_2 , ... , v_n) \in R^n$ is a vector and $c \in R$ is a
+> Suppose $v = (v_1 , v_2 , ... , v_n) \in \mathbb{R}^n$ is a vector and $c \in \mathbb{R}$ is a
 > scalar. Then their scalar multiplication, denoted by $cv$, is the vector:
 >
 > $cv = (cv_1 , cv_2 , cv_3 , ... , cv_n)$
@@ -176,7 +176,7 @@
 <details>
 <summary>What are the properties of scalar to vector multiplication?</summary>
 
-> Suppose $v, w \in R^n$ are vectors and $c, d \in R$ are scalars. Then the
+> Suppose $v, w \in \mathbb{R}^n$ are vectors and $c, d \in \mathbb{R}$ are scalars. Then the
 > following properties hold:
 >
 > - $c(v + w) = cv + cw$
@@ -260,12 +260,12 @@
 
 > **Description**
 >
-> A **linear combination** of the vectors $v_1 , v_2 , ... , v_k \in R^n$ is
+> A **linear combination** of the vectors $v_1 , v_2 , ... , v_k \in \mathbb{R}^n$ is
 > any vector of the form:
 >
 > $c_1v_1 + c_2v_2 + ... + c_kv_k$,
 >
-> where $c_1 , c_2 , ... , c_k \in R$.
+> where $c_1 , c_2 , ... , c_k \in \mathbb{R}$.
 >
 > For example $(1, 2, 3)$ is a linear combination of the vectors $(1 , 1, 1)$
 > and $(-1, 0, 1)$ since:
@@ -290,7 +290,7 @@
 > When working with linear combinations, some particularly important vectors
 > are those with all entries equal to $0$, except for a single entry that
 > equals $1$. Specifically, for each $j = 1 , 2 , ... , n$, we define the
-> vector $e_j \in R^n$ by
+> vector $e_j \in \mathbb{R}^n$ by
 >
 > $e_j = (0 , 0 , ... , 0 , 1 , 0 , ... , 0)$.
 >
@@ -308,7 +308,7 @@
 <details>
 <summary>How vector $v$ can be represented as a linear combination with standard basis vectors?</summary>
 
-> Every vector $v \in R^n$ can be written as a linear combination of them. In
+> Every vector $v \in \mathbb{R}^n$ can be written as a linear combination of them. In
 > particular, if $v = (v_1 , v_2 , ... , v_n)$ then $v = v_1e_1 + v_2e_2 + ... + v_ne_n$.
 >
 > ---
@@ -318,7 +318,7 @@
 </details>
 
 <details>
-<summary>Practice: compute $3e_1 - 2e_2 + e_3 \in R^3$?</summary>
+<summary>Practice: compute $3e_1 - 2e_2 + e_3 \in \mathbb{R}^3$?</summary>
 
 > $3e_1 - 2e_2 + e_3 = 3(1,0,0) - 2(0,1,0) + (0,0,1) = (3,-2,1)$
 >
@@ -329,7 +329,7 @@
 </details>
 
 <details>
-<summary>Practice: Write $(3,5,-2,-1)$ as a linear combination of $e_1,e_2,e_3,e_4 \in R^4$?</summary>
+<summary>Practice: Write $(3,5,-2,-1)$ as a linear combination of $e_1,e_2,e_3,e_4 \in \mathbb{R}^4$?</summary>
 
 > $(3, 5, −2, −1) = 3e_1 + 5e_2 − 2e_3 − e_4$
 >
@@ -344,7 +344,7 @@
 <details>
 <summary>What is the result of dot product operation?</summary>
 
-> If $v = (v_1, v_2, ..., v_n) \in R^n)$ and $w = (w_1, w_2, ..., w_n) \in
+> If $v = (v_1, v_2, ..., v_n) \in \mathbb{R}^n)$ and $w = (w_1, w_2, ..., w_n) \in
 > R^n)$ then the dot product of $v$ and $w$, denoted by $v.w$ is the quantity
 > $v.w = v_1w_1 + v_2w_2 + ... + v_nw_n$.
 >
@@ -384,7 +384,7 @@
 <details>
 <summary>What are the properties of the dot product?</summary>
 
-> Let $v, w, z \in R^n$ be vectors and let $c \in R$ be a scalar. Then
+> Let $v, w, z \in \mathbb{R}^n$ be vectors and let $c \in \mathbb{R}$ be a scalar. Then
 >
 > - $v.w = w.v$ (Commutativity)
 > - $v.(w + z) = v.w + v.z$ (Distributivity)
@@ -420,7 +420,7 @@
 
 > **Description**
 >
-> The length of a vector $\vec{v} = (v_1, v_2, ..., v_n) \in R^n, denoted by
+> The length of a vector $\vec{v} = (v_1, v_2, ..., v_n) \in \mathbb{R}^n, denoted by
 > \parallel\vec{v}\parallel, is defined by:
 >
 > $\parallel\vec{v}\parallel = \sqrt{v.v} = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}$
@@ -472,7 +472,7 @@
 
 > **Description**
 >
-> Let $\vec{v} \in R^n$ be a vector and let $c \in R$ be a scalar. Then
+> Let $\vec{v} \in \mathbb{R}^n$ be a vector and let $c \in \mathbb{R}$ be a scalar. Then
 >
 > 1. $\parallel{c\vec{v}}\parallel = |c|\parallel\vec{v}\parallel$
 > 2. $\parallel\vec{v}\parallel = 0$ if and only if $\vec{v} = 0$
@@ -509,7 +509,7 @@
 
 > **Description**
 >
-> Every non-zero vector $\vec{v} \in R^n$ can be devided by its length to get a
+> Every non-zero vector $\vec{v} \in \mathbb{R}^n$ can be devided by its length to get a
 > unit vector.
 >
 > $\vec{w} = \div{\vec{v},\parallel\vec{v}\parallel}$
@@ -522,7 +522,7 @@
 </details>
 
 <details>
-<summary>Practice: Normalize the vector $(3,4) \in R^2$?</summary>
+<summary>Practice: Normalize the vector $(3,4) \in \mathbb{R}^2$?</summary>
 
 > **Description**
 >
@@ -560,7 +560,7 @@
 
 > **Description**
 >
-> Suppose that $\vec{v},\vec{w} \in R^n$ are vectors. Then
+> Suppose that $\vec{v},\vec{w} \in \mathbb{R}^n$ are vectors. Then
 > $\parallel\vec{v}+\vec{w}\parallel \le \parallel\vec{v}\parallel + \parallel\vec{w}\parallel$.
 >
 > ---
@@ -601,8 +601,8 @@
 
 > A linear transformation is a function $T: R^n → R^n$ that satisfies the following two properties:
 >
-> $T(v+w) = T(v) + T(w)$ for all vectors $v,w \in R^n$</br>
-> $T(cv) = cT(v)$ for all vectors $v \in R^n$ and all scalars $c \in R$
+> $T(v+w) = T(v) + T(w)$ for all vectors $v,w \in \mathbb{R}^n$</br>
+> $T(cv) = cT(v)$ for all vectors $v \in \mathbb{R}^n$ and all scalars $c \in \mathbb{R}$
 >
 > ---
 > **Resources**
@@ -657,7 +657,7 @@
 
 > ```math
 > T(c₁v₁ + c₂v₂ + … + ckvk) = c₁T(v₁) + c₂T(v₂) + … + ckT(vk)
-> for all v₁,v₂,…,vk \in R^n and all c₁,c₂,…,ck \in R
+> for all v₁,v₂,…,vk \in \mathbb{R}^n and all c₁,c₂,…,ck \in \mathbb{R}
 > ``````
 >
 > So we have:
@@ -706,7 +706,7 @@
 
 > **Description**
 >
-> A function $T: R^n → R^n$ is a linear transformation if and only if there exists a matrix $[T] \in Mm,n$ such that $T(v) = [T]v$ for all $v \in R^n$ and it is
+> A function $T: R^n → R^n$ is a linear transformation if and only if there exists a matrix $[T] \in Mm,n$ such that $T(v) = [T]v$ for all $v \in \mathbb{R}^n$ and it is
 > $[T] = [T(e₁)|T(e₂)|…|T(en)]$
 >
 > ---
@@ -716,7 +716,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrix of linear transformation $T(v₁,v₂) = (v₁+2v₂, 3v₁+4v₂)$ when $v₁,v₂ \in R^2$?</summary>
+<summary>Find the standard matrix of linear transformation $T(v₁,v₂) = (v₁+2v₂, 3v₁+4v₂)$ when $v₁,v₂ \in \mathbb{R}^2$?</summary>
 
 > **Description**
 >
@@ -733,7 +733,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrix of linear transformation $T(v₁,v₂) = (3v₁-v₂+v₃, 2v₁+4v₂-2v₃)$ when $v₁,v₂ \in R^2$?</summary>
+<summary>Find the standard matrix of linear transformation $T(v₁,v₂) = (3v₁-v₂+v₃, 2v₁+4v₂-2v₃)$ when $v₁,v₂ \in \mathbb{R}^2$?</summary>
 
 > We could explicitly compute $T(e₁), T(e₂)$, and $T(e₃)$ and place them as columns in a matrix, or we could simply place coefficients of $v₁, v₂$ and $v₃$ in the output of $T$, in order, in the rows of a matrix.
 >
@@ -806,7 +806,7 @@
 > This linear transformation is defined as:
 >
 > ```math
-> T(v₁,v₂,…,vn) = (c₁v₁, c₂v₂, …, cnvn) which there exist scalars c₁,c₂,…,cn \in R^n
+> T(v₁,v₂,…,vn) = (c₁v₁, c₂v₂, …, cnvn) which there exist scalars c₁,c₂,…,cn \in \mathbb{R}^n
 > ```````
 >
 > The standard matrix of this linear transformation is:
@@ -833,7 +833,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrices of the linear transformations that project onto the lines in the direction of vector u = (1,0) \in R^2?</summary>
+<summary>Find the standard matrices of the linear transformations that project onto the lines in the direction of vector u = (1,0) \in \mathbb{R}^2?</summary>
 
 > Since u is a unit vector, the standard matrix of Pu is simply:
 > [Pu] = uuT = [(1,0)]\[1 0] = [(1,0) (0,)]
@@ -847,7 +847,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrices of the linear transformations that project onto the lines in the direction of vector w = (1,2,3) \in R^3?</summary>
+<summary>Find the standard matrices of the linear transformations that project onto the lines in the direction of vector w = (1,2,3) \in \mathbb{R}^3?</summary>
 
 > Since w is not a unit vector, we have to first normalize it:
 > ∥w∥ = √1²+2²+3² = √14
@@ -876,7 +876,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of u = (0,1) \in R^2?</summary>
+<summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of u = (0,1) \in \mathbb{R}^2?</summary>
 
 > [Fu] = 2uuT-I = 2[(0,1)]\[0 1] - [(1,0) (0,1)] = [(-1,0) (0,1)]
 >
@@ -887,7 +887,7 @@
 </details>
 
 <details>
-<summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of w = (1,1,1) \in R^2?</summary>
+<summary>Find the standard matrices of the linear transformations that reflect through the lines in the direction of w = (1,1,1) \in \mathbb{R}^2?</summary>
 
 > **Description**
 >
@@ -1004,7 +1004,7 @@
 <details>
 <summary>How can two linear transformation functions T: R^n → Rm and S: Rm → R^n  be in a composition operation S○T: R^n → Rp?</summary>
 
-> (S○T)(v) = S(T(v)) for all v \in R^n
+> (S○T)(v) = S(T(v)) for all v \in \mathbb{R}^n
 > [S○T] = [S]\[T]
 >
 > ---
