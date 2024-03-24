@@ -60,11 +60,14 @@
 ## ★★★ [Modern C++ Programming Cookbook](resources/modern-cxx-programming-cookbook.md)
 [<img src="covers/9781800208988.jpg" width="200"/>](resources/modern-cxx-programming-cookbook.md)
 
-## ★★ [Deciphering Object-Oriented Programming with C++](resources/9781804613900.md)
-[<img src="covers/9781804613900.jpg" width="200"/>](resources/9781804613900.md)
+## ★★★ [A Complete Guide to Standard C++ Algorithms](resources/a-complete-guide-to-standard-cpp-algorithms.md)
+[<img src="covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>](resources/a-complete-guide-to-standard-cpp-algorithms.md)
 
 ## ★★★ [Hands-On Design Patterns with C++](resources/9781804611555.md)
 [<img src="covers/9781804611555.jpg" width="200"/>](resources/9781804611555.md)
+
+## ★★ [Deciphering Object-Oriented Programming with C++](resources/9781804613900.md)
+[<img src="covers/9781804613900.jpg" width="200"/>](resources/9781804613900.md)
 
 ## ★ [Design Patterns in Modern C++20](resources/9781484272947.md)
 [<img src="covers/9781484272947.jpg" width="200"/>](resources/9781484272947.md)
