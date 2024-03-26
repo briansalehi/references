@@ -1,5 +1,5 @@
 # C++ Templates: The Complete Guide
-<img src="../covers/9780321714121.jpg" width="200"/>
+<img src="../../covers/9780321714121.jpg" width="200"/>
 
 ## Chapter 1/28 Function Templates <sup>(published)</sup>
 

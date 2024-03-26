@@ -1,5 +1,5 @@
 # Docker Deep Dive
-<img alt="9781521822807" src="../covers/9781521822807.jpg" width="200"/>
+<img alt="9781521822807" src="../../covers/9781521822807.jpg" width="200"/>
 
 ## Chapter 1/16 <sup>(ignored)</sup>
 

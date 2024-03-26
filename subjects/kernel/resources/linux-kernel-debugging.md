@@ -1,5 +1,5 @@
 # Linux Kernel Debugging
-<img src="../covers/9781801075039.jpg" width="200"/>
+<img src="../../covers/9781801075039.jpg" width="200"/>
 
 ## Chapter 1/12
 ## Chapter 2/12

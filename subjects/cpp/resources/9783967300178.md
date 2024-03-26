@@ -1,5 +1,5 @@
 # C++17: The Complete Guide
-<img src="../covers/9783967300178.jpg" width="200"/>
+<img src="../../covers/9783967300178.jpg" width="200"/>
 
 ## Chapter 1/29 <sup>(writing)</sup>
 

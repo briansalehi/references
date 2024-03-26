@@ -1,5 +1,5 @@
 # Docker in Practice
-<img src="../covers/9781617294808.jpg" width="200"/>
+<img src="../../covers/9781617294808.jpg" width="200"/>
 
 ## Chapter 1/16 <sup>(writing)</sup>
 

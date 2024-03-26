@@ -1,5 +1,5 @@
 # Mastering Linux Device Driver Development
-<img src="../covers/9781789342208.jpg" width="200"/>
+<img src="../../covers/9781789342208.jpg" width="200"/>
 
 ## Chapter 1/14 <sup>(writing)</sup>
 

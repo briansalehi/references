@@ -1,5 +1,5 @@
 # C++20: The Complete Guide
-<img src="../covers/cxx20-the-complete-guide.jpg" width="200"/>
+<img src="../../covers/cxx20-the-complete-guide.jpg" width="200"/>
 
 ## Chapter 1/19 <sup>(published)</sup>
 

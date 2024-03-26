@@ -1,5 +1,5 @@
 # Docker: Up & Running
-<img src="../covers/9781098131821.jpg" width="200"/>
+<img src="../../covers/9781098131821.jpg" width="200"/>
 
 ## Chapter 1/14 <sup>(ignored)</sup>
 

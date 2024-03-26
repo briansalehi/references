@@ -1,4 +1,5 @@
 # Linux Kernel Development
+[Reviews](kernel.md)
 
 ## ★★★ [Mastering Embedded Linux Programming](resources/9781789530384.md)
 [<img src="covers/9781789530384.jpg" width="200"/>](resources/9781789530384.md)

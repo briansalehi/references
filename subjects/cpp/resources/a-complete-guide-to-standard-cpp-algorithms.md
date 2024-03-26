@@ -1,5 +1,5 @@
 # A Complete Guide to Standard C++ Algorithms
-<img alt="A Complete Guide to Standard C++ Algorithms" src="../covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
+<img alt="A Complete Guide to Standard C++ Algorithms" src="../../covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
 
 ## Introduction <sup>(completed => edited => published)</sup>
 

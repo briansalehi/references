@@ -42,13 +42,13 @@ unpack_practice() {
     echo -e "$body" >> "${buffer}"
 
     read -r line
-    if [ "$line" != "> Origins:" ]
+    if [ "$line" != "> Resources:" ]
     then
-        echo -e "\e[1;31m""Origins displacement occured on line $lineno of $(head -n1 "$buffer")""\e[0m" >&2
+        echo -e "\e[1;31m""Resource displacement occured on line $lineno of $(head -n1 "$buffer")""\e[0m" >&2
         exit 127
     fi
 
-    origins="## Origins\n\n"
+    origins="## Resources\n\n"
 
     lineno=0
     read -r line
@@ -65,7 +65,7 @@ unpack_practice() {
     read -r line
     if [ "$line" != "> References:" ]
     then
-        echo -e "\e[1;31m""References displacement occured on line $lineno""\e[0m" >&2
+        echo -e "\e[1;31m""Reference displacement occured on line $lineno""\e[0m" >&2
         exit 126
     fi
 

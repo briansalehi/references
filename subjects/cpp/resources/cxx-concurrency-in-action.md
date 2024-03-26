@@ -1,5 +1,5 @@
 # C++ Concurrency in Action
-<img src="../covers/9781617294693.jpg" width="200"/>
+<img src="../../covers/9781617294693.jpg" width="200"/>
 
 ## Chapter 1/11 <sup>(published)</sup>
 

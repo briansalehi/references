@@ -1,5 +1,5 @@
 # The Shellcoder's Handbook
-<img src="../covers/9780470080238.jpg" width="200"/>
+<img src="../../covers/9780470080238.jpg" width="200"/>
 
 ## Chapter 1/27 Before You Begin <sup>(completed)</sup>
 

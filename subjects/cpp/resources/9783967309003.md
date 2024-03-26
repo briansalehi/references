@@ -1,5 +1,5 @@
 # C++ Move Semantics: The Complete Guide
-<img src="../covers/9783967309003.jpg" width="200"/>
+<img src="../../covers/9783967309003.jpg" width="200"/>
 
 ## Chapter 1/15 <sup>(published)</sup>
 

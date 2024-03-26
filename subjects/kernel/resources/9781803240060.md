@@ -1,5 +1,5 @@
 # Linux Device Driver Development
-<img src="../covers/9781803240060.jpg" width="200"/>
+<img src="../../covers/9781803240060.jpg" width="200"/>
 
 ## Chapter 1/17 <sup>(published)</sup>
 

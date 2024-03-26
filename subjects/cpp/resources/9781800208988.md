@@ -1,5 +1,5 @@
 # Modern C++ Programming Cookbook
-<img src="../covers/9781800208988.jpg" width="200"/>
+<img src="../../covers/9781800208988.jpg" width="200"/>
 
 ## Chapter 1/12 <sup>(published)</sup>
 

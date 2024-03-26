@@ -1,5 +1,5 @@
 # Thomas' Calculus
-<img src="../covers/9781292253114.jpg" width="200"/>
+<img src="../../covers/9781292253114.jpg" width="200"/>
 
 ## Chapter 1/17 <sup>(completed)</sup>
 

@@ -1,5 +1,5 @@
 # Modern CMake for C++
-<img src="../covers/9781801070058.jpg" width="200"/>
+<img src="../../covers/9781801070058.jpg" width="200"/>
 
 ## Chapter 1/13 <sup>(completed)<sup>
 

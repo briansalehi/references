@@ -1,5 +1,5 @@
 # The C++ Standard Library
-<img src="../covers/9780321623218.jpg" width="200"/>
+<img src="../../covers/9780321623218.jpg" width="200"/>
 
 ## Chapter 1/19 <sup>(ignored)</sup>
 

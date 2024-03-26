@@ -1,5 +1,5 @@
 # Practical Binary Analysis
-<img src="../covers/9781593279127.jpg" width="200"/>
+<img src="../../covers/9781593279127.jpg" width="200"/>
 
 ## Chapter 1/13 Anatomy of a Binary <sup>(published)</sup>
 

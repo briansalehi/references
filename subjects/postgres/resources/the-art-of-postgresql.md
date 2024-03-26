@@ -1,5 +1,5 @@
 # [The Art of PostgreSQL](https://theartofpostgresql.com)
-<img alt="The Art of PostgreSQL" src="../covers/the-art-of-postgresql.jpg" width="200"/>
+<img alt="The Art of PostgreSQL" src="../../covers/the-art-of-postgresql.jpg" width="200"/>
 
 ## Chapter 1/51
 ## Chapter 2/51

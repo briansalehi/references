@@ -1,4 +1,5 @@
 # Vim
+[Reviews](vim.md)
 
 ### ★★★ [Practical Vim](resources/9781934356982.md)
 [<img src="covers/9781934356982.jpg" width="200"/>](resources/9781934356982.md)

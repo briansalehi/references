@@ -1,5 +1,5 @@
 # Concurrency with Modern C++
-<img src="../covers/concurrency-with-modern-cpp.jpg" width="200"/>
+<img src="../../covers/concurrency-with-modern-cpp.jpg" width="200"/>
 
 ## Chapter 1/17 <sup>(ignored)</sup>
 

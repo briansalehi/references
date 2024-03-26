@@ -1,5 +1,5 @@
 # Linux Kernel Programming Part 2
-<img src="../covers/9781801079518.jpg" width="200"/>
+<img src="../../covers/9781801079518.jpg" width="200"/>
 
 ## Chapter 1/7 <sup>(writing)</sup>
 
