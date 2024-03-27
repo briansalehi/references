@@ -9,3 +9,8 @@
 
 ## ★★★ [Heading for the Yocto Project](resources/heading-for-the-yocto-project.md) ([Source](https://github.com/CollaborativeWritersHub/heading-for-the-yocto-project))
 
+## ★★☆ [Embedded Linux Full Course](resources/embedded-linux-full-course.md) ([Source](https://anisa.co.ir/courses/linux-server-management/embedded-linux-training-course/embedded-linux-from-scratch-raspberrypi.html))
+
+embedded-linux-using-yocto.md
+heading-for-the-yocto-project.md
+mastering-embedded-linux-programming.md
