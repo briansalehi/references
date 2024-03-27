@@ -1,9 +1,13 @@
 # Embedded Linux Full Course
-<img src="covers/linux.jpg" width="200"/>
+<img src="../../../covers/linux.jpg" width="200"/>
+
+## Chapter 1/2
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>
 
+> **Description**
+>
 > The board should be physically connected to the host using USB to Serial cable.
 >
 > The program which can be used to connect the board with a TTY are as follows:
@@ -14,11 +18,13 @@
 > * putty
 > * screen
 > * tio
-
-> Origin: 3:25:00
-
-> References:
----
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course - 3:25:00
+> ---
+> **References**
+> ---
 </details>
 
 <details>
@@ -764,3 +770,5 @@
 > References:
 ---
 </details>
+
+## Chapter 2/2
