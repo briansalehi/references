@@ -1,5 +1,4 @@
 # Embedded Linux Full Course
-<img src="../../../covers/linux.jpg" width="200"/>
 
 ## Chapter 1/2 <sup>(writing)</sup>
 
