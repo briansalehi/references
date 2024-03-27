@@ -1,6 +1,6 @@
 # Embedded Linux Full Course
 
-## Chapter 1/2 <sup>(writing)</sup>
+## Chapter 1/8 <sup>(writing)</sup>
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>
@@ -770,5 +770,10 @@
 ---
 </details>
 
-## Chapter 2/2 <sup>(writing)</sup>
-
+## Chapter 2/8 <sup>(writing)</sup>
+## Chapter 3/8 <sup>(writing)</sup>
+## Chapter 4/8 <sup>(writing)</sup>
+## Chapter 5/8 <sup>(writing)</sup>
+## Chapter 6/8 <sup>(writing)</sup>
+## Chapter 7/8 <sup>(writing)</sup>
+## Chapter 8/8 <sup>(writing)</sup>
