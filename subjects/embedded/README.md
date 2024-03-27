@@ -1,2 +1,2 @@
 # Embedded Linux
-[Reviews](embedded.md)
+[References](embedded.md)

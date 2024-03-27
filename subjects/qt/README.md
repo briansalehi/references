@@ -1,5 +1,5 @@
 # Qt
-[Reviews](qt.md)
+[References](qt.md)
 
 ## ★★★ [Qt6 Manual](https://doc.qt.io)
 [<img src="https://doc.qt.io/style/qt-logo-documentation.svg" width="200"/>](resources/qt6-manual.md)

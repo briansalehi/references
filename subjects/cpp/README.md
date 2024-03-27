@@ -1,5 +1,5 @@
 # C++
-[Reviews](cpp.md)
+[References](cpp.md)
 
 ## References
 

@@ -1,5 +1,5 @@
 # OpenCV
-[Reviews](opencv.md)
+[References](opencv.md)
 
 ## [OpenCV Manual](http://docs.opencv.org)
 

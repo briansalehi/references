@@ -1,2 +1,2 @@
 # Tmux
-[Reviews](tmux.md)
+[References](tmux.md)

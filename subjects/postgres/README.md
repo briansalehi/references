@@ -1,5 +1,5 @@
 # Databases
-[Reviews](postgres.md)
+[References](postgres.md)
 
 Covers database concepts, languages, and popular projects.
 

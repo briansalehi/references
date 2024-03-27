@@ -1,2 +1,2 @@
 # LaTeX
-[Reviews](latex.md)
+[References](latex.md)
