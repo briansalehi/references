@@ -1,5 +1,5 @@
 # Step by Step Learning x64 Assembly Language
-<img src="../../covers/9781394155255.jpg" width="200"/>
+<img src="../../../covers/9781394155255.jpg" width="200"/>
 
 ## Chapter 1/12
 ## Chapter 2/12

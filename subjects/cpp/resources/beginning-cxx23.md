@@ -1,5 +1,5 @@
 # Beginning C++23: From Novice to Professional
-<img src="../../covers/9781484293423.jpg" width="200"/>
+<img src="../../../covers/9781484293423.jpg" width="200"/>
 
 ## Chapter 1/21 <sup>(writing)</sup>
 

@@ -1,5 +1,5 @@
 # Boost.Asio C++ Network Programming <sup>(covered)</sup>
-<img src="../../covers/9781782163268.jpg" width="200"/>
+<img src="../../../covers/9781782163268.jpg" width="200"/>
 
 ## Chapter 1/7 <sup>(ignored)</sup>
 

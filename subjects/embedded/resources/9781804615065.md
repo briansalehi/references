@@ -1,5 +1,5 @@
 # Embedded Linux Development Using Yocto Project
-<img src="../../covers/9781804615065.jpg" width="200"/>
+<img src="../../../covers/9781804615065.jpg" width="200"/>
 
 ## Chapter 1/17 <sup>(published)</sup>
 

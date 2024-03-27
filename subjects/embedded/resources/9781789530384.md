@@ -1,5 +1,5 @@
 # Mastering Embedded Linux Programming
-<img src="../../covers/9781789530384.jpg" width="200"/>
+<img src="../../../covers/9781789530384.jpg" width="200"/>
 
 ## Chapter 1/19 <sup>(published)</sup>
 

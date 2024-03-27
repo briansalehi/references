@@ -1,5 +1,5 @@
 # Learning OpenCV 3
-<img src="../../covers/9781491937990.jpg" width="200"/>
+<img src="../../../covers/9781491937990.jpg" width="200"/>
 
 ## Chapter 1/23 <sup>(ignored)</sup>
 

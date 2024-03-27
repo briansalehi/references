@@ -1,5 +1,5 @@
 # The Linux Programming Interface
-<img src="../../covers/9781593272203.jpg" width="200"/>
+<img src="../../../covers/9781593272203.jpg" width="200"/>
 
 ## Chapter 1/64 History and Standards <sup>(ignored)</sup>
 

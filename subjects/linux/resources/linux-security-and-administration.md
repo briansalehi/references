@@ -1,5 +1,5 @@
 # Linux Security and Administration
-<img src="../../covers/linux-security-and-administration.jpg" width="200"/>
+<img src="../../../covers/linux-security-and-administration.jpg" width="200"/>
 
 ## Chapter 1/12 <sup>(ignored)</sup>
 

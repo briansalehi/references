@@ -1,5 +1,5 @@
 # Boost.Asio C++ Network Programming Cookbook
-<img src="../../covers/9781783986545.jpg" width="200"/>
+<img src="../../../covers/9781783986545.jpg" width="200"/>
 
 ## Chapter 1/6
 

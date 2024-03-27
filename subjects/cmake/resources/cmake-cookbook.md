@@ -1,5 +1,5 @@
 # CMake Cookbook
-<img src="../../covers/9781788470711.jpg" width="200"/>
+<img src="../../../covers/9781788470711.jpg" width="200"/>
 
 ## Chapter 1/15 <sup>(writing)</sup>
 

@@ -1,5 +1,5 @@
 # C++17 STL Cookbook
-<img src="../../covers/9781787120495.jpg" width="200"/>
+<img src="../../../covers/9781787120495.jpg" width="200"/>
 
 ## Chapter 1/10
 ## Chapter 2/10

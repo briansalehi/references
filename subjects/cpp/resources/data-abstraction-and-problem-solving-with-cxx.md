@@ -1,5 +1,5 @@
 # Data Abstraction & Problem Solving with C++
-<img src="../../covers/9780134463971.jpg" width="200"/>
+<img src="../../../covers/9780134463971.jpg" width="200"/>
 
 ## Chapter 1/21 <sup>(writing)</sup>
 

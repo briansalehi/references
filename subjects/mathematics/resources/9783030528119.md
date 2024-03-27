@@ -1,5 +1,5 @@
 # Introduction to Linear and Matrix Algebra
-<img src="../../covers/9783030528119.jpg" width="200"/>
+<img src="../../../covers/9783030528119.jpg" width="200"/>
 
 ## Chapter 1/12 <sup>(writing)</sup>
 

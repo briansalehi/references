@@ -1,5 +1,5 @@
 # Learn Docker in a month of Lunches
-<img src="../../covers/9781617297052.jpg" width="200"/>
+<img src="../../../covers/9781617297052.jpg" width="200"/>
 
 ## Chapter 1/22
 ## Chapter 2/22
