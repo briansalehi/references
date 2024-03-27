@@ -1,7 +1,7 @@
 # Embedded Linux Full Course
 <img src="../../../covers/linux.jpg" width="200"/>
 
-## Chapter 1/2
+## Chapter 1/2 <sup>(writing)</sup>
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>
@@ -765,10 +765,11 @@
 > usermod -G -a dialout brian
 > ``````
 
-> Origin: 
+> Origin: 14:55:00
 
 > References:
 ---
 </details>
 
-## Chapter 2/2
+## Chapter 2/2 <sup>(writing)</sup>
+
