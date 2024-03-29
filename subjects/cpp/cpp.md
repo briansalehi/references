@@ -404,6 +404,8 @@
 > ---
 </details>
 
+## Lambda
+
 ## Raw Pointer
 
 ## Smart Pointer
@@ -2125,6 +2127,112 @@
 > **References**
 > - https://en.cppreference.com/w/cpp/language/data_members
 ---
+</details>
+
+## No Discard Attribute
+
+<details>
+<summary>Indicate error when a return value from a function is ignored?</summary>
+
+> **Description**
+>
+> ```cpp
+> [[nodiscard]] bool completed();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Add a message to discard attribute?</summary>
+
+> **Description**
+>
+> ```cpp
+> [[nodiscard("lock objects should never be discarded")]] bool generated();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Indicate error when a return value from lambda is ignored?</summary>
+
+> **Description**
+>
+> ```cpp
+> auto l = [] [[nodiscard]] () -> int { return 42; };
+> l(); // warning here
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Indicate error when a type is ignored when returned?</summary>
+
+> **Description**
+>
+> ```cpp
+> struct [[nodiscard]] ErrorType{};
+> ErrorType get_value();
+>
+> int main()
+> {
+>     get_value(); // warning here
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Indicate error when a constructor is used without object name?</summary>
+
+> **Description**
+>
+> *C++20*
+> ```cpp
+> struct Holder
+> {
+>     [[nodiscard]] Holder(int value);
+>     Holder();
+> };
+>
+> int main()
+> {
+>     Holder{42}; // warning here
+>     Holder h{42}; // constructed object not discarded, no warning
+>     Holder{}; // default constructed, no warning
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> ---
+> **References**
+> ---
 </details>
 
 ## This Deduction
