@@ -1,5 +1,5 @@
 # Docker
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Daemon
 

@@ -1,5 +1,5 @@
 # OpenSSL
-[Reviews](README.md)
+[Resources](README.md)
 
 ## CA Private Key
 

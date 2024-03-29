@@ -1,2 +1,2 @@
 # Algorithms
-[Reviews](README.md)
+[Resources](README.md)

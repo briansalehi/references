@@ -1,5 +1,5 @@
 # Git
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Porcelain Commands
 

@@ -1,5 +1,5 @@
 # Linux System Programming
-[References](c.md)
+[Practices](c.md)
 
 Covers Linux interface programming in C and C++.
 

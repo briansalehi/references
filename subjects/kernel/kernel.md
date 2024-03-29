@@ -1,5 +1,5 @@
 # Linux Kernel Development
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Linux Kernel Source Tree
 

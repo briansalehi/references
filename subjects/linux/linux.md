@@ -1,5 +1,5 @@
 # Linux Administration
-[Reviews](README.md)
+[Resources](README.md)
 
 ## RAID
 

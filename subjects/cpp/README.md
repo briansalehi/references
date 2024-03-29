@@ -1,5 +1,5 @@
 # C++
-[References](cpp.md)
+[Practices](cpp.md)
 
 ## References
 

@@ -1,5 +1,5 @@
 # Perf
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Performance Analysis
 

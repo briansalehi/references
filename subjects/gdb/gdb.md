@@ -1,5 +1,5 @@
 # GNU Debugger
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Debug Information Generation
 

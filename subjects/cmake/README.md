@@ -1,5 +1,5 @@
 # CMake
-[References](cmake.md)
+[Practices](cmake.md)
 
 ### ★★ [Professional CMake](resources/9781925904208.md)
 [<img src="../../covers/9781925904208.jpg" width="200"/>](resources/9781925904208.md)

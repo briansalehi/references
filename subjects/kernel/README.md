@@ -1,5 +1,5 @@
 # Linux Kernel Development
-[References](kernel.md)
+[Practices](kernel.md)
 
 ## ★★★ [Linux Device Driver Development](resources/9781803240060.md)
 [<img src="../../covers/9781803240060.jpg" width="200"/>](resources/9781803240060.md)

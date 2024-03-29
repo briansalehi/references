@@ -1,2 +1,2 @@
 # Tmux
-[References](tmux.md)
+[Practices](tmux.md)

@@ -1,5 +1,5 @@
 # C++ Programming
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Building Executable
 

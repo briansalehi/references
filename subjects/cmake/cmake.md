@@ -1,5 +1,5 @@
 # CMake
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Configuring Project
 

@@ -1,5 +1,5 @@
 # Boost
-[References](boost.md)
+[Practices](boost.md)
 
 ## ★★★ [Boost Libraries](https://www.boost.org/doc/libs/?view=condensed)
 

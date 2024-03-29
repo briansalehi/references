@@ -1,5 +1,5 @@
 # Software Security
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Binary Analysis
 

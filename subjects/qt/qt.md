@@ -1,5 +1,5 @@
 # Qt
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Qt Installation
 

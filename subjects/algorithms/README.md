@@ -1,5 +1,5 @@
 # Algorithms & Data Structures
-[References](algorithms.md)
+[Practices](algorithms.md)
 
 ## ★★★ [A Common-Sense Guide to Data Structures and Algorithms](resources/9781680507225.md)
 [<img alt="A Common-Sense Guide to Data Structures and Algorithms" src="../../covers/9781680507225.jpg" width="200"/>](resources/9781680507225.md)

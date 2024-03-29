@@ -1,5 +1,5 @@
 # Mathematics
-[References](mathematics.md)
+[Practices](mathematics.md)
 
 ## Linear Algebra
 

@@ -1,5 +1,5 @@
 # tmux
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Configuration
 

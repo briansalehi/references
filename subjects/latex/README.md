@@ -1,2 +1,2 @@
 # LaTeX
-[References](latex.md)
+[Practices](latex.md)

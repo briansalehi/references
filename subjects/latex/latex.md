@@ -1,5 +1,5 @@
 # LaTeX
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Document
 

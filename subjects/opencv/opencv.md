@@ -1,5 +1,5 @@
 # OpenCV
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Basic Data Types
 

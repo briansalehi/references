@@ -1,5 +1,5 @@
 # Mathematics
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Functions
 

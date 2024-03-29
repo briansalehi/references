@@ -1,2 +1,2 @@
 # Perf
-[References](perf.md)
+[Practices](perf.md)

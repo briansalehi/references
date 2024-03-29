@@ -1,5 +1,5 @@
 # Linux Administration
-[References](linux.md)
+[Practices](linux.md)
 
 Covers Linux administration.
 

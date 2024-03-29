@@ -1,5 +1,5 @@
 # Databases
-[References](postgres.md)
+[Practices](postgres.md)
 
 Covers database concepts, languages, and popular projects.
 

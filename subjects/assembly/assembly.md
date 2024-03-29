@@ -1,5 +1,5 @@
 # x64 Assembly
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Compiling with NASM
 

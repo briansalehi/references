@@ -1,5 +1,5 @@
 # Embedded Linux
-[Reviews](README.md)
+[Resources](README.md)
 
 ## Embedded Linux Development
 
