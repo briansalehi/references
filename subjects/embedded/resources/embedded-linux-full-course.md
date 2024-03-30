@@ -1,6 +1,8 @@
 # Embedded Linux Full Course
 
-## Chapter 1/8 <sup>(writing)</sup>
+## Chapter 1/8 <sup>(published)</sup>
+
+## Host Toolchains
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>
@@ -24,6 +26,25 @@
 > ---
 > **References**
 > ---
+</details>
+
+<details>
+<summary>How to connect to an embedded device using <code>picocom</code> through <code>/dev/ttyUSB0</code> device driver?</summary>
+
+> ```sh
+> picocom --baud 115200 /dev/ttyUSB0
+> ``````
+>
+> In case you don't have enough permission to run this command, you need to add your user into the `dialout` group:
+>
+> ```sh
+> usermod -G -a dialout brian
+> ``````
+
+> Origin: 14:55:00
+
+> References:
+---
 </details>
 
 <details>
@@ -143,6 +164,8 @@
 > References:
 ---
 </details>
+
+## Cross Toolchains
 
 <details>
 <summary>What toolchains are available to use in kernel image build process?</summary>
@@ -297,6 +320,8 @@
 > References:
 ---
 </details>
+
+## UBoot
 
 <details>
 <summary>How to obtain U-boot and configure it?</summary>
@@ -657,6 +682,8 @@
 ---
 </details>
 
+## Raspberry Pi
+
 <details>
 <summary>Where to download the Raspberry Pi bootloader from?</summary>
 
@@ -714,6 +741,8 @@
 ---
 </details>
 
+## Quick Emulator
+
 <details>
 <summary>How to list all available processors available to QEMU?</summary>
 
@@ -740,6 +769,10 @@
 ---
 </details>
 
+## Chapter 2/8 <sup>(writing)</sup>
+
+## Patch Files
+
 <details>
 <summary>How to create a patch?</summary>
 
@@ -751,26 +784,6 @@
 ---
 </details>
 
-<details>
-<summary>How to connect to an embedded device using <code>picocom</code> through <code>/dev/ttyUSB0</code> device driver?</summary>
-
-> ```sh
-> picocom --baud 115200 /dev/ttyUSB0
-> ``````
->
-> In case you don't have enough permission to run this command, you need to add your user into the `dialout` group:
->
-> ```sh
-> usermod -G -a dialout brian
-> ``````
-
-> Origin: 14:55:00
-
-> References:
----
-</details>
-
-## Chapter 2/8 <sup>(writing)</sup>
 ## Chapter 3/8 <sup>(writing)</sup>
 ## Chapter 4/8 <sup>(writing)</sup>
 ## Chapter 5/8 <sup>(writing)</sup>
