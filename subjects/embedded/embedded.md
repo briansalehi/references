@@ -226,7 +226,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 14:55:00
+> - Embedded Linux Full Course by Anisa Institute - 14:55:00
 
 > References:
 ---
@@ -240,7 +240,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:30:00
+> - Embedded Linux Full Course by Anisa Institute - 4:30:00
 
 > References:
 ---
@@ -254,7 +254,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:35:00
+> - Embedded Linux Full Course by Anisa Institute - 4:35:00
 
 > References:
 ---
@@ -268,7 +268,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:45:00
+> - Embedded Linux Full Course by Anisa Institute - 4:45:00
 
 > References:
 ---
@@ -282,7 +282,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:47:00
+> - Embedded Linux Full Course by Anisa Institute - 4:47:00
 
 > References:
 ---
@@ -298,7 +298,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:55:00
+> - Embedded Linux Full Course by Anisa Institute - 4:55:00
 
 > References:
 ---
@@ -312,7 +312,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 4:42:00
+> - Embedded Linux Full Course by Anisa Institute - 4:42:00
 
 > References:
 ---
@@ -335,7 +335,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 5:00:00
+> - Embedded Linux Full Course by Anisa Institute - 5:00:00
 
 > References:
 ---
@@ -352,7 +352,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 5:50:00
+> - Embedded Linux Full Course by Anisa Institute - 5:50:00
 
 > References:
 ---
@@ -371,7 +371,7 @@
 > * [OpenEmbedded](https://openembedded.org) and [Yocto project](https://yoctoproject.org)
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 5:59:00
+> - Embedded Linux Full Course by Anisa Institute - 5:59:00
 
 > References:
 ---
@@ -390,7 +390,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:02:00
+> - Embedded Linux Full Course by Anisa Institute - 6:02:00
 
 > References:
 ---
@@ -404,7 +404,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:04:00
+> - Embedded Linux Full Course by Anisa Institute - 6:04:00
 
 > References:
 ---
@@ -428,7 +428,7 @@
 > Note that `.config` file should be available in the later case.
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:05:00
+> - Embedded Linux Full Course by Anisa Institute - 6:05:00
 
 > References:
 ---
@@ -442,7 +442,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:05:00
+> - Embedded Linux Full Course by Anisa Institute - 6:05:00
 
 > References:
 ---
@@ -460,7 +460,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:03:00
+> - Embedded Linux Full Course by Anisa Institute - 6:03:00
 
 > References:
 ---
@@ -474,7 +474,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:03:00
+> - Embedded Linux Full Course by Anisa Institute - 6:03:00
 
 > References:
 ---
@@ -503,7 +503,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 6:04:00
+> - Embedded Linux Full Course by Anisa Institute - 6:04:00
 
 > References:
 ---
@@ -517,7 +517,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 8:20:00
+> - Embedded Linux Full Course by Anisa Institute - 8:20:00
 
 > References:
 ---
@@ -931,7 +931,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 9:32:00
+> - Embedded Linux Full Course by Anisa Institute - 9:32:00
 
 > References:
 ---
@@ -961,7 +961,7 @@
 > * sqfsinfo, sqfsls, sqfssize, sqfswrite,...
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:07:00
+> - Embedded Linux Full Course by Anisa Institute - 10:07:00
 
 > References:
 ---
@@ -975,7 +975,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:11:00
+> - Embedded Linux Full Course by Anisa Institute - 10:11:00
 
 > References:
 ---
@@ -989,7 +989,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:12:00
+> - Embedded Linux Full Course by Anisa Institute - 10:12:00
 
 > References:
 ---
@@ -1001,7 +1001,7 @@
 > `loads`, `loadb`, `loady` commands.
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:13:00
+> - Embedded Linux Full Course by Anisa Institute - 10:13:00
 
 > References:
 ---
@@ -1015,7 +1015,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:14:00
+> - Embedded Linux Full Course by Anisa Institute - 10:14:00
 
 > References:
 ---
@@ -1029,7 +1029,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:15:00
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
 
 > References:
 ---
@@ -1043,7 +1043,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:15:00
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
 
 > References:
 ---
@@ -1059,7 +1059,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:16:00
+> - Embedded Linux Full Course by Anisa Institute - 10:16:00
 
 > References:
 ---
@@ -1073,7 +1073,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:15:00
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
 
 > References:
 ---
@@ -1087,7 +1087,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:15:00
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
 
 > References:
 ---
@@ -1101,7 +1101,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:16:00
+> - Embedded Linux Full Course by Anisa Institute - 10:16:00
 
 > References:
 ---
@@ -1116,7 +1116,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:19:00
+> - Embedded Linux Full Course by Anisa Institute - 10:19:00
 
 > References:
 ---
@@ -1143,7 +1143,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:20:00
+> - Embedded Linux Full Course by Anisa Institute - 10:20:00
 
 > References:
 ---
@@ -1157,7 +1157,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:20:00
+> - Embedded Linux Full Course by Anisa Institute - 10:20:00
 
 > References:
 ---
@@ -1173,7 +1173,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:22:00
+> - Embedded Linux Full Course by Anisa Institute - 10:22:00
 
 > References:
 ---
@@ -1187,7 +1187,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:23:00
+> - Embedded Linux Full Course by Anisa Institute - 10:23:00
 
 > References:
 ---
@@ -1202,7 +1202,7 @@
 > * `ethaddr`
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:24:00
+> - Embedded Linux Full Course by Anisa Institute - 10:24:00
 
 > References:
 ---
@@ -1218,7 +1218,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:24:00
+> - Embedded Linux Full Course by Anisa Institute - 10:24:00
 
 > References:
 ---
@@ -1234,7 +1234,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:25:00
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
 
 > References:
 ---
@@ -1249,7 +1249,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:25:00
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
 
 > References:
 ---
@@ -1265,7 +1265,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:25:00
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
 
 > References:
 ---
@@ -1285,7 +1285,7 @@
 > By reading these variables, the boot sequence can be changed accordingly.
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 10:34:00
+> - Embedded Linux Full Course by Anisa Institute - 10:34:00
 
 > References:
 ---
@@ -1304,7 +1304,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 11:18:00
+> - Embedded Linux Full Course by Anisa Institute - 11:18:00
 
 > References:
 ---
@@ -1346,7 +1346,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 11:18:00
+> - Embedded Linux Full Course by Anisa Institute - 11:18:00
 
 > References:
 ---
@@ -1362,7 +1362,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 13:17:00
+> - Embedded Linux Full Course by Anisa Institute - 13:17:00
 
 > References:
 ---
@@ -1376,7 +1376,7 @@
 > ``````
 
 > Resources:
-> - Embedded Linux Course by Anisa Institute - 13:18:00
+> - Embedded Linux Full Course by Anisa Institute - 13:18:00
 
 > References:
 ---

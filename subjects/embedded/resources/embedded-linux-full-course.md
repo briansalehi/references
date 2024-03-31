@@ -1,4 +1,4 @@
-# Embedded Linux Full Course
+# Embedded Linux Full Course by Anisa Institute
 
 ## Chapter 1/8 <sup>(published)</sup>
 
@@ -9,7 +9,8 @@
 
 > **Description**
 >
-> The board should be physically connected to the host using USB to Serial cable.
+> The board should be physically connected to the host using USB to Serial
+> cable.
 >
 > The program which can be used to connect the board with a TTY are as follows:
 >
@@ -35,7 +36,8 @@
 > picocom --baud 115200 /dev/ttyUSB0
 > ``````
 >
-> In case you don't have enough permission to run this command, you need to add your user into the `dialout` group:
+> In case you don't have enough permission to run this command, you need to add
+> your user into the `dialout` group:
 >
 > ```sh
 > usermod -G -a dialout brian
@@ -130,14 +132,16 @@
 <details>
 <summary>Why do C libraries require kernel headers and how kernel headers can be installed?</summary>
 
-> C libraries and compiled programs need to interact with the kernel.  
-> Available system calls, many constant definitions and data structures are defined in kernel headers.  
-> Therefore, compiling C libraries require kernel headers.
+> C libraries and compiled programs need to interact with the kernel. Available
+> system calls, many constant definitions and data structures are defined in
+> kernel headers. Therefore, compiling C libraries require kernel headers.
 >
-> Kernel headers can be found in the kernel source tree in `include/uapi` and `arch/<arch>/include/uapi`.  
-> These headers can be included in C source files as `<linux>` and `<unistd>`.
+> Kernel headers can be found in the kernel source tree in `include/uapi` and
+> `arch/<arch>/include/uapi`. These headers can be included in C source files
+> as `<linux>` and `<unistd>`.
 >
-> To install kernel headers, run the following `make` target in the kernel source tree:
+> To install kernel headers, run the following `make` target in the kernel
+> source tree:
 >
 > ```sh
 > make headers_install
@@ -152,8 +156,9 @@
 <details>
 <summary>What is the GNU GCC compiler flag to specify processor architecture and processor specific optimization?</summary>
 
-> `-march` option is used to set processor architecture, e.g. armv6, armv7, aarch64, x86\_64, etc.
-> `-mtune` option is used to set processor specific optimization, e.g. bcm2835, bcm2711, etc.
+> `-march` option is used to set processor architecture, e.g. armv6, armv7,
+> aarch64, x86\_64, etc. `-mtune` option is used to set processor specific
+> optimization, e.g. bcm2835, bcm2711, etc.
 >
 > ```sh
 > gcc -march armv6 -mtune bcm2835 source.c
@@ -253,7 +258,8 @@
 <details>
 <summary>How to use <code>Crosstool-ng</code> to configure selected architecture specific cross-toolchain?</summary>
 
-> Crosstool-ng uses kernel build system `Kbuild` and kernel configuration system `Kconfig` to configure and build the cross-toolchain.
+> Crosstool-ng uses kernel build system `Kbuild` and kernel configuration
+> system `Kconfig` to configure and build the cross-toolchain.
 >
 > ```sh
 > ct-ng menuconfig
@@ -565,7 +571,8 @@
 <details>
 <summary>What environment variable can be set within U-boot shell to specify the boot command sequence that U-boot should automatically execute at boot time?</summary>
 
-> Commands will be executed after a configurable delay `bootdelay`, if process is not interrupted.
+> Commands will be executed after a configurable delay `bootdelay`, if process
+> is not interrupted.
 >
 > ```uboot
 > setenv bootcmd 'tftp 0x21000000 zImage; tftp 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
@@ -607,7 +614,8 @@
 <details>
 <summary>What command can be used within U-boot shell to see the size of the latest copy into memory?</summary>
 
-> After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of copy can be seen by:
+> After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of
+> copy can be seen by:
 >
 > ```uboot
 > filesize
@@ -672,9 +680,10 @@
 > fatload mmc 0 80000000 boot.ini
 > ``````
 >
-> Then by executing `source` command, the contents within `boot.ini` file which was recently loaded will be read.  
-> This file should obbey the syntax of U-boot shell variables.  
-> By reading these variables, the boot sequence can be changed accordingly.
+> Then by executing `source` command, the contents within `boot.ini` file which
+> was recently loaded will be read. This file should obbey the syntax of U-boot
+> shell variables. By reading these variables, the boot sequence can be changed
+> accordingly.
 
 > Origin: 10:34:00
 
@@ -687,7 +696,8 @@
 <details>
 <summary>Where to download the Raspberry Pi bootloader from?</summary>
 
-> The official `raspbberypi` repository holds the `boot` directory where `start.elf` file and the device tree files can be found:
+> The official `raspbberypi` repository holds the `boot` directory where
+> `start.elf` file and the device tree files can be found:
 >
 > ```sh
 > wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
@@ -720,14 +730,15 @@
 > fdisk /dev/sda
 > ``````
 >
-> Create a 100M sized partition and set the bootable flag.  
+> Create a 100M sized partition and set the bootable flag.
 > Then format that bootable partition with vfat filesystem:
 >
 > ```sh
 > mkfs -t vfat /dev/sda1
 > ``````
 >
-> Mount it and then copy `u-boot.bin`, `start.elf` (raspberrypi repository), `bcm2708-rpi-zero.dtb` (raspbberypi repository) files into the filesystem:
+> Mount it and then copy `u-boot.bin`, `start.elf` (raspberrypi repository),
+> `bcm2708-rpi-zero.dtb` (raspbberypi repository) files into the filesystem:
 >
 > ```sh
 > mount /dev/sda1 /mnt
@@ -777,11 +788,342 @@
 <summary>How to create a patch?</summary>
 
 > git format-patch
-
-> Origin: 14:55:00
-
+>
+> ---
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 14:55:00
+> ---
 > References:
----
+> ---
+</details>
+
+## Kernel Configuration
+
+<details>
+<summary>What environment variable is required when building the kernel?</summary>
+
+> **Description**
+>
+> ```sh
+> export ARCH=arm
+> export CROSS_COMPILE=arm-black-linux-gnueabi-
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:08:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What kernel config is recommended to use for desktop systems?</summary>
+
+> **Description**
+>
+> ```sh
+> cp /boot/config-$(uname -r) .config
+> zcat /proc/config.gz > .config
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:10:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Save your modified config as a default config to be used later?</summary>
+
+> **Description**
+>
+> ```sh
+> make savedefconfig
+> mv defconfig arch/<arch>/configs/custom_defconfig
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:20:00
+> ---
+> **References**
+> ---
+</details>
+
+## Config Writing
+
+<details>
+<summary>What are the different types of a kernel configuration option?</summary>
+
+> **Description**
+>
+> * `bool`: `true`, `false`
+> * `tristate`: `true`, `module`, `false`
+> * `int`
+> * `hex`: `CONFIG_PAGE_OFFSET=0xC0000000`
+> * `string`: `CONFIG_LOCAL_VERSION=-no-network`
+>
+> ```config
+> menuconfig ATA
+>     tristate "Serial ATA and Parallel ATA drivers (libata)"
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:27:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What dependencies are available for kernel configutration options?</summary>
+
+> **Description**
+>
+> * `depends on`: option B that depends on option A is not visible until option
+>   A is enabled.
+> * `select`: option B that depends on option A, when option A is enabled,
+>   option B is automatically enabled.
+>
+> ```config
+> menuconfig ATA
+>     tristate "Serial ATA and Parallel ATA drivers (libata)"
+>     depends on HAS_IOMEM
+>     depends on BLOCK
+>     select SCSI
+>     select GLOB
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:28:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Building
+
+<details>
+<summary>Make building process faster by running build in parallel?</summary>
+
+> **Description**
+>
+> ```sh
+> make -j8
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:38:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Make building process faster multiple times by caching build artifacts?</summary>
+
+> **Description**
+>
+> ```sh
+> export CROSS_COMPILE="ccache arm-black-linux-gnueabi-"
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:39:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What are the kernel build artifacts?</summary>
+
+> **Description**
+>
+> * `vmlinuz`: raw uncompressed kernel image for debugging
+> * `arch/<arch>/boot/\*Image`: `(bzImage, zImage, Image.gz)` final and usually compressed kernel image that can be booted
+> * `arch/<arch>/boot/dts/\*.dtb`: compiled device tree files
+> * `.ko`: kernel object files spread over the kernel source tree
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:40:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Image Installation
+
+<details>
+<summary>How many installation targets do we have to run?</summary>
+
+> **Description**
+>
+> * `make install`
+> * `make modules_install`
+> * `make headers_install`
+> * `make dtb_install`
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:45:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Install built kernel from source tree?</summary>
+
+> **Description**
+>
+> ```sh
+> make install
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:43:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What artifacts will be installed from the kernel source tree?</summary>
+
+> **Description**
+>
+> * `/boot/vmlinuz-<version>`: compressed kernel image, same as the one in `arch/<arch>/boot`
+> * `/boot/System.map-<version>`: store kernel symbol addresses for debugging purposes
+> * `/boot/config-<version>`: kernel configuration for this version
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:44:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Modules Installation
+
+<details>
+<summary>Install modules from source tree?</summary>
+
+> **Description**
+>
+> ```sh
+> make modules_install
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:46:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the default path to install modules?</summary>
+
+> **Description**
+>
+> ```sh
+> make INSTALL_MOD_PATH=/path/to/destination modules_install
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:50:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What artifacts will be installed from source tree on modules installation?</summary>
+
+> **Description**
+>
+> Artifacts will be installed in `/lib/modules/<version>/`:
+>
+> * `kernel/`: all `.ko` files in the same directory structure as in the source.
+> * `modules.alias`, `modules.alias.bin`: used by udev to find drivers for devices.
+> * `modules.dep`, `modules.dep.bin`: module dependencies mapping.
+> * `modules.symbols`, `modules.symbols.bin`: tells which module a given symbol belongs to.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:46:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Source Cleanup
+
+<details>
+<summary>What cleaning targets do we have in kernel source?</summary>
+
+> **Description**
+>
+> * `make clean`
+> * `make mrproper`
+> * `make distclean`
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 15:52:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Archiving
+
+<details>
+<summary>Archive current kernel version?</summary>
+
+> **Description**
+>
+> ```sh
+> git archive --prefix=black-linux-6.2/ -o /tmp/black-linux-6.2.tar.gz 6.2
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 17:06:00
+> ---
+> **References**
+> ---
+</details>
+
+## Device Trees
+
+<details>
+<summary>What is the purpose of using device trees?</summary>
+
+> **Description**
+>
+> ```sh
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 17:33:00
+> ---
+> **References**
+> ---
 </details>
 
 ## Chapter 3/8 <sup>(writing)</sup>
