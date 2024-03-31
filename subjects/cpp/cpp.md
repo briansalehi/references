@@ -10876,6 +10876,260 @@
 > ---
 </details>
 
+## Contracts
+
+<details>
+<summary>Specify a contract for a function?</summary>
+
+> **Description**
+>
+> ```cpp
+int do_something(int input)
+    pre(input > 0),
+    post(ret: ret < input)
+{
+    return input - 1;
+}
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Enable contracts on a compiler to support a program with compilers?</summary>
+
+> **Description**
+>
+> ```sh
+> g++ -std=c++23 -O2 -fcontracts -fcontracts-nonattr
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What cannot be specified directly by a contract?</summary>
+
+> **Description**
+>
+> The relationships between elements within a range cannot be directly stated.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+## Contract Types
+
+<details>
+<summary>How many contract types do we have?</summary>
+
+> **Description**
+>
+> Narrow and wide contracts.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What are the narrow and wide contracts?</summary>
+
+> **Description**
+>
+> A function that accepts any input has a wide contract.
+>
+> A function that is limited in its acceptable input has a narrow contract.
+> Narrow contracts limits the possible values of a type.
+>
+> ```cpp
+> namespace std
+> {
+>     template <typename T, typename Allocator = allocator<T>>
+>     class vector
+>     {
+>     public:
+>         T& operator[](size_type pos);
+>         // narrow: pos < size()
+>
+>         T& at(size_type pos);
+>         // wide: throws if out of bound
+>
+>         T& front();
+>         // narrow: 0 != empty()
+>
+>         vector(vector&&);
+>         // wide
+>     };
+> } // std
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the definition of a bug in respect to contracts?</summary>
+
+> **Description**
+>
+> * Throwing exceptions, returning errors are part of the contract. Values or
+> * states that are out of contract are bugs and they are not something to
+>   handle.
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+## Contract Violation
+
+<details>
+<summary>What happens if we violate a contract?</summary>
+
+> **Description**
+>
+> Calling a function that is out of contracts results in undefined behavior.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+## Contract Violation Handler
+
+<details>
+<summary>What function will be called to handle a contract violation?</summary>
+
+> **Description**
+>
+> This handler should be used for logging not handling a contract like nothing
+> happened.
+>
+> You cannot call this function by yourself.
+>
+> ```cpp
+> void ::handle_contract_violation(std::contracts::contract_violation const& cv);
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+## Contract Controlling Modes
+
+<details>
+<summary>What controlling modes can be used against contracts?</summary>
+
+> **Description**
+>
+> * enforce
+> * observe
+> * ignore
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What happens when contracts are specified but ignore controlling mode is selected?</summary>
+
+> **Description**
+>
+> The compiler will compile contracts, checks for their correctness, and when
+> everything is checked all the contracts will be wiped from the code.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
+## Virtual Function Contracts
+
+<details>
+<summary>What are the limitations of using contracts with virtual functions?</summary>
+
+> **Description**
+>
+> When implementing contract for overriden functions, the contract cannot be
+> wider than the contract already defined for the virtual function within base
+> class.
+>
+> ```cpp
+> class base
+> {
+> public:
+>     virtual void do_something(int x)
+>         pre(x < 100)
+>     {
+>     }
+> };
+>
+> class derived : public base
+> {
+> public:
+>     virtual void do_something(int x)
+>         pre(x < 120)
+>     {
+>     }
+> };
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> ---
+> **References**
+> ---
+</details>
+
 ## Thread Construction
 
 <details>
