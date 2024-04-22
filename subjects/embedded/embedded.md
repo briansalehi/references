@@ -193,7 +193,8 @@
 
 > **Description**
 >
-> The board should be physically connected to the host using USB to Serial cable.
+> The board should be physically connected to the host using USB to Serial
+> cable.
 >
 > The program which can be used to connect the board with a TTY are as follows:
 >
@@ -219,7 +220,8 @@
 > picocom --baud 115200 /dev/ttyUSB0
 > ``````
 >
-> In case you don't have enough permission to run this command, you need to add your user into the `dialout` group:
+> In case you don't have enough permission to run this command, you need to add
+> your user into the `dialout` group:
 >
 > ```sh
 > usermod -G -a dialout brian
@@ -321,14 +323,16 @@
 <details>
 <summary>Why do C libraries require kernel headers and how kernel headers can be installed?</summary>
 
-> C libraries and compiled programs need to interact with the kernel.  
-> Available system calls, many constant definitions and data structures are defined in kernel headers.  
-> Therefore, compiling C libraries require kernel headers.
+> C libraries and compiled programs need to interact with the kernel. Available
+> system calls, many constant definitions and data structures are defined in
+> kernel headers. Therefore, compiling C libraries require kernel headers.
 >
-> Kernel headers can be found in the kernel source tree in `include/uapi` and `arch/<arch>/include/uapi`.  
-> These headers can be included in C source files as `<linux>` and `<unistd>`.
+> Kernel headers can be found in the kernel source tree in `include/uapi` and
+> `arch/<arch>/include/uapi`. These headers can be included in C source files
+> as `<linux>` and `<unistd>`.
 >
-> To install kernel headers, run the following `make` target in the kernel source tree:
+> To install kernel headers, run the following `make` target in the kernel
+> source tree:
 >
 > ```sh
 > make headers_install
@@ -344,8 +348,9 @@
 <details>
 <summary>What is the GNU GCC compiler flag to specify processor architecture and processor specific optimization?</summary>
 
-> `-march` option is used to set processor architecture, e.g. armv6, armv7, aarch64, x86\_64, etc.
-> `-mtune` option is used to set processor specific optimization, e.g. bcm2835, bcm2711, etc.
+> `-march` option is used to set processor architecture, e.g. armv6, armv7,
+> aarch64, x86\_64, etc. `-mtune` option is used to set processor specific
+> optimization, e.g. bcm2835, bcm2711, etc.
 >
 > ```sh
 > gcc -march armv6 -mtune bcm2835 source.c
@@ -451,7 +456,8 @@
 <details>
 <summary>How to use <code>Crosstool-ng</code> to configure selected architecture specific cross-toolchain?</summary>
 
-> Crosstool-ng uses kernel build system `Kbuild` and kernel configuration system `Kconfig` to configure and build the cross-toolchain.
+> Crosstool-ng uses kernel build system `Kbuild` and kernel configuration
+> system `Kconfig` to configure and build the cross-toolchain.
 >
 > ```sh
 > ct-ng menuconfig
@@ -872,7 +878,8 @@
 
 > **Description**
 >
-> In order for `pkg-config` to address library and header files belonging to *sqlite3*, it should be able to see `<sysroot>/usr/lib/pkgconfig/sqlite3.pc`:
+> In order for `pkg-config` to address library and header files belonging to
+> *sqlite3*, it should be able to see `<sysroot>/usr/lib/pkgconfig/sqlite3.pc`:
 >
 > ```sh
 > export CROSS_COMPILE="xtools/armv6-rpi-linux-gnueabihf-"
@@ -907,12 +914,12 @@
 > ---
 </details>
 
-## UBoot
+## U-Boot Configuration
 
 <details>
-<summary>How to obtain U-boot and configure it?</summary>
+<summary>How to obtain U-Boot and configure it?</summary>
 
-> Obtain the U-boot source tree from GitHub:
+> Obtain the U-Boot source tree from GitHub:
 >
 > ```sh
 > git clone https://github.com/u-boot/u-boot.git
@@ -921,7 +928,8 @@
 >
 > Configuration files are stored in `configs/` directory.
 >
-> To check if your desired board is already supported by U-boot, check if there is a match for that board in the `boards.cfg` file.
+> To check if your desired board is already supported by U-Boot, check if there
+> is a match for that board in the `boards.cfg` file.
 >
 > To use one of the configuration entries in `configs/` use `make` utility:
 >
@@ -937,366 +945,13 @@
 ---
 </details>
 
-<details>
-<summary>How to load a file from a filesystem to RAM within U-boot shell?</summary>
-
-> There are as many tools as there are filesystems to load an image into RAM:
->
-> *FAT filesystem*
-> ```uboot
-> fatload usb 0:1 0x21000000 zImage
-> ``````
->
-> *EXT4 filesystem*
-> ```uboot
-> ext4load usb 0:1 0x21000000 zImage
-> ``````
->
-> There are similarly other tools:
->
-> * fatinfo,  fatls,  fatsize,  fatwrite, ...
-> * ext2info, ext2ls, ext2size, ext2write,...
-> * ext3info, ext3ls, ext3size, ext3write,...
-> * ext4info, ext4ls, ext4size, ext4write,...
-> * sqfsinfo, sqfsls, sqfssize, sqfswrite,...
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:07:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to load a kernel image into RAM from network?</summary>
-
-> ```uboot
-> tftp
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:11:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to test network conectivity?</summary>
-
-> ```uboot
-> ping
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:12:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What utilities can be used within U-boot shell to load a kernel image from serial line to RAM?</summary>
-
-> `loads`, `loadb`, `loady` commands.
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:13:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to control the USB subsystem?</summary>
-
-> ```uboot
-> ping
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:14:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to control MMC subsystem?</summary>
-
-> ```uboot
-> mmc
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:15:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to read, write and erase contents to NAND flash?</summary>
-
-> ```uboot
-> nand
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:15:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What commands can be used within U-boot shell to erase, modify protection or write contents to NOR flash?</summary>
-
-> ```uboot
-> erase
-> protect
-> cp
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:16:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to display memory info?</summary>
-
-> ```uboot
-> md
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:15:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to modify memory info?</summary>
-
-> ```uboot
-> mm
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:15:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to display board information?</summary>
-
-> ```uboot
-> bdinfo
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:16:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to display environment variables?</summary>
-
-> ```uboot
-> printenv
-> printenv <variable-name>
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:19:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to set environment variables?</summary>
-
-> ```uboot
-> setenv <variable-name> <variable-value>
-> ``````
-
-> Origin 10:20:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to edit an environment variable?</summary>
-
-> ```uboot
-> editenv <variable-name>
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:20:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to save environment variables permanently?</summary>
-
-> ```uboot
-> saveenv
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:20:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What environment variable can be set within U-boot shell to specify the boot command sequence that U-boot should automatically execute at boot time?</summary>
-
-> Commands will be executed after a configurable delay `bootdelay`, if process is not interrupted.
->
-> ```uboot
-> setenv bootcmd 'tftp 0x21000000 zImage; tftp 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:22:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What environment variable can be set within U-boot shell to be passed to the kernel as arguments?</summary>
-
-> ```uboot
-> setenv bootargs ''
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:23:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What environment variables should be set within U-boot shell to load an image into RAM from network?</summary>
-
-> * `serverip`
-> * `ipaddr`
-> * `netmask`
-> * `ethaddr`
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:24:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What command can be used within U-boot shell to see the size of the latest copy into memory?</summary>
-
-> After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of copy can be seen by:
->
-> ```uboot
-> filesize
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:24:00
-
-> References:
----
-</details>
-
-<details>
-<summary>How to write conditional expressions within U-boot shell?</summary>
-
-> U-boot shell uses the same conditional expression as Bash:
->
-> ```uboot
-> setenv mmc-boot 'if fatload mmc 0 80000000 boot.ini; then source; else if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:25:00
-
-> References:
----
-</details>
-
-<details>
-<summary>How to run a script within U-boot shell?</summary>
-
-> ```uboot
-> setenv <variable-name> <script-body>
-> run <variable-name>
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:25:00
-
-> References:
----
-</details>
-
-<details>
-<summary>How to reference other variable within U-boot shell?</summary>
-
-> The same way that Unix shell references variables using braces:
->
-> ```uboot
-> ${variable-name}
-> ``````
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:25:00
-
-> References:
----
-</details>
-
-<details>
-<summary>What does the <code>source</code> command do in U-boot shell environment?</summary>
-
-> When a command is used to load some file into RAM as follows:
->
-> ```uboot
-> fatload mmc 0 80000000 boot.ini
-> ``````
->
-> Then by executing `source` command, the contents within `boot.ini` file which was recently loaded will be read.  
-> This file should obbey the syntax of U-boot shell variables.  
-> By reading these variables, the boot sequence can be changed accordingly.
-
-> Resources:
-> - Embedded Linux Full Course by Anisa Institute - 10:34:00
-
-> References:
----
-</details>
-
 ## Raspberry Pi
 
 <details>
-<summary>Where to download the Raspberry Pi bootloader from?</summary>
+<summary>Where to download the Raspberry Pi bootloader?</summary>
 
-> The official `raspbberypi` repository holds the `boot` directory where `start.elf` file and the device tree files can be found:
+> The official `raspbberypi` repository holds the `boot` directory where
+> `start.elf` file and the device tree files can be found:
 >
 > ```sh
 > wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
@@ -1330,7 +985,7 @@
 > fdisk /dev/sda
 > ``````
 >
-> Create a 100M sized partition and set the bootable flag.  
+> Create a 100M sized partition and set the bootable flag.
 > Then format that bootable partition with vfat filesystem:
 >
 > ```sh
@@ -1347,6 +1002,367 @@
 
 > Resources:
 > - Embedded Linux Full Course by Anisa Institute - 11:18:00
+
+> References:
+---
+</details>
+
+## U-Boot Kernel Loading
+
+<details>
+<summary>How to load a file from a filesystem to RAM within U-Boot shell?</summary>
+
+> There are as many tools as there are filesystems to load an image into RAM:
+>
+> *FAT filesystem*
+> ```uboot
+> fatload usb 0:1 0x21000000 zImage
+> ``````
+>
+> *EXT4 filesystem*
+> ```uboot
+> ext4load usb 0:1 0x21000000 zImage
+> ``````
+>
+> There are similarly other tools:
+>
+> * fatinfo,  fatls,  fatsize,  fatwrite, ...
+> * ext2info, ext2ls, ext2size, ext2write,...
+> * ext3info, ext3ls, ext3size, ext3write,...
+> * ext4info, ext4ls, ext4size, ext4write,...
+> * sqfsinfo, sqfsls, sqfssize, sqfswrite,...
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:07:00
+
+> References:
+---
+</details>
+
+## U-Boot Command Line
+
+<details>
+<summary>What command can be used within U-Boot shell to load a kernel image into RAM from network?</summary>
+
+> ```uboot
+> tftp
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:11:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to test network conectivity?</summary>
+
+> ```uboot
+> ping
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:12:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What utilities can be used within U-Boot shell to load a kernel image from serial line to RAM?</summary>
+
+> `loads`, `loadb`, `loady` commands.
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:13:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to control the USB subsystem?</summary>
+
+> ```uboot
+> ping
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:14:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to control MMC subsystem?</summary>
+
+> ```uboot
+> mmc
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to read, write and erase contents to NAND flash?</summary>
+
+> ```uboot
+> nand
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What commands can be used within U-Boot shell to erase, modify protection or write contents to NOR flash?</summary>
+
+> ```uboot
+> erase
+> protect
+> cp
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:16:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to display memory info?</summary>
+
+> ```uboot
+> md
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to modify memory info?</summary>
+
+> ```uboot
+> mm
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:15:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to display board information?</summary>
+
+> ```uboot
+> bdinfo
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:16:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to display environment variables?</summary>
+
+> ```uboot
+> printenv
+> printenv <variable-name>
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:19:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to set environment variables?</summary>
+
+> ```uboot
+> setenv <variable-name> <variable-value>
+> ``````
+
+> Origin 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to edit an environment variable?</summary>
+
+> ```uboot
+> editenv <variable-name>
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to save environment variables permanently?</summary>
+
+> ```uboot
+> saveenv
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:20:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variable can be set within U-Boot shell to specify the boot command sequence that U-Boot should automatically execute at boot time?</summary>
+
+> Commands will be executed after a configurable delay `bootdelay`, if process
+> is not interrupted.
+>
+> ```uboot
+> setenv bootcmd 'tftp 0x21000000 zImage; tftp 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:22:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variable can be set within U-Boot shell to be passed to the kernel as arguments?</summary>
+
+> ```uboot
+> setenv bootargs ''
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:23:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What environment variables should be set within U-Boot shell to load an image into RAM from network?</summary>
+
+> * `serverip`
+> * `ipaddr`
+> * `netmask`
+> * `ethaddr`
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:24:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What command can be used within U-Boot shell to see the size of the latest copy into memory?</summary>
+
+> After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of
+> copy can be seen by:
+>
+> ```uboot
+> filesize
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:24:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to write conditional expressions within U-Boot shell?</summary>
+
+> U-Boot shell uses the same conditional expression as Bash:
+>
+> ```uboot
+> setenv mmc-boot 'if fatload mmc 0 80000000 boot.ini; then source; else if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to run a script within U-Boot shell?</summary>
+
+> ```uboot
+> setenv <variable-name> <script-body>
+> run <variable-name>
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>How to reference other variable within U-Boot shell?</summary>
+
+> The same way that Unix shell references variables using braces:
+>
+> ```uboot
+> ${variable-name}
+> ``````
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:25:00
+
+> References:
+---
+</details>
+
+<details>
+<summary>What does the <code>source</code> command do in U-Boot shell environment?</summary>
+
+> When a command is used to load some file into RAM as follows:
+>
+> ```uboot
+> fatload mmc 0 80000000 boot.ini
+> ``````
+>
+> Then by executing `source` command, the contents within `boot.ini` file which
+> was recently loaded will be read. This file should obbey the syntax of U-Boot
+> shell variables. By reading these variables, the boot sequence can be changed
+> accordingly.
+
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 10:34:00
 
 > References:
 ---
@@ -1612,6 +1628,21 @@
 > - Heading for the Yocto Project - Chapter 3
 > ---
 > **References**
+> ---
+</details>
+
+## Patch Files
+
+<details>
+<summary>How to create a patch?</summary>
+
+> git format-patch
+>
+> ---
+> Resources:
+> - Embedded Linux Full Course by Anisa Institute - 14:55:00
+> ---
+> References:
 > ---
 </details>
 

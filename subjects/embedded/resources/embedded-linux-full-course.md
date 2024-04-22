@@ -327,12 +327,12 @@
 ---
 </details>
 
-## UBoot
+## U-Boot Configuration
 
 <details>
-<summary>How to obtain U-boot and configure it?</summary>
+<summary>How to obtain U-Boot and configure it?</summary>
 
-> Obtain the U-boot source tree from GitHub:
+> Obtain the U-Boot source tree from GitHub:
 >
 > ```sh
 > git clone https://github.com/u-boot/u-boot.git
@@ -341,7 +341,7 @@
 >
 > Configuration files are stored in `configs/` directory.
 >
-> To check if your desired board is already supported by U-boot, check if there is a match for that board in the `boards.cfg` file.
+> To check if your desired board is already supported by U-Boot, check if there is a match for that board in the `boards.cfg` file.
 >
 > To use one of the configuration entries in `configs/` use `make` utility:
 >
@@ -356,8 +356,10 @@
 ---
 </details>
 
+## U-Boot Kernel Loading
+
 <details>
-<summary>How to load a file from a filesystem to RAM within U-boot shell?</summary>
+<summary>How to load a file from a filesystem to RAM within U-Boot shell?</summary>
 
 > There are as many tools as there are filesystems to load an image into RAM:
 >
@@ -386,7 +388,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to load a kernel image into RAM from network?</summary>
+<summary>What command can be used within U-Boot shell to load a kernel image into RAM from network?</summary>
 
 > ```uboot
 > tftp
@@ -398,8 +400,10 @@
 ---
 </details>
 
+## U-Boot Command Line
+
 <details>
-<summary>What command can be used within U-boot shell to test network conectivity?</summary>
+<summary>What command can be used within U-Boot shell to test network conectivity?</summary>
 
 > ```uboot
 > ping
@@ -412,7 +416,7 @@
 </details>
 
 <details>
-<summary>What utilities can be used within U-boot shell to load a kernel image from serial line to RAM?</summary>
+<summary>What utilities can be used within U-Boot shell to load a kernel image from serial line to RAM?</summary>
 
 > `loads`, `loadb`, `loady` commands.
 
@@ -423,7 +427,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to control the USB subsystem?</summary>
+<summary>What command can be used within U-Boot shell to control the USB subsystem?</summary>
 
 > ```uboot
 > ping
@@ -436,7 +440,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to control MMC subsystem?</summary>
+<summary>What command can be used within U-Boot shell to control MMC subsystem?</summary>
 
 > ```uboot
 > mmc
@@ -449,7 +453,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to read, write and erase contents to NAND flash?</summary>
+<summary>What command can be used within U-Boot shell to read, write and erase contents to NAND flash?</summary>
 
 > ```uboot
 > nand
@@ -462,7 +466,7 @@
 </details>
 
 <details>
-<summary>What commands can be used within U-boot shell to erase, modify protection or write contents to NOR flash?</summary>
+<summary>What commands can be used within U-Boot shell to erase, modify protection or write contents to NOR flash?</summary>
 
 > ```uboot
 > erase
@@ -477,7 +481,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to display memory info?</summary>
+<summary>What command can be used within U-Boot shell to display memory info?</summary>
 
 > ```uboot
 > md
@@ -490,7 +494,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to modify memory info?</summary>
+<summary>What command can be used within U-Boot shell to modify memory info?</summary>
 
 > ```uboot
 > mm
@@ -503,7 +507,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to display board information?</summary>
+<summary>What command can be used within U-Boot shell to display board information?</summary>
 
 > ```uboot
 > bdinfo
@@ -516,7 +520,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to display environment variables?</summary>
+<summary>What command can be used within U-Boot shell to display environment variables?</summary>
 
 > ```uboot
 > printenv
@@ -530,7 +534,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to set environment variables?</summary>
+<summary>What command can be used within U-Boot shell to set environment variables?</summary>
 
 > ```uboot
 > setenv <variable-name> <variable-value>
@@ -543,7 +547,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to edit an environment variable?</summary>
+<summary>What command can be used within U-Boot shell to edit an environment variable?</summary>
 
 > ```uboot
 > editenv <variable-name>
@@ -556,7 +560,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to save environment variables permanently?</summary>
+<summary>What command can be used within U-Boot shell to save environment variables permanently?</summary>
 
 > ```uboot
 > saveenv
@@ -569,7 +573,7 @@
 </details>
 
 <details>
-<summary>What environment variable can be set within U-boot shell to specify the boot command sequence that U-boot should automatically execute at boot time?</summary>
+<summary>What environment variable can be set within U-Boot shell to specify the boot command sequence that U-Boot should automatically execute at boot time?</summary>
 
 > Commands will be executed after a configurable delay `bootdelay`, if process
 > is not interrupted.
@@ -585,7 +589,7 @@
 </details>
 
 <details>
-<summary>What environment variable can be set within U-boot shell to be passed to the kernel as arguments?</summary>
+<summary>What environment variable can be set within U-Boot shell to be passed to the kernel as arguments?</summary>
 
 > ```uboot
 > setenv bootargs ''
@@ -598,7 +602,7 @@
 </details>
 
 <details>
-<summary>What environment variables should be set within U-boot shell to load an image into RAM from network?</summary>
+<summary>What environment variables should be set within U-Boot shell to load an image into RAM from network?</summary>
 
 > * `serverip`
 > * `ipaddr`
@@ -612,7 +616,7 @@
 </details>
 
 <details>
-<summary>What command can be used within U-boot shell to see the size of the latest copy into memory?</summary>
+<summary>What command can be used within U-Boot shell to see the size of the latest copy into memory?</summary>
 
 > After using `tftp`, `fatload`, `nand read...`, etc. commands, the size of
 > copy can be seen by:
@@ -628,9 +632,9 @@
 </details>
 
 <details>
-<summary>How to write conditional expressions within U-boot shell?</summary>
+<summary>How to write conditional expressions within U-Boot shell?</summary>
 
-> U-boot shell uses the same conditional expression as Bash:
+> U-Boot shell uses the same conditional expression as Bash:
 >
 > ```uboot
 > setenv mmc-boot 'if fatload mmc 0 80000000 boot.ini; then source; else if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
@@ -643,7 +647,7 @@
 </details>
 
 <details>
-<summary>How to run a script within U-boot shell?</summary>
+<summary>How to run a script within U-Boot shell?</summary>
 
 > ```uboot
 > setenv <variable-name> <script-body>
@@ -657,7 +661,7 @@
 </details>
 
 <details>
-<summary>How to reference other variable within U-boot shell?</summary>
+<summary>How to reference other variable within U-Boot shell?</summary>
 
 > The same way that Unix shell references variables using braces:
 >
@@ -672,7 +676,7 @@
 </details>
 
 <details>
-<summary>What does the <code>source</code> command do in U-boot shell environment?</summary>
+<summary>What does the <code>source</code> command do in U-Boot shell environment?</summary>
 
 > When a command is used to load some file into RAM as follows:
 >
@@ -681,7 +685,7 @@
 > ``````
 >
 > Then by executing `source` command, the contents within `boot.ini` file which
-> was recently loaded will be read. This file should obbey the syntax of U-boot
+> was recently loaded will be read. This file should obbey the syntax of U-Boot
 > shell variables. By reading these variables, the boot sequence can be changed
 > accordingly.
 
@@ -689,6 +693,41 @@
 
 > References:
 ---
+</details>
+
+<details>
+<summary>Edit an environment variable on U-Boot command line?</summary>
+
+> **Description**
+>
+> ```uboot
+> editenv bootcmd
+> saveenv
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:50:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Restart the board with a U-Boot command?</summary>
+
+> **Description**
+>
+> ```uboot
+> res
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:51:00
+> ---
+> **References**
+> ---
 </details>
 
 ## Raspberry Pi
@@ -960,7 +999,7 @@
 > ---
 </details>
 
-## Kernel Image Installation
+## Kernel Installation
 
 <details>
 <summary>How many installation targets do we have to run?</summary>
@@ -1014,7 +1053,30 @@
 > ---
 </details>
 
-## Kernel Modules Installation
+<details>
+<summary>Which files should we install on root filesystem of the device?</summary>
+
+> **Description**
+>
+> The kernel image, device tree blobs, and kernel modules will be needed to
+> boot up a device.
+>
+> ```sh
+> cp arch/<arch>/boot/Image /mnt/
+> cp arch/<arch>/boot/dts/<board>/<board>.dtb /mnt/
+> mkdir /mnt/rootfs
+> make modules_install INSTALL_MOD_PATH=/mnt/rootfs
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:09:00
+> ---
+> **References**
+> ---
+</details>
+
+## Modules Installation
 
 <details>
 <summary>Install modules from source tree?</summary>
@@ -1034,12 +1096,13 @@
 </details>
 
 <details>
-<summary>What is the default path to install modules?</summary>
+<summary>Change the default path to module installation?</summary>
 
 > **Description**
 >
 > ```sh
-> make INSTALL_MOD_PATH=/path/to/destination modules_install
+> make INSTALL_MOD_PATH=/srv/nfs4/root modules_install  # for NFS filesystem
+> make INSTALL_MOD_PATH=/mnt                            # for Flash, SD Card, NAND filesystems
 > ``````
 >
 > ---
@@ -1051,7 +1114,7 @@
 </details>
 
 <details>
-<summary>What artifacts will be installed from source tree on modules installation?</summary>
+<summary>What artifacts will be installed by modules installation?</summary>
 
 > **Description**
 >
@@ -1115,6 +1178,11 @@
 
 > **Description**
 >
+> Some devices don't have the capability of introducing themselves to the
+> kernel. This is where the device developers should write device descriptions
+> in a device tree source file to let the kernel know how to deal with this
+> device.
+>
 > ```sh
 > ``````
 >
@@ -1125,6 +1193,717 @@
 > **References**
 > ---
 </details>
+
+<details>
+<summary>What is the hierarchy of a device tree source describing a specific device?</summary>
+
+> **Description**
+>
+> Device tree source has a hierarchical structure, first describing the inner
+> details of a device and then outer layers. This allows us to add features or
+> change specific aspects of hardware in the source.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 17:45:00
+> ---
+> **References**
+> ---
+</details>
+
+## U-Boot Kernel Loading
+
+<details>
+<summary>What commands can be used in U-Boot to load kernel images?</summary>
+
+> **Description**
+>
+> ```uboot
+> bootz X - Y (zImage)
+> bootm X - Y (uImage)
+> booti X - Y (Image)
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 17:57:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Load kernel on U-Boot command line from ftp service?</summary>
+
+> **Description**
+>
+> ```uboot
+> setenv serverip 192.168.0.2
+> setenv ipaddr 192.168.0.3
+> setenv bootargs 'console=ttyS0,115200 8250.nr_uarts=1 swiotlb=128 maxcpu=1' # rasbperry pi specific
+> saveenv
+> tftp ${kernel_addr_r} Image
+> tftp ${fdt_addr-r} <board>.dtb
+> booti ${kernel_addr_r}
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:35:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Load kernel on U-Boot command line from MMC storage?</summary>
+
+> **Description**
+>
+> ```uboot
+> setenv bootcmd "load mmc 0:1 ${kernel_addr_r} Image; load mmc 0:1 ${fdt_addr_r} <board>.dtb; booti ${kernel_addr_r} - ${fdt_addr_r};"
+> saveenv
+> res
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:50:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Automatically load kernel on boot up using U-Boot command line?</summary>
+
+> **Description**
+>
+> ```uboot
+> setenv bootcmd 'tftp ${kernel_addr_r} Image; tftp ${fdt_addr_r} <device>.dtb; booti ${kernel_addr_r} - ${fdt_addr_r}'
+> saveenv
+> res
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:39:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Command Line
+
+<details>
+<summary>What is a kernel command line?</summary>
+
+> **Description**
+>
+> The kernel command line is a string that defines various arguments to the
+> kernel to change its behavior.
+>
+> ```sh
+> root=/dev/mmcblk0p2 rootwait
+> console=ttyS0
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Where is the list of all kernel command line arguments?</summary>
+
+> **Description**
+>
+> The most important ones are documented in admin-guide/kernel-parameters in
+> documentation.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:01:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What are the priorities of passing command line arguments?</summary>
+
+> **Description**
+>
+> 1. Passed by the bootloader, `bootargs` in U-Boot.
+> 2. Specified in the device tree.
+> 3. Built into the kernel using `CONFIG_CMDLINE` config option.
+> 4. A combination of above depending on the kernel configuration.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 18:02:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Modules
+
+<details>
+<summary>Where the dependency of modules are specified?</summary>
+
+> **Description**
+>
+> These files are generated when you run `make modules_install`:
+>
+> ```sh
+> /lib/modules/<version>/modules.dep
+> /lib/modules/<version>/modules.dep.bin
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:11:00
+> ---
+> **References**
+> ---
+</details>
+
+## Kernel Log
+
+<details>
+<summary>What is the kernel logging mechanism?</summary>
+
+> **Description**
+>
+> The kernel log buffer is circular.
+>
+> ```sh
+> sudo journalctl -k
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:13:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Filter kernel log messages using log level?</summary>
+
+> **Description**
+>
+> ```sh
+> console=ttyS0 root=/dev/mmcblk0p2 loglevel=5
+> console=ttyS0 root=/dev/mmcblk0p2 quiet
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:13:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Where is the device node representing kernel log buffer?</summary>
+
+> **Description**
+>
+> ```sh
+> echo "<n>Debug info" > /dev/kmsg
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:15:00
+> ---
+> **References**
+> ---
+</details>
+
+## Module Utilities
+
+<details>
+<summary>Print the information about a module?</summary>
+
+> **Description**
+>
+> Modules residing in `/lib/modules` will not need `.ko` extension.
+>
+> ```sh
+> sudo modinfo <module>
+> sudo modinfo <module>.ko
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:17:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>List kernel modules?</summary>
+
+> **Description**
+>
+> ```sh
+> lsmod
+> ``````
+>
+> This tool will list the content of `/proc/modules` in a human readable form.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:23:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Insert modules?</summary>
+
+> **Description**
+>
+> A complete path to the kernel object file is required by `insmod`.
+>
+> ```sh
+> sudo insmod <module>.ko
+> ``````
+>
+> Arguments can be given to the modules after module name.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:17:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Which tool loads kernel modules while also loading their dependencies?</summary>
+
+> **Description**
+>
+> ```sh
+> sudo modprobe <module>
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:22:00
+> ---
+> **References**
+> ---
+</details>
+
+## Modules Configuration
+
+<details>
+<summary>Pass parameters to a module through modprobe configuration?</summary>
+
+> **Description**
+>
+> You can find modprobe configuration file in `/etc/modprobe.d/` directory.
+>
+> */etc/modprobe.d/usb-storage.conf*
+> ```conf
+> options usb-storage delay_use=0
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:26:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Pass parameters to a module through kernel parameters?</summary>
+
+> **Description**
+>
+> ```conf
+> usb-storage.delay_use=0
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:27:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Where can you find module parameters?</summary>
+
+> **Description**
+>
+> `/sys/module/<module>/parameters/`
+>
+> Some modules give you write access to module parameters.
+>
+> ```sh
+> echo 0 > /sys/module/usb_storage/parameters/delay_use
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:28:00
+> ---
+> **References**
+> ---
+</details>
+
+## Filesystem Mounting
+
+<details>
+<summary>Mount a filesystem for a USB storage device?</summary>
+
+> **Description**
+>
+> ```sh
+> mount -t type device mountpoint
+>
+> mount -t ext4 /dev/sda1 /mnt
+> mount -t ext4 /dev/sda2 /mnt/boot
+> mount -t ext4 /dev/sda3 /mnt/home
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:45:00
+> ---
+> **References**
+> ---
+</details>
+
+## Filesystem Unmounting
+
+<details>
+<summary>Unmount a filesystem?</summary>
+
+> **Description**
+>
+> ```sh
+> umount mountpoint
+>
+> umount /mnt/boot
+> umount /mnt/home
+> umount /mnt
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:48:00
+> ---
+> **References**
+> ---
+</details>
+
+## Root Filesystem
+
+<details>
+<summary>Where can we mount a root filesystem from?</summary>
+
+> **Description**
+>
+> * Hard Disk
+> * USB Key
+> * SD Card
+> * NAND Flash
+> * NFS Protocol
+> * Preloaded Filesystem (by bootloader)
+>
+> *kernel parameter*
+> ```conf
+> root=/dev/sdXY        # Hard Disk or USB Key
+> root=/dev/mmcblkXpY   # SD Card
+> root=/dev/mtdblockX   # Flash Storage
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:50:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Use NFS protocol to mount a root filesystem?</summary>
+
+> **Description**
+>
+> **NFS Server**
+>
+> */etc/exports*
+> ```sh
+> /srv/nfs4/root 192.168.1.111(rw,no_root_squash,no_subtree_check)
+> ``````
+>
+> **NFS Client**
+>
+> Following kernel configuration options should be enabled on client:
+>
+> * `CONFIG_NFS_FS=y`
+> * `CONFIG_IP_PNP=y`
+> * `CONFIG_ROOT_NFS=y`
+>
+> The kernel should also be booted with the following parameters:
+>
+> ```conf
+> root=/dev/nfs ip=192.168.1.111 nfsroot=192.168.1.110:/srv/nfs4/root/
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 19:59:00
+> ---
+> **References**
+> exports(5)
+> ---
+</details>
+
+## U-Boot Start Up
+
+<details>
+<summary>Boot up a virtual system into U-Boot command line?</summary>
+
+> **Description**
+>
+> *qemu-ifup*
+> ```sh
+> #!/bin/sh
+> /sbin/ip a add 192.168.0.1/24 dev $1
+> /sbin/ip link set $1 up
+> ``````
+>
+> ```sh
+> qemu-system-arm -M virt -m 128M -nographic -kernel u-boot -cpu cortex-a8 -nic tap,script=./qemu-ifup,model=e1000
+> ``````
+>
+> *u-boot*
+> ```sh
+> setenv ipaddr 192.168.0.20
+> ping 192.168.0.1
+> setenv serverip 192.168.0.1
+> setenv bootargs 'root=/dev/nfs ip=192.168.0.20 nfsroot=192.168.0.1:/srv/nfs4/root rw'
+> saveenv
+> tftp ${kernel_addr_t} Image
+> booti ${kernel_addr_t} - 0x40000000
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 21:04:00
+> ---
+> **References**
+> ---
+</details>
+
+## Initial Ram Filesystem
+
+<details>
+<summary>Create an initramfs?</summary>
+
+> **Description**
+>
+> ```sh
+> cd root
+> find . | cpio -H newc -o > ../initramfs.cpio
+> cd ..
+> gzip initramfs.cpio
+> ``````
+>
+> For U-Boot, include the archive in a U-Boot container:
+>
+> ```sh
+> mkimage -n 'Ramdisk Image' -A arm -O linux -T ramdisk -C gzip -d initramfs.cpio.gz uInitramfs
+> bootz ${kernel_addr_t} ${initramfs_addr_t} ${fdt_addr_t}
+> ``````
+>
+> In kernel config, use `CONFIG_INITRAMFS_SOURCE=/srv/nfs4/root/initramfs.cpio`.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 21:40:00
+> ---
+> **References**
+> ---
+</details>
+
+## Device Files
+
+<details>
+<summary>What component is responsible for loading device files into the kernel?</summary>
+
+> **Description**
+>
+> The `devtmpfs` virtual filesystem can be mounted on `/dev` and contains all
+> the devices registered to kernel frameworks. The `CONFIG_DEVTMPFS_MOUNT`
+> kernel configuration option makes the kernel mount it automatically at boot
+> time, except when booting on an initramfs.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:08:00
+> ---
+> **References**
+> ---
+</details>
+
+## Procfs Filesystem
+
+<details>
+<summary>Create proc virtual filesystem?</summary>
+
+> **Description**
+>
+> ```sh
+> mount -t proc nodev /proc
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:12:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Where are the process related information on the system?</summary>
+
+> **Description**
+>
+> In `/proc` filesystem.
+>
+> ```sh
+> cat /proc/<pid>/cmdline
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:13:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What files in the system contain general device-related information?</summary>
+
+> **Description**
+>
+> * `/proc/interrupts`
+> * `/proc/devices`
+> * `/proc/iomem`
+> * `/proc/ioports`
+> * `/proc/cmdline`: contains kernel command line
+> * `/proc/sys`: also known as *sysctl*, contains many files that can be written to adjust kernel parameters.
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:14:00
+> ---
+> **References**
+> ---
+</details>
+
+## Sysfs Filesystem
+
+<details>
+<summary>What information does sysfs hold from the system?</summary>
+
+> **Description**
+>
+> Represents buses, devices and drivers in the system.
+> This filesystem is usually used by `udev` or `mdev`.
+>
+> ```sh
+> mount -t sysfs nodev /sys
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:45:00
+> ---
+> **References**
+> ---
+</details>
+
+## Init Process
+
+<details>
+<summary>What sequence does kernel follow to call init?</summary>
+
+> **Description**
+>
+> * Use the command specified by `init` kernel command line parameter.
+> * Try running `/sbin/init`, `/bin/init`, `/etc/init`, and `/bin/sh`.
+> * When `initramfs` used, only `/init` will run or `rdinit` kernel argument is used.
+> * Kernel panic.
+>
+> ```sh
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:48:00
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Create a simple init program to prevent kernel panic?</summary>
+
+> **Description**
+>
+> *init.c*
+> ```c
+> #include <stdio.h>
+>
+> int main(void)
+> {
+>     fprintf(stdout, "Init program\n");
+>     while (true);
+> }
+> ``````
+>
+> ```sh
+> arm-black-linux-gnueabihf-gcc -o simple_init -static init.c
+> cp simple_init /srv/nfs4/root/
+> ``````
+>
+> ```conf
+> setenv bootargs 'console=ttyS0,115200 maxcpu=1 root=/dev/nfs ip=192.168.0.20 nfsroot=192.168.0.1:/srv/nfs4/root rw init=/simple_init'
+> saveenv
+> res
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute - 22:53:00
+> ---
+> **References**
+> ---
+</details>
+
+## BusyBox
 
 ## Chapter 3/8 <sup>(writing)</sup>
 ## Chapter 4/8 <sup>(writing)</sup>
