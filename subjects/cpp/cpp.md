@@ -3335,7 +3335,7 @@
 </details>
 
 <details>
-<summary>In how many was can we apply a concept as a type constraint on a function template?</summary>
+<summary>In how many ways can we apply a concept as a type constraint on a function template?</summary>
 
 > **Description**
 >
@@ -3343,12 +3343,18 @@
 > template<typename T>
 > concept has_push_back = requies (Container c, Container::value_type v) { c.push_back(v); };
 >
-> void add(has_push_back auto& container, auto const& value)
+> template<has_push_back C, typename T>
+> void add(C& container, T const& value)
 > {
 >     container.push_back(value);
 > }
 >
 > void add(has_push_back auto& container, auto const& value)
+> {
+>     container.push_back(value);
+> }
+>
+> void add(auto& container, auto const& value)
 > {
 >     if constexpr (requires { container.push_back(value); })
 >     {
