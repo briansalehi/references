@@ -1,7 +1,7 @@
 # Learn PostgreSQL
 <img src="../../../covers/9781838985288.jpg" width="200"/>
 
-## Chapter 1/20 <sup>(writing)</sup>
+## Chapter 1/20 <sup>(published)</sup>
 
 <details>
 <summary>What is the meaning of ACID terminology?</summary>
@@ -81,7 +81,7 @@
 </details>
 
 <details>
-<summary>What are the constituents of an instance?</summary>
+<summary>What are the building blocks of an instance?</summary>
 
 > **Description**
 >
@@ -153,7 +153,7 @@
 </details>
 
 <details>
-<summary>Where are the internal data stored in a postgres instance?</summary>
+<summary>Where are the internal postgres instance data stored?</summary>
 
 > **Description**
 >
@@ -173,7 +173,7 @@
 > **Description**
 >
 > PostgreSQL stores all of its content in a single filesystem directory known
-> as PGDATA.
+> as `PGDATA`.
 >
 > ---
 > **Resources**
@@ -182,11 +182,11 @@
 </details>
 
 <details>
-<summary>What is PGDATA contained of?</summary>
+<summary>What is <code>PGDATA</code> contained of?</summary>
 
 > **Description**
 >
-> The PGDATA directory represents what the cluster is serving as databases, and
+> The `PGDATA` directory represents what the cluster is serving as databases, and
 > it consists of at least the write-ahead logs (WALs) and the data storage.
 >
 > ---
@@ -201,7 +201,7 @@
 > **Description**
 >
 > It is possible to have a single installation of PostgreSQL and make it switch
-> to different PGDATA directories to deliver different content.
+> to different `PGDATA` directories to deliver different content.
 >
 > ---
 > **Resources**
@@ -210,11 +210,11 @@
 </details>
 
 <details>
-<summary>Where does postgres need the PGDATA directory?</summary>
+<summary>When does postgres need the <code>PGDATA</code> directory?</summary>
 
 > **Description**
 >
-> The PGDATA directory needs to be initialized by creation of the directory
+> The `PGDATA` directory needs to be initialized by creation of the directory
 > structure within it before it can be used by PostgreSQL.
 >
 > ---
@@ -224,11 +224,11 @@
 </details>
 
 <details>
-<summary>What is the first progress of postgres?</summary>
+<summary>What is the purpose of postgres's first process?</summary>
 
 > **Description**
 >
-> The first single process of PostgreSQL is postmaster which waits for incoming
+> The first single process of PostgreSQL is **postmaster** which waits for incoming
 > client connections.
 >
 > ---
@@ -238,7 +238,7 @@
 </details>
 
 <details>
-<summary>How does the postgres manages processes?</summary>
+<summary>How does postgres handles connections?</summary>
 
 > **Description**
 >
@@ -264,21 +264,38 @@
 > git checkout <latest>
 > ./configure --prefix=$HOME/.local
 > make
-> sudo make install
+> make install
 > ``````
 >
 > Create postgres user and initialize database:
 >
 > ```sh
 > sudo useradd postgres
-> sudo mkdir /opt/postgres/14
-> sudo chown postgres:postgres /opt/postgres/14
-> initdb -D /opt/postgresql/14
+> sudo mkdir /opt/postgres
+> sudo chown postgres:postgres /opt/postgres
+> initdb -D /opt/postgresql
 > ``````
 >
 > ---
 > **Resources**
 > - Learn PostgreSQL - Chapter 1/20
+> ---
+</details>
+
+<details>
+<summary>How to add systemd support to postgres installation?</summary>
+
+> **Description**
+>
+> ```sh
+> ./configure --prefix=$HOME/.local --with-systemd
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 1
+> ---
+> **References**
 > ---
 </details>
 
@@ -315,7 +332,181 @@
 > ---
 </details>
 
-## Chapter 2/20
+<details>
+<summary>What libraries are required for C++ projects to link to postgres?</summary>
+
+> **Description**
+>
+> ```cmake
+> target_link_libraries(executable PRIVATE pq pqxx)
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 1
+> ---
+> **References**
+> ---
+</details>
+
+## Chapter 2/20 <sup>(writing)</sup>
+
+<details>
+<summary>What tool is used to manage postgres cluster?</summary>
+
+> **Description**
+>
+> `pg_ctl` command-line utility is shipped with postgres that helps in managing
+> the clusters.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What are the basic functionalities of <code>pg_ctl</code>?</summary>
+
+> **Description**
+>
+> * `start`, `stop`, and `restart` execute the corresponding actions.
+> * `status` reports current status of cluster.
+> * `reload` reloads the configuration.
+> * `initdb` or briefly `init` executes the initialization of the cluster.
+> * `promote` is used when the cluster is running as a subordinate.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What process is started with <code>pg_ctl</code> on postgres bring up?</summary>
+
+> **Description**
+>
+> `postmaster` process is started by `pg_ctl start` and it shows
+> `$PGENV_ROOT/bin/postgres` as the executable running.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>How many stopping modes are possible for postgres?</summary>
+
+> **Description**
+>
+> * `smart`: waits for connected clients to disconnect first
+> * `fast`: immediately disconnects clients but cleans up before exit
+> * `immediate`: aborts every postgres process and exists
+>
+> ```sh
+> $PGENV_ROOT/bin/postgres stop -m smart
+> ``````
+>
+> By default `fast` stop mode is the default.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What user does postgres needs to operate?</summary>
+
+> **Description**
+>
+> Postgres must be run by an unprivileged user.
+> Postgres is run by a normal user usually named `postgres`.
+>
+> ```sh
+> sudo -E -u postgres pg_ctl stop
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>How does postgres know when the storage is?</summary>
+
+> **Description**
+>
+> That almost every Postgres-related command searches for the value of PGDATA
+> as an environmental variable or as a `-D` command-line option.
+>
+> ```sh
+> export PGDATA=/opt
+> pg_ctl status -D /usr/local
+> ``````
+>
+> Option `-D` precedes using environment variables.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What tool can be used to create a postgres cluster?</summary>
+
+> **Description**
+>
+> When you connect to an instance, you connect to one of the nodes in the
+> cluster.
+>
+> ```sh
+> ${PGENV_ROOT}/bin/initdb
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>How does initdb create a cluster?</summary>
+
+> **Description**
+>
+> Postgres builds the filesystem layout of `PGDATA` directory and builds two
+> template databases `template0` and `template1`.
+>
+> ```sh
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
 ## Chapter 3/20
 ## Chapter 4/20
 ## Chapter 5/20
