@@ -28,11 +28,12 @@
 <details>
 <summary>Find the domain and range of $\sqrt{x^2-3x}$ and $\frac{4}{3-t}$?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
-> - 
+> -
 > ---
 > **References**
 > ---
@@ -43,7 +44,7 @@
 
 > **Description**
 >
-> 
+>
 >
 > ---
 > **Resources**
@@ -56,7 +57,8 @@
 <details>
 <summary>Consider the point $(x, y)$ lying on the graph of $y = 2x - 3$. Let $L$ be the distance between the points $(x, y)$ and $(4, 0)$. Write $L$ as a function of $y$?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -87,7 +89,8 @@
 <details>
 <summary>Find the natural domain and graph the $f(x) = 1 - 2x - x^2$ and $g(t) = 1/|t|$ functions?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -102,7 +105,7 @@
 
 > **Description**
 >
-> 
+>
 >
 > ---
 > **Resources**
@@ -116,7 +119,8 @@
 <details>
 <summary>Find the range of $y = 2 + \sqrt{9+x^2}$</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -145,6 +149,8 @@
 <details>
 <summary>What is a piece-wise function?</summary>
 
+> **Description**
+>
 > Sometimes a function is described in pieces by using different formulas on different parts of its domain.
 >
 > ```math
@@ -168,7 +174,8 @@
 <details>
 <summary>Graph the function $$\begin{equation}f(x) = \begin{cases}1/x & x < 0 \\ x & 0 \le x \end{cases}\end{equation}$$?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -181,6 +188,8 @@
 <details>
 <summary>What is an increasing or decreasing function?</summary>
 
+> **Description**
+>
 > If the graph of a function rises as you move from left to right, we say that the function is increasing.
 > If the graph descends or falls as you move from left to right, the function is decreasing.
 >
@@ -201,7 +210,8 @@
 <details>
 <summary>What symmetries, if any, do the graphs of functions $y = x^3/8$, $y = -x^{3/2}$ and $y = (-x)^{2/3}$ have?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -214,6 +224,8 @@
 <details>
 <summary>Check whether functions $f(x) = x^4 + 3x^2 - 1$, $g(x) = \frac{1}{x^1-1}$, $h(t) = 2t + 1$ and $\sin{2x}$ are even, odd, or neither?</summary>
 
+> **Description**
+>
 > A function $y = f(x)$ is an even function of $x$ if $f(-x) = f(x)$, odd function of $x$ if $f(-x) = -f(x)$, for every $x$ in the function's domain.
 >
 > The graph of an even function is symmetric about the $y$ axis, and the graph of an odd function is symmetric about the origin.
@@ -229,6 +241,8 @@
 <details>
 <summary>What function is a linear function?</summary>
 
+> **Description**
+>
 > A function of the form $f(x) = mx+b$, where $m$ and $b$ are fixed constants, is called a linear function.
 >
 > The function $f(x) = x$ where $m = 1$ and $b = 0$ is called the identity function.
@@ -264,7 +278,8 @@
 <details>
 <summary>The variables $r$ and $s$ are inversely proportional, and $r = 6$ when $s = 4$. Determine $s$ when $r = 10$?</summary>
 
-> 
+> **Description**
+>
 >
 > ---
 > **Resources**
@@ -279,7 +294,7 @@
 
 > **Description**
 >
-> 
+>
 >
 > ---
 > **Resources**
@@ -293,6 +308,8 @@
 <details>
 <summary>What function is a power function?</summary>
 
+> **Description**
+>
 > A function $f(x) = x^n$, where $a$ is a constant, is called a **power function**.
 >
 > ---
@@ -331,6 +348,8 @@
 <details>
 <summary>What functions are the rational functions?</summary>
 
+> **Description**
+>
 > A **rational function** is a quotient or ratio $f(x) = p(x)/q(x)$, where $p$ and $q$ are polynomials.
 >
 > ```math
@@ -385,6 +404,8 @@
 <details>
 <summary>What functions are exponential functions?</summary>
 
+> **Description**
+>
 > A function of the form $f(x) = a^x$, where $a > 0$ and $a \ne 1$, is called an **exponential function** with base $a$.
 >
 > ---
@@ -398,6 +419,8 @@
 <details>
 <summary>What functions are logarithmic functions?</summary>
 
+> **Description**
+>
 > These are the functions $f(x) = log_{a}x$, where the base $a \ne 1$ is a positive constant.
 >
 > They are the inverse functions of the exponential functions.
