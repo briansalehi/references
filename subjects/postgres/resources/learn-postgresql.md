@@ -469,6 +469,77 @@
 </details>
 
 <details>
+<summary>What are the names of template databases?</summary>
+
+> **Description**
+>
+> `template0` and `template1` are first databases. `template0` is a safe copy
+> for rebuilding in case `template1` is accidentally damaged or removed.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Connect to an instance using psql?</summary>
+
+> **Description**
+>
+> You can either use command options or use a connection string to address a
+> cluster.
+>
+> ```sh
+> psql -U <username> -h <hostname> -d <database>
+> psql postgresql://username@hostname:5432/database
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What command is used to quit the interactive terminal?</summary>
+
+> **Description**
+>
+> ```psql
+> \q
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>List all available databases in an instance?</summary>
+
+> **Description**
+>
+> ```sh
+> psql -l
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>What tool can be used to create a postgres cluster?</summary>
 
 > **Description**
@@ -489,6 +560,27 @@
 </details>
 
 <details>
+<summary>Enable authentication on local connections?</summary>
+
+> **Description**
+>
+> Trust is enabled on local connections by default. You can change this by
+> editing `pg_hba.conf` or using the option `-A`, or `--auth-local` and
+> `--auth-host`, the next time you run initdb.
+>
+> ```psql
+> ${PGENV_ROOT}/bin/initdb --auth-local --auth-host
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>How does initdb create a cluster?</summary>
 
 > **Description**
@@ -496,7 +588,112 @@
 > Postgres builds the filesystem layout of `PGDATA` directory and builds two
 > template databases `template0` and `template1`.
 >
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Enter a SQL statement via psql?</summary>
+
+> **Description**
+>
 > ```sh
+> su -u postgres psql -d template1 -h postgres
+> ``````
+>
+> ```psql
+> select current_time;
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What is the secondary statement terminator in psql?</summary>
+
+> **Description**
+>
+> ```psql
+> select current_time \g
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What command opens an editor to edit psql query buffer?</summary>
+
+> **Description**
+>
+> ```psql
+> \e
+> ``````
+>
+> Opens the editor specified in `EDITOR` environment variable.
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What psql command executes sql statements from a file?</summary>
+
+> **Description**
+>
+> ```psql
+> \i <file>
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What command gives help information about psql?</summary>
+
+> **Description**
+>
+> ```psql
+> \h select
+> ``````
+>
+> ---
+> **Resources**
+> - Learn PostgreSQL - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What command gives help with the psql commands?</summary>
+
+> **Description**
+>
+> ```psql
+> \?
 > ``````
 >
 > ---

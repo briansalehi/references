@@ -135,7 +135,60 @@
 > ---
 </details>
 
-## Chapter 2/17
+## Chapter 2/17 <sub>(writing)</sub>
+
+<details>
+<summary>Get poky source code?</summary>
+
+> **Description**
+>
+> ```sh
+> git clone https://git.yoctoproject.org/poky
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Development Using Yocto Project - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>Set up the building environment using <code>oe-init-build-env</code>?</summary>
+
+> **Description**
+>
+> ```sh
+> source oe-init-build-env <build-directory>
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Development Using Yocto Project - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
+<details>
+<summary>What configuration variable is required for build system?</summary>
+
+> **Description**
+>
+> *config/local.conf*
+> ```sh
+> MACHINE ??= "qemux86-64"
+> ``````
+>
+> ---
+> **Resources**
+> - Embedded Linux Development Using Yocto Project - Chapter 2
+> ---
+> **References**
+> ---
+</details>
+
 ## Chapter 3/17
 ## Chapter 4/17
 ## Chapter 5/17
