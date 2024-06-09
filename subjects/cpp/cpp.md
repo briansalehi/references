@@ -1427,8 +1427,7 @@
 > #include <variant>
 > #include <string>
 >
-> std::variant<int, double, std::string> v;
->
+> std::variant<int, double, std::string> v{"some characters"};
 > bool x = std::holds_alternative<std::string>(v);
 > // x == true
 > ``````
@@ -1439,6 +1438,7 @@
 >
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/variant
 > ---
 </details>
 
@@ -1460,6 +1460,7 @@
 > - Daily C++ Bites - #64
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/variant
 > ---
 </details>
 
@@ -1497,6 +1498,7 @@
 > - Daily C++ Bites - #64
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/variant/get
 > ---
 </details>
 
@@ -1528,6 +1530,7 @@
 > - Daily C++ Bites - #66
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/variant/visit
 > ---
 </details>
 
@@ -1570,6 +1573,7 @@
 > - Daily C++ Bites - #66
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/variant/visit
 > ---
 </details>
 
