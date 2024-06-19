@@ -139,6 +139,90 @@
 > ---
 </details>
 
+## Uniform Initialization
+
+<details>
+<summary>Uniformly initialize objects of any type?</summary>
+
+> * direct initialization initializes an object from an explicit set of
+>   constructor arguments.
+> * copy initialization initializes an object from another object.
+> * brace initialization prevents narrowing conversion of data types.
+> * all elements of list initialization should be of the same type.
+>
+> ```cpp
+> #include <iostream>
+> #include <initializer_list>
+> #include <string>
+> #include <vector>
+> #include <map>
+>
+> void func(int const a, int const b, int const c)
+> {
+>     std::cout << a << b << c << '\n';
+> }
+>
+> void func(std::initializer_list<int> const list)
+> {
+>     for (auto const& e: list)
+>         std::cout << e;
+>     std::cout << '\n';
+> }
+>
+> int main()
+> {
+>     std::string s1("text"); // direct initialization
+>     std::string s2 = "text"; // copy initialization
+>     std::string s3{"text"}; // direct list-initialization
+>     std::string s4 = {"text"}; // copy list-initialization
+>
+>     std::vector<int> v{1, 2, 3};
+>     std::map<int, std::string> m{{1, "one"}, {2, "two"}};
+>
+>     func({1, 2, 3}); // call std::initializer_list<int> overload
+>
+>     std::vector v1{4}; // size = 1
+>     std::vector v2(4); // size = 4
+>
+>     auto a = {42}; // std::initializer_list<int>
+>     auto b{42}; // int
+>     auto c = {4, 2}; //std::initializer_list<int>
+>     auto d{4, 2}; // error, too many elements
+> ``````
+>
+> ---
+> **Resources**
+> - Modern C++ Programming Cookbook - Chapter 1
+> - Teach Yourself C++ in One Hour a Day - Chapter 3
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/language/initialization
+> ---
+</details>
+
+<details>
+<summary>What is the defect in auto rule for direct list initialization?</summary>
+
+> **Description**
+>
+> Before C++ direct list initialization deduced as `std::initializer_list<int>`
+> but since C++17 it is as `int`.
+>
+> ```cpp
+> auto x { 42 };
+> // before C++17: std::initializer_list<int>
+> // since C++17: int
+> ``````
+>
+> ---
+> **Resources**
+> - Language Features of C++17 Cheat Sheet by Bartlomiej Filipek
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/language/initialization
+> ---
+</details>
+
 ## Aggregate Initialization
 
 <details>
@@ -681,6 +765,41 @@
 > ---
 > **References**
 > - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
+> ---
+</details>
+
+## Nested Namespaces
+
+<details>
+<summary>What is the abbreviated way of declaring nested namespaces?</summary>
+
+> **Description**
+>
+> ```cpp
+> // before C++17
+> namespace A
+> {
+>     namespace B
+>     {
+>         namespace C
+>         {
+>             /* ... */
+>         }
+>     }
+> }
+>
+> // since C++16
+> namespace A::B::C
+> {
+>     /* ... */
+> };
+> ``````
+>
+> ---
+> **Resources**
+> - Language Features of C++17 Cheat Sheet by Bartlomiej Filipek
+> ---
+> **References**
 > ---
 </details>
 
@@ -1277,67 +1396,6 @@
 > **References**
 > - https://en.cppreference.com/w/cpp/language/type_alias
 ---
-</details>
-
-## Uniform Initialization
-
-<details>
-<summary>Uniformly initialize objects of any type?</summary>
-
-> * direct initialization initializes an object from an explicit set of
->   constructor arguments.
-> * copy initialization initializes an object from another object.
-> * brace initialization prevents narrowing conversion of data types.
-> * all elements of list initialization should be of the same type.
->
-> ```cpp
-> #include <iostream>
-> #include <initializer_list>
-> #include <string>
-> #include <vector>
-> #include <map>
->
-> void func(int const a, int const b, int const c)
-> {
->     std::cout << a << b << c << '\n';
-> }
->
-> void func(std::initializer_list<int> const list)
-> {
->     for (auto const& e: list)
->         std::cout << e;
->     std::cout << '\n';
-> }
->
-> int main()
-> {
->     std::string s1("text"); // direct initialization
->     std::string s2 = "text"; // copy initialization
->     std::string s3{"text"}; // direct list-initialization
->     std::string s4 = {"text"}; // copy list-initialization
->
->     std::vector<int> v{1, 2, 3};
->     std::map<int, std::string> m{{1, "one"}, {2, "two"}};
->
->     func({1, 2, 3}); // call std::initializer_list<int> overload
->
->     std::vector v1{4}; // size = 1
->     std::vector v2(4); // size = 4
->
->     auto a = {42}; // std::initializer_list<int>
->     auto b{42}; // int
->     auto c = {4, 2}; //std::initializer_list<int>
->     auto d{4, 2}; // error, too many elements
-> ``````
->
-> ---
-> **Resources**
-> - Modern C++ Programming Cookbook - Chapter 1
-> - Teach Yourself C++ in One Hour a Day - Chapter 3
-> ---
-> **References**
-> - https://en.cppreference.com/w/cpp/language/initialization
-> ---
 </details>
 
 ## Enumerations
@@ -2788,6 +2846,41 @@
 > ---
 </details>
 
+## Template Template Parameter
+
+<details>
+<summary>Since when <code>template</code> keyword can be used instead of class in a template template parameter?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <iostream>
+> #include <algorithm>
+> #include <iterator>
+> #include <vector>
+>
+> template<template<typename> typename V, typename T>
+> void print(V<T> const& container)
+> {
+>     for (auto const& item: container)
+>         std::cout << item << " ";
+>     std::cout << std::endl;
+> }
+>
+> int main()
+> {
+>     print(std::vector<int>{1,2,3,4});
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - Language Features of C++17 Cheat Sheet by Bartlomiej Filipek
+> ---
+> **References**
+> ---
+</details>
+
 ## Variadic Template
 
 <details>
@@ -2834,6 +2927,33 @@
 > ---
 > **Resources**
 > - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> ---
+> **References**
+> ---
+</details>
+
+## Fold Expression
+
+<details>
+<summary>What is the compact form of variadic templates?</summary>
+
+> **Description**
+>
+> Parameter pack is available since C++17:
+>
+> ```cpp
+> template<typename... Args>
+> auto print(Args... args)
+> {
+>     (std::cout << ... << args) << std::endl;
+> }
+>
+> print(42, "42", 42.0);
+> ``````
+>
+> ---
+> **Resources**
+> - Language Features of C++17 Cheat Sheet by Bartlomiej Filipek
 > ---
 > **References**
 > ---
