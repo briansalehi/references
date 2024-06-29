@@ -1,4 +1,4 @@
-# Linux Kernel Development
+# Linux Kernel
 [Resources](README.md)
 
 ## Linux Kernel Source Tree

@@ -1505,6 +1505,8 @@ Slicing objects and polymorphic classes skipped.
 ## Chapter 8/15 <sup>(writing)</sup>
 ## Chapter 9/15 <sup>(writing)</sup>
 
+### Universal Reference
+
 <details>
 <summary>What are the prerequisites of having a perfect universal reference?</summary>
 
@@ -1515,11 +1517,13 @@ Slicing objects and polymorphic classes skipped.
 > 3. Inside the function definition, parameter should be forwarded.
 >
 > ```cpp
-template<typename T>
-void do_something(T&& x)
-{
-    do_special_task(std::forward<T>(x));
-}
+> #include <utility>
+>
+> template<typename T>
+> void do_something(T&& x)
+> {
+>     do_special_task(std::forward<T>(x));
+> }
 > ``````
 >
 > ---
@@ -1528,6 +1532,100 @@ void do_something(T&& x)
 > https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
+> ---
+</details>
+
+<details>
+<summary>What is the difference between a universal reference and an rvalue reference?</summary>
+
+> **Description**
+>
+> An **rvalue reference** of a **function template parameter** not qualified
+> with `const` or `volatile` does not follow the rules of ordinary rvalue
+> references, but is called a **universal reference** instead.
+>
+> Universal references can bind to objects of all types and value categories.
+>
+> ```cpp
+> ``````
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 9
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
+> ---
+</details>
+
+## Perfect Forwarding
+
+<details>
+<summary>What is the semantic meaning of <code>std::forward</code>?</summary>
+
+> **Description**
+>
+> Like for `std::move()`, the semantic meaning of `std::forward<>()` is *I no
+> longer need this value here*, with the additional benefit that we preserve
+> the type, including constness and the value category.
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 9
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
+> ---
+</details>
+
+<details>
+<summary>Perfect forward function arguments to another function?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename T>
+> void call_foo(T&& arg)
+> {
+>     foo(std::forward<T>(arg));
+> }
+>
+> template<typename T1, typename T2>
+> void call_foo(T1&& arg1, T2&& arg2)
+> {
+>     foo(std::forward<T1>(arg1), std::forward<T2>(arg2));
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 9
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
+> ---
+</details>
+
+<details>
+<summary>Perfect forward a parameter pack of a function to another?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename... Ts>
+> void call_foo(Ts&&... args)
+> {
+>     foo(std::forward<Ts>(args)...);
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 9
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1556,6 +1654,7 @@ void do_something(T&& x)
 > - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
+> - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 

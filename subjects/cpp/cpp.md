@@ -1,4 +1,4 @@
-# C++ Programming
+# C++
 [Resources](README.md)
 
 ## Building Executable
@@ -7720,6 +7720,110 @@
 > - C++ Daily Bites - #74
 > ---
 > **References**
+> ---
+</details>
+
+## Chrono File Clocks
+
+<details>
+<summary>Get file time using pre-C++17 standard?</summary>
+
+> **Description**
+>
+> ```cpp
+> #include <iostream>
+> #include <ctime>
+> #include <sys/stat.h>
+>
+> int main(int argc, char** argv)
+> {
+>     char const* file_path{argv[0]};
+>
+>     struct stat file_stat;
+>
+>     if (stat(file_path, &file_stat) == 0)
+>     {
+>         std::time_t mod_time{file_stat.st_mtime};
+>         char* str{std::asctime(std::localtime(&mod_time))};
+>         std::cout << "Last modification time: " << str;;
+>     }
+>     else
+>     {
+>         std::cerr << "File status retrival failed\n";
+>     }
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.cppstories.com/2024/file-time-cpp20
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/chrono/file_clock
+> ---
+</details>
+
+<details>
+<summary>What type is used to represent file time type?</summary>
+
+> **Description**
+>
+> We have one free function and a member function in `directory_entry`.
+> They both return file_time_type which in C++17 is defined as:
+>
+> ```cpp
+> // C++17
+> using file_time_type = std::chrono::time_point</*trivial-clock*/>;
+> ``````
+>
+> *Sample*
+> ```cpp
+> auto filetime = std::filesystem::last_write_time(myPath);
+> const auto toNow = std::filesystem::file_time_type::clock::now() - filetime;
+> const auto elapsedSec = duration_cast<seconds>(toNow).count();
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.cppstories.com/2024/file-time-cpp20
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/chrono/file_clock
+> ---
+</details>
+
+<details>
+<summary>Get file time using C++20 standard?</summary>
+
+> **Description**
+>
+> ```cpp
+> // C++17
+> using file_time_type = std::chrono::time_point</*trivial-clock*/>;
+>
+> // C++20
+> using file_time_type = std::chrono::time_point<std::chrono::file_clock>;
+> ``````
+>
+> ```cpp
+> #include <iostream>
+> #include <filesystem>
+> #include <chrono>
+>
+> int main(int argc, char** argv)
+> {
+>     std::filesystem::path file_path{argv[0]};
+>     std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time(file_path);
+>     std::cout << std::format("{0:%F 0:%R}\n", last_write_time);
+> }
+> ``````
+>
+> ---
+> **Resources**
+> - https://www.cppstories.com/2024/file-time-cpp20
+> ---
+> **References**
+> - https://en.cppreference.com/w/cpp/chrono/file_clock
 > ---
 </details>
 

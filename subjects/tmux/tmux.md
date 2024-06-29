@@ -1,4 +1,4 @@
-# tmux
+# Tmux
 [Resources](README.md)
 
 ## Configuration
