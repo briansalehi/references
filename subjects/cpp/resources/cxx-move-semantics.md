@@ -1559,7 +1559,42 @@ Slicing objects and polymorphic classes skipped.
 > ---
 </details>
 
-## Perfect Forwarding
+<details>
+<summary>What is the overload resolution for universal references?</summary>
+
+> **Description**
+>
+> The following is the rule for binding all references.
+>
+> ```cpp
+> class X {};
+> X v;
+> const X c;
+>
+> void f(const X&);
+> void f(X&);
+> void f(X&&);
+> void f(const X&&);
+> template<typename T>
+> void f(T&&);
+> ``````
+>
+> |Call|`f(X&)`|`f(const X&)`|`f(X&&)`|`f(const X&&)`|`f(T&&)`|
+> |---|---|---|---|---|---|---|
+> |`f(v)`|1|3|-|-|2|
+> |`f(c)`|-|1|-|-|2|
+> |`f(X{})`|-|4|1|3|2|
+> |`f(move(v))`|-|4|1|3|2|
+> |`f(move(c))`|-|3|-|1|2|
+>
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 9
+> ---
+> **References**
+> ---
+</details>
+
+### Perfect Forwarding
 
 <details>
 <summary>What is the semantic meaning of <code>std::forward</code>?</summary>
