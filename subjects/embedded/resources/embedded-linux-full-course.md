@@ -1,6 +1,6 @@
 # Embedded Linux Full Course by Anisa Institute
 
-## Chapter 1/8 <sup>(published)</sup>
+## Chapter 1/9 <sup>(published)</sup>
 
 ## Host Toolchains
 
@@ -43,7 +43,8 @@
 > usermod -G -a dialout brian
 > ``````
 
-> Origin: 14:55:00
+> **Resources**
+> Embedded Linux Full Course - 14:55:00
 
 > References:
 ---
@@ -56,7 +57,8 @@
 > gcc -v
 > ``````
 
-> Origin: 4:30:00
+> **Resources**
+> Embedded Linux Full Course - 4:30:00
 
 > References:
 ---
@@ -69,7 +71,8 @@
 > gcc -v -o program source.c
 > ``````
 
-> Origin: 4:35:00
+> **Resources**
+> Embedded Linux Full Course - 4:35:00
 
 > References:
 ---
@@ -82,7 +85,8 @@
 > file executable
 > ``````
 
-> Origin: 4:45:00
+> **Resources**
+> Embedded Linux Full Course - 4:45:00
 
 > References:
 ---
@@ -95,7 +99,8 @@
 > strip executable
 > ``````
 
-> Origin: 4:47:00
+> **Resources**
+> Embedded Linux Full Course - 4:47:00
 
 > References:
 ---
@@ -110,7 +115,8 @@
 > gcc -o program main.o util.o
 > ``````
 
-> Origin: 4:55:00
+> **Resources**
+> Embedded Linux Full Course - 4:55:00
 
 > References:
 ---
@@ -123,7 +129,8 @@
 > nm executable
 > ``````
 
-> Origin: 4:42:00
+> **Resources**
+> Embedded Linux Full Course - 4:42:00
 
 > References:
 ---
@@ -147,7 +154,8 @@
 > make headers_install
 > ``````
 
-> Origin: 5:00:00
+> **Resources**
+> Embedded Linux Full Course - 5:00:00
 
 > References:
 ---
@@ -164,7 +172,8 @@
 > gcc -march armv6 -mtune bcm2835 source.c
 > ``````
 
-> Origin: 5:50:00
+> **Resources**
+> Embedded Linux Full Course - 5:50:00
 
 > References:
 ---
@@ -180,9 +189,11 @@
 > * [Crosstool-ng](https://crosstool-ng.github.io)
 > * [Buildroot](https://buildroot.org)
 > * [PTXdist](https://ptxdist.org)
-> * [OpenEmbedded](https://openembedded.org) and [Yocto project](https://yoctoproject.org)
+> * [OpenEmbedded](https://openembedded.org)
+> * [Yocto project](https://yoctoproject.org)
 
-> Origin: 5:59:00
+> **Resources**
+> Embedded Linux Full Course - 5:59:00
 
 > References:
 ---
@@ -200,7 +211,8 @@
 > make install
 > ``````
 
-> Origin: 6:02:00
+> **Resources**
+> Embedded Linux Full Course - 6:02:00
 
 > References:
 ---
@@ -213,7 +225,8 @@
 > ct-ng list-samples
 > ``````
 
-> Origin: 6:04:00
+> **Resources**
+> Embedded Linux Full Course - 6:04:00
 
 > References:
 ---
@@ -236,7 +249,8 @@
 >
 > Note that `.config` file should be available in the later case.
 
-> Origin: 6:05:00
+> **Resources**
+> Embedded Linux Full Course - 6:05:00
 
 > References:
 ---
@@ -249,7 +263,8 @@
 > ct-ng armv6-unknown-linux-gnueabihf
 > ``````
 
-> Origin: 6:05:00
+> **Resources**
+> Embedded Linux Full Course - 6:05:00
 
 > References:
 ---
@@ -267,7 +282,8 @@
 > ct-ng qtconfig
 > ``````
 
-> Origin: 6:03:00
+> **Resources**
+> Embedded Linux Full Course - 6:03:00
 
 > References:
 ---
@@ -280,7 +296,8 @@
 > ct-ng show-tuple
 > ``````
 
-> Origin: 6:03:00
+> **Resources**
+> Embedded Linux Full Course - 6:03:00
 
 > References:
 ---
@@ -308,7 +325,8 @@
 > ct-ng build.8
 > ``````
 
-> Origin: 6:04:00
+> **Resources**
+> Embedded Linux Full Course - 6:04:00
 
 > References:
 ---
@@ -321,7 +339,8 @@
 > ${CROSS_COMPILE}gcc -L$(${CROSS_COMPILE}gcc -print-sysroot)/lib -I$(${CROSS_COMPILE}gcc -print-sysroot)/include -march armv6 -mtune bcm2835 -o program source.c
 > ``````
 
-> Origin: 8:20:00
+> **Resources**
+> Embedded Linux Full Course - 8:20:00
 
 > References:
 ---
@@ -350,7 +369,8 @@
 > make CROSS_COMPILE=$(arm-unknown-linux-gnueabihf-gcc -print-sysroot) ARCH=armv6 menuconfig
 > ``````
 
-> Origin: 9:32:00
+> **Resources**
+> Embedded Linux Full Course - 9:32:00
 
 > References:
 ---
@@ -381,7 +401,8 @@
 > * ext4info, ext4ls, ext4size, ext4write,...
 > * sqfsinfo, sqfsls, sqfssize, sqfswrite,...
 
-> Origin: 10:07:00
+> **Resources**
+> Embedded Linux Full Course - 10:07:00
 
 > References:
 ---
@@ -394,7 +415,8 @@
 > tftp
 > ``````
 
-> Origin: 10:11:00
+> **Resources**
+> Embedded Linux Full Course - 10:11:00
 
 > References:
 ---
@@ -409,7 +431,8 @@
 > ping
 > ``````
 
-> Origin: 10:12:00
+> **Resources**
+> Embedded Linux Full Course - 10:12:00
 
 > References:
 ---
@@ -420,7 +443,8 @@
 
 > `loads`, `loadb`, `loady` commands.
 
-> Origin: 10:13:00
+> **Resources**
+> Embedded Linux Full Course - 10:13:00
 
 > References:
 ---
@@ -433,7 +457,8 @@
 > ping
 > ``````
 
-> Origin: 10:14:00
+> **Resources**
+> Embedded Linux Full Course - 10:14:00
 
 > References:
 ---
@@ -446,7 +471,8 @@
 > mmc
 > ``````
 
-> Origin: 10:15:00
+> **Resources**
+> Embedded Linux Full Course - 10:15:00
 
 > References:
 ---
@@ -459,7 +485,8 @@
 > nand
 > ``````
 
-> Origin: 10:15:00
+> **Resources**
+> Embedded Linux Full Course - 10:15:00
 
 > References:
 ---
@@ -474,7 +501,8 @@
 > cp
 > ``````
 
-> Origin: 10:16:00
+> **Resources**
+> Embedded Linux Full Course - 10:16:00
 
 > References:
 ---
@@ -487,7 +515,8 @@
 > md
 > ``````
 
-> Origin: 10:15:00
+> **Resources**
+> Embedded Linux Full Course - 10:15:00
 
 > References:
 ---
@@ -500,7 +529,8 @@
 > mm
 > ``````
 
-> Origin: 10:15:00
+> **Resources**
+> Embedded Linux Full Course - 10:15:00
 
 > References:
 ---
@@ -513,7 +543,8 @@
 > bdinfo
 > ``````
 
-> Origin: 10:16:00
+> **Resources**
+> Embedded Linux Full Course - 10:16:00
 
 > References:
 ---
@@ -527,7 +558,8 @@
 > printenv <variable-name>
 > ``````
 
-> Origin: 10:19:00
+> **Resources**
+> Embedded Linux Full Course - 10:19:00
 
 > References:
 ---
@@ -553,7 +585,8 @@
 > editenv <variable-name>
 > ``````
 
-> Origin: 10:20:00
+> **Resources**
+> Embedded Linux Full Course - 10:20:00
 
 > References:
 ---
@@ -566,7 +599,8 @@
 > saveenv
 > ``````
 
-> Origin: 10:20:00
+> **Resources**
+> Embedded Linux Full Course - 10:20:00
 
 > References:
 ---
@@ -582,7 +616,8 @@
 > setenv bootcmd 'tftp 0x21000000 zImage; tftp 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
 > ``````
 
-> Origin: 10:22:00
+> **Resources**
+> Embedded Linux Full Course - 10:22:00
 
 > References:
 ---
@@ -595,7 +630,8 @@
 > setenv bootargs ''
 > ``````
 
-> Origin: 10:23:00
+> **Resources**
+> Embedded Linux Full Course - 10:23:00
 
 > References:
 ---
@@ -609,7 +645,8 @@
 > * `netmask`
 > * `ethaddr`
 
-> Origin: 10:24:00
+> **Resources**
+> Embedded Linux Full Course - 10:24:00
 
 > References:
 ---
@@ -625,7 +662,8 @@
 > filesize
 > ``````
 
-> Origin: 10:24:00
+> **Resources**
+> Embedded Linux Full Course - 10:24:00
 
 > References:
 ---
@@ -640,7 +678,8 @@
 > setenv mmc-boot 'if fatload mmc 0 80000000 boot.ini; then source; else if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
 > ``````
 
-> Origin: 10:25:00
+> **Resources**
+> Embedded Linux Full Course - 10:25:00
 
 > References:
 ---
@@ -654,7 +693,8 @@
 > run <variable-name>
 > ``````
 
-> Origin: 10:25:00
+> **Resources**
+> Embedded Linux Full Course - 10:25:00
 
 > References:
 ---
@@ -669,7 +709,8 @@
 > ${variable-name}
 > ``````
 
-> Origin: 10:25:00
+> **Resources**
+> Embedded Linux Full Course - 10:25:00
 
 > References:
 ---
@@ -689,7 +730,8 @@
 > shell variables. By reading these variables, the boot sequence can be changed
 > accordingly.
 
-> Origin: 10:34:00
+> **Resources**
+> Embedded Linux Full Course - 10:34:00
 
 > References:
 ---
@@ -743,7 +785,8 @@
 > wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
 
-> Origin: 11:18:00
+> **Resources**
+> Embedded Linux Full Course - 11:18:00
 
 > References:
 ---
@@ -785,7 +828,8 @@
 > umount /mnt
 > ``````
 
-> Origin: 11:18:00
+> **Resources**
+> Embedded Linux Full Course - 11:18:00
 
 > References:
 ---
@@ -800,7 +844,8 @@
 > qemu-system-arm --machine help
 > ``````
 
-> Origin: 13:17:00
+> **Resources**
+> Embedded Linux Full Course - 13:17:00
 
 > References:
 ---
@@ -813,13 +858,14 @@
 > qemu-system-arm --machine raspi0 --nographic --kernel u-boot
 > ``````
 
-> Origin: 13:18:00
+> **Resources**
+> Embedded Linux Full Course - 13:18:00
 
 > References:
 ---
 </details>
 
-## Chapter 2/8 <sup>(writing)</sup>
+## Chapter 2/9 <sup>(writing)</sup>
 
 ## Patch Files
 
@@ -829,7 +875,7 @@
 > git format-patch
 >
 > ---
-> Resources:
+> **Resources**
 > - Embedded Linux Full Course by Anisa Institute - 14:55:00
 > ---
 > References:
@@ -1905,9 +1951,147 @@
 
 ## BusyBox
 
-## Chapter 3/8 <sup>(writing)</sup>
-## Chapter 4/8 <sup>(writing)</sup>
-## Chapter 5/8 <sup>(writing)</sup>
-## Chapter 6/8 <sup>(writing)</sup>
-## Chapter 7/8 <sup>(writing)</sup>
-## Chapter 8/8 <sup>(writing)</sup>
+## Chapter 3/9 <sup>(open)</sup>
+## Chapter 4/9 <sup>(open)</sup>
+## Chapter 5/9 <sup>(open)</sup>
+## Chapter 6/9 <sup>(open)</sup>
+## Chapter 7/9 <sup>(open)</sup>
+## Chapter 8/9 <sup>(writing)</sup>
+
+## Yocto Principles
+
+<details>
+<summary>What is the output of yocto?</summary>
+
+> **Description**
+>
+> Yocto always builds binary packages.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+## Bitbake
+
+<details>
+<summary>What is build engine in yocto?</summary>
+
+> **Description**
+>
+> In most build systems, `make` is the build engine, but in yocto is `bitbake`.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What is the responsibility of bitbake?</summary>
+
+> **Description**
+>
+> `bitbake` is written in Python and is a task scheduler like `make`.
+>
+> `bitbake` parses text files to know what it has to build and how.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+## Recipe
+
+<details>
+<summary>What is the name of text files parsed by bitbake?</summary>
+
+> **Description**
+>
+> Recipes.
+>
+> Each recipe describes how to fetch and build a software component.
+> Recipes might depend on each other.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What are recipes contained of?</summary>
+
+> **Description**
+>
+> Recipes specify tasks by which performs a specific step in the build.
+> Tasks can also depend on each other.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+## Metadata
+
+<details>
+<summary>What is the input taken by bitbake called?</summary>
+
+> **Description**
+>
+> The input to `bitbake` is called *metadata*.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>How a metadata is organized?</summary>
+
+> **Description**
+>
+> Metadata is organized in layers, which can be composed to get various components.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What is the core layer of metadata?</summary>
+
+> **Description**
+>
+> `openembedded-core` is the core layer.
+>
+> By default this layer supports qemu.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+## Poky
+
+<details>
+<summary>What is a poky layer?</summary>
+
+> **Description**
+>
+> Is the layer providing the poky reference distribution.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What is a poky distribution?</summary>
+
+> **Description**
+>
+> Is the reference distro provided by the yocto.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
