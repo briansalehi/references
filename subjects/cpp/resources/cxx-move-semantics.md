@@ -2015,18 +2015,44 @@ Slicing objects and polymorphic classes skipped.
 ## Chapter 15/15 <sup>(completed)</sup>
 
 <details>
+<summary>When do the capacity of strings shrink?</summary>
+
+> **Description**
+>
+> Only move operations, `swap()`, or `shrink_to_fit()` might shrink them.
+>
+> ```cpp
+> std::string s1{"some long string"};
+> std::string s2{std::move(s1)};
+>
+> std::string s3;
+> s3 = std::move(s2);
+> ``````
+>
+> Sometimes source destination shrinks, but neither is guaranteed.
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 15
+> ---
+> **References**
+> ---
+</details>
+
+<details>
 <summary>When do containers support move semantics?</summary>
 
 > **Description**
 >
-> All containers support move semantics when doing the following:
+> All containers support move semantics when:
 >
 > * Copying the containers
 > * Assigning the containers
 > * Inserting elements into the container
 >
 > However, there is one exception: `std::array<>` does not allocate memory on
-> the heap.
+> the heap, hense it operates element-by-element and making move operations
+> equivalent to copy.
 >
 > ```cpp
 > std::list<std::string> createAndInsert()
@@ -2050,7 +2076,7 @@ Slicing objects and polymorphic classes skipped.
 </details>
 
 <details>
-<summary>What is the time complexity of move constructors in containers?</summary>
+<summary>What does the C++ standard guarantee for move operations on containers?</summary>
 
 > **Description**
 >
@@ -2067,34 +2093,8 @@ Slicing objects and polymorphic classes skipped.
 > whole from the source object `cont1` to the destination object `cont2`,
 > leaving the source object `cont1` in an initial/empty state.
 >
-> ---
-> **Resources**
-> - C++ Move Semantics: The Complete Guide - Chapter 15
-> ---
-> **References**
-> ---
-</details>
-
-<details>
-<summary>What does the C++ standard guarantee for move assignment operators of containers?</summary>
-
-> **Description**
->
-> For the move assignment operator:
->
-> ```cpp
-> ContainerType cont1{ ... }, cont2{ ... };
-> cont2 = std::move(cont1); // move assign the container
-> ``````
->
-> the C++ standard guarantees that this operation either overwrites or destroys each element of the destination object cont2.
-> This guarantees that all resources that the elements of the destination container dest2 own on entry are released.
->
-> As a consequence, there are only two ways to implement a move assignment:
-> * Destroy the old elements and move the whole contents of the source to the destination (i.e., move the pointer to the memory from the source to the destination).
-> * Move element by element from the source cont1 to the destination cont2 and destroy all remaining elements not overwritten in the destination.
->
-> Both ways require linear complexity, which is therefore specified.
+> These requirements and guarantees essentially mean that moved-from containers
+> are usually empty.
 >
 > ---
 > **Resources**
@@ -2114,21 +2114,38 @@ Slicing objects and polymorphic classes skipped.
 > 1. Insert Functions: all containers have corresponding overloads.
 >
 > ```cpp
-> template<typename Key, typename T, typename Compare = less<Key>,
-> typename Allocator = allocator<pair<const Key, T>>>
-> class map {
+> template<typename Key, typename T, typename Compare = less<Key>, typename Allocator = allocator<pair<const Key, T>>>
+> class map
+> {
 > public:
-> ...
-> pair<iterator, bool> insert(const value_type& x);
-> pair<iterator, bool> insert(value_type&& x);
-> ...
+>     ...
+>     pair<iterator, bool> insert(const value_type& x);
+>     pair<iterator, bool> insert(value_type&& x);
+>     ...
 > };
 > ``````
 >
-> 1. Emplace Functions
+> 1. Emplace Functions: you can pass multiple arguments to initialize a new
+>    element directly in the container to save a copy or move.
+>
+> Functions like `emplace_back()` use perfect forwarding to avoid creating
+> copies of the passed arguments.
 >
 > ```cpp
->
+> template<typename T, typename Allocator = allocator<T>>
+> class vector
+> {
+> public:
+>     template<typename... Args>
+>     constexpr T& emplace_back(Args&&... args)
+>     {
+>         ...
+>         // call the constructor with the perfectly forwarded arguments:
+>         place_element_in_memory(T(std::forward<Args>(args)...));
+>         ...
+>     }
+> };
+> ``````
 >
 > ---
 > **Resources**
@@ -2137,3 +2154,30 @@ Slicing objects and polymorphic classes skipped.
 > **References**
 > ---
 </details>
+
+<details>
+<summary>How does <code>std::array</code> support move semantics?</summary>
+
+> **Description**
+>
+> `std::array<>` is the only container that does not allocate memory on the
+> heap. Therefore, we cannot implement move operations in a way that they move
+> pointers to internal memory. As a consequence, std::array<> has a couple of
+> different guarantees:
+>
+> - The move constructor has linear complexity because it has to move element
+>   by element.
+> - The move assignment operator might always throw because it has to move
+>   assign element by element.
+>
+> Therefore, in principle, there is no difference between copying or moving an
+> array of numeric values:
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 15
+> ---
+> **References**
+> ---
+</details>
+
