@@ -2181,3 +2181,36 @@ Slicing objects and polymorphic classes skipped.
 > ---
 </details>
 
+<details>
+<summary>How does <code>std::pair</code> support move semantics?</summary>
+
+> **Description**
+>
+> ```cpp
+> template<typename T1, typename T2>
+> struct pair
+> {
+>     T1 first;
+>     T2 second;
+> };
+> ``````
+>
+> `std::pair` has a default constructor, and copy and move semantics.
+>
+> ```cpp
+> constexpr pair(const T1& x, const T2& y);
+> template<typename U, typename V> constexpr pair(U&& x, V&& y);
+> template<typename U, typename V> constexpr pair(const pair<U, V>& p);
+> template<typename U, typename V> constexpr pair(pair<U, V>&& p);
+> template<typename... Args1, typename... Args2> pair(piecewise_construct_t, tuple<Args1...> first_args, tuple<Args2...> second_args);
+> ``````
+>
+> Therefore, we can use move semantics when constructing a pair.
+>
+> ---
+> **Resources**
+> - C++ Move Semantics: The Complete Guide - Chapter 15
+> ---
+> **References**
+> ---
+</details>

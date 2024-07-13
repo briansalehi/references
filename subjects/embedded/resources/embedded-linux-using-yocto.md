@@ -1,4 +1,4 @@
-# [Embedded Linux using Yocto](#)
+# Embedded Linux using Yocto
 
 <details>
 <summary>How to build a kernel image using <b>Yocto Poky</b> tools?</summary>

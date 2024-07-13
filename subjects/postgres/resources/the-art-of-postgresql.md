@@ -1,4 +1,4 @@
-# [The Art of PostgreSQL](https://theartofpostgresql.com)
+# The Art of PostgreSQL
 <img alt="The Art of PostgreSQL" src="../../../covers/the-art-of-postgresql.jpg" width="200"/>
 
 ## Chapter 1/51

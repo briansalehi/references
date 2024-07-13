@@ -1,4 +1,4 @@
-# [Linux Device Driver](https://www.linkedin.com/learning/linux-device-drivers)
+# Linux Device Driver
 <img src="covers/linux.jpg" width="200"/>
 
 <details>

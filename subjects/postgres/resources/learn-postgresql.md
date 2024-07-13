@@ -352,7 +352,7 @@
 ## Chapter 2/20 <sup>(writing)</sup>
 
 <details>
-<summary>What tool is used to manage postgres cluster?</summary>
+<summary>What utility manages postgres clusters?</summary>
 
 > **Description**
 >
@@ -368,7 +368,7 @@
 </details>
 
 <details>
-<summary>What are the basic functionalities of <code>pg_ctl</code>?</summary>
+<summary>What are the <code>pg_ctl</code> basic commands?</summary>
 
 > **Description**
 >
@@ -376,7 +376,9 @@
 > * `status` reports current status of cluster.
 > * `reload` reloads the configuration.
 > * `initdb` or briefly `init` executes the initialization of the cluster.
-> * `promote` is used when the cluster is running as a subordinate.
+> * `promote` is used when the cluster is running as a subordinate server in a
+>   replication setup and now must be detached from the origin master and
+>   become independent.
 >
 > ---
 > **Resources**
@@ -387,12 +389,12 @@
 </details>
 
 <details>
-<summary>What process is started with <code>pg_ctl</code> on postgres bring up?</summary>
+<summary>What is the main process running postgres?</summary>
 
 > **Description**
 >
-> `postmaster` process is started by `pg_ctl start` and it shows
-> `$PGENV_ROOT/bin/postgres` as the executable running.
+> `postmaster` process is started by `pg_ctl start` and prints
+> `$PGENV_ROOT/bin/postgres` when it runs.
 >
 > ---
 > **Resources**
