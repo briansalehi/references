@@ -54,7 +54,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -78,7 +78,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -99,7 +99,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 
 > **References**
 > ---
@@ -119,7 +119,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 >
 > ---
 > **References**
@@ -138,7 +138,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 > **References**
 > ---
@@ -155,7 +155,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -179,7 +179,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 > **References**
 > ---
@@ -200,7 +200,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 > **References**
 > ---
@@ -222,7 +222,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -263,7 +263,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 >
 > ---
 > **References**
@@ -285,7 +285,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -302,7 +302,7 @@
 > ``````
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -335,7 +335,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -378,7 +378,7 @@
 > ``````
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -394,7 +394,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book
 > ---
 > **References**
 > ---
@@ -425,7 +425,7 @@
 > ``````
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 >
 > ---
 > **References**
@@ -446,7 +446,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 > **References**
 > ---
@@ -460,7 +460,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 > **References**
 > ---
@@ -498,7 +498,7 @@
 >
 > ---
 > **Resources**
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 > **References**
 > ---

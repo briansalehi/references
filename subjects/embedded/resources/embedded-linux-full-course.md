@@ -2,7 +2,7 @@
 
 ## Chapter 1/9 <sup>(published)</sup>
 
-## Host Toolchains
+### Host Toolchains
 
 <details>
 <summary>What are prerequisites for communicating with an embedded device?</summary>
@@ -179,7 +179,7 @@
 ---
 </details>
 
-## Cross Toolchains
+### Cross Toolchains
 
 <details>
 <summary>What toolchains are available to use in kernel image build process?</summary>
@@ -346,7 +346,7 @@
 ---
 </details>
 
-## U-Boot Configuration
+### U-Boot Configuration
 
 <details>
 <summary>How to obtain U-Boot and configure it?</summary>
@@ -376,7 +376,7 @@
 ---
 </details>
 
-## U-Boot Kernel Loading
+### U-Boot Kernel Loading
 
 <details>
 <summary>How to load a file from a filesystem to RAM within U-Boot shell?</summary>
@@ -422,7 +422,7 @@
 ---
 </details>
 
-## U-Boot Command Line
+### U-Boot Command Line
 
 <details>
 <summary>What command can be used within U-Boot shell to test network conectivity?</summary>
@@ -772,7 +772,7 @@
 > ---
 </details>
 
-## Raspberry Pi
+### Raspberry Pi
 
 <details>
 <summary>Where to download the Raspberry Pi bootloader from?</summary>
@@ -835,7 +835,7 @@
 ---
 </details>
 
-## Quick Emulator
+### Quick Emulator
 
 <details>
 <summary>How to list all available processors available to QEMU?</summary>
@@ -867,7 +867,7 @@
 
 ## Chapter 2/9 <sup>(writing)</sup>
 
-## Patch Files
+### Patch Files
 
 <details>
 <summary>How to create a patch?</summary>
@@ -882,7 +882,7 @@
 > ---
 </details>
 
-## Kernel Configuration
+### Kernel Configuration
 
 <details>
 <summary>What environment variable is required when building the kernel?</summary>
@@ -938,7 +938,7 @@
 > ---
 </details>
 
-## Config Writing
+### Config Writing
 
 <details>
 <summary>What are the different types of a kernel configuration option?</summary>
@@ -991,7 +991,7 @@
 > ---
 </details>
 
-## Kernel Building
+### Kernel Building
 
 <details>
 <summary>Make building process faster by running build in parallel?</summary>
@@ -1045,7 +1045,7 @@
 > ---
 </details>
 
-## Kernel Installation
+### Kernel Installation
 
 <details>
 <summary>How many installation targets do we have to run?</summary>
@@ -1122,7 +1122,7 @@
 > ---
 </details>
 
-## Modules Installation
+### Modules Installation
 
 <details>
 <summary>Install modules from source tree?</summary>
@@ -1179,7 +1179,7 @@
 > ---
 </details>
 
-## Kernel Source Cleanup
+### Kernel Source Cleanup
 
 <details>
 <summary>What cleaning targets do we have in kernel source?</summary>
@@ -1198,7 +1198,7 @@
 > ---
 </details>
 
-## Kernel Archiving
+### Kernel Archiving
 
 <details>
 <summary>Archive current kernel version?</summary>
@@ -1217,7 +1217,7 @@
 > ---
 </details>
 
-## Device Trees
+### Device Trees
 
 <details>
 <summary>What is the purpose of using device trees?</summary>
@@ -1257,7 +1257,7 @@
 > ---
 </details>
 
-## U-Boot Kernel Loading
+### U-Boot Kernel Loading
 
 <details>
 <summary>What commands can be used in U-Boot to load kernel images?</summary>
@@ -1339,7 +1339,7 @@
 > ---
 </details>
 
-## Kernel Command Line
+### Kernel Command Line
 
 <details>
 <summary>What is a kernel command line?</summary>
@@ -1396,7 +1396,7 @@
 > ---
 </details>
 
-## Kernel Modules
+### Kernel Modules
 
 <details>
 <summary>Where the dependency of modules are specified?</summary>
@@ -1418,7 +1418,7 @@
 > ---
 </details>
 
-## Kernel Log
+### Kernel Log
 
 <details>
 <summary>What is the kernel logging mechanism?</summary>
@@ -1474,7 +1474,7 @@
 > ---
 </details>
 
-## Module Utilities
+### Module Utilities
 
 <details>
 <summary>Print the information about a module?</summary>
@@ -1553,7 +1553,7 @@
 > ---
 </details>
 
-## Modules Configuration
+### Modules Configuration
 
 <details>
 <summary>Pass parameters to a module through modprobe configuration?</summary>
@@ -1613,7 +1613,7 @@
 > ---
 </details>
 
-## Filesystem Mounting
+### Filesystem Mounting
 
 <details>
 <summary>Mount a filesystem for a USB storage device?</summary>
@@ -1636,7 +1636,7 @@
 > ---
 </details>
 
-## Filesystem Unmounting
+### Filesystem Unmounting
 
 <details>
 <summary>Unmount a filesystem?</summary>
@@ -1659,7 +1659,7 @@
 > ---
 </details>
 
-## Root Filesystem
+### Root Filesystem
 
 <details>
 <summary>Where can we mount a root filesystem from?</summary>
@@ -1723,7 +1723,7 @@
 > ---
 </details>
 
-## U-Boot Start Up
+### U-Boot Start Up
 
 <details>
 <summary>Boot up a virtual system into U-Boot command line?</summary>
@@ -1760,7 +1760,7 @@
 > ---
 </details>
 
-## Initial Ram Filesystem
+### Initial Ram Filesystem
 
 <details>
 <summary>Create an initramfs?</summary>
@@ -1791,7 +1791,7 @@
 > ---
 </details>
 
-## Device Files
+### Device Files
 
 <details>
 <summary>What component is responsible for loading device files into the kernel?</summary>
@@ -1811,7 +1811,7 @@
 > ---
 </details>
 
-## Procfs Filesystem
+### Procfs Filesystem
 
 <details>
 <summary>Create proc virtual filesystem?</summary>
@@ -1869,7 +1869,7 @@
 > ---
 </details>
 
-## Sysfs Filesystem
+### Sysfs Filesystem
 
 <details>
 <summary>What information does sysfs hold from the system?</summary>
@@ -1891,7 +1891,7 @@
 > ---
 </details>
 
-## Init Process
+### Init Process
 
 <details>
 <summary>What sequence does kernel follow to call init?</summary>
@@ -1949,7 +1949,7 @@
 > ---
 </details>
 
-## BusyBox
+### BusyBox
 
 ## Chapter 3/9 <sup>(open)</sup>
 ## Chapter 4/9 <sup>(open)</sup>
@@ -1958,7 +1958,7 @@
 ## Chapter 7/9 <sup>(open)</sup>
 ## Chapter 8/9 <sup>(writing)</sup>
 
-## Yocto Principles
+### Yocto Principles
 
 <details>
 <summary>What is the output of yocto?</summary>
@@ -1972,7 +1972,7 @@
 > ---
 </details>
 
-## Bitbake
+### Bitbake
 
 <details>
 <summary>What is build engine in yocto?</summary>
@@ -2000,7 +2000,7 @@
 > ---
 </details>
 
-## Recipe
+### Recipe
 
 <details>
 <summary>What is the name of text files parsed by bitbake?</summary>
@@ -2030,7 +2030,7 @@
 > ---
 </details>
 
-## Metadata
+### Metadata
 
 <details>
 <summary>What is the input taken by bitbake called?</summary>
@@ -2070,7 +2070,7 @@
 > ---
 </details>
 
-## Poky
+### Poky
 
 <details>
 <summary>What is a poky layer?</summary>
@@ -2095,3 +2095,231 @@
 > - Embedded Linux Full Course by Anisa Institute
 > ---
 </details>
+
+<details>
+<summary>What meta layer do we need to build images for qemu and beagle bone black?</summary>
+
+> **Description**
+>
+> The same poky reference system is used for both, but for beagle bone black we
+> will need another meta layer `meta-ti-bsp`.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>Get poky reference system?</summary>
+
+> **Description**
+>
+> ```sh
+> git clone --branch kirkstone https://git.yoctoproject.org/git/poky
+> ``````
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the bitbake directory in poky contain?</summary>
+
+> **Description**
+>
+> All the scripts required by `bitbake` to run.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the meta directory in poky contain?</summary>
+
+> **Description**
+>
+> Contains the OpenEmbedded-Core metadata.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the meta-skeleton directory in poky contain?</summary>
+
+> **Description**
+>
+> Also `meta-skeleton` directory contains recipes for BSP and kernel development.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the meta-poky directory in poky contain?</summary>
+
+> **Description**
+>
+> Holds the configuration for the Poky reference distribution.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the meta-yocto-bsp directory in poky contain?</summary>
+
+> **Description**
+>
+> Configuration for the Yocto Project reference hardware board support package.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the oe-init-build-env file do in poky?</summary>
+
+> **Description**
+>
+> Script to set up the OpenEmbedded build environment.
+> It will create the build directory.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the script directory contain in poky?</summary>
+
+> **Description**
+>
+> Contains scripts used to set up the environment, development tools, and tools
+> to flash the generated images on the target.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What are the common targets in bitbake?</summary>
+
+> **Description**
+>
+> - `core-image-minimal`: boot a device and have access to core command line commands and services.
+> - `core-image-sato`: Image with Sato support. Sato is a GNOME mobile-based user interface.
+> - `meta-toolchain`: Generates the cross-toolchain in an installable format.
+> - `meta-ide-support`: Generates the cross-toolchain and additional tools (gdb, qemu, ...) for IDE integration.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What environment variables are used by bitbake?</summary>
+
+> **Description**
+>
+> - `BUILDDIR`: Absolute path of the build directory.
+> - `PATH`: Path to executables.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What does the build directory contain?</summary>
+
+> **Description**
+>
+> - `conf/`: configurations
+> - `downloads/`: tarballs
+> - `tmp/`: build system outputs
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>What configuration files are necessary for poky build system?</summary>
+
+> **Description**
+>
+> - `bblayers.conf`: Explicitly list the layers to use.
+> - `local.conf`: User related configuration variables.
+> - `site.conf`: Also like local file but for site settings, eg. network, cpu resource limits.
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+### Image Creation
+
+<details>
+<summary>Prepare build environment with poky?</summary>
+
+> **Description**
+>
+> ```sh
+> source oe-init-build-env [builddir]
+> ``````
+>
+> ```sh
+> git clone --branch kirkstone https://git.yoctoproject.org/git/poky.git /tmp/poky
+> source /tmp/poky/oe-init-build-env /tmp/build-qemu
+> ``````
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary>Build an image with poky?</summary>
+
+> **Description**
+>
+> ```sh
+> bitbake core-image-minimal
+> ``````
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary></summary>
+
+> **Description**
+>
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+<details>
+<summary></summary>
+
+> **Description**
+>
+>
+> **Resources**
+> - Embedded Linux Full Course by Anisa Institute
+> ---
+</details>
+
+## Chapter 9/9 <sup>(writing)</sup>

@@ -207,7 +207,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course - 3:25:00
+> - Embedded Linux Full Course by Anisa Institute - 14:55:00
 > ---
 > **References**
 > ---

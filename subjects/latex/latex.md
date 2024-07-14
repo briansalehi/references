@@ -208,7 +208,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -225,7 +225,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -242,7 +242,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -262,7 +262,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -281,7 +281,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -300,7 +300,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -319,7 +319,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -338,7 +338,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -357,7 +357,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
