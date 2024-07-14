@@ -263,7 +263,7 @@
 > First build the project:
 >
 > ```sh
-> git clone https://github.com/postgresql/postgresql
+> git clone https://github.com - https://github.com/postgresql/postgresql
 > cd postgresql
 > git checkout <latest>
 > ./configure --prefix=$HOME/.local
@@ -309,7 +309,7 @@
 > **Description**
 >
 > ```sh
-> git clone https://github.com/theory/pgenv
+> git clone https://github.com - https://github.com/theory/pgenv
 > cp pgenv/bin/pgenv ~/.local/bin/
 > pgenv available
 > pgenv build <version>

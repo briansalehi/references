@@ -45,9 +45,9 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
-> - [nasm reference manual](https://www.nasm.us/doc/)
-> - [gcc reference manual](https://gcc.gnu.org/onlinedocs/)
-> - [make reference manual](https://www.gnu.org/software/make/manual/html_node/)
+> - https://www.nasm.us - https://www.nasm.us/doc/
+> - https://gcc.gnu.org - https://gcc.gnu.org/onlinedocs/
+> - https://www.gnu.org - https://www.gnu.org/software/make/manual/html_node/
 ---
 </details>
 
@@ -64,7 +64,7 @@
 > - Beginning x64 Assembly Programming - Chapter 3
 
 > **References**
-> - [GDB User Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/)
+> - https://sourceware.org - https://sourceware.org/gdb/current/onlinedocs/gdb/
 > ---
 </details>
 
@@ -391,7 +391,7 @@
 >
 > ---
 > **References**
-> - [IEEE-754](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/)
+> - https://www.geeksforgeeks.org - https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/
 > ---
 </details>
 
@@ -2887,7 +2887,7 @@
 >
 > ---
 > **References**
-> - https://en.wikipedia.org/wiki/Flynn's_taxonomy
+> - https://en.wikipedia.org - https://en.wikipedia.org/wiki/Flynn's_taxonomy
 > ---
 </details>
 

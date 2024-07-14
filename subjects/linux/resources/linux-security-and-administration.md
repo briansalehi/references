@@ -19,7 +19,7 @@
 > ---
 </details>
 
-* [sudo(8)](https://manpages.org/sudo/8)
+* https://manpages.org - https://manpages.org/sudo/8
 
 <details>
 <summary>How to reduce the damage caused by privileged accessibilities on a system while these privileges are required?</summary>
@@ -34,7 +34,7 @@
 > ---
 </details>
 
-* [visudo(8)](https://manpages.org/visudo/8)
+* https://manpages.org - https://manpages.org/visudo/8
 
 <details>
 <summary>How can we add a user to <i>sudo</i> group?</summary>
@@ -56,7 +56,7 @@
 > -
 > ---
 > **References**
-> - [useradd(8)](https://manpages.org/useradd/8)
+> - https://manpages.org - https://manpages.org/useradd/8
 > ---
 </details>
 
@@ -73,7 +73,7 @@
 > -
 > ---
 > **References**
-> - [login.defs(5)](https://manpages.org/logindefs/5)
+> - https://manpages.org - https://manpages.org/logindefs/5
 ---
 </details>
 
@@ -103,7 +103,7 @@
 > -
 > ---
 > **References**
-> - [sshd\_config(5)](https://manpages.org/sshd_config/5)
+> - https://manpages.org - https://manpages.org/sshd_config/5
 > ---
 </details>
 
@@ -172,7 +172,7 @@
 > -
 
 > **References**
-> - [pam(8)](https://manpages.org/pam/8)
+> - https://manpages.org - https://manpages.org/pam/8
 > ---
 </details>
 
@@ -203,8 +203,8 @@
 >
 > ---
 > **References**
-> - [pam.d(5)](https://manpages.org/pamd/5)
-> - [pam.conf(5)](https://manpages.org/pamconf/5)
+> - https://manpages.org - https://manpages.org/pamd/5
+> - https://manpages.org - https://manpages.org/pamconf/5
 > ---
 </details>
 
@@ -248,9 +248,9 @@
 >
 > ---
 > **References**
-> - [ssh(1)](https://manpages.org/ssh/1)
-> - [sshd(8)](https://manpages.org/sshd/8)
-> - [sshd\_config(5)](https://manpages.org/sshd_config/5)
+> - https://manpages.org - https://manpages.org/ssh/1
+> - https://manpages.org - https://manpages.org/sshd/8
+> - https://manpages.org - https://manpages.org/sshd_config/5
 ---
 </details>
 
@@ -844,9 +844,9 @@
 >
 > ---
 > **References**
-> - [gnupg(7)](https://manpages.org/gnupg/7)
-> - [gpgconf(1)](https://manpages.org/gnupg/1)
-> - [gpg-agent(1)](https://manpages.org/gnupg/1)
+> - https://manpages.org - https://manpages.org/gnupg/7
+> - https://manpages.org - https://manpages.org/gnupg/1
+> - https://manpages.org - https://manpages.org/gnupg/1
 > ---
 </details>
 
@@ -892,7 +892,7 @@
 >
 > ---
 > **References**
-> - [bcrypt(1)](https://manpages.org/bcrypt/1)
+> - https://manpages.org - https://manpages.org/bcrypt/1
 ---
 </details>
 
@@ -1080,10 +1080,10 @@
 >
 > ---
 > **References**
-> - [acl(5)](https://manpages.org/acl/5)
-> - [getfacl(1)](https://manpages.org/getfacl/1)
-> - [setfacl(1)](https://manpages.org/setfacl/1)
-> - [chacl(1)](https://manpages.org/chacl/1)
+> - https://manpages.org - https://manpages.org/acl/5
+> - https://manpages.org - https://manpages.org/getfacl/1
+> - https://manpages.org - https://manpages.org/setfacl/1
+> - https://manpages.org - https://manpages.org/chacl/1
 > ---
 </details>
 

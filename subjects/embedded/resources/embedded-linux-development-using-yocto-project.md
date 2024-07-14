@@ -143,7 +143,7 @@
 > **Description**
 >
 > ```sh
-> git clone https://git.yoctoproject.org/poky
+> git clone https://git.yoctoproject.org - https://git.yoctoproject.org/poky
 > ``````
 >
 > ---

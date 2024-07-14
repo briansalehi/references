@@ -64,8 +64,8 @@
 
 > **Description**
 >
-> * binutils **(base-devel)**: [https://gnu.org/software/binutils](https://gnu.org/software/binutils)
-> * gcc **(base-devel)**: [https://gcc.gnu.org](https://gcc.gnu.org)
+> * binutils **(base-devel)**: https://gnu.org - https://gnu.org/software/binutils
+> * gcc **(base-devel)**: [https://gcc.gnu.org](https: - https://gcc.gnu.org](https://gcc.gnu.org)
 > * C library + Linux header files
 >
 > ---
@@ -73,7 +73,7 @@
 > - 2
 > ---
 > **References**
-> - [LLVM support for kernel build](https://kernel.org/doc/html/latest/kbuild/llvm.html)
+> - https://kernel.org - https://kernel.org/doc/html/latest/kbuild/llvm.html
 > ---
 </details>
 
@@ -114,10 +114,10 @@
 <details>
 <summary>What C libraries are commonly used in toolchains?</summary>
 
-> * glibc: [https://gnu.org/software/libc](https://gnu.org/software/libs)
-> * musl libs: [https://musl.libc.org](https://musl.libc.org)
-> * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
-> * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
+> * glibc: https://gnu.org - https://gnu.org/software/libs
+> * musl libs: [https://musl.libc.org](https: - https://musl.libc.org](https://musl.libc.org)
+> * uClibc-ng: [https://uclibc-ng.org](https: - https://uclibc-ng.org](https://uclibc-ng.org)
+> * eglibc: https://uclibc.org - https://uclibc.org/home
 >
 > ---
 > **Resources**
@@ -148,7 +148,7 @@
 > **Description**
 >
 > ```sh
-> git clone https://github.com/crosstool-ng/crosstool-ng.git
+> git clone https://github.com - https://github.com/crosstool-ng/crosstool-ng.git
 > cd crosstool-ng
 > git checkout <latest>
 > ./bootstrap
@@ -520,9 +520,9 @@
 <summary>Build and install GNU Autotools?</summary>
 
 > * GNU Autoconf [https::/gnu.org/software/autoconf/autoconf.html](https::/gnu.org/software/autoconf/autoconf.html)
-> * GNU Automake [https://gnu.org/savannah-checkouts/gnu/automake](https://gnu.org/savannah-checkouts/gnu/automake)
-> * GNU Libtool [https://gnu.org/software/libtool/libtool.html](https://gnu.org/software/libtool/libtool.html)
-> * Gnulib [https://gnu.org/software/gnulib](https://gnu.org/software/gnulib)
+> * GNU Automake https://gnu.org - https://gnu.org/savannah-checkouts/gnu/automake
+> * GNU Libtool https://gnu.org - https://gnu.org/software/libtool/libtool.html
+> * Gnulib https://gnu.org - https://gnu.org/software/gnulib
 >
 > ```sh
 > ./configure
@@ -651,7 +651,7 @@
 <details>
 <summary>What is a Device Tree and where is its specification?</summary>
 
-> * https://github.com/devicetree-org/devicetree-specification/releases
+> * https://github.com - https://github.com/devicetree-org/devicetree-specification/releases
 >
 > ---
 > **Resources**
@@ -696,7 +696,7 @@
 >
 > ---
 > **References**
-> - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
+> - https://kernel.org - https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings"
 > ---
 </details>
 
@@ -1020,7 +1020,7 @@
 > - 4
 > ---
 > **References**
-> - https://kernelnewbies.org/LinuxVersions
+> - https://kernelnewbies.org - https://kernelnewbies.org/LinuxVersions
 > ---
 </details>
 
@@ -1059,7 +1059,7 @@
 > - 4
 > ---
 > **References**
-> - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
+> - https://www.kernel.org - https://www.kernel.org/doc/html/latest/kbuild/
 ---
 </details>
 
@@ -1473,7 +1473,7 @@
 >
 > Prebuilt toolchain:
 >
-> [AArch64 GNU/Linux target (aarch64-none-linux-gnu)](https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869)
+> https://developer.arm.com - https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869
 >
 > * Clone a stable branch of Raspberry Pi Foundations' kernel fork into a `linux` directory.
 > * Export contents of the `boot` subdirectory from Raspberry Pi Foundation's `firmware` repo to a `boot` directory.
@@ -1484,7 +1484,7 @@
 >
 > Patched kernel source for Raspberry Pi:
 >
-> https://github.com/raspberrypi/linux.git
+> https://github.com - https://github.com/raspberrypi/linux.git
 >
 > ```sh
 > cd ~
@@ -1492,8 +1492,8 @@
 > tar xf archive.tar.xz
 > mv gcc-executable gcc-arm-aarch32-none-linux-gnu
 > sudo pacman -S subversion openssl
-> git clone --depth 1 -b rpi-4.5.y https://github.com/raspberrypi/linux.git
-> svn export https://github.com/raspberrypi/firmware/trunk/boot
+> git clone --depth 1 -b rpi-4.5.y https://github.com - https://github.com/raspberrypi/linux.git
+> svn export https://github.com - https://github.com/raspberrypi/firmware/trunk/boot
 > rm boot/kernel*
 > rm boot/*.dtb
 > rm boot/overlays/*.dtbo
@@ -1530,8 +1530,8 @@
 > tar xf archive.tar.xz
 > mv gcc-executable gcc-arm-aarch32-none-linux-gnu
 > sudo pacman -S subversion openssl
-> git clone --depth 1 -b rpi-4.5.y https://github.com/raspberrypi/linux.git
-> svn export https://github.com/raspberrypi/firmware/trunk/boot
+> git clone --depth 1 -b rpi-4.5.y https://github.com - https://github.com/raspberrypi/linux.git
+> svn export https://github.com - https://github.com/raspberrypi/firmware/trunk/boot
 > rm boot/kernel*
 > rm boot/*.dtb
 > rm boot/overlays/*.dtbo

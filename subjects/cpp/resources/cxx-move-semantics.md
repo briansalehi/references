@@ -33,10 +33,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - [std::move](https://en.cppreference.com/w/cpp/utility/move)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/move
 > ---
 </details>
 
@@ -87,12 +87,12 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
-> - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment"
 ---
 </details>
 
@@ -107,7 +107,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -131,7 +131,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -155,7 +155,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -171,7 +171,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -187,7 +187,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -206,7 +206,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -223,7 +223,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -255,7 +255,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -286,7 +286,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -358,7 +358,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -397,7 +397,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -419,7 +419,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 
 > **References**
 > ---
@@ -439,10 +439,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - [Copy Constructors](https://en.cppreference.com/w/cpp/language/copy_constructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/copy_constructor
 > ---
 </details>
 
@@ -460,11 +460,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_constructor
 > ---
 </details>
 
@@ -477,10 +477,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> [Destructor](https://en.cppreference.com/w/cpp/language/destructor)
+> https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/destructor
 ---
 </details>
 
@@ -508,7 +508,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -536,7 +536,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -649,7 +649,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -683,7 +683,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -726,7 +726,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -743,11 +743,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> - [The Rule of Three/Five/Zero](https://en.cppreference.com/w/cpp/language/rule_of_three)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/rule_of_three
 > ---
 </details>
 
@@ -775,7 +775,7 @@
 >
 > ---
 > **References**
-> - [std::move](https://en.cppreference.com/w/cpp/utility/move)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/move
 > ---
 </details>
 
@@ -974,7 +974,7 @@
 > - C++ Move Semantics: The Complete Guide - Chapter 4
 > ---
 > **References**
-> - [Destructors](https://en.cppreference.com/w/cpp/language/destructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/destructor
 > ---
 </details>
 
@@ -1083,7 +1083,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 > ---
 > **References**
-> - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/member_functions
 > ---
 </details>
 
@@ -1139,7 +1139,7 @@ Slicing objects and polymorphic classes skipped.
 >
 > ---
 > **References**
-> - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/member_functions
 > ---
 </details>
 
@@ -1164,7 +1164,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 > ---
 > **References**
-> - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/member_functions
 > ---
 </details>
 
@@ -1184,7 +1184,7 @@ Slicing objects and polymorphic classes skipped.
 >
 > ---
 > **References**
-> - [Non-static member functions](https://en.cppreference.com/w/cpp/language/member_functions)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/member_functions
 > ---
 </details>
 
@@ -1255,7 +1255,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 5
 > ---
 > **References**
-> - [Assignment operators](https://en.cppreference.com/w/cpp/language/operator_assignment)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/operator_assignment
 ---
 </details>
 
@@ -1529,10 +1529,10 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
-> https://youtu.be/Bt3zcJZIalk?feature=shared
+> https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1555,7 +1555,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1610,7 +1610,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1638,7 +1638,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1660,7 +1660,7 @@ Slicing objects and polymorphic classes skipped.
 > - C++ Move Semantics: The Complete Guide - Chapter 9
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 
@@ -1686,10 +1686,10 @@ Slicing objects and polymorphic classes skipped.
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 9
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/forward
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/forward
 > ---
 </details>
 

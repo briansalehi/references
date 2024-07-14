@@ -196,7 +196,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/initialization
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/initialization
 > ---
 </details>
 
@@ -219,7 +219,7 @@
 > - Language Features of C++17 Cheat Sheet by Bartlomiej Filipek
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/initialization
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/initialization
 > ---
 </details>
 
@@ -436,7 +436,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 > ---
 > **References**
 > ---
@@ -458,7 +458,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 >
 > ---
 > **References**
@@ -481,7 +481,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 >
 > ---
 > **References**
@@ -608,7 +608,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 > ---
 </details>
 
@@ -641,7 +641,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces
 > ---
 </details>
 
@@ -764,7 +764,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces
 > ---
 </details>
 
@@ -885,7 +885,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kqo-jIq4V3I
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Kqo-jIq4V3I
 > ---
 > **References**
 > ---
@@ -903,7 +903,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kqo-jIq4V3I
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Kqo-jIq4V3I
 > ---
 > **References**
 > ---
@@ -1294,7 +1294,7 @@
 > - Teach Yourself C++ in One Hour a Day - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/auto
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/auto
 > ---
 </details>
 
@@ -1346,7 +1346,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/structured_binding
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/structured_binding
 > ---
 </details>
 
@@ -1394,7 +1394,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/type_alias
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/type_alias
 ---
 </details>
 
@@ -1429,7 +1429,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/enum
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/enum
 ---
 </details>
 
@@ -1464,7 +1464,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration
 ---
 </details>
 
@@ -1496,7 +1496,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/variant
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/variant
 > ---
 </details>
 
@@ -1518,7 +1518,7 @@
 > - Daily C++ Bites - #64
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/variant
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/variant
 > ---
 </details>
 
@@ -1556,7 +1556,7 @@
 > - Daily C++ Bites - #64
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/variant/get
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/variant/get
 > ---
 </details>
 
@@ -1588,7 +1588,7 @@
 > - Daily C++ Bites - #66
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/variant/visit
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/variant/visit
 > ---
 </details>
 
@@ -1631,7 +1631,7 @@
 > - Daily C++ Bites - #66
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/utility/variant/visit
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/variant/visit
 > ---
 </details>
 
@@ -2151,8 +2151,8 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/explicit
-> - https://en.cppreference.com/w/cpp/language/converting_constructor
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/explicit
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/converting_constructor
 > ---
 </details>
 
@@ -2187,7 +2187,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/data_members
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/data_members
 ---
 </details>
 
@@ -2204,7 +2204,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=zL-vn_pGGgY
 > ---
 > **References**
 > ---
@@ -2221,7 +2221,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=zL-vn_pGGgY
 > ---
 > **References**
 > ---
@@ -2239,7 +2239,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=zL-vn_pGGgY
 > ---
 > **References**
 > ---
@@ -2262,7 +2262,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=zL-vn_pGGgY
 > ---
 > **References**
 > ---
@@ -2291,7 +2291,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=zL-vn_pGGgY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=zL-vn_pGGgY
 > ---
 > **References**
 > ---
@@ -2337,7 +2337,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 > ---
 > **References**
 > ---
@@ -2366,7 +2366,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 > ---
 > **References**
 > ---
@@ -2392,7 +2392,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=b0NkuoUkv0M
+> - https://www.youtube.com - https://www.youtube.com/watch?v=b0NkuoUkv0M
 > ---
 > **References**
 > ---
@@ -2511,7 +2511,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2530,7 +2530,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2557,7 +2557,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2583,7 +2583,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2614,7 +2614,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 1
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2840,7 +2840,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2903,7 +2903,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -2926,7 +2926,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3395,7 +3395,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3415,7 +3415,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3452,7 +3452,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3493,7 +3493,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3534,7 +3534,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3607,7 +3607,7 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3644,7 +3644,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -3966,10 +3966,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4075,7 +4075,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
 > ---
@@ -4103,10 +4103,10 @@
 > ---
 > **Resources**
 > - C++ Templates: The Complete Guide - Chapter 2
-> - https://www.youtube.com/watch?v=HqsEHG0QJXU
+> - https://www.youtube.com - https://www.youtube.com/watch?v=HqsEHG0QJXU
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4157,7 +4157,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4203,7 +4203,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4235,7 +4235,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4281,7 +4281,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4310,7 +4310,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4352,7 +4352,7 @@
 > - C++ Templates: The Complete Guide - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 > ---
 </details>
 
@@ -4406,7 +4406,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/range-for
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/range-for
 ---
 </details>
 
@@ -4525,7 +4525,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/range-for
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/range-for
 > ---
 </details>
 
@@ -4591,7 +4591,7 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/object#Alignment
 ---
 </details>
 
@@ -4622,8 +4622,8 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/alignof
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/alignof
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/object#Alignment
 > ---
 </details>
 
@@ -4693,8 +4693,8 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/alignas
-> - https://en.cppreference.com/w/cpp/language/object#Alignment
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/alignas
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/object#Alignment
 > ---
 </details>
 
@@ -4746,8 +4746,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/user_literal
-> - https://en.cppreference.com/w/cpp/symbol_index/literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/user_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/literals
 > ---
 </details>
 
@@ -4781,7 +4781,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/user_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/user_literal
 > ---
 </details>
 
@@ -4805,7 +4805,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/user_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/user_literal
 > ---
 </details>
 
@@ -4864,7 +4864,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/user_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/user_literal
 ---
 </details>
 
@@ -4898,11 +4898,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> - [std::move](https://en.cppreference.com/w/cpp/utility/move)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/move
 ---
 </details>
 
@@ -4953,12 +4953,12 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
-> - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment"
 > ---
 </details>
 
@@ -4972,7 +4972,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -4989,7 +4989,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5005,7 +5005,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5025,7 +5025,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5048,7 +5048,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5073,7 +5073,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5091,7 +5091,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 1
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5120,7 +5120,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5153,7 +5153,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5222,7 +5222,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5244,7 +5244,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5264,10 +5264,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - [Copy Constructors](https://en.cppreference.com/w/cpp/language/copy_constructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/copy_constructor
 > ---
 </details>
 
@@ -5285,10 +5285,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - [Move Constructor](https://en.cppreference.com/w/cpp/language/move_constructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_constructor
 ---
 </details>
 
@@ -5301,11 +5301,11 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
-> [Destructor](https://en.cppreference.com/w/cpp/language/destructor)
+> https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/destructor
 ---
 </details>
 
@@ -5332,7 +5332,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5371,10 +5371,10 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
-> - [The Rule of Three/Five/Zero](https://en.cppreference.com/w/cpp/language/rule_of_three)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/rule_of_three
 > ---
 </details>
 
@@ -5404,7 +5404,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5497,7 +5497,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5525,7 +5525,7 @@
 >
 > ---
 > **References**
-> - [std::move](https://en.cppreference.com/w/cpp/utility/move)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/move
 > ---
 </details>
 
@@ -5558,7 +5558,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 > ---
 > **References**
 > ---
@@ -5601,7 +5601,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 3
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5638,7 +5638,7 @@
 >
 > ---
 > **References**
-> - [Destructors](https://en.cppreference.com/w/cpp/language/destructor)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/destructor
 ---
 </details>
 
@@ -5675,7 +5675,7 @@
 > ---
 > **Resources**
 > - C++ Move Semantics: The Complete Guide - Chapter 2
-> - https://youtu.be/Bt3zcJZIalk?feature=shared
+> - https://youtu.be - https://youtu.be/Bt3zcJZIalk?feature=shared
 >
 > ---
 > **References**
@@ -5907,8 +5907,8 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/override
-> - https://en.cppreference.com/w/cpp/language/virtual
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/override
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/virtual
 ---
 </details>
 
@@ -5946,9 +5946,9 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/final
-> - https://en.cppreference.com/w/cpp/language/override
-> - https://en.cppreference.com/w/cpp/language/virtual
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/final
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/override
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/virtual
 > ---
 </details>
 
@@ -5982,8 +5982,8 @@
 > - Modern C++ Programming Cookbook - Chapter 1
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/final
-> - https://en.cppreference.com/w/cpp/language/derived_class
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/final
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/derived_class
 > ---
 </details>
 
@@ -6016,7 +6016,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
 > ---
@@ -6058,7 +6058,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 >
 > ---
 > **References**
@@ -6091,7 +6091,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -6133,7 +6133,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -6218,7 +6218,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -6243,7 +6243,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -6266,7 +6266,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 >
 > ---
 > **References**
@@ -6292,8 +6292,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string/to_string
-> - https://en.cppreference.com/w/cpp/headers/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/to_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/basic_string
 > ---
 </details>
 
@@ -6337,10 +6337,10 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string/stol
-> - https://en.cppreference.com/w/cpp/string/basic_string/stoul
-> - https://en.cppreference.com/w/cpp/string/basic_string/stof
-> - https://en.cppreference.com/w/cpp/headers/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/stoul
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/stof
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
 </details>
 
@@ -6365,8 +6365,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string/stol
-> - https://en.cppreference.com/w/cpp/headers/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/basic_string
 ---
 </details>
 
@@ -6405,8 +6405,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string/stol
-> - https://en.cppreference.com/w/cpp/headers/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/stol
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/basic_string
 > ---
 </details>
 
@@ -6444,8 +6444,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/floating_literal
-> - https://en.cppreference.com/w/cpp/headers/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/floating_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/basic_string
 > ---
 </details>
 
@@ -6477,10 +6477,10 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/string_literal
-> - https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s
-> - https://en.cppreference.com/w/cpp/string/basic_string_view/operator%22%22sv
-> - https://en.cppreference.com/w/cpp/symbol_index/literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/string_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string_view/operator%22%22sv
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/literals
 > ---
 </details>
 
@@ -6505,7 +6505,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/string_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/string_literal
 ---
 </details>
 
@@ -6536,7 +6536,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/string_literal
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/string_literal
 ---
 </details>
 
@@ -6574,7 +6574,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/string_view
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/string_view
 ---
 </details>
 
@@ -6595,7 +6595,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/string_view
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/string_view
 > ---
 </details>
 
@@ -6619,7 +6619,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/string_view
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/string_view
 > ---
 </details>
 <details>
@@ -6641,7 +6641,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/string_view
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/string_view
 > ---
 </details>
 
@@ -6689,7 +6689,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 >
 > ---
 > **References**
@@ -6713,7 +6713,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 > ---
 > **References**
 > ---
@@ -6732,7 +6732,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 > ---
 > **References**
 > ---
@@ -6765,7 +6765,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 >
 > ---
 > **References**
@@ -6786,7 +6786,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 > ---
 > **References**
 > ---
@@ -6806,7 +6806,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2020/02/extra-format-cpp20.html
+> - https://www.cppstories.com - https://www.cppstories.com/2020/02/extra-format-cpp20.html
 > ---
 > **References**
 > ---
@@ -6835,7 +6835,7 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/regex/basic_regex
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/regex/basic_regex
 ---
 </details>
 
@@ -6852,7 +6852,7 @@
 >
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/syntax_option_type
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/syntax_option_type
 > ---
 </details>
 
@@ -6878,7 +6878,7 @@
 >
 > int main()
 > {
->     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};
 >     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
 >
 >     if(matches(text, pattern))
@@ -6894,9 +6894,9 @@
 >
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/regex_match
-> - https://cppreference.com/w/cpp/regex/match_results
-> - https://cppreference.com/w/cpp/regex/basic_regex
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_match
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/match_results
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/basic_regex
 > ---
 </details>
 
@@ -6937,7 +6937,7 @@
 >
 > int main()
 > {
->     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};
 >     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
 >
 >     std::regex rx{pattern, std::regex_constants::icase};
@@ -6955,10 +6955,10 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/sub_match
-> - https://cppreference.com/w/cpp/regex/match_results
-> - https://cppreference.com/w/cpp/regex/regex_match
-> - https://cppreference.com/w/cpp/regex/basic_regex
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/sub_match
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/match_results
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_match
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/basic_regex
 > ---
 </details>
 
@@ -6987,8 +6987,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/syntax_option_type
-> - https://cppreference.com/w/cpp/regex/basic_regex
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/syntax_option_type
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/basic_regex
 > ---
 </details>
 
@@ -7028,8 +7028,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/regex_search
-> - https://cppreference.com/w/cpp/regex/basic_regex
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_search
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/basic_regex
 ---
 </details>
 
@@ -7109,8 +7109,8 @@
 >
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/sregex_iterator
-> - https://cppreference.com/w/cpp/regex/sregex_token_iterator
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/sregex_iterator
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/sregex_token_iterator
 > ---
 </details>
 
@@ -7135,7 +7135,7 @@
 >
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/regex_replace
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_replace
 ---
 </details>
 
@@ -7164,7 +7164,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://cppreference.com/w/cpp/regex/regex_replace
+> - https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_replace
 > ---
 </details>
 
@@ -7212,8 +7212,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/headers/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/limits
 > ---
 </details>
 
@@ -7238,8 +7238,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 > ---
 </details>
 
@@ -7260,8 +7260,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 ---
 </details>
 
@@ -7280,8 +7280,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 > ---
 </details>
 
@@ -7300,8 +7300,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 ---
 </details>
 
@@ -7321,8 +7321,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 > ---
 </details>
 
@@ -7340,8 +7340,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/types/numeric_limits
-> - https://en.cppreference.com/w/cpp/header/limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/numeric_limits
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/limits
 > ---
 </details>
 
@@ -7364,8 +7364,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
-> - https://en.cppreference.com/w/cpp/symbol_index/literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/complex_literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/literals
 ---
 </details>
 
@@ -7389,8 +7389,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
-> - https://en.cppreference.com/w/cpp/numeric/random
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random
 ---
 </details>
 
@@ -7417,9 +7417,9 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/numeric/random/random_device
-> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
-> - https://en.cppreference.com/w/cpp/numeric/random
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/random_device
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random
 > ---
 </details>
 
@@ -7445,9 +7445,9 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/numeric/random/random_device
-> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
-> - https://en.cppreference.com/w/cpp/numeric/random
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/random_device
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random
 ---
 </details>
 
@@ -7467,8 +7467,8 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
-> - https://en.cppreference.com/w/cpp/numeric/random
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random
 ---
 </details>
 
@@ -7501,8 +7501,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
-> - https://en.cppreference.com/w/cpp/numeric/random
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/numeric/random
 ---
 </details>
 
@@ -7657,8 +7657,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
-> - https://en.cppreference.com/w/cpp/symbol_index/literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/chrono_literals
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/symbol_index/literals
 > ---
 </details>
 
@@ -7756,10 +7756,10 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2024/file-time-cpp20
+> - https://www.cppstories.com - https://www.cppstories.com/2024/file-time-cpp20
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/chrono/file_clock
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/chrono/file_clock
 > ---
 </details>
 
@@ -7785,10 +7785,10 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2024/file-time-cpp20
+> - https://www.cppstories.com - https://www.cppstories.com/2024/file-time-cpp20
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/chrono/file_clock
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/chrono/file_clock
 > ---
 </details>
 
@@ -7820,10 +7820,10 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2024/file-time-cpp20
+> - https://www.cppstories.com - https://www.cppstories.com/2024/file-time-cpp20
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/chrono/file_clock
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/chrono/file_clock
 > ---
 </details>
 
@@ -8025,7 +8025,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -8054,7 +8054,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -8087,7 +8087,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -8109,7 +8109,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=7FORoVmSw4E
+> - https://www.youtube.com - https://www.youtube.com/watch?v=7FORoVmSw4E
 >
 > ---
 > **References**
@@ -8134,7 +8134,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -8156,7 +8156,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -8185,7 +8185,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -10395,9 +10395,9 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string
-> - https://en.cppreference.com/w/cpp/algorithm/transform
-> - https://en.cppreference.com/w/cpp/algorithm/ranges/transform
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/transform
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/ranges/transform
 > ---
 </details>
 
@@ -10430,10 +10430,10 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string
-> - https://en.cppreference.com/w/cpp/algorithm/reverse
-> - https://en.cppreference.com/w/cpp/algorithm/reverse_copy
-> - https://en.cppreference.com/w/cpp/algorithm/ranges/reverse
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/reverse
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/reverse_copy
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/ranges/reverse
 > ---
 </details>
 
@@ -10461,7 +10461,7 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string
 ---
 </details>
 
@@ -10492,9 +10492,9 @@
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string
-> - https://en.cppreference.com/w/cpp/algorithm/remove
-> - https://en.cppreference.com/w/cpp/algorithm/ranges/remove
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/remove
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/algorithm/ranges/remove
 ---
 </details>
 
@@ -10534,8 +10534,8 @@
 > - Modern C++ Programming Cookbook - Chapter 2
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/string/basic_string
-> - https://en.cppreference.com/w/cpp/io/basic_stringstream
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/string/basic_string
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/io/basic_stringstream
 ---
 </details>
 
@@ -10552,7 +10552,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 >
 > ---
 > **References**
@@ -10590,7 +10590,7 @@
 >
 > ---
 > **Resources**
-> - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
+> - https://www.cppstories.com - https://www.cppstories.com/2023/six-handy-ops-for-string-processing
 > ---
 > **References**
 > ---
@@ -11128,7 +11128,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11145,7 +11145,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11160,7 +11160,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11177,7 +11177,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11217,7 +11217,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11234,7 +11234,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11254,7 +11254,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11278,7 +11278,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11300,7 +11300,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11319,7 +11319,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11358,7 +11358,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=-1syQN5_5D0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=-1syQN5_5D0
 > ---
 > **References**
 > ---
@@ -11391,10 +11391,10 @@ int do_something(int input)
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 1
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread
 ---
 </details>
 
@@ -11444,10 +11444,10 @@ int do_something(int input)
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/thread
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/thread
 > ---
 </details>
 
@@ -11516,7 +11516,7 @@ int do_something(int input)
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11544,7 +11544,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kj3F_7DFB0A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Kj3F_7DFB0A
 > ---
 > **References**
 > ---
@@ -11577,7 +11577,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11618,10 +11618,10 @@ int do_something(int input)
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/thread
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/thread
 > ---
 </details>
 
@@ -11685,7 +11685,7 @@ int do_something(int input)
 > ---
 > **Resources**
 > - C++ Concurrency in Action - Chapter 2
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -11738,7 +11738,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11799,7 +11799,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11817,7 +11817,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11849,8 +11849,8 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Kj3F_7DFB0A
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Kj3F_7DFB0A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 >
 > ---
 > **References**
@@ -11881,7 +11881,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11899,7 +11899,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11919,7 +11919,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -11973,7 +11973,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12055,7 +12055,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12076,7 +12076,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12112,7 +12112,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -12132,7 +12132,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12171,7 +12171,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -12227,7 +12227,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -12247,7 +12247,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12298,7 +12298,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -12320,7 +12320,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12345,7 +12345,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12380,7 +12380,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12403,7 +12403,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12458,9 +12458,9 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
-> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -12477,7 +12477,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -12514,7 +12514,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -12532,7 +12532,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=pfIC-kle4b0
+> - https://www.youtube.com - https://www.youtube.com/watch?v=pfIC-kle4b0
 > ---
 > **References**
 > ---
@@ -12594,7 +12594,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -12642,7 +12642,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=F6Ipn7gCOsY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=F6Ipn7gCOsY
 > ---
 > **References**
 > ---
@@ -12671,7 +12671,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12742,7 +12742,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12768,7 +12768,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12802,7 +12802,7 @@ int do_something(int input)
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12831,7 +12831,7 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -12850,7 +12850,7 @@ std::jthread consumer{[&value_source]{
 > be acquired in one thread, and released in another.
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
@@ -12868,11 +12868,11 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/counting_semaphore/max
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore/max
 ---
 </details>
 
@@ -12893,7 +12893,7 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -12913,10 +12913,10 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 > ---
 </details>
 
@@ -12983,13 +12983,13 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
->   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/counting_semaphore
->   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/release
->   + https://en.cppreference.com/w/cpp/thread/counting_semaphore/acquire
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+>   + https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore/counting_semaphore
+>   + https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore/release
+>   + https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore/acquire
 ---
 </details>
 
@@ -13022,11 +13022,11 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/counting_semaphore
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/counting_semaphore
 ---
 </details>
 
@@ -13044,9 +13044,9 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -13066,9 +13066,9 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -13087,8 +13087,8 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -13132,8 +13132,8 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -13153,9 +13153,9 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
-> - https://www.youtube.com/watch?v=8rEGu20Uw4g
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=8rEGu20Uw4g
 > ---
 > **References**
 > ---
@@ -13185,8 +13185,8 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -13238,8 +13238,8 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=c0I9nlpUH4o
-> - https://www.youtube.com/watch?v=A7sVFJLJM-A
+> - https://www.youtube.com - https://www.youtube.com/watch?v=c0I9nlpUH4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=A7sVFJLJM-A
 > ---
 > **References**
 > ---
@@ -13255,7 +13255,7 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=RBldGKfLb9I
+> - https://www.youtube.com - https://www.youtube.com/watch?v=RBldGKfLb9I
 > ---
 > **References**
 > ---
@@ -15156,7 +15156,7 @@ std::jthread consumer{[&value_source]{
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=762owEyCI4o
+> - https://www.youtube.com - https://www.youtube.com/watch?v=762owEyCI4o
 > ---
 > **References**
 > ---

@@ -77,10 +77,10 @@
 <details>
 <summary>What C libraries are commonly used in toolchains?</summary>
 
-> * glibc: [https://gnu.org/software/libc](https://gnu.org/software/libs)
-> * musl libs: [https://musl.libc.org](https://musl.libc.org)
-> * uClibc-ng: [https://uclibc-ng.org](https://uclibc-ng.org)
-> * eglibc: [https://uclibc.org/home](https://uclibc.org/home)
+> * glibc: https://gnu.org - https://gnu.org/software/libs
+> * musl libs: [https://musl.libc.org](https: - https://musl.libc.org](https://musl.libc.org)
+> * uClibc-ng: [https://uclibc-ng.org](https: - https://uclibc-ng.org](https://uclibc-ng.org)
+> * eglibc: https://uclibc.org - https://uclibc.org/home
 >
 > ---
 > **Resources**
@@ -373,7 +373,7 @@
 > * [Crosstool-ng](https://crosstool-ng.github.io)
 > * [Buildroot](https://buildroot.org)
 > * [PTXdist](https://ptxdist.org)
-> * [OpenEmbedded](https://openembedded.org) and [Yocto project](https://yoctoproject.org)
+> * https://openembedded.org) and [Yocto project](https: - https://openembedded.org) and [Yocto project](https://yoctoproject.org
 
 > Resources:
 > - Embedded Linux Full Course by Anisa Institute - 5:59:00
@@ -386,7 +386,7 @@
 <summary>How to build <code>Crosstool-ng</code>?</summary>
 
 > ```sh
-> git clone https://github.com/crosstool-ng/crosstool-ng.git
+> git clone https://github.com - https://github.com/crosstool-ng/crosstool-ng.git
 > cd crosstool-ng
 > ./bootstrap
 > ./configure --prefix $HOME/.local
@@ -535,7 +535,7 @@
 <summary>Build and install <i>crosstool-ng</i>?</summary>
 
 > ```sh
-> git clone https://github.com/crosstool-ng/crosstool-ng.git
+> git clone https://github.com - https://github.com/crosstool-ng/crosstool-ng.git
 > cd crosstool-ng
 > git checkout <latest>
 > ./bootstrap
@@ -922,7 +922,7 @@
 > Obtain the U-Boot source tree from GitHub:
 >
 > ```sh
-> git clone https://github.com/u-boot/u-boot.git
+> git clone https://github.com - https://github.com/u-boot/u-boot.git
 > cd u-boot
 > ``````
 >
@@ -954,8 +954,8 @@
 > `start.elf` file and the device tree files can be found:
 >
 > ```sh
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
 
 > Resources:
@@ -975,8 +975,8 @@
 > First download Raspberry Pi device specific SPL and device tree binary files.
 >
 > ```sh
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
 >
 > Then partition the SD card which is used to attach to the device:

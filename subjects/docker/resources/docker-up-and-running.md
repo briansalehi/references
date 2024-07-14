@@ -57,7 +57,7 @@
 > - Docker: Up & Running - Chapter 3
 > ---
 > **References**
-> - https://docs.docker.com/engine/deprecated/
+> - https://docs.docker.com - https://docs.docker.com/engine/deprecated/
 ---
 </details>
 

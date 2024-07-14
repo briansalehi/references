@@ -28,7 +28,7 @@
 > ---
 </details>
 
-* [Using <code>sparse</code>](https://docs.kernel.org/dev-tools/sparse.html#using-sparse)
+* https://docs.kernel.org - https://docs.kernel.org/dev-tools/sparse.html#using-sparse
 
 <details>
 <summary>What are the most commonly used <b>tracing</b> and <b>profiling</b> tools in the kernel development?</summary>
@@ -44,7 +44,7 @@
 > ---
 </details>
 
-* [LTTng Documentation](https://lttng.org/docs)
+* https://lttng.org - https://lttng.org/docs
 
 <details>
 <summary>What tool is commonly used to examine and interpret LTTng's output?</summary>
@@ -155,17 +155,17 @@
 >
 > Open source tools:
 >
-> * [Sparse](https://sparse.wiki.kernel.org/index.php/Main_Page)
+> * https://sparse.wiki.kernel.org - https://sparse.wiki.kernel.org/index.php/Main_Page
 > * [Coccinelle](http://coccinelle.lip6.fr/)
 > * [Smatch](http://repo.or.cz/w/smatch.git)
-> * [Flawfinder](https://dwheeler.com/flawfinder/)
-> * [Cppcheck](https://github.com/danmar/cppcheck)
+> * https://dwheeler.com - https://dwheeler.com/flawfinder/
+> * https://github.com - https://github.com/danmar/cppcheck
 >
 > Commercial tools:
 >
-> * [SonarQube](https://www.sonarqube.org/)
-> * [Coverity Scan](https://scan.coverity.com/)
-> * [Klocwork](https://www.meteonic.com/klocwork)
+> * https://www.sonarqube.org - https://www.sonarqube.org/
+> * https://scan.coverity.com - https://scan.coverity.com/
+> * https://www.meteonic.com - https://www.meteonic.com/klocwork
 >
 > ---
 > **Resources**
@@ -200,7 +200,7 @@
 > -
 > ---
 > **References**
-> - [Linux Trace Toolkit next generation (LTTng)](https://lttng.org/docs)
+> - https://lttng.org - https://lttng.org/docs
 ---
 </details>
 
@@ -209,8 +209,8 @@
 
 > **Description**
 >
-> * bpftrace package ([bcc](https://github.com/iovisor/bcc) clang dependent)
-> * [manual bcc installation](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
+> * bpftrace package (https://github.com - https://github.com/iovisor/bcc) clang dependent
+> * https://github.com - https://github.com/iovisor/bcc/blob/master/INSTALL.md
 >
 > ---
 > **Resources**
@@ -312,7 +312,7 @@
 > **Description**
 >
 > ```sh
-> curl -L https://kernel.org/finger_banner
+> curl -L https://kernel.org - https://kernel.org/finger_banner
 > ``````
 >
 > ---
@@ -329,7 +329,7 @@
 > **Description**
 >
 > ```txt
-> https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
+> https://git.kernel.org - https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
 > ``````
 >
 > ---
@@ -363,7 +363,7 @@
 <summary>Where can kernel archive be downloaded?</summary>
 
 > ```txt
-> https://mirrors.edge.kerne.org/pub/linux/kernel/v5.x/linux_5.4.0.tar.xz
+> https://mirrors.edge.kerne.org - https://mirrors.edge.kerne.org/pub/linux/kernel/v5.x/linux_5.4.0.tar.xz
 > ``````
 >
 > ---
@@ -379,7 +379,7 @@
 <summary>Where can kernel source be cloned?</summary>
 
 > ```sh
-> git clone https://git.kernel.org/pub/scm/linux/git/torvalds/linux.git
+> git clone https://git.kernel.org - https://git.kernel.org/pub/scm/linux/git/torvalds/linux.git
 > ``````
 >
 > ---
@@ -488,7 +488,7 @@
 >
 > ---
 > **References**
-> - [Kernel Documentation](https://kernel.org/doc/html/latest)
+> - https://kernel.org - https://kernel.org/doc/html/latest
 > ---
 </details>
 
@@ -504,8 +504,8 @@
 >
 > ---
 > **References**
-> - [ctags(1)](https://manpages.org/ctags/1)
-> - [cscope(1)](https://manpages.org/cscope/1)
+> - https://manpages.org - https://manpages.org/ctags/1
+> - https://manpages.org - https://manpages.org/cscope/1
 > - [Vim/Cscope tutorial](http://cscope.sourceforge.net/cscope_vim_tutorial.html)
 ---
 </details>
@@ -672,8 +672,8 @@
 >
 > ---
 > **References**
-> - [embedonix.com](https://embedonix.com/articles/linux/emulating-raspberry-pi-on-linux/)
-> - [qemu-rpi-kernel](https://github.com/dhruvvyas90/qemu-rpi-kernel/wiki)
+> - https://embedonix.com - https://embedonix.com/articles/linux/emulating-raspberry-pi-on-linux/
+> - https://github.com - https://github.com/dhruvvyas90/qemu-rpi-kernel/wiki
 > ---
 </details>
 
@@ -691,7 +691,7 @@
 >
 > ---
 > **References**
-> - [jaycarlson.net](https://jaycarlson.net/embedded-linux/)
+> - https://jaycarlson.net - https://jaycarlson.net/embedded-linux/
 > ---
 </details>
 
@@ -706,7 +706,7 @@
 >
 > ---
 > **References**
-> - https://www.kernel.org/doc/html/latest/process/deprecated.html#deprecated-interfaces-language-features-attributes-and-conventions
+> - https://www.kernel.org - https://www.kernel.org/doc/html/latest/process/deprecated.html#deprecated-interfaces-language-features-attributes-and-conventions
 ---
 </details>
 
@@ -721,11 +721,11 @@
 >
 > ---
 > **References**
-> - [Low-Level Programming University](https://github.com/gurugio/lowlevelprogramming-university)
-> - [Julia Evans: You can be a kernel hacker!](https://jvns.ca/blog/2014/09/18/you-can-be-a-kernel-hacker/)
+> - https://github.com - https://github.com/gurugio/lowlevelprogramming-university
+> - https://jvns.ca - https://jvns.ca/blog/2014/09/18/you-can-be-a-kernel-hacker/
 > - [Recurse](https://recurse.org)
-> - [The Eudyptula Challenge](https://github.com/agelastic/eudyptula)
-> - [Bootlin Toolchains](https://toolchains.bootlin.com/)
-> - [ELinux Toolchains](https://elinux.org/Toolchains)
+> - https://github.com - https://github.com/agelastic/eudyptula
+> - https://toolchains.bootlin.com - https://toolchains.bootlin.com/
+> - https://elinux.org - https://elinux.org/Toolchains
 ---
 </details>

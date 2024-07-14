@@ -18,7 +18,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -41,7 +41,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -67,7 +67,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -92,7 +92,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -111,7 +111,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -138,7 +138,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -156,7 +156,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -181,7 +181,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -200,7 +200,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -217,7 +217,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -241,7 +241,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -260,7 +260,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -284,7 +284,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -305,7 +305,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -324,7 +324,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -344,7 +344,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -363,7 +363,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -380,7 +380,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -397,7 +397,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -414,7 +414,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -431,7 +431,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -454,7 +454,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -473,7 +473,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -490,7 +490,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -508,7 +508,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -525,7 +525,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -548,7 +548,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -572,7 +572,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -594,7 +594,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -614,7 +614,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -641,7 +641,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---
@@ -659,10 +659,10 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
-> - https://github.blog/2021-04-29-scaling-monorepo-maintainance
+> - https://github.blog - https://github.blog/2021-04-29-scaling-monorepo-maintainance
 > ---
 </details>
 
@@ -683,7 +683,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=aolI_Rz0ZqY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=aolI_Rz0ZqY
 > ---
 > **References**
 > ---

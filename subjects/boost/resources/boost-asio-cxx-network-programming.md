@@ -25,7 +25,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 4
 > ---
 > **References**
-> - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
+> - https://www.boost.org - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context.html
 ---
 </details>
 
@@ -79,7 +79,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 4
 > ---
 > **References**
-> - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
+> - https://www.boost.org - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/run/overload1.html
 ---
 </details>
 
@@ -110,7 +110,7 @@
 >
 > ---
 > **References**
-> - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
+> - https://www.boost.org - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/poll.html
 ---
 </details>
 
@@ -157,7 +157,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 4
 > ---
 > **References**
-> - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
+> - https://www.boost.org - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/io_context/post.html
 > ---
 </details>
 
@@ -207,7 +207,7 @@
 > - Boost.Asio C++ Network Programming - Chapter 4
 > ---
 > **References**
-> - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
+> - https://www.boost.org - https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/dispatch.html
 > ---
 </details>
 

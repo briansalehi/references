@@ -1105,7 +1105,7 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 ```
 </details>
 
-* [floating literal](https://en.cppreference.com/w/cpp/language/floating_literal "cpp/language/floating_literal")
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/floating_literal "cpp/language/floating_literal"
 
 <details>
 <summary>How to get the smallest and largest finite numbers of a type using `std::numeric_limits<T>` class template?</summary>
@@ -1131,7 +1131,7 @@ auto d11 = std::stod("-nanabc");     // d11 = -nan
 > ---
 </details>
 
-* [\<limits\>](https://en.cppreference.com/w/cpp/headers/limits "cpp/headers/limits")
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/headers/limits "cpp/headers/limits"
 
 <details>
 <summary>Specify a simple implementation of finding the minimum number in a range of a generic type?</summary>
@@ -1855,7 +1855,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [Regular Expressions Library](https://cppreference.com/w/cpp/regex "cpp/regex")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex "cpp/regex"
 
 <details>
 <summary>How to make regular expressions case insensitive?</summary>
@@ -1873,7 +1873,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::regex\_constants](https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type"
 
 <details>
 <summary>How regular expressions can be used to verify the format of a string?</summary>
@@ -1897,7 +1897,7 @@ Note that `random_device` cannot be seeded.
 >
 > int main()
 > {
->     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};
 >     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
 >
 >     if(matches(text, pattern))
@@ -1915,8 +1915,8 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::basic\_regex](https://cppreference.com/w/cpp/regex/basic_regex "cpp/regex/basic_regex")
-* [std::regex\_match](https://cppreference.com/w/cpp/regex/regex_match "cpp/regex/regex_match")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/basic_regex "cpp/regex/basic_regex"
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_match "cpp/regex/regex_match"
 
 <details>
 <summary>How to retrieve submatches of a regular expresssion matched with a string?</summary>
@@ -1945,7 +1945,7 @@ Note that `random_device` cannot be seeded.
 >
 > int main()
 > {
->     std::string text{R"(https://github.com/briansalehi/references)"};
+>     std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};
 >     std::string pattern{R"((\w+)://([\w.]+)/([\w\d._-]+)/([\w\d._-]+)[.git]?)"};
 >
 >     std::regex rx{pattern, std::regex_constants::icase};
@@ -1966,8 +1966,8 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::sub\_match](https://cppreference.com/w/cpp/regex/sub_match "cpp/regex/sub_match")
-* [std::match\_results](https://cppreference.com/w/cpp/regex/match_results "cpp/regex/match_results")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/sub_match "cpp/regex/sub_match"
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/match_results "cpp/regex/match_results"
 
 <details>
 <summary>How can we use different regular expression engines?</summary>
@@ -1996,7 +1996,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::regex\_constants](https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/syntax_option_type "cpp/regex/syntax_option_type"
 
 <details>
 <summary>How to search for the first occurance of a pattern in a string using regular expressions?</summary>
@@ -2037,7 +2037,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::regex\_search](https://cppreference.com/w/cpp/regex/regex_search "cpp/regex/regex_search")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_search "cpp/regex/regex_search"
 
 <details>
 <summary>How to find all occurences of a regular expression in a given text?</summary>
@@ -2105,8 +2105,8 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::sregex\_iterator](https://cppreference.com/w/cpp/regex/sregex_iterator "cpp/regex/sregex_iterator")
-* [std::sregex\_token\_iterator](https://cppreference.com/w/cpp/regex/sregex_token_iterator "cpp/regex/sregex_token_iterator")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/sregex_iterator "cpp/regex/sregex_iterator"
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/sregex_token_iterator "cpp/regex/sregex_token_iterator"
 
 <details>
 <summary>How to replace the content of a string using regular expressions?</summary>
@@ -2131,7 +2131,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::regex\_replace](https://cppreference.com/w/cpp/regex/regex_replace "cpp/regex/regex_replace")
+* https://cppreference.com - https://cppreference.com/w/cpp/regex/regex_replace "cpp/regex/regex_replace"
 
 <details>
 <summary>How to reposition submatches of a string using regular expressions?</summary>
@@ -3842,7 +3842,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::basic\_fstream](https://en.cppreference.com/w/cpp/io/basic_fstream "cpp/io/basic_fstream")
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/io/basic_fstream "cpp/io/basic_fstream"
 
 <details>
 <summary>Which constructors of <code>std::basic\_fstream</code> class internally calls <code>open()</code> on its underlying <code>std::basic\_filebuf</code> raw file object?</summary>
@@ -3864,8 +3864,8 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::basic\_fstream constructor](https://en.cppreference.com/w/cpp/io/basic_fstream/basic_fstream "cpp/io/basic_fstream/basic_fstream")
-* [std::basic\_filebuf](https://en.cppreference.com/w/cpp/io/basic_filebuf "cpp/io/basic_filebuf")
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/io/basic_fstream/basic_fstream "cpp/io/basic_fstream/basic_fstream"
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/io/basic_filebuf "cpp/io/basic_filebuf"
 
 <details>
 <summary>What are the different open modes of a <code>std::basic\_fstream</code> file object?</summary>
@@ -3887,7 +3887,7 @@ Note that `random_device` cannot be seeded.
 > ---
 </details>
 
-* [std::ios\_base::openmode](https://en.cppreference.com/w/cpp/io/ios_base/openmode "cpp/io/ios_base/openmode")
+* https://en.cppreference.com - https://en.cppreference.com/w/cpp/io/ios_base/openmode "cpp/io/ios_base/openmode"
 
 <details>
 <summary>How to read how many bytes have been successfully read in a read operation from a <code>std::basic\_fstream</code> object?</summary>

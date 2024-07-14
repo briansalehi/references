@@ -156,7 +156,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -178,7 +178,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -338,7 +338,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -384,7 +384,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -399,7 +399,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 >
 > ---
 > **References**
@@ -419,7 +419,7 @@
 > **Resources**
 > - GDB Tips by Greg Law - Tip #13
 > - GDB Tips by Greg Law - Tip #61
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -437,7 +437,7 @@
 > ---
 > **Resources**
 > - GDB Tips by Greg Law - Tip #61
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -455,7 +455,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -617,7 +617,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 >
 > ---
 > **References**
@@ -635,7 +635,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -652,7 +652,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 >
 > ---
 > **References**
@@ -672,7 +672,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 > ---
 > **References**
 > ---
@@ -689,7 +689,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=Rudz-uSdWHM
+> - https://www.youtube.com - https://www.youtube.com/watch?v=Rudz-uSdWHM
 >
 > ---
 > **References**

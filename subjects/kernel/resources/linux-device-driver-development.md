@@ -9,7 +9,7 @@
 > **Description**
 >
 > ```sh
-> git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+> git clone https://git.kernel.org - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 > ``````
 >
 > The cloning process can be trimmed by setting `--depth 1` option.

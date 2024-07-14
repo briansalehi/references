@@ -9,7 +9,7 @@
 > **Description**
 >
 > ```sh
-> git clone https://github.com/opencv/opencv.git
+> git clone https://github.com - https://github.com/opencv/opencv.git
 > cmake -S opencv -B opencv-build -D CMAKE_BUILD_TYPE=Release -D CMAKE_PREFIX_PATH=/usr/local
 > cmake --build opencv-build --release Release --target all -j $(nproc)
 > cmake --install opencv-build -j $(nproc)

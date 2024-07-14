@@ -1470,7 +1470,7 @@
 > - C++ Templates: The Complete Guide - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/template_parameters
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters
 > ---
 </details>
 
@@ -1498,7 +1498,7 @@
 > - C++ Templates: The Complete Guide - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/template_parameters
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters
 > ---
 </details>
 
@@ -1525,7 +1525,7 @@
 > - C++ Templates: The Complete Guide - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/template_parameters
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters
 > ---
 </details>
 
@@ -1547,7 +1547,7 @@
 > - C++ Templates: The Complete Guide - Chapter 3
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/language/template_parameters
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters
 > ---
 </details>
 

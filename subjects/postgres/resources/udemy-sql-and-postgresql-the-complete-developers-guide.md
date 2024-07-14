@@ -427,7 +427,7 @@
 > insertion.
 >
 > ```sql
-> insert into photos (url, user_id) values ('https://cdn1.example.com/image1.jpg', NULL);
+> insert into photos (url, user_id) values ('https://cdn1.example.com - https://cdn1.example.com/image1.jpg', NULL);
 > ``````
 >
 > ---
@@ -1535,7 +1535,7 @@ create table products (
 >
 > ---
 > **References**
-> - https://www.postgresql.org/docs/current/storage-page-layout.html
+> - https://www.postgresql.org - https://www.postgresql.org/docs/current/storage-page-layout.html
 ---
 </details>
 

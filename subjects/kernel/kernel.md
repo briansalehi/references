@@ -12,7 +12,7 @@
 > - Mastering Embedded Linux Programming - Chapter 4
 
 > **References**
-> - https://kernelnewbies.org/LinuxVersions
+> - https://kernelnewbies.org - https://kernelnewbies.org/LinuxVersions
 > ---
 </details>
 
@@ -24,13 +24,13 @@
 > The source can be downloaded as an archive but without any git history:
 >
 > ```sh
-> wget https://cdn.kernel.org/pub/linux/kernel/v5.4/linux-v5.4.tar.xz
+> wget https://cdn.kernel.org - https://cdn.kernel.org/pub/linux/kernel/v5.4/linux-v5.4.tar.xz
 > ``````
 >
 > Using git, the source can be cloned:
 >
 > ```sh
-> git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+> git clone https://git.kernel.org - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 > ``````
 >
 > The cloning process can be trimmed by setting `--depth 1` option.
@@ -129,7 +129,7 @@
 > - Mastering Embedded Linux Programming - Chapter 4
 > ---
 > **References**
-> - [Documentation/kbuild](https://www.kernel.org/doc/html/latest/kbuild/)
+> - https://www.kernel.org - https://www.kernel.org/doc/html/latest/kbuild/
 > ---
 </details>
 
@@ -972,7 +972,7 @@
 > Prebuilt toolchain:
 >
 > [AArch64 GNU/Linux target
-> (aarch64-none-linux-gnu)](https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869)
+> (aarch64-none-linux-gnu)](https://developer.arm.com - https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz?rev=1cb9c51b94f54940bdcccd791451cec3&hash=A56CA491FA630C98F7162BC1A302F869)
 >
 > - Clone a stable branch of Raspberry Pi Foundations' kernel fork into a
 >   `linux` directory.
@@ -989,7 +989,7 @@
 >
 > Patched kernel source for Raspberry Pi:
 >
-> https://github.com/raspberrypi/linux.git
+> https://github.com - https://github.com/raspberrypi/linux.git
 >
 > ```sh
 > cd ~
@@ -997,8 +997,8 @@
 > tar xf archive.tar.xz
 > mv gcc-executable gcc-arm-aarch32-none-linux-gnu
 > sudo pacman -S subversion openssl
-> git clone --depth 1 -b rpi-4.5.y https://github.com/raspberrypi/linux.git
-> svn export https://github.com/raspberrypi/firmware/trunk/boot
+> git clone --depth 1 -b rpi-4.5.y https://github.com - https://github.com/raspberrypi/linux.git
+> svn export https://github.com - https://github.com/raspberrypi/firmware/trunk/boot
 > rm boot/kernel*
 > rm boot/*.dtb
 > rm boot/overlays/*.dtbo
@@ -1037,8 +1037,8 @@
 > tar xf archive.tar.xz
 > mv gcc-executable gcc-arm-aarch32-none-linux-gnu
 > sudo pacman -S subversion openssl
-> git clone --depth 1 -b rpi-4.5.y https://github.com/raspberrypi/linux.git
-> svn export https://github.com/raspberrypi/firmware/trunk/boot
+> git clone --depth 1 -b rpi-4.5.y https://github.com - https://github.com/raspberrypi/linux.git
+> svn export https://github.com - https://github.com/raspberrypi/firmware/trunk/boot
 > rm boot/kernel*
 > rm boot/*.dtb
 > rm boot/overlays/*.dtbo
@@ -1498,8 +1498,8 @@
 >
 > ---
 > **References**
-> - [modprobe.d(5)](https://manpages.org/modprobed/5)
-> - [modprobe.conf(5)](https://manpages.org/modprobeconf/5)
+> - https://manpages.org - https://manpages.org/modprobed/5
+> - https://manpages.org - https://manpages.org/modprobeconf/5
 ---
 </details>
 
@@ -1741,7 +1741,7 @@
 <details>
 <summary>What is a Device Tree and where is its specification?</summary>
 
-> * https://github.com/devicetree-org/devicetree-specification/releases
+> * https://github.com - https://github.com/devicetree-org/devicetree-specification/releases
 >
 > ---
 > **Resources**
@@ -1787,7 +1787,7 @@
 >
 > ---
 > **References**
-> - [Device Tree Bindings](https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings")
+> - https://kernel.org - https://kernel.org/doc/html/latest/devicetree/bindings/ "/devicetree/bindings"
 > ---
 </details>
 

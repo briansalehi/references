@@ -203,7 +203,7 @@
 <summary>How to build <code>Crosstool-ng</code>?</summary>
 
 > ```sh
-> git clone https://github.com/crosstool-ng/crosstool-ng.git
+> git clone https://github.com - https://github.com/crosstool-ng/crosstool-ng.git
 > cd crosstool-ng
 > ./bootstrap
 > ./configure --prefix $HOME/.local
@@ -354,7 +354,7 @@
 > Obtain the U-Boot source tree from GitHub:
 >
 > ```sh
-> git clone https://github.com/u-boot/u-boot.git
+> git clone https://github.com - https://github.com/u-boot/u-boot.git
 > cd u-boot
 > ``````
 >
@@ -781,8 +781,8 @@
 > `start.elf` file and the device tree files can be found:
 >
 > ```sh
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
 
 > **Resources**
@@ -802,8 +802,8 @@
 > First download Raspberry Pi device specific SPL and device tree binary files.
 >
 > ```sh
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
-> wget -c 'https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/start.elf'
+> wget -c 'https://github.com - https://github.com/raspberrypi/firmware/blob/master/boot/bcm2708-rpi-zero.dtb'
 > ``````
 >
 > Then partition the SD card which is used to attach to the device:
@@ -2115,7 +2115,7 @@
 > **Description**
 >
 > ```sh
-> git clone --branch kirkstone https://git.yoctoproject.org/git/poky
+> git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky
 > ``````
 >
 > **Resources**
@@ -2277,7 +2277,7 @@
 > ``````
 >
 > ```sh
-> git clone --branch kirkstone https://git.yoctoproject.org/git/poky.git /tmp/poky
+> git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky.git /tmp/poky
 > source /tmp/poky/oe-init-build-env /tmp/build-qemu
 > ``````
 >

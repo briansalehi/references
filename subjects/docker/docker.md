@@ -14,7 +14,7 @@
 > - Docker: Up & Running - Chapter 3
 > ---
 > **References**
-> - https://docs.docker.com/engine/deprecated/
+> - https://docs.docker.com - https://docs.docker.com/engine/deprecated/
 > ---
 </details>
 
@@ -81,7 +81,7 @@
 > - Docker Deep Dive - Chapter 4
 > ---
 > **References**
-> - [docker version](https://docs.docker.com/engine/reference/commandline/version/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/version/
 > ---
 </details>
 
@@ -116,7 +116,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker info](https://docs.docker.com/engine/reference/commandline/info/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/info/
 > ---
 </details>
 
@@ -199,7 +199,7 @@
 > - Docker Deep Dive - Chapter 4
 > ---
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 > ---
 </details>
 
@@ -221,7 +221,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 > ---
 </details>
 
@@ -242,7 +242,7 @@
 > - Docker Deep Dive - Chapter 6
 
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 > ---
 </details>
 
@@ -261,7 +261,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 > ---
 </details>
 
@@ -281,7 +281,7 @@
 >
 > ---
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 ---
 </details>
 
@@ -307,7 +307,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image ls](https://docs.docker.com/engine/reference/commandline/image_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_ls/
 ---
 </details>
 
@@ -328,7 +328,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/search/
 > ---
 </details>
 
@@ -345,7 +345,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/search/
 ---
 </details>
 
@@ -365,7 +365,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/search/
 > ---
 </details>
 
@@ -383,7 +383,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/search/
 > ---
 </details>
 
@@ -403,7 +403,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_pull/
 > ---
 </details>
 
@@ -427,7 +427,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_pull/
 > ---
 </details>
 
@@ -449,7 +449,7 @@
 > - Docker Deep Dive - Chapter 6
 > ---
 > **References**
-> - [docker image pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_pull/
 > ---
 </details>
 
@@ -559,7 +559,7 @@
 >
 > The following command builds an image for ARMv7 called myimage:arm-v7 from
 > the contents of the current directory. It’s based on code in the code in
-> https://github.com/nigelpoulton/psweb.
+> https://github.com - https://github.com/nigelpoulton/psweb.
 >
 > ```sh
 > docker buildx build --platform linux/arm/v7 -t myimage:arm-v7 .
@@ -633,7 +633,7 @@
 >
 > ---
 > **References**
-> - [docker image prune](https://docs.docker.com/engine/reference/commandline/image_prune/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/image_prune/
 ---
 </details>
 
@@ -758,7 +758,7 @@
 > - Docker Deep Dive - Chapter 4
 > ---
 > **References**
-> - [docker container run](https://docs.docker.com/engine/reference/commandline/container_run/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_run/
 ---
 </details>
 
@@ -802,7 +802,7 @@
 >
 > ---
 > **References**
-> - [docker container exec](https://docs.docker.com/engine/reference/commandline/container_exec/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_exec/
 ---
 </details>
 
@@ -825,7 +825,7 @@
 >
 > ---
 > **References**
-> - [docker container stop](https://docs.docker.com/engine/reference/commandline/container_stop/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_stop/
 > ---
 </details>
 
@@ -846,7 +846,7 @@
 > - Docker Deep Dive - Chapter 4
 > ---
 > **References**
-> - [docker container start](https://docs.docker.com/engine/reference/commandline/container_start/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_start/
 > ---
 </details>
 
@@ -866,7 +866,7 @@
 >
 > ---
 > **References**
-> - [docker container rm](https://docs.docker.com/engine/reference/commandline/container_rm/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_rm/
 ---
 </details>
 
@@ -982,7 +982,7 @@
 >
 > ---
 > **References**
-> - [docker container ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
+> - https://docs.docker.com - https://docs.docker.com/engine/reference/commandline/container_ls/
 ---
 </details>
 

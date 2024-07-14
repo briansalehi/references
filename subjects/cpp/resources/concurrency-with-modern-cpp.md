@@ -103,7 +103,7 @@
 >
 > ---
 > **References**
-> - [std::atomic\_flag](https://en.cppreference.com/w/cpp/atomic/atomic_flag)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/atomic/atomic_flag
 > ---
 </details>
 
@@ -152,7 +152,7 @@
 >
 > ---
 > **References**
-> - [std::mutex](https://en.cppreference.com/w/cpp/thread/mutex)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/mutex
 > ---
 </details>
 

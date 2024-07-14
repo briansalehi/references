@@ -13,7 +13,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -27,7 +27,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -40,7 +40,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -52,7 +52,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -66,7 +66,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -78,7 +78,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -96,7 +96,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -114,7 +114,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -169,7 +169,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -237,7 +237,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://youtu.be/ea6p2eb7mTQ?feature=shared
+> - https://youtu.be - https://youtu.be/ea6p2eb7mTQ?feature=shared
 > ---
 </details>
 
@@ -353,7 +353,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
+> - https://www.youtube.com - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
 
@@ -363,7 +363,7 @@
 > Intuitively, the dot product $v.w$ tells you how much $v$ points in the
 > direction of $w$.
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
+> - https://www.youtube.com - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 > **References**
 > ---
@@ -377,7 +377,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
+> - https://www.youtube.com - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
 
@@ -393,7 +393,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
+> - https://www.youtube.com - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
 
@@ -407,7 +407,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
+> - https://www.youtube.com - https://www.youtube.com/watch?v=PJfvKCXpWZM&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=4
 > ---
 </details>
 
@@ -435,7 +435,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5
 > ---
 </details>
 
@@ -449,7 +449,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -463,7 +463,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -480,7 +480,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -500,7 +500,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -517,7 +517,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -533,7 +533,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 1
-> - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iffOTbS3IYw&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=5&pp=iAQB
 > ---
 </details>
 
@@ -549,7 +549,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
-> - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
 > ---
 </details>
 
@@ -566,7 +566,7 @@
 > ---
 > **Resources**
 > - Introduction to Linear and Matrix Algebra - Chapter 2
-> - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
+> - https://www.youtube.com - https://www.youtube.com/watch?v=iQmX26y9ZvI&list=PLOAf1ViVP13jmawPabxnAa00YFIetVqbd&index=6
 > ---
 </details>
 

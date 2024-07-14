@@ -563,7 +563,7 @@
 > - Professional C++ - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/container
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/container
 > - [containers]
 > ---
 </details>
@@ -595,7 +595,7 @@
 > - Professional C++ - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/container
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/container
 > - [containers]
 > ---
 </details>
@@ -620,7 +620,7 @@
 > - Professional C++ - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/container
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/container
 > - [containers]
 > ---
 </details>

@@ -12,11 +12,11 @@
 >
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
-> - [tmux wiki](https://github.com/tmux/tmux/wiki)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
+> - https://github.com - https://github.com/tmux/tmux/wiki
 > ---
 </details>
 
@@ -31,10 +31,10 @@
 > ``````
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
 > ---
 </details>
 
@@ -55,11 +55,11 @@
 >
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 >
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
 > ---
 </details>
 
@@ -76,11 +76,11 @@
 >
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 >
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
 ---
 </details>
 
@@ -97,11 +97,11 @@
 >
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 >
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
 ---
 </details>
 
@@ -114,10 +114,10 @@
 >
 > ---
 > **Resources**
-> - [Learn Linux TV](https://www.youtube.com/watch?v=UxbiDtEXuxg)
+> - https://www.youtube.com - https://www.youtube.com/watch?v=UxbiDtEXuxg
 >
 > ---
 > **References**
-> - [tmux(1)](https://man.openbsd.org/tmux)
+> - https://man.openbsd.org - https://man.openbsd.org/tmux
 ---
 </details>

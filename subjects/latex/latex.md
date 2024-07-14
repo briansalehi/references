@@ -12,7 +12,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -27,7 +27,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -43,7 +43,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -66,8 +66,8 @@ Sample text.
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
-> - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
 > ---
 > **References**
 > ---
@@ -88,7 +88,7 @@ Sample text.
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -113,7 +113,7 @@ Sample text.
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -143,7 +143,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
+> - https://www.youtube.com - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
 > ---
 > **References**
 > ---
@@ -167,7 +167,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
+> - https://www.youtube.com - https://www.youtube.com/watch?v=cnEXgHFOxMU&list=PLLybgCU6QCGU2Hh8R3oCwZnVZry-ICY5R&index=2
 > ---
 > **References**
 > ---
@@ -189,7 +189,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -208,7 +208,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -225,7 +225,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -242,7 +242,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -262,7 +262,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -281,7 +281,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -300,7 +300,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -319,7 +319,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -338,7 +338,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -357,7 +357,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
+> - https://latex-tutorial.com - https: - https://latex-tutorial.com - https://latex-tutorial.com/underline-latex
 > ---
 > **References**
 > ---
@@ -381,7 +381,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -401,7 +401,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -422,7 +422,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---
@@ -441,7 +441,7 @@ What are the common necessary packages to be used?
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
+> - https://www.youtube.com - https://www.youtube.com/watch?v=0ivLZh9xK1Q&list=PL1D4EAB31D3EBC449&index=1
 > ---
 > **References**
 > ---

@@ -24,7 +24,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -39,7 +39,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -63,7 +63,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -86,7 +86,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -116,7 +116,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -140,7 +140,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -161,7 +161,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -179,7 +179,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -204,7 +204,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -219,7 +219,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -243,7 +243,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax
 > ---
 </details>
 
@@ -261,7 +261,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -289,7 +289,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -315,7 +315,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -335,7 +335,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -372,7 +372,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -393,7 +393,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -413,7 +413,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -434,7 +434,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -459,7 +459,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -479,7 +479,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -499,7 +499,7 @@
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -524,7 +524,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -544,7 +544,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 5
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -566,10 +566,10 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 > **References**
-> - https://doc.qt.io/qt-6/qml-qtquick-image.html#fillMode-prop
+> - https://doc.qt.io - https://doc.qt.io/qt-6/qml-qtquick-image.html#fillMode-prop
 > ---
 </details>
 
@@ -591,7 +591,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements
 > ---
 </details>
 
@@ -608,7 +608,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 </details>
 
@@ -633,7 +633,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 </details>
 
@@ -652,7 +652,7 @@ Image {
 > ---
 > **Resources**
 > - Qt6 QML - Chapter 4
-> - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
+> - https://www.qt.io - https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components
 > ---
 </details>
 
@@ -1352,7 +1352,7 @@ Get a line of text from user?
 
 > This requires you to put your code into a Qt resource file, and is described
 > in detail in the [Compiling QML Ahead of
-> Time](https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation).
+> Time](https://doc.qt.io - https://doc.qt.io/qt-6/qtquick-deployment.html#ahead-of-time-compilation).
 >
 > ---
 > **Resources**

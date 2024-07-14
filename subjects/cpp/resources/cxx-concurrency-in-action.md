@@ -28,7 +28,7 @@
 > C++ Concurrency in Action - Chapter 1
 > ---
 > **References**
-> - [Thread Library](https://en.cppreference.com/w/cpp/thread)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread
 ---
 </details>
 
@@ -80,7 +80,7 @@
 > C++ Concurrency in Action - Chapter 2
 > ---
 > **References**
-> - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/thread
 > ---
 </details>
 
@@ -123,7 +123,7 @@
 > C++ Concurrency in Action - Chapter 2
 > ---
 > **References**
-> - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/thread
 > ---
 </details>
 
@@ -161,7 +161,7 @@
 >
 > ---
 > **References**
-> - [std::thread](https://en.cppreference.com/w/cpp/thread/thread)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/thread
 > ---
 </details>
 

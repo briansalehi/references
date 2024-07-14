@@ -23,7 +23,7 @@ Nothing to be imported.
 > - 2
 
 > **References**
-> - [Predefined macros](https://en.cppreference.com/w/cpp/preprocessor/replace#Predefined_macros "cpp/preprocessor/replace")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/preprocessor/replace#Predefined_macros "cpp/preprocessor/replace"
 > ---
 </details>
 
@@ -50,7 +50,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [nullptr](https://en.cppreference.com/w/cpp/language/nullptr "cpp/language/nullptr")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/nullptr "cpp/language/nullptr"
 > ---
 </details>
 
@@ -79,10 +79,10 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto "cpp/language/auto")
-> - [Function return type deduction](https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function")
-> - [Structured binding declaration using auto](https://en.cppreference.com/w/cpp/language/structured_binding "cpp/language/structured_binding")
-> - [Storage duration of auto](https://en.cppreference.com/w/cpp/language/storage_duration "cpp/language/storage_duration")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/auto "cpp/language/auto"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/structured_binding "cpp/language/structured_binding"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/storage_duration "cpp/language/storage_duration"
 > ---
 </details>
 
@@ -109,14 +109,14 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Initialization](https://en.cppreference.com/w/cpp/language/initialization "cpp/language/initialization")
-> - [Default initialization](https://en.cppreference.com/w/cpp/language/default_initialization "cpp/language/default_initialization")
-> - [Value initialization](https://en.cppreference.com/w/cpp/language/value_initialization "cpp/language/value_initialization")
-> - [Direct initialization](https://en.cppreference.com/w/cpp/language/direct_initialization "cpp/language/direct_initialization")
-> - [Copy initialization](https://en.cppreference.com/w/cpp/language/copy_initialization "cpp/language/copy_initialization")
-> - [List initialization](https://en.cppreference.com/w/cpp/language/list_initialization "cpp/language/list_initialization")
-> - [Constant initialization](https://en.cppreference.com/w/cpp/language/constant_initialization "cpp/language/constant_initialization")
-> - [Aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization "cpp/language/aggregate_initialization")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/initialization "cpp/language/initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/default_initialization "cpp/language/default_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/value_initialization "cpp/language/value_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/direct_initialization "cpp/language/direct_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/copy_initialization "cpp/language/copy_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/list_initialization "cpp/language/list_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/constant_initialization "cpp/language/constant_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/aggregate_initialization "cpp/language/aggregate_initialization"
 > ---
 </details>
 
@@ -156,7 +156,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Member initializer list](https://en.cppreference.com/w/cpp/language/constructor "cpp/language/constructor")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/constructor "cpp/language/constructor"
 > ---
 </details>
 
@@ -177,7 +177,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Range-based for loop](https://en.cppreference.com/w/cpp/language/range-for "cpp/language/range-for")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/range-for "cpp/language/range-for"
 > ---
 </details>
 
@@ -193,9 +193,9 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Move constructors](https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor")
-> - [Move assignment operator](https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment")
-> - [std::move](https://en.cppreference.com/w/cpp/utility/move "cpp/utility/move")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_constructor "cpp/language/move_constructor"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/move_assignment "cpp/language/move_assignment"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/move "cpp/utility/move"
 ---
 </details>
 
@@ -222,7 +222,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Copy elisoin](https://en.cppreference.com/w/cpp/language/copy_elision "cpp/language/copy_elision")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/copy_elision "cpp/language/copy_elision"
 > ---
 </details>
 
@@ -244,7 +244,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [String literal](https://en.cppreference.com/w/cpp/language/string_literal "cpp/language/string_literal")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/string_literal "cpp/language/string_literal"
 > ---
 </details>
 
@@ -268,8 +268,8 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [noexcept operator](https://en.cppreference.com/w/cpp/language/noexcept "cpp/language/noexcept")
-> - [noexcept specifier](https://en.cppreference.com/w/cpp/language/noexcept_spec "cpp/language/noexcept_spec")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/noexcept "cpp/language/noexcept"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/noexcept_spec "cpp/language/noexcept_spec"
 > ---
 </details>
 
@@ -314,8 +314,8 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Constant expressions](https://en.cppreference.com/w/cpp/language/constant_expression "cpp/language/constant_expression")
-> - [Constexpr specifier](https://en.cppreference.com/w/cpp/language/constexpr "cpp/language/constexpr")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/constant_expression "cpp/language/constant_expression"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/constexpr "cpp/language/constexpr"
 > ---
 </details>
 
@@ -348,8 +348,8 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Parameter pack](https://en.cppreference.com/w/cpp/language/parameter_pack "cpp/language/parameter_pack")
-> - [sizeof... operator](https://en.cppreference.com/w/cpp/language/sizeof... "cpp/language/sizeof...")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/parameter_pack "cpp/language/parameter_pack"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/sizeof... "cpp/language/sizeof..."
 > ---
 </details>
 
@@ -373,7 +373,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Type alias, alias template](https://en.cppreference.com/w/cpp/language/type_alias "cpp/language/type_alias")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/type_alias "cpp/language/type_alias"
 > ---
 </details>
 
@@ -399,7 +399,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Template parameters](https://en.cppreference.com/w/cpp/language/template_parameters "cpp/language/template_parameters") (see [Default template arguments](https://en.cppreference.com/w/cpp/language/template_parameters#Default_template_arguments))
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters#Default_template_arguments)
 > ---
 </details>
 
@@ -421,7 +421,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Lambda expressions](https://en.cppreference.com/w/cpp/language/lambda "cpp/language/lambda")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/lambda "cpp/language/lambda"
 > ---
 </details>
 
@@ -488,8 +488,8 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [decltype specifier](https://en.cppreference.com/w/cpp/language/decltype "cpp/language/decltype")
-> - [Placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto "cpp/language/auto")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/decltype "cpp/language/decltype"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/auto "cpp/language/auto"
 ---
 </details>
 
@@ -507,7 +507,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Function declaration](https://en.cppreference.com/w/cpp/language/function "cpp/language/function") (see [Return type deduction](https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function"))
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/function#Return_type_deduction "cpp/language/function")
 > ---
 </details>
 
@@ -523,9 +523,9 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Enumeration declaration](https://en.cppreference.com/w/cpp/language/enum "cpp/language/enum")
-> - [std::is\_enum](https://en.cppreference.com/w/cpp/types/is_enum "cpp/types/is_enum")
-> - [std::is\_scoped\_enum](https://en.cppreference.com/w/cpp/types/is_scoped_enum "cpp/types/is_scoped_enum")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/enum "cpp/language/enum"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/is_enum "cpp/types/is_enum"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/is_scoped_enum "cpp/types/is_scoped_enum"
 > ---
 </details>
 
@@ -544,7 +544,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::underlying\_type](https://en.cppreference.com/w/cpp/types/underlying_type "cpp/types/underlying_type")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/types/underlying_type "cpp/types/underlying_type"
 ---
 </details>
 
@@ -568,9 +568,9 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [Templates](https://en.cppreference.com/w/cpp/language/templates "cpp/language/templates")
-> - [Template parameters](https://en.cppreference.com/w/cpp/language/template_parameters "cpp/language/template_parameters") (see [Non-type template parameter](https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter))
-> - [Partial template specialization](https://en.cppreference.com/w/cpp/language/partial_specialization "cpp/language/partial_specialization")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/templates "cpp/language/templates"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/partial_specialization "cpp/language/partial_specialization"
 > ---
 </details>
 
@@ -601,7 +601,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [typename keyword](https://en.cppreference.com/w/cpp/keyword/typename "cpp/keyword/typename")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/keyword/typename "cpp/keyword/typename"
 > ---
 </details>
 
@@ -710,8 +710,8 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Value initialization](https://en.cppreference.com/w/cpp/language/value_initialization "cpp/language/value_initialization")
-> - [Zero initialization](https://en.cppreference.com/w/cpp/language/zero_initialization "cpp/language/zero_initialization")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/value_initialization "cpp/language/value_initialization"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/zero_initialization "cpp/language/zero_initialization"
 > ---
 </details>
 
@@ -736,11 +736,11 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [exit](https://en.cppreference.com/w/cpp/utility/program/exit "cpp/utility/program/exit")
-> - [atexit](https://en.cppreference.com/w/cpp/utility/program/atexit "cpp/utility/program/atexit")
-> - [quick\_exit](https://en.cppreference.com/w/cpp/utility/program/quick_exit "cpp/utility/program/quick_exit")
-> - [at\_quick\_exit](https://en.cppreference.com/w/cpp/utility/program/at_quick_exit "cpp/utility/program/at_quick_exit")
-> - [std::terminate](https://en.cppreference.com/w/cpp/error/terminate "cpp/error/terminate")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/program/exit "cpp/utility/program/exit"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/program/atexit "cpp/utility/program/atexit"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/program/quick_exit "cpp/utility/program/quick_exit"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/program/at_quick_exit "cpp/utility/program/at_quick_exit"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/terminate "cpp/error/terminate"
 > ---
 </details>
 
@@ -768,8 +768,8 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [namespace keyword](https://en.cppreference.com/w/cpp/keyword/namespace "cpp/keyword/namespace")
-> - [namespaces](https://en.cppreference.com/w/cpp/language/namespace "cpp/language/namespace")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/keyword/namespace "cpp/keyword/namespace"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace "cpp/language/namespace"
 > ---
 </details>
 
@@ -791,7 +791,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [namespace alias](https://en.cppreference.com/w/cpp/language/namespace_alias "cpp/language/namespace_alias")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace_alias "cpp/language/namespace_alias"
 > ---
 </details>
 
@@ -816,8 +816,8 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [using keyword](https://en.cppreference.com/w/cpp/keyword/using "cpp/keyword/using")
-> - [using declaration](https://en.cppreference.com/w/cpp/language/using_declaration "cpp/language/using_declaration")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/keyword/using "cpp/keyword/using"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/using_declaration "cpp/language/using_declaration"
 ---
 </details>
 
@@ -841,7 +841,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [namespaces](https://en.cppreference.com/w/cpp/language/namespace "cpp/language/namespace") (see [using directive](https://en.cppreference.com/w/cpp/language/namespace#Using-directives))
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/namespace#Using-directives)
 > ---
 </details>
 
@@ -858,7 +858,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [C++ Standard Library headers](https://en.cppreference.com/w/cpp/header "cpp/header")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header "cpp/header"
 > ---
 </details>
 
@@ -888,10 +888,10 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [Error Handling](https://en.cppreference.com/w/cpp/error "cpp/error")
-> - [Exceptions](https://en.cppreference.com/w/cpp/language/exceptions "cpp/language/exceptions")
-> - [\<exception\>](https://en.cppreference.com/w/cpp/header/exception "cpp/header/exception")
-> - [\<stdexcept\>](https://en.cppreference.com/w/cpp/header/exception "cpp/header/exception")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error "cpp/error"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/exceptions "cpp/language/exceptions"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/exception "cpp/header/exception"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/exception "cpp/header/exception"
 > ---
 </details>
 
@@ -924,12 +924,12 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [\<system\_error\>](https://en.cppreference.com/w/cpp/header/system_error "cpp/header/system_error")
-> - [std::errc](https://en.cppreference.com/w/cpp/error/errc "cpp/error/errc")
-> - [std::make\_error\_code](https://en.cppreference.com/w/cpp/error/errc/make_error_code "cpp/error/errc/make_error_code")
-> - [std::error\_category](https://en.cppreference.com/w/cpp/error/error_category "cpp/error/error_category")
-> - [std::error\_condition](https://en.cppreference.com/w/cpp/error/error_condition "cpp/error/error_condition")
-> - [std::error\_code](https://en.cppreference.com/w/cpp/error/error_code "cpp/error/error_code")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/system_error "cpp/header/system_error"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/errc "cpp/error/errc"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/errc/make_error_code "cpp/error/errc/make_error_code"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/error_category "cpp/error/error_category"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/error_condition "cpp/error/error_condition"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/error/error_code "cpp/error/error_code"
 > ---
 </details>
 
@@ -957,7 +957,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [std::pair](https://en.cppreference.com/w/cpp/utility/pair "cpp/utility/pair")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/pair "cpp/utility/pair"
 > ---
 </details>
 
@@ -977,7 +977,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [\<utility\>](https://en.cppreference.com/w/cpp/header/utility "cpp/header/utility")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/header/utility "cpp/header/utility"
 > ---
 </details>
 
@@ -1054,7 +1054,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [std::make\_pair](https://en.cppreference.com/w/cpp/utility/tuple/make_pair "cpp/utility/make_pair")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/make_pair "cpp/utility/make_pair"
 ---
 </details>
 
@@ -1145,7 +1145,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::map](https://en.cppreference.com/w/cpp/container/map "cpp/container/map")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/container/map "cpp/container/map"
 > ---
 </details>
 
@@ -1190,9 +1190,9 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::piecewise\_construct](https://en.cppreference.com/w/cpp/utility/piecewise_construct "cpp/utility/piecewise_construct")
-> - [std::pair piecewise constructor](https://en.cppreference.com/w/cpp/utility/pair/pair "cpp/utility/pair/pair") (see (7) and (8))
-> - [std::make\_tuple](https://en.cppreference.com/w/cpp/utility/tuple/make_tuple "cpp/utility/make_tuple")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/piecewise_construct "cpp/utility/piecewise_construct"
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/pair/pair "cpp/utility/pair/pair") (see (7) and (8)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/make_tuple "cpp/utility/make_tuple"
 > ---
 </details>
 
@@ -1221,7 +1221,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple "cpp/utility/tuple")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple "cpp/utility/tuple"
 ---
 </details>
 
@@ -1268,7 +1268,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::get](https://en.cppreference.com/w/cpp/utility/tuple/get "cpp/utility/tuple/get")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/get "cpp/utility/tuple/get"
 ---
 </details>
 
@@ -1299,7 +1299,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [tuple comparisons](https://en.cppreference.com/w/cpp/utility/tuple/operator_cmp "cpp/utility/tuple/operator_cmp")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/operator_cmp "cpp/utility/tuple/operator_cmp"
 ---
 </details>
 
@@ -1318,7 +1318,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [tuple.swap()](https://en.cppreference.com/w/cpp/utility/tuple/swap "cpp/utility/tuple/swap")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/swap "cpp/utility/tuple/swap"
 > ---
 </details>
 
@@ -1400,7 +1400,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::tuple\_size](https://en.cppreference.com/w/cpp/utility/tuple_size "cpp/utility/tuple_size")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple_size "cpp/utility/tuple_size"
 > ---
 </details>
 
@@ -1426,7 +1426,7 @@ Nothing to be imported.
 > -
 > ---
 > **References**
-> - [std::tuple\_element](https://en.cppreference.com/w/cpp/utility/tuple_element "cpp/utility/tuple_element")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple_element "cpp/utility/tuple_element"
 > ---
 </details>
 
@@ -1454,7 +1454,7 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - [std::tuple\_cat](https://en.cppreference.com/w/cpp/utility/tuple/tuple_cat "cpp/utility/tuple/tuple_cat")
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/utility/tuple/tuple_cat "cpp/utility/tuple/tuple_cat"
 ---
 </details>
 
@@ -1842,8 +1842,8 @@ Nothing to be imported.
 >
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/async
-> - https://timsong-cpp.github.io/cppwp/futures.async
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/async
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures.async
 > ---
 </details>
 
@@ -1865,8 +1865,8 @@ Nothing to be imported.
 > - The C++ Standard Library - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/async
-> - https://timsong-cpp.github.io/cppwp/futures.async
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/async
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures.async
 > ---
 </details>
 
@@ -1888,8 +1888,8 @@ Nothing to be imported.
 > - The C++ Standard Library - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/async
-> - https://timsong-cpp.github.io/cppwp/futures.async
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/async
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures.async
 > ---
 </details>
 
@@ -1906,8 +1906,8 @@ Nothing to be imported.
 > - The C++ Standard Library - Chapter 18
 > ---
 > **References**
-> - https://en.cppreference.com/w/cpp/thread/future
-> - [[futures]](https://timsong-cpp.github.io/cppwp/futures)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/future
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures
 > ---
 </details>
 
@@ -1961,11 +1961,11 @@ Nothing to be imported.
 >
 > ---
 > **Resources**
-> - https://en.cppreference.com/w/cpp/thread/async
-> - [[futures.async]](https://timsong-cpp.github.io/cppwp/futures.async)
+> - https://en.cppreference.com - https://en.cppreference.com/w/cpp/thread/async
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures.async
 > ---
 > **References**
-> - [[futures.async]](https://timsong-cpp.github.io/cppwp/futures.async)
+> - https://timsong-cpp.github.io - https://timsong-cpp.github.io/cppwp/futures.async
 > ---
 </details>
 

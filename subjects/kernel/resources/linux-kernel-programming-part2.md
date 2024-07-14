@@ -75,7 +75,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 
 > **References**
-> - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
+> - https://www.kernel.org - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
 > ---
 </details>
 
@@ -126,7 +126,7 @@
 > - Linux Kernel Programming Part 2 - Chapter 1
 > ---
 > **References**
-> - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
+> - https://www.kernel.org - https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
 ---
 </details>
 
@@ -226,7 +226,7 @@
 >
 > ---
 > **References**
-> - https://kernel.org/doc/html/latest/driver-model/platform.html
+> - https://kernel.org - https://kernel.org/doc/html/latest/driver-model/platform.html
 ---
 </details>
 
@@ -284,8 +284,8 @@
 >
 > ---
 > **References**
-> - https://lwn.net/Articles/97154/
-> - https://lwn.net/Articles/97180/
+> - https://lwn.net - https://lwn.net/Articles/97154/
+> - https://lwn.net - https://lwn.net/Articles/97180/
 > ---
 </details>
 

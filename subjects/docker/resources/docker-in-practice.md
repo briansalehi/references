@@ -42,7 +42,7 @@
 > **Note:** Git is installed inside the base *node* image in this case, but you can’t take this kind of thing for granted.
 >
 > ```docker
-> RUN git clone -q https://domain.com/username/repository.git
+> RUN git clone -q https://domain.com - https://domain.com/username/repository.git
 > ``````
 >
 > Now you move to the new cloned directory with a `WORKDIR` command.

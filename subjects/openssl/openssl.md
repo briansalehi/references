@@ -15,7 +15,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=VH4gXcvkmOY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=VH4gXcvkmOY
 > ---
 > **References**
 > ---
@@ -31,7 +31,7 @@
 > ``````
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=VH4gXcvkmOY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=VH4gXcvkmOY
 > ---
 > **References**
 > ---
@@ -48,7 +48,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=VH4gXcvkmOY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=VH4gXcvkmOY
 
 > **References**
 > ---
@@ -66,7 +66,7 @@
 >
 > ---
 > **Resources**
-> - https://www.youtube.com/watch?v=VH4gXcvkmOY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=VH4gXcvkmOY
 > ---
 > **References**
 > ---
@@ -88,7 +88,7 @@
 > ``````
 
 > **Resources**
-> - https://www.youtube.com/watch?v=VH4gXcvkmOY
+> - https://www.youtube.com - https://www.youtube.com/watch?v=VH4gXcvkmOY
 > ---
 > **References**
 > ---
