@@ -1438,7 +1438,7 @@
 
 ## Chapter 3/28 Nontype Template Parameters <sup>(writing)</sup>
 
-## Nontype Class Template Parameters
+### Nontype Class Template Parameters
 
 <details>
 <summary>What are the use cases of nontype template parameters?</summary>

@@ -107,7 +107,7 @@
 > ---
 </details>
 
-## String Operations
+### String Operations
 
 <details>
 <summary>What string operations are available in SQL?</summary>
@@ -130,7 +130,7 @@
 
 ## Chapter 2/37 <sup>(complete)</sup>
 
-## Filtering Query
+### Filtering Query
 
 <details>
 <summary>Limit the results of a query?</summary>
@@ -263,7 +263,7 @@
 > ---
 </details>
 
-## Update Records
+### Update Records
 
 <details>
 <summary>Update a cell within a very big table?</summary>
@@ -280,7 +280,7 @@
 > ---
 </details>
 
-## Delete Records
+### Delete Records
 
 <details>
 <summary>Delete a row from a table?</summary>
@@ -318,7 +318,7 @@
 
 ## Chapter 3/37 <sup>(complete)</sup>
 
-## Relationships
+### Relationships
 
 <details>
 <summary>How many relationships are possible between data?</summary>
@@ -336,7 +336,7 @@
 > ---
 </details>
 
-## Primary Key
+### Primary Key
 
 <details>
 <summary>What are the characteristics of a primary key?</summary>
@@ -378,7 +378,7 @@
 > ---
 </details>
 
-## Foreign Key
+### Foreign Key
 
 <details>
 <summary>What are the characteristics of a foreign key?</summary>
@@ -416,7 +416,7 @@
 > ---
 </details>
 
-## Foreign Key Insertion
+### Foreign Key Insertion
 
 <details>
 <summary>What happens when record gets inserted without foreign key?</summary>
@@ -479,7 +479,7 @@
 > ---
 </details>
 
-## Join Query
+### Join Query
 
 <details>
 <summary>Query two tables by associating them on foreign keys?</summary>
@@ -498,7 +498,7 @@
 > ---
 </details>
 
-## Default Value
+### Default Value
 
 <details>
 <summary>What statement can be used to set default value for a foreign key when referenced record is deleted?</summary>
@@ -521,7 +521,7 @@
 
 ## Chapter 4/37 <sup>(complete)</sup>
 
-## Joins
+### Joins
 
 <details>
 <summary>How many joins are supported by SQL?</summary>
@@ -586,7 +586,7 @@
 
 ## Chapter 5/37 <sup>(complete)</sup>
 
-## Grouping
+### Grouping
 
 <details>
 <summary>What are the main characteristics of grouping operation?</summary>
@@ -640,7 +640,7 @@
 > ---
 </details>
 
-## Filtering Groups
+### Filtering Groups
 
 <details>
 <summary>What is the use case of having clause?</summary>
@@ -692,7 +692,7 @@
 > ---
 </details>
 
-## Aggregation
+### Aggregation
 
 <details>
 <summary>What are the main characterestics of aggregation operations?</summary>
@@ -708,7 +708,7 @@
 > ---
 </details>
 
-## Aggregation Functions
+### Aggregation Functions
 
 <details>
 <summary>What are the common aggregate functions?</summary>
@@ -768,7 +768,7 @@
 > ---
 </details>
 
-## Min and Max Aggregate Function
+### Min and Max Aggregate Function
 
 <details>
 <summary>Find the most commented photo of a photo sharing app?</summary>
@@ -787,7 +787,7 @@
 > ---
 </details>
 
-## Sum Aggregate Function
+### Sum Aggregate Function
 
 <details>
 <summary>Find the sum of all comments from each photo record in a photo sharing app?</summary>
@@ -809,7 +809,7 @@
 ## Chapter 6/37 <sup>(ignored)</sup>
 ## Chapter 7/37 <sup>(complete)</sup>
 
-## Ordering Result Set
+### Ordering Result Set
 
 <details>
 <summary>Reorder records of the result set with ascending and descending order?</summary>
@@ -852,7 +852,7 @@
 > ---
 </details>
 
-## Limiting Result Set
+### Limiting Result Set
 
 <details>
 <summary>What is the use case of limit?</summary>
@@ -889,7 +889,7 @@
 > ---
 </details>
 
-## Offseting Result Set
+### Offseting Result Set
 
 <details>
 <summary>What is the use case of offset?</summary>
@@ -926,7 +926,7 @@
 
 ## Chapter 8/37 <sup>(complete)</sup>
 
-## Union
+### Union
 
 <details>
 <summary>What is the use case of union clause?</summary>
@@ -1014,7 +1014,7 @@
 > ---
 </details>
 
-## Intersect
+### Intersect
 
 <details>
 <summary>Collect the intersection of two result sets?</summary>
@@ -1037,7 +1037,7 @@
 > ---
 </details>
 
-## Exception
+### Exception
 
 <details>
 <summary>Find the records appearing in first result set and not in second result set?</summary>
@@ -1063,7 +1063,7 @@
 
 ## Chapter 9/37 <sup>(writing)</sup>
 
-## Subquery
+### Subquery
 
 <details>
 <summary>Where are subqueries mostly used?</summary>
@@ -1087,7 +1087,7 @@
 > ---
 </details>
 
-## Single Value Subquery
+### Single Value Subquery
 
 <details>
 <summary>Use a subquery to give a single value in select clause?</summary>
@@ -1106,7 +1106,7 @@
 > ---
 </details>
 
-## One Column Subquery
+### One Column Subquery
 
 <details>
 <summary>Use a subquery in from clause as a source of data?</summary>
@@ -1125,7 +1125,7 @@
 > ---
 </details>
 
-## Multi Record Subquery
+### Multi Record Subquery
 
 ## Chapter 10/37 <sup>(writing)</sup>
 ## Chapter 11/37 <sup>(writing)</sup>
@@ -1133,7 +1133,7 @@
 ## Chapter 13/37 <sup>(writing)</sup>
 ## Chapter 14/37 <sup>(complete)</sup>
 
-## Not Null
+### Not Null
 
 <details>
 <summary>When creating a table define a column not taking null value?</summary>
@@ -1171,7 +1171,7 @@
 > ---
 </details>
 
-## Updating Column
+### Updating Column
 
 <details>
 <summary>Update all null values of a column to set 0 instead?</summary>
@@ -1189,7 +1189,7 @@
 > ---
 </details>
 
-## Data Validation
+### Data Validation
 
 <details>
 <summary>What input data validation constraints do we have in database side?</summary>
@@ -1206,7 +1206,7 @@
 > ---
 </details>
 
-## Default Value
+### Default Value
 
 <details>
 <summary>Set a default value for a column?</summary>
@@ -1245,7 +1245,7 @@
 > ---
 </details>
 
-## Unique Values
+### Unique Values
 
 <details>
 <summary>Define a column as having only unique values?</summary>
@@ -1300,7 +1300,7 @@
 > ---
 </details>
 
-## Multiple Column Unique Value
+### Multiple Column Unique Value
 
 <details>
 <summary>Define a column to take unique values in combination of multiple columns?</summary>
@@ -1402,7 +1402,7 @@ create table products (
 
 ## Chapter 15/37 <sup>(complete)</sup>
 
-## Database Diagram
+### Database Diagram
 
 <details>
 <summary>Name a few web services for drawing database diagrams?</summary>

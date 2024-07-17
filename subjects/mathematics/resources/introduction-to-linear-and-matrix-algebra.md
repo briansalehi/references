@@ -3,7 +3,7 @@
 
 ## Chapter 1/12 <sup>(writing)</sup>
 
-## Vector
+### Vector
 
 <details>
 <summary>What is the constituents of a vector?</summary>
@@ -82,7 +82,7 @@
 > ---
 </details>
 
-## Vector Addition
+### Vector Addition
 
 <details>
 <summary>What is the result of addition of two vectors $v = (v₁, v₂)$ and $w = (w₁, w₂)$?</summary>
@@ -147,7 +147,7 @@
 > ---
 </details>
 
-## Scalar to Vector Multiplication
+### Scalar to Vector Multiplication
 
 <details>
 <summary>What is the result of multiplication of scalar $c$ to vector $v = (v₁, v₂)$?</summary>
@@ -222,7 +222,7 @@
 > ---
 </details>
 
-## Vector Subtraction
+### Vector Subtraction
 
 <details>
 <summary>What is the result of subtraction of vector $v = (v₁, v₂)$ to vector $w = (w₁, w₂)$?</summary>
@@ -253,7 +253,7 @@
 > ---
 </details>
 
-## Linear Combination of Vectors
+### Linear Combination of Vectors
 
 <details>
 <summary>What are linear combinations of vectors $v_1 , v_2 , ... , v_k$?</summary>
@@ -282,7 +282,7 @@
 > ---
 </details>
 
-## Standard Basis Vectors
+### Standard Basis Vectors
 
 <details>
 <summary>What are the standard basis vectors?</summary>
@@ -339,7 +339,7 @@
 > ---
 </details>
 
-## Dot Product
+### Dot Product
 
 <details>
 <summary>What is the result of dot product operation?</summary>
@@ -413,7 +413,7 @@
 
 ## Chapter 2/12 <sup>(writing)</sup>
 
-## Vector Length
+### Vector Length
 
 <details>
 <summary>Compute the length of a vector?</summary>
@@ -484,7 +484,7 @@
 > ---
 </details>
 
-## Vector Normalization
+### Vector Normalization
 
 <details>
 <summary>What is the normalization of a vector?</summary>
@@ -553,7 +553,7 @@
 > ---
 </details>
 
-## Triangle Inequality
+### Triangle Inequality
 
 <details>
 <summary>What is the Triangle Inequality theorem?</summary>
@@ -570,31 +570,31 @@
 > ---
 </details>
 
-## Angle Between Vectors
+### Angle Between Vectors
 
 ## Chapter 3/12 <sup>(writing)</sup>
 
-## Matrix
+### Matrix
 
-## Matrix Addition
+### Matrix Addition
 
-## Matrix Scalar Multiplication
+### Matrix Scalar Multiplication
 
-## Matrix Multiplication
+### Matrix Multiplication
 
-## Identity Matrix
+### Identity Matrix
 
-## Row Column Vectors
+### Row Column Vectors
 
-## Transpose
+### Transpose
 
-## Block Matrix
+### Block Matrix
 
-## Matrix Vector Multiplication
+### Matrix Vector Multiplication
 
 ## Chapter 4/12 <sup>(writing)</sup>
 
-## Linear Transformation
+### Linear Transformation
 
 <details>
 <summary>What are the two properties of linear transformation functions?</summary>

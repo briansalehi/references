@@ -11,7 +11,7 @@
 
 ## Chapter 4/20 Quick Starter <sup>(completed)</sup>
 
-## QML Syntax
+### QML Syntax
 
 <details>
 <summary>Import a QML module to create a window?</summary>
@@ -247,7 +247,7 @@
 > ---
 </details>
 
-## Item
+### Item
 
 <details>
 <summary>What element is the most basic type to be inherited by other visual elements?</summary>
@@ -293,7 +293,7 @@
 > ---
 </details>
 
-## Rectangle
+### Rectangle
 
 <details>
 <summary>What are the additional basic properties of a rectangle over item element?</summary>
@@ -376,7 +376,7 @@
 > ---
 </details>
 
-## Text
+### Text
 
 <details>
 <summary>Display a text on main window?</summary>
@@ -483,7 +483,7 @@
 > ---
 </details>
 
-## Image
+### Image
 
 <details>
 <summary>What are the common image formats supported by QML?</summary>
@@ -573,7 +573,7 @@ Image {
 > ---
 </details>
 
-## MouseArea
+### MouseArea
 
 <details>
 <summary>Get notified when user clicks on an element?</summary>
@@ -656,7 +656,7 @@ Image {
 > ---
 </details>
 
-## Transformation
+### Transformation
 
 <details>
 <summary>What are the simple transformation properties?</summary>
@@ -723,7 +723,7 @@ Image {
 > ---
 </details>
 
-## Positioning Elements
+### Positioning Elements
 
 <details>
 <summary>Position multiple elements in a row?</summary>
@@ -1018,7 +1018,7 @@ Image {
 > ---
 </details>
 
-## Repeater
+### Repeater
 
 <details>
 <summary>Fill out a grid with blue squares using a repeater?</summary>
@@ -1107,7 +1107,7 @@ Image {
 > ---
 </details>
 
-## Layout Items
+### Layout Items
 
 <details>
 <summary>What are the anchoring properties for visual elements?</summary>
@@ -1156,7 +1156,7 @@ Image {
 > ---
 </details>
 
-## Keyboard Input
+### Keyboard Input
 
 <details>
 <summary>What input constraints does <code>TextInput</code> support?</summary>
@@ -1287,7 +1287,7 @@ Get a line of text from user?
 > ---
 </details>
 
-## Key Elements
+### Key Elements
 
 <details>
 <summary>What property can record key presses?</summary>
@@ -1345,7 +1345,7 @@ Get a line of text from user?
 > ---
 </details>
 
-## QML Performance
+### QML Performance
 
 <details>
 <summary>How to precompile QML to avoid the initial startup penalty induced by the initial parsing?</summary>
@@ -1365,7 +1365,7 @@ Get a line of text from user?
 
 ## Chapter 5/20 Fluid Elements <sup>(completed)</sup>
 
-## Animations
+### Animations
 
 <details>
 <summary>Where do animations apply?</summary>
@@ -1546,7 +1546,7 @@ Get a line of text from user?
 > ---
 </details>
 
-## Easing Curves
+### Easing Curves
 
 <details>
 <summary>How many easing curves are available for animations?</summary>
@@ -1645,7 +1645,7 @@ Get a line of text from user?
 ---
 </details>
 
-## Grouped Animations
+### Grouped Animations
 
 <details>
 <summary>How many ways exist to group animations?</summary>
@@ -1752,7 +1752,7 @@ Get a line of text from user?
 > ---
 </details>
 
-## States
+### States
 
 <details>
 <summary>What is the basic form of a state?</summary>
@@ -1873,7 +1873,7 @@ Get a line of text from user?
 > ---
 </details>
 
-## Transitions
+### Transitions
 
 <details>
 <summary>What is the basic form of a transition?</summary>

@@ -1,6 +1,6 @@
 # Qt6 Deep Dive
 
-## Qt Logs
+### Qt Logs
 
 > Reduce QML logs?
 >
@@ -8,14 +8,14 @@
 > QLoggingCategory::setFilterRules("qt.qml.connections.warning=false");
 > ``````
 
-## Palettes
+### Palettes
 
 > What module is used for palettes?
 >
 > `QPalette::Accent`
 > `Qt::ColorScheme::Dark` or `Qt::ColorScheme::Light`
 
-## Badges
+### Badges
 
 > What component is used to set badge number in taskbar?
 >
@@ -23,19 +23,19 @@
 >
 > These methods outsourced to private API.
 
-## HTTP
+### HTTP
 
 > What Qt version supports http server?
 >
 > HTTP protocol was added in Qt6.
 
-## Protobuf
+### Protobuf
 
 > What Qt version supports protobuf and grpc?
 >
 > Protobuf and grpc was added in Qt6.
 
-## Multimedia
+### Multimedia
 
 > What version supports multimedia?
 >
@@ -117,7 +117,7 @@
 > )
 > ``````
 
-## String Literals
+### String Literals
 
 > What are the user defined literals for string literals in Qt6?
 >
@@ -127,7 +127,7 @@
 > file.write(u"some data"_L1); # QLatin1String
 > ``````
 
-## Signals
+### Signals
 
 > How do signals should be written in Qt6?
 >

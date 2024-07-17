@@ -1,7 +1,7 @@
 # A Complete Guide to Standard C++ Algorithms
 <img alt="A Complete Guide to Standard C++ Algorithms" src="../../../covers/a-complete-guide-to-standard-cpp-algorithms.png" width="200"/>
 
-## Introduction <sup>(completed => edited => published)</sup>
+## Chapter 1/20 Introduction <sup>(completed => edited => published)</sup>
 
 <details>
 <summary>How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?</summary>
@@ -431,7 +431,7 @@
 > ---
 </details>
 
-## Swaps <sup>(completed => edited => published)</sup>
+### Swaps <sup>(completed => edited => published)</sup>
 
 <details>
 <summary>How to swap two values?</summary>
@@ -539,7 +539,7 @@
 > ---
 </details>
 
-## Sorting <sup>(published)</sup>
+### Sorting <sup>(published)</sup>
 
 <details>
 <summary>What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?</summary>
@@ -969,7 +969,7 @@
 > ---
 </details>
 
-## Partitioning <sup>(published)</sup>
+### Partitioning <sup>(published)</sup>
 
 <details>
 <summary>Reorder a vector of objects partitioned in two sections?</summary>
@@ -1161,7 +1161,7 @@
 > ---
 </details>
 
-## Divide and Conquer <sup>(published)</sup>
+### Divide and Conquer <sup>(published)</sup>
 
 <details>
 <summary>Find the lower and upper bounds of a value within a sorted range?</summary>
@@ -1344,7 +1344,7 @@
 > ---
 </details>
 
-## Linear Operations on Sorted Ranges <sup>(published)</sup>
+### Linear Operations on Sorted Ranges <sup>(published)</sup>
 
 <details>
 <summary>Determine whether one range is contained within another range?</summary>
@@ -1497,7 +1497,7 @@
 > ---
 </details>
 
-## Set Operations <sup>(published)</sup>
+### Set Operations <sup>(published)</sup>
 
 <details>
 <summary>Produce a range containing elements present in the first range but not in the second range?</summary>
@@ -1630,7 +1630,7 @@
 > ---
 </details>
 
-## Transformation Algorithms <sup>(published)</sup>
+### Transformation Algorithms <sup>(published)</sup>
 
 <details>
 <summary>Apply a transformation function to each element within a range?</summary>
@@ -2011,7 +2011,7 @@
 > ---
 </details>
 
-## Left folds <sup>(completed)</sup>
+### Left folds <sup>(completed)</sup>
 
 <details>
 <summary>Accumulate the elements of a range?</summary>
@@ -2163,7 +2163,7 @@
 > ---
 </details>
 
-## General Reductions <sup>(completed)</sup>
+### General Reductions <sup>(completed)</sup>
 
 <details>
 <summary>Reduce a range?</summary>
@@ -2319,7 +2319,7 @@
 > ---
 </details>
 
-## Boolean Reductions <sup>(published)</sup>
+### Boolean Reductions <sup>(published)</sup>
 
 <details>
 <summary>Indicate if all of the elements within a range evaluate to true for a predicate?</summary>
@@ -2415,7 +2415,7 @@
 > ---
 </details>
 
-## Generators <sup>(completed)</sup>
+### Generators <sup>(completed)</sup>
 
 <details>
 <summary>Fill a range by consecutively assigning the given value to each element?</summary>
@@ -2576,7 +2576,7 @@
 > ---
 </details>
 
-## Copy and Move <sup>(completed)</sup>
+### Copy and Move <sup>(completed)</sup>
 
 <details>
 <summary>Copy a non-overlapping and overlapping ranges?</summary>
@@ -3005,7 +3005,7 @@
 > ---
 </details>
 
-## Uninitialized Memory Algorithms
+### Uninitialized Memory Algorithms
 
 <details>
 <summary>Construct and destroy a single element at a given address?</summary>
@@ -3048,7 +3048,7 @@
 > ---
 </details>
 
-## Heap Data Structure <sup>(completed)</sup>
+### Heap Data Structure <sup>(completed)</sup>
 
 <details>
 <summary>Reorder elements in the given range such that the elements maintain the max-heap property?</summary>
@@ -3241,7 +3241,7 @@
 > ---
 </details>
 
-## Search and Compare Algorithms
+### Search and Compare Algorithms
 
 <details>
 <summary>Find the first element matching the given value within a range?</summary>
@@ -3332,11 +3332,11 @@
 > ---
 </details>
 
-## Min-Max Algorithms
+### Min-Max Algorithms
 
-## Ranges
+### Ranges
 
-## Views <sup>(published)</sup>
+### Views <sup>(published)</sup>
 
 <details>
 <summary>Produce the view of the first elements and a range of second elements from a range of paired elements using views?</summary>
@@ -3837,4 +3837,24 @@
 > ---
 </details>
 
-## Argument Dependent Lookup
+### Argument Dependent Lookup
+
+## Chapter 2/20
+## Chapter 3/20
+## Chapter 4/20
+## Chapter 5/20
+## Chapter 6/20
+## Chapter 7/20
+## Chapter 8/20
+## Chapter 9/20
+## Chapter 10/20
+## Chapter 11/20
+## Chapter 12/20
+## Chapter 13/20
+## Chapter 14/20
+## Chapter 15/20
+## Chapter 16/20
+## Chapter 17/20
+## Chapter 18/20
+## Chapter 19/20
+## Chapter 20/20
