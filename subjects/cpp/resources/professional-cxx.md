@@ -519,7 +519,7 @@
 > std::vector<MovableType> copies{std::begin(source), std::end(source)};
 > ``````
 >
-> By using `std:::make_move_iterator()` to create `std::move_iterator`, the move constructor of `MovableType` is called instead of the copy constructors:
+> By using `std::make_move_iterator()` to create `std::move_iterator`, the move constructor of `MovableType` is called instead of the copy constructors:
 >
 > ```cpp
 > std::vector<MovableType> steals{std::make_move_iterator(source), std::make_move_iterator(source)};
