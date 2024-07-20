@@ -1,5 +1,7 @@
 # Embedded Linux using Yocto
 
+## Chapter 1/1
+
 <details>
 <summary>How to build a kernel image using <b>Yocto Poky</b> tools?</summary>
 
