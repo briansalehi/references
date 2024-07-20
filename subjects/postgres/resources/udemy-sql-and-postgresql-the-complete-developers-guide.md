@@ -14,7 +14,7 @@
 > ---
 </details>
 
-## CRUD Operations
+### CRUD Operations
 
 <details>
 <summary>Create a table of cities holding name, country, population and area of each?</summary>
@@ -65,7 +65,7 @@
 > ---
 </details>
 
-## Calculated Columns
+### Calculated Columns
 
 <details>
 <summary>Calculate the arithmetic operations of two columns from a table?</summary>
@@ -201,7 +201,7 @@
 > ---
 </details>
 
-## Comparison Operators
+### Comparison Operators
 
 <details>
 <summary>What comparison operators are supported by SQL?</summary>
@@ -224,7 +224,7 @@
 > ---
 </details>
 
-## Compound Operators
+### Compound Operators
 
 <details>
 <summary>What compound operators are supported by SQL?</summary>
@@ -246,7 +246,7 @@
 > ---
 </details>
 
-## Calculated Conditions
+### Calculated Conditions
 
 <details>
 <summary>Limit the results of a query by comparing the calculated values of two columns?</summary>
@@ -438,7 +438,7 @@
 > ---
 </details>
 
-## Constraints
+### Constraints
 
 <details>
 <summary>What constraints are supported by SQL when referencing record of a foreign key is deleted?</summary>
@@ -726,7 +726,7 @@
 > ---
 </details>
 
-## Count Aggregate Function
+### Count Aggregate Function
 
 <details>
 <summary>Count how many comments each user have posted?</summary>
