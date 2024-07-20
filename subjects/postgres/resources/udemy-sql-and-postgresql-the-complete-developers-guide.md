@@ -1338,7 +1338,7 @@ create table products (
 > ---
 </details>
 
-## Checking Value
+### Checking Value
 
 <details>
 <summary>Define a column with a check constraint on its value?</summary>
@@ -1377,7 +1377,7 @@ create table products (
 > ---
 </details>
 
-## Checking Multiple Column
+### Checking Multiple Column
 
 <details>
 <summary>Define multiple columns with a check on all of them?</summary>
