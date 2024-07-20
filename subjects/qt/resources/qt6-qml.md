@@ -595,7 +595,7 @@ Image {
 > ---
 </details>
 
-## Components
+### Components
 
 <details>
 <summary>What is a component?</summary>
