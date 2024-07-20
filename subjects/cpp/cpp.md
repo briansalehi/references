@@ -13261,8 +13261,6 @@ std::jthread consumer{[&value_source]{
 > ---
 </details>
 
-## Design Patterns
-
 ## Monostate Pattern
 
 <details>
