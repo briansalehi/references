@@ -1646,3 +1646,16 @@
 > ---
 </details>
 
+## Yocto Principles
+
+## Bitbake
+
+## Recipe
+
+## Metadata
+
+## Poky
+
+## Image Creation
+
+

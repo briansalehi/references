@@ -1,6 +1,6 @@
 # Embedded Linux Full Course by Anisa Institute
 
-## Chapter 1/9 <sup>(published)</sup>
+## Course 1/6 <sup>(writing)</sup>
 
 ### Host Toolchains
 
@@ -749,7 +749,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:50:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -766,7 +766,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:51:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -865,8 +865,6 @@
 ---
 </details>
 
-## Chapter 2/9 <sup>(writing)</sup>
-
 ### Patch Files
 
 <details>
@@ -876,7 +874,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 14:55:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > References:
 > ---
@@ -896,7 +894,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:08:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -914,7 +912,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:10:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -932,7 +930,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:20:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -958,7 +956,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:27:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -985,7 +983,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:28:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1004,7 +1002,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:38:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1021,7 +1019,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:39:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1039,7 +1037,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:40:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1059,7 +1057,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:45:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1076,7 +1074,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:43:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1093,7 +1091,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:44:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1116,7 +1114,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:09:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1135,7 +1133,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:46:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1153,7 +1151,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:50:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1173,7 +1171,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:46:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1192,7 +1190,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 15:52:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1211,7 +1209,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 17:06:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1234,7 +1232,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 17:33:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1251,7 +1249,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 17:45:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1272,7 +1270,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 17:57:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1295,7 +1293,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:35:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1314,7 +1312,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:50:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1333,7 +1331,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:39:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1356,7 +1354,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - Chapter 2
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1372,7 +1370,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:01:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1390,7 +1388,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 18:02:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1412,7 +1410,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:11:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1433,7 +1431,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:13:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1451,7 +1449,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:13:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1468,7 +1466,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:15:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1490,7 +1488,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:17:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1509,7 +1507,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:23:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1530,7 +1528,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:17:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1547,7 +1545,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:22:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1569,7 +1567,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:26:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1586,7 +1584,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:27:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1607,7 +1605,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:28:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1630,7 +1628,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:45:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1653,7 +1651,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:48:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1682,7 +1680,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:50:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1716,7 +1714,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 19:59:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > exports(5)
@@ -1754,7 +1752,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 21:04:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1785,7 +1783,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 21:40:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1805,7 +1803,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:08:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1824,7 +1822,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:12:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1843,7 +1841,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:13:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1863,7 +1861,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:14:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1885,7 +1883,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:45:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1908,7 +1906,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:48:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1943,7 +1941,7 @@
 >
 > ---
 > **Resources**
-> - Embedded Linux Full Course by Anisa Institute - 22:53:00
+> - Embedded Linux Full Course by Anisa Institute - Course 1
 > ---
 > **References**
 > ---
@@ -1951,353 +1949,9 @@
 
 ### BusyBox
 
-## Chapter 3/9 <sup>(open)</sup>
-## Chapter 4/9 <sup>(open)</sup>
-## Chapter 5/9 <sup>(open)</sup>
-## Chapter 6/9 <sup>(open)</sup>
-## Chapter 7/9 <sup>(open)</sup>
-## Chapter 8/9 <sup>(writing)</sup>
+## Course 2/6 <sup>(open)</sup>
+## Course 3/6 <sup>(open)</sup>
+## Course 4/6 <sup>(open)</sup>
+## Course 5/6 <sup>(open)</sup>
+## Course 6/9 Yocto <sup>(writing)</sup>
 
-### Yocto Principles
-
-<details>
-<summary>What is the output of yocto?</summary>
-
-> **Description**
->
-> Yocto always builds binary packages.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-### Bitbake
-
-<details>
-<summary>What is build engine in yocto?</summary>
-
-> **Description**
->
-> In most build systems, `make` is the build engine, but in yocto is `bitbake`.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What is the responsibility of bitbake?</summary>
-
-> **Description**
->
-> `bitbake` is written in Python and is a task scheduler like `make`.
->
-> `bitbake` parses text files to know what it has to build and how.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-### Recipe
-
-<details>
-<summary>What is the name of text files parsed by bitbake?</summary>
-
-> **Description**
->
-> Recipes.
->
-> Each recipe describes how to fetch and build a software component.
-> Recipes might depend on each other.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What are recipes contained of?</summary>
-
-> **Description**
->
-> Recipes specify tasks by which performs a specific step in the build.
-> Tasks can also depend on each other.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-### Metadata
-
-<details>
-<summary>What is the input taken by bitbake called?</summary>
-
-> **Description**
->
-> The input to `bitbake` is called *metadata*.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>How a metadata is organized?</summary>
-
-> **Description**
->
-> Metadata is organized in layers, which can be composed to get various components.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What is the core layer of metadata?</summary>
-
-> **Description**
->
-> `openembedded-core` is the core layer.
->
-> By default this layer supports qemu.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-### Poky
-
-<details>
-<summary>What is a poky layer?</summary>
-
-> **Description**
->
-> Is the layer providing the poky reference distribution.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What is a poky distribution?</summary>
-
-> **Description**
->
-> Is the reference distro provided by the yocto.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What meta layer do we need to build images for qemu and beagle bone black?</summary>
-
-> **Description**
->
-> The same poky reference system is used for both, but for beagle bone black we
-> will need another meta layer `meta-ti-bsp`.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>Get poky reference system?</summary>
-
-> **Description**
->
-> ```sh
-> git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky
-> ``````
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the bitbake directory in poky contain?</summary>
-
-> **Description**
->
-> All the scripts required by `bitbake` to run.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the meta directory in poky contain?</summary>
-
-> **Description**
->
-> Contains the OpenEmbedded-Core metadata.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the meta-skeleton directory in poky contain?</summary>
-
-> **Description**
->
-> Also `meta-skeleton` directory contains recipes for BSP and kernel development.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the meta-poky directory in poky contain?</summary>
-
-> **Description**
->
-> Holds the configuration for the Poky reference distribution.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the meta-yocto-bsp directory in poky contain?</summary>
-
-> **Description**
->
-> Configuration for the Yocto Project reference hardware board support package.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the oe-init-build-env file do in poky?</summary>
-
-> **Description**
->
-> Script to set up the OpenEmbedded build environment.
-> It will create the build directory.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the script directory contain in poky?</summary>
-
-> **Description**
->
-> Contains scripts used to set up the environment, development tools, and tools
-> to flash the generated images on the target.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What are the common targets in bitbake?</summary>
-
-> **Description**
->
-> - `core-image-minimal`: boot a device and have access to core command line commands and services.
-> - `core-image-sato`: Image with Sato support. Sato is a GNOME mobile-based user interface.
-> - `meta-toolchain`: Generates the cross-toolchain in an installable format.
-> - `meta-ide-support`: Generates the cross-toolchain and additional tools (gdb, qemu, ...) for IDE integration.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What environment variables are used by bitbake?</summary>
-
-> **Description**
->
-> - `BUILDDIR`: Absolute path of the build directory.
-> - `PATH`: Path to executables.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What does the build directory contain?</summary>
-
-> **Description**
->
-> - `conf/`: configurations
-> - `downloads/`: tarballs
-> - `tmp/`: build system outputs
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>What configuration files are necessary for poky build system?</summary>
-
-> **Description**
->
-> - `bblayers.conf`: Explicitly list the layers to use.
-> - `local.conf`: User related configuration variables.
-> - `site.conf`: Also like local file but for site settings, eg. network, cpu resource limits.
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-### Image Creation
-
-<details>
-<summary>Prepare build environment with poky?</summary>
-
-> **Description**
->
-> ```sh
-> source oe-init-build-env [builddir]
-> ``````
->
-> ```sh
-> git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky.git /tmp/poky
-> source /tmp/poky/oe-init-build-env /tmp/build-qemu
-> ``````
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary>Build an image with poky?</summary>
-
-> **Description**
->
-> ```sh
-> bitbake core-image-minimal
-> ``````
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-## Chapter 9/9 <sup>(writing)</sup>
