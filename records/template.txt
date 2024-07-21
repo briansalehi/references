@@ -1,0 +1,13 @@
+-- content          varchar(2000),
+-- type             flashback.block_type('text', 'code'),
+-- language         varchar(10)
+create temp table if not exists temp_note_blocks (t_content varchar(2000), t_type flashback.block_type, t_language varchar(10));
+delete from temp_note_blocks;
+
+insert into temp_note_blocks values ('', 'text', 'txt'), ('', 'code', 'sql'), ('', 'text', 'txt');
+
+-- resource_name    varchar(1000) ,
+-- section_name     varchar(100),
+-- heading          varchar(400),
+call create_note('Subject Name', 'Section Name', '');
+
