@@ -1,6 +1,8 @@
 # Linux Device Driver
 <img src="covers/linux.jpg" width="200"/>
 
+## Chapter 1/1
+
 <details>
 <summary>Where are the linux modules located?</summary>
 
