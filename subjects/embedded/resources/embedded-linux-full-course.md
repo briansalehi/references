@@ -2300,26 +2300,4 @@
 > ---
 </details>
 
-<details>
-<summary></summary>
-
-> **Description**
->
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
-<details>
-<summary></summary>
-
-> **Description**
->
->
-> **Resources**
-> - Embedded Linux Full Course by Anisa Institute
-> ---
-</details>
-
 ## Chapter 9/9 <sup>(writing)</sup>
