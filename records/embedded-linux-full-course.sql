@@ -172,63 +172,63 @@ insert into temp_note_blocks values
     ('find build/sstate-cache -type f -atime +30 -delete', 'code', 'sh');
 call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where does bitbake stores cache files?');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
-insert into temp_note_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+--insert into temp_note_blocks values
+--    ('', 'text', 'txt'),
+--    ('', 'code', 'sh'),
+--    ('', 'text', 'txt');
+--call create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
