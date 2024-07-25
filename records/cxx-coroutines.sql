@@ -99,20 +99,117 @@ call add_note_block('object.handle.resume();
 object.handle();', 'code', 'cpp');
 call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How to resume the execution of a paused coroutine?');
 
-call add_note_block('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+call add_note_block('Coroutines can be started lazily or eagerly.', 'text', 'txt');
+call add_note_block('The difference between the two is the return type used for `promise_type::initial_suspend()` method.', 'text', 'txt');
+call add_note_block(
+'#include <coroutine>
+#include <iostream>
 
-call add_note_block('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+struct lazy_return
+{
+    struct promise_type
+    {
+        std::suspend_always initial_suspend();  // #1 lazily started coroutine
+    };
+};
 
-call add_note_block('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+struct eager_return
+{
+    struct promise_type
+    {
+        std::suspend_never initial_suspend(); // #2 eagerly started coroutine
+    };
+};
 
-call add_note_block('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+lazy_return lazy_coroutine()
+{
+    std::cout << "initial execution\n";
+    co_await std::suspend_always();
+    std::cout << "final execution\n";
+}
 
-call add_note_block('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+eager_return eager_coroutine()
+{
+    std::cout << "initial execution\n";
+    co_await std::suspend_never();
+    std::cout << "final execution\n";
+}
+
+int main()
+{
+    lazy_return lazy_task = lazy_coroutine();
+    // no output
+    lazy_task();
+    // initial execution
+    lazy_task();
+    // final execution
+
+    eager_return eager_task = lazy_coroutine();
+    // initial execution
+    eager_task();
+    // final execution
+}', 'code', 'cpp');
+call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How many coroutine initializations exist?');
+
+call add_note_block(
+'- Cannot use variadic arguments
+- Cannot be constexpr or consteval
+- Cannot have `auto` or `decltype(auto)` as return type, but still an `auto` with a trailing return type is valid
+- `main` function cannot be a coroutine
+- Constructors and destructors cannot be coroutines
+- Cannot have a plain return statement, instead there should be `co_return` to mark end of execution', 'text', 'txt');
+call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the restricutions on coroutines?');
+
+call add_note_block(
+'- Free standing function
+- Member functions within a class
+- Virtual functions in polymorphic classes
+- Lambda expressions
+- Static free standing and member functions', 'text', 'txt');
+call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What subroutines can become a coroutine?');
+
+call add_note_block('`co_yield` keyboard was introduced in C++20 and can only be used in a coroutine context.', 'text', 'txt');
+call add_note_block('`co_yield` is utilized for returning intermediate values processed within coroutine body.', 'text', 'txt');
+call add_note_block('`co_yield` can suspend coroutine after returning evaluated value.', 'text', 'txt');
+call add_note_block('This semantic is mostly used in sequence generators and range based for loops.', 'text', 'txt');
+call add_note_block(
+'#include <coroutine>
+
+return_type generator(int start, int end, int step)
+{
+    for (int value{start}; value < end; value += step)
+    {
+        co_yield value;
+    }
+}', 'code', 'cpp');
+call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What does <code>co_yield</code> do?');
+
+call add_note_block(
+'- `promise_type` needs to have a method `std::suspend_always yield_value(T value)`.
+- Parameter type should match the return type.
+- The return value can be stored in a `coroutine_handle` object and retrieved later.', 'text', 'txt');
+call add_note_block(
+'#include <coroutine>
+
+struct return_type
+{
+    struct promise_type
+    {
+        long value;
+
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
+        void unhandled_exception() {}
+        return_type get_return_object() { return std::coroutine_handle<promise_type>::from_promise(*this); }
+        std::suspend_always yield_value(long initial_value) {}
+    };
+
+    std::coroutine_handle<promise_type> handle;
+    return_type(std::coroutine_handle<promise_type> handle): handle{handle} {}
+    operator std::coroutine_handle<promise_type>() const { return handle; }
+    long get_value() const { return handle.promise().value; }
+};', 'code', 'cpp');
+call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?');
 
 call add_note_block('', 'text', 'txt');
 call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
