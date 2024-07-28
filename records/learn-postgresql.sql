@@ -44,5 +44,5 @@ call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What user is create
 --insert into temp_blocks values ('', 'text', 'txt');
 --call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
 
-#call set_section_as_complete('Learn PostgreSQL', 'Chapter 3');
+--call set_section_as_complete('Learn PostgreSQL', 'Chapter 3');
 
