@@ -1,17 +1,17 @@
 insert into temp_sections values ('C++20 Coroutines Part 1', 'https://www.youtube.com/watch?v=6KRS6Y2wDw8');
 insert into temp_sections values ('C++20 Coroutines Part 2', 'https://www.youtube.com/watch?v=j_JvM76mjrg');
 insert into temp_sections values ('C++20 Coroutines Part 3', 'https://www.youtube.com/watch?v=TgAFja228HU');
-call create_resource('Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
+call flashback.create_resource('Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
 
 insert into temp_blocks values ('Subroutines and coroutines.', 'text', 'txt');
-call create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'How many routine types exist?');
+call flashback.create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'How many routine types exist?');
 
 insert into temp_blocks values (
 'When it has either of the following keywords in its body:
 - `co_await`
 - `co_return`
 - `co-yield`', 'text', 'txt');
-call create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'When does a function is considered a coroutine?');
+call flashback.create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'When does a function is considered a coroutine?');
 
 
 insert into temp_sections values ('C++20 Coroutines', 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
@@ -27,7 +27,7 @@ insert into temp_blocks values ('`promise_type` should be encapsulated within th
 - provide non-throwing `final_suspend()` method returning an awaiter object.
 - provide `get_return_object()` method that returns the parent type.
 - provide `unhandled_exception()` method returning void.', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What semantics a coroutine return type must follow?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What semantics a coroutine return type must follow?');
 
 insert into temp_blocks values ('`std::suspend_always` and `std::suspend_never`.', 'text', 'txt');
 insert into temp_blocks values (
@@ -56,10 +56,10 @@ int main()
 {
     do_something();
 }', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the standard awaiter objects in the standard?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the standard awaiter objects in the standard?');
 
 insert into temp_blocks values ('`std::coroutine_handle<>` is the primary standard type to be used in coroutines.', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What type is the primary standard type for <code>promise_type</code>?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What type is the primary standard type for <code>promise_type</code>?');
 
 insert into temp_blocks values (
 '#include <coroutine>
@@ -93,13 +93,13 @@ int main()
 {
     do_something();
 }', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What is the signature of a coroutine handle?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What is the signature of a coroutine handle?');
 
 insert into temp_blocks values ('The coroutine handle should be used to resume its execution.', 'text', 'txt');
 insert into temp_blocks values ('There are two ways of resuming a coroutine. Either by call semantics `operator()` of the handle, or by calling its `resume()` method.', 'text', 'txt');
 insert into temp_blocks values ('object.handle.resume();
 object.handle();', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How to resume the execution of a paused coroutine?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How to resume the execution of a paused coroutine?');
 
 insert into temp_blocks values ('Coroutines can be started lazily or eagerly.', 'text', 'txt');
 insert into temp_blocks values ('The difference between the two is the return type used for `promise_type::initial_suspend()` method.', 'text', 'txt');
@@ -151,7 +151,7 @@ int main()
     eager_task();
     // final execution
 }', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How many coroutine initializations exist?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'How many coroutine initializations exist?');
 
 insert into temp_blocks values (
 '- Cannot use variadic arguments
@@ -160,7 +160,7 @@ insert into temp_blocks values (
 - `main` function cannot be a coroutine
 - Constructors and destructors cannot be coroutines
 - Cannot have a plain return statement, instead there should be `co_return` to mark end of execution', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the restricutions on coroutines?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the restricutions on coroutines?');
 
 insert into temp_blocks values (
 '- Free standing function
@@ -168,7 +168,7 @@ insert into temp_blocks values (
 - Virtual functions in polymorphic classes
 - Lambda expressions
 - Static free standing and member functions', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What subroutines can become a coroutine?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What subroutines can become a coroutine?');
 
 insert into temp_blocks values ('`co_yield` keyboard was introduced in C++20 and can only be used in a coroutine context.', 'text', 'txt');
 insert into temp_blocks values ('`co_yield` is utilized for returning intermediate values processed within coroutine body.', 'text', 'txt');
@@ -184,7 +184,7 @@ return_type generator(int start, int end, int step)
         co_yield value;
     }
 }', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What does <code>co_yield</code> do?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What does <code>co_yield</code> do?');
 
 insert into temp_blocks values (
 '- `promise_type` needs to have a method `std::suspend_always yield_value(T value)`.
@@ -211,15 +211,15 @@ struct return_type
     operator std::coroutine_handle<promise_type>() const { return handle; }
     long get_value() const { return handle.promise().value; }
 };', 'code', 'cpp');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 'What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?');
 
 insert into temp_blocks values ('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
 insert into temp_blocks values ('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
 insert into temp_blocks values ('', 'text', 'txt');
-call create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
+call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
 drop table temp_sections;
