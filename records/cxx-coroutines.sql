@@ -1,3 +1,15 @@
+-- content          varchar(2000),
+-- type             flashback.block_type('text', 'code'),
+-- language         varchar(10)
+
+-- resource_name    varchar(1000) ,
+-- section_name     varchar(100),
+-- heading          varchar(400),
+create temp table if not exists temp_blocks (t_content varchar(2000), t_type flashback.block_type, t_language varchar(10));
+create temp table temp_sections (t_headline varchar(100), t_reference varchar(2000));
+delete from temp_blocks;
+delete from temp_sections;
+
 insert into temp_sections values ('C++20 Coroutines Part 1', 'https://www.youtube.com/watch?v=6KRS6Y2wDw8');
 insert into temp_sections values ('C++20 Coroutines Part 2', 'https://www.youtube.com/watch?v=j_JvM76mjrg');
 insert into temp_sections values ('C++20 Coroutines Part 3', 'https://www.youtube.com/watch?v=TgAFja228HU');
@@ -222,4 +234,4 @@ call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', 
 insert into temp_blocks values ('', 'text', 'txt');
 call flashback.create_note('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
-drop table temp_sections;
+--call set_section_as_complete('Learn PostgreSQL', 'Chapter 3');
