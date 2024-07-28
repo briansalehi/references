@@ -27,7 +27,7 @@ call flashback.create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'When does a f
 
 
 insert into temp_sections values ('C++20 Coroutines', 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
-call create_resource('Mastering Modern CPP Features', 'video');
+call flashback.create_resource('Mastering Modern CPP Features', 'video');
 
 insert into temp_blocks values ('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
 insert into temp_blocks values ('A new awaiter object was introduced in the standard.', 'text', 'txt');
