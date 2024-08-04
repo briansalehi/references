@@ -220,15 +220,235 @@ call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Cou
 --    ('', 'text', 'txt');
 --call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
---insert into temp_blocks values
---    ('', 'text', 'txt'),
---    ('', 'code', 'sh'),
---    ('', 'text', 'txt');
---call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+insert into temp_blocks values
+    ('Each package recipe has a `.inc` file like `tar.inc` which contains version agnostic recipe information like `SRC_URI`.', 'text', 'txt'),
+    ('For each release, packages have another file with the same name appended by an underscore version like `tar_1.26.bb`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What do <code>.inc</code> files contain?');
 
---insert into temp_blocks values
---    ('', 'text', 'txt'),
---    ('', 'code', 'sh'),
---    ('', 'text', 'txt');
---call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+insert into temp_blocks values
+    ('The first line usually is `require package.inc` which includes version agnostic file for that package.', 'text', 'txt'),
+    ('Licenses are separated into version dependent recipe files.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does a package recipe contain?');
+
+insert into temp_blocks values
+    ('Run and log files are generated in `temp` directory under the recipe working directory.', 'text', 'txt'),
+    ('`run.do_<task_name>` and `log.do_<task_name>`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where do recipe run and log files reside?');
+
+insert into temp_blocks values
+    ('bitbake-getvar GNU_URI', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a global variables?');
+
+insert into temp_blocks values
+    ('bitbake-getvar -r ncurses SRC_URI', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a recipe specific variables?');
+
+insert into temp_blocks values
+    ('bitbake -e ncurses', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a recipe specific environment variable?');
+
+insert into temp_blocks values
+    ('bitbake-getenv -r tar FILE', 'code', 'sh'),
+    ('bitbake-getenv -r tar-native FILE', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Locate a recipe file?');
+
+insert into temp_blocks values
+    ('bitbake-getenv -r tar PN', 'code', 'sh'),
+    ('bitbake-getenv -r tar-native PN', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get package name of a recipe?');
+
+insert into temp_blocks values
+    ('The `bitbake` build engine allows to modify a recipe by extending it.', 'text', 'txt'),
+    ('If we already have a recipe `meta/recipes-core/init-ifupdown/init-ifupdown_1.0.bb`, we can extend it by writing a recipe with the same name but with `.bbappend` extension.', 'text', 'txt'),
+    ('`meta-custom/recipes-core/init-ifupdown/init-ifupdown_1.0.bbappend`', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Extend a recipe in third-party layers?');
+
+insert into temp_blocks values
+    ('Append files must have the same root name as the recipe they extend', 'text', 'txt'),
+    ('Wildcards can be used in extension name but only as minor version:', 'text', 'txt'),
+    ('meta-custom/recipes-core/init-ifupdown/init-ifupdown_1.%.bbappend', 'code', 'sh'),
+    ('Above extension applys to all minor versions of `init-ifupdown` version 1.', 'text', 'txt'),
+    ('The `%` works only just before the `.bbappend` suﬀix', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the considerations of extending a recipe?');
+
+insert into temp_blocks values
+    ('`FILESEXTRAPATHS`', 'text', 'txt'),
+    ('Files are looked up in paths referenced in FILESEXTRAPATHS, from left to right.', 'text', 'txt'),
+    ('Prepending a path makes sure it has priority over the recipe''s one.', 'text', 'txt'),
+    ('FILESEXTRAPATHS:prepend := "${THISDIR}/files:"', 'code', 'bb');
+    ('This is analogues to the following which should not be done:', 'text', 'txt'),
+    ('SRC_URI += "file://custom-modification-0.patch \
+file://custom-modification-1.patch"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variable should be changed when new files are added in recipe extension?');
+
+insert into temp_blocks values
+    ('do_install:append() {
+install -d ${D}${sysconfdir}
+install -m 0644 hello.conf ${D}${sysconfdir}
+}', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Extend a task?');
+
+insert into temp_blocks values
+    ('Through the `PROVIDES` variable.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variable holds virtual package names?');
+
+insert into temp_blocks values
+    ('Classes provide and abstraction to common code in recipes.', 'text', 'txt'),
+    ('Classes extension is `.bbclass` and they are located in `classes` folder of a layer.', 'text', 'txt'),
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the building blocks of virtual packages?');
+
+insert into temp_blocks values
+    ('inherit <class>', 'code', 'bb'),
+    ('A recipe can inherit from multiple classes.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Use a class in a custome recipe?');
+
+insert into temp_blocks values
+    ('- `base.bbclass`
+- `kernel.bbclass`
+- `autotools.bbclass`
+- `cmake.bbclass`
+- `meson.bbclass`
+- `native.bbclass`
+- `useradd.bbclass`
+- `systemd.bbclass`', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the common classes?');
+
+insert into temp_blocks values
+    ('`base.bbclass`', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which class is automatically inherited by all recipes?');
+
+insert into temp_blocks values
+    ('Tasks are chained using dependencies and they will be called in hierarchy. All of them are default implemented in base class:', 'text', 'txt'),
+    ('`fetch`, `unpack`, `patch`, `configure`, `build`, `install`, and other manual tasks like `clean` and `listtasks`.', 'text', 'txt'),
+    ('Base class automatically applies patch files listed in `SRC_URI`.', 'text', 'txt'),
+    ('Defines mirrors like `SOURCEFORGE_MIRROR`, `DEBIAN_MIRROR`, `GNU_MIRROR`, `KERNEL_MIRROR`.', 'text', 'txt'),
+    ('Defines `oe-runmake`, using `EXTRA_OEMAKE` to use custom arguments.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What common tasks are defaulted by base class?');
+
+insert into temp_blocks values
+    ('When we want to change make parameters without applying patches.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where is <code>EXTRA_OEMAKE</code> useful?');
+
+insert into temp_blocks values
+    ('Defines tasks to configure, compile, install a kernel and its modules.', 'text', 'txt'),
+    ('SRC_URI += file://defconfig', 'code', 'bb'),
+    ('The kernel is devided into several packages like `kernel`, `kernel-base`, `kernel-dev`, `kernel-modules`, etc.', 'text', 'txt'),
+    ('Automatically provides `virtual/kernel`.', 'text', 'txt'),
+    ('Configuration variables like `KERNEL_IMAGETYPE`, `KERNEL_EXTRA_ARGS`, `INITRAMFS_IMAGE`, etc. are availabe.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does kernel class do?');
+
+insert into temp_blocks values
+    ('`do_configure` generates configurations, `do_build` runs `make`, `do_install` runs `make install`.', 'text', 'txt'),
+    ('Compilations flags can be added using `EXTRA_OEMAKE`.', 'text', 'txt'),
+    ('DESCRIPTION = "Custom recipe"
+HOMEPAGE = "https://example.com"
+SECTION = "examples"
+LICENSE  = "BSD"
+
+SRC_URI = "${GNU_MIRROR}/hello/hello-${PV}.tar.gz"
+SRC_URI[md5sum] = "1234..."
+SRC_URI[sha256sum] = "1234..."
+LIC_FILES_CHSUM = "file://COPYING;md5=1234..."
+
+inherit autotools', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does autotools class do?');
+
+insert into temp_blocks values
+    ('Adds users to the resulting image.', 'text', 'txt'),
+    ('`USERADD_PACKAGES` must be defined when the `useradd` class is inherited.', 'text', 'txt'),
+    ('At least one of the `USERADD_PARAM` or `GROUPADD_PARAM` variables must be set.', 'text', 'txt'),
+    ('Users and groups are created before the packages perform `do_install`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does useradd class do?');
+
+insert into temp_blocks values
+    ('`USERADD_PACKAGES` defines individual packages produced by the recipe that need users or groups to be added.', 'text', 'txt'),
+    ('DESCRIPTION = "Custom recipe"
+HOMEPAGE = "https://example.com"
+SECTION = "examples"
+LICENSE  = "BSD"
+
+SRC_URI = "file://bashrc"
+LIC_FILES_CHSUM = "file://COPYING;md5=1234..."
+
+inherit useradd
+
+USERADD_PACKAGES = "${PN}"
+USERADD_PARAM:${PN} = "-u 1000 -d /home/brian -s /bin/bash brian"
+
+FILES:${PN} = "/home/brian/.bashrc"
+
+do_install() {
+    install -d ${D}/home/brian
+    install -m 644 bashrc ${D}/home/brian/
+    chown brian:brian ${D}/home/brian/.bashrc
+}', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variable can be used to specify the packages that require their own users?');
+
+insert into temp_blocks values
+    ('`bin_package.class` simplifies this process.', 'text', 'txt'),
+    ('In this class `do_configure` and `do_compile` tasks are disabled.', 'text', 'txt'),
+    ('`do_install` task copies whatever is in `S`.', 'text', 'txt'),
+    ('Using this class, `LICENSE` should be set to `CLOSED` if applicable.', 'text', 'txt'),
+    ('You should probably also inherit `allarch`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which class should be used when we need to install pre-built files into the generated root filesystem?');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values
+    ('', 'text', 'txt'),
+    ('', 'code', 'sh'),
+    ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
