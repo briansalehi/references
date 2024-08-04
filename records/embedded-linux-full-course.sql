@@ -377,6 +377,7 @@ USERADD_PARAM:${PN} = "-u 1000 -d /home/brian -s /bin/bash brian"
 
 FILES:${PN} = "/home/brian/.bashrc"
 
+S = "${WORKDIR}"
 do_install() {
     install -d ${D}/home/brian
     install -m 644 bashrc ${D}/home/brian/
@@ -393,62 +394,737 @@ insert into temp_blocks values
 call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which class should be used when we need to install pre-built files into the generated root filesystem?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('`BBPATH`', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variables is used to find the files to be included?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('`inherit`, `include`, and `require`.', 'text', 'txt'),
+    ('`inherit` can be used in recipes or classes to inherit the functionality of a class.', 'text', 'txt'),
+    ('`include` and `require` keywords can be used in all files to insert the content of another file at that location.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What keywords are used to include files from recipes?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('Inheriting in configuration files is based on the `INHERIT` variable.', 'text', 'txt'),
+    ('INHERIT += "rm_work"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'How does inheriting in configuration files work?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('`include` does not produce an error when a file cannot be found, whereas `require` raises a parsing error.', 'text', 'txt'),
+    ('require ninviders.inc
+require path/to/file.inc', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the difference between <code>include</code> and <code>require</code>?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('bitbake -c devshell <recipe>', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Debug build failures by using a development shell?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('To understand what changes after a build, enable build history in `local.conf`:', 'text', 'txt'),
+    ('INHERIT += "buildhistory"
+BUILDHISTORY_COMMIT = 1', 'conf', 'conf'),
+    ('buildhistory-diff', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Differenciate two builds?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('`DL_DIR`, `PREMIRRORS`, `SRC_URI`, `MIRRORS`.', 'text', 'txt'),
+    ('If all mirrors fail, build will fail.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What locations are used by bitbake to retrieve files?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('`own-mirrors` can only add one URL:', 'text', 'txt'),
+    ('INHERITS += "own-mirrors"
+SOURCE_MIRROR_URL = "http://example.com/my-mirror"', 'code', 'bb');
+    ('For a more complex setup, prepend custom mirrors to the `PREMIRRORS` variable:', 'text', 'txt'),
+    ('PREMIRRORS:prepend = "\
+git://.*/.* http://example.com/my-mirror-for-git/ \
+svn://.*/.* http://example.com/my-mirror-for-svn/ \
+http://.*/.* http://example.com/my-mirror-for-http/ \
+https://.*/.* http://example.com/my-mirror-for-https/"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which class can be used to add mirrors?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
-call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+    ('BB_GENERATE_TARBALLS = "1"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Create a local mirror?');
 
 insert into temp_blocks values
-    ('', 'text', 'txt'),
-    ('', 'code', 'sh'),
-    ('', 'text', 'txt');
+    ('`do_fetch` is only network enabled to make sure no untraced sources are fetched.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which class is responsible for downloading?');
+
+insert into temp_blocks values
+    ('BB_NO_NETWORK = "1"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Complete network access?');
+
+insert into temp_blocks values
+    ('bitbake --runall=fetch core-image-minimal', 'code', 'sh'),
+    ('Or restrict bitbake to only download files from the `PREMIRRORS`:', 'text', 'txt'),
+    ('BB_FETCH_PREMIRRORONLY = "1"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Download all the sources to run builds with network disabled?');
+
+insert into temp_blocks values
+    ('It is a good practice to begin a layer name with the prefix `meta-`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the convention in naming layers?');
+
+insert into temp_blocks values
+    ('Recipes and metadata.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What do layers can isolate?');
+
+insert into temp_blocks values
+    ('- `meta`
+- `meta-skeleton`
+- `meta-poky`
+- `meta-yocto-bsp`', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the common layers in Poky?');
+
+insert into temp_blocks values
+    ('https://layers.openembedded.org', 'text', 'link');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where is the list of maintained layers?');
+
+insert into temp_blocks values
+    ('The list of layers `bitbake` uses is defined in `$BUILDDIR/conf/bblayers.conf`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where are the bitbake layers located?');
+
+insert into temp_blocks values
+    ('To include a new layer, add its absolute path to the `BBLAYERS` variable.', 'text', 'txt'),
+    ('`bitbake` parses each layer from `BBLAYERS` and adds the recipes, configuration files and classes it contains.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Include another layer?');
+
+insert into temp_blocks values
+    ('bitbake-layers', 'code', 'sh'),
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What tool is used to inspect layers?');
+
+insert into temp_blocks values
+    ('bitbake-layers show-layers', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get a list of layers?');
+
+insert into temp_blocks values
+    ('bitbake-layers add-layer meta-custom', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Add a custom layer?');
+
+insert into temp_blocks values
+    ('bitbake-layers remove-layer meta-qt5', 'code', 'sh');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Remove a custom layer?');
+
+insert into temp_blocks values
+    ('Many SoC layers exist providing support for boards.', 'text', 'txt'),
+    ('- `meta-ti-bsp`
+- `meta-freescale`
+- `meta-st-stm32mp`', 'text', 'txt'),
+    ('Many layers offer to support applications not available in poky reference system, e.g:', 'text', 'txt');
+    ('- `meta-browser` (chromium, firefox)
+- `meta-filesystems`
+- `meta-java`
+- `meta-linaro-toolchain`
+- `meta-qt5`
+- `meta-realtime`
+- `meta-telephony`', 'text', 'txt'),
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What support do layers provide?');
+
+insert into temp_blocks values
+    ('A layer is a set of files and directories and can be created by hand but best practice is to use `bitbake-layers`:', 'text', 'txt'),
+    ('bitbake-layers create-layer -p <priority> <layer>', 'code', 'sh'),
+    ('The **priority** is used to select which recipe to use when multiple layers contains the same recipe.', 'text', 'txt'),
+    ('Layer priority takes precedence over the recipe version number ordering. This allows to downgrade a recipe in a layer.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Create a new layer?');
+
+insert into temp_blocks values
+    ('- `conf/layer.conf`: mandatory entry point for any layer.
+- `COPYING.MIT`: the license under which the layer is released, defaulted to MIT.
+- `README`: layer description containing at least the email address of its maintainer.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the skeleton of a newly created layer?');
+
+insert into temp_blocks values ('Any metadata matching `./recipes-*/*/*.bb` will be parsed by `bitbake` automatically.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which metadata files are parsed by bitbake automatically?');
+
+insert into temp_blocks values ('LAYERDEPENDS = "basic"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Define a new layer dependency?');
+
+insert into temp_blocks values ('LAYERSERIES_COMPAT = "1.2.3"', 'code', 'bb');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Specify which yocto version a layer is compatible with?');
+
+insert into temp_blocks values ('BSP layers are a subset of regular layers.', 'text', 'txt');
+insert into temp_blocks values ('They hold metadata supporting a specific class of hardware devices.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the BSP layers?');
+
+insert into temp_blocks values ('A layer provides one hardware configuration file per machine it supports.', 'text', 'txt');
+insert into temp_blocks values ('These configuration files are stored in `meta-<bsp name>/conf/machine/*.conf` and they contain configuration variables related to the architecture and to the machine features.', 'text', 'txt');
+insert into temp_blocks values ('The machine file names correspond to the `MACHINE` value in its configuration file.', 'text', 'txt');
+insert into temp_blocks values ('`meta-ti/meta-ti-bsp/conf/machine/beaglebone.conf`', 'text', 'txt');
+insert into temp_blocks values ('MACHINE = "beaglebone"', 'code', 'conf');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is a machine file in layers?');
+
+insert into temp_blocks values ('- `TARGET_ARCH`: machine architecture.
+- `PREFERRED_PROVIDER_virtual/kernel`: default kernel.
+- `MACHINE_FEATURES`: list of hardware features, e.g. `usbgadget`, `usbhost`, `screen`, `wifi`.
+- `SERIAL_CONSOLE`: speed and device for serial console to attach. e.g. `115200;ttyS0`.
+- `KERNEL_IMAGETYPE`: e.g. `zImage`.', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What configuration variables are used to describe machine architecture and features?');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
 call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
 
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
+
+insert into temp_blocks values ('', 'text', 'txt');
+insert into temp_blocks values ('', 'code', 'sh');
+insert into temp_blocks values ('', 'code', 'bb');
+insert into temp_blocks values ('', 'text', 'txt');
+call flashback.create_note('Embedded Linux Full Course by Anisa Institute', 'Course 6', '');
