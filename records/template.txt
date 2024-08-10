@@ -7,6 +7,7 @@ delete from temp_sections;
 -- only use these calls once
 insert into temp_sections values ('', ''); -- section_headline, section_reference
 call flashback.create_resource(, '', '', ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), resource_reference
+call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), section_pattern_id, sections, resource_reference
 
 
 -- add records after this line
@@ -15,4 +16,4 @@ call flashback.create_resource(, '', '', ''); -- subject_id, resource_name, reso
 insert into temp_blocks values ('', 'text', 'txt'); -- content, type('text', 'code'), language
 insert into temp_blocks values ('', 'code', 'sql');
 insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note('Subject Name', 'Section Name', ''); -- resource_name, section_name, heading
+call flashback.create_note_with_name('Subject Name', 'Section Name', ''); -- resource_name, section_name, heading
