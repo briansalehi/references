@@ -11,35 +11,99 @@ create temp table temp_blocks (t_content varchar(2000), t_type flashback.block_t
 insert into temp_blocks values ('`postgres` user is default admin in postgres.', 'text', 'txt');
 call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What user is created on postgres by default?');
 
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
---
---insert into temp_blocks values ('', 'text', 'txt');
---call flashback.create_note('Learn PostgreSQL', 'Chapter 3', '');
+insert into temp_blocks values ('A role can be a single account, or a group representing a collection of database permissions and connection properties.', 'text', 'txt');
+insert into temp_blocks values ('Every role must have a unique username.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What is a role?');
+
+insert into temp_blocks values ('A role is defined at the cluster level, while permissions are defined at the database level.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What is the difference between roles and permissions scopes?');
+
+insert into temp_blocks values ('create role <name> with password ''secret'' login;', 'code', 'sql');
+insert into temp_blocks values ('The default option is `NOLOGIN`. Therefore, in order to define interactive users, remember to add the `LOGIN` option when creating a role.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Create a new role having privileges to login in to the cluter?');
+
+insert into temp_blocks values ('Almost every option of the `create role` statement has a positive form that adds the ability to the role, and a negative form with `NO` prefix that excludes the ability from the role.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What are the general forms of role creation options?');
+
+insert into temp_blocks values ('create role <user> with password ''secret'' superuser login;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Create a role with superuser privileges?');
+
+insert into temp_blocks values ('create role <user> with password null;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Create a role without a password?');
+
+insert into temp_blocks values ('create role <user> with password ''secret'' login connection limit 1;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Limit the number of connections a role can make to the cluster?');
+
+insert into temp_blocks values ('create role <user> with password ''secret'' login valid until ''2026-12-31'';', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Create a role that will be expired within a year?');
+
+insert into temp_blocks values ('A group is a role that contains other roles.', 'text', 'txt');
+insert into temp_blocks values ('To create a group simply create a role without a login capability.', 'text', 'txt');
+insert into temp_blocks values ('create role <group> with nologin;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Create a group?');
+
+insert into temp_blocks values ('create role <user> with login password ''secret'' in role <group> connection limit 1 valid until ''2026-12-31'';', 'code', 'sql');
+insert into temp_blocks values ('The `in group` clause of `create role` is an absolute synonym for the `in role` clause.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Join a role into a group when creating one?');
+
+insert into temp_blocks values ('grant <group> to <user>;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Join a role into a group after its creation?');
+
+insert into temp_blocks values ('create role <group> with nologin admin <user>;', 'code', 'sql');
+insert into temp_blocks values ('The <user>, even if not a cluster superuser, will be able to add new members to the <group>.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Specify an admin for a group when creating one?');
+
+insert into temp_blocks values ('grant <group> to <user> with admin option;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Specify an admin for a group after its creation?');
+
+insert into temp_blocks values ('drop role if exists <user>;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Remove a role?');
+
+insert into temp_blocks values ('select current_role;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Inspect current role?');
+
+insert into temp_blocks values ('\du', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Get a list of all available roles in the cluster?');
+
+insert into temp_blocks values ('\drg', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'List the groups a role is a member of?');
+
+insert into temp_blocks values ('select rolname, rolcanlogin, rolconnlimit, rolpassword from pg_roles where rolname = ''user'';', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Get a user information from roles catalog?');
+
+insert into temp_blocks values ('select rolname, rolcanlogin, rolconnlimit, rolpassword from pg_authid where rolname = ''user'';', 'code', 'sql');
+insert into temp_blocks values ('The catalog `pg_roles` can be queried by either superuser or normal users, but `pg_authid` can only be queried by superuser.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Get sensitive information of roles in the cluster?');
+
+insert into temp_blocks values ('`$PGDATA/pg_hba.conf`', 'text', 'txt');
+insert into temp_blocks values ('After every change on the cluster firewall, instruct the cluster to reload to the new rules via a `HUP` signal or by means of a `reload` command in `pg_ctl`.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Where is the host-based access firewall defined?');
+
+insert into temp_blocks values ('select pg_reload_conf();', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Perform configuration reload on a cluster by means of an SQL statement?');
+
+insert into temp_blocks values (
+'<connection-type> <database>  <role> <remote-machine> <auth-method>
+  local             all         all    all              scram-sha-256
+  host              replication        samehost         md5
+  hostssl           *                  samenet          reject
+  nohostsll                            *                trust', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What is the structure of the host-based access file?');
+
+insert into temp_blocks values ('Database will stop at first match.', 'text', 'txt');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'What is the priority of the hba rules?');
+
+insert into temp_blocks values ('host forumdb brian all reject
+host forumdb +group all scram-sha-256', 'code', 'conf');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Accept connections to a group of users except one of the members?');
+
+insert into temp_blocks values ('host forumdb @rejected_users all reject
+host forumdb @allowed_users all scram-sha-256', 'code', 'conf');
+insert into temp_blocks values ('include_file, include_if_exists, include_dir', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Specify a file in hba rules?');
+
+insert into temp_blocks values ('select line_number, type, database, user_name, address, auth_method from pg_hba_filel_rules;', 'code', 'sql');
+call flashback.create_note('Learn PostgreSQL', 'Chapter 3', 'Inspect the hba rules of the cluster using SQL?);
 
 insert into temp_blocks values ('**Data Definition Language (DDL)** commands are used to manage databases and tables.', 'text', 'txt');
 insert into temp_blocks values ('**Data Manipulation Language (DML)** commands are used to insert, delete, update and select data inside databases. ', 'text', 'txt');
