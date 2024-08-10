@@ -6,7 +6,7 @@ delete from temp_sections;
 
 -- only use these calls once
 insert into temp_sections (t_headline) values ('Chapter 1'), ('Chapter 2'), ('Chapter 3'), ('Chapter 4'), ('Chapter 5'), ('Chapter 6'), ('Chapter 7'), ('Chapter 8'), ('Chapter 9'), ('Chapter 10'), ('Chapter 11'), ('Chapter 12');
-call flashback.create_resource('Black Hat Bash', 'book', null);
+call flashback.create_resource(13, 'Black Hat Bash', 'book', null);
 
 
 -- add records after this line

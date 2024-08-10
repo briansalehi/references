@@ -13,7 +13,7 @@ delete from temp_sections;
 insert into temp_sections values ('C++20 Coroutines Part 1', 'https://www.youtube.com/watch?v=6KRS6Y2wDw8');
 insert into temp_sections values ('C++20 Coroutines Part 2', 'https://www.youtube.com/watch?v=j_JvM76mjrg');
 insert into temp_sections values ('C++20 Coroutines Part 3', 'https://www.youtube.com/watch?v=TgAFja228HU');
-call flashback.create_resource('Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
+call flashback.create_resource(6, 'Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
 
 insert into temp_blocks values ('Subroutines and coroutines.', 'text', 'txt');
 call flashback.create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'How many routine types exist?');
@@ -27,7 +27,7 @@ call flashback.create_note('Cpp Hive', 'C++20 Coroutines Part 1', 'When does a f
 
 
 insert into temp_sections values ('C++20 Coroutines', 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
-call flashback.create_resource('Mastering Modern CPP Features', 'video');
+call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video');
 
 insert into temp_blocks values ('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
 insert into temp_blocks values ('A new awaiter object was introduced in the standard.', 'text', 'txt');
