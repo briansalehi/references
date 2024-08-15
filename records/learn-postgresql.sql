@@ -1,11 +1,3 @@
--- content          varchar(2000),
--- type             flashback.block_type('text', 'code'),
--- language         varchar(10)
-
--- resource_name    varchar(1000) ,
--- section_name     varchar(100),
--- heading          varchar(400),
-drop table if exists temp_blocks;
 create temp table temp_blocks (t_content varchar(2000), t_type flashback.block_type, t_language varchar(10));
 
 insert into temp_blocks values ('`postgres` user is default admin in postgres.', 'text', 'txt');
@@ -103,7 +95,7 @@ insert into temp_blocks values ('include_file, include_if_exists, include_dir', 
 call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 3', 'Specify a file in hba rules?');
 
 insert into temp_blocks values ('select line_number, type, database, user_name, address, auth_method from pg_hba_filel_rules;', 'code', 'sql');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 3', 'Inspect the hba rules of the cluster using SQL?);
+call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 3', 'Inspect the hba rules of the cluster using SQL?');
 
 insert into temp_blocks values ('**Data Definition Language (DDL)** commands are used to manage databases and tables.', 'text', 'txt');
 insert into temp_blocks values ('**Data Manipulation Language (DML)** commands are used to insert, delete, update and select data inside databases. ', 'text', 'txt');
@@ -212,7 +204,6 @@ call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', 'Insert mu
 insert into temp_blocks values ('select * from users where joined between ''2024-08-01'' and ''2026-08-01'';', 'code', 'sql');
 call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', 'Filter select query results?');
 
-insert into temp_blocks values ('', 'code', 'sql');
 insert into temp_blocks values ('1. Asending `asc` which is the default when not specified.
 2. Desending: `desc`.', 'text', 'txt');
 call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', 'How many ordering directions exist?');
@@ -221,45 +212,6 @@ insert into temp_blocks values ('', 'code', 'sql');
 insert into temp_blocks values ('', 'text', 'txt');
 call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', 'What variations of writing order by clause exist?');
 
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
-insert into temp_blocks values ('', 'code', 'sql');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
-
---call set_section_as_complete('Learn PostgreSQL', 'Chapter 3');
-
+--insert into temp_blocks values ('', 'code', 'sql');
+--insert into temp_blocks values ('', 'text', 'txt');
+--call flashback.create_note_with_name('Learn PostgreSQL', 'Chapter 4', '');
