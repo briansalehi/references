@@ -324,7 +324,8 @@ insert into temp_blocks values ('Entries other than `version` is opiona.', 'text
 insert into temp_blocks values ('The appropriate schema version for CMake 3.26 is 6.', 'text', 'txt');
 call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the format of a CMake preset file?');
 
-insert into temp_blocks values ('1. Unique name fields: you can''t have two stage specific presets with the same name.', 'text', 'txt');
+insert into temp_blocks values ('`name` fields.', 'text', 'txt');
+insert into temp_blocks values ('`name` fields must be unique within each stage.', 'text', 'txt');
 insert into temp_blocks values (
 '{
   "version": 6,
@@ -337,7 +338,9 @@ insert into temp_blocks values (
     }
   }
 }', 'code', 'json');
-insert into temp_blocks values ('2. Optional fields: every stage specific preset can have the same optional fields.', 'text', 'txt');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the common mandatory field in all CMake presets?');
+
+insert into temp_blocks values ('Every stage specific preset can have the same optional fields.', 'text', 'txt');
 insert into temp_blocks values (
 '{
   "version": 6,
@@ -353,14 +356,32 @@ insert into temp_blocks values (
     }
   ]
 }', 'code', 'json');
-insert into temp_blocks values ('3. Association with configuration stage presets: all stage specific presets must be associated with configuration stage preset as they need to know the location of the build tree. While the `configure` preset is inherently associated with itself, others need to explicitly define this association via the `configurePresets` field.', 'text', 'txt');
-insert into temp_blocks values ('This association doesn''t mean CMake will automatically run configuration preset with each subsequent presets. You still need to execute each preset manually, or use a workflow preset.', 'text', 'txt');
-call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the common stage agnostic CMake preset features?');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the optional fields in all CMake presets?');
 
-insert into temp_blocks values ('', 'text', 'txt');
-insert into temp_blocks values ('', 'code', 'cmake');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('CMake', 'Chapter 16', '');
+insert into temp_blocks values ('All stage specific presets must be associated with configuration stage preset as they need to know the location of the build tree. While the `configure` preset is inherently associated with itself, others need to explicitly define this association via the `configurePresets` field.', 'text', 'txt');
+insert into temp_blocks values ('This association doesn''t mean CMake will automatically run configuration preset with each subsequent presets. You still need to execute each preset manually, or use a workflow preset.', 'text', 'txt');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What common dependency exists in CMake stage specific presets?');
+
+insert into temp_blocks values ('The configuration preset has common mandatory field like `name`, and also optional fields. But also some configuration specific fields exist:', 'text', 'txt');
+insert into temp_blocks values (
+'{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "custom",
+      "generator": "A string that specifies a generator to use for the preset; required by version < 3",
+      "architecture": "A string that configures generators supporting this architecture",
+      "toolset": "A string that configures generators supporting this architecture",
+      "binaryDir": "A string that provides a relative or absolute path to the build tree; required by version < 3; supports marcros",
+      "installDir": "A string that provides a relative or absolute path to the installation directory; required by version < 3; supports macros",
+      "cacheVariables": "A map that defines variables; values support macros",
+    }
+  ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the CMake configuration stage specific preset fields?');
+
+insert into temp_blocks values ('Command Line >overrides> Preset Variables >overrides> Cache', 'text', 'txt');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'Where is the preset variables precedence in the CMake variables precedence order?');
 
 insert into temp_blocks values ('', 'text', 'txt');
 insert into temp_blocks values ('', 'code', 'cmake');
