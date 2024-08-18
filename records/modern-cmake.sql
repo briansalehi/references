@@ -305,20 +305,20 @@ insert into temp_blocks values (
 - `vendor`: an object containing custom settings defined by IDEs and vendors and not processed by CMake', 'text', 'txt');
 insert into temp_blocks values (
 '{
-  "version": 6,
-  "cmakeMinimumRequired": {
-    "major": 3,
-    "minor": 30,
-    "patch": 2
-  },
-  "include": [],
-  "configurePresets": [],
-  "buildPresets": [],
-  "testPresets": [],
-  "packagePresets": [],
-  "workflowPresets": [],
-  "vendor": {
-  }
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 30,
+        "patch": 2
+    },
+    "include": [],
+    "configurePresets": [],
+    "buildPresets": [],
+    "testPresets": [],
+    "packagePresets": [],
+    "workflowPresets": [],
+    "vendor": {
+    }
 }', 'code', 'json');
 insert into temp_blocks values ('Entries other than `version` is opiona.', 'text', 'txt');
 insert into temp_blocks values ('The appropriate schema version for CMake 3.26 is 6.', 'text', 'txt');
@@ -328,33 +328,33 @@ insert into temp_blocks values ('`name` fields.', 'text', 'txt');
 insert into temp_blocks values ('`name` fields must be unique within each stage.', 'text', 'txt');
 insert into temp_blocks values (
 '{
-  "version": 6,
-  "configurePresets": {
-    {
-      "name": "myPreset1"
-    },
-    {
-      "name": "myPreset2"
+    "version": 6,
+    "configurePresets": {
+        {
+            "name": "myPreset1"
+        },
+        {
+            "name": "myPreset2"
+        }
     }
-  }
 }', 'code', 'json');
 call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the common mandatory field in all CMake presets?');
 
 insert into temp_blocks values ('Every stage specific preset can have the same optional fields.', 'text', 'txt');
 insert into temp_blocks values (
 '{
-  "version": 6,
-  "packagePresets": [
-    {
-      "displayName": "A string that provides user friendly name for the preset",
-      "description": "A string that offers and explanation of what the preset does",
-      "inherits": "A string, or an array of strings, that copies the configuration of presets named in this field as a base, to be further extended or modified",
-      "hidden": "A boolean that hides the preset from the listing, making it suitable to be used through inheritance",
-      "environment": "An object that overrides ENV variables for this stage, each key identifies an individual variable, and values can be strings or null; macros also supported",
-      "condition": "An object that enables or disables this preset",
-      "vendor": "A custom object that contains vendor specific values and not interpreted by CMake",
-    }
-  ]
+    "version": 6,
+    "packagePresets": [
+        {
+            "displayName": "A string that provides user friendly name for the preset",
+            "description": "A string that offers and explanation of what the preset does",
+            "inherits": "A string, or an array of strings, that copies the configuration of presets named in this field as a base, to be further extended or modified",
+            "hidden": "A boolean that hides the preset from the listing, making it suitable to be used through inheritance",
+            "environment": "An object that overrides ENV variables for this stage, each key identifies an individual variable, and values can be strings or null; macros also supported",
+            "condition": "An object that enables or disables this preset",
+            "vendor": "A custom object that contains vendor specific values and not interpreted by CMake",
+        }
+    ]
 }', 'code', 'json');
 call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the optional fields in all CMake presets?');
 
@@ -365,25 +365,259 @@ call flashback.create_note_with_name('CMake', 'Chapter 16', 'What common depende
 insert into temp_blocks values ('The configuration preset has common mandatory field like `name`, and also optional fields. But also some configuration specific fields exist:', 'text', 'txt');
 insert into temp_blocks values (
 '{
-  "version": 6,
-  "configurePresets": [
-    {
-      "name": "custom",
-      "generator": "A string that specifies a generator to use for the preset; required by version < 3",
-      "architecture": "A string that configures generators supporting this architecture",
-      "toolset": "A string that configures generators supporting this architecture",
-      "binaryDir": "A string that provides a relative or absolute path to the build tree; required by version < 3; supports marcros",
-      "installDir": "A string that provides a relative or absolute path to the installation directory; required by version < 3; supports macros",
-      "cacheVariables": "A map that defines variables; values support macros",
-    }
-  ]
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "custom",
+            "generator": "A string that specifies a generator to use for the preset; required by version < 3",
+            "architecture": "A string that configures generators supporting this architecture",
+            "toolset": "A string that configures generators supporting this architecture",
+            "binaryDir": "A string that provides a relative or absolute path to the build tree; required by version < 3; supports marcros",
+            "installDir": "A string that provides a relative or absolute path to the installation directory; required by version < 3; supports macros",
+            "cacheVariables": "A map that defines variables; values support macros",
+        }
+    ]
 }', 'code', 'json');
 call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the CMake configuration stage specific preset fields?');
 
 insert into temp_blocks values ('Command Line >overrides> Preset Variables >overrides> Cache', 'text', 'txt');
-call flashback.create_note_with_name('CMake', 'Chapter 16', 'Where is the preset variables precedence in the CMake variables precedence order?');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the precedence of preset variables in CMake?');
 
-insert into temp_blocks values ('', 'text', 'txt');
-insert into temp_blocks values ('', 'code', 'cmake');
-insert into temp_blocks values ('', 'text', 'txt');
-call flashback.create_note_with_name('CMake', 'Chapter 16', '');
+insert into temp_blocks values (
+'{
+    "version": 6,
+    "buildPresets": [
+        {
+            "name": "build",
+            "configurePreset": "custom",
+            "jobs": 8,
+            "targets": ["A string", "or array of strings", "that sets targets to build;", "also support macros"],
+            "configuration": "A string that determines the build type for multi-configuration generators (Debug, Release, etc.)",
+            "cleanFirst": true
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the CMake build stage specific preset fields?');
+
+insert into temp_blocks values (
+'{
+    "version": 6,
+    "testPresets": [
+        {
+            "name": "test",
+            "configurePreset": "custom",
+            "configuration": "A string that determines the build type for multi-configuration generators (Debug, Release, etc.)",
+            "output": {
+                "shortProgress": true,
+                "verbosity": "A string that sets the output verbosity to one of the following levels: default, verbose, extra",
+                "outputOnFailure": true,
+                "quiet": true
+            },
+            "filter": {
+                "include": {
+                    "name": "A string that excludes tests with names matching a regex pattern; supports macros",
+                    "label": "A string that excludes tests with labels matching a regex pattern; supports macros",
+                    "index": "An object that selects tests to run with accepting start, end, and stride integers, and a specificTests",
+                    "useUnion": "A boolean that enables the usage of a union of tests determined by index and name, rather than the intersection"
+                },
+                "exclude": {
+                    "name": "A string that excludes tests with names matching a regex pattern; supports macros",
+                    "label": "A string that excludes tests with labels matching a regex pattern; supports macros",
+                    "fixtures": "An object that determines which fixtures to exclude from the test"
+                }
+            },
+            "execution": {
+                "outputLogFile": "A string that specifies the output log file; supports macros",
+                "stopOnFailure": true,
+                "enableFailover": true,
+                "jobs": 8,
+                "repeat": {
+                    "mode": "until-fail, until-pass, after-timeout",
+                    "count": 10
+                },
+                "scheduleRandom": "",
+                "timeout": 10,
+                "noTestsAction": "default, error, ignore"
+            }
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the CMake test stage specific preset fields?');
+
+insert into temp_blocks values (
+'{
+    "version": 6,
+    "packagePresets": [
+        {
+            "name": "pack",
+            "configurePreset": "custom",
+            "generators": "ZIP, 7Z, DEB, RPM, etc.",
+            "configuration": "Debug, Release, etc.",
+            "filter": {
+                "include": {
+                    "name": "A string that excludes tests with names matching a regex pattern; supports macros",
+                    "label": "A string that excludes tests with labels matching a regex pattern; supports macros",
+                    "index": "An object that selects tests to run with accepting start, end, and stride integers, and a specificTests",
+                    "useUnion": "A boolean that enables the usage of a union of tests determined by index and name, rather than the intersection"
+                },
+                "exclude": {
+                    "name": "A string that excludes tests with names matching a regex pattern; supports macros",
+                    "label": "A string that excludes tests with labels matching a regex pattern; supports macros",
+                    "fixtures": "An object that determines which fixtures to exclude from the test"
+                }
+            },
+            "packageName": "program",
+            "packageVersion": "1.0.0",
+            "packageDirectory": "",
+            "vendorName": ""
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the CMake package stage specific preset fields?');
+
+insert into temp_blocks values ('There is no `installPresets` in CMake so we have to use `buildPresets` but with the `target` set as `install`.', 'text', 'txt');
+insert into temp_blocks values (
+'{
+    "version": 6,
+    "buildPresets" [
+        {
+            "name": "install",
+            "configurePreset": "custom",
+            "targets": "install"
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the work around for creating an install stage preset?');
+
+insert into temp_blocks values ('cmake --workflow --preset <name> --fresh', 'code', 'sh');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'Run a CMake workflow by first wiping the build tree and clearing cache?');
+
+insert into temp_blocks values (
+'{
+    "workflowPresets": [
+        {
+            "name": "program",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "release"
+                },
+                {
+                    "type": "build",
+                    "name": "build"
+                },
+                {
+                    "type": "test",
+                    "name": "test"
+                },
+                {
+                    "type": "package",
+                    "name": "pack"
+                },
+                {
+                    "type": "build",
+                    "name": "install"
+                },
+            ]
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'Define a CMake workflow in a project?');
+
+insert into temp_blocks values (
+'{
+    "version": 6,
+    "packagePresets": [
+        {
+            "name": "pack"
+            "condition": {
+                "type": "condition type"
+            }
+        }
+    ]
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What is the structure of a condition in CMake presets?');
+
+insert into temp_blocks values ('1. `const`: checks if the value provided in `value` field is true.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "const",
+        "value": "${testEnabled}"
+    }
+}', 'code', 'json');
+insert into temp_blocks values ('2. `equals`, `notEquals`: compares the `lhs` and `rhs` fields.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}"
+        "rhs": "Windows"
+    }
+}', 'code', 'json');
+insert into temp_blocks values ('3. `inList`, `notInList`: checks for the presence of the value provided in the `string` field within the array in the `list` field.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "inList",
+        "string": "${hostSystemName}",
+        "list": ["Windows", "Linux", "Mac"]
+    }
+}', 'code', 'json');
+insert into temp_blocks values ('4. `matches`, `notMatches`: evaluates whether the `string` field align with the pattern defined in the `regex` field.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "matches",
+        "string": "${projectVersion}",
+        "regex": "^([0-9]+.){2}.[0=9]+$"
+    }
+}', 'code', 'json');
+insert into temp_blocks values ('5. `not`: boolean inversion of the condition provided in the `conditions` field.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "not",
+        "conditions": [
+            {
+                "type": "matches"
+                "string": "${projectVersion}",
+                "regex": "[a-z]*"
+            },
+            {
+                "type": "equals"
+                "string": "${hostSystemName}",
+                "regex": "Mac"
+            }
+        ]
+    }
+}', 'code', 'json');
+insert into temp_blocks values ('6. `anyOf`, `allOf`: checks whether any of or all of the conditions in the `conditions` array are true.', 'text', 'txt');
+insert into temp_blocks values ('{
+    "condition": {
+        "type": "anyOf",
+        "conditions": [
+            {
+                "type": "equals"
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            {
+                "type": "equals"
+                "lhs": "${hostSystemName}",
+                "rhs": "Window"
+            }
+        ]
+    }
+}', 'code', 'json');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What types of conditions exists in CMake presets?');
+
+insert into temp_blocks values (
+'- `${sourceDir}`
+- `${sourceParentDIr}`
+- `${sourceDirName}`
+- `${presetName}`
+- `${generator}`
+- `${hostSystemName}`: `Linux`, `Windows`, `Darwin`
+- `${fileDir}`: name of the file holding preset
+- `${dollar}`
+- `${pathListSep}`
+- `$env{<var>}`
+- `$penv{<var>}`
+- `$vendor{<name>}`', 'text', 'txt');
+call flashback.create_note_with_name('CMake', 'Chapter 16', 'What are the available macros in CMake presets?');
