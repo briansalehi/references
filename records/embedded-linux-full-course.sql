@@ -13,9 +13,9 @@ call add_block('Yocto always builds binary packages.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the output of yocto?');
 
 call add_block('In most build systems, `make` is the build engine, but in yocto is `bitbake`.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is build engine in yocto?');
-
 call add_block('`bitbake` is written in Python and is a task scheduler like `make`.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the build engine in yocto?');
+
 call add_block('`bitbake` parses text files to know what it has to build and how.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the responsibility of bitbake?');
 
@@ -26,16 +26,16 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 
 call add_block('Recipes specify tasks by which performs a specific step in the build.', 'text', 'txt');
 call add_block('Tasks can also depend on each other.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are recipes contained of?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the building blocks of a recipe?');
 
 call add_block('The input to `bitbake` is called *metadata*.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the input taken by bitbake called?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does bitbake take as an input?');
 
-call add_block('Metadata is organized in layers, which can be composed to get various components.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'How a metadata is organized?');
+call add_block('Metadata is organized in layers, which can be composed to generate various components.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the building blocks of a metadata?');
 
-call add_block('`openembedded-core` is the core layer.', 'text', 'txt');
-call add_block('By default this layer supports qemu.', 'text', 'txt');
+call add_block('`openembedded-core` is the core layer and all other layers are on top of this layer.', 'text', 'txt');
+call add_block('By default this layer supports qemu for many processor architectures.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the core layer of metadata?');
 
 call add_block('Is the layer providing the poky reference distribution.', 'text', 'txt');
@@ -45,32 +45,34 @@ call add_block('Is the reference distro provided by the yocto.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is a poky distribution?');
 
 call add_block('The same poky reference system is used for both, but for beagle bone black we will need another meta layer `meta-ti-bsp`.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What meta layer do we need to build images for qemu and beagle bone black?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What meta layer is used to build images for a beagle bone black board?');
 
-call add_block('git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky', 'code', 'sh');
+call add_block('git clone --branch kirkstone https://git.yoctoproject.org/git/poky', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get poky reference system?');
 
+-- page 37
+
 call add_block('All the scripts required by `bitbake` to run.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the bitbake directory in poky contain?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of bitbake directory in poky source tree?');
 
 call add_block('Contains the OpenEmbedded-Core metadata.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the meta directory in poky contain?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta directory in poky source tree?');
 
-call add_block('Also `meta-skeleton` directory contains recipes for BSP and kernel development.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the meta-skeleton directory in poky contain?');
+call add_block('`meta-skeleton` directory contains recipes for BSP and kernel development.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-skeleton directory in poky source tree?');
 
 call add_block('Holds the configuration for the Poky reference distribution.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the meta-poky directory in poky contain?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-poky directory in poky source tree?');
 
 call add_block('Configuration for the Yocto Project reference hardware board support package.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the meta-yocto-bsp directory in poky contain?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-yocto-bsp directory in poky source tree?');
 
 call add_block('Script to set up the OpenEmbedded build environment.', 'text', 'txt');
 call add_block('It will create the build directory.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the oe-init-build-env file do in poky?');
 
 call add_block('Contains scripts used to set up the environment, development tools, and tools to flash the generated images on the target.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the script directory contain in poky?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of script directory in poky source tree?');
 
 call add_block(
 '- `core-image-minimal`: boot a device and have access to core command line commands and services.
