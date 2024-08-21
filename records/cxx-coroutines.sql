@@ -1,7 +1,7 @@
 create temp table if not exists temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
 delete from temp_blocks;
 
-create or replace procedure add_block(content text, type flashback.block_type, language varchar(10))
+create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
 language plpgsql
 as $$
 begin
@@ -17,10 +17,10 @@ insert into temp_sections values ('C++20 Coroutines Part 2', 'https://www.youtub
 insert into temp_sections values ('C++20 Coroutines Part 3', 'https://www.youtube.com/watch?v=TgAFja228HU');
 call flashback.create_resource(6, 'Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
 
-call add_block('Subroutines and coroutines.', 'text', 'txt');
+call flashback.add_block('Subroutines and coroutines.', 'text', 'txt');
 call flashback.create_note_with_name('Cpp Hive', 'C++20 Coroutines Part 1', 'How many routine types exist?');
 
-call add_block(
+call flashback.add_block(
 'When it has either of the following keywords in its body:
 - `co_await`
 - `co_return`
@@ -31,9 +31,9 @@ call flashback.create_note_with_name('Cpp Hive', 'C++20 Coroutines Part 1', 'Whe
 insert into temp_sections values ('C++20 Coroutines', 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
 call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video');
 
-call add_block('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
-call add_block('A new awaiter object was introduced in the standard.', 'text', 'txt');
-call add_block('`promise_type` should be encapsulated within the return type and must:
+call flashback.add_block('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
+call flashback.add_block('A new awaiter object was introduced in the standard.', 'text', 'txt');
+call flashback.add_block('`promise_type` should be encapsulated within the return type and must:
 - have the name `promise_type`.
 - to be a `class` or `struct`.
 - provide at least a constructor.
@@ -43,8 +43,8 @@ call add_block('`promise_type` should be encapsulated within the return type and
 - provide `unhandled_exception()` method returning void.', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What semantics a coroutine return type must follow?');
 
-call add_block('`std::suspend_always` and `std::suspend_never`.', 'text', 'txt');
-call add_block(
+call flashback.add_block('`std::suspend_always` and `std::suspend_never`.', 'text', 'txt');
+call flashback.add_block(
 '#include <coroutine>
 #include <iostream>
 
@@ -72,10 +72,10 @@ int main()
 }', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the standard awaiter objects in the standard?');
 
-call add_block('`std::coroutine_handle<>` is the primary standard type to be used in coroutines.', 'text', 'txt');
+call flashback.add_block('`std::coroutine_handle<>` is the primary standard type to be used in coroutines.', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What type is the primary standard type for <code>promise_type</code>?');
 
-call add_block(
+call flashback.add_block(
 '#include <coroutine>
 #include <iostream>
 
@@ -109,15 +109,15 @@ int main()
 }', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What is the signature of a coroutine handle?');
 
-call add_block('The coroutine handle should be used to resume its execution.', 'text', 'txt');
-call add_block('There are two ways of resuming a coroutine. Either by call semantics `operator()` of the handle, or by calling its `resume()` method.', 'text', 'txt');
-call add_block('object.handle.resume();
+call flashback.add_block('The coroutine handle should be used to resume its execution.', 'text', 'txt');
+call flashback.add_block('There are two ways of resuming a coroutine. Either by call semantics `operator()` of the handle, or by calling its `resume()` method.', 'text', 'txt');
+call flashback.add_block('object.handle.resume();
 object.handle();', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'How to resume the execution of a paused coroutine?');
 
-call add_block('Coroutines can be started lazily or eagerly.', 'text', 'txt');
-call add_block('The difference between the two is the return type used for `promise_type::initial_suspend()` method.', 'text', 'txt');
-call add_block(
+call flashback.add_block('Coroutines can be started lazily or eagerly.', 'text', 'txt');
+call flashback.add_block('The difference between the two is the return type used for `promise_type::initial_suspend()` method.', 'text', 'txt');
+call flashback.add_block(
 '#include <coroutine>
 #include <iostream>
 
@@ -167,7 +167,7 @@ int main()
 }', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'How many coroutine initializations exist?');
 
-call add_block(
+call flashback.add_block(
 '- Cannot use variadic arguments
 - Cannot be constexpr or consteval
 - Cannot have `auto` or `decltype(auto)` as return type, but still an `auto` with a trailing return type is valid
@@ -176,7 +176,7 @@ call add_block(
 - Cannot have a plain return statement, instead there should be `co_return` to mark end of execution', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What are the restricutions on coroutines?');
 
-call add_block(
+call flashback.add_block(
 '- Free standing function
 - Member functions within a class
 - Virtual functions in polymorphic classes
@@ -184,11 +184,11 @@ call add_block(
 - Static free standing and member functions', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What subroutines can become a coroutine?');
 
-call add_block('`co_yield` keyboard was introduced in C++20 and can only be used in a coroutine context.', 'text', 'txt');
-call add_block('`co_yield` is utilized for returning intermediate values processed within coroutine body.', 'text', 'txt');
-call add_block('`co_yield` can suspend coroutine after returning evaluated value.', 'text', 'txt');
-call add_block('This semantic is mostly used in sequence generators and range based for loops.', 'text', 'txt');
-call add_block(
+call flashback.add_block('`co_yield` keyboard was introduced in C++20 and can only be used in a coroutine context.', 'text', 'txt');
+call flashback.add_block('`co_yield` is utilized for returning intermediate values processed within coroutine body.', 'text', 'txt');
+call flashback.add_block('`co_yield` can suspend coroutine after returning evaluated value.', 'text', 'txt');
+call flashback.add_block('This semantic is mostly used in sequence generators and range based for loops.', 'text', 'txt');
+call flashback.add_block(
 '#include <coroutine>
 
 return_type generator(int start, int end, int step)
@@ -200,11 +200,11 @@ return_type generator(int start, int end, int step)
 }', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What does <code>co_yield</code> do?');
 
-call add_block(
+call flashback.add_block(
 '- `promise_type` needs to have a method `std::suspend_always yield_value(T value)`.
 - Parameter type should match the return type.
 - The return value can be stored in a `coroutine_handle` object and retrieved later.', 'text', 'txt');
-call add_block(
+call flashback.add_block(
 '#include <coroutine>
 
 struct return_type
@@ -227,13 +227,13 @@ struct return_type
 };', 'code', 'cpp');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', 'What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?');
 
-call add_block('', 'text', 'txt');
+call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
-call add_block('', 'text', 'txt');
+call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
-call add_block('', 'text', 'txt');
+call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 'C++20 Coroutines', '');
 
 --call set_section_as_complete('Learn PostgreSQL', 'Chapter 3');

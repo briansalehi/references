@@ -1,7 +1,7 @@
 create temp table if not exists temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
 delete from temp_blocks;
 
-create or replace procedure add_block(content text, type flashback.block_type, language varchar(10))
+create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
 language plpgsql
 as $$
 begin
@@ -21,7 +21,7 @@ call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, ''); -- 
 -- add records after this line
 
 
-call add_block('', 'text', 'txt'); -- content, type('text', 'code'), language
-call add_block('', 'code', 'sql');
-call add_block('', 'text', 'txt');
+call flashback.add_block('', 'text', 'txt'); -- content, type('text', 'code'), language
+call flashback.add_block('', 'code', 'sql');
+call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Subject Name', 'Section Name', ''); -- resource_name, section_name, heading
