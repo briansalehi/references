@@ -14,18 +14,18 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 
 call flashback.add_block('In most build systems, `make` is the build engine, but in yocto is `bitbake`.', 'text', 'txt');
 call flashback.add_block('`bitbake` is written in Python and is a task scheduler like `make`.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the build engine in yocto?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the name of the build engine in yocto?');
 
 call flashback.add_block('`bitbake` parses text files to know what it has to build and how.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the responsibility of bitbake?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does bitbake do?');
 
 call flashback.add_block('Text files parsed by bitbake are recipes.', 'text', 'txt');
 call flashback.add_block('Each recipe describes how to fetch and build a software component.', 'text', 'txt');
 call flashback.add_block('Recipes might depend on each other.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the name of text files parsed by bitbake?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the name of the text files parsed by bitbake?');
 
-call flashback.add_block('Recipes specify tasks by which performs a specific step in the build.', 'text', 'txt');
-call flashback.add_block('Tasks can also depend on each other.', 'text', 'txt');
+call flashback.add_block('Recipes specify tasks by which perform a specific step in the build.', 'text', 'txt');
+call flashback.add_block('Tasks might also depend on each other.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the building blocks of a recipe?');
 
 call flashback.add_block('The input to `bitbake` is called *metadata*.', 'text', 'txt');
@@ -41,10 +41,10 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('Is the layer providing the poky reference distribution.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is a poky layer?');
 
-call flashback.add_block('Is the reference distro provided by the yocto.', 'text', 'txt');
+call flashback.add_block('Is the reference distribution provided by the yocto.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is a poky distribution?');
 
-call flashback.add_block('The same poky reference system is used for both, but for beagle bone black we will need another meta layer `meta-ti-bsp`.', 'text', 'txt');
+call flashback.add_block('The same poky reference system is used for raspberry pi and beagle bone boards, but for beagle bone we will need another meta layer `meta-ti-bsp`.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What meta layer is used to build images for a beagle bone black board?');
 
 call flashback.add_block('git clone --branch kirkstone https://git.yoctoproject.org/git/poky', 'code', 'sh');
