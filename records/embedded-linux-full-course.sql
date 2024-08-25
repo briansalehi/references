@@ -140,7 +140,125 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('bitbake core-image-minimal', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Build an image for a target machine with poky?');
 
--- page 56
+call flashback.add_block('Using configuration variables.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'How does OpenEmbedded build system hold project information?');
+
+call flashback.add_block('BUSY_CORES = "${BB_NUMBER_THREADS}"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Expand an already assigned variable?');
+
+call flashback.add_block('Variable names are in upper case by convention.', 'text', 'txt');
+call flashback.add_block('Values are always in string.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the properties of variables?');
+
+call flashback.add_block('Variables defined in configuration files ending in `.conf` have a **global** scope.', 'text', 'txt');
+call flashback.add_block('Variables defined in **recipes** ending in `.bb`, `.bbappend`, and `.bbclass` have a **local** scope.', 'text', 'txt');
+call flashback.add_block('It is possible to get access to global scope in recipes.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What scopes does OpenEmbedded build system have?');
+
+call flashback.add_block('VAR = "this"
+VAR = "that"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Assign a value to a variable discarding its previous value?');
+
+call flashback.add_block('By assining on a variable with `=`, the expansion of this variable happens late on the variable use.', 'text', 'txt');
+call flashback.add_block('NAME = "foo"
+PACKAGE = "${NAME}"
+BUILD = "packing ${PACKAGE}"
+NAME = "bar"
+# PACKAGE == "packing bar"', 'code', 'bb');
+call flashback.add_block('By assining on a variable with `:=`, the expansion of this variable happens immediately.', 'text', 'txt');
+call flashback.add_block('NAME = "foo"
+PACKAGE := "${NAME}"
+BUILD = "packing ${PACKAGE}"
+NAME = "bar"
+# PACKAGE = "packing foo"', 'code', 'bb');
+call flashback.add_block('Regular expansion is expected in most cases.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'How many different variable expansions exists in OpenEmbedded build system?');
+
+call flashback.add_block('VAR += "value" # with space', 'code', 'bb');
+call flashback.add_block('VAR .= "value" # without space', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Append values to a variable with and without spaces?');
+
+call flashback.add_block('VAR =+ "value" # with space', 'code', 'bb');
+call flashback.add_block('VAR =. "value" # without space', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Prepend values to a variable with and without spaces?');
+
+call flashback.add_block('VAR ?= "default"', 'code', 'bb');
+call flashback.add_block('VAR ??= "weak default"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Make a default value for a variable?');
+
+call flashback.add_block('The `??=` operator assigns a value only if the variable has not been assigned when the statement is parsed, not even with `?=` operator.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the difference between default and weak default values?');
+
+call flashback.add_block('The parsing order of files is difficult to predict, and the operators apply during parsing. To avoid headache, do not use append and prepend operators in `conf/local.conf`. Use overrides instead.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the preferred way of modifying a variable?');
+
+call flashback.add_block('Overrides allow modification of variables that apply late when the expanding variable is being used.', 'text', 'txt');
+call flashback.add_block('<VARIABLE>:<override> = "value"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does override operators do?');
+
+call flashback.add_block('IMAGE_INSTALL:append = " dropbear"', 'code', 'bb');
+call flashback.add_block('Adds dropbear as one of the packges installed on the image.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Append to a variable using override operators?');
+
+call flashback.add_block('FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:', 'code', 'bb');
+call flashback.add_block('Adds the folder to the set of paths were files that belong to the recipe reside.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Prepend to a variable using override operators?');
+
+call flashback.add_block('IMAGE_INSTALL:remove = "i2c-tools"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Remove all occurances of a value within a variable using override operators?');
+
+call flashback.add_block('It''s an alternative to OpenSSH.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the dropbear package do?');
+
+call flashback.add_block('The override value will be matched against the values in `OVERRIDES` which includes `MACHINE`, `SOC_FAMILY`, and more.', 'text', 'txt');
+call flashback.add_block('OVERRIDES = "arm;armv7a:ti-soc:ti33x:beaglebone:poky"', 'code', 'bb');
+call flashback.add_block('KERNEL_DEVICETREE:beaglebone = "arm335x-bone.dtb" # applied', 'code', 'bb');
+call flashback.add_block('KERNEL_DEVICETREE:dra7xx-evm = "dra7-evm.dtb" # ignored', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Assign on a variable only for a specific machine?');
+
+call flashback.add_block('Always the most specific assignment takes place.', 'text', 'txt');
+call flashback.add_block('IMAGE_INSTALL:beaglebone = "busybox mtd-utils i2c-tools" # this applies', 'code', 'bb');
+call flashback.add_block('IMAGE_INSTALL = "busybox mtd-utils" # ignored', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the precedence between override assignments and regular assignments?');
+
+call flashback.add_block('IMAGE_INSTALL = "busybox mtd-utils"', 'code', 'bb');
+call flashback.add_block('IMAGE_INSTALL:append = "dropbear"', 'code', 'bb');
+call flashback.add_block('IMAGE_INSTALL:append:beaglebone = "i2c-tools"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Append to a variable only for a specific machine using override variables?');
+
+call flashback.add_block('1. Regular operators `= := ?= ??= += =+ .= =.`
+2. `:append`
+3. `:prepend`
+4. `:remove`', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the precedence of override operators?');
+
+call flashback.add_block('bitbake-getvar MACHINE', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get the list of all places where a variable was modified?');
+
+-- page 73
+
+call flashback.add_block('bitbake-getvar -r ncurses SRC_URI', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get information from a recipe specific variables?');
+
+call flashback.add_block('bitbake -e ncurses', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get information from a recipe specific environment variable?');
+
+call flashback.add_block('bitbake-getenv -r tar FILE', 'code', 'sh');
+call flashback.add_block('bitbake-getenv -r tar-native FILE', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Locate a recipe file?');
+
+call flashback.add_block('bitbake-getenv -r tar PN', 'code', 'sh');
+call flashback.add_block('bitbake-getenv -r tar-native PN', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get package name of a recipe?');
+
+call flashback.add_block('Through the `PROVIDES` variable.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variable holds virtual package names?');
+
+call flashback.add_block('Classes provide and abstraction to common code in recipes.', 'text', 'txt');
+call flashback.add_block('Classes extension is `.bbclass` and they are located in `classes` folder of a layer.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the building blocks of virtual packages?');
+
+-- later
 
 call flashback.add_block('Target is a name possibly with modifiers.', 'text', 'txt');
 call flashback.add_block('bitbake <target>', 'code', 'sh');
@@ -194,23 +312,6 @@ call flashback.add_block('Run and log files are generated in `temp` directory un
 call flashback.add_block('`run.do_<task_name>` and `log.do_<task_name>`.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where do recipe run and log files reside?');
 
-call flashback.add_block('bitbake-getvar GNU_URI', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a global variables?');
-
-call flashback.add_block('bitbake-getvar -r ncurses SRC_URI', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a recipe specific variables?');
-
-call flashback.add_block('bitbake -e ncurses', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Dump a recipe specific environment variable?');
-
-call flashback.add_block('bitbake-getenv -r tar FILE', 'code', 'sh');
-call flashback.add_block('bitbake-getenv -r tar-native FILE', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Locate a recipe file?');
-
-call flashback.add_block('bitbake-getenv -r tar PN', 'code', 'sh');
-call flashback.add_block('bitbake-getenv -r tar-native PN', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get package name of a recipe?');
-
 call flashback.add_block('The `bitbake` build engine allows to modify a recipe by extending it.', 'text', 'txt');
 call flashback.add_block('If we already have a recipe `meta/recipes-core/init-ifupdown/init-ifupdown_1.0.bb`,
 we can extend it by writing a recipe with the same name but with `.bbappend` extension.', 'text', 'txt');
@@ -238,13 +339,6 @@ install -d ${D}${sysconfdir}
 install -m 0644 hello.conf ${D}${sysconfdir}
 }', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Extend a task?');
-
-call flashback.add_block('Through the `PROVIDES` variable.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variable holds virtual package names?');
-
-call flashback.add_block('Classes provide and abstraction to common code in recipes.', 'text', 'txt');
-call flashback.add_block('Classes extension is `.bbclass` and they are located in `classes` folder of a layer.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the building blocks of virtual packages?');
 
 call flashback.add_block('inherit <class>', 'code', 'bb');
 call flashback.add_block('A recipe can inherit from multiple classes.', 'text', 'txt');
