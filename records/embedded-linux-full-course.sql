@@ -50,56 +50,67 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('git clone --branch kirkstone https://git.yoctoproject.org/git/poky', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get poky reference system?');
 
--- page 37
-
 call flashback.add_block('All the scripts required by `bitbake` to run.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of bitbake directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>bitbake</code> directory in poky source tree?');
 
 call flashback.add_block('Contains the OpenEmbedded-Core metadata.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>meta</code> directory in poky source tree?');
 
 call flashback.add_block('`meta-skeleton` directory contains recipes for BSP and kernel development.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-skeleton directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>meta-skeleton</code> directory in poky source tree?');
 
 call flashback.add_block('Holds the configuration for the Poky reference distribution.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-poky directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>meta-poky</code> directory in poky source tree?');
 
 call flashback.add_block('Configuration for the Yocto Project reference hardware board support package.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of meta-yocto-bsp directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?');
 
-call flashback.add_block('Script to set up the OpenEmbedded build environment.', 'text', 'txt');
+call flashback.add_block('Script to set up the build directory and set environment variables in active shell.', 'text', 'txt');
 call flashback.add_block('It will create the build directory.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the oe-init-build-env file do in poky?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the <code>oe-init-build-env</code> file do in poky?');
 
 call flashback.add_block('Contains scripts used to set up the environment, development tools, and tools to flash the generated images on the target.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of script directory in poky source tree?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the contents of <code>script</code> directory in poky source tree?');
+
+call flashback.add_block('- bitbake: the main build system
+- bitbake-*: utilitie complementing bitbake build system', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What commands are available after sourcing <code>oe-init-build-env</code> script?');
 
 call flashback.add_block(
 '- `core-image-minimal`: boot a device and have access to core command line commands and services.
 - `core-image-sato`: Image with Sato support. Sato is a GNOME mobile-based user interface.
 - `meta-toolchain`: Generates the cross-toolchain in an installable format.
-- `meta-ide-support`: Generates the cross-toolchain and additional tools (gdb, qemu, ...) for IDE integration.', 'text', 'txt');
+- `meta-ide-support`: Generates the cross-toolchain and additional tools (gdb, qemu, ...) for IDE integration.', 'text', 'list');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the common targets in bitbake?');
 
 call flashback.add_block(
 '- `BUILDDIR`: Absolute path of the build directory.
-- `PATH`: Path to executables.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What environment variables are used by bitbake?');
+- `PATH`: Absolute path to executables in `scripts/` and `bitbake/bin` are prepended to `PATH`.', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What environment variables does <code>oe-init-build-env</code> script provide?');
+
+call flashback.add_block('In source directory, only the `conf` directory exists, containing:', 'text', 'txt');
+call flashback.add_block(
+'- `conf/bblayers.conf`: Explicitly list the layers to use
+- `conf/local.conf`: User related configuration variables; configuration variables can be overriden here
+- `conf/site.conf`: Also like local file but for site settings, eg. network, cpu resource limits', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What configuration files exist in a bitbake generated build directory?');
+
+call flashback.add_block('In the build directory, the following directories will be generated:', 'text', 'txt');
+call flashback.add_block(
+'- `conf/`: image specific and layer configurations copied into the build without a touch
+- `downloads/`: tarballs downloaded from the fetch stage
+- `sstate-cache/`: shared state cache, use by all builds
+- `tmp/`: bitbake outputs
+- `tmp/work/`: set of specific work directories separated by architecture
+- `tmp/sysroots/`: shared libraries and headers used to compile applications for the target and the host
+- `tmp/deploy/`: final output of the build
+- `tmp/deploy/images/`: the complete images built by the open-embedded build system
+- `tmp/buildstats/`: build statics for all package built
+', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the <code>oe-init-build-env</code> script generate?');
 
 call flashback.add_block(
-'- `conf/`: configurations
-- `downloads/`: tarballs
-- `tmp/`: build system outputs', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What does the build directory contain?');
-
-call flashback.add_block(
-'- `bblayers.conf`: Explicitly list the layers to use.
-- `local.conf`: User related configuration variables.
-- `site.conf`: Also like local file but for site settings, eg. network, cpu resource limits.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What configuration files are necessary for poky build system?');
-
-call flashback.add_block(
-'git clone --branch kirkstone https://git.yoctoproject.org - https://git.yoctoproject.org/git/poky.git /tmp/poky
+'git clone --branch kirkstone https://git.yoctoproject.org/git/poky.git /tmp/poky
 source oe-init-build-env [builddir]
 source /tmp/poky/oe-init-build-env /tmp/build-qemu', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Prepare build environment with poky?');
@@ -107,24 +118,29 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('bitbake core-image-minimal', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Build an image with poky?');
 
-call flashback.add_block('git clone -b kirkstone https://git.yoctoproject.org/git/poky.git', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Clone poky?');
+call flashback.add_block('git clone --branch kirkstone https://git.yoctoproject.org/git/poky.git', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get poky repository?');
 
 call flashback.add_block('source oe-init-build-env build', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Initialize build environment to use poky?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Initialize the build directory with poky?');
+
+call flashback.add_block('MACHINE ?= "qemux86_64"', 'code', 'conf');
+call flashback.add_block('MACHINE ?= "beaglebone-yocto"', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What variable defines the architecture of target machine to build for in poky?');
 
 call flashback.add_block('`conf/local.conf` file should be appended with:', 'text', 'txt');
 call flashback.add_block(
 'BB_NUMBER_THREADS = "8"
-PARALLEL_MAKE = "-j8"
-MACHINE = qemux86-64', 'code', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which variables should be set before building an image?');
+PARALLEL_MAKE = "-j8"', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the optional variables to speed up the build process?');
 
 call flashback.add_block('bitbake -h', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get help from bitbake manual?');
 
 call flashback.add_block('bitbake core-image-minimal', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Build an image for amd64 machine?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Build an image for a target machine with poky?');
+
+-- page 56
 
 call flashback.add_block('Target is a name possibly with modifiers.', 'text', 'txt');
 call flashback.add_block('bitbake <target>', 'code', 'sh');
