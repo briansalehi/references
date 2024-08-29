@@ -235,8 +235,6 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('bitbake-getvar MACHINE', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get the list of all places where a variable was modified?');
 
--- page 73
-
 call flashback.add_block('bitbake-getvar -r ncurses SRC_URI', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Get information from a recipe specific variables?');
 
@@ -258,7 +256,47 @@ call flashback.add_block('Classes provide and abstraction to common code in reci
 call flashback.add_block('Classes extension is `.bbclass` and they are located in `classes` folder of a layer.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the building blocks of virtual packages?');
 
--- later
+call flashback.add_block('- `virtual/bootloader`
+- `virtual/kernel`
+- `virtual/libc`
+- `virtual/xserver`', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the common virtual packages in Poky?');
+
+call flashback.add_block('u-boot, u-boot-ti-staging', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What virtual package variants exist for bootloader?');
+
+call flashback.add_block('linux-yocto, linux-yocto-tiny, linux-yocto-rt, linux-ti-staging', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What virtual package variants exist for kernel?');
+
+call flashback.add_block('glibc, musl, newlib', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What virtual package variants exist for libc?');
+
+call flashback.add_block('xserver-xorg', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What virtual package variants exist for xserver?');
+
+call flashback.add_block('PREFERRED_PROVIDER_virtual/kernel ?= "linux-ti-staging"', 'code', 'bb');
+call flashback.add_block('PREFERRED_PROVIDER_virtual/libgl ?= "mesa"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Select a variant of a virtual package?');
+
+call flashback.add_block('Bitbake will build the provider with the highest version number, from the highest priority layer, unless the recipe defines:', 'text', 'txt');
+call flashback.add_block('DEFAULT_PREFERENCE = "-1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Which provider has a higher priority in build?');
+
+call flashback.add_block('The package names have to suffix `PREFERRED_VERSION` variable.', 'text', 'txt');
+call flashback.add_block('`%` can be used as a wildcard.', 'text', 'txt');
+call flashback.add_block('PREFERRED_VERSION_nginx = "1.20.1"', 'code', 'bb');
+call flashback.add_block('PREFERRED_VERSION_linux-yocto = "6.2%"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Explicitly select a specific version of a provider when many exist?');
+
+call flashback.add_block('The set of packages installed into the image is defined by the target you choose.', 'text', 'txt');
+call flashback.add_block('bitbake core-image-minimal', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What packages are included in the install?');
+
+call flashback.add_block('IMAGE_INSTALL', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What variable holds the packages being installed in the image?');
+
+call flashback.add_block('ncurses, ncurses-native', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the recipe name modifiers?');
 
 call flashback.add_block('Target is a name possibly with modifiers.', 'text', 'txt');
 call flashback.add_block('bitbake <target>', 'code', 'sh');
@@ -270,11 +308,17 @@ call flashback.add_block('bitbake -c <task> <recipe>', 'code', 'sh');
 call flashback.add_block('bitbake -c listtasks ncurses', 'code', 'sh');
 call flashback.add_block('bitbake -c listtasks virtual/kernel', 'code', 'sh');
 call flashback.add_block('bitbake -c menuconfig virtual/kernel', 'code', 'sh');
+call flashback.add_block('Execute given task on the recipe providing the `virtual/kernel` package.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Run a specific task in a bitbake recipe?');
 
 call flashback.add_block('Lists all available recipes with their versions', 'text', 'txt');
 call flashback.add_block('bitbake -s', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'List all recipes?');
+
+call flashback.add_block('Lists all available recipes with their versions', 'text', 'txt');
+call flashback.add_block('bitbake -c listtasks <recipe>', 'code', 'sh');
+call flashback.add_block('bitbake -c listtasks virtual/kernel', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'List all tasks within a recipe?');
 
 call flashback.add_block('Forces the given task to be run by removing its stamp file.', 'text', 'txt');
 call flashback.add_block('bitbake -f', 'code', 'sh');
@@ -285,14 +329,40 @@ call flashback.add_block('Keyword for all recipes.', 'text', 'txt');
 call flashback.add_block('bitbake world', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What bitbake target can be used to build all recipes?');
 
-call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('bitbake --runall=fetch core-image-minimal', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Run a specific task for all recipes?');
+
+call flashback.add_block('do_<name>', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the naming pattern of tasks in recipes?');
+
+call flashback.add_block('- do_fetch
+- do_extract
+- do_configure
+- do_build
+- do_install', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What are the common tasks found in recipes?');
+
+call flashback.add_block('bitbake --runall=fetch core-image-minimal', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Run a specific task for all recipes of an image?');
 
 call flashback.add_block('Bitbake stores the output of each task in a directory within `SSTATE_CACHE` variable which defaults to `build/sstate-cache`.', 'text', 'txt');
 call flashback.add_block('After some time this cache direcctory grows unnecessarily, you can clear files inactive more than 30 days:', 'text', 'txt');
 call flashback.add_block('find build/sstate-cache -type f -atime +30 -delete', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where does bitbake stores cache files?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Where does bitbake store cache files?');
+
+call flashback.add_block('SSTATE_DIR', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What variable holds the path to cache?');
+
+call flashback.add_block('SSTATE_DIR ??= "build/sstate-cache"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the default location to cache?');
+
+call flashback.add_block('Bitbake stores the output of each task in a directory known as the shared state cache.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'What is the content of bitbake cache?');
+
+call flashback.add_block('find build/sstate-cache -type f -atime +30 -delete', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 'Course 6', 'Clean up the bitbake cache from builds older than a month?');
+
+-- page 85
 
 --call flashback.add_block('', 'text', 'txt');
 --call flashback.add_block('', 'code', 'sh');
