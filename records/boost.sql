@@ -9,16 +9,18 @@ begin
 end;
 $$;
 
-create temp table temp_sections (t_headline varchar(100), t_reference varchar(2000));
-delete from temp_sections;
 
-
-insert into temp_sections values ('', '');
-call flashback.create_resource(, '', '', '');
-call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, '');
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
+call flashback.create_resource_with_sequenced_sections(3, 'Boost.Asio C++ Network Programming Cookbook', 'book', 1, 6, 'https://subscription.packtpub.com/book/cloud-and-networking/9781783986545');
 
 
 call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sql');
+call flashback.add_block('', 'code', 'cpp');
 call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Subject Name', 'Section Name', '');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('Boost.Asio C++ Network Programming Cookbook', 1, '');

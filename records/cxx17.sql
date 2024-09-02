@@ -9,21 +9,33 @@ begin
 end;
 $$;
 
-create temp table temp_sections (t_headline varchar(100), t_reference varchar(2000));
-delete from temp_sections;
 
--- only use these calls once
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
 call flashback.create_resource_with_sequenced_sections(6, 'C++17 Language New Features Cheatsheet', 'slides', 2, 1, null);
 
 call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sql');
+call flashback.add_block('', 'code', 'cpp');
 call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Subject Name', 'Section Name', '');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('C++17 Language New Features Cheatsheet', 1, '');
 
-call flashback.create_resource_with_sequenced_sections(6, 'Language Features of C++17', 'slides', 2, 1, 'https://www.bfilipek.com');
+
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
+call flashback.create_resource_with_sequenced_sections(6, 'Language Features of C++17 Cheatsheet', 'slides', 2, 1, 'https://www.bfilipek.com');
 
 call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sql');
+call flashback.add_block('', 'code', 'cpp');
 call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Subject Name', 'Section Name', '');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('Language Features of C++17 Cheatsheet', 1, '');
 

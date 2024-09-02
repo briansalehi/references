@@ -9,10 +9,18 @@ begin
 end;
 $$;
 
-create temp table temp_sections (t_headline varchar(100), t_reference varchar(2000));
-delete from temp_sections;
 
-call flashback.create_resource_with_sequenced_sections(6, 'C++20 Features', 'slides', 2, 1, 'https://www.bfilipek.com');
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
+call flashback.create_resource_with_sequenced_sections(6, 'C++20 Features Cheatsheet', 'slides', 2, 1, 'https://www.bfilipek.com');
 
-call flashback.add_block('', 'text', 'txt'), ('', 'code', 'sql'), ('', 'text', 'txt');
-call flashback.create_note_with_name('Subject Name', 'Section Name', '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('C++20 Features Cheatsheet', 1, '');

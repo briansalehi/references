@@ -9,13 +9,17 @@ begin
 end;
 $$;
 
-create temp table temp_sections (t_headline varchar(100), t_reference varchar(2000));
-delete from temp_sections;
+create temp table temp_sections (t_index integer, t_reference varchar(2000));
 
-insert into temp_sections values ('C++20 Coroutines Part 1', 'https://www.youtube.com/watch?v=6KRS6Y2wDw8');
-insert into temp_sections values ('C++20 Coroutines Part 2', 'https://www.youtube.com/watch?v=j_JvM76mjrg');
-insert into temp_sections values ('C++20 Coroutines Part 3', 'https://www.youtube.com/watch?v=TgAFja228HU');
-call flashback.create_resource(6, 'Cpp Hive', 'video', 'https://www.youtube.com/@cpphive4051');
+insert into temp_sections values (1, 'https://www.youtube.com/watch?v=6KRS6Y2wDw8');
+insert into temp_sections values (2, 'https://www.youtube.com/watch?v=j_JvM76mjrg');
+insert into temp_sections values (3, 'https://www.youtube.com/watch?v=TgAFja228HU');
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- pattern_index integer
+-- resource_reference varchar
+call flashback.create_resource(6, 'Cpp Hive', 'video', 4, 'https://www.youtube.com/@cpphive4051');
 
 call flashback.add_block('Subroutines and coroutines.', 'text', 'txt');
 call flashback.create_note_with_name('Cpp Hive', 'C++20 Coroutines Part 1', 'How many routine types exist?');
@@ -28,8 +32,8 @@ call flashback.add_block(
 call flashback.create_note_with_name('Cpp Hive', 'C++20 Coroutines Part 1', 'When does a function is considered a coroutine?');
 
 
-insert into temp_sections values ('C++20 Coroutines', 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
-call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video');
+insert into temp_sections values (1, 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
+call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video', 4, null);
 
 call flashback.add_block('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
 call flashback.add_block('A new awaiter object was introduced in the standard.', 'text', 'txt');

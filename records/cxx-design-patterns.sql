@@ -9,8 +9,16 @@ begin
 end;
 $$;
 
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
 call flashback.create_resource_with_sequenced_sections(6, 'Design Patterns in C++20', 'book', 1, 20, 'https://link.springer.com/book/10.1007/978-1-4842-7295-4');
 
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'cpp');
-call flashback.create_note_with_name('Design Patterns in C++20', 'Chapter 1', '');
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('Design Patterns in C++20', 1, '');

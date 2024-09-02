@@ -14,8 +14,19 @@ delete from temp_sections;
 
 -- only use these calls once
 insert into temp_sections values ('', ''); -- section_headline, section_reference
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- pattern_index integer
+-- resource_reference varchar
 call flashback.create_resource(, '', '', ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), resource_reference
-call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), section_pattern_id, sections, resource_reference
+-- subject_index integer
+-- name_string varchar
+-- type_string resource_type
+-- section_pattern_index integer
+-- sections integer
+-- resource_reference varchar
+call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), section_pattern_id(1:Chapter, 2:Page, 3:Course, 4:Video), sections, resource_reference
 
 
 -- add records after this line
