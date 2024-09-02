@@ -110,7 +110,8 @@ call flashback.add_block('**Data Definition Language (DDL)** commands are used t
 call flashback.add_block('**Data Manipulation Language (DML)** commands are used to insert, delete, update and select data inside databases. ', 'text', 'txt');
 call flashback.create_note_with_name('Learn PostgreSQL', 4, 'What type of commands exist in database?');
 
-call flashback.add_block('psql -U <username> -h <hostname> -d <database>', 'code', 'sh'), ('psql -U postgres -h localhost -d template1', 'code', 'sh');
+call flashback.add_block('psql -U <username> -h <hostname> -d <database>', 'code', 'sh');
+call flashback.add_block('psql -U postgres -h localhost -d template1', 'code', 'sh');
 call flashback.create_note_with_name('Learn PostgreSQL', 4, 'Connect to a postgres instance?');
 
 call flashback.add_block('\x', 'code', 'sql');
