@@ -365,8 +365,6 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('find build/sstate-cache -type f -atime +30 -delete', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Clean up the bitbake cache from builds older than a month?');
 
--- page 85
-
 call flashback.add_block('A recipe is a set of instructions to describe how to handle a software component.', 'text', 'txt');
 call flashback.add_block('It also defines what build or runtime dependencies are required.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What does a recipe do?');
@@ -741,8 +739,6 @@ call flashback.add_block('Using this class, `LICENSE` should be set to `CLOSED` 
 call flashback.add_block('You should probably also inherit `allarch`.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which class should be used when we need to install pre-built files into the generated root filesystem?');
 
--- page 145
-
 call flashback.add_block('`BBPATH`', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which variables is used to find the files to be included?');
 
@@ -769,11 +765,21 @@ insert into temp_blocks valuesLDHISTORY_COMMIT = 1', 'code', 'conf');
 call flashback.add_block('buildhistory-diff', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Differenciate two builds?');
 
-call flashback.add_block('`DL_DIR`, `PREMIRRORS`, `SRC_URI`, `MIRRORS`.', 'text', 'txt');
+call flashback.add_block('`DL_DIR`, `PREMIRRORS`, `SRC_URI`, `MIRRORS`.', 'text', 'list');
 call flashback.add_block('If all mirrors fail, build will fail.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What locations are used by bitbake to retrieve files?');
 
-call flashback.add_block('`own-mirrors` can only add one URL:', 'text', 'txt');
+call flashback.add_block('bitbake -c devshell <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Export full environment to a shell to debug a build?');
+
+call flashback.add_block('INHERIT += "buildhistory"', 'code', 'bb');
+call flashback.add_block('BUILDHISTORY_COMMIT = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Enable build history to differenciate between two builds?');
+
+call flashback.add_block('buildhistory-diff', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Check the difference between two builds?');
+
+call flashback.add_block('`own-mirrors` class can only add one URL:', 'text', 'txt');
 call flashback.add_block('INHERITS += "own-mirrors"
 SOURCE_MIRROR_URL = "http://example.com/my-mirror"', 'code', 'bb');
 call flashback.add_block('For a more complex setup, prepend custom mirrors to the `PREMIRRORS` variable:', 'text', 'txt');
@@ -784,25 +790,28 @@ http://.*/.* http://example.com/my-mirror-for-http/ \
 https://.*/.* http://example.com/my-mirror-for-https/"', 'code', 'bb');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which class can be used to add mirrors?');
 
-call flashback.add_block('BB_GENERATE_TARBALLS = "1"', 'code', 'bb');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Create a local mirror?');
+call flashback.add_block('Source files downloaded from SCM need to be archived:', 'text', 'txt');
+call flashback.add_block('BB_GENERATE_MIRROR_TARBALLS = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Create a local mirror by downloading all the sources?');
 
-call flashback.add_block('`do_fetch` is only network enabled to make sure no untraced sources are fetched.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which class is responsible for downloading?');
+call flashback.add_block('`do_fetch` is the only network enabled task to make sure no untraced sources are fetched.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which task is responsible for downloading sources?');
 
 call flashback.add_block('BB_NO_NETWORK = "1"', 'code', 'bb');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Complete network access?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Disable network access in a recipe?');
 
-call flashback.add_block('bitbake --runall=fetch core-image-minimal', 'code', 'sh');
 call flashback.add_block('Or restrict bitbake to only download files from the `PREMIRRORS`:', 'text', 'txt');
 call flashback.add_block('BB_FETCH_PREMIRRORONLY = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Restrict bitbake to only download files from the <code>PREMIRRORS</code>?');
+
+call flashback.add_block('bitbake --runall=fetch core-image-minimal', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Download all the sources to run builds with network disabled?');
 
 call flashback.add_block('It is a good practice to begin a layer name with the prefix `meta-`.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the convention in naming layers?');
 
 call flashback.add_block('Recipes and metadata.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What do layers can isolate?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What do layers isolate within their boundaries?');
 
 call flashback.add_block(
 '- `meta`
@@ -822,32 +831,33 @@ call flashback.add_block('`bitbake` parses each layer from `BBLAYERS` and adds t
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Include another layer?');
 
 call flashback.add_block('bitbake-layers', 'code', 'sh');
+call flashback.add_block('The tool resides in `poky/bitbake/bin/` directory.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What tool is used to inspect layers?');
 
 call flashback.add_block('bitbake-layers show-layers', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Get a list of layers?');
 
 call flashback.add_block('bitbake-layers add-layer meta-custom', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Add a custom layer?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Add an existing layer?');
 
 call flashback.add_block('bitbake-layers remove-layer meta-qt5', 'code', 'sh');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Remove a custom layer?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Remove a layer?');
 
-call flashback.add_block('Many SoC layers exist providing support for boards.', 'text', 'txt');
-call flashback.add_block(
-'- `meta-ti-bsp`
+call flashback.add_block('SoC layers provide support for boards.', 'text', 'txt');
+call flashback.add_block('- `meta-ti-bsp`
 - `meta-freescale`
-- `meta-st-stm32mp`', 'text', 'txt');
+- `meta-st-stm32mp`', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What layers provide board support?');
+
 call flashback.add_block('Many layers offer to support applications not available in poky reference system, e.g:', 'text', 'txt');
-call flashback.add_block(
-'- `meta-browser` (chromium, firefox)
+call flashback.add_block('- `meta-browser` (chromium, firefox)
 - `meta-filesystems`
 - `meta-java`
 - `meta-linaro-toolchain`
 - `meta-qt5`
 - `meta-realtime`
-- `meta-telephony`', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What support do layers provide?');
+- `meta-telephony`', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What layers provide application support?');
 
 call flashback.add_block('A layer is a set of files and directories and can be created by hand but best practice is to use `bitbake-layers`:', 'text', 'txt');
 call flashback.add_block('bitbake-layers create-layer -p <priority> <layer>', 'code', 'sh');
@@ -861,7 +871,7 @@ call flashback.add_block(
 - `README`: layer description containing at least the email address of its maintainer.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the skeleton of a newly created layer?');
 
-call flashback.add_block('Any metadata matching `./recipes-*/*/*.bb` will be parsed by `bitbake` automatically.', 'text', 'txt');
+call flashback.add_block('Any metadata matching `meta-*/recipes-*/*/*.bb` will be parsed by `bitbake` automatically.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which metadata files are parsed by bitbake automatically?');
 
 call flashback.add_block('LAYERDEPENDS = "basic"', 'code', 'bb');
