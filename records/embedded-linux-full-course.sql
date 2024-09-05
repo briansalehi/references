@@ -871,7 +871,7 @@ call flashback.add_block(
 - `README`: layer description containing at least the email address of its maintainer.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the skeleton of a newly created layer?');
 
-call flashback.add_block('Any metadata matching `meta-*/recipes-*/*/*.bb` will be parsed by `bitbake` automatically.', 'text', 'txt');
+call flashback.add_block('Any metadata matching `meta-<layer>/recipes-<layer>/<layer>/<layer>_<version>.bb` will be parsed by `bitbake` automatically.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which metadata files are parsed by bitbake automatically?');
 
 call flashback.add_block('LAYERDEPENDS = "basic"', 'code', 'bb');
@@ -882,22 +882,31 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 
 call flashback.add_block('BSP layers are a subset of regular layers.', 'text', 'txt');
 call flashback.add_block('They hold metadata supporting a specific class of hardware devices.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the BSP layers?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is a BSP layer?');
 
-call flashback.add_block('A layer provides one hardware configuration file per machine it supports.', 'text', 'txt');
-call flashback.add_block('These configuration files are stored in `meta-<bsp name>/conf/machine/*.conf` and they contain configuration variables related to the architecture and to the machine features.', 'text', 'txt');
-call flashback.add_block('The machine file names correspond to the `MACHINE` value in its configuration file.', 'text', 'txt');
+call flashback.add_block('A BSP layer provides one hardware configuration file per machine it supports, located in `meta-<bsp name>/conf/machine/*.conf` and they contain configuration variables related to the architecture and to the machine features.', 'text', 'txt');
+call flashback.add_block('The machine file name corresponds to the `MACHINE` value in its configuration file.', 'text', 'txt');
 call flashback.add_block('`meta-ti/meta-ti-bsp/conf/machine/beaglebone.conf`', 'text', 'txt');
 call flashback.add_block('MACHINE = "beaglebone"', 'code', 'conf');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is a machine file in layers?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the machine configurations in a BSP layers?');
 
-call flashback.add_block('- `TARGET_ARCH`: machine architecture.
-- `PREFERRED_PROVIDER_virtual/kernel`: default kernel.
-- `MACHINE_FEATURES`: list of hardware features, e.g. `usbgadget`, `usbhost`, `screen`, `wifi`, `keyboard` (adds `keymaps` to the image).
-- `SERIAL_CONSOLE`: speed and device for serial console to attach. e.g. `115200;ttyS0`.
-- `KERNEL_IMAGETYPE`: e.g. `zImage`.', 'text', 'txt');
+call flashback.add_block('TARGET_ARCH = "x86_64"', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe target machine architecture?');
+
+call flashback.add_block('PREFERRED_PROVIDER_virtual/kernel = "yocto-linux"', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe target kernel?');
+
+call flashback.add_block('MACHINE_FEATURES = "usbgadget usbhost screen wifi keyboard"', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe target machine features?');
+
+call flashback.add_block('SERIAL_CONSOLE = "115200;ttyS0', 'code', 'conf');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe the serial console used to attach to target devide?');
+
+call flashback.add_block('KERNEL_IMAGETYPE = "zImage"', 'code', 'conf');
 call flashback.add_block('Look at `conf/machine/include/cfa10036.inc` and `conf/machine/cfa10057.conf` for an example.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variables are used to describe machine architecture and features?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe the target kernel image type?');
+
+-- page 180
 
 call flashback.add_block('By default, on ARM the bootloader is the mainline of U-Boot, with a fixed version per Poky release.', 'text', 'txt');
 call flashback.add_block('The U-Boot configurations reside on `meta/recipes-bsp/u-boot/u-boot.inc`.', 'text', 'txt');
