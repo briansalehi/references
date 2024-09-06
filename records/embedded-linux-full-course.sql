@@ -899,37 +899,44 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('MACHINE_FEATURES = "usbgadget usbhost screen wifi keyboard"', 'code', 'conf');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe target machine features?');
 
-call flashback.add_block('SERIAL_CONSOLE = "115200;ttyS0', 'code', 'conf');
+call flashback.add_block('SERIAL_CONSOLES = "115200;ttyS0', 'code', 'conf');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe the serial console used to attach to target devide?');
 
 call flashback.add_block('KERNEL_IMAGETYPE = "zImage"', 'code', 'conf');
 call flashback.add_block('Look at `conf/machine/include/cfa10036.inc` and `conf/machine/cfa10057.conf` for an example.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to describe the target kernel image type?');
 
--- page 180
-
 call flashback.add_block('By default, on ARM the bootloader is the mainline of U-Boot, with a fixed version per Poky release.', 'text', 'txt');
-call flashback.add_block('The U-Boot configurations reside on `meta/recipes-bsp/u-boot/u-boot.inc`.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What bootloader is used in Poky?');
+call flashback.add_block('The U-Boot configurations reside in `meta/recipes-bsp/u-boot/u-boot.inc`.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What bootloader is used in Poky by default?');
 
-call flashback.add_block(
-'- `SPL_BINARY`: if an SPL is built, describes the output binary name.
-- `UBOOT_SUFFIX`: `bin` or `img`.
-- `UBOOT_MACHINE`: target architecture.
-- `UBOOT_ENTRYPOINT`: bootloader entry point.
-- `UBOOT_LOADADDRESS`: bootloader load address.
-- `UBOOT_MAKE_TARGET`: defaults to `all`.', 'text', 'txt');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the U-Boot configuration variables?');
+call flashback.add_block('SPL_BINARY', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe to name of the SPL binary?');
+
+call flashback.add_block('UBOOT_SUFFIX', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe as a suffix to bootloader name?');
+
+call flashback.add_block('UBOOT_MACHINE', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe as the target architecture?');
+
+call flashback.add_block('UBOOT_ENTRYPOINT', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe as the bootloader entry point?');
+
+call flashback.add_block('UBOOT_LOADADDRESS', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe as the bootloader load address?');
+
+call flashback.add_block('UBOOT_MAKE_TARGET', 'code', 'bb');
+call flashback.add_block('defaults to `all`.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in UBoot recipe as the make target used to build the bootloader?');
 
 call flashback.add_block('By creating a custom kernel recipe, inheriting `kernel.bbclass`.', 'text', 'txt');
 call flashback.add_block('By using the `linux-yocto` packages, provided in Poky.', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'In how many ways the kernel can be built?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'In how many ways the kernel can be built with yocto?');
 
-call flashback.add_block('It is a set of recipes with advanced features to build a mainline kernel.', 'text', 'txt');
+call flashback.add_block('`linux-yocto` is a set of recipes with advanced features to build a mainline kernel.', 'text', 'txt');
 call flashback.add_block('PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"', 'code', 'bb');
 call flashback.add_block('PREFERRED_PROVIDER_linux-yocto = "5.14%"', 'code', 'bb');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the use case of <code>linux-yocto</code> in poky packages?');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use <code>linux-yocto</code> to build a specific kernel in an image?');
 
 call flashback.add_block('Another way of configuring `linux-yocto` is by using *Advanced Metadata*.', 'text', 'txt');
 call flashback.add_block('It is a powerful way of spliting the configuration and the patches into several pieces.', 'text', 'txt');
@@ -937,26 +944,82 @@ call flashback.add_block('https://docs.yoctoproject.org/kernel-dev/advanced.html
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the advanced metadata?');
 
 call flashback.add_block('A way to split the kernel configurations and patches in little pieces each providing support for one feature.', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('- `LINUX_KERNEL_TYPE`: `standard` for generic kernel, `tiny` bare minimum configuration for small kernels, or `preempt-rt`.
-- `KERNEL_FEATURES`: list of features to enable. Features are set of patches and configuration fragments.', 'text', 'txt');
+call flashback.add_block('- `LINUX_KERNEL_TYPE`: `standard` for generic kernel, `tiny` bare minimum configuration for small kernels, or `preempt-rt` applies preempt realtime patch.
+- `KERNEL_FEATURES`: list of features to enable. Features are set of patches and configuration fragments.', 'text', 'list');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is a Kernel Metadata?');
 
--- page 201
+call flashback.add_block('*features/sample.scc*', 'text', 'txt');
+call flashback.add_block('define KFEATURE_DESCRIPTION "Enable Sample Driver"
+
+kconf hardware enable-sample-driver.cfg
+patch add-sample-driver.patch', 'code', 'bb');
+call flashback.add_block('KERNEL_FEATURES += "features/sample.scc"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Write a simple kernel metadata specifying a configuration and a patch?');
+
+call flashback.add_block('A distribution layer allows to change the defaults that are provided by `openembedded-core` or `poky`.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is advantage of creating a distribution layer?');
+
+call flashback.add_block('conf/distro/<distro>.conf', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where is the configuration for a distro layer?');
+
+call flashback.add_block('DISTRO = "distro"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is mandatory in a distro layer config file?');
+
+call flashback.add_block('conf/distro/poky.conf', 'text', 'path');
+call flashback.add_block('DISTRO_NAME = "distro description"', 'code', 'bb');
+call flashback.add_block('DISTRO_VERSION = "1.2.3"', 'code', 'bb');
+call flashback.add_block('MAINTAINER = "Brian Salehi <briansalehi@proton.me>"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What informational configuration variables are used in a distro layer config file?');
+
+call flashback.add_block('DISTRO_FEATURES', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in distro layers to toggle features?');
+
+call flashback.add_block('COMBINED_FEATURES', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable holds the intersection of distro and machine features?');
+
+call flashback.add_block('TCMODE ??= "default"', 'code', 'bb');
+call flashback.add_block('The following file is included:', 'text', 'txt');
+call flashback.add_block('conf/distro/include/tcmode-${TCMODE}.inc', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Define a toolchain in a distro layer?');
+
+call flashback.add_block('poky/meta-poky/conf/bblayers.conf.sample', 'code', 'bb');
+call flashback.add_block('poky/meta-poky/conf/local.conf.sample', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What sample files are created in distro layers?');
+
+call flashback.add_block('TEMPLATECONF', 'code', 'bb');
+call flashback.add_block('It is set in:', 'text', 'txt');
+call flashback.add_block('${OEROOT}/.templateconf', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable holds the path to sample config files?');
+
+call flashback.add_block('An image is the top level recipe.', 'text', 'txt');
+call flashback.add_block('Image layers are used alongside the machine definition.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is an image?');
+
+call flashback.add_block('machine layer describes the hardware and its capabilities, whereas image layer is architecture agnostic and defines how the root filesystem is built.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the difference between an image and a machine layer?');
+
+call flashback.add_block('meta-*/recipes*/images/*.bb', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where is the location of images?');
+
+call flashback.add_block('- `core-image-base`
+- `core-image-minimal`
+- `core-image-minimal-dev`
+- `core-image-x11`
+- `core-image-weston`
+- `core-image-rt`', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the common images used in poky?');
+
+call flashback.add_block('A description and a license.', 'text', 'txt');
+call flashback.add_block('Images inherit from `core-image` class.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What an image is made of?');
+
+call flashback.add_block('core-image', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What class is inherited by images?');
+
+-- page 212
 
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'sh');
 call flashback.add_block('', 'code', 'bb');
 call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
-
--- page 255
-
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
-
--- page 312
