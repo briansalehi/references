@@ -1327,53 +1327,45 @@ call flashback.add_block('make menuconfig', 'code', 'sh');
 call flashback.add_block('make', 'code', 'sh');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use a SDK to build kernel?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool helps to generate a recipe, modify an existing recipe or upgrade a recipe to use a newer upstream.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the advantages of using devtool?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('${BUILDDIR}/workspace', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where is devtool located?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('${BUILDDIR}/workspace/sources/', 'text', 'path');
+call flashback.add_block('devtool adds or appends recipes to this layer so that the recipes point to a local path for their sources.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where does devtool manage sources?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool add <recipe> <fetchuri>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Create a new recipe with devtool?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool modify <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Modify a recipe with devtool?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool upgrade -V <version> <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Upgrade a recipe with devtool?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool edit-recipe <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Edit a recipe with an editor using devtool?');
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+call flashback.add_block('devtool build <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Build a recipe with devtool?');
+
+call flashback.add_block('devtool build-image <image>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Build an image with the additional devtool recipes?');
+
+call flashback.add_block('devtool deploy-target <recipe> <target>', 'code', 'sh');
+call flashback.add_block('Target should be live and running ssh server.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Upload the recipes packages to the target using devtool?');
+
+call flashback.add_block('devtool update-recipe <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Generate patches from git commits made locally with devtool?');
+
+call flashback.add_block('devtool reset <recipe>', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Remove a recipe from devtool?');
+
+-- page 292 - 300
 
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'sh');
