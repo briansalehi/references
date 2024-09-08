@@ -1016,7 +1016,364 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('core-image', 'code', 'bb');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What class is inherited by images?');
 
--- page 212
+call flashback.add_block('IMAGE_BASENAME ??= "${PN}"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image as the generated image name?');
+
+call flashback.add_block('IMAGE_INSTALL', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image to hold the list of packages to be installed?');
+
+call flashback.add_block('IMAGE_ROOTFS_SIZE', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image as the root filesystem size?');
+
+call flashback.add_block('IMAGE_FEATURES', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image to hold the list of features used in the image?');
+
+call flashback.add_block('IMAGE_FSTYPES', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image to hold the list of formats to be used to create the image?');
+
+call flashback.add_block('IMAGE_LINGUAS', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image to hold the list of locales to be supported?');
+
+call flashback.add_block('IMAGE_PKGTYPE ??= "deb,rpm,ipk,tar"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image as the package type used by the build system?');
+
+call flashback.add_block('IMAGE_POSTPROCESS_COMMAND', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image as shell commands to run at post process?');
+
+call flashback.add_block('EXTRA_IMAGEDEPENDS', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used in an image as recipes to be built with the image?');
+
+call flashback.add_block('An empty directory is created for the root filesystem.', 'text', 'txt');
+call flashback.add_block('Packages from `IMAGE_INSTALL` are installed into it using the package mangaer.', 'text', 'txt');
+call flashback.add_block('One or more image files are created based on `IMAGE_FSTYPE` value.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the first steps of image creation?');
+
+call flashback.add_block('Root filesystem creation is specified in the `IMAGE_PKGTYPE` configuration variable.', 'text', 'txt');
+call flashback.add_block('It should be defined in the image recipe, otherwise the first package type defined in `PACKAGE_CLASSES` will be used.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variables change how root filesystem is created?');
+
+call flashback.add_block('poky/meta/classes/rootfs_${IMAGE_FSTYPE}.bbclass', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where are the root filesystem related files located in poky?');
+
+call flashback.add_block('poky/meta/classes/image_types.bbclass', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where are the image type instructions located?');
+
+call flashback.add_block('There should be class that inherits `image_types`.', 'text', 'txt');
+call flashback.add_block('It has to define function `IMAGE_CMD:<type>`.', 'text', 'txt');
+call flashback.add_block('Append this class to `IMAGE_TYPES` configuration variable.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the steps to creating an image type?');
+
+call flashback.add_block('Common conversion types: `gz`, `bz2`, `sha256sum`, `bmap`.', 'text', 'txt');
+call flashback.add_block('There should be a class that inherits `image_types`.', 'text', 'txt');
+call flashback.add_block('It has to define function `CONVERSION_CMD:<type>`.', 'text', 'txt');
+call flashback.add_block('Append this class to `CONVERSIONTYPES`.', 'text', 'txt');
+call flashback.add_block('Append valid conversions to `IMAGE_TYPES`.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the steps to creating an image conversion type?');
+
+call flashback.add_block('The final image names end in `.wks` or `.wks.in`.', 'text', 'txt');
+call flashback.add_block('WKS_FILE = "sample.wks.in"', 'code', 'bb');
+call flashback.add_block('IMAGE_FSTYPES = "wic.bmap wic"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use wic to create a flashable image?');
+
+call flashback.add_block('bmaptool is an alternative to dd, skipping uninitialized contents in partitions.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the use cases of bmaptool?');
+
+-- page 220 pending on clear description
+
+call flashback.add_block('A package group is a class that inherits from `packagegroup` class.', 'text', 'txt');
+call flashback.add_block('Generated package group binary files will not be installed, but they require other packages.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the structure of a package group?');
+
+call flashback.add_block('PACKAGE_ARCH ?= "all"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the required configuration variable in a package group class?');
+
+call flashback.add_block('- packagegroup-base
+- packagegroup-core-boot
+- packagegroup-core-buildessential
+- packagegroup-core-nfs-client
+- packagegroup-core-nfs-server
+- packagegroup-core-tools-debug
+- packagegroup-core-tools-profile', 'text', 'list');
+call flashback.add_block('meta/recipes-core/packagegroups/packagegroup-core-tools-debug.bb', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the common package groups?');
+
+call flashback.add_block('A sysroot is the logical root directory for headers and libraries where compiler looks for headers and runtime linker looks for libraries.', 'text', 'txt');
+call flashback.add_block('A sysroot in yocto could hold kernel headers, C libraries and others.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where is a sysroot directory?');
+
+call flashback.add_block('Instead of global sysroot, bitbake implements per-recipe sysroot.', 'text', 'txt');
+call flashback.add_block('Before the actual build, each recipe prepares its own sysroot.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the concept of per-recipe sysroot?');
+
+call flashback.add_block('Contains libraries and headers only for the recipes it `DEPENDS` on.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What a recipe sysroot is made of?');
+
+call flashback.add_block('${WORKDIR}/recipe-sysroot', 'text', 'path');
+call flashback.add_block('${WORKDIR}/recipe-sysroot-native', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where is the recipe sysroot located?');
+
+call flashback.add_block('At the end of the build, each recipe produces its destination sysroot, which can be used as input for other recipes to generate their own sysroot.', 'text', 'txt');
+call flashback.add_block('${WORKDIR}/sysroot-destdir', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the output recipe sysroot used by other dependent recipes?');
+
+call flashback.add_block('Python and Shell', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'In what script languages can recipes be written?');
+
+call flashback.add_block('`bb`: to access bitbake's internal functions.', 'text', 'txt');
+call flashback.add_block('`os`: operating system interface', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What Python modules are automatically included when used?');
+
+call flashback.add_block('Anonymous Python functions are executed during parsing.', 'text', 'txt');
+call flashback.add_block('python __anonymous() {
+    if d.getVar("foo", True) == "example":
+        d.setVar("bar", "result")
+}', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Write an anonymous Python function in a recipe?');
+
+call flashback.add_block('do_install() {
+    echo "Build OS: "${@os.uname()[0].lower()}"
+}', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Write an inline Python function in a recipe?');
+
+call flashback.add_block('d.getVar("X", expand=False)', 'code', 'python');
+call flashback.add_block('d.setVar("X", "value")', 'code', 'python');
+call flashback.add_block('d.appendVar("X", "value")', 'code', 'python');
+call flashback.add_block('d.prependVar("X", "value")', 'code', 'python');
+call flashback.add_block('d.expand(expression)', 'code', 'python');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Access <code>D</code> configuration variable in recipe tasks?');
+
+call flashback.add_block('Variable flags can be used to store information on tasks and variables.', 'text', 'txt');
+call flashback.add_block('More variable flags can be added freely.', 'text', 'txt');
+call flashback.add_block('VARIABLE[anything] = "value"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the use cases of variable flags?');
+
+call flashback.add_block('VARIABLE[md5sum] = "..."', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag is used to store the result of md5 hash?');
+
+call flashback.add_block('By making each directory, it would become the new working directory for the task.', 'text', 'txt');
+call flashback.add_block('As a consequence, the last directory specified in `dirs` becomes the working directory of the task.', 'text', 'txt');
+call flashback.add_block('do_compile[dirs] = "${B}"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag can be used to make a directory before a task runs?');
+
+call flashback.add_block('do_settime[noexec] = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag can be used to disable the execution of the task?');
+
+call flashback.add_block('The task will always be executed.', 'text', 'txt');
+call flashback.add_block('do_menuconfig[nostamp] = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag can be used to disable timestamp modification each time a task runs?');
+
+call flashback.add_block('do_settime[doc] = "Set the current time in ${TIME}"', 'code', 'bb');
+call flashback.add_block('Task documentation will be display by `listtasks` recipe.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag can be used to store task documentation?');
+
+call flashback.add_block('do_patch[depends] = "quilt-native:do_populate_sysroot"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What variable flag can be used to add a dependency between specific tasks?');
+
+call flashback.add_block('PACKAGECONFIG[<feature>] = "args"', 'code', 'bb');
+call flashback.add_block('Takes the list of up to 6 comma-separated arguments.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable controls build on a per feature granularity?');
+
+call flashback.add_block('PACKAGECONFIG[<feature>] = ""', 'code', 'bb');
+call flashback.add_block('1. if the <feature> is enabled, uses this argument in `do_configuration` task.
+2. if the <feature> is disabled, this argument will be added to `EXTRA_OECONF`.
+3. if the <feature> is enabled, takes this argument as build dependency in `DEPENDS`.
+4. if the <feature> is enabled, takes this argument as runtime dependency in `RDEPENDS`.
+5. if the <feature> is enabled, takes this argument as additional recommendation in `RRECOMMENDS`.
+6. any conflicting `PACKAGECONF` settings for this feature.', 'text', 'list');
+call flashback.add_block('Unused arguments can be ommited or left blank.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What are the arguments used by <code>PACKAGECONIFG</code> configuration variable?');
+
+call flashback.add_block('PACKAGECONFIG ??= "wifi bluetooth openvpn"', 'code', 'bb');
+call flashback.add_block('PACKAGECONFIG[wifi] = "--enable-wifi, --disable-wifi, wpa-supplicant, wpa-supplicant"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Conditionally configure wifi feature in a package if it is enabled?');
+
+call flashback.add_block('PACKAGECONFIG ??= "wifi bluetooth openvpn"', 'code', 'bb');
+call flashback.add_block('PACKAGECONFIG[bluez] = "--enable-bluetooth, --disable-bluetooth, bluez5, bluez5"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Conditionally configure bluetooth feature in a package if it is enabled?');
+
+call flashback.add_block('PACKAGECONFIG ??= "wifi bluetooth openvpn"', 'code', 'bb');
+call flashback.add_block('PACKAGECONFIG[openvpn] = "--enable-openvpn, --disable-openvpn, , openvpn"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Conditionally configure openvpn feature in a package if it is enabled?');
+
+call flashback.add_block('PACKAGECONFIG:append = " <feature>"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Add a feature in a recipe configuration?');
+
+call flashback.add_block('PACKAGECONFIG:append:pn-<recipe> = " <feature>"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Add a feature in a distro configuration?');
+
+call flashback.add_block('poky/scripts/contrib/list-packageconfig-flags.py', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'List available <code>PACKAGECONFIG</code> flags?');
+
+call flashback.add_block('The signature of this function is as follows:', 'text', 'txt');
+call flashback.add_block('PACKAGECONFIG = "${@bb.utils.contains(<variable>, <value>, <true_value>, <false_value>, d)}"', 'code', 'bb');
+call flashback.add_block('Example:', 'text', 'txt');
+call flashback.add_block('PACKAGECONFIG ??= "${@bb.utils.contains(''DISTRO_FEATURES'', ''bluetooth'', ''bluez'', '''', d)}"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Check if a value exists in varaible?');
+
+call flashback.add_block('PACKAGECONFIG ??= "${@bb.utils.filter(<variable>, <flag>, d)}"', 'code', 'bb');
+call flashback.add_block('Example:', 'text', 'txt');
+call flashback.add_block('PACKAGECONFIG ??= "${@bb.utils.filter(''DISTRO_FEATURES'', ''3g_system'', d)}"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Using inline Python functions return all the values of a variable for a specific flag?');
+
+call flashback.add_block('PACKAGES = "${PN}-src ${PN}-gdb ${PN}-staticdev ${PN}-ev ${PN}-doc ${PN}-locale ${PACKAGE_BEFORE_PN} ${PN}', 'code', 'bb');
+call flashback.add_block('`${PACKAGE_BEFORE_PN}` allows to pick files normally included in the default package in another.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable holds the list of packages to be built?');
+
+call flashback.add_block('PACKAGE_DYNAMIC', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable allows to check dependencies?');
+
+call flashback.add_block('ALLOW_EMPTY', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable allows creation of empty packages?');
+
+call flashback.add_block('CONFLICTS', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable is used to prevent overwriting during the update process?');
+
+call flashback.add_block('FILES', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable lists the files to be included in a package?');
+
+-- page 251
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+-- page 261
+
+call flashback.add_block('LIC_FILES_CHKSUM', 'code', 'bb');
+call flashback.add_block('LIC_FILES_CHKSUM = "
+    file://COPYING;md5=...
+    file://src/main.c;beginline=3;endline=20;md5sum=..."', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variable tracks the changes in licenses?');
+
+call flashback.add_block('Every recipe must have a `LIC_FILES_CHKSUM` unless `LICENSE` is set to `CLOSED`.', 'text', 'txt');
+call flashback.add_block('LICENSE = "CLOSED"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Which recipes should contain licensing information?');
+
+call flashback.add_block('As an example of a closed source project:', 'text', 'txt');
+call flashback.add_block('INCOMPATIBLE_LICENSE = "GPL-3.0* LPLG-3.0* AGPL-3.0*"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Specify which licenses cannot be integrated into the image?');
+
+call flashback.add_block('LICENSE_FLAGS = "commercial"', 'code', 'bb');
+call flashback.add_block('To build a package with a commercial component, the package must be in the `LICENSE_FLAGS_ACCEPTED`.', 'text', 'txt');
+call flashback.add_block('LICENSE_FLAGS_ACCEPTED = "commercial_gst-plugins-ugly"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Define a license for commercial components?');
+
+call flashback.add_block('${BUILDDIR}/tmp/deploy/licenses/<image>/license.manifest', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where does bitbake generate the manifest of all licenses?');
+
+call flashback.add_block('COPY_LIC_DIRS = "1"', 'code', 'bb');
+call flashback.add_block('COPY_LIC_MANIFEST = "1"', 'code', 'bb');
+call flashback.add_block('LICENSE_CREATE_PACKAGE = "1"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Include the license manifest into the root filesystem?');
+
+-- page 265
+
+call flashback.add_block('compilers, linkers, libraries, debuggers, custom utilities.', 'text', 'list');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What tools does an SDK provide?');
+
+call flashback.add_block('The toolchain in the SDKs is self-contained and objects are linked to an SDK embedded libc.', 'text', 'txt');
+call flashback.add_block('These SDKs come in the form of a shell script.', 'text', 'txt');
+call flashback.add_block('Extracting this shell script extracts the tools and sets up the environment.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the form of an SDK generated by poky?');
+
+call flashback.add_block('To develop a bootloader or the kernel, a generic SDK can be used.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What SDK can be used to do low level development?');
+
+call flashback.add_block('The recipe `meta-toolchain` generates a generic SDK.', 'text', 'txt');
+call flashback.add_block('bitbake meta-toolchain', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Create a generic SDK for bootloader and kernel development?');
+
+call flashback.add_block('${BUILDDIR}/tmp/deploy/sdk/', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Where will be the generated generic SDK stored?');
+
+call flashback.add_block('The image-based SDKs are used to develop and build applications for a target.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What SDK can be used to develop applications running on a target?');
+
+call flashback.add_block('populate_sdk', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What task is responsible for generating an SDK?');
+
+call flashback.add_block('bitbake -c populate_sdk core-image-minimal', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Generate an SDK for an image?');
+
+call flashback.add_block('List of target packages to be installed:', 'text', 'txt');
+call flashback.add_block('TOOLCHAIN_TARGET_TASK', 'code', 'bb');
+call flashback.add_block('List of host packages to be installed:', 'text', 'txt');
+call flashback.add_block('TOOLCHAIN_HOST_TASK', 'code', 'bb');
+call flashback.add_block('TOOLCHAIN_HOST_TASK:append = " nativesdk-curl"', 'code', 'bb');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What configuration variables control what will be installed in an SDK?');
+
+call flashback.add_block('To install an SDK, retrieve the generated script and execute it.', 'text', 'txt');
+call flashback.add_block('The script asks where to install the SDK, having a default path to:', 'text', 'txt');
+call flashback.add_block('/opt/poky/<version>/', 'text', 'path');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Install an SDK?');
+
+call flashback.add_block('source /opt/poky/<version>/environment-setup-cortexa8hf-neon-poky-linux-gnueabi', 'code', 'sh');
+call flashback.add_block('`PATH` will be updated and environment variables will be exported to help using the SDK.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use an installed SDK?');
+
+call flashback.add_block('CC, CFLAGS, CXX, CXXFLAGS, CPP,  CPPFLAGS, LD, LDFLAGS, ARCH, CROSS_COMPILE, GDB, OBJDUMP.', 'text', 'list');
+call flashback.add_block('The full list is in the environment script.', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What environment variables will be exported by an SDK?');
+
+call flashback.add_block('$CC -o program main.c', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use a SDK to build an application for a target?');
+
+call flashback.add_block('The `LDFLAGS` variable is set to be used with the C compiler.', 'text', 'txt');
+call flashback.add_block('To build the Linux kernel, unset this variable:', 'text', 'txt');
+call flashback.add_block('unset LDFLAGS', 'code', 'sh');
+call flashback.add_block('make menuconfig', 'code', 'sh');
+call flashback.add_block('make', 'code', 'sh');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'Use a SDK to build kernel?');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'code', 'bb');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
 
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'sh');
