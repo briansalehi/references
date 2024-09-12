@@ -1,27 +1,66 @@
-create temp table if not exists temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
+create temp table if not exists flashback.temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
 create or replace procedure flashback.add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
-create temp table temp_sections (t_index integer generated always as identity primary key, t_reference varchar(2000));
+call create_resource(24, 'GoogleTest Documentation', 'website', 2, 5, 'https://google.github.io/googletest');
 
-insert into temp_sections (t_reference) values ('');
--- subject_id integer
--- resource_name varchar
--- resource_type resource_type (book, video, website, mailing list, course, manual, slides, unknown)
--- pattern_index integer
--- resource_reference varchar
-call flashback.create_resource(0, '', '', 0, '');
-drop table temp_sections;
+call add_block('code', 'cpp', 'ASSERT_*');
+call add_block('text', 'txt', 'Generate fatal failures when they fail and abort the current function.');
+call add_block('code', 'cpp', 'EXPECT_*');
+call add_block('text', 'txt', 'Generate nonfatal failures. They are preferred unless it doesn''t make sense to continue when the assertion in question fails.');
+call create_note_with_name('GoogleTest Documentation', 0, 'How many assertion variations exist?');
 
--- subject_index integer
--- name_string varchar
--- type_string resource_type
--- section_pattern_index integer
--- sections integer
--- resource_reference varchar
-call flashback.create_resource_with_sequenced_sections(0, '', '', 0, 0, ''); -- subject_id, resource_name, resource_type(book, video, website, mailing list, course, manual, slides, unknown), section_pattern_id(1:Chapter, 2:Page, 3:Course, 4:Video), sections, resource_reference
+call add_block('code', 'cpp', 'ASSERT_EQ(true, true) << "This test always asserts on " << true;');
+call add_block('code', 'cpp', 'EXPECT_EQ(std::vector{}.size(), 0) << "This test always asserts on " << 0;');
+call create_note_with_name('GoogleTest Documentation', 0, 'Provide a custom failure message to an assertion?');
 
+call add_block('text', 'txt', 'Anything that can be streamed to an `std::ostream` can be streamed to an assertion macro.');
+call add_block('text', 'list', 'Literal strings, C-Style strings, `std::basic_string<Char>`');
+call create_note_with_name('GoogleTest Documentation', 0, 'What string types are allowed to extract into assertions?');
 
-call flashback.add_block('text', 'txt', '');
-call flashback.add_block('code', 'sql', '');
-call flashback.add_block('text', 'txt', '');
-call flashback.create_note_with_name('Resource Name', 0, '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 0, '');
