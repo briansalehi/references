@@ -2,12 +2,7 @@ create temp table if not exists temp_blocks (row_number serial, t_content text, 
 delete from temp_blocks;
 
 create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
-language plpgsql
-as $$
-begin
-    insert into temp_blocks (t_content, t_type, t_language) values (content, type, language);
-end;
-$$;
+language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language) values (content, type, language); end; $$;
 
 call flashback.add_block('The starting point of execution is determined by the mode, either from the root of the source tree, or a cmake script file provided as an argument to `cmake`.', 'text', 'txt');
 call flashback.create_note_with_name('Modern CMake for C++', 2, 'How many execution modes exist in CMake?');

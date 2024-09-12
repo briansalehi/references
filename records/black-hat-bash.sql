@@ -2,12 +2,7 @@ create temp table if not exists temp_blocks (row_number serial, t_content text, 
 delete from temp_blocks;
 
 create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
-language plpgsql
-as $$
-begin
-    insert into temp_blocks (t_content, t_type, t_language) values (content, type, language);
-end;
-$$;
+language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language) values (content, type, language); end; $$;
 
 
 -- subject_index integer
