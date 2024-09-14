@@ -1,11 +1,11 @@
 # Linux Kernel Development
 [Practices](kernel.md)
 
-## ★★★ [Linux Device Driver Development](resources/linux-devixe-driver-development.md)
-[<img src="../../covers/9781803240060.jpg" width="200"/>](resources/linux-devixe-driver-development.md)
+## ★★★ [Linux Device Driver Development](resources/linux-device-driver-development.md)
+[<img src="../../covers/9781803240060.jpg" width="200"/>](resources/linux-device-driver-development.md)
 
-## ★★★ [Mastering Linux Device Driver Development](resources/mastering-linux-devixe-driver-development.md)
-[<img src="../../covers/9781789342208.jpg" width="200"/>](resources/mastering-linux-devixe-driver-development.md)
+## ★★★ [Mastering Linux Device Driver Development](resources/mastering-linux-device-driver-development.md)
+[<img src="../../covers/9781789342208.jpg" width="200"/>](resources/mastering-linux-device-driver-development.md)
 
 ## ★★★ [Linux Kernel Programming](resources/linux-kernel-programming.md)
 [<img src="../../covers/9781803232225.jpg" width="200"/>](resources/linux-kernel-programming.md)
