@@ -1,5 +1,5 @@
-create temp table if not exists flashback.temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-create or replace procedure flashback.add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
+create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
+create procedure add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
 call add_block('text', 'txt', 'On all platforms, a moved-from string is usually empty. However, there is no guarantee and it is only in a valid but unspecified state.');
 call create_note_with_name('C++ Move Semantics: The Complete Guide', 15, 'What is the state of a moved-from string?');
@@ -134,3 +134,5 @@ constexpr pair(typename decay_t<T1>, typename decay_t<T2>) make_pair(T1&& a, T2&
 }
 } // std');
 call create_note_with_name('C++ Move Semantics: The Complete Guide', 15, 'Pass string literals as universal references?');
+
+drop procedure add_block;

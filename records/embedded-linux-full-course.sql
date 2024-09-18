@@ -1,8 +1,5 @@
-create temp table if not exists temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-delete from temp_blocks;
-
-create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
-language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language) values (content, type, language); end; $$;
+create temp table temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
+create procedure add_block(content text, type flashback.block_type, language varchar(10)) language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language) values (content, type, language); end; $$;
 
 call flashback.add_block('Yocto always builds binary packages.', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What is the output of yocto?');
@@ -1367,3 +1364,6 @@ call flashback.add_block('', 'code', 'sh');
 call flashback.add_block('', 'code', 'bb');
 call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+
+drop procedure add_block;
+drop temp table temp_blocks;

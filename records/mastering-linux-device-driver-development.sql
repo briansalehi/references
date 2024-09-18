@@ -1,5 +1,5 @@
-create temp table if not exists flashback.temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-create or replace procedure flashback.add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
+create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
+create procedure add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
 call create_resource(11, 'Mastering Linux Device Driver Development', 'book', 1, 14, 'https://subscription.packtpub.com/book/iot-hardware/9781789342048');
 
@@ -107,3 +107,6 @@ call create_note_with_name('Mastering Linux Device Driver Development', 1, '');
 call add_block('text', 'txt', '');
 call add_block('code', 'c', '');
 call create_note_with_name('Mastering Linux Device Driver Development', 1, '');
+
+drop procedure add_block;
+drop temp table temp_blocks;

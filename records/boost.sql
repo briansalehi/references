@@ -1,8 +1,5 @@
-create temp table if not exists temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-delete from temp_blocks;
-
-create or replace procedure flashback.add_block(content text, type flashback.block_type, language varchar(10))
-language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language, t_position) values (content, type, language); end; $$;
+create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
+create procedure add_block(content text, type flashback.block_type, language varchar(10)) language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language, t_position) values (content, type, language); end; $$;
 
 call flashback.add_block('A pair of values consisting of an IP address and a protocol port number that uniquely identifies a particular application running on a particular host in a computer network is called an endpoint.', 'text', 'txt');
 call flashback.create_note_with_name('Boost.Asio C++ Network Programming Cookbook', 1, 'What information does an endpoint contain?');
@@ -103,3 +100,6 @@ call flashback.add_block('', 'code', 'cpp');
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'cpp');
 call flashback.create_note_with_name('Boost.Asio C++ Network Programming Cookbook', 1, '');
+
+drop procedure add_block;
+drop temp table temp_blocks;
