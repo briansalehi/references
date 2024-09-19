@@ -1366,4 +1366,3 @@ call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

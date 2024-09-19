@@ -14,4 +14,3 @@ call add_block('code', 'xxx', '');
 call create_note_with_name('Resource Name', 0, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

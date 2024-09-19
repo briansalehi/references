@@ -61,4 +61,3 @@ call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Black Hat Bash', 1, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

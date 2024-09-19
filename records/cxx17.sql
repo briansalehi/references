@@ -16,4 +16,3 @@ call flashback.add_block('', 'code', 'cpp');
 call flashback.create_note_with_name('Language Features of C++17 Cheatsheet', 1, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

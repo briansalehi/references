@@ -109,4 +109,3 @@ call add_block('code', 'c', '');
 call create_note_with_name('Mastering Linux Device Driver Development', 1, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

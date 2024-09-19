@@ -139,4 +139,3 @@ call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Modern CMake for C++', 2, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

@@ -102,4 +102,3 @@ call flashback.add_block('', 'code', 'cpp');
 call flashback.create_note_with_name('Boost.Asio C++ Network Programming Cookbook', 1, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;

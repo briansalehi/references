@@ -10,4 +10,3 @@ call flashback.add_block('', 'code', 'cpp');
 call flashback.create_note_with_name('C++20 Features Cheatsheet', 1, '');
 
 drop procedure add_block;
-drop temp table temp_blocks;
