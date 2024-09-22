@@ -1111,7 +1111,7 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 call flashback.add_block('Python and Shell', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'In what script languages can recipes be written?');
 
-call flashback.add_block('`bb`: to access bitbake's internal functions.', 'text', 'txt');
+call flashback.add_block('`bb`: to access bitbake''s internal functions.', 'text', 'txt');
 call flashback.add_block('`os`: operating system interface', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, 'What Python modules are automatically included when used?');
 
@@ -1225,11 +1225,11 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 
 -- page 251
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+--call flashback.add_block('', 'text', 'txt');
+--call flashback.add_block('', 'code', 'sh');
+--call flashback.add_block('', 'code', 'bb');
+--call flashback.add_block('', 'text', 'txt');
+--call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
 
 -- page 261
 
@@ -1359,10 +1359,10 @@ call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Instit
 
 -- page 292 - 300
 
-call flashback.add_block('', 'text', 'txt');
-call flashback.add_block('', 'code', 'sh');
-call flashback.add_block('', 'code', 'bb');
-call flashback.add_block('', 'text', 'txt');
-call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
+--call flashback.add_block('', 'text', 'txt');
+--call flashback.add_block('', 'code', 'sh');
+--call flashback.add_block('', 'code', 'bb');
+--call flashback.add_block('', 'text', 'txt');
+--call flashback.create_note_with_name('Embedded Linux Full Course by Anisa Institute', 6, '');
 
 drop procedure add_block;
