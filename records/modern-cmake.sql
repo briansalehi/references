@@ -138,4 +138,6 @@ call flashback.add_block('', 'code', 'sh');
 call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Modern CMake for C++', 2, '');
 
+set_section_as_complete('Modern CMake for C++', 2);
+
 drop procedure add_block;
