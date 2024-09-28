@@ -8981,6 +8981,53 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7544	2684	sudo cmake --build glfw-build --target install	code	sh	2024-09-23 20:32:01.303471	4
 7545	2685	#include <GLFW/glfw3.h>\n#include <functional>\n#include <memory>\n\ntemplate<typename Deleter = std::function<void(GLFWwindow*)>>\nclass Window\n{\npublic:\n    explicit Window(char const* name)\n        : window{nullptr, glfwDestroyWindow}\n    {\n        try\n        {\n            glfwInit();\n            window.reset(glfwCreateWindow(800, 600, name, nullptr, nullptr));\n            glfwMakeContextCurrent(window.get());\n        }\n        catch (...)\n        {\n            /* handle exceptions */\n        }\n    }\n\n    virtual ~Window()\n    {\n        glfwTerminate();\n    }\n\n    void draw()\n    {\n    }\n\n    void show()\n    {\n        while (!glfwWindowShouldClose(window.get()))\n        {\n            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);\n            glClear(GL_COLOR_BUFFER_BIT);\n\n            draw();\n\n            glfwSwapBuffers(window.get());\n            glfwPollEvents();\n        }\n    }\n\nprivate:\n    std::unique_ptr<GLFWwindow, Deleter> window;\n};\n\nint main()\n{\n    Window window{"Sample"};\n    window.show();\n}	code	cpp	2024-09-23 20:32:01.305907	1
 7546	2686	#include <GLFW/glfw3.h>\n#include <functional>\n#include <memory>\n\nclass Window;\n\nvoid Window::draw()\n{\n    glBegin(GL_TRIANGLES);\n\n    glColor3f(1.0f, 0.0f, 0.0f);\n    glVertex3f(-0.8f, -0.4f, 0.0f);\n    glColor3f(0.0f, 1.0f, 0.0f);\n    glVertex3f(0.8f, -0.4f, 0.0f);\n    glColor3f(0.0f, 0.0f, 1.0f);\n    glVertex3f(0.0f, 0.8f, 0.0f);\n\n    glEnd();\n}\n\nint main()\n{\n    Window window{"Sample"};\n    window.show();\n}	code	cpp	2024-09-23 20:32:01.308282	1
+7547	2687	Beginning from C++17, compilers support template argument deduction for class templates:	text	txt	2024-09-28 14:30:48.18392	1
+7548	2687	std::pair p1{1, 2.0};	code	cpp	2024-09-28 14:30:48.18392	2
+7549	2687	std::pair<int, double> p2{1, 2.0};	code	cpp	2024-09-28 14:30:48.18392	3
+7550	2688	Starting with C++17, non-type template parameters can be declared as `auto`:	text	txt	2024-09-28 14:30:48.187622	1
+7551	2688	template<auto ...seq>\nstruct custom_sequence\n{\n};	code	cpp	2024-09-28 14:30:48.187622	2
+7552	2688	auto seq = std::integer_sequence<int, 0, 1, 2>{};	code	cpp	2024-09-28 14:30:48.187622	3
+7553	2688	auto seq2 = custom_sequeunce<0, 1, 2>{};	code	cpp	2024-09-28 14:30:48.187622	4
+7554	2689	Starting with C++17, parameter packs are available:	text	txt	2024-09-28 14:30:48.189625	1
+7555	2689	template<typename ...Ts>\nauto sum_fold_exp(Ts const& ...ts)\n{\nreturn (ts + ...);\n}	code	cpp	2024-09-28 14:30:48.189625	2
+7556	2689	template<typename ...Ts>\nauto print_fold(Ts const& ts)\n{\n    ((std::cout << ts << " "), ...);\n}	code	cpp	2024-09-28 14:30:48.189625	3
+7557	2690	Before C++17 when an integer was direct initialized by auto type deduction, it would be deduced as `std::initializer_list<int>`, but this is no longer the case:	text	txt	2024-09-28 14:30:48.191659	1
+7558	2690	auto x1{1,2,3,4}; // error: not a single element	code	cpp	2024-09-28 14:30:48.191659	2
+7559	2690	auto x2 = {1,2,3,4}; // std::initializer_list<int>	code	cpp	2024-09-28 14:30:48.191659	3
+7560	2690	auto x3{42}; // before C++17 std::initializer_list<int>, after C++17 int	code	cpp	2024-09-28 14:30:48.191659	4
+7561	2690	auto x4{42.0}; // double	code	cpp	2024-09-28 14:30:48.191659	5
+7562	2691	Since C++17, `constexpr` lambda functions are available:	text	txt	2024-09-28 14:30:48.19355	1
+7563	2691	auto identity = [](int x) constexpr { return x; };	code	cpp	2024-09-28 14:30:48.19355	2
+7564	2691	static_assert(identity(42) == 42);	code	cpp	2024-09-28 14:30:48.19355	3
+7565	2692	Since C++17, UTF-8 character literal is supported.	text	txt	2024-09-28 14:30:48.195565	1
+7566	2692	std::char8_t character{u8'x'};	code	cpp	2024-09-28 14:30:48.195565	2
+7567	2693	Since C++17 `this` can be captured by value:	text	txt	2024-09-28 14:30:48.197539	1
+7568	2693	#include <print>\n\nstruct sample\n{\n    int value;\n\n    sample(): value{}\n    {\n        auto print_by_reference = [this] { std::println("{}", value); };\n        auto print_by_value = [*this] { std::println("{}", value); };\n\n        print_by_reference();\n        print_by_value();\n\n        value = 42;\n\n        print_by_reference();\n        print_by_value();\n    }\n};\n\nint main()\n{\n    sample object{};\n}	code	cpp	2024-09-28 14:30:48.197539	2
+7569	2694	Inline variables are available since C++17:	text	txt	2024-09-28 14:30:48.198851	1
+7570	2694	inline custom_type variable{value};	code	cpp	2024-09-28 14:30:48.198851	2
+7571	2695	Since C++17 declaration of nested namespaces can be summerized:	text	txt	2024-09-28 14:30:48.200018	1
+7572	2695	namespace A::B::C { }	code	cpp	2024-09-28 14:30:48.200018	2
+7573	2696	Structured bindings were introduced in C++17:	text	txt	2024-09-28 14:30:48.201296	1
+7574	2696	auto [position, found] = container.find(42);	code	cpp	2024-09-28 14:30:48.201296	2
+7575	2697	Starting from C++17 if statement can have initializers:	text	txt	2024-09-28 14:30:48.202394	1
+7576	2697	if (auto result = m.insert({key, value}); result.second)\n{\n    std::println("{} = {}", key, value);\n}	code	cpp	2024-09-28 14:30:48.202394	2
+7577	2698	Compile-time if expressions are available since C++17:	text	txt	2024-09-28 14:30:48.203705	1
+7578	2698	#include <type_traits>\n\nstruct basic_task\n{\n    virtual void do_something() = 0;\n};\n\nstruct task: public basic_task\n{\n    void do_something() override { }\n};\n\ntemplate<typename T>\nvoid evaluate(T&& arg)\n{\n    if constexpr (std::is_integral_v<T>) { }\n    else if constexpr (std::is_same_v<std::decay_t<T>, char const*>) { }\n    else if constexpr (std::is_base_of_v<basic_task, T>) { }\n}\n\nint main()\n{\n    evaluate(42);\n    evaluate("something");\n    evaluate(task{});\n}	code	cpp	2024-09-28 14:30:48.203705	2
+7579	2699	C++17 introduced hexadecimal floating-point literals:	text	txt	2024-09-28 14:30:48.205002	1
+7580	2699	auto number{0x1f.1p0};	code	cpp	2024-09-28 14:30:48.205002	2
+7581	2700	Starting from C++17, the underlying type in scoped enumerations can be explicitly specified:	text	txt	2024-09-28 14:30:48.206308	1
+7582	2700	enum class color: char { red, blue, green };	code	cpp	2024-09-28 14:30:48.206308	2
+7583	2700	color x{3}, y{88}, z{128}; // must be non-narrowing value	code	cpp	2024-09-28 14:30:48.206308	3
+7584	2700	color w{129}; // error	code	cpp	2024-09-28 14:30:48.206308	4
+7585	2701	C++17 introduced `[[fallthrough]]` attribute:	text	txt	2024-09-28 14:30:48.207819	1
+7586	2701	switch (type)\n{\ncase direction:\n    [[fallthrough]];\ncase position:\n    // ...\ncase weight:\n    // ...\n}	code	cpp	2024-09-28 14:30:48.207819	2
+7587	2702	C++17 introduced `[[nodiscard]]` attribute:	text	txt	2024-09-28 14:30:48.209214	1
+7588	2702	template<typename K, typename V>\n[[nodiscard]] std::pair<K, V> make_pair(K&& key, V&& value)\n{\n    return std::pair<std::decay_t<K>, std::decay_t<V>>{std::forward<K>(key), std::forward<V>(value)};\n}	code	cpp	2024-09-28 14:30:48.209214	2
+7589	2703	C++17 introduced `[[maybe_unused]]`:	text	txt	2024-09-28 14:30:48.210575	1
+7590	2703	[[maybe_unused]] static void f() {}	code	cpp	2024-09-28 14:30:48.210575	2
+7591	2703	[[maybe_unused]] int x = 42;	code	cpp	2024-09-28 14:30:48.210575	3
+7592	2704	Since C++17 it is possible to write an assertion without message:	text	txt	2024-09-28 14:30:48.211926	1
+7593	2704	static_assert(VERSION >= 2);	code	cpp	2024-09-28 14:30:48.211926	2
 \.
 
 
@@ -11845,6 +11892,24 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2684	1466	Install GLFW from source?	open	2024-09-23 20:32:01.303471	2024-09-23 20:32:01.303471
 2685	1466	Create a window with GLFW?	open	2024-09-23 20:32:01.305907	2024-09-23 20:32:01.305907
 2686	1467	Draw a colored triangle?	open	2024-09-23 20:32:01.308282	2024-09-23 20:32:01.308282
+2687	1486	When do we need to specify template arguments for class templates?	open	2024-09-28 14:30:48.18392	2024-09-28 14:30:48.18392
+2688	1486	Use compile-time type deduction to declare a non-type template parameter?	open	2024-09-28 14:30:48.187622	2024-09-28 14:30:48.187622
+2689	1486	What is the substitution to recurring templates?	open	2024-09-28 14:30:48.189625	2024-09-28 14:30:48.189625
+2690	1486	What is the initializer list defect when initializing an integer?	open	2024-09-28 14:30:48.191659	2024-09-28 14:30:48.191659
+2691	1486	Declare a compile-time evaluated lambda?	open	2024-09-28 14:30:48.19355	2024-09-28 14:30:48.19355
+2692	1486	What is the smallest character code?	open	2024-09-28 14:30:48.195565	2024-09-28 14:30:48.195565
+2693	1486	Capture <code>this</code> in a lambda by value?	open	2024-09-28 14:30:48.197539	2024-09-28 14:30:48.197539
+2694	1486	Declare an inline variable?	open	2024-09-28 14:30:48.198851	2024-09-28 14:30:48.198851
+2695	1486	Define nested namespaces?	open	2024-09-28 14:30:48.200018	2024-09-28 14:30:48.200018
+2696	1486	Store the return values of a function into structured bindings?	open	2024-09-28 14:30:48.201296	2024-09-28 14:30:48.201296
+2697	1486	Initialize a variable used for evaluation in an if statement within the statement?	open	2024-09-28 14:30:48.202394	2024-09-28 14:30:48.202394
+2698	1486	Use compile-time if statement to check if template argument is integral, string, or a base of an object?	open	2024-09-28 14:30:48.203705	2024-09-28 14:30:48.203705
+2699	1486	Write a hexadecimal floating-point literal number?	open	2024-09-28 14:30:48.205002	2024-09-28 14:30:48.205002
+2700	1486	Direct initialize an enumeration?	open	2024-09-28 14:30:48.206308	2024-09-28 14:30:48.206308
+2701	1486	Explicitly specify fallthrough of a case in switch statement?	open	2024-09-28 14:30:48.207819	2024-09-28 14:30:48.207819
+2702	1486	Prevent function caller from discarding the return value?	open	2024-09-28 14:30:48.209214	2024-09-28 14:30:48.209214
+2703	1486	Specify that a variable is intentionally left unused?	open	2024-09-28 14:30:48.210575	2024-09-28 14:30:48.210575
+2704	1486	Write a static assertion without a message?	open	2024-09-28 14:30:48.211926	2024-09-28 14:30:48.211926
 \.
 
 
@@ -18126,6 +18191,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-09-27 08:13:12.835493	3	Bootlin
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
+101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 \.
 
 
@@ -19622,6 +19688,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	2
 1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
+1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 \.
 
 
@@ -21211,6 +21278,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 26	71
 26	96
 26	100
+6	101
 \.
 
 
@@ -21801,7 +21869,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7546, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7593, true);
 
 
 --
@@ -21829,7 +21897,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2686, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2704, true);
 
 
 --
@@ -21885,7 +21953,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 100, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 101, true);
 
 
 --
@@ -21906,7 +21974,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1485, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1486, true);
 
 
 --
