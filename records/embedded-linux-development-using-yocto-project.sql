@@ -1,8 +1,6 @@
 create temp table temp_blocks (row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
 create procedure add_block(content text, type flashback.block_type, language varchar(10)) language plpgsql as $$ begin insert into temp_blocks (t_content, t_type, t_language) values (content, type, language); end; $$;
 
-call flashback.create_resource_with_sequenced_sections(8, 'Embedded Linux Development Using Yocto Project', 'book', 1, 17, 'https://subscription.packtpub.com/book/security/9781804615065');
-
 call flashback.add_block('Poky is the default Yocto project reference distribution, which uses OpenEmbedded build system technology.', 'text', 'txt');
 call flashback.add_block('It is composed of a collection of tools, configuration files, and recipe data (known as metadata).', 'text', 'txt');
 call flashback.create_note_with_name('Embedded Linux Development Using Yocto Project', 1, 'What is Poky?');

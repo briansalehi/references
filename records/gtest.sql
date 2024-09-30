@@ -66,3 +66,4 @@ call add_block('code', 'cpp', '');
 call create_note_with_name('GoogleTest Documentation', 0, '');
 
 drop procedure add_block;
+drop table temp_block;
