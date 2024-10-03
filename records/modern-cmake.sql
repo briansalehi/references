@@ -28,7 +28,7 @@ call flashback.add_block('Each of these categories reside in different variable 
 call flashback.create_note_with_name('Modern CMake for C++', 2, 'How many variable categories exist in CMake?');
 
 call flashback.add_block('Variable names are case-sensitive and can include almost any character.', 'text', 'txt');
-call flashback.create_note_with_name('Modern CMake for C++', 2, 'What sensitivity do CMake variables follow?');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Are CMake variables case sensitivity?');
 
 call flashback.add_block('All variables are stored internally as strings, even if some commands can interpret them as values of other types like a list!', 'text', 'txt');
 call flashback.create_note_with_name('Modern CMake for C++', 2, 'What is the default type of variables in CMake?');
@@ -131,6 +131,168 @@ call flashback.add_block('set(foo "bar" PARENT_SCOPE)', 'code', 'cmake');
 call flashback.add_block('Note that propagating a variable to the outer scope is only affected to the outer scope above the current, but not further.', 'text', 'txt');
 call flashback.add_block('Also note that `PARENT_SCOPE` doesn''t change the variable in current scope.', 'text', 'txt');
 call flashback.create_note_with_name('Modern CMake for C++', 2, 'Propagate a variable in a block to the outer scope in a CMake listfile?');
+
+call flashback.add_block('CMake concatenates all elements into a string delimited by a semicolon.', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'How does a CMake list store its values?');
+
+call flashback.add_block('set(<name> <element>...)', 'code', 'cmake');
+call flashback.add_block('set(sample a list "of;five;elements")', 'code', 'cmake');
+call flashback.add_block('set(sample "a;list;of;five;elements")', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Create a list?');
+
+call flashback.add_block('By passing an unquoted list reference, we effectively send more arguments to the command:', 'text', 'txt');
+call flashback.add_block('message(${sample})', 'code', 'cmake');
+call flashback.add_block('Each elements will be an argument.', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What happens when an unquoted list is passed as a parameter?');
+
+call flashback.add_block('message("${sample}")', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Print the elements of a list?');
+
+call flashback.add_block('list(LENGTH <list> <result>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Get the size of a list?');
+
+call flashback.add_block('list(GET <list> <index>... <result>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Get the value of a particular element in the list?');
+
+call flashback.add_block('list(JOIN <list> <list> <result>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Combine two lists?');
+
+call flashback.add_block('list(SUBLIST <list> <index> <length> <result>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Extract a range of elements within a list?');
+
+call flashback.add_block('list(FIND <list> <value> <result>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Find an element within a list?');
+
+call flashback.add_block('list(APPEND <list> <element>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Push elements into a list?');
+
+call flashback.add_block('list(FILTER <list> <INCLUDE|EXCLUDE> REGEX <regex>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Filter elements within a list?');
+
+call flashback.add_block('list(INSERT <list> <element>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Insert elements into a list?');
+
+call flashback.add_block('list(POP_BACK <list> <result>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Pop the last element within a list?');
+
+call flashback.add_block('list(POP_FRONT <list> <result>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Pop the first element within a list?');
+
+call flashback.add_block('list(PREPEND <list> <element>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Push an element at the beginning of a list?');
+
+call flashback.add_block('list(REMOVE_ITEM <list> <value>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Remove an element by value from a list?');
+
+call flashback.add_block('list(REMOVE_AT <list> <index>...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Remove an element by index from a list?');
+
+call flashback.add_block('list(REMOVE_DUPLICATES <list>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Remove duplicate entries of a list?');
+
+call flashback.add_block('list(TRANSFORM <list> <action> ...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Transform elements of a list?');
+
+call flashback.add_block('list(REVERSE <list>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Reverse the elements of a list?');
+
+call flashback.add_block('list(SORT <list> ...)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Sort the elements of a list?');
+
+call flashback.add_block('if(<condition>)
+    <command>...
+elseif(<condition>)
+    <command>...
+else
+    <command>...
+endif()', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Write a conditional block?');
+
+call flashback.add_block('CMake supports `NOT`, `AND`, and `OR` operations.', 'text', 'txt');
+call flashback.add_block('NOT <condition>', 'code', 'cmake');
+call flashback.add_block('<condition> AND <condition>', 'code', 'cmake');
+call flashback.add_block('<condition> OR <condition>', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'How many conditional operators exist in CMake?');
+
+call flashback.add_block('<condition> AND ( <condition> OR <condition> )', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Write two nested conditional expressions?');
+
+call flashback.add_block('For legacy reasons, CMake will evaluate unquoted arguments as if they are variable references.', 'text', 'txt');
+call flashback.add_block('foo AND ( bar OR baz )', 'code', 'cmake');
+call flashback.add_block('if(CMAKE_CXX_EXTENSIONS)
+    <command>...
+endif()', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'How variables can be used as conditional operands?');
+
+call flashback.add_block('Strings are considered boolean true, only if they equal to any of the following case sensitive constants:', 'text', 'txt');
+call flashback.add_block('- `ON`
+- `Y`
+- `YES`
+- `TRUE`
+- non-zero number', 'text', 'list');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'How strings are evaluated as conditional operands?');
+
+call flashback.add_block('When a reference is used, the condition is considered boolean true only if the expanded value contains `ON`, `Y`, `YES`, `TRUE`, or a non-zero number.', 'text', 'txt');
+call flashback.add_block('set(x something)
+set(y "x")
+if (${y})
+    # reference ${y} first expands to x
+    # x is a known variable then it expands to "something"
+    # if("something") is evaluated to false
+endif()', 'code', 'cmake');
+call flashback.add_block('But when variable is used, the condition is considered boolean false only if the expanded value contains `OFF`, `NO` `FALSE`, `N`, `IGNORE`, `NOTFOUND`, a string appended with `-NOTFOUND`, an empty string, zero.', 'text', 'txt');
+call flashback.add_block('if(y)
+    # variable y evaluates to x
+    # but x will not be expanded anymore
+    # because x is not one of the false conditions, it evalues to true
+endif()', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What are the differences between a braced reference and an unbraced reference as a conditional operand?');
+
+call flashback.add_block('if(DEFINED <name>)', 'code', 'cmake');
+call flashback.add_block('if(DEFINED CACHE{<name>})', 'code', 'cmake');
+call flashback.add_block('if(DEFINED ENV{<name>})', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What is the best practice to check if a variable is defined?');
+
+call flashback.add_block('`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`', 'text', 'list');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What comparison operators are available for integral types?');
+
+call flashback.add_block('Same as integral comparison operators, but with `VERSION_` prefixed.', 'text', 'txt');
+call flashback.add_block('`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`', 'text', 'list');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What comparison operators are available for version type?');
+
+call flashback.add_block('Same as integral comparison operators, but with `STR` prefixed.', 'text', 'txt');
+call flashback.add_block('`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`', 'text', 'list');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'What comparison operators are available for string type?');
+
+call flashback.add_block('if(<variable> MATCHES <regex>)', 'code', 'cmake');
+call flashback.create_note_with_name('Modern CMake for C++', 2, 'Compare if a value matches with a regular expression?');
+
+-- CMAKE_MATCH_<n>
+-- simple checks
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cmake');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cmake');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cmake');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, '');
+
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cmake');
+call flashback.add_block('', 'code', 'sh');
+call flashback.add_block('', 'text', 'txt');
+call flashback.create_note_with_name('Modern CMake for C++', 2, '');
 
 call flashback.add_block('', 'text', 'txt');
 call flashback.add_block('', 'code', 'cmake');
