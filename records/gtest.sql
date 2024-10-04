@@ -76,7 +76,62 @@ protected:
     Queue<int> q2;
     Queue<int> q3;
 };');
-call create_note_with_name('GoogleTest Documentation', 1, 'Define a test fixture for a hypothetical Queue class?');
+call create_note_with_name('GoogleTest Documentation', 1, 'Define a test fixture for Queue class?');
+
+call add_block('text', 'txt', 'By initializing a member variable in the constructor, we have the option to make it `const`.');
+call add_block('text', 'txt', 'In case the test fixture is a subclass, it would automatically call base class'' constructor and destructor.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What are the advantages of using constructor over <code>SetUp()</code> virtual function?');
+
+call add_block('text', 'txt', 'C++ does not allow virtual function calls in constructors and destructors. You can call a method declared as virtual, but it will not use dynamic dispatch. It will use the definition from the class the constructor of which is currently executing. This is because calling a virtual method before the derived class constructor has a chance to run is very dangerous - the virtual method might operate on uninitialized data. Therefore, if you need to call a method that will be overridden in a derived class, you have to use SetUp()/TearDown().');
+call add_block('text', 'txt', 'In the body of a constructor (or destructor), it’s not possible to use the `ASSERT_xx` macros.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What are the advantages of using <code>SetUp()</code> virtual function over constructor?');
+
+call add_block('text', 'txt', 'If the tear-down operation could throw an exception, you must use `TearDown()` as opposed to the destructor.');
+call add_block('code', 'cpp', 'GoogleTest assertion macros might throw exceptions. Therefore, they should not be used in destructors.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What are the advantages of using <code>TearDown()</code> virtual function over destructor?');
+
+call add_block('text', 'txt', 'These assertions generate a success or failure directly instead of testing a value or expression.');
+call add_block('text', 'txt', 'These are useful when control flow, rather than a Boolean expression, determines the test''s success or failure.');
+call add_block('code', 'cpp', 'switch (expression)
+{
+case 1: /* ... */ ; break;
+case 2: /* ... */ ; break;
+default: FAIL() << "execution should not reach here!";
+}');
+call create_note_with_name('GoogleTest Documentation', 1, 'What are the use cases of succeed and fail assertions?');
+
+call add_block('code', 'cpp', 'TEST(TestSuite, TestCase)
+{
+    SUCCEED() << "You have gone all the way through learning GoogleTest up to advanced usage!";
+}');
+call add_block('text', 'txt', 'This does not make the overall test succeed.');
+call add_block('text', 'txt', 'The `SUCCEED` assertion is purely documentary and currently doesn''t generate any user-visible output.');
+call add_block('text', 'txt', 'However, we may want to add success messages to output in the future.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What is the use case of succeed assertion?');
+
+call add_block('text', 'txt', 'Generates a fatal failure, which returns from the current function.');
+call add_block('code', 'cpp', 'TEST(TestSuite, TestCase)
+{
+    FAIL() << "what a bummer!"
+}');
+call create_note_with_name('GoogleTest Documentation', 1, 'What is the use case of fail assertion?');
+
+call add_block('text', 'txt', 'Can only be used in functions that return `void`.');
+call add_block('code', 'cpp', 'class TaskTest: public ::testing::Test
+{
+protected:
+    void should_never_reach() { FAIL() << "what a bummer!"; }
+};
+
+TEST_F(TaskTest, IntentionalFailure)
+{
+    should_never_reach();
+}');
+call create_note_with_name('GoogleTest Documentation', 1, 'What is the limitation of using fail assertion?');
+
+call add_block('text', 'txt', 'Generates a nonfatal failure, which allows the current function to continue running.');
+call add_block('code', 'cpp', 'ADD_FAILURE();');
+call create_note_with_name('GoogleTest Documentation', 1, 'Write a non-fatal failure assertion?');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'cpp', '');
@@ -89,6 +144,149 @@ call create_note_with_name('GoogleTest Documentation', 1, '');
 call add_block('text', 'txt', '');
 call add_block('code', 'cpp', '');
 call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 1, '');
+
+call add_block('code', 'cpp', '::testing::InitGoogleTest(&argc, argv);');
+call add_block('text', 'txt', 'This function parses the command line for GoogleTest flags.');
+call add_block('text', 'txt', 'This allows the user to control a test program’s behavior via various flags.');
+call create_note_with_name('GoogleTest Documentation', 1, 'Initialize tests by parsing arguments?');
+
+call add_block('code', 'cpp', 'int result = RUN_ALL_TESTS();');
+call add_block('text', 'txt', 'Return value of `RUN_ALL_TESTS()` must not be ignored, as automated tests need to know whether a test has passed based on its exit code.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What function macro is used to run tests across all linking units?');
+
+call add_block('text', 'txt', 'Tests should be linked to `gtest_main`, which defines a suitable entry point.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What is the preferred way of building and running tests?');
+
+call add_block('code', 'cpp', 'int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}');
+call create_note_with_name('GoogleTest Documentation', 1, 'Write a test entry point?');
+
+call add_block('text', 'txt', 'When you need to do something custom before the tests run that cannot be expressed within the framework of fixtures and test suites.');
+call create_note_with_name('GoogleTest Documentation', 1, 'When should we write manual main function for tests?');
+
+call add_block('text', 'txt', 'The implementation is thread-safe on systems where the **pthreads** library is available.');
+call add_block('text', 'txt', 'It is currently unsafe to use Google Test assertions from two threads concurrently on other systems.');
+call add_block('text', 'txt', 'In most tests this is not an issue as usually the assertions are done in the main thread.');
+call create_note_with_name('GoogleTest Documentation', 1, 'What are the limitations of using GoogleTest assertions in threads?');
+
+call set_section_as_complete('GoogleTest Documentation', 1);
+
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('GoogleTest Documentation', 2, '');
+--
+--call set_section_as_complete('GoogleTest Documentation', 2);
 
 drop procedure add_block;
 drop table temp_block;
