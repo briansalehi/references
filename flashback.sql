@@ -2,12 +2,13 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.4
--- Dumped by pg_dump version 16.4
+-- Dumped from database version 17.0
+-- Dumped by pg_dump version 17.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -479,12 +480,18 @@ ALTER FUNCTION flashback.get_user_sections(user_index integer, resource_index in
 -- Name: get_user_studying_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user_studying_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, completed_sections bigint, last_study timestamp without time zone)
+CREATE FUNCTION flashback.get_user_studying_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, incomplete_sections bigint, completed_sections bigint, total_sections bigint, last_study timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select  r.id, sr.subject_id, r.name, count(sc.id), max(st.updated)
+    select  r.id
+            , sr.subject_id
+            , r.name
+            , count(case when sc.state = 'writing'::flashback.publication_state then 1 end)
+            , count(case when sc.state = 'completed'::flashback.publication_state then 1 end)
+            , count(sc.id)
+            , max(st.updated)
     from flashback.resources r
     join flashback.subject_resources sr on r.id = sr.resource_id
     join flashback.sections sc on sc.resource_id = r.id
@@ -21165,6 +21172,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1465	2024-09-23 20:36:18.228435
 1	1466	2024-09-23 20:36:18.228435
 1	1467	2024-09-23 20:36:18.228435
+1	1486	2024-10-03 14:27:34.014637
 \.
 
 
