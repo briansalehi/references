@@ -6938,6 +6938,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 5414	1616	Then, look in the `/etc/apt/apt.conf.d/20auto-upgrades` file. If *auto-updating* is enabled, you’ll see this:	text	txt	2024-07-28 10:10:12.610852	0
 5415	1616	```\nAPT::Periodic::Update-Package-Lists "1";\nAPT::Periodic::Unattended-Upgrade "1";\n``````	text	txt	2024-07-28 10:10:12.631454	0
 5416	1617	By default, Ubuntu systems don’t automatically reboot after an update is installed.\nIf you keep it that way, you’ll see a message about it when you log into the system.\nBut if you prefer, you can set Ubuntu to automatically reboot after it automatically updates itself.	text	txt	2024-07-28 10:10:13.719508	0
+7594	2705	ASSERT_*	code	cpp	2024-10-05 21:49:48.999396	1
 5417	1617	Go into the `/etc/apt/apt.conf.d` directory and open the `50unattended-upgrades` file in your favorite text editor, you’ll see a line that says:	text	txt	2024-07-28 10:10:13.741511	0
 5418	1617	Unattended-Upgrade::Automatic-Reboot "false";	code	txt	2024-07-28 10:10:13.762933	0
 5419	1617	With this new configuration, Ubuntu will now reboot itself immediately after the automatic update process has completed.\nIf you’d rather have the machine reboot at a specific time, scroll down where you’ll see this:	text	txt	2024-07-28 10:10:13.783446	0
@@ -7139,6 +7140,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 5610	1652	grep 'pwquality' *	code	txt	2024-07-28 10:10:34.334686	0
 5611	1652	On Debian and Ubuntu, you’ll need to install `pwquality` yourself:	text	txt	2024-07-28 10:10:34.355614	0
 5612	1652	sudo apt install libpam-pwquality	code	txt	2024-07-28 10:10:34.376695	0
+7657	2734	ASSERT_TRUE(condition);	code	cpp	2024-10-05 21:49:49.071367	2
 5613	1652	The rest of the procedure is the same for all of our operating systems and consists of just editing the `/etc/security/pwquality.conf` file.	text	txt	2024-07-28 10:10:34.397725	0
 5614	1652	No password complexity criteria are in effect after installation.	text	txt	2024-07-28 10:10:34.418518	0
 5615	1652	The minimum length setting works on a credit system.\nThis means that for every different type of character class in the password, the minimum required password length will be reduced by one character.	text	txt	2024-07-28 10:10:34.440375	0
@@ -7183,6 +7185,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 5653	1655	Optionally, you can set the number of days before an account with an expired password will get locked out:	text	txt	2024-07-28 10:10:36.973922	0
 5654	1655	sudo usermod -f 5 charlie	code	txt	2024-07-28 10:10:36.994377	0
 5655	1655	But if you were to do that now, you wouldn’t see any difference in the `chage -l` output because we still haven’t set expiration data for Charlie’s password.	text	txt	2024-07-28 10:10:37.016342	0
+7658	2734	EXPECT_FALSE(condition);	code	cpp	2024-10-05 21:49:49.071367	3
 5656	1656	You will only use `chage` to modify existing accounts, and you will use it for setting either an account expiration or a password expiration.	text	txt	2024-07-28 10:10:37.393506	0
 5657	1656	* `-d` If you use the `-d` 0 option on someone’s account, you’ll force the user to change his or her password on their next login.\n* `-E` This is equivalent to the lowercase `-e` for useradd or usermod. It sets the expiration date for the user account.\n* `-I` This is equivalent to `-f` for useradd or usermod. It sets the number of days before an account with an expired password will be locked out.\n* `-m` This sets the minimum number of days between password changes. In other words, if Charlie changes his password today, the `-m 5` option will force him to wait five days before he can change his password again.\n* `-M` This sets the maximum number of days before a password expires. (Be aware, though, that if Charlie last set his password 89 days ago, using a `-m 90` option on his account will cause his password to expire tomorrow, not 90 days from now.)\n* -W This will set the number of warning days for passwords that are about to expire.	text	txt	2024-07-28 10:10:37.417855	0
 5658	1656	sudo chage -E 2026-02-28 -I 4 -m 3 -M 90 -W 4 charlie	code	txt	2024-07-28 10:10:37.438983	0
@@ -7875,6 +7878,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6329	1981	select relname from pg_class where relkind = 'i';	code	txt	2024-07-28 10:12:31.33171	0
 6330	1982	|`users_username_idx`|\n|Meta Page|\n|Leaf Page|\n|Leaf Page|\n|Root Page|\n|Leaf Page|	text	txt	2024-07-28 10:12:31.612933	0
 6331	1983	create extension pageinspect;	code	txt	2024-07-28 10:12:31.829762	0
+7659	2734	ASSERT_FALSE(condition);	code	cpp	2024-10-05 21:49:49.071367	4
 6370	2007	- **Geometry:** `x` and `y`, `width` and `height`, and `z` for stacking order\n  of lift elements up or down from their natural ordering.\n- **Layout Handling:** `anchors` (left, right, top, bottom, vertical,\n  horizontal, center), and optional `margins`.\n- **Key Handling:** attached `Key` and `KeyNavigation` properties and the\n  `focus` property to enable key handling in the first place.\n- **Transformation:** `scale` and `rotate` transformation and the generic\n  `transform` property list for x,y,x transformation, as well as\n  `transformOrigin` point.\n- **Visual:** `opacity` to control transparency, `visible` to control\n  visibility, `clip` to restrain paint operations to the element boundary,\n  `smooth` to enhance the rendeing quality.\n- **State Definition:** `states` list property with the supported list of\n  states, current `state` property, and the `transitions` list property to\n  animate state changes.	text	txt	2024-07-28 10:12:41.842087	0
 6371	2008	Rectangle extends `Item` and adds a fill color to it. Additionally it\nsupports borders defined by `border.color` and `border.width`. To create\nrounded rectangles you can use the `radius` property.	text	txt	2024-07-28 10:12:42.258691	0
 6372	2008	Rectangle {\n    color: 'lightsteelblue'\n    border.color: 'gray'\n    border.width: 3\n}	code	txt	2024-07-28 10:12:42.278926	0
@@ -8386,6 +8390,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6908	2332	std::vector<std::unique_ptr<std::string>> container;\nstd::unique_ptr<std::string> another;\ncontainer.push_back(std::move(another));	code	cpp	2024-09-18 17:20:08.991308	2
 6909	2333	Streams do not share their resources over copy operations.	text	txt	2024-09-18 17:20:08.992595	1
 6910	2333	std::ofstream file{"sample.tmp"};\nvoid store(std::ofstream file_stream);\nstore(std::move(file)); // takes file ownership\nassert(file.is_open());	code	cpp	2024-09-18 17:20:08.992595	2
+7663	2735	EXPECT_LT(value, value);	code	cpp	2024-10-05 21:49:49.0739	4
 6911	2334	When passing move-only objects to a function taking parameters by value, the ownership will be transferred. But these functions might also take the argument by reference, which means that it does not take the ownership. In that case we might want to double check the state of the passed argument afterwards.	text	txt	2024-09-18 17:20:08.993885	1
 6912	2334	std::ofstream file{"sample.tmp"};\nstore(file);\nif (file.is_open())\n    file.close();	code	cpp	2024-09-18 17:20:08.993885	2
 6913	2335	std::ofstream{"sample.tmp"} << std::string{"content"};	code	cpp	2024-09-18 17:20:08.995148	1
@@ -9035,6 +9040,196 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7591	2703	[[maybe_unused]] int x = 42;	code	cpp	2024-09-28 14:30:48.210575	3
 7592	2704	Since C++17 it is possible to write an assertion without message:	text	txt	2024-09-28 14:30:48.211926	1
 7593	2704	static_assert(VERSION >= 2);	code	cpp	2024-09-28 14:30:48.211926	2
+7595	2705	Generate fatal failures when they fail and abort the current function.	text	txt	2024-10-05 21:49:48.999396	2
+7596	2705	EXPECT_*	code	cpp	2024-10-05 21:49:48.999396	3
+7597	2705	Generate nonfatal failures. They are preferred unless it doesn't make sense to continue when the assertion in question fails.	text	txt	2024-10-05 21:49:48.999396	4
+7598	2706	ASSERT_EQ(true, true) << "This test always asserts on " << true;	code	cpp	2024-10-05 21:49:49.004871	1
+7599	2706	EXPECT_EQ(std::vector{}.size(), 0) << "This test always asserts on " << 0;	code	cpp	2024-10-05 21:49:49.004871	2
+7600	2707	Anything that can be streamed to an `std::ostream` can be streamed to an assertion macro.	text	txt	2024-10-05 21:49:49.007897	1
+7601	2707	Literal strings, C-Style strings, `std::basic_string<CharT>`	text	list	2024-10-05 21:49:49.007897	2
+7602	2708	TEST(TestSuiteName, TestName)\n{\n    EXPECT_EQ(true, true);\n}	code	cpp	2024-10-05 21:49:49.010461	1
+7603	2709	If any assertion in test, either fatal or non-fatal fails, or if the test crashes, the entire test fails. Otherwise, it succeeds.	text	txt	2024-10-05 21:49:49.013626	1
+7604	2710	The first is the name of the test suite, and the second is the test's name within the test suite.	text	txt	2024-10-05 21:49:49.01656	1
+7605	2710	Both must be valid C++ identifiers, and they should not contain any underscores.	text	txt	2024-10-05 21:49:49.01656	2
+7606	2710	Tests from different test suites can have the same individual name.	text	txt	2024-10-05 21:49:49.01656	3
+7607	2711	Test fixture allows to reuse the same ocnfiguration of objects for several different sets.	text	txt	2024-10-05 21:49:49.019906	1
+7660	2735	Binary comparison test assertions compare two values.	text	txt	2024-10-05 21:49:49.0739	1
+7661	2735	EXPECT_EQ(value, value);	code	cpp	2024-10-05 21:49:49.0739	2
+7662	2735	EXPECT_NE(value, value);	code	cpp	2024-10-05 21:49:49.0739	3
+7608	2712	1. Derive a texture class from `testing::Test`\n2. Use `protected` access specifier to access fixture members from sub-classes\n3. Write a default constructor or `SetUp()` function to prepare the objects for each test\n4. Write a destructor or `TearDown()` to release any already allocated resources\n5. Define member functions for the test	text	list	2024-10-05 21:49:49.021985	1
+7609	2712	TEST_F(TestFixtureClassName, TestName)\n{\n}	code	cpp	2024-10-05 21:49:49.021985	2
+7610	2713	When using a fixture, use `TEST_F()` instead of `TEST()` to have access to members.	text	txt	2024-10-05 21:49:49.024014	1
+7611	2713	The first argument of a test unit with a fixture must be the name of the test fixture class.	text	txt	2024-10-05 21:49:49.024014	2
+7612	2714	For each test defined in a test suite, GoogleTest will create a fresh fixture at runtime.	text	txt	2024-10-05 21:49:49.026181	1
+7613	2714	GoogleTest always deletes a test fixture before it creates the next one.	text	txt	2024-10-05 21:49:49.026181	2
+7614	2715	template<typename E>\nclass Queue\n{\npublic:\n    constexpr Queue() = default;\n    constexpr void enqueue(E const& element);\n    constexpr std::optional<E> dequeue() const;\n    constexpr std::size_t size() const;\n};\n\nclass QueueTest: public ::testing::Test\n{\nprotected:\n    QueueTest()\n    {\n        q1.enqueue(1);\n        q2.enqueue(2);\n        q3.enqueue(3);\n    }\n\n    Queue<int> q1;\n    Queue<int> q2;\n    Queue<int> q3;\n};	code	cpp	2024-10-05 21:49:49.028012	1
+7615	2716	By initializing a member variable in the constructor, we have the option to make it `const`.	text	txt	2024-10-05 21:49:49.030268	1
+7616	2716	In case the test fixture is a subclass, it would automatically call base class' constructor and destructor.	text	txt	2024-10-05 21:49:49.030268	2
+7617	2717	C++ does not allow virtual function calls in constructors and destructors. You can call a method declared as virtual, but it will not use dynamic dispatch. It will use the definition from the class the constructor of which is currently executing. This is because calling a virtual method before the derived class constructor has a chance to run is very dangerous - the virtual method might operate on uninitialized data. Therefore, if you need to call a method that will be overridden in a derived class, you have to use SetUp()/TearDown().	text	txt	2024-10-05 21:49:49.032816	1
+7618	2717	In the body of a constructor (or destructor), it’s not possible to use the `ASSERT_xx` macros.	text	txt	2024-10-05 21:49:49.032816	2
+7619	2718	If the tear-down operation could throw an exception, you must use `TearDown()` as opposed to the destructor.	text	txt	2024-10-05 21:49:49.035058	1
+7620	2718	GoogleTest assertion macros might throw exceptions. Therefore, they should not be used in destructors.	code	cpp	2024-10-05 21:49:49.035058	2
+7621	2719	::testing::InitGoogleTest(&argc, argv);	code	cpp	2024-10-05 21:49:49.037389	1
+7622	2719	This function parses the command line for GoogleTest flags.	text	txt	2024-10-05 21:49:49.037389	2
+7623	2719	This allows the user to control a test program’s behavior via various flags.	text	txt	2024-10-05 21:49:49.037389	3
+7624	2720	int result = RUN_ALL_TESTS();	code	cpp	2024-10-05 21:49:49.039645	1
+7625	2720	Return value of `RUN_ALL_TESTS()` must not be ignored, as automated tests need to know whether a test has passed based on its exit code.	text	txt	2024-10-05 21:49:49.039645	2
+7626	2721	Tests should be linked to `gtest_main`, which defines a suitable entry point.	text	txt	2024-10-05 21:49:49.041441	1
+7627	2722	int main(int argc, char** argv)\n{\n    ::testing::InitGoogleTest(&argc, argv);\n    return RUN_ALL_TESTS();\n}	code	cpp	2024-10-05 21:49:49.04342	1
+7628	2723	When you need to do something custom before the tests run that cannot be expressed within the framework of fixtures and test suites.	text	txt	2024-10-05 21:49:49.045297	1
+7629	2724	The implementation is thread-safe on systems where the **pthreads** library is available.	text	txt	2024-10-05 21:49:49.047751	1
+7630	2724	It is currently unsafe to use Google Test assertions from two threads concurrently on other systems.	text	txt	2024-10-05 21:49:49.047751	2
+7631	2724	In most tests this is not an issue as usually the assertions are done in the main thread.	text	txt	2024-10-05 21:49:49.047751	3
+7632	2725	These assertions generate a success or failure directly instead of testing a value or expression.	text	txt	2024-10-05 21:49:49.050374	1
+7633	2725	These are useful when control flow, rather than a Boolean expression, determines the test's success or failure.	text	txt	2024-10-05 21:49:49.050374	2
+7634	2725	switch (expression)\n{\ncase 1: /* ... */ ; break;\ncase 2: /* ... */ ; break;\ndefault: FAIL() << "execution should not reach here!";\n}	code	cpp	2024-10-05 21:49:49.050374	3
+7635	2726	TEST(TestSuite, TestCase)\n{\n    SUCCEED() << "You have gone all the way through learning GoogleTest up to advanced usage!";\n}	code	cpp	2024-10-05 21:49:49.05297	1
+7636	2726	This does not make the overall test succeed.	text	txt	2024-10-05 21:49:49.05297	2
+7637	2726	The `SUCCEED` assertion is purely documentary and currently doesn't generate any user-visible output.	text	txt	2024-10-05 21:49:49.05297	3
+7638	2726	However, we may want to add success messages to output in the future.	text	txt	2024-10-05 21:49:49.05297	4
+7639	2727	Generates a fatal failure, which returns from the current function.	text	txt	2024-10-05 21:49:49.055184	1
+7640	2727	TEST(TestSuite, TestCase)\n{\n    FAIL() << "what a bummer!"\n}	code	cpp	2024-10-05 21:49:49.055184	2
+7641	2728	Can only be used in functions that return `void`.	text	txt	2024-10-05 21:49:49.05718	1
+7642	2728	class TaskTest: public ::testing::Test\n{\nprotected:\n    void should_never_reach() { FAIL() << "what a bummer!"; }\n};\n\nTEST_F(TaskTest, IntentionalFailure)\n{\n    should_never_reach();\n}	code	cpp	2024-10-05 21:49:49.05718	2
+7643	2729	Generates a nonfatal failure, which allows the current function to continue running.	text	txt	2024-10-05 21:49:49.059202	1
+7644	2729	TEST(TestSuite, TestCase)\n{\n    ADD_FAILURE() << "test failed at this point";\n}	code	cpp	2024-10-05 21:49:49.059202	2
+7645	2730	Generates a nonfatal failure at the file and line number specified.	text	txt	2024-10-05 21:49:49.061245	1
+7646	2730	ADD_FAILURE_AT(file_path, line_number);	code	cpp	2024-10-05 21:49:49.061245	2
+7647	2731	A matcher matches a single argument. You can use it inside `ON_CALL()` or `EXPECT_CALL()`, or use it to validate a value directly using two macros:	text	txt	2024-10-05 21:49:49.063656	1
+7648	2731	EXPECT_THAT(actual_value, matcher)	code	cpp	2024-10-05 21:49:49.063656	2
+7649	2731	ASSERT_THAT(actual_value, matcher)	code	cpp	2024-10-05 21:49:49.063656	3
+7650	2732	All matchers are defined in the `::testing` namespace.	text	txt	2024-10-05 21:49:49.066066	1
+7651	2732	using ::testing::Lt;	code	cpp	2024-10-05 21:49:49.066066	2
+7652	2733	Equality matching via `EXPECT_THAT(actual_value, expected_value)` will cause unexpected results.	text	txt	2024-10-05 21:49:49.068875	1
+7653	2733	Prefer to make the comparison explicit:	text	txt	2024-10-05 21:49:49.068875	2
+7654	2733	EXPECT_EQ(actual_value, expected_value);	code	cpp	2024-10-05 21:49:49.068875	3
+7655	2733	EXPECT_THAT(actual_value, Eq(expected_value));	code	cpp	2024-10-05 21:49:49.068875	4
+7656	2734	EXPECT_TRUE(condition);	code	cpp	2024-10-05 21:49:49.071367	1
+7664	2735	EXPECT_LE(value, value);	code	cpp	2024-10-05 21:49:49.0739	5
+7665	2735	EXPECT_GT(value, value);	code	cpp	2024-10-05 21:49:49.0739	6
+7666	2735	EXPECT_GE(value, value);	code	cpp	2024-10-05 21:49:49.0739	7
+7667	2736	The arguments must be comparable by the assertion's comparison operator, otherwise a compiler error will result.	text	txt	2024-10-05 21:49:49.075844	1
+7668	2737	If an argument supports the `operator<<()`, it will be called to print the argument when the assertion fails. Otherwise, GoogleTest will attempt to print them in the best way it can, unless you overload the extraction operator by yourself.	text	txt	2024-10-05 21:49:49.078147	1
+7669	2738	The argument evaluation order is undefined and programs should not depend on any particular order.	text	txt	2024-10-05 21:49:49.080131	1
+7670	2739	Assertions test if they are in the same memory location, not if they have the same value.	text	txt	2024-10-05 21:49:49.082518	1
+7671	2739	For C-style strings, `EXPECT_STREQ()` should be used to compare by value.	text	txt	2024-10-05 21:49:49.082518	2
+7672	2740	Always use `nullptr` over `NULL`.	text	txt	2024-10-05 21:49:49.085133	1
+7673	2740	EXPECT_EQ(pointer, nullptr);	code	cpp	2024-10-05 21:49:49.085133	2
+7674	2740	EXPECT_NE(pointer, nullptr);	code	cpp	2024-10-05 21:49:49.085133	3
+7675	2741	EXPECT_STREQ(cstring, cstring);	code	cpp	2024-10-05 21:49:49.087384	1
+7676	2741	EXPECT_STRNE(cstring, cstring);	code	cpp	2024-10-05 21:49:49.087384	2
+7677	2742	EXPECT_STRCASEEQ(cstring, cstring);	text	txt	2024-10-05 21:49:49.089468	1
+7678	2742	EXPECT_STRCASENE(cstring, cstring);	code	cpp	2024-10-05 21:49:49.089468	2
+7679	2743	Verifies that the two values are approximately equal, to within 4 ULPs (Units in the Last Place) from each other.	text	txt	2024-10-05 21:49:49.091738	1
+7680	2743	EXPECT_FLOAT_EQ(value, value);	code	cpp	2024-10-05 21:49:49.091738	2
+7681	2743	EXPECT_DOUBLE_EQ(value, value);	code	cpp	2024-10-05 21:49:49.091738	3
+7682	2744	EXPECT_NEAR(value, value, absolute_error_bound);	code	cpp	2024-10-05 21:49:49.093643	1
+7683	2745	Verify that a piece of code throws, or does not throw, an exception.	text	txt	2024-10-05 21:49:49.095609	1
+7684	2745	Exceptions should already be enabled on the host system.	text	txt	2024-10-05 21:49:49.095609	2
+7685	2746	EXPECT_THROW(statement, exception_type);	code	cpp	2024-10-05 21:49:49.097901	1
+7686	2746	ASSERT_THROW(statement, exception_type);	code	cpp	2024-10-05 21:49:49.097901	2
+7687	2747	EXPECT_ANY_THROW(statement);	code	cpp	2024-10-05 21:49:49.100376	1
+7688	2747	ASSERT_ANY_THROW(statement);	code	cpp	2024-10-05 21:49:49.100376	2
+7689	2748	EXPECT_NO_THROW(statement);	code	cpp	2024-10-05 21:49:49.102581	1
+7690	2748	ASSERT_NO_THROW(statement);	code	cpp	2024-10-05 21:49:49.102581	2
+7691	2749	Verifies that the predicate `predicate` returns true when passed the given values as arguments.	text	txt	2024-10-05 21:49:49.106393	1
+7692	2749	EXPECT_PRED1(predicate, value);	code	cpp	2024-10-05 21:49:49.106393	2
+7693	2749	EXPECT_PRED2(predicate, value, value);	code	cpp	2024-10-05 21:49:49.106393	3
+7694	2749	EXPECT_PRED3(predicate, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	4
+7695	2749	EXPECT_PRED4(predicate, value, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	5
+7696	2749	EXPECT_PRED5(predicate, value, value, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	6
+7697	2749	ASSERT_PRED1(predicate, value);	code	cpp	2024-10-05 21:49:49.106393	7
+7698	2749	ASSERT_PRED2(predicate, value, value);	code	cpp	2024-10-05 21:49:49.106393	8
+7699	2749	ASSERT_PRED3(predicate, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	9
+7700	2749	ASSERT_PRED4(predicate, value, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	10
+7701	2749	ASSERT_PRED5(predicate, value, value, value, value, value);	code	cpp	2024-10-05 21:49:49.106393	11
+7702	2750	It is necessary to explicitly specify the type of the function.	text	txt	2024-10-05 21:49:49.109207	1
+7703	2750	EXPECT_PRED1(static_cast<bool (*)(int)>(IsPositive), 5);	code	cpp	2024-10-05 21:49:49.109207	2
+7704	2750	EXPECT_PRED1(static_cast<bool (*)(double)>(IsPositive), 3.14);	code	cpp	2024-10-05 21:49:49.109207	3
+7705	2750	template <typename T>\nbool is_negative(T x) { return x < 0; }\n\nEXPECT_PRED1(is_negative<int>, -5);	code	cpp	2024-10-05 21:49:49.109207	4
+7706	2750	If a template has multiple parameters, wrap the predicate in parentheses so the macro arguments are parsed correctly:	text	txt	2024-10-05 21:49:49.109207	5
+7707	2750	ASSERT_PRED2((predicate<int, int>), 5, 0);	code	cpp	2024-10-05 21:49:49.109207	6
+7708	2751	Predicate formatter is a function or functor with the signature:	text	txt	2024-10-05 21:49:49.111562	1
+7709	2751	testing::AssertionResult predicate_formatter(const char* expressionX, ..., Tx valueX, ...);	code	cpp	2024-10-05 21:49:49.111562	2
+7710	2751	The values are the predicate arguments, and expressions are the corresponding visual representations of the variables that appear in the source code.	text	txt	2024-10-05 21:49:49.111562	3
+7711	2751	Types can be either `T` or `T const&`.	text	txt	2024-10-05 21:49:49.111562	4
+7712	2752	An `AssertionResult` object represents the result of an assertion with an associated message.	text	txt	2024-10-05 21:49:49.114084	1
+7713	2752	You can create an `AssertionResult` using one of these factory functions:	text	txt	2024-10-05 21:49:49.114084	2
+7714	2752	AssertionResult result = testing::AssertionSuccess() << "message";	code	cpp	2024-10-05 21:49:49.114084	3
+7715	2752	AssertionResult result = testing::AssertionFailure() << "message";	code	cpp	2024-10-05 21:49:49.114084	4
+7716	2753	EXPECT_PRED_FORMAT1(predicate_formatter, value);	code	cpp	2024-10-05 21:49:49.117509	1
+7717	2753	EXPECT_PRED_FORMAT2(predicate_formatter, value, value);	code	cpp	2024-10-05 21:49:49.117509	2
+7718	2753	EXPECT_PRED_FORMAT3(predicate_formatter, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	3
+7719	2753	EXPECT_PRED_FORMAT4(predicate_formatter, value, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	4
+7720	2753	EXPECT_PRED_FORMAT5(predicate_formatter, value, value, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	5
+7721	2753	ASSERT_PRED_FORMAT1(predicate_formatter, value);	code	cpp	2024-10-05 21:49:49.117509	6
+7722	2753	ASSERT_PRED_FORMAT2(predicate_formatter, value, value);	code	cpp	2024-10-05 21:49:49.117509	7
+7723	2753	ASSERT_PRED_FORMAT3(predicate_formatter, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	8
+7724	2753	ASSERT_PRED_FORMAT4(predicate_formatter, value, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	9
+7725	2753	ASSERT_PRED_FORMAT5(predicate_formatter, value, value, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	10
+7726	2754		text	txt	2024-10-05 21:49:49.120103	1
+7727	2754	bool MutuallyPrime(int m, int n) { ... }	code	cpp	2024-10-05 21:49:49.120103	2
+7728	2754	testing::AssertionResult AssertMutuallyPrime(const char* m_expr, const char* n_expr, int m, int n)\n{\n    if (MutuallyPrime(m, n))\n        return testing::AssertionSuccess();\n\n    return testing::AssertionFailure() << m_expr << " and " << n_expr << " (" << m << " and " << n << ") are not mutually prime";\n}	code	cpp	2024-10-05 21:49:49.120103	3
+7729	2754	const int a = 3;\nconst int b = 4;\nconst int c = 10;\n\nEXPECT_PRED_FORMAT2(AssertMutuallyPrime, a, b);  // Succeeds\nEXPECT_PRED_FORMAT2(AssertMutuallyPrime, b, c);  // Fails	code	cpp	2024-10-05 21:49:49.120103	4
+7730	2755	Death assertions verify that a statement causes the process to terminate with a nonzero exit status and produces `stderr` output that matches matcher.	text	txt	2024-10-05 21:49:49.122318	1
+7731	2755	These assertions spawn a new process and execute the code under test in that process.	text	txt	2024-10-05 21:49:49.122318	2
+7732	2756	In many applications, there are assertions that can cause application failure if a condition is not met. If the assertion checks the wrong condition, then the program may proceed in an erroneous state, which could lead to memory corruption, security holes, or worse. Hence it is vitally important to test that such assertion statements work as expected.	text	txt	2024-10-05 21:49:49.124532	1
+7733	2756	If the death test statement runs to completion without dying, the child process will nonetheless terminate, and the assertion fails.	text	txt	2024-10-05 21:49:49.124532	2
+7734	2756	EXPECT_DEATH(statement, matcher);	code	cpp	2024-10-05 21:49:49.124532	3
+7735	2757	If a piece of code throws an exception, we don’t consider it “death” for the purpose of death tests, as the caller of the code could catch the exception and avoid the crash.	text	txt	2024-10-05 21:49:49.126425	1
+7736	2758	A death test takes a statement and a matcher.	text	txt	2024-10-05 21:49:49.128773	1
+7737	2758	EXPECT_DEATH(statement, matcher);	code	cpp	2024-10-05 21:49:49.128773	2
+7738	2758	The second parameter is either a matcher being used against the output of the statement, as of type `const std::string&`, or a regular expression.	text	txt	2024-10-05 21:49:49.128773	3
+7739	2758	A literal string as second argument is treated as `ContainsRegex(s)`, not as `Eq(s)`.	text	txt	2024-10-05 21:49:49.128773	4
+7740	2758	EXPECT_DEATH(statement, "Error on line [0-9]+ of .*");	code	cpp	2024-10-05 21:49:49.128773	5
+7741	2759	If death tests are supported, behaves the same as `EXPECT_DEATH`. Otherwise, verifies nothing.	text	txt	2024-10-05 21:49:49.130974	1
+7742	2759	EXPECT_DEATH_IF_SUPPORTED(statement, matcher);	code	cpp	2024-10-05 21:49:49.130974	2
+7743	2760	Verifies that `statement` causes the process to terminate with an exit status that satisfies `predicate`, and produces `stderr` output that matches `matcher`.	text	txt	2024-10-05 21:49:49.133366	1
+7744	2760	EXPECT_EXIT(statement, predicate, matcher);	code	cpp	2024-10-05 21:49:49.133366	2
+7745	2761	testing::ExitedWithCode(int);	code	cpp	2024-10-05 21:49:49.135594	1
+7746	2761	testing::KilledBySignal(int);	code	cpp	2024-10-05 21:49:49.135594	2
+7747	2762	The parameter `predicate` is a function or functor that accepts an `int` exit status and returns a `bool`. GoogleTest provides two predicates to handle common cases:	text	txt	2024-10-05 21:49:49.137763	1
+7748	2762	EXPECT_EXIT(NormalExit(), testing::ExitedWithCode(0), "Success");	code	cpp	2024-10-05 21:49:49.137763	2
+7749	2763	`actual_value` can be any value of type `Type`.	text	txt	2024-10-05 21:49:49.139994	1
+7750	2763	A<Type>();	code	cpp	2024-10-05 21:49:49.139994	2
+7751	2763	An<Type>();	code	cpp	2024-10-05 21:49:49.139994	3
+7752	2764	In case of `Eq(value)`, we can also use `value`.	text	txt	2024-10-05 21:49:49.14252	1
+7753	2764	Eq(value); // operator==()	code	cpp	2024-10-05 21:49:49.14252	2
+7754	2764	Ne(value); // operator!=()	code	cpp	2024-10-05 21:49:49.14252	3
+7755	2764	Ge(value); // operator>=()	code	cpp	2024-10-05 21:49:49.14252	4
+7756	2764	Gt(value); // operator>()	code	cpp	2024-10-05 21:49:49.14252	5
+7757	2764	Le(value); // operator<=()	code	cpp	2024-10-05 21:49:49.14252	6
+7758	2764	Lt(value); // operator<()	code	cpp	2024-10-05 21:49:49.14252	7
+7759	2765	IsFalse(value); // operator bool()	code	cpp	2024-10-05 21:49:49.144529	1
+7760	2765	IsTrue(value); // operator bool()	code	cpp	2024-10-05 21:49:49.144529	2
+7761	2766	IsNull(pointer);	code	cpp	2024-10-05 21:49:49.146696	1
+7762	2766	NotNull(pointer);	code	cpp	2024-10-05 21:49:49.146696	2
+7763	2767	Argument is `std::optional<>` that contains a value matching `m`.	text	txt	2024-10-05 21:49:49.1492	1
+7764	2767	Optional(m);	code	cpp	2024-10-05 21:49:49.1492	2
+7765	2768	Argument is `std::variant<>` that holds the alternative of type `T` with a value matching `m`.	text	txt	2024-10-05 21:49:49.151739	1
+7766	2768	VariantWith<T>(m);	code	cpp	2024-10-05 21:49:49.151739	2
+7767	2769	Ref(lvalue);	code	cpp	2024-10-05 21:49:49.153779	1
+7768	2770	You may need to use this instead of `Eq(value)` when the mock function is overloaded.	text	txt	2024-10-05 21:49:49.155866	1
+7769	2770	TypedEq<T>(value);	code	cpp	2024-10-05 21:49:49.155866	2
+7770	2771	Matchers make a copy of arguments in case it's modified or destructed later.	text	txt	2024-10-05 21:49:49.158001	1
+7771	2771	When passing references, wrap them in `std::ref()`.	text	txt	2024-10-05 21:49:49.158001	2
+7772	2771		code	cpp	2024-10-05 21:49:49.158001	3
+7773	2772	`IsTrue` and `IsFalse` are useful when you need to use a matcher, or for types that can be explicitly converted to a boolean, but are not implicitly converted to boolean. In other cases, you can use the basic `EXPECT_TRUE` and `EXPECT_FALSE` assertions.	text	txt	2024-10-05 21:49:49.159777	1
+7774	2773	DoubleEq(double);	code	cpp	2024-10-05 21:49:49.162266	1
+7775	2773	FloatEq(float);	code	cpp	2024-10-05 21:49:49.162266	2
+7776	2773	DoubleEq(double);	code	cpp	2024-10-05 21:49:49.162266	3
+7777	2773	FloatEq(float);	code	cpp	2024-10-05 21:49:49.162266	4
+7778	2773	NanSensitiveDoubleEq(double);	code	cpp	2024-10-05 21:49:49.162266	5
+7779	2773	NanSensitiveFloatEq(float);	code	cpp	2024-10-05 21:49:49.162266	6
+7780	2774	`DoubleEq()` and `FloatEq()` conform to the IEEE standard, which requires comparing two `NaN`s for equality to return `false`. The `NanSensitive*` version instead treats two `NaN`s as equal, which is often what a user wants.	text	txt	2024-10-05 21:49:49.164687	1
+7781	2774		code	cpp	2024-10-05 21:49:49.164687	2
+7782	2775		text	txt	2024-10-05 21:49:49.167234	1
+7783	2775	EXPECT_THAT(actual_value, IsNan());	code	cpp	2024-10-05 21:49:49.167234	2
+7784	2776		text	txt	2024-10-05 21:49:49.169838	1
+7785	2776	DoubleNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	2
+7786	2776	FloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	3
+7787	2776	NonSensitiveDoubleNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	4
+7788	2776	NonSensitiveFloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	5
 \.
 
 
@@ -11917,6 +12112,78 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2702	1486	Prevent function caller from discarding the return value?	open	2024-09-28 14:30:48.209214	2024-09-28 14:30:48.209214
 2703	1486	Specify that a variable is intentionally left unused?	open	2024-09-28 14:30:48.210575	2024-09-28 14:30:48.210575
 2704	1486	Write a static assertion without a message?	open	2024-09-28 14:30:48.211926	2024-09-28 14:30:48.211926
+2705	1487	How many assertion variations exist?	open	2024-10-05 21:49:48.999396	2024-10-05 21:49:48.999396
+2706	1487	Provide a custom failure message to an assertion?	open	2024-10-05 21:49:49.004871	2024-10-05 21:49:49.004871
+2707	1487	What string types are allowed to extract into assertions?	open	2024-10-05 21:49:49.007897	2024-10-05 21:49:49.007897
+2708	1487	Define a test unit with a comparison for equality?	open	2024-10-05 21:49:49.010461	2024-10-05 21:49:49.010461
+2709	1487	When does a test fail?	open	2024-10-05 21:49:49.013626	2024-10-05 21:49:49.013626
+2710	1487	What are the arguments of a test unit?	open	2024-10-05 21:49:49.01656	2024-10-05 21:49:49.01656
+2711	1487	What testing feature can be used to share data between multiple tests?	open	2024-10-05 21:49:49.019906	2024-10-05 21:49:49.019906
+2712	1487	Write a test case that uses a fixture?	open	2024-10-05 21:49:49.021985	2024-10-05 21:49:49.021985
+2713	1487	What is the naming convention of test fixtures?	open	2024-10-05 21:49:49.024014	2024-10-05 21:49:49.024014
+2714	1487	What is the lifetime of a fixture?	open	2024-10-05 21:49:49.026181	2024-10-05 21:49:49.026181
+2715	1487	Define a test fixture for Queue class?	open	2024-10-05 21:49:49.028012	2024-10-05 21:49:49.028012
+2716	1487	What are the advantages of using constructor over <code>SetUp()</code> virtual function?	open	2024-10-05 21:49:49.030268	2024-10-05 21:49:49.030268
+2717	1487	What are the advantages of using <code>SetUp()</code> virtual function over constructor?	open	2024-10-05 21:49:49.032816	2024-10-05 21:49:49.032816
+2718	1487	What are the advantages of using <code>TearDown()</code> virtual function over destructor?	open	2024-10-05 21:49:49.035058	2024-10-05 21:49:49.035058
+2719	1487	Initialize tests by parsing arguments?	open	2024-10-05 21:49:49.037389	2024-10-05 21:49:49.037389
+2720	1487	What function macro is used to run tests across all linking units?	open	2024-10-05 21:49:49.039645	2024-10-05 21:49:49.039645
+2721	1487	What is the preferred way of building and running tests?	open	2024-10-05 21:49:49.041441	2024-10-05 21:49:49.041441
+2722	1487	Write a test entry point?	open	2024-10-05 21:49:49.04342	2024-10-05 21:49:49.04342
+2723	1487	When should we write manual main function for tests?	open	2024-10-05 21:49:49.045297	2024-10-05 21:49:49.045297
+2724	1487	What are the limitations of using GoogleTest assertions in threads?	open	2024-10-05 21:49:49.047751	2024-10-05 21:49:49.047751
+2725	1487	What are the use cases of succeed and fail assertions?	open	2024-10-05 21:49:49.050374	2024-10-05 21:49:49.050374
+2726	1487	What is the use case of succeed assertion?	open	2024-10-05 21:49:49.05297	2024-10-05 21:49:49.05297
+2727	1487	What is the use case of fail assertion?	open	2024-10-05 21:49:49.055184	2024-10-05 21:49:49.055184
+2728	1487	What is the limitation of using fail assertion?	open	2024-10-05 21:49:49.05718	2024-10-05 21:49:49.05718
+2729	1487	Write a non-fatal failure assertion?	open	2024-10-05 21:49:49.059202	2024-10-05 21:49:49.059202
+2730	1487	Write a non-fatal failure for a specific line of file?	open	2024-10-05 21:49:49.061245	2024-10-05 21:49:49.061245
+2731	1487	What is an assertion matcher?	open	2024-10-05 21:49:49.063656	2024-10-05 21:49:49.063656
+2732	1487	In what namespace are matchers defined?	open	2024-10-05 21:49:49.066066	2024-10-05 21:49:49.066066
+2733	1487	What is the best practice for equality matching using matchers?	open	2024-10-05 21:49:49.068875	2024-10-05 21:49:49.068875
+2734	1487	Write test assertions to evaluate boolean values?	open	2024-10-05 21:49:49.071367	2024-10-05 21:49:49.071367
+2735	1487	What are the binary comparison assertions?	open	2024-10-05 21:49:49.0739	2024-10-05 21:49:49.0739
+2736	1487	What are the requirements of writing binary comparison test assertions?	open	2024-10-05 21:49:49.075844	2024-10-05 21:49:49.075844
+2737	1487	When does GoogleTest print assertion arguments when the assertion fails?	open	2024-10-05 21:49:49.078147	2024-10-05 21:49:49.078147
+2738	1487	What is the evaluation order of arguments in assertions?	open	2024-10-05 21:49:49.080131	2024-10-05 21:49:49.080131
+2739	1487	What is the behavior of comparison assertions for pointers and C-style strings?	open	2024-10-05 21:49:49.082518	2024-10-05 21:49:49.082518
+2740	1487	Write a test to verify comparison of a pointer or a C-style string with null?	open	2024-10-05 21:49:49.085133	2024-10-05 21:49:49.085133
+2741	1487	Write a test to verify comparison of two C-style strings for equality and inequality?	open	2024-10-05 21:49:49.087384	2024-10-05 21:49:49.087384
+2742	1487	Write a test to verify comparison of two C-style strings without case sensitivity?	open	2024-10-05 21:49:49.089468	2024-10-05 21:49:49.089468
+2743	1487	Write a test to verify comparison of two floating point values?	open	2024-10-05 21:49:49.091738	2024-10-05 21:49:49.091738
+2744	1487	Write a test to verify if difference of two floating points does not exceed an absolute error bound?	open	2024-10-05 21:49:49.093643	2024-10-05 21:49:49.093643
+2745	1487	What are the exception assertions?	open	2024-10-05 21:49:49.095609	2024-10-05 21:49:49.095609
+2746	1487	Write a test to verify that a statement throws a specific exception type?	open	2024-10-05 21:49:49.097901	2024-10-05 21:49:49.097901
+2747	1487	Write a test to verify that a statement throws any exception?	open	2024-10-05 21:49:49.100376	2024-10-05 21:49:49.100376
+2748	1487	Write a test to verify that a statement does not throw any exceptions?	open	2024-10-05 21:49:49.102581	2024-10-05 21:49:49.102581
+2749	1487	Write a test to verify the return value of a predicate with given arguments?	open	2024-10-05 21:49:49.106393	2024-10-05 21:49:49.106393
+2750	1487	How overloaded functions and function templates should be treated when given as argument to predicate assertions?	open	2024-10-05 21:49:49.109207	2024-10-05 21:49:49.109207
+2751	1487	What is a predicate formatter?	open	2024-10-05 21:49:49.111562	2024-10-05 21:49:49.111562
+2752	1487	Create an assertion result object?	open	2024-10-05 21:49:49.114084	2024-10-05 21:49:49.114084
+2753	1487	What are the assertions taking predicate formatter?	open	2024-10-05 21:49:49.117509	2024-10-05 21:49:49.117509
+2754	1487	Write a test to verify a predicate using predicate formatter?	open	2024-10-05 21:49:49.120103	2024-10-05 21:49:49.120103
+2755	1487	What is the use case of death assertions?	open	2024-10-05 21:49:49.122318	2024-10-05 21:49:49.122318
+2756	1487	When does a death assertion asserts?	open	2024-10-05 21:49:49.124532	2024-10-05 21:49:49.124532
+2757	1487	What is the difference between exception tests and death tests?	open	2024-10-05 21:49:49.126425	2024-10-05 21:49:49.126425
+2758	1487	What arguments does a death test take?	open	2024-10-05 21:49:49.128773	2024-10-05 21:49:49.128773
+2759	1487	Write a death test to verify exit status of a statement when death tsets are supported?	open	2024-10-05 21:49:49.130974	2024-10-05 21:49:49.130974
+2760	1487	What are the use cases of exit assertions?	open	2024-10-05 21:49:49.133366	2024-10-05 21:49:49.133366
+2761	1487	What are the common predicates used to verify exit status of a statement in exit assertions?	open	2024-10-05 21:49:49.135594	2024-10-05 21:49:49.135594
+2762	1487	What is the predicate type that exit assertions take as second argument?	open	2024-10-05 21:49:49.137763	2024-10-05 21:49:49.137763
+2763	1487	Write a wildcard matcher?	open	2024-10-05 21:49:49.139994	2024-10-05 21:49:49.139994
+2764	1487	What arithmetic comparison matchers exist?	open	2024-10-05 21:49:49.14252	2024-10-05 21:49:49.14252
+2765	1487	What boolean comparison matchers exist?	open	2024-10-05 21:49:49.144529	2024-10-05 21:49:49.144529
+2766	1487	What pointer comparison matchers exist?	open	2024-10-05 21:49:49.146696	2024-10-05 21:49:49.146696
+2767	1487	What matcher exists to check for returned <code>std::optional<></code> object?	open	2024-10-05 21:49:49.1492	2024-10-05 21:49:49.1492
+2768	1487	What matcher exists to check for returneed <code>std::variant<></code> object?	open	2024-10-05 21:49:49.151739	2024-10-05 21:49:49.151739
+2769	1487	What matcher should be used when given argument is a reference?	open	2024-10-05 21:49:49.153779	2024-10-05 21:49:49.153779
+2770	1487	What matcher can be used when testing a function template?	open	2024-10-05 21:49:49.155866	2024-10-05 21:49:49.155866
+2771	1487	What value category is used in matchers to take arguments?	open	2024-10-05 21:49:49.158001	2024-10-05 21:49:49.158001
+2772	1487	What is the difference between using boolean comparison matchers and assertions?	open	2024-10-05 21:49:49.159777	2024-10-05 21:49:49.159777
+2773	1487	What matchers exist for comparing equality of doubles?	open	2024-10-05 21:49:49.162266	2024-10-05 21:49:49.162266
+2774	1487	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687
+2775	1487	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234
+2776	1487	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838
 \.
 
 
@@ -18199,6 +18466,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-09-27 08:13:12.835493	3	Bootlin
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2	\N
 \.
 
 
@@ -19696,6 +19964,11 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
+1488	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
+1489	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
+1490	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	4
+1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
+1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 \.
 
 
@@ -21287,6 +21560,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 26	96
 26	100
 6	101
+24	102
 \.
 
 
@@ -21877,7 +22151,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7593, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7788, true);
 
 
 --
@@ -21905,7 +22179,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2704, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2776, true);
 
 
 --
@@ -21961,7 +22235,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 101, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 102, true);
 
 
 --
@@ -21982,7 +22256,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1486, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1491, true);
 
 
 --
