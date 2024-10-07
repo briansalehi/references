@@ -9169,6 +9169,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7725	2753	ASSERT_PRED_FORMAT5(predicate_formatter, value, value, value, value, value);	code	cpp	2024-10-05 21:49:49.117509	10
 7726	2754		text	txt	2024-10-05 21:49:49.120103	1
 7727	2754	bool MutuallyPrime(int m, int n) { ... }	code	cpp	2024-10-05 21:49:49.120103	2
+7789	2777	A mock object implements the same interface as a real object, but lets you specify at run time how it will be used and what it should do.	text	txt	2024-10-07 21:15:43.789371	1
 7728	2754	testing::AssertionResult AssertMutuallyPrime(const char* m_expr, const char* n_expr, int m, int n)\n{\n    if (MutuallyPrime(m, n))\n        return testing::AssertionSuccess();\n\n    return testing::AssertionFailure() << m_expr << " and " << n_expr << " (" << m << " and " << n << ") are not mutually prime";\n}	code	cpp	2024-10-05 21:49:49.120103	3
 7729	2754	const int a = 3;\nconst int b = 4;\nconst int c = 10;\n\nEXPECT_PRED_FORMAT2(AssertMutuallyPrime, a, b);  // Succeeds\nEXPECT_PRED_FORMAT2(AssertMutuallyPrime, b, c);  // Fails	code	cpp	2024-10-05 21:49:49.120103	4
 7730	2755	Death assertions verify that a statement causes the process to terminate with a nonzero exit status and produces `stderr` output that matches matcher.	text	txt	2024-10-05 21:49:49.122318	1
@@ -9230,6 +9231,59 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7786	2776	FloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	3
 7787	2776	NonSensitiveDoubleNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	4
 7788	2776	NonSensitiveFloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	5
+7790	2777	Fake objects have working implementations, but usually take some shortcut. Mocks are objects pre-programmed with expectations, which form a specification of the calls they are expected to receive.	text	txt	2024-10-07 21:15:43.789371	2
+7791	2778	1. first, you use some simple macros to describe the interface you want to mock, and they will expand to the implementation of your mock class;\n2. next, you create some mock objects and specify its expectations and behavior using an intuitive syntax;\n3. then you exercise code that uses the mock objects. gMock will catch any violation to the expectations as soon as it arises.	text	list	2024-10-07 21:15:43.802311	1
+7792	2779	- Writing prototypes for more optimal design\n- Tests are slow as they depend on too many libraries or use expensive resources\n- Tests are brittle and use unreliable resources like network\n- Verifying that the code handles a failure\n- Verifying proper interaction between modules\n- Mocking dependencies	text	list	2024-10-07 21:15:43.805209	1
+7793	2780	Assuming `Queue` class will have the following interface:	text	txt	2024-10-07 21:15:43.80856	1
+7794	2780	class Queue\n{\npublic:\n    Queue() = default;\n    virtual ~Queue() = default;\n    virtual void enqueue(int value);\n    virtual std::optional<int> dequeue();\n    virtual std::size_t size() const;\n};	code	cpp	2024-10-07 21:15:43.80856	2
+7795	2780	1. Derive a class `MockQueue` from `Queue`\n2. Take a virtual function of `Queue`\n3. Write `MOCK_METHOD()` in public access specifier\n4. Separately write the return type, name, and argument list of the function signature delimited by comma\n5. Add `const` as fourth parameter if the function is const\n6. Add `override` as fourth parameter if the function is virtual	text	list	2024-10-07 21:15:43.80856	3
+7796	2780	#include <gmock/gmock.h>\n\nclass MockQueue: public Queue\n{\npublic:\n    MOCK_METHOD(void, enqueue, (int), (override));\n    MOCK_METHOD(std::optional<int>, dequeue, (), (override));\n    MOCK_METHOD(std::size_t, size, (), (const, override));\n};	code	cpp	2024-10-07 21:15:43.80856	4
+7797	2781	1. Import gMock names from `testing` namespace\n2. Create some mock objects\n3. Specify your expectations on them\n4. Exercise some code that uses the mock\n5. When a mock is destructed, gMock will automatically check whether all the expectations on it have been satisfied	text	list	2024-10-07 21:15:43.811555	1
+7798	2781	#include <MockQueue.hpp>\n#include <gmock/gmock.h>\n#include <gtest/gtest.h>\n\nusing testing::AtLeast;\n\nTEST(TestQueue, CanHaveElements)\n{\n    MockQueue queue;\n    EXPECT_CALL(queue, enqueue()).Times(AtLeast(1));\n\n    RandomEngine engine(queue);\n    EXPECT_TRUE(engine.fill());\n}	code	cpp	2024-10-07 21:15:43.811555	2
+7799	2781	In this context, the `algorithm` object must call `enqueue()` method at least once. Otherwise test fails.	text	txt	2024-10-07 21:15:43.811555	3
+7800	2782	gMock requires expectations to be set before the mock functions are called, otherwise the behavior is undefined.	text	txt	2024-10-07 21:15:43.814194	1
+7801	2783	EXPECT_CALL(mock_object, method(matcher)).Times(cardinality).WillOnce(action).WillRepeatedly(action);	code	cpp	2024-10-07 21:15:43.81707	1
+7802	2783	EXPECT_CALL(mock_object, non-overloaded-method).Times(cardinality).WillOnce(action).WillRepeatedly(action);	code	cpp	2024-10-07 21:15:43.81707	2
+7803	2784	A matcher is like a predicate and can test whether an argument is what we'd expect. You can use a matcher inside `EXPECT_CALL()` wherever a function argument is expected.	text	txt	2024-10-07 21:15:43.819084	1
+7804	2784	EXPECT_CALL(MockQueue, enqueue); // expects that enqueue() will be called but dones't care about arguments	code	cpp	2024-10-07 21:15:43.819084	2
+7805	2785	EXPECT_CALL(MockQueue, enqueue(Ge(100)));	code	cpp	2024-10-07 21:15:43.821039	1
+7806	2786	If you aren't interested in the value of an argument, write `_` as the argument, which means “anything goes”.	text	txt	2024-10-07 21:15:43.8235	1
+7807	2786	using testing::_;\n\nEXPECT_CALL(MockQueue, enqueue(_));	code	cpp	2024-10-07 21:15:43.8235	2
+7808	2787	The first clause we can specify following an `EXPECT_CALL()` is `Times()`. We call its argument a **cardinality** as it tells how many times the call should occur.	text	txt	2024-10-07 21:15:43.82559	1
+7809	2787	EXPECT_CALL(MockQueue, enqueue(Ge(0))).Times(1);	code	cpp	2024-10-07 21:15:43.82559	2
+7810	2788	EXPECT_CALL(MockQueue, dequeue).Times(0);	code	cpp	2024-10-07 21:15:43.827379	1
+7811	2789	- If neither `WillOnce()` nor `WillRepeatedly()` is in the expectation call, the inferred cardinality is `Times(1)`.\n- If there are `n` `WillOnce()` but no `WillRepeatedly()`, where `n >= 1`, the cardinality is `Times(n)`.\n- If there are `n` `WillOnce()` and one `WillRepeatedly()`, where `n >= 0`, the cardinality is `Times(n)`.	text	list	2024-10-07 21:15:43.829476	1
+7812	2789	EXPECT_CALL(MockQueue, enqueue); // Times(1)	code	cpp	2024-10-07 21:15:43.829476	2
+7813	2790	If the the return type of a mock function is a built-in type or a pointer, the function has a default action. A `void` function just returns, a `bool` returning function will return `false`, and others return 0.	text	txt	2024-10-07 21:15:43.831777	1
+7814	2790	For C++11 and above, mock function will return a default constructed form of an object.	text	txt	2024-10-07 21:15:43.831777	2
+7815	2790	EXPECT_CALL(MockQueue, enqueue); // just returns as it is a void function	code	cpp	2024-10-07 21:15:43.831777	3
+7816	2790	EXPECT_CALL(MockQueue, dequeue); // returns a default constructed std::optional<int> object	code	cpp	2024-10-07 21:15:43.831777	4
+7817	2790	EXPECT_CALL(MockQueue, size); // returns 0	code	cpp	2024-10-07 21:15:43.831777	5
+7818	2791	EXPECT_CALL(MockQueue, dequeue).WillOnce(Return(Optional(1))).WillOnce(Return(Optional(2))).WillOnce(Return(Optional(3)));	code	cpp	2024-10-07 21:15:43.833462	1
+7819	2791	The `MockQueue.dequeue()` will be called exactly three times, returning 1, 2, 3 respectively.	text	txt	2024-10-07 21:15:43.833462	2
+7820	2792	EXPECT_CALL(MockQueue, size).WillRepeatedly(Return(0));	code	cpp	2024-10-07 21:15:43.835579	1
+7821	2792	The `MockQueue.size()` will return 0 every time it is called.	text	txt	2024-10-07 21:15:43.835579	2
+7822	2793	`WillOnce()` calls are used up, and for the rest gMock will do the default action for the function every time, unless `WillRepeatedly()` is specified.	text	txt	2024-10-07 21:15:43.837436	1
+7823	2793	EXPECT_CALL(MockQueue, size).WillOnce(Return(1)).WillOnce(Return(2)).WillRepeatedly(Return(AtLeast(3)));	code	cpp	2024-10-07 21:15:43.837436	2
+7824	2794	By default, when a mock method is invoked, gMock will search the expectations in the reverse order they are defined, and stop when an active expectation that matches the arguments is found. If the matching expectation cannot take any more calls, you will get an upper-bound-violated failure.	text	txt	2024-10-07 21:15:43.839435	1
+7825	2795	using testing::_;\n\nEXPECT_CALL(MockQueue, enqueue(_));	code	cpp	2024-10-07 21:15:43.84192	1
+7826	2795	EXPECT_CALL(MockQueue, enqueue(10)).Times(2);	code	cpp	2024-10-07 21:15:43.84192	2
+7827	2795	When `enqueue(10)` is called three times, the third time will be a failure, as the last matching expectation specifies only two calls.	text	txt	2024-10-07 21:15:43.84192	3
+7828	2795	On the other hand, `enqueue(20)` will succeed as the last matching expectation does not specify what the argument is and how many times it will be called.	text	txt	2024-10-07 21:15:43.84192	4
+7829	2796	The reason for reverse order of searching expectations by gMock is that this allows a user to set up the default expectations in a mock object’s constructor or the test fixture’s set-up phase and then customize the mock by writing more specific expectations in the test body.	text	txt	2024-10-07 21:15:43.844194	1
+7830	2796	If you have two expectations on the same method, you want to put the one with more specific matchers after the other, or the more specific rule would be shadowed by the more general one that comes after it.	text	txt	2024-10-07 21:15:43.844194	2
+7831	2797	By default, the calls don't have to occur in the order the expectations are specified.	text	txt	2024-10-07 21:15:43.846818	1
+7832	2797	But sometimes, you may want all the expected calls to occur in a strict order:	text	txt	2024-10-07 21:15:43.846818	2
+7833	2797	using testing::InSequence;\nusing testing::AtLeast;\n\nTEST(QueueTest, VerifyCallSequence)\n{\n    Queue queue;\n\n    {\n        InSequence sequence;\n\n        EXPECT_CALL(queue, size());\n        EXPECT_CALL(queue, enqueue).Times(AtLeast(1));\n    }\n\n    queue.fill(std::random_device());\n}	code	cpp	2024-10-07 21:15:43.846818	3
+7834	2797	By creating an object of type `InSequence`, all expectations in its scope are put into a sequence and have to occur sequentially.	text	txt	2024-10-07 21:15:43.846818	4
+7835	2798		text	txt	2024-10-07 21:15:43.848771	1
+7836	2798	using testing::AnyNumber;\nusing testing::_;\n\nEXPECT_CALL(MockQueue, enqueue(_)).Times(AnyNumber());\nEXPECT_CALL(MockQueue, enqueue(1)).Times(1);	code	cpp	2024-10-07 21:15:43.848771	2
+7837	2799	The expectations are sticky by default. In the sense that they remain active even after we have reached their invocation upper bounds.	text	txt	2024-10-07 21:15:43.85086	1
+7838	2799	using testing::Return;\n\nfor (int i = n; i > 0; i--)\n{\n    EXPECT_CALL(MockQueue, size()).WillOnce(Return(i));\n}	code	cpp	2024-10-07 21:15:43.85086	2
+7839	2799	This series of expectations for return values `n, ..., 3, 2, 1` does not result as expected.	text	txt	2024-10-07 21:15:43.85086	3
+7840	2799	The latest expectation with return value of 1 will be sticky for each call, resulting in test failure.	text	txt	2024-10-07 21:15:43.85086	4
+7841	2800		text	txt	2024-10-07 21:15:43.85282	1
+7842	2800	using testing::Return;\nusing testing::InSequence;\n\n{\n    InSequence sequence;\n\n    for (int i = n; i > 0; i--)\n    {\n        EXPECT_CALL(MockQueue, size()).WillOnce(Return(i)).RetiresOnSaturation();\n    }\n}	code	cpp	2024-10-07 21:15:43.85282	2
 \.
 
 
@@ -12184,6 +12238,30 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2774	1487	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687
 2775	1487	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234
 2776	1487	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838
+2777	1489	What is a mock?	open	2024-10-07 21:15:43.789371	2024-10-07 21:15:43.789371
+2778	1489	What is the workflow of running a mock object?	open	2024-10-07 21:15:43.802311	2024-10-07 21:15:43.802311
+2779	1489	What are the use cases of mocks?	open	2024-10-07 21:15:43.805209	2024-10-07 21:15:43.805209
+2780	1489	Write a mock for Queue class?	open	2024-10-07 21:15:43.80856	2024-10-07 21:15:43.80856
+2781	1489	Use a MockQueue in a test?	open	2024-10-07 21:15:43.811555	2024-10-07 21:15:43.811555
+2782	1489	What is the ordering of mock expectation calls?	open	2024-10-07 21:15:43.814194	2024-10-07 21:15:43.814194
+2783	1489	What is the general syntax of a mock?	open	2024-10-07 21:15:43.81707	2024-10-07 21:15:43.81707
+2784	1489	Where matchers are used in mocks?	open	2024-10-07 21:15:43.819084	2024-10-07 21:15:43.819084
+2785	1489	Specify an expectation for a mock that the argument given to its method will be at least 100?	open	2024-10-07 21:15:43.821039	2024-10-07 21:15:43.821039
+2786	1489	Ignore an argument when it is not in our interest when it is passed to a mock method?	open	2024-10-07 21:15:43.8235	2024-10-07 21:15:43.8235
+2787	1489	What is a cardinality in mock functions?	open	2024-10-07 21:15:43.82559	2024-10-07 21:15:43.82559
+2788	1489	Specify a method in a mock that should never be called?	open	2024-10-07 21:15:43.827379	2024-10-07 21:15:43.827379
+2789	1489	What is the cardinality of a mock when <code>Times()</code> is omitted?	open	2024-10-07 21:15:43.829476	2024-10-07 21:15:43.829476
+2790	1489	What is the default behavior of gMock when a mock function returns?	open	2024-10-07 21:15:43.831777	2024-10-07 21:15:43.831777
+2791	1489	Specify the return value of mock function for three calls?	open	2024-10-07 21:15:43.833462	2024-10-07 21:15:43.833462
+2792	1489	Specify the return value of a mock function for indefinite calls?	open	2024-10-07 21:15:43.835579	2024-10-07 21:15:43.835579
+2793	1489	What happens if the cardinality is bigger than the specified return occurrances?	open	2024-10-07 21:15:43.837436	2024-10-07 21:15:43.837436
+2794	1489	In what order expectations are searched?	open	2024-10-07 21:15:43.839435	2024-10-07 21:15:43.839435
+2795	1489	Specify multiple expectations for a mock function?	open	2024-10-07 21:15:43.84192	2024-10-07 21:15:43.84192
+2796	1489	What is the best practice in ordering of multiple expectations?	open	2024-10-07 21:15:43.844194	2024-10-07 21:15:43.844194
+2797	1489	Verify that the call to a series of mock functions are in a specific order?	open	2024-10-07 21:15:43.846818	2024-10-07 21:15:43.846818
+2798	1489	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	open	2024-10-07 21:15:43.848771	2024-10-07 21:15:43.848771
+2799	1489	What are the downsides of expectations being sticky?	open	2024-10-07 21:15:43.85086	2024-10-07 21:15:43.85086
+2800	1489	Specify a series of expectations that retire after reaching invocation upper bounds?	open	2024-10-07 21:15:43.85282	2024-10-07 21:15:43.85282
 \.
 
 
@@ -19965,10 +20043,10 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 1488	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
-1489	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 1490	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	4
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
+1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 \.
 
 
@@ -22156,7 +22234,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7788, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7842, true);
 
 
 --
@@ -22184,7 +22262,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2776, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2800, true);
 
 
 --
