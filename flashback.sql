@@ -556,6 +556,17 @@ CREATE FUNCTION flashback.search_subject(pattern character varying) RETURNS TABL
 ALTER FUNCTION flashback.search_subject(pattern character varying) OWNER TO flashback;
 
 --
+-- Name: section_study_completed(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.section_study_completed(IN user_index integer, IN section_index integer)
+    LANGUAGE plpgsql
+    AS $$ begin update flashback.studies set updated = now() where user_id = user_index and section_id = section_index; end; $$;
+
+
+ALTER PROCEDURE flashback.section_study_completed(IN user_index integer, IN section_index integer) OWNER TO flashback;
+
+--
 -- Name: set_section_as_complete(character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -20150,7 +20161,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	495	2024-08-07 22:44:43.138201
 1	491	2024-08-07 22:44:43.138201
 1	478	2024-08-07 22:44:43.138201
-1	472	2024-08-07 22:44:43.138201
 1	497	2024-08-07 22:44:43.138201
 1	490	2024-08-07 22:44:43.138201
 1	480	2024-08-07 22:44:43.138201
@@ -20159,7 +20169,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	485	2024-08-07 22:44:43.138201
 1	473	2024-08-07 22:44:43.138201
 1	484	2024-08-07 22:44:43.138201
-1	471	2024-08-07 22:44:43.138201
 1	486	2024-08-07 22:44:43.138201
 1	493	2024-08-07 22:44:43.138201
 1	482	2024-08-07 22:44:43.138201
@@ -20240,6 +20249,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1330	2024-08-07 22:44:43.138201
 1	1331	2024-08-07 22:44:43.138201
 1	1332	2024-08-07 22:44:43.138201
+1	472	2024-10-07 22:18:13.969178
 1	1347	2024-08-07 22:44:43.138201
 1	1351	2024-08-07 22:44:43.138201
 1	1359	2024-08-07 22:44:43.138201
@@ -21529,6 +21539,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1490	2024-10-05 21:52:28.034683
 1	1491	2024-10-05 21:52:28.034683
 1	1487	2024-10-05 21:52:28.034683
+1	471	2024-10-07 22:21:04.764332
 \.
 
 
