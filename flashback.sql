@@ -18506,7 +18506,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 45	Docker: Up & Running	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 46	Docker in Practice	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 47	The Linux Programming Interface	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-48	CMake Best Practices	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 49	Linux Device Driver	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 50	Introduction to Linear and Matrix Algebra	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 51	Extreme C	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -18556,6 +18555,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2	\N
+48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
 \.
 
 
@@ -20183,7 +20183,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	629	2024-08-07 22:44:43.138201
 1	626	2024-08-07 22:44:43.138201
 1	652	2024-08-07 22:44:43.138201
-1	661	2024-08-07 22:44:43.138201
 1	676	2024-08-07 22:44:43.138201
 1	675	2024-08-07 22:44:43.138201
 1	744	2024-08-07 22:44:43.138201
@@ -21540,6 +21539,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1293	2024-10-09 10:25:27.989366
 1	1347	2024-10-09 11:59:29.659175
 1	1348	2024-10-09 12:18:10.38871
+1	661	2024-10-11 18:48:12.8445
 \.
 
 
