@@ -9242,6 +9242,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7786	2776	FloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	3
 7787	2776	NonSensitiveDoubleNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	4
 7788	2776	NonSensitiveFloatNear(double, max_absolute_error);	code	cpp	2024-10-05 21:49:49.169838	5
+7843	2801	- cmake\n- ctest\n- cpack	text	list	2024-10-12 15:54:52.704786	1
 7790	2777	Fake objects have working implementations, but usually take some shortcut. Mocks are objects pre-programmed with expectations, which form a specification of the calls they are expected to receive.	text	txt	2024-10-07 21:15:43.789371	2
 7791	2778	1. first, you use some simple macros to describe the interface you want to mock, and they will expand to the implementation of your mock class;\n2. next, you create some mock objects and specify its expectations and behavior using an intuitive syntax;\n3. then you exercise code that uses the mock objects. gMock will catch any violation to the expectations as soon as it arises.	text	list	2024-10-07 21:15:43.802311	1
 7792	2779	- Writing prototypes for more optimal design\n- Tests are slow as they depend on too many libraries or use expensive resources\n- Tests are brittle and use unreliable resources like network\n- Verifying that the code handles a failure\n- Verifying proper interaction between modules\n- Mocking dependencies	text	list	2024-10-07 21:15:43.805209	1
@@ -9295,6 +9296,39 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7840	2799	The latest expectation with return value of 1 will be sticky for each call, resulting in test failure.	text	txt	2024-10-07 21:15:43.85086	4
 7841	2800		text	txt	2024-10-07 21:15:43.85282	1
 7842	2800	using testing::Return;\nusing testing::InSequence;\n\n{\n    InSequence sequence;\n\n    for (int i = n; i > 0; i--)\n    {\n        EXPECT_CALL(MockQueue, size()).WillOnce(Return(i)).RetiresOnSaturation();\n    }\n}	code	cpp	2024-10-07 21:15:43.85282	2
+7844	2802	- ccmake\n- cmake-gui	text	list	2024-10-12 15:54:52.711731	1
+7845	2803	git clone https://github.com/kitware/cmake.git	code	sh	2024-10-12 15:54:52.713577	1
+7846	2803	cd cmake	code	sh	2024-10-12 15:54:52.713577	2
+7847	2803	./configure --prefix=$HOME/.local	code	sh	2024-10-12 15:54:52.713577	3
+7848	2803	make -j$(nproc)	code	sh	2024-10-12 15:54:52.713577	4
+7849	2803	make install	code	sh	2024-10-12 15:54:52.713577	5
+7850	2804	cmake -S <source> -B <build>	code	sh	2024-10-12 15:54:52.715244	1
+7851	2804	cmake --build <build> --parallel $(nproc) --target all	code	sh	2024-10-12 15:54:52.715244	2
+7852	2805	build/CMakeCache.txt	text	path	2024-10-12 15:54:52.716774	1
+7853	2805	build/CMakeFiles	text	path	2024-10-12 15:54:52.716774	2
+7854	2806	cmake_minimum_required(VERSION 3.30)\nproject(Sample VERSION 0.1 LANGUAGES CXX)\nadd_executable(program)\ntarget_sources(program PRIVATE src/main.cpp)	code	cmake	2024-10-12 15:54:52.71834	1
+7855	2807	- **Configuration**: parses listfiles, detects toolchains, detects architectures, finds dependencies, generates cache\n- **Generate**: writes build tool files, generates targets\n- **Build**: compile binaries, link binaries, run tests, pack artifacts	text	list	2024-10-12 15:54:52.719957	1
+7856	2808	cmake -S <source> -B <build> -G <generator>	code	sh	2024-10-12 15:54:52.721072	1
+7857	2809	Wherever the top `CMakeLists.txt` file is located.	text	txt	2024-10-12 15:54:52.722152	1
+7858	2810	There is always exactly one project per `CMakeLists.txt`, which means that each project has to have a separate directory in the source directory.	text	txt	2024-10-12 15:54:52.723376	1
+7859	2810	project(<name> VERSION <version> LANGUAGES <language>... DESCRIPTION "<description>")	code	cmake	2024-10-12 15:54:52.723376	2
+7860	2811	PROJECT_NAME	code	cmake	2024-10-12 15:54:52.724375	1
+7861	2811	CMAKE_PROJECT_NAME	code	cmake	2024-10-12 15:54:52.724375	2
+7862	2812	Version 3.21:	text	txt	2024-10-12 15:54:52.725279	1
+7863	2812	PROJECT_IS_TOP_LEVEL	code	cmake	2024-10-12 15:54:52.725279	2
+7864	2813	PROJECT_DESCRIPTION	code	cmake	2024-10-12 15:54:52.726169	1
+7865	2813	CMAKE_PROJECT_DESCRIPTION	code	cmake	2024-10-12 15:54:52.726169	2
+7866	2814	PROJECT_VERSION	code	cmake	2024-10-12 15:54:52.727277	1
+7867	2814	PROJECT_VERSION_MAJOR	code	cmake	2024-10-12 15:54:52.727277	2
+7868	2814	PROJECT_VERSION_MINOR	code	cmake	2024-10-12 15:54:52.727277	3
+7869	2814	PROJECT_VERSION_PATCH	code	cmake	2024-10-12 15:54:52.727277	4
+7870	2815	set(api_version 4.12.1)	code	cmake	2024-10-12 15:54:52.72814	1
+7871	2816	unset(api_version)	code	cmake	2024-10-12 15:54:52.729055	1
+7872	2817	${api_version}	code	cmake	2024-10-12 15:54:52.729983	1
+7873	2818	${api_${PROJECT_VERSION}}	code	cmake	2024-10-12 15:54:52.730984	1
+7874	2819	Variables might be scoped as follows:	text	txt	2024-10-12 15:54:52.73233	1
+7875	2819	- Function scope\n- Directory scope\n- Persistent cache	text	txt	2024-10-12 15:54:52.73233	2
+7876	2820	set(PARENT_SCOPE api_version 4.12.1)	code	cmake	2024-10-12 15:54:52.733309	1
 \.
 
 
@@ -12273,6 +12307,26 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2798	1489	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	open	2024-10-07 21:15:43.848771	2024-10-07 21:15:43.848771
 2799	1489	What are the downsides of expectations being sticky?	open	2024-10-07 21:15:43.85086	2024-10-07 21:15:43.85086
 2800	1489	Specify a series of expectations that retire after reaching invocation upper bounds?	open	2024-10-07 21:15:43.85282	2024-10-07 21:15:43.85282
+2801	608	How many components does CMake have?	open	2024-10-12 15:54:52.704786	2024-10-12 15:54:52.704786
+2802	608	How many graphical interfaces officially exists for cmake?	open	2024-10-12 15:54:52.711731	2024-10-12 15:54:52.711731
+2803	608	Install Cmake?	open	2024-10-12 15:54:52.713577	2024-10-12 15:54:52.713577
+2804	608	Configure and build a project?	open	2024-10-12 15:54:52.715244	2024-10-12 15:54:52.715244
+2805	608	What are the artifacts of CMake configuration stage?	open	2024-10-12 15:54:52.716774	2024-10-12 15:54:52.716774
+2806	608	Write a minimal CMake listfile?	open	2024-10-12 15:54:52.71834	2024-10-12 15:54:52.71834
+2807	608	What are the stages of building by cmake?	open	2024-10-12 15:54:52.719957	2024-10-12 15:54:52.719957
+2808	608	Specify which generator should be used in build?	open	2024-10-12 15:54:52.721072	2024-10-12 15:54:52.721072
+2809	608	Where is the source directory?	open	2024-10-12 15:54:52.722152	2024-10-12 15:54:52.722152
+2810	608	What is the definition of a project in CMake?	open	2024-10-12 15:54:52.723376	2024-10-12 15:54:52.723376
+2811	608	What variable holds the project name?	open	2024-10-12 15:54:52.724375	2024-10-12 15:54:52.724375
+2812	608	Determine if the project is the top level project?	open	2024-10-12 15:54:52.725279	2024-10-12 15:54:52.725279
+2813	608	What variable holds project description?	open	2024-10-12 15:54:52.726169	2024-10-12 15:54:52.726169
+2814	608	What variables hold project version information?	open	2024-10-12 15:54:52.727277	2024-10-12 15:54:52.727277
+2815	608	Declare and initialize a variable?	open	2024-10-12 15:54:52.72814	2024-10-12 15:54:52.72814
+2816	608	Clear a variable?	open	2024-10-12 15:54:52.729055	2024-10-12 15:54:52.729055
+2817	608	Reference a variable?	open	2024-10-12 15:54:52.729983	2024-10-12 15:54:52.729983
+2818	608	Reference two nested variables?	open	2024-10-12 15:54:52.730984	2024-10-12 15:54:52.730984
+2819	608	How many scopes exist?	open	2024-10-12 15:54:52.73233	2024-10-12 15:54:52.73233
+2820	608	Make variable visible to its parent scope?	open	2024-10-12 15:54:52.733309	2024-10-12 15:54:52.733309
 \.
 
 
@@ -18887,7 +18941,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 118	22	writing	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	6
 683	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	9
 793	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	8
-608	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 317	34	open	\N	2024-07-28 09:44:58.73201	2024-07-28 09:44:58.73201	6
 1265	84	open	\N	2024-07-28 09:45:08.962478	2024-07-28 09:45:08.962478	5
 702	54	open	\N	2024-07-28 09:45:02.987548	2024-07-28 09:45:02.987548	1
@@ -20058,6 +20111,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
+608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 \.
 
 
@@ -22245,7 +22299,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7842, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7876, true);
 
 
 --
@@ -22273,7 +22327,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2800, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2820, true);
 
 
 --
