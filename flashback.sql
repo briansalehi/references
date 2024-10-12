@@ -146,7 +146,7 @@ begin
     select s.state into section_state from flashback.sections s where s.id = section_index;
     insert into flashback.notes (section_id, heading) values (section_index, heading) returning id into note_index;
     insert into flashback.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
-    update flashback.sections set state = 'writing' where id = section_index;
+    update flashback.sections set state = 'writing', updated = now() where id = section_index;
     delete from temp_blocks;
     alter sequence temp_blocks_row_number_seq restart with 1;
 end; $$;
@@ -578,7 +578,7 @@ declare section_index integer;
 begin
     select id into resource_index from flashback.resources where name = resource_name;
     select id into section_index from flashback.sections where resource_id = resource_index and number = section_number;
-    update flashback.sections set state = 'completed' where id = section_index;
+    update flashback.sections set state = 'completed', updated = now() where id = section_index;
 end; $$;
 
 
@@ -20583,7 +20583,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	469	2024-09-23 20:36:18.228435
 1	683	2024-09-23 20:36:18.228435
 1	793	2024-09-23 20:36:18.228435
-1	608	2024-09-23 20:36:18.228435
 1	317	2024-09-23 20:36:18.228435
 1	1265	2024-09-23 20:36:18.228435
 1	702	2024-09-23 20:36:18.228435
@@ -21594,6 +21593,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1347	2024-10-09 11:59:29.659175
 1	1348	2024-10-09 12:18:10.38871
 1	661	2024-10-11 18:48:12.8445
+1	608	2024-10-12 15:58:30.232029
 \.
 
 
