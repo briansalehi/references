@@ -9551,6 +9551,25 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8117	2965	Poky uses this to extend OpenEmbedded Core and includes two layers: `meta-poky` and `meta-yocto-bsp`.	text	txt	2024-10-13 10:20:47.832738	2
 8118	2966	git clone https://git.yoctoproject.org/git/poky.git --branch kirkstone	code	sh	2024-10-13 10:20:47.834643	1
 8119	2967	source oe-init-buid-env [build-directory=build]	code	sh	2024-10-13 10:20:47.836879	1
+8120	2968	The first 3 parameters are simply the method declaration, and the 4th parameter is an enclosed list of qualifiers affecting the method.	text	txt	2024-10-13 10:23:12.029325	1
+8121	2968	MOCK_METHOD(<return-type>, <method-name>, (<args>), (<qualifiers>));	code	cpp	2024-10-13 10:23:12.029325	2
+8122	2969	- `const`: required when method is `const`\n- `override`: required if method is overriding a `virtual` method from its base\n- `noexcept`: required when method does not throw\n- `Calltype()`: useful in Windows\n- ref()`: required when method has either of lvalue or rvalue reference qualifications	text	list	2024-10-13 10:23:12.0333	1
+8123	2969	MOCK_METHOD(void, do_something, (), (const, override, noexcept, ref(&)));	code	cpp	2024-10-13 10:23:12.0333	2
+8124	2970	using testing::ReturnRef;\nusing testing::Const;\n\nstd::string expeected{"done"};\n\nEXPECT_CALL(MockObject, do_something()).Times(1).WillOnce(ReturnRef(Const(expected)));	code	cpp	2024-10-13 10:23:12.03509	1
+8125	2971	using testing::Return;\nusing testing::Const;\nusing testing::Optional;\n\nstd::string result{"done"};\n\nEXPECT_CALL(Const(MockObject), do_something()).WillRepeatedly(Return(Optional<std::string>(result)));	code	cpp	2024-10-13 10:23:12.036758	1
+8126	2972	Commas which are not surrounded by parentheses, prevent `MOCK_METHOD` from parsing its arguments correctly. Therefore, whenever a statement contains a comma, the statement should be surrounded by parentheses.	text	txt	2024-10-13 10:23:12.038871	1
+8127	2972	MOCK_METHOD((std::pair<bool, int>), GetPair, ());	code	cpp	2024-10-13 10:23:12.038871	2
+8128	2972	MOCK_METHOD(bool, CheckMap, ((std::map<int, double>), bool));	code	cpp	2024-10-13 10:23:12.038871	3
+8129	2972	Note that wrapping a return or argument type with parentheses is, in general, invalid C++. `MOCK_METHOD` removes the parentheses.	text	txt	2024-10-13 10:23:12.038871	4
+8130	2973	Mock methods must always be put in a `public` access specifier, regardless of what access the method being mocked has.	text	txt	2024-10-13 10:23:12.040675	1
+8131	2973	In C++ it is perfectly valid to change the accessibility of a virtual function in the base class:	text	txt	2024-10-13 10:23:12.040675	2
+8132	2973	class base\n{\npublic:\n    virtual void transform() = 0;\nprotected:\n    virtual void resume() = 0;\nprivate:\n    virtual void timeout() = 0;\n};	code	cpp	2024-10-13 10:23:12.040675	3
+8133	2973	class derived: public base\n{\npublic:\n    MOCK_METHOD(void, transform, (), (override));\n    MOCK_METHOD(void, resume, (), (override));\n    MOCK_METHOD(void, timeout, (), (override));\n};	code	cpp	2024-10-13 10:23:12.040675	4
+8134	2974		text	txt	2024-10-13 10:23:12.04246	1
+8135	2974	virtual int add(element x);\nvirtual int add(element x, times t);	code	cpp	2024-10-13 10:23:12.04246	2
+8136	2974	MOCK_METHOD(int, add, (element x), (override));\nMOCK_METHOD(int, add, (element x, times t), (override));	code	cpp	2024-10-13 10:23:12.04246	3
+8137	2974	Note: if you don’t mock all versions of the overloaded method, the compiler will give you a warning about some methods in the base class being hidden. To fix that, use using to bring them in scope:	text	txt	2024-10-13 10:23:12.04246	4
+8138	2974	using derived::add;\nMOCK_METHOD(int, add, (element x), (override));	code	cpp	2024-10-13 10:23:12.04246	5
 \.
 
 
@@ -12674,6 +12693,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2965	786	What is a metadata made of?	open	2024-10-13 10:20:47.832738	2024-10-13 10:20:47.832738
 2966	787	Get poky source tree?	open	2024-10-13 10:20:47.834643	2024-10-13 10:20:47.834643
 2967	787	Prepare the poky build environment?	open	2024-10-13 10:20:47.836879	2024-10-13 10:20:47.836879
+2968	1490	What parameters does a mock method take?	open	2024-10-13 10:23:12.029325	2024-10-13 10:23:12.029325
+2969	1490	What qualifiers are possible to specify as the fourth parameter of mock method?	open	2024-10-13 10:23:12.0333	2024-10-13 10:23:12.0333
+2970	1490	Write an expectation call to a mock method when the method returns a const reference to a string?	open	2024-10-13 10:23:12.03509	2024-10-13 10:23:12.03509
+2971	1490	Write an expectation call to a mock method when the method is const qualified?	open	2024-10-13 10:23:12.036758	2024-10-13 10:23:12.036758
+2972	1490	What is an unprotected comma?	open	2024-10-13 10:23:12.038871	2024-10-13 10:23:12.038871
+2973	1490	In which access specifier a mock method is allowed to be written?	open	2024-10-13 10:23:12.040675	2024-10-13 10:23:12.040675
+2974	1490	Write mock methods for overloaded functions?	open	2024-10-13 10:23:12.04246	2024-10-13 10:23:12.04246
 \.
 
 
@@ -18953,12 +18979,12 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-09-27 08:13:12.835493	3	Bootlin
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
-102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-10-13 10:15:50.870874	1	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	2	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 \.
@@ -20453,7 +20479,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 1488	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
-1490	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	4
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
@@ -20495,6 +20520,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 786	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.832738	1
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.836879	2
+1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	4
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -22713,7 +22739,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8119, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8138, true);
 
 
 --
@@ -22741,7 +22767,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2967, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2974, true);
 
 
 --
