@@ -9702,6 +9702,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8266	3058	static bool mutex_is_locked(struct mutex *lock);	code	c	2024-10-13 10:29:09.721418	1
 8267	3059	`mutex_lock()` should only be used when we can guarantee that the mutex will not be held for a long time.	text	txt	2024-10-13 10:29:09.722968	1
 8268	3059	Typically, you should use the interruptable variant instead.	text	txt	2024-10-13 10:29:09.722968	2
+8281	3073	This configuration file is a convenient way to override several global default configurations throughout the yocto tools.	text	txt	2024-10-13 15:36:57.24333	1
+8282	3074	conf/local.conf	text	path	2024-10-13 15:36:57.248412	1
 8269	3060	- only one task can hold the mutex at a time\n- only the owner can unlock the mutex\n- multiple unlocks are not permitted\n- recursive locking is not permitted\n- a mutex object must be initialized via the API\n- a mutex object must not be initialized via memset or copying\n- task may not exit with mutex held\n- memory areas where held locks reside must not be freed\n- held mutexes must not be reinitialized\n- mutexes may not be used in hardware or software interrupt\n- contexts such as tasklets and timers	text	list	2024-10-13 10:29:09.724373	1
 8270	3061	include/linux/spinlock.h	text	path	2024-10-13 10:29:09.725658	1
 8271	3062	include/linux/mutex.h	text	path	2024-10-13 10:29:09.726978	1
@@ -9712,6 +9714,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8278	3067	- Board Support Package: porting the bootloader, kernel, and device drivers.\n- System Integration: Assembling, configuring, upgrading, and recovering user space components needed for the system.\n- Application Development: writing the company specific applications and libraries.	text	list	2024-10-13 10:59:49.489066	1
 8279	3068	- Building everything manually: dependency hell, too many details, version incompatibility\n- Binary distribution: not customized, not portable, not reproducible\n- Buidl systems: full flexibility, reproducible, optimizable, portable	text	list	2024-10-13 10:59:49.492966	1
 8280	3069	Embedded Linux build systems usually take **open source components** and **inhouse components** as inputs, take configuration files for the process, and give **toolchain**, **kernel image**, **bootloader image**, **root filesystem image** as outputs.	text	txt	2024-10-13 10:59:49.494652	1
+8283	3074	MACHINE ??= "qemux86-64"	code	conf	2024-10-13 15:36:57.248412	2
+8284	3075	ls meta*/recipes*/*images/*.bb	code	sh	2024-10-13 15:36:57.251518	1
 \.
 
 
@@ -12937,6 +12941,12 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3067	1382	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066
 3068	1382	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966
 3069	1382	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652
+3070	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:35:52.300872	2024-10-13 15:35:52.300872
+3071	787	Define the target machine to the project?	open	2024-10-13 15:35:52.305008	2024-10-13 15:35:52.305008
+3072	787	List all available images?	open	2024-10-13 15:35:52.307427	2024-10-13 15:35:52.307427
+3073	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:36:57.24333	2024-10-13 15:36:57.24333
+3074	787	Define the target machine to the project?	open	2024-10-13 15:36:57.248412	2024-10-13 15:36:57.248412
+3075	787	List all available images?	open	2024-10-13 15:36:57.251518	2024-10-13 15:36:57.251518
 \.
 
 
@@ -19198,7 +19208,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 81	PostgreSQL 14 Administration Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 82	Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 83	Sudo Mastery	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:20:47.836879	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:24:58.495762	1	\N
 84	A Complete Guide to Standard C++ Algorithms	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 85	Cross-Platform Development with Qt6 and Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19224,6 +19233,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 \.
 
 
@@ -20751,8 +20761,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1536	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	13
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
-786	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.832738	1
-787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.836879	2
 661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
 1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	4
 1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-10-13 10:59:49.494652	1
@@ -20771,6 +20779,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
 207	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.4651	3
 208	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.495762	4
+786	59	completed	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.239652	1
+787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.251518	2
 \.
 
 
@@ -22257,8 +22267,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1504	2024-10-13 09:59:11.204948
 1	1505	2024-10-13 09:59:11.204948
 1	1496	2024-10-13 09:59:11.204948
-1	786	2024-10-13 10:20:47.832738
-1	787	2024-10-13 10:20:47.836879
 1	838	2024-10-13 09:23:38.460276
 1	1361	2024-10-13 10:15:50.870874
 1	1447	2024-10-13 10:12:58.077001
@@ -22267,6 +22275,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1382	2024-10-13 10:59:49.494652
 1	1490	2024-10-13 10:23:12.04246
 1	661	2024-10-13 10:29:09.734084
+1	786	2024-10-13 12:42:44.466666
+1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
 1	1520	2024-10-13 11:08:13.847027
@@ -23007,7 +23017,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8280, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8284, true);
 
 
 --
@@ -23035,7 +23045,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3069, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3075, true);
 
 
 --
