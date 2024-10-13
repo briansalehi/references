@@ -9540,6 +9540,17 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8106	2960	When passing string literals to arguments of type const reference, the type of the corresponding parameters become a reference to an array of chars (`const char(&)[N]`). Therefore, type `char[N]` is deduced as type of parameter and used as type of member variable. However, initializing an array member with an array is not possible because you cannot copy arrays.	text	txt	2024-10-13 10:15:50.870874	1
 8107	2960	To deduce the same type for string literals of different length, we need to decay universal reference parameters.	text	txt	2024-10-13 10:15:50.870874	2
 8108	2960	namespace std\n{\ntemplate<typename T1, typename T2>\nconstexpr pair(typename decay_t<T1>, typename decay_t<T2>) make_pair(T1&& a, T2&& b)\n{\n    return pair<decay_t<T1>, decay_t<T2>>(forward<T1>(a), forward<T2>(b));\n}\n} // std	code	cpp	2024-10-13 10:15:50.870874	3
+8109	2961	Poky is the default Yocto project reference distribution, which uses OpenEmbedded build system technology.	text	txt	2024-10-13 10:20:47.82438	1
+8110	2961	It is composed of a collection of tools, configuration files, and recipe data (known as metadata).	text	txt	2024-10-13 10:20:47.82438	2
+8111	2962	`bitbake` is a task scheduler and execution system that parses Python and Shell Script code.	text	txt	2024-10-13 10:20:47.828242	1
+8112	2962	The code that is parsed generates and runs tasks, which are a set of steps ordered per the code's dependencies.	text	txt	2024-10-13 10:20:47.828242	2
+8113	2963	Bitbake evaluates all available metadata, managing dynamic variable expansion, dependencies, and code generation.	text	txt	2024-10-13 10:20:47.829918	1
+8114	2963	It also minimizes the use of processing resources to reduce build time.	text	txt	2024-10-13 10:20:47.829918	2
+8115	2964	It's a metadata collection providing core features for seven processor architectures, only supporting their emulation on QEMU.	text	txt	2024-10-13 10:20:47.831354	1
+8116	2965	The metadata includes recipes and configuration files.	text	txt	2024-10-13 10:20:47.832738	1
+8117	2965	Poky uses this to extend OpenEmbedded Core and includes two layers: `meta-poky` and `meta-yocto-bsp`.	text	txt	2024-10-13 10:20:47.832738	2
+8118	2966	git clone https://git.yoctoproject.org/git/poky.git --branch kirkstone	code	sh	2024-10-13 10:20:47.834643	1
+8119	2967	source oe-init-buid-env [build-directory=build]	code	sh	2024-10-13 10:20:47.836879	1
 \.
 
 
@@ -12656,6 +12667,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2958	1361	How does the thread constructor take arguments?	open	2024-10-13 10:15:50.868342	2024-10-13 10:15:50.868342
 2959	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-10-13 10:15:50.869549	2024-10-13 10:15:50.869549
 2960	1361	Pass string literals as universal references?	open	2024-10-13 10:15:50.870874	2024-10-13 10:15:50.870874
+2961	786	What is Poky?	open	2024-10-13 10:20:47.82438	2024-10-13 10:20:47.82438
+2962	786	What is the usage of bitbake?	open	2024-10-13 10:20:47.828242	2024-10-13 10:20:47.828242
+2963	786	How does bitbake operate?	open	2024-10-13 10:20:47.829918	2024-10-13 10:20:47.829918
+2964	786	What is OpenEmbedded Core?	open	2024-10-13 10:20:47.831354	2024-10-13 10:20:47.831354
+2965	786	What is a metadata made of?	open	2024-10-13 10:20:47.832738	2024-10-13 10:20:47.832738
+2966	787	Get poky source tree?	open	2024-10-13 10:20:47.834643	2024-10-13 10:20:47.834643
+2967	787	Prepare the poky build environment?	open	2024-10-13 10:20:47.836879	2024-10-13 10:20:47.836879
 \.
 
 
@@ -18897,7 +18915,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 56	Docker Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 57	Modern C++ Programming Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 58	Step by Step Learning x64 Assembly Language	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 60	Practical Binary Analysis	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 61	Learn Docker in a month of Lunches	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 63	C++17: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -18920,6 +18937,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 81	PostgreSQL 14 Administration Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 82	Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 83	Sudo Mastery	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:20:47.836879	1	\N
 84	A Complete Guide to Standard C++ Algorithms	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 85	Cross-Platform Development with Qt6 and Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19144,7 +19162,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1098	75	open	\N	2024-07-28 09:45:07.046276	2024-07-28 09:45:07.046276	16
 1325	87	open	\N	2024-07-28 09:45:09.480176	2024-07-28 09:45:09.480176	16
 922	68	open	\N	2024-07-28 09:45:05.579846	2024-07-28 09:45:05.579846	5
-787	59	writing	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	2
 186	24	open	\N	2024-07-28 09:44:57.174797	2024-07-28 09:44:57.174797	20
 750	56	ignored	\N	2024-07-28 09:45:03.381245	2024-07-28 09:45:03.381245	5
 182	24	open	\N	2024-07-28 09:44:57.174797	2024-07-28 09:44:57.174797	16
@@ -20122,7 +20139,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 397	38	open	\N	2024-07-28 09:44:59.624804	2024-07-28 09:44:59.624804	6
 604	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	61
 427	40	open	\N	2024-07-28 09:44:59.873074	2024-07-28 09:44:59.873074	9
-786	59	writing	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	1
 347	36	open	\N	2024-07-28 09:44:59.070387	2024-07-28 09:44:59.070387	12
 179	24	open	\N	2024-07-28 09:44:57.174797	2024-07-28 09:44:57.174797	13
 562	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	19
@@ -20477,6 +20493,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1536	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	13
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
+786	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.832738	1
+787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.836879	2
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -22695,7 +22713,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8108, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8119, true);
 
 
 --
@@ -22723,7 +22741,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2960, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2967, true);
 
 
 --
