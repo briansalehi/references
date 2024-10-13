@@ -9474,6 +9474,31 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8015	2907	chmod +x script.sh	code	sh	2024-10-13 09:59:13.38286	1
 8016	2908	bash -n script.sh	code	sh	2024-10-13 09:59:13.383816	1
 8017	2909	bash -x script.sh	code	sh	2024-10-13 09:59:13.384872	1
+8043	2923	Subroutines and coroutines.	text	txt	2024-10-13 10:12:00.011634	1
+8044	2924	When it has either of the following keywords in its body:\n- `co_await`\n- `co_return`\n- `co-yield`	text	txt	2024-10-13 10:12:00.014774	1
+8045	2925	A coroutine must have a special return type implemented by the coroutine developer.	text	txt	2024-10-13 10:12:00.019166	1
+8046	2925	A new awaiter object was introduced in the standard.	text	txt	2024-10-13 10:12:00.019166	2
+8047	2925	`promise_type` should be encapsulated within the return type and must:\n- have the name `promise_type`.\n- to be a `class` or `struct`.\n- provide at least a constructor.\n- provide `initial_suspend()` method returning an awaiter object.\n- provide non-throwing `final_suspend()` method returning an awaiter object.\n- provide `get_return_object()` method that returns the parent type.\n- provide `unhandled_exception()` method returning void.	text	txt	2024-10-13 10:12:00.019166	3
+8048	2926	`std::suspend_always` and `std::suspend_never`.	text	txt	2024-10-13 10:12:00.021499	1
+8049	2926	#include <coroutine>\n#include <iostream>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend() { return {}; }\n        std::suspend_never final_suspend() noexcept { return {}; }\n        return_type get_return_object() { return {}; }\n        void unhandled_exception() {}\n    };\n};\n\nreturn_type do_something()\n{\n    std::cout << "start\\n";\n    co_await std::suspend_always{}\n    std::cout << "finish\\n";\n}\n\nint main()\n{\n    do_something();\n}	code	cpp	2024-10-13 10:12:00.021499	2
+8050	2927	`std::coroutine_handle<>` is the primary standard type to be used in coroutines.	text	txt	2024-10-13 10:12:00.022893	1
+8051	2928	#include <coroutine>\n#include <iostream>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend() { return {}; }\n        std::suspend_never final_suspend() noexcept { return {}; }\n        return_type get_return_object() { return return_type{std::coroutine_handle<promise_type>::from_promise(*this)}; }\n        void unhandled_exception() {}\n    };\n\n    std::coroutine_handle<> handle();\n\n    return_type(std::coroutine_handle<> handle): handle{handle}\n    {\n    }\n};\n\nreturn_type do_something()\n{\n    std::cout << "start\\n";\n    co_await std::suspend_always{}\n    std::cout << "finish\\n";\n}\n\nint main()\n{\n    do_something();\n}	code	cpp	2024-10-13 10:12:00.024558	1
+8052	2929	The coroutine handle should be used to resume its execution.	text	txt	2024-10-13 10:12:00.025962	1
+8053	2929	There are two ways of resuming a coroutine. Either by call semantics `operator()` of the handle, or by calling its `resume()` method.	text	txt	2024-10-13 10:12:00.025962	2
+8054	2929	object.handle.resume();\nobject.handle();	code	cpp	2024-10-13 10:12:00.025962	3
+8055	2930	Coroutines can be started lazily or eagerly.	text	txt	2024-10-13 10:12:00.027137	1
+8056	2930	The difference between the two is the return type used for `promise_type::initial_suspend()` method.	text	txt	2024-10-13 10:12:00.027137	2
+8057	2930	#include <coroutine>\n#include <iostream>\n\nstruct lazy_return\n{\n    struct promise_type\n    {\n        std::suspend_always initial_suspend();  // #1 lazily started coroutine\n    };\n};\n\nstruct eager_return\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend(); // #2 eagerly started coroutine\n    };\n};\n\nlazy_return lazy_coroutine()\n{\n    std::cout << "initial execution\\n";\n    co_await std::suspend_always();\n    std::cout << "final execution\\n";\n}\n\neager_return eager_coroutine()\n{\n    std::cout << "initial execution\\n";\n    co_await std::suspend_never();\n    std::cout << "final execution\\n";\n}\n\nint main()\n{\n    lazy_return lazy_task = lazy_coroutine();\n    // no output\n    lazy_task();\n    // initial execution\n    lazy_task();\n    // final execution\n\n    eager_return eager_task = lazy_coroutine();\n    // initial execution\n    eager_task();\n    // final execution\n}	code	cpp	2024-10-13 10:12:00.027137	3
+8058	2931	- Cannot use variadic arguments\n- Cannot be constexpr or consteval\n- Cannot have `auto` or `decltype(auto)` as return type, but still an `auto` with a trailing return type is valid\n- `main` function cannot be a coroutine\n- Constructors and destructors cannot be coroutines\n- Cannot have a plain return statement, instead there should be `co_return` to mark end of execution	text	txt	2024-10-13 10:12:00.028291	1
+8059	2932	- Free standing function\n- Member functions within a class\n- Virtual functions in polymorphic classes\n- Lambda expressions\n- Static free standing and member functions	text	txt	2024-10-13 10:12:00.029342	1
+8060	2933	`co_yield` keyboard was introduced in C++20 and can only be used in a coroutine context.	text	txt	2024-10-13 10:12:00.030578	1
+8061	2933	`co_yield` is utilized for returning intermediate values processed within coroutine body.	text	txt	2024-10-13 10:12:00.030578	2
+8062	2933	`co_yield` can suspend coroutine after returning evaluated value.	text	txt	2024-10-13 10:12:00.030578	3
+8063	2933	This semantic is mostly used in sequence generators and range based for loops.	text	txt	2024-10-13 10:12:00.030578	4
+8064	2933	#include <coroutine>\n\nreturn_type generator(int start, int end, int step)\n{\n    for (int value{start}; value < end; value += step)\n    {\n        co_yield value;\n    }\n}	code	cpp	2024-10-13 10:12:00.030578	5
+8065	2934	- `promise_type` needs to have a method `std::suspend_always yield_value(T value)`.\n- Parameter type should match the return type.\n- The return value can be stored in a `coroutine_handle` object and retrieved later.	text	txt	2024-10-13 10:12:00.03172	1
+8066	2934	#include <coroutine>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        long value;\n\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n        void unhandled_exception() {}\n        return_type get_return_object() { return std::coroutine_handle<promise_type>::from_promise(*this); }\n        std::suspend_always yield_value(long initial_value) {}\n    };\n\n    std::coroutine_handle<promise_type> handle;\n    return_type(std::coroutine_handle<promise_type> handle): handle{handle} {}\n    operator std::coroutine_handle<promise_type>() const { return handle; }\n    long get_value() const { return handle.promise().value; }\n};	code	cpp	2024-10-13 10:12:00.03172	2
+8067	2935		text	txt	2024-10-13 10:12:00.032792	1
 \.
 
 
@@ -12552,6 +12577,19 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2907	1506	Make a shell script file executable?	open	2024-10-13 09:59:13.38286	2024-10-13 09:59:13.38286
 2908	1506	Dry run a script without executing commands for debugging?	open	2024-10-13 09:59:13.383816	2024-10-13 09:59:13.383816
 2909	1506	Run a script by printing line by line execution for debugging?	open	2024-10-13 09:59:13.384872	2024-10-13 09:59:13.384872
+2923	1521	How many routine types exist?	open	2024-10-13 10:12:00.011634	2024-10-13 10:12:00.011634
+2924	1521	When does a function is considered a coroutine?	open	2024-10-13 10:12:00.014774	2024-10-13 10:12:00.014774
+2925	1524	What semantics a coroutine return type must follow?	open	2024-10-13 10:12:00.019166	2024-10-13 10:12:00.019166
+2926	1524	What are the standard awaiter objects in the standard?	open	2024-10-13 10:12:00.021499	2024-10-13 10:12:00.021499
+2927	1524	What type is the primary standard type for <code>promise_type</code>?	open	2024-10-13 10:12:00.022893	2024-10-13 10:12:00.022893
+2928	1524	What is the signature of a coroutine handle?	open	2024-10-13 10:12:00.024558	2024-10-13 10:12:00.024558
+2929	1524	How to resume the execution of a paused coroutine?	open	2024-10-13 10:12:00.025962	2024-10-13 10:12:00.025962
+2930	1524	How many coroutine initializations exist?	open	2024-10-13 10:12:00.027137	2024-10-13 10:12:00.027137
+2931	1524	What are the restricutions on coroutines?	open	2024-10-13 10:12:00.028291	2024-10-13 10:12:00.028291
+2932	1524	What subroutines can become a coroutine?	open	2024-10-13 10:12:00.029342	2024-10-13 10:12:00.029342
+2933	1524	What does <code>co_yield</code> do?	open	2024-10-13 10:12:00.030578	2024-10-13 10:12:00.030578
+2934	1524	What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?	open	2024-10-13 10:12:00.03172	2024-10-13 10:12:00.03172
+2935	1524		open	2024-10-13 10:12:00.032792	2024-10-13 10:12:00.032792
 \.
 
 
@@ -18837,6 +18875,8 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
+105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
+106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 \.
 
 
@@ -20353,6 +20393,25 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1504	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	13
 1505	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	14
 1496	103	writing	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	5
+1518	105	open	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.008513	1
+1519	105	open	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.008513	2
+1520	105	open	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.008513	3
+1522	105	open	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.008513	5
+1523	105	open	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.008513	6
+1521	105	writing	\N	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4
+1525	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	2
+1526	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	3
+1527	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	4
+1528	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	5
+1529	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	6
+1530	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	7
+1531	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	8
+1532	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	9
+1533	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	10
+1534	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	11
+1535	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	12
+1536	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	13
+1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -21978,6 +22037,8 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 24	102
 6	103
 13	104
+6	105
+6	106
 \.
 
 
@@ -22568,7 +22629,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8042, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8067, true);
 
 
 --
@@ -22596,7 +22657,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2922, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2935, true);
 
 
 --
@@ -22652,7 +22713,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 104, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 106, true);
 
 
 --
@@ -22673,7 +22734,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1517, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1536, true);
 
 
 --

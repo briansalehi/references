@@ -3,13 +3,7 @@ create procedure add_block(content text, type flashback.block_type, language var
 
 create temp table temp_sections (t_index integer, t_reference varchar(2000));
 
-insert into temp_sections values (1, 'https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=1&pp=iAQB');
-insert into temp_sections values (2, 'https://www.youtube.com/watch?v=KkjvRxWs9aw&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=2&pp=iAQB');
-insert into temp_sections values (3, 'https://www.youtube.com/watch?v=gRK5SnBDQhA&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=3&pp=iAQB');
-insert into temp_sections values (4, 'https://www.youtube.com/watch?v=6KRS6Y2wDw8&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=4&pp=iAQB');
-insert into temp_sections values (5, 'https://www.youtube.com/watch?v=j_JvM76mjrg&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=5&pp=iAQB');
-insert into temp_sections values (6, 'https://www.youtube.com/watch?v=TgAFja228HU&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5&index=6&pp=iAQB');
-call flashback.create_resource(6, 'Cpp Hive', 'video', 4, 'https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5');
+call create_resource(6, 'Cpp Hive', 'video', 4, 6, 'https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5');
 
 call flashback.add_block('Subroutines and coroutines.', 'text', 'txt');
 call flashback.create_note_with_name('Cpp Hive', 4, 'How many routine types exist?');
@@ -21,26 +15,9 @@ call flashback.add_block(
 - `co-yield`', 'text', 'txt');
 call flashback.create_note_with_name('Cpp Hive', 4, 'When does a function is considered a coroutine?');
 
+--------------------------------------------------------------------------------
 
--- subject_index integer
--- name_string varchar
--- type_string resource_type
--- pattern_index integer
--- resource_reference varchar
-insert into temp_sections values (1, 'https://www.youtube.com/watch?v=soHQAVYTmCE&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=1&pp=iAQB');
-insert into temp_sections values (2, 'https://www.youtube.com/watch?v=Ld_s1GtLkr4&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=2&pp=iAQB');
-insert into temp_sections values (3, 'https://www.youtube.com/watch?v=pd3BmD6JbPQ&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=3&pp=iAQB');
-insert into temp_sections values (4, 'https://www.youtube.com/watch?v=dNyKAm2LGTI&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=4&pp=iAQB');
-insert into temp_sections values (5, 'https://www.youtube.com/watch?v=rSjbJncgZU0&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=5&pp=iAQB');
-insert into temp_sections values (6, 'https://www.youtube.com/watch?v=XMqotIBRweE&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=6&pp=iAQB');
-insert into temp_sections values (7, 'https://www.youtube.com/watch?v=oSUHmejmLTg&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=7&pp=iAQB');
-insert into temp_sections values (8, 'https://www.youtube.com/watch?v=Q8Z52J4xR6E&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=8&pp=iAQB');
-insert into temp_sections values (9, 'https://www.youtube.com/watch?v=G7osI7_PXTA&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=9&pp=iAQB');
-insert into temp_sections values (10, 'https://www.youtube.com/watch?v=_-zu4uIeLas&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=10&pp=iAQB');
-insert into temp_sections values (11, 'https://www.youtube.com/watch?v=jFU1fIGZJFU&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=11&pp=iAQB');
-insert into temp_sections values (12, 'https://www.youtube.com/watch?v=nb73NTILXfQ&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=12&pp=iAQB');
-insert into temp_sections values (13, 'https://www.youtube.com/watch?v=EHdNOey7cmU&list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY&index=13&pp=iAQB');
-call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video', 4, 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
+call flashback.create_resource(6, 'Mastering Modern CPP Features', 'video', 4, 13, 'https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY');
 
 call flashback.add_block('A coroutine must have a special return type implemented by the coroutine developer.', 'text', 'txt');
 call flashback.add_block('A new awaiter object was introduced in the standard.', 'text', 'txt');
