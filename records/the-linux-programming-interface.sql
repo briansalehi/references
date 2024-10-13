@@ -6,3 +6,4 @@ call add_block('code', 'c', '');
 call create_note_with_name('The Linux Programming Interface', 3, '');
 
 drop procedure add_block;
+drop table temp_blocks;

@@ -9709,6 +9709,9 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8273	3064	int mutex_trylock(struct mutex *lock);	code	c	2024-10-13 10:29:09.730245	1
 8276	3065	static DEFINE_SPINLOCK(lock);\n\nstatic void do_something(void)\n{\n    if (!spin_trylock(&lock))\n    {\n        return;\n    }\n\n    /* implementations after lock acquired */\n\n    spin_unlock(&lock);\n}	code	c	2024-10-13 10:29:09.731704	1
 8277	3066	static DEFINE_MUTEX(lock);\n\nstatic void do_something(void)\n{\n    if (!mutex_trylock(&lock))\n    {\n        return;\n    }\n\n    /* implementations after lock acquired */\n\n    mutex_unlock(&lock);\n}	code	c	2024-10-13 10:29:09.734084	1
+8278	3067	- Board Support Package: porting the bootloader, kernel, and device drivers.\n- System Integration: Assembling, configuring, upgrading, and recovering user space components needed for the system.\n- Application Development: writing the company specific applications and libraries.	text	list	2024-10-13 10:59:49.489066	1
+8279	3068	- Building everything manually: dependency hell, too many details, version incompatibility\n- Binary distribution: not customized, not portable, not reproducible\n- Buidl systems: full flexibility, reproducible, optimizable, portable	text	list	2024-10-13 10:59:49.492966	1
+8280	3069	Embedded Linux build systems usually take **open source components** and **inhouse components** as inputs, take configuration files for the process, and give **toolchain**, **kernel image**, **bootloader image**, **root filesystem image** as outputs.	text	txt	2024-10-13 10:59:49.494652	1
 \.
 
 
@@ -12931,6 +12934,9 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3064	661	What are the try-lock functions for spinlock and mutex?	open	2024-10-13 10:29:09.730245	2024-10-13 10:29:09.730245
 3065	661	Try locking a spinlock without spinning?	open	2024-10-13 10:29:09.731704	2024-10-13 10:29:09.731704
 3066	661	Try locking a mutex without sleeping?	open	2024-10-13 10:29:09.734084	2024-10-13 10:29:09.734084
+3067	1382	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066
+3068	1382	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966
+3069	1382	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652
 \.
 
 
@@ -19206,7 +19212,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 96	Embedded Linux using Yocto	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 97	C++ Templates: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4	\N
-100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-09-27 08:13:12.835493	3	Bootlin
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
@@ -19218,6 +19223,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
+100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 \.
 
 
@@ -20682,7 +20688,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1350	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	4
 1353	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	7
 1359	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	13
-1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-07-28 09:45:10.124092	1
 1468	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	5
 1469	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	6
 1470	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	7
@@ -20750,6 +20755,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.836879	2
 661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
 1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	4
+1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-10-13 10:59:49.494652	1
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -22970,7 +22976,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8277, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8280, true);
 
 
 --
@@ -22998,7 +23004,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3066, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3069, true);
 
 
 --

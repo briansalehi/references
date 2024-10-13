@@ -22,3 +22,4 @@ call add_block('code', 'cpp', '');
 call create_note_with_name('OpenGL and GLSL Fundamentals with C++', 9, '');
 
 drop procedure add_block;
+drop table temp_blocks;
