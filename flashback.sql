@@ -9570,6 +9570,90 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8136	2974	MOCK_METHOD(int, add, (element x), (override));\nMOCK_METHOD(int, add, (element x, times t), (override));	code	cpp	2024-10-13 10:23:12.04246	3
 8137	2974	Note: if you don’t mock all versions of the overloaded method, the compiler will give you a warning about some methods in the base class being hidden. To fix that, use using to bring them in scope:	text	txt	2024-10-13 10:23:12.04246	4
 8138	2974	using derived::add;\nMOCK_METHOD(int, add, (element x), (override));	code	cpp	2024-10-13 10:23:12.04246	5
+8139	2975	`postgres` user is default admin in postgres.	text	txt	2024-10-13 10:24:58.431786	1
+8140	2976	A role can be a single account, or a group representing a collection of database permissions and connection properties.	text	txt	2024-10-13 10:24:58.435847	1
+8141	2976	Every role must have a unique username.	text	txt	2024-10-13 10:24:58.435847	2
+8142	2977	A role is defined at the cluster level, while permissions are defined at the database level.	text	txt	2024-10-13 10:24:58.437385	1
+8143	2978	create role <name> with password 'secret' login;	code	sql	2024-10-13 10:24:58.438945	1
+8144	2978	The default option is `NOLOGIN`. Therefore, in order to define interactive users, remember to add the `LOGIN` option when creating a role.	text	txt	2024-10-13 10:24:58.438945	2
+8145	2979	Almost every option of the `create role` statement has a positive form that adds the ability to the role, and a negative form with `NO` prefix that excludes the ability from the role.	text	txt	2024-10-13 10:24:58.44043	1
+8146	2980	create role <user> with password 'secret' superuser login;	code	sql	2024-10-13 10:24:58.441713	1
+8147	2981	create role <user> with password null;	code	sql	2024-10-13 10:24:58.443241	1
+8148	2982	create role <user> with password 'secret' login connection limit 1;	code	sql	2024-10-13 10:24:58.444309	1
+8149	2983	create role <user> with password 'secret' login valid until '2026-12-31';	code	sql	2024-10-13 10:24:58.445326	1
+8150	2984	A group is a role that contains other roles.	text	txt	2024-10-13 10:24:58.446465	1
+8151	2984	To create a group simply create a role without a login capability.	text	txt	2024-10-13 10:24:58.446465	2
+8152	2984	create role <group> with nologin;	code	sql	2024-10-13 10:24:58.446465	3
+8153	2985	create role <user> with login password 'secret' in role <group> connection limit 1 valid until '2026-12-31';	code	sql	2024-10-13 10:24:58.447777	1
+8154	2985	The `in group` clause of `create role` is an absolute synonym for the `in role` clause.	text	txt	2024-10-13 10:24:58.447777	2
+8155	2986	grant <group> to <user>;	code	sql	2024-10-13 10:24:58.449061	1
+8156	2987	create role <group> with nologin admin <user>;	code	sql	2024-10-13 10:24:58.450545	1
+8157	2987	The <user>, even if not a cluster superuser, will be able to add new members to the <group>.	text	txt	2024-10-13 10:24:58.450545	2
+8158	2988	grant <group> to <user> with admin option;	code	sql	2024-10-13 10:24:58.451881	1
+8159	2989	drop role if exists <user>;	code	sql	2024-10-13 10:24:58.453027	1
+8160	2990	select current_role;	code	sql	2024-10-13 10:24:58.454146	1
+8161	2991	\\du	code	sql	2024-10-13 10:24:58.455162	1
+8162	2992	\\drg	code	sql	2024-10-13 10:24:58.456197	1
+8163	2993	select rolname, rolcanlogin, rolconnlimit, rolpassword from pg_roles where rolname = 'user';	code	sql	2024-10-13 10:24:58.457231	1
+8164	2994	select rolname, rolcanlogin, rolconnlimit, rolpassword from pg_authid where rolname = 'user';	code	sql	2024-10-13 10:24:58.458275	1
+8165	2994	The catalog `pg_roles` can be queried by either superuser or normal users, but `pg_authid` can only be queried by superuser.	text	txt	2024-10-13 10:24:58.458275	2
+8166	2995	`$PGDATA/pg_hba.conf`	text	txt	2024-10-13 10:24:58.459273	1
+8167	2995	After every change on the cluster firewall, instruct the cluster to reload to the new rules via a `HUP` signal or by means of a `reload` command in `pg_ctl`.	text	txt	2024-10-13 10:24:58.459273	2
+8168	2996	select pg_reload_conf();	code	sql	2024-10-13 10:24:58.460222	1
+8169	2997	<connection-type> <database>  <role> <remote-machine> <auth-method>\n  local             all         all    all              scram-sha-256\n  host              replication        samehost         md5\n  hostssl           *                  samenet          reject\n  nohostsll                            *                trust	text	txt	2024-10-13 10:24:58.461163	1
+8170	2998	Database will stop at first match.	text	txt	2024-10-13 10:24:58.462149	1
+8171	2999	host forumdb brian all reject\nhost forumdb +group all scram-sha-256	code	conf	2024-10-13 10:24:58.463091	1
+8172	3000	host forumdb @rejected_users all reject\nhost forumdb @allowed_users all scram-sha-256	code	conf	2024-10-13 10:24:58.464026	1
+8173	3000	include_file, include_if_exists, include_dir	code	sql	2024-10-13 10:24:58.464026	2
+8174	3001	select line_number, type, database, user_name, address, auth_method from pg_hba_filel_rules;	code	sql	2024-10-13 10:24:58.4651	1
+8175	3002	**Data Definition Language (DDL)** commands are used to manage databases and tables.	text	txt	2024-10-13 10:24:58.46624	1
+8176	3002	**Data Manipulation Language (DML)** commands are used to insert, delete, update and select data inside databases. 	text	txt	2024-10-13 10:24:58.46624	2
+8177	3003	psql -U <username> -h <hostname> -d <database>	code	sh	2024-10-13 10:24:58.467293	1
+8178	3003	psql -U postgres -h localhost -d template1	code	sh	2024-10-13 10:24:58.467293	2
+8179	3004	\\x	code	sql	2024-10-13 10:24:58.468329	1
+8180	3005	\\l	code	sql	2024-10-13 10:24:58.469407	1
+8181	3006	\\c <database>	code	sql	2024-10-13 10:24:58.47036	1
+8182	3006	\\c postgres	code	sql	2024-10-13 10:24:58.47036	2
+8183	3007	create database <database>	code	sql	2024-10-13 10:24:58.471298	1
+8184	3007	create database sample	code	sql	2024-10-13 10:24:58.471298	2
+8185	3008	`template1`	text	txt	2024-10-13 10:24:58.472288	1
+8186	3009	`template0` is a read-only backup in case `template1` is accidentally removed.	text	txt	2024-10-13 10:24:58.473247	1
+8187	3010	Databases can be organized by namespaces called schema.	text	txt	2024-10-13 10:24:58.474202	1
+8188	3010	Schemas cannot be nested, and they represent a flat namespace.	text	txt	2024-10-13 10:24:58.474202	2
+8189	3011	A normal user cannot perform DDL on the public schema.	text	txt	2024-10-13 10:24:58.47521	1
+8190	3011	A normal user cannot perform DML on the public schema unless superuser allows that.	text	txt	2024-10-13 10:24:58.47521	2
+8191	3012	Contains the sequence of schemas that postgres uses to find tables.	text	txt	2024-10-13 10:24:58.476204	1
+8192	3013	create database sample;\n\\c sample\ncreate user first_user with password "complex password" login;\ncreate schema sample_uexamples	code	sql	2024-10-13 10:24:58.477098	1
+8193	3014	\\dt	code	sql	2024-10-13 10:24:58.477974	1
+8194	3015	create database project template project_defaults;	code	sql	2024-10-13 10:24:58.478883	1
+8195	3016	drop database projects;	code	sql	2024-10-13 10:24:58.479835	1
+8196	3016	When there are dependencies to the database, this action can cascade to all of them too.	text	txt	2024-10-13 10:24:58.479835	2
+8197	3016	drop database projects cascade;	code	sql	2024-10-13 10:24:58.479835	3
+8198	3017	drop table users;	code	sql	2024-10-13 10:24:58.480814	1
+8199	3018	\\l+ project	code	sql	2024-10-13 10:24:58.482026	1
+8200	3018	select pg_database_size('project');	code	sql	2024-10-13 10:24:58.482026	2
+8201	3018	select pg_size_pretty(pg_database_size('project'));	code	sql	2024-10-13 10:24:58.482026	3
+8202	3019	select * from pg_database where datname = 'project';	code	sql	2024-10-13 10:24:58.483148	1
+8203	3020	create table users ( id int generated always as identity, username varchar(40) not null, primary key(id), unique(username));	code	sql	2024-10-13 10:24:58.484158	1
+8204	3021	create table if not exists users;	code	sql	2024-10-13 10:24:58.485209	1
+8205	3022	1. Logged Tables: these are the regular tables we create.	text	txt	2024-10-13 10:24:58.486465	1
+8206	3022	create table sample (id int generated always as identity, primary key (id));	code	sql	2024-10-13 10:24:58.486465	2
+8207	3022	2. Unlogged Tables: faster than regular tables but they are not crash-safe..	text	txt	2024-10-13 10:24:58.486465	3
+8208	3022	create unlogged table sample (id int generated always as identity, primary key (id));	code	sql	2024-10-13 10:24:58.486465	4
+8209	3022	3. Temporary Tables: mostly used in transactions for isolation and is only visible to the session where it was created.	text	txt	2024-10-13 10:24:58.486465	5
+8210	3022	create temp table sample (id int generated always as identity, primary key (id));	code	sql	2024-10-13 10:24:58.486465	6
+8211	3023	First, create a session. Then create the temp table. And finally, commit or roll back the transaction.	text	txt	2024-10-13 10:24:58.487389	1
+8212	3023	begin work;\ncreate temp table sample (id int generated always as identity, primary key (id)) on commit drop;\ncommit work;	code	sql	2024-10-13 10:24:58.487389	2
+8213	3024	select oid, relanem from pg_class where relname = 'users';	code	sql	2024-10-13 10:24:58.488281	1
+8214	3025	It is possible to insert one or more rows specified by value expressions, or zero or more rows resulting from a query.	text	txt	2024-10-13 10:24:58.489171	1
+8215	3026	insert into users (username) values ('user1');	code	sql	2024-10-13 10:24:58.490161	1
+8216	3027	select * from users;	code	sql	2024-10-13 10:24:58.491067	1
+8217	3028	select * from users order by joined;	code	sql	2024-10-13 10:24:58.491935	1
+8218	3029	insert into users (username) values ('user1'), ('user2');	code	sql	2024-10-13 10:24:58.492831	1
+8219	3030	select * from users where joined between '2024-08-01' and '2026-08-01';	code	sql	2024-10-13 10:24:58.493878	1
+8220	3031	1. Asending `asc` which is the default when not specified.\n2. Desending: `desc`.	text	txt	2024-10-13 10:24:58.494825	1
+8221	3032	select * from users order by 2, 3;	code	sql	2024-10-13 10:24:58.495762	1
+8222	3032	select * from users order by name, age;	code	sql	2024-10-13 10:24:58.495762	2
 \.
 
 
@@ -12700,6 +12784,64 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2972	1490	What is an unprotected comma?	open	2024-10-13 10:23:12.038871	2024-10-13 10:23:12.038871
 2973	1490	In which access specifier a mock method is allowed to be written?	open	2024-10-13 10:23:12.040675	2024-10-13 10:23:12.040675
 2974	1490	Write mock methods for overloaded functions?	open	2024-10-13 10:23:12.04246	2024-10-13 10:23:12.04246
+2975	207	What user is created on postgres by default?	open	2024-10-13 10:24:58.431786	2024-10-13 10:24:58.431786
+2976	207	What is a role?	open	2024-10-13 10:24:58.435847	2024-10-13 10:24:58.435847
+2977	207	What is the difference between roles and permissions scopes?	open	2024-10-13 10:24:58.437385	2024-10-13 10:24:58.437385
+2978	207	Create a new role having privileges to login in to the cluter?	open	2024-10-13 10:24:58.438945	2024-10-13 10:24:58.438945
+2979	207	What are the general forms of role creation options?	open	2024-10-13 10:24:58.44043	2024-10-13 10:24:58.44043
+2980	207	Create a role with superuser privileges?	open	2024-10-13 10:24:58.441713	2024-10-13 10:24:58.441713
+2981	207	Create a role without a password?	open	2024-10-13 10:24:58.443241	2024-10-13 10:24:58.443241
+2982	207	Limit the number of connections a role can make to the cluster?	open	2024-10-13 10:24:58.444309	2024-10-13 10:24:58.444309
+2983	207	Create a role that will be expired within a year?	open	2024-10-13 10:24:58.445326	2024-10-13 10:24:58.445326
+2984	207	Create a group?	open	2024-10-13 10:24:58.446465	2024-10-13 10:24:58.446465
+2985	207	Join a role into a group when creating one?	open	2024-10-13 10:24:58.447777	2024-10-13 10:24:58.447777
+2986	207	Join a role into a group after its creation?	open	2024-10-13 10:24:58.449061	2024-10-13 10:24:58.449061
+2987	207	Specify an admin for a group when creating one?	open	2024-10-13 10:24:58.450545	2024-10-13 10:24:58.450545
+2988	207	Specify an admin for a group after its creation?	open	2024-10-13 10:24:58.451881	2024-10-13 10:24:58.451881
+2989	207	Remove a role?	open	2024-10-13 10:24:58.453027	2024-10-13 10:24:58.453027
+2990	207	Inspect current role?	open	2024-10-13 10:24:58.454146	2024-10-13 10:24:58.454146
+2991	207	Get a list of all available roles in the cluster?	open	2024-10-13 10:24:58.455162	2024-10-13 10:24:58.455162
+2992	207	List the groups a role is a member of?	open	2024-10-13 10:24:58.456197	2024-10-13 10:24:58.456197
+2993	207	Get a user information from roles catalog?	open	2024-10-13 10:24:58.457231	2024-10-13 10:24:58.457231
+2994	207	Get sensitive information of roles in the cluster?	open	2024-10-13 10:24:58.458275	2024-10-13 10:24:58.458275
+2995	207	Where is the host-based access firewall defined?	open	2024-10-13 10:24:58.459273	2024-10-13 10:24:58.459273
+2996	207	Perform configuration reload on a cluster by means of an SQL statement?	open	2024-10-13 10:24:58.460222	2024-10-13 10:24:58.460222
+2997	207	What is the structure of the host-based access file?	open	2024-10-13 10:24:58.461163	2024-10-13 10:24:58.461163
+2998	207	What is the priority of the hba rules?	open	2024-10-13 10:24:58.462149	2024-10-13 10:24:58.462149
+2999	207	Accept connections to a group of users except one of the members?	open	2024-10-13 10:24:58.463091	2024-10-13 10:24:58.463091
+3000	207	Specify a file in hba rules?	open	2024-10-13 10:24:58.464026	2024-10-13 10:24:58.464026
+3001	207	Inspect the hba rules of the cluster using SQL?	open	2024-10-13 10:24:58.4651	2024-10-13 10:24:58.4651
+3002	208	What type of commands exist in database?	open	2024-10-13 10:24:58.46624	2024-10-13 10:24:58.46624
+3003	208	Connect to a postgres instance?	open	2024-10-13 10:24:58.467293	2024-10-13 10:24:58.467293
+3004	208	Switch postgres to expanded mode?	open	2024-10-13 10:24:58.468329	2024-10-13 10:24:58.468329
+3005	208	List databases present in the cluster?	open	2024-10-13 10:24:58.469407	2024-10-13 10:24:58.469407
+3006	208	Connect to a database in psql?	open	2024-10-13 10:24:58.47036	2024-10-13 10:24:58.47036
+3007	208	Create a new database?	open	2024-10-13 10:24:58.471298	2024-10-13 10:24:58.471298
+3008	208	What database is used to clone as new ones?	open	2024-10-13 10:24:58.472288	2024-10-13 10:24:58.472288
+3009	208	Why is there two template databases?	open	2024-10-13 10:24:58.473247	2024-10-13 10:24:58.473247
+3010	208	What is a schema?	open	2024-10-13 10:24:58.474202	2024-10-13 10:24:58.474202
+3011	208	What schema can be used by a normal user?	open	2024-10-13 10:24:58.47521	2024-10-13 10:24:58.47521
+3012	208	What is the <code>search_path</code> variable?	open	2024-10-13 10:24:58.476204	2024-10-13 10:24:58.476204
+3013	208	Allow a user to create database objects in a custom schema?	open	2024-10-13 10:24:58.477098	2024-10-13 10:24:58.477098
+3014	208	List all available databases?	open	2024-10-13 10:24:58.477974	2024-10-13 10:24:58.477974
+3015	208	Create a database from a user defined template?	open	2024-10-13 10:24:58.478883	2024-10-13 10:24:58.478883
+3016	208	Drop a database?	open	2024-10-13 10:24:58.479835	2024-10-13 10:24:58.479835
+3017	208	Drop a table from a database?	open	2024-10-13 10:24:58.480814	2024-10-13 10:24:58.480814
+3018	208	Get the size of a database?	open	2024-10-13 10:24:58.482026	2024-10-13 10:24:58.482026
+3019	208	Find the Object ID of a database on storage?	open	2024-10-13 10:24:58.483148	2024-10-13 10:24:58.483148
+3020	208	Create a table?	open	2024-10-13 10:24:58.484158	2024-10-13 10:24:58.484158
+3021	208	Create a table only when it doesn't already exist?	open	2024-10-13 10:24:58.485209	2024-10-13 10:24:58.485209
+3022	208	How many table types exist?	open	2024-10-13 10:24:58.486465	2024-10-13 10:24:58.486465
+3023	208	How temp tables can be dropped automatically?	open	2024-10-13 10:24:58.487389	2024-10-13 10:24:58.487389
+3024	208	Get the object ID of a table on storage?	open	2024-10-13 10:24:58.488281	2024-10-13 10:24:58.488281
+3025	208	How many ways are possible to insert into data a table?	open	2024-10-13 10:24:58.489171	2024-10-13 10:24:58.489171
+3026	208	Insert data into a table with value expressions?	open	2024-10-13 10:24:58.490161	2024-10-13 10:24:58.490161
+3027	208	Select data from a table out of order?	open	2024-10-13 10:24:58.491067	2024-10-13 10:24:58.491067
+3028	208	Order the output of a select query?	open	2024-10-13 10:24:58.491935	2024-10-13 10:24:58.491935
+3029	208	Insert multiple rows into a table in one insertion?	open	2024-10-13 10:24:58.492831	2024-10-13 10:24:58.492831
+3030	208	Filter select query results?	open	2024-10-13 10:24:58.493878	2024-10-13 10:24:58.493878
+3031	208	How many ordering directions exist?	open	2024-10-13 10:24:58.494825	2024-10-13 10:24:58.494825
+3032	208	Write an order by clause with column positions?	open	2024-10-13 10:24:58.495762	2024-10-13 10:24:58.495762
 \.
 
 
@@ -18910,7 +19052,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 23	Professional C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 24	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 25	Hands-On Design Patterns with C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 27	Docker for Developers	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 28	C++17 STL Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 29	PostgreSQL 13 Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -18964,6 +19105,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 82	Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 83	Sudo Mastery	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:20:47.836879	1	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:24:58.495762	1	\N
 84	A Complete Guide to Standard C++ Algorithms	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 85	Cross-Platform Development with Qt6 and Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19652,7 +19794,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 533	46	open	\N	2024-07-28 09:45:01.080459	2024-07-28 09:45:01.080459	6
 915	67	open	\N	2024-07-28 09:45:05.152752	2024-07-28 09:45:05.152752	15
 459	43	writing	\N	2024-07-28 09:45:00.334809	2024-07-28 09:45:00.334809	2
-207	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	3
 979	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	2
 123	22	ignored	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	11
 1418	97	writing	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	1
@@ -19675,7 +19816,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 140	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	8
 248	28	open	\N	2024-07-28 09:44:57.873227	2024-07-28 09:44:57.873227	8
 137	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	5
-208	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	4
 614	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	7
 392	38	open	\N	2024-07-28 09:44:59.624804	2024-07-28 09:44:59.624804	1
 24	16	open	\N	2024-07-28 09:44:55.607323	2024-07-28 09:44:55.607323	1
@@ -20534,6 +20674,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1517	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	12
 1506	104	writing	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1
 1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
+207	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.4651	3
+208	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.495762	4
 \.
 
 
@@ -22739,7 +22881,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8138, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8222, true);
 
 
 --
@@ -22767,7 +22909,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2974, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3032, true);
 
 
 --
