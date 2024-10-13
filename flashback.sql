@@ -177,21 +177,21 @@ end; $$;
 ALTER PROCEDURE flashback.create_practice(IN subject_name character varying, IN topic_name character varying, IN practice_heading character varying) OWNER TO flashback;
 
 --
--- Name: create_resource(integer, character varying, flashback.resource_type, integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: create_resource(integer, character varying, flashback.resource_type, integer, integer, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying DEFAULT NULL::character varying)
+CREATE PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying DEFAULT NULL::character varying, IN leading_author_name character varying DEFAULT NULL::character varying)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
 begin
-    insert into flashback.resources(name, reference, type, section_pattern_id) values (name_string, resource_reference, type_string, section_pattern_index) returning id into resource_index;
+    insert into flashback.resources(name, reference, leading_author, type, section_pattern_id) values (name_string, resource_reference, leading_author_name, type_string, section_pattern_index) returning id into resource_index;
     insert into flashback.subject_resources(subject_id, resource_id) values (subject_index, resource_index);
     insert into flashback.sections(resource_id, number) select resource_index, generate_series(1, sections);
 end; $$;
 
 
-ALTER PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying, IN leading_author_name character varying) OWNER TO flashback;
 
 --
 -- Name: create_user(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -9329,6 +9329,112 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7874	2819	Variables might be scoped as follows:	text	txt	2024-10-12 15:54:52.73233	1
 7875	2819	- Function scope\n- Directory scope\n- Persistent cache	text	txt	2024-10-12 15:54:52.73233	2
 7876	2820	set(PARENT_SCOPE api_version 4.12.1)	code	cmake	2024-10-12 15:54:52.733309	1
+7877	2821	The starting point of execution is determined by the mode, either from the root of the source tree, or a cmake script file provided as an argument to `cmake`.	text	txt	2024-10-12 22:35:28.020789	1
+7878	2822	Command names are not case sensitive, but there is a convention in the CMake community to use `snake_case`, meaning lowercase words joined with underscore.	text	txt	2024-10-12 22:35:28.027395	1
+7879	2823	# inline comment	code	cmake	2024-10-12 22:35:28.032034	1
+7880	2823	#[=[ block comments ]=]	code	cmake	2024-10-12 22:35:28.032034	2
+7881	2824	1. Bracket arguments	text	txt	2024-10-12 22:35:28.037216	1
+7882	2824	message([=[\na message holding "quotes" and [[brackets]]	code	cmake	2024-10-12 22:35:28.037216	2
+7883	2824	2. Quoted arguments	text	txt	2024-10-12 22:35:28.037216	3
+7884	2824	message("quotes")	code	cmake	2024-10-12 22:35:28.037216	4
+7885	2824	3. Unquoted arguments	text	txt	2024-10-12 22:35:28.037216	5
+7886	2824	message(argument without;quotes)	code	cmake	2024-10-12 22:35:28.037216	6
+7887	2825	There are three categories of variables:	text	txt	2024-10-12 22:35:28.041045	1
+7888	2825	- **normal**\n- **cache**\n- **environment**	text	list	2024-10-12 22:35:28.041045	2
+7889	2825	Each of these categories reside in different variable scopes, with specific rules on how one scope affects the other.	text	txt	2024-10-12 22:35:28.041045	3
+7890	2826	Variable names are case-sensitive and can include almost any character.	text	txt	2024-10-12 22:35:28.04595	1
+7891	2827	All variables are stored internally as strings, even if some commands can interpret them as values of other types like a list!	text	txt	2024-10-12 22:35:28.049143	1
+7892	2828	set()	code	cmake	2024-10-12 22:35:28.051866	1
+7893	2828	unset()	code	cmake	2024-10-12 22:35:28.051866	2
+7894	2828	There are also other commands that can directly manipulate variable contents:	text	txt	2024-10-12 22:35:28.051866	3
+7895	2828	string()	code	cmake	2024-10-12 22:35:28.051866	4
+7896	2828	list()	code	cmake	2024-10-12 22:35:28.051866	5
+7897	2829	set(source-files "main.cpp")	code	cmake	2024-10-12 22:35:28.05473	1
+7898	2829	set(source_files "main.cpp")	code	cmake	2024-10-12 22:35:28.05473	2
+7899	2829	set([[source files]] "main.cpp")	code	cmake	2024-10-12 22:35:28.05473	3
+7900	2829	set("source files" "main.cpp")	code	cmake	2024-10-12 22:35:28.05473	4
+7901	2830	unset(source-files)	code	cmake	2024-10-12 22:35:28.057009	1
+7902	2831	${variable}	code	cmake	2024-10-12 22:35:28.059294	1
+7903	2832	$ENV{variable}	code	cmake	2024-10-12 22:35:28.062256	1
+7904	2833	$CACHE{variable}	code	cmake	2024-10-12 22:35:28.064931	1
+7905	2834	CMake will traverse the variable scopes from the innermost to the outermost scope and replace variable with a value, or an empty string if no variable is found.	text	txt	2024-10-12 22:35:28.068765	1
+7906	2834	This process is also called variable evaluation, expansion, or interpolation.	text	txt	2024-10-12 22:35:28.068765	2
+7907	2835	CMake will perform variable expansion to the full extent, and only after completion will it pass the resulting values as arguments.	text	txt	2024-10-12 22:35:28.071496	1
+7908	2835	So the following command will not change the variable itself, but the variable named after the value stored in it.	text	txt	2024-10-12 22:35:28.071496	2
+7909	2835	set(${variable} "value")	code	cmake	2024-10-12 22:35:28.071496	3
+7910	2836	When expanding a variable with `${}`, you might get a value from one category or the other.	text	txt	2024-10-12 22:35:28.074077	1
+7911	2836	The normal variable will be replaced if found in current scope. But if it wasn't set, or was unset, CMake will use the cache variable with the same name. If there is no such variable, the reference evaluates to an empty string.	text	txt	2024-10-12 22:35:28.074077	2
+7912	2837	You can pass command-line arguments to scripts after the `--` token and they will be stored in `CMAKE_ARGV<N>` variables.	text	txt	2024-10-12 22:35:28.077101	1
+7913	2837	The total number of arguments is stored in `CMAKE_ARGC` variable.	text	txt	2024-10-12 22:35:28.077101	2
+7914	2837	${CMAKE_ARGV1}	code	cmake	2024-10-12 22:35:28.077101	3
+7915	2837	${CMAKE_ARGC}	code	cmake	2024-10-12 22:35:28.077101	4
+7916	2838	CMake makes a copy of the variables that were in the environment used to start the `cmake` process and makes them available in a single, global scope.	text	txt	2024-10-12 22:35:28.079967	1
+7917	2838	To reference these variables use `$ENV{variable}`.	text	txt	2024-10-12 22:35:28.079967	2
+7918	2838	$ENV{HOME}	code	cmake	2024-10-12 22:35:28.079967	3
+7919	2839	The environment variables will be interpolated during the generation of the build system. This means that they will get permanently baked into the build tree, and changing this environment variable in build stage won't have any effect.	text	txt	2024-10-12 22:35:28.082223	1
+7920	2840	Cache variables will be used if the `${}` reference can't find a normal variable defined in the current scope but a cache variable with the same name exists.	text	txt	2024-10-12 22:35:28.085243	1
+7921	2840	They can also be explicitly referenced with the `$CACHE{}` syntax.	text	txt	2024-10-12 22:35:28.085243	2
+7922	2840	${CMAKE_BUILD_TYPE}	code	cmake	2024-10-12 22:35:28.085243	3
+7923	2841	set(<variable> <value> CACHE <type> <description> [FORCE])	code	cmake	2024-10-12 22:35:28.089679	1
+7924	2842	- `BOOL`\n- `FILEPATH`\n- `PATH`\n- `STRING`\n- INTERNAL`	text	list	2024-10-12 22:35:28.093746	1
+7925	2843	- **File Scope:** used when blocks and custom functions are executed within a file.\n- **Directory Scope:** used when `add_subdirectory()` command is called to execute another `CMakeLists.txt` listfile in a nested directory.	text	list	2024-10-12 22:35:28.096389	1
+7926	2843	Conditional blocks, loop blocks, and macros don't create separate scopes.	text	txt	2024-10-12 22:35:28.096389	2
+7927	2844	When a nested scope is created, CMake simply copies all of the variables from the outer scope. Subsequent commands will only affect these copies. But as soon as the execution of the nested scope is completed, all of the copies are deleted and the original variables from the outer scope are restored.	text	txt	2024-10-12 22:35:28.099357	1
+7928	2845	File variable scopes are opened using the `block()` and `function()` commands, and they are closed with `endblock()` and `endfunction()`.	text	txt	2024-10-12 22:35:28.102631	1
+7929	2846	block()\n    set(foo "bar")\n    block()\n        set(foo "baz")\n    endblock() // baz\nendblock() // bar\n// empty string	code	cmake	2024-10-12 22:35:28.107124	1
+7930	2847	block()\n    set(foo "bar")\n    block(PROPAGATE foo)\n        set(foo "baz")\n    endblock() // baz\nendblock() // baz\n// empty string	code	cmake	2024-10-12 22:35:28.111272	1
+7931	2847	set(foo "bar" PARENT_SCOPE)	code	cmake	2024-10-12 22:35:28.111272	2
+7932	2847	Note that propagating a variable to the outer scope is only affected to the outer scope above the current, but not further.	text	txt	2024-10-12 22:35:28.111272	3
+7933	2847	Also note that `PARENT_SCOPE` doesn't change the variable in current scope.	text	txt	2024-10-12 22:35:28.111272	4
+7934	2848	CMake concatenates all elements into a string delimited by a semicolon.	text	txt	2024-10-12 22:35:28.113503	1
+7935	2849	set(<name> <element>...)	code	cmake	2024-10-12 22:35:28.115904	1
+7936	2849	set(sample a list "of;five;elements")	code	cmake	2024-10-12 22:35:28.115904	2
+7937	2849	set(sample "a;list;of;five;elements")	code	cmake	2024-10-12 22:35:28.115904	3
+7938	2850	By passing an unquoted list reference, we effectively send more arguments to the command:	text	txt	2024-10-12 22:35:28.119902	1
+7939	2850	message(${sample})	code	cmake	2024-10-12 22:35:28.119902	2
+7940	2850	Each elements will be an argument.	text	txt	2024-10-12 22:35:28.119902	3
+7941	2851	message("${sample}")	code	cmake	2024-10-12 22:35:28.124496	1
+7942	2852	list(LENGTH <list> <result>)	code	cmake	2024-10-12 22:35:28.127098	1
+7943	2853	list(GET <list> <index>... <result>)	code	cmake	2024-10-12 22:35:28.129277	1
+7944	2854	list(JOIN <list> <list> <result>)	code	cmake	2024-10-12 22:35:28.131498	1
+7945	2855	list(SUBLIST <list> <index> <length> <result>)	code	cmake	2024-10-12 22:35:28.133847	1
+7946	2856	list(FIND <list> <value> <result>)	code	cmake	2024-10-12 22:35:28.136384	1
+7947	2857	list(APPEND <list> <element>...)	code	cmake	2024-10-12 22:35:28.138929	1
+7948	2858	list(FILTER <list> <INCLUDE|EXCLUDE> REGEX <regex>)	code	cmake	2024-10-12 22:35:28.141278	1
+7949	2859	list(INSERT <list> <element>...)	code	cmake	2024-10-12 22:35:28.143714	1
+7950	2860	list(POP_BACK <list> <result>...)	code	cmake	2024-10-12 22:35:28.145954	1
+7951	2861	list(POP_FRONT <list> <result>...)	code	cmake	2024-10-12 22:35:28.148114	1
+7952	2862	list(PREPEND <list> <element>...)	code	cmake	2024-10-12 22:35:28.150413	1
+7953	2863	list(REMOVE_ITEM <list> <value>...)	code	cmake	2024-10-12 22:35:28.152913	1
+7954	2864	list(REMOVE_AT <list> <index>...)	code	cmake	2024-10-12 22:35:28.155525	1
+7955	2865	list(REMOVE_DUPLICATES <list>)	code	cmake	2024-10-12 22:35:28.158191	1
+7956	2866	list(TRANSFORM <list> <action> ...)	code	cmake	2024-10-12 22:35:28.160546	1
+7957	2867	list(REVERSE <list>)	code	cmake	2024-10-12 22:35:28.162852	1
+7958	2868	list(SORT <list> ...)	code	cmake	2024-10-12 22:35:28.165099	1
+7959	2869	if(<condition>)\n    <command>...\nelseif(<condition>)\n    <command>...\nelse\n    <command>...\nendif()	code	cmake	2024-10-12 22:35:28.167309	1
+7960	2870	CMake supports `NOT`, `AND`, and `OR` operations.	text	txt	2024-10-12 22:35:28.170354	1
+7961	2870	NOT <condition>	code	cmake	2024-10-12 22:35:28.170354	2
+7962	2870	<condition> AND <condition>	code	cmake	2024-10-12 22:35:28.170354	3
+7963	2870	<condition> OR <condition>	code	cmake	2024-10-12 22:35:28.170354	4
+7964	2871	<condition> AND ( <condition> OR <condition> )	code	cmake	2024-10-12 22:35:28.173011	1
+7965	2872	For legacy reasons, CMake will evaluate unquoted arguments as if they are variable references.	text	txt	2024-10-12 22:35:28.175777	1
+7966	2872	foo AND ( bar OR baz )	code	cmake	2024-10-12 22:35:28.175777	2
+7967	2872	if(CMAKE_CXX_EXTENSIONS)\n    <command>...\nendif()	code	cmake	2024-10-12 22:35:28.175777	3
+7968	2873	Strings are considered boolean true, only if they equal to any of the following case sensitive constants:	text	txt	2024-10-12 22:35:28.178219	1
+7969	2873	- `ON`\n- `Y`\n- `YES`\n- `TRUE`\n- non-zero number	text	list	2024-10-12 22:35:28.178219	2
+7970	2874	When a reference is used, the condition is considered boolean true only if the expanded value contains `ON`, `Y`, `YES`, `TRUE`, or a non-zero number.	text	txt	2024-10-12 22:35:28.180899	1
+7971	2874	set(x something)\nset(y "x")\nif (${y})\n    # reference ${y} first expands to x\n    # x is a known variable then it expands to "something"\n    # if("something") is evaluated to false\nendif()	code	cmake	2024-10-12 22:35:28.180899	2
+7972	2874	But when variable is used, the condition is considered boolean false only if the expanded value contains `OFF`, `NO` `FALSE`, `N`, `IGNORE`, `NOTFOUND`, a string appended with `-NOTFOUND`, an empty string, zero.	text	txt	2024-10-12 22:35:28.180899	3
+7973	2874	if(y)\n    # variable y evaluates to x\n    # but x will not be expanded anymore\n    # because x is not one of the false conditions, it evalues to true\nendif()	code	cmake	2024-10-12 22:35:28.180899	4
+7974	2875	if(DEFINED <name>)	code	cmake	2024-10-12 22:35:28.18351	1
+7975	2875	if(DEFINED CACHE{<name>})	code	cmake	2024-10-12 22:35:28.18351	2
+7976	2875	if(DEFINED ENV{<name>})	code	cmake	2024-10-12 22:35:28.18351	3
+7977	2876	`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`	text	list	2024-10-12 22:35:28.186048	1
+7978	2877	Same as integral comparison operators, but with `VERSION_` prefixed.	text	txt	2024-10-12 22:35:28.188855	1
+7979	2877	`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`	text	list	2024-10-12 22:35:28.188855	2
+7980	2878	Same as integral comparison operators, but with `STR` prefixed.	text	txt	2024-10-12 22:35:28.191451	1
+7981	2878	`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`	text	list	2024-10-12 22:35:28.191451	2
+7982	2879	if(<variable> MATCHES <regex>)	code	cmake	2024-10-12 22:35:28.193741	1
 \.
 
 
@@ -12327,6 +12433,74 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2818	608	Reference two nested variables?	open	2024-10-12 15:54:52.730984	2024-10-12 15:54:52.730984
 2819	608	How many scopes exist?	open	2024-10-12 15:54:52.73233	2024-10-12 15:54:52.73233
 2820	608	Make variable visible to its parent scope?	open	2024-10-12 15:54:52.733309	2024-10-12 15:54:52.733309
+2821	1447	How many execution modes exist in CMake?	open	2024-10-12 22:35:28.020789	2024-10-12 22:35:28.020789
+2822	1447	What case sensitivity does CMake follow for writing commands?	open	2024-10-12 22:35:28.027395	2024-10-12 22:35:28.027395
+2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034
+2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216
+2880	838	What information does an endpoint contain?	open	2024-10-13 09:10:48.042563	2024-10-13 09:10:48.042563
+2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045
+2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595
+2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143
+2828	1447	What are the basic variable manipulation commands in CMake?	open	2024-10-12 22:35:28.051866	2024-10-12 22:35:28.051866
+2829	1447	Create a normal CMake variable?	open	2024-10-12 22:35:28.05473	2024-10-12 22:35:28.05473
+2830	1447	Remove a normal CMake variable?	open	2024-10-12 22:35:28.057009	2024-10-12 22:35:28.057009
+2831	1447	What is the syntax of referencing a CMake variable?	open	2024-10-12 22:35:28.059294	2024-10-12 22:35:28.059294
+2832	1447	What is the syntax of referencing a CMake environment variable?	open	2024-10-12 22:35:28.062256	2024-10-12 22:35:28.062256
+2833	1447	What is the syntax of referencing a CMake cache variable?	open	2024-10-12 22:35:28.064931	2024-10-12 22:35:28.064931
+2834	1447	How does CMake traverse scopes to reference a variable?	open	2024-10-12 22:35:28.068765	2024-10-12 22:35:28.068765
+2835	1447	What variable will be changed when assigning a value to a variable reference instead of a variable name in CMake listfile?	open	2024-10-12 22:35:28.071496	2024-10-12 22:35:28.071496
+2836	1447	What is the precedence of CMake variable evaluation in different variable categories?	open	2024-10-12 22:35:28.074077	2024-10-12 22:35:28.074077
+2837	1447	What normal variables are defined as arguments passed to CMake?	open	2024-10-12 22:35:28.077101	2024-10-12 22:35:28.077101
+2838	1447	What are the CMake environment variables coming from?	open	2024-10-12 22:35:28.079967	2024-10-12 22:35:28.079967
+2839	1447	What is the lifetime of CMake environment variables?	open	2024-10-12 22:35:28.082223	2024-10-12 22:35:28.082223
+2840	1447	What is the lifetime of CMake cache variables?	open	2024-10-12 22:35:28.085243	2024-10-12 22:35:28.085243
+2841	1447	Define a CMake cache variable?	open	2024-10-12 22:35:28.089679	2024-10-12 22:35:28.089679
+2842	1447	What variable types exist for CMake cache variables?	open	2024-10-12 22:35:28.093746	2024-10-12 22:35:28.093746
+2843	1447	How many scopes exist in CMake?	open	2024-10-12 22:35:28.096389	2024-10-12 22:35:28.096389
+2844	1447	What is the difference between inner and outer CMake scopes?	open	2024-10-12 22:35:28.099357	2024-10-12 22:35:28.099357
+2845	1447	Which CMake commands create file scopes?	open	2024-10-12 22:35:28.102631	2024-10-12 22:35:28.102631
+2846	1447	Create a new block in a CMake listfile?	open	2024-10-12 22:35:28.107124	2024-10-12 22:35:28.107124
+2847	1447	Propagate a variable in a block to the outer scope in a CMake listfile?	open	2024-10-12 22:35:28.111272	2024-10-12 22:35:28.111272
+2848	1447	How does a CMake list store its values?	open	2024-10-12 22:35:28.113503	2024-10-12 22:35:28.113503
+2849	1447	Create a list?	open	2024-10-12 22:35:28.115904	2024-10-12 22:35:28.115904
+2850	1447	What happens when an unquoted list is passed as a parameter?	open	2024-10-12 22:35:28.119902	2024-10-12 22:35:28.119902
+2851	1447	Print the elements of a list?	open	2024-10-12 22:35:28.124496	2024-10-12 22:35:28.124496
+2852	1447	Get the size of a list?	open	2024-10-12 22:35:28.127098	2024-10-12 22:35:28.127098
+2853	1447	Get the value of a particular element in the list?	open	2024-10-12 22:35:28.129277	2024-10-12 22:35:28.129277
+2854	1447	Combine two lists?	open	2024-10-12 22:35:28.131498	2024-10-12 22:35:28.131498
+2855	1447	Extract a range of elements within a list?	open	2024-10-12 22:35:28.133847	2024-10-12 22:35:28.133847
+2856	1447	Find an element within a list?	open	2024-10-12 22:35:28.136384	2024-10-12 22:35:28.136384
+2857	1447	Push elements into a list?	open	2024-10-12 22:35:28.138929	2024-10-12 22:35:28.138929
+2858	1447	Filter elements within a list?	open	2024-10-12 22:35:28.141278	2024-10-12 22:35:28.141278
+2859	1447	Insert elements into a list?	open	2024-10-12 22:35:28.143714	2024-10-12 22:35:28.143714
+2860	1447	Pop the last element within a list?	open	2024-10-12 22:35:28.145954	2024-10-12 22:35:28.145954
+2861	1447	Pop the first element within a list?	open	2024-10-12 22:35:28.148114	2024-10-12 22:35:28.148114
+2862	1447	Push an element at the beginning of a list?	open	2024-10-12 22:35:28.150413	2024-10-12 22:35:28.150413
+2863	1447	Remove an element by value from a list?	open	2024-10-12 22:35:28.152913	2024-10-12 22:35:28.152913
+2864	1447	Remove an element by index from a list?	open	2024-10-12 22:35:28.155525	2024-10-12 22:35:28.155525
+2865	1447	Remove duplicate entries of a list?	open	2024-10-12 22:35:28.158191	2024-10-12 22:35:28.158191
+2866	1447	Transform elements of a list?	open	2024-10-12 22:35:28.160546	2024-10-12 22:35:28.160546
+2867	1447	Reverse the elements of a list?	open	2024-10-12 22:35:28.162852	2024-10-12 22:35:28.162852
+2868	1447	Sort the elements of a list?	open	2024-10-12 22:35:28.165099	2024-10-12 22:35:28.165099
+2869	1447	Write a conditional block?	open	2024-10-12 22:35:28.167309	2024-10-12 22:35:28.167309
+2870	1447	How many conditional operators exist in CMake?	open	2024-10-12 22:35:28.170354	2024-10-12 22:35:28.170354
+2871	1447	Write two nested conditional expressions?	open	2024-10-12 22:35:28.173011	2024-10-12 22:35:28.173011
+2872	1447	How variables can be used as conditional operands?	open	2024-10-12 22:35:28.175777	2024-10-12 22:35:28.175777
+2873	1447	How strings are evaluated as conditional operands?	open	2024-10-12 22:35:28.178219	2024-10-12 22:35:28.178219
+2874	1447	What are the differences between a braced reference and an unbraced reference as a conditional operand?	open	2024-10-12 22:35:28.180899	2024-10-12 22:35:28.180899
+2875	1447	What is the best practice to check if a variable is defined?	open	2024-10-12 22:35:28.18351	2024-10-12 22:35:28.18351
+2876	1447	What comparison operators are available for integral types?	open	2024-10-12 22:35:28.186048	2024-10-12 22:35:28.186048
+2877	1447	What comparison operators are available for version type?	open	2024-10-12 22:35:28.188855	2024-10-12 22:35:28.188855
+2878	1447	What comparison operators are available for string type?	open	2024-10-12 22:35:28.191451	2024-10-12 22:35:28.191451
+2879	1447	Compare if a value matches with a regular expression?	open	2024-10-12 22:35:28.193741	2024-10-12 22:35:28.193741
+2881	838	How many forms an endpoint address can have?	open	2024-10-13 09:10:48.046671	2024-10-13 09:10:48.046671
+2882	838	Create a tcp and udp endpoint for client?	open	2024-10-13 09:10:48.048267	2024-10-13 09:10:48.048267
+2883	838	Create a tcp and udp endpoint for server?	open	2024-10-13 09:10:48.049776	2024-10-13 09:10:48.049776
+2884	838	How many address types exist?	open	2024-10-13 09:10:48.051547	2024-10-13 09:10:48.051547
+2885	838	What is the difference between active and passive sockets?	open	2024-10-13 09:10:48.053066	2024-10-13 09:10:48.053066
+2886	838	Create an active socket?	open	2024-10-13 09:10:48.05455	2024-10-13 09:10:48.05455
+2887	838	Create a passive socket?	open	2024-10-13 09:10:48.055622	2024-10-13 09:10:48.055622
+2888	838	Resolve a DNS name?	open	2024-10-13 09:10:48.056695	2024-10-13 09:10:48.056695
 \.
 
 
@@ -18860,7 +19034,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 329	35	open	\N	2024-07-28 09:44:58.870197	2024-07-28 09:44:58.870197	6
 1144	78	open	\N	2024-07-28 09:45:07.577903	2024-07-28 09:45:07.577903	11
 816	61	open	\N	2024-07-28 09:45:04.229409	2024-07-28 09:45:04.229409	1
-1447	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	2
 1398	93	writing	\N	2024-07-28 09:45:10.333395	2024-07-28 09:45:10.333395	1
 676	53	writing	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	2
 153	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	21
@@ -19027,7 +19200,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 780	58	open	\N	2024-07-28 09:45:03.658056	2024-07-28 09:45:03.658056	7
 768	57	writing	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	7
 1036	73	writing	\N	2024-07-28 09:45:06.494438	2024-07-28 09:45:06.494438	1
-838	62	writing	\N	2024-07-28 09:45:04.316203	2024-07-28 09:45:04.316203	1
 478	44	writing	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	8
 149	23	writing	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	17
 1301	86	open	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	9
@@ -20111,6 +20283,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
+1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-12 22:35:28.193741	2
+838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:10:48.056695	1
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 \.
 
@@ -20514,7 +20688,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	329	2024-09-23 20:36:18.228435
 1	1144	2024-09-23 20:36:18.228435
 1	816	2024-09-23 20:36:18.228435
-1	1447	2024-09-23 20:36:18.228435
 1	153	2024-09-23 20:36:18.228435
 1	1022	2024-09-23 20:36:18.228435
 1	778	2024-09-23 20:36:18.228435
@@ -20673,6 +20846,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	210	2024-09-23 20:36:18.228435
 1	1161	2024-09-23 20:36:18.228435
 1	843	2024-09-23 20:36:18.228435
+1	1447	2024-10-12 22:41:36.203675
 1	710	2024-09-23 20:36:18.228435
 1	1016	2024-09-23 20:36:18.228435
 1	447	2024-09-23 20:36:18.228435
@@ -22299,7 +22473,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7876, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7982, true);
 
 
 --
@@ -22327,7 +22501,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2820, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2888, true);
 
 
 --
