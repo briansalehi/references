@@ -1579,6 +1579,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 31	9	* **Read:** it would take `1` step to read from an array, so it is `O(1)`.\n* **Search:** it would take `N` steps to search through an array, so it is `O(N)`.\n* **Insert:** it would take `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** it would take `N` steps to delete from an array, so it is `O(N)`.	text	txt	2024-07-28 09:55:51.573271	0
 32	10	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt	2024-07-28 09:55:51.834379	0
 78	19	```\n(4)    7  1  3        temporary variable = 2\n``````	text	txt	2024-07-28 09:56:00.071315	0
+8001	2900	env	code	sh	2024-10-13 09:59:13.363492	1
 79	19	The value to the left of the gap is greater than the temporary variable, so we shift that value to the right.	text	txt	2024-07-28 09:56:00.091486	0
 80	19	```\n   (4) 7  1  3        temporary variable = 2\n``````	text	txt	2024-07-28 09:56:00.112642	0
 33	11	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt	2024-07-28 09:55:52.071983	0
@@ -9457,6 +9458,22 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7998	2897	#include <boost/asio.hpp>\n#include <algorithm>\n#include <print>\nboost::asio::io_service service{};\nboost::asio::ip::tcp::resolver::query query{"localhost", "8000", boost::asio::ip::tcp::resolver::query::numeric_service};\nboost::asio::ip::tcp::resolver resolver{service};\nboost::asio::ip::tcp::resolver::iterator it{resolver.resolve(query)};\nstd::for_each(it, {}, [](boost::asio::ip::tcp::endpoint const& e)\n{\nstd::println("{}:{}", e.address().to_string(), e.port());\n});	code	cpp	2024-10-13 09:23:38.460276	1
 7999	2898	A mutex is an object that is used to guard a shared resource to ensure the use of the shared resource does not result in corruption.	text	txt	2024-10-13 09:55:46.60045	1
 8000	2899	`std::mutex` has `lock()` and `unlock()` member functions. The `lock()` function acquires access to a shared resource. `unlock()` releases this previously acquired access. Any attempt to execute the `lock()` function after another thread has already executed `lock()` will result in the thread having to wait until the `unlock()` function is executed.	text	txt	2024-10-13 09:55:46.604041	1
+8002	2901	- `BASH_VERSION`\n- `BASHPID`\n- `GROUPS`\n- `HOSTNAME`\n- `OSTYPE`\n- `PWD`\n- `RANDOM`\n- `UID`\n- `SHELL`	text	txt	2024-10-13 09:59:13.366819	1
+8003	2902	ls	code	sh	2024-10-13 09:59:13.370187	1
+8004	2902	ls -l	code	sh	2024-10-13 09:59:13.370187	2
+8005	2902	ls -la	code	sh	2024-10-13 09:59:13.370187	3
+8006	2903	mkdir /tmp/sample	code	sh	2024-10-13 09:59:13.372934	1
+8007	2904	ps	code	sh	2024-10-13 09:59:13.375242	1
+8008	2904	ps -f	code	sh	2024-10-13 09:59:13.375242	2
+8009	2904	ps -f --forest	code	sh	2024-10-13 09:59:13.375242	3
+8010	2905	ps -e	code	sh	2024-10-13 09:59:13.378081	1
+8011	2905	ps -ef	code	sh	2024-10-13 09:59:13.378081	2
+8012	2905	ps -ef --forst	code	sh	2024-10-13 09:59:13.378081	3
+8013	2906	The difference between using `env` or full path to the interpreter is that `env` will tend to find the interpreter regardless of residing in a standard path or not. So using `env` is more portable.	text	txt	2024-10-13 09:59:13.381396	1
+8014	2906	#!/usr/bin/env bash	code	sh	2024-10-13 09:59:13.381396	2
+8015	2907	chmod +x script.sh	code	sh	2024-10-13 09:59:13.38286	1
+8016	2908	bash -n script.sh	code	sh	2024-10-13 09:59:13.383816	1
+8017	2909	bash -x script.sh	code	sh	2024-10-13 09:59:13.384872	1
 \.
 
 
@@ -12459,6 +12476,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2822	1447	What case sensitivity does CMake follow for writing commands?	open	2024-10-12 22:35:28.027395	2024-10-12 22:35:28.027395
 2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034
 2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216
+2900	1506	Get the list of environment variables?	open	2024-10-13 09:59:13.363492	2024-10-13 09:59:13.363492
 2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045
 2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595
 2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143
@@ -12525,6 +12543,15 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2897	838	Resolve a DNS name?	open	2024-10-13 09:23:38.460276	2024-10-13 09:23:38.460276
 2898	1496	What is the use case of a mutex?	open	2024-10-13 09:55:46.60045	2024-10-13 09:55:46.60045
 2899	1496	How does mutex lock executions of other threads accessing a shared resource?	open	2024-10-13 09:55:46.604041	2024-10-13 09:55:46.604041
+2901	1506	What are the useful environment variables?	open	2024-10-13 09:59:13.366819	2024-10-13 09:59:13.366819
+2902	1506	List contents of current directory?	open	2024-10-13 09:59:13.370187	2024-10-13 09:59:13.370187
+2903	1506	Create a directory?	open	2024-10-13 09:59:13.372934	2024-10-13 09:59:13.372934
+2904	1506	List active processes running under current shell?	open	2024-10-13 09:59:13.375242	2024-10-13 09:59:13.375242
+2905	1506	List active processes of whole system?	open	2024-10-13 09:59:13.378081	2024-10-13 09:59:13.378081
+2906	1506	What is the shebang line in bsah script?	open	2024-10-13 09:59:13.381396	2024-10-13 09:59:13.381396
+2907	1506	Make a shell script file executable?	open	2024-10-13 09:59:13.38286	2024-10-13 09:59:13.38286
+2908	1506	Dry run a script without executing commands for debugging?	open	2024-10-13 09:59:13.383816	2024-10-13 09:59:13.383816
+2909	1506	Run a script by printing line by line execution for debugging?	open	2024-10-13 09:59:13.384872	2024-10-13 09:59:13.384872
 \.
 
 
@@ -18809,6 +18836,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
+104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 \.
 
 
@@ -20325,6 +20353,18 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1504	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	13
 1505	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	14
 1496	103	writing	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	5
+1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
+1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
+1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
+1510	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	5
+1511	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	6
+1512	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	7
+1513	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	8
+1514	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	9
+1515	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	10
+1516	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	11
+1517	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	12
+1506	104	writing	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1
 \.
 
 
@@ -21807,6 +21847,20 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1348	2024-10-09 12:18:10.38871
 1	661	2024-10-11 18:48:12.8445
 1	608	2024-10-12 15:58:30.232029
+1	1492	2024-10-13 09:59:11.204948
+1	1493	2024-10-13 09:59:11.204948
+1	1494	2024-10-13 09:59:11.204948
+1	1495	2024-10-13 09:59:11.204948
+1	1497	2024-10-13 09:59:11.204948
+1	1498	2024-10-13 09:59:11.204948
+1	1499	2024-10-13 09:59:11.204948
+1	1500	2024-10-13 09:59:11.204948
+1	1501	2024-10-13 09:59:11.204948
+1	1502	2024-10-13 09:59:11.204948
+1	1503	2024-10-13 09:59:11.204948
+1	1504	2024-10-13 09:59:11.204948
+1	1505	2024-10-13 09:59:11.204948
+1	1496	2024-10-13 09:59:11.204948
 \.
 
 
@@ -21923,6 +21977,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	101
 24	102
 6	103
+13	104
 \.
 
 
@@ -22513,7 +22568,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8000, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8042, true);
 
 
 --
@@ -22541,7 +22596,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2899, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2922, true);
 
 
 --
@@ -22597,7 +22652,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 103, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 104, true);
 
 
 --
@@ -22618,7 +22673,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1505, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1517, true);
 
 
 --

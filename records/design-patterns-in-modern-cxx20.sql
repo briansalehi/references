@@ -3,7 +3,7 @@ create procedure add_block(type flashback.block_type, language varchar(10), cont
 
 call add_block('text', 'txt', '');
 call add_block('code', 'cpp', '');
-call create_note_with_name('Concurrency with Modern C++', 2, '');
+call create_note_with_name('Design Patterns in Modern C++20', 1, '');
 
 drop procedure add_block;
 drop table temp_blocks;

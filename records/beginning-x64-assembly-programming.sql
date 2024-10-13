@@ -5,26 +5,6 @@ call add_block('text', 'txt', '');
 call add_block('code', 'asm', '');
 call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'asm', '');
-call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'asm', '');
-call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'asm', '');
-call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'asm', '');
-call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'asm', '');
-call create_note_with_name('Beginning x64 Assembly Programming', 1, '');
-
 call set_section_as_complete('Beginning x64 Assembly Programming', 1);
 call set_section_as_complete('Beginning x64 Assembly Programming', 2);
 call set_section_as_complete('Beginning x64 Assembly Programming', 3);
