@@ -9455,6 +9455,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7996	2895	#include <boost/asio.hpp>\n\nboost::asio::ip::address address{boost::asio::ip::address::from_string("127.0.0.1")};\nboost::asio::ip::tcp::endpoint endpoint{address, 8000};\nboost::asio::io_service io_service{};\nboost::asio::ip::tcp protocol{boost::asio::ip::tcp::v6()};\nboost::asio::ip::tcp::socket socket(io_service);\n\nsocket.open(protocol);\nsocket.close();	code	cpp	2024-10-13 09:23:38.457564	1
 7997	2896	#include <boost/asio.hpp>\nboost::asio::io_service service{};\nboost::asio::ip::tcp protocol{boost::asio::ip::tcp::v6()};\nboost::asio::ip::tcp::acceptor acceptor{service, protocol};	code	cpp	2024-10-13 09:23:38.459278	1
 7998	2897	#include <boost/asio.hpp>\n#include <algorithm>\n#include <print>\nboost::asio::io_service service{};\nboost::asio::ip::tcp::resolver::query query{"localhost", "8000", boost::asio::ip::tcp::resolver::query::numeric_service};\nboost::asio::ip::tcp::resolver resolver{service};\nboost::asio::ip::tcp::resolver::iterator it{resolver.resolve(query)};\nstd::for_each(it, {}, [](boost::asio::ip::tcp::endpoint const& e)\n{\nstd::println("{}:{}", e.address().to_string(), e.port());\n});	code	cpp	2024-10-13 09:23:38.460276	1
+7999	2898	A mutex is an object that is used to guard a shared resource to ensure the use of the shared resource does not result in corruption.	text	txt	2024-10-13 09:55:46.60045	1
+8000	2899	`std::mutex` has `lock()` and `unlock()` member functions. The `lock()` function acquires access to a shared resource. `unlock()` releases this previously acquired access. Any attempt to execute the `lock()` function after another thread has already executed `lock()` will result in the thread having to wait until the `unlock()` function is executed.	text	txt	2024-10-13 09:55:46.604041	1
 \.
 
 
@@ -12521,6 +12523,8 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2895	838	Create an active socket?	open	2024-10-13 09:23:38.457564	2024-10-13 09:23:38.457564
 2896	838	Create a passive socket?	open	2024-10-13 09:23:38.459278	2024-10-13 09:23:38.459278
 2897	838	Resolve a DNS name?	open	2024-10-13 09:23:38.460276	2024-10-13 09:23:38.460276
+2898	1496	What is the use case of a mutex?	open	2024-10-13 09:55:46.60045	2024-10-13 09:55:46.60045
+2899	1496	How does mutex lock executions of other threads accessing a shared resource?	open	2024-10-13 09:55:46.604041	2024-10-13 09:55:46.604041
 \.
 
 
@@ -18804,6 +18808,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
+103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
 \.
 
 
@@ -20306,6 +20311,20 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-12 22:35:28.193741	2
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
+1492	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	1
+1493	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	2
+1494	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	3
+1495	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	4
+1497	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	6
+1498	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	7
+1499	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	8
+1500	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	9
+1501	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	10
+1502	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	11
+1503	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	12
+1504	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	13
+1505	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	14
+1496	103	writing	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	5
 \.
 
 
@@ -21903,6 +21922,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 26	100
 6	101
 24	102
+6	103
 \.
 
 
@@ -22493,7 +22513,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7998, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8000, true);
 
 
 --
@@ -22521,7 +22541,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2897, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2899, true);
 
 
 --
@@ -22577,7 +22597,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 102, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 103, true);
 
 
 --
@@ -22598,7 +22618,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1491, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1505, true);
 
 
 --
