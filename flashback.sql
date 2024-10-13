@@ -9497,8 +9497,21 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8063	2933	This semantic is mostly used in sequence generators and range based for loops.	text	txt	2024-10-13 10:12:00.030578	4
 8064	2933	#include <coroutine>\n\nreturn_type generator(int start, int end, int step)\n{\n    for (int value{start}; value < end; value += step)\n    {\n        co_yield value;\n    }\n}	code	cpp	2024-10-13 10:12:00.030578	5
 8065	2934	- `promise_type` needs to have a method `std::suspend_always yield_value(T value)`.\n- Parameter type should match the return type.\n- The return value can be stored in a `coroutine_handle` object and retrieved later.	text	txt	2024-10-13 10:12:00.03172	1
+8068	2936	Any matched groups are captured in `CMAKE_MATCH_<n>` variables.	text	txt	2024-10-13 10:12:58.059943	1
+8069	2936	if("12.10.2024" MATCHES "[0-9]+")\n    message(STATUS "Day: ${CMAKE_MATCH_1}"))\n    message(STATUS "Month: ${CMAKE_MATCH_2}"))\n    message(STATUS "Year: ${CMAKE_MATCH_3}"))\nendif	code	cmake	2024-10-13 10:12:58.059943	2
+8070	2937	if(<var> IN_LIST <list>)	code	cmake	2024-10-13 10:12:58.063903	1
+8071	2938	if(COMMAND <command>)	code	cmake	2024-10-13 10:12:58.065658	1
 8066	2934	#include <coroutine>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        long value;\n\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n        void unhandled_exception() {}\n        return_type get_return_object() { return std::coroutine_handle<promise_type>::from_promise(*this); }\n        std::suspend_always yield_value(long initial_value) {}\n    };\n\n    std::coroutine_handle<promise_type> handle;\n    return_type(std::coroutine_handle<promise_type> handle): handle{handle} {}\n    operator std::coroutine_handle<promise_type>() const { return handle; }\n    long get_value() const { return handle.promise().value; }\n};	code	cpp	2024-10-13 10:12:00.03172	2
 8067	2935		text	txt	2024-10-13 10:12:00.032792	1
+8072	2939	if(POLICY <policy-id>)	code	cmake	2024-10-13 10:12:58.067188	1
+8073	2940	if(TEST <name>)	code	cmake	2024-10-13 10:12:58.069694	1
+8074	2941	if(TARGET <name>)	code	cmake	2024-10-13 10:12:58.072075	1
+8075	2942	Targets are logical units of a build process in a project, and they can be defined by following commands:	text	txt	2024-10-13 10:12:58.074958	1
+8076	2942	add_executable()	code	cmake	2024-10-13 10:12:58.074958	2
+8077	2942	add_library()	code	cmake	2024-10-13 10:12:58.074958	3
+8078	2942	add_custom_target()	code	cmake	2024-10-13 10:12:58.074958	4
+8079	2943	if(EXISTS <absolute-path>)	code	cmake	2024-10-13 10:12:58.077001	1
+8080	2943	This resolves symbolic links.	text	txt	2024-10-13 10:12:58.077001	2
 \.
 
 
@@ -12590,6 +12603,14 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2933	1524	What does <code>co_yield</code> do?	open	2024-10-13 10:12:00.030578	2024-10-13 10:12:00.030578
 2934	1524	What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?	open	2024-10-13 10:12:00.03172	2024-10-13 10:12:00.03172
 2935	1524		open	2024-10-13 10:12:00.032792	2024-10-13 10:12:00.032792
+2936	1447	Access to tokens after matching string with a regular expression?	open	2024-10-13 10:12:58.059943	2024-10-13 10:12:58.059943
+2937	1447	Check if value is in a list?	open	2024-10-13 10:12:58.063903	2024-10-13 10:12:58.063903
+2938	1447	Check if a command is available for invokation in current CMake version?	open	2024-10-13 10:12:58.065658	2024-10-13 10:12:58.065658
+2939	1447	Check if a policy exists?	open	2024-10-13 10:12:58.067188	2024-10-13 10:12:58.067188
+2940	1447	Check if a test exists?	open	2024-10-13 10:12:58.069694	2024-10-13 10:12:58.069694
+2941	1447	Check if a target is defined?	open	2024-10-13 10:12:58.072075	2024-10-13 10:12:58.072075
+2942	1447	What is a target?	open	2024-10-13 10:12:58.074958	2024-10-13 10:12:58.074958
+2943	1447	Check if a file exists?	open	2024-10-13 10:12:58.077001	2024-10-13 10:12:58.077001
 \.
 
 
@@ -18790,7 +18811,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 65	Offensive Security Wireless Professional (OSWP)	\N	video	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	4	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 55	The C++ Standard Library: A Tutorial and Reference	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Nicolai M. Josuttis
-98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	1	\N
 16	Calculus: Concepts and Contexts	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 17	Qt6 Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 18	Mastering Embedded Linux Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -18877,6 +18897,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
+98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 \.
 
 
@@ -20376,7 +20397,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
-1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-12 22:35:28.193741	2
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
 1492	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	1
@@ -20412,6 +20432,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1535	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	12
 1536	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	13
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
+1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -22629,7 +22650,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8067, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8080, true);
 
 
 --
@@ -22657,7 +22678,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2935, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2943, true);
 
 
 --
