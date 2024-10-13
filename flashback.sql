@@ -9512,6 +9512,34 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8078	2942	add_custom_target()	code	cmake	2024-10-13 10:12:58.074958	4
 8079	2943	if(EXISTS <absolute-path>)	code	cmake	2024-10-13 10:12:58.077001	1
 8080	2943	This resolves symbolic links.	text	txt	2024-10-13 10:12:58.077001	2
+8081	2944	On all platforms, a moved-from string is usually empty. However, there is no guarantee and it is only in a valid but unspecified state.	text	txt	2024-10-13 10:15:50.845358	1
+8082	2945	This class extends the possible values of contained type by the abcense of it. This avoids the need to mark one specific value of the type to have this semantics.	text	txt	2024-10-13 10:15:50.849342	1
+8083	2946	Optional objects support move semantics. If you move the object as a whole, the state is copied and the contained object is moved.	text	txt	2024-10-13 10:15:50.851219	1
+8084	2946	std::optional<std::string> os;\nstd::string s{"a long string"};\nos = std::move(s); // moves\n\nstd::string s2{*os}; // copies\nstd::string s3{std::move(*os); // moves\n\nstd::optional<std::string> func();\n\nstd::string s4{func().value()}; // moves\nstd::string s5{*func()}; // moves	code	cpp	2024-10-13 10:15:50.851219	2
+8085	2947	namespace std\n{\ntemplate<typename T>\nclass optional\n{\n    constexpr T& operator*() &;\n    constexpr const T& operator*() const&;\n    constexpr T&& operator*() &&;\n    constexpr const T&& operator*() const&&;\n\n    constexpr T& value() &;\n    constexpr const T& value() const&;\n    constexpr T&& value() &&;\n    constexpr const T&& value() const&&;\n};\n}	code	cpp	2024-10-13 10:15:50.852638	1
+8086	2948	Copying a shared pointer is expensive because by each copy, the owner counter increments.	text	txt	2024-10-13 10:15:50.855153	1
+8087	2948	Each time a shared pointer is destroyed or assign a new value, the owner counter is decremented.	text	txt	2024-10-13 10:15:50.855153	2
+8088	2948	Modifying the value of owner counter is expensive because it is an atomic operation to avoid multithreading problems.	text	txt	2024-10-13 10:15:50.855153	3
+8089	2949	It is significantly cheaper to iterate over a collection of shared pointers by reference than using a copy on each iteration:	text	txt	2024-10-13 10:15:50.856463	1
+8090	2949	for (auto const& sp: collection) ...	code	cpp	2024-10-13 10:15:50.856463	2
+8091	2949	std::shared_ptr<std::string> result;\n\nwhile (...)\n{\n    std::shared_ptr<std::string> ptr{std::make_shared<std::string>(getValue())};\n    result = std::move(ptr); // move\n}	code	cpp	2024-10-13 10:15:50.856463	3
+8092	2950	The unique pointer implements the concept of exclusive ownership. Therefore, it can only be moved, and any attempt to copy a unique pointer is disabled.	text	txt	2024-10-13 10:15:50.85782	1
+8093	2950	std::vector<std::unique_ptr<std::string>> container;\nstd::unique_ptr<std::string> another;\ncontainer.push_back(std::move(another));	code	cpp	2024-10-13 10:15:50.85782	2
+8094	2951	Streams do not share their resources over copy operations.	text	txt	2024-10-13 10:15:50.859166	1
+8095	2951	std::ofstream file{"sample.tmp"};\nvoid store(std::ofstream file_stream);\nstore(std::move(file)); // takes file ownership\nassert(file.is_open());	code	cpp	2024-10-13 10:15:50.859166	2
+8096	2952	When passing move-only objects to a function taking parameters by value, the ownership will be transferred. But these functions might also take the argument by reference, which means that it does not take the ownership. In that case we might want to double check the state of the passed argument afterwards.	text	txt	2024-10-13 10:15:50.860561	1
+8097	2952	std::ofstream file{"sample.tmp"};\nstore(file);\nif (file.is_open())\n    file.close();	code	cpp	2024-10-13 10:15:50.860561	2
+8098	2953	std::ofstream{"sample.tmp"} << std::string{"content"};	code	cpp	2024-10-13 10:15:50.861757	1
+8099	2954	std::string firstname, lastname;\nstd::istringstream{"First Last"} >> firstname >> lastname;	code	cpp	2024-10-13 10:15:50.863077	1
+8100	2955	std::string multiline{}, line{};\nstd::getline(std::stringstream{multiline}, line);)	code	cpp	2024-10-13 10:15:50.864335	1
+8101	2956	atomic types, condition variables	text	list	2024-10-13 10:15:50.865675	1
+8102	2957	`std::thread`, `std::jthread`, `std::future`, `std::promise`, `std::packaged_task`	text	list	2024-10-13 10:15:50.867002	1
+8103	2958	By default, the constructor of the thread class copies these arguments. To use move semantics we should explicitly pass parameters as rvalues.	text	txt	2024-10-13 10:15:50.868342	1
+8104	2958	std::string value{"content"};\nstd::vector<std::jthread> runners{};\nrunners.push_back(std::jthread{do_something, value});\nrunners.push_back(std::jthread{do_something, std::move(value)});	code	cpp	2024-10-13 10:15:50.868342	2
+8105	2959	std::promise<std::string> promise{};\nstd::future<std::string> future{promise.get_future()};\n\nvoid print_value(std::future<std::string> f)\n{\n    std::println("{}", f.get());\n};\n\nvoid set_value(std::promise<std::string> p)\n{\n    try\n    {\n        p.set_value_at_thread_exit();\n    }\n    catch (...)\n    {\n        p.set_exception_at_thread_exit(std::current_exception());\n    }\n}\n\nstd::jthread future_thread{print_value, std::move(future)};\nstd::jthread promise_thread{set_value, std::move(promise)};	code	cpp	2024-10-13 10:15:50.869549	1
+8106	2960	When passing string literals to arguments of type const reference, the type of the corresponding parameters become a reference to an array of chars (`const char(&)[N]`). Therefore, type `char[N]` is deduced as type of parameter and used as type of member variable. However, initializing an array member with an array is not possible because you cannot copy arrays.	text	txt	2024-10-13 10:15:50.870874	1
+8107	2960	To deduce the same type for string literals of different length, we need to decay universal reference parameters.	text	txt	2024-10-13 10:15:50.870874	2
+8108	2960	namespace std\n{\ntemplate<typename T1, typename T2>\nconstexpr pair(typename decay_t<T1>, typename decay_t<T2>) make_pair(T1&& a, T2&& b)\n{\n    return pair<decay_t<T1>, decay_t<T2>>(forward<T1>(a), forward<T2>(b));\n}\n} // std	code	cpp	2024-10-13 10:15:50.870874	3
 \.
 
 
@@ -12611,6 +12639,23 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2941	1447	Check if a target is defined?	open	2024-10-13 10:12:58.072075	2024-10-13 10:12:58.072075
 2942	1447	What is a target?	open	2024-10-13 10:12:58.074958	2024-10-13 10:12:58.074958
 2943	1447	Check if a file exists?	open	2024-10-13 10:12:58.077001	2024-10-13 10:12:58.077001
+2944	1361	What is the state of a moved-from string?	open	2024-10-13 10:15:50.845358	2024-10-13 10:15:50.845358
+2945	1361	What is the use case of <code>std::optional</code>?	open	2024-10-13 10:15:50.849342	2024-10-13 10:15:50.849342
+2946	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-10-13 10:15:50.851219	2024-10-13 10:15:50.851219
+2947	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-10-13 10:15:50.852638	2024-10-13 10:15:50.852638
+2948	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-10-13 10:15:50.855153	2024-10-13 10:15:50.855153
+2949	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-10-13 10:15:50.856463	2024-10-13 10:15:50.856463
+2950	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-10-13 10:15:50.85782	2024-10-13 10:15:50.85782
+2951	1361	How do IOStream objects take advantage of move semantics?	open	2024-10-13 10:15:50.859166	2024-10-13 10:15:50.859166
+2952	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-10-13 10:15:50.860561	2024-10-13 10:15:50.860561
+2953	1361	Use a temporary file stream object to write into a file?	open	2024-10-13 10:15:50.861757	2024-10-13 10:15:50.861757
+2954	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-10-13 10:15:50.863077	2024-10-13 10:15:50.863077
+2955	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-10-13 10:15:50.864335	2024-10-13 10:15:50.864335
+2956	1361	What types in multithreading are neither copyable nor movable?	open	2024-10-13 10:15:50.865675	2024-10-13 10:15:50.865675
+2957	1361	What types in multithreading are move only?	open	2024-10-13 10:15:50.867002	2024-10-13 10:15:50.867002
+2958	1361	How does the thread constructor take arguments?	open	2024-10-13 10:15:50.868342	2024-10-13 10:15:50.868342
+2959	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-10-13 10:15:50.869549	2024-10-13 10:15:50.869549
+2960	1361	Pass string literals as universal references?	open	2024-10-13 10:15:50.870874	2024-10-13 10:15:50.870874
 \.
 
 
@@ -18886,7 +18931,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 95	Boost.Asio C++ Network Programming 	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 96	Embedded Linux using Yocto	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 97	C++ Templates: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-09-27 08:13:12.835493	3	Bootlin
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
@@ -18896,6 +18940,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-10-13 10:15:50.870874	1	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 \.
@@ -20360,7 +20405,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 790	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	5
 828	61	open	\N	2024-07-28 09:45:04.229409	2024-07-28 09:45:04.229409	13
 1293	86	completed	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	1
-1361	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	15
 1461	98	completed	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	16
 1446	98	completed	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	1
 1347	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	1
@@ -20445,6 +20489,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1516	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	11
 1517	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	12
 1506	104	writing	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1
+1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
 \.
 
 
@@ -22650,7 +22695,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8080, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8108, true);
 
 
 --
@@ -22678,7 +22723,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2943, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2960, true);
 
 
 --
