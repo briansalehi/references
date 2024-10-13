@@ -9598,6 +9598,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8164	2994	select rolname, rolcanlogin, rolconnlimit, rolpassword from pg_authid where rolname = 'user';	code	sql	2024-10-13 10:24:58.458275	1
 8165	2994	The catalog `pg_roles` can be queried by either superuser or normal users, but `pg_authid` can only be queried by superuser.	text	txt	2024-10-13 10:24:58.458275	2
 8166	2995	`$PGDATA/pg_hba.conf`	text	txt	2024-10-13 10:24:58.459273	1
+8274	3064	int spin_trylock(spinlock_t *lock);	code	c	2024-10-13 10:29:09.730245	2
 8167	2995	After every change on the cluster firewall, instruct the cluster to reload to the new rules via a `HUP` signal or by means of a `reload` command in `pg_ctl`.	text	txt	2024-10-13 10:24:58.459273	2
 8168	2996	select pg_reload_conf();	code	sql	2024-10-13 10:24:58.460222	1
 8169	2997	<connection-type> <database>  <role> <remote-machine> <auth-method>\n  local             all         all    all              scram-sha-256\n  host              replication        samehost         md5\n  hostssl           *                  samenet          reject\n  nohostsll                            *                trust	text	txt	2024-10-13 10:24:58.461163	1
@@ -9654,6 +9655,60 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8220	3031	1. Asending `asc` which is the default when not specified.\n2. Desending: `desc`.	text	txt	2024-10-13 10:24:58.494825	1
 8221	3032	select * from users order by 2, 3;	code	sql	2024-10-13 10:24:58.495762	1
 8222	3032	select * from users order by name, age;	code	sql	2024-10-13 10:24:58.495762	2
+8223	3033	A resource is said to be shared when accessed by several contenders. When they are exclusive, access must be synchronized so that only the allowed contendeer(s) may own the resource.	text	txt	2024-10-13 10:29:09.670137	1
+8224	3034	Locks, conditional variables	text	list	2024-10-13 10:29:09.674309	1
+8225	3035	The kernel performs locking by atomically modifying a variable that holds the current state of the resource, making the shared resource visible to contenders that might access it at the same time..	text	txt	2024-10-13 10:29:09.676337	1
+8226	3036	Spinlocks, mutexes	text	list	2024-10-13 10:29:09.678605	1
+8227	3037	Waiting queues, completion queues	text	list	2024-10-13 10:29:09.681764	1
+8275	3064	Both functions return 0 when lock is already locked, and 1 when lock acquired.	text	txt	2024-10-13 10:29:09.730245	3
+8228	3038	There are situations where it is better to wait for the state of the resource to change; for example, waiting for a list to contain at least one object, or a task to complete.	text	txt	2024-10-13 10:29:09.684516	1
+8229	3039	When it comes to locking, it is up to the hardware to allow synchronizations by means of atomic operations.	text	txt	2024-10-13 10:29:09.686601	1
+8230	3040	Disabling interrupts around the critical code sections.	text	txt	2024-10-13 10:29:09.688069	1
+8231	3041	A spinlock operates by disabling the scheduler on the local CPU that is running the task that called the spinlock's locking API.	text	txt	2024-10-13 10:29:09.689731	1
+8232	3041	This also means that the task currently running on that CPU cannot be preempted by another task, except for interrupts if they are not disabled.	text	txt	2024-10-13 10:29:09.689731	2
+8233	3041	As a result, spinlocks protect resources that only one CPU can access at a time.	text	txt	2024-10-13 10:29:09.689731	3
+8234	3042	`preempt_count` is the preemption status variable, that if equal to 0, means preemption is enabled. However, if it's greater than 0, means preemption is disabled.	text	txt	2024-10-13 10:29:09.691425	1
+8235	3042	Disabling preepmtion by `preempt_disable()` consists of incrementing `preempt_count` by one, while `preempt_enable()` decrements `preempt_count` by one, and checks whether the new value is 0, and calls `schedule()` if so. These checkings and modifications should be done atomically.	text	txt	2024-10-13 10:29:09.691425	2
+8236	3043	Changing preemption status consists of modifying `preempt_count`, an in case of value 0 a call to `schedule()` is performed. Thus, preemption operations should be done atomically.	text	txt	2024-10-13 10:29:09.692847	1
+8237	3044	include/linux/spinlock_types.h	text	path	2024-10-13 10:29:09.694466	1
+8238	3044	#define DEFINE_SPINLOCK(x) spinlock_t x = __SPIN_LOCK_UNLOCKED(x)	code	c	2024-10-13 10:29:09.694466	2
+8239	3044	static DEFINE_SPINLOCK(resource_lock);	code	c	2024-10-13 10:29:09.694466	3
+8240	3045	For dynamic allocation, you need to embed the spinlock into a bigger structure, allocate memory for this structure, and then call `spin_lock_init()` on the spinlock element.	text	txt	2024-10-13 10:29:09.69594	1
+8241	3045	struct bigger_struct\n{\n    spinlock_t lock;\n    unsigned int foo;\n};\n\nstatic struct bigger_struct *foo_alloc_init()\n{\n    struct bigger_struct *bs;\n    bs = kmalloc(sizeof(struct bigger_struct), GFP_KERNEL);\n    if (!bs)\n    {\n        return -ENOMEM;\n    }\n    spin_lock_init(&bs->lock);\n    return bs;\n}	code	c	2024-10-13 10:29:09.69594	2
+8242	3046	void spin_lock(spinlock_t *lock);	code	c	2024-10-13 10:29:09.697425	1
+8243	3046	void spin_unlock(spinlock_t *lock);	code	c	2024-10-13 10:29:09.697425	2
+8244	3047	Spinlocks prevent preemptions but not interrupts. There might be cases where a task holds a spinlock in order to prevent a shared resource, and an interrupt handler preempts the task to hold and lock the same spinlock. This leads to a deadlock and a workaround to prevent that is to disable interrupts in addition to preemptions on the local CPU.	text	txt	2024-10-13 10:29:09.699163	1
+8245	3047	void spin_lock_irq(spinlock_t *lock);	code	c	2024-10-13 10:29:09.699163	2
+8246	3047	void spin_unlock_irq(spinlock_t *lock);	code	c	2024-10-13 10:29:09.699163	3
+8247	3048	`spin_unlock_irq()` will enable all interrupts on local CPU, even the interrupts that were already disabled.	text	txt	2024-10-13 10:29:09.701906	1
+8248	3049	spin_lock_irqsave(spinlock_t *lock, unsigned long flags);	code	c	2024-10-13 10:29:09.704598	1
+8249	3049	spin_unlock_irqrestore(spinlock_t *lock, unsigned long flags);	code	c	2024-10-13 10:29:09.704598	2
+8250	3050	Though disabling interrupts may prevent kernel preemption, but nothing prevents the protected section from invoking the scheduler.	text	txt	2024-10-13 10:29:09.706155	1
+8251	3051	A critical section that has locked a spinlock and has disabled interrupts should not sleep, because there would be no way to wake it up.	text	txt	2024-10-13 10:29:09.707504	1
+8252	3052	Mutex is similar to a spinlock, except that the task can sleep meanwhile mutex is locked.	text	txt	2024-10-13 10:29:09.709037	1
+8253	3052	A spinlock is a lock held by a CPU, while a mutex is a lock held by a task.	text	txt	2024-10-13 10:29:09.709037	2
+8254	3053	A mutex is a simple data structure that embeds a wait queue to put contenders to sleep, and a spinlock that protects access to this wait queue.	text	txt	2024-10-13 10:29:09.710724	1
+8255	3053	struct mutex\n{\n    atomic_long_t owner;\n    spinlock_t wait_lock;\n#ifdef CONFIG_MUTEX_SPIN_ON_OWNER\n    struct optimistic_spin_queue osq;\n#endif\n    struct list_head wait_list;\n};	code	c	2024-10-13 10:29:09.710724	2
+8256	3053	Owner is the process that owns the lock.	text	txt	2024-10-13 10:29:09.710724	3
+8257	3053	Wait list is the list that in which the mutex's contenders are put to sleep.	text	txt	2024-10-13 10:29:09.710724	4
+8258	3054	static DEFINE_MUTEX(<mutex>);	code	c	2024-10-13 10:29:09.712174	1
+8259	3055	`__mutex_init()` is the low level function for mutex initialization, but more conveniently `mutex_init()` wrapper macro can be used.	text	txt	2024-10-13 10:29:09.713605	1
+8260	3055	struct data_transceiver\n{\n    struct i2c_client *client;\n    u16 reg_conf;\n    struct mutex mutex;\n};\n\nstatic int fake_probe(struct i2c_client *client, struct i2c_device_id *id)\n{\n    data_transceiver *data = /* initialization */;\n    mutex_init(&data->mutex);\n}	code	c	2024-10-13 10:29:09.713605	2
+8261	3056	void mutex_lock(struct mutex *lock);	code	c	2024-10-13 10:29:09.715616	1
+8262	3056	int mutex_lock_interruptible(struct mutex *lock);	code	c	2024-10-13 10:29:09.715616	2
+8263	3056	int mutex_lock_killable(struct mutex *lock);	code	c	2024-10-13 10:29:09.715616	3
+8264	3057	Whatever locking function used to lock a mutex, the mutex owner should unlock the mutex with the following function:	text	txt	2024-10-13 10:29:09.719061	1
+8265	3057	void mutex_unlock(struct mutex *lock);	code	c	2024-10-13 10:29:09.719061	2
+8266	3058	static bool mutex_is_locked(struct mutex *lock);	code	c	2024-10-13 10:29:09.721418	1
+8267	3059	`mutex_lock()` should only be used when we can guarantee that the mutex will not be held for a long time.	text	txt	2024-10-13 10:29:09.722968	1
+8268	3059	Typically, you should use the interruptable variant instead.	text	txt	2024-10-13 10:29:09.722968	2
+8269	3060	- only one task can hold the mutex at a time\n- only the owner can unlock the mutex\n- multiple unlocks are not permitted\n- recursive locking is not permitted\n- a mutex object must be initialized via the API\n- a mutex object must not be initialized via memset or copying\n- task may not exit with mutex held\n- memory areas where held locks reside must not be freed\n- held mutexes must not be reinitialized\n- mutexes may not be used in hardware or software interrupt\n- contexts such as tasklets and timers	text	list	2024-10-13 10:29:09.724373	1
+8270	3061	include/linux/spinlock.h	text	path	2024-10-13 10:29:09.725658	1
+8271	3062	include/linux/mutex.h	text	path	2024-10-13 10:29:09.726978	1
+8272	3063	When we want to acquire a lock without spinning if we are using a spinlock, or sleeping if we are using a mutex.	text	txt	2024-10-13 10:29:09.728349	1
+8273	3064	int mutex_trylock(struct mutex *lock);	code	c	2024-10-13 10:29:09.730245	1
+8276	3065	static DEFINE_SPINLOCK(lock);\n\nstatic void do_something(void)\n{\n    if (!spin_trylock(&lock))\n    {\n        return;\n    }\n\n    /* implementations after lock acquired */\n\n    spin_unlock(&lock);\n}	code	c	2024-10-13 10:29:09.731704	1
+8277	3066	static DEFINE_MUTEX(lock);\n\nstatic void do_something(void)\n{\n    if (!mutex_trylock(&lock))\n    {\n        return;\n    }\n\n    /* implementations after lock acquired */\n\n    mutex_unlock(&lock);\n}	code	c	2024-10-13 10:29:09.734084	1
 \.
 
 
@@ -12842,6 +12897,40 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3030	208	Filter select query results?	open	2024-10-13 10:24:58.493878	2024-10-13 10:24:58.493878
 3031	208	How many ordering directions exist?	open	2024-10-13 10:24:58.494825	2024-10-13 10:24:58.494825
 3032	208	Write an order by clause with column positions?	open	2024-10-13 10:24:58.495762	2024-10-13 10:24:58.495762
+3033	661	When access to a resource should be synchronized?	open	2024-10-13 10:29:09.670137	2024-10-13 10:29:09.670137
+3034	661	How many synchronization mechanisms are available in the kernel?	open	2024-10-13 10:29:09.674309	2024-10-13 10:29:09.674309
+3035	661	What is the granularity of synchronization operations in the kernel?	open	2024-10-13 10:29:09.676337	2024-10-13 10:29:09.676337
+3036	661	What locking types are available in the kernel?	open	2024-10-13 10:29:09.678605	2024-10-13 10:29:09.678605
+3037	661	What conditional variable types are available in the kernel?	open	2024-10-13 10:29:09.681764	2024-10-13 10:29:09.681764
+3038	661	What are the use cases of conditional variables in the kernel?	open	2024-10-13 10:29:09.684516	2024-10-13 10:29:09.684516
+3039	661	What does the locking mechanism in the kernel depend on?	open	2024-10-13 10:29:09.686601	2024-10-13 10:29:09.686601
+3040	661	What is a simple workaround for a system to ensure atomicity of synchronization operations?	open	2024-10-13 10:29:09.688069	2024-10-13 10:29:09.688069
+3041	661	How does spinlocks operate?	open	2024-10-13 10:29:09.689731	2024-10-13 10:29:09.689731
+3042	661	How does preemption toggle in a CPU?	open	2024-10-13 10:29:09.691425	2024-10-13 10:29:09.691425
+3043	661	Why does changing of preemption status depends on atomic operations?	open	2024-10-13 10:29:09.692847	2024-10-13 10:29:09.692847
+3044	661	Create and initialize a spinlock using macro?	open	2024-10-13 10:29:09.694466	2024-10-13 10:29:09.694466
+3045	661	Dynamically create and initialize a spinlock?	open	2024-10-13 10:29:09.69594	2024-10-13 10:29:09.69594
+3046	661	Lock and unlock a spinlock?	open	2024-10-13 10:29:09.697425	2024-10-13 10:29:09.697425
+3047	661	What are the use cases of spin_lock_irq and spin_unlock variations?	open	2024-10-13 10:29:09.699163	2024-10-13 10:29:09.699163
+3048	661	What are the side effects of disabling and enabling interrupts by spinlocks?	open	2024-10-13 10:29:09.701906	2024-10-13 10:29:09.701906
+3049	661	What is the safe way of enabling and disabling spinlocks?	open	2024-10-13 10:29:09.704598	2024-10-13 10:29:09.704598
+3050	661	What can invoke a scheduler in critical section?	open	2024-10-13 10:29:09.706155	2024-10-13 10:29:09.706155
+3051	661	When is the consequence of calling the scheduler in a critical section?	open	2024-10-13 10:29:09.707504	2024-10-13 10:29:09.707504
+3052	661	What is the difference between a mutex and a spinlock?	open	2024-10-13 10:29:09.709037	2024-10-13 10:29:09.709037
+3053	661	What constructs a mutex?	open	2024-10-13 10:29:09.710724	2024-10-13 10:29:09.710724
+3054	661	Statically define and initialize a mutex?	open	2024-10-13 10:29:09.712174	2024-10-13 10:29:09.712174
+3055	661	Dynamically define and initialize a mutex?	open	2024-10-13 10:29:09.713605	2024-10-13 10:29:09.713605
+3056	661	How many functions exist to acquire a mutex?	open	2024-10-13 10:29:09.715616	2024-10-13 10:29:09.715616
+3057	661	Unlock a mutex?	open	2024-10-13 10:29:09.719061	2024-10-13 10:29:09.719061
+3058	661	Check if a mutex is locked?	open	2024-10-13 10:29:09.721418	2024-10-13 10:29:09.721418
+3059	661	What mutex locking function is recommended to be used?	open	2024-10-13 10:29:09.722968	2024-10-13 10:29:09.722968
+3060	661	What are the rules to using mutex in the kernel?	open	2024-10-13 10:29:09.724373	2024-10-13 10:29:09.724373
+3061	661	Where is spinlock defined in the kernel?	open	2024-10-13 10:29:09.725658	2024-10-13 10:29:09.725658
+3062	661	Where is mutex defined in the kernel?	open	2024-10-13 10:29:09.726978	2024-10-13 10:29:09.726978
+3063	661	What are the use cases of try-lock functions?	open	2024-10-13 10:29:09.728349	2024-10-13 10:29:09.728349
+3064	661	What are the try-lock functions for spinlock and mutex?	open	2024-10-13 10:29:09.730245	2024-10-13 10:29:09.730245
+3065	661	Try locking a spinlock without spinning?	open	2024-10-13 10:29:09.731704	2024-10-13 10:29:09.731704
+3066	661	Try locking a mutex without sleeping?	open	2024-10-13 10:29:09.734084	2024-10-13 10:29:09.734084
 \.
 
 
@@ -19076,7 +19165,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 49	Linux Device Driver	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 50	Introduction to Linear and Matrix Algebra	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 51	Extreme C	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-52	Mastering Linux Device Driver Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 53	The Shellcoder's Handbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 56	Docker Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19128,6 +19216,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-10-13 10:15:50.870874	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	2	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
+52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 \.
 
@@ -19934,7 +20023,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 66	19	writing	\N	2024-07-28 09:44:56.217196	2024-07-28 09:44:56.217196	2
 231	27	open	\N	2024-07-28 09:44:57.748862	2024-07-28 09:44:57.748862	7
 340	36	writing	\N	2024-07-28 09:44:59.070387	2024-07-28 09:44:59.070387	5
-661	52	writing	\N	2024-07-28 09:45:02.456043	2024-07-28 09:45:02.456043	1
 512	44	open	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	42
 1213	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	45
 356	37	writing	\N	2024-07-28 09:44:59.43286	2024-07-28 09:44:59.43286	2
@@ -20660,6 +20748,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 786	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.832738	1
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 10:20:47.836879	2
+661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
 1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	4
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
@@ -22881,7 +22970,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8222, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8277, true);
 
 
 --
@@ -22909,7 +22998,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3032, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3066, true);
 
 
 --
