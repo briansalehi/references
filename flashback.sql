@@ -115,11 +115,14 @@ CREATE PROCEDURE flashback.create_note(IN resource_index integer, IN section_ind
     AS $$
 declare note_index integer;
 declare block_index integer;
+declare resource_index integer;
 declare record record;
 begin
+    select resource_id into resource_index from sections where id = section_index;
     insert into flashback.notes (section_id, heading) values (section_index, heading) returning id into note_index;
     insert into flashback.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
-    update flashback.sections set state = 'writing' where id = section_index;
+    update flashback.sections set state = 'writing', updated = now() where id = section_index;
+    update flashback.resources set updated = now() where id = resource_index;
     delete from temp_blocks;
     alter sequence temp_block_row_number_seq restart with 1;
 end; $$;
@@ -147,6 +150,7 @@ begin
     insert into flashback.notes (section_id, heading) values (section_index, heading) returning id into note_index;
     insert into flashback.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
     update flashback.sections set state = 'writing', updated = now() where id = section_index;
+    update flashback.resources set updated = now() where id = resource_index;
     delete from temp_blocks;
     alter sequence temp_blocks_row_number_seq restart with 1;
 end; $$;
@@ -9435,6 +9439,22 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7980	2878	Same as integral comparison operators, but with `STR` prefixed.	text	txt	2024-10-12 22:35:28.191451	1
 7981	2878	`EQUAL`, `LESS`, `LESS_EQUAL`, `GREATER`, `GREATER_EQUAL`	text	list	2024-10-12 22:35:28.191451	2
 7982	2879	if(<variable> MATCHES <regex>)	code	cmake	2024-10-12 22:35:28.193741	1
+7983	2889	A pair of values consisting of an IP address and a protocol port number that uniquely identifies a particular application running on a particular host in a computer network is called an endpoint.	text	txt	2024-10-13 09:23:38.437063	1
+7984	2890	The IP address can be represented as a string containing an address in dot-decimal notation also known as IPv4, or in hexadecimal notation also known as IPv6, or a string containing a DNS name.	text	txt	2024-10-13 09:23:38.441883	1
+7985	2890	IPv4 example: 192.168.1.112	text	txt	2024-10-13 09:23:38.441883	2
+7986	2890	Ipv6 example: FE36::0404:C3FA;EF1E:3829	text	txt	2024-10-13 09:23:38.441883	3
+7987	2890	Domain name example: boost.org	text	txt	2024-10-13 09:23:38.441883	4
+7988	2891	#include <boost/asio.hpp>\n\nboost::asio::ip::address server_address{boost::asio::ip::address::from_string("127.0.0.1")};\nboost::asio::ip::tcp::endpoint tcp_endpoint{address, 8000};\nboost::asio::ip::udp::endpoint udp_endpoint{address, 8000};	code	cpp	2024-10-13 09:23:38.444998	1
+7989	2892	#include <boost/asio.hpp>\n\nboost::asio::ip::address local_address{boost::asio::ip::address_v6::any()};\nboost::asio::ip::tcp::endpoint tcp_endpoint{address, 8000};\nboost::asio::ip::udp::endpoint udp_endpoint{address, 8000};	code	cpp	2024-10-13 09:23:38.448211	1
+7990	2893	boost::asio::ip::address_v4{};	code	cpp	2024-10-13 09:23:38.451437	1
+7991	2893	boost::asio::ip::address_v6{};	code	cpp	2024-10-13 09:23:38.451437	2
+7992	2893	boost::asio::ip::address{};	code	cpp	2024-10-13 09:23:38.451437	3
+7993	2893	`address` class can hold both IPv4 and IPv6 addresses.	text	txt	2024-10-13 09:23:38.451437	4
+7994	2894	An active socket is intended to be used to send and receive data to and from a remote application or to initiate a connection establishment process with it.	text	txt	2024-10-13 09:23:38.454668	1
+7995	2894	Passive socket is intended to be used to passively wait for incoming connection requests from remote applications.	text	txt	2024-10-13 09:23:38.454668	2
+7996	2895	#include <boost/asio.hpp>\n\nboost::asio::ip::address address{boost::asio::ip::address::from_string("127.0.0.1")};\nboost::asio::ip::tcp::endpoint endpoint{address, 8000};\nboost::asio::io_service io_service{};\nboost::asio::ip::tcp protocol{boost::asio::ip::tcp::v6()};\nboost::asio::ip::tcp::socket socket(io_service);\n\nsocket.open(protocol);\nsocket.close();	code	cpp	2024-10-13 09:23:38.457564	1
+7997	2896	#include <boost/asio.hpp>\nboost::asio::io_service service{};\nboost::asio::ip::tcp protocol{boost::asio::ip::tcp::v6()};\nboost::asio::ip::tcp::acceptor acceptor{service, protocol};	code	cpp	2024-10-13 09:23:38.459278	1
+7998	2897	#include <boost/asio.hpp>\n#include <algorithm>\n#include <print>\nboost::asio::io_service service{};\nboost::asio::ip::tcp::resolver::query query{"localhost", "8000", boost::asio::ip::tcp::resolver::query::numeric_service};\nboost::asio::ip::tcp::resolver resolver{service};\nboost::asio::ip::tcp::resolver::iterator it{resolver.resolve(query)};\nstd::for_each(it, {}, [](boost::asio::ip::tcp::endpoint const& e)\n{\nstd::println("{}:{}", e.address().to_string(), e.port());\n});	code	cpp	2024-10-13 09:23:38.460276	1
 \.
 
 
@@ -12437,7 +12457,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2822	1447	What case sensitivity does CMake follow for writing commands?	open	2024-10-12 22:35:28.027395	2024-10-12 22:35:28.027395
 2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034
 2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216
-2880	838	What information does an endpoint contain?	open	2024-10-13 09:10:48.042563	2024-10-13 09:10:48.042563
 2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045
 2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595
 2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143
@@ -12493,14 +12512,15 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2877	1447	What comparison operators are available for version type?	open	2024-10-12 22:35:28.188855	2024-10-12 22:35:28.188855
 2878	1447	What comparison operators are available for string type?	open	2024-10-12 22:35:28.191451	2024-10-12 22:35:28.191451
 2879	1447	Compare if a value matches with a regular expression?	open	2024-10-12 22:35:28.193741	2024-10-12 22:35:28.193741
-2881	838	How many forms an endpoint address can have?	open	2024-10-13 09:10:48.046671	2024-10-13 09:10:48.046671
-2882	838	Create a tcp and udp endpoint for client?	open	2024-10-13 09:10:48.048267	2024-10-13 09:10:48.048267
-2883	838	Create a tcp and udp endpoint for server?	open	2024-10-13 09:10:48.049776	2024-10-13 09:10:48.049776
-2884	838	How many address types exist?	open	2024-10-13 09:10:48.051547	2024-10-13 09:10:48.051547
-2885	838	What is the difference between active and passive sockets?	open	2024-10-13 09:10:48.053066	2024-10-13 09:10:48.053066
-2886	838	Create an active socket?	open	2024-10-13 09:10:48.05455	2024-10-13 09:10:48.05455
-2887	838	Create a passive socket?	open	2024-10-13 09:10:48.055622	2024-10-13 09:10:48.055622
-2888	838	Resolve a DNS name?	open	2024-10-13 09:10:48.056695	2024-10-13 09:10:48.056695
+2889	838	What information does an endpoint contain?	open	2024-10-13 09:23:38.437063	2024-10-13 09:23:38.437063
+2890	838	How many forms an endpoint address can have?	open	2024-10-13 09:23:38.441883	2024-10-13 09:23:38.441883
+2891	838	Create a tcp and udp endpoint for client?	open	2024-10-13 09:23:38.444998	2024-10-13 09:23:38.444998
+2892	838	Create a tcp and udp endpoint for server?	open	2024-10-13 09:23:38.448211	2024-10-13 09:23:38.448211
+2893	838	How many address types exist?	open	2024-10-13 09:23:38.451437	2024-10-13 09:23:38.451437
+2894	838	What is the difference between active and passive sockets?	open	2024-10-13 09:23:38.454668	2024-10-13 09:23:38.454668
+2895	838	Create an active socket?	open	2024-10-13 09:23:38.457564	2024-10-13 09:23:38.457564
+2896	838	Create a passive socket?	open	2024-10-13 09:23:38.459278	2024-10-13 09:23:38.459278
+2897	838	Resolve a DNS name?	open	2024-10-13 09:23:38.460276	2024-10-13 09:23:38.460276
 \.
 
 
@@ -20284,8 +20304,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-12 22:35:28.193741	2
-838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:10:48.056695	1
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
+838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
 \.
 
 
@@ -22473,7 +22493,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7982, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 7998, true);
 
 
 --
@@ -22501,7 +22521,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 2888, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 2897, true);
 
 
 --
