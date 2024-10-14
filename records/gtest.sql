@@ -39,9 +39,9 @@ create procedure add_block(type flashback.block_type, language varchar(10), cont
 
 --call set_section_as_complete('GoogleTest Documentation', 3);
 
---call add_block('text', 'txt', '');
---call add_block('code', 'cpp', '');
---call create_note_with_name('GoogleTest Documentation', 4, '');
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('GoogleTest Documentation', 4, '');
 
 --call set_section_as_complete('GoogleTest Documentation', 4);
 

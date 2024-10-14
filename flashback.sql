@@ -9716,6 +9716,30 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8280	3069	Embedded Linux build systems usually take **open source components** and **inhouse components** as inputs, take configuration files for the process, and give **toolchain**, **kernel image**, **bootloader image**, **root filesystem image** as outputs.	text	txt	2024-10-13 10:59:49.494652	1
 8283	3074	MACHINE ??= "qemux86-64"	code	conf	2024-10-13 15:36:57.248412	2
 8284	3075	ls meta*/recipes*/*images/*.bb	code	sh	2024-10-13 15:36:57.251518	1
+8285	3076	We can mock class templates just like any class:	text	txt	2024-10-14 14:13:53.605146	1
+8286	3076	template<typename T>\nclass Bag\n{\n    virtual size_t size() const = 0;\n};	code	cpp	2024-10-14 14:13:53.605146	2
+8287	3076	template<typename T>\nclass BagTest: public Bag<T>\n{\n    MOCK_METHOD(size_t, size, (), (const, override));\n};	code	cpp	2024-10-14 14:13:53.605146	3
+8288	3077	Just don't add `override`:	text	txt	2024-10-14 14:13:53.609621	1
+8289	3077	class BagTest: public Bag\n{\n    MOCK_METHOD(size_t, size, (), (const));\n};	code	cpp	2024-10-14 14:13:53.609621	2
+8290	3078	It's not possible to directly mock a free function.	text	txt	2024-10-14 14:13:53.612419	1
+8291	3078	Introduce an interface for it and have a concrete subclass that calls the free function:	text	txt	2024-10-14 14:13:53.612419	2
+8292	3078	void do_something() { }	code	cpp	2024-10-14 14:13:53.612419	3
+8293	3078	class basic_task\n{\npublic:\n    virtual void run() = 0;\n};	code	cpp	2024-10-14 14:13:53.612419	4
+8294	3078	class task: public basic_task\n{\npublic:\n    void run() override { do_something(); }\n};	code	cpp	2024-10-14 14:13:53.612419	5
+8295	3078	class mock_basic_task: public basic_task\n{\npublic:\n    MOCK_METHOD(void, run, (), (override));\n};	code	cpp	2024-10-14 14:13:53.612419	6
+8296	3078	using testing::AtLeast;\n\nTEST(Task, Run)\n{\n    task t{};\n    EXPECT_CALL(t, run()).Times(AtLeast(1));\n};	code	cpp	2024-10-14 14:13:53.612419	7
+8297	3078	It may seem like a lot of hassle, but in practice we should put all related functions in the same interface, so per-function syntactic overhead will be much lower.	text	txt	2024-10-14 14:13:53.612419	8
+8298	3079	When a mock method has no expectations but is called, we say that it's an **uninteresting call**, and the default action of the method will be taken..	text	txt	2024-10-14 14:13:53.614269	1
+8299	3080	We might want to ignore uninteresting calls, or sometimes we may want to treat them as errors.	text	txt	2024-10-14 14:13:53.616682	1
+8300	3080	To suppress the warnings we can rewrite mock objects as nice mocks:	text	txt	2024-10-14 14:13:53.616682	2
+8301	3080	TEST(TestSuite, TestCase)\n{\n    NiceMock<MockType> mock_object;\n    EXPECT_CALL(mock_object, do_something());\n}	code	cpp	2024-10-14 14:13:53.616682	3
+8302	3080	`NiceMock<MockType>` is a subclass of `MockType`, so it can be used whenever `MockType` is accepted.	text	txt	2024-10-14 14:13:53.616682	4
+8303	3081	We can make all uninteresting calls fail by using strict mocks:	text	txt	2024-10-14 14:13:53.618754	1
+8304	3081	TEST(TestSuite, TestCase)\n{\n    StrictMock<MockType> mock_object;\n    EXPECT_CALL(mock_object, do_something());\n}	code	cpp	2024-10-14 14:13:53.618754	2
+8305	3082	Nice and strict mocks only work for mock methods defined in the mock class. Therefore, nested nice and strict mocks is no supported:	text	txt	2024-10-14 14:13:53.620991	1
+8306	3082	NiceMock<StrictMock<MockType>> mock_object;	code	cpp	2024-10-14 14:13:53.620991	2
+8307	3082	Nice and strict mocks may not work correctly if the destructor of mock class is not virtual.	text	txt	2024-10-14 14:13:53.620991	3
+8308	3083	This is the default mock when we write one. It will warn about uninteresting calls but does not fail the test.	text	txt	2024-10-14 14:13:53.62219	1
 \.
 
 
@@ -12947,6 +12971,14 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3073	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:36:57.24333	2024-10-13 15:36:57.24333
 3074	787	Define the target machine to the project?	open	2024-10-13 15:36:57.248412	2024-10-13 15:36:57.248412
 3075	787	List all available images?	open	2024-10-13 15:36:57.251518	2024-10-13 15:36:57.251518
+3076	1490	Mock a class template?	open	2024-10-14 14:13:53.605146	2024-10-14 14:13:53.605146
+3077	1490	Mock a non-virtual method?	open	2024-10-14 14:13:53.609621	2024-10-14 14:13:53.609621
+3078	1490	Mock a free function?	open	2024-10-14 14:13:53.612419	2024-10-14 14:13:53.612419
+3079	1490	What is an uninteresting call?	open	2024-10-14 14:13:53.614269	2024-10-14 14:13:53.614269
+3080	1490	What is a nice mock?	open	2024-10-14 14:13:53.616682	2024-10-14 14:13:53.616682
+3081	1490	What is a strict mock?	open	2024-10-14 14:13:53.618754	2024-10-14 14:13:53.618754
+3082	1490	What are the limitations of nice and strict mocks?	open	2024-10-14 14:13:53.620991	2024-10-14 14:13:53.620991
+3083	1490	What is a naggy mock?	open	2024-10-14 14:13:53.62219	2024-10-14 14:13:53.62219
 \.
 
 
@@ -19228,12 +19260,12 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-10-13 10:15:50.870874	1	\N
-102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	2	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
 \.
 
 
@@ -20762,7 +20794,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
-1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-13 10:23:12.04246	4
 1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-10-13 10:59:49.494652	1
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
@@ -20781,6 +20812,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 208	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.495762	4
 786	59	completed	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.239652	1
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.251518	2
+1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
 \.
 
 
@@ -22246,9 +22278,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1486	2024-10-03 14:27:34.014637
 1	1488	2024-10-05 21:52:28.034683
 1	1491	2024-10-05 21:52:28.034683
-1	1487	2024-10-05 21:52:28.034683
 1	471	2024-10-07 22:21:04.764332
-1	1489	2024-10-09 10:24:45.859576
 1	1293	2024-10-09 10:25:27.989366
 1	1347	2024-10-09 11:59:29.659175
 1	1348	2024-10-09 12:18:10.38871
@@ -22269,11 +22299,11 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1496	2024-10-13 09:59:11.204948
 1	838	2024-10-13 09:23:38.460276
 1	1361	2024-10-13 10:15:50.870874
+1	1489	2024-10-14 12:16:16.921759
 1	1447	2024-10-13 10:12:58.077001
 1	207	2024-10-13 10:24:58.4651
 1	208	2024-10-13 10:24:58.495762
 1	1382	2024-10-13 10:59:49.494652
-1	1490	2024-10-13 10:23:12.04246
 1	661	2024-10-13 10:29:09.734084
 1	786	2024-10-13 12:42:44.466666
 1	787	2024-10-13 14:16:23.985512
@@ -22308,6 +22338,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1516	2024-10-13 11:08:13.847027
 1	1517	2024-10-13 11:08:13.847027
 1	1506	2024-10-13 11:08:13.847027
+1	1487	2024-10-14 11:40:11.153339
+1	1490	2024-10-14 12:49:44.193064
 \.
 
 
@@ -23017,7 +23049,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8284, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8308, true);
 
 
 --
@@ -23045,7 +23077,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3075, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3083, true);
 
 
 --
