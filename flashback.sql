@@ -9501,6 +9501,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8069	2936	if("12.10.2024" MATCHES "[0-9]+")\n    message(STATUS "Day: ${CMAKE_MATCH_1}"))\n    message(STATUS "Month: ${CMAKE_MATCH_2}"))\n    message(STATUS "Year: ${CMAKE_MATCH_3}"))\nendif	code	cmake	2024-10-13 10:12:58.059943	2
 8070	2937	if(<var> IN_LIST <list>)	code	cmake	2024-10-13 10:12:58.063903	1
 8071	2938	if(COMMAND <command>)	code	cmake	2024-10-13 10:12:58.065658	1
+8309	3084	select current_database();	code	sql	2024-10-20 11:28:18.387971	1
 8066	2934	#include <coroutine>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        long value;\n\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n        void unhandled_exception() {}\n        return_type get_return_object() { return std::coroutine_handle<promise_type>::from_promise(*this); }\n        std::suspend_always yield_value(long initial_value) {}\n    };\n\n    std::coroutine_handle<promise_type> handle;\n    return_type(std::coroutine_handle<promise_type> handle): handle{handle} {}\n    operator std::coroutine_handle<promise_type>() const { return handle; }\n    long get_value() const { return handle.promise().value; }\n};	code	cpp	2024-10-13 10:12:00.03172	2
 8067	2935		text	txt	2024-10-13 10:12:00.032792	1
 8072	2939	if(POLICY <policy-id>)	code	cmake	2024-10-13 10:12:58.067188	1
@@ -9740,6 +9741,10 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8306	3082	NiceMock<StrictMock<MockType>> mock_object;	code	cpp	2024-10-14 14:13:53.620991	2
 8307	3082	Nice and strict mocks may not work correctly if the destructor of mock class is not virtual.	text	txt	2024-10-14 14:13:53.620991	3
 8308	3083	This is the default mock when we write one. It will warn about uninteresting calls but does not fail the test.	text	txt	2024-10-14 14:13:53.62219	1
+8310	3085	select current_date;	code	sql	2024-10-20 11:28:18.391256	1
+8311	3086	select current_timestamp;	code	sql	2024-10-20 11:28:18.393246	1
+8312	3087	createuser	code	sh	2024-10-20 11:28:18.397215	1
+8313	3088	dropuser	code	sh	2024-10-20 11:28:18.399848	1
 \.
 
 
@@ -12979,6 +12984,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3081	1490	What is a strict mock?	open	2024-10-14 14:13:53.618754	2024-10-14 14:13:53.618754
 3082	1490	What are the limitations of nice and strict mocks?	open	2024-10-14 14:13:53.620991	2024-10-14 14:13:53.620991
 3083	1490	What is a naggy mock?	open	2024-10-14 14:13:53.62219	2024-10-14 14:13:53.62219
+3084	206	Query the name of current database?	open	2024-10-20 11:28:18.387971	2024-10-20 11:28:18.387971
+3085	206	Query current date?	open	2024-10-20 11:28:18.391256	2024-10-20 11:28:18.391256
+3086	206	Query current date and time?	open	2024-10-20 11:28:18.393246	2024-10-20 11:28:18.393246
+3087	207	What command line utility creates user in a postgres instance?	open	2024-10-20 11:28:18.397215	2024-10-20 11:28:18.397215
+3088	207	What command line utility removes user in a postgres instance?	open	2024-10-20 11:28:18.399848	2024-10-20 11:28:18.399848
 \.
 
 
@@ -19240,7 +19250,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 81	PostgreSQL 14 Administration Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 82	Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 83	Sudo Mastery	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-13 10:24:58.495762	1	\N
 84	A Complete Guide to Standard C++ Algorithms	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 85	Cross-Platform Development with Qt6 and Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19266,6 +19275,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-20 11:28:18.399848	1	\N
 \.
 
 
@@ -20241,7 +20251,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 620	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	13
 894	66	open	\N	2024-07-28 09:45:04.96819	2024-07-28 09:45:04.96819	8
 1357	89	open	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	11
-205	26	writing	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	1
 245	28	open	\N	2024-07-28 09:44:57.873227	2024-07-28 09:44:57.873227	5
 67	19	writing	\N	2024-07-28 09:44:56.217196	2024-07-28 09:44:56.217196	3
 1326	87	open	\N	2024-07-28 09:45:09.480176	2024-07-28 09:45:09.480176	17
@@ -20288,7 +20297,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1019	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	42
 46	18	writing	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	1
 439	42	open	\N	2024-07-28 09:45:00.186006	2024-07-28 09:45:00.186006	3
-206	26	writing	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	2
 1389	92	open	\N	2024-07-28 09:45:10.290381	2024-07-28 09:45:10.290381	7
 586	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	43
 572	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	29
@@ -20808,11 +20816,13 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1517	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	12
 1506	104	writing	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1
 1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
-207	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.4651	3
-208	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-13 10:24:58.495762	4
 786	59	completed	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.239652	1
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.251518	2
 1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
+205	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.385086	1
+206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
+207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
+208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.402516	4
 \.
 
 
@@ -22339,7 +22349,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	207	2024-10-20 08:52:20.306621
 1	208	2024-10-20 11:07:45.474821
 1	1487	2024-10-14 11:40:11.153339
-1	1490	2024-10-14 12:49:44.193064
+1	1490	2024-10-20 11:27:56.790817
 \.
 
 
@@ -23049,7 +23059,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8308, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8313, true);
 
 
 --
@@ -23077,7 +23087,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3083, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3088, true);
 
 
 --
