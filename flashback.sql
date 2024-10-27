@@ -9911,6 +9911,12 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8477	3162	EXPECT_THAT(<container>, Each(<matcher>));	code	cpp	2024-10-27 21:26:28.238522	2
 8478	3163	EXPECT_THAT(<container>, ElementsAre(<value>...);	code	cpp	2024-10-27 21:26:28.241333	1
 8479	3163	EXPECT_THAT(<container>, ElementsAre(<matcher>...);	code	cpp	2024-10-27 21:26:28.241333	2
+8480	3164	The postres optimizer is a cost-based optimizer. On each way to access the data a cost is assigned, and the plan with the lowest cost is passed to the executor as a sequence of actions to perform.	text	txt	2024-10-27 23:27:17.046817	1
+8481	3165	When an statement involves more than 12 joins, the planning takes so much time that overtakes the amount of time the result will take to be generated. In this case, the optimizer will use a generic algorithm to find a compromise way to access data. The compromise is between the time spent in computing the path to the data and finding a not-too-bad access path.	text	txt	2024-10-27 23:27:17.050719	1
+8482	3166	The optimizer divides the set of actions to pass to the executor in nodes; a node is an action to execute in order to provide the final or an intermediate result.	text	txt	2024-10-27 23:27:17.052907	1
+8483	3166	select * from users order by age;	code	sql	2024-10-27 23:27:17.052907	2
+8484	3166	The optimizer will pass two actions to the executor, and thus the nodes: one to retrieve all the data and one to sort the data.	text	txt	2024-10-27 23:27:17.052907	3
+8485	3167	Nodes are stackable, the output of a node can be used as the input to another node. This allows the construction of very complex execution plans made by different nodes, which can produce a fine-grained access method to the data.	text	txt	2024-10-27 23:27:17.054564	1
 \.
 
 
@@ -13230,6 +13236,10 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3143	217	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
 3144	217	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
 3145	217	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
+3164	217	What strategy does postgres optimizer use to choose between different access methods?	open	2024-10-27 23:27:17.046817	2024-10-27 23:27:17.046817
+3165	217	When does optimizer avoids iterating over all the possible execution plans?	open	2024-10-27 23:27:17.050719	2024-10-27 23:27:17.050719
+3166	217	What is a node?	open	2024-10-27 23:27:17.052907	2024-10-27 23:27:17.052907
+3167	217	How nodes can interact with each other?	open	2024-10-27 23:27:17.054564	2024-10-27 23:27:17.054564
 \.
 
 
@@ -19514,9 +19524,9 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 21:22:32.881117	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	2	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
 \.
 
 
@@ -20379,7 +20389,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 623	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	16
 1364	90	open	\N	2024-07-28 09:45:10.032627	2024-07-28 09:45:10.032627	3
 1439	97	open	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	22
-217	26	writing	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	13
 1388	92	open	\N	2024-07-28 09:45:10.290381	2024-07-28 09:45:10.290381	6
 1081	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	35
 229	27	open	\N	2024-07-28 09:44:57.748862	2024-07-28 09:44:57.748862	5
@@ -21064,6 +21073,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1413	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.804056	4
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
+217	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 23:27:17.054564	13
 \.
 
 
@@ -22590,7 +22600,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	113	2024-10-25 20:04:18.135342
 1	1293	2024-10-25 23:32:11.847594
 1	210	2024-10-27 21:21:45.392906
-1	217	2024-10-27 22:03:26.222507
+1	217	2024-10-27 22:34:09.138173
 \.
 
 
@@ -23300,7 +23310,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8479, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8485, true);
 
 
 --
@@ -23328,7 +23338,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3163, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3167, true);
 
 
 --
