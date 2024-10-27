@@ -9786,6 +9786,98 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8352	3110	select x, cume_dist(x) over (order by x) from (select generate_series(1, 5) as x);	code	sql	2024-10-23 22:52:27.15689	1
 8353	3111	select x, ntile(x, 3) over (order by x) from (select generate_series(1, 6) as x);	code	sql	2024-10-23 22:52:27.157861	1
 8354	3111	x | ntile\n1 | 1\n2 | 1\n3 | 2\n4 | 2\n5 | 3\n6 | 3	text	txt	2024-10-23 22:52:27.157861	2
+8355	3112	Multiple threads can read the same memory location without a problem. But race condition should be avoided on write by one of the following methods:	text	txt	2024-10-27 16:25:47.43163	1
+8356	3112	1. memory location is modified by an atomic operation	text	txt	2024-10-27 16:25:47.43163	2
+8357	3112	2. one access happens before the other	text	txt	2024-10-27 16:25:47.43163	3
+8358	3113	1. **Single threading:** One control flow\n2. **Multi-threading:** Tasks, Threads, Condition Variables\n3. **Atomic:** Sequential consistency, Acquire-release semantics, Relaxed semantics	text	txt	2024-10-27 16:25:47.442613	1
+8359	3114	- **Atomic operations:** operations that can perform without an interruption\n- **Partial ordering of operations:** sequence of operations that must not be reordered\n- **Visible effects of operations:** guarantees when operations on shared variables are visible to other threads	text	txt	2024-10-27 16:25:47.446709	1
+8360	3114	The foundation of the contract are operations on atomics, that by definition are indivisable and create ordering constraints on execution.	text	txt	2024-10-27 16:25:47.446709	2
+8361	3115	Strong memory model guarantees:	text	txt	2024-10-27 16:25:47.451874	1
+8362	3115	1. instructions of a program are executed in the order of written down\n2. There is a global order of all operations on all threads	text	txt	2024-10-27 16:25:47.451874	2
+8363	3115	x.store(1);\na = y.load();	code	cpp	2024-10-27 16:25:47.451874	3
+8364	3115	y.store(2);\nb = x.load();	code	cpp	2024-10-27 16:25:47.451874	4
+8365	3115	1. Having two threads running these two operations, `store` should never overtake by `load` according to the first guarantee.	text	txt	2024-10-27 16:25:47.451874	5
+8366	3115	2. According to the second guarantee, there is a global clock that all threads have to obey. Each time the clock makes a tick, one atomic operation takes place, but you never know which one.	text	txt	2024-10-27 16:25:47.451874	6
+8367	3115	x.store() => y.load() => y.store() => x.load()	text	txt	2024-10-27 16:25:47.451874	7
+8368	3115	x.store() => y.store() => y.load() => x.load()	text	txt	2024-10-27 16:25:47.451874	8
+8369	3115	x.store() => y.store() => x.load() => y.load()	text	txt	2024-10-27 16:25:47.451874	9
+8370	3115	y.store() => x.load() => x.store() => y.load()	text	txt	2024-10-27 16:25:47.451874	10
+8371	3115	y.store() => x.store() => y.load() => x.load()	text	txt	2024-10-27 16:25:47.451874	11
+8372	3115	y.store() => x.store() => x.load() => y.load()	text	txt	2024-10-27 16:25:47.451874	12
+8373	3116	1. Sequential consistency (Strong memory model)\n2. Acquire-release semantics\n3. Relexed semantics (Weak memory model)	text	txt	2024-10-27 16:25:47.454143	1
+8374	3117	Unlike a strong memory model such as sequential consistency, there is no global clock for relaxed semantics. There is no even a guarantee that the execution happens in the source order. `load` operation can easy overtake `store` operation.	text	txt	2024-10-27 16:25:47.456671	1
+8375	3117	x.store(1);\na = y.load();	code	cpp	2024-10-27 16:25:47.456671	2
+8376	3117	y.store(2);\nb = x.load();	code	cpp	2024-10-27 16:25:47.456671	3
+8377	3118	The threads are synchronized at specific synchronization points in the code. Without these synchronization points, there is no well-defined behavior of threads, tasks, or condition variables possible.	text	txt	2024-10-27 16:25:47.461062	1
+8378	3118		code	cpp	2024-10-27 16:25:47.461062	2
+8379	3119	If no memory order is specified, sequential consistency is implicitly applied by `std::memory_order_seq_cst` flag.	text	txt	2024-10-27 16:25:47.464717	1
+8380	3119	x.store(1, std::memory_order_seq_cst);\na = x.load(std::memory_order_seq_cst);	code	cpp	2024-10-27 16:25:47.464717	2
+8381	3120	`std::atomic_flagis` an atomic boolean. It has a **clear** and **set** state. There is no member function to ask for the current value in C++11. With C++20, an `std::atomic_flag` has a `test()` member function that returns the value of the flag and can be used for thread synchronization via the member functions `notify_one()`, `notify_all()`. With `wait(<predicate>)` thread blocks until it gets notified and atomic value changes.	text	txt	2024-10-27 16:25:47.469286	1
+8382	3120	atomic_flag::clear();	code	cpp	2024-10-27 16:25:47.469286	2
+8383	3120	atomic_flag::test_and_set();	code	cpp	2024-10-27 16:25:47.469286	3
+8384	3120	atomic_flag::test(); // C++20	code	cpp	2024-10-27 16:25:47.469286	4
+8385	3120	atomic_flag::wait(<predicate>); // C++20	code	cpp	2024-10-27 16:25:47.469286	5
+8386	3120	atomic_flag::notify_one(); // C++20	code	cpp	2024-10-27 16:25:47.469286	6
+8387	3120	atomic_flag::notify_all(); // C++20	code	cpp	2024-10-27 16:25:47.469286	7
+8388	3121	With C++11 implementation, `std::atomic_flag` must be initialized with `ATOMIC_FLAG_INIT` macro. But since C++20 it can be default initialized.	text	txt	2024-10-27 16:25:47.471515	1
+8389	3121	std::atomic_flag flag = ATOMIC_FLAG_INIT;	code	cpp	2024-10-27 16:25:47.471515	2
+8390	3122	`std::atomic_flag` is the only lock-free atomic. The remaining atomics have a member function called `is_lock_free()` to check if the atomic uses a mutex internally.	text	txt	2024-10-27 16:25:47.473707	1
+8391	3122		code	cpp	2024-10-27 16:25:47.473707	2
+8392	3123	Using `is_always_lock_free()`, you can check for each atomic type if it's lock-free on all supported hardware that the executable might run on. This check returns only `true` if it is `true` for all supported hardware. The check is performed at compile time and is available since C++17.	text	txt	2024-10-27 16:25:47.477623	1
+8393	3123	atomic::is_always_lock_free();	code	cpp	2024-10-27 16:25:47.477623	2
+8394	3124	A spinlock is an elementary lock. It eagerly asks for the lock to get access to the critical section. The spinlock saves the expensive context switch in the wait state from the user space to the kernel space, but it utilizes the CPU and wastes CPU cycles.	text	txt	2024-10-27 16:25:47.481168	1
+8395	3124	Spinlocks should not be used on a single processor system. In the best case, a spinlock wastes resources and slows down the owner of the lock. In the worst case, you get a deadlock.	text	txt	2024-10-27 16:25:47.481168	2
+8396	3125	The interface of `std::atomic_flag` is powerful enough to build a spinlock. With a spinlock, you can protect a critical section as you would with a mutex.	text	txt	2024-10-27 16:25:47.484069	1
+8397	3125	#include <atomic>\n#include <thread>\n\nclass basic_spinlock\n{\npublic:\n    void lock()\n    {\n        while (flag.test_and_set());\n    }\n\n    void unlock()\n    {\n        flag.clear();\n    }\n\nprivate:\n    std::atomic_flag flag;\n};	code	cpp	2024-10-27 16:25:47.484069	2
+8398	3126	Spinlock a lock held by CPU and will waste CPU clocks by actively checking the atomic value. Mutex is a lock held by task, and when locked, the operating system preempts the task from CPU and puts the task into sleep until unlocked.	text	txt	2024-10-27 16:25:47.485978	1
+8399	3127		text	txt	2024-10-27 16:25:47.488108	1
+8400	3127	#include <atomic>\n#include <thread>\n#include <string>\n#include <print>\n\nclass basic_task\n{\nprivate:\n    std::atomic_flag flag;\n    std::string shared_data;\n\npublic:\n    void insert(std::string const& value)\n    {\n        flag.test_and_set();\n        shared_data = std::move(value);\n        flag.notify_one();\n    }\n\n    void show()\n    {\n        flag.wait(false);\n        std::println("{}", shared_data);\n    }\n};\n\nint main()\n{\n    basic_task task{};\n    std::string message{"atomic works!"};\n\n    std::jthread consumer{&basic_task::show, &task};\n    std::jthread provider{&basic_task::insert, &task, std::move(message)};\n}	code	cpp	2024-10-27 16:25:47.488108	2
+8401	3128	Even when the sender sends its notification before the waiter is in the wait state, the notification is not lost. `std::atomic_flag` cannot be victims of lost wakeups.	text	txt	2024-10-27 16:25:47.49011	1
+8402	3129	There are various specializations of the class template `std::atomic`. `std::atomic<bool>` and user defined specialization variations use the primary template.	text	txt	2024-10-27 16:25:47.493469	1
+8403	3129	std::atomic<bool> atomic_predicate;	code	cpp	2024-10-27 16:25:47.493469	2
+8404	3129	class task;\nstd::atomic<task> atomic_task;	code	cpp	2024-10-27 16:25:47.493469	3
+8405	3130	Template specialization for pointers, in C++20 for smart pointers, full specialization for integral types, in C++20 for floating point types.	text	txt	2024-10-27 16:25:47.497199	1
+8406	3130	std::atomic<int*> atomic_pointer;	code	cpp	2024-10-27 16:25:47.497199	2
+8407	3130	std::atomic<std::shared_ptr<std::string>> atomic_smart_ptr;	code	cpp	2024-10-27 16:25:47.497199	3
+8408	3130	std::atomic<std::uint64_t> atomic_integral;	code	cpp	2024-10-27 16:25:47.497199	4
+8409	3130	std::atomic<double> atomic_floating_point;	code	cpp	2024-10-27 16:25:47.497199	5
+8410	3131	Atomic booleans, atomic user-defined types, and atomic smart pointers support the fundamental atomic interface.	text	txt	2024-10-27 16:25:47.50065	1
+8411	3131	Atomic pointers extend the fundamental atomic interface.	text	txt	2024-10-27 16:25:47.50065	2
+8412	3131	Atomic floating-point types extend the atomic pointer inteface.	text	txt	2024-10-27 16:25:47.50065	3
+8413	3131	Atomic integral types extend the atomic floating-point interface.	code	cpp	2024-10-27 16:25:47.50065	4
+8414	3132	There is no guarantee that they are lock-free.	text	txt	2024-10-27 16:25:47.503497	1
+8415	3133	- `is_lock_free()`: check if atomic object is lock free	text	txt	2024-10-27 16:25:47.508117	1
+8416	3133	- `is_always_lock_free()`: check at compile-time if atomic object is lock free	text	txt	2024-10-27 16:25:47.508117	2
+8417	3133	- `load()`: atomically returns the value of atomic	text	txt	2024-10-27 16:25:47.508117	3
+8418	3133	- `operator T()`: equivallent to `load()`	text	txt	2024-10-27 16:25:47.508117	4
+8419	3133	- `store(T)`: atomically replaces the value of atomic with the non-atomic	text	txt	2024-10-27 16:25:47.508117	5
+8420	3133	- `exchange(T)`: atomically replaces the value of atomic with new value, and returns old value	text	txt	2024-10-27 16:25:47.508117	6
+8421	3133	- `compare_exchange_strong(T)`: atomically compares and eventually exchanges the value	text	txt	2024-10-27 16:25:47.508117	7
+8422	3133	- `compare_exchange_weak(T)`: same as `compare_exchange_strong()`	text	txt	2024-10-27 16:25:47.508117	8
+8423	3133	- `notify_one()`: C++20; notify one atomic wait operation	text	txt	2024-10-27 16:25:47.508117	9
+8424	3133	- `notify_all()`: C++20; notify all atomic wait operations	text	txt	2024-10-27 16:25:47.508117	10
+8425	3133	- `wait()`: C++20; blocks until gets notified, compares with old value to protect against spurious wakeups and lost wakeups	text	txt	2024-10-27 16:25:47.508117	11
+8426	3134	An `std::atomic<bool>` can be explicitly set to `true` or `false` in contrast to `std::atomic_flag`.	text	txt	2024-10-27 16:25:47.513215	1
+8427	3134	`std::atomic<bool>` is sufficient to synchronize two threads, therefore, is capable of functioning like a condition variable.	text	txt	2024-10-27 16:25:47.513215	2
+8428	3135	#include <atomic>\n#include <thread>\n#include <chrono>\n#include <string>\n#include <print>\n\nclass basic_task\n{\nprivate:\n    std::atomic<bool> lock;\n    std::string shared_data;\n\npublic:\n    void show()\n    {\n        while (!lock.load())\n            std::this_thread::sleep_for(std::chrono::milliseconds{5});\n\n        std::println("{}", shared_data);\n    }\n\n    void provide()\n    {\n        shared_data = "atomic works!";\n        lock = true;\n    }\n};\n\nint main()\n{\n    basic_task task{};\n\n    std::jthread provider{&basic_task::provide, &task};\n    std::jthread consumer{&basic_task::show, &task};\n}	code	cpp	2024-10-27 16:25:47.517961	1
+8429	3135	`shared_data = "atomic works!";` happens before `lock = true;`	text	txt	2024-10-27 16:25:47.517961	2
+8430	3135	`while(!lock.load())` happens before `std::println("{}", shared_data);`	text	txt	2024-10-27 16:25:47.517961	3
+8431	3135	`lock = true;` happens before `while(!lock.load())`	text	txt	2024-10-27 16:25:47.517961	4
+8432	3135	Because *synchronizes-with* establishes a *happens-before* relation and *happens-before* is transitive, `shared_data = "atomic works!";` happens before `std::println("{}", shared_data);`.	text	txt	2024-10-27 16:25:47.517961	5
+8433	3136	The condition variable notifies the waiting thread by following push principle, while atomic boolean checks if the sender is done with its work by following the pull principle.	text	txt	2024-10-27 16:25:47.521163	1
+8434	3137	#include <atomic>\n#include <thread>\n#include <string>\n#include <print>\n\nclass basic_task\n{\nprivate:\n    std::atomic<bool> flag;\n    std::string shared_data;\n\npublic:\n    void show()\n    {\n        flag.wait(false);\n        std::println("{}", shared_data);\n    }\n\n    void provide()\n    {\n        shared_data = "atomic works!";\n        flag.store(true);\n        flag.notify_one();\n    }\n};\n\nint main()\n{\n    basic_task task{};\n    \n    std::jthread provider{&basic_task::show, &task};\n    std::jthread consumer{&basic_task::provide, &task};\n} 	code	cpp	2024-10-27 16:25:47.523682	1
+8435	3138	bool result = atomic<bool>::compare_exchange_strong(T& expected, T& desired);	code	cpp	2024-10-27 16:25:47.527947	1
+8436	3138	This operation compares and exchanges values in one atomic operation. This operation is the foundation of non-blocking algorithms.	text	txt	2024-10-27 16:25:47.527947	2
+8437	3138	If comparison of atomic value with `expected` returns true, the atomic value is set in the same atomic operation to `desired`. And if comparison returns `false`, `expected` is assigned to the atomic value.	text	txt	2024-10-27 16:25:47.527947	3
+8438	3139	The weak version can fail spuriously. That means, although comparison holds, the atomic value may not be set to `desired`, and the function returns `false`, so we have to check the condition in a loop.	text	txt	2024-10-27 16:25:47.53184	1
+8439	3139	while (!atomic<bool>::compare_exchange_weak(expected, desired));	code	cpp	2024-10-27 16:25:47.53184	2
+8440	3139	The weak form exists because some processors don't support an atomic compare-exchange instruction. When called in a loop, the weak form should be preferred. On some platforms, the weak form can be faster.	text	txt	2024-10-27 16:25:47.53184	3
+8441	3140	The copy assignment operator for a user-defined type, for all its base classes and all non-static members, must be trivial:	text	txt	2024-10-27 16:25:47.535127	1
+8442	3140	1. You must not define the copy assignment operator, but you can request it from the compiler by `default`.\n2. A user-defined type must not have virtual member functions or virtual base classes.\n3. A user-defined type must be bitwise comparable so that the C functions `memcpy` or `memcmp` can be applied.	text	list	2024-10-27 16:25:47.535127	2
+8443	3140	Most popular platforms can use atomic operations for `std::atomic<user-defined type>` if the size of the user-defined type is not bigger than the size of an `int`.	text	txt	2024-10-27 16:25:47.535127	3
+8444	3141		text	txt	2024-10-27 16:25:47.537291	1
+8445	3141	#include <type_traits>\n\nstd::is_trivially_copy_constructible<T>::value;\nstd::is_polymorphic<T>::value;\nstd::is_trivial<T>::value;	code	cpp	2024-10-27 16:25:47.537291	2
+8446	3142	A `std::shared_ptr<>` consists of a control block and its resource. The control block is thread-safe, but access to the resource is not.	text	txt	2024-10-27 16:25:47.539188	1
 \.
 
 
@@ -13053,6 +13145,37 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3109	210	Write a statement that returns the offset rows after the current row within a partition?	open	2024-10-23 22:52:27.155909	2024-10-23 22:52:27.155909
 3110	210	Write a statement that returns computation of the fraction of partition rows that are neighbours to the current row?	open	2024-10-23 22:52:27.15689	2024-10-23 22:52:27.15689
 3111	210	Write a statement to assign a bucket for each partition?	open	2024-10-23 22:52:27.157861	2024-10-23 22:52:27.157861
+3112	1294	What happens when two threads access the same memory location?	open	2024-10-27 16:25:47.43163	2024-10-27 16:25:47.43163
+3113	1294	What are the contract levels in thread executions?	open	2024-10-27 16:25:47.442613	2024-10-27 16:25:47.442613
+3114	1294	What subjectives are the foundation of C++ memory model?	open	2024-10-27 16:25:47.446709	2024-10-27 16:25:47.446709
+3115	1294	What are the guarantees of the sequential consistency?	open	2024-10-27 16:25:47.451874	2024-10-27 16:25:47.451874
+3116	1294	What is the ordering of strong and weak memory models?	open	2024-10-27 16:25:47.454143	2024-10-27 16:25:47.454143
+3117	1294	What are the guarantees of the relaxed semantics?	open	2024-10-27 16:25:47.456671	2024-10-27 16:25:47.456671
+3118	1294	What are the guarantees of the acquire release semantics?	open	2024-10-27 16:25:47.461062	2024-10-27 16:25:47.461062
+3119	1294	What memory order is applied to atomic operations by default?	open	2024-10-27 16:25:47.464717	2024-10-27 16:25:47.464717
+3120	1294	What are the functionalities of an <code>atomic_flag</code> type?	open	2024-10-27 16:25:47.469286	2024-10-27 16:25:47.469286
+3121	1294	Construct an atomic flag?	open	2024-10-27 16:25:47.471515	2024-10-27 16:25:47.471515
+3122	1294	What is the only lock-free guaranteed atomic type?	open	2024-10-27 16:25:47.473707	2024-10-27 16:25:47.473707
+3123	1294	Check if the atomic type is lock free?	open	2024-10-27 16:25:47.477623	2024-10-27 16:25:47.477623
+3124	1294	What are the use cases of a spinlock?	open	2024-10-27 16:25:47.481168	2024-10-27 16:25:47.481168
+3125	1294	What is the base of a spinlock?	open	2024-10-27 16:25:47.484069	2024-10-27 16:25:47.484069
+3126	1294	What is the major difference between mutex and spinlock?	open	2024-10-27 16:25:47.485978	2024-10-27 16:25:47.485978
+3127	1294	Use an atomic flag to notify waiting threads?	open	2024-10-27 16:25:47.488108	2024-10-27 16:25:47.488108
+3128	1294	When does an atomic flag lose notifications?	open	2024-10-27 16:25:47.49011	2024-10-27 16:25:47.49011
+3129	1294	What are the basic atomic types?	open	2024-10-27 16:25:47.493469	2024-10-27 16:25:47.493469
+3130	1294	What are the template specialization atomic types?	open	2024-10-27 16:25:47.497199	2024-10-27 16:25:47.497199
+3131	1294	What template specializations of atomic type extends the fundamental atomic interface?	open	2024-10-27 16:25:47.50065	2024-10-27 16:25:47.50065
+3132	1294	What is the downside of extended atomic interfaces?	open	2024-10-27 16:25:47.503497	2024-10-27 16:25:47.503497
+3133	1294	What operations does fundamental atomic interface support?	open	2024-10-27 16:25:47.508117	2024-10-27 16:25:47.508117
+3134	1294	What is the difference between atomic boolean and atomic flag?	open	2024-10-27 16:25:47.513215	2024-10-27 16:25:47.513215
+3135	1294	Use an atomic boolean to protect a shared value in a critical section using C++11 fundamental atomic interface?	open	2024-10-27 16:25:47.517961	2024-10-27 16:25:47.517961
+3136	1294	What is the difference between the way atomic boolean and condition variable query the atomic value?	open	2024-10-27 16:25:47.521163	2024-10-27 16:25:47.521163
+3137	1294	Use an atomic boolean to protect a shared value in a critical section using C++20 fundamental atomic interface?	open	2024-10-27 16:25:47.523682	2024-10-27 16:25:47.523682
+3138	1294	What is the functionality of <code>compare_exchange_strong</code> in a fundamental atomic interface?	open	2024-10-27 16:25:47.527947	2024-10-27 16:25:47.527947
+3139	1294	Why does <code>compare_exchange_weak</code> exists in the fundamental atomic interface?	open	2024-10-27 16:25:47.53184	2024-10-27 16:25:47.53184
+3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127
+3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291
+3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188
 \.
 
 
@@ -19316,7 +19439,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 83	Sudo Mastery	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 84	A Complete Guide to Standard C++ Algorithms	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 85	Cross-Platform Development with Qt6 and Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 87	Thomas' Calculus	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 88	Qt6 QML	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 90	CMake Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19339,6 +19461,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
+86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-23 22:52:27.157861	1	\N
 \.
 
@@ -20704,7 +20827,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 542	46	open	\N	2024-07-28 09:45:01.080459	2024-07-28 09:45:01.080459	15
 395	38	open	\N	2024-07-28 09:44:59.624804	2024-07-28 09:44:59.624804	4
 216	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	12
-1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	2
 295	32	writing	\N	2024-07-28 09:44:58.452348	2024-07-28 09:44:58.452348	8
 958	68	open	\N	2024-07-28 09:45:05.579846	2024-07-28 09:45:05.579846	41
 694	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	20
@@ -20886,6 +21008,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
 210	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.157861	6
 207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
+1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-10-27 16:25:47.539188	2
 208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
 \.
 
@@ -23123,7 +23246,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8354, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8446, true);
 
 
 --
@@ -23151,7 +23274,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3111, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3142, true);
 
 
 --
