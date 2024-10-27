@@ -9878,6 +9878,13 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8444	3141		text	txt	2024-10-27 16:25:47.537291	1
 8445	3141	#include <type_traits>\n\nstd::is_trivially_copy_constructible<T>::value;\nstd::is_polymorphic<T>::value;\nstd::is_trivial<T>::value;	code	cpp	2024-10-27 16:25:47.537291	2
 8446	3142	A `std::shared_ptr<>` consists of a control block and its resource. The control block is thread-safe, but access to the resource is not.	text	txt	2024-10-27 16:25:47.539188	1
+8447	3143	Planner is responsible for finding the best path to the underlying data.	text	txt	2024-10-27 21:22:32.86191	1
+8448	3143	Optimizer is responsible for executing the statement with a particular access plan.	text	txt	2024-10-27 21:22:32.86191	2
+8449	3144	SQL is declarative, meaning that you ask for execution of a statement, but you do not specify how the database is supposed to complete the execution.	text	txt	2024-10-27 21:22:32.876056	1
+8450	3145	**Parsing:** verifies the syntax and disassembles the statement into main parts.	text	txt	2024-10-27 21:22:32.881117	1
+8451	3145	**Rewriting:** applies triggers and rules.	text	txt	2024-10-27 21:22:32.881117	2
+8452	3145	**Optimizing:** finds an optimize way of execution in a short time.	text	txt	2024-10-27 21:22:32.881117	3
+8453	3145	**Executing:** executor gets access to the storage using the access method.	text	txt	2024-10-27 21:22:32.881117	4
 \.
 
 
@@ -13176,6 +13183,9 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127
 3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291
 3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188
+3143	220	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
+3144	220	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
+3145	220	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
 \.
 
 
@@ -19462,7 +19472,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-23 22:52:27.157861	1	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 21:22:32.881117	1	\N
 \.
 
 
@@ -19621,7 +19631,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 10	15	open	\N	2024-07-28 09:44:55.45901	2024-07-28 09:44:55.45901	10
 35	16	open	\N	2024-07-28 09:44:55.607323	2024-07-28 09:44:55.607323	12
 963	69	writing	\N	2024-07-28 09:45:05.749702	2024-07-28 09:45:05.749702	2
-220	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	16
 1278	84	open	\N	2024-07-28 09:45:08.962478	2024-07-28 09:45:08.962478	18
 1118	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	18
 1025	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	48
@@ -21010,6 +21019,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
 1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-10-27 16:25:47.539188	2
 208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
+220	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 21:22:32.881117	16
 \.
 
 
@@ -22534,9 +22544,9 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1490	2024-10-20 11:27:56.790817
 1	208	2024-10-20 11:34:26.931404
 1	1413	2024-10-21 23:49:03.115921
-1	210	2024-10-23 22:54:38.451511
 1	113	2024-10-25 20:04:18.135342
 1	1293	2024-10-25 23:32:11.847594
+1	210	2024-10-27 21:21:45.392906
 \.
 
 
@@ -23246,7 +23256,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8446, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8453, true);
 
 
 --
@@ -23274,7 +23284,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3142, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3145, true);
 
 
 --
