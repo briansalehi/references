@@ -9885,6 +9885,32 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8451	3145	**Rewriting:** applies triggers and rules.	text	txt	2024-10-27 21:22:32.881117	2
 8452	3145	**Optimizing:** finds an optimize way of execution in a short time.	text	txt	2024-10-27 21:22:32.881117	3
 8453	3145	**Executing:** executor gets access to the storage using the access method.	text	txt	2024-10-27 21:22:32.881117	4
+8454	3146	EXPECT_THAT(<string>, ContainsRegex(<regex>));	code	cpp	2024-10-27 21:26:28.18903	1
+8455	3147	EXPECT_THAT(<string>, MatchesRegex(<regex>));	code	cpp	2024-10-27 21:26:28.195833	1
+8456	3148	EXPECT_THAT(<string>, EndsWith(<string>));	code	cpp	2024-10-27 21:26:28.198767	1
+8457	3149	EXPECT_THAT(<string>, HasSubstr(<string>));	code	cpp	2024-10-27 21:26:28.201965	1
+8458	3150	EXPECT_THAT(<string>, IsEmpty());	code	cpp	2024-10-27 21:26:28.205266	1
+8459	3151	EXPECT_THAT(<string>, StartsWith(<string>));	code	cpp	2024-10-27 21:26:28.208129	1
+8460	3152	EXPECT_THAT(<string>, StrCaseEq(<string>));	code	cpp	2024-10-27 21:26:28.211171	1
+8461	3153	EXPECT_THAT(<string>, StrCaseNe(<string>));	code	cpp	2024-10-27 21:26:28.213723	1
+8462	3154	EXPECT_THAT(<string>, StrEq(<string>));	code	cpp	2024-10-27 21:26:28.216172	1
+8463	3155	EXPECT_THAT(<string>, StrNe(<string));	code	cpp	2024-10-27 21:26:28.218667	1
+8464	3156	EXPECT_THAT(<base64>, WhenBase64Unescaped(<string>));	code	cpp	2024-10-27 21:26:28.22108	1
+8465	3157	EXPECT_THAT(<container>, BeginEndDistanceIs(<size>));	code	cpp	2024-10-27 21:26:28.223721	1
+8466	3157	EXPECT_THAT(<container>, BeginEndDistanceIs(<matcher>));	code	cpp	2024-10-27 21:26:28.223721	2
+8467	3158	EXPECT_THAT(<container>, SizeIs(<size>));	code	cpp	2024-10-27 21:26:28.226508	1
+8468	3158	EXPECT_THAT(<container>, SizeIs(<matcher>));	code	cpp	2024-10-27 21:26:28.226508	2
+8469	3159	EXPECT_THAT(<container>, ContainerEq(<container>));	code	cpp	2024-10-27 21:26:28.229719	1
+8470	3159	Same as below, except that the failure message also includes which elements are in one container but not the other.	text	txt	2024-10-27 21:26:28.229719	2
+8471	3159	EXPECT_THAT(<container>, Eq(<container>));	code	cpp	2024-10-27 21:26:28.229719	3
+8472	3160	EXPECT_THAT(<container>, Contains(<value>));	code	cpp	2024-10-27 21:26:28.232525	1
+8473	3160	EXPECT_THAT(<container>, Contains(<matcher>));	code	cpp	2024-10-27 21:26:28.232525	2
+8474	3161	EXPECT_THAT(<container>, Contains(<value>).Times(<repitition>));	code	cpp	2024-10-27 21:26:28.235643	1
+8475	3161	EXPECT_THAT(<container>, Contains(<matcher>).Times(<matcher>));	code	cpp	2024-10-27 21:26:28.235643	2
+8476	3162	EXPECT_THAT(<container>, Each(<value>));	code	cpp	2024-10-27 21:26:28.238522	1
+8477	3162	EXPECT_THAT(<container>, Each(<matcher>));	code	cpp	2024-10-27 21:26:28.238522	2
+8478	3163	EXPECT_THAT(<container>, ElementsAre(<value>...);	code	cpp	2024-10-27 21:26:28.241333	1
+8479	3163	EXPECT_THAT(<container>, ElementsAre(<matcher>...);	code	cpp	2024-10-27 21:26:28.241333	2
 \.
 
 
@@ -13186,6 +13212,24 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3143	220	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
 3144	220	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
 3145	220	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
+3146	1487	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903
+3147	1487	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833
+3148	1487	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767
+3149	1487	 Verify given string contains a substring?	open	2024-10-27 21:26:28.201965	2024-10-27 21:26:28.201965
+3150	1487	 Verify given string is empty?	open	2024-10-27 21:26:28.205266	2024-10-27 21:26:28.205266
+3151	1487	 Verify given string starts with a prefix?	open	2024-10-27 21:26:28.208129	2024-10-27 21:26:28.208129
+3152	1487	Verify two strings are equal without case sensitivity?	open	2024-10-27 21:26:28.211171	2024-10-27 21:26:28.211171
+3153	1487	Verify two strings are not equal regardless of their case?	open	2024-10-27 21:26:28.213723	2024-10-27 21:26:28.213723
+3154	1487	Verify two strings are equal?	open	2024-10-27 21:26:28.216172	2024-10-27 21:26:28.216172
+3155	1487	Verify two strings are not equal?	open	2024-10-27 21:26:28.218667	2024-10-27 21:26:28.218667
+3156	1487	Verify given argument is a base64 escaped sequence of a string?	open	2024-10-27 21:26:28.22108	2024-10-27 21:26:28.22108
+3157	1487	Verify a container that does not provide size method contains an expected number of elements?	open	2024-10-27 21:26:28.223721	2024-10-27 21:26:28.223721
+3158	1487	Verify a container that provides size method contains an expected number of elements?	open	2024-10-27 21:26:28.226508	2024-10-27 21:26:28.226508
+3159	1487	Verify two containers are equal?	open	2024-10-27 21:26:28.229719	2024-10-27 21:26:28.229719
+3160	1487	Verify a container contains an expected value?	open	2024-10-27 21:26:28.232525	2024-10-27 21:26:28.232525
+3161	1487	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
+3162	1487	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
+3163	1487	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
 \.
 
 
@@ -19469,10 +19513,10 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
-102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 21:22:32.881117	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	2	\N
 \.
 
 
@@ -20954,7 +20998,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 1488	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
 1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
-1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	1
 1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
@@ -21014,6 +21057,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
 210	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.157861	6
 207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
+1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	1
 1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-10-27 16:25:47.539188	2
 208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
 220	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 21:22:32.881117	16
@@ -23256,7 +23300,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8453, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8479, true);
 
 
 --
@@ -23284,7 +23328,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3145, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3163, true);
 
 
 --
