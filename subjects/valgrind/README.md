@@ -1,2 +1,0 @@
-# Valgrind
-[Practices](valgrind.md)

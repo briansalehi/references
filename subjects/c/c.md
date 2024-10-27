@@ -1,2 +1,0 @@
-# C
-[Resources](README.md)

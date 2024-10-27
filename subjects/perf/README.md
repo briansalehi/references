@@ -1,2 +1,0 @@
-# Perf
-[Practices](perf.md)

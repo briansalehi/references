@@ -1,2 +1,0 @@
-# LaTeX
-[Practices](latex.md)

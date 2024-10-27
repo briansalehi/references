@@ -1,2 +1,0 @@
-# Tmux
-[Practices](tmux.md)

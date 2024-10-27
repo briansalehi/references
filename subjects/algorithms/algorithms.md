@@ -1,2 +1,0 @@
-# Algorithms
-[Resources](README.md)
