@@ -9745,6 +9745,47 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8311	3086	select current_timestamp;	code	sql	2024-10-20 11:28:18.393246	1
 8312	3087	createuser	code	sh	2024-10-20 11:28:18.397215	1
 8313	3088	dropuser	code	sh	2024-10-20 11:28:18.399848	1
+8314	3089	select * from <table> order by <column> nulls first;	code	sql	2024-10-23 22:52:27.117938	1
+8315	3090	select * from <table> order by <column> nulls last;	code	sql	2024-10-23 22:52:27.132796	1
+8316	3091	create temp table active_users as select * from users where active = true;	code	sql	2024-10-23 22:52:27.133992	1
+8317	3092	update <table> set <column> = <value> where id = 2;	code	sql	2024-10-23 22:52:27.135036	1
+8318	3093	delete from <table> where <column = <value>;	code	sql	2024-10-23 22:52:27.136166	1
+8319	3094	A window function performs calculations across a set of table rows that are somehow related to the current row. This is similar to aggregation functions. However, window functions do not cause rows to become grouped into a single output row. Instead, the window function is able to access more than just current row of the query result.	text	txt	2024-10-23 22:52:27.138433	1
+8320	3095	Aggregation functions first sort data and then aggregate them. The data is then flattened through aggregation.	text	txt	2024-10-23 22:52:27.140476	1
+8321	3095	select category, count(*) from posts group by category order by category;	code	sql	2024-10-23 22:52:27.140476	2
+8322	3095	The above statement can result in, for example:	text	txt	2024-10-23 22:52:27.140476	3
+8323	3095	category | count\n1 | 2\n3 | 1	text	txt	2024-10-23 22:52:27.140476	4
+8324	3095	Window functions create aggregations without flattening data into a single row. However, they replicate it for all the rows to which the grouping functions refer.	text	txt	2024-10-23 22:52:27.140476	5
+8325	3095	select category, count(*) over (partition by category) from posts order by category;	code	sql	2024-10-23 22:52:27.140476	6
+8326	3095	category | count\n1 | 2\n1 | 2\n3 | 1	text	txt	2024-10-23 22:52:27.140476	7
+8327	3096	Use `distinct` o obtain the same results as aggregation functions from window functions:	text	txt	2024-10-23 22:52:27.141578	1
+8328	3096	select distinct category, count(*) over (partition by category) from posts order by category;	code	sql	2024-10-23 22:52:27.141578	2
+8329	3097	select distinct category, count(*) over (partition by category), count(*) over () from posts order by category;	code	sql	2024-10-23 22:52:27.142551	1
+8330	3098	select category, count(*) over w1, count(*) over w2\nfrom posts\nwindow w1 as (partition by category),\nwindow w2 as ()\norder by category;	code	sql	2024-10-23 22:52:27.143473	1
+8331	3099	All aggregate functions.	text	txt	2024-10-23 22:52:27.144409	1
+8332	3100	select * from generate_series(1, 5);	code	sql	2024-10-23 22:52:27.145349	1
+8333	3101	select category, row_number() over w from posts window w as (partition by category) order by category;	code	sql	2024-10-23 22:52:27.146428	1
+8334	3101	category | row_number\n1 | 1\n1 | 2\n3 | 1	text	txt	2024-10-23 22:52:27.146428	2
+8335	3102	select category, row_number() over () from posts order by category;	code	sql	2024-10-23 22:52:27.147513	1
+8336	3102	category, row_number\n1 | 1\n1 | 2\n3 | 3	text	txt	2024-10-23 22:52:27.147513	2
+8337	3103	select category, row_number() over (partition by category order by title) from posts order by category;	code	sql	2024-10-23 22:52:27.148797	1
+8338	3104	select category, first_value(title) over (partition by category order by category)\nfrom posts\norder by category;	code	sql	2024-10-23 22:52:27.150145	1
+8339	3104	Ordering the partition is important in this context.	text	txt	2024-10-23 22:52:27.150145	2
+8340	3105	select category, last_value(title) over (partition by category order by category)\nfrom posts\norder by category;	code	sql	2024-10-23 22:52:27.151453	1
+8341	3105	Ordering the partition is important in this context.	text	txt	2024-10-23 22:52:27.151453	2
+8342	3106	select title, author, rank() over (order by author) from posts;	code	sql	2024-10-23 22:52:27.15255	1
+8343	3106	author | rank\nA | 1\nA | 1\nB | 3	text	txt	2024-10-23 22:52:27.15255	2
+8344	3107	select title, author, dense_rank() over (order by author) from posts;	code	sql	2024-10-23 22:52:27.153662	1
+8345	3107	author | rank\nA | 1\nA | 1\nB | 2	text	txt	2024-10-23 22:52:27.153662	2
+8346	3108	select x, lag(x) over (order by x) from generate_series(1, 5) as x;	code	sql	2024-10-23 22:52:27.154779	1
+8347	3108	select x, lag(x, 2) over (order by x) from (select generate_series(1, 5) as x);	code	sql	2024-10-23 22:52:27.154779	2
+8348	3108	The offset defaults to 1, and the default value is null.	text	txt	2024-10-23 22:52:27.154779	3
+8349	3109	select x, lead(x) over (order by x) from (select generate_series(1, 5) as x);	code	sql	2024-10-23 22:52:27.155909	1
+8350	3109	select x, lead(x, 2) over (order by x) from generate_series(1, 5) as x;	code	sql	2024-10-23 22:52:27.155909	2
+8351	3109	The offset defaults to 1, and the default value is null.	text	txt	2024-10-23 22:52:27.155909	3
+8352	3110	select x, cume_dist(x) over (order by x) from (select generate_series(1, 5) as x);	code	sql	2024-10-23 22:52:27.15689	1
+8353	3111	select x, ntile(x, 3) over (order by x) from (select generate_series(1, 6) as x);	code	sql	2024-10-23 22:52:27.157861	1
+8354	3111	x | ntile\n1 | 1\n2 | 1\n3 | 2\n4 | 2\n5 | 3\n6 | 3	text	txt	2024-10-23 22:52:27.157861	2
 \.
 
 
@@ -12989,6 +13030,29 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3086	206	Query current date and time?	open	2024-10-20 11:28:18.393246	2024-10-20 11:28:18.393246
 3087	207	What command line utility creates user in a postgres instance?	open	2024-10-20 11:28:18.397215	2024-10-20 11:28:18.397215
 3088	207	What command line utility removes user in a postgres instance?	open	2024-10-20 11:28:18.399848	2024-10-20 11:28:18.399848
+3089	208	Sort result set by putting null values on top?	open	2024-10-23 22:52:27.117938	2024-10-23 22:52:27.117938
+3090	208	Sort result set by putting null values at the bottom?	open	2024-10-23 22:52:27.132796	2024-10-23 22:52:27.132796
+3091	208	Copy a table?	open	2024-10-23 22:52:27.133992	2024-10-23 22:52:27.133992
+3092	208	Update values of a table?	open	2024-10-23 22:52:27.135036	2024-10-23 22:52:27.135036
+3093	208	Delete rows from a table?	open	2024-10-23 22:52:27.136166	2024-10-23 22:52:27.136166
+3094	210	What is a window function?	open	2024-10-23 22:52:27.138433	2024-10-23 22:52:27.138433
+3095	210	What is the difference between window functions and aggregation functions?	open	2024-10-23 22:52:27.140476	2024-10-23 22:52:27.140476
+3096	210	How the results of aggregation functions and window functions can become identical?	open	2024-10-23 22:52:27.141578	2024-10-23 22:52:27.141578
+3097	210	Query a table to count the rows based on two different conditions?	open	2024-10-23 22:52:27.142551	2024-10-23 22:52:27.142551
+3098	210	Write aliases for window functions?	open	2024-10-23 22:52:27.143473	2024-10-23 22:52:27.143473
+3099	210	What aggregate functions can be used with window functions?	open	2024-10-23 22:52:27.144409	2024-10-23 22:52:27.144409
+3100	210	Write a statement to generate a series of numbers?	open	2024-10-23 22:52:27.145349	2024-10-23 22:52:27.145349
+3101	210	Write a statement to numberize each of the partitioned rows?	open	2024-10-23 22:52:27.146428	2024-10-23 22:52:27.146428
+3102	210	Write a statement to numerize each row in the result set?	open	2024-10-23 22:52:27.147513	2024-10-23 22:52:27.147513
+3103	210	Sort the values inside a window?	open	2024-10-23 22:52:27.148797	2024-10-23 22:52:27.148797
+3104	210	Write a statement to show the first value of a partition on each row?	open	2024-10-23 22:52:27.150145	2024-10-23 22:52:27.150145
+3105	210	Write a statement to show the last value of a partition on each row?	open	2024-10-23 22:52:27.151453	2024-10-23 22:52:27.151453
+3106	210	Rank rows within partitions with gaps?	open	2024-10-23 22:52:27.15255	2024-10-23 22:52:27.15255
+3107	210	Rank rows within partitions without gaps?	open	2024-10-23 22:52:27.153662	2024-10-23 22:52:27.153662
+3108	210	Write a statement that returns the offset rows before the current row within a partition?	open	2024-10-23 22:52:27.154779	2024-10-23 22:52:27.154779
+3109	210	Write a statement that returns the offset rows after the current row within a partition?	open	2024-10-23 22:52:27.155909	2024-10-23 22:52:27.155909
+3110	210	Write a statement that returns computation of the fraction of partition rows that are neighbours to the current row?	open	2024-10-23 22:52:27.15689	2024-10-23 22:52:27.15689
+3111	210	Write a statement to assign a bucket for each partition?	open	2024-10-23 22:52:27.157861	2024-10-23 22:52:27.157861
 \.
 
 
@@ -19275,7 +19339,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	2	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-20 11:28:18.399848	1	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-23 22:52:27.157861	1	\N
 \.
 
 
@@ -19711,7 +19775,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 650	51	open	\N	2024-07-28 09:45:02.294764	2024-07-28 09:45:02.294764	13
 703	54	open	\N	2024-07-28 09:45:02.987548	2024-07-28 09:45:02.987548	2
 226	27	open	\N	2024-07-28 09:44:57.748862	2024-07-28 09:44:57.748862	2
-210	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	6
 48	18	writing	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	3
 1161	79	open	\N	2024-07-28 09:45:07.799258	2024-07-28 09:45:07.799258	14
 843	62	open	\N	2024-07-28 09:45:04.316203	2024-07-28 09:45:04.316203	6
@@ -20821,8 +20884,9 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
 205	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.385086	1
 206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
+210	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.157861	6
 207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
-208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.402516	4
+208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
 \.
 
 
@@ -20851,7 +20915,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	118	2024-08-07 22:44:43.138201
 1	124	2024-08-07 22:44:43.138201
 1	126	2024-08-07 22:44:43.138201
-1	113	2024-08-07 22:44:43.138201
 1	120	2024-08-07 22:44:43.138201
 1	116	2024-08-07 22:44:43.138201
 1	114	2024-08-07 22:44:43.138201
@@ -21020,7 +21083,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1362	2024-08-07 22:44:43.138201
 1	1377	2024-08-07 22:44:43.138201
 1	1398	2024-08-07 22:44:43.138201
-1	1413	2024-08-07 22:44:43.138201
 1	1415	2024-08-07 22:44:43.138201
 1	1414	2024-08-07 22:44:43.138201
 1	1416	2024-08-07 22:44:43.138201
@@ -21375,7 +21437,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	650	2024-09-23 20:36:18.228435
 1	703	2024-09-23 20:36:18.228435
 1	226	2024-09-23 20:36:18.228435
-1	210	2024-09-23 20:36:18.228435
 1	1161	2024-09-23 20:36:18.228435
 1	843	2024-09-23 20:36:18.228435
 1	710	2024-09-23 20:36:18.228435
@@ -22288,7 +22349,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1488	2024-10-05 21:52:28.034683
 1	1491	2024-10-05 21:52:28.034683
 1	471	2024-10-07 22:21:04.764332
-1	1293	2024-10-09 10:25:27.989366
 1	1347	2024-10-09 11:59:29.659175
 1	1348	2024-10-09 12:18:10.38871
 1	608	2024-10-12 15:58:30.232029
@@ -22347,9 +22407,13 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1506	2024-10-13 11:08:13.847027
 1	205	2024-10-19 10:04:19.122973
 1	207	2024-10-20 08:52:20.306621
-1	208	2024-10-20 11:07:45.474821
 1	1487	2024-10-14 11:40:11.153339
 1	1490	2024-10-20 11:27:56.790817
+1	208	2024-10-20 11:34:26.931404
+1	1413	2024-10-21 23:49:03.115921
+1	210	2024-10-23 22:54:38.451511
+1	113	2024-10-25 20:04:18.135342
+1	1293	2024-10-25 23:32:11.847594
 \.
 
 
@@ -23059,7 +23123,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8313, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8354, true);
 
 
 --
@@ -23087,7 +23151,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3088, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3111, true);
 
 
 --
