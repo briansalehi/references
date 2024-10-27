@@ -13209,9 +13209,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127
 3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291
 3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188
-3143	220	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
-3144	220	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
-3145	220	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
 3146	1487	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903
 3147	1487	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833
 3148	1487	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767
@@ -13230,6 +13227,9 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3161	1487	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
 3162	1487	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
 3163	1487	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
+3143	217	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
+3144	217	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
+3145	217	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
 \.
 
 
@@ -20353,7 +20353,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 730	55	writing	\N	2024-07-28 09:45:03.195427	2024-07-28 09:45:03.195427	4
 548	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	5
 1212	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	44
-217	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	13
 1087	75	open	\N	2024-07-28 09:45:07.046276	2024-07-28 09:45:07.046276	5
 1457	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	12
 47	18	writing	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	2
@@ -20380,6 +20379,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 623	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	16
 1364	90	open	\N	2024-07-28 09:45:10.032627	2024-07-28 09:45:10.032627	3
 1439	97	open	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	22
+217	26	writing	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	13
 1388	92	open	\N	2024-07-28 09:45:10.290381	2024-07-28 09:45:10.290381	6
 1081	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	35
 229	27	open	\N	2024-07-28 09:44:57.748862	2024-07-28 09:44:57.748862	5
@@ -21060,7 +21060,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	1
 1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-10-27 16:25:47.539188	2
 208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
-220	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 21:22:32.881117	16
+220	26	open	\N	2024-07-28 09:44:57.573652	2024-10-27 21:22:32.881117	16
 1413	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.804056	4
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
@@ -21954,7 +21954,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1012	2024-09-23 20:36:18.228435
 1	548	2024-09-23 20:36:18.228435
 1	1212	2024-09-23 20:36:18.228435
-1	217	2024-09-23 20:36:18.228435
 1	1087	2024-09-23 20:36:18.228435
 1	1457	2024-09-23 20:36:18.228435
 1	709	2024-09-23 20:36:18.228435
@@ -22591,6 +22590,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	113	2024-10-25 20:04:18.135342
 1	1293	2024-10-25 23:32:11.847594
 1	210	2024-10-27 21:21:45.392906
+1	217	2024-10-27 22:03:26.222507
 \.
 
 

@@ -23,24 +23,24 @@ call set_section_as_complete('Learn PostgreSQL', 6);
 call add_block('text', 'txt', '');
 call add_block('code', 'sql', '');
 call add_block('text', 'txt', '');
-call create_note_with_name('Learn PostgreSQL', 16, '');
+call create_note_with_name('Learn PostgreSQL', 13, '');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'sql', '');
 call add_block('text', 'txt', '');
-call create_note_with_name('Learn PostgreSQL', 16, '');
+call create_note_with_name('Learn PostgreSQL', 13, '');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'sql', '');
 call add_block('text', 'txt', '');
-call create_note_with_name('Learn PostgreSQL', 16, '');
+call create_note_with_name('Learn PostgreSQL', 13, '');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'sql', '');
 call add_block('text', 'txt', '');
-call create_note_with_name('Learn PostgreSQL', 16, '');
+call create_note_with_name('Learn PostgreSQL', 13, '');
 
-call set_section_as_complete('Learn PostgreSQL', 16);
+call set_section_as_complete('Learn PostgreSQL', 13);
 
 drop procedure add_block;
 drop table temp_blocks;
