@@ -12819,58 +12819,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2722	1487	Write a test entry point?	open	2024-10-05 21:49:49.04342	2024-10-05 21:49:49.04342
 2723	1487	When should we write manual main function for tests?	open	2024-10-05 21:49:49.045297	2024-10-05 21:49:49.045297
 2724	1487	What are the limitations of using GoogleTest assertions in threads?	open	2024-10-05 21:49:49.047751	2024-10-05 21:49:49.047751
-2725	1487	What are the use cases of succeed and fail assertions?	open	2024-10-05 21:49:49.050374	2024-10-05 21:49:49.050374
-2726	1487	What is the use case of succeed assertion?	open	2024-10-05 21:49:49.05297	2024-10-05 21:49:49.05297
-2727	1487	What is the use case of fail assertion?	open	2024-10-05 21:49:49.055184	2024-10-05 21:49:49.055184
-2728	1487	What is the limitation of using fail assertion?	open	2024-10-05 21:49:49.05718	2024-10-05 21:49:49.05718
-2729	1487	Write a non-fatal failure assertion?	open	2024-10-05 21:49:49.059202	2024-10-05 21:49:49.059202
-2730	1487	Write a non-fatal failure for a specific line of file?	open	2024-10-05 21:49:49.061245	2024-10-05 21:49:49.061245
-2731	1487	What is an assertion matcher?	open	2024-10-05 21:49:49.063656	2024-10-05 21:49:49.063656
-2732	1487	In what namespace are matchers defined?	open	2024-10-05 21:49:49.066066	2024-10-05 21:49:49.066066
-2733	1487	What is the best practice for equality matching using matchers?	open	2024-10-05 21:49:49.068875	2024-10-05 21:49:49.068875
-2734	1487	Write test assertions to evaluate boolean values?	open	2024-10-05 21:49:49.071367	2024-10-05 21:49:49.071367
-2735	1487	What are the binary comparison assertions?	open	2024-10-05 21:49:49.0739	2024-10-05 21:49:49.0739
-2736	1487	What are the requirements of writing binary comparison test assertions?	open	2024-10-05 21:49:49.075844	2024-10-05 21:49:49.075844
-2737	1487	When does GoogleTest print assertion arguments when the assertion fails?	open	2024-10-05 21:49:49.078147	2024-10-05 21:49:49.078147
-2738	1487	What is the evaluation order of arguments in assertions?	open	2024-10-05 21:49:49.080131	2024-10-05 21:49:49.080131
-2739	1487	What is the behavior of comparison assertions for pointers and C-style strings?	open	2024-10-05 21:49:49.082518	2024-10-05 21:49:49.082518
-2740	1487	Write a test to verify comparison of a pointer or a C-style string with null?	open	2024-10-05 21:49:49.085133	2024-10-05 21:49:49.085133
-2741	1487	Write a test to verify comparison of two C-style strings for equality and inequality?	open	2024-10-05 21:49:49.087384	2024-10-05 21:49:49.087384
-2742	1487	Write a test to verify comparison of two C-style strings without case sensitivity?	open	2024-10-05 21:49:49.089468	2024-10-05 21:49:49.089468
-2743	1487	Write a test to verify comparison of two floating point values?	open	2024-10-05 21:49:49.091738	2024-10-05 21:49:49.091738
-2744	1487	Write a test to verify if difference of two floating points does not exceed an absolute error bound?	open	2024-10-05 21:49:49.093643	2024-10-05 21:49:49.093643
-2745	1487	What are the exception assertions?	open	2024-10-05 21:49:49.095609	2024-10-05 21:49:49.095609
-2746	1487	Write a test to verify that a statement throws a specific exception type?	open	2024-10-05 21:49:49.097901	2024-10-05 21:49:49.097901
-2747	1487	Write a test to verify that a statement throws any exception?	open	2024-10-05 21:49:49.100376	2024-10-05 21:49:49.100376
-2748	1487	Write a test to verify that a statement does not throw any exceptions?	open	2024-10-05 21:49:49.102581	2024-10-05 21:49:49.102581
-2749	1487	Write a test to verify the return value of a predicate with given arguments?	open	2024-10-05 21:49:49.106393	2024-10-05 21:49:49.106393
-2750	1487	How overloaded functions and function templates should be treated when given as argument to predicate assertions?	open	2024-10-05 21:49:49.109207	2024-10-05 21:49:49.109207
-2751	1487	What is a predicate formatter?	open	2024-10-05 21:49:49.111562	2024-10-05 21:49:49.111562
-2752	1487	Create an assertion result object?	open	2024-10-05 21:49:49.114084	2024-10-05 21:49:49.114084
-2753	1487	What are the assertions taking predicate formatter?	open	2024-10-05 21:49:49.117509	2024-10-05 21:49:49.117509
-2754	1487	Write a test to verify a predicate using predicate formatter?	open	2024-10-05 21:49:49.120103	2024-10-05 21:49:49.120103
-2755	1487	What is the use case of death assertions?	open	2024-10-05 21:49:49.122318	2024-10-05 21:49:49.122318
-2756	1487	When does a death assertion asserts?	open	2024-10-05 21:49:49.124532	2024-10-05 21:49:49.124532
-2757	1487	What is the difference between exception tests and death tests?	open	2024-10-05 21:49:49.126425	2024-10-05 21:49:49.126425
-2758	1487	What arguments does a death test take?	open	2024-10-05 21:49:49.128773	2024-10-05 21:49:49.128773
-2759	1487	Write a death test to verify exit status of a statement when death tsets are supported?	open	2024-10-05 21:49:49.130974	2024-10-05 21:49:49.130974
-2760	1487	What are the use cases of exit assertions?	open	2024-10-05 21:49:49.133366	2024-10-05 21:49:49.133366
-2761	1487	What are the common predicates used to verify exit status of a statement in exit assertions?	open	2024-10-05 21:49:49.135594	2024-10-05 21:49:49.135594
-2762	1487	What is the predicate type that exit assertions take as second argument?	open	2024-10-05 21:49:49.137763	2024-10-05 21:49:49.137763
-2763	1487	Write a wildcard matcher?	open	2024-10-05 21:49:49.139994	2024-10-05 21:49:49.139994
-2764	1487	What arithmetic comparison matchers exist?	open	2024-10-05 21:49:49.14252	2024-10-05 21:49:49.14252
-2765	1487	What boolean comparison matchers exist?	open	2024-10-05 21:49:49.144529	2024-10-05 21:49:49.144529
-2766	1487	What pointer comparison matchers exist?	open	2024-10-05 21:49:49.146696	2024-10-05 21:49:49.146696
-2767	1487	What matcher exists to check for returned <code>std::optional<></code> object?	open	2024-10-05 21:49:49.1492	2024-10-05 21:49:49.1492
-2768	1487	What matcher exists to check for returneed <code>std::variant<></code> object?	open	2024-10-05 21:49:49.151739	2024-10-05 21:49:49.151739
-2769	1487	What matcher should be used when given argument is a reference?	open	2024-10-05 21:49:49.153779	2024-10-05 21:49:49.153779
-2770	1487	What matcher can be used when testing a function template?	open	2024-10-05 21:49:49.155866	2024-10-05 21:49:49.155866
-2771	1487	What value category is used in matchers to take arguments?	open	2024-10-05 21:49:49.158001	2024-10-05 21:49:49.158001
-2772	1487	What is the difference between using boolean comparison matchers and assertions?	open	2024-10-05 21:49:49.159777	2024-10-05 21:49:49.159777
-2773	1487	What matchers exist for comparing equality of doubles?	open	2024-10-05 21:49:49.162266	2024-10-05 21:49:49.162266
-2774	1487	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687
-2775	1487	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234
-2776	1487	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838
 2777	1489	What is a mock?	open	2024-10-07 21:15:43.789371	2024-10-07 21:15:43.789371
 2778	1489	What is the workflow of running a mock object?	open	2024-10-07 21:15:43.802311	2024-10-07 21:15:43.802311
 2779	1489	What are the use cases of mocks?	open	2024-10-07 21:15:43.805209	2024-10-07 21:15:43.805209
@@ -12920,6 +12868,16 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034
 2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216
 2900	1506	Get the list of environment variables?	open	2024-10-13 09:59:13.363492	2024-10-13 09:59:13.363492
+2763	1538	Write a wildcard matcher?	open	2024-10-05 21:49:49.139994	2024-10-05 21:49:49.139994
+2764	1538	What arithmetic comparison matchers exist?	open	2024-10-05 21:49:49.14252	2024-10-05 21:49:49.14252
+2765	1538	What boolean comparison matchers exist?	open	2024-10-05 21:49:49.144529	2024-10-05 21:49:49.144529
+2766	1538	What pointer comparison matchers exist?	open	2024-10-05 21:49:49.146696	2024-10-05 21:49:49.146696
+2767	1538	What matcher exists to check for returned <code>std::optional<></code> object?	open	2024-10-05 21:49:49.1492	2024-10-05 21:49:49.1492
+2768	1538	What matcher exists to check for returneed <code>std::variant<></code> object?	open	2024-10-05 21:49:49.151739	2024-10-05 21:49:49.151739
+2769	1538	What matcher should be used when given argument is a reference?	open	2024-10-05 21:49:49.153779	2024-10-05 21:49:49.153779
+2770	1538	What matcher can be used when testing a function template?	open	2024-10-05 21:49:49.155866	2024-10-05 21:49:49.155866
+2771	1538	What value category is used in matchers to take arguments?	open	2024-10-05 21:49:49.158001	2024-10-05 21:49:49.158001
+2773	1538	What matchers exist for comparing equality of doubles?	open	2024-10-05 21:49:49.162266	2024-10-05 21:49:49.162266
 2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045
 2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595
 2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143
@@ -13215,24 +13173,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127
 3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291
 3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188
-3146	1487	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903
-3147	1487	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833
-3148	1487	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767
-3149	1487	 Verify given string contains a substring?	open	2024-10-27 21:26:28.201965	2024-10-27 21:26:28.201965
-3150	1487	 Verify given string is empty?	open	2024-10-27 21:26:28.205266	2024-10-27 21:26:28.205266
-3151	1487	 Verify given string starts with a prefix?	open	2024-10-27 21:26:28.208129	2024-10-27 21:26:28.208129
-3152	1487	Verify two strings are equal without case sensitivity?	open	2024-10-27 21:26:28.211171	2024-10-27 21:26:28.211171
-3153	1487	Verify two strings are not equal regardless of their case?	open	2024-10-27 21:26:28.213723	2024-10-27 21:26:28.213723
-3154	1487	Verify two strings are equal?	open	2024-10-27 21:26:28.216172	2024-10-27 21:26:28.216172
-3155	1487	Verify two strings are not equal?	open	2024-10-27 21:26:28.218667	2024-10-27 21:26:28.218667
-3156	1487	Verify given argument is a base64 escaped sequence of a string?	open	2024-10-27 21:26:28.22108	2024-10-27 21:26:28.22108
-3157	1487	Verify a container that does not provide size method contains an expected number of elements?	open	2024-10-27 21:26:28.223721	2024-10-27 21:26:28.223721
-3158	1487	Verify a container that provides size method contains an expected number of elements?	open	2024-10-27 21:26:28.226508	2024-10-27 21:26:28.226508
-3159	1487	Verify two containers are equal?	open	2024-10-27 21:26:28.229719	2024-10-27 21:26:28.229719
-3160	1487	Verify a container contains an expected value?	open	2024-10-27 21:26:28.232525	2024-10-27 21:26:28.232525
-3161	1487	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
-3162	1487	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
-3163	1487	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
+3148	1538	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767
 3143	217	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
 3144	217	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
 3145	217	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
@@ -13240,6 +13181,65 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3165	217	When does optimizer avoids iterating over all the possible execution plans?	open	2024-10-27 23:27:17.050719	2024-10-27 23:27:17.050719
 3166	217	What is a node?	open	2024-10-27 23:27:17.052907	2024-10-27 23:27:17.052907
 3167	217	How nodes can interact with each other?	open	2024-10-27 23:27:17.054564	2024-10-27 23:27:17.054564
+2725	1537	What are the use cases of succeed and fail assertions?	open	2024-10-05 21:49:49.050374	2024-10-05 21:49:49.050374
+2726	1537	What is the use case of succeed assertion?	open	2024-10-05 21:49:49.05297	2024-10-05 21:49:49.05297
+2727	1537	What is the use case of fail assertion?	open	2024-10-05 21:49:49.055184	2024-10-05 21:49:49.055184
+2728	1537	What is the limitation of using fail assertion?	open	2024-10-05 21:49:49.05718	2024-10-05 21:49:49.05718
+2729	1537	Write a non-fatal failure assertion?	open	2024-10-05 21:49:49.059202	2024-10-05 21:49:49.059202
+2730	1537	Write a non-fatal failure for a specific line of file?	open	2024-10-05 21:49:49.061245	2024-10-05 21:49:49.061245
+2731	1537	What is an assertion matcher?	open	2024-10-05 21:49:49.063656	2024-10-05 21:49:49.063656
+2732	1537	In what namespace are matchers defined?	open	2024-10-05 21:49:49.066066	2024-10-05 21:49:49.066066
+2733	1537	What is the best practice for equality matching using matchers?	open	2024-10-05 21:49:49.068875	2024-10-05 21:49:49.068875
+2734	1537	Write test assertions to evaluate boolean values?	open	2024-10-05 21:49:49.071367	2024-10-05 21:49:49.071367
+2735	1537	What are the binary comparison assertions?	open	2024-10-05 21:49:49.0739	2024-10-05 21:49:49.0739
+2736	1537	What are the requirements of writing binary comparison test assertions?	open	2024-10-05 21:49:49.075844	2024-10-05 21:49:49.075844
+2737	1537	When does GoogleTest print assertion arguments when the assertion fails?	open	2024-10-05 21:49:49.078147	2024-10-05 21:49:49.078147
+2738	1537	What is the evaluation order of arguments in assertions?	open	2024-10-05 21:49:49.080131	2024-10-05 21:49:49.080131
+2739	1537	What is the behavior of comparison assertions for pointers and C-style strings?	open	2024-10-05 21:49:49.082518	2024-10-05 21:49:49.082518
+2740	1537	Write a test to verify comparison of a pointer or a C-style string with null?	open	2024-10-05 21:49:49.085133	2024-10-05 21:49:49.085133
+2741	1537	Write a test to verify comparison of two C-style strings for equality and inequality?	open	2024-10-05 21:49:49.087384	2024-10-05 21:49:49.087384
+2742	1537	Write a test to verify comparison of two C-style strings without case sensitivity?	open	2024-10-05 21:49:49.089468	2024-10-05 21:49:49.089468
+2743	1537	Write a test to verify comparison of two floating point values?	open	2024-10-05 21:49:49.091738	2024-10-05 21:49:49.091738
+2744	1537	Write a test to verify if difference of two floating points does not exceed an absolute error bound?	open	2024-10-05 21:49:49.093643	2024-10-05 21:49:49.093643
+2745	1537	What are the exception assertions?	open	2024-10-05 21:49:49.095609	2024-10-05 21:49:49.095609
+2746	1537	Write a test to verify that a statement throws a specific exception type?	open	2024-10-05 21:49:49.097901	2024-10-05 21:49:49.097901
+2747	1537	Write a test to verify that a statement throws any exception?	open	2024-10-05 21:49:49.100376	2024-10-05 21:49:49.100376
+2748	1537	Write a test to verify that a statement does not throw any exceptions?	open	2024-10-05 21:49:49.102581	2024-10-05 21:49:49.102581
+2749	1537	Write a test to verify the return value of a predicate with given arguments?	open	2024-10-05 21:49:49.106393	2024-10-05 21:49:49.106393
+2750	1537	How overloaded functions and function templates should be treated when given as argument to predicate assertions?	open	2024-10-05 21:49:49.109207	2024-10-05 21:49:49.109207
+2751	1537	What is a predicate formatter?	open	2024-10-05 21:49:49.111562	2024-10-05 21:49:49.111562
+2752	1537	Create an assertion result object?	open	2024-10-05 21:49:49.114084	2024-10-05 21:49:49.114084
+2753	1537	What are the assertions taking predicate formatter?	open	2024-10-05 21:49:49.117509	2024-10-05 21:49:49.117509
+2754	1537	Write a test to verify a predicate using predicate formatter?	open	2024-10-05 21:49:49.120103	2024-10-05 21:49:49.120103
+2755	1537	What is the use case of death assertions?	open	2024-10-05 21:49:49.122318	2024-10-05 21:49:49.122318
+2756	1537	When does a death assertion asserts?	open	2024-10-05 21:49:49.124532	2024-10-05 21:49:49.124532
+2757	1537	What is the difference between exception tests and death tests?	open	2024-10-05 21:49:49.126425	2024-10-05 21:49:49.126425
+2758	1537	What arguments does a death test take?	open	2024-10-05 21:49:49.128773	2024-10-05 21:49:49.128773
+2759	1537	Write a death test to verify exit status of a statement when death tsets are supported?	open	2024-10-05 21:49:49.130974	2024-10-05 21:49:49.130974
+2760	1537	What are the use cases of exit assertions?	open	2024-10-05 21:49:49.133366	2024-10-05 21:49:49.133366
+2761	1537	What are the common predicates used to verify exit status of a statement in exit assertions?	open	2024-10-05 21:49:49.135594	2024-10-05 21:49:49.135594
+2762	1537	What is the predicate type that exit assertions take as second argument?	open	2024-10-05 21:49:49.137763	2024-10-05 21:49:49.137763
+2772	1538	What is the difference between using boolean comparison matchers and assertions?	open	2024-10-05 21:49:49.159777	2024-10-05 21:49:49.159777
+2774	1538	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687
+2775	1538	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234
+2776	1538	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838
+3146	1538	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903
+3147	1538	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833
+3149	1538	 Verify given string contains a substring?	open	2024-10-27 21:26:28.201965	2024-10-27 21:26:28.201965
+3150	1538	 Verify given string is empty?	open	2024-10-27 21:26:28.205266	2024-10-27 21:26:28.205266
+3151	1538	 Verify given string starts with a prefix?	open	2024-10-27 21:26:28.208129	2024-10-27 21:26:28.208129
+3152	1538	Verify two strings are equal without case sensitivity?	open	2024-10-27 21:26:28.211171	2024-10-27 21:26:28.211171
+3153	1538	Verify two strings are not equal regardless of their case?	open	2024-10-27 21:26:28.213723	2024-10-27 21:26:28.213723
+3154	1538	Verify two strings are equal?	open	2024-10-27 21:26:28.216172	2024-10-27 21:26:28.216172
+3155	1538	Verify two strings are not equal?	open	2024-10-27 21:26:28.218667	2024-10-27 21:26:28.218667
+3156	1538	Verify given argument is a base64 escaped sequence of a string?	open	2024-10-27 21:26:28.22108	2024-10-27 21:26:28.22108
+3157	1538	Verify a container that does not provide size method contains an expected number of elements?	open	2024-10-27 21:26:28.223721	2024-10-27 21:26:28.223721
+3158	1538	Verify a container that provides size method contains an expected number of elements?	open	2024-10-27 21:26:28.226508	2024-10-27 21:26:28.226508
+3159	1538	Verify two containers are equal?	open	2024-10-27 21:26:28.229719	2024-10-27 21:26:28.229719
+3160	1538	Verify a container contains an expected value?	open	2024-10-27 21:26:28.232525	2024-10-27 21:26:28.232525
+3161	1538	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
+3162	1538	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
+3163	1538	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
 \.
 
 
@@ -21005,9 +21005,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
-1488	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
-1491	102	open	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
-1489	102	completed	\N	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
 1492	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	1
@@ -21061,12 +21058,10 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
 786	59	completed	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.239652	1
 787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.251518	2
-1490	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
 205	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.385086	1
 206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
 210	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.157861	6
 207	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.401418	3
-1487	102	writing	\N	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	1
 1294	86	writing	\N	2024-07-28 09:45:09.295457	2024-10-27 16:25:47.539188	2
 208	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.137277	4
 220	26	open	\N	2024-07-28 09:44:57.573652	2024-10-27 21:22:32.881117	16
@@ -21074,6 +21069,14 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
 217	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 23:27:17.054564	13
+1487	102	writing	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	1
+1488	102	open	http://google.github.io/googletest/advanced.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
+1489	102	completed	http://google.github.io/googletest/gmock_for_dummies.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
+1490	102	writing	http://google.github.io/googletest/gmock_cook_book.html	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
+1491	102	open	http://google.github.io/googletest/gmock_cheat_sheet.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
+1537	102	completed	http://google.github.io/googletest/reference/assertions.html	2024-10-29 22:20:01.157344	2024-10-29 22:20:01.157344	6
+1538	102	writing	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-29 22:20:04.207231	7
+1539	102	open	http://google.github.io/googletest/reference/actions.html	2024-10-29 22:20:08.113593	2024-10-29 22:20:08.113593	8
 \.
 
 
@@ -23415,7 +23418,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1536, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1539, true);
 
 
 --
