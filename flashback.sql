@@ -9917,6 +9917,35 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8483	3166	select * from users order by age;	code	sql	2024-10-27 23:27:17.052907	2
 8484	3166	The optimizer will pass two actions to the executor, and thus the nodes: one to retrieve all the data and one to sort the data.	text	txt	2024-10-27 23:27:17.052907	3
 8485	3167	Nodes are stackable, the output of a node can be used as the input to another node. This allows the construction of very complex execution plans made by different nodes, which can produce a fine-grained access method to the data.	text	txt	2024-10-27 23:27:17.054564	1
+8486	3168	EXPECT_THAT(<container>, ElementsAreArray({<value>...}));	code	cpp	2024-10-30 00:14:55.19302	1
+8487	3168	EXPECT_THAT(<container>, ElementsAreArray(<container>));	code	cpp	2024-10-30 00:14:55.19302	2
+8488	3168	EXPECT_THAT(<container>, ElementsAreArray(<iterator>, <iterator>));	code	cpp	2024-10-30 00:14:55.19302	3
+8489	3168	EXPECT_THAT(<container>, ElementsAreArray(<array>));	code	cpp	2024-10-30 00:14:55.19302	4
+8490	3168	EXPECT_THAT(<container>, ElementsAreArray(<array>, <count>));	code	cpp	2024-10-30 00:14:55.19302	5
+8491	3169	EXPECT_THAT(container, IsEmpty());	code	cpp	2024-10-30 00:14:55.198961	1
+8492	3170	EXPECT_THAT(<container>, IsSubsetOf({<value>...));	code	cpp	2024-10-30 00:14:55.202977	1
+8493	3170	EXPECT_THAT(<container>, IsSubsetOf(<container>));	code	cpp	2024-10-30 00:14:55.202977	2
+8494	3170	EXPECT_THAT(<container>, IsSubsetOf(<iterator>, <iterator>));	code	cpp	2024-10-30 00:14:55.202977	3
+8495	3170	EXPECT_THAT(<container>, IsSubsetOf(<array>));	code	cpp	2024-10-30 00:14:55.202977	4
+8496	3170	EXPECT_THAT(<container>, IsSubsetOf(<array>, <count>));	code	cpp	2024-10-30 00:14:55.202977	5
+8497	3171	EXPECT_THAT(<container>, IsSupersetOf({<value>...}));	code	cpp	2024-10-30 00:14:55.206234	1
+8498	3171	EXPECT_THAT(<container>, IsSupersetOf(<container>));	code	cpp	2024-10-30 00:14:55.206234	2
+8499	3171	EXPECT_THAT(<container>, IsSupersetOf(<iterator>, <iterator>));	code	cpp	2024-10-30 00:14:55.206234	3
+8500	3171	EXPECT_THAT(<container>, IsSupersetOf(<array>));	code	cpp	2024-10-30 00:14:55.206234	4
+8501	3171	EXPECT_THAT(<container>, IsSupersetOf(<array>, <count>));	code	cpp	2024-10-30 00:14:55.206234	5
+8502	3172	EXPECT_THAT(<container>, PointWise(<matcher>, {<value>...}));	code	cpp	2024-10-30 00:14:55.209237	1
+8503	3172	EXPECT_THAT(<container>, PointWise(<matcher>, <container>));	code	cpp	2024-10-30 00:14:55.209237	2
+8504	3173	EXPECT_THAT(<container>, SizeIs(<matcher>));	code	cpp	2024-10-30 00:14:55.212159	1
+8505	3174	EXPECT_THAT(<container>, UnorderedElementsAre(<value>...));	code	cpp	2024-10-30 00:14:55.215381	1
+8506	3174	EXPECT_THAT(<container>, UnorderedElementsAreArray({<value>...}));	code	cpp	2024-10-30 00:14:55.215381	2
+8507	3174	EXPECT_THAT(<container>, UnorderedElementsAreArray(<container>));	code	cpp	2024-10-30 00:14:55.215381	3
+8508	3174	EXPECT_THAT(<container>, UnorderedElementsAreArray(<iterator>, <iterator>));	code	cpp	2024-10-30 00:14:55.215381	4
+8509	3174	EXPECT_THAT(<container>, UnorderedElementsAreArray(<array>));	code	cpp	2024-10-30 00:14:55.215381	5
+8510	3174	EXPECT_THAT(<container>, UnorderedElementsAreArray(<array>, <count>));	code	cpp	2024-10-30 00:14:55.215381	6
+8511	3175	EXPECT_THAT(<container>, UnorderedPointWise({<value>...}));	code	cpp	2024-10-30 00:14:55.217447	1
+8512	3175	EXPECT_THAT(<container>, UnorderedPointWise(<container>));	code	cpp	2024-10-30 00:14:55.217447	2
+8513	3176	EXPECT_THAT(<container>, WhenSorted(<matcher>));	code	cpp	2024-10-30 00:14:55.219173	1
+8514	3177	EXPECT_THAT(<container>, WhenSortedBy(<predicate>, <matcher>));	code	cpp	2024-10-30 00:14:55.221089	1
 \.
 
 
@@ -13240,6 +13269,16 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3161	1538	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
 3162	1538	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
 3163	1538	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
+3168	1538	Verify that a container matches a given range element-wise?	open	2024-10-30 00:14:55.19302	2024-10-30 00:14:55.19302
+3169	1538	Verify that a container is empty?	open	2024-10-30 00:14:55.198961	2024-10-30 00:14:55.198961
+3170	1538	Verify that a container is a subset of given range?	open	2024-10-30 00:14:55.202977	2024-10-30 00:14:55.202977
+3171	1538	Verify that a container is a superset of given range?	open	2024-10-30 00:14:55.206234	2024-10-30 00:14:55.206234
+3172	1538	Match each of the elements of a container with a matcher compared to another range?	open	2024-10-30 00:14:55.209237	2024-10-30 00:14:55.209237
+3173	1538	Verify the size of a container?	open	2024-10-30 00:14:55.212159	2024-10-30 00:14:55.212159
+3174	1538	Verify that elements of a container match a series of criteria without orders?	open	2024-10-30 00:14:55.215381	2024-10-30 00:14:55.215381
+3175	1538	Match each of the elements of a container with a criteria without ordering?	open	2024-10-30 00:14:55.217447	2024-10-30 00:14:55.217447
+3176	1538	Verify a container holds given elements after being sorted?	open	2024-10-30 00:14:55.219173	2024-10-30 00:14:55.219173
+3177	1538	Verify a container holds given elements after being sorted by a predicate?	open	2024-10-30 00:14:55.221089	2024-10-30 00:14:55.221089
 \.
 
 
@@ -19525,8 +19564,8 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	2	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.221089	2	\N
 \.
 
 
@@ -21069,14 +21108,14 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
 217	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 23:27:17.054564	13
-1487	102	writing	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-27 21:26:28.241333	1
 1488	102	open	http://google.github.io/googletest/advanced.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
 1489	102	completed	http://google.github.io/googletest/gmock_for_dummies.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 1490	102	writing	http://google.github.io/googletest/gmock_cook_book.html	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
 1491	102	open	http://google.github.io/googletest/gmock_cheat_sheet.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	5
 1537	102	completed	http://google.github.io/googletest/reference/assertions.html	2024-10-29 22:20:01.157344	2024-10-29 22:20:01.157344	6
-1538	102	writing	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-29 22:20:04.207231	7
 1539	102	open	http://google.github.io/googletest/reference/actions.html	2024-10-29 22:20:08.113593	2024-10-29 22:20:08.113593	8
+1487	102	completed	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.188936	1
+1538	102	writing	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 00:14:55.221089	7
 \.
 
 
@@ -23313,7 +23352,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8485, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8514, true);
 
 
 --
@@ -23341,7 +23380,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3167, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3177, true);
 
 
 --
