@@ -9946,6 +9946,51 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8512	3175	EXPECT_THAT(<container>, UnorderedPointWise(<container>));	code	cpp	2024-10-30 00:14:55.217447	2
 8513	3176	EXPECT_THAT(<container>, WhenSorted(<matcher>));	code	cpp	2024-10-30 00:14:55.219173	1
 8514	3177	EXPECT_THAT(<container>, WhenSortedBy(<predicate>, <matcher>));	code	cpp	2024-10-30 00:14:55.221089	1
+8515	3178	EXPECT_THAT(<pointer>, Field(&<class>::<member>, <matcher>));	code	cpp	2024-10-30 21:41:01.73066	1
+8516	3178	EXPECT_THAT(<pointer>, Field(<member-name>, &<class>::<member>, <matcher>));	code	cpp	2024-10-30 21:41:01.73066	2
+8517	3179	EXPECT_THAT(<container>, Contains(Key(<value>)));	code	cpp	2024-10-30 21:41:01.746216	1
+8518	3179	EXPECT_THAT(<container>, Contains(Key(<matcher>)));	code	cpp	2024-10-30 21:41:01.746216	2
+8519	3180	EXPECT_THAT(<pair>, Pair(<matcher>, <matcher>));	code	cpp	2024-10-30 21:41:01.749203	1
+8520	3181	EXPECT_THAT(<object>, FieldsAre(<matcher>...));	code	cpp	2024-10-30 21:41:01.751893	1
+8521	3182	EXPECT_THAT(<object>, Property(&<class>::<method>, <matcher>));	code	cpp	2024-10-30 21:41:01.754831	1
+8522	3182	EXPECT_THAT(<object>, Property(<method-name>, &<class>::<method>, <matcher>));	code	cpp	2024-10-30 21:41:01.754831	2
+8523	3183	EXPECT_THAT(<value>, ResultOf(<function>, <matcher>));	code	cpp	2024-10-30 21:41:01.757644	1
+8524	3183	EXPECT_THAT(<return-object-name>, <value>, ResultOf(<function>, <matcher>));	code	cpp	2024-10-30 21:41:01.757644	2
+8525	3184	EXPECT_THAT(<rvalue>, Address(<matcher>));	code	cpp	2024-10-30 21:41:01.760646	1
+8526	3185	EXPECT_THAT(<pointer>, Pointee(<matcher>));	code	cpp	2024-10-30 21:41:01.765078	1
+8527	3186	EXPECT_THAT(<pointer>, Pointer(<matcher>));	code	cpp	2024-10-30 21:41:01.76945	1
+8528	3187	EXPECT_THAT(<pointer>, WhenDynamicCastTo<T>(<matcher>));	code	cpp	2024-10-30 21:41:01.772708	1
+8529	3188	EXPECT_THAT(<tuple>, AllArgs(<matcher>));	code	cpp	2024-10-30 21:41:01.775342	1
+8530	3188	EXPECT_THAT(<tuple>, Args<arg...>(<matcher>)));	code	cpp	2024-10-30 21:41:01.775342	2
+8531	3189	EXPECT_THAT(<argument>, AllOf(<matcher>...));	code	cpp	2024-10-30 21:41:01.779047	1
+8532	3189	EXPECT_THAT(<argument>, AllOfArray({<matcher>...}));	code	cpp	2024-10-30 21:41:01.779047	2
+8533	3189	EXPECT_THAT(<argument>, AllOfArray(<container>));	code	cpp	2024-10-30 21:41:01.779047	3
+8534	3189	EXPECT_THAT(<argument>, AllOfArray(<iterator>, <iterator>));	code	cpp	2024-10-30 21:41:01.779047	4
+8535	3189	EXPECT_THAT(<argument>, AllOfArray(<array>, <count>));	code	cpp	2024-10-30 21:41:01.779047	5
+8536	3190	EXPECT_THAT(<argument>, AnyOf(<matcher>...));	code	cpp	2024-10-30 21:41:01.784323	1
+8537	3190	EXPECT_THAT(<argument>, AnyOf({<matcher>...}));	code	cpp	2024-10-30 21:41:01.784323	2
+8538	3190	EXPECT_THAT(<argument>, AnyOf(<container>));	code	cpp	2024-10-30 21:41:01.784323	3
+8539	3190	EXPECT_THAT(<argument>, AnyOf(<iterator>, <iterator>));	code	cpp	2024-10-30 21:41:01.784323	4
+8540	3190	EXPECT_THAT(<argument>, AnyOf(<array>, <count>));	code	cpp	2024-10-30 21:41:01.784323	5
+8541	3191	EXPECT_THAT(<argument>, Not(<matcher>));	code	cpp	2024-10-30 21:41:01.788063	1
+8542	3192	EXPECT_THAT(<argument>, Conditional(<condition>, <matcher>, <matcher>));	code	cpp	2024-10-30 21:41:01.790524	1
+8543	3193	MatcherCast<T>(<matcher>);	code	cpp	2024-10-30 21:41:01.793048	1
+8544	3193	SafelyMatcherCast<T>(<matcher>);	code	cpp	2024-10-30 21:41:01.793048	2
+8545	3194	EXPECT_THAT(<argument>, Truely(<predicate>));	code	cpp	2024-10-30 21:41:01.797412	1
+8546	3194	Predicate ownership will be moved to the matcher.	text	txt	2024-10-30 21:41:01.797412	2
+8547	3195	Matches(<matcher>)(<value>);	code	cpp	2024-10-30 21:41:01.801656	1
+8548	3196	ExplainMatchResult(<matcher>, <value>, <listener>);	code	cpp	2024-10-30 21:41:01.805058	1
+8549	3197	Value(<value>, <matcher>);	code	cpp	2024-10-30 21:41:01.807468	1
+8550	3198	MATCHER(IsEven, "") { return (arg % 2) == 0; };	code	cpp	2024-10-30 21:41:01.809763	1
+8551	3199	MATCHER_P(IsDivisableBy, n, "") { *result_listener << "where the remainder is " << (arg % n); return (arg % n) == 0; }	code	cpp	2024-10-30 21:41:01.813532	1
+8552	3200	MATCHER_P2(IsBetween, a, b, absl::StrCat(negation ? "isn't" : "is", " between ", PrintToString(a), " and ", PrintToString(b))) { return a <= arg && arg <= b; }	code	cpp	2024-10-30 21:41:01.817887	1
+8553	3201	Matcher cannot be defined inside a function or a class.	text	txt	2024-10-30 21:41:01.822841	1
+8554	3201	Matcher body must be purely function without side effects.	text	txt	2024-10-30 21:41:01.822841	2
+8555	3201	Use `PrintToString(x)` to convert a value to string.	text	txt	2024-10-30 21:41:01.822841	3
+8556	3201	Wrap another matcher with `ExplainMatchResult()`.	text	txt	2024-10-30 21:41:01.822841	4
+8557	3201	MATCHER_P(NestedPropertyMatches, matcher, "") { return ExplainMatchResult(matcher, arg.nested().property(), result_listener); }	code	cpp	2024-10-30 21:41:01.822841	5
+8558	3201	Describe a matcher with `DescribeMatcher<>`:	text	txt	2024-10-30 21:41:01.822841	6
+8559	3201	MATCHER_P(XAndYThat, matcher, "X that " + DescribeMatcher<int>(matcher, negation) + (negation ? " or" : " and") + " Y that " + DescribeMatcher<double>(matcher, negation)) {\n  return ExplainMatchResult(matcher, arg.x(), result_listener) && ExplainMatchResult(matcher, arg.y(), result_listener);\n}	code	cpp	2024-10-30 21:41:01.822841	7
 \.
 
 
@@ -13279,6 +13324,30 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3175	1538	Match each of the elements of a container with a criteria without ordering?	open	2024-10-30 00:14:55.217447	2024-10-30 00:14:55.217447
 3176	1538	Verify a container holds given elements after being sorted?	open	2024-10-30 00:14:55.219173	2024-10-30 00:14:55.219173
 3177	1538	Verify a container holds given elements after being sorted by a predicate?	open	2024-10-30 00:14:55.221089	2024-10-30 00:14:55.221089
+3178	1538	Verify that member of a class that a pointer is pointing to matches to a criteria?	open	2024-10-30 21:41:01.73066	2024-10-30 21:41:01.73066
+3179	1538	Verify a map contains a key matching a certain criteria?	open	2024-10-30 21:41:01.746216	2024-10-30 21:41:01.746216
+3180	1538	Verify a pair contains expected key and value?	open	2024-10-30 21:41:01.749203	2024-10-30 21:41:01.749203
+3181	1538	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	open	2024-10-30 21:41:01.751893	2024-10-30 21:41:01.751893
+3182	1538	Verify that the returning object from a member function matches a criteria when called by the test?	open	2024-10-30 21:41:01.754831	2024-10-30 21:41:01.754831
+3183	1538	Verify the result of calling a function matches a pattern?	open	2024-10-30 21:41:01.757644	2024-10-30 21:41:01.757644
+3184	1538	Verify the address of given argument matches a pattern?	open	2024-10-30 21:41:01.760646	2024-10-30 21:41:01.760646
+3185	1538	Verify that given pointer is pointing to an object that matches a pattern?	open	2024-10-30 21:41:01.765078	2024-10-30 21:41:01.765078
+3186	1538	Verify that given pointer holds a pointer that matches a pattern?	open	2024-10-30 21:41:01.76945	2024-10-30 21:41:01.76945
+3187	1538	Verify that given pointer matches a pattern after a dynamic cast to specified type?	open	2024-10-30 21:41:01.772708	2024-10-30 21:41:01.772708
+3188	1538	Verify that all the arguments of a tuple matches a pattern?	open	2024-10-30 21:41:01.775342	2024-10-30 21:41:01.775342
+3189	1538	Composite multiple matches into one?	open	2024-10-30 21:41:01.779047	2024-10-30 21:41:01.779047
+3190	1538	Make sure at least one of a few matchers apply?	open	2024-10-30 21:41:01.784323	2024-10-30 21:41:01.784323
+3191	1538	Verify that given argument does not match a pattern?	open	2024-10-30 21:41:01.788063	2024-10-30 21:41:01.788063
+3192	1538	Use a ternary like operator to conditionally compare the given argument to one of the two existing patterns?	open	2024-10-30 21:41:01.790524	2024-10-30 21:41:01.790524
+3193	1538	Cast a matcher to another matcher type?	open	2024-10-30 21:41:01.793048	2024-10-30 21:41:01.793048
+3194	1538	Verify that a predicate returns true when given argument is passed into it?	open	2024-10-30 21:41:01.797412	2024-10-30 21:41:01.797412
+3195	1538	Use a matcher as a predicate?	open	2024-10-30 21:41:01.801656	2024-10-30 21:41:01.801656
+3196	1538	Use a matcher to redirect results into a listener?	open	2024-10-30 21:41:01.805058	2024-10-30 21:41:01.805058
+3197	1538	Verify a value matches a pattern?	open	2024-10-30 21:41:01.807468	2024-10-30 21:41:01.807468
+3198	1538	Define a matcher taking no arguments?	open	2024-10-30 21:41:01.809763	2024-10-30 21:41:01.809763
+3199	1538	Define a matcher taking argumetns?	open	2024-10-30 21:41:01.813532	2024-10-30 21:41:01.813532
+3200	1538	Define a matcher taking a range?	open	2024-10-30 21:41:01.817887	2024-10-30 21:41:01.817887
+3201	1538	What are the restrictions of defining a matcher?	open	2024-10-30 21:41:01.822841	2024-10-30 21:41:01.822841
 \.
 
 
@@ -19565,7 +19634,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
-102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.221089	2	\N
+102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
 
@@ -21115,7 +21184,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1537	102	completed	http://google.github.io/googletest/reference/assertions.html	2024-10-29 22:20:01.157344	2024-10-29 22:20:01.157344	6
 1539	102	open	http://google.github.io/googletest/reference/actions.html	2024-10-29 22:20:08.113593	2024-10-29 22:20:08.113593	8
 1487	102	completed	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.188936	1
-1538	102	writing	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 00:14:55.221089	7
+1538	102	completed	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 21:41:01.824465	7
 \.
 
 
@@ -23352,7 +23421,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8514, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8559, true);
 
 
 --
@@ -23380,7 +23449,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3177, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3201, true);
 
 
 --
