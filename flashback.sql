@@ -10027,6 +10027,38 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8593	3223	glAttachShader(shaderProgram, vertexShader);\nglAttachShader(shaderProgram, fragmentShader);	code	cpp	2024-11-01 19:32:39.081865	1
 8594	3224	glLinkProgram(shaderProgram);\nglUseProgram(shaderProgram);	code	cpp	2024-11-01 19:32:39.084718	1
 8595	3225	void Window::show()\n{\n    constexpr const GLchar* shaderSource{ R"(\n        #version 120\n\n        attribute vec4 inColor;\n        attribute vec4 inPosition;\n        uniform mat4 matrix;\n        varying vec4 outColor;\n\n        void main()\n        {\n            outColor = inColor;\n            gl_Position = inPosition * matrix;\n        }\n    )"};\n\n    constexpr const GLchar* fragmentSource{ R"(\n        #version 120\n\n        varying vec4 outColor;\n\n        void main()\n        {\n            gl_FragColor = outColor;\n        }\n    )"};\n\n    // vertex shader\n    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);\n    glShaderSource(vertexShader, 1, &shaderSource, 0);\n    glCompileShader(vertexShader);\n\n    GLuint compilationStatus;\n    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compilationStatus);\n\n    if (compilationStatus == GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(vertexShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    // fragment shader\n    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);\n    glShaderSource(fragmentShader, 1, &fragmentSource, 0);\n    glCompileShader(fragmentShader);\n\n    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &compilationStatus);\n\n    if (compilationStatus = GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(fragmentShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    // shader program\n    GLuint shaderProgram = glCreateProgram();\n    glAttachShader(shaderProgram, vertexShader);\n    glAttachShader(shaderProgram, fragmentShader);\n    glLinkProgram(shaderProgram);\n\n    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &compilationStatus);\n\n    if (compilationStatus = GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(fragmentShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    glUseProgram(shaderProgram);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        draw();\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp	2024-11-01 19:32:39.087846	1
+8596	3226	Basic types, Vector types, Matrix types	text	list	2024-11-01 22:34:14.753322	1
+8597	3227	float, int, bool	text	list	2024-11-01 22:34:14.76982	1
+8598	3228	vec2, vec3, vec4	text	list	2024-11-01 22:34:14.770953	1
+8599	3229	mat2, mat3, mat4	text	list	2024-11-01 22:34:14.771987	1
+8600	3230	vec4 vector = vec3(1.0, 2.0, 0.0);	code	cpp	2024-11-01 22:34:14.773242	1
+8601	3231	vec2 subset = vector.xy;	code	cpp	2024-11-01 22:34:14.77438	1
+8602	3232	#version 120\n\nattribute vec4 input_color;\nattribute vec4 input_position;\n\nvarying vec4 color;\n\nvoid main()\n{\n    color = input_color;\n    gl_Position = input_position;\n}	code	cpp	2024-11-01 22:34:14.775568	1
+8603	3233	Using `attribute`, we defien inputs of the shader.	text	txt	2024-11-01 22:34:14.776736	1
+8604	3233	attribute vec4 input_color;	code	cpp	2024-11-01 22:34:14.776736	2
+8605	3233	attribute vec4 input_position;	code	cpp	2024-11-01 22:34:14.776736	3
+8606	3234	Rasterizer will interpolate `varying` objects.	text	txt	2024-11-01 22:34:14.777737	1
+8607	3234	varying vec4 color;	code	cpp	2024-11-01 22:34:14.777737	2
+8608	3235	`gl_Position` defines the final vertex coordinates after transformations in vertex shader and must be filled.	text	txt	2024-11-01 22:34:14.778755	1
+8609	3235	void main()\n{\n    color = input_color;\n    gl_Position = input_position;\n}	code	cpp	2024-11-01 22:34:14.778755	2
+8610	3236	Input variables inside a fragment shader is already rasterized from the output variables of vertex shader.	text	txt	2024-11-01 22:34:14.779757	1
+8611	3236	#version 120\n\nvarying vec4 color;\n\nvoid main()\n{\n    gl_FragColor = color;\n}	code	cpp	2024-11-01 22:34:14.779757	2
+8612	3237	Vertex buffer objects copy data from RAM to GPU efficiently.	text	txt	2024-11-01 22:34:14.78082	1
+8613	3237	glBufferData();	code	cpp	2024-11-01 22:34:14.78082	2
+8614	3237	This function is equivallent to `memcpy()` function.	text	txt	2024-11-01 22:34:14.78082	3
+8615	3238	Vertex Buffer Object or briefly VBO.	text	txt	2024-11-01 22:34:14.781892	1
+8616	3239	GLuint buffer_id;\nglGenBuffers(1, &buffer_id);	code	cpp	2024-11-01 22:34:14.783869	1
+8617	3240	GLuint buffer_id;\nglGenBuffers(1, &buffer_id);\nglBindBuffer(GL_ARRAY_BUFFER, buffer_id);	code	cpp	2024-11-01 22:34:14.785918	1
+8618	3241	GLint buffer_id;\nglGenBuffers(1, &buffer_id);\nglBindBuffer(GL_ARRAY_BUFFER, buffer_id);\nglBufferData(GL_ARRAY_BUFFER, sizeof(vetrices), vetrices, GL_STATIC_DRAW);	code	cpp	2024-11-01 22:34:14.787947	1
+8619	3241	`glBufferData()` function copies data into GPU after binding.	text	txt	2024-11-01 22:34:14.787947	2
+8620	3242	By defining attribute locations, we can address where the shader should take the data.	text	txt	2024-11-01 22:34:14.789222	1
+8621	3242	GLuint attribute_position;\nattribute_position = glGetAttribLocation(shaderProgram, "input_position");\nglEnableVertexAttribArray(attribute_position);\nglBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\nglVertexAttribPointer(attribute_position, 3, GL_FLOAT, GL_FALSE, 0, 0);	code	cpp	2024-11-01 22:34:14.789222	2
+8622	3243	1. attribute position\n2. number of elements in the source\n3. size of each element\n4. whether OpenGL should normalize data\n5. zero means data are tightly packet\n6. starting offset of data array	text	list	2024-11-01 22:34:14.7902	1
+8623	3244	Third argument takes the number of vetrices.	text	txt	2024-11-01 22:34:14.791217	1
+8624	3244	glDrawArrays(GL_TRIANGLES, 0, 6);	code	cpp	2024-11-01 22:34:14.791217	2
+8625	3245	Uniforms are the last stage of the rendering pipeline and they can define constant global values like rotation matrices to shaders.	text	txt	2024-11-01 22:34:14.792313	1
+8626	3245	GLuint uniform_matrix;\nuniform_matrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(uniform_matrix, 1, GL_FALSE, &matrix);	code	cpp	2024-11-01 22:34:14.792313	2
+8627	3246	void Window::show()\n{\n    // vertex shader\n    /* ... */\n\n    // fragment shader\n    /* ... */\n\n    // shader program\n    /* ... */\n\n    // vertex buffer object\n    const GLfloat vertices[]{\n        -1.0f, -1.0f, 0.0f,\n         1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f,  1.0f, 0.0f\n    };\n\n    const GLfloat colors[]{\n        0.0f, 0.0f, 1.0f,\n        0.0f, 1.0f, 0.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 0.0f, 1.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 1.0f, 0.0f,\n    };\n\n    GLuint vertexBuffer;\n    glGenBuffers(1, &vertexBuffer);\n    GLuint colorsBuffer;\n    glGenBuffers(1, &colorsBuffer);\n\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);\n\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(colorsBuffer), colorsBuffer, GL_STATIC_DRAW);\n\n    GLint attribute_position = glGetAttribLocation(shaderProgram, "input_position");\n    glEnableVertexAttribArray(attribute_position);\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glVertexAttribPointer(attribute_position, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    GLint attribute_color = glGetAttribLocation(shaderProgram, "input_color");\n    glEnablelVertexAttribArray(attribute_color);\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glVertexAttribPointer(attribute_color, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        float sa = 0.5 * sin(angle);\n        float ca = 0.5 * cos(angle);\n        alpha += 0.1;\n\n        const GLfloat matrix[]{\n            sa, -ca, 0, 0,\n            ca, sa,  0, 0,\n            0,   0,  1, 0,\n            0,   0,  0, 1\n        };\n\n        glUniformMatrix4fv(uniform_matrix, 1, FL_FALSE, matrix);\n\n        glDrawArrays(GL_TRANGLES, 0, 6);\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp	2024-11-01 22:34:14.793403	1
 \.
 
 
@@ -13408,6 +13440,27 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3223	1466	Attach shaders to a program?	open	2024-11-01 19:32:39.081865	2024-11-01 19:32:39.081865
 3224	1466	Link program shader?	open	2024-11-01 19:32:39.084718	2024-11-01 19:32:39.084718
 3225	1466	Create a vertex and fragment shader to create a program?	open	2024-11-01 19:32:39.087846	2024-11-01 19:32:39.087846
+3226	1466	What type categories exist in GLSL?	open	2024-11-01 22:34:14.753322	2024-11-01 22:34:14.753322
+3227	1466	What are the basic types in GLSL?	open	2024-11-01 22:34:14.76982	2024-11-01 22:34:14.76982
+3228	1466	What are the vector types in GLSL?	open	2024-11-01 22:34:14.770953	2024-11-01 22:34:14.770953
+3229	1466	What are the matrix types in GLSL?	open	2024-11-01 22:34:14.771987	2024-11-01 22:34:14.771987
+3230	1466	What is the syntax of constructing a GLSL object?	open	2024-11-01 22:34:14.773242	2024-11-01 22:34:14.773242
+3231	1466	What syntax does accessing to elements have in GLSL?	open	2024-11-01 22:34:14.77438	2024-11-01 22:34:14.77438
+3232	1466	Write a basic vertex shader?	open	2024-11-01 22:34:14.775568	2024-11-01 22:34:14.775568
+3233	1466	Define inputs of a vertex shader?	open	2024-11-01 22:34:14.776736	2024-11-01 22:34:14.776736
+3234	1466	What shader type will be rendered by rasterizer?	open	2024-11-01 22:34:14.777737	2024-11-01 22:34:14.777737
+3235	1466	What variable must be initialized in a vertex shader?	open	2024-11-01 22:34:14.778755	2024-11-01 22:34:14.778755
+3236	1466	Write a basic fragment shader?	open	2024-11-01 22:34:14.779757	2024-11-01 22:34:14.779757
+3237	1466	How the input data for vertex shaders can be supplied?	open	2024-11-01 22:34:14.78082	2024-11-01 22:34:14.78082
+3238	1466	What stage in the rendering pipeline is responsible for copying data into GPU?	open	2024-11-01 22:34:14.781892	2024-11-01 22:34:14.781892
+3239	1466	Define a vertex buffer object?	open	2024-11-01 22:34:14.783869	2024-11-01 22:34:14.783869
+3240	1466	Bind a vertex buffer object?	open	2024-11-01 22:34:14.785918	2024-11-01 22:34:14.785918
+3241	1466	Copy the vertex buffer object into GPU?	open	2024-11-01 22:34:14.787947	2024-11-01 22:34:14.787947
+3242	1466	Define an attribute location for a shader?	open	2024-11-01 22:34:14.789222	2024-11-01 22:34:14.789222
+3243	1466	What arguments does <code>glVertexAttribPointer</code> take?	open	2024-11-01 22:34:14.7902	2024-11-01 22:34:14.7902
+3244	1466	What function draws triangles defined in shader program?	open	2024-11-01 22:34:14.791217	2024-11-01 22:34:14.791217
+3245	1466	Define matrices to the vertex shader?	open	2024-11-01 22:34:14.792313	2024-11-01 22:34:14.792313
+3246	1466	Draw two triangles with touching bases forming a square?	open	2024-11-01 22:34:14.793403	2024-11-01 22:34:14.793403
 \.
 
 
@@ -19693,7 +19746,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
-99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 19:32:39.087846	1	\N
+99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 22:34:14.793403	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
@@ -21227,7 +21280,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1467	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
-1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 19:32:39.087846	3
+1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 22:34:14.793403	3
 \.
 
 
@@ -22696,7 +22749,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
-1	1466	2024-11-01 09:28:46.7164
+1	1466	2024-11-01 19:33:33.655586
 1	1464	2024-11-01 17:07:03.201062
 1	1520	2024-10-13 11:08:13.847027
 1	1522	2024-10-13 11:08:13.847027
@@ -23447,7 +23500,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8595, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8627, true);
 
 
 --
@@ -23475,7 +23528,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3225, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3246, true);
 
 
 --
