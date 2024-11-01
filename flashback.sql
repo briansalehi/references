@@ -9991,6 +9991,27 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8557	3201	MATCHER_P(NestedPropertyMatches, matcher, "") { return ExplainMatchResult(matcher, arg.nested().property(), result_listener); }	code	cpp	2024-10-30 21:41:01.822841	5
 8558	3201	Describe a matcher with `DescribeMatcher<>`:	text	txt	2024-10-30 21:41:01.822841	6
 8559	3201	MATCHER_P(XAndYThat, matcher, "X that " + DescribeMatcher<int>(matcher, negation) + (negation ? " or" : " and") + " Y that " + DescribeMatcher<double>(matcher, negation)) {\n  return ExplainMatchResult(matcher, arg.x(), result_listener) && ExplainMatchResult(matcher, arg.y(), result_listener);\n}	code	cpp	2024-10-30 21:41:01.822841	7
+8560	3202	Each program has different context. To represent a window, the context should be changed to that specific window.	text	txt	2024-11-01 17:40:38.408669	1
+8561	3202	glfwInit();\nwindow.reset(glfwCreateWindow(width, height, name, nullptr, nullptr));\nglfwMakeContextCurrent(window.get());	code	cpp	2024-11-01 17:40:38.408669	2
+8562	3203	Circles are drawn with approximations with many basic triangles. All we need to do is to repeat drawing a triangle with correct coordinates for each.	text	txt	2024-11-01 17:40:38.418294	1
+8563	3204	Top left (-1,1)         Top right (1,1)\n\n\nBottom left (-1,-1)     Bottom right (1,-1)	text	txt	2024-11-01 17:40:38.42091	1
+8564	3205	* .\n|/\n*	text	txt	2024-11-01 17:40:38.423694	1
+8565	3205	All triangles have one corner on the origin. The starting triangle has another corner on top. The third corner lays on the first quarter and has a distance of beta from the top. Third corner can be coordinated as: `(R.sin(beta), -R.cos(beta))`	text	txt	2024-11-01 17:40:38.423694	2
+8566	3206	void Window::drawCircle(float red, float green, float blue)\n{\n    constexpr const int slices{360};\n    constexpr const float radius{1.0};\n    constexpr const float beta{3.1415 * 2.0f / slices};\n\n    float prev_x{};\n    float prev_y{-radius};\n\n    for (int step{}; step <= slices; ++step)\n    {\n        float next_x{radius * std::sin(beta * step)};\n        float next_y{-radius * std::cos(beta * step)};\n\n        glColor3f(red, green, blue);\n        glBegin(GL_TRIANGLES);\n        glVertex3f(0.0f, 0.0f, 0.0f);\n        glVertex3f(prev_x, prev_y, 0.0f);\n        glVertex3f(next_x, next_y, 0.0f);\n        glEnd();\n\n        prev_x = next_x;\n        prev_y = next_y;\n    }\n}\n\nvoid Window::draw()\n{\n    drawCircle(0.8f, 0.8f, 0.0f);\n}	code	cpp	2024-11-01 17:40:38.427169	1
+8567	3207	Vetrices, ModelView, Projection	text	list	2024-11-01 17:40:38.430882	1
+8568	3208	glMatrixMode(GL_VETRICES);	code	cpp	2024-11-01 17:40:38.435554	1
+8569	3208	glMatrixMode(GL_MODELVIEW);	code	cpp	2024-11-01 17:40:38.435554	2
+8570	3208	glMatrixMode(GL_PROJECTION);	code	cpp	2024-11-01 17:40:38.435554	3
+8571	3209	Initially, model view matrix is an identity matrix which basically does nothing.	text	txt	2024-11-01 17:40:38.438418	1
+8572	3209	glLoadIdentity();	code	cpp	2024-11-01 17:40:38.438418	2
+8573	3210	void Window::draw()\n{\n    glMatrixMode(GL_MODELVIEW);\n    glLoadIdentity();\n    glScalef(0.1f, 0.1f, 1.0f);\n\n    drawCircle(0.8f, 0.8f, 0.0f);\n}	code	cpp	2024-11-01 17:40:38.441023	1
+8574	3211	glPushMatrix();\nglLoadIdentity();\nglPushMatrix();\nglScalef(x, y, 1.0);\nglPopMatrix();	code	cpp	2024-11-01 17:40:38.443058	1
+8575	3212		text	txt	2024-11-01 17:40:38.445461	1
+8576	3212		code	cpp	2024-11-01 17:40:38.445461	2
+8577	3213		text	txt	2024-11-01 17:40:38.447709	1
+8578	3213		code	cpp	2024-11-01 17:40:38.447709	2
+8579	3214		text	txt	2024-11-01 17:40:38.45027	1
+8580	3214	void Window::draw()\n{\n    glMatrixMode(GL_MODELVIEW);\n    glLoadIdentity();\n    glScalef(0.1f, 0.1f, 1.0f);\n\n    // central circle\n    drawCircle(0.8f, 0.8f, 0.0f);\n\n    // outer rotating circle\n    {\n        glPushMatrix();\n        glRotatef(outer_angle, 0.0f, 0.0f, 1.0f);\n        glTranslatef(0.0f, 5.0f, 0.0f);\n        glScalef(0.6f, 0.6f, 1.0f);\n        drawCircle(0.0f, 0.0f, 0.5f);\n        outer_angle += 2;\n\n        // inner rotating circle\n        {\n            glPushMatrix();\n            glRotatef(inner_angle, 0.0f, 0.0f, 1.0f);\n            glTranslatef(0.00f, 3.0f, 0.0f);\n            glScalef(0.5f, 0.5f, 1.0f);\n            drawCircle(0.5f, 0.5f, 0.5f);\n            glPopMatrix();\n            inner_angle += 5;\n        }\n\n        glPopMatrix();\n    }\n}	code	cpp	2024-11-01 17:40:38.45027	2
 \.
 
 
@@ -12847,14 +12868,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2676	1382	Upload the recipes packages to the target using devtool?	open	2024-09-22 10:06:27.403819	2024-09-22 10:06:27.403819
 2677	1382	Generate patches from git commits made locally with devtool?	open	2024-09-22 10:06:27.406359	2024-09-22 10:06:27.406359
 2678	1382	Remove a recipe from devtool?	open	2024-09-22 10:06:27.408624	2024-09-22 10:06:27.408624
-2679	1464	What are the properties of the tiniest unit of a graphical unit?	open	2024-09-23 20:32:01.289898	2024-09-23 20:32:01.289898
-2680	1465	What is a pipeline?	open	2024-09-23 20:32:01.293364	2024-09-23 20:32:01.293364
-2681	1465	What are the pipeline stages?	open	2024-09-23 20:32:01.295344	2024-09-23 20:32:01.295344
-2682	1465	What is the responsibility of OpenGL?	open	2024-09-23 20:32:01.29794	2024-09-23 20:32:01.29794
-2683	1466	What cross-platform window systems are available to use with OpenGL?	open	2024-09-23 20:32:01.300609	2024-09-23 20:32:01.300609
-2684	1466	Install GLFW from source?	open	2024-09-23 20:32:01.303471	2024-09-23 20:32:01.303471
-2685	1466	Create a window with GLFW?	open	2024-09-23 20:32:01.305907	2024-09-23 20:32:01.305907
-2686	1467	Draw a colored triangle?	open	2024-09-23 20:32:01.308282	2024-09-23 20:32:01.308282
 2687	1486	When do we need to specify template arguments for class templates?	open	2024-09-28 14:30:48.18392	2024-09-28 14:30:48.18392
 2688	1486	Use compile-time type deduction to declare a non-type template parameter?	open	2024-09-28 14:30:48.187622	2024-09-28 14:30:48.187622
 2689	1486	What is the substitution to recurring templates?	open	2024-09-28 14:30:48.189625	2024-09-28 14:30:48.189625
@@ -12893,6 +12906,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2722	1487	Write a test entry point?	open	2024-10-05 21:49:49.04342	2024-10-05 21:49:49.04342
 2723	1487	When should we write manual main function for tests?	open	2024-10-05 21:49:49.045297	2024-10-05 21:49:49.045297
 2724	1487	What are the limitations of using GoogleTest assertions in threads?	open	2024-10-05 21:49:49.047751	2024-10-05 21:49:49.047751
+2682	1464	What is the responsibility of OpenGL?	open	2024-09-23 20:32:01.29794	2024-09-23 20:32:01.29794
+2683	1464	What cross-platform window systems are available to use with OpenGL?	open	2024-09-23 20:32:01.300609	2024-09-23 20:32:01.300609
+2684	1464	Install GLFW from source?	open	2024-09-23 20:32:01.303471	2024-09-23 20:32:01.303471
+2685	1464	Create a window with GLFW?	open	2024-09-23 20:32:01.305907	2024-09-23 20:32:01.305907
+2686	1464	Draw a colored triangle?	open	2024-09-23 20:32:01.308282	2024-09-23 20:32:01.308282
 2777	1489	What is a mock?	open	2024-10-07 21:15:43.789371	2024-10-07 21:15:43.789371
 2778	1489	What is the workflow of running a mock object?	open	2024-10-07 21:15:43.802311	2024-10-07 21:15:43.802311
 2779	1489	What are the use cases of mocks?	open	2024-10-07 21:15:43.805209	2024-10-07 21:15:43.805209
@@ -13348,6 +13366,22 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3199	1538	Define a matcher taking argumetns?	open	2024-10-30 21:41:01.813532	2024-10-30 21:41:01.813532
 3200	1538	Define a matcher taking a range?	open	2024-10-30 21:41:01.817887	2024-10-30 21:41:01.817887
 3201	1538	What are the restrictions of defining a matcher?	open	2024-10-30 21:41:01.822841	2024-10-30 21:41:01.822841
+2679	1464	What are the properties of the tiniest unit of a graphical unit?	open	2024-09-23 20:32:01.289898	2024-09-23 20:32:01.289898
+2680	1464	What is a pipeline?	open	2024-09-23 20:32:01.293364	2024-09-23 20:32:01.293364
+2681	1464	What are the pipeline stages?	open	2024-09-23 20:32:01.295344	2024-09-23 20:32:01.295344
+3202	1464	What is an OpenGL context?	open	2024-11-01 17:40:38.408669	2024-11-01 17:40:38.408669
+3203	1465	How circles are drawn in OpenGL?	open	2024-11-01 17:40:38.418294	2024-11-01 17:40:38.418294
+3204	1465	What are the coordinates of screen corners in OpenGL?	open	2024-11-01 17:40:38.42091	2024-11-01 17:40:38.42091
+3205	1465	Coordinate the triangles rotating the origin to shape a circle?	open	2024-11-01 17:40:38.423694	2024-11-01 17:40:38.423694
+3206	1465	Draw a circle?	open	2024-11-01 17:40:38.427169	2024-11-01 17:40:38.427169
+3207	1465	What are the transformation slots?	open	2024-11-01 17:40:38.430882	2024-11-01 17:40:38.430882
+3208	1465	Select each of the transformation slots?	open	2024-11-01 17:40:38.435554	2024-11-01 17:40:38.435554
+3209	1465	Reset model view matrix to identity matrix?	open	2024-11-01 17:40:38.438418	2024-11-01 17:40:38.438418
+3210	1465	Scale down a circle to look smaller?	open	2024-11-01 17:40:38.441023	2024-11-01 17:40:38.441023
+3211	1465	Store and restore matrix state before and after translations?	open	2024-11-01 17:40:38.443058	2024-11-01 17:40:38.443058
+3212	1465		open	2024-11-01 17:40:38.445461	2024-11-01 17:40:38.445461
+3213	1465		open	2024-11-01 17:40:38.447709	2024-11-01 17:40:38.447709
+3214	1465	Rotate a two dimensional circles rotating around z axis?	open	2024-11-01 17:40:38.45027	2024-11-01 17:40:38.45027
 \.
 
 
@@ -19618,7 +19652,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 94	Mastering Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 96	Embedded Linux using Yocto	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 97	C++ Templates: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4	\N
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
@@ -19634,6 +19667,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
+99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 17:40:38.45027	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
@@ -21090,28 +21124,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1350	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	4
 1353	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	7
 1359	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	13
-1468	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	5
-1469	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	6
-1470	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	7
-1471	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	8
-1472	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	9
-1473	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	10
-1474	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	11
-1475	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	12
-1476	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	13
-1477	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	14
-1478	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	15
-1479	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	16
-1480	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	17
-1481	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	18
-1482	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	19
-1483	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	20
-1484	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	21
-1485	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	22
-1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	1
-1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	2
-1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
-1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
 838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
@@ -21185,6 +21197,11 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1539	102	open	http://google.github.io/googletest/reference/actions.html	2024-10-29 22:20:08.113593	2024-10-29 22:20:08.113593	8
 1487	102	completed	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.188936	1
 1538	102	completed	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 21:41:01.824465	7
+1468	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	5
+1466	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
+1467	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
+1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
+1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
 \.
 
 
@@ -22621,26 +22638,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	790	2024-09-23 20:36:18.228435
 1	828	2024-09-23 20:36:18.228435
 1	1468	2024-09-23 20:36:18.228435
-1	1469	2024-09-23 20:36:18.228435
-1	1470	2024-09-23 20:36:18.228435
-1	1471	2024-09-23 20:36:18.228435
-1	1472	2024-09-23 20:36:18.228435
-1	1473	2024-09-23 20:36:18.228435
-1	1474	2024-09-23 20:36:18.228435
-1	1475	2024-09-23 20:36:18.228435
-1	1476	2024-09-23 20:36:18.228435
-1	1477	2024-09-23 20:36:18.228435
-1	1478	2024-09-23 20:36:18.228435
-1	1479	2024-09-23 20:36:18.228435
-1	1480	2024-09-23 20:36:18.228435
-1	1481	2024-09-23 20:36:18.228435
-1	1482	2024-09-23 20:36:18.228435
-1	1483	2024-09-23 20:36:18.228435
-1	1484	2024-09-23 20:36:18.228435
-1	1485	2024-09-23 20:36:18.228435
-1	1464	2024-09-23 20:36:18.228435
-1	1465	2024-09-23 20:36:18.228435
-1	1466	2024-09-23 20:36:18.228435
 1	1467	2024-09-23 20:36:18.228435
 1	1486	2024-10-03 14:27:34.014637
 1	1488	2024-10-05 21:52:28.034683
@@ -22673,6 +22670,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
+1	1466	2024-11-01 09:28:46.7164
+1	1464	2024-11-01 17:07:03.201062
 1	1520	2024-10-13 11:08:13.847027
 1	1522	2024-10-13 11:08:13.847027
 1	1523	2024-10-13 11:08:13.847027
@@ -22705,13 +22704,14 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	205	2024-10-19 10:04:19.122973
 1	207	2024-10-20 08:52:20.306621
 1	1487	2024-10-14 11:40:11.153339
-1	1490	2024-10-20 11:27:56.790817
 1	208	2024-10-20 11:34:26.931404
 1	1413	2024-10-21 23:49:03.115921
 1	113	2024-10-25 20:04:18.135342
 1	1293	2024-10-25 23:32:11.847594
 1	210	2024-10-27 21:21:45.392906
 1	217	2024-10-27 22:34:09.138173
+1	1490	2024-10-30 21:51:09.826316
+1	1465	2024-11-01 09:27:37.378901
 \.
 
 
@@ -23421,7 +23421,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8559, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8580, true);
 
 
 --
@@ -23449,7 +23449,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3201, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3214, true);
 
 
 --
