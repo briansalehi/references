@@ -10012,6 +10012,13 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8578	3213		code	cpp	2024-11-01 17:40:38.447709	2
 8579	3214		text	txt	2024-11-01 17:40:38.45027	1
 8580	3214	void Window::draw()\n{\n    glMatrixMode(GL_MODELVIEW);\n    glLoadIdentity();\n    glScalef(0.1f, 0.1f, 1.0f);\n\n    // central circle\n    drawCircle(0.8f, 0.8f, 0.0f);\n\n    // outer rotating circle\n    {\n        glPushMatrix();\n        glRotatef(outer_angle, 0.0f, 0.0f, 1.0f);\n        glTranslatef(0.0f, 5.0f, 0.0f);\n        glScalef(0.6f, 0.6f, 1.0f);\n        drawCircle(0.0f, 0.0f, 0.5f);\n        outer_angle += 2;\n\n        // inner rotating circle\n        {\n            glPushMatrix();\n            glRotatef(inner_angle, 0.0f, 0.0f, 1.0f);\n            glTranslatef(0.00f, 3.0f, 0.0f);\n            glScalef(0.5f, 0.5f, 1.0f);\n            drawCircle(0.5f, 0.5f, 0.5f);\n            glPopMatrix();\n            inner_angle += 5;\n        }\n\n        glPopMatrix();\n    }\n}	code	cpp	2024-11-01 17:40:38.45027	2
+8581	3215	Shaders.	text	txt	2024-11-01 18:40:02.344728	1
+8582	3216	Vertex >> Vertex Shader >> Pixel Shader	text	txt	2024-11-01 18:40:02.350755	1
+8583	3217	1. position\n2. light intensity\n3. flow field tension	text	list	2024-11-01 18:40:02.353754	1
+8584	3217	struct Vec4 { float x; float y; float z; float w; };\nstruct Color4 { float r; float g; float b; float a; };\n\nstruct Vertex { Vec4 position; Color4 color; };\n\nVertex vertices[] = { {{-1, -1, 1, 0}, {1, -1, -1, 0}}, ... };	code	cpp	2024-11-01 18:40:02.353754	2
+8585	3218	Vertex defines the color and position a shape.	text	txt	2024-11-01 18:40:02.358443	1
+8586	3218	Vertex shader applies transformations.	text	txt	2024-11-01 18:40:02.358443	2
+8587	3218	Pixel shader finds the final output for each pixel.	text	txt	2024-11-01 18:40:02.358443	3
 \.
 
 
@@ -13382,6 +13389,10 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3212	1465		open	2024-11-01 17:40:38.445461	2024-11-01 17:40:38.445461
 3213	1465		open	2024-11-01 17:40:38.447709	2024-11-01 17:40:38.447709
 3214	1465	Rotate a two dimensional circles rotating around z axis?	open	2024-11-01 17:40:38.45027	2024-11-01 17:40:38.45027
+3215	1466	What structure is used instead of a vertex due to performance reasons?	open	2024-11-01 18:40:02.344728	2024-11-01 18:40:02.344728
+3216	1466	What is the modern pipeline for shaders?	open	2024-11-01 18:40:02.350755	2024-11-01 18:40:02.350755
+3217	1466	What is the vertex structure?	open	2024-11-01 18:40:02.353754	2024-11-01 18:40:02.353754
+3218	1466	What each slot of a shaders do in pipeline?	open	2024-11-01 18:40:02.358443	2024-11-01 18:40:02.358443
 \.
 
 
@@ -19667,7 +19678,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
-99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 17:40:38.45027	1	\N
+99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 18:40:02.358443	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
@@ -21198,10 +21209,10 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1487	102	completed	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.188936	1
 1538	102	completed	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 21:41:01.824465	7
 1468	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	5
-1466	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	3
 1467	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
+1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 18:40:02.358443	3
 \.
 
 
@@ -23421,7 +23432,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8580, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8587, true);
 
 
 --
@@ -23449,7 +23460,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3214, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3218, true);
 
 
 --
