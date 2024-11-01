@@ -10019,6 +10019,14 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8585	3218	Vertex defines the color and position a shape.	text	txt	2024-11-01 18:40:02.358443	1
 8586	3218	Vertex shader applies transformations.	text	txt	2024-11-01 18:40:02.358443	2
 8587	3218	Pixel shader finds the final output for each pixel.	text	txt	2024-11-01 18:40:02.358443	3
+8588	3219	Data >> Vertex Shader >> Fragment Shader >> Program Linking >> VBO >> Attribute Locations >> Uniforms	text	list	2024-11-01 19:32:39.065707	1
+8589	3220	GLuint vertexShader;\nvertexShader = glCreateShader(GL_VERTEX_SHADER);\nglShaderSource(vertexShader, 1, &src, 0);	code	cpp	2024-11-01 19:32:39.073691	1
+8590	3220	This is equivallent to creating a new object in C++.	text	txt	2024-11-01 19:32:39.073691	2
+8591	3221	glCompileShader(vertexShader);	code	cpp	2024-11-01 19:32:39.076742	1
+8592	3222	GLuint shaderProgram;\nshaderProgram = glCreateProgram();	code	cpp	2024-11-01 19:32:39.07931	1
+8593	3223	glAttachShader(shaderProgram, vertexShader);\nglAttachShader(shaderProgram, fragmentShader);	code	cpp	2024-11-01 19:32:39.081865	1
+8594	3224	glLinkProgram(shaderProgram);\nglUseProgram(shaderProgram);	code	cpp	2024-11-01 19:32:39.084718	1
+8595	3225	void Window::show()\n{\n    constexpr const GLchar* shaderSource{ R"(\n        #version 120\n\n        attribute vec4 inColor;\n        attribute vec4 inPosition;\n        uniform mat4 matrix;\n        varying vec4 outColor;\n\n        void main()\n        {\n            outColor = inColor;\n            gl_Position = inPosition * matrix;\n        }\n    )"};\n\n    constexpr const GLchar* fragmentSource{ R"(\n        #version 120\n\n        varying vec4 outColor;\n\n        void main()\n        {\n            gl_FragColor = outColor;\n        }\n    )"};\n\n    // vertex shader\n    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);\n    glShaderSource(vertexShader, 1, &shaderSource, 0);\n    glCompileShader(vertexShader);\n\n    GLuint compilationStatus;\n    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compilationStatus);\n\n    if (compilationStatus == GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(vertexShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    // fragment shader\n    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);\n    glShaderSource(fragmentShader, 1, &fragmentSource, 0);\n    glCompileShader(fragmentShader);\n\n    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &compilationStatus);\n\n    if (compilationStatus = GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(fragmentShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    // shader program\n    GLuint shaderProgram = glCreateProgram();\n    glAttachShader(shaderProgram, vertexShader);\n    glAttachShader(shaderProgram, fragmentShader);\n    glLinkProgram(shaderProgram);\n\n    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &compilationStatus);\n\n    if (compilationStatus = GL_FALSE)\n    {\n        GLchar message[256];\n        glGetShaderInfoLog(fragmentShader, sizeof(message), 0, &message[0]);\n        std::cerr << message;\n        return;\n    }\n\n    glUseProgram(shaderProgram);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        draw();\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp	2024-11-01 19:32:39.087846	1
 \.
 
 
@@ -13393,6 +13401,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3216	1466	What is the modern pipeline for shaders?	open	2024-11-01 18:40:02.350755	2024-11-01 18:40:02.350755
 3217	1466	What is the vertex structure?	open	2024-11-01 18:40:02.353754	2024-11-01 18:40:02.353754
 3218	1466	What each slot of a shaders do in pipeline?	open	2024-11-01 18:40:02.358443	2024-11-01 18:40:02.358443
+3219	1466	What slots exist in the rendering pipeline?	open	2024-11-01 19:32:39.065707	2024-11-01 19:32:39.065707
+3220	1466	Initialize a shader class?	open	2024-11-01 19:32:39.073691	2024-11-01 19:32:39.073691
+3221	1466	Compile a shader in source?	open	2024-11-01 19:32:39.076742	2024-11-01 19:32:39.076742
+3222	1466	Create a fragment shader?	open	2024-11-01 19:32:39.07931	2024-11-01 19:32:39.07931
+3223	1466	Attach shaders to a program?	open	2024-11-01 19:32:39.081865	2024-11-01 19:32:39.081865
+3224	1466	Link program shader?	open	2024-11-01 19:32:39.084718	2024-11-01 19:32:39.084718
+3225	1466	Create a vertex and fragment shader to create a program?	open	2024-11-01 19:32:39.087846	2024-11-01 19:32:39.087846
 \.
 
 
@@ -19678,7 +19693,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
-99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 18:40:02.358443	1	\N
+99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 19:32:39.087846	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
@@ -21212,7 +21227,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1467	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
-1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 18:40:02.358443	3
+1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 19:32:39.087846	3
 \.
 
 
@@ -23432,7 +23447,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8587, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8595, true);
 
 
 --
@@ -23460,7 +23475,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3218, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3225, true);
 
 
 --
