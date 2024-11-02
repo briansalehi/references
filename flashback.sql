@@ -10072,6 +10072,24 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8638	3253	float shift{100.0f};\nauto rotated{glm::vec2(10.0f, 10.0f)};\nauto view{glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -shift))};\nview = glm::rotate(view, rotated.y, glm::vec3(-1.0f, 0.0f, 0.0f));	code	cpp	2024-11-02 11:30:33.926832	2
 8639	3254	const GLchar* vertex120 = R"END(\n#version 120\nattribute vec3 position;\nattribute vec3 color;\nattribute vec2 inUvs;\nvarying vec3 outColor;\nvarying vec2 outUvs;\nuniform float time;\nuniform mat4 matrix;\nuniform mat4 projection;\nvoid main()\n{\n    float theta = time;\n    \n    float co = cos(theta);\n    float si = sin(theta);\n    \n    mat4 rotationY = mat4(co, 0, si,  0,\n                          0,  1,  0,  0,\n                          -si,  0, co, 0,\n                          0,  0,  0,  1);\n\n    co = cos(theta/2.);\n    si = sin(theta/2.);\n\n    mat4 rotationX = mat4(1, 0, 0, 0,\n                          0, co, -si, 0,\n                          0, si, co, 0,\n                          0, 0, 0, 1);\n\n    outColor = color;\n    outUvs = inUvs;\n    gl_Position = matrix * rotationY * rotationX * vec4(position,1.f);\n}\n)END";\n\n// fragment shader source\n\nconst GLchar* raster120 = R"END(\n#version 120\nvarying vec3 outColor;\nvarying vec2 outUvs;\nuniform sampler2D tex; // 1st texture slot by default\nuniform float time;\nvoid main()\n{\n    gl_FragColor = vec4(texture2D(tex, outUvs)/2.f + vec4(outColor,1.f)/2.f);\n}\n)END";\n\nGLuint attribPosition;\nattribPosition = glGetAttribLocation(shaderProgram, "position");\nglEnableVertexAttribArray(attribPosition);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint attribColor;\nattribColor = glGetAttribLocation(shaderProgram, "color");\nglEnableVertexAttribArray(attribColor);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglVertexAttribPointer(attribColor, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLfloat matrix[] = {\n    0.5, 0,   0,   0,\n    0,   0.5, 0,   0,\n    0,   0,   0.5, 0,\n    0,   0,   0,   1\n};\n\nGLuint attribMatrix;\nattribMatrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(attribMatrix, 1, GL_FALSE, matrix);\n\nGLuint uniformTime;\nuniformTime = glGetUniformLocation(shaderProgram, "time");\n\n\nglm::mat4 projectionMatrix = glm::mat4(1.f);// glm::perspective(glm::radians(60.f), 1.f, 0.f, 10.f);\nGLint uniformProjection = glGetUniformLocation(shaderProgram, "projection");\nglUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projectionMatrix));\n\n// tex\n\nbmpread_t bitmap;\n\nif (!bmpread("texture2.bmp",0, &bitmap)) {\n    std::cout << "Texture loading error";\n    exit(-1);\n}\n\nGLuint texid;\nglGenTextures(1, &texid);\nglActiveTexture(GL_TEXTURE0);\nglBindTexture(GL_TEXTURE_2D, texid);\n\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);\nglPixelStorei(GL_UNPACK_ALIGNMENT, 1);\n\nglTexImage2D(GL_TEXTURE_2D,0,3,bitmap.width,bitmap.height,0,GL_RGB,GL_UNSIGNED_BYTE,bitmap.data);\n\nGLuint attribTex = glGetAttribLocation(shaderProgram, "tex");\nglUniform1i(attribTex, 0);\n\n// uvs\n\nGLfloat uvs[] = {\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 1,\n    1, 1,\n    1, 0,\n};\n\nGLuint uvsData;\nglGenBuffers(1, &uvsData);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglBufferData(GL_ARRAY_BUFFER, sizeof(uvs), uvs, GL_STATIC_DRAW);\n\nGLuint attribUvs;\nattribUvs = glGetAttribLocation(shaderProgram, "inUvs");\nglEnableVertexAttribArray(attribUvs);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglVertexAttribPointer(attribUvs, 2, GL_FLOAT, GL_FALSE, 0, 0);	code	cpp	2024-11-02 11:30:33.929636	1
 8640	3255	const GLchar* vertex120 = R"END(\n#version 120\nattribute vec3 position;\nattribute vec3 color;\nvarying vec3 outColor;\nattribute vec2 inUvs;\nvarying vec2 outUvs;\nuniform float time;\nuniform mat4 matrix;\nuniform mat4 projection;\nvoid main()\n{\n    float theta = time;\n    \n    float co = cos(theta);\n    float si = sin(theta);\n    \n    mat4 rotationY = mat4(co, 0, si,  0,\n                          0,  1,  0,  0,\n                          -si,  0, co, 0,\n                          0,  0,  0,  1);\n\n    co = cos(theta/2.);\n    si = sin(theta/2.);\n\n    mat4 rotationX = mat4(1, 0, 0, 0,\n                          0, co, -si, 0,\n                          0, si, co, 0,\n                          0, 0, 0, 1);\n    outUvs = inUvs;\n    outColor = color;\n    gl_Position = projection * matrix * rotationY * rotationX * vec4(position,1.f);\n}\n)END";\n\n// fragment shader source\n\nconst GLchar* raster120 = R"END(\n#version 120\nvarying vec3 outColor;\nvarying vec2 outUvs;\nuniform sampler2D tex;\nuniform float time;\nvoid main()\n{\n    gl_FragColor = vec4(outColor,1.f)/2.f + vec4(texture2D(tex,outUvs))/2.f;\n}\n)END";\n\nGLfloat vertices[] = {\n    -1, -1, +1, // 0\n    -1, +1, +1,\n    +1, +1, +1,\n    +1, -1, +1,\n    -1, -1, -1,\n    -1, +1, -1,\n    +1, +1, -1,\n    +1, -1, -1, //7\n    -1, -1, +1, // "8" - 0\n    -1, +1, +1, // "9" - 1, etc...\n    +1, +1, +1,\n    +1, -1, +1,\n};\n\nGLfloat colors[] = {\n    1, 0, 0, // rgb\n    0, 1, 0,\n    0, 0, 1,\n    1, 0, 1,\n    1, 1, 0,\n    0, 1, 1,\n    0, 1, 0,\n    1, 0, 0,\n    1, 1, 1, // colors for 4 additional verices\n    1, 1, 1,\n    1, 1, 1,\n    1, 1, 1,\n};\n\nGLubyte indices[] = {\n    0,1,\n    1,2,\n    2,3,\n    3,0,\n    0,4,\n    4,5,\n    5,1,\n    1,0,\n    1,5,\n    5,6,\n    6,2,\n    2,1,\n    3,2,\n    2,6,\n    6,7,\n    7,3,\n    7,6,\n    6,5,\n    5,4,\n    4,7,\n    0,3,\n    3,7,\n    7,4,\n    4,0\n};\n\nGLuint verticesBuf;\nglGenBuffers(1, & verticesBuf);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);\n\nGLuint colorsBuf;\nglGenBuffers(1, & colorsBuf);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);\n\nGLuint indicesBuf;\nglGenBuffers(1, & indicesBuf);\nglBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesBuf);\nglBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);\n\n// ----------------- attributes\n\nGLuint attribPosition;\nattribPosition = glGetAttribLocation(shaderProgram, "position");\nglEnableVertexAttribArray(attribPosition);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint attribColor;\nattribColor = glGetAttribLocation(shaderProgram, "color");\nglEnableVertexAttribArray(attribColor);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglVertexAttribPointer(attribColor, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLfloat matrix[] = {\n    0.5, 0,   0,   0,\n    0,   0.5, 0,   0,\n    0,   0,   0.5, 0,\n    0,   0,   0,   1\n};\n\nGLuint attribMatrix;\nattribMatrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(attribMatrix, 1, GL_FALSE, matrix);\n\nGLuint uniformTime;\nuniformTime = glGetUniformLocation(shaderProgram, "time");\n\n// ----------------- texture\n\nbmpread_t bitmap;\nif (!bmpread("texture2.bmp", 0, &bitmap)) {\n    std::cout << "texture loading error";\n    exit(-1);\n}\n\nGLuint texid;\nglGenTextures(1, &texid);\nglActiveTexture(GL_TEXTURE0);\nglBindTexture(GL_TEXTURE_2D, texid);\n\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);\nglPixelStorei(GL_UNPACK_ALIGNMENT, 1);\n\nglTexImage2D(GL_TEXTURE_2D,0,3,bitmap.width,bitmap.height,0,GL_RGB,GL_UNSIGNED_BYTE,bitmap.data);\n\nGLuint attribTex = glGetAttribLocation(shaderProgram, "tex");\nglUniform1i(attribTex, 0);\n\nGLfloat uvs[] = {\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0, // full rect for our additional "overlay" side\n    0, 1,\n    1, 1,\n    1, 0,\n};\n\nGLuint uvsData;\nglGenBuffers(1, &uvsData);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglBufferData(GL_ARRAY_BUFFER, sizeof(uvs), uvs, GL_STATIC_DRAW);\n\nGLuint attribUvs;\nattribUvs = glGetAttribLocation(shaderProgram, "inUvs");\nglEnableVertexAttribArray(attribUvs);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglVertexAttribPointer(attribUvs, 2, GL_FLOAT, GL_FALSE, 0, 0);\n\n//glEnable(GL_CULL_FACE); //cw backface culling\n\nglLineWidth(5);\n\nglm::mat4 scaleMatrix = glm::mat4(1.f);\nscaleMatrix = glm::translate(scaleMatrix, glm::vec3(0,0,-2));\n\nglm::mat4 projMatrix = glm::perspective(glm::radians(60.f),1.f,0.f,10.f) * scaleMatrix;\nGLint uniformProj = glGetUniformLocation(shaderProgram, "projection");\nglUniformMatrix4fv(uniformProj, 1, GL_FALSE, glm::value_ptr(projMatrix));	code	cpp	2024-11-02 11:30:33.932927	1
+8641	3256	1. Single Responsibility Principle\n2. Open Closed Principle\n3. Liskov Substitution Principle\n4. Interface Segregation Principle\n5. Dependency Inversion Principle	text	list	2024-11-02 22:09:08.689532	1
+8642	3257	A class should have only one reason to change, thus should only have one responsibility, otherwise any change will break it.	text	txt	2024-11-02 22:09:08.704996	1
+8643	3257	class basic_note\n{\npublic:\n    void add(std::size_t const priority, std::string const& title);\n    void remove(std::size_t const priority);\n    void display(std::size_t const priority);\n};	code	cpp	2024-11-02 22:09:08.704996	2
+8644	3257	class basic_note\n{\npublic:\n    void add(std::size_t const priority, std::string const& title);\n    void remove(std::size_t const priority);\n};\n\nclass viewer\n{\npublic:\n    void display(basic_note const& note) noexcept;\n};	code	cpp	2024-11-02 22:09:08.704996	3
+8645	3258	Modules should be open for extension but closed for modification.	text	txt	2024-11-02 22:09:08.710076	1
+8646	3258	class basic_note\n{\npublic:\n    void add(std::size_t const priority, std::string const& title);\n\n    void add(std::size_t const priority, std::string const& title)\n    {\n        if (title.starts_with("!"))\n        {\n            /* ... */\n        }\n        else\n        {\n            /* ... */\n        }\n    }\n\n    virtual void remove(std::size_t const priority);\n};	code	cpp	2024-11-02 22:09:08.710076	2
+8647	3258	class basic_note\n{\npublic:\n    virtual void add(std::size_t const priority, std::string const& title);\n    virtual void remove(std::size_t const priority);\n};\n\nclass tagged_note: public basic_note\n{\npublic:\n    void add(std::size_t const priority, std::string const& title) override\n    {\n        if (title.starts_with("!"))\n        {\n            /* ... */\n        }\n        else\n        {\n            basic_note::add(priotity, title);\n        }\n    }\n};	code	cpp	2024-11-02 22:09:08.710076	3
+8648	3259	Subtypes must be replacable with their base types without altering the correctness of the program. A subclass must have all the behaviors of its base type and must not remove or change its parent behavior.	text	txt	2024-11-02 22:09:08.71313	1
+8649	3259	class basic_player\n{\npublic:\n    virtual void play() = 0;\n    virtual void pause() = 0;\n    virtual void resume() = 0;\n    virtual void stop() = 0;\n};\n\nclass radio: public basic_player\n{\npublic:\n    void play() override;\n    void pause() override { std::runtime_error("radio cannot be interrupted"); }\n    void resume() override;\n    voiid stop() override;\n};\n\nvoid interrupt(std::shared_ptr<basic_player> const& player)\n{\n    player.pause();\n}\n\nradio digital_radio{};\ndigital_radio.play();\n\ninterrupt(digital_radio); // runtime error	code	cpp	2024-11-02 22:09:08.71313	2
+8650	3259	class basic_player\n{\npublic:\n    virtual void play() = 0;\n    virtual void stop() = 0;\n};\n\nclass resumable_player: public basic_player\n{\npublic:\n    virtual void pause() = 0;\n    virtual void resume() = 0;\n};\n\nclass radio: public basic_player\n{\npublic:\n    void play() override;\n    voiid stop() override;\n};\n\nclass music_player: public resumable_player\n{\npublic:\n    void play() override;\n    void pause() override;\n    void resume() override;\n    void stop() override;\n};\n\nvoid interrupt(std::shared_ptr<basic_player> const& player)\n{\n    player.pause();\n}\n\nradio digital_radio{};\ndigital_radio.play();\n\ninterrupt(digital_radio); // compile time error\n\nmusic_player mp3_player{};\nmp3_player.play();\n\ninterrupt(mp3_player); // okay	code	cpp	2024-11-02 22:09:08.71313	3
+8651	3260	Clients should not be forced to use the methods they do not use. Some interfaces have too many methods but not all of them might be useful in subtypes. Separate the interface and reorganize methods based on usage.	text	txt	2024-11-02 22:09:08.716526	1
+8652	3260	An stream class that has both write and read operations are a good example. We may not use both operations, so there should be separate types for each. Standard library has two similar types:	text	txt	2024-11-02 22:09:08.716526	2
+8653	3260	std::ifstream readable{};	code	cpp	2024-11-02 22:09:08.716526	3
+8654	3260	std::ofstream writable{};	code	cpp	2024-11-02 22:09:08.716526	4
+8655	3260	std::fstream bidirectional{};	code	cpp	2024-11-02 22:09:08.716526	5
+8656	3261	Abstractions should not depend on details. Details should depend on abstractions.	text	txt	2024-11-02 22:09:08.721556	1
+8657	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<file_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	2
+8658	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<basic_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	3
 \.
 
 
@@ -13483,6 +13501,12 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3253	1468	Use GLM math library?	open	2024-11-02 11:30:33.926832	2024-11-02 11:30:33.926832
 3254	1468	Texture a cube?	open	2024-11-02 11:30:33.929636	2024-11-02 11:30:33.929636
 3255	1468	Project a cube with correct perspectives?	open	2024-11-02 11:30:33.932927	2024-11-02 11:30:33.932927
+3256	1540	What are each parts of the SOLID principle?	open	2024-11-02 22:09:08.689532	2024-11-02 22:09:08.689532
+3257	1540	What does the single responsibility principle define?	open	2024-11-02 22:09:08.704996	2024-11-02 22:09:08.704996
+3258	1540	What does the open closed principle define?	open	2024-11-02 22:09:08.710076	2024-11-02 22:09:08.710076
+3259	1540	What does the liskov substitution principle define?	open	2024-11-02 22:09:08.71313	2024-11-02 22:09:08.71313
+3260	1540	What does the interface segregation principle define?	open	2024-11-02 22:09:08.716526	2024-11-02 22:09:08.716526
+3261	1540	What does the dependency inversion principle define?	open	2024-11-02 22:09:08.721556	2024-11-02 22:09:08.721556
 \.
 
 
@@ -19768,6 +19792,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
+107	Creational Design Patterns in Modern C++	https://subscription.packtpub.com/video/programming/9781800568242	video	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.721556	1	\N
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.932927	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
@@ -21298,11 +21323,18 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1537	102	completed	http://google.github.io/googletest/reference/assertions.html	2024-10-29 22:20:01.157344	2024-10-29 22:20:01.157344	6
 1539	102	open	http://google.github.io/googletest/reference/actions.html	2024-10-29 22:20:08.113593	2024-10-29 22:20:08.113593	8
 1487	102	completed	http://google.github.io/googletest/primer.html	2024-10-05 21:49:48.993968	2024-10-30 00:14:55.188936	1
+1540	107	completed	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.724992	1
 1467	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.922343	4
 1538	102	completed	http://google.github.io/googletest/reference/matchers.html	2024-10-29 22:20:04.207231	2024-10-30 21:41:01.824465	7
 1468	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.934611	5
 1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
+1541	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	2
+1542	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	3
+1543	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	4
+1544	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	5
+1545	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	6
+1546	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	7
 \.
 
 
@@ -22739,7 +22771,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	790	2024-09-23 20:36:18.228435
 1	828	2024-09-23 20:36:18.228435
 1	1468	2024-09-23 20:36:18.228435
-1	1467	2024-09-23 20:36:18.228435
 1	1486	2024-10-03 14:27:34.014637
 1	1488	2024-10-05 21:52:28.034683
 1	1491	2024-10-05 21:52:28.034683
@@ -22771,6 +22802,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
+1	1467	2024-11-02 11:31:17.73254
 1	1466	2024-11-02 09:57:07.756614
 1	1464	2024-11-01 17:07:03.201062
 1	1520	2024-10-13 11:08:13.847027
@@ -22932,6 +22964,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 13	104
 6	105
 6	106
+6	107
 \.
 
 
@@ -23522,7 +23555,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8640, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8658, true);
 
 
 --
@@ -23550,7 +23583,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3255, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3261, true);
 
 
 --
@@ -23606,7 +23639,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 106, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 107, true);
 
 
 --
@@ -23627,7 +23660,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1539, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1546, true);
 
 
 --
