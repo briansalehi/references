@@ -10059,6 +10059,9 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8625	3245	Uniforms are the last stage of the rendering pipeline and they can define constant global values like rotation matrices to shaders.	text	txt	2024-11-01 22:34:14.792313	1
 8626	3245	GLuint uniform_matrix;\nuniform_matrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(uniform_matrix, 1, GL_FALSE, &matrix);	code	cpp	2024-11-01 22:34:14.792313	2
 8627	3246	void Window::show()\n{\n    // vertex shader\n    /* ... */\n\n    // fragment shader\n    /* ... */\n\n    // shader program\n    /* ... */\n\n    // vertex buffer object\n    const GLfloat vertices[]{\n        -1.0f, -1.0f, 0.0f,\n         1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f,  1.0f, 0.0f\n    };\n\n    const GLfloat colors[]{\n        0.0f, 0.0f, 1.0f,\n        0.0f, 1.0f, 0.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 0.0f, 1.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 1.0f, 0.0f,\n    };\n\n    GLuint vertexBuffer;\n    glGenBuffers(1, &vertexBuffer);\n    GLuint colorsBuffer;\n    glGenBuffers(1, &colorsBuffer);\n\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);\n\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(colorsBuffer), colorsBuffer, GL_STATIC_DRAW);\n\n    GLint attribute_position = glGetAttribLocation(shaderProgram, "input_position");\n    glEnableVertexAttribArray(attribute_position);\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glVertexAttribPointer(attribute_position, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    GLint attribute_color = glGetAttribLocation(shaderProgram, "input_color");\n    glEnablelVertexAttribArray(attribute_color);\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glVertexAttribPointer(attribute_color, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        float sa = 0.5 * sin(angle);\n        float ca = 0.5 * cos(angle);\n        alpha += 0.1;\n\n        const GLfloat matrix[]{\n            sa, -ca, 0, 0,\n            ca, sa,  0, 0,\n            0,   0,  1, 0,\n            0,   0,  0, 1\n        };\n\n        glUniformMatrix4fv(uniform_matrix, 1, FL_FALSE, matrix);\n\n        glDrawArrays(GL_TRANGLES, 0, 6);\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp	2024-11-01 22:34:14.793403	1
+8628	3247	*fragment shader*	text	txt	2024-11-02 10:31:32.778004	1
+8629	3247	#version 120\n\nvoid main()\n{\n    float vec4 coordinates = gl_FragCoord;\n    gl_FragColor = vec4(coordinates.x, coordinates.y, coordinates.z, coordinates.w);\n}	code	gl	2024-11-02 10:31:32.778004	2
+8630	3248	float time = glfwGetTime(); }	code	cpp	2024-11-02 10:31:32.786267	1
 \.
 
 
@@ -13461,6 +13464,8 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3244	1466	What function draws triangles defined in shader program?	open	2024-11-01 22:34:14.791217	2024-11-01 22:34:14.791217
 3245	1466	Define matrices to the vertex shader?	open	2024-11-01 22:34:14.792313	2024-11-01 22:34:14.792313
 3246	1466	Draw two triangles with touching bases forming a square?	open	2024-11-01 22:34:14.793403	2024-11-01 22:34:14.793403
+3247	1466	Get access to the coordinations of fragments?	open	2024-11-02 10:31:32.778004	2024-11-02 10:31:32.778004
+3248	1466	Get the time information from GLFW?	open	2024-11-02 10:31:32.786267	2024-11-02 10:31:32.786267
 \.
 
 
@@ -19746,7 +19751,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-10-27 23:27:17.054564	1	\N
-99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-01 22:34:14.793403	1	\N
+99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-02 10:31:32.786267	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 \.
 
@@ -21268,6 +21273,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
 217	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 23:27:17.054564	13
+1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-02 10:31:32.7885	3
 1488	102	open	http://google.github.io/googletest/advanced.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
 1489	102	completed	http://google.github.io/googletest/gmock_for_dummies.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
 1490	102	writing	http://google.github.io/googletest/gmock_cook_book.html	2024-10-05 21:49:48.993968	2024-10-14 14:13:53.62219	4
@@ -21280,7 +21286,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1467	99	open	\N	2024-09-23 20:32:01.286448	2024-09-23 20:32:01.286448	4
 1464	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.295673	1
 1465	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-01 17:41:30.299029	2
-1466	99	writing	\N	2024-09-23 20:32:01.286448	2024-11-01 22:34:14.793403	3
 \.
 
 
@@ -22749,7 +22754,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
-1	1466	2024-11-01 19:33:33.655586
+1	1466	2024-11-02 09:57:07.756614
 1	1464	2024-11-01 17:07:03.201062
 1	1520	2024-10-13 11:08:13.847027
 1	1522	2024-10-13 11:08:13.847027
@@ -23500,7 +23505,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8627, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8630, true);
 
 
 --
@@ -23528,7 +23533,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3246, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3248, true);
 
 
 --
