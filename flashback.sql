@@ -10021,6 +10021,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8628	3247	*fragment shader*	text	txt	2024-11-02 10:31:32.778004	1
 8629	3247	#version 120\n\nvoid main()\n{\n    float vec4 coordinates = gl_FragCoord;\n    gl_FragColor = vec4(coordinates.x, coordinates.y, coordinates.z, coordinates.w);\n}	code	gl	2024-11-02 10:31:32.778004	2
 8630	3248	float time = glfwGetTime(); }	code	cpp	2024-11-02 10:31:32.786267	1
+8676	3265	auto operator==(const Type& rhs) const = default; // implicitly defaulted	code	cpp	2024-11-03 16:19:44.041755	3
 8632	3249	GLuint texture_id;\nglGenTextures(1, &texture_id);\nglBindTexture(GL_TEXTURE_2D, texture_id);\nglTextImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, border, GL_RGBA, GL_BYTE, pixels);	code	cpp	2024-11-02 11:30:33.910898	2
 8633	3250	const GLchar* vertex120 = R"END(\n#version 120\nattribute vec3 inPosition;\nattribute vec2 inUvs;\nvarying vec2 outUvs;\nuniform mat4 matrix;\nvoid main()\n{\n    outUvs = inUvs;\n    gl_Position = matrix * vec4(inPosition,1.f);\n}\n)END";\n\nconst GLchar* raster120 = R"END(\n#version 120\nuniform vec2 res;\nuniform float time;\nvarying vec2 outUvs;\nuniform sampler2D tex; // 1st texture slot by default\nvoid main()\n{\n    gl_FragColor = texture2D(tex, outUvs);\n}\n)END";\n\n\nGLfloat positions[] = {\n    -1, -1, 0,  // left  - bottom\n    -1,  1, 0,  // left  - top\n     1, -1, 0,  // right - bottom\n     1, -1, 0,\n    -1,  1, 0,\n     1,  1, 0\n};\n\nGLuint positionsData;\nglGenBuffers(1, &positionsData);\nglBindBuffer(GL_ARRAY_BUFFER,positionsData);\nglBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);\n\nGLfloat uvs[] = {\n    0, 0,\n    0, 1,\n    1, 0,\n    1, 0,\n    0, 1,\n    1, 1\n};\n\nGLuint uvsData;\nglGenBuffers(1, &uvsData);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglBufferData(GL_ARRAY_BUFFER, sizeof(uvs), uvs, GL_STATIC_DRAW);\n\n// ----------------- TEXTURE\n\n#pragma pack(push)  /* push current alignment to stack */\n#pragma pack(1)\n\nstruct Pixel {\n    GLubyte r;\n    GLubyte g;\n    GLubyte b;\n    // extra align bytes\n};\n\nPixel O = {0x00, 0xFF, 0x00};\nPixel X = {0xFF, 0xFF, 0x00};\nPixel o = {0x11, 0x11, 0x11};\nPixel x = {0x33, 0x33, 0x11};\n\nPixel texture[] = {\n    o, o, o, o, o,\n    o, O, o, O, o,\n    o, o, o, o, o,\n    X, x, o, x, X,\n    x, X, X, X, x,\n};\n\n#pragma pack(pop)\n\nGLuint texid;\nglGenTextures(1, &texid);\nglActiveTexture(GL_TEXTURE0);\nglBindTexture(GL_TEXTURE_2D, texid);\n\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);\nglPixelStorei(GL_UNPACK_ALIGNMENT, 1);\n\nglTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 5, 5, 0, GL_RGB, GL_UNSIGNED_BYTE, (void*) texture);\n\nGLuint attribTex = glGetAttribLocation(shaderProgram, "tex");\nglUniform1i(attribTex, 0);\n\n// ----------------- attributes\n\nGLfloat matrix[] = {\n    -1, 0, 0, 0,\n    0, -1, 0, 0,\n    0, 0, 1, 0,\n    0, 0, 0, 1\n};\n\nGLuint attribMatrix;\nattribMatrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(attribMatrix, 1, GL_FALSE, matrix);\n\nGLuint attribPosition;\nattribPosition = glGetAttribLocation(shaderProgram, "inPosition");\nglEnableVertexAttribArray(attribPosition);\nglBindBuffer(GL_ARRAY_BUFFER, positionsData);\nglVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint attribUvs;\nattribUvs = glGetAttribLocation(shaderProgram, "inUvs");\nglEnableVertexAttribArray(attribUvs);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglVertexAttribPointer(attribUvs, 2, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint uniformRes;\nuniformRes = glGetUniformLocation(shaderProgram, "res");\nglUniform2f(uniformRes, 600.f, 600.f);\n\nGLuint uniformTime;\nuniformTime = glGetUniformLocation(shaderProgram, "time");	code	cpp	2024-11-02 11:30:33.9171	1
 8634	3251		text	txt	2024-11-02 11:30:33.92029	1
@@ -10048,6 +10049,77 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8656	3261	Abstractions should not depend on details. Details should depend on abstractions.	text	txt	2024-11-02 22:09:08.721556	1
 8657	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<file_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	2
 8658	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<basic_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	3
+8659	3262	The definitions are tedious and they add a lot of visual clutter, specially that well defined types should use `noexcept`, `constexpr`, `friend`, `[[nodiscard]]` qualifiers.	text	txt	2024-11-03 16:19:44.031758	1
+8660	3262	[[nodiscard]] friend constexpr bool operator== (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator!= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator< (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator<= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator> (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator>= (const Value& lhs, const Value& rhs) noexcept;	code	cpp	2024-11-03 16:19:44.031758	2
+8661	3263	Since C++20, when the compiler finds no matching declaration for an expression `a != b`, the compiler rewrites the expression and looks for `!(a == b)`. If that does not work, the compiler also tries to change the order of the operands, so it tries `!(b == a)`.	text	txt	2024-11-03 16:19:44.038182	1
+8662	3263	operator!=(TypeA, TypeB);	code	cpp	2024-11-03 16:19:44.038182	2
+8663	3263	operator==(TypeA, TypeB);	code	cpp	2024-11-03 16:19:44.038182	3
+8664	3263	operator==(TypeB, TypeA);	code	cpp	2024-11-03 16:19:44.038182	4
+8665	3263	TypeA::operator!=(TypeB);	code	cpp	2024-11-03 16:19:44.038182	5
+8666	3263	TypeA::operator==(TypeB);	code	cpp	2024-11-03 16:19:44.038182	6
+8667	3263	TypeB::operator==(TypeA);	code	cpp	2024-11-03 16:19:44.038182	7
+8668	3263	So just implementing `operator==` is enough for the compiler to do inequality because the compiler will rewrite the expression `a != b` as `!(a == b)`.	text	txt	2024-11-03 16:19:44.038182	8
+8669	3263	Highest priority is to find a directly calling `operator!=`, and the lowest priority is to change the order of operands.	text	txt	2024-11-03 16:19:44.038182	9
+8670	3263	Having both a free-standing function and a member function is an ambiguity error.	text	txt	2024-11-03 16:19:44.038182	10
+8671	3264	There is no rule that for all relational operators it is enough to have `operator<` defined. Instead, we can define `operator<=>`.	text	txt	2024-11-03 16:19:44.040072	1
+8672	3264	auto operator<=>(const Type& rhs) const = default;	code	cpp	2024-11-03 16:19:44.040072	2
+8673	3264	This expands for all relational and equality operators.	text	txt	2024-11-03 16:19:44.040072	3
+8674	3265	Defaulted `operator==` handles equality of objects by defining `operator==` and `operator!=`, while `operator<=>` only handles relational operators. But a defaulted member `operator<=>` implicitly generates a defaulted `operator==`, resulting the full support of all relational and equality operators.	text	txt	2024-11-03 16:19:44.041755	1
+8675	3265	auto operator<=>(const Type& rhs) const = default;	code	cpp	2024-11-03 16:19:44.041755	2
+8677	3266	#include <compare>	code	cpp	2024-11-03 16:19:44.04312	1
+8678	3267	When declaring the default member `operator<=>`, the following applies for the generated operators:	text	txt	2024-11-03 16:19:44.044915	1
+8679	3267	- `noexcept`: if comparing the members never throws.\n- `constexpr`: if comparing the members is possible at compile time.\n- **rewriting**: implicit type conversions for the first operand is supported.\n- `operator==`: defines equality support with `operator==` and `operator!=`.\n- `operator<=>`: defines relational support with `<`, `<=`, `>`, `>=` operators.	text	list	2024-11-03 16:19:44.044915	2
+8680	3267	auto operator<=>(T const& rhs) const = default;	code	cpp	2024-11-03 16:19:44.044915	3
+8681	3267	Generates:	text	txt	2024-11-03 16:19:44.044915	4
+8682	3267	constexpr auto operator<=>(T const& rhs) const noexcept;	code	cpp	2024-11-03 16:19:44.044915	5
+8683	3267	constexpr auto operator==(T const& rhs) const noexcept;	code	cpp	2024-11-03 16:19:44.044915	6
+8684	3268	To have more control over the generated comparison operators, we can define `operator==` and `operator<=>` ourselves.	text	txt	2024-11-03 16:19:44.046587	1
+8685	3268	constexpr auto operator==(T const& rhs) const noexcept\n{\n    return value == rhs.value;\n}\n\nconstexpr auto operator<=>(T const& rhs) const noexcept\n{\n    return value <=> rhs.value;\n}	code	cpp	2024-11-03 16:19:44.046587	2
+8686	3269	Rewriting might change the order of relational operands, which might enable implicit type conversion for the first operand.	text	txt	2024-11-03 16:19:44.047779	1
+8687	3269	When `x <= y` does not find a matching definition of `operator<=`, it might be rewritten as `(x <=> y) <= 0` or `0 <= (y <=> x)`.	text	txt	2024-11-03 16:19:44.047779	2
+8688	3269	If `x <=> y` is equal to 0, `x` and `y` are equal or equivalent. If `x <=> y` is less than 0, `x` is less than `y`. If `x <=> y` is greater than 0, `x` is greater than `y`.	text	txt	2024-11-03 16:19:44.047779	3
+8689	3270	The return type is a type that signals the *comparison category*, which could be *strong ordering*, *weak ordering*, or *partial ordering*. These types support the comparison with 0 to deal with the result.	text	txt	2024-11-03 16:19:44.048882	1
+8690	3270	(x <=> y) == 0; // equal or equivalent\n(x <=> y) < 0; // x less than y\n(x <=> y) > 0; // x greater than y	code	cpp	2024-11-03 16:19:44.048882	2
+8691	3271	`operator<=>` takes precedence over all other comparison operators.	text	txt	2024-11-03 16:19:44.049937	1
+8692	3272	Outside the implementation of an `operator<=>`, programmers should never invoke `<=>` directly. Although you can, you should never write `a <=> b < 0` instead of `a < b`.	text	txt	2024-11-03 16:19:44.050981	1
+8693	3272	constexpr auto operator<=>(T const& rhs) const noexcept\n{\n    return value <=> rhs.value;\n}	code	cpp	2024-11-03 16:19:44.050981	2
+8694	3273	Examples of this category are integral values or common strings.	text	txt	2024-11-03 16:19:44.052095	1
+8695	3273	std::strong_ordering::less;\nstd::strong_ordering::equal;\nstd::strong_ordering::equivalent;\nstd::strong_ordering::greater;	code	cpp	2024-11-03 16:19:44.052095	2
+8696	3273	Examples of this category are case-insensitive strings. `"hello"` and `"HELLO"` are equiavlent but not equal.	text	txt	2024-11-03 16:19:44.052095	3
+8697	3273	std::weak_ordering::less;\nstd::weak_ordering::equivalent;\nstd::weak_ordering::greater;	code	cpp	2024-11-03 16:19:44.052095	4
+8698	3273	This category works similar with an exception that the two types might not be comparable at all, like `NaN`. Any comparison with `NaN` results to `unordered` which is equivalent to false.	text	txt	2024-11-03 16:19:44.052095	5
+8699	3273	std::partial_ordering::less;\nstd::partial_ordering::equivalent;\nstd::partial_ordering::greater;\nstd::partial_ordering::unordered;	code	cpp	2024-11-03 16:19:44.052095	6
+8700	3274	Instead of returning one of the comparison categories:	text	txt	2024-11-03 16:19:44.053139	1
+8701	3274	std::strong_ordering operator<=>(T const& rhs) const noexcept\n{\n    if (value == rhs.value) return std::strong_ordering::equal;\n    if (value < rhs.value) return std::strong_ordering::less;\n    return std::strong_ordering::greater;\n}	code	cpp	2024-11-03 16:19:44.053139	2
+8702	3274	We should return the result of comparison of the two underying types without specifying return type:	text	txt	2024-11-03 16:19:44.053139	3
+8703	3274	auto operator<=>(T const& rhs) const noexcept\n{\n    return value <=> rhs.value;\n}	code	cpp	2024-11-03 16:19:44.053139	4
+8704	3274	This not only returns the right value; it also ensures that the return value has the right comparison category type depending on the type of the member value.	text	txt	2024-11-03 16:19:44.053139	5
+8705	3275	&lvalue <=> nullptr;	code	cpp	2024-11-03 16:19:44.05407	1
+8706	3276	`operator<=>` is predefined for all fundamental types for which the relational operators are defined.	text	txt	2024-11-03 16:19:44.055063	1
+8707	3276	int x{17};\nint y{42};\n\nx <=> y; // std::strong_ordering::equal\nx <=> 17.0; // std::partial_ordering::equivalent\n&x <=> &y; // std::weak_ordering::equal\n&x <=> nullptr; // error: not supported\n\nstd::string{"hi"} <=> "hi"; // std::strong_ordering::equal\nstd::pair{42, 0.0} <=> std::pair{42, 7.7}; // std::partial_ordering::less	code	cpp	2024-11-03 16:19:44.055063	2
+8708	3277	Comparison between fundamental types or standard library types might return different comparison categories, depending on the supported types.	text	txt	2024-11-03 16:19:44.055904	1
+8709	3278	Because the return type depends on the comparison category, you can check against a specific return value:	text	txt	2024-11-03 16:19:44.056829	1
+8710	3278	if (x <=> y == std::partial_ordering::equivalent) // always okay	code	cpp	2024-11-03 16:19:44.056829	2
+8711	3278	But implicit type conversions only work from stronger to weaker ordering types, not the other way around. Therefore, using `std::weak_ordering` category for comparing the result will compile even if `operator<=>` yields a `std::strong_ordering` or `std::weak_ordering` value.	text	txt	2024-11-03 16:19:44.056829	3
+8712	3278	However, a comparison with 0 is always possible and usually easier:	text	txt	2024-11-03 16:19:44.056829	4
+8713	3278	if (x <=> y == 0) // always okay	code	cpp	2024-11-03 16:19:44.056829	5
+8714	3279	There are cases where comparison of a complex type might return different comparison category types:	text	txt	2024-11-03 16:19:44.057794	1
+8715	3279	class complex_type\n{\nprivate:\n    std::string name;\n    double amount;\n\npublic:\n    std::strong_ordering operator<=>(complex_type const& rhs) const noexcept\n    {\n        std::strong_ordering name_result{name <=> rhs.name};\n        if (name_result != std::strong_ordering::equal)\n        {\n            return name_result; // std::strong_ordering\n        }\n        else\n        {\n            return amount <=> rhs.amount; // std::partial_ordering\n        }\n    }\n};	code	cpp	2024-11-03 16:19:44.057794	2
+8716	3279	We can either choose the weakest comparison category, or use `std::common_comparison_category<>`:	text	txt	2024-11-03 16:19:44.057794	3
+8717	3279	class complex_type\n{\nprivate:\n    std::string name;\n    double amount;\n\npublic:\n    auto operator<=>(complex_type const& rhs) const noexcept\n        -> std::common_comparison_category_t<decltype(name <=> rhs.name),\n                                             decltype(amount <=> rhs.amount)>\n    {\n        auto name_result{name <=> rhs.name};\n        if (name_result != 0)\n        {\n            return name_result; // std::partial_ordering\n        }\n        else\n        {\n            return amount <=> rhs.amount; // std::partial_ordering\n        }\n    }\n};	code	cpp	2024-11-03 16:19:44.057794	4
+8718	3280	class complex_type\n{\nprivate:\n    std::string name;\n    double amount;\n\npublic:\n    std::strong_ordering operator<=>(complex_type const& rhs) const noexcept\n    {\n        std::strong_ordering name_result{name <=> rhs.name};\n        if (name_result != std::strong_ordering::equal)\n        {\n            return name_result; // std::strong_ordering\n        }\n        else\n        {\n            return std::compare_strong_order_fallback(amount <=> rhs.amount); // std::strong_ordering\n        }\n    }\n};	code	cpp	2024-11-03 16:19:44.058664	1
+8719	3281	The member functions have to take the second parameter as `const` lvalue reference. Friend functions might alternatively take both parameters by value.	text	txt	2024-11-03 16:19:44.059562	1
+8720	3281	Defaulted `operator==` require the support of `operator==` in the members and base classes.	text	txt	2024-11-03 16:19:44.059562	2
+8721	3281	Defaulted `operator<=>` require the support of `operator==` and either an implemented `operator<` or a defaulted `operator<=>` in the members and base classes.	text	txt	2024-11-03 16:19:44.059562	3
+8722	3281	auto operator<=>(auto const& rhs) const;\nfriend auto operator<=>(auto const& rhs, auto const& lhs) const;\nfriend auto operator<=>(auto rhs, auto lhs) const;	code	cpp	2024-11-03 16:19:44.059562	4
+8723	3282	If and only if an `operator<=>` member is defined as defaulted, then by definition a corresponding `operator==` member is also defined if no defaulted `operator==` is provided.	text	txt	2024-11-03 16:19:44.060387	1
+8724	3282	[[nodiscard]] friend constexpr auto operator<=>(auto const& rhs) const noexcept requires(!std::same_as<decltype(rhs), bool>) = default;	code	cpp	2024-11-03 16:19:44.060387	2
+8725	3283	It defines a total order for raw pointers (which is not the case for operators `<=>` or `<`). Therefore, you should use it when generic types are used that can be raw pointer types.	text	txt	2024-11-03 16:19:44.061222	1
+8726	3283	auto operator<=>(auto const& rhs) const noexcept(noexcept(value<=>value))\n{\n    return std::compare_three_way{}(value<=>rhs.value);\n}	code	cpp	2024-11-03 16:19:44.061222	2
+8727	3284	std::compare_three_way_result_t<T,T> operator<=>(auto const& rhs) const noexcept(noexcept(value<=>value));	code	cpp	2024-11-03 16:19:44.062059	1
+8728	3285	std::vector v1{0, 8, 15, 47, 11};\nstd::vector v2{0, 15, 8};\nauto r1 = std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end());\nauto r2 = std::lexicographical_compare_three_way(v1.begin(), v1.end(), v2.begin(), v2.end());	code	cpp	2024-11-03 16:19:44.062935	1
+8729	3286	Note that there is no ranges support (yet) for `lexicographical_compare_three_way()`. You can neither pass a range as a single argument nor pass projection parameters:	text	txt	2024-11-03 16:19:44.063814	1
+8730	3286	auto r3 = std::ranges::lexicographical_compare(v1, v2); // OK\nauto r4 = std::ranges::lexicographical_compare_three_way(v1, v2); // ERROR	code	cpp	2024-11-03 16:19:44.063814	2
 \.
 
 
@@ -13461,6 +13533,31 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3259	1540	What does the liskov substitution principle define?	open	2024-11-02 22:09:08.71313	2024-11-02 22:09:08.71313
 3260	1540	What does the interface segregation principle define?	open	2024-11-02 22:09:08.716526	2024-11-02 22:09:08.716526
 3261	1540	What does the dependency inversion principle define?	open	2024-11-02 22:09:08.721556	2024-11-02 22:09:08.721556
+3262	336	What is the downsides of declaring all comparison operators manually?	open	2024-11-03 16:19:44.031758	2024-11-03 16:19:44.031758
+3263	336	What is the behavior of compilers when they cannot find a matching inequality operator for two objects?	open	2024-11-03 16:19:44.038182	2024-11-03 16:19:44.038182
+3264	336	What is the behavior of compilers when they cannot find a matching relational operator for two objects?	open	2024-11-03 16:19:44.040072	2024-11-03 16:19:44.040072
+3265	336	How does a defaulted member <code>operator<=></code> expand?	open	2024-11-03 16:19:44.041755	2024-11-03 16:19:44.041755
+3266	336	What header should be included when defaulting spaceship operator?	open	2024-11-03 16:19:44.04312	2024-11-03 16:19:44.04312
+3267	336	What qualifiers automatically apply to default generated operators?	open	2024-11-03 16:19:44.044915	2024-11-03 16:19:44.044915
+3268	336	When should we define equality and spaceship operators manually?	open	2024-11-03 16:19:44.046587	2024-11-03 16:19:44.046587
+3269	336	What expression does a compiler use to rewrite a relational operator when a matching definition is not found?	open	2024-11-03 16:19:44.047779	2024-11-03 16:19:44.047779
+3270	336	What is the return type of spaceship operator?	open	2024-11-03 16:19:44.048882	2024-11-03 16:19:44.048882
+3271	336	What is the precedence of spaceship operator compared to other comparison operators?	open	2024-11-03 16:19:44.049937	2024-11-03 16:19:44.049937
+3272	336	Where can we directly call for comparison of two types with spaceship operator?	open	2024-11-03 16:19:44.050981	2024-11-03 16:19:44.050981
+3273	336	What are the comparison category types?	open	2024-11-03 16:19:44.052095	2024-11-03 16:19:44.052095
+3274	336	What is the best practice for defining the return value of spaceship operator?	open	2024-11-03 16:19:44.053139	2024-11-03 16:19:44.053139
+3275	336	What type the spaceship operator does not support?	open	2024-11-03 16:19:44.05407	2024-11-03 16:19:44.05407
+3276	336	What types are supported by spaceship operator?	open	2024-11-03 16:19:44.055063	2024-11-03 16:19:44.055063
+3277	336	What comparison category type does comparing supported types generate?	open	2024-11-03 16:19:44.055904	2024-11-03 16:19:44.055904
+3278	336	What comparison category type is safe to be used when comparing fundamental or standard library types?	open	2024-11-03 16:19:44.056829	2024-11-03 16:19:44.056829
+3279	336	Which comparison category type should be used when returning a comparison result with multiple ordering criteria?	open	2024-11-03 16:19:44.057794	2024-11-03 16:19:44.057794
+3280	336	What is the best practice when partial or weak ordering must be mapped to strong ordering?	open	2024-11-03 16:19:44.058664	2024-11-03 16:19:44.058664
+3281	336	What are the requirements of defaulting spaceship and equality operators?	open	2024-11-03 16:19:44.059562	2024-11-03 16:19:44.059562
+3282	336	When does the defaulted equality operator is automatically defined?	open	2024-11-03 16:19:44.060387	2024-11-03 16:19:44.060387
+3283	336	What is the advantage of using <code>std::compare_three_way</code> function object?	open	2024-11-03 16:19:44.061222	2024-11-03 16:19:44.061222
+3284	336	What type trait can be used to forward declare spaceship operator?	open	2024-11-03 16:19:44.062059	2024-11-03 16:19:44.062059
+3285	336	What type is used to compare two ranges?	open	2024-11-03 16:19:44.062935	2024-11-03 16:19:44.062935
+3286	336	What are the limitations of using lexicographical compare three way functions?	open	2024-11-03 16:19:44.063814	2024-11-03 16:19:44.063814
 \.
 
 
@@ -19680,7 +19777,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 33	Linux System Programming Techniques	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 34	Linux Driver Development for Embedded Processors	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 35	Demystifying Cryptography with OpenSSL 3.0	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 37	Udemy: SQL and PostgreSQL - The Complete Developer's Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 38	Linux Service Management Made Easy with systemd	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 39	C++20: Get the Details	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19749,6 +19845,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 107	Creational Design Patterns in Modern C++	https://subscription.packtpub.com/video/programming/9781800568242	video	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.721556	1	\N
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.932927	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
+36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
 \.
 
 
@@ -20769,7 +20866,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 572	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	29
 53	18	open	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	8
 32	16	open	\N	2024-07-28 09:44:55.607323	2024-07-28 09:44:55.607323	9
-336	36	writing	\N	2024-07-28 09:44:59.070387	2024-07-28 09:44:59.070387	1
 275	31	open	\N	2024-07-28 09:44:58.31114	2024-07-28 09:44:58.31114	3
 247	28	open	\N	2024-07-28 09:44:57.873227	2024-07-28 09:44:57.873227	7
 1412	95	ignored	\N	2024-07-28 09:45:10.562906	2024-07-28 09:45:10.562906	3
@@ -21294,6 +21390,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1549	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	22
 1550	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	23
 1551	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	24
+336	36	completed	\N	2024-07-28 09:44:59.070387	2024-11-03 16:20:55.007066	1
 \.
 
 
@@ -23524,7 +23621,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8658, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8730, true);
 
 
 --
@@ -23552,7 +23649,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3261, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3286, true);
 
 
 --
