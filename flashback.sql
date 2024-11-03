@@ -4243,56 +4243,14 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 2734	669	C++20 allows the use of constexpr in several new contexts.	text	txt	2024-07-28 10:03:08.632793	0
 2735	669	constexpr auto use_string()\n{\n    std::string buffer{"sample"};\n    return buffer.size();\n}	text	txt	2024-07-28 10:03:08.652279	0
 2736	669	constexpr auto use_vector()\n{\n    std::vector<int> buffer{1,2,3,4,5};\n    return std::accumulate(buffer.begin(), buffer.end(), 0);\n}	code	txt	2024-07-28 10:03:08.672903	0
-2737	670	Before C++20 you had to define six operators for a type to provide full\nsupport for all possible comparisons of its objects. The problem is that even\nthough most of the operators are defined in terms of either `operator ==` or\n`operator <`, the definitions are tedious and they add a lot of visual\nclutter.	text	txt	2024-07-28 10:03:10.647415	0
-2738	670	class Value\n{\n    long id;	text	txt	2024-07-28 10:03:10.668113	0
 3934	969	docker info	code	txt	2024-07-28 10:06:12.188014	0
-2739	670	public:\n    bool operator==(Value const& rhs) const { return id == rhs.id; }\n    bool operator!=(Value const& rhs) const { return !(*this == rhs); }\n    bool operator< (Value const& rhs) const { return id < rhs.id; }\n    bool operator<=(Value const& rhs) const { return !(*this < rhs); }\n    bool operator> (Value const& rhs) const { return rhs < *this; }\n    bool operator>=(Value const& rhs) const { return !(rhs < *this); }\n};	code	txt	2024-07-28 10:03:10.69025	0
-2740	670	In addition, for a well implemented type, you might need:	text	txt	2024-07-28 10:03:10.709645	0
-2741	670	- Declare the operators with `noexcept` if they cannot throw.\n- Declare the operators with `constexpr` if they can be used at compile time.\n- Declare the operators as hidden friends (declare them with `friend` inside\n  the class structure so that both operands become parameters and support\n  implicit conversions if the constructors are not `explicit`).\n- Declare the operators with `[[nodiscard]]` to warn if the return value is\n  not used.	text	txt	2024-07-28 10:03:10.73077	0
-2742	670	class Value\n{\n    long id;	text	txt	2024-07-28 10:03:10.752148	0
-2743	670	public:\n    [[nodiscard]] friend constexpr bool operator==(Value const& lhs, Value const& rhs) noexcept { return lhs.id == rhs.id; }\n    [[nodiscard]] friend constexpr bool operator!=(Value const& lhs, Value const& rhs) noexcept { return !(lhs == rhs); }\n    [[nodiscard]] friend constexpr bool operator< (Value const& lhs, Value const& rhs) noexcept { return lhs.id < rhs.id; }\n    [[nodiscard]] friend constexpr bool operator<=(Value const& lhs, Value const& rhs) noexcept { return !(lhs < rhs); }\n    [[nodiscard]] friend constexpr bool operator> (Value const& lhs, Value const& rhs) noexcept { return rhs < lhs; }\n    [[nodiscard]] friend constexpr bool operator>=(Value const& lhs, Value const& rhs) noexcept { return !(rhs < lhs); }\n};	code	txt	2024-07-28 10:03:10.774199	0
-2744	670	Since C++20 `operator ==` also implies `operator !=`, therefore, for `a` of\ntype `TypeA` and `b` of `TypeB`, the compiler will be able to compile `a !=\nb` if there is:	text	txt	2024-07-28 10:03:10.795724	0
 3471	827	        if (file.gcount == std::sizeof(buffer))\n            std::clog << "successfully read\\\\n";\n        else\n            std::clog << "failed to read completely\\\\n";	text	txt	2024-07-28 10:04:55.873657	0
-2745	670	- a freestanding `operator !=(TypeA, TypeB)`\n- a freestanding `operator ==(TypeA, TypeB)`\n- a freestanding `operator ==(TypeB, TypeA)`\n- a member function `TypeA::operator!=(TypeB)`\n- a member function `TypeA::operator==(TypeB)`\n- a member function `TypeB::operator==(TypeA)`	text	txt	2024-07-28 10:03:10.817156	0
-2746	670	Having both a freestanding and a member function is an ambiguity error.	text	txt	2024-07-28 10:03:10.838248	0
-2747	670	Since C++20 it is enough to declare `operator <=>` with `=default` so that\nthe defaulted member `operator <=>` generates a corresponding member\n`operator ==`:	text	txt	2024-07-28 10:03:10.85967	0
-2748	670	class Value\n{\n    auto operator<=>(Value const& rhs) const = default;\n    auto operator<=>(Value const& rhs) const = default; // implicitly generated\n};	code	txt	2024-07-28 10:03:10.880708	0
-2749	670	Both operators use their default implementation to compare objects member by\nmember. The order to the members in the class matter.	text	txt	2024-07-28 10:03:10.901381	0
-2750	670	In addition, even when declaring the spaceship operator as a member function,\nthe generated operators:	text	txt	2024-07-28 10:03:10.921484	0
-2751	670	- are `noexcept` if comparing the members never throws\n- are `constexpr` if comparing the members is possible at compile time\n- implicit type conversions for the first operand are also supported if a\n  corresponding implicit type conversion is defined\n- may warn if the result of a comparison is not used (compiler dependent)	text	txt	2024-07-28 10:03:10.94378	0
-2752	671	If the `operator <=>` for `x <= y` does not find a matching definition of\n`operator <=`, it might be rewritten as `(x <=> y) <= 0` or even `0 <= (y <=>\nx)`. By this rewriting, the `operator <=>` performs a three-way comparison,\nwhich yields a value that can be compared with 0:	text	txt	2024-07-28 10:03:12.167801	0
-2753	671	- If the value of `x <=> y` compares equal to 0, `x` and `y` are equal or equivalent.\n- If the value of `x <=> y` compares less than 0, `x` is less than `y`.\n- If the value of `x <=> y` compares greater than 0, `x` is greater than `y`.	text	txt	2024-07-28 10:03:12.188948	0
-2754	671	The return type of `operator <=>` is not an integral value. The return type\nis a type that signals the comparison category, which could be the *strong\nordering*, *weak ordering*, or *partial ordering*. These types support the\ncomparison with 0 to deal with the result.	text	txt	2024-07-28 10:03:12.209826	0
-2755	671	You have to include a specific header file to deal with the result of\n`operator <=>`.	text	txt	2024-07-28 10:03:12.232141	0
-2756	671	#include <compare>	text	txt	2024-07-28 10:03:12.251797	0
-2757	671	class Value\n{\n    long id;	text	txt	2024-07-28 10:03:12.272453	0
-2758	671	public:\n    std::strong_ordering operator<=>(Value const& rhs) const\n    {\n        return id < rhs.id ? std::strong_ordering::less :\n            id > rhs.id ? std::strong_ordering::greater :\n                std::strong_ordering::equivalent;\n    }\n};	code	txt	2024-07-28 10:03:12.294063	0
-2759	671	However, it is usually easier to define the operator by mapping it to results\nof underlying types.	text	txt	2024-07-28 10:03:12.314484	0
-2760	671	#include <compare>	text	txt	2024-07-28 10:03:12.335096	0
-2761	671	class Value\n{\n    long id;	text	txt	2024-07-28 10:03:12.355756	0
-2762	671	public:\n    auto operator<=>(Value const& rhs) const\n    {\n        return id <=> rhs.id;\n    }\n};	code	txt	2024-07-28 10:03:12.377306	0
-2763	671	The member function has to take the second parameter as `const` lvalue\nreference with `=default`. A friend function might also take both parameters\nby value.	text	txt	2024-07-28 10:03:12.398305	0
 3387	801	int main()\n{\n    // direct call\n    int r1 = add(1, 2);	text	txt	2024-07-28 10:04:42.238389	0
 3388	801	    // call through function pointer\n    int(*fadd)(int const, int const) = &add;\n    int r2 = fadd(1, 2);	text	txt	2024-07-28 10:04:42.259234	0
 3389	801	    // direct member function call\n    base object;\n    object.add(3);\n    int r3 = object.x;	text	txt	2024-07-28 10:04:42.279452	0
-2764	672	- **strong ordering**: any value of a given type is either *less than* or\n  *equal to* or *greater than* any other value of this type. If a value is\n  neither less nor greater is has to be equal.\n  + `std::strong_ordering:less`\n  + `std::strong_ordering:equal` or `std::strong_ordering::equivalent`\n  + `std::strong_ordering:greater`\n- **weak ordering**: any value of a given type is either *less than*,\n  *equivalent to* or *greater than* any other value of this type. However,\n  equivalent values do not have to be equal (have the same value).\n  + `std::weak_ordering::less`\n  + `std::weak_ordering::equivalent`\n  + `std::weak_ordering::less`\n- **partial ordering**: any value of a given type could either be *less\n  than*, *equivalent to* or *greater than* any other value of this type.\n  However it could also happen that you cannot specify a specific order\n  between two values.\n  + `std::partial_ordering::less`\n  + `std::partial_ordering::equivalent`\n  + `std::partial_ordering::less`\n  + `std::partial_ordering::unordered`	text	txt	2024-07-28 10:03:13.256044	0
-2765	672	As an example, a floating-point type has a special value `NaN`. Any\ncomparison with `NaN` yields `false`. So in this case a comparison might\nyield that two values are unordered and the comparison operator might return\none of four values.	text	txt	2024-07-28 10:03:13.276564	0
-2766	672	Stronger comparison types have implicit type conversions to weaker comparison\ntypes.	text	txt	2024-07-28 10:03:13.297485	0
-2767	672	Relational comparison with `nullptr` results compiler error.	text	txt	2024-07-28 10:03:13.318316	0
 2812	678	You cannot pass a function with `auto` as a parameter without specifying the\ngeneric parameter.	text	txt	2024-07-28 10:03:20.36032	0
 2813	678	bool is_less(auto const& lhs, auto const& rhs)\n{\n    return lhs.get_value() < rhs.get_value();\n}	text	txt	2024-07-28 10:03:20.381139	0
 3068	723	print(); // external linkage, local visibility	code	txt	2024-07-28 10:03:55.856293	0
-2768	672	Comparison types themselves can be compared against a specific return value.\nDue to implicit type conversions to weaker ordering types `x <=> y ==\nstd::partial_ordering::equivalent` will compile even if the `operator <=>`\nyields a `std::strong_ordering` or `std::weak_ordering` value. However, the\nother way around does not work. Comparison with 0 is always possible and\nusually easier.	text	txt	2024-07-28 10:03:13.339588	0
-2769	673	The return type does not compile if the attributes have different comparison\ncategories. In that case use the weakest comparison type as the return type.	text	txt	2024-07-28 10:03:14.446214	0
-2770	673	#include <compare>\n#include <string>	text	txt	2024-07-28 10:03:14.46644	0
-2771	673	class Person\n{\n    std::string name;\n    double weight;	text	txt	2024-07-28 10:03:14.486412	0
-2772	673	public:\n    std::partial_ordering operator<=>(Person const& rhs) const\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering	text	txt	2024-07-28 10:03:14.508723	0
-2773	673	        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	txt	2024-07-28 10:03:14.529896	0
-2774	673	If you do not know the comparison types, use\n`std::common_comparison_category<>` type trait that computes the strongest\ncomparison category.	text	txt	2024-07-28 10:03:14.55065	0
-2775	673	#include <compare>\n#include <string>	text	txt	2024-07-28 10:03:14.570337	0
-2776	673	class Person\n{\n    std::string name;\n    double weight;	text	txt	2024-07-28 10:03:14.590846	0
-2777	673	public:\n    auto operator<=>(Person const& rhs) const\n        -> std::common_comparison_category_t<decltype(name <=> rhs.name),\n                                             decltype(weight <=> rhs.name)>\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering	text	txt	2024-07-28 10:03:14.611323	0
-2778	673	        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	txt	2024-07-28 10:03:14.631768	0
 2779	674	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt	2024-07-28 10:03:16.076287	0
 2780	674	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};	text	txt	2024-07-28 10:03:16.097004	0
 2781	674	struct Derived: public Base\n{\n    std::strong_ordering operator<=>(Derived const&) const = default;\n};	text	txt	2024-07-28 10:03:16.117246	0
@@ -10951,10 +10909,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 667	96	Implement a simple <code>print()</code> function taking format parameters?	open	2024-07-28 10:03:06.975206	2024-07-28 10:03:06.975206
 668	96	Enable formatting for user defined types?	open	2024-07-28 10:03:08.02827	2024-07-28 10:03:08.02827
 669	96	Evaluate string and vector operations at compile time?	open	2024-07-28 10:03:08.611661	2024-07-28 10:03:08.611661
-670	336	Enable all comparison operators for an object type?	open	2024-07-28 10:03:10.625168	2024-07-28 10:03:10.625168
-671	336	Implement an object comparable with all six comparison operators?	open	2024-07-28 10:03:12.14428	2024-07-28 10:03:12.14428
-672	336	What are the possible comparison categories?	open	2024-07-28 10:03:13.231166	2024-07-28 10:03:13.231166
-673	336	Compare two objects that might result any of the comparison categories?	open	2024-07-28 10:03:14.424654	2024-07-28 10:03:14.424654
 674	336	Compare two derived objects having a base class?	open	2024-07-28 10:03:16.054631	2024-07-28 10:03:16.054631
 675	336	What is the compatibility defect of comparison operators in C++20?	open	2024-07-28 10:03:17.223623	2024-07-28 10:03:17.223623
 676	337	Declare an abbreviated function template?	open	2024-07-28 10:03:18.32665	2024-07-28 10:03:18.32665
@@ -21335,6 +21289,11 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1544	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	5
 1545	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	6
 1546	107	open	\N	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.66427	7
+1547	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	20
+1548	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	21
+1549	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	22
+1550	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	23
+1551	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	24
 \.
 
 
@@ -21400,7 +21359,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	301	2024-08-07 22:44:43.138201
 1	340	2024-08-07 22:44:43.138201
 1	337	2024-08-07 22:44:43.138201
-1	336	2024-08-07 22:44:43.138201
 1	338	2024-08-07 22:44:43.138201
 1	358	2024-08-07 22:44:43.138201
 1	376	2024-08-07 22:44:43.138201
@@ -22845,6 +22803,17 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	217	2024-10-27 22:34:09.138173
 1	1490	2024-10-30 21:51:09.826316
 1	1465	2024-11-01 09:27:37.378901
+1	336	2024-11-03 16:05:11.542264
+1	1537	2024-11-02 22:10:33.865746
+1	1539	2024-11-02 22:10:33.865746
+1	1538	2024-11-02 22:10:33.865746
+1	1541	2024-11-02 22:10:33.865746
+1	1542	2024-11-02 22:10:33.865746
+1	1543	2024-11-02 22:10:33.865746
+1	1544	2024-11-02 22:10:33.865746
+1	1545	2024-11-02 22:10:33.865746
+1	1546	2024-11-02 22:10:33.865746
+1	1540	2024-11-02 22:12:03.344603
 \.
 
 
@@ -23660,7 +23629,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1546, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1551, true);
 
 
 --
