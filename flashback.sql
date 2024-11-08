@@ -4446,6 +4446,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 2968	707	    auto upper = [](char const c) { return toupper(c); };\n    auto add = [](auto const a, auto const b) { return a + b; };	text	txt	2024-07-28 10:03:40.751734	0
 2969	707	    template<typename F, typename F>\n    auto apply(F&& f, T value)\n    {\n        return f(value);\n    }\n}	text	txt	2024-07-28 10:03:40.772131	0
 2970	707	class foo\n{\n    int _x;\npublic:\n    foo(int const x = 0): _x{x} {}\n    int& get() { return _x; }\n};	text	txt	2024-07-28 10:03:40.792553	0
+3535	839	export constexpr double fraction{7 / 5};	code	txt	2024-07-28 10:05:06.124644	0
 2971	707	decltype(auto) proxy_gen(foo& f) { return f.get(); }\n// ^__ decltype() preserves cv-ref qualification of return type	code	txt	2024-07-28 10:03:40.813871	0
 2972	708	#include <bitset>	text	txt	2024-07-28 10:03:41.292887	0
 2973	708	using byte = std::bitset<8>;\nusing fn = void(byte, double);\nusing fn_ptr = void(*)(byte, double);	text	txt	2024-07-28 10:03:41.3139	0
@@ -4488,6 +4489,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3008	714	struct foo1_            // size = 4, aligned as = 1\n{\n    char a;             // 1 byte\n    char b;             // 1 byte\n    char _pad0[2];      // 2 bytes\n};	text	txt	2024-07-28 10:03:47.05888	0
 3009	714	// alignas specifier applied to member data declarations\nstruct foo2             // size = 16, aligned as = 8\n{                       // foo2:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbb....|\n    alignas(8) int b;\n};	text	txt	2024-07-28 10:03:47.080907	0
 3010	714	struct foo2_            // size = 16, aligned as = 4\n{\n    char a;             // 2 bytes\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};	text	txt	2024-07-28 10:03:47.102235	0
+3536	839	*sample-details.cppm*\nmodule sample:details;	text	txt	2024-07-28 10:05:06.145393	0
+3538	839	constexpr double power{fraction * fraction};	code	txt	2024-07-28 10:05:06.186225	0
 3011	714	// the alignas specifier applied to the struct is less than alignas\n// specifier applied to member data declaration, thus will be ignored.\nstruct alignas(4) foo3  // size = 16, aligned as = 8\n{                       // foo3:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbbbbbb|\n    alignas(8) int b;\n};	text	txt	2024-07-28 10:03:47.122826	0
 3012	714	struct foo3_            // size = 16, aligned as = 4\n{\n    char a;             // 2 byte\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};	text	txt	2024-07-28 10:03:47.144087	0
 3013	714	alignas(8) int a;       // size = 4, alignment = 8\nalignas(256) long b[4]; // size = 32, alignment = 256	code	txt	2024-07-28 10:03:47.165439	0
@@ -4748,6 +4751,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3242	767	# time to live\nttl = 5\n)"};	text	txt	2024-07-28 10:04:21.282035	0
 3243	767	int main()\n{\n    std::string pattern{R"(^(?!#)(\\\\w+)\\\\s*=\\\\s*([\\\\w\\\\d]+[\\\\w\\\\d._,:-]*)$)"};\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::sregex_iterator end{};	text	txt	2024-07-28 10:04:21.301939	0
 3244	767	    // iterate through regex matches\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }	text	txt	2024-07-28 10:04:21.323358	0
+3539	839	*sample.cppm*\nexport module sample;	text	txt	2024-07-28 10:05:06.208552	0
 3245	767	    // iterate through unmatched tokens\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx, -1};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }	text	txt	2024-07-28 10:04:21.3442	0
 3246	767	    // iterate through tokens of regex matches\n    std::sregex_token_iterator tend{};\n    for (auto it = std::sregex_token_iterator{std::begin(text), std::end(text), rx};\n            it ! tend; ++it)\n    {\n        std::string token = *it;\n    }\n}	code	txt	2024-07-28 10:04:21.366061	0
 3247	768	#include <string>\n#include <regex>	text	txt	2024-07-28 10:04:21.777536	0
@@ -4865,6 +4869,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3354	795	    while (!range.empty())\n    {\n        mapped.push(callable(range.front()));\n        range.pop();\n    }	text	txt	2024-07-28 10:04:37.214161	0
 3355	795	    return mapped;\n}	code	txt	2024-07-28 10:04:37.235179	0
 3356	796	#include <algorithm>\n#include <functional>\n#include <vector>\n#include <cmath>	text	txt	2024-07-28 10:04:37.823123	0
+3540	839	export import :core;	code	txt	2024-07-28 10:05:06.228601	0
+3541	839	*consumer.cpp*\nimport std.core;\nimport sample;	text	txt	2024-07-28 10:05:06.249469	0
 3357	796	template<typename F, typename R>\nR mapping(F&& callable, R const& range)\n{\n    std::transform(std::begin(range), std::end(range), std::begin(range), std::forward<F>(callable));\n    return range;\n}	text	txt	2024-07-28 10:04:37.843191	0
 3358	796	int main()\n{\n    std::vector<int> numbers{-3, 8, -5, -9, 2, -1, 0, -7};\n    std::vector<int> absolutes = mapping(std::abs<>(), numbers);\n}	code	txt	2024-07-28 10:04:37.863858	0
 3359	797	Since the order of the processing can be important, there are usually two versions of this function. One is foldleft, which processes elements from left to right, while the other is foldright, which combines the elements from right to left.	text	txt	2024-07-28 10:04:38.579548	0
@@ -5017,12 +5023,6 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3532	839	Partitions are division of a module. However, they are not submodules. They\ndo not logically exist outside of the module. There is no concept of a\nsubmodule in the C++ language.	text	txt	2024-07-28 10:05:06.06292	0
 3533	839	This snippet uses module interface partition and module implementation partition.	text	txt	2024-07-28 10:05:06.083142	0
 3534	839	*sample-core.cppm*\nexport module sample:core;	text	txt	2024-07-28 10:05:06.104583	0
-3535	839	export constexpr double fraction{7 / 5};	code	txt	2024-07-28 10:05:06.124644	0
-3536	839	*sample-details.cppm*\nmodule sample:details;	text	txt	2024-07-28 10:05:06.145393	0
-3538	839	constexpr double power{fraction * fraction};	code	txt	2024-07-28 10:05:06.186225	0
-3539	839	*sample.cppm*\nexport module sample;	text	txt	2024-07-28 10:05:06.208552	0
-3540	839	export import :core;	code	txt	2024-07-28 10:05:06.228601	0
-3541	839	*consumer.cpp*\nimport std.core;\nimport sample;	text	txt	2024-07-28 10:05:06.249469	0
 3542	839	std::cout << power << "\\\\n";	code	txt	2024-07-28 10:05:06.269004	0
 3543	839	Next snippet is the same implementation but with modules instead of partitions:	text	txt	2024-07-28 10:05:06.289464	0
 3544	839	*sample-core.cppm*\nexport module sample.core;	text	txt	2024-07-28 10:05:06.311174	0
@@ -5063,6 +5063,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3581	849	template<typename InputIterator, typename OutputIterator>\nvoid copy(InputIterator begin, InputIterator end, OutputIterator target)\n{\n    for (auto iter = begin; iter != end; ++iter, ++target)\n    {\n        *target = *iter;\n    }\n}	text	txt	2024-07-28 10:05:11.119169	0
 3582	849	std::vector<double> v{1,2,3,4};\nstd::vector<double> copy(v.size());\ncopy(std::begin(v), std::end(v), std::begin(copy));\ncopy(std::begin(v), std::end(v), std::ostream_iterator<int>{std::cout, " "});	code	txt	2024-07-28 10:05:11.140132	0
 3583	850	#include <iterator>\n#include <vector>	text	txt	2024-07-28 10:05:11.69569	0
+6482	2042	        MouseArea {\n            anchors.fill: root\n            onClicked: root.running = true\n        }\n    }\n}	code	txt	2024-07-28 10:13:03.294341	0
 3584	850	template<typename InputIterator>\nauto get_input(InputIterator begin, InputIterator end)\n{\n    std::vector<namespace std::iterator_traits<InputIterator>::value_type> results;	text	txt	2024-07-28 10:05:11.715703	0
 3585	850	    for (auto iter = begin; iter != end; ++iter)\n    {\n        results.push_back(*iter);\n    }	text	txt	2024-07-28 10:05:11.73664	0
 3586	850	    return results;\n}	text	txt	2024-07-28 10:05:11.756271	0
@@ -5327,6 +5328,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3842	941	    std::vector<shared_ptr<string>> people;\n    people.push_back(lucy);\n    people.push_back(lucy);\n    people.push_back(rosa);\n    people.push_back(lucy);\n    people.push_back(rosa);\n    people.push_back(rosa);\n    people.push_back(lucy);\n    people.push_back(rosa);	text	txt	2024-07-28 10:05:56.962903	0
 3843	941	    std::size_t rosa_count = rosa.use_count(); // 4\n    std::size_t lucy_count = lucy.use_count(); // 4\n}	code	txt	2024-07-28 10:05:56.984409	0
 3844	942	#include <memory>\n#include <string>\n#include <vector>	text	txt	2024-07-28 10:05:57.732151	0
+6483	2043	This animation requires changes on `opacity` and `scale` properties.	text	txt	2024-07-28 10:13:03.520005	0
 3845	942	std::shared_ptr<std::string> person(\n    new std::string{},\n    [](std::string* p) { std::cout << *p << std::endl; delete p; }\n);\nperson = nullptr; // person does not refer to the string any longer	text	txt	2024-07-28 10:05:57.752908	0
 3846	942	std::vector<std::string> people;\npeople.push_back(person);\npeople.push_back(person);\npeople.push_back(person);	text	txt	2024-07-28 10:05:57.773125	0
 3847	942	std::size_t person_count = person.use_count(); // 4	text	txt	2024-07-28 10:05:57.792768	0
@@ -5368,6 +5370,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 3882	952	If you don't assign the result of async call anywhere, the caller will block\nuntil the passed functionality has finished, which would mean that this is\nnothing but a synchronous call.	text	txt	2024-07-28 10:06:03.212809	0
 3883	952	std::async(std::launch::async, do_something);\nstd::async(std::launch::async, do_something);\nstd::async(std::launch::async, do_something);\n// runs sequentially	code	txt	2024-07-28 10:06:03.233994	0
 3884	953	You can enforce a deferred execution by passing `std::launch::deferred`\npolicy to `async()`. This guarantees that function never gets called without\n`get()`. This policy especially allows to program *lazy evaluation*.	text	txt	2024-07-28 10:06:03.584534	0
+6484	2043		code	txt	2024-07-28 10:13:03.539988	0
 3885	953	std::future<void> result1{std::async(std::launch::deferred, do_something)};\nstd::future<void> result2{std::async(std::launch::deferred, do_something)};\nauto value = optional_case() ? result1.get() : result2.get();	code	txt	2024-07-28 10:06:03.606508	0
 3886	954	When `get()` is called and the background operation was or gets terminated by\nan exception, which was/is not handled inside the thread, this exception gets\npropegated again. As a result, to deal with exceptions of background\noperations, just do the same with `get()` as you would do when calling the\noperation synchronously.	text	txt	2024-07-28 10:06:04.455002	0
 3887	954	#include <future>\n#include <thread>\n#include <exception>\n#include <iostream>	text	txt	2024-07-28 10:06:04.475762	0
@@ -5763,6 +5766,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 4230	1088	The OpenEmbedded Core metadata collection provides the engine of the Poky\nbuild system. It provides the core features and aims to be generic and as\nlean as possible. It supports seven different processor architectures (ARM,\nARM64, x86, x86-64, PowerPC, PowerPC 64, MIPS, MIPS64, RISC-V32, and RISC-V\n64), only supporting platforms to be emulated by QEMU.	text	txt	2024-07-28 10:06:55.744418	0
 4231	1088	The OpenEmbedded Core houses its metadata inside the `meta` subdirectory of\nPoky.	text	txt	2024-07-28 10:06:55.765607	0
 4232	1089	The metadata includes recipes and configuration files. It is composed of a\nmix of Python and Shell Script text files, providing a tremendously flexible\ntool. Poky uses this to extend OpenEmbedded Core and includes two different\nlayers, which are other metadata subsets, shown as follows:	text	txt	2024-07-28 10:06:56.136312	0
+6485	2044	- `PropertyAnimation`: animates changes in property values.\n- `NumberAnimation`: animates changes in qreal-type values.\n- `ColorAnimation`: animates changes in color values.\n- `RotationAnimation`: animates changes in rotation values.	text	txt	2024-07-28 10:13:03.993303	0
 4233	1089	- `meta-poky`: This layer provides the default and supported distribution\n  policies, visual branding, and metadata tracking information (maintainers,\n  upstream status, and so on). This is to serve as a curated template that\n  could be used by distribution builders to seed their custom distribution.\n- `meta-yocto-bsp`: This provides the Board Support Package (BSP) used as the\n  reference hardware for the Yocto Project development and Quality Assurance\n  (QA) process.	text	txt	2024-07-28 10:06:56.158254	0
 4234	1090	The Yocto Project has a release every six months, in April and October.	text	txt	2024-07-28 10:06:56.489993	0
 4235	1090	The support for the stable release is for 7 months, offering 1 month of\noverlapped support for every stable release. The LTS release has a minimal\nsupport period of 2 years, optionally extended. After the official support\nperiod ends, it moves to Community support and finally reaches End Of Life\n(EOL).	text	txt	2024-07-28 10:06:56.511947	0
@@ -5877,6 +5881,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 4343	1154	make install	code	txt	2024-07-28 10:07:15.560842	0
 4344	1155	* `/boot/vmlinuz-<version>`: compressed kernel image, same as the one in `arch/<arch>/boot`\n* `/boot/System.map-<version>`: store kernel symbol addresses for debugging purposes\n* `/boot/config-<version>`: kernel configuration for this version	text	txt	2024-07-28 10:07:15.797345	0
 4345	1156	The kernel image, device tree blobs, and kernel modules will be needed to\nboot up a device.	text	txt	2024-07-28 10:07:16.159333	0
+6486	2044	Qt Quick also provides more specialized animations for specific use cases:	text	txt	2024-07-28 10:13:04.014484	0
 4346	1156	cp arch/<arch>/boot/Image /mnt/\ncp arch/<arch>/boot/dts/<board>/<board>.dtb /mnt/\nmkdir /mnt/rootfs\nmake modules_install INSTALL_MOD_PATH=/mnt/rootfs	code	txt	2024-07-28 10:07:16.181089	0
 4347	1157	make modules_install	code	txt	2024-07-28 10:07:16.441277	0
 4348	1158	make INSTALL_MOD_PATH=/srv/nfs4/root modules_install  # for NFS filesystem\nmake INSTALL_MOD_PATH=/mnt                            # for Flash, SD Card, NAND filesystems	code	txt	2024-07-28 10:07:16.703629	0
@@ -7939,11 +7944,6 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6479	2042	        Rectangle {\n            id: box\n            x: root.padding\n            y: root.height - width - 5\n            width: 50\n            height: 50\n            color: 'lightsteelblue'	text	txt	2024-07-28 10:13:03.230492	0
 6480	2042	            NumberAnimation on x {\n                to: root.width - box.width - root.padding\n                duration: root.duration * 2\n                running: root.running\n            }	text	txt	2024-07-28 10:13:03.251747	0
 6481	2042	            RotationAnimation on rotation {\n                to: 360\n                duration: root.duration\n                running: root.running\n            }\n        }	text	txt	2024-07-28 10:13:03.272687	0
-6482	2042	        MouseArea {\n            anchors.fill: root\n            onClicked: root.running = true\n        }\n    }\n}	code	txt	2024-07-28 10:13:03.294341	0
-6483	2043	This animation requires changes on `opacity` and `scale` properties.	text	txt	2024-07-28 10:13:03.520005	0
-6484	2043		code	txt	2024-07-28 10:13:03.539988	0
-6485	2044	- `PropertyAnimation`: animates changes in property values.\n- `NumberAnimation`: animates changes in qreal-type values.\n- `ColorAnimation`: animates changes in color values.\n- `RotationAnimation`: animates changes in rotation values.	text	txt	2024-07-28 10:13:03.993303	0
-6486	2044	Qt Quick also provides more specialized animations for specific use cases:	text	txt	2024-07-28 10:13:04.014484	0
 6487	2044	- `PauseAnimation`: provides a pause for an animation.\n- `SequentialAnimation`: allows animations to be run sequentially.\n- `ParallelAnimation`: allows animations to be run in parallel.\n- `AnchorAnimation`: animates changes in anchor values.\n- `ParentAnimation`: animates changes in parent values.\n- `SmoothedAnimation`: allows a property to smoothly track a value.\n- `SprintAnimation`: allows a property to track a value in a spring-like motion.\n- `PathAnimation`: animates an item alongside a path.\n- `Vector3dAnimation`: animates changes in QVector3d values	text	txt	2024-07-28 10:13:04.036391	0
 6488	2045	While working on more complex animations, there is sometimes a need to change\na property or to run a script during an ongoing animation. For this Qt Quick\noffers the action elements, which can be used everywhere where the other\nanimation elements can be used:	text	txt	2024-07-28 10:13:04.373927	0
 6489	2045	- `PropertyAction`: specifies immediate property changes during animation.\n- `ScriptAction`: defines scripts to be run during an animation.	text	txt	2024-07-28 10:13:04.39493	0
@@ -11217,6 +11217,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 906	730	Use using directive to flatten a namespace:	open	2024-07-28 10:05:40.074062	2024-07-28 10:05:40.074062
 907	730	Include header files for C++ standard library and backward compatible C headers:	open	2024-07-28 10:05:40.391242	2024-07-28 10:05:40.391242
 908	730	Use exceptions to handle unexpected conditions:	open	2024-07-28 10:05:41.003079	2024-07-28 10:05:41.003079
+2159	267	Configure Vim to work with ctags:	open	2024-07-28 10:13:45.112876	2024-07-28 10:13:45.112876
 909	730	Use error code and error conditions to handle errors:	open	2024-07-28 10:05:41.775565	2024-07-28 10:05:41.775565
 910	731	What is <code>std::pair</code> type and where is it defined in C++ standard library?	open	2024-07-28 10:05:42.314324	2024-07-28 10:05:42.314324
 911	731	How to construct a <code>std::pair</code> using its default constructors?	open	2024-07-28 10:05:42.675404	2024-07-28 10:05:42.675404
@@ -11819,6 +11820,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 1501	1250	What editor does the <code>visudo</code> use to edit <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:32.50831	2024-07-28 10:09:32.50831
 1502	1250	How to keep editing <code>/etc/sudoers</code> file after making a syntactical error in <code>visudo</code> and save it?	open	2024-07-28 10:09:32.6974	2024-07-28 10:09:32.6974
 1503	1250	How to retain older <code>/etc/sudoers</code> file after attempting to save incorrect changes by <code>visudo</code>?	open	2024-07-28 10:09:32.905111	2024-07-28 10:09:32.905111
+2160	267	Auto-generate tags file in Vim:	open	2024-07-28 10:13:45.471761	2024-07-28 10:13:45.471761
 1504	1250	How to put an emergency rescue rule in <code>/etc/sudoers</code> file by <code>visudo</code> in case every other access rules failed?	open	2024-07-28 10:09:33.17151	2024-07-28 10:09:33.17151
 1505	1250	How to tell what a user can access with <code>sudo</code>?	open	2024-07-28 10:09:33.464625	2024-07-28 10:09:33.464625
 1506	1251	What mechanism is used in <code>sudo</code> rules to simplify overwhelmingly repeated rules and similar possible options?	open	2024-07-28 10:09:33.870075	2024-07-28 10:09:33.870075
@@ -11874,6 +11876,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2153	258	Inspect current working directory in vim:	open	2024-07-28 10:13:43.258817	2024-07-28 10:13:43.258817
 1556	1255	How to define a list of environment variables that <code>sudo</code> should retain when running a shell instance in case whitelisting environment variables is desired?	open	2024-07-28 10:09:50.048736	2024-07-28 10:09:50.048736
 1557	1255	How to allow users to retian all of their envinronment variables <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.371244	2024-07-28 10:09:50.371244
+2161	267	Jump back from definition using the tag history:	open	2024-07-28 10:13:45.733681	2024-07-28 10:13:45.733681
 1558	1255	How to delete specific environment variables in <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.691703	2024-07-28 10:09:50.691703
 1559	1255	How to allow users write a security policy to override their environment variables for specific commands when a software changes quickly and those values might need constant updating? (maybe can break into smaller parts)	open	2024-07-28 10:09:51.385334	2024-07-28 10:09:51.385334
 1560	1255	How to run privileged commands as a target user, in the target user's shell environment by <code>sudo</code>?	open	2024-07-28 10:09:51.921222	2024-07-28 10:09:51.921222
@@ -12105,6 +12108,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2154	258	Open a file in path relative to editing file:	open	2024-07-28 10:13:43.546517	2024-07-28 10:13:43.546517
 1786	629	Find the entries of the vector that is obtained by reflecting v = (-1,3) through the line going through the origin at an angle of π/3 counter-clockwise from the x-axis.	open	2024-07-28 10:11:27.694011	2024-07-28 10:11:27.694011
 1787	629	What is the linear transformation of rotation in two dimensions?	open	2024-07-28 10:11:27.877496	2024-07-28 10:11:27.877496
+2162	267	Specify jump to multi-match definitions:	open	2024-07-28 10:13:45.90679	2024-07-28 10:13:45.90679
 1788	629	Find the standard matrix of the linear transformation that rotates R^2 by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.026385	2024-07-28 10:11:28.026385
 1789	629	Find the standard matrix of the linear transformation that rotates R^2 by π/6 radians clockwise?	open	2024-07-28 10:11:28.207187	2024-07-28 10:11:28.207187
 1790	629	Rotate vector v = (1,3) by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.363845	2024-07-28 10:11:28.363845
@@ -12469,10 +12473,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2156	258	Find a file by its filename in vim:	open	2024-07-28 10:13:44.138715	2024-07-28 10:13:44.138715
 2157	258	Navigate file explorer in vim by opening a directory:	open	2024-07-28 10:13:44.457245	2024-07-28 10:13:44.457245
 2158	267	Create a tag file in project directory:	open	2024-07-28 10:13:44.814326	2024-07-28 10:13:44.814326
-2159	267	Configure Vim to work with ctags:	open	2024-07-28 10:13:45.112876	2024-07-28 10:13:45.112876
-2160	267	Auto-generate tags file in Vim:	open	2024-07-28 10:13:45.471761	2024-07-28 10:13:45.471761
-2161	267	Jump back from definition using the tag history:	open	2024-07-28 10:13:45.733681	2024-07-28 10:13:45.733681
-2162	267	Specify jump to multi-match definitions:	open	2024-07-28 10:13:45.90679	2024-07-28 10:13:45.90679
 2163	267	Select tag from matchlist after jumping to a wrong definition:	open	2024-07-28 10:13:46.168003	2024-07-28 10:13:46.168003
 2164	267	Manual match with a tag:	open	2024-07-28 10:13:46.381586	2024-07-28 10:13:46.381586
 2165	268	Compile a project inside Vim:	open	2024-07-28 10:13:46.622051	2024-07-28 10:13:46.622051
@@ -22930,6 +22930,30 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1540	2024-11-02 22:12:03.344603
 1	1537	2024-11-07 14:15:30.195413
 1	1538	2024-11-07 14:23:59.616237
+1	1547	2024-11-08 15:38:20.65793
+1	1548	2024-11-08 15:38:20.65793
+1	1549	2024-11-08 15:38:20.65793
+1	1550	2024-11-08 15:38:20.65793
+1	1551	2024-11-08 15:38:20.65793
+1	1552	2024-11-08 15:38:20.65793
+1	1553	2024-11-08 15:38:20.65793
+1	1554	2024-11-08 15:38:20.65793
+1	1555	2024-11-08 15:38:20.65793
+1	1556	2024-11-08 15:38:20.65793
+1	1557	2024-11-08 15:38:20.65793
+1	1558	2024-11-08 15:38:20.65793
+1	1559	2024-11-08 15:38:20.65793
+1	1560	2024-11-08 15:38:20.65793
+1	1561	2024-11-08 15:38:20.65793
+1	1562	2024-11-08 15:38:20.65793
+1	1563	2024-11-08 15:38:20.65793
+1	1564	2024-11-08 15:38:20.65793
+1	1565	2024-11-08 15:38:20.65793
+1	1566	2024-11-08 15:38:20.65793
+1	1567	2024-11-08 15:38:20.65793
+1	1568	2024-11-08 15:38:20.65793
+1	1569	2024-11-08 15:38:20.65793
+1	1570	2024-11-08 15:38:20.65793
 \.
 
 
