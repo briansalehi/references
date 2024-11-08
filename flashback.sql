@@ -12676,304 +12676,215 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2380	1293	What are the differences between existing transactional memory blocks?	open	2024-09-19 14:56:13.974979	2024-09-19 14:56:13.974979
 2381	1293	What is a task block?	open	2024-09-19 14:56:13.975939	2024-09-19 14:56:13.975939
 2382	1293	What is the meaning of data parallel programming?	open	2024-09-19 14:56:13.976861	2024-09-19 14:56:13.976861
-2383	1382	What is the output of yocto?	open	2024-09-22 10:06:26.739554	2024-09-22 10:06:26.739554
-2384	1382	What is the name of the build engine in yocto?	open	2024-09-22 10:06:26.746094	2024-09-22 10:06:26.746094
-2385	1382	What does bitbake do?	open	2024-09-22 10:06:26.748849	2024-09-22 10:06:26.748849
-2386	1382	What is the name of the text files parsed by bitbake?	open	2024-09-22 10:06:26.751843	2024-09-22 10:06:26.751843
-2387	1382	What is the building blocks of a recipe?	open	2024-09-22 10:06:26.754733	2024-09-22 10:06:26.754733
-2388	1382	What does bitbake take as an input?	open	2024-09-22 10:06:26.757109	2024-09-22 10:06:26.757109
-2389	1382	What is the building blocks of a metadata?	open	2024-09-22 10:06:26.759875	2024-09-22 10:06:26.759875
-2390	1382	What is the core layer of metadata?	open	2024-09-22 10:06:26.761843	2024-09-22 10:06:26.761843
-2391	1382	What is a poky layer?	open	2024-09-22 10:06:26.76369	2024-09-22 10:06:26.76369
-2392	1382	What is a poky distribution?	open	2024-09-22 10:06:26.766334	2024-09-22 10:06:26.766334
-2393	1382	What meta layer is used to build images for a beagle bone black board?	open	2024-09-22 10:06:26.768297	2024-09-22 10:06:26.768297
-2394	1382	Get poky reference system?	open	2024-09-22 10:06:26.770167	2024-09-22 10:06:26.770167
-2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061
-2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937
-2397	1382	What is the contents of <code>meta-skeleton</code> directory in poky source tree?	open	2024-09-22 10:06:26.775795	2024-09-22 10:06:26.775795
-2398	1382	What is the contents of <code>meta-poky</code> directory in poky source tree?	open	2024-09-22 10:06:26.777659	2024-09-22 10:06:26.777659
-2399	1382	What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?	open	2024-09-22 10:06:26.779433	2024-09-22 10:06:26.779433
-2400	1382	What does the <code>oe-init-build-env</code> file do in poky?	open	2024-09-22 10:06:26.781642	2024-09-22 10:06:26.781642
-2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374
-2402	1382	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723
-2403	1382	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
-2404	1382	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
-2405	1382	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
-2406	1382	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665
-2407	1382	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732
-2408	1382	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417
-2409	1382	Get poky repository?	open	2024-09-22 10:06:26.800576	2024-09-22 10:06:26.800576
-2410	1382	Initialize the build directory with poky?	open	2024-09-22 10:06:26.802607	2024-09-22 10:06:26.802607
-2411	1382	What variable defines the architecture of target machine to build for in poky?	open	2024-09-22 10:06:26.804735	2024-09-22 10:06:26.804735
-2412	1382	What are the optional variables to speed up the build process?	open	2024-09-22 10:06:26.806845	2024-09-22 10:06:26.806845
-2413	1382	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627
-2414	1382	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619
-2415	1382	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
-2416	1382	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
-2417	1382	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
-2418	1382	What scopes does OpenEmbedded build system have?	open	2024-09-22 10:06:26.819644	2024-09-22 10:06:26.819644
-2419	1382	Assign a value to a variable discarding its previous value?	open	2024-09-22 10:06:26.82154	2024-09-22 10:06:26.82154
-2420	1382	How many different variable expansions exists in OpenEmbedded build system?	open	2024-09-22 10:06:26.824365	2024-09-22 10:06:26.824365
-2421	1382	Append values to a variable with and without spaces?	open	2024-09-22 10:06:26.82672	2024-09-22 10:06:26.82672
-2422	1382	Prepend values to a variable with and without spaces?	open	2024-09-22 10:06:26.82875	2024-09-22 10:06:26.82875
-2423	1382	Make a default value for a variable?	open	2024-09-22 10:06:26.830887	2024-09-22 10:06:26.830887
-2424	1382	What is the difference between default and weak default values?	open	2024-09-22 10:06:26.833559	2024-09-22 10:06:26.833559
-2425	1382	What is the preferred way of modifying a variable?	open	2024-09-22 10:06:26.835627	2024-09-22 10:06:26.835627
-2426	1382	What does override operators do?	open	2024-09-22 10:06:26.83779	2024-09-22 10:06:26.83779
-2427	1382	Append to a variable using override operators?	open	2024-09-22 10:06:26.840005	2024-09-22 10:06:26.840005
-2428	1382	Prepend to a variable using override operators?	open	2024-09-22 10:06:26.842048	2024-09-22 10:06:26.842048
-2429	1382	Remove all occurances of a value within a variable using override operators?	open	2024-09-22 10:06:26.843961	2024-09-22 10:06:26.843961
-2430	1382	What does the dropbear package do?	open	2024-09-22 10:06:26.845783	2024-09-22 10:06:26.845783
-2431	1382	Assign on a variable only for a specific machine?	open	2024-09-22 10:06:26.848246	2024-09-22 10:06:26.848246
-2432	1382	What is the precedence between override assignments and regular assignments?	open	2024-09-22 10:06:26.850927	2024-09-22 10:06:26.850927
-2433	1382	Append to a variable only for a specific machine using override variables?	open	2024-09-22 10:06:26.85332	2024-09-22 10:06:26.85332
-2434	1382	What is the precedence of override operators?	open	2024-09-22 10:06:26.855264	2024-09-22 10:06:26.855264
-2435	1382	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715
-2436	1382	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027
-2437	1382	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989
-2438	1382	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921
-2439	1382	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123
-2440	1382	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296
-2441	1382	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929
-2442	1382	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449
-2443	1382	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595
-2444	1382	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544
-2445	1382	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458
-2446	1382	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312
-2447	1382	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126
-2448	1382	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574
-2449	1382	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839
-2450	1382	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
-2451	1382	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
-2452	1382	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219
-2453	1382	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196
-2454	1382	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584
-2455	1382	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199
-2456	1382	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655
-2457	1382	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011
-2458	1382	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358
-2459	1382	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528
-2460	1382	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467
-2461	1382	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302
-2462	1382	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375
-2463	1382	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558
-2464	1382	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107
-2465	1382	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
-2466	1382	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
-2467	1382	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
-2468	1382	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
-2469	1382	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782
-2470	1382	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673
-2471	1382	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745
-2472	1382	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843
-2473	1382	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776
-2474	1382	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
-2475	1382	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
-2476	1382	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954
-2477	1382	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144
-2478	1382	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027
-2479	1382	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329
-2480	1382	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
-2481	1382	What URI schemes exist?	open	2024-09-22 10:06:26.957417	2024-09-22 10:06:26.957417
-2482	1382	What pattern does git scheme have?	open	2024-09-22 10:06:26.959182	2024-09-22 10:06:26.959182
-2483	1382	What variables can be used as mirror locations?	open	2024-09-22 10:06:26.961474	2024-09-22 10:06:26.961474
-2484	1382	What configuration variable defines the location where sources are downloaded?	open	2024-09-22 10:06:26.963472	2024-09-22 10:06:26.963472
-2485	1382	Use checksums to verify integrity of a package?	open	2024-09-22 10:06:26.96564	2024-09-22 10:06:26.96564
-2486	1382	What variable is used to locate source files with file scheme?	open	2024-09-22 10:06:26.968076	2024-09-22 10:06:26.968076
-2487	1382	What paths are automatically appended to <code>FILESPATH</code>?	open	2024-09-22 10:06:26.970001	2024-09-22 10:06:26.970001
-2488	1382	What does <code>FILESOVERRIDES</code> variable contain?	open	2024-09-22 10:06:26.971933	2024-09-22 10:06:26.971933
-2489	1382	What variables defines the source files location?	open	2024-09-22 10:06:26.974296	2024-09-22 10:06:26.974296
-2490	1382	What variable defines the license files location?	open	2024-09-22 10:06:26.97675	2024-09-22 10:06:26.97675
-2491	1382	What variable defines build-time dependencies of a recipe?	open	2024-09-22 10:06:26.978648	2024-09-22 10:06:26.978648
-2492	1382	What variable defines runtime dependencies of a recipe?	open	2024-09-22 10:06:26.980677	2024-09-22 10:06:26.980677
-2493	1382	Reflect the dependency of a recipe on a specific version of another recipe?	open	2024-09-22 10:06:26.982994	2024-09-22 10:06:26.982994
-2494	1382	Inspect the dependencies of an image?	open	2024-09-22 10:06:26.984972	2024-09-22 10:06:26.984972
-2495	1382	What are the default tasks?	open	2024-09-22 10:06:26.986927	2024-09-22 10:06:26.986927
-2496	1382	Get a list of existing tasks from a recipe?	open	2024-09-22 10:06:26.988803	2024-09-22 10:06:26.988803
-2497	1382	What variable defines the location of generated objects during build?	open	2024-09-22 10:06:26.990674	2024-09-22 10:06:26.990674
-2498	1382	What variable defines the location where files are installed?	open	2024-09-22 10:06:26.992512	2024-09-22 10:06:26.992512
-2499	1382	What variable points to the working directory of recipe?	open	2024-09-22 10:06:26.994367	2024-09-22 10:06:26.994367
-2500	1382	What is the general syntax of a task?	open	2024-09-22 10:06:26.996427	2024-09-22 10:06:26.996427
-2501	1382	What each of default tasks work on which location variables?	open	2024-09-22 10:06:26.998409	2024-09-22 10:06:26.998409
-2502	1382	Add a task in a recipe?	open	2024-09-22 10:06:27.00027	2024-09-22 10:06:27.00027
-2503	1382	Take the precedence of gcc arguments without making patches?	open	2024-09-22 10:06:27.002413	2024-09-22 10:06:27.002413
-2504	1382	Which files are always applied after sources are fetched and extracted?	open	2024-09-22 10:06:27.004577	2024-09-22 10:06:27.004577
-2505	1382	Specify a tool to patch the sources listed in <code>SRC_URI</code>	open	2024-09-22 10:06:27.006869	2024-09-22 10:06:27.006869
-2506	1382	Specify how to resolve a conflict in patch?	open	2024-09-22 10:06:27.009292	2024-09-22 10:06:27.009292
-2507	1382	Write a recipe to install an program from GitHub?	open	2024-09-22 10:06:27.011378	2024-09-22 10:06:27.011378
-2508	1382	Write a version agnostic include file for a custom program?	open	2024-09-22 10:06:27.013177	2024-09-22 10:06:27.013177
-2509	1382	Use a version agnostic include file in a recipe?	open	2024-09-22 10:06:27.01514	2024-09-22 10:06:27.01514
-2510	1382	Where the run and log files are located?	open	2024-09-22 10:06:27.017288	2024-09-22 10:06:27.017288
-2511	1382	Get the value of a variable used in a recipe?	open	2024-09-22 10:06:27.019242	2024-09-22 10:06:27.019242
-2512	1382	List the entire environment variables in poky?	open	2024-09-22 10:06:27.020853	2024-09-22 10:06:27.020853
-2513	1382	List the environment variables of a recipe?	open	2024-09-22 10:06:27.022834	2024-09-22 10:06:27.022834
-2514	1382	Extend a recipe in third-party layers?	open	2024-09-22 10:06:27.025138	2024-09-22 10:06:27.025138
-2515	1382	What are the considerations of extending a recipe?	open	2024-09-22 10:06:27.027948	2024-09-22 10:06:27.027948
-2516	1382	Which variable should be changed when new files are added in recipe extension?	open	2024-09-22 10:06:27.030955	2024-09-22 10:06:27.030955
-2517	1382	Extend a task?	open	2024-09-22 10:06:27.033461	2024-09-22 10:06:27.033461
-2518	1382	Use a class in a custome recipe?	open	2024-09-22 10:06:27.035993	2024-09-22 10:06:27.035993
-2519	1382	What are the common classes?	open	2024-09-22 10:06:27.037848	2024-09-22 10:06:27.037848
-2520	1382	Which class is automatically inherited by all recipes?	open	2024-09-22 10:06:27.039712	2024-09-22 10:06:27.039712
-2521	1382	What common tasks are defaulted by base class?	open	2024-09-22 10:06:27.042298	2024-09-22 10:06:27.042298
-2522	1382	Where is <code>EXTRA_OEMAKE</code> useful?	open	2024-09-22 10:06:27.044257	2024-09-22 10:06:27.044257
-2523	1382	What does kernel class do?	open	2024-09-22 10:06:27.046382	2024-09-22 10:06:27.046382
-2524	1382	What does autotools class do?	open	2024-09-22 10:06:27.048528	2024-09-22 10:06:27.048528
-2525	1382	What does useradd class do?	open	2024-09-22 10:06:27.051225	2024-09-22 10:06:27.051225
-2526	1382	Which variable can be used to specify the packages that require their own users?	open	2024-09-22 10:06:27.053324	2024-09-22 10:06:27.053324
-2527	1382	Which class should be used when we need to install pre-built files into the generated root filesystem?	open	2024-09-22 10:06:27.055826	2024-09-22 10:06:27.055826
-2528	1382	Which variables is used to find the files to be included?	open	2024-09-22 10:06:27.057753	2024-09-22 10:06:27.057753
-2529	1382	What keywords are used to include files from recipes?	open	2024-09-22 10:06:27.059945	2024-09-22 10:06:27.059945
-2530	1382	How does inheriting in configuration files work?	open	2024-09-22 10:06:27.062135	2024-09-22 10:06:27.062135
-2531	1382	What is the difference between <code>include</code> and <code>require</code>?	open	2024-09-22 10:06:27.064288	2024-09-22 10:06:27.064288
-2532	1382	Debug build failures by using a development shell?	open	2024-09-22 10:06:27.066709	2024-09-22 10:06:27.066709
-2533	1382	Differenciate two builds?	open	2024-09-22 10:06:27.06979	2024-09-22 10:06:27.06979
-2534	1382	What locations are used by bitbake to retrieve files?	open	2024-09-22 10:06:27.073782	2024-09-22 10:06:27.073782
-2535	1382	Export full environment to a shell to debug a build?	open	2024-09-22 10:06:27.075651	2024-09-22 10:06:27.075651
-2536	1382	Enable build history to differenciate between two builds?	open	2024-09-22 10:06:27.077857	2024-09-22 10:06:27.077857
-2537	1382	Check the difference between two builds?	open	2024-09-22 10:06:27.079721	2024-09-22 10:06:27.079721
-2538	1382	Which class can be used to add mirrors?	open	2024-09-22 10:06:27.082295	2024-09-22 10:06:27.082295
-2539	1382	Create a local mirror by downloading all the sources?	open	2024-09-22 10:06:27.084852	2024-09-22 10:06:27.084852
-2540	1382	Which task is responsible for downloading sources?	open	2024-09-22 10:06:27.086835	2024-09-22 10:06:27.086835
-2541	1382	Disable network access in a recipe?	open	2024-09-22 10:06:27.088738	2024-09-22 10:06:27.088738
-2542	1382	Restrict bitbake to only download files from the <code>PREMIRRORS</code>?	open	2024-09-22 10:06:27.090811	2024-09-22 10:06:27.090811
-2543	1382	Download all the sources to run builds with network disabled?	open	2024-09-22 10:06:27.092916	2024-09-22 10:06:27.092916
-2544	1382	What is the convention in naming layers?	open	2024-09-22 10:06:27.094913	2024-09-22 10:06:27.094913
-2545	1382	What do layers isolate within their boundaries?	open	2024-09-22 10:06:27.096769	2024-09-22 10:06:27.096769
-2546	1382	What are the common layers in Poky?	open	2024-09-22 10:06:27.099389	2024-09-22 10:06:27.099389
-2547	1382	Where is the list of maintained layers?	open	2024-09-22 10:06:27.101606	2024-09-22 10:06:27.101606
-2548	1382	Where are the bitbake layers located?	open	2024-09-22 10:06:27.10355	2024-09-22 10:06:27.10355
-2549	1382	Include another layer?	open	2024-09-22 10:06:27.105798	2024-09-22 10:06:27.105798
-2550	1382	What tool is used to inspect layers?	open	2024-09-22 10:06:27.10789	2024-09-22 10:06:27.10789
-2551	1382	Get a list of layers?	open	2024-09-22 10:06:27.109875	2024-09-22 10:06:27.109875
-2552	1382	Add an existing layer?	open	2024-09-22 10:06:27.111804	2024-09-22 10:06:27.111804
-2553	1382	Remove a layer?	open	2024-09-22 10:06:27.113716	2024-09-22 10:06:27.113716
-2554	1382	What layers provide board support?	open	2024-09-22 10:06:27.116108	2024-09-22 10:06:27.116108
-2555	1382	What layers provide application support?	open	2024-09-22 10:06:27.118633	2024-09-22 10:06:27.118633
-2556	1382	Create a new layer?	open	2024-09-22 10:06:27.121077	2024-09-22 10:06:27.121077
-2557	1382	What is the skeleton of a newly created layer?	open	2024-09-22 10:06:27.12306	2024-09-22 10:06:27.12306
-2558	1382	Which metadata files are parsed by bitbake automatically?	open	2024-09-22 10:06:27.124949	2024-09-22 10:06:27.124949
-2559	1382	Define a new layer dependency?	open	2024-09-22 10:06:27.126807	2024-09-22 10:06:27.126807
-2560	1382	Specify which yocto version a layer is compatible with?	open	2024-09-22 10:06:27.128801	2024-09-22 10:06:27.128801
-2561	1382	What is a BSP layer?	open	2024-09-22 10:06:27.131033	2024-09-22 10:06:27.131033
-2562	1382	What are the machine configurations in a BSP layers?	open	2024-09-22 10:06:27.133818	2024-09-22 10:06:27.133818
-2563	1382	What configuration variable is used to describe target machine architecture?	open	2024-09-22 10:06:27.135929	2024-09-22 10:06:27.135929
-2564	1382	What configuration variable is used to describe target kernel?	open	2024-09-22 10:06:27.13788	2024-09-22 10:06:27.13788
-2565	1382	What configuration variable is used to describe target machine features?	open	2024-09-22 10:06:27.139796	2024-09-22 10:06:27.139796
-2566	1382	What configuration variable is used to describe the serial console used to attach to target devide?	open	2024-09-22 10:06:27.141652	2024-09-22 10:06:27.141652
-2567	1382	What configuration variable is used to describe the target kernel image type?	open	2024-09-22 10:06:27.143825	2024-09-22 10:06:27.143825
-2568	1382	What bootloader is used in Poky by default?	open	2024-09-22 10:06:27.146159	2024-09-22 10:06:27.146159
-2569	1382	What configuration variable is used in UBoot recipe to name of the SPL binary?	open	2024-09-22 10:06:27.14812	2024-09-22 10:06:27.14812
-2570	1382	What configuration variable is used in UBoot recipe as a suffix to bootloader name?	open	2024-09-22 10:06:27.150388	2024-09-22 10:06:27.150388
-2571	1382	What configuration variable is used in UBoot recipe as the target architecture?	open	2024-09-22 10:06:27.152552	2024-09-22 10:06:27.152552
-2572	1382	What configuration variable is used in UBoot recipe as the bootloader entry point?	open	2024-09-22 10:06:27.154394	2024-09-22 10:06:27.154394
-2573	1382	What configuration variable is used in UBoot recipe as the bootloader load address?	open	2024-09-22 10:06:27.156378	2024-09-22 10:06:27.156378
-2574	1382	What configuration variable is used in UBoot recipe as the make target used to build the bootloader?	open	2024-09-22 10:06:27.158537	2024-09-22 10:06:27.158537
-2575	1382	In how many ways the kernel can be built with yocto?	open	2024-09-22 10:06:27.160797	2024-09-22 10:06:27.160797
-2576	1382	Use <code>linux-yocto</code> to build a specific kernel in an image?	open	2024-09-22 10:06:27.163108	2024-09-22 10:06:27.163108
-2577	1382	What is the advanced metadata?	open	2024-09-22 10:06:27.165612	2024-09-22 10:06:27.165612
-2578	1382	What is a Kernel Metadata?	open	2024-09-22 10:06:27.168342	2024-09-22 10:06:27.168342
-2579	1382	Write a simple kernel metadata specifying a configuration and a patch?	open	2024-09-22 10:06:27.170754	2024-09-22 10:06:27.170754
-2580	1382	What is advantage of creating a distribution layer?	open	2024-09-22 10:06:27.172827	2024-09-22 10:06:27.172827
-2581	1382	Where is the configuration for a distro layer?	open	2024-09-22 10:06:27.17469	2024-09-22 10:06:27.17469
-2582	1382	What configuration variable is mandatory in a distro layer config file?	open	2024-09-22 10:06:27.176714	2024-09-22 10:06:27.176714
-2583	1382	What informational configuration variables are used in a distro layer config file?	open	2024-09-22 10:06:27.179003	2024-09-22 10:06:27.179003
-2584	1382	What configuration variable is used in distro layers to toggle features?	open	2024-09-22 10:06:27.180961	2024-09-22 10:06:27.180961
-2585	1382	What configuration variable holds the intersection of distro and machine features?	open	2024-09-22 10:06:27.183154	2024-09-22 10:06:27.183154
-2586	1382	Define a toolchain in a distro layer?	open	2024-09-22 10:06:27.185724	2024-09-22 10:06:27.185724
-2587	1382	What sample files are created in distro layers?	open	2024-09-22 10:06:27.18779	2024-09-22 10:06:27.18779
-2588	1382	What configuration variable holds the path to sample config files?	open	2024-09-22 10:06:27.190291	2024-09-22 10:06:27.190291
-2589	1382	What is an image?	open	2024-09-22 10:06:27.192416	2024-09-22 10:06:27.192416
-2590	1382	What is the difference between an image and a machine layer?	open	2024-09-22 10:06:27.194452	2024-09-22 10:06:27.194452
-2591	1382	Where is the location of images?	open	2024-09-22 10:06:27.196265	2024-09-22 10:06:27.196265
-2592	1382	What are the common images used in poky?	open	2024-09-22 10:06:27.198741	2024-09-22 10:06:27.198741
-2593	1382	What an image is made of?	open	2024-09-22 10:06:27.201185	2024-09-22 10:06:27.201185
-2594	1382	What class is inherited by images?	open	2024-09-22 10:06:27.203197	2024-09-22 10:06:27.203197
-2595	1382	What configuration variable is used in an image as the generated image name?	open	2024-09-22 10:06:27.20516	2024-09-22 10:06:27.20516
-2596	1382	What configuration variable is used in an image to hold the list of packages to be installed?	open	2024-09-22 10:06:27.207106	2024-09-22 10:06:27.207106
-2597	1382	What configuration variable is used in an image as the root filesystem size?	open	2024-09-22 10:06:27.208852	2024-09-22 10:06:27.208852
-2598	1382	What configuration variable is used in an image to hold the list of features used in the image?	open	2024-09-22 10:06:27.210725	2024-09-22 10:06:27.210725
-2599	1382	What configuration variable is used in an image to hold the list of formats to be used to create the image?	open	2024-09-22 10:06:27.21256	2024-09-22 10:06:27.21256
-2600	1382	What configuration variable is used in an image to hold the list of locales to be supported?	open	2024-09-22 10:06:27.2145	2024-09-22 10:06:27.2145
-2601	1382	What configuration variable is used in an image as the package type used by the build system?	open	2024-09-22 10:06:27.216646	2024-09-22 10:06:27.216646
-2602	1382	What configuration variable is used in an image as shell commands to run at post process?	open	2024-09-22 10:06:27.218739	2024-09-22 10:06:27.218739
-2603	1382	What configuration variable is used in an image as recipes to be built with the image?	open	2024-09-22 10:06:27.220622	2024-09-22 10:06:27.220622
-2604	1382	What is the first steps of image creation?	open	2024-09-22 10:06:27.222942	2024-09-22 10:06:27.222942
-2605	1382	What variables change how root filesystem is created?	open	2024-09-22 10:06:27.225086	2024-09-22 10:06:27.225086
-2606	1382	Where are the root filesystem related files located in poky?	open	2024-09-22 10:06:27.227033	2024-09-22 10:06:27.227033
-2607	1382	Where are the image type instructions located?	open	2024-09-22 10:06:27.228933	2024-09-22 10:06:27.228933
-2608	1382	What are the steps to creating an image type?	open	2024-09-22 10:06:27.231346	2024-09-22 10:06:27.231346
-2609	1382	What are the steps to creating an image conversion type?	open	2024-09-22 10:06:27.234757	2024-09-22 10:06:27.234757
-2610	1382	Use wic to create a flashable image?	open	2024-09-22 10:06:27.237105	2024-09-22 10:06:27.237105
-2611	1382	What is the use cases of bmaptool?	open	2024-09-22 10:06:27.239235	2024-09-22 10:06:27.239235
-2612	1382	What is the structure of a package group?	open	2024-09-22 10:06:27.241394	2024-09-22 10:06:27.241394
-2613	1382	What is the required configuration variable in a package group class?	open	2024-09-22 10:06:27.243317	2024-09-22 10:06:27.243317
-2614	1382	What are the common package groups?	open	2024-09-22 10:06:27.245458	2024-09-22 10:06:27.245458
-2615	1382	Where is a sysroot directory?	open	2024-09-22 10:06:27.247772	2024-09-22 10:06:27.247772
-2616	1382	What is the concept of per-recipe sysroot?	open	2024-09-22 10:06:27.250228	2024-09-22 10:06:27.250228
-2617	1382	What a recipe sysroot is made of?	open	2024-09-22 10:06:27.252418	2024-09-22 10:06:27.252418
-2618	1382	Where is the recipe sysroot located?	open	2024-09-22 10:06:27.254639	2024-09-22 10:06:27.254639
-2619	1382	What is the output recipe sysroot used by other dependent recipes?	open	2024-09-22 10:06:27.256769	2024-09-22 10:06:27.256769
-2620	1382	In what script languages can recipes be written?	open	2024-09-22 10:06:27.258774	2024-09-22 10:06:27.258774
-2621	1382	What Python modules are automatically included when used?	open	2024-09-22 10:06:27.26164	2024-09-22 10:06:27.26164
-2622	1382	Write an anonymous Python function in a recipe?	open	2024-09-22 10:06:27.263889	2024-09-22 10:06:27.263889
-2623	1382	Write an inline Python function in a recipe?	open	2024-09-22 10:06:27.266215	2024-09-22 10:06:27.266215
-2624	1382	Access <code>D</code> configuration variable in recipe tasks?	open	2024-09-22 10:06:27.269164	2024-09-22 10:06:27.269164
-2625	1382	What are the use cases of variable flags?	open	2024-09-22 10:06:27.271564	2024-09-22 10:06:27.271564
-2626	1382	What variable flag is used to store the result of md5 hash?	open	2024-09-22 10:06:27.273581	2024-09-22 10:06:27.273581
-2627	1382	What variable flag can be used to make a directory before a task runs?	open	2024-09-22 10:06:27.275724	2024-09-22 10:06:27.275724
-2628	1382	What variable flag can be used to disable the execution of the task?	open	2024-09-22 10:06:27.277557	2024-09-22 10:06:27.277557
-2629	1382	What variable flag can be used to disable timestamp modification each time a task runs?	open	2024-09-22 10:06:27.279504	2024-09-22 10:06:27.279504
-2630	1382	What variable flag can be used to store task documentation?	open	2024-09-22 10:06:27.281831	2024-09-22 10:06:27.281831
-2631	1382	What variable flag can be used to add a dependency between specific tasks?	open	2024-09-22 10:06:27.284881	2024-09-22 10:06:27.284881
-2632	1382	What configuration variable controls build on a per feature granularity?	open	2024-09-22 10:06:27.286951	2024-09-22 10:06:27.286951
-2633	1382	What are the arguments used by <code>PACKAGECONIFG</code> configuration variable?	open	2024-09-22 10:06:27.289396	2024-09-22 10:06:27.289396
-2634	1382	Conditionally configure wifi feature in a package if it is enabled?	open	2024-09-22 10:06:27.291505	2024-09-22 10:06:27.291505
-2635	1382	Conditionally configure bluetooth feature in a package if it is enabled?	open	2024-09-22 10:06:27.293553	2024-09-22 10:06:27.293553
-2636	1382	Conditionally configure openvpn feature in a package if it is enabled?	open	2024-09-22 10:06:27.295605	2024-09-22 10:06:27.295605
-2637	1382	Add a feature in a recipe configuration?	open	2024-09-22 10:06:27.298136	2024-09-22 10:06:27.298136
-2638	1382	Add a feature in a distro configuration?	open	2024-09-22 10:06:27.300405	2024-09-22 10:06:27.300405
-2639	1382	List available <code>PACKAGECONFIG</code> flags?	open	2024-09-22 10:06:27.303099	2024-09-22 10:06:27.303099
-2640	1382	Check if a value exists in varaible?	open	2024-09-22 10:06:27.306231	2024-09-22 10:06:27.306231
-2641	1382	Using inline Python functions return all the values of a variable for a specific flag?	open	2024-09-22 10:06:27.309147	2024-09-22 10:06:27.309147
-2642	1382	What configuration variable holds the list of packages to be built?	open	2024-09-22 10:06:27.311877	2024-09-22 10:06:27.311877
-2643	1382	What configuration variable allows to check dependencies?	open	2024-09-22 10:06:27.314251	2024-09-22 10:06:27.314251
-2644	1382	What configuration variable allows creation of empty packages?	open	2024-09-22 10:06:27.316931	2024-09-22 10:06:27.316931
-2645	1382	What configuration variable is used to prevent overwriting during the update process?	open	2024-09-22 10:06:27.319538	2024-09-22 10:06:27.319538
-2646	1382	What configuration variable lists the files to be included in a package?	open	2024-09-22 10:06:27.321883	2024-09-22 10:06:27.321883
-2647	1382	What configuration variable tracks the changes in licenses?	open	2024-09-22 10:06:27.324465	2024-09-22 10:06:27.324465
-2648	1382	Which recipes should contain licensing information?	open	2024-09-22 10:06:27.327062	2024-09-22 10:06:27.327062
-2649	1382	Specify which licenses cannot be integrated into the image?	open	2024-09-22 10:06:27.329821	2024-09-22 10:06:27.329821
-2650	1382	Define a license for commercial components?	open	2024-09-22 10:06:27.334467	2024-09-22 10:06:27.334467
-2651	1382	Where does bitbake generate the manifest of all licenses?	open	2024-09-22 10:06:27.337151	2024-09-22 10:06:27.337151
-2652	1382	Include the license manifest into the root filesystem?	open	2024-09-22 10:06:27.340114	2024-09-22 10:06:27.340114
-2653	1382	What tools does an SDK provide?	open	2024-09-22 10:06:27.342569	2024-09-22 10:06:27.342569
-2654	1382	What is the form of an SDK generated by poky?	open	2024-09-22 10:06:27.345425	2024-09-22 10:06:27.345425
-2655	1382	What SDK can be used to do low level development?	open	2024-09-22 10:06:27.34792	2024-09-22 10:06:27.34792
-2656	1382	Create a generic SDK for bootloader and kernel development?	open	2024-09-22 10:06:27.350954	2024-09-22 10:06:27.350954
-2657	1382	Where will be the generated generic SDK stored?	open	2024-09-22 10:06:27.353524	2024-09-22 10:06:27.353524
-2658	1382	What SDK can be used to develop applications running on a target?	open	2024-09-22 10:06:27.356	2024-09-22 10:06:27.356
-2659	1382	What task is responsible for generating an SDK?	open	2024-09-22 10:06:27.358434	2024-09-22 10:06:27.358434
-2660	1382	Generate an SDK for an image?	open	2024-09-22 10:06:27.360877	2024-09-22 10:06:27.360877
-2661	1382	What configuration variables control what will be installed in an SDK?	open	2024-09-22 10:06:27.364051	2024-09-22 10:06:27.364051
-2662	1382	Install an SDK?	open	2024-09-22 10:06:27.367128	2024-09-22 10:06:27.367128
-2663	1382	Use an installed SDK?	open	2024-09-22 10:06:27.37016	2024-09-22 10:06:27.37016
-2664	1382	What environment variables will be exported by an SDK?	open	2024-09-22 10:06:27.37292	2024-09-22 10:06:27.37292
-2665	1382	Use a SDK to build an application for a target?	open	2024-09-22 10:06:27.375191	2024-09-22 10:06:27.375191
-2666	1382	Use a SDK to build kernel?	open	2024-09-22 10:06:27.37839	2024-09-22 10:06:27.37839
-2667	1382	What are the advantages of using devtool?	open	2024-09-22 10:06:27.380755	2024-09-22 10:06:27.380755
-2668	1382	Where is devtool located?	open	2024-09-22 10:06:27.383352	2024-09-22 10:06:27.383352
-2669	1382	Where does devtool manage sources?	open	2024-09-22 10:06:27.386335	2024-09-22 10:06:27.386335
-2670	1382	Create a new recipe with devtool?	open	2024-09-22 10:06:27.388743	2024-09-22 10:06:27.388743
-2671	1382	Modify a recipe with devtool?	open	2024-09-22 10:06:27.3911	2024-09-22 10:06:27.3911
-2672	1382	Upgrade a recipe with devtool?	open	2024-09-22 10:06:27.393414	2024-09-22 10:06:27.393414
-2673	1382	Edit a recipe with an editor using devtool?	open	2024-09-22 10:06:27.395933	2024-09-22 10:06:27.395933
-2674	1382	Build a recipe with devtool?	open	2024-09-22 10:06:27.398504	2024-09-22 10:06:27.398504
-2675	1382	Build an image with the additional devtool recipes?	open	2024-09-22 10:06:27.401275	2024-09-22 10:06:27.401275
-2676	1382	Upload the recipes packages to the target using devtool?	open	2024-09-22 10:06:27.403819	2024-09-22 10:06:27.403819
-2677	1382	Generate patches from git commits made locally with devtool?	open	2024-09-22 10:06:27.406359	2024-09-22 10:06:27.406359
-2678	1382	Remove a recipe from devtool?	open	2024-09-22 10:06:27.408624	2024-09-22 10:06:27.408624
+2402	1552	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723
+2403	1552	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
+2404	1552	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
+2405	1552	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
+2406	1552	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665
+2407	1552	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732
+2408	1552	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417
+2409	1552	Get poky repository?	open	2024-09-22 10:06:26.800576	2024-09-22 10:06:26.800576
+2410	1552	Initialize the build directory with poky?	open	2024-09-22 10:06:26.802607	2024-09-22 10:06:26.802607
+2411	1552	What variable defines the architecture of target machine to build for in poky?	open	2024-09-22 10:06:26.804735	2024-09-22 10:06:26.804735
+2412	1552	What are the optional variables to speed up the build process?	open	2024-09-22 10:06:26.806845	2024-09-22 10:06:26.806845
+2418	1553	What scopes does OpenEmbedded build system have?	open	2024-09-22 10:06:26.819644	2024-09-22 10:06:26.819644
+2419	1553	Assign a value to a variable discarding its previous value?	open	2024-09-22 10:06:26.82154	2024-09-22 10:06:26.82154
+2420	1553	How many different variable expansions exists in OpenEmbedded build system?	open	2024-09-22 10:06:26.824365	2024-09-22 10:06:26.824365
+2421	1553	Append values to a variable with and without spaces?	open	2024-09-22 10:06:26.82672	2024-09-22 10:06:26.82672
+2422	1553	Prepend values to a variable with and without spaces?	open	2024-09-22 10:06:26.82875	2024-09-22 10:06:26.82875
+2423	1553	Make a default value for a variable?	open	2024-09-22 10:06:26.830887	2024-09-22 10:06:26.830887
+2424	1553	What is the difference between default and weak default values?	open	2024-09-22 10:06:26.833559	2024-09-22 10:06:26.833559
+2425	1553	What is the preferred way of modifying a variable?	open	2024-09-22 10:06:26.835627	2024-09-22 10:06:26.835627
+2426	1553	What does override operators do?	open	2024-09-22 10:06:26.83779	2024-09-22 10:06:26.83779
+2427	1553	Append to a variable using override operators?	open	2024-09-22 10:06:26.840005	2024-09-22 10:06:26.840005
+2428	1553	Prepend to a variable using override operators?	open	2024-09-22 10:06:26.842048	2024-09-22 10:06:26.842048
+2429	1553	Remove all occurances of a value within a variable using override operators?	open	2024-09-22 10:06:26.843961	2024-09-22 10:06:26.843961
+2430	1553	What does the dropbear package do?	open	2024-09-22 10:06:26.845783	2024-09-22 10:06:26.845783
+2431	1553	Assign on a variable only for a specific machine?	open	2024-09-22 10:06:26.848246	2024-09-22 10:06:26.848246
+2432	1553	What is the precedence between override assignments and regular assignments?	open	2024-09-22 10:06:26.850927	2024-09-22 10:06:26.850927
+2434	1553	What is the precedence of override operators?	open	2024-09-22 10:06:26.855264	2024-09-22 10:06:26.855264
+2435	1554	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715
+2436	1554	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027
+2437	1554	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989
+2438	1554	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921
+2439	1554	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123
+2440	1554	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296
+2441	1554	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929
+2442	1554	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449
+2443	1554	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595
+2444	1554	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544
+2445	1554	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458
+2446	1554	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312
+2447	1554	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126
+2448	1554	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574
+2449	1554	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839
+2450	1554	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
+2451	1554	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
+2454	1555	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584
+2455	1555	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199
+2456	1555	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655
+2457	1555	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011
+2458	1555	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358
+2459	1555	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528
+2460	1555	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467
+2461	1555	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302
+2462	1555	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375
+2463	1555	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558
+2469	1556	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782
+2470	1556	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673
+2471	1556	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745
+2472	1556	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843
+2473	1556	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776
+2481	1557	What URI schemes exist?	open	2024-09-22 10:06:26.957417	2024-09-22 10:06:26.957417
+2482	1557	What pattern does git scheme have?	open	2024-09-22 10:06:26.959182	2024-09-22 10:06:26.959182
+2483	1557	What variables can be used as mirror locations?	open	2024-09-22 10:06:26.961474	2024-09-22 10:06:26.961474
+2484	1557	What configuration variable defines the location where sources are downloaded?	open	2024-09-22 10:06:26.963472	2024-09-22 10:06:26.963472
+2485	1557	Use checksums to verify integrity of a package?	open	2024-09-22 10:06:26.96564	2024-09-22 10:06:26.96564
+2486	1557	What variable is used to locate source files with file scheme?	open	2024-09-22 10:06:26.968076	2024-09-22 10:06:26.968076
+2487	1557	What paths are automatically appended to <code>FILESPATH</code>?	open	2024-09-22 10:06:26.970001	2024-09-22 10:06:26.970001
+2488	1557	What does <code>FILESOVERRIDES</code> variable contain?	open	2024-09-22 10:06:26.971933	2024-09-22 10:06:26.971933
+2489	1557	What variables defines the source files location?	open	2024-09-22 10:06:26.974296	2024-09-22 10:06:26.974296
+2490	1557	What variable defines the license files location?	open	2024-09-22 10:06:26.97675	2024-09-22 10:06:26.97675
+2491	1557	What variable defines build-time dependencies of a recipe?	open	2024-09-22 10:06:26.978648	2024-09-22 10:06:26.978648
+2495	1558	What are the default tasks?	open	2024-09-22 10:06:26.986927	2024-09-22 10:06:26.986927
+2496	1558	Get a list of existing tasks from a recipe?	open	2024-09-22 10:06:26.988803	2024-09-22 10:06:26.988803
+2497	1558	What variable defines the location of generated objects during build?	open	2024-09-22 10:06:26.990674	2024-09-22 10:06:26.990674
+2498	1558	What variable defines the location where files are installed?	open	2024-09-22 10:06:26.992512	2024-09-22 10:06:26.992512
+2499	1558	What variable points to the working directory of recipe?	open	2024-09-22 10:06:26.994367	2024-09-22 10:06:26.994367
+2500	1558	What is the general syntax of a task?	open	2024-09-22 10:06:26.996427	2024-09-22 10:06:26.996427
+2501	1558	What each of default tasks work on which location variables?	open	2024-09-22 10:06:26.998409	2024-09-22 10:06:26.998409
+2502	1558	Add a task in a recipe?	open	2024-09-22 10:06:27.00027	2024-09-22 10:06:27.00027
+2503	1559	Take the precedence of gcc arguments without making patches?	open	2024-09-22 10:06:27.002413	2024-09-22 10:06:27.002413
+2504	1559	Which files are always applied after sources are fetched and extracted?	open	2024-09-22 10:06:27.004577	2024-09-22 10:06:27.004577
+2505	1559	Specify a tool to patch the sources listed in <code>SRC_URI</code>	open	2024-09-22 10:06:27.006869	2024-09-22 10:06:27.006869
+2506	1559	Specify how to resolve a conflict in patch?	open	2024-09-22 10:06:27.009292	2024-09-22 10:06:27.009292
+2507	1559	Write a recipe to install an program from GitHub?	open	2024-09-22 10:06:27.011378	2024-09-22 10:06:27.011378
+2508	1559	Write a version agnostic include file for a custom program?	open	2024-09-22 10:06:27.013177	2024-09-22 10:06:27.013177
+2509	1559	Use a version agnostic include file in a recipe?	open	2024-09-22 10:06:27.01514	2024-09-22 10:06:27.01514
+2510	1559	Where the run and log files are located?	open	2024-09-22 10:06:27.017288	2024-09-22 10:06:27.017288
+2511	1559	Get the value of a variable used in a recipe?	open	2024-09-22 10:06:27.019242	2024-09-22 10:06:27.019242
+2512	1559	List the entire environment variables in poky?	open	2024-09-22 10:06:27.020853	2024-09-22 10:06:27.020853
+2513	1559	List the environment variables of a recipe?	open	2024-09-22 10:06:27.022834	2024-09-22 10:06:27.022834
+2514	1559	Extend a recipe in third-party layers?	open	2024-09-22 10:06:27.025138	2024-09-22 10:06:27.025138
+2515	1559	What are the considerations of extending a recipe?	open	2024-09-22 10:06:27.027948	2024-09-22 10:06:27.027948
+2517	1559	Extend a task?	open	2024-09-22 10:06:27.033461	2024-09-22 10:06:27.033461
+2518	1560	Use a class in a custome recipe?	open	2024-09-22 10:06:27.035993	2024-09-22 10:06:27.035993
+2519	1560	What are the common classes?	open	2024-09-22 10:06:27.037848	2024-09-22 10:06:27.037848
+2520	1560	Which class is automatically inherited by all recipes?	open	2024-09-22 10:06:27.039712	2024-09-22 10:06:27.039712
+2521	1560	What common tasks are defaulted by base class?	open	2024-09-22 10:06:27.042298	2024-09-22 10:06:27.042298
+2522	1560	Where is <code>EXTRA_OEMAKE</code> useful?	open	2024-09-22 10:06:27.044257	2024-09-22 10:06:27.044257
+2523	1560	What does kernel class do?	open	2024-09-22 10:06:27.046382	2024-09-22 10:06:27.046382
+2524	1560	What does autotools class do?	open	2024-09-22 10:06:27.048528	2024-09-22 10:06:27.048528
+2525	1560	What does useradd class do?	open	2024-09-22 10:06:27.051225	2024-09-22 10:06:27.051225
+2526	1560	Which variable can be used to specify the packages that require their own users?	open	2024-09-22 10:06:27.053324	2024-09-22 10:06:27.053324
+2527	1560	Which class should be used when we need to install pre-built files into the generated root filesystem?	open	2024-09-22 10:06:27.055826	2024-09-22 10:06:27.055826
+2528	1561	Which variables is used to find the files to be included?	open	2024-09-22 10:06:27.057753	2024-09-22 10:06:27.057753
+2529	1561	What keywords are used to include files from recipes?	open	2024-09-22 10:06:27.059945	2024-09-22 10:06:27.059945
+2530	1561	How does inheriting in configuration files work?	open	2024-09-22 10:06:27.062135	2024-09-22 10:06:27.062135
+2531	1561	What is the difference between <code>include</code> and <code>require</code>?	open	2024-09-22 10:06:27.064288	2024-09-22 10:06:27.064288
+2532	1561	Debug build failures by using a development shell?	open	2024-09-22 10:06:27.066709	2024-09-22 10:06:27.066709
+2533	1561	Differenciate two builds?	open	2024-09-22 10:06:27.06979	2024-09-22 10:06:27.06979
+2534	1561	What locations are used by bitbake to retrieve files?	open	2024-09-22 10:06:27.073782	2024-09-22 10:06:27.073782
+2535	1561	Export full environment to a shell to debug a build?	open	2024-09-22 10:06:27.075651	2024-09-22 10:06:27.075651
+2536	1561	Enable build history to differenciate between two builds?	open	2024-09-22 10:06:27.077857	2024-09-22 10:06:27.077857
+2537	1561	Check the difference between two builds?	open	2024-09-22 10:06:27.079721	2024-09-22 10:06:27.079721
+2538	1561	Which class can be used to add mirrors?	open	2024-09-22 10:06:27.082295	2024-09-22 10:06:27.082295
+2544	1562	What is the convention in naming layers?	open	2024-09-22 10:06:27.094913	2024-09-22 10:06:27.094913
+2545	1562	What do layers isolate within their boundaries?	open	2024-09-22 10:06:27.096769	2024-09-22 10:06:27.096769
+2546	1562	What are the common layers in Poky?	open	2024-09-22 10:06:27.099389	2024-09-22 10:06:27.099389
+2547	1562	Where is the list of maintained layers?	open	2024-09-22 10:06:27.101606	2024-09-22 10:06:27.101606
+2548	1562	Where are the bitbake layers located?	open	2024-09-22 10:06:27.10355	2024-09-22 10:06:27.10355
+2549	1562	Include another layer?	open	2024-09-22 10:06:27.105798	2024-09-22 10:06:27.105798
+2558	1563	Which metadata files are parsed by bitbake automatically?	open	2024-09-22 10:06:27.124949	2024-09-22 10:06:27.124949
+2559	1563	Define a new layer dependency?	open	2024-09-22 10:06:27.126807	2024-09-22 10:06:27.126807
+2560	1563	Specify which yocto version a layer is compatible with?	open	2024-09-22 10:06:27.128801	2024-09-22 10:06:27.128801
+2561	1563	What is a BSP layer?	open	2024-09-22 10:06:27.131033	2024-09-22 10:06:27.131033
+2562	1563	What are the machine configurations in a BSP layers?	open	2024-09-22 10:06:27.133818	2024-09-22 10:06:27.133818
+2563	1563	What configuration variable is used to describe target machine architecture?	open	2024-09-22 10:06:27.135929	2024-09-22 10:06:27.135929
+2564	1563	What configuration variable is used to describe target kernel?	open	2024-09-22 10:06:27.13788	2024-09-22 10:06:27.13788
+2565	1563	What configuration variable is used to describe target machine features?	open	2024-09-22 10:06:27.139796	2024-09-22 10:06:27.139796
+2566	1563	What configuration variable is used to describe the serial console used to attach to target devide?	open	2024-09-22 10:06:27.141652	2024-09-22 10:06:27.141652
+2567	1563	What configuration variable is used to describe the target kernel image type?	open	2024-09-22 10:06:27.143825	2024-09-22 10:06:27.143825
+2575	1564	In how many ways the kernel can be built with yocto?	open	2024-09-22 10:06:27.160797	2024-09-22 10:06:27.160797
+2576	1564	Use <code>linux-yocto</code> to build a specific kernel in an image?	open	2024-09-22 10:06:27.163108	2024-09-22 10:06:27.163108
+2577	1564	What is the advanced metadata?	open	2024-09-22 10:06:27.165612	2024-09-22 10:06:27.165612
+2578	1564	What is a Kernel Metadata?	open	2024-09-22 10:06:27.168342	2024-09-22 10:06:27.168342
+2579	1564	Write a simple kernel metadata specifying a configuration and a patch?	open	2024-09-22 10:06:27.170754	2024-09-22 10:06:27.170754
+2580	1564	What is advantage of creating a distribution layer?	open	2024-09-22 10:06:27.172827	2024-09-22 10:06:27.172827
+2581	1564	Where is the configuration for a distro layer?	open	2024-09-22 10:06:27.17469	2024-09-22 10:06:27.17469
+2582	1564	What configuration variable is mandatory in a distro layer config file?	open	2024-09-22 10:06:27.176714	2024-09-22 10:06:27.176714
+2583	1564	What informational configuration variables are used in a distro layer config file?	open	2024-09-22 10:06:27.179003	2024-09-22 10:06:27.179003
+2584	1564	What configuration variable is used in distro layers to toggle features?	open	2024-09-22 10:06:27.180961	2024-09-22 10:06:27.180961
+2585	1564	What configuration variable holds the intersection of distro and machine features?	open	2024-09-22 10:06:27.183154	2024-09-22 10:06:27.183154
+2586	1564	Define a toolchain in a distro layer?	open	2024-09-22 10:06:27.185724	2024-09-22 10:06:27.185724
+2587	1564	What sample files are created in distro layers?	open	2024-09-22 10:06:27.18779	2024-09-22 10:06:27.18779
+2588	1564	What configuration variable holds the path to sample config files?	open	2024-09-22 10:06:27.190291	2024-09-22 10:06:27.190291
+2589	1565	What is an image?	open	2024-09-22 10:06:27.192416	2024-09-22 10:06:27.192416
+2590	1565	What is the difference between an image and a machine layer?	open	2024-09-22 10:06:27.194452	2024-09-22 10:06:27.194452
+2591	1565	Where is the location of images?	open	2024-09-22 10:06:27.196265	2024-09-22 10:06:27.196265
+2592	1565	What are the common images used in poky?	open	2024-09-22 10:06:27.198741	2024-09-22 10:06:27.198741
+2593	1565	What an image is made of?	open	2024-09-22 10:06:27.201185	2024-09-22 10:06:27.201185
+2594	1565	What class is inherited by images?	open	2024-09-22 10:06:27.203197	2024-09-22 10:06:27.203197
+2595	1565	What configuration variable is used in an image as the generated image name?	open	2024-09-22 10:06:27.20516	2024-09-22 10:06:27.20516
+2596	1565	What configuration variable is used in an image to hold the list of packages to be installed?	open	2024-09-22 10:06:27.207106	2024-09-22 10:06:27.207106
+2597	1565	What configuration variable is used in an image as the root filesystem size?	open	2024-09-22 10:06:27.208852	2024-09-22 10:06:27.208852
+2598	1565	What configuration variable is used in an image to hold the list of features used in the image?	open	2024-09-22 10:06:27.210725	2024-09-22 10:06:27.210725
+2599	1565	What configuration variable is used in an image to hold the list of formats to be used to create the image?	open	2024-09-22 10:06:27.21256	2024-09-22 10:06:27.21256
+2600	1565	What configuration variable is used in an image to hold the list of locales to be supported?	open	2024-09-22 10:06:27.2145	2024-09-22 10:06:27.2145
+2601	1565	What configuration variable is used in an image as the package type used by the build system?	open	2024-09-22 10:06:27.216646	2024-09-22 10:06:27.216646
+2602	1565	What configuration variable is used in an image as shell commands to run at post process?	open	2024-09-22 10:06:27.218739	2024-09-22 10:06:27.218739
+2603	1565	What configuration variable is used in an image as recipes to be built with the image?	open	2024-09-22 10:06:27.220622	2024-09-22 10:06:27.220622
+2604	1565	What is the first steps of image creation?	open	2024-09-22 10:06:27.222942	2024-09-22 10:06:27.222942
+2605	1566	What variables change how root filesystem is created?	open	2024-09-22 10:06:27.225086	2024-09-22 10:06:27.225086
+2606	1566	Where are the root filesystem related files located in poky?	open	2024-09-22 10:06:27.227033	2024-09-22 10:06:27.227033
+2607	1566	Where are the image type instructions located?	open	2024-09-22 10:06:27.228933	2024-09-22 10:06:27.228933
 2687	1486	When do we need to specify template arguments for class templates?	open	2024-09-28 14:30:48.18392	2024-09-28 14:30:48.18392
 2688	1486	Use compile-time type deduction to declare a non-type template parameter?	open	2024-09-28 14:30:48.187622	2024-09-28 14:30:48.187622
+2620	1567	In what script languages can recipes be written?	open	2024-09-22 10:06:27.258774	2024-09-22 10:06:27.258774
+2621	1567	What Python modules are automatically included when used?	open	2024-09-22 10:06:27.26164	2024-09-22 10:06:27.26164
+2622	1567	Write an anonymous Python function in a recipe?	open	2024-09-22 10:06:27.263889	2024-09-22 10:06:27.263889
+2623	1567	Write an inline Python function in a recipe?	open	2024-09-22 10:06:27.266215	2024-09-22 10:06:27.266215
+2624	1567	Access <code>D</code> configuration variable in recipe tasks?	open	2024-09-22 10:06:27.269164	2024-09-22 10:06:27.269164
+2625	1567	What are the use cases of variable flags?	open	2024-09-22 10:06:27.271564	2024-09-22 10:06:27.271564
+2626	1567	What variable flag is used to store the result of md5 hash?	open	2024-09-22 10:06:27.273581	2024-09-22 10:06:27.273581
+2627	1567	What variable flag can be used to make a directory before a task runs?	open	2024-09-22 10:06:27.275724	2024-09-22 10:06:27.275724
+2628	1567	What variable flag can be used to disable the execution of the task?	open	2024-09-22 10:06:27.277557	2024-09-22 10:06:27.277557
+2629	1567	What variable flag can be used to disable timestamp modification each time a task runs?	open	2024-09-22 10:06:27.279504	2024-09-22 10:06:27.279504
+2642	1568	What configuration variable holds the list of packages to be built?	open	2024-09-22 10:06:27.311877	2024-09-22 10:06:27.311877
+2643	1568	What configuration variable allows to check dependencies?	open	2024-09-22 10:06:27.314251	2024-09-22 10:06:27.314251
+2644	1568	What configuration variable allows creation of empty packages?	open	2024-09-22 10:06:27.316931	2024-09-22 10:06:27.316931
+2645	1568	What configuration variable is used to prevent overwriting during the update process?	open	2024-09-22 10:06:27.319538	2024-09-22 10:06:27.319538
+2646	1568	What configuration variable lists the files to be included in a package?	open	2024-09-22 10:06:27.321883	2024-09-22 10:06:27.321883
+2647	1568	What configuration variable tracks the changes in licenses?	open	2024-09-22 10:06:27.324465	2024-09-22 10:06:27.324465
+2648	1568	Which recipes should contain licensing information?	open	2024-09-22 10:06:27.327062	2024-09-22 10:06:27.327062
+2649	1568	Specify which licenses cannot be integrated into the image?	open	2024-09-22 10:06:27.329821	2024-09-22 10:06:27.329821
+2650	1568	Define a license for commercial components?	open	2024-09-22 10:06:27.334467	2024-09-22 10:06:27.334467
+2651	1568	Where does bitbake generate the manifest of all licenses?	open	2024-09-22 10:06:27.337151	2024-09-22 10:06:27.337151
+2652	1568	Include the license manifest into the root filesystem?	open	2024-09-22 10:06:27.340114	2024-09-22 10:06:27.340114
+2653	1569	What tools does an SDK provide?	open	2024-09-22 10:06:27.342569	2024-09-22 10:06:27.342569
+2654	1569	What is the form of an SDK generated by poky?	open	2024-09-22 10:06:27.345425	2024-09-22 10:06:27.345425
+2655	1569	What SDK can be used to do low level development?	open	2024-09-22 10:06:27.34792	2024-09-22 10:06:27.34792
+2656	1569	Create a generic SDK for bootloader and kernel development?	open	2024-09-22 10:06:27.350954	2024-09-22 10:06:27.350954
+2657	1569	Where will be the generated generic SDK stored?	open	2024-09-22 10:06:27.353524	2024-09-22 10:06:27.353524
+2658	1569	What SDK can be used to develop applications running on a target?	open	2024-09-22 10:06:27.356	2024-09-22 10:06:27.356
+2659	1569	What task is responsible for generating an SDK?	open	2024-09-22 10:06:27.358434	2024-09-22 10:06:27.358434
+2660	1569	Generate an SDK for an image?	open	2024-09-22 10:06:27.360877	2024-09-22 10:06:27.360877
+2661	1569	What configuration variables control what will be installed in an SDK?	open	2024-09-22 10:06:27.364051	2024-09-22 10:06:27.364051
+2662	1569	Install an SDK?	open	2024-09-22 10:06:27.367128	2024-09-22 10:06:27.367128
+2663	1569	Use an installed SDK?	open	2024-09-22 10:06:27.37016	2024-09-22 10:06:27.37016
+2664	1569	What environment variables will be exported by an SDK?	open	2024-09-22 10:06:27.37292	2024-09-22 10:06:27.37292
+2667	1570	What are the advantages of using devtool?	open	2024-09-22 10:06:27.380755	2024-09-22 10:06:27.380755
+2668	1570	Where is devtool located?	open	2024-09-22 10:06:27.383352	2024-09-22 10:06:27.383352
+2669	1570	Where does devtool manage sources?	open	2024-09-22 10:06:27.386335	2024-09-22 10:06:27.386335
+2670	1570	Create a new recipe with devtool?	open	2024-09-22 10:06:27.388743	2024-09-22 10:06:27.388743
+2671	1570	Modify a recipe with devtool?	open	2024-09-22 10:06:27.3911	2024-09-22 10:06:27.3911
+2672	1570	Upgrade a recipe with devtool?	open	2024-09-22 10:06:27.393414	2024-09-22 10:06:27.393414
+2673	1570	Edit a recipe with an editor using devtool?	open	2024-09-22 10:06:27.395933	2024-09-22 10:06:27.395933
+2674	1570	Build a recipe with devtool?	open	2024-09-22 10:06:27.398504	2024-09-22 10:06:27.398504
+2675	1570	Build an image with the additional devtool recipes?	open	2024-09-22 10:06:27.401275	2024-09-22 10:06:27.401275
+2676	1570	Upload the recipes packages to the target using devtool?	open	2024-09-22 10:06:27.403819	2024-09-22 10:06:27.403819
+2677	1570	Generate patches from git commits made locally with devtool?	open	2024-09-22 10:06:27.406359	2024-09-22 10:06:27.406359
+2678	1570	Remove a recipe from devtool?	open	2024-09-22 10:06:27.408624	2024-09-22 10:06:27.408624
 2689	1486	What is the substitution to recurring templates?	open	2024-09-28 14:30:48.189625	2024-09-28 14:30:48.189625
 2690	1486	What is the initializer list defect when initializing an integer?	open	2024-09-28 14:30:48.191659	2024-09-28 14:30:48.191659
 2691	1486	Declare a compile-time evaluated lambda?	open	2024-09-28 14:30:48.19355	2024-09-28 14:30:48.19355
@@ -13293,9 +13204,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3064	661	What are the try-lock functions for spinlock and mutex?	open	2024-10-13 10:29:09.730245	2024-10-13 10:29:09.730245
 3065	661	Try locking a spinlock without spinning?	open	2024-10-13 10:29:09.731704	2024-10-13 10:29:09.731704
 3066	661	Try locking a mutex without sleeping?	open	2024-10-13 10:29:09.734084	2024-10-13 10:29:09.734084
-3067	1382	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066
-3068	1382	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966
-3069	1382	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652
 3070	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:35:52.300872	2024-10-13 15:35:52.300872
 3071	787	Define the target machine to the project?	open	2024-10-13 15:35:52.305008	2024-10-13 15:35:52.305008
 3072	787	List all available images?	open	2024-10-13 15:35:52.307427	2024-10-13 15:35:52.307427
@@ -13558,6 +13466,98 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3284	336	What type trait can be used to forward declare spaceship operator?	open	2024-11-03 16:19:44.062059	2024-11-03 16:19:44.062059
 3285	336	What type is used to compare two ranges?	open	2024-11-03 16:19:44.062935	2024-11-03 16:19:44.062935
 3286	336	What are the limitations of using lexicographical compare three way functions?	open	2024-11-03 16:19:44.063814	2024-11-03 16:19:44.063814
+2383	1382	What is the output of yocto?	open	2024-09-22 10:06:26.739554	2024-09-22 10:06:26.739554
+2384	1382	What is the name of the build engine in yocto?	open	2024-09-22 10:06:26.746094	2024-09-22 10:06:26.746094
+2385	1382	What does bitbake do?	open	2024-09-22 10:06:26.748849	2024-09-22 10:06:26.748849
+2386	1382	What is the name of the text files parsed by bitbake?	open	2024-09-22 10:06:26.751843	2024-09-22 10:06:26.751843
+2387	1382	What is the building blocks of a recipe?	open	2024-09-22 10:06:26.754733	2024-09-22 10:06:26.754733
+2388	1382	What does bitbake take as an input?	open	2024-09-22 10:06:26.757109	2024-09-22 10:06:26.757109
+2389	1382	What is the building blocks of a metadata?	open	2024-09-22 10:06:26.759875	2024-09-22 10:06:26.759875
+2390	1382	What is the core layer of metadata?	open	2024-09-22 10:06:26.761843	2024-09-22 10:06:26.761843
+2391	1382	What is a poky layer?	open	2024-09-22 10:06:26.76369	2024-09-22 10:06:26.76369
+2392	1382	What is a poky distribution?	open	2024-09-22 10:06:26.766334	2024-09-22 10:06:26.766334
+2393	1382	What meta layer is used to build images for a beagle bone black board?	open	2024-09-22 10:06:26.768297	2024-09-22 10:06:26.768297
+2394	1382	Get poky reference system?	open	2024-09-22 10:06:26.770167	2024-09-22 10:06:26.770167
+2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061
+2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937
+2397	1382	What is the contents of <code>meta-skeleton</code> directory in poky source tree?	open	2024-09-22 10:06:26.775795	2024-09-22 10:06:26.775795
+2398	1382	What is the contents of <code>meta-poky</code> directory in poky source tree?	open	2024-09-22 10:06:26.777659	2024-09-22 10:06:26.777659
+2399	1382	What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?	open	2024-09-22 10:06:26.779433	2024-09-22 10:06:26.779433
+2400	1382	What does the <code>oe-init-build-env</code> file do in poky?	open	2024-09-22 10:06:26.781642	2024-09-22 10:06:26.781642
+2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374
+2413	1552	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627
+2414	1552	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619
+2415	1552	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
+2416	1552	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
+2417	1552	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
+2433	1553	Append to a variable only for a specific machine using override variables?	open	2024-09-22 10:06:26.85332	2024-09-22 10:06:26.85332
+2452	1554	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219
+2453	1554	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196
+2464	1555	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107
+2465	1555	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
+2466	1555	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
+2467	1555	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
+2468	1555	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
+2474	1556	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
+2475	1556	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
+2476	1556	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954
+2477	1556	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144
+2478	1556	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027
+2479	1556	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329
+2480	1556	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
+2492	1557	What variable defines runtime dependencies of a recipe?	open	2024-09-22 10:06:26.980677	2024-09-22 10:06:26.980677
+2493	1557	Reflect the dependency of a recipe on a specific version of another recipe?	open	2024-09-22 10:06:26.982994	2024-09-22 10:06:26.982994
+2494	1557	Inspect the dependencies of an image?	open	2024-09-22 10:06:26.984972	2024-09-22 10:06:26.984972
+2516	1559	Which variable should be changed when new files are added in recipe extension?	open	2024-09-22 10:06:27.030955	2024-09-22 10:06:27.030955
+2539	1561	Create a local mirror by downloading all the sources?	open	2024-09-22 10:06:27.084852	2024-09-22 10:06:27.084852
+2540	1561	Which task is responsible for downloading sources?	open	2024-09-22 10:06:27.086835	2024-09-22 10:06:27.086835
+2541	1561	Disable network access in a recipe?	open	2024-09-22 10:06:27.088738	2024-09-22 10:06:27.088738
+2542	1561	Restrict bitbake to only download files from the <code>PREMIRRORS</code>?	open	2024-09-22 10:06:27.090811	2024-09-22 10:06:27.090811
+2543	1561	Download all the sources to run builds with network disabled?	open	2024-09-22 10:06:27.092916	2024-09-22 10:06:27.092916
+2550	1562	What tool is used to inspect layers?	open	2024-09-22 10:06:27.10789	2024-09-22 10:06:27.10789
+2551	1562	Get a list of layers?	open	2024-09-22 10:06:27.109875	2024-09-22 10:06:27.109875
+2552	1562	Add an existing layer?	open	2024-09-22 10:06:27.111804	2024-09-22 10:06:27.111804
+2553	1562	Remove a layer?	open	2024-09-22 10:06:27.113716	2024-09-22 10:06:27.113716
+2554	1562	What layers provide board support?	open	2024-09-22 10:06:27.116108	2024-09-22 10:06:27.116108
+2555	1562	What layers provide application support?	open	2024-09-22 10:06:27.118633	2024-09-22 10:06:27.118633
+2556	1562	Create a new layer?	open	2024-09-22 10:06:27.121077	2024-09-22 10:06:27.121077
+2557	1562	What is the skeleton of a newly created layer?	open	2024-09-22 10:06:27.12306	2024-09-22 10:06:27.12306
+2568	1563	What bootloader is used in Poky by default?	open	2024-09-22 10:06:27.146159	2024-09-22 10:06:27.146159
+2569	1563	What configuration variable is used in UBoot recipe to name of the SPL binary?	open	2024-09-22 10:06:27.14812	2024-09-22 10:06:27.14812
+2570	1563	What configuration variable is used in UBoot recipe as a suffix to bootloader name?	open	2024-09-22 10:06:27.150388	2024-09-22 10:06:27.150388
+2571	1563	What configuration variable is used in UBoot recipe as the target architecture?	open	2024-09-22 10:06:27.152552	2024-09-22 10:06:27.152552
+2572	1563	What configuration variable is used in UBoot recipe as the bootloader entry point?	open	2024-09-22 10:06:27.154394	2024-09-22 10:06:27.154394
+2573	1563	What configuration variable is used in UBoot recipe as the bootloader load address?	open	2024-09-22 10:06:27.156378	2024-09-22 10:06:27.156378
+2574	1563	What configuration variable is used in UBoot recipe as the make target used to build the bootloader?	open	2024-09-22 10:06:27.158537	2024-09-22 10:06:27.158537
+2608	1566	What are the steps to creating an image type?	open	2024-09-22 10:06:27.231346	2024-09-22 10:06:27.231346
+2609	1566	What are the steps to creating an image conversion type?	open	2024-09-22 10:06:27.234757	2024-09-22 10:06:27.234757
+2610	1566	Use wic to create a flashable image?	open	2024-09-22 10:06:27.237105	2024-09-22 10:06:27.237105
+2611	1566	What is the use cases of bmaptool?	open	2024-09-22 10:06:27.239235	2024-09-22 10:06:27.239235
+2612	1566	What is the structure of a package group?	open	2024-09-22 10:06:27.241394	2024-09-22 10:06:27.241394
+2613	1566	What is the required configuration variable in a package group class?	open	2024-09-22 10:06:27.243317	2024-09-22 10:06:27.243317
+2614	1566	What are the common package groups?	open	2024-09-22 10:06:27.245458	2024-09-22 10:06:27.245458
+2615	1566	Where is a sysroot directory?	open	2024-09-22 10:06:27.247772	2024-09-22 10:06:27.247772
+2616	1566	What is the concept of per-recipe sysroot?	open	2024-09-22 10:06:27.250228	2024-09-22 10:06:27.250228
+2617	1566	What a recipe sysroot is made of?	open	2024-09-22 10:06:27.252418	2024-09-22 10:06:27.252418
+2618	1566	Where is the recipe sysroot located?	open	2024-09-22 10:06:27.254639	2024-09-22 10:06:27.254639
+2619	1566	What is the output recipe sysroot used by other dependent recipes?	open	2024-09-22 10:06:27.256769	2024-09-22 10:06:27.256769
+2630	1567	What variable flag can be used to store task documentation?	open	2024-09-22 10:06:27.281831	2024-09-22 10:06:27.281831
+2631	1567	What variable flag can be used to add a dependency between specific tasks?	open	2024-09-22 10:06:27.284881	2024-09-22 10:06:27.284881
+2632	1567	What configuration variable controls build on a per feature granularity?	open	2024-09-22 10:06:27.286951	2024-09-22 10:06:27.286951
+2633	1567	What are the arguments used by <code>PACKAGECONIFG</code> configuration variable?	open	2024-09-22 10:06:27.289396	2024-09-22 10:06:27.289396
+2634	1567	Conditionally configure wifi feature in a package if it is enabled?	open	2024-09-22 10:06:27.291505	2024-09-22 10:06:27.291505
+2635	1567	Conditionally configure bluetooth feature in a package if it is enabled?	open	2024-09-22 10:06:27.293553	2024-09-22 10:06:27.293553
+2636	1567	Conditionally configure openvpn feature in a package if it is enabled?	open	2024-09-22 10:06:27.295605	2024-09-22 10:06:27.295605
+2637	1567	Add a feature in a recipe configuration?	open	2024-09-22 10:06:27.298136	2024-09-22 10:06:27.298136
+2638	1567	Add a feature in a distro configuration?	open	2024-09-22 10:06:27.300405	2024-09-22 10:06:27.300405
+2639	1567	List available <code>PACKAGECONFIG</code> flags?	open	2024-09-22 10:06:27.303099	2024-09-22 10:06:27.303099
+2640	1567	Check if a value exists in varaible?	open	2024-09-22 10:06:27.306231	2024-09-22 10:06:27.306231
+2641	1567	Using inline Python functions return all the values of a variable for a specific flag?	open	2024-09-22 10:06:27.309147	2024-09-22 10:06:27.309147
+2665	1569	Use a SDK to build an application for a target?	open	2024-09-22 10:06:27.375191	2024-09-22 10:06:27.375191
+2666	1569	Use a SDK to build kernel?	open	2024-09-22 10:06:27.37839	2024-09-22 10:06:27.37839
+3067	1570	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066
+3068	1570	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966
+3069	1570	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652
 \.
 
 
@@ -19837,7 +19837,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
-100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	course	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19846,6 +19845,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.932927	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
+100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	3	Bootlin
 \.
 
 
@@ -21338,7 +21338,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
 1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
-1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-10-13 10:59:49.494652	1
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
 1509	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	4
@@ -21391,6 +21390,26 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1550	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	23
 1551	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	24
 336	36	completed	\N	2024-07-28 09:44:59.070387	2024-11-03 16:20:55.007066	1
+1382	100	writing	\N	2024-07-28 09:45:10.124092	2024-10-13 10:59:49.494652	1
+1552	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	2
+1553	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	3
+1554	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	4
+1555	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	5
+1556	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	6
+1557	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	7
+1558	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	8
+1559	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	9
+1560	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	10
+1561	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	11
+1562	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	12
+1563	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	13
+1564	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	14
+1565	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	15
+1566	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	16
+1567	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	17
+1568	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	18
+1569	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	19
+1570	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	20
 \.
 
 
@@ -21545,7 +21564,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	962	2024-08-07 22:44:43.138201
 1	964	2024-08-07 22:44:43.138201
 1	965	2024-08-07 22:44:43.138201
-1	1029	2024-08-07 22:44:43.138201
 1	1031	2024-08-07 22:44:43.138201
 1	1037	2024-08-07 22:44:43.138201
 1	1038	2024-08-07 22:44:43.138201
@@ -21583,6 +21601,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	206	2024-10-19 21:40:06.252299
 1	1353	2024-08-07 22:44:43.138201
 1	1350	2024-08-07 22:44:43.138201
+1	1029	2024-11-07 21:28:35.255221
 1	1362	2024-08-07 22:44:43.138201
 1	1377	2024-08-07 22:44:43.138201
 1	1398	2024-08-07 22:44:43.138201
@@ -22901,9 +22920,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1490	2024-10-30 21:51:09.826316
 1	1465	2024-11-01 09:27:37.378901
 1	336	2024-11-03 16:05:11.542264
-1	1537	2024-11-02 22:10:33.865746
 1	1539	2024-11-02 22:10:33.865746
-1	1538	2024-11-02 22:10:33.865746
 1	1541	2024-11-02 22:10:33.865746
 1	1542	2024-11-02 22:10:33.865746
 1	1543	2024-11-02 22:10:33.865746
@@ -22911,6 +22928,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1545	2024-11-02 22:10:33.865746
 1	1546	2024-11-02 22:10:33.865746
 1	1540	2024-11-02 22:12:03.344603
+1	1537	2024-11-07 14:15:30.195413
+1	1538	2024-11-07 14:23:59.616237
 \.
 
 
@@ -23726,7 +23745,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1551, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1570, true);
 
 
 --
