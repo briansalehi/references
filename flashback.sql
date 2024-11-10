@@ -12708,38 +12708,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2431	1553	Assign on a variable only for a specific machine?	open	2024-09-22 10:06:26.848246	2024-09-22 10:06:26.848246
 2432	1553	What is the precedence between override assignments and regular assignments?	open	2024-09-22 10:06:26.850927	2024-09-22 10:06:26.850927
 2434	1553	What is the precedence of override operators?	open	2024-09-22 10:06:26.855264	2024-09-22 10:06:26.855264
-2435	1554	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715
-2436	1554	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027
-2437	1554	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989
-2438	1554	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921
-2439	1554	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123
-2440	1554	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296
-2441	1554	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929
-2442	1554	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449
-2443	1554	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595
-2444	1554	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544
-2445	1554	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458
-2446	1554	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312
-2447	1554	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126
-2448	1554	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574
-2449	1554	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839
-2450	1554	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
-2451	1554	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
-2454	1555	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584
-2455	1555	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199
-2456	1555	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655
-2457	1555	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011
-2458	1555	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358
-2459	1555	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528
-2460	1555	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467
-2461	1555	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302
-2462	1555	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375
-2463	1555	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558
-2469	1556	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782
-2470	1556	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673
-2471	1556	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745
-2472	1556	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843
-2473	1556	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776
 2481	1557	What URI schemes exist?	open	2024-09-22 10:06:26.957417	2024-09-22 10:06:26.957417
 2482	1557	What pattern does git scheme have?	open	2024-09-22 10:06:26.959182	2024-09-22 10:06:26.959182
 2483	1557	What variables can be used as mirror locations?	open	2024-09-22 10:06:26.961474	2024-09-22 10:06:26.961474
@@ -12769,6 +12737,22 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2510	1559	Where the run and log files are located?	open	2024-09-22 10:06:27.017288	2024-09-22 10:06:27.017288
 2511	1559	Get the value of a variable used in a recipe?	open	2024-09-22 10:06:27.019242	2024-09-22 10:06:27.019242
 2512	1559	List the entire environment variables in poky?	open	2024-09-22 10:06:27.020853	2024-09-22 10:06:27.020853
+2438	1553	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921
+2454	1553	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584
+2455	1553	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199
+2456	1553	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655
+2457	1553	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011
+2458	1553	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358
+2459	1553	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528
+2460	1553	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467
+2461	1553	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302
+2462	1553	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375
+2463	1553	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558
+2469	1554	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782
+2470	1554	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673
+2471	1554	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745
+2472	1554	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843
+2473	1554	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776
 2513	1559	List the environment variables of a recipe?	open	2024-09-22 10:06:27.022834	2024-09-22 10:06:27.022834
 2514	1559	Extend a recipe in third-party layers?	open	2024-09-22 10:06:27.025138	2024-09-22 10:06:27.025138
 2515	1559	What are the considerations of extending a recipe?	open	2024-09-22 10:06:27.027948	2024-09-22 10:06:27.027948
@@ -13483,25 +13467,17 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2392	1382	What is a poky distribution?	open	2024-09-22 10:06:26.766334	2024-09-22 10:06:26.766334
 2393	1382	What meta layer is used to build images for a beagle bone black board?	open	2024-09-22 10:06:26.768297	2024-09-22 10:06:26.768297
 2433	1553	Append to a variable only for a specific machine using override variables?	open	2024-09-22 10:06:26.85332	2024-09-22 10:06:26.85332
-2452	1554	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219
-2453	1554	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196
-2464	1555	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107
-2465	1555	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
-2466	1555	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
-2467	1555	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
 2415	1553	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
 2416	1553	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
 2417	1553	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
+2452	1553	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219
+2453	1553	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196
 2413	1552	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627
 2414	1552	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619
-2468	1555	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
-2474	1556	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
-2475	1556	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
-2476	1556	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954
-2477	1556	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144
-2478	1556	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027
-2479	1556	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329
-2480	1556	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
+2464	1553	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107
+2465	1553	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
+2466	1553	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
+2467	1553	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
 2492	1557	What variable defines runtime dependencies of a recipe?	open	2024-09-22 10:06:26.980677	2024-09-22 10:06:26.980677
 2493	1557	Reflect the dependency of a recipe on a specific version of another recipe?	open	2024-09-22 10:06:26.982994	2024-09-22 10:06:26.982994
 2494	1557	Inspect the dependencies of an image?	open	2024-09-22 10:06:26.984972	2024-09-22 10:06:26.984972
@@ -13559,6 +13535,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374
 2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061
 2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937
+2468	1553	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
+2474	1554	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
+2475	1554	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
+2476	1554	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954
+2477	1554	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144
+2478	1554	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027
+2479	1554	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329
 2406	1552	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665
 2407	1552	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732
 2408	1552	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417
@@ -13574,6 +13557,23 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2403	1552	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
 2404	1552	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
 2405	1552	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
+2435	1553	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715
+2436	1553	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027
+2437	1553	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989
+2439	1553	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123
+2440	1553	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296
+2441	1553	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929
+2442	1553	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449
+2443	1553	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595
+2444	1553	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544
+2445	1553	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458
+2446	1553	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312
+2447	1553	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126
+2448	1553	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574
+2449	1553	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839
+2450	1553	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
+2451	1553	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
+2480	1554	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
 \.
 
 
@@ -22950,8 +22950,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1549	2024-11-08 15:38:20.65793
 1	1550	2024-11-08 15:38:20.65793
 1	1551	2024-11-08 15:38:20.65793
-1	1555	2024-11-08 15:38:20.65793
-1	1556	2024-11-08 15:38:20.65793
 1	1557	2024-11-08 15:38:20.65793
 1	1558	2024-11-08 15:38:20.65793
 1	1559	2024-11-08 15:38:20.65793
@@ -22970,6 +22968,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1552	2024-11-09 12:19:44.791657
 1	1553	2024-11-09 22:48:19.757666
 1	1554	2024-11-10 10:45:06.82231
+1	1555	2024-11-10 12:16:58.993341
+1	1556	2024-11-10 13:43:17.553529
 \.
 
 
