@@ -6000,6 +6000,9 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6420	2029	The `Grid` element arranges its children in a grid. By setting the `rows` and\n`columns` properties, the number of rows or columns can be constrained.	text	txt	2024-07-28 10:12:53.728167	0
 4443	1201	- **Metadata** tool is a collection of Shell and Python scripts, and a custom\n  configuration language, informing the steps needed to build, download the\n  source code and other tasks related to a specific software application or\n  library.\n- **BitBake** is the build orchastration tool, responsible to generate, order\n  and run the tasks based on the information gathered from the metadata\n  files.	text	txt	2024-07-28 10:07:32.412335	0
 4444	1202	There are two sub-modules in the Metadata component:	text	txt	2024-07-28 10:07:32.803753	0
+8731	3287	The parsing order of files is difficult to predict and no assumption should be made about it. Therefore, we should avoid using assignment operators in `conf/local.conf` and use override operators instead.	text	txt	2024-11-10 14:03:34.326084	1
+8732	3287	VAR ?= "a"\nVAR += "b"\n# VAR is "a b"	code	bb	2024-11-10 14:03:34.326084	2
+8733	3287	VAR += "b"\nVAR ?= "a"\n# VAR is " b"	code	bb	2024-11-10 14:03:34.326084	3
 4445	1202	- **OpenEmbedded-Core:** the core infrastructure for the cross-compilation\n  environment and offers the basic set of applications, libraries and\n  utilities ready to used in Linux-based operating systems. Six different\n  processor architectures (ARM, ARM64, x86, x86-64, PowerPC, MIPS and MIPS64)\n  are supported in the system, and all tests and development is done using\n  emulated machines, on QEMU.\n- **Yocto Project's Specific Metadata:** provided by the Yocto Project to\n  configure the build system to fulfill Yocto Project needs and includes a\n  set of board support packages (BSP).	text	txt	2024-07-28 10:07:32.826769	0
 4446	1203	- **Low level developers**\n  + Board bring-up\n  + Bootloader development\n  + Kernel development\n  + Device drvier development\n- **Application developers**\n  + Application development\n  + Application customization\n- **System architect**\n  + Application list management\n  + Software Development Kit (SDK) development\n  + Integration into build system\n  + Releases\n- **Legal authority**\n  + License management	text	txt	2024-07-28 10:07:33.30344	0
 4447	1204	1. Board Bring-Up\n2. System Architecture and Design Choice\n3. Writing Embedded Applications\n4. Debugging and Optimizing Performance	text	txt	2024-07-28 10:07:33.645248	0
@@ -6076,6 +6079,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 4516	1246	setenv foo # reset foo\nprintenv # print all environment variables	code	txt	2024-07-28 10:07:47.692792	0
 4517	1247	mkimage --help\nmkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage	code	txt	2024-07-28 10:07:47.963648	0
 4518	1248	mmc rescan\nfatload mmc 0:1 82000000 uimage\niminfo 82000000	code	txt	2024-07-28 10:07:48.220749	0
+8734	3288	Overrides allow appending, prepending or modifying a variable at expansion time, when the variable's value is read.	text	txt	2024-11-10 14:03:34.330867	1
 4519	1249	setenv ipaddr 192.168.1.12\nsetenv serverip 192.168.1.18\ntftp 82000000 uImage\ntftpboot 82000000 uimage\nnandecc hw\nnand erase 280000 400000\nnand write 82000000 280000 400000\nnand read 82000000 280000 400000	code	txt	2024-07-28 10:07:48.631199	0
 4520	1250	# bootm [kernel address] [ramdist address] [dtb address]\nbootm 82000000 - 83000000	code	txt	2024-07-28 10:07:48.871037	0
 4521	1251	setenv bootcmd nand read 82000000 400000 200000\\\\;bootm 82000000	code	txt	2024-07-28 10:07:49.114712	0
@@ -13574,6 +13578,8 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2450	1553	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
 2451	1553	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
 2480	1554	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
+3287	1553	Why should not we use direct assignment in configuration files?	open	2024-11-10 14:03:34.326084	2024-11-10 14:03:34.326084
+3288	1553	What is the advantage of using override operators?	open	2024-11-10 14:03:34.330867	2024-11-10 14:03:34.330867
 \.
 
 
@@ -19861,7 +19867,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 99	OpenGL and GLSL Fundamentals with C++	https://subscription.packtpub.com/video/game-development/9781838647889	video	2024-09-23 20:32:01.286448	2024-11-02 11:30:33.932927	1	\N
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
-100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-10-13 10:59:49.494652	1	Bootlin
+100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
 \.
 
 
@@ -21406,7 +21412,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1550	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	23
 1551	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	24
 336	36	completed	\N	2024-07-28 09:44:59.070387	2024-11-03 16:20:55.007066	1
-1554	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	4
 1555	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	5
 1556	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	6
 1557	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	7
@@ -21425,7 +21430,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1570	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	20
 1382	100	completed	\N	2024-07-28 09:45:10.124092	2024-11-08 22:03:32.540314	1
 1552	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-09 11:41:34.876478	2
-1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-09 12:43:50.226396	3
+1554	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.332721	4
+1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.331915	3
 \.
 
 
@@ -23680,7 +23686,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8730, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8734, true);
 
 
 --
@@ -23708,7 +23714,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3286, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3288, true);
 
 
 --
