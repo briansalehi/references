@@ -13489,11 +13489,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2465	1555	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
 2466	1555	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
 2467	1555	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
+2415	1553	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
+2416	1553	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
+2417	1553	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
 2413	1552	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627
 2414	1552	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619
-2415	1552	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
-2416	1552	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
-2417	1552	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
 2468	1555	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
 2474	1556	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
 2475	1556	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
@@ -13559,10 +13559,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374
 2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061
 2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937
-2402	1382	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723
-2403	1382	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
-2404	1382	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
-2405	1382	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
 2406	1552	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665
 2407	1552	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732
 2408	1552	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417
@@ -13574,6 +13570,10 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2398	1382	What is the contents of <code>meta-poky</code> directory in poky source tree?	open	2024-09-22 10:06:26.777659	2024-09-22 10:06:26.777659
 2399	1382	What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?	open	2024-09-22 10:06:26.779433	2024-09-22 10:06:26.779433
 2409	1382	Get poky repository?	open	2024-09-22 10:06:26.800576	2024-09-22 10:06:26.800576
+2402	1552	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723
+2403	1552	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
+2404	1552	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
+2405	1552	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
 \.
 
 
@@ -21406,8 +21406,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1550	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	23
 1551	36	open	\N	2024-11-03 16:19:14.250584	2024-11-03 16:19:14.250584	24
 336	36	completed	\N	2024-07-28 09:44:59.070387	2024-11-03 16:20:55.007066	1
-1552	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	2
-1553	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	3
 1554	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	4
 1555	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	5
 1556	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	6
@@ -21426,6 +21424,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1569	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	19
 1570	100	writing	\N	2024-11-07 22:07:28.651539	2024-11-07 22:07:28.651539	20
 1382	100	completed	\N	2024-07-28 09:45:10.124092	2024-11-08 22:03:32.540314	1
+1552	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-09 11:41:34.876478	2
+1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-09 12:43:50.226396	3
 \.
 
 
@@ -22950,8 +22950,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1549	2024-11-08 15:38:20.65793
 1	1550	2024-11-08 15:38:20.65793
 1	1551	2024-11-08 15:38:20.65793
-1	1553	2024-11-08 15:38:20.65793
-1	1554	2024-11-08 15:38:20.65793
 1	1555	2024-11-08 15:38:20.65793
 1	1556	2024-11-08 15:38:20.65793
 1	1557	2024-11-08 15:38:20.65793
@@ -22969,7 +22967,9 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1569	2024-11-08 15:38:20.65793
 1	1570	2024-11-08 15:38:20.65793
 1	1382	2024-11-08 21:22:31.325282
-1	1552	2024-11-08 23:13:39.225694
+1	1552	2024-11-09 12:19:44.791657
+1	1553	2024-11-09 22:48:19.757666
+1	1554	2024-11-10 10:45:06.82231
 \.
 
 
