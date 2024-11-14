@@ -258,6 +258,40 @@ end; $$;
 ALTER FUNCTION flashback.get_editor_resources(user_index integer) OWNER TO flashback;
 
 --
+-- Name: get_note_blocks(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_note_blocks(note_index integer) RETURNS TABLE(id integer, block_position integer, content text, type flashback.block_type, language character varying, last_update timestamp without time zone)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select b.id, b.position, b.content, b.type, b.language, b.updated
+    from flashback.note_blocks b
+    where b.note_id = note_index;
+end $$;
+
+
+ALTER FUNCTION flashback.get_note_blocks(note_index integer) OWNER TO flashback;
+
+--
+-- Name: get_practice_blocks(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_practice_blocks(practice_index integer) RETURNS TABLE(id integer, block_position integer, content text, type flashback.block_type, language character varying, last_update timestamp without time zone)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select b.id, b.position, b.content, b.type, b.language, b.updated
+    from flashback.practice_blocks b
+    where b.practice_id = practice_index;
+end $$;
+
+
+ALTER FUNCTION flashback.get_practice_blocks(practice_index integer) OWNER TO flashback;
+
+--
 -- Name: get_resource_editing_notes(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
