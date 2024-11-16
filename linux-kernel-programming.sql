@@ -35,12 +35,12 @@ call add_block('code', 'make',   'obj-$(CONFIG_FEATURE) += feature.o');
 call add_block('text', 'txt', 'The `CONFIG_FEATURE` can be either `y` to be built into the kernel, or `m` to build as a loadable module. Any other value disables the feature.');
 call create_note_with_name('Linux Kernel Programming', 2, 'How toggling of a feature in the build system is defined?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'c',   '');
-call add_block('code', 'sh',  '');
-call create_note_with_name('Linux Kernel Programming', 2, '');
-
-call set_section_as_complete('Linux Kernel Programming', 2);
+--call add_block('text', 'txt', '');
+--call add_block('code', 'c',   '');
+--call add_block('code', 'sh',  '');
+--call create_note_with_name('Linux Kernel Programming', 2, '');
+--
+--call set_section_as_complete('Linux Kernel Programming', 2);
 
 drop procedure add_block;
 drop table temp_blocks;
