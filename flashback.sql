@@ -1596,6 +1596,18 @@ COPY flashback.logins (id, user_id, session, updated, valid) FROM stdin;
 --
 
 COPY flashback.note_blocks (id, note_id, content, type, language, updated, "position") FROM stdin;
+8735	3289	git clone --depth 1 https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git	code	sh	2024-11-16 23:53:47.322787	1
+8736	3290	git pull --unshallow	code	sh	2024-11-16 23:53:47.32897	1
+8737	3291	git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git	code	sh	2024-11-16 23:53:47.331381	1
+8738	3292	It is set to the name of one the directories in `arch/` directory in the kernel source.	text	txt	2024-11-16 23:53:47.333882	1
+8739	3293	This framework improves I/O operations by reducing system calls compared to typical AIO frameworks.	text	txt	2024-11-16 23:53:47.336038	1
+8740	3294	The Kconfig language used in `Kconfig` files which construct the menus where the kernel config options are selected.	text	txt	2024-11-16 23:53:47.338401	1
+8741	3294	The Kconfig parser that can be invoked by `make menuconfig` which internally invokes `scripts/kconfig/mconf`.	text	txt	2024-11-16 23:53:47.338401	2
+8742	3295	`CONFIG_FEATURE`	text	txt	2024-11-16 23:53:47.340745	1
+8743	3296	In Kconfig files.	text	txt	2024-11-16 23:53:47.342669	1
+8744	3297	.config	text	path	2024-11-16 23:53:47.344687	1
+8745	3298	obj-$(CONFIG_FEATURE) += feature.o	code	make	2024-11-16 23:53:47.347108	1
+8746	3298	The `CONFIG_FEATURE` can be either `y` to be built into the kernel, or `m` to build as a loadable module. Any other value disables the feature.	text	txt	2024-11-16 23:53:47.347108	2
 37	14	Initial array:	text	txt	2024-07-28 09:55:54.7494	2
 220	48	    T read(int index);	text	txt	2024-07-28 09:56:19.300276	21
 3570	845		code	txt	2024-07-28 10:05:09.013418	2
@@ -13378,6 +13390,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3172	1538	Match each of the elements of a container with a matcher compared to another range?	open	2024-10-30 00:14:55.209237	2024-10-30 00:14:55.209237
 3173	1538	Verify the size of a container?	open	2024-10-30 00:14:55.212159	2024-10-30 00:14:55.212159
 3174	1538	Verify that elements of a container match a series of criteria without orders?	open	2024-10-30 00:14:55.215381	2024-10-30 00:14:55.215381
+3289	459	Shallow clone the kernel source?	open	2024-11-16 23:53:47.322787	2024-11-16 23:53:47.322787
 3175	1538	Match each of the elements of a container with a criteria without ordering?	open	2024-10-30 00:14:55.217447	2024-10-30 00:14:55.217447
 3176	1538	Verify a container holds given elements after being sorted?	open	2024-10-30 00:14:55.219173	2024-10-30 00:14:55.219173
 3177	1538	Verify a container holds given elements after being sorted by a predicate?	open	2024-10-30 00:14:55.221089	2024-10-30 00:14:55.221089
@@ -13614,6 +13627,15 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2480	1554	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
 3287	1553	Why should not we use direct assignment in configuration files?	open	2024-11-10 14:03:34.326084	2024-11-10 14:03:34.326084
 3288	1553	What is the advantage of using override operators?	open	2024-11-10 14:03:34.330867	2024-11-10 14:03:34.330867
+3290	459	Unshallow the cloned kernel source?	open	2024-11-16 23:53:47.32897	2024-11-16 23:53:47.32897
+3291	459	Clone the stable kernel?	open	2024-11-16 23:53:47.331381	2024-11-16 23:53:47.331381
+3292	459	What does the <code>ARCH</code> environment variable point to when cross compiling?	open	2024-11-16 23:53:47.333882	2024-11-16 23:53:47.333882
+3293	459	What is the role of <code>io_uring</code> in the kernel?	open	2024-11-16 23:53:47.336038	2024-11-16 23:53:47.336038
+3294	459	What are the building blocks of Kconfig infrastructure?	open	2024-11-16 23:53:47.338401	2024-11-16 23:53:47.338401
+3295	459	What symbol is used for each configurable kernel feature?	open	2024-11-16 23:53:47.340745	2024-11-16 23:53:47.340745
+3296	459	Where the configuration options are stored?	open	2024-11-16 23:53:47.342669	2024-11-16 23:53:47.342669
+3297	459	What is the final artifact of kernel configuration system?	open	2024-11-16 23:53:47.344687	2024-11-16 23:53:47.344687
+3298	459	How toggling of a feature in the build system is defined?	open	2024-11-16 23:53:47.347108	2024-11-16 23:53:47.347108
 \.
 
 
@@ -19839,7 +19861,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 40	Learning eBPF	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 41	Linux Kernel Programming Part 2	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 42	Beginning C++23: From Novice to Professional	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 44	Beginning x64 Assembly Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 45	Docker: Up & Running	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 46	Docker in Practice	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -19902,6 +19923,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
+43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-16 23:53:47.347108	1	\N
 \.
 
 
@@ -20562,7 +20584,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 158	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	26
 533	46	open	\N	2024-07-28 09:45:01.080459	2024-07-28 09:45:01.080459	6
 915	67	open	\N	2024-07-28 09:45:05.152752	2024-07-28 09:45:05.152752	15
-459	43	writing	\N	2024-07-28 09:45:00.334809	2024-07-28 09:45:00.334809	2
 979	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	2
 123	22	ignored	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	11
 1418	97	writing	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	1
@@ -20706,7 +20727,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1213	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	45
 356	37	writing	\N	2024-07-28 09:44:59.43286	2024-07-28 09:44:59.43286	2
 523	45	open	\N	2024-07-28 09:45:00.906893	2024-07-28 09:45:00.906893	10
-458	43	writing	\N	2024-07-28 09:45:00.334809	2024-07-28 09:45:00.334809	1
 1311	87	open	\N	2024-07-28 09:45:09.480176	2024-07-28 09:45:09.480176	2
 414	39	open	\N	2024-07-28 09:44:59.735775	2024-07-28 09:44:59.735775	5
 640	51	open	\N	2024-07-28 09:45:02.294764	2024-07-28 09:45:02.294764	3
@@ -21465,7 +21485,9 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1382	100	completed	\N	2024-07-28 09:45:10.124092	2024-11-08 22:03:32.540314	1
 1552	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-09 11:41:34.876478	2
 1554	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.332721	4
+458	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-16 23:53:47.317912	1
 1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.331915	3
+459	43	writing	\N	2024-07-28 09:45:00.334809	2024-11-16 23:53:47.347108	2
 \.
 
 
@@ -23720,7 +23742,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8734, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8746, true);
 
 
 --
@@ -23748,7 +23770,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3288, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3298, true);
 
 
 --
