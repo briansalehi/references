@@ -1608,6 +1608,59 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8744	3297	.config	text	path	2024-11-16 23:53:47.344687	1
 8745	3298	obj-$(CONFIG_FEATURE) += feature.o	code	make	2024-11-16 23:53:47.347108	1
 8746	3298	The `CONFIG_FEATURE` can be either `y` to be built into the kernel, or `m` to build as a loadable module. Any other value disables the feature.	text	txt	2024-11-16 23:53:47.347108	2
+8747	3299	The top Kbuild file starts descending into subdirectories to collect the configuration options.	text	txt	2024-11-17 16:33:28.584611	1
+8748	3300	make distclean	code	sh	2024-11-17 16:33:28.59586	1
+8749	3301	Specific configuration should be in `arch/${ARCH}/configs/<distro>_defconfig` directory.	text	txt	2024-11-17 16:33:28.600548	1
+8750	3301	make distclean	code	sh	2024-11-17 16:33:28.600548	2
+8751	3301	make ARCH=$(uname -m) defconfig	code	sh	2024-11-17 16:33:28.600548	3
+8752	3301	A lot of unnecessary modules are loaded by default and the overal kernel will be heavy.	text	txt	2024-11-17 16:33:28.600548	4
+8753	3302	- `.config`\n- `/lib/modules/$(uname -r)/.config`\n- `/etc/kernel-config`\n- `/boot/config-$(uname -r)`\n- `ARCH_DEFCONFIG`\n- `arch/${ARCH}/defconfig`	text	list	2024-11-17 16:33:28.603726	1
+8754	3303	The old config file is read.	text	txt	2024-11-17 16:33:28.606671	1
+8755	3303	Execute a config parser: `gconf` by `gconfig` target, `mconf` by `menuconfig` target, `nconf` by `nconfig` target, `qconf` by `xconfig` target.	text	txt	2024-11-17 16:33:28.606671	2
+8756	3303	Construct initial configuration database: `conf_parse("Kconfig")`	text	txt	2024-11-17 16:33:28.606671	3
+8757	3303	Read existing configuration: `conf_read`.	text	txt	2024-11-17 16:33:28.606671	4
+8758	3303	Write the modified results into config file: `conf_write`.	text	txt	2024-11-17 16:33:28.606671	5
+8759	3304	make savedefconfig	code	sh	2024-11-17 16:33:28.609471	1
+8760	3304	cp defconfig arch/${ARCH}/custom_defconfig	code	sh	2024-11-17 16:33:28.609471	2
+8761	3304	File name must end with `_defconfig`.	text	txt	2024-11-17 16:33:28.609471	3
+8762	3304	make ARCH=$(uname -m) custom_defconfig	code	sh	2024-11-17 16:33:28.609471	4
+8763	3305	make distclean	code	sh	2024-11-17 16:33:28.613333	1
+8764	3305	lsmod > /tmp/config	code	sh	2024-11-17 16:33:28.613333	2
+8765	3305	make LSMOD=/tmp/config localmodconfig	code	sh	2024-11-17 16:33:28.613333	3
+8766	3305	You have to press enter for new options. Alternatively you can copy the distribution specific kernel config:	text	txt	2024-11-17 16:33:28.613333	4
+8767	3305	cp /boot/config-$(uname -r) .config	code	sh	2024-11-17 16:33:28.613333	5
+8768	3305	make olddefconfig	code	sh	2024-11-17 16:33:28.613333	6
+8769	3306	make listnewconfig	code	sh	2024-11-17 16:33:28.617433	1
+8770	3306	make helpnewconfig	code	sh	2024-11-17 16:33:28.617433	2
+8771	3307		text	txt	2024-11-17 16:33:28.622251	1
+8772	3307	make distclean	code	sh	2024-11-17 16:33:28.622251	2
+8773	3307	cp /boot/config-$(uname -r) .config	code	sh	2024-11-17 16:33:28.622251	3
+8774	3307	make LSMOD=/tmp/config LMC_KEEP="drivers/usb:drivers/gpu:fs" localmodconfig	code	sh	2024-11-17 16:33:28.622251	4
+8775	3308	make menuconfig	code	sh	2024-11-17 16:33:28.624753	1
+8776	3308	make nconfig	code	sh	2024-11-17 16:33:28.624753	2
+8777	3308	make xconfig	code	sh	2024-11-17 16:33:28.624753	3
+8778	3309	`CONFIG_IKCONFIG`, `CONFIG_IKCONFIG_PROC`	text	list	2024-11-17 16:33:28.626851	1
+8779	3309	zcat /proc/config.gz	code	sh	2024-11-17 16:33:28.626851	2
+8780	3310	There is a hidden target `syncconfig` that generates files in `header/config/` directory and the `include/generated/autoconf.h` header file which stores kernel configuration options as C macros.	text	txt	2024-11-17 16:33:28.628952	1
+8781	3311	scripts/diffconfig .config.old .config	code	sh	2024-11-17 16:33:28.632422	1
+8782	3312	scripts/config --disable IKCOFNIG --disable IKCONFIG_PROC	code	sh	2024-11-17 16:33:28.636209	1
+8783	3312	scripts/config --enable IKCONFIG --enable IKCONFIG_PROC	code	sh	2024-11-17 16:33:28.636209	2
+8784	3313	We first need to generate a security aware kernel configuration, then merge it using a script in the kernel source:	text	txt	2024-11-17 16:33:28.639647	1
+8785	3313	git clone https://github.com/a13xp0p0v/kconfig-hardened-check	code	sh	2024-11-17 16:33:28.639647	2
+8786	3313	kconfig-hardened-check -g x86_64 > config-secure	code	sh	2024-11-17 16:33:28.639647	3
+8787	3313	scripts/kconfig/merge_config.sh config-insecure config-secure	code	sh	2024-11-17 16:33:28.639647	4
+8788	3314	This requires `gcc-<version>-plugin-dev` package to be installed.	text	txt	2024-11-17 16:33:28.642099	1
+8789	3314	General architecture-dependent options | GCC plugins	text	txt	2024-11-17 16:33:28.642099	2
+8790	3314	The configuration option is `CONFIG_GCC_PLUGINS`.	text	txt	2024-11-17 16:33:28.642099	3
+8791	3314	scripts/config --enable GCC_PLUGINS	code	sh	2024-11-17 16:33:28.642099	4
+8792	3315	The configuration option is `CONFIG_IKHEADERS`.	text	txt	2024-11-17 16:33:28.644544	1
+8793	3315	scripts/config --enable IKHEADERS	code	sh	2024-11-17 16:33:28.644544	2
+8794	3316	The configuration option is `CONFIG_DEBUG_INFO_BTF`.	text	txt	2024-11-17 16:33:28.647471	1
+8795	3316	scripts/config --enable DEBUG_INFO_BTF	code	sh	2024-11-17 16:33:28.647471	2
+8796	3316	See https://kernel.org/doc/html/latest/bpf/ptf.html	text	txt	2024-11-17 16:33:28.647471	3
+8797	3317	The configuration option is `CONFIG_WERROR`.	text	txt	2024-11-17 16:33:28.651397	1
+8798	3317	scripts/config --enable WERROR	code	sh	2024-11-17 16:33:28.651397	2
+8799	3318	if (IS_ENABLED(CONFIG_CUSTOM_DRIVER)) { /* ... */ }	code	c	2024-11-17 16:33:28.654627	1
 37	14	Initial array:	text	txt	2024-07-28 09:55:54.7494	2
 220	48	    T read(int index);	text	txt	2024-07-28 09:56:19.300276	21
 3570	845		code	txt	2024-07-28 10:05:09.013418	2
@@ -13636,6 +13689,26 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3296	459	Where the configuration options are stored?	open	2024-11-16 23:53:47.342669	2024-11-16 23:53:47.342669
 3297	459	What is the final artifact of kernel configuration system?	open	2024-11-16 23:53:47.344687	2024-11-16 23:53:47.344687
 3298	459	How toggling of a feature in the build system is defined?	open	2024-11-16 23:53:47.347108	2024-11-16 23:53:47.347108
+3299	459	Where is the starting point of kernel build system?	open	2024-11-17 16:33:28.584611	2024-11-17 16:33:28.584611
+3300	459	Clean up every configuration artifacts in kernel source?	open	2024-11-17 16:33:28.59586	2024-11-17 16:33:28.59586
+3301	459	Generate default kernel configuration?	open	2024-11-17 16:33:28.600548	2024-11-17 16:33:28.600548
+3302	459	What is the order of fallback configuration files used by Kconfig as the default kernel config?	open	2024-11-17 16:33:28.603726	2024-11-17 16:33:28.603726
+3303	459	How the <code>.config</code> file is produced?	open	2024-11-17 16:33:28.606671	2024-11-17 16:33:28.606671
+3304	459	Save the currect configuration as the default configuration for an architecture?	open	2024-11-17 16:33:28.609471	2024-11-17 16:33:28.609471
+3305	459	Use current distribution configuration?	open	2024-11-17 16:33:28.613333	2024-11-17 16:33:28.613333
+3306	459	List the new configuration options when already having an old config?	open	2024-11-17 16:33:28.617433	2024-11-17 16:33:28.617433
+3307	459	Use distribution configuration but preserve the original configurations for specific drivers?	open	2024-11-17 16:33:28.622251	2024-11-17 16:33:28.622251
+3308	459	Fine tune kernel configuration with a graphical user?	open	2024-11-17 16:33:28.624753	2024-11-17 16:33:28.624753
+3309	459	What kernel configuration options enable accessing to kernel configurations?	open	2024-11-17 16:33:28.626851	2024-11-17 16:33:28.626851
+3310	459	What component turns configs into header files to be used by kernel build system?	open	2024-11-17 16:33:28.628952	2024-11-17 16:33:28.628952
+3311	459	Check the difference of two kernel configuration files?	open	2024-11-17 16:33:28.632422	2024-11-17 16:33:28.632422
+3312	459	Toggle individual kernel configuration options without interacting with user interfaces?	open	2024-11-17 16:33:28.636209	2024-11-17 16:33:28.636209
+3313	459	Make sure the kernel configuration has security options enabled?	open	2024-11-17 16:33:28.639647	2024-11-17 16:33:28.639647
+3314	459	Enable GCC arch specific security features?	open	2024-11-17 16:33:28.642099	2024-11-17 16:33:28.642099
+3315	459	Enable availability of kernel headers 	open	2024-11-17 16:33:28.644544	2024-11-17 16:33:28.644544
+3316	459	Enable BPF Type Format metadata to enable kernel debugging information generation?	open	2024-11-17 16:33:28.647471	2024-11-17 16:33:28.647471
+3317	459	Enable kernel build system to treat warnings as errors during the build process?	open	2024-11-17 16:33:28.651397	2024-11-17 16:33:28.651397
+3318	459	Check for a configuration availability in code?	open	2024-11-17 16:33:28.654627	2024-11-17 16:33:28.654627
 \.
 
 
@@ -19923,7 +19996,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
-43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-16 23:53:47.347108	1	\N
+43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 \.
 
 
@@ -21487,7 +21560,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1554	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.332721	4
 458	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-16 23:53:47.317912	1
 1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.331915	3
-459	43	writing	\N	2024-07-28 09:45:00.334809	2024-11-16 23:53:47.347108	2
+459	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-17 16:33:28.656464	2
 \.
 
 
@@ -21678,8 +21751,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1353	2024-08-07 22:44:43.138201
 1	1350	2024-08-07 22:44:43.138201
 1	1362	2024-08-07 22:44:43.138201
+1	459	2024-11-17 14:48:03.434097
 1	458	2024-11-16 21:51:22.191746
-1	459	2024-11-16 21:28:11.314968
 1	1377	2024-08-07 22:44:43.138201
 1	1398	2024-08-07 22:44:43.138201
 1	1415	2024-08-07 22:44:43.138201
@@ -23742,7 +23815,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8746, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8799, true);
 
 
 --
@@ -23770,7 +23843,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3298, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3318, true);
 
 
 --
