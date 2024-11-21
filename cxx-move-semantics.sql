@@ -3,7 +3,7 @@ create procedure add_block(type flashback.block_type, language varchar(10), cont
 
 call add_block('text', 'txt', '');
 call add_block('code', 'cpp', '');
-call create_note_with_name('C++ Move Semantics: The Complete Guide', 15, '');
+call create_note_with_name('C++ Move Semantics: The Complete Guide', 6, '');
 
 drop procedure add_block;
 drop table temp_blocks;
