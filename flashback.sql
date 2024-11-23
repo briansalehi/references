@@ -9580,6 +9580,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8052	2929	The coroutine handle should be used to resume its execution.	text	txt	2024-10-13 10:12:00.025962	2
 8054	2929	object.handle.resume();\nobject.handle();	code	cpp	2024-10-13 10:12:00.025962	3
 8055	2930	Coroutines can be started lazily or eagerly.	text	txt	2024-10-13 10:12:00.027137	1
+8816	3332	A moved-from object is neither partially nor fully destroyed. The destructor will be called eventually, therefore the destructor has to run smoothly. C++ standard specifies that moved-from objects are in a valid but unspecified state, meaning that it should be safe to work with objects as far as we do not make assumptions on its value.	text	txt	2024-11-23 14:11:23.066669	1
+8817	3333	You always have to be able to destroy the moved-from state objects, to assign a new value to them, and copy, move, or assign them to other objects.	text	txt	2024-11-23 14:11:23.078365	1
 8057	2930	#include <coroutine>\n#include <iostream>\n\nstruct lazy_return\n{\n    struct promise_type\n    {\n        std::suspend_always initial_suspend();  // #1 lazily started coroutine\n    };\n};\n\nstruct eager_return\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend(); // #2 eagerly started coroutine\n    };\n};\n\nlazy_return lazy_coroutine()\n{\n    std::cout << "initial execution\\n";\n    co_await std::suspend_always();\n    std::cout << "final execution\\n";\n}\n\neager_return eager_coroutine()\n{\n    std::cout << "initial execution\\n";\n    co_await std::suspend_never();\n    std::cout << "final execution\\n";\n}\n\nint main()\n{\n    lazy_return lazy_task = lazy_coroutine();\n    // no output\n    lazy_task();\n    // initial execution\n    lazy_task();\n    // final execution\n\n    eager_return eager_task = lazy_coroutine();\n    // initial execution\n    eager_task();\n    // final execution\n}	code	cpp	2024-10-13 10:12:00.027137	2
 8056	2930	The difference between the two is the return type used for `promise_type::initial_suspend()` method.	text	txt	2024-10-13 10:12:00.027137	3
 8058	2931	- Cannot use variadic arguments\n- Cannot be constexpr or consteval\n- Cannot have `auto` or `decltype(auto)` as return type, but still an `auto` with a trailing return type is valid\n- `main` function cannot be a coroutine\n- Constructors and destructors cannot be coroutines\n- Cannot have a plain return statement, instead there should be `co_return` to mark end of execution	text	txt	2024-10-13 10:12:00.028291	1
@@ -10255,6 +10257,16 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8732	3287	VAR ?= "a"\nVAR += "b"\n# VAR is "a b"	code	bb	2024-11-10 14:03:34.326084	2
 8733	3287	VAR += "b"\nVAR ?= "a"\n# VAR is " b"	code	bb	2024-11-10 14:03:34.326084	3
 8734	3288	Overrides allow appending, prepending or modifying a variable at expansion time, when the variable's value is read.	text	txt	2024-11-10 14:03:34.330867	1
+8818	3334	Because we always destroy an object at the end of its lifetime, the minimum guarantee we always have to give for moved-from state is that calling the destructor is well-defined, but more guarantees should be given. For C++ standard library, additional operations like copying and assigning objects of the same type are often enough.	text	txt	2024-11-23 14:11:23.080313	1
+8819	3334	destructing, copying, assigning	text	list	2024-11-23 14:11:23.080313	2
+8820	3334	When supporting assignment, consider all possible ways of assignment should be supported based on your object:	text	txt	2024-11-23 14:11:23.080313	3
+8821	3334	s = "sample";\ns.assign(sc);\ns.clear();\ns.reset();\nstd::cin >> s;\nstd::getline(std::cout, s);	code	cpp	2024-11-23 14:11:23.080313	4
+8822	3335	Invariants are the guarantees that apply to all of the objects that can be created. With invariants, you can call any operation that has no constraint or precondition and the effect or result of this call is as specified for any other object of this type.	text	txt	2024-11-23 14:11:23.082087	1
+8823	3335	s2 = std::move(s);\ns.size(); // works\nstd::for_each(s.begin(), s.end(), []{}); // works\nstd::cout << s; // works\nstd::cout << s.c_str(); // works\ns = "new value"; // works\ns += "postfix"; // works	code	cpp	2024-11-23 14:11:23.082087	2
+8824	3336	When a valid state of an object always needs resources such as memory, having only partially supported state might be better to make move operations cheaper. Ideally, a moved-from state that does not support all operations should be detectable. The object should know this state and provide member functions to check for this state. Moved-from objects might also refuse to execute operations not supported in this state. However, corresponding checks might cost performance in the general case.	text	txt	2024-11-23 14:11:23.08366	1
+8825	3336	std::future f2 = std::move(f);\nf.valid(); // false	code	cpp	2024-11-23 14:11:23.08366	2
+8826	3337	- Do all necessary actions required in the destructor to avoid breaking invariants\n- Implement move operator to deal with the problem\n- Disable move semantics	text	txt	2024-11-23 14:11:23.08533	1
+8827	3338	- Fix the move operations to bring the moved-from objects into a state that do not break the invariants\n- Disable move semantics\n- Relax the invariants by changing the functions using this type to deal with new possible states\n- Document and provide a member function to check for the state of broken invariants	text	txt	2024-11-23 14:11:23.086931	1
 \.
 
 
@@ -13738,6 +13750,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3329	209	Filter query results by limiting a column only to a subset of values?	open	2024-11-21 23:59:46.635512	2024-11-21 23:59:46.635512
 3330	209	Filter query results by matching a subquery?	open	2024-11-21 23:59:46.638472	2024-11-21 23:59:46.638472
 3331	209	Filter query results by checking the existance of a subquery?	open	2024-11-21 23:59:46.642383	2024-11-21 23:59:46.642383
+3332	1352	What happens to an object in moved-from state when it goes out of scope?	open	2024-11-23 14:11:23.066669	2024-11-23 14:11:23.066669
+3333	1352	What are the requirements in behavior of a moved-from object?	open	2024-11-23 14:11:23.078365	2024-11-23 14:11:23.078365
+3334	1352	What guarantees should we give when desining a class?	open	2024-11-23 14:11:23.080313	2024-11-23 14:11:23.080313
+3335	1352	What is an invariant?	open	2024-11-23 14:11:23.082087	2024-11-23 14:11:23.082087
+3336	1352	Why should we avoid full guarantee to moved-from state types?	open	2024-11-23 14:11:23.08366	2024-11-23 14:11:23.08366
+3337	1352	What are the fixes for types that contain non-destructible members?	open	2024-11-23 14:11:23.08533	2024-11-23 14:11:23.08533
+3338	1352	What options are available when a moved member value breaks invariants?	open	2024-11-23 14:11:23.086931	2024-11-23 14:11:23.086931
 \.
 
 
@@ -20012,7 +20031,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-10-13 10:15:50.870874	1	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	1	\N
@@ -20026,6 +20044,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
 43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-23 14:11:23.086931	1	\N
 \.
 
 
@@ -21023,7 +21042,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 277	31	open	\N	2024-07-28 09:44:58.31114	2024-07-28 09:44:58.31114	5
 290	32	writing	\N	2024-07-28 09:44:58.452348	2024-07-28 09:44:58.452348	3
 300	33	writing	\N	2024-07-28 09:44:58.594555	2024-07-28 09:44:58.594555	1
-1352	89	writing	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	6
 662	52	open	\N	2024-07-28 09:45:02.456043	2024-07-28 09:45:02.456043	2
 284	31	open	\N	2024-07-28 09:44:58.31114	2024-07-28 09:44:58.31114	12
 1254	83	writing	\N	2024-07-28 09:45:08.749863	2024-07-28 09:45:08.749863	7
@@ -21590,6 +21608,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.331915	3
 459	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-17 16:33:28.656464	2
 209	26	writing	\N	2024-07-28 09:44:57.573652	2024-11-21 23:59:46.642383	5
+1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
 \.
 
 
@@ -23844,7 +23863,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8815, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8827, true);
 
 
 --
@@ -23872,7 +23891,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3331, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3338, true);
 
 
 --
