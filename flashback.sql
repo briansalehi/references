@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.0
+-- Dumped from database version 17.2
 -- Dumped by pg_dump version 17.0
 
 SET statement_timeout = 0;
@@ -9096,6 +9096,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8813	3330	select * from users where nationality in (select id from countries where region = 'Europe');	code	sql	2024-11-21 23:59:46.638472	1
 8814	3331	select * from users where exists (select 1 from comments where user_id = users.id);	code	sql	2024-11-21 23:59:46.642383	1
 8815	3331	select * from users where not exists (select 1 from comments where user_id = users.id);	code	sql	2024-11-21 23:59:46.642383	2
+8828	3339	Types are not the only matter when compiling expressions or statements, because not only types should fit, but the way values are used should make sense. For exacmple:	text	txt	2024-11-24 15:19:44.418311	1
 7545	2685	#include <GLFW/glfw3.h>\n#include <functional>\n#include <memory>\n\ntemplate<typename Deleter = std::function<void(GLFWwindow*)>>\nclass Window\n{\npublic:\n    explicit Window(char const* name)\n        : window{nullptr, glfwDestroyWindow}\n    {\n        try\n        {\n            glfwInit();\n            window.reset(glfwCreateWindow(800, 600, name, nullptr, nullptr));\n            glfwMakeContextCurrent(window.get());\n        }\n        catch (...)\n        {\n            /* handle exceptions */\n        }\n    }\n\n    virtual ~Window()\n    {\n        glfwTerminate();\n    }\n\n    void draw()\n    {\n    }\n\n    void show()\n    {\n        while (!glfwWindowShouldClose(window.get()))\n        {\n            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);\n            glClear(GL_COLOR_BUFFER_BIT);\n\n            draw();\n\n            glfwSwapBuffers(window.get());\n            glfwPollEvents();\n        }\n    }\n\nprivate:\n    std::unique_ptr<GLFWwindow, Deleter> window;\n};\n\nint main()\n{\n    Window window{"Sample"};\n    window.show();\n}	code	cpp	2024-09-23 20:32:01.305907	1
 7546	2686	#include <GLFW/glfw3.h>\n#include <functional>\n#include <memory>\n\nclass Window;\n\nvoid Window::draw()\n{\n    glBegin(GL_TRIANGLES);\n\n    glColor3f(1.0f, 0.0f, 0.0f);\n    glVertex3f(-0.8f, -0.4f, 0.0f);\n    glColor3f(0.0f, 1.0f, 0.0f);\n    glVertex3f(0.8f, -0.4f, 0.0f);\n    glColor3f(0.0f, 0.0f, 1.0f);\n    glVertex3f(0.0f, 0.8f, 0.0f);\n\n    glEnd();\n}\n\nint main()\n{\n    Window window{"Sample"};\n    window.show();\n}	code	cpp	2024-09-23 20:32:01.308282	1
 7548	2687	std::pair p1{1, 2.0};	code	cpp	2024-09-28 14:30:48.18392	1
@@ -9478,6 +9479,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7927	2844	When a nested scope is created, CMake simply copies all of the variables from the outer scope. Subsequent commands will only affect these copies. But as soon as the execution of the nested scope is completed, all of the copies are deleted and the original variables from the outer scope are restored.	text	txt	2024-10-12 22:35:28.099357	1
 7928	2845	File variable scopes are opened using the `block()` and `function()` commands, and they are closed with `endblock()` and `endfunction()`.	text	txt	2024-10-12 22:35:28.102631	1
 7929	2846	block()\n    set(foo "bar")\n    block()\n        set(foo "baz")\n    endblock() // baz\nendblock() // bar\n// empty string	code	cmake	2024-10-12 22:35:28.107124	1
+8829	3339	int number = 42; // OK\n42 = number; // ERROR	code	cpp	2024-11-24 15:19:44.418311	2
 7932	2847	Note that propagating a variable to the outer scope is only affected to the outer scope above the current, but not further.	text	txt	2024-10-12 22:35:28.111272	1
 7933	2847	Also note that `PARENT_SCOPE` doesn't change the variable in current scope.	text	txt	2024-10-12 22:35:28.111272	2
 7931	2847	set(foo "bar" PARENT_SCOPE)	code	cmake	2024-10-12 22:35:28.111272	3
@@ -9621,6 +9623,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8092	2950	The unique pointer implements the concept of exclusive ownership. Therefore, it can only be moved, and any attempt to copy a unique pointer is disabled.	text	txt	2024-10-13 10:15:50.85782	2
 8094	2951	Streams do not share their resources over copy operations.	text	txt	2024-10-13 10:15:50.859166	1
 8095	2951	std::ofstream file{"sample.tmp"};\nvoid store(std::ofstream file_stream);\nstore(std::move(file)); // takes file ownership\nassert(file.is_open());	code	cpp	2024-10-13 10:15:50.859166	2
+8864	3346	C++17 clarified the semantic meaning of value categories by two major kinds of experssions:	text	txt	2024-11-24 15:19:44.43606	1
 8096	2952	When passing move-only objects to a function taking parameters by value, the ownership will be transferred. But these functions might also take the argument by reference, which means that it does not take the ownership. In that case we might want to double check the state of the passed argument afterwards.	text	txt	2024-10-13 10:15:50.860561	1
 8097	2952	std::ofstream file{"sample.tmp"};\nstore(file);\nif (file.is_open())\n    file.close();	code	cpp	2024-10-13 10:15:50.860561	2
 8098	2953	std::ofstream{"sample.tmp"} << std::string{"content"};	code	cpp	2024-10-13 10:15:50.861757	1
@@ -10257,6 +10260,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8732	3287	VAR ?= "a"\nVAR += "b"\n# VAR is "a b"	code	bb	2024-11-10 14:03:34.326084	2
 8733	3287	VAR += "b"\nVAR ?= "a"\n# VAR is " b"	code	bb	2024-11-10 14:03:34.326084	3
 8734	3288	Overrides allow appending, prepending or modifying a variable at expansion time, when the variable's value is read.	text	txt	2024-11-10 14:03:34.330867	1
+8830	3340	Statements could either be *lvalue* or *rvalue* because it would only make sense to have lvalues on the left-hand side of an assignment and rvalues on the right-hand side. Besides assignment, taking the address of lvalues is only possible, but not rvalues.	text	txt	2024-11-24 15:19:44.422792	1
 8818	3334	Because we always destroy an object at the end of its lifetime, the minimum guarantee we always have to give for moved-from state is that calling the destructor is well-defined, but more guarantees should be given. For C++ standard library, additional operations like copying and assigning objects of the same type are often enough.	text	txt	2024-11-23 14:11:23.080313	1
 8819	3334	destructing, copying, assigning	text	list	2024-11-23 14:11:23.080313	2
 8820	3334	When supporting assignment, consider all possible ways of assignment should be supported based on your object:	text	txt	2024-11-23 14:11:23.080313	3
@@ -10267,6 +10271,48 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8825	3336	std::future f2 = std::move(f);\nf.valid(); // false	code	cpp	2024-11-23 14:11:23.08366	2
 8826	3337	- Do all necessary actions required in the destructor to avoid breaking invariants\n- Implement move operator to deal with the problem\n- Disable move semantics	text	txt	2024-11-23 14:11:23.08533	1
 8827	3338	- Fix the move operations to bring the moved-from objects into a state that do not break the invariants\n- Disable move semantics\n- Relax the invariants by changing the functions using this type to deal with new possible states\n- Document and provide a member function to check for the state of broken invariants	text	txt	2024-11-23 14:11:23.086931	1
+8831	3340	int x;\n\nx = 42; // OK\n42 = x; // ERROR\n\nint* p1 = &x; // OK\nint* p2 = &42; // ERROR	code	cpp	2024-11-24 15:19:44.422792	2
+8832	3341	Types behave different than regular lvalue and rvalue categories when they are const.	text	txt	2024-11-24 15:19:44.425379	1
+8833	3341	const int c = 42; // OK: lvalue\nc = 42; // ERROR: should not be lvalue\nconst int* p = &c; // OK: lvalue	code	cpp	2024-11-24 15:19:44.425379	2
+8834	3341	The only operation that cannot be applied on an lvalue with const qualification is to be on the left side of assignment. So the decision in C was that type declared as const is still lvalue, but the meaning of lvalue and rvalue changed so that lvalue means **locator value** that is an object that has a specified location in the program, and rvalue as **readonly value**.	text	txt	2024-11-24 15:19:44.425379	3
+8835	3342	The behavior of fundamental data types and other types are different in case of moved-from state:	text	txt	2024-11-24 15:19:44.42807	1
+8836	3342	std::string s;\nstd::move(s) = "sample"; // OK: behaves like an lvalue\nauto ps = &std::move(s); // ERROR: behaves like an rvalue\n\nint i;\nstd::move(i) = 42; // ERROR\nauto pi = &std::move(i); // ERROR	code	cpp	2024-11-24 15:19:44.42807	2
+8837	3342	A moved-from object should still behave like an lvalue by allowing you to modify its value, but you should not be able to take the address. A new value category **xvalue** (expiring value) was therefore introduced to specify the rules for objects explicitly marked as *I no longer need the value here*. However, most of the rules for rvalues also apply to xvalues. Therefore, the former primary value category rvalue became a composite value category that now represents both new primary value categories **prvalue** (pure readable value: for everything that was an rvalue before) and xvalue.	text	txt	2024-11-24 15:19:44.42807	3
+8838	3343	An expression that is just the name of a variable, function, or data member, except a plain value member of an rvalue:	text	txt	2024-11-24 15:19:44.430867	1
+8839	3343	int y = x; // x is an lvalue	code	cpp	2024-11-24 15:19:44.430867	2
+8840	3343	An expression that is just a string literal:	text	txt	2024-11-24 15:19:44.430867	3
+8841	3343	char const* s = "example"; // "example" is an lvalue	code	cpp	2024-11-24 15:19:44.430867	4
+8842	3343	The return value of a function if it is declared to return an lvalue reference (Type&):	text	txt	2024-11-24 15:19:44.430867	5
+8843	3343	std::ostream& operator<<(std::ostream& stream, T const& object); // returned std::ostream& is an lvalue	code	cpp	2024-11-24 15:19:44.430867	6
+8844	3343	Any reference to a function, even when marked with `std::move()`:	text	txt	2024-11-24 15:19:44.430867	7
+8845	3343	std::for_each(std::begin(v), std::end(v), f); // f is lvalue	code	cpp	2024-11-24 15:19:44.430867	8
+8846	3343	The result of the built-in unary `*` operator (dereferencing operator):	text	txt	2024-11-24 15:19:44.430867	9
+8847	3343	int x = *p; // *p is lvalue	code	cpp	2024-11-24 15:19:44.430867	10
+8848	3344	Expressions that consist of a built-in literal that is not a string literal:	text	txt	2024-11-24 15:19:44.433034	1
+8849	3344	int x = 42; // 42 is prvalue	code	cpp	2024-11-24 15:19:44.433034	2
+8850	3344	The return type of a function if it is declared to return by value (Type):	text	txt	2024-11-24 15:19:44.433034	3
+8851	3344	std::string log(); // std::string is rvalue	code	cpp	2024-11-24 15:19:44.433034	4
+8852	3344	The result of the built-in unary `&` operator (address-of operator):	text	txt	2024-11-24 15:19:44.433034	5
+8853	3344	int y = &x; // &x is prvalue	code	cpp	2024-11-24 15:19:44.433034	6
+8854	3344	A lambda expression:	text	txt	2024-11-24 15:19:44.433034	7
+8855	3344	auto l = [](){}; // [](){} is prvalue	code	cpp	2024-11-24 15:19:44.433034	8
+8856	3345	The result of making an object with `std::move()`:	text	txt	2024-11-24 15:19:44.434935	1
+8857	3345	std::string s2 = std::move(s); // std::move(s) is xvalue	code	cpp	2024-11-24 15:19:44.434935	2
+8858	3345	A cast to an rvalue reference of an object type, but not a function type:	text	txt	2024-11-24 15:19:44.434935	3
+8859	3345	std::string s2 = static_cast<std::string&&>(s); // static_cast<std::string&&>(s) is xvalue	code	cpp	2024-11-24 15:19:44.434935	4
+8860	3345	The returned value of a function if it is declared to return an rvalue reference (Type&&):	text	txt	2024-11-24 15:19:44.434935	5
+8861	3345	class basic_type\n{\n    std::string value;\n\npublic:\n    std::string&& get() const&&; // std::string&& is xvalue\n};	code	cpp	2024-11-24 15:19:44.434935	6
+8862	3345	A non-static value member of an rvalue:	text	txt	2024-11-24 15:19:44.434935	7
+8863	3345	struct basic_type\n{\n    std::string value;\n};\n\nbasic_type get_type() { return basic_type{"example"}; } // returned basic_type is xvalue\n\nstd::string value = get_type();	code	cpp	2024-11-24 15:19:44.434935	8
+8865	3346	- **glvalue**: expressions for locations of long-living objects or functions\n- **prvalues**: expressions for short-living values for initializations	text	txt	2024-11-24 15:19:44.43606	2
+8866	3346	An **xvalue** is then considered a special location, representing a long-living object whose values are no longer needed.	text	txt	2024-11-24 15:19:44.43606	3
+8867	3347	Prior to C++17, prvalues could not be passed around without either copy or move support.	text	txt	2024-11-24 15:19:44.43767	1
+8868	3347	class initializing_type\n{\npublic:\n    initializing_type();\n    initializing_type(initializing_type const&) = delete; // neither copyable nor movable\n};\n\ninitializing_type create()\n{\n    return initializing_type{}; // prior to C++17 always created a temporary\n    // since C++17 no temporary object is created\n}\n\nvoid take(initializing_type const& i) { }\n\nauto i = create(); // OK since C++17 (error prior to C++17 due to lack of copy/move ctor)\n\ntake(create()); // OK since C++17 (error prior to C++17 due to lack of copy/move ctor)	code	cpp	2024-11-24 15:19:44.43767	2
+8869	3347	With generalization of categories in C++17, we can now pass around prvalues by value as unnamed initial values even if no valid copy or move constructor is defined as long as we do not need an object with a location.	text	txt	2024-11-24 15:19:44.43767	3
+8870	3347	C++17 then introduces new term *materialization* (of an unnamed temporary) for the moment a prvalue becomes a temporary object. Thus, a temporary materialization conversion is a prvalue to xvalue conversion.	text	txt	2024-11-24 15:19:44.43767	4
+8871	3347	Any time a prvalue is used where a glvalue (lvalue or xvalue) is expected, a temporary object is created an initialized with the prvalue and the prvalue is replaced by an xvalue that designates the temporary object.	text	txt	2024-11-24 15:19:44.43767	5
+8872	3347	void f(const X& p); // accepts any expression of any value category but expects a glvalue	code	cpp	2024-11-24 15:19:44.43767	6
+8873	3347	f(X{}); // creates a temporary prvalue and passes it materialized as an xvalue	code	cpp	2024-11-24 15:19:44.43767	7
 \.
 
 
@@ -13757,6 +13803,15 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3336	1352	Why should we avoid full guarantee to moved-from state types?	open	2024-11-23 14:11:23.08366	2024-11-23 14:11:23.08366
 3337	1352	What are the fixes for types that contain non-destructible members?	open	2024-11-23 14:11:23.08533	2024-11-23 14:11:23.08533
 3338	1352	What options are available when a moved member value breaks invariants?	open	2024-11-23 14:11:23.086931	2024-11-23 14:11:23.086931
+3339	1354	Why do we need value categories besides types?	open	2024-11-24 15:19:44.418311	2024-11-24 15:19:44.418311
+3340	1354	What are the primary value categories in C language?	open	2024-11-24 15:19:44.422792	2024-11-24 15:19:44.422792
+3341	1354	What value category will a statement have when type is const?	open	2024-11-24 15:19:44.425379	2024-11-24 15:19:44.425379
+3342	1354	What is the value category of a moved-from object?	open	2024-11-24 15:19:44.42807	2024-11-24 15:19:44.42807
+3343	1354	What statements are lvalue?	open	2024-11-24 15:19:44.430867	2024-11-24 15:19:44.430867
+3344	1354	What statements are prvalues?	open	2024-11-24 15:19:44.433034	2024-11-24 15:19:44.433034
+3345	1354	What statements are xvalues?	open	2024-11-24 15:19:44.434935	2024-11-24 15:19:44.434935
+3346	1354	What is the generalized explanation of value categories in C++17?	open	2024-11-24 15:19:44.43606	2024-11-24 15:19:44.43606
+3347	1354	What is materialization?	open	2024-11-24 15:19:44.43767	2024-11-24 15:19:44.43767
 \.
 
 
@@ -20044,7 +20099,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
 43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-23 14:11:23.086931	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-24 15:19:44.43767	1	\N
 \.
 
 
@@ -20403,7 +20458,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 12	15	open	\N	2024-07-28 09:44:55.45901	2024-07-28 09:44:55.45901	12
 479	44	writing	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	9
 293	32	writing	\N	2024-07-28 09:44:58.452348	2024-07-28 09:44:58.452348	6
-1354	89	writing	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	8
 1120	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	20
 495	44	writing	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	25
 1257	83	writing	\N	2024-07-28 09:45:08.749863	2024-07-28 09:45:08.749863	10
@@ -21609,6 +21663,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 459	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-17 16:33:28.656464	2
 209	26	writing	\N	2024-07-28 09:44:57.573652	2024-11-21 23:59:46.642383	5
 1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
+1354	89	writing	\N	2024-07-28 09:45:09.867651	2024-11-24 15:19:44.43767	8
 \.
 
 
@@ -23863,7 +23918,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8827, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8873, true);
 
 
 --
@@ -23891,7 +23946,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3338, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3347, true);
 
 
 --
