@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 17.2
--- Dumped by pg_dump version 17.0
+-- Dumped by pg_dump version 17.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -105,6 +105,22 @@ CREATE TYPE flashback.user_state AS ENUM (
 
 
 ALTER TYPE flashback.user_state OWNER TO flashback;
+
+--
+-- Name: add_section(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.add_section(IN resource_index integer, IN reference_string character varying)
+    LANGUAGE plpgsql
+    AS $$
+    declare last_section_number integer;
+begin
+    select number into last_section_number from sections where resource_id = resource_index order by number desc limit 1;
+    insert into sections (resource_id, number, reference) values (resource_index, last_section_number, reference_string);
+end; $$;
+
+
+ALTER PROCEDURE flashback.add_section(IN resource_index integer, IN reference_string character varying) OWNER TO flashback;
 
 --
 -- Name: create_note(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -10313,6 +10329,27 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8871	3347	Any time a prvalue is used where a glvalue (lvalue or xvalue) is expected, a temporary object is created an initialized with the prvalue and the prvalue is replaced by an xvalue that designates the temporary object.	text	txt	2024-11-24 15:19:44.43767	5
 8872	3347	void f(const X& p); // accepts any expression of any value category but expects a glvalue	code	cpp	2024-11-24 15:19:44.43767	6
 8873	3347	f(X{}); // creates a temporary prvalue and passes it materialized as an xvalue	code	cpp	2024-11-24 15:19:44.43767	7
+8874	3348	Since C++26, `std::format` is supported as the second argument to `static_assert` for better message formatting at compile-time.	text	txt	2024-11-27 21:53:14.144908	1
+8875	3348	static_assert(sizeof(std::int64_t) == 64, std::format("Unexpected size for a 64 bit integer: {}", sizeof(std::int64_t)));	code	cpp	2024-11-27 21:53:14.144908	2
+8876	3349	Since C++26 deleting a member functions should have a reason.	text	txt	2024-11-27 21:53:14.153381	1
+8877	3349	void oldapi() = delete("oldapi() is outdated and been removed - look at newapi().");	code	cpp	2024-11-27 21:53:14.153381	2
+8878	3350	Since C++26 the new header `<debugging>` provides a way to create breakpoints in the code:	text	txt	2024-11-27 21:53:14.155412	1
+8879	3350	#include <debugging>\n\nint main()\n{\n    std::breakpoint_if_debugging(); // stops here in debugger\n}	code	cpp	2024-11-27 21:53:14.155412	2
+8880	3351	Since C++26, with the `<debugging>` header we can realize if the program is being run by a debugger:	text	txt	2024-11-27 21:53:14.156989	1
+8881	3351	std::is_debugger_present();	code	cpp	2024-11-27 21:53:14.156989	2
+8882	3352	Since C++26, `_` placeholder can be used in places where the object is not needed but receiving it cannot be avoided, or where the object should exist but never touched:	text	txt	2024-11-27 21:53:14.15892	1
+8883	3352	std::lock_guard unnecessary_naming(mutex); // prior to C++26	code	cpp	2024-11-27 21:53:14.15892	2
+8884	3352	std::lock_guard _(mutex); // since C++26	code	cpp	2024-11-27 21:53:14.15892	3
+8885	3352	[[maybe_unused]] auto [x, y, std::ignore]] = f(); // prior to C++26	code	cpp	2024-11-27 21:53:14.15892	4
+8886	3352	auto [x, y, _] = f(); // since C++26	code	cpp	2024-11-27 21:53:14.15892	5
+8887	3353	Since C++26, structured bindings can be used in if, while, for, and switch statements:	text	txt	2024-11-27 21:53:14.160641	1
+8888	3353	if (auto result = std::to_chars(p, last, 42)) // prior to C++26\n{\n    auto [ptr, _] = result;\n}\nelse\n{\n    auto [_, ec] = result;\n}	code	cpp	2024-11-27 21:53:14.160641	2
+8889	3353	if (auto [to, ec] = std::to_chars(p, last, 42)) // since C++26\n{\n    auto s = std::string(p, to);\n}	code	cpp	2024-11-27 21:53:14.160641	3
+8890	3354	Since C++26 structured binding members can have attributes:	text	txt	2024-11-27 21:53:14.162241	1
+8891	3354	auto g()\n{\n    [[maybe_unused]] auto h = f();\n    auto [a, b [[maybe_unused]], c] = f();\n    return a + c;\n}	code	cpp	2024-11-27 21:53:14.162241	2
+8892	3355	Since C++26 we can take values of complex type easily:	text	txt	2024-11-27 21:53:14.163735	1
+8893	3355	std::complex<double> c{};\nauto & [r, i]{ reinterpret_cast<double(&)[2]>(c) };	code	cpp	2024-11-27 21:53:14.163735	2
+8894	3355	auto & [r, i]{c};	code	cpp	2024-11-27 21:53:14.163735	3
 \.
 
 
@@ -12809,6 +12846,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2324	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:42.522544	2024-09-18 17:09:42.522544
 2325	1361	Pass string literals as universal references?	open	2024-09-18 17:09:42.52375	2024-09-18 17:09:42.52375
 2327	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:20:08.983415	2024-09-18 17:20:08.983415
+3348	1571	Use formatted messages in static assertion?	open	2024-11-27 21:53:14.144908	2024-11-27 21:53:14.144908
 2328	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:20:08.985051	2024-09-18 17:20:08.985051
 2329	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:20:08.986641	2024-09-18 17:20:08.986641
 2330	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:20:08.988433	2024-09-18 17:20:08.988433
@@ -13812,6 +13850,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3345	1354	What statements are xvalues?	open	2024-11-24 15:19:44.434935	2024-11-24 15:19:44.434935
 3346	1354	What is the generalized explanation of value categories in C++17?	open	2024-11-24 15:19:44.43606	2024-11-24 15:19:44.43606
 3347	1354	What is materialization?	open	2024-11-24 15:19:44.43767	2024-11-24 15:19:44.43767
+3349	1571	Delete a function with giving reasons for it?	open	2024-11-27 21:53:14.153381	2024-11-27 21:53:14.153381
+3350	1571	Create a break point in code?	open	2024-11-27 21:53:14.155412	2024-11-27 21:53:14.155412
+3351	1571	Check if debugger is running the program?	open	2024-11-27 21:53:14.156989	2024-11-27 21:53:14.156989
+3352	1571	Use a name placeholder where naming an object is not necessary?	open	2024-11-27 21:53:14.15892	2024-11-27 21:53:14.15892
+3353	1571	Declare a structured binding as a condition?	open	2024-11-27 21:53:14.160641	2024-11-27 21:53:14.160641
+3354	1571	Apply attributes to members of structured bindings?	open	2024-11-27 21:53:14.162241	2024-11-27 21:53:14.162241
+3355	1571	Take a real and imaginary values from a complex?	open	2024-11-27 21:53:14.163735	2024-11-27 21:53:14.163735
 \.
 
 
@@ -19890,7 +19935,6 @@ COPY flashback.resource_editing (id, user_id, resource_id, action, updated) FROM
 
 COPY flashback.resource_watching (user_id, resource_id, update) FROM stdin;
 1	1	2024-09-08 15:15:14.413906
-1	2	2024-09-08 15:15:14.413906
 1	3	2024-09-08 15:15:14.413906
 1	4	2024-09-08 15:15:14.413906
 1	5	2024-09-08 15:15:14.413906
@@ -19994,11 +20038,6 @@ COPY flashback.resource_watching (user_id, resource_id, update) FROM stdin;
 --
 
 COPY flashback.resources (id, name, reference, type, created, updated, section_pattern_id, leading_author) FROM stdin;
-1	https://www.youtube.com	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-2	https://www.youtu.be	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-3	https://www.boost.org	https://boost.org	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-4	https://www.latex-tutorial.com	https://latex-tutorial.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-5	https://www.qt.io	https://qt.io	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 7	Daily C++ Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 8	C++ Daily Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
@@ -20078,6 +20117,9 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 90	CMake Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 92	Hands-On Mobile and Embedded Development with Qt5	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 94	Mastering Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
+3	Boost	https://boost.org	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
+4	LaTeX Tutorial	https://latex-tutorial.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
+5	Qt	https://qt.io	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 96	Embedded Linux using Yocto	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 97	C++ Templates: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
@@ -20100,6 +20142,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-24 15:19:44.43767	1	\N
+1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	\N	\N
 \.
 
 
@@ -21663,6 +21706,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 459	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-17 16:33:28.656464	2
 209	26	writing	\N	2024-07-28 09:44:57.573652	2024-11-21 23:59:46.642383	5
 1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
+1571	1	writing	https://youtu.be/xmqkRcAslw8	2024-11-27 20:58:50.907296	2024-11-27 21:53:14.163735	1
 1354	89	writing	\N	2024-07-28 09:45:09.867651	2024-11-24 15:19:44.43767	8
 \.
 
@@ -23918,7 +23962,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8873, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8894, true);
 
 
 --
@@ -23946,7 +23990,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3347, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3355, true);
 
 
 --
@@ -24023,7 +24067,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1570, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1571, true);
 
 
 --
