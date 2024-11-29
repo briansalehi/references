@@ -1683,6 +1683,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 2305	536	#include <type_traits>	text	txt	2024-07-28 10:02:00.81186	2
 2900	697	Views	text	txt	2024-07-28 10:03:31.389895	1
 3970	982	docker buildx	code	txt	2024-07-28 10:06:18.15887	2
+8895	3356		text	txt	2024-11-29 22:54:18.246075	1
 3364	797	    return init;\n}	code	txt	2024-07-28 10:04:38.681931	6
 3748	911	#include <utility>	text	txt	2024-07-28 10:05:42.697639	1
 350	91	repeat:\n; repeat decrementing until value reached zero\ndec rcx\ncmp rcx, 0\njne repeat	text	txt	2024-07-28 09:56:41.609294	7
@@ -7046,6 +7047,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 5457	1621	Instead of working as a cron job, as the old `yum-cron` did, `dnf-automatic` works with a systemd timer.\nWhen you first install `dnf-automatic`, the timer is disabled.\nEnable it and start it by running this command:	text	txt	2024-07-28 10:10:16.796007	6
 5458	1621	sudo systemctl enable --now dnf-automatic.timer	code	txt	2024-07-28 10:10:16.816502	7
 6446	2031	    DarkSquare {\n        id: dark\n        anchors.fill: parent\n        anchors.centerIn: parent	text	txt	2024-07-28 10:12:57.103827	9
+8896	3356	git clone https://github.com/opencv/opencv.git	code	sh	2024-11-29 22:54:18.246075	2
 5459	1621	To determine if a system needs to be restarted, just install the `yum-utils` package and run the `needs-restarting` command, the same as you did for CentOS 7.\n(For some reason, the Red Hat developers never bothered to change the package name to `dnf-utils`.)	text	txt	2024-07-28 10:10:16.838667	8
 5460	1622	Using `su -` to log in to the root command prompt does not let `sudo` to record user activity.\nFor that reason, getting access to the root command prompt should be prevented.	text	txt	2024-07-28 10:10:17.078905	1
 5461	1623	The first method is to add users to a predefined administrators group and then, if it hasn’t already been done, to configure the sudo policy to allow that group to do its job.\nIt’s simple enough to do except that different Linux distro families use different admin groups.	text	txt	2024-07-28 10:10:17.613589	1
@@ -10350,6 +10352,54 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8892	3355	Since C++26 we can take values of complex type easily:	text	txt	2024-11-27 21:53:14.163735	1
 8893	3355	std::complex<double> c{};\nauto & [r, i]{ reinterpret_cast<double(&)[2]>(c) };	code	cpp	2024-11-27 21:53:14.163735	2
 8894	3355	auto & [r, i]{c};	code	cpp	2024-11-27 21:53:14.163735	3
+8897	3356	cmake -S opencv -B build-opencv-release -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=~/.local/bin -D WITH_OPENGL=ON -D WITH_OPENMP=ON -D WITH_QT=ON -D WITH_VULKAN=ON -D WITH_WAYLAND=ON	code	sh	2024-11-29 22:54:18.246075	3
+8898	3356	cmake --build build-opencv-release --parallel 16	code	sh	2024-11-29 22:54:18.246075	4
+8899	3356	cmake --install build-opencv-release	code	sh	2024-11-29 22:54:18.246075	5
+8900	3357		text	txt	2024-11-29 22:54:18.252375	1
+8901	3357	cmake_minimum_required(VERSION 3.30)\nproject(Sample VERSION 0.1 LANGUAGES CXX)\nfind_package(OpenCV 4.0.0 COMPONENTS core REQUIRED)\nmessage(STATUS "OpenCV version ${OpenCV_VERSION}")\nmessage(STATUS "OpenCV libs ${OpenCV_LIBS}")\nmessage(STATUS "OpenCV headers ${OpenCV_INCLUDE_DIRS}")\nadd_executable(project)\ntarget_sources(project PRIVATE main.cpp)\ntarget_include_directories(program PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${OpenCV_INCLUDE_DIRS})\ntarget_link_libraries(project PRIVATE ${OpenCV_LIBS})	code	cmake	2024-11-29 22:54:18.252375	2
+8902	3358	`Mat` is the most useful type in OpenCV from `<opencv2/core.hpp>` header, holding values of a matrix.	text	txt	2024-11-29 22:54:18.255685	1
+8903	3358	cv::Mat m{};	code	cpp	2024-11-29 22:54:18.255685	2
+8904	3359	#include <opencv2/core.hpp> // link to opencv_core\n#include <opencv2/imgcodecs.hpp> // link to opencv_imgcodecs\n\nint main()\n{\n    cv::Mat image = cv::imread("image.jpg", cv::IMREAD_GRAYSCALE);\n}	code	cpp	2024-11-29 22:54:18.258904	1
+8905	3360	#include <opencv2/core.hpp> // link to opencv_core\n#include <opencv2/imgcodecs.hpp> // link to opencv_imgcodecs\n\nint main()\n{\n    cv::Mat image = cv::imread("image.jpg", cv::IMREAD_GRAYSCALE);\n    cv::imwrite("/tmp/capture.jpg", image);\n}	code	cpp	2024-11-29 22:54:18.26159	1
+8906	3361	`cv::IMREAD_UNCHANGED`, `cv::IMREAD_GRAYSCALE`, `cv::IMREAD_COLOR`	text	list	2024-11-29 22:54:18.264695	1
+8907	3362	m.rows();	code	cpp	2024-11-29 22:54:18.267841	1
+8908	3362	m.cols();	code	cpp	2024-11-29 22:54:18.267841	2
+8909	3363	cv::Vec3b pixel;	code	cpp	2024-11-29 22:54:18.269955	1
+8910	3364	cv::Vec3b colored_pixel = colored_image.at<cv::Vec3b>(0, 0);	code	cpp	2024-11-29 22:54:18.27189	1
+8911	3364	std::int8_t grayscale_pixel = grayscale_image.at<std::int8_t>(0, 0);	code	cpp	2024-11-29 22:54:18.27189	2
+8912	3365	#include <opencv2/core.hpp> // link to opencv_core\n#include <opencv2/imgcodecs.hpp> // link to opencv_imgcodecs\n#include <opencv2/highgui.hpp> // link to opencv_highgui\n\nint main()\n{\n    cv::Mat image = cv::imread("lena.jpg", cv::IMREAD_COLOR);\n\n    cv::namedWindow window("Image View");\n    cv::imshow(window, image);\n    cv::waitKey(0);\n    cv::destroyWindow(image);\n}	code	cpp	2024-11-29 22:54:18.273961	1
+8913	3366	#include <opencv2/core.hpp>\n#include <opencv2/imgcodecs.hpp>\n#include <opencv2/videoio.hpp>\n\nint main()\n{\n    cv::VideoCapture video{0}; // default camera\n    cv::Mat image;\n\n    if (video.isOpened())\n    {\n        video >> image;\n        cv::imwrite("/tmp/output.jpg", image);\n        video.release();\n    }\n}	code	cpp	2024-11-29 22:54:18.275824	1
+8914	3367	cv::Mat m{};	code	cpp	2024-11-29 22:54:18.27824	1
+8915	3367	cv::Vec<double, 100> v{};	code	cpp	2024-11-29 22:54:18.27824	2
+8916	3367	cv::Scalar	code	cpp	2024-11-29 22:54:18.27824	3
+8917	3367	cv::Point	code	cpp	2024-11-29 22:54:18.27824	4
+8918	3367	cv::Size	code	cpp	2024-11-29 22:54:18.27824	5
+8919	3367	cv::Rect	code	cpp	2024-11-29 22:54:18.27824	6
+8920	3367	cv::RotatedRect	code	cpp	2024-11-29 22:54:18.27824	7
+8921	3368	typedef Vec<uchar, 2> Vec2b; \ntypedef Vec<uchar, 3> Vec3b; \ntypedef Vec<uchar, 4> Vec4b; \n \ntypedef Vec<short, 2> Vec2s; \ntypedef Vec<short, 3> Vec3s; \ntypedef Vec<short, 4> Vec4s; \n \ntypedef Vec<int, 2> Vec2i; \ntypedef Vec<int, 3> Vec3i; \ntypedef Vec<int, 4> Vec4i; \n \ntypedef Vec<float, 2> Vec2f; \ntypedef Vec<float, 3> Vec3f; \ntypedef Vec<float, 4> Vec4f; \ntypedef Vec<float, 6> Vec6f; \n \ntypedef Vec<double, 2> Vec2d; \ntypedef Vec<double, 3> Vec3d; \ntypedef Vec<double, 4> Vec4d; \ntypedef Vec<double, 6> Vec6d;	code	cpp	2024-11-29 22:54:18.280133	1
+8922	3369	v1 = v2 + v3;\nv1 = v2 - v3;\nv1 = v2 * scale;\nv1 = scale * v2;\nv1 = -v2;\nv1 += v2;\nv1 == v2;\nv1 != v2;\nnorm(v1) (euclidean norm);	code	cpp	2024-11-29 22:54:18.281844	1
+8923	3370	Scalar is a class template derived from Vec class template but only with 4 elements, which is usually used to hold pixel information.	text	txt	2024-11-29 22:54:18.283891	1
+8924	3370	Scalar s1(0);\nScalar s2(0.0, 1.0, 2.0, 3.0);\ns[0]; s[1]; s[2]; s[3];	code	cpp	2024-11-29 22:54:18.283891	2
+8925	3371	p.x; p.y;\npt1 = pt2 + pt3; \npt1 = pt2 - pt3; \npt1 = pt2 * a; \npt1 = a * pt2; \npt1 = pt2 / a; \npt1 += pt2; \npt1 -= pt2; \npt1 *= a; \npt1 /= a; \npt1 == pt2; \npt1 != pt2;\ndouble value = norm(pt); // L2 norm	code	cpp	2024-11-29 22:54:18.286261	1
+8926	3372	typedef Point_<int> Point2i; \ntypedef Point2i Point; \ntypedef Point_<float> Point2f; \ntypedef Point_<double> Point2d;	code	cpp	2024-11-29 22:54:18.288216	1
+8927	3373	Similar to Point2b type but instead of `x` and `y` members, Size types hold `width` and `length` members.	text	txt	2024-11-29 22:54:18.290245	1
+8928	3373	s.width;\ns.length;\ns.area();	code	cpp	2024-11-29 22:54:18.290245	2
+8929	3374	The first two parameters are the coordinations of the upper-left corner. The third and fourth parameters are respectively the width and length of the rectangle.	text	txt	2024-11-29 22:54:18.292325	1
+8930	3374	cv::Rect r{0, 0, 100, 100};	code	cpp	2024-11-29 22:54:18.292325	2
+8931	3375	The same type as Rect but with rotation specified by a center point and rotation angle in degrees.	text	txt	2024-11-29 22:54:18.294168	1
+8932	3375	cv::Point2f center{100, 100};\ncv::Size2f size{100, 100};\nfloat angle{45};\ncv::RotatedRect r{center, size, angle};	code	cpp	2024-11-29 22:54:18.294168	2
+8933	3376	cv::Rect b = cv::boundingBox(r);	code	cpp	2024-11-29 22:54:18.295924	1
+8934	3377	cv::Mat m{cv::Size{100, 100}, CV_32F};	code	cpp	2024-11-29 22:54:18.297678	1
+8935	3378	- `CV_8UC1`\n- `CV_8UC1`\n- `CV_8UC1`\n- `CV_32FC3`\n- `CV_32FC3`\n- `CV_32FC3`	text	txt	2024-11-29 22:54:18.299446	1
+8936	3379	cv::Mat m = cv::Mat::zeros(5, 5, CV_32F);	code	cpp	2024-11-29 22:54:18.301627	1
+8937	3380	cv::Mat m = cv::Mat::ones(5, 5, CV_32F);	code	cpp	2024-11-29 22:54:18.303862	1
+8938	3381	cv::Mat m = cv::Mat::eye(5, 5, CV_32F);	code	cpp	2024-11-29 22:54:18.305865	1
+8939	3382	Mat c = a + b;\nMat d = a - b;\nMat e = a .* 2; // scalar by matrix\nMat f = a .* b; // per element multiplication\nMat g = cv::Mat::eye(2, 3) * cv::Mat::eye(3, 2); // matrix multiplication\nMat h = m.t(); // transposition\nMat i = m.inv(); // inversion	code	cpp	2024-11-29 22:54:18.308008	1
+8940	3383	int i = cv::countNonZero(m);	code	cpp	2024-11-29 22:54:18.309827	1
+8941	3384	meanStdDev(src, mean, stddev);	code	cpp	2024-11-29 22:54:18.311597	1
+8942	3385	minMaxLoc(matrix, minval, maxval, minloc, maxloc);	code	cpp	2024-11-29 22:54:18.313324	1
+8943	3386	cv::FileStorage storage("/tmp/result.yml", cv::FileStorage::WRITE);\n\nint fps = 5;\nstorage << "fps" << fps;\n\ncv::Mat m = cv::Mat::eye(2, 3, CV_32F);\nstorage << "matrix" << m;\n\nstorage.release();	code	cpp	2024-11-29 22:54:18.315022	1
+8944	3387	cv::FileStorage storage("/tmp/result.yml", cv::FileStorage::READ);\n\ncv::Mat m;\nstorage["matrix"] >> m;\n\nint fps;\nstorage["fps"] >> fps;\n\nstorage.release();	code	cpp	2024-11-29 22:54:18.316913	1
 \.
 
 
@@ -13063,6 +13113,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 2648	1568	Which recipes should contain licensing information?	open	2024-09-22 10:06:27.327062	2024-09-22 10:06:27.327062
 2649	1568	Specify which licenses cannot be integrated into the image?	open	2024-09-22 10:06:27.329821	2024-09-22 10:06:27.329821
 2650	1568	Define a license for commercial components?	open	2024-09-22 10:06:27.334467	2024-09-22 10:06:27.334467
+3356	1572	Install OpenCV from source?	open	2024-11-29 22:54:18.246075	2024-11-29 22:54:18.246075
 2651	1568	Where does bitbake generate the manifest of all licenses?	open	2024-09-22 10:06:27.337151	2024-09-22 10:06:27.337151
 2652	1568	Include the license manifest into the root filesystem?	open	2024-09-22 10:06:27.340114	2024-09-22 10:06:27.340114
 2653	1569	What tools does an SDK provide?	open	2024-09-22 10:06:27.342569	2024-09-22 10:06:27.342569
@@ -13857,6 +13908,37 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3353	1571	Declare a structured binding as a condition?	open	2024-11-27 21:53:14.160641	2024-11-27 21:53:14.160641
 3354	1571	Apply attributes to members of structured bindings?	open	2024-11-27 21:53:14.162241	2024-11-27 21:53:14.162241
 3355	1571	Take a real and imaginary values from a complex?	open	2024-11-27 21:53:14.163735	2024-11-27 21:53:14.163735
+3357	1573	Use OpenCV in a simple CMake configured project?	open	2024-11-29 22:54:18.252375	2024-11-29 22:54:18.252375
+3358	1573	What type is used to store image data?	open	2024-11-29 22:54:18.255685	2024-11-29 22:54:18.255685
+3359	1573	Read an image from file?	open	2024-11-29 22:54:18.258904	2024-11-29 22:54:18.258904
+3360	1573	Write an image to file?	open	2024-11-29 22:54:18.26159	2024-11-29 22:54:18.26159
+3361	1573	What coloring formats are possible to apply on importing images?	open	2024-11-29 22:54:18.264695	2024-11-29 22:54:18.264695
+3362	1573	Retrieve the number of rows and columns within a matrix?	open	2024-11-29 22:54:18.267841	2024-11-29 22:54:18.267841
+3363	1573	What type is used to contain pixel information?	open	2024-11-29 22:54:18.269955	2024-11-29 22:54:18.269955
+3364	1573	Retrieve a pixel from a matrix?	open	2024-11-29 22:54:18.27189	2024-11-29 22:54:18.27189
+3365	1573	Display an image in a window?	open	2024-11-29 22:54:18.273961	2024-11-29 22:54:18.273961
+3366	1573	Record video feed from a camera?	open	2024-11-29 22:54:18.275824	2024-11-29 22:54:18.275824
+3367	1573	What are the basic objects in OpenCV?	open	2024-11-29 22:54:18.27824	2024-11-29 22:54:18.27824
+3368	1573	What type aliases are available for <code>cv::Vec</code> class template?	open	2024-11-29 22:54:18.280133	2024-11-29 22:54:18.280133
+3369	1573	What operations does <code>cv::Vec</code> class template support?	open	2024-11-29 22:54:18.281844	2024-11-29 22:54:18.281844
+3370	1573	What operations does Scalar type support?	open	2024-11-29 22:54:18.283891	2024-11-29 22:54:18.283891
+3371	1573	What operations does Point type support?	open	2024-11-29 22:54:18.286261	2024-11-29 22:54:18.286261
+3372	1573	What type aliases are available for Point class template?	open	2024-11-29 22:54:18.288216	2024-11-29 22:54:18.288216
+3373	1573	What operations does Size type support?	open	2024-11-29 22:54:18.290245	2024-11-29 22:54:18.290245
+3374	1573	Initialize an object of type Rect?	open	2024-11-29 22:54:18.292325	2024-11-29 22:54:18.292325
+3375	1573	Initialize an object of type RotatedRect?	open	2024-11-29 22:54:18.294168	2024-11-29 22:54:18.294168
+3376	1573	Retrieve the bounding rectangle of a rotated rectangle?	open	2024-11-29 22:54:18.295924	2024-11-29 22:54:18.295924
+3377	1573	Create a matrix with specific channels?	open	2024-11-29 22:54:18.297678	2024-11-29 22:54:18.297678
+3378	1573	How many channel options are available?	open	2024-11-29 22:54:18.299446	2024-11-29 22:54:18.299446
+3379	1573	Initialize a matrix with zeros?	open	2024-11-29 22:54:18.301627	2024-11-29 22:54:18.301627
+3380	1573	Initialize a matrix with ones?	open	2024-11-29 22:54:18.303862	2024-11-29 22:54:18.303862
+3381	1573	Create an eye matrix?	open	2024-11-29 22:54:18.305865	2024-11-29 22:54:18.305865
+3382	1573	What operations are supported on Mat type?	open	2024-11-29 22:54:18.308008	2024-11-29 22:54:18.308008
+3383	1573	Count non-zero elements in a matrix?	open	2024-11-29 22:54:18.309827	2024-11-29 22:54:18.309827
+3384	1573	Calculate mean standard deviation of a matrix?	open	2024-11-29 22:54:18.311597	2024-11-29 22:54:18.311597
+3385	1573	Locate minimum and maximum values in a matrix?	open	2024-11-29 22:54:18.313324	2024-11-29 22:54:18.313324
+3386	1573	Store matrix data in a persistent storage?	open	2024-11-29 22:54:18.315022	2024-11-29 22:54:18.315022
+3387	1573	Read data from a persistent storage?	open	2024-11-29 22:54:18.316913	2024-11-29 22:54:18.316913
 \.
 
 
@@ -20143,6 +20225,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	4	\N
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
+108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
 \.
 
 
@@ -21709,6 +21792,18 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
 1571	1	writing	https://youtu.be/xmqkRcAslw8	2024-11-27 20:58:50.907296	2024-11-27 21:53:14.163735	1
 1354	89	writing	\N	2024-07-28 09:45:09.867651	2024-11-24 15:19:44.43767	8
+1574	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	3
+1575	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	4
+1576	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	5
+1577	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	6
+1578	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	7
+1579	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	8
+1580	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	9
+1581	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	10
+1582	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	11
+1583	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	12
+1573	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.708469	2
+1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
 \.
 
 
@@ -23375,6 +23470,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	106
 6	107
 6	1
+15	108
 \.
 
 
@@ -23965,7 +24061,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8894, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8944, true);
 
 
 --
@@ -23993,7 +24089,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3355, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3387, true);
 
 
 --
@@ -24049,7 +24145,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 107, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 108, true);
 
 
 --
@@ -24070,7 +24166,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1571, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1583, true);
 
 
 --
