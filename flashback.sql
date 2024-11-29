@@ -20038,15 +20038,7 @@ COPY flashback.resource_watching (user_id, resource_id, update) FROM stdin;
 --
 
 COPY flashback.resources (id, name, reference, type, created, updated, section_pattern_id, leading_author) FROM stdin;
-6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 7	Daily C++ Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-8	C++ Daily Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-9	https://www.cppstories.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-11	mdadm(1)	Unix Manual	manual	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-12	LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone	https://www.linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-13	Kevin Dankwardt's Linux Device Drivers	https://www.linkedin.com/learning/linux-device-drivers	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-14	LinkedIn Course: Linux Device Drivers	https://linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 15	Learning OpenCV 3	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 65	Offensive Security Wireless Professional (OSWP)	\N	video	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	4	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -20117,11 +20109,17 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 90	CMake Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 92	Hands-On Mobile and Embedded Development with Qt5	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 94	Mastering Linux Kernel Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-3	Boost	https://boost.org	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-4	LaTeX Tutorial	https://latex-tutorial.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
-5	Qt	https://qt.io	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 96	Embedded Linux using Yocto	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 97	C++ Templates: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
+8	C++ Daily Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
+9	https://www.cppstories.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
+11	mdadm(1)	Unix Manual	manual	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
+12	LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone	https://www.linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
+13	Kevin Dankwardt's Linux Device Drivers	https://www.linkedin.com/learning/linux-device-drivers	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
+14	LinkedIn Course: Linux Device Drivers	https://linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
+3	Boost	https://boost.org	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
+4	LaTeX Tutorial	https://latex-tutorial.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
+5	Qt	https://qt.io	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 91	Embedded Linux Training Course	https://bootlin.com/training/embedded-linux	course	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	3	Bootlin
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
@@ -20142,7 +20140,9 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-24 15:19:44.43767	1	\N
-1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	\N	\N
+1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	4	\N
+6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
+10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 \.
 
 
@@ -20163,6 +20163,7 @@ COPY flashback.section_name_patterns (id, pattern) FROM stdin;
 2	Page
 3	Course
 4	Video
+5	Post
 \.
 
 
@@ -23373,6 +23374,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	105
 6	106
 6	107
+6	1
 \.
 
 
@@ -24061,7 +24063,7 @@ SELECT pg_catalog.setval('flashback.section_editing_id_seq', 1, false);
 -- Name: section_types_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.section_types_id_seq', 4, true);
+SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 
 
 --
