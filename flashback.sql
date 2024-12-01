@@ -8492,6 +8492,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6920	2341	std::promise<std::string> promise{};\nstd::future<std::string> future{promise.get_future()};\n\nvoid print_value(std::future<std::string> f)\n{\n    std::println("{}", f.get());\n};\n\nvoid set_value(std::promise<std::string> p)\n{\n    try\n    {\n        p.set_value_at_thread_exit();\n    }\n    catch (...)\n    {\n        p.set_exception_at_thread_exit(std::current_exception());\n    }\n}\n\nstd::jthread future_thread{print_value, std::move(future)};\nstd::jthread promise_thread{set_value, std::move(promise)};	code	cpp	2024-09-18 17:20:09.000946	1
 6922	2342	To deduce the same type for string literals of different length, we need to decay universal reference parameters.	text	txt	2024-09-18 17:20:09.002003	1
 8812	3329	select * from users where role not in ('manager', 'team manager');	code	sql	2024-11-21 23:59:46.635512	2
+8945	3388	All expressions that are references to functions are lvalues.	text	txt	2024-12-01 22:08:01.385167	1
 6923	2342	namespace std\n{\ntemplate<typename T1, typename T2>\nconstexpr pair(typename decay_t<T1>, typename decay_t<T2>) make_pair(T1&& a, T2&& b)\n{\n    return pair<decay_t<T1>, decay_t<T2>>(forward<T1>(a), forward<T2>(b));\n}\n} // std	code	cpp	2024-09-18 17:20:09.002003	2
 6921	2342	When passing string literals to arguments of type const reference, the type of the corresponding parameters become a reference to an array of chars (`const char(&)[N]`). Therefore, type `char[N]` is deduced as type of parameter and used as type of member variable. However, initializing an array member with an array is not possible because you cannot copy arrays.	text	txt	2024-09-18 17:20:09.002003	3
 6924	2343	atomic variables, threads, locks, condition variables.	text	list	2024-09-19 14:56:13.921899	1
@@ -8590,6 +8591,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7018	2401	Contains scripts used to set up the environment, development tools, and tools to flash the generated images on the target.	text	txt	2024-09-22 10:06:26.78374	1
 7019	2402	- bitbake: the main build system\n- bitbake-*: utilitie complementing bitbake build system	text	list	2024-09-22 10:06:26.785723	1
 7020	2403	- `core-image-minimal`: boot a device and have access to core command line commands and services.\n- `core-image-sato`: Image with Sato support. Sato is a GNOME mobile-based user interface.\n- `meta-toolchain`: Generates the cross-toolchain in an installable format.\n- `meta-ide-support`: Generates the cross-toolchain and additional tools (gdb, qemu, ...) for IDE integration.	text	list	2024-09-22 10:06:26.787504	1
+8946	3388	void f(int) { }	code	cpp	2024-12-01 22:08:01.385167	2
 7021	2404	- `BUILDDIR`: Absolute path of the build directory.\n- `PATH`: Absolute path to executables in `scripts/` and `bitbake/bin` are prepended to `PATH`.	text	list	2024-09-22 10:06:26.789316	1
 7023	2405	- `conf/bblayers.conf`: Explicitly list the layers to use\n- `conf/local.conf`: User related configuration variables; configuration variables can be overriden here\n- `conf/site.conf`: Also like local file but for site settings, eg. network, cpu resource limits	text	list	2024-09-22 10:06:26.791573	1
 7022	2405	In source directory, only the `conf` directory exists, containing:	text	txt	2024-09-22 10:06:26.791573	2
@@ -8983,6 +8985,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7412	2610	WKS_FILE = "sample.wks.in"	code	bb	2024-09-22 10:06:27.237105	3
 7414	2611	bmaptool is an alternative to dd, skipping uninitialized contents in partitions.	text	txt	2024-09-22 10:06:27.239235	1
 7416	2612	Generated package group binary files will not be installed, but they require other packages.	text	txt	2024-09-22 10:06:27.241394	1
+8947	3388	void(&flref)(int) = f; // lvalue	code	cpp	2024-12-01 22:08:01.385167	3
 7415	2612	A package group is a class that inherits from `packagegroup` class.	text	txt	2024-09-22 10:06:27.241394	2
 7417	2613	PACKAGE_ARCH ?= "all"	code	bb	2024-09-22 10:06:27.243317	1
 7419	2614	meta/recipes-core/packagegroups/packagegroup-core-tools-debug.bb	text	path	2024-09-22 10:06:27.245458	1
@@ -9047,6 +9050,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 7477	2644	ALLOW_EMPTY	code	bb	2024-09-22 10:06:27.316931	1
 7478	2645	CONFLICTS	code	bb	2024-09-22 10:06:27.319538	1
 7479	2646	FILES	code	bb	2024-09-22 10:06:27.321883	1
+8948	3388	void(&&frref)(int) = f; // lvalue	code	cpp	2024-12-01 22:08:01.385167	4
 7481	2647	LIC_FILES_CHKSUM = "\n    file://COPYING;md5=...\n    file://src/main.c;beginline=3;endline=20;md5sum=..."	code	bb	2024-09-22 10:06:27.324465	1
 7480	2647	LIC_FILES_CHKSUM	code	bb	2024-09-22 10:06:27.324465	2
 7482	2648	Every recipe must have a `LIC_FILES_CHKSUM` unless `LICENSE` is set to `CLOSED`.	text	txt	2024-09-22 10:06:27.327062	1
@@ -9903,6 +9907,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8356	3112	1. memory location is modified by an atomic operation	text	txt	2024-10-27 16:25:47.43163	1
 8355	3112	Multiple threads can read the same memory location without a problem. But race condition should be avoided on write by one of the following methods:	text	txt	2024-10-27 16:25:47.43163	2
 8357	3112	2. one access happens before the other	text	txt	2024-10-27 16:25:47.43163	3
+8949	3388	auto& r = std::move(f); // okay: r is lvalue	code	cpp	2024-12-01 22:08:01.385167	5
 8358	3113	1. **Single threading:** One control flow\n2. **Multi-threading:** Tasks, Threads, Condition Variables\n3. **Atomic:** Sequential consistency, Acquire-release semantics, Relaxed semantics	text	txt	2024-10-27 16:25:47.442613	1
 8359	3114	- **Atomic operations:** operations that can perform without an interruption\n- **Partial ordering of operations:** sequence of operations that must not be reordered\n- **Visible effects of operations:** guarantees when operations on shared variables are visible to other threads	text	txt	2024-10-27 16:25:47.446709	1
 8360	3114	The foundation of the contract are operations on atomics, that by definition are indivisable and create ordering constraints on execution.	text	txt	2024-10-27 16:25:47.446709	2
@@ -10201,6 +10206,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8651	3260	Clients should not be forced to use the methods they do not use. Some interfaces have too many methods but not all of them might be useful in subtypes. Separate the interface and reorganize methods based on usage.	text	txt	2024-11-02 22:09:08.716526	5
 8656	3261	Abstractions should not depend on details. Details should depend on abstractions.	text	txt	2024-11-02 22:09:08.721556	1
 8657	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<file_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	2
+8965	3389	v.push_back(std::move(x.s)); // moves\nv.push_back(std::move(x.r)); // moves	code	cpp	2024-12-01 22:08:01.395207	15
 8658	3261	class basic_downloader\n{\npublic:\n    virtual std::vector<std::string> get() = 0;\n};\n\nclass file_downloader: public basic_downloader\n{\npublic:\n    std::vector<std::string> get() override;\n};\n\nclass page\n{\nprivate:\n    std::unique_ptr<basic_downloader> downloader;\n};	code	cpp	2024-11-02 22:09:08.721556	3
 8660	3262	[[nodiscard]] friend constexpr bool operator== (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator!= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator< (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator<= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator> (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator>= (const Value& lhs, const Value& rhs) noexcept;	code	cpp	2024-11-03 16:19:44.031758	1
 8659	3262	The definitions are tedious and they add a lot of visual clutter, specially that well defined types should use `noexcept`, `constexpr`, `friend`, `[[nodiscard]]` qualifiers.	text	txt	2024-11-03 16:19:44.031758	2
@@ -10367,6 +10373,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8909	3363	cv::Vec3b pixel;	code	cpp	2024-11-29 22:54:18.269955	1
 8910	3364	cv::Vec3b colored_pixel = colored_image.at<cv::Vec3b>(0, 0);	code	cpp	2024-11-29 22:54:18.27189	1
 8911	3364	std::int8_t grayscale_pixel = grayscale_image.at<std::int8_t>(0, 0);	code	cpp	2024-11-29 22:54:18.27189	2
+8950	3388	In contrast to types of objects, we can bind non-const lvalue reference to a function marked with `std::move()` because a function marked with `std::move()` is still an lvalue.	text	txt	2024-12-01 22:08:01.385167	6
 8912	3365	#include <opencv2/core.hpp> // link to opencv_core\n#include <opencv2/imgcodecs.hpp> // link to opencv_imgcodecs\n#include <opencv2/highgui.hpp> // link to opencv_highgui\n\nint main()\n{\n    cv::Mat image = cv::imread("lena.jpg", cv::IMREAD_COLOR);\n\n    cv::namedWindow window("Image View");\n    cv::imshow(window, image);\n    cv::waitKey(0);\n    cv::destroyWindow(image);\n}	code	cpp	2024-11-29 22:54:18.273961	1
 8913	3366	#include <opencv2/core.hpp>\n#include <opencv2/imgcodecs.hpp>\n#include <opencv2/videoio.hpp>\n\nint main()\n{\n    cv::VideoCapture video{0}; // default camera\n    cv::Mat image;\n\n    if (video.isOpened())\n    {\n        video >> image;\n        cv::imwrite("/tmp/output.jpg", image);\n        video.release();\n    }\n}	code	cpp	2024-11-29 22:54:18.275824	1
 8914	3367	cv::Mat m{};	code	cpp	2024-11-29 22:54:18.27824	1
@@ -10400,6 +10407,45 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8942	3385	minMaxLoc(matrix, minval, maxval, minloc, maxloc);	code	cpp	2024-11-29 22:54:18.313324	1
 8943	3386	cv::FileStorage storage("/tmp/result.yml", cv::FileStorage::WRITE);\n\nint fps = 5;\nstorage << "fps" << fps;\n\ncv::Mat m = cv::Mat::eye(2, 3, CV_32F);\nstorage << "matrix" << m;\n\nstorage.release();	code	cpp	2024-11-29 22:54:18.315022	1
 8944	3387	cv::FileStorage storage("/tmp/result.yml", cv::FileStorage::READ);\n\ncv::Mat m;\nstorage["matrix"] >> m;\n\nint fps;\nstorage["fps"] >> fps;\n\nstorage.release();	code	cpp	2024-11-29 22:54:18.316913	1
+8951	3389	In general, value categories of data members are as follows:	text	txt	2024-12-01 22:08:01.395207	1
+8952	3389	- Data members of lvalues are lvalues\n- Reference and static data members of rvalues are lvalues\n- Plain data members of rvalues are xvalues	text	txt	2024-12-01 22:08:01.395207	2
+8953	3389	std::pair<std::string, std::string&> f();\nvoid g(std::string&& s);\n\ng(f().first); // moves because first is xvalue\ng(f().second); // copies because second is lvalue\ng(std::move(f().second)); // moves	code	cpp	2024-12-01 22:08:01.395207	3
+8954	3389	This rule reflects that reference or static members are not part of an object.	text	txt	2024-12-01 22:08:01.395207	4
+8955	3389	When the object is lvalue, there are two options to mark a member with `std::move()`:	text	txt	2024-12-01 22:08:01.395207	5
+8956	3389	std::move(obj).member;	code	cpp	2024-12-01 22:08:01.395207	6
+8957	3389	std::move(obj.member);	code	cpp	2024-12-01 22:08:01.395207	7
+8958	3389	In case the object is lvalue and member is a plain data member, we can mark the object itself with `std::move()`:	text	txt	2024-12-01 22:08:01.395207	8
+8959	3389	std::pair<std::string, std::string> p{"some", "message"};\n\ng(std::move(p).first);\ng(std::move(p).second);	code	cpp	2024-12-01 22:08:01.395207	9
+8960	3389	It may be strange to use the moved-from object to get access to the second member, but considering that we know the other member still can be used there is no problem using this access in move constructors.	text	txt	2024-12-01 22:08:01.395207	10
+8961	3389	In case the object is lvalue and member is a reference or static different rules apply. A reference or static member of an rvalue is still lvalue. Saying "*I no longer need the value of the object*" should not imply "*I no longer need the value of a member that is not part of the object*".	text	txt	2024-12-01 22:08:01.395207	11
+8962	3389	Using `std::move()` on an lvalue object having static or reference member has no effect, but applying on the members has usual effect:	text	txt	2024-12-01 22:08:01.395207	12
+8963	3389	std::vector v{};\nstruct x{ static std::string s; std::string& r; };	code	cpp	2024-12-01 22:08:01.395207	13
+8964	3389	v.push_back(std::move(x).s); // copies\nv.push_back(std::move(x).r); // copies	code	cpp	2024-12-01 22:08:01.395207	14
+8966	3389	In generic code where you may not know whether members are static or references, marking the object with `std::move()` is less dangerious:	text	txt	2024-12-01 22:08:01.395207	16
+8967	3389	v.push_back(std::move(x).s); // move value, copy reference/static\nv.push_back(std::move(x).r); // move value, copy reference/static	code	cpp	2024-12-01 22:08:01.395207	17
+8968	3390	C++98/C++03 define that you can assign or pass an rvalue to a const lvalue reference but not to a non-const lvalue reference:	text	txt	2024-12-01 22:08:01.398968	1
+8969	3390	std::string f();\nvoid g(std::string const&);\nvoid h(std::string&);	code	cpp	2024-12-01 22:08:01.398968	2
+8970	3390	const std::string& clref{f()}; // OK\nstd::string& lref{f()}; // ERROR	code	cpp	2024-12-01 22:08:01.398968	3
+8971	3390	g(std::string{}); // OK\nh(std::string{}); // ERROR	code	cpp	2024-12-01 22:08:01.398968	4
+8972	3391	class X { };\nX v{};\nconst X c{};	code	cpp	2024-12-01 22:08:01.40199	1
+8973	3391	|Call|`f(X&)`|`f(X const&)`|`f(X&&)`|`f(X const&&)`|\n|`f(v)`|`1`|`2`|`-`|`-`|\n|`f(c)`|`-`|`1`|`-`|`-`|\n|`f(X{})`|`-`|`3`|`1`|`2`|\n|`f(std::move(v))`|`-`|`3`|`1`|`2`|\n|`f(std::move(c))`|`-`|`2`|`-`|`1`|	text	txt	2024-12-01 22:08:01.40199	2
+8974	3391	This table will be extended with universal/forwarding references.	text	txt	2024-12-01 22:08:01.40199	3
+8975	3392	There is no specific priority between call-by-value and call-by-reference. Declaring all overloads are allowed, but any matching declaration taking the argument by reference results in ambiguity. Therefore, you should only take an argument either by value or by reference but never both.	text	txt	2024-12-01 22:08:01.404644	1
+8976	3393	Sometimmes when passing an lvalue like string literals to a function taking rvalues work because of implicit conversions from lvalue string literal to rvalue string:	text	txt	2024-12-01 22:08:01.407748	1
+8977	3393	void f(std::string&&); // forward declaration\n\nf("sample"); // OK although lvalue\nf(std::string{"sample"}); // OK converted to prvalue	code	cpp	2024-12-01 22:08:01.407748	2
+8978	3394	Considering that move semantics is passed through, when we use an rvalue parameter inside a function, we are dealing with an object with name, thus an lvalue and only lvalue rules apply.	text	txt	2024-12-01 22:08:01.411388	1
+8979	3394	void f(std::string&& s)\n{\n    f(s); // ERROR: passing an lvalue to an rvalue reference\n}	code	cpp	2024-12-01 22:08:01.411388	2
+8980	3394	We have to mark the value with `std::move()` to pass again:	text	txt	2024-12-01 22:08:01.411388	3
+8981	3394	void f(std::string&& s)\n{\n    f(std::move(s)); // OK: passing an xvalue\n}	code	cpp	2024-12-01 22:08:01.411388	4
+8982	3395	void f(std::string&& s)\n{\n    std::cout << std::boolalpha << std::is_same<decltype(s), std::string>::value; // false\n    std::cout << std::boolalpha << std::is_same<decltype(s), std::string&>::value; // false\n    std::cout << std::boolalpha << std::is_same<decltype(s), std::string&&>::value; // true\n\n    std::cout << std::boolalpha << std::is_reference<decltype(s)>::value; // true\n    std::cout << std::boolalpha << std::is_lvalue_reference<decltype(s)>::value; // false\n    std::cout << std::boolalpha << std::is_rvalue_reference<decltype(s)>::value; // true\n}	code	cpp	2024-12-01 22:08:01.413404	1
+8983	3396	For types, we can use names in `decltype()`, but we can also pass expressions to get value category as well. Therefore, we should always be careful not to leave the names without parentheses.	text	txt	2024-12-01 22:08:01.415513	1
+8984	3396	void f(std::string&& s)\n{\n    std::cout << std::boolalpha << std::is_same<decltype((s)), std::string>::value; // false\n    std::cout << std::boolalpha << std::is_same<decltype((s)), std::string&>::value; // true\n    std::cout << std::boolalpha << std::is_same<decltype((s)), std::string&&>::value; // false\n\n    std::cout << std::boolalpha << std::is_reference<decltype((s))>::value; // true\n    std::cout << std::boolalpha << std::is_lvalue_reference<decltype((s))>::value; // true\n    std::cout << std::boolalpha << std::is_rvalue_reference<decltype((s))>::value; // false\n}	code	cpp	2024-12-01 22:08:01.415513	2
+8985	3396	The fact that for decltype, it makes a difference when we put additional parentheses around a passed\nname, will also have significant consequences when using `decltype(auto)`.	text	txt	2024-12-01 22:08:01.415513	3
+8986	3397	Prior to C++20, use `::value` static member instead of `_v` suffix.	text	txt	2024-12-01 22:08:01.418235	1
+8987	3397	!std::is_reference_v<decltype((expr))>; // prvalue	code	cpp	2024-12-01 22:08:01.418235	2
+8988	3397	std::is_lvalue_reference_v<decltype((expr))>; // lvalue	code	cpp	2024-12-01 22:08:01.418235	3
+8989	3397	std::is_rvalue_reference_v<decltype((expr))>; // xvalue	code	cpp	2024-12-01 22:08:01.418235	4
+8990	3397	!std::is_lvalue_reference_v<decltype((expr))>; // rvalue	code	cpp	2024-12-01 22:08:01.418235	5
 \.
 
 
@@ -13939,6 +13985,16 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3385	1573	Locate minimum and maximum values in a matrix?	open	2024-11-29 22:54:18.313324	2024-11-29 22:54:18.313324
 3386	1573	Store matrix data in a persistent storage?	open	2024-11-29 22:54:18.315022	2024-11-29 22:54:18.315022
 3387	1573	Read data from a persistent storage?	open	2024-11-29 22:54:18.316913	2024-11-29 22:54:18.316913
+3388	1354	What special rule do functions have in value categories?	open	2024-12-01 22:08:01.385167	2024-12-01 22:08:01.385167
+3389	1354	What special rules do data members have in value categories?	open	2024-12-01 22:08:01.395207	2024-12-01 22:08:01.395207
+3390	1354	What is the impact of value categories when binding an rvalue to lvalue references?	open	2024-12-01 22:08:01.398968	2024-12-01 22:08:01.398968
+3391	1354	What is the overload resolution with references?	open	2024-12-01 22:08:01.40199	2024-12-01 22:08:01.40199
+3392	1354	What is the priority between reference and value overload resolutions?	open	2024-12-01 22:08:01.404644	2024-12-01 22:08:01.404644
+3393	1354	When does an lvalue become an rvalue?	open	2024-12-01 22:08:01.407748	2024-12-01 22:08:01.407748
+3394	1354	When does an rvalue become an lvalue?	open	2024-12-01 22:08:01.411388	2024-12-01 22:08:01.411388
+3395	1354	What operator can be used to determine the type of names?	open	2024-12-01 22:08:01.413404	2024-12-01 22:08:01.413404
+3396	1354	What operator can be used to determine the value category of an expression?	open	2024-12-01 22:08:01.415513	2024-12-01 22:08:01.415513
+3397	1355	Determine the value category of an expression?	open	2024-12-01 22:08:01.418235	2024-12-01 22:08:01.418235
 \.
 
 
@@ -20221,11 +20277,11 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
 43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
 26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-11-24 15:19:44.43767	1	\N
 1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	4	\N
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-01 22:08:01.418235	1	\N
 \.
 
 
@@ -21642,7 +21698,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 25	16	open	\N	2024-07-28 09:44:55.607323	2024-07-28 09:44:55.607323	2
 122	22	writing	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	10
 141	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	9
-1355	89	writing	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	9
 648	51	open	\N	2024-07-28 09:45:02.294764	2024-07-28 09:45:02.294764	11
 570	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	27
 1026	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	49
@@ -21791,7 +21846,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 209	26	writing	\N	2024-07-28 09:44:57.573652	2024-11-21 23:59:46.642383	5
 1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
 1571	1	writing	https://youtu.be/xmqkRcAslw8	2024-11-27 20:58:50.907296	2024-11-27 21:53:14.163735	1
-1354	89	writing	\N	2024-07-28 09:45:09.867651	2024-11-24 15:19:44.43767	8
 1574	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	3
 1575	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	4
 1576	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	5
@@ -21804,6 +21858,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1583	108	open	\N	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.241024	12
 1573	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.708469	2
 1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
+1354	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.419761	8
+1355	89	writing	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.418235	9
 \.
 
 
@@ -23349,6 +23405,18 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1446	2024-11-20 22:06:19.960944
 1	844	2024-11-27 23:51:18.529806
 1	1571	2024-11-27 23:48:16.054551
+1	1574	2024-12-01 22:07:35.941314
+1	1575	2024-12-01 22:07:35.941314
+1	1576	2024-12-01 22:07:35.941314
+1	1577	2024-12-01 22:07:35.941314
+1	1578	2024-12-01 22:07:35.941314
+1	1579	2024-12-01 22:07:35.941314
+1	1580	2024-12-01 22:07:35.941314
+1	1581	2024-12-01 22:07:35.941314
+1	1582	2024-12-01 22:07:35.941314
+1	1583	2024-12-01 22:07:35.941314
+1	1573	2024-12-01 22:07:35.941314
+1	1572	2024-12-01 22:07:35.941314
 \.
 
 
@@ -24061,7 +24129,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8944, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8990, true);
 
 
 --
@@ -24089,7 +24157,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3387, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3397, true);
 
 
 --
