@@ -10446,6 +10446,25 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8988	3397	std::is_lvalue_reference_v<decltype((expr))>; // lvalue	code	cpp	2024-12-01 22:08:01.418235	3
 8989	3397	std::is_rvalue_reference_v<decltype((expr))>; // xvalue	code	cpp	2024-12-01 22:08:01.418235	4
 8990	3397	!std::is_lvalue_reference_v<decltype((expr))>; // rvalue	code	cpp	2024-12-01 22:08:01.418235	5
+8991	3398	**Synchronous Programming:** code is executed in a strict sequential order, makes program unresponsive to external events, difficult to scale, useful for reactive or embedded systems that need to respond in real time.	text	txt	2024-12-05 16:21:03.609023	1
+8992	3398	**Concurrency Programming:** more than one task can run at the same time, tasks can be executed in any order, exceptional care is needed when coordinating access to shared resources, incorrect access leads to race conditions or deadlocks, supported by C++ through `std::thread`.	text	txt	2024-12-05 16:21:03.609023	2
+8993	3398	**Asynchronous Programming:** allows some tasks to be scheduled and run in the background while continuing to work on the current job without waiting for the scheduled tasks to finish, when background tasks are finished they will report results back to the main job or scheduler, solves the problem of synchronous unresponsiveness for a long time, suitable paradigm for event-driven programs, user interfaces, web servers, network communications, or long running background processing, adds code complexity, supported in C++ through coroutines.	text	txt	2024-12-05 16:21:03.609023	3
+8994	3398	**Parallel Programming:** multiple computation tasks can be done simultaneously on multiple processing units, either in a multicore system or in a cluster of multicore systems, parallelism can be done either in shared-memory paradigm with all tasks communicating via shared memory, or in message-passing paradigm with each task having its own memory space and using message passing techniques to communicate with each other, needs synchronization mechanisms to avoid tasks interfering with each other, requires load balancing the workload to reach its full potential, increases design complexity.	text	txt	2024-12-05 16:21:03.609023	4
+8995	3398	**Multithreading Programming:** subset of parallel programming, program divides into multiple threads executing independent units within the same process with shared memory space, no neeed for interprocess communication.	text	txt	2024-12-05 16:21:03.609023	5
+8996	3398	**Event-Driven Programming:** control flow is driven by external events, an event signals an action, events are listened by event loop, callbacks or functors are used to write event handlers in C++.	text	txt	2024-12-05 16:21:03.609023	6
+8997	3398	**Reactive Programming:** deals with data streams, programs built using declarative or functional programming to define a pipeline of operators and transformations applied to the stream, operations happen asynchronously using schedulers and backpressure handling mechanisms, backpressure happens when data quantity overwhelms the consumers.	text	txt	2024-12-05 16:21:03.609023	7
+8998	3398	**Dataflow Programming:** program is designed as a directed graph of nodes representing computation units and edges representing the flow of data, mostly useful in machine learning, real-time analysis, audio, video, and image processing systems.	text	txt	2024-12-05 16:21:03.609023	8
+8999	3399	Concurrency can happen preemptive, whereby the scheduler switches contexts without interactive with the tasks, or it can be non-preemptive or cooperative, whereby the task yields control to the scheduler to let another task continue work.	text	txt	2024-12-05 16:21:03.618759	1
+9000	3400	Allows important tasks to be scheduled earlier to deal with important external events quickly. These more important tasks wake up when the operating system sends them a signal that triggers an interrupt.	text	txt	2024-12-05 16:21:03.621423	1
+9001	3401	The speed-up from parallelization is not linear. The Amdahl's law formula computes the theoretical maximum speed-up a task can perform after parallelization as follows:	text	txt	2024-12-05 16:21:03.623147	1
+9002	3401	S_{max}(s) = {s}/{s + p(1 - s)} = {1}/{1 - p + {p}/{s}}	code	math	2024-12-05 16:21:03.623147	2
+9003	3401	The `s` is the speed-up factor of the improved part and `p` is the fraction of the parallelizable  part compared to the entire process. Therefore, `1 - p` represents the ratio of the task not parallelizable (the bottleneck or sequential part), while `p / s` represents the speed-up achieved by the parallelizable part.	text	txt	2024-12-05 16:21:03.623147	3
+9004	3401	The maximum speed-up is limited by the sequential portion of the task. The greater the fraction of parallelizable task (`p` approaches 1), the more the maximum speed-up increases up to the speed-up factor `s`. On the other hand, when the sequential portion becomes larger (`p` approaches 0), `Smax` tends to , meaning that no improvement is possible.	text	txt	2024-12-05 16:21:03.623147	4
+9005	3401	The critical path in parallel systems is defined by the longest chain of dependent calculations. As the critical path is hardly parallelizable, it defines the sequential portion and thus the quicker runtime that a program can achieve. For example, if the sequential part of a process represents 10% of the runtime, then the fraction of the parallelizable part is `p = 0.9`. In this case, the potential speed-up will not exceeed 10 times the speed-up, regardless of the number of processor available.	text	txt	2024-12-05 16:21:03.623147	5
+9006	3402	This law computes the speed-up gained by using `p` processors as follows:	text	txt	2024-12-05 16:21:03.624707	1
+9007	3402	S_{p} = p + (1 - f)p	code	math	2024-12-05 16:21:03.624707	2
+9008	3402	Here, `p` is the number of processors and `f` is the fraction of the task that remains sequential. Therefore, `(1-f)p` represents the speed-up achieved by distributing the fraction of the task across processors, and the standalone `p` represents the extra work done when increasing resources.	text	txt	2024-12-05 16:21:03.624707	3
+9009	3402	Gustafson's law shows that the speed-up is affected by parallelization when lowering `f` and by scalability when inreasing `p`.	text	txt	2024-12-05 16:21:03.624707	4
 \.
 
 
@@ -13995,6 +14014,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3395	1354	What operator can be used to determine the type of names?	open	2024-12-01 22:08:01.413404	2024-12-01 22:08:01.413404
 3396	1354	What operator can be used to determine the value category of an expression?	open	2024-12-01 22:08:01.415513	2024-12-01 22:08:01.415513
 3397	1355	Determine the value category of an expression?	open	2024-12-01 22:08:01.418235	2024-12-01 22:08:01.418235
+3398	1584	How many parallel programming paradigms exist?	open	2024-12-05 16:21:03.609023	2024-12-05 16:21:03.609023
+3399	1584	What is the difference between preemptive and non-preemptive concurrency?	open	2024-12-05 16:21:03.618759	2024-12-05 16:21:03.618759
+3400	1584	What are the advantages of preemptive multitasking?	open	2024-12-05 16:21:03.621423	2024-12-05 16:21:03.621423
+3401	1584	Use Amdahl's law to measure the speed-up factor of a parallel system?	open	2024-12-05 16:21:03.623147	2024-12-05 16:21:03.623147
+3402	1584	Use Gustafson's law to compute the speed-up gained by using multiple processors?	open	2024-12-05 16:21:03.624707	2024-12-05 16:21:03.624707
 \.
 
 
@@ -20282,6 +20306,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-01 22:08:01.418235	1	\N
+109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 \.
 
 
@@ -21860,6 +21885,19 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
 1354	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.419761	8
 1355	89	writing	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.418235	9
+1585	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	2
+1586	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	3
+1587	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	4
+1588	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	5
+1589	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	6
+1590	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	7
+1591	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	8
+1592	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	9
+1593	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	10
+1594	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	11
+1595	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	12
+1596	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	13
+1584	109	completed	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.625681	1
 \.
 
 
@@ -23539,6 +23577,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	107
 6	1
 15	108
+6	109
 \.
 
 
@@ -24129,7 +24168,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 8990, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9009, true);
 
 
 --
@@ -24157,7 +24196,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3397, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3402, true);
 
 
 --
@@ -24213,7 +24252,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 108, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 109, true);
 
 
 --
@@ -24234,7 +24273,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1583, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1596, true);
 
 
 --
