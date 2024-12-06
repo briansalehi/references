@@ -10452,6 +10452,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8994	3398	**Parallel Programming:** multiple computation tasks can be done simultaneously on multiple processing units, either in a multicore system or in a cluster of multicore systems, parallelism can be done either in shared-memory paradigm with all tasks communicating via shared memory, or in message-passing paradigm with each task having its own memory space and using message passing techniques to communicate with each other, needs synchronization mechanisms to avoid tasks interfering with each other, requires load balancing the workload to reach its full potential, increases design complexity.	text	txt	2024-12-05 16:21:03.609023	4
 8995	3398	**Multithreading Programming:** subset of parallel programming, program divides into multiple threads executing independent units within the same process with shared memory space, no neeed for interprocess communication.	text	txt	2024-12-05 16:21:03.609023	5
 8996	3398	**Event-Driven Programming:** control flow is driven by external events, an event signals an action, events are listened by event loop, callbacks or functors are used to write event handlers in C++.	text	txt	2024-12-05 16:21:03.609023	6
+9010	3403	To forward an object that is passed with move semantics to a function, it not only has to be bound to an rvalue reference, you have to use `std::move()` again to forward its move semantics to another function.	text	txt	2024-12-06 16:27:19.40459	1
+9011	3403	class X { };\nvoid f(X const&);\nvoid f(X&);\nvoid f(X&&);	code	cpp	2024-12-06 16:27:19.40459	2
 8997	3398	**Reactive Programming:** deals with data streams, programs built using declarative or functional programming to define a pipeline of operators and transformations applied to the stream, operations happen asynchronously using schedulers and backpressure handling mechanisms, backpressure happens when data quantity overwhelms the consumers.	text	txt	2024-12-05 16:21:03.609023	7
 8998	3398	**Dataflow Programming:** program is designed as a directed graph of nodes representing computation units and edges representing the flow of data, mostly useful in machine learning, real-time analysis, audio, video, and image processing systems.	text	txt	2024-12-05 16:21:03.609023	8
 8999	3399	Concurrency can happen preemptive, whereby the scheduler switches contexts without interactive with the tasks, or it can be non-preemptive or cooperative, whereby the task yields control to the scheduler to let another task continue work.	text	txt	2024-12-05 16:21:03.618759	1
@@ -10465,6 +10467,45 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9007	3402	S_{p} = p + (1 - f)p	code	math	2024-12-05 16:21:03.624707	2
 9008	3402	Here, `p` is the number of processors and `f` is the fraction of the task that remains sequential. Therefore, `(1-f)p` represents the speed-up achieved by distributing the fraction of the task across processors, and the standalone `p` represents the extra work done when increasing resources.	text	txt	2024-12-05 16:21:03.624707	3
 9009	3402	Gustafson's law shows that the speed-up is affected by parallelization when lowering `f` and by scalability when inreasing `p`.	text	txt	2024-12-05 16:21:03.624707	4
+9012	3403	X v;\nconst X c;\n\nf(v);               // calls f(X&)\nf(c);               // calls f(X const&)\nf(X{});             // calls f(&&)\nf(std::move(v));    // calls f(&&)\nf(std::move(c));    // calls f(X const&)	code	cpp	2024-12-06 16:27:19.40459	3
+9013	3403	void g(X const& arg) { f(arg); }        // calls f(X const&)\nvoid g(X& arg) { f(arg); }              // calls f(X&)\nvoid g(X&& arg) { f(std::move(arg)); }  // calls f(X&&)	code	cpp	2024-12-06 16:27:19.40459	4
+9014	3403	g(v);               // calls f(X&)\ng(c);               // calls f(X const&)\ng(X{});             // calls f(X&&)\ng(std::move(v));    // calls f(X&&)\ng(std::move(c));    // calls f(X const&)	code	cpp	2024-12-06 16:27:19.40459	5
+9015	3403	The important point to remember here is that an rvalue passed to an rvalue reference becomes an lvalue when used, which means that we need `std::move()` to pass it as an rvalue again..	text	txt	2024-12-06 16:27:19.40459	6
+9016	3404	To perfectly forward in generic code, we would always need to overload for each parameter, resulting in 9 overloads for 2 parameters, 27 overloads for 3 parameters. C++11 introduced perfect forwarding as a workaround.	text	txt	2024-12-06 16:27:19.420811	1
+9017	3404		code	cpp	2024-12-06 16:27:19.420811	2
+9018	3405	1. Take the call parameter as a pure rvalue reference without `const` or `volatile`\n2. The type of the parameter has to be a template parameter of the function\n3. When forwarding the parameter to another function, use `std::forward<>()` declared in `<utility>`	text	txt	2024-12-06 16:27:19.42263	1
+9019	3405	template<typename T>\nvoid g(T&& arg)\n{\n    f(std::forward<T>(arg));    // equivallent to f(std::move(arg)) for passed rvalues\n}	code	cpp	2024-12-06 16:27:19.42263	2
+9020	3405	template<typename T1, typename T2>\nvoid g(T1&& arg1, T2&& arg2)\n{\n    f(std::forward<T1>(arg1), std::forward<T2>(arg2));\n}	code	cpp	2024-12-06 16:27:19.42263	3
+9021	3406	template<typename... Ts>\nvoid g(Ts&&... args)\n{\n    f(std::forward<Ts>(args)...);\n}	code	cpp	2024-12-06 16:27:19.42417	1
+9022	3406	We do not call `std::forwad<>()` once for all arguments, we call it for each argument individually. Therefore, we have to place the ellipsis behind the end of the `std::forward<>()` expression instead of directoy behind `args`.	text	txt	2024-12-06 16:27:19.42417	2
+9023	3407	An rvalue reference of a function template parameter not qualified with `const` or `volatile` does not follow the rules of ordinary rvalue references. Universal or forwarding reference bind to objects of all types and value categories.	text	txt	2024-12-06 16:27:19.425913	1
+9024	3407	template<typename T> void f(T&& arg);	code	cpp	2024-12-06 16:27:19.425913	2
+9025	3407	X v;\nconst X c;\n\nf(v);               // OK, arg is X&\nf(c);               // OK, arg is X const&\nf(X{});             // OK, arg is X&&\nf(std::move(v));    // OK, arg is X&&\nf(std::move(c));    // OK, arg is X const&	code	cpp	2024-12-06 16:27:19.425913	3
+9026	3408	A generic rvalue reference with `const` or `volatile` is not a universal reference, and it will only take rvalues:	text	txt	2024-12-06 16:27:19.427602	1
+9027	3408	template<typename T> void f(T const&& arg);\nconst X c;\n\nf(c);               // ERROR: c is not an rvalue\nf(std::move(c));    // OK, arg is const&&	code	cpp	2024-12-06 16:27:19.427602	2
+9028	3409	`std::forward<>()` is a `std::move()` only for passed rvalues. Just like for `std::move()`, the semantic meaning of `std::forward<>()` is *I no longer need this value here*, but additionally it preserves the type and constness and the value category of the object the passed universal reference binds to.	text	txt	2024-12-06 16:27:19.429631	1
+9029	3409		code	cpp	2024-12-06 16:27:19.429631	2
+9030	3410	Member function of an object might have specific overloads for move semantics using reference qualifiers. In that case, `std::forward<>()` can be used to call the member function having an rvalue reference qualifier when we no longer need the value of the object:	text	txt	2024-12-06 16:27:19.430919	1
+9031	3410	class Message\n{\nprivate:\n    std::string content;\n\npublic:\n    std::string read() &&\n    {\n        return std::move(content);  \n    }\n\n    std::string const& read() const&\n    {\n        return content;\n    }\n};	code	cpp	2024-12-06 16:27:19.430919	2
+9032	3410	template<typename T>\nvoid f(T&& arg)\n{\n    arg.read();                     // calls Message::read() const&\n    std::forward<T>(arg).read();    // calls Message::read() &&\n}	code	cpp	2024-12-06 16:27:19.430919	3
+9033	3410	After using `std::forward<>()`, object is in a valid but unspecified state. Make sure you no longer use the object.	text	txt	2024-12-06 16:27:19.430919	4
+9034	3411	class X { };\nX v;\nconst X c;	code	cpp	2024-12-06 16:27:19.4321	1
+9035	3411	|Call|`f(X&)`|`f(X const&)`|`f(X&&)`|`f(X const&&)`|`f(T&&)`|\n|`f(v)`|1|3|-|-|2|\n|`f(c)`|-|1|-|-|2|\n|`f(X{})`|-|4|1|3|2|\n|`f(std::move(v))`|-|4|1|3|2|\n|`f(std::move(c))`|-|3|-|1|2|	text	txt	2024-12-06 16:27:19.4321	2
+9036	3411	An important point to notice here is that a perfect match is always better, but the need to convert the type such as making it `const` or converting an rvalue to an lvalue is a worse match than just instantiating the function template for the exact type.	text	txt	2024-12-06 16:27:19.4321	3
+9037	3412	The fact that a universal reference is a better match than a type conversion in overload resolution has a very nasty side effect.	text	txt	2024-12-06 16:27:19.433411	1
+9038	3412	class X\n{\n    X(X const&) { }\n    X(X&&) { }\n    template<typename T> X(T&&) { }\n};\n\nX v;\nconst X c;	code	cpp	2024-12-06 16:27:19.433411	2
+9039	3412	A constructor that takes a single universal reference is a better match than the copy constructor if passing a non-const object:	text	txt	2024-12-06 16:27:19.433411	3
+9040	3412	X x{c};             // OK: calls copy constructor\nX x{v};             // OOPS: calls universal reference	code	cpp	2024-12-06 16:27:19.433411	4
+9041	3412	A constructor that takes a single universal reference is a better match than the move constructor if passing a const object:	text	txt	2024-12-06 16:27:19.433411	5
+9042	3412	X x{std::move(v)};  // OK: calls move semantics\nX x{std::move(c)};  // OOPS: calls universal reference	code	cpp	2024-12-06 16:27:19.433411	6
+9043	3413	It is better to avoid implementing generic constructors that declare the first parameter as a universal reference and can be called for one argumnet of an arbitrary type.	text	txt	2024-12-06 16:27:19.434758	1
+9044	3413	The other workaround is to constrain the constructor in a way that it is disabled if the passed is convertible to the type of the class.	text	txt	2024-12-06 16:27:19.434758	2
+9045	3413	class X\n{\npublic:\n    // prior to C++20\n    template<typename T, typename = typename std::enable_if<!std::is_same<typename std::decay<T>::type, X>::value>::type>\n    X(T&&) { }\n};	code	cpp	2024-12-06 16:27:19.434758	3
+9046	3413	class X\n{\npublic:\n    // C++20 onwards\n    template<typename T>\n    requires(!std::is_same_v<std::remove_cvref_t<T>, X>)\n    X(T&&) { }\n};	code	cpp	2024-12-06 16:27:19.434758	4
+9047	3414	Since C++14, we have to declare the universal referenes with `auto&&`:	text	txt	2024-12-06 16:27:19.436119	1
+9048	3414	auto g = [](auto&& arg) { f(std::forward<T>(arg); };	code	cpp	2024-12-06 16:27:19.436119	2
+9049	3414	Since C++20 we can use template parameters in lambdas:	text	txt	2024-12-06 16:27:19.436119	3
+9050	3414	auto g = []<typename T>(T&& arg) { f(std::forward<T>(arg); };	code	cpp	2024-12-06 16:27:19.436119	4
 \.
 
 
@@ -14019,6 +14060,18 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3400	1584	What are the advantages of preemptive multitasking?	open	2024-12-05 16:21:03.621423	2024-12-05 16:21:03.621423
 3401	1584	Use Amdahl's law to measure the speed-up factor of a parallel system?	open	2024-12-05 16:21:03.623147	2024-12-05 16:21:03.623147
 3402	1584	Use Gustafson's law to compute the speed-up gained by using multiple processors?	open	2024-12-05 16:21:03.624707	2024-12-05 16:21:03.624707
+3403	1355	Forward an object that is passed with move semantics to a function?	open	2024-12-06 16:27:19.40459	2024-12-06 16:27:19.40459
+3404	1355	What is the workaround to having different overloads for each parameter in a generic code?	open	2024-12-06 16:27:19.420811	2024-12-06 16:27:19.420811
+3405	1355	What are the requirements of perfect forwarding?	open	2024-12-06 16:27:19.42263	2024-12-06 16:27:19.42263
+3406	1355	Perfectly forward variadic template arguments?	open	2024-12-06 16:27:19.42417	2024-12-06 16:27:19.42417
+3407	1355	What is the difference between an rvalue reference and a universal reference?	open	2024-12-06 16:27:19.425913	2024-12-06 16:27:19.425913
+3408	1355	What difference does it make to const qualify a universal reference?	open	2024-12-06 16:27:19.427602	2024-12-06 16:27:19.427602
+3409	1355	What does <code>std::forward</code> do?	open	2024-12-06 16:27:19.429631	2024-12-06 16:27:19.429631
+3410	1355	Call a member function of an object passed as a universal reference when we no longer need that object?	open	2024-12-06 16:27:19.430919	2024-12-06 16:27:19.430919
+3411	1355	What is the overload resolution of binding all references including universal references?	open	2024-12-06 16:27:19.4321	2024-12-06 16:27:19.4321
+3412	1355	What is the side effect of universal reference overloads on copy and move constructors?	open	2024-12-06 16:27:19.433411	2024-12-06 16:27:19.433411
+3413	1355	Avoid accidental overload resolution with universal reference in a generic constructor?	open	2024-12-06 16:27:19.434758	2024-12-06 16:27:19.434758
+3414	1355	Perfectly forward parameters of a lambda?	open	2024-12-06 16:27:19.436119	2024-12-06 16:27:19.436119
 \.
 
 
@@ -20305,8 +20358,8 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-01 22:08:01.418235	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-06 16:27:19.436119	1	\N
 \.
 
 
@@ -21884,7 +21937,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1573	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.708469	2
 1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
 1354	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.419761	8
-1355	89	writing	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.418235	9
 1585	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	2
 1586	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	3
 1587	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	4
@@ -21898,6 +21950,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1595	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	12
 1596	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	13
 1584	109	completed	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.625681	1
+1355	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-06 16:27:19.436911	9
 \.
 
 
@@ -23455,6 +23508,19 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1573	2024-12-01 22:07:35.941314
 1	1572	2024-12-01 22:07:35.941314
 1	1354	2024-12-01 22:09:46.036152
+1	1585	2024-12-05 16:22:22.582675
+1	1586	2024-12-05 16:22:22.582675
+1	1587	2024-12-05 16:22:22.582675
+1	1588	2024-12-05 16:22:22.582675
+1	1589	2024-12-05 16:22:22.582675
+1	1590	2024-12-05 16:22:22.582675
+1	1591	2024-12-05 16:22:22.582675
+1	1592	2024-12-05 16:22:22.582675
+1	1593	2024-12-05 16:22:22.582675
+1	1594	2024-12-05 16:22:22.582675
+1	1595	2024-12-05 16:22:22.582675
+1	1596	2024-12-05 16:22:22.582675
+1	1584	2024-12-05 16:24:48.994747
 \.
 
 
@@ -24168,7 +24234,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9009, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9050, true);
 
 
 --
@@ -24196,7 +24262,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3402, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3414, true);
 
 
 --
