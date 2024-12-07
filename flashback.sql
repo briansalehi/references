@@ -10506,6 +10506,55 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9048	3414	auto g = [](auto&& arg) { f(std::forward<T>(arg); };	code	cpp	2024-12-06 16:27:19.436119	2
 9049	3414	Since C++20 we can use template parameters in lambdas:	text	txt	2024-12-06 16:27:19.436119	3
 9050	3414	auto g = []<typename T>(T&& arg) { f(std::forward<T>(arg); };	code	cpp	2024-12-06 16:27:19.436119	4
+9051	3415	A universal reference is the only way we can bind a reference to objects of any value category and still preserve wether or not it is `const`. The only other reference that binds to all objects, `const&`, loses information about whether the passed argument is `const` or not. Another use case for universal references is to forward constness, meaning that if we want to avoid overloading but want to have different behavior for `const` and non-`const` arguments and support all value categories, we have to use universal references.	text	txt	2024-12-07 22:38:53.140965	1
+9052	3415	void iterate(std::string::iterator beg, std::string::iterator end);\nvoid iterate(std::string::const_iterator beg, std::string::const_iterator end);\n\ntemplate<typename T>\nvoid process(T&& x)\n{\n    iterate(x.begin(), x.end());\n}	code	cpp	2024-12-07 22:38:53.140965	2
+9053	3415	std::string v{};\nconst std::string c{};\n\nprocess(v);             // x binds to non-const lvalue,        iterator passed\nprocess(c);             // x binds to     const lvalue,  const_iterator passed\nprocess(std::string{}); // x binds to non-const prvalue,       iterator passed\nprocess(std::move(v));  // x binds to non-const xvalue,        iterator passed\nprocess(std::move(c));  // x binds to     const xvalue,  const_iterator passed	code	cpp	2024-12-07 22:38:53.140965	3
+9054	3415	We did not use perfect forwarding inside `process()`, so we can use `x` even after iterating over all elements. This is in contrast to using `std::forward<>()` where objects will be in a moved-from state.	text	txt	2024-12-07 22:38:53.140965	4
+9055	3416	template<typename T>\nvoid process(T&& x)\n{\n    iterate(std::forward<T>(x).begin(), std::forward<T>(x).end());\n}	code	cpp	2024-12-07 22:38:53.145845	1
+9056	3416	Claiming that two different locations of the same object is no longer needed is a source of trouble because the location that steals last might not use the right value.	text	txt	2024-12-07 22:38:53.145845	2
+9057	3416	We should never use `std::move()` or `std::forward<>()` twice for the same object, unless the object is initialized before the second use.	text	txt	2024-12-07 22:38:53.145845	3
+9058	3416	Using `std::forward<>()` only once here is also a source of problem because we have no guaranteed evaluation order for arguments of function calls:	text	txt	2024-12-07 22:38:53.145845	4
+9059	3416	template<typename T>\nvoid process(T&& x)\n{\n    iterate(x.begin(), std::forward<T>(x).end());\n}	code	cpp	2024-12-07 22:38:53.145845	5
+9060	3416	In this example, using `std::forward<>()` once or twice might work because `begin()` and `end()` do not steal the value from the passed object, but in general it is an error unless you know exactly how this information is used.	text	txt	2024-12-07 22:38:53.145845	6
+9061	3417	For a non-const object `v` and a const object `c` the type `T` and the type of `arg` is deduced as follows:	text	txt	2024-12-07 22:38:53.148352	1
+9062	3417	|Call|`T`|`arg`|\n|`foo(v)`|`Type&`|`Type&`|\n|`foo(c)`|`Type const&`|`Type const&`|\n|`foo(Type{})`|`Type`|`Type&&`|\n|`foo(std::move(v))`|`Type`|`Type&&`|\n|`foo(std::move(c))`|`Type const`|`Type const&&`|	code	cpp	2024-12-07 22:38:53.148352	2
+9063	3417	`arg` knows the value and its type including constness. It is an lvalue reference when an lvalue is passed, and an rvalue reference when an rvalue is passed.	text	txt	2024-12-07 22:38:53.148352	3
+9064	3417	`T` knows the type and has some information about the value category of the passed argument. If an lvalue is passed, `T` is an lvalue reference, otherwise `T` is not a reference.	text	txt	2024-12-07 22:38:53.148352	4
+9065	3418	It is important to use `std::remove_reference_t<>` or `std::remove_reference::type` prior to C++14 to remove referenceness of a type before we check for its constness using `std::is_const_v<>` or `std::is_const::value` prior to C++17, because a reference to const type is not considered to be const as a whole.	text	txt	2024-12-07 22:38:53.150412	1
+9066	3418	std::is_const_v<int>                                    // false\nstd::is_const_v<int const>                              // true\nstd::is_const_v<int const&>                             // false\nstd::is_const_v<std::remove_reference_t<int const&>>    // true	code	cpp	2024-12-07 22:38:53.150412	2
+9067	3419	template<typename T>\nvoid f(T&& arg)\n{\n    if constexpr (std::is_const_v<std::remove_reference_t<T>>)\n    {\n        /* ... */\n    }\n    else\n    {\n        /* ... *\n    }\n}	code	cpp	2024-12-07 22:38:53.152206	1
+9068	3420	template<typename T>\nvoid f(T&& arg)\n{\n    if constexpr (std::is_lvalue_reference_v<T>)\n    {\n        /* passed argument is lvalue, has no move semantics */\n    }\n    else\n    {\n        /* passed argument is rvalue, has move semantics */\n    }\n}	code	cpp	2024-12-07 22:38:53.153851	1
+9069	3421	A universal reference could have any type including referenceness and constness. For whatever reason, we may want to constrain this function to only take strings without losing constness information. This is not easy because rvalue references and universal references have the same syntax.	text	txt	2024-12-07 22:38:53.156453	1
+9070	3421	Since C++20, concepts can be used to constrain a universal reference. However, we have to decide which kind of type conversions are allowed:	text	txt	2024-12-07 22:38:53.156453	2
+9071	3421	template<typename T>\nrequires std::same_as<std::remove_cvref_t<T>, std::string>\nvoid f(T&&)\n{\n    /* no implicit conversions allowed */\n}	code	cpp	2024-12-07 22:38:53.156453	3
+9072	3421	template<typename T>\nrequires std::convertible_to<T, std::string>\nvoid f(T&&)\n{\n    /* implicit conversions allowed, fits with the usual rules of function calls */\n}	code	cpp	2024-12-07 22:38:53.156453	4
+9073	3421	template<typename T>\nrequires std::convertible_from<std::string, T>\nvoid f(T&&)\n{\n    /* explicit conversions allowed */\n}	code	cpp	2024-12-07 22:38:53.156453	5
+9074	3421	Prior to C++11, we can use SFINAE:	text	txt	2024-12-07 22:38:53.156453	6
+9075	3421	typename<typename T, typename = typename std::enable_if<std::is_same<typename std::decay<T>::type, std::string>::value>::type>\nvoid f(T&&)\n{\n    /* no implicit conversions allowed, strictly limited to std::string */\n}	code	cpp	2024-12-07 22:38:53.156453	7
+9076	3421	template<typename T, typename = typename std::enable_if<std::is_convertible<T, std::string>::value>::type>\nvoid f(T&&)\n{\n    /* implicit conversions allowed */\n}	code	cpp	2024-12-07 22:38:53.156453	8
+9077	3421	None of this would be necessary if we had a specific syntax for universal references:	text	txt	2024-12-07 22:38:53.156453	9
+9078	3421	void f(std::string&&& arg); // assume &&& declares a universal reference	code	cpp	2024-12-07 22:38:53.156453	10
+9079	3422	Rvalue references of members of generic types:	text	txt	2024-12-07 22:38:53.157778	1
+9080	3422	template<typename T>\nvoid f(typename T::value_type&& arg);   // not a universal reference\n\ntemplate<typename T>\nvoid insert(T& container, typename T::value_type&& arg)\n{\n    container.push_back(arg);\n}\n\nstd::vector<std::string> v;\ninsert(v, std::string{});   // OK: prvalue is allowed\n\nstd::string s{};\ninsert(v, s);               // ERROR: T::value_type&& is not a universal reference\ninsert(v, std::move(s));    // OK: xvalue is allowed	code	cpp	2024-12-07 22:38:53.157778	2
+9081	3422	Rvalue references of parameters in class templates:	text	txt	2024-12-07 22:38:53.157778	3
+9082	3422	template<typename T>\nclass X\n{\n    T&& member;         // not a universal reference\n    void f(T&& arg);    // not a universal reference\n};	code	cpp	2024-12-07 22:38:53.157778	4
+9083	3422	Rvalue references of parameters in full specializations:	text	txt	2024-12-07 22:38:53.157778	5
+9084	3422	template<typename T>\nvoid f(T&& arg);\n\ntemplate<>\nvoid f(std::string&& arg);  // not a universal reference	code	cpp	2024-12-07 22:38:53.157778	6
+9085	3423	According to the C++ specification, if the parameter type is an rvalue reference to a cv-unqualified template parameter (universal reference) and the argument is an lvalue, the type *"lvalue reference to `T`"* is used in place of `T` for type deduction. This is not what we usually expect when we have:	text	txt	2024-12-07 22:38:53.15917	1
+9086	3423	template<typename T> void f(T&& arg) { }	code	cpp	2024-12-07 22:38:53.15917	2
+9087	3423	We might assume `T` would just have the type of the passed argument:	text	txt	2024-12-07 22:38:53.15917	3
+9088	3423	MyType v;\nf(MyType{});        // T is MyType, so arg is MyType&&\nf(std::move(v));    // T is MyType, so arg is MyType&&	code	cpp	2024-12-07 22:38:53.15917	4
+9089	3423	But this is not the case. According to specification, the type is deduced to an lvalue reference of `T` instead:	text	txt	2024-12-07 22:38:53.15917	5
+9090	3423	MyType v;\nf(MyType{});        // T is MyType&\nf(std::move(v));    // T is MyType const&	code	cpp	2024-12-07 22:38:53.15917	6
+9091	3423	But if `arg` is declared as `T&&`, and `T` is deduced to `MyType&` instead, the type of `arg` would be `MyType& &`. The reference collapsing rule applies as follows:	text	txt	2024-12-07 22:38:53.15917	7
+9092	3423	- `Type& &` becomes `Type&`\n- `Type& &&` becomes `Type&`\n- `Type&& &` becomes `Type&`\n- `Type&& &&` becomes `Type&&`	text	txt	2024-12-07 22:38:53.15917	8
+9093	3423	Therefore, we will have:	text	txt	2024-12-07 22:38:53.15917	9
+9094	3423	MyType v;\nf(MyType{});        // T is MyType& && which collapses to MyType&\nf(std::move(v));    // T is MyType& && which collapses to MyType&	code	cpp	2024-12-07 22:38:53.15917	10
+9095	3424	`std::move()` removes referencesness (& and &&) and converts to the corresponding rvalue reference type:	text	txt	2024-12-07 22:38:53.160865	1
+9096	3424	static_cast<remove_reference_t<T>&&>(t);	code	cpp	2024-12-07 22:38:53.160865	2
+9097	3424	`std::reference<>()` only adds rvalue references to the passed type parameter, and reference collapsing apply again:	text	txt	2024-12-07 22:38:53.160865	3
+9098	3424	static_cast<T&&>(t);	code	cpp	2024-12-07 22:38:53.160865	4
+9099	3424	- If type `T` is an lvalue reference, `T& &&` collapses to `T&` and remains an lvalue reference.\n- If type `T` is an rvalue reference or not a reference at all, `T&& &&` or `T &&`, we cast the argument to an rvalue reference and the value category becomes xvalue.	text	txt	2024-12-07 22:38:53.160865	5
 \.
 
 
@@ -14072,6 +14121,16 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3412	1355	What is the side effect of universal reference overloads on copy and move constructors?	open	2024-12-06 16:27:19.433411	2024-12-06 16:27:19.433411
 3413	1355	Avoid accidental overload resolution with universal reference in a generic constructor?	open	2024-12-06 16:27:19.434758	2024-12-06 16:27:19.434758
 3414	1355	Perfectly forward parameters of a lambda?	open	2024-12-06 16:27:19.436119	2024-12-06 16:27:19.436119
+3415	1356	What is the advantage of universal references over const lvalue references?	open	2024-12-07 22:38:53.140965	2024-12-07 22:38:53.140965
+3416	1356	Why cannot we use <code>std::forward<>()</code> twice in an object?	open	2024-12-07 22:38:53.145845	2024-12-07 22:38:53.145845
+3417	1356	What is the deduced type of a universal reference?	open	2024-12-07 22:38:53.148352	2024-12-07 22:38:53.148352
+3418	1356	Check for constness of an argument?	open	2024-12-07 22:38:53.150412	2024-12-07 22:38:53.150412
+3419	1356	Divide the execution of a function based on constness of its argument?	open	2024-12-07 22:38:53.152206	2024-12-07 22:38:53.152206
+3420	1356	Check whether the passed argument of an object is an lvalue or an rvalue?	open	2024-12-07 22:38:53.153851	2024-12-07 22:38:53.153851
+3421	1356	Restrict a universal reference to a specifc type?	open	2024-12-07 22:38:53.156453	2024-12-07 22:38:53.156453
+3422	1356	What corner cases exist that rvalue references might look like universal references?	open	2024-12-07 22:38:53.157778	2024-12-07 22:38:53.157778
+3423	1356	Where does reference collapsing rule apply?	open	2024-12-07 22:38:53.15917	2024-12-07 22:38:53.15917
+3424	1356	How does reference collapsing apply for <code>std::move()</code> and <code>std::reference<>()</code>?	open	2024-12-07 22:38:53.160865	2024-12-07 22:38:53.160865
 \.
 
 
@@ -20359,7 +20418,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-06 16:27:19.436119	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 22:38:53.160865	1	\N
 \.
 
 
@@ -20884,7 +20943,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1154	79	open	\N	2024-07-28 09:45:07.799258	2024-07-28 09:45:07.799258	7
 78	19	open	\N	2024-07-28 09:44:56.217196	2024-07-28 09:44:56.217196	14
 573	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	30
-1356	89	open	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	10
 1451	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	6
 994	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	17
 987	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	10
@@ -21951,6 +22009,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1596	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	13
 1584	109	completed	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.625681	1
 1355	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-06 16:27:19.436911	9
+1356	89	writing	\N	2024-07-28 09:45:09.867651	2024-12-07 22:38:53.160865	10
 \.
 
 
@@ -24234,7 +24293,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9050, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9099, true);
 
 
 --
@@ -24262,7 +24321,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3414, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3424, true);
 
 
 --
