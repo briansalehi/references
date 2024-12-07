@@ -10555,6 +10555,18 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9097	3424	`std::reference<>()` only adds rvalue references to the passed type parameter, and reference collapsing apply again:	text	txt	2024-12-07 22:38:53.160865	3
 9098	3424	static_cast<T&&>(t);	code	cpp	2024-12-07 22:38:53.160865	4
 9099	3424	- If type `T` is an lvalue reference, `T& &&` collapses to `T&` and remains an lvalue reference.\n- If type `T` is an rvalue reference or not a reference at all, `T&& &&` or `T &&`, we cast the argument to an rvalue reference and the value category becomes xvalue.	text	txt	2024-12-07 22:38:53.160865	5
+9100	3425	Universal parameter is declared as `T&&`. Therefore, we have to be careful about reference collapsing:	text	txt	2024-12-07 23:31:28.5878	1
+9101	3425	template<typename T> f(T&& arg) { }	code	cpp	2024-12-07 23:31:28.5878	2
+9102	3425	std::string s{};\n\nf<std::string>(s);              // ERROR: cannot bind rvalue reference to lvalue\nf<std::string&>(s);             // OK\nf<std::string>(std::move(s));   // OK\nf<std::string&&>(std::move(s)); // OK	code	cpp	2024-12-07 23:31:28.5878	3
+9103	3426	Due to special rule for deducing template parameters of universal references, when lvalues are passed the type is deduced to an lvalue reference. This might lead to conflicting deductions:	text	txt	2024-12-07 23:31:28.592694	1
+9104	3426	\n//                       ,------------------------ passed lvalue deduce as std::string&\n//                      /              ,---------- passed lvalue deduce as std::string\n//                      v              v\ntemplate<typename T>\nvoid insert(std::vector<T>& container, T&& element)\n{\n    container.push_back(std::forward<T>(element));\n}	code	cpp	2024-12-07 23:31:28.592694	2
+9105	3426	std::vector<std::string> v;\nstd::string s;\n\ninsert(v, s);   // ERROR: no matching function call	code	cpp	2024-12-07 23:31:28.592694	3
+9106	3426	There are two solutions:	text	txt	2024-12-07 23:31:28.592694	4
+9107	3426	template<typename T>\nvoid insert(std::vector<std::remove_reference<T>::type>& container, T&& element);	code	cpp	2024-12-07 23:31:28.592694	5
+9108	3426	template<typename C, typename T>\nvoid insert(C& container, T&& element);	code	cpp	2024-12-07 23:31:28.592694	6
+9109	3427	Due to special rule for deducing template parameters of universal references, when lvalues are passed the type is deduced to an lvalue reference. This rule can help us restrict to an rvalue reference only:	text	txt	2024-12-07 23:31:28.595987	1
+9110	3427	template<typename T>\nrequires (!std::is_lvalue_reference<T>) // since C++20\nvoid f(T&&) { }	code	cpp	2024-12-07 23:31:28.595987	2
+9111	3427	template<typename T, typename = typename std::enable_if<!std::is_lvalue_reference<T>::value>::type> // prior to C++20\nvoid f(T&&) { }	code	cpp	2024-12-07 23:31:28.595987	3
 \.
 
 
@@ -14131,6 +14143,9 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3422	1356	What corner cases exist that rvalue references might look like universal references?	open	2024-12-07 22:38:53.157778	2024-12-07 22:38:53.157778
 3423	1356	Where does reference collapsing rule apply?	open	2024-12-07 22:38:53.15917	2024-12-07 22:38:53.15917
 3424	1356	How does reference collapsing apply for <code>std::move()</code> and <code>std::reference<>()</code>?	open	2024-12-07 22:38:53.160865	2024-12-07 22:38:53.160865
+3425	1356	What are the side effects of explicitly specifying the type of the template parameter when declared as a universal reference?	open	2024-12-07 23:31:28.5878	2024-12-07 23:31:28.5878
+3426	1356	When does template parameter deduction conflicts happens with universal references?	open	2024-12-07 23:31:28.592694	2024-12-07 23:31:28.592694
+3427	1356	Declare a function taking a pure rvalue reference of generic types?	open	2024-12-07 23:31:28.595987	2024-12-07 23:31:28.595987
 \.
 
 
@@ -20418,7 +20433,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
-89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 22:38:53.160865	1	\N
+89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 \.
 
 
@@ -22009,7 +22024,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1596	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	13
 1584	109	completed	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.625681	1
 1355	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-06 16:27:19.436911	9
-1356	89	writing	\N	2024-07-28 09:45:09.867651	2024-12-07 22:38:53.160865	10
+1356	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-07 23:31:28.598059	10
 \.
 
 
@@ -24293,7 +24308,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9099, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9111, true);
 
 
 --
@@ -24321,7 +24336,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3424, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3427, true);
 
 
 --
