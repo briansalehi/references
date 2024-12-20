@@ -542,8 +542,8 @@ begin
     select  r.id
             , sr.subject_id
             , r.name
-            , count(case when sc.state = 'writing'::flashback.publication_state then 1 end)
-            , count(case when sc.state = 'completed'::flashback.publication_state then 1 end)
+            , count(case when sc.state = 'writing' then 1 end)
+            , count(case when sc.state = 'completed' or sc.state = 'ignored' then 1 end)
             , count(sc.id)
             , max(st.updated)
     from flashback.resources r
@@ -21920,7 +21920,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1390	92	open	\N	2024-07-28 09:45:10.290381	2024-07-28 09:45:10.290381	8
 579	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	36
 510	44	open	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	40
-1448	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	3
 1176	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	8
 1186	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	18
 1351	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	5
@@ -22202,6 +22201,9 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1463	98	ignored	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	18
 1462	98	ignored	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	17
 1459	98	completed	\N	2024-08-18 14:51:01.210115	2024-12-15 18:57:32.447141	14
+1448	98	ignored	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	3
+1597	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	20
+1598	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	21
 \.
 
 
@@ -22215,7 +22217,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	49	2024-08-07 22:44:43.138201
 1	48	2024-08-07 22:44:43.138201
 1	47	2024-08-07 22:44:43.138201
-1	46	2024-08-07 22:44:43.138201
 1	67	2024-08-07 22:44:43.138201
 1	65	2024-08-07 22:44:43.138201
 1	66	2024-08-07 22:44:43.138201
@@ -23655,7 +23656,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1447	2024-10-13 10:12:58.077001
 1	661	2024-10-13 10:29:09.734084
 1	786	2024-10-13 12:42:44.466666
-1	787	2024-10-13 14:16:23.985512
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
 1	1466	2024-11-02 09:57:07.756614
@@ -23737,7 +23737,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1555	2024-11-10 12:16:58.993341
 1	1556	2024-11-10 13:43:17.553529
 1	1557	2024-11-10 18:45:16.351022
-1	1554	2024-11-15 15:37:13.342662
 1	1029	2024-11-15 16:22:07.596811
 1	1465	2024-11-15 16:38:01.84121
 1	1347	2024-11-17 23:29:33.745512
@@ -23771,7 +23770,10 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1595	2024-12-05 16:22:22.582675
 1	1596	2024-12-05 16:22:22.582675
 1	1584	2024-12-05 16:24:48.994747
-1	1459	2024-12-14 09:50:34.303466
+1	1459	2024-12-19 11:45:00.912717
+1	1554	2024-12-20 15:27:03.161722
+1	787	2024-12-20 16:00:45.47682
+1	46	2024-12-20 16:01:53.362349
 \.
 
 
@@ -24590,7 +24592,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1596, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1598, true);
 
 
 --
