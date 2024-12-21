@@ -10730,6 +10730,69 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9272	3475	For example `kernel.bbclass` abstracts tasks related to building and packaging the kernel independent from version or vendor changes.	text	txt	2024-12-21 12:09:06.525176	3
 9273	3476	- `BBPATH`: list of paths to search for metadata files\n- `BBFILES`: pattern used to index the collection recipe files\n- `BBFILE_COLLECTIONS`: create a new metadata collection with given name\n- `BBFILE_PATTERN_<layer>`: define the rule to match all paths with given pattern\n- `BBFILE_PRIORITY_<layer>`: establish the priority against the other metadata collections\n- `LAYERDEPENDS_<layer>`: add dependencies to given layer\n- `LAYERVERSION_<layer>`: specify layer version	text	txt	2024-12-21 12:09:06.526324	1
 9274	3476	BBPATH =. "${LAYERDIR}::"\n\nBBFILES += "${LAYERDIR}/recipes-*/*/*.bb ${LAYERDIR}/recipes-*/*/*.bbappend"\n\nBBFILE_COLLECTIONS += "yocto"\nBBFILE_PATTERN_yocto = "^${LAYERDIR}/"\nBBFILE_PRIORITY_yocto = "5"\n\nLAYERVERSION_yocto = "3"\nLAYERDEPENDS_yocto = "core"\n\nREQUIRED_POKY_BBLAYERS_CONF_VERSION = "2"	code	bb	2024-12-21 12:09:06.526324	2
+9275	3477	Bitbake parses `build/conf/bblayers.conf` file to list the layers considered in the build environment. After parsing all the layers in use, bitbake starts to parse `build/conf/local.conf` file to load global metadata configurations.	text	txt	2024-12-21 16:09:33.74025	1
+9276	3478	build/conf/bblayers.conf	text	path	2024-12-21 16:09:33.744301	1
+9277	3478	POKY_BBLAYERS_CONF_VERSION = "2"\nBBPATH = "${TOPDIR}"\nBBFILES ?= ""\nBBBLAYERS ?= "/opt/poky/meta /opt/poky/meta-poky /opt/poky/meta-yocto-bsp"	code	bb	2024-12-21 16:09:33.744301	2
+9278	3479	Bitbake first iterates through the layers specified in `BBLAYERS` in `build/conf/bblayers.conf` and load the content of each layer to the metadata collection. Dependent layers must be loaded before parsing the metadata.	text	txt	2024-12-21 16:09:33.746387	1
+9279	3479	POKY_BBLAYERS_CONF_VERSION = "2"\nBBBPATH = "${TOPDIR}"\nBBFILES ?= ""\nBBBLAYERS ?= "/opt/poky/meta /opt/poky/meta-poky /opt/poky/meta-yocto-bsp"	code	bb	2024-12-21 16:09:33.746387	2
+9280	3479	Layers will be loaded from left to right in the order.	text	txt	2024-12-21 16:09:33.746387	3
+9281	3480	Bitbake first loads `poky/meta/conf/bitbake.conf` from one of the paths listed in `BBPATH` which includes other metadata such as architecture specific metadata, machine configuration files, and `poky/meta/conf/layer.conf` file using `include` directive.	text	txt	2024-12-21 16:09:33.748137	1
+9282	3480	POKY_BBLAYERS_CONF_VERSION = "2"\nBBBPATH = "${TOPDIR}"\nBBFILES ?= ""\nBBLAYERS ?= "/opt/poky/meta /opt/poky/meta-poky /opt/poky/meta-yocto-bsp"	code	bb	2024-12-21 16:09:33.748137	2
+9283	3481	- Build time dependency\n- Execution time dependency\n- Task dependency	text	txt	2024-12-21 16:09:33.75007	1
+9284	3481	Build time dependencies usually happen when a package needs other packages to be used.	text	txt	2024-12-21 16:09:33.75007	2
+9285	3481	Runtime or execution dependencies include fonts, icons, translations, and dynamically shared libraries.	text	txt	2024-12-21 16:09:33.75007	3
+9286	3481	Task dependencies happen inside recipes where each task should be completely done before another begins.	text	txt	2024-12-21 16:09:33.75007	4
+9287	3482	Recipes with `-native` suffix are aimed to be run during the build process on host system, and they will not be deployed into the target.	text	txt	2024-12-21 16:09:33.751637	1
+9288	3483	Recipes express build time dependencies with the `DEPENDS` variable, and runtime dependencies with the `RDEPENDS` variable.	text	txt	2024-12-21 16:09:33.753338	1
+9289	3483	Every recipe included in the runtime dependencies is also added to the build list. They need to be ready for use so that the resulting binary packages are installable. This will be required when building images or populating feeds.	text	txt	2024-12-21 16:09:33.753338	2
+9290	3484	For a recipe to signal bitbake that it can fulfill a functionality or characteristic requirement, it must use the `PROVIDES` keyword.	text	txt	2024-12-21 16:09:33.754583	1
+9291	3484	The `virtual/kernel` provider is an example of a provider that satisfies each recipe that requires the kernel to be built. Each dependent recipe should add `virtual/kernel` to the `DEPENDS` list.	text	txt	2024-12-21 16:09:33.754583	2
+9292	3484	DEPENDS = "virtual/kernel"	code	bb	2024-12-21 16:09:33.754583	3
+9293	3485	When two or more recipes can provide the same functionality, we can make one preferred over the others using `PREFERRED_PROVIDER` keyword.	text	txt	2024-12-21 16:09:33.755646	1
+9294	3485	PREFERRED_PROVIDER_virtual/kernel = "linux-custom"	code	bb	2024-12-21 16:09:33.755646	2
+9295	3486	- Every recipe with the `<name>_<version>.bb` filename provides, because every recipe provides itself by default.\n- Every recipe that assigns the name of the functionality that it provides in `PROVIDES` variable.	text	txt	2024-12-21 16:09:33.756774	1
+9296	3486	Bitbake raises an error when a dependency cannot be satisfied due to a missing provider.	text	txt	2024-12-21 16:09:33.756774	2
+9297	3487	The `virtual/` namespace is the convention adopted when we have a set of commonly overriden providers.	text	txt	2024-12-21 16:09:33.758042	1
+9298	3487	PREFERRED_PROVIDER_virtual/kernel = "linux-custom"	code	bb	2024-12-21 16:09:33.758042	2
+9299	3488	Bitbake uses the highest version by default.	text	txt	2024-12-21 16:09:33.759134	1
+9300	3489	We can force bitbake to use a different version by using `PREFERRED_VERSION` keyword. This is common in BSPs where vendors may use specific versions for a specific board.	text	txt	2024-12-21 16:09:33.760254	1
+9301	3489	PREFERRED_VERSION = "3.20.0"	code	bb	2024-12-21 16:09:33.760254	2
+9302	3490	We can avoid using development or unreliable recipe version by lowering the default version preference in a recipe:	text	txt	2024-12-21 16:09:33.761444	1
+9303	3490	DEFAULT_PREFERENCE = "-1"	code	bb	2024-12-21 16:09:33.761444	2
+9304	3490	Even if the version is higher, the recipe is not choosen without `PREFERENCE_VERSION` being explicitly set to use it.	text	txt	2024-12-21 16:09:33.761444	3
+9305	3491	Bitbake offers support for many different fetcher modules that allow the retrieval of tarball files and several SCM systems like Git, FTP, NPM, SSH, etc.	text	txt	2024-12-21 16:09:33.762551	1
+9306	3491	Many protocols are supported by fetcher module like http, https, git, etc.	text	txt	2024-12-21 16:09:33.762551	2
+9307	3492	`SRC_URI` contains file address. `PV` will be expanded to package name, and the file will be stored in the path held by `DL_DIR` variable. After download, the checksum from artifact will be compared with the value held by `SRC_URI[sha256sum]` variable.	text	txt	2024-12-21 16:09:33.763607	1
+9308	3492	SRC_URI = "http://pm-utils.freedesktop.org/releases/pm-utils-${PV}.tar.gz"\nSRC_URI[sha256sum] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"	code	bb	2024-12-21 16:09:33.763607	2
+9309	3493	After downloading, bitbake creates `${DL_DIR}/<package>-<version>.<extension>.done` file to mark the archive as successfully downloaded and checked, allowing bitbake to reuse it.	text	txt	2024-12-21 16:09:33.764575	1
+9310	3494	By default, the `DL_DIR` variable points to `build/downloads`. We can override it in `build/conf/local.conf` file:	text	txt	2024-12-21 16:09:33.76564	1
+9311	3494	DL_DIR = "/opt/downloads"	code	bb	2024-12-21 16:09:33.76564	2
+9312	3494	Using this, we can share the same download cache among several build directories, thus saving download time and bandwidth.	text	txt	2024-12-21 16:09:33.76564	3
+9313	3495	Git repositories are identified by bitbake and they will be downloaded in `${DL_DIR}/git2/<git-url>` directory for each repository.	text	txt	2024-12-21 16:09:33.766818	1
+9314	3495	SRCREV = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"\nSRC_URI = "git://github.com/lz4/lz4.git;branch=release;protocol=https"	code	bb	2024-12-21 16:09:33.766818	2
+9315	3495	Above repository will be downloaded into `build/downloads/git2/github.com.lz4.lz4.git` directory.	text	txt	2024-12-21 16:09:33.766818	3
+9316	3495	This method, avoids conflicts between the same project but provided by another repository.	text	txt	2024-12-21 16:09:33.766818	4
+9317	3496	- The task `do_fetch` uses this variable to ensure the repository has the required git revision\n- The task `do_unpack` uses this variable to set up the working directory with the necessary source revision	text	txt	2024-12-21 16:09:33.767775	1
+9318	3497	SRC_URI = "git://github.com/lz4/lz4.git;branch=release;protocol=https"	code	bb	2024-12-21 16:09:33.768809	1
+9319	3497	SRC_URI = "git://github.com/lz4/lz4.git;nobranch=1;protocol=https"	code	bb	2024-12-21 16:09:33.768809	2
+9320	3498	- To provide a centrally preferred server for download\n- To provide a set of fallback servers	text	txt	2024-12-21 16:09:33.769779	1
+9321	3499	- Local download directory defined by `DL_DIR` variable in a recipe\n- Mirrors specified in `MIRRORS` variable in `build/conf/local.conf` file\n- Local servers to reduce download or override blocked paths in the internet defined by `PREMIRRORS` variable in `build/conf/local.conf` file	text	txt	2024-12-21 16:09:33.770721	1
+9322	3500	build/conf/local.conf	text	path	2024-12-21 16:09:33.772046	1
+9323	3500	PREMIRRORS = " \\\ncsv://.*/.*     https://localserver \\\nsvn://.*/.*     https://localserver \\\ngit://.*/.*     https://localserver \\\ngitsm://.*/.*   https://localserver \\\nhg://.*/.*      https://localserver \\\nbzr://.*/.*     https://localserver \\\np4://.*/.*      https://localserver \\\nosc://.*/.*     https://localserver \\\nhttps://.*/.*   https://localserver \\\nftp://.*/.*     https://localserver \\\nnpm://.*/.*     https://localserver \\\ns3://.*/.*      https://localserver"	code	bb	2024-12-21 16:09:33.772046	2
+9324	3500	The use of `PREMIRRORS` is so common that there is a class to make its configuration easier.	text	txt	2024-12-21 16:09:33.772046	3
+9325	3500	Inherit the `own-mirror` class and then set the `SOURCE_MIRROR_URL` variable to the local server address in any global configuration file such as `build/conf/local.conf` file.	text	txt	2024-12-21 16:09:33.772046	4
+9326	3500	INHERIT += "own-mirrors"\nSOURCE_MIRROR_URL = "https://localserver"	code	bb	2024-12-21 16:09:33.772046	5
+9327	3500	If the desired component is unavailable in the source mirror, bitbake falls back to the `MIRRORS` variable.	text	txt	2024-12-21 16:09:33.772046	6
+9328	3501	Override `DL_DIR` in a global configuration file such as `build/conf/local.conf` to outside of build directory:	text	txt	2024-12-21 16:09:33.773287	1
+9329	3501	DL_DIR = "/opt/downloads"	code	bb	2024-12-21 16:09:33.773287	2
+9330	3501	It is encouraged to enable the tarball generation for the SCM backends in the download foler in `build/conf/local.conf` file:	text	txt	2024-12-21 16:09:33.773287	3
+9331	3501	BB_GENERATE_MIRROR_TARBALLS = "1"	code	bb	2024-12-21 16:09:33.773287	4
+9332	3502	build/conf/local.conf	text	path	2024-12-21 16:09:33.774656	1
+9333	3502	BB_NO_NETWORK = "1"	code	bb	2024-12-21 16:09:33.774656	2
+9334	3503	bitbake <recipe> -c <task>	code	sh	2024-12-21 16:09:33.775739	1
+9335	3504	bitbake <recipe> -c listtasks	code	sh	2024-12-21 16:09:33.777187	1
+9336	3505	A unit of work, usually written as a bash, or python function inside a recipe file, having only one responsibility.	text	txt	2024-12-21 16:09:33.778815	1
+9337	3506	- `do_fetch`: downloads source files and archives\n- `do_unpack`: unpacks the source code or checks the requested revision or branch in case of SCM\n- `do_patch`: adapts source code by applying patches\n- `do_configure`: runs configuration when possible\n- `do_compile`: builds when possible\n- `do_install`: copies build artifacts when possible\n- `do_package`: packs resulting artifacts	text	txt	2024-12-21 16:09:33.779798	1
 \.
 
 
@@ -14358,6 +14421,36 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3474	789	What is the role of configurations in layers?	open	2024-12-21 12:09:06.523645	2024-12-21 12:09:06.523645
 3475	789	What is the role of classes in layers?	open	2024-12-21 12:09:06.525176	2024-12-21 12:09:06.525176
 3476	789	What are the required variables in the configuration file of a layer?	open	2024-12-21 12:09:06.526324	2024-12-21 12:09:06.526324
+3477	790	What configuration files are be parsed by bitbake?	open	2024-12-21 16:09:33.74025	2024-12-21 16:09:33.74025
+3478	790	What configuration variable is used to list required layers in metadata?	open	2024-12-21 16:09:33.744301	2024-12-21 16:09:33.744301
+3479	790	What is the metadata parsing order of bitbake?	open	2024-12-21 16:09:33.746387	2024-12-21 16:09:33.746387
+3480	790	When does architecture specific metadata loads into metadata?	open	2024-12-21 16:09:33.748137	2024-12-21 16:09:33.748137
+3481	790	What dependencies exist in metadata?	open	2024-12-21 16:09:33.75007	2024-12-21 16:09:33.75007
+3482	790	What recipes will only run on host and not the target device?	open	2024-12-21 16:09:33.751637	2024-12-21 16:09:33.751637
+3483	790	What configuration variables hold metadata dependencies?	open	2024-12-21 16:09:33.753338	2024-12-21 16:09:33.753338
+3484	790	What configuration variable is used to satisfy metadata dependecies?	open	2024-12-21 16:09:33.754583	2024-12-21 16:09:33.754583
+3485	790	What configuration variable signifies higher precedence of a provider over others?	open	2024-12-21 16:09:33.755646	2024-12-21 16:09:33.755646
+3486	790	How many ways exist for a provider to provide a functionality?	open	2024-12-21 16:09:33.756774	2024-12-21 16:09:33.756774
+3487	790	When do we use virtual namespace in provider names?	open	2024-12-21 16:09:33.758042	2024-12-21 16:09:33.758042
+3488	790	What is the preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.759134	2024-12-21 16:09:33.759134
+3489	790	Override the default version preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.760254	2024-12-21 16:09:33.760254
+3490	790	Change the default version preference of a recipe?	open	2024-12-21 16:09:33.761444	2024-12-21 16:09:33.761444
+3491	790	What mechanism does bitbake have to fetch sources?	open	2024-12-21 16:09:33.762551	2024-12-21 16:09:33.762551
+3492	790	What recipe variable is used to fetch source files?	open	2024-12-21 16:09:33.763607	2024-12-21 16:09:33.763607
+3493	790	What mechanism is used by bitbake to verify downloaded files?	open	2024-12-21 16:09:33.764575	2024-12-21 16:09:33.764575
+3494	790	Override the download path in a layer?	open	2024-12-21 16:09:33.76564	2024-12-21 16:09:33.76564
+3495	790	How does bitbake avoid conflicts between possible git repositories with the same project name?	open	2024-12-21 16:09:33.766818	2024-12-21 16:09:33.766818
+3496	790	What are the use cases of <code>SRCREV</code> variable?	open	2024-12-21 16:09:33.767775	2024-12-21 16:09:33.767775
+3497	790	Specify branch and protocol of a git repository to be fetched?	open	2024-12-21 16:09:33.768809	2024-12-21 16:09:33.768809
+3498	790	What are the use cases of mirrors?	open	2024-12-21 16:09:33.769779	2024-12-21 16:09:33.769779
+3499	790	What locations are searched by bitbake to download a repository?	open	2024-12-21 16:09:33.770721	2024-12-21 16:09:33.770721
+3500	790	Instruct the build system to redirect any download request to a local server?	open	2024-12-21 16:09:33.772046	2024-12-21 16:09:33.772046
+3501	790	Share downloads between multiple build directories?	open	2024-12-21 16:09:33.773287	2024-12-21 16:09:33.773287
+3502	790	Disable internet access to bitbake?	open	2024-12-21 16:09:33.774656	2024-12-21 16:09:33.774656
+3503	790	Run a specific task?	open	2024-12-21 16:09:33.775739	2024-12-21 16:09:33.775739
+3504	790	List the defined tasks for a recipe?	open	2024-12-21 16:09:33.777187	2024-12-21 16:09:33.777187
+3505	790	What is a task?	open	2024-12-21 16:09:33.778815	2024-12-21 16:09:33.778815
+3506	790	What are the common tasks specified in each recipe?	open	2024-12-21 16:09:33.779798	2024-12-21 16:09:33.779798
 \.
 
 
@@ -20645,7 +20738,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 12:09:06.526324	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 16:09:33.779798	1	\N
 \.
 
 
@@ -22078,7 +22171,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1421	97	open	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	4
 55	18	open	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	10
 148	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	16
-790	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	5
 828	61	open	\N	2024-07-28 09:45:04.229409	2024-07-28 09:45:04.229409	13
 1293	86	completed	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	1
 1461	98	completed	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	16
@@ -22239,6 +22331,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 787	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 10:35:23.090855	2
 788	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.51827	3
 789	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.527198	4
+790	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 16:09:33.780585	5
 \.
 
 
@@ -23809,6 +23902,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1554	2024-12-20 15:27:03.161722
 1	46	2024-12-20 16:01:53.362349
 1	787	2024-12-21 09:57:00.256593
+1	1597	2024-12-21 16:09:27.719514
+1	1598	2024-12-21 16:09:27.719514
 \.
 
 
@@ -24522,7 +24617,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9274, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9337, true);
 
 
 --
@@ -24550,7 +24645,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3476, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3506, true);
 
 
 --
