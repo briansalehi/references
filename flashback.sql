@@ -10714,6 +10714,22 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9256	3468	runqemu qemux86-64 bzImage-qemux86-64.bin filesystem-qemux86-64.ext4	code	sh	2024-12-21 10:35:23.089748	3
 9257	3468	Just running `runqemu` is enough to launch the image in the shell where the build environment is set.	text	txt	2024-12-21 10:35:23.089748	4
 9258	3468	runqemu	code	sh	2024-12-21 10:35:23.089748	5
+9259	3469	Toaster is a web interface to configure and run builds.	text	txt	2024-12-21 12:09:06.509635	1
+9260	3470	pip3 install --user -r poky/bitbake/toaster-requirements.txt	code	sh	2024-12-21 12:09:06.513737	1
+9261	3471	source poky/oe-init-build-env	code	sh	2024-12-21 12:09:06.516636	1
+9262	3471	source toaster start	code	sh	2024-12-21 12:09:06.516636	2
+9263	3471	The web service is now accessible through http://localhost:8000 .	text	txt	2024-12-21 12:09:06.516636	3
+9264	3471	Change default port:	text	txt	2024-12-21 12:09:06.516636	4
+9265	3471	source toaster start webport=9000	code	sh	2024-12-21 12:09:06.516636	5
+9266	3472	conf/layer.conf	text	path	2024-12-21 12:09:06.520544	1
+9267	3472	This file defines several layer properties, such as the layer name and priority.	text	txt	2024-12-21 12:09:06.520544	2
+9268	3473	- Configurations: `.conf` files\n- Classes: `.bbclass` files\n- Recipes: `.bb` and `.bbappend` files	text	txt	2024-12-21 12:09:06.522213	1
+9269	3474	The configuration files define the global content to provide information and configure how the recipes work.	text	txt	2024-12-21 12:09:06.523645	1
+9270	3475	Classes define the commonly used system's behavoir and provide the base methods.	text	txt	2024-12-21 12:09:06.525176	1
+9271	3475	Recipes can inherit classes based on requirements.	text	txt	2024-12-21 12:09:06.525176	2
+9272	3475	For example `kernel.bbclass` abstracts tasks related to building and packaging the kernel independent from version or vendor changes.	text	txt	2024-12-21 12:09:06.525176	3
+9273	3476	- `BBPATH`: list of paths to search for metadata files\n- `BBFILES`: pattern used to index the collection recipe files\n- `BBFILE_COLLECTIONS`: create a new metadata collection with given name\n- `BBFILE_PATTERN_<layer>`: define the rule to match all paths with given pattern\n- `BBFILE_PRIORITY_<layer>`: establish the priority against the other metadata collections\n- `LAYERDEPENDS_<layer>`: add dependencies to given layer\n- `LAYERVERSION_<layer>`: specify layer version	text	txt	2024-12-21 12:09:06.526324	1
+9274	3476	BBPATH =. "${LAYERDIR}::"\n\nBBFILES += "${LAYERDIR}/recipes-*/*/*.bb ${LAYERDIR}/recipes-*/*/*.bbappend"\n\nBBFILE_COLLECTIONS += "yocto"\nBBFILE_PATTERN_yocto = "^${LAYERDIR}/"\nBBFILE_PRIORITY_yocto = "5"\n\nLAYERVERSION_yocto = "3"\nLAYERDEPENDS_yocto = "core"\n\nREQUIRED_POKY_BBLAYERS_CONF_VERSION = "2"	code	bb	2024-12-21 12:09:06.526324	2
 \.
 
 
@@ -14334,6 +14350,14 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3466	787	What predefined images exist in poky?	open	2024-12-21 10:35:23.080574	2024-12-21 10:35:23.080574
 3467	787	Build an image?	open	2024-12-21 10:35:23.08758	2024-12-21 10:35:23.08758
 3468	787	What layer provides necessary tool to run built images?	open	2024-12-21 10:35:23.089748	2024-12-21 10:35:23.089748
+3469	788	What is the role of Toaster in the Yocto project?	open	2024-12-21 12:09:06.509635	2024-12-21 12:09:06.509635
+3470	788	Install toaster and its requirements?	open	2024-12-21 12:09:06.513737	2024-12-21 12:09:06.513737
+3471	788	Start toaster?	open	2024-12-21 12:09:06.516636	2024-12-21 12:09:06.516636
+3472	789	Where is the configuration file for each layer?	open	2024-12-21 12:09:06.520544	2024-12-21 12:09:06.520544
+3473	789	What metadata types exist?	open	2024-12-21 12:09:06.522213	2024-12-21 12:09:06.522213
+3474	789	What is the role of configurations in layers?	open	2024-12-21 12:09:06.523645	2024-12-21 12:09:06.523645
+3475	789	What is the role of classes in layers?	open	2024-12-21 12:09:06.525176	2024-12-21 12:09:06.525176
+3476	789	What are the required variables in the configuration file of a layer?	open	2024-12-21 12:09:06.526324	2024-12-21 12:09:06.526324
 \.
 
 
@@ -20621,7 +20645,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 10:35:23.089748	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 12:09:06.526324	1	\N
 \.
 
 
@@ -21486,7 +21510,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1315	87	open	\N	2024-07-28 09:45:09.480176	2024-07-28 09:45:09.480176	6
 304	33	writing	\N	2024-07-28 09:44:58.594555	2024-07-28 09:44:58.594555	5
 1102	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	2
-788	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	3
 52	18	open	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	7
 1453	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	8
 1198	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	30
@@ -21858,7 +21881,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 129	22	open	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	17
 203	25	open	\N	2024-07-28 09:44:57.364303	2024-07-28 09:44:57.364303	17
 1181	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	13
-789	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	4
 346	36	open	\N	2024-07-28 09:44:59.070387	2024-07-28 09:44:59.070387	11
 71	19	open	\N	2024-07-28 09:44:56.217196	2024-07-28 09:44:56.217196	7
 267	30	writing	\N	2024-07-28 09:44:58.142892	2024-07-28 09:44:58.142892	16
@@ -22215,6 +22237,8 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1597	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	20
 1598	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	21
 787	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 10:35:23.090855	2
+788	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.51827	3
+789	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.527198	4
 \.
 
 
@@ -24498,7 +24522,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9258, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9274, true);
 
 
 --
@@ -24526,7 +24550,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3468, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3476, true);
 
 
 --
