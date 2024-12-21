@@ -187,7 +187,7 @@ call add_block('text', 'txt', '- `do_fetch`: downloads source files and archives
 - `do_configure`: runs configuration when possible
 - `do_compile`: builds when possible
 - `do_install`: copies build artifacts when possible
-- `do_package`: packs resulting artifacts')
+- `do_package`: packs resulting artifacts');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 5, 'What are the common tasks specified in each recipe?');
 
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 5);
