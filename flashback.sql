@@ -10706,6 +10706,14 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9248	3465	cmake --build build	code	sh	2024-12-15 18:57:04.199281	3
 9249	3465	cmake --install build	code	sh	2024-12-15 18:57:04.199281	4
 9250	3465	cpack -G "ZIP;DEB;RPM" -B packages --config build/CPackConfig.cmake	code	sh	2024-12-15 18:57:04.199281	5
+9251	3466	- `core-image-minimal`\n- `core-image-base`\n- `core-image-weston`\n- `core-image-x11`\n- `core-image-sato`\n- `core-image-full-cmdline`	text	txt	2024-12-21 10:35:23.080574	1
+9252	3467	bitbake <recipe>	code	sh	2024-12-21 10:35:23.08758	1
+9253	3467	bitbake core-image-minimal	code	sh	2024-12-21 10:35:23.08758	2
+9254	3468	OpenEmbedded Core layer in `poky/meta` provides `runqemu` to run a built image:	text	txt	2024-12-21 10:35:23.089748	1
+9255	3468	runqemu <machine> <zimage> <filesystem>	code	sh	2024-12-21 10:35:23.089748	2
+9256	3468	runqemu qemux86-64 bzImage-qemux86-64.bin filesystem-qemux86-64.ext4	code	sh	2024-12-21 10:35:23.089748	3
+9257	3468	Just running `runqemu` is enough to launch the image in the shell where the build environment is set.	text	txt	2024-12-21 10:35:23.089748	4
+9258	3468	runqemu	code	sh	2024-12-21 10:35:23.089748	5
 \.
 
 
@@ -14323,6 +14331,9 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3463	1459	What package generators are available?	open	2024-12-15 18:57:04.196751	2024-12-15 18:57:04.196751
 3464	1459	What information is needed in the project before packing it?	open	2024-12-15 18:57:04.198124	2024-12-15 18:57:04.198124
 3465	1459	Create a package from a project?	open	2024-12-15 18:57:04.199281	2024-12-15 18:57:04.199281
+3466	787	What predefined images exist in poky?	open	2024-12-21 10:35:23.080574	2024-12-21 10:35:23.080574
+3467	787	Build an image?	open	2024-12-21 10:35:23.08758	2024-12-21 10:35:23.08758
+3468	787	What layer provides necessary tool to run built images?	open	2024-12-21 10:35:23.089748	2024-12-21 10:35:23.089748
 \.
 
 
@@ -20594,7 +20605,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
 52	Mastering Linux Device Driver Development	https://subscription.packtpub.com/book/iot-and-hardware/9781789342048	book	2024-07-28 09:44:55.224368	2024-10-13 10:29:09.734084	1	John Madieu
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-10-13 15:36:57.251518	1	\N
 86	Concurrency with Modern C++	\N	book	2024-07-28 09:44:55.224368	2024-10-27 16:25:47.539188	1	\N
 95	Boost.Asio C++ Network Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 107	Creational Design Patterns in Modern C++	https://subscription.packtpub.com/video/programming/9781800568242	video	2024-11-02 22:09:08.66427	2024-11-02 22:09:08.721556	1	\N
@@ -20611,6 +20621,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 10:35:23.089748	1	\N
 \.
 
 
@@ -22107,7 +22118,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1506	104	writing	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1
 1361	89	writing	\N	2024-07-28 09:45:09.867651	2024-10-13 10:15:50.870874	15
 786	59	completed	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.239652	1
-787	59	writing	\N	2024-07-28 09:45:03.853918	2024-10-13 15:36:57.251518	2
 205	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.385086	1
 206	26	completed	\N	2024-07-28 09:44:57.573652	2024-10-20 11:28:18.394693	2
 210	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-23 22:52:27.157861	6
@@ -22204,6 +22214,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1448	98	ignored	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	3
 1597	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	20
 1598	18	open	\N	2024-12-20 23:00:54.207383	2024-12-20 23:00:54.207383	21
+787	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 10:35:23.090855	2
 \.
 
 
@@ -23655,7 +23666,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1489	2024-10-14 12:16:16.921759
 1	1447	2024-10-13 10:12:58.077001
 1	661	2024-10-13 10:29:09.734084
-1	786	2024-10-13 12:42:44.466666
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
 1	1466	2024-11-02 09:57:07.756614
@@ -23690,6 +23700,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1514	2024-10-13 11:08:13.847027
 1	1515	2024-10-13 11:08:13.847027
 1	1516	2024-10-13 11:08:13.847027
+1	786	2024-12-21 08:05:40.048728
 1	1517	2024-10-13 11:08:13.847027
 1	1506	2024-10-13 11:08:13.847027
 1	205	2024-10-19 10:04:19.122973
@@ -23772,8 +23783,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1584	2024-12-05 16:24:48.994747
 1	1459	2024-12-19 11:45:00.912717
 1	1554	2024-12-20 15:27:03.161722
-1	787	2024-12-20 16:00:45.47682
 1	46	2024-12-20 16:01:53.362349
+1	787	2024-12-21 09:57:00.256593
 \.
 
 
@@ -24487,7 +24498,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9250, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9258, true);
 
 
 --
@@ -24515,7 +24526,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3465, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3468, true);
 
 
 --
