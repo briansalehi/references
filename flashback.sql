@@ -10806,6 +10806,61 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9348	3511	INHERIT += "rm_work"	code	bb	2024-12-23 12:32:36.970039	2
 9349	3512	For each recipe, inside the `WORKDIR/recipe-sysroot/sysroot-providers` directory, there is a list of providers.	text	txt	2024-12-23 12:32:36.971582	1
 9350	3513	We should check whether the `sysroot` directory contains correct entries.	text	txt	2024-12-23 12:32:36.973033	1
+9351	3514	rpm, deb, ipk, tar	text	list	2024-12-23 17:32:55.473494	1
+9352	3515	The support for package formats is provided by `package_rpm`, `package_deb`, `package_ipk` classes:	text	txt	2024-12-23 17:32:55.478001	1
+9353	3515	build/conf/local.conf	text	path	2024-12-23 17:32:55.478001	2
+9354	3515	PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"	code	bb	2024-12-23 17:32:55.478001	3
+9355	3515	Poky defaults to the RPM package format with `dnf` package manager. OpenEmbedded Core detauls to the IPK with `opkg` package manager.	text	txt	2024-12-23 17:32:55.478001	4
+9356	3516	- `preinst`: stops running services for installation or upgrade\n- `postinst`: completes required configurations after package unpacking\n- `prerm`: stops daemons before removing files associated with the package\n- `postrm`: commonly modifies links or other files created by the package	text	txt	2024-12-23 17:32:55.480366	1
+9357	3516	The post package installation scripts run during the root filesystem creation.	text	txt	2024-12-23 17:32:55.480366	2
+9358	3516	pkkg_postinst:${PN} () {\n    # commands\n]	code	bb	2024-12-23 17:32:55.480366	3
+9359	3516	All post-installation scripts must succeed when generating `read-only-rootfs` in `IMAGE_FEATURES`. Because the filesystem is read-only and cannot be written into after creation.	text	txt	2024-12-23 17:32:55.480366	4
+9360	3517	To ensure the `postinst` runs inside the target device itself, we can add `_ontarget` postfix to the script name:	text	txt	2024-12-23 17:32:55.48391	1
+9361	3517	pkg_postinst_ontarget:${PN} () {\n    # command\n}	code	bb	2024-12-23 17:32:55.48391	2
+9362	3518	`D` variable is set to the root of the working directory during `rootfs` generation.	text	txt	2024-12-23 17:32:55.48661	1
+9363	3518	It is important not to miss `D` variable in front of paths inside installation scripts.	text	txt	2024-12-23 17:32:55.48661	2
+9364	3518	pkg_postinst:${PN} () {\n    touch ${D}${sysconfigdir}/package.conf\n}	code	bb	2024-12-23 17:32:55.48661	3
+9365	3519	A common mistake is attempting to run target processses on the target architecture. One solution is to postpone the script execution to the target:	text	txt	2024-12-23 17:32:55.488274	1
+9366	3519	pkg_postinst_ontarget:${PN} () {\n    # commands\n}	code	bb	2024-12-23 17:32:55.488274	2
+9367	3520	The default behavior of poky is to build everything from scratch, unless bitbake determines that a recipe does not need to be rebuilt. Bitbake tracks as much information as possible about every task, variabke, and piece of code used in the build process. Bitbake then generates a checksum for the information used by every task, including dependencies from other tasks. Poky stores snapshots of this information provided by bitbake as a set of packaged data, generated in a cache called `sstate-cache`. This cache wraps the contents of each task output in packages stored in the `SSTATE_DIR` directory. Bitbake checks the existence of a `sstate-cache` package that matches the required computed checksum and in presence, uses the prebuilt package.	text	txt	2024-12-23 17:32:55.489917	1
+9368	3521	./poky/scripts/sstate-cache-management.sh --remove-duplicate -d --cache-dir=<sstate-cache>	code	sh	2024-12-23 17:32:55.49139	1
+9369	3522	To rebuild, either remove `build/tmp` so that we can use `sstate-cache` to speed up the build, or remove both `build/tmp` and `sstate-cache` so that no cache is reused during the build.	text	txt	2024-12-23 17:32:55.49386	1
+9370	3522	rm -r build/tmp	code	sh	2024-12-23 17:32:55.49386	2
+9371	3522	rm -r build/sstate-cache	code	sh	2024-12-23 17:32:55.49386	3
+9372	3523	${PE}:${PV}-${PR}	code	bb	2024-12-23 17:32:55.49651	1
+9373	3523	`PV` is simply the project version.	text	txt	2024-12-23 17:32:55.49651	2
+9374	3523	`PE` represents package epoch which defaults to 0 but changes when version schema changes in a project. For example, a project uses `20241223` as version but in its next releases uses `1.0`. Because there is no way to compare `20241223` with `1.0`, we should increment `PE` to 1 so that `1:1.0` becomes a higher value than `0:20241223`, thus recipe rebuilds.	text	txt	2024-12-23 17:32:55.49651	3
+9375	3523	`PR` defaults to `r0` and is part of package versioning. When updated, it forces bitbake to rebuild all tasks of a specific recipe. We rarely need to update it.	text	txt	2024-12-23 17:32:55.49651	4
+9376	3524	- `RDEPENDS`: list of packages must be available at runtime\n- `RPROVIDES`: list of symbolic names a package provides\n- `RCONFLICTS`: list of packages known to conflict with the package\n- `RREPLACES`: list of symbolic names that the package can replace	text	txt	2024-12-23 17:32:55.499345	1
+9377	3524	By default a package always includes the package name as a symbolic name.	text	txt	2024-12-23 17:32:55.499345	2
+9378	3525	`rootfs` is a directory with the desired packages installed, with the required tweaks applied afterward. The tweaks can be when building a development image, `rootfs` is adjusted to allow us to log in as `root` without a password.	text	txt	2024-12-23 17:32:55.501502	1
+9379	3526	The list of packages are defined by a union of packages listed by `IMAGE_INSTALL` and the packages included with `IMAGE_FEATURES`. Packages to be excluded from installation is listed in `PACKAGE_EXCLUDE` variable.	text	txt	2024-12-23 17:32:55.502991	1
+9380	3527	`IMAGE_FSTYPES` lists the filesystems to be generated, e.g. ext4, ubifs, etc.	text	txt	2024-12-23 17:32:55.50438	1
+9381	3528	After the packages in `IMAGE_INSTALL` and `IMAGE_FEATURES` excluded by `PACKAGE_EXCLUDE` are listed, `do_rootfs` subtask runs to unpack and configure the packages and required dependencies into the `rootfs` directory. When `rootfs` contents unpacked, the non-target post-installation scripts of the referred packages must run to avoid the penalty of running them during first boot. Then, the directory is ready to generate the filesystem. `IMAGE_FSTYPES` lists the filesystems to be generated, e.g. ext4, ubifs, etc. Generated image file is placed in `build/tmp/deploy/image/<machine>/`.	text	txt	2024-12-23 17:32:55.505826	1
+9382	3529	After system installation, packages are installed from a local repository instead of building packages inside the image during image generation.	text	txt	2024-12-23 17:32:55.507409	1
+9383	3529	`do_rootfs` uses a local repository to fetch binary packages when generating images and sdks. This repository is known as a package feed.	text	txt	2024-12-23 17:32:55.507409	2
+9384	3530	Images and SDKs rely on packages. So they feed from this repository which can be available internally in our development environment or publicly.	text	txt	2024-12-23 17:32:55.508888	1
+9385	3530	By using package feeds, we can easily test an updated application during the development stage without complete system re-installation.	text	txt	2024-12-23 17:32:55.508888	2
+9386	3530	We can make additional packages and install them in a running image. We can also uppdate products in the field.	text	txt	2024-12-23 17:32:55.508888	3
+9387	3531	It is vital to produce a solid package feed. We must ensure that we have consistent increments in the package revision every time a package is changed. Pr service is part of bitbake and is used to increment `PR` without human interaction every time bitbake detects a checksum change in a task. It injets a suffix in `PR` in `${PR}.X` format like `r34.1`, `r34.2`, `r34.3` and so on.	text	txt	2024-12-23 17:32:55.51023	1
+9388	3532	By default, the PR service is disabled. We can enable it to run locally by adding the `PRSERV_HOST` variable in a global configuration file.	text	txt	2024-12-23 17:32:55.513027	1
+9389	3532	build/conf/local.conf	text	path	2024-12-23 17:32:55.513027	2
+9390	3532	PRSERV_HOST = "localhost:0"	code	bb	2024-12-23 17:32:55.513027	3
+9391	3532	With multiple computers working against a shared package feed, we must have a single PR service running used by all building systems associated with the package feed. In this case, we start the PR service in the server using `bitbake-prserv` command:	text	txt	2024-12-23 17:32:55.513027	4
+9392	3532	bitbake-prserv --host <ip> --port <port> --start	code	sh	2024-12-23 17:32:55.513027	5
+9393	3532	In addition, we need to update the bitbake configuration file of each build system and assign the PR service address to `PRSERV_HOST` variable.	text	txt	2024-12-23 17:32:55.513027	6
+9394	3532	PRSERV_HOST = "package_feed:9000	code	bb	2024-12-23 17:32:55.513027	7
+9395	3533	The set of packages offered by the package feed is determined by the recipes we build. Once satisfied with the packages offered, we must create the package index provided by the package feeds.	text	txt	2024-12-23 17:32:55.51583	1
+9396	3533	bitbake package-index	code	sh	2024-12-23 17:32:55.51583	2
+9397	3533	We must run this command after building all packages, otherwise the package index will not include a correct path to packages.	text	txt	2024-12-23 17:32:55.51583	3
+9398	3534	The packages are available inside the `build/tmp/deploy` directory. Depending on the package format, we must choose the respective sub-directory, e.g. `build/tmp/deploy/rpm`.	text	txt	2024-12-23 17:32:55.517932	1
+9399	3535	We need to add `package-management` to `EXTRA_IMAGE_FEATURES` and set the URI for package fetching on `PACKAGE_FEED_URIS` in one of the global configuration files.	text	txt	2024-12-23 17:32:55.519775	1
+9400	3535	EXTRA_IMAGE_FEATURES += "package-management"\nPACKAGE_FEED_URIS = "package_feed:9000"	code	bb	2024-12-23 17:32:55.519775	2
+9401	3535	The `PACKAGE_FEED_URIS` and `EXTRA_IMAGE_FEATURES` configurations guarantee that the image on the client side can access the server and has the utilities needed to install, remove, and upgrade its packages.	text	txt	2024-12-23 17:32:55.519775	3
+9402	3535	dnf check-update	code	sh	2024-12-23 17:32:55.519775	4
+9403	3535	dnf search <package>	code	sh	2024-12-23 17:32:55.519775	5
+9404	3535	dnf install <package>	code	sh	2024-12-23 17:32:55.519775	6
+9405	3535	dnf upgrade	code	sh	2024-12-23 17:32:55.519775	7
 \.
 
 
@@ -14471,6 +14526,28 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3511	791	Reduce disk usage after each recipe compilation by removing artifacts?	open	2024-12-23 12:32:36.970039	2024-12-23 12:32:36.970039
 3512	791	Where does the list sysroot providers for each recipe reside?	open	2024-12-23 12:32:36.971582	2024-12-23 12:32:36.971582
 3513	791	What is the general approach to fix broken builds when a missing header or link failure happens?	open	2024-12-23 12:32:36.973033	2024-12-23 12:32:36.973033
+3514	792	What package formats are available to poky?	open	2024-12-23 17:32:55.473494	2024-12-23 17:32:55.473494
+3515	792	Select a package format?	open	2024-12-23 17:32:55.478001	2024-12-23 17:32:55.478001
+3516	792	What package installation scripts are available in a recipe?	open	2024-12-23 17:32:55.480366	2024-12-23 17:32:55.480366
+3517	792	Run post installation scripts on target devices instead of host?	open	2024-12-23 17:32:55.48391	2024-12-23 17:32:55.48391
+3518	792	What variable holds the path to the installation directory?	open	2024-12-23 17:32:55.48661	2024-12-23 17:32:55.48661
+3519	792	What is the best practice to run target specific processes?	open	2024-12-23 17:32:55.488274	2024-12-23 17:32:55.488274
+3520	792	What is a shared state cache?	open	2024-12-23 17:32:55.489917	2024-12-23 17:32:55.489917
+3521	792	Clean the shared state cache?	open	2024-12-23 17:32:55.49139	2024-12-23 17:32:55.49139
+3522	792	Enforce building from scratch?	open	2024-12-23 17:32:55.49386	2024-12-23 17:32:55.49386
+3523	792	What variables are used in package versioning of poky?	open	2024-12-23 17:32:55.49651	2024-12-23 17:32:55.49651
+3524	792	What variables are used to specify runtime package dependencies?	open	2024-12-23 17:32:55.499345	2024-12-23 17:32:55.499345
+3525	792	What is the role of rootfs directory?	open	2024-12-23 17:32:55.501502	2024-12-23 17:32:55.501502
+3526	792	What variable holds the list of packages to be installed into rootfs?	open	2024-12-23 17:32:55.502991	2024-12-23 17:32:55.502991
+3527	792	What variable holds the filesystem types to be generated?	open	2024-12-23 17:32:55.50438	2024-12-23 17:32:55.50438
+3528	792	What are the steps of rootfs directory generation?	open	2024-12-23 17:32:55.505826	2024-12-23 17:32:55.505826
+3529	792	What is a package feed?	open	2024-12-23 17:32:55.507409	2024-12-23 17:32:55.507409
+3530	792	What are the use cases of package feeds?	open	2024-12-23 17:32:55.508888	2024-12-23 17:32:55.508888
+3531	792	What is the role of PR service in package versioning?	open	2024-12-23 17:32:55.51023	2024-12-23 17:32:55.51023
+3532	792	Enable PR service in a layer?	open	2024-12-23 17:32:55.513027	2024-12-23 17:32:55.513027
+3533	792	What is the role of package index?	open	2024-12-23 17:32:55.51583	2024-12-23 17:32:55.51583
+3534	792	Where do installed packages reside?	open	2024-12-23 17:32:55.517932	2024-12-23 17:32:55.517932
+3535	792	Add support for package management to an image?	open	2024-12-23 17:32:55.519775	2024-12-23 17:32:55.519775
 \.
 
 
@@ -20758,7 +20835,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-23 12:32:36.973033	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-23 17:32:55.519775	1	\N
 \.
 
 
@@ -21573,7 +21650,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 410	39	open	\N	2024-07-28 09:44:59.735775	2024-07-28 09:44:59.735775	1
 1140	78	open	\N	2024-07-28 09:45:07.577903	2024-07-28 09:45:07.577903	7
 1054	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	8
-792	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	7
 896	66	open	\N	2024-07-28 09:45:04.96819	2024-07-28 09:45:04.96819	10
 651	51	open	\N	2024-07-28 09:45:02.294764	2024-07-28 09:45:02.294764	14
 381	37	open	\N	2024-07-28 09:44:59.43286	2024-07-28 09:44:59.43286	27
@@ -22352,6 +22428,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 789	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.527198	4
 790	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 16:09:33.780585	5
 791	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 12:32:36.973872	6
+792	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 17:32:55.520639	7
 \.
 
 
@@ -24637,7 +24714,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9350, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9405, true);
 
 
 --
@@ -24665,7 +24742,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3513, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3535, true);
 
 
 --
