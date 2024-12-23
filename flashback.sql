@@ -10793,6 +10793,19 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9335	3504	bitbake <recipe> -c listtasks	code	sh	2024-12-21 16:09:33.777187	1
 9336	3505	A unit of work, usually written as a bash, or python function inside a recipe file, having only one responsibility.	text	txt	2024-12-21 16:09:33.778815	1
 9337	3506	- `do_fetch`: downloads source files and archives\n- `do_unpack`: unpacks the source code or checks the requested revision or branch in case of SCM\n- `do_patch`: adapts source code by applying patches\n- `do_configure`: runs configuration when possible\n- `do_compile`: builds when possible\n- `do_install`: copies build artifacts when possible\n- `do_package`: packs resulting artifacts	text	txt	2024-12-21 16:09:33.779798	1
+9338	3507	- `build/conf`: contains configuration files to control poky and bitbake\n- `build/downloads`: contains all downloaded artifacts\n- `sstate-cache`: contains snapshots of the packaged data to speed up future builds\n- `tmp`: contains temporary build directory	text	txt	2024-12-23 12:32:36.959745	1
+9339	3508	The temporary build directory `build/tmp` is created just after the build starts, and it is essential to identify why something does not behave as expected.	text	txt	2024-12-23 12:32:36.964118	1
+9340	3508	- `build/tmp/deploy`: contains images, binary packages, and sdk installers\n- `build/tmp/sysroot-components`: contains a representation of `recipes-sysroot` and `recipes-sysroot-native` which allows bitbake to know where each component is installed\n- `build/tmp/sysroot-uninative`: contains glibc which is used when native utilities are generated\n- `build/tmp/work`: contains the working source code, task configurations, execution logs, and contents of generated packages\n- `build/tmp/work-shared`: contains the gcc and kernel source code to be shared between recipes	text	txt	2024-12-23 12:32:36.964118	2
+9341	3509	- `do_fetch`: may modify the build directory by using cached downloaded copy of the source code or performs the download into `build/downloads`\n- `do_unpack`: preparing source code by unpacking or cloning a locally cached git directory happens in `build/tmp/work`\n- `do_configure`, `do_build`: building happens in `build/tmp/work`\n- `do_install`: build artifacts are installed in the staging directory `build/tmp/work/.../image` and the artifacts required for cross-compilation like libraries and headers are copied and modified in `build/tmp/work/.../recipe-sysroot` and `build/tmp/work/.../recipe-sysroot-native`\n- `do_pack` packages are generated using the installed contents provided in different formats `.rpm`, `.ipk`, `.deb`, `.tar`	text	txt	2024-12-23 12:32:36.965887	1
+9342	3510	The `build/tmp/work` directory is organized by architecture to allow building system images and packages for multiple machines and architectures within one build directory without conflicts.	text	txt	2024-12-23 12:32:36.968179	1
+9343	3510	This directory is useful for troubleshooting. It is organized in subdirectories with following pattern:	text	txt	2024-12-23 12:32:36.968179	2
+9344	3510	<architecture>/<recipe>/<software-version>	text	path	2024-12-23 12:32:36.968179	3
+9345	3510	In each of these directories, exist a few subdirectories with specific purposes:	text	txt	2024-12-23 12:32:36.968179	4
+9346	3510	- `build/tmp/work/<architecture>/<recipe>/<version>/<sources>`: extracted source code of the software to be built, `WORKDIR` variable points to this directory\n- `build/tmp/work/<architecture>/<recipe>/<version>/image`: contains the files installed by the recipe\n- `build/tmp/work/<architecture>/<recipe>/<version>/{package,packages-split}`: contains the extracted contents of output packages\n- `build/tmp/work/<architecture>/<recipe>/<version>/temp`: contains bitbake task code and execution logs\n- `build/tmp/work/<architecture>/<recipe>/<version>/recipe-sysroot`: an individual and isolated environment ensuring reproducibility and avoid contamination with the host packages	text	txt	2024-12-23 12:32:36.968179	5
+9347	3511	build/conf/local.conf	text	path	2024-12-23 12:32:36.970039	1
+9348	3511	INHERIT += "rm_work"	code	bb	2024-12-23 12:32:36.970039	2
+9349	3512	For each recipe, inside the `WORKDIR/recipe-sysroot/sysroot-providers` directory, there is a list of providers.	text	txt	2024-12-23 12:32:36.971582	1
+9350	3513	We should check whether the `sysroot` directory contains correct entries.	text	txt	2024-12-23 12:32:36.973033	1
 \.
 
 
@@ -14451,6 +14464,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3504	790	List the defined tasks for a recipe?	open	2024-12-21 16:09:33.777187	2024-12-21 16:09:33.777187
 3505	790	What is a task?	open	2024-12-21 16:09:33.778815	2024-12-21 16:09:33.778815
 3506	790	What are the common tasks specified in each recipe?	open	2024-12-21 16:09:33.779798	2024-12-21 16:09:33.779798
+3507	791	What are the entries of the build directory after image creation?	open	2024-12-23 12:32:36.959745	2024-12-23 12:32:36.959745
+3508	791	Which directories are critical to know for analyzing the build process and troubleshooting?	open	2024-12-23 12:32:36.964118	2024-12-23 12:32:36.964118
+3509	791	What directory is modified in each step of the build process?	open	2024-12-23 12:32:36.965887	2024-12-23 12:32:36.965887
+3510	791	What is the structure of work directory?	open	2024-12-23 12:32:36.968179	2024-12-23 12:32:36.968179
+3511	791	Reduce disk usage after each recipe compilation by removing artifacts?	open	2024-12-23 12:32:36.970039	2024-12-23 12:32:36.970039
+3512	791	Where does the list sysroot providers for each recipe reside?	open	2024-12-23 12:32:36.971582	2024-12-23 12:32:36.971582
+3513	791	What is the general approach to fix broken builds when a missing header or link failure happens?	open	2024-12-23 12:32:36.973033	2024-12-23 12:32:36.973033
 \.
 
 
@@ -20738,7 +20758,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-21 16:09:33.779798	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-23 12:32:36.973033	1	\N
 \.
 
 
@@ -20821,7 +20841,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 663	52	open	\N	2024-07-28 09:45:02.456043	2024-07-28 09:45:02.456043	3
 770	57	open	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	9
 764	57	writing	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	3
-791	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	6
 775	58	open	\N	2024-07-28 09:45:03.658056	2024-07-28 09:45:03.658056	2
 695	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	21
 794	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	9
@@ -22332,6 +22351,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 788	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.51827	3
 789	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 12:09:06.527198	4
 790	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 16:09:33.780585	5
+791	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 12:32:36.973872	6
 \.
 
 
@@ -23244,7 +23264,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	559	2024-09-23 20:36:18.228435
 1	1315	2024-09-23 20:36:18.228435
 1	1102	2024-09-23 20:36:18.228435
-1	788	2024-09-23 20:36:18.228435
 1	52	2024-09-23 20:36:18.228435
 1	1453	2024-09-23 20:36:18.228435
 1	1198	2024-09-23 20:36:18.228435
@@ -23579,7 +23598,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	129	2024-09-23 20:36:18.228435
 1	203	2024-09-23 20:36:18.228435
 1	1181	2024-09-23 20:36:18.228435
-1	789	2024-09-23 20:36:18.228435
 1	346	2024-09-23 20:36:18.228435
 1	71	2024-09-23 20:36:18.228435
 1	68	2024-09-23 20:36:18.228435
@@ -23904,6 +23922,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	787	2024-12-21 09:57:00.256593
 1	1597	2024-12-21 16:09:27.719514
 1	1598	2024-12-21 16:09:27.719514
+1	788	2024-12-21 16:10:56.413434
+1	789	2024-12-21 16:11:39.124533
 \.
 
 
@@ -24617,7 +24637,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9337, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9350, true);
 
 
 --
@@ -24645,7 +24665,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3506, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3513, true);
 
 
 --
