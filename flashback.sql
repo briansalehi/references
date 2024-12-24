@@ -10861,6 +10861,50 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9403	3535	dnf search <package>	code	sh	2024-12-23 17:32:55.519775	5
 9404	3535	dnf install <package>	code	sh	2024-12-23 17:32:55.519775	6
 9405	3535	dnf upgrade	code	sh	2024-12-23 17:32:55.519775	7
+9406	3536	Metadata covers three major areas:	text	txt	2024-12-24 11:02:23.777862	1
+9407	3536	- **Configuration:** `.conf` files define global content that configures how the classes and recipes will work\n- **Classes:** `.bbclass` files can be inherited for easier maintenance and code reuse\n- **Recipes:** `.bb` or `.bbappend` files describe the tasks to be run and allow bitbake to generate the required task chain, the mostly common used metadata	text	txt	2024-12-24 11:02:23.777862	2
+9408	3537	Classes and recipes use a mix of Python and Shell Script code.	text	txt	2024-12-24 11:02:23.791329	1
+9409	3538	bitbake --environment openssl	code	sh	2024-12-24 11:02:23.792735	1
+9410	3538	bitbake -e openssl	code	sh	2024-12-24 11:02:23.792735	2
+9411	3539	VARIABLE = "VALUE"	code	bb	2024-12-24 11:02:23.793889	1
+9412	3540	A = "value"\nB = "before-${A}-after"	code	bb	2024-12-24 11:02:23.795803	1
+9413	3541	In poky, variables have lazy expansion, meaning that they will only be expanded when used:	text	txt	2024-12-24 11:02:23.797003	1
+9414	3541	A = "value"\nB = "before-${A}-after"\n# B == "before-value-after\nA = "empty"\n# B == "before-empty-after	code	bb	2024-12-24 11:02:23.797003	2
+9415	3542	There is a syntax for assigning value to a variable when it does not already have a value:	text	txt	2024-12-24 11:02:23.798435	1
+9416	3542	A ?= "second-value"\nA = "first-value"\n# A == "first-value"	code	bb	2024-12-24 11:02:23.798435	2
+9417	3542	There is another assignment that represents a default value for scenarios that even `?=` is not used for a variable:	text	txt	2024-12-24 11:02:23.798435	3
+9418	3542	A ??= "default"\nA ?= "second"\n# A == "second"\nA ?= "thid"\n# A == "second"\nA = "first"\n# A == "first"	code	bb	2024-12-24 11:02:23.798435	4
+9419	3542	These assignments are used to ensure that even if a recipe does not reassign a variable, the variable still holds a valid value.	text	txt	2024-12-24 11:02:23.798435	5
+9420	3543	The `:=` operator can be used to assign a value with forced expansion by the time of assignment. There will be no further expansion on variable usage.	text	txt	2024-12-24 11:02:23.799436	1
+9421	3543	A = "value"\nB := "before-${A}-after"\nA = "change"\n# B == "before-value-after"	code	bb	2024-12-24 11:02:23.799436	2
+9422	3544	`+=` operator is known as list appending, adds a new value after the original one, separated with a space.	text	txt	2024-12-24 11:02:23.800604	1
+9423	3544	A = "2 3 4"\nA += "5"\n# A == "2 3 4 5"	code	bb	2024-12-24 11:02:23.800604	2
+9424	3544	`=+` operator is known as list prepending, adds a new value before the original one, separated with a space.	text	txt	2024-12-24 11:02:23.800604	3
+9425	3544	A = "2 3 4"\nA =+ "1"\n# A == "1 2 3 4"	code	bb	2024-12-24 11:02:23.800604	4
+9426	3545	String operators are similar to list append and prepend operators, with exception of space separation between values:	text	txt	2024-12-24 11:02:23.801632	1
+9427	3545	A = "build/tmp/work"\nA := "/opt/"\n# A == "/opt/build/tmp/work"	code	bb	2024-12-24 11:02:23.801632	2
+9428	3545	A = "build/tmp"\nA =: "/work"\n# A == "build/tmp/work"	code	bb	2024-12-24 11:02:23.801632	3
+9429	3546	string append and prepend operators `:=`, `=:` are immediate operators. But the `:append` and `:prepend` operators queue the operation for execution.	text	txt	2024-12-24 11:02:23.802606	1
+9430	3546	A = "build"\nA:append = "/work"\nA = "build/tmp"\n# A == "build/tmp/work"	code	bb	2024-12-24 11:02:23.802606	2
+9431	3547	A = "1 2 3 4"\nA:remove = "2"\n# A == "1 3 4"	code	bb	2024-12-24 11:02:23.803587	1
+9432	3547	Any appending and prepending operation is executed before remove operator is applied.	text	txt	2024-12-24 11:02:23.803587	2
+9433	3548	The `OVERRIDES` variable contains colon separated values evaluated from left to right, making conditional metadata possible.	text	txt	2024-12-24 11:02:23.804676	1
+9434	3548	OVERRIDES = "linux:arm:beaglebone"	code	bb	2024-12-24 11:02:23.804676	2
+9435	3549	OVERRIDES = "linux:arm:beaglebone"\nA = "general value"\nA:linux = "linux specific value"\nA:arm = "ARM specific value"\nA:beaglebone = "beaglebone specific value"	code	bb	2024-12-24 11:02:23.805628	1
+9436	3550	OVERRIDES = "linux:arm:beaglebone"\nA = "gcc"\nA:append:linux = "-linux"\nA:append:arm = "-arm"\nA:append:beaglebone = "-beaglebone"	code	bb	2024-12-24 11:02:23.806552	1
+9437	3551	Bitbake provides two directives: `include` and `require`	text	txt	2024-12-24 11:02:23.807822	1
+9438	3551	include "beaglebone.inc"	code	bb	2024-12-24 11:02:23.807822	2
+9439	3551	require "beaglebone.inc"	code	bb	2024-12-24 11:02:23.807822	3
+9440	3551	`include` locates the file in `BBPATH`. `require` raises `ParseError` when file cannot be found.	text	txt	2024-12-24 11:02:23.807822	4
+9441	3552	A = "${@time.strftime('%Y%m%d', time.gmtime())}"	code	bb	2024-12-24 11:02:23.808801	1
+9442	3552	The command can also be a call to a function defined inside the recipe.	text	txt	2024-12-24 11:02:23.808801	2
+9443	3553	do_something() {\n    echo "some value"\n}	code	bb	2024-12-24 11:02:23.809776	1
+9444	3553	Task code must be POSIX compatible, therefore cannot have Bash or Zsh specific features.	text	txt	2024-12-24 11:02:23.809776	2
+9445	3554	python do_something() {\n    print("some value")\n}	code	bb	2024-12-24 11:02:23.811035	1
+9446	3555	Use `d` as the last argument of a function to get access to global values visible to bitbake:	text	txt	2024-12-24 11:02:23.812756	1
+9447	3555	def get_depends(d):\n    if d.getVar('SOME_CONDITION'):\n        return "dependency-with-condition"\n    return "dependency"\n\nSOME_CONDITION = "1"\nDEPENDS = "${@get_depends(d)}"	code	bb	2024-12-24 11:02:23.812756	2
+9448	3556	A given class name is located by searching for `classes/<class>.bbclass` in `BBPATH`.	text	txt	2024-12-24 11:02:23.814062	1
+9449	3556	inherit autotools	code	bb	2024-12-24 11:02:23.814062	2
 \.
 
 
@@ -14548,6 +14592,27 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3533	792	What is the role of package index?	open	2024-12-23 17:32:55.51583	2024-12-23 17:32:55.51583
 3534	792	Where do installed packages reside?	open	2024-12-23 17:32:55.517932	2024-12-23 17:32:55.517932
 3535	792	Add support for package management to an image?	open	2024-12-23 17:32:55.519775	2024-12-23 17:32:55.519775
+3536	793	How many types a metadata covers?	open	2024-12-24 11:02:23.777862	2024-12-24 11:02:23.777862
+3537	793	What is the language of a recipe?	open	2024-12-24 11:02:23.791329	2024-12-24 11:02:23.791329
+3538	793	Trace the variable changes during execution of a recipe?	open	2024-12-24 11:02:23.792735	2024-12-24 11:02:23.792735
+3539	793	Assign value to a variable in a recipe file?	open	2024-12-24 11:02:23.793889	2024-12-24 11:02:23.793889
+3540	793	Use variable expansion in value assignment?	open	2024-12-24 11:02:23.795803	2024-12-24 11:02:23.795803
+3541	793	How many expansion rules exist?	open	2024-12-24 11:02:23.797003	2024-12-24 11:02:23.797003
+3542	793	How many assignments with different priorities exist?	open	2024-12-24 11:02:23.798435	2024-12-24 11:02:23.798435
+3543	793	Use an immediate variable expansion?	open	2024-12-24 11:02:23.799436	2024-12-24 11:02:23.799436
+3544	793	Append and prepend a value to a list?	open	2024-12-24 11:02:23.800604	2024-12-24 11:02:23.800604
+3545	793	Append and prepend a value to a string?	open	2024-12-24 11:02:23.801632	2024-12-24 11:02:23.801632
+3546	793	What are the differences between both variations of string append and prepend operators?	open	2024-12-24 11:02:23.802606	2024-12-24 11:02:23.802606
+3547	793	Remove an item from a list?	open	2024-12-24 11:02:23.803587	2024-12-24 11:02:23.803587
+3548	793	What variable is used to control the conditional metadata override?	open	2024-12-24 11:02:23.804676	2024-12-24 11:02:23.804676
+3549	793	Conditionally assign value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.805628	2024-12-24 11:02:23.805628
+3550	793	Conditionally append and prepend value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.806552	2024-12-24 11:02:23.806552
+3551	793	How many ways exist to include another recipe file?	open	2024-12-24 11:02:23.807822	2024-12-24 11:02:23.807822
+3552	793	Use inline Python code?	open	2024-12-24 11:02:23.808801	2024-12-24 11:02:23.808801
+3553	793	Define a Shell function inside a recipe?	open	2024-12-24 11:02:23.809776	2024-12-24 11:02:23.809776
+3554	793	Define a Python function inside a recipe?	open	2024-12-24 11:02:23.811035	2024-12-24 11:02:23.811035
+3555	793	Get access to global datastore of bitbake within a Python function?	open	2024-12-24 11:02:23.812756	2024-12-24 11:02:23.812756
+3556	793	Inherit from a class inside a recipe?	open	2024-12-24 11:02:23.814062	2024-12-24 11:02:23.814062
 \.
 
 
@@ -20835,7 +20900,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-23 17:32:55.519775	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-24 11:02:23.814062	1	\N
 \.
 
 
@@ -21160,7 +21225,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 469	43	open	\N	2024-07-28 09:45:00.334809	2024-07-28 09:45:00.334809	12
 118	22	writing	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	6
 683	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	9
-793	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	8
 317	34	open	\N	2024-07-28 09:44:58.73201	2024-07-28 09:44:58.73201	6
 1265	84	open	\N	2024-07-28 09:45:08.962478	2024-07-28 09:45:08.962478	5
 702	54	open	\N	2024-07-28 09:45:02.987548	2024-07-28 09:45:02.987548	1
@@ -22429,6 +22493,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 790	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-21 16:09:33.780585	5
 791	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 12:32:36.973872	6
 792	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 17:32:55.520639	7
+793	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-24 11:02:23.815104	8
 \.
 
 
@@ -24714,7 +24779,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9405, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9449, true);
 
 
 --
@@ -24742,7 +24807,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3535, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3556, true);
 
 
 --
