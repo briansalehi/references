@@ -234,6 +234,34 @@ $$;
 ALTER FUNCTION flashback.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) OWNER TO flashback;
 
 --
+-- Name: export_section_data(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.export_section_data(section_index integer) RETURNS TABLE(note text)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    --copy(
+    return query
+        select E'**' || n.heading || E'**\n\n' || string_agg(
+                case when b.type = 'code' then
+                    E'```' || b.language || E'\n' || content || E'\n```'
+                else
+                    content
+                end, E'\n\n' order by b.position
+            ) || E'\n\n---\n\n' as content
+        from flashback.notes n
+        join flashback.note_blocks b on b.note_id = n.id
+        where n.section_id = section_index
+        group by n.heading, n.creation
+        order by n.creation;
+    --) to '/tmp/cmake-notes.csv' with (format csv, header false);
+end; $$;
+
+
+ALTER FUNCTION flashback.export_section_data(section_index integer) OWNER TO flashback;
+
+--
 -- Name: get_editing_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -10905,6 +10933,62 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9447	3555	def get_depends(d):\n    if d.getVar('SOME_CONDITION'):\n        return "dependency-with-condition"\n    return "dependency"\n\nSOME_CONDITION = "1"\nDEPENDS = "${@get_depends(d)}"	code	bb	2024-12-24 11:02:23.812756	2
 9448	3556	A given class name is located by searching for `classes/<class>.bbclass` in `BBPATH`.	text	txt	2024-12-24 11:02:23.814062	1
 9449	3556	inherit autotools	code	bb	2024-12-24 11:02:23.814062	2
+9450	3557	A toolchain is often composed of cross-platform tools including compilers, linkers, debuggers, external libraries, headers and binaries executed on one architecture, which then produce a binary for use in another architecture. Even if build and architecture of the host and the target be the same, but the target binary use a staged root filesystem to find its dependencies, it is still a cross-compilation build. But when target binary rely on dependencies from the same host on which the tool runs, this is called a native build.	text	txt	2024-12-25 21:59:50.259956	1
+9451	3558	A software development kit is the combination of a toolchain and a set of files to develop and debug applications for a target. The yocto project can be used for development and image creation, this is possible by generating SDKs.	text	txt	2024-12-25 21:59:50.266847	1
+9452	3559	The development image needs header files and libraries, and the toolchain.	text	txt	2024-12-25 21:59:50.269304	1
+9453	3559	build/conf/local.conf	text	path	2024-12-25 21:59:50.269304	2
+9454	3559	EXTRA_IMAGE_FEATURES += "dev-pkgs tools-sdk"	code	bb	2024-12-25 21:59:50.269304	3
+9455	3559	`dev-pkgs` installs development packages, and `tools-sdk` installs the toolchain that runs on the target device.	text	txt	2024-12-25 21:59:50.269304	4
+9456	3560	- **Standard SDK:** provides a toolchain and debugging applications for development in the target device\n- **Extensible SDK:** allows the installation of extra packages inside the SDK's sysroot directory, as well as recipe and application integration inside a project, includes `devtool`	text	txt	2024-12-25 21:59:50.271207	1
+9457	3561	An image-based SDK provides toolchains defined in an image tailored to the product. A generic SDK can also be generated without image integrations, but they are mostly used for kernel and bootloader development and debugging processes.	text	txt	2024-12-25 21:59:50.272354	1
+9458	3562	bitbake meta-toolchain	code	sh	2024-12-25 21:59:50.273536	1
+9459	3563	build/tmp/deploy/sdk/	text	path	2024-12-25 21:59:50.274775	1
+9460	3564	An standard SDK is wrapped in an installation script that can be executed in the same manner as any other script:	text	txt	2024-12-25 21:59:50.27614	1
+9461	3564	./build/tmp/deploy/sdk/<sdk>.sh	code	sh	2024-12-25 21:59:50.27614	2
+9462	3564	Right after execution, path to the SDK installation must be given, then the environment is ready to be used. To use the SDK in a new shell session later, we need to source the environment setup script in the given installation path, e.g. `/opt/poky/<version>`:	text	txt	2024-12-25 21:59:50.27614	3
+9463	3564	source /opt/poky/<version>/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.27614	4
+9464	3565	The standard SDK matches the machine architecture in `MACHINE` variable inside `build/conf/local.conf`.	text	txt	2024-12-25 21:59:50.277176	1
+9465	3566	Assuming the SDK is installed in `/opt/poky/<version>/`:	text	txt	2024-12-25 21:59:50.278329	1
+9466	3566	source /opt/poky/<version>/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.278329	2
+9467	3566	$CC main.cpp -o program	code	sh	2024-12-25 21:59:50.278329	3
+9468	3567	Assuming the SDK is installed in `/opt/poky/<version>/`:	text	txt	2024-12-25 21:59:50.279646	1
+9469	3567	source /opt/poky/<version>/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.279646	2
+9470	3567	unset LDFLAGS	code	sh	2024-12-25 21:59:50.279646	3
+9471	3567	make defconfig	code	sh	2024-12-25 21:59:50.279646	4
+9472	3567	make bzImage	code	sh	2024-12-25 21:59:50.279646	5
+9473	3568	bitbake core-image-minimal -c populate_sdk_ext	code	sh	2024-12-25 21:59:50.280776	1
+9474	3568	The resulting files are in `build/tmp/deploy/sdk/`.	text	txt	2024-12-25 21:59:50.280776	2
+9475	3569	build/tmp/deploy/sdk/<sdk>.sh	code	sh	2024-12-25 21:59:50.281847	1
+9476	3569	Right after execution, path to the SDK installation must be given, then the environment is ready to be used. To use the SDK in a new shell session later, we need to source the environment setup script in the given installation path, e.g. `~/sdk/`:	text	txt	2024-12-25 21:59:50.281847	2
+9477	3569	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.281847	3
+9478	3570	The extensible SDK is a different way to deliver the same yocto project tools and metadata. It wraps together a set of binaries for the environment execution, a standard SDK for development, a shared state cache to reduce local builds, and a snapshot of the metadata and configuration.	text	txt	2024-12-25 21:59:50.282869	1
+9479	3570	Essentially, the extensible SDK is a snapshot of the environment used to create it. Therefore, all `devtool` commands are available inside this environment.	text	txt	2024-12-25 21:59:50.282869	2
+9480	3571	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.284004	1
+9481	3571	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.284004	2
+9482	3571	devtool build-image core-image-minimal	code	sh	2024-12-25 21:59:50.284004	3
+9483	3571	Generated files reside in `~/sdk/tmp/deploy/images/qemux86-64/`.	text	txt	2024-12-25 21:59:50.284004	4
+9484	3572	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.285045	1
+9485	3572	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.285045	2
+9486	3572	devtool runqemu core-image-minimal	code	sh	2024-12-25 21:59:50.285045	3
+9487	3573	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.286193	1
+9488	3573	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.286193	2
+9489	3573	devtool add https://github.com/OSSystems/bbexample	code	sh	2024-12-25 21:59:50.286193	3
+9490	3573	`devtool` creates a basic recipe file for the given repository. It creates a workspace with the package source and the needed metadata.	text	txt	2024-12-25 21:59:50.286193	4
+9491	3574	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.287485	1
+9492	3574	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.287485	2
+9493	3574	devtool add https://github.com/OSSystems/bbexample	code	sh	2024-12-25 21:59:50.287485	3
+9494	3574	devtool build bbexample	code	sh	2024-12-25 21:59:50.287485	4
+9495	3575	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.288921	1
+9496	3575	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.288921	2
+9497	3575	devtool add https://github.com/OSSystems/bbexample	code	sh	2024-12-25 21:59:50.288921	3
+9498	3575	devtool build bbexample	code	sh	2024-12-25 21:59:50.288921	4
+9499	3575	devtool deploy-target bbexample root@192.168.10.2	code	sh	2024-12-25 21:59:50.288921	5
+9500	3575	The application can now be executed on qemu.	text	txt	2024-12-25 21:59:50.288921	6
+9501	3576	Assuming the extensible SDK is installed in `~/sdk/`:	text	txt	2024-12-25 21:59:50.291414	1
+9502	3576	source ~/sdk/environment-setup-<meta>	code	sh	2024-12-25 21:59:50.291414	2
+9503	3576	For example, to have `libusb1` available:	text	txt	2024-12-25 21:59:50.291414	3
+9504	3576	devtool sdk-install -s libusb1	code	sh	2024-12-25 21:59:50.291414	4
+9505	3577	The extensible SDK can also be used as a `sstate-cache` mirror and extensible SDK server, but it requires some infrastructure setup.	text	txt	2024-12-25 21:59:50.293255	1
 \.
 
 
@@ -14613,6 +14697,27 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3554	793	Define a Python function inside a recipe?	open	2024-12-24 11:02:23.811035	2024-12-24 11:02:23.811035
 3555	793	Get access to global datastore of bitbake within a Python function?	open	2024-12-24 11:02:23.812756	2024-12-24 11:02:23.812756
 3556	793	Inherit from a class inside a recipe?	open	2024-12-24 11:02:23.814062	2024-12-24 11:02:23.814062
+3557	794	What is a toolchain?	open	2024-12-25 21:59:50.259956	2024-12-25 21:59:50.259956
+3558	794	What is an SDK?	open	2024-12-25 21:59:50.266847	2024-12-25 21:59:50.266847
+3559	794	Generate a native SDK for development on target device?	open	2024-12-25 21:59:50.269304	2024-12-25 21:59:50.269304
+3560	794	What SDK types can bitbake generate?	open	2024-12-25 21:59:50.271207	2024-12-25 21:59:50.271207
+3561	794	In how many places an SDK can be generated?	open	2024-12-25 21:59:50.272354	2024-12-25 21:59:50.272354
+3562	794	Build a generic standard SDK?	open	2024-12-25 21:59:50.273536	2024-12-25 21:59:50.273536
+3563	794	Where are the generated SDK files after build?	open	2024-12-25 21:59:50.274775	2024-12-25 21:59:50.274775
+3564	794	Install an SDK?	open	2024-12-25 21:59:50.27614	2024-12-25 21:59:50.27614
+3565	794	What machine architecture is supported by a standard SDK?	open	2024-12-25 21:59:50.277176	2024-12-25 21:59:50.277176
+3566	794	Use an installed standard SDK to build a custom application?	open	2024-12-25 21:59:50.278329	2024-12-25 21:59:50.278329
+3567	794	Use an installed standard SDK to build the kernel?	open	2024-12-25 21:59:50.279646	2024-12-25 21:59:50.279646
+3568	794	Build an extensible SDK?	open	2024-12-25 21:59:50.280776	2024-12-25 21:59:50.280776
+3569	794	Install an extensible SDK?	open	2024-12-25 21:59:50.281847	2024-12-25 21:59:50.281847
+3570	794	What are the advantages of using an extensible SDK?	open	2024-12-25 21:59:50.282869	2024-12-25 21:59:50.282869
+3571	794	Build an image using an installed extensible SDK?	open	2024-12-25 21:59:50.284004	2024-12-25 21:59:50.284004
+3572	794	Run an image using an installed extensible SDK?	open	2024-12-25 21:59:50.285045	2024-12-25 21:59:50.285045
+3573	794	Create a recipe from an external git repository using an installed extensible SDK?	open	2024-12-25 21:59:50.286193	2024-12-25 21:59:50.286193
+3574	794	Build a recipe using an installed extensible SDK?	open	2024-12-25 21:59:50.287485	2024-12-25 21:59:50.287485
+3575	794	Deploy an image to the target using an installed extensible SDK?	open	2024-12-25 21:59:50.288921	2024-12-25 21:59:50.288921
+3576	794	Extend an installed extensible SDK?	open	2024-12-25 21:59:50.291414	2024-12-25 21:59:50.291414
+3577	794	What are the use cases of a shared extensible SDK?	open	2024-12-25 21:59:50.293255	2024-12-25 21:59:50.293255
 \.
 
 
@@ -20900,7 +21005,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-24 11:02:23.814062	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-25 21:59:50.293255	1	\N
 \.
 
 
@@ -20985,7 +21090,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 764	57	writing	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	3
 775	58	open	\N	2024-07-28 09:45:03.658056	2024-07-28 09:45:03.658056	2
 695	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	21
-794	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	9
 769	57	open	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	8
 839	62	open	\N	2024-07-28 09:45:04.316203	2024-07-28 09:45:04.316203	2
 802	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	17
@@ -22494,6 +22598,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 791	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 12:32:36.973872	6
 792	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 17:32:55.520639	7
 793	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-24 11:02:23.815104	8
+794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
 \.
 
 
@@ -24058,7 +24163,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1595	2024-12-05 16:22:22.582675
 1	1596	2024-12-05 16:22:22.582675
 1	1584	2024-12-05 16:24:48.994747
-1	1459	2024-12-19 11:45:00.912717
 1	1554	2024-12-20 15:27:03.161722
 1	46	2024-12-20 16:01:53.362349
 1	787	2024-12-21 09:57:00.256593
@@ -24066,6 +24170,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1598	2024-12-21 16:09:27.719514
 1	788	2024-12-21 16:10:56.413434
 1	789	2024-12-21 16:11:39.124533
+1	1459	2024-12-25 16:09:17.56381
 \.
 
 
@@ -24779,7 +24884,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9449, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9505, true);
 
 
 --
@@ -24807,7 +24912,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3556, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3577, true);
 
 
 --
