@@ -10989,6 +10989,32 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9503	3576	For example, to have `libusb1` available:	text	txt	2024-12-25 21:59:50.291414	3
 9504	3576	devtool sdk-install -s libusb1	code	sh	2024-12-25 21:59:50.291414	4
 9505	3577	The extensible SDK can also be used as a `sstate-cache` mirror and extensible SDK server, but it requires some infrastructure setup.	text	txt	2024-12-25 21:59:50.293255	1
+9506	3578	1. Checking the build history by inheriting `buildhistory`\n2. Using `oe-pkgdata-util`\n3. Inspecting variables and their changes during build using `bitbake-getvar`\n4. Using `devshell`	text	txt	2024-12-26 10:13:56.232488	1
+9507	3579	Poky deals with many recipes and images or SDKs which have many dependencies and it gets really hard to keep track of them. `buildhistory` keeps a history of the contents of a build so that we can see the differences between next consequent builds.	text	txt	2024-12-26 10:13:56.24661	1
+9508	3580	INHERIT += "buildhistory"\nBUILDHISTORY_COMMIT = "1"	code	bb	2024-12-26 10:13:56.248233	1
+9509	3580	The `BUILDHISTORY_COMMIT` enables bitbake to create a new git commit in the `buildhistory` repository for every new package, image, or SDK build. Diff data is stored in `build/buildhistory` directory as text files.	text	txt	2024-12-26 10:13:56.248233	2
+9510	3581	The `buildhistory-diff` is the utility that can be used to check differences.	text	txt	2024-12-26 10:13:56.25107	1
+9511	3581	poky/scripts/buildhistory-diff	code	sh	2024-12-26 10:13:56.25107	2
+9512	3582	To inspect how the recipe's content has been split, we can use the `build/tmp/work/<arch>/<recipe>/<version>/packages-split/` directory. It contains a sub-directory for every sub-package and has its contents in the sub-tree.`	text	txt	2024-12-26 10:13:56.253049	1
+9513	3583	A common issue for build failures is lacking the required artifacts in the sysroot directory. The counterpart of the sysroot generation can be seen at `build/tmp/work/<arch>/<recipe>/<version>/sysroot-destdir/`.	text	txt	2024-12-26 10:13:56.254685	1
+9514	3584	`oe-pkgdata-util` helps us to inspect the built packages and related data. For example, after running `bitbake bluez5`, we can find all packages related to it:	text	txt	2024-12-26 10:13:56.255863	1
+9515	3584	oe-pkgdata-util list-pkgs | grep bluez	code	sh	2024-12-26 10:13:56.255863	2
+9516	3585	oe-pkgdata-util list-pkgs | grep bluez	code	sh	2024-12-26 10:13:56.256874	1
+9517	3586	oe-pkgdata-util find-path /usr/bin/rfcomm	code	sh	2024-12-26 10:13:56.257782	1
+9518	3587	oe-pkgdata-util package-info bluez5	code	sh	2024-12-26 10:13:56.258711	1
+9519	3588	oe-pkgdata-util list-pkg-files bluez5	code	sh	2024-12-26 10:13:56.259825	1
+9520	3589	|Python|Shell|Effect|\n|-|-|-|\n|bb.fatal|bbfatal|Displays error and interrupts the build|\n|bb.error|bberror|Displays error but does not force build to stop|\n|bb.warn|bbwarn|Warns by logging|\n|bb.note|bbnote|Prints a note to the user|\n|bb.plain|bbplain|Prints plain text|\n|bb.debug|bbdebug|Prints debugging information shown depending on the debug level|	text	txt	2024-12-26 10:13:56.261233	1
+9521	3590	Python logs are stored in `build/tmp/log/cooker/<machine>`, Shell logs are stored in `build/tmp/work/<arch>/<recipe>/<version>/temp`.	text	txt	2024-12-26 10:13:56.262571	1
+9522	3590	Every task logs in `run.<task>.<pid>` filename. There is a link for each last run with `run.<task>` filename, for example `run.do_compile`.	text	txt	2024-12-26 10:13:56.262571	2
+9523	3591	bitbake-getvar	code	sh	2024-12-26 10:13:56.26353	1
+9524	3592	bitbake-getvar -r procps PACKAGECONFIG	code	sh	2024-12-26 10:13:56.264581	1
+9525	3593	A development shell can be used to edit packages and debug build failures. All the environment variables needed for the build ara available in the new terminal, so we can use commands like `configure` and `make`. `devshell` is the tool for it.	text	txt	2024-12-26 10:13:56.266557	1
+9526	3593	The `devshell` command is convenient for small tasks. But for more complex debugging, `devtool` is a better option.	text	txt	2024-12-26 10:13:56.266557	2
+9527	3594	bitbake linux-yocto -c devshell	code	sh	2024-12-26 10:13:56.268498	1
+9528	3594	Changes made inside a development shell do not persist between builds. We should record any critical changes before leaving.	text	txt	2024-12-26 10:13:56.268498	2
+9529	3595	build/conf/local.conf	text	path	2024-12-26 10:13:56.270291	1
+9530	3595	IMAGE_FEATURES += "debug-pkgs tools-debug"	code	bb	2024-12-26 10:13:56.270291	2
+9531	3596	gdb may not be usable on some targets because of its memory and disk consumption due to loading debugging symbols. In that case, `gdbserver` package coming within `tools-debug` provides remote debugging.	text	txt	2024-12-26 10:13:56.27137	1
 \.
 
 
@@ -14718,6 +14744,25 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3575	794	Deploy an image to the target using an installed extensible SDK?	open	2024-12-25 21:59:50.288921	2024-12-25 21:59:50.288921
 3576	794	Extend an installed extensible SDK?	open	2024-12-25 21:59:50.291414	2024-12-25 21:59:50.291414
 3577	794	What are the use cases of a shared extensible SDK?	open	2024-12-25 21:59:50.293255	2024-12-25 21:59:50.293255
+3578	795	What are the common ways of debugging the metadata?	open	2024-12-26 10:13:56.232488	2024-12-26 10:13:56.232488
+3579	795	What are the advantages of checking the build history?	open	2024-12-26 10:13:56.24661	2024-12-26 10:13:56.24661
+3580	795	Enable build history to observe differences between subsequent builds?	open	2024-12-26 10:13:56.248233	2024-12-26 10:13:56.248233
+3581	795	Check the difference of two subsequent builds?	open	2024-12-26 10:13:56.25107	2024-12-26 10:13:56.25107
+3582	795	Where can we check for installation splits?	open	2024-12-26 10:13:56.253049	2024-12-26 10:13:56.253049
+3583	795	Where can we check for the failures due to missing artifacts in sysroot?	open	2024-12-26 10:13:56.254685	2024-12-26 10:13:56.254685
+3584	795	What tool can be used to inspect built packages?	open	2024-12-26 10:13:56.255863	2024-12-26 10:13:56.255863
+3585	795	Find all packages related to a built package?	open	2024-12-26 10:13:56.256874	2024-12-26 10:13:56.256874
+3586	795	Find the package that owns a specific file?	open	2024-12-26 10:13:56.257782	2024-12-26 10:13:56.257782
+3587	795	Find the current version of a package?	open	2024-12-26 10:13:56.258711	2024-12-26 10:13:56.258711
+3588	795	List all the files for the given package?	open	2024-12-26 10:13:56.259825	2024-12-26 10:13:56.259825
+3589	795	What logging functions are available for use in Python and Shell functions?	open	2024-12-26 10:13:56.261233	2024-12-26 10:13:56.261233
+3590	795	Where are the Python and Shell logs stored?	open	2024-12-26 10:13:56.262571	2024-12-26 10:13:56.262571
+3591	795	What tool can be used to inspect value changes of a variable?	open	2024-12-26 10:13:56.26353	2024-12-26 10:13:56.26353
+3592	795	Inspect the value changes of a variable in a metadata?	open	2024-12-26 10:13:56.264581	2024-12-26 10:13:56.264581
+3593	795	What are the use cases of a development shell?	open	2024-12-26 10:13:56.266557	2024-12-26 10:13:56.266557
+3594	795	Run a development shell over the kernel image?	open	2024-12-26 10:13:56.268498	2024-12-26 10:13:56.268498
+3595	795	Install debugging packages containing debug symbols in an image?	open	2024-12-26 10:13:56.270291	2024-12-26 10:13:56.270291
+3596	795	Why remote debugging is usually a better option than debugging on target device?	open	2024-12-26 10:13:56.27137	2024-12-26 10:13:56.27137
 \.
 
 
@@ -21005,7 +21050,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-25 21:59:50.293255	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-26 10:13:56.27137	1	\N
 \.
 
 
@@ -21542,7 +21587,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1200	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	32
 1010	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	33
 178	24	open	\N	2024-07-28 09:44:57.174797	2024-07-28 09:44:57.174797	12
-795	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	10
 809	60	open	\N	2024-07-28 09:45:04.004299	2024-07-28 09:45:04.004299	7
 585	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	42
 8	15	open	\N	2024-07-28 09:44:55.45901	2024-07-28 09:44:55.45901	8
@@ -22599,6 +22643,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 792	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 17:32:55.520639	7
 793	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-24 11:02:23.815104	8
 794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
+795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
 \.
 
 
@@ -24884,7 +24929,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9505, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9531, true);
 
 
 --
@@ -24912,7 +24957,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3577, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3596, true);
 
 
 --
