@@ -11037,6 +11037,58 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9551	3603	The `bitbake-layers` tool supports the use of the OpenEmbedded Layer Index.	text	txt	2024-12-28 12:14:27.165122	2
 9552	3604	For example, to add the `meta-oe` layer:	text	txt	2024-12-28 12:14:27.166331	1
 9553	3604	bitbake-layers layerindex-fetch meta-oe	code	sh	2024-12-28 12:14:27.166331	2
+9554	3605	bitbake-layers create-layer /opt/poky/meta-sample	code	sh	2024-12-28 19:21:57.454328	1
+9555	3605	After creating the layer, we need to include it in the `build/conf/bblayers.conf`:	text	txt	2024-12-28 19:21:57.454328	2
+9556	3605	bitbake-layers add-layer /opt/poky/meta-sample	code	sh	2024-12-28 19:21:57.454328	3
+9557	3605	The `bitbake-layers` tool, by default, generates the layer with layer priority 6. This can be changed with:	text	txt	2024-12-28 19:21:57.454328	4
+9558	3605	BB_PRIORITY_meta-sample = "4"	code	bb	2024-12-28 19:21:57.454328	5
+9559	3606	Some commonly used variables that may need to be added or changed are `LAYERVERSION` and `LAYERDEPENDS`. Those are useful if our layer requires other layers to work. Both variables’ names must be suffixed with the layer’s name, as follows:	text	txt	2024-12-28 19:21:57.472395	1
+9560	3606	`LAYERVERSION` is an optional variable that specifies the version of the layer in a single number.	text	txt	2024-12-28 19:21:57.472395	2
+9561	3606	LAYERVERSION_meta-sample = "1".	code	bb	2024-12-28 19:21:57.472395	3
+9562	3606	`LAYERDEPENDS` lists the layers that the recipes depend upon. For example, we add the dependency for version 2 of `meta-otherlayer` with:	text	txt	2024-12-28 19:21:57.472395	4
+9563	3606	LAYERDEPENDS_meta-sample += "meta-otherlayer:2"	code	bb	2024-12-28 19:21:57.472395	5
+9564	3606	An error occurs if a dependency cannot be satisfied or the version numbers do not match.	text	txt	2024-12-28 19:21:57.472395	6
+9565	3607	Image files are, in essence, a set of packages grouped for a purpose and configured in a controlled way.	text	txt	2024-12-28 19:21:57.474974	1
+9566	3608	We can create an image from scratch or create one by reusing an existing one and adding the extra necessary packages.	text	txt	2024-12-28 19:21:57.477212	1
+9567	3609	For example, we may want to include an application and remove an image feature from the `core-image-full-cmdline` image file. In that case, we can create an image in the `recipes-mine/images/my-image-full-cmdline.bb` file with the following lines of code:	text	txt	2024-12-28 19:21:57.478704	1
+9568	3609	require recipes-extended/images/core-image-full-cmdline.bb\n\nIMAGE_FEATURES:remove = "splash"\nCORE_IMAGE_EXTRA_INSTALL = "myapp"	code	bb	2024-12-28 19:21:57.478704	2
+9569	3610	For example, we can create an image in the `recipes-mine/images/my-image-strace.bb` file consisting of the following lines of code:	text	txt	2024-12-28 19:21:57.480184	1
+9570	3610	inherit core-image\n\nIMAGE_FEATURES += "ssh-server-openssh splash"\nCORE_IMAGE_EXTRA_INSTALL += "strace"	code	bb	2024-12-28 19:21:57.480184	2
+9571	3610	`CORE_IMAGE_EXTRA_INSTALL` is the variable we should use to include extra packages in the image when we inherit the `core-image` class, which facilitates image creation.	text	txt	2024-12-28 19:21:57.480184	3
+9572	3611	* `allow-empty-password`: Allows Dropbear and OpenSSH to accept logins with empty password\n* `allow-root-login`: Allows Dropbear and OpenSSH to accept root logins\n* `dbg-pkgs`: Installs debug symbol packages for all packages installed\n* `debug-tweaks`: Makes an image suitable for development\n* `dev-pkgs`: Installs development packages (headers and extra library links)\n* `empty-root-password`: Allows root login with an empty password\n* `hwcodecs`: Installs hardware acceleration codecs\n* `lic-pkgs`: Installs license packages\n* `nfs-server`: Installs an NFS server\n* `overlayfs-etc`: Configures the /etc directory to be in overlayfs, useful when the root filesystem is configured as read-only\n* `package-management`: Installs package management tools and preserves the package manager database\n* `perf`: Installs profiling tools such as perf, systemtap, and LTTng\n* `post-install-logging`: Enables you to log postinstall script runs in the `/var/log/postinstall.log` file on the first boot of the image on the target system\n* `ptest-pkgs`: Installs ptest packages for all ptest-enabled recipes\n* `read-only-rootfs`: Creates an image whose root filesystem is read-only\n* `read-only-rootfs-delayed-postinsts`: When specified in conjunction with `read-only-rootfs`, it specifies that post-install scripts are still permitted\n* `serial-autologin-root`: When specified in conjunction with empty-root-password, it will automatically login as root on the serial console\n* `splash`: Enables you to show a splash screen during boot. By default, this screen is provided by psplash, which does allow customization\n* `ssh-server-dropbear`: Installs the Dropbear minimal SSH server\n* `ssh-server-openssh`: Installs the OpenSSH SSH server\n* `stateless-rootfs`: Specifies that an image should be created as stateless – when using systemd, `systemctl-native` will not be run on the image, leaving the image to be populated at runtime by systemd\n* `staticdev-pkgs`: Installs static development packages\n* `tools-debug`: Installs debugging tools such as strace and gdb\n* `tools-sdk`: Installs a full SDK that runs on a device\n* `tools-testapps`: Installs device testing tools (for example, touchscreen debugging)\n* `weston`: Installs Weston (a reference Wayland environment)\n* `x11-base`: Installs the X server with a minimal environment\n* `x11`: Installs the X server\n* `x11-sato`: Installs the OpenedHand Sato environment	text	txt	2024-12-28 19:21:57.481798	1
+9573	3612	if both the OpenSSH SSH server and the Dropbear minimal SSH server are present in `IMAGE_FEATURES`, then OpenSSH will take precedence and Dropbear will not be installed.	text	txt	2024-12-28 19:21:57.48302	1
+9574	3613	The `do_compile` and `do_install` code blocks provide the Shell Script command for us to build and install the resulting binary into the destination directory, referenced as `${D}`, which aims to relocate the installation directory to a path inside the `build/tmp/work/` directory.	text	txt	2024-12-28 19:21:57.484215	1
+9575	3614	Assuming an autotools-based project, we can avoid a lot of code duplication by using the `autotools` class, extracted from the recipe in the `poky/meta/recipes-core/dbus-wait/dbus-wait_git.bb` file:	text	txt	2024-12-28 19:21:57.485702	1
+9576	3614	inherit autotools pkgconfigs	code	bb	2024-12-28 19:21:57.485702	2
+9577	3614	Inheriting the `autotools` class, provides the following steps:	text	txt	2024-12-28 19:21:57.485702	3
+9578	3614	* Update the configure script code and artifacts\n* Update the libtool scripts\n* Run the configure script\n* Run make\n* Run make install	text	txt	2024-12-28 19:21:57.485702	4
+9579	3614	`devtool` automates the process of creating a recipe based on an existing project with the following command:	text	txt	2024-12-28 19:21:57.485702	5
+9580	3614	devtool add https://guthub.com/ossystems/bbexamle	code	sh	2024-12-28 19:21:57.485702	6
+9581	3614	devtool ran the recipetool to generate a recipe and automatically configure all pre-built information into the new recipe file.	text	txt	2024-12-28 19:21:57.485702	7
+9582	3615	devtool finish bbexample ../meta-newlayer	code	sh	2024-12-28 19:21:57.487129	1
+9583	3615	`meta-newlayer/recipes-bbexample/bbexample/bbexample_git.bb` file will be created but should not be taken as a final recipe. We should check for compilation options, extra metadata information, and so on.	text	txt	2024-12-28 19:21:57.487129	2
+9584	3616	Even though creating a new machine definition for use in Poky is a straightforward task, it shouldn’t be underestimated. Depending on the set of features we need to support at the BSP layer, it can involve checking the bootloader, kernel, and hardware support drivers.	text	txt	2024-12-28 19:21:57.48969	1
+9585	3616	The prevailing set of variables used in a machine definition is as follows:	text	txt	2024-12-28 19:21:57.48969	2
+9586	3616	- `TARGET_ARCH`: the machine architecture, e.g. ARM, x86-64, etc.\n- `PREFERRED_PROVIDER_virtual/kernel`: overrides the default kernel (linux-yocto) if you need to use a specific one\n- `SERIAL_CONSOLES`: defines serial consoles and their speeds\n- `MACHINE_FEATURES`: describes hardware features, so the software stack required is included in the images by default\n- `KERNEL_IMAGETYPE`: chooses the kernel image type, e.g. bzImage, Image, etc.\n- `IMAGE_FSTYPES`: sets the generated filesystem image types, e.g. tar.gz, ext4, ubifs, etc.	text	txt	2024-12-28 19:21:57.48969	3
+9587	3617	When describing a new machine, we should pay special attention to specific features supported by it in `MACHINE_FEATURES`. This way, the software needed to help these features is installed into the images.	text	txt	2024-12-28 19:21:57.49183	1
+9588	3618	- `acpi`: support ACPI (x86/x86-64 only)\n- `alsa`: support ALSA audio drivers\n- `apm`: use APM or APM emulation\n- `bluetooth`: the hardware supports bluetooth\n- `efi`: support booting through EFI\n- `ext2`: the hardware HDD or microdrive\n- `keyboard`: support keyboard functionality\n- `numa`: the hardware has non-uniform memory access\n- `pcbios`: support booting through BIOS\n- `pci`: the hardware has a PCI bus\n- `pcmcia`: the hardware has PCMCIA or CompactFlash sockets\n- `phone`: mobile phone (voice) support\n- `qemu-usermode`: QEMU can support user-mode emulation for this machine\n- `qvga`: the machine has a QVGA (320x240) display\n- `rtc`: the machine has a real-time clock\n- `screen`: the hardware has a screen\n- `serial`: the hardware has serial support (usually RS232)\n- `touchscreen`: the hardware has a touchscreen\n- `usbgadget`: the hardware is USB gadget device-capable\n- `usbhost`: the hardware is USB host-capable\n- `vfat`: FAT filesystem support\n- `wifi`: the hardware has integrated Wi-Fi	text	txt	2024-12-28 19:21:57.493649	1
+9589	3619	Creating the final image for a machine should be addressed at the end of any BSP support layer development. The type of image depends on the processor, peripherals included on the board, and project restrictions.	text	txt	2024-12-28 19:21:57.494904	1
+9590	3620	The Yocto Project has a tool called `wic`, which provides a flexible way to generate this image. It allows the creation of partitioned images based on a template file (`.wks`), written in a common language that describes the target image layout.	text	txt	2024-12-28 19:21:57.496094	1
+9591	3621	The `.wks` file is placed within a layer inside the `wic` directory. It is common to have multiple files in this directory to specify different image layouts. However, it is essential to remember that the chosen structure must match the machine. For example, when considering the use of an `i.MX` based machine that boots using U-Boot from an SD card with two partitions, one for the boot files and the other for rootfs.	text	txt	2024-12-28 19:21:57.497311	1
+9592	3621	Add wic to `IMAGE_FSTYPES` to enable the wic-based image generation. Set .wks file the `WKS_FILE` variable to be used.	text	txt	2024-12-28 19:21:57.497311	2
+9593	3622	The distribution is where we define global options, such as the toolchain version, graphical backends, and support for OpenGL. We should make a distribution only if the default settings provided by Poky fail to fulfill our requirements.	text	txt	2024-12-28 19:21:57.498487	1
+9594	3623	Usually, we intend to change a small set of options from Poky. For example, we remove the X11 support to use a framebuffer instead. We can easily accomplish this by reusing the Poky distribution and overriding the necessary variables	text	txt	2024-12-28 19:21:57.499658	1
+9595	3624	Assuming the distribution file resides in `<layer>/conf/distro/my-distro.conf` containing:	text	txt	2024-12-28 19:21:57.500973	1
+9596	3624	require conf/distro/poky.conf\n\nDISTRO = "my-distro"\nDISTRO_NAME = "Sample"\nDISTRO_VERSION = "1.0"\nDISTRO_CODENAME = "sample"\nSDK_VENDOR = "Brian Salehi"\nSDK_VERSION = "1.0"\nMAINTAINER = "Brian Salehi <briansalehi@proton.me>"\nDISTRO_FEATURE:remove = "wayland vulkan opengl"	code	bb	2024-12-28 19:21:57.500973	2
+9597	3624	To use the distribution just created, we need to add the following piece of code to the `build/conf/local.conf` file:	text	txt	2024-12-28 19:21:57.500973	3
+9598	3624	DISTRO = "my-distro"	code	bb	2024-12-28 19:21:57.500973	4
+9599	3625	DISTRO_FEATURES	code	bb	2024-12-28 19:21:57.50217	1
+9600	3626	- `3g`: support for cellular data\n- `acl`: Access Control List support\n- `alsa`: Advanced Linux Sound Architecture support (OSS compatibility kernel modules are installed if available)\n- `api-documentation`: Enables the generation of API documentation during recipe builds\n- `bluetooth`: Bluetooth support (integrated BT only)\n- `cramfs`: CramFS support\n- `debuginfod`: support for getting ELF debugging information through a debuginfod server\n- `ext2`: tools to support devices with an internal HDD/Microdrive for storing files (instead of Flash-only devices)\n- `gobject-introspection-data`: data to support GObject introspection\n- `ipsec`: IPSec support\n- `ipv4`: IPv4 support\n- `ipv6`: IPv6 support\n- `keyboard`: keyboard support\n- `ldconfig`: support for ldconfig and ld.so.conf on the target\n- `ld-is-gold`: Uses the gold linker instead of the standard GNU linker (bfd)\n- `lto`: Enables Link-Time Optimization\n- `multiarch`: Enables you to build applications with multiple architecture support\n- `nfc`: support for Near Field Communication\n- `nfs`: NFS client support\n- `nls`: Native Language Support (NLS)\n- `opengl`: the Open Graphics Library, a cross-language, multi-platform API, used to render two- and three-dimensional graphics\n- `overlayfs`: OverlayFS support\n- `pam`: Pluggable Authentication Module (PAM) support\n- `pci`: PCI bus support\n- `pcmcia`: PCMCIA/CompactFlash support\n- `polkit`: Polkit support\n- `ppp`: PPP dial-up support\n- `ptest`: Enables you to build the package tests that were supported by individual recipes\n- `pulseaudio`: support for PulseAudio\n- `seccomp`: Enables you to build applications with seccomp support, allowing the applications to strictly restrict the system calls that they are allowed to invoke\n- `selinux`: support for Security-Enhanced Linux (SELinux) (requires meta-selinux)\n- `smbfs`: SMB network client support\n- `systemd`: support for this init manager, a full replacement for init, with parallel starting of services, reduced shell overhead, and other features\n- `usbgadget`: USB Gadget Device support\n- `usbhost`: USB Host support\n- `usrmerge`: Merges the /bin, /sbin, /lib, and /lib64 directories into their respective counterparts in the /usr directory to provide better package and application compatibility\n- `vfat`: FAT filesystem support\n- `vulkan`: support for the Vulkan API\n- `wayland`: the Wayland display server protocol and the library that supports it\n- `wifi`: Wi-Fi support (integrated only)\n- `x11`: the X server and libraries\n- `xattr`: support for extended file attributes\n- `zeroconf`: support for zero-configuration networking	text	txt	2024-12-28 19:21:57.503436	1
+9601	3627	The `DISTRO_FEATURES` and `MACHINE_FEATURES` variables work together to provide feasible support for the final system. When a machine supports a feature, this does not imply that the target system supports it because the distribution must provide its underlying base.	text	txt	2024-12-28 19:21:57.505166	1
+9602	3627	For example, a machine might support Wi-Fi but not the distribution, then the applications will be built without access to the Wi-Fi. On the other hand, if the distribution provides Wi-Fi support and a machine does not, the modules and applications needed for the Wi-Fi will not be installed in images. However, the operating system and its modules support Wi-Fi.	text	txt	2024-12-28 19:21:57.505166	2
+9603	3628	- `build/conf/local.conf`\n- `<layer>/conf/machines/<machine>.conf`\n- `<layer>/conf/distro/<distro>.conf`	text	txt	2024-12-28 19:21:57.506589	1
+9604	3629	Variables defined in configuration files are global to every recipe, also referred to as configuration metadata.	text	txt	2024-12-28 19:21:57.507907	1
+9605	3629	Variables defined within recipe files have recipe visibility scope that is local to the specific recipe only during the execution of its tasks.	text	txt	2024-12-28 19:21:57.507907	2
 \.
 
 
@@ -14793,6 +14845,31 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3602	796	Add an existing meta layer?	open	2024-12-28 12:14:27.163585	2024-12-28 12:14:27.163585
 3603	796	Check for the availability of a layer in the community?	open	2024-12-28 12:14:27.165122	2024-12-28 12:14:27.165122
 3604	796	Add an existing meta layer from OpenEmbedded Layer Index?	open	2024-12-28 12:14:27.166331	2024-12-28 12:14:27.166331
+3605	797	Create a new layer?	open	2024-12-28 19:21:57.454328	2024-12-28 19:21:57.454328
+3606	797	What needs to be changed in the base of a layer right after its creation?	open	2024-12-28 19:21:57.472395	2024-12-28 19:21:57.472395
+3607	797	What is an image?	open	2024-12-28 19:21:57.474974	2024-12-28 19:21:57.474974
+3608	797	What are the possible ways of creating a new image?	open	2024-12-28 19:21:57.477212	2024-12-28 19:21:57.477212
+3609	797	Add a new features and remove an existing feature from an image?	open	2024-12-28 19:21:57.478704	2024-12-28 19:21:57.478704
+3610	797	Create a new imagine from scratch?	open	2024-12-28 19:21:57.480184	2024-12-28 19:21:57.480184
+3611	797	What image features are currently supported?	open	2024-12-28 19:21:57.481798	2024-12-28 19:21:57.481798
+3612	797	What happens when both openssh and dropbear appears for installation?	open	2024-12-28 19:21:57.48302	2024-12-28 19:21:57.48302
+3613	797	Where do the built packages go?	open	2024-12-28 19:21:57.484215	2024-12-28 19:21:57.484215
+3614	797	What class provides the steps to build a project based on autotools?	open	2024-12-28 19:21:57.485702	2024-12-28 19:21:57.485702
+3615	797	Copy the recipe file to the target layer?	open	2024-12-28 19:21:57.487129	2024-12-28 19:21:57.487129
+3616	797	What are the necessary actions to add support to a new machine definition?	open	2024-12-28 19:21:57.48969	2024-12-28 19:21:57.48969
+3617	797	What variable holds the list of software needed by a machine to be installed?	open	2024-12-28 19:21:57.49183	2024-12-28 19:21:57.49183
+3618	797	What values are currently available for <codde>MACHINE_FEATURES</code>?	open	2024-12-28 19:21:57.493649	2024-12-28 19:21:57.493649
+3619	797	At what stage the machine image should be created?	open	2024-12-28 19:21:57.494904	2024-12-28 19:21:57.494904
+3620	797	What tool is used to partition an image?	open	2024-12-28 19:21:57.496094	2024-12-28 19:21:57.496094
+3621	797	Add partitions to an image?	open	2024-12-28 19:21:57.497311	2024-12-28 19:21:57.497311
+3622	797	When do we have to create a distribution?	open	2024-12-28 19:21:57.498487	2024-12-28 19:21:57.498487
+3623	797	What are the use cases of distributions?	open	2024-12-28 19:21:57.499658	2024-12-28 19:21:57.499658
+3624	797	Create a new distribution to replace wayland by frame buffer?	open	2024-12-28 19:21:57.500973	2024-12-28 19:21:57.500973
+3625	797	What variable defines the features used in a distro?	open	2024-12-28 19:21:57.50217	2024-12-28 19:21:57.50217
+3626	797	What distro features are available?	open	2024-12-28 19:21:57.503436	2024-12-28 19:21:57.503436
+3627	797	What are the differences of machine features and distro features?	open	2024-12-28 19:21:57.505166	2024-12-28 19:21:57.505166
+3628	797	What are the parsing order of configuration files in a layer?	open	2024-12-28 19:21:57.506589	2024-12-28 19:21:57.506589
+3629	797	What are the scope of configuration and recipe variables?	open	2024-12-28 19:21:57.507907	2024-12-28 19:21:57.507907
 \.
 
 
@@ -21080,7 +21157,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-28 12:14:27.166331	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-28 19:21:57.507907	1	\N
 \.
 
 
@@ -22326,7 +22403,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 162	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	30
 738	55	open	\N	2024-07-28 09:45:03.195427	2024-07-28 09:45:03.195427	12
 1183	80	open	\N	2024-07-28 09:45:08.243111	2024-07-28 09:45:08.243111	15
-797	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	12
 582	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	39
 1333	88	open	\N	2024-07-28 09:45:09.694204	2024-07-28 09:45:09.694204	7
 1095	75	open	\N	2024-07-28 09:45:07.046276	2024-07-28 09:45:07.046276	13
@@ -22674,6 +22750,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
 795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
 796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
+797	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 19:21:57.509366	12
 \.
 
 
@@ -24959,7 +25036,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9553, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9605, true);
 
 
 --
@@ -24987,7 +25064,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3604, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3629, true);
 
 
 --
