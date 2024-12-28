@@ -1878,6 +1878,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 132	40	*pseudocode in ruby*\nclass SortableArray\n    attr_reader :array	text	txt	2024-07-28 09:56:09.360444	4
 133	40	    def initialize(array)\n        @array = array\n    end	text	txt	2024-07-28 09:56:09.381693	5
 134	40	    def partition!(left_pointer, right_pointer)\n        pivot_index = right_pointer\n        pivot = @array[pivot_index]\n        right_pointer -= 1	text	txt	2024-07-28 09:56:09.402757	6
+9532	3597	bitbake-layers show-layers	code	sh	2024-12-28 12:14:27.150905	1
 135	40	        while true\n            while @array[left_pointer] < pivot do\n                left_pointer += 1\n            end	text	txt	2024-07-28 09:56:09.422903	7
 136	40	            while @array[right_pointer] > pivot do\n                right_pointer -= 1\n            end	text	txt	2024-07-28 09:56:09.444799	8
 137	40	            if left_pointer >= right_pointer\n                break	text	txt	2024-07-28 09:56:09.466192	9
@@ -11015,6 +11016,27 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9529	3595	build/conf/local.conf	text	path	2024-12-26 10:13:56.270291	1
 9530	3595	IMAGE_FEATURES += "debug-pkgs tools-debug"	code	bb	2024-12-26 10:13:56.270291	2
 9531	3596	gdb may not be usable on some targets because of its memory and disk consumption due to loading debugging symbols. In that case, `gdbserver` package coming within `tools-debug` provides remote debugging.	text	txt	2024-12-26 10:13:56.27137	1
+9533	3598	1. The name usually starts with the `meta`\n2. To add a layer in our project that is appended to the `BBPATH` variable\n3. The layer priority determines the order of inclusion, so the `.bbappend` files within the highest priority layers are appended first, followed by the others	text	txt	2024-12-28 12:14:27.155569	1
+9534	3598	Taking Poky as an example, it has three central individual layers:	text	txt	2024-12-28 12:14:27.155569	2
+9535	3598	1. `meta-yocto-bsp` layer containing machine configuration files and recipes to configure packages for the machines\n2. `meta-poky` layer containing a distribution configuration used in the Yocto Project by default and can be used as a starting point when designing a new distribution\n3. `meta layer` containing the recipes, classes, and the QEMU machine configuration files	text	txt	2024-12-28 12:14:27.155569	3
+9536	3599	1. BSP layer defines a machine\n2. Distribution layer describes a distribution system\n3. Software layer includes only applications or configuration files for applications and can be used on any architecture	text	txt	2024-12-28 12:14:27.157596	1
+9537	3600	The most maintainable solution is to create a distribution layer to place changes into the distribution definition file.	text	txt	2024-12-28 12:14:27.159672	1
+9538	3600	We should not rely on `build/conf/local.conf` to set package versions, providers, and the system features for products but use it instead just as a shortcut for testing purposes during development.	text	txt	2024-12-28 12:14:27.159672	2
+9539	3601	Inside a layer directory there are two files, `<layer>/COPYING` and `<layer>/README`.	text	txt	2024-12-28 12:14:27.16181	1
+9540	3601	The `<layer>/classes` folder should hold the classes specific to that layer. It is an optional directory.	text	txt	2024-12-28 12:14:27.16181	2
+9541	3601	The `<layer>/conf` folder is mandatory and should provide the configuration files. The layer configuration file, <layer>/conf/layer.conf, is the file with the layer definition.	text	txt	2024-12-28 12:14:27.16181	3
+9542	3601	The `<layer>/recipe-*` directories.	text	txt	2024-12-28 12:14:27.16181	4
+9543	3601	Specific to the layer type, there might be a `<layer>/conf/machine` directory inside a BSP layer, or a `<layer>/conf/distro` directory inside a distribution layer.	text	txt	2024-12-28 12:14:27.16181	5
+9544	3602	We first need to fetch the layer’s source code:	text	txt	2024-12-28 12:14:27.163585	1
+9545	3602	git clone https://github.com/openembedded/meta-openembedded --branch scarthgap	code	sh	2024-12-28 12:14:27.163585	2
+9546	3602	We can modify the `build/conf/bblayer.conf` file to add the layer location, using its absolute path:	text	txt	2024-12-28 12:14:27.163585	3
+9547	3602	BBLAYERS += "/opt/poky/meta-openembedded/meta-oe"	code	bb	2024-12-28 12:14:27.163585	4
+9548	3602	Alternatively, we can use the `bitbake-layers` tool to perform the inclusion for us:	text	txt	2024-12-28 12:14:27.163585	5
+9549	3602	bitbake-layers add-layer /opt/poky/meta-openembedded/meta-oe	code	sh	2024-12-28 12:14:27.163585	6
+9550	3603	To make all the available layers easier to access, the OpenEmbedded community has developed an index, available at http://layers.openembedded.org.	text	txt	2024-12-28 12:14:27.165122	1
+9551	3603	The `bitbake-layers` tool supports the use of the OpenEmbedded Layer Index.	text	txt	2024-12-28 12:14:27.165122	2
+9552	3604	For example, to add the `meta-oe` layer:	text	txt	2024-12-28 12:14:27.166331	1
+9553	3604	bitbake-layers layerindex-fetch meta-oe	code	sh	2024-12-28 12:14:27.166331	2
 \.
 
 
@@ -14763,6 +14785,14 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3594	795	Run a development shell over the kernel image?	open	2024-12-26 10:13:56.268498	2024-12-26 10:13:56.268498
 3595	795	Install debugging packages containing debug symbols in an image?	open	2024-12-26 10:13:56.270291	2024-12-26 10:13:56.270291
 3596	795	Why remote debugging is usually a better option than debugging on target device?	open	2024-12-26 10:13:56.27137	2024-12-26 10:13:56.27137
+3597	796	List all layers?	open	2024-12-28 12:14:27.150905	2024-12-28 12:14:27.150905
+3598	796	What are the essential properties of a layer?	open	2024-12-28 12:14:27.155569	2024-12-28 12:14:27.155569
+3599	796	What kinds of layers exist?	open	2024-12-28 12:14:27.157596	2024-12-28 12:14:27.157596
+3600	796	What is the common way to deal with permanent chances that need to be applied as special requirements?	open	2024-12-28 12:14:27.159672	2024-12-28 12:14:27.159672
+3601	796	What are the entries of a layer?	open	2024-12-28 12:14:27.16181	2024-12-28 12:14:27.16181
+3602	796	Add an existing meta layer?	open	2024-12-28 12:14:27.163585	2024-12-28 12:14:27.163585
+3603	796	Check for the availability of a layer in the community?	open	2024-12-28 12:14:27.165122	2024-12-28 12:14:27.165122
+3604	796	Add an existing meta layer from OpenEmbedded Layer Index?	open	2024-12-28 12:14:27.166331	2024-12-28 12:14:27.166331
 \.
 
 
@@ -21050,7 +21080,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-26 10:13:56.27137	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-28 12:14:27.166331	1	\N
 \.
 
 
@@ -21497,7 +21527,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1165	79	open	\N	2024-07-28 09:45:07.799258	2024-07-28 09:45:07.799258	18
 1077	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	31
 456	42	open	\N	2024-07-28 09:45:00.186006	2024-07-28 09:45:00.186006	20
-796	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	11
 1281	85	writing	\N	2024-07-28 09:45:09.104434	2024-07-28 09:45:09.104434	1
 1247	82	open	\N	2024-07-28 09:45:08.59921	2024-07-28 09:45:08.59921	20
 531	46	open	\N	2024-07-28 09:45:01.080459	2024-07-28 09:45:01.080459	4
@@ -22644,6 +22673,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 793	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-24 11:02:23.815104	8
 794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
 795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
+796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
 \.
 
 
@@ -24929,7 +24959,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9531, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9553, true);
 
 
 --
@@ -24957,7 +24987,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3596, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3604, true);
 
 
 --
