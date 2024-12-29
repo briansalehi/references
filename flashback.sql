@@ -10839,6 +10839,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9352	3515	The support for package formats is provided by `package_rpm`, `package_deb`, `package_ipk` classes:	text	txt	2024-12-23 17:32:55.478001	1
 9353	3515	build/conf/local.conf	text	path	2024-12-23 17:32:55.478001	2
 9354	3515	PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"	code	bb	2024-12-23 17:32:55.478001	3
+9606	3630	We must create a `.bbappend` file to extend or change a preexisting recipe.	text	txt	2024-12-29 13:02:11.352824	1
 9355	3515	Poky defaults to the RPM package format with `dnf` package manager. OpenEmbedded Core detauls to the IPK with `opkg` package manager.	text	txt	2024-12-23 17:32:55.478001	4
 9356	3516	- `preinst`: stops running services for installation or upgrade\n- `postinst`: completes required configurations after package unpacking\n- `prerm`: stops daemons before removing files associated with the package\n- `postrm`: commonly modifies links or other files created by the package	text	txt	2024-12-23 17:32:55.480366	1
 9357	3516	The post package installation scripts run during the root filesystem creation.	text	txt	2024-12-23 17:32:55.480366	2
@@ -11089,6 +11090,48 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9603	3628	- `build/conf/local.conf`\n- `<layer>/conf/machines/<machine>.conf`\n- `<layer>/conf/distro/<distro>.conf`	text	txt	2024-12-28 19:21:57.506589	1
 9604	3629	Variables defined in configuration files are global to every recipe, also referred to as configuration metadata.	text	txt	2024-12-28 19:21:57.507907	1
 9605	3629	Variables defined within recipe files have recipe visibility scope that is local to the specific recipe only during the execution of its tasks.	text	txt	2024-12-28 19:21:57.507907	2
+9607	3631	Suppose the original recipe is `<original-layer>/recipes-core/app/app_1.2.3.bb`. We can use `%` in the name as a wildcard character to allow for matching recipe names.	text	txt	2024-12-29 13:02:11.369492	1
+9608	3631	`app_1.2.3.bbappend` applies changes to the exact version `1.2.3`.	text	txt	2024-12-29 13:02:11.369492	2
+9609	3631	`app_1.2.%.bbappend` applies changes to the same major and minor versions `1.2.z`.	text	txt	2024-12-29 13:02:11.369492	3
+9610	3631	`app_1.%.bbappend` applies changes to the same major versions `1.y.z`.	text	txt	2024-12-29 13:02:11.369492	4
+9611	3631	`app_%.bbappend` applies changes to any version `x.y.z`.	text	txt	2024-12-29 13:02:11.369492	5
+9612	3632	All of them are joined following the layer's priority order.	text	txt	2024-12-29 13:02:11.371397	1
+9613	3632	The `.bbappend` files can be seen as a text appended at the end of the original recipe.	text	txt	2024-12-29 13:02:11.371397	2
+9614	3633	The `:append` and `:prepend` operators can extend a task:	text	txt	2024-12-29 13:02:11.372957	1
+9615	3633	do_install:append() {\n    # command\n}	code	bb	2024-12-29 13:02:11.372957	2
+9616	3634	Suppose an application is autotools-based and we need to disable `another-feature` and enable `my-feature` instead.	text	txt	2024-12-29 13:02:11.374976	1
+9617	3634	EXTRA_OECONF += "--enable-my-feature --disable-another-feature"	code	bb	2024-12-29 13:02:11.374976	2
+9618	3634	The same strategy can be applied when we need to make this extension conditional:	text	txt	2024-12-29 13:02:11.374976	3
+9619	3634	EXTRA_OECONF:append:arm = "--enable-my-feature --disable-another-feature"	code	bb	2024-12-29 13:02:11.374976	4
+9620	3635	|Build System|Variable|\n|-|-|\n|Autotools|`EXTRA_OECONF`|\n|Cargo|`EXTRA_OECARGO`|\n|CMake|`EXTRA_OECMAKE`|\n|Make|`EXTRA_OEMAKE`|\n|Meson|`EXTRA_OEMESON`|\n|NPM|`EXTRA_OENPM`|\n|SCons|`EXTRA_OESCONS`|\n|WAF|`EXTRA_OEWAF`|	text	txt	2024-12-29 13:02:11.376633	1
+9621	3636	When we need to apply a patch to an existing package, we should use `FILESEXTRAPATHS`, which includes new directories in the searching algorithm:	text	txt	2024-12-29 13:02:11.378725	1
+9622	3636	FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-${PV}:"\nSRC_URI += "file://mypatch.path"	code	bb	2024-12-29 13:02:11.378725	2
+9623	3636	Bitbake assumes that every file with a `.patch` or `.diff` extension is a patch and applies them accordingly.	text	txt	2024-12-29 13:02:11.378725	3
+9624	3637	We should use `FILESEXTRAPATHS`:	text	txt	2024-12-29 13:02:11.38003	1
+9625	3637	FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-${PV}:"\nSRC_URI += "file://newconfig.conf"\n\ndo_install:append() {\n    install -D -m 644 ${WORKDIR}/newconfig.conf ${D}/${sysconfdir}/newconfig.conf\n}	code	bb	2024-12-29 13:02:11.38003	2
+9626	3638	|Variable|Default Expanded Value|\n|-|-|\n|`base_bindir`|`/bin`|\n|`base_sbindir`|`/sbin`|\n|`sysconfdif`|`/etc`|\n|`localstatedir`|`/var`|\n|`datadir`|`/usr/share`|\n|`bindir`|`/usr/bin`|\n|`sbindir`|`/usr/sbin`|\n|`libdir`|`/usr/lib`, `/usr/lib64`|\n|`libexecdir`|`/usr/libexec`|\n|`includedir`|`/usr/include`|	text	txt	2024-12-29 13:02:11.381166	1
+9627	3639	When a file is included in `SRC_URI` variable, bitbake searches for the `FILESPATH` and `FILESEXTRAPATHS` variables. The default settings is to look in:	text	txt	2024-12-29 13:02:11.382625	1
+9628	3639	- `<recipe>-<version>/`\n- `<recipe>/`\n- `files/`	text	txt	2024-12-29 13:02:11.382625	2
+9629	3639	It also checks `OVERRIDES` for a specific file to be overriden in each directory. So for example, we have `foo_1.0.bb` recipe and the `OVERRIDES = "<board>:<arch>"` variable for the file will be searched in the following directories:	text	txt	2024-12-29 13:02:11.382625	3
+9630	3639	- `foo-1.0/<board>/`\n- `foo-1.0/<arch>/`\n- `foo-1.0/`\n- `foo/<board>/`\n- `foo/<arch>/`\n- `foo/`\n- `files/<board>/`\n- `files/<arch>/`\n- `files/`	text	txt	2024-12-29 13:02:11.382625	4
+9631	3640	`PACKAGECONFIG` is a mechanism to simplify feature set customization for recipes. It provides a way to enable and disable the recipe features.	text	txt	2024-12-29 13:02:11.383575	1
+9632	3641	1. extra arguments if the feature is enabled\n2. extra arguments if the feature is disabled\n3. additional build dependencies to add to `DEPENDS` if the feature is enabled\n4. additional runtime dependencies to add to `RDEPENDS` if the feature is enabled\n5. additional runtime recommendations to add to `RRECOMMENDS` if the feature is enabled\n6. any conflicting `PACKAGECONFIG` settings for this feature	text	txt	2024-12-29 13:02:11.384712	1
+9633	3641	PACKAGECONFIG ??= "feature1 feature2"\n\nPACKAGECONFIG[feature1] = " \\\n    --enable-feature1, \\\n    --disable-feature1, \\\n    build-deps-for-feature1, \\\n    runtime-deps for-feature1, \\\n    runtime-recommends-for-feature1, \\\n    packageconfig-conflicts-for-feature1"\n\nPACKAGECONFIG[feature2] = "\\\n    --enable-feature2, \\\n    --disable-feature2, \\\n    build-deps-for-feature2, \\\n    runtime-deps-for-feature2, \\\n    runtime-recommends-for-feature2, \\\n    packageconfig-conflicts-for-feature2"	code	bb	2024-12-29 13:02:11.384712	2
+9634	3642	We can create `.bbappend` file that expands the `PACKAGECONFIG` variable's default value to enable `feature2`:	text	txt	2024-12-29 13:02:11.385847	1
+9635	3642	PACKAGECONFIG += "feature2"	code	bb	2024-12-29 13:02:11.385847	2
+9636	3642	To add some features to the `build/conf/local.conf`, we can use:	text	txt	2024-12-29 13:02:11.385847	3
+9637	3642	PACKAGECONFIG:pn-<recipe>:append = " feature2"	code	bb	2024-12-29 13:02:11.385847	4
+9638	3643	The Yocto Project provides a specialized class to handle the configuration of the Kconfig-based projects. For example, when configuring `linux-yocto`, we can use `<layer>/recipes-kernel/linux/linux-yocto_%.bbappend` as follows:	text	txt	2024-12-29 13:02:11.386969	1
+9639	3643	FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"\nSRC_URI += "file://enable-can.cfg"	code	bb	2024-12-29 13:02:11.386969	2
+9640	3643	Every configuration fragment must have `.cfg` extension.	text	txt	2024-12-29 13:02:11.386969	3
+9641	3643	The content of `<layer>/recipes-kernel/linux/linux-yocto/enable-can.cfg` is:	text	txt	2024-12-29 13:02:11.386969	4
+9642	3643	CONFIG_CAN=y	code	cfg	2024-12-29 13:02:11.386969	5
+9643	3644	bitbake virtual/kernel -c menuconfig	code	sh	2024-12-29 13:02:11.387899	1
+9644	3645	bitbake virtual/kernel -c menuconfig	code	sh	2024-12-29 13:02:11.389147	1
+9645	3645	Enable CAN as an example.	text	txt	2024-12-29 13:02:11.389147	2
+9646	3645	bitbake virtual/kernel -c diffconfig	code	sh	2024-12-29 13:02:11.389147	3
+9647	3645	The config fragment file is created under the `<build>/tmp/work` directory. We should copy this fragment file to the layer and use it in a `.bbappend` file in order to get it applied.	text	txt	2024-12-29 13:02:11.389147	4
+9648	3646	bitbake virtual/kernel -c savedefconfig	code	sh	2024-12-29 13:02:11.390364	1
 \.
 
 
@@ -14870,6 +14913,23 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3627	797	What are the differences of machine features and distro features?	open	2024-12-28 19:21:57.505166	2024-12-28 19:21:57.505166
 3628	797	What are the parsing order of configuration files in a layer?	open	2024-12-28 19:21:57.506589	2024-12-28 19:21:57.506589
 3629	797	What are the scope of configuration and recipe variables?	open	2024-12-28 19:21:57.507907	2024-12-28 19:21:57.507907
+3630	798	What is the best practice to change a preexisting recipe?	open	2024-12-29 13:02:11.352824	2024-12-29 13:02:11.352824
+3631	798	Change a preexisting recipe?	open	2024-12-29 13:02:11.369492	2024-12-29 13:02:11.369492
+3632	798	What is the order of applying changes when more than one <code>.bbappend</code> exist?	open	2024-12-29 13:02:11.371397	2024-12-29 13:02:11.371397
+3633	798	Extend a task?	open	2024-12-29 13:02:11.372957	2024-12-29 13:02:11.372957
+3634	798	Add extra options to a recipe based tool?	open	2024-12-29 13:02:11.374976	2024-12-29 13:02:11.374976
+3635	798	What configuration variables exist for build systems?	open	2024-12-29 13:02:11.376633	2024-12-29 13:02:11.376633
+3636	798	What variable is used to make patch files visible?	open	2024-12-29 13:02:11.378725	2024-12-29 13:02:11.378725
+3637	798	What variable is used to add additional configuration files to an existing package?	open	2024-12-29 13:02:11.38003	2024-12-29 13:02:11.38003
+3638	798	What are the commonly used variables to represent paths?	open	2024-12-29 13:02:11.381166	2024-12-29 13:02:11.381166
+3639	798	Where does bitbake find recipe files?	open	2024-12-29 13:02:11.382625	2024-12-29 13:02:11.382625
+3640	798	What variable is used to configure features of a recipe?	open	2024-12-29 13:02:11.383575	2024-12-29 13:02:11.383575
+3641	798	What values are placed in the placeholders of <code>PACKAGECONFIG</code>?	open	2024-12-29 13:02:11.384712	2024-12-29 13:02:11.384712
+3642	798	Add a feature to a recipe?	open	2024-12-29 13:02:11.385847	2024-12-29 13:02:11.385847
+3643	798	What are the prerequisites of configuring a project based on Kconfig?	open	2024-12-29 13:02:11.386969	2024-12-29 13:02:11.386969
+3644	798	Configure the kernel using menuconfig?	open	2024-12-29 13:02:11.387899	2024-12-29 13:02:11.387899
+3645	798	Create a configuration fragment from the kernel?	open	2024-12-29 13:02:11.389147	2024-12-29 13:02:11.389147
+3646	798	Save the complete configuration of the kernel?	open	2024-12-29 13:02:11.390364	2024-12-29 13:02:11.390364
 \.
 
 
@@ -21157,7 +21217,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-28 19:21:57.507907	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-29 13:02:11.390364	1	\N
 \.
 
 
@@ -22435,7 +22495,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 124	22	writing	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	12
 615	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	8
 452	42	open	\N	2024-07-28 09:45:00.186006	2024-07-28 09:45:00.186006	16
-798	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	13
 830	61	open	\N	2024-07-28 09:45:04.229409	2024-07-28 09:45:04.229409	15
 200	25	open	\N	2024-07-28 09:44:57.364303	2024-07-28 09:44:57.364303	14
 988	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	11
@@ -22751,6 +22810,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
 796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
 797	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 19:21:57.509366	12
+798	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-29 13:02:11.391609	13
 \.
 
 
@@ -25036,7 +25096,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9605, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9648, true);
 
 
 --
@@ -25064,7 +25124,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3629, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3646, true);
 
 
 --
