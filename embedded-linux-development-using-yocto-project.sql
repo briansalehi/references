@@ -55,28 +55,120 @@ call create_note_with_name('Embedded Linux Development Using Yocto Project', 14,
 
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 14);
 
+call add_block('text', 'txt', '|Manufacturer|Layer|
+|-|-|
+|Allwinner|meta-allwinner|
+|AMD|meta-amd|
+|Intel|meta-intel|
+|NXP|meta-freescale, meta-freescale-3rdparty|
+|Raspberry Pi|meta-raspberrypi|
+|RISC-V|meta-riscv|
+|Texas Instruments|meta-ti|');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'What are the widely used BSP layers?');
+
+call add_block('code', 'sh' , '');
+call add_block('code', 'sh' , '');
+call add_block('text', 'txt', '');
+call add_block('code', 'bb' , '');
+call add_block('code', 'sh' , '');
+call add_block('text', 'txt', '');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'Bake an image for BeagleBone Black?');
+
+git clone git://git.yoctoproject.org/poky -b scarthgap
+
+source oe-init-build-env beaglebone
+
+The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
+
+MACHINE=beaglebone-yocto bitbake core-image-full-cmdline
+
+After the build process is over, the image will be available inside the build/tmp/deploy/images/beaglebone-yocto/ directory. The file we want to use is core-image-full-cmdline-beaglebone-yocto.wic.
+
+sudo dd if=core-image-full-cmdline-beaglebone-yocto.wic of=/dev/<media>
+After copying the content to the SD card, the machine should boot nicely.
+
+
+
 call add_block('text', 'txt', '');
 call add_block('code', 'sh' , '');
 call add_block('code', 'bb' , '');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, '');
 
+Bake an image for Raspberry Pi 4?
+
+git clone git://git.yoctoproject.org/poky -b scarthgap
+
+source oe-init-build-env rpi4
+
+bitbake-layers layerindex-fetch meta-raspberrypi
+
+The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
+
+MACHINE=raspberrypi4 bitbake core-image-full-cmdline
+
+After the build process is over, the image will be available inside the build/tmp/deploy/images/raspberrypi4/ directory. The file we want to use is core-image-full-cmdline-raspberrypi4.wic.bz2.
+
+bzcat core-image-full-cmdline-raspberrypi4.wic.bz2 | sudo dd of=/dev/<media>
+
+After copying the content to the SD card, the machine should boot nicely.
+
+call add_block('text', 'txt', '');
+call add_block('code', 'sh' , '');
+call add_block('code', 'bb' , '');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, '');
+
+Bake an image for VisionFive2?
+
+To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.
+
+git clone git://git.yoctoproject.org/poky -b scarthgap
+
+source oe-init-build-env visionfive
+
+bitbake-layers layerindex-fetch meta-riscv
+
+The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
+
+MACHINE=visionfive bitbake core-image-full-cmdline
+
+After the build process is over, the image will be available inside the build/tmp/deploy/images/visionfive/ directory. The file we want to use is core-image-full-cmdline-visionfive.wic.gz.
+
+zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>
+
+VisionFive doesn’t have a default boot target and requires manual intervention to boot.
+
+Inside the U-Boot prompt enter the following commands using a serial console:
+
+setenv bootcmd “run distro_bootcmd”
+
+saveenv
+
+boot
+
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 15);
 
+call add_block('text', 'txt', 'first, we need to build the core-image-weston image. Next, we can run the validation as follows:');
+call add_block('code', 'sh' , 'runqemu gl sdk core-image-weston');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Run an image on qemu?');
 
---call add_block('text', 'txt', '');
---call add_block('code', 'sh' , '');
---call add_block('code', 'bb' , '');
---call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, '');
+call add_block('text', 'txt', 'first, we need to build the core-image-full-cmdline image and run QEMU with the following command line:');
+call add_block('code', 'sh' , 'runqemu qemux86-64 qemuparams="-m 128" core-image-full-cmdline');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Use runqemu to validate memory constraints?');
 
---call set_section_as_complete('Embedded Linux Development Using Yocto Project', 16);
+call add_block('text', 'txt', 'The integration or validation testing support uses the testimage class to execute the images inside the target.');
+call add_block('text', 'txt', 'First, we enabled the testimage support by adding IMAGE_CLASSES += "testimage" in build/conf/local.conf and made sure to build the core-image-weston image.');
+call add_block('text', 'txt', 'Then, we must build the core-image-weston image. We are ready now to start the execution of testimage with the following command:');
+call add_block('code', 'sh' , 'bitbake -c testimage core-image-weston');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Use runqemu to help with image regression tests?');
 
+call set_section_as_complete('Embedded Linux Development Using Yocto Project', 16);
 
---call add_block('text', 'txt', '');
---call add_block('code', 'sh' , '');
---call add_block('code', 'bb' , '');
---call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, '');
+call add_block('text', 'txt', '');
+call add_block('code', 'sh' , '');
+call add_block('code', 'bb' , '');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, '');
 
---call set_section_as_complete('Embedded Linux Development Using Yocto Project', 17);
+call set_section_as_complete('Embedded Linux Development Using Yocto Project', 17);
 
 drop procedure add_block;
 drop table temp_blocks;
