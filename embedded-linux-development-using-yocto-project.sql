@@ -66,107 +66,71 @@ call add_block('text', 'txt', '|Manufacturer|Layer|
 |Texas Instruments|meta-ti|');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'What are the widely used BSP layers?');
 
-call add_block('code', 'sh' , '');
-call add_block('code', 'sh' , '');
-call add_block('text', 'txt', '');
-call add_block('code', 'bb' , '');
-call add_block('code', 'sh' , '');
-call add_block('text', 'txt', '');
+call add_block('code', 'sh' , 'git clone git://git.yoctoproject.org/poky -b scarthgap');
+call add_block('code', 'sh' , 'source oe-init-build-env beaglebone');
+call add_block('text', 'txt', 'The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.');
+call add_block('code', 'bb' , 'MACHINE=beaglebone-yocto bitbake core-image-full-cmdline');
+call add_block('text', 'txt', 'After the build process is over, the image will be available inside the `build/tmp/deploy/images/beaglebone-yocto/` directory. The file we want to use is `core-image-full-cmdline-beaglebone-yocto.wic.`');
+call add_block('code', 'sh' , 'sudo dd if=core-image-full-cmdline-beaglebone-yocto.wic of=/dev/<media>');
+call add_block('text', 'txt', 'After copying the content to the SD card, the machine should boot nicely.');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'Bake an image for BeagleBone Black?');
 
-git clone git://git.yoctoproject.org/poky -b scarthgap
+call add_block('code', 'sh' , 'git clone git://git.yoctoproject.org/poky -b scarthgap');
+call add_block('code', 'sh' , 'source oe-init-build-env rpi4');
+call add_block('code', 'sh' , 'bitbake-layers layerindex-fetch meta-raspberrypi');
+call add_block('text', 'txt', 'The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.');
+call add_block('code', 'sh' , 'MACHINE=raspberrypi4 bitbake core-image-full-cmdline');
+call add_block('text', 'txt', 'After the build process is over, the image will be available inside the `build/tmp/deploy/images/raspberrypi4/` directory. The file we want to use is `core-image-full-cmdline-raspberrypi4.wic.bz2.`');
+call add_block('code', 'sh' , 'bzcat core-image-full-cmdline-raspberrypi4.wic.bz2 | sudo dd of=/dev/<media>');
+call add_block('text', 'txt', 'After copying the content to the SD card, the machine should boot nicely.');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'Bake an image for Raspberry Pi 4?');
 
-source oe-init-build-env beaglebone
-
-The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
-
-MACHINE=beaglebone-yocto bitbake core-image-full-cmdline
-
-After the build process is over, the image will be available inside the build/tmp/deploy/images/beaglebone-yocto/ directory. The file we want to use is core-image-full-cmdline-beaglebone-yocto.wic.
-
-sudo dd if=core-image-full-cmdline-beaglebone-yocto.wic of=/dev/<media>
-After copying the content to the SD card, the machine should boot nicely.
-
-
-
-call add_block('text', 'txt', '');
-call add_block('code', 'sh' , '');
-call add_block('code', 'bb' , '');
-call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, '');
-
-Bake an image for Raspberry Pi 4?
-
-git clone git://git.yoctoproject.org/poky -b scarthgap
-
-source oe-init-build-env rpi4
-
-bitbake-layers layerindex-fetch meta-raspberrypi
-
-The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
-
-MACHINE=raspberrypi4 bitbake core-image-full-cmdline
-
-After the build process is over, the image will be available inside the build/tmp/deploy/images/raspberrypi4/ directory. The file we want to use is core-image-full-cmdline-raspberrypi4.wic.bz2.
-
-bzcat core-image-full-cmdline-raspberrypi4.wic.bz2 | sudo dd of=/dev/<media>
-
-After copying the content to the SD card, the machine should boot nicely.
-
-call add_block('text', 'txt', '');
-call add_block('code', 'sh' , '');
-call add_block('code', 'bb' , '');
-call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, '');
-
-Bake an image for VisionFive2?
-
-To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.
-
-git clone git://git.yoctoproject.org/poky -b scarthgap
-
-source oe-init-build-env visionfive
-
-bitbake-layers layerindex-fetch meta-riscv
-
-The MACHINE variable can be changed depending on the board we want to use or set in build/conf/local.conf.
-
-MACHINE=visionfive bitbake core-image-full-cmdline
-
-After the build process is over, the image will be available inside the build/tmp/deploy/images/visionfive/ directory. The file we want to use is core-image-full-cmdline-visionfive.wic.gz.
-
-zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>
-
-VisionFive doesn’t have a default boot target and requires manual intervention to boot.
-
-Inside the U-Boot prompt enter the following commands using a serial console:
-
-setenv bootcmd “run distro_bootcmd”
-
+call add_block('text', 'txt', 'To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.');
+call add_block('code', 'sh' , 'git clone git://git.yoctoproject.org/poky -b scarthgap');
+call add_block('code', 'sh' , 'source oe-init-build-env visionfive');
+call add_block('code', 'sh' , 'bitbake-layers layerindex-fetch meta-riscv');
+call add_block('text', 'txt', 'The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.');
+call add_block('code', 'sh' , 'MACHINE=visionfive bitbake core-image-full-cmdline');
+call add_block('text', 'txt', 'After the build process is over, the image will be available inside the `build/tmp/deploy/images/visionfive/` directory. The file we want to use is `core-image-full-cmdline-visionfive.wic.gz`.');
+call add_block('code', 'sh' , 'zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>');
+call add_block('text', 'txt', 'VisionFive doesn’t have a default boot target and requires manual intervention to boot.');
+call add_block('text', 'txt', 'Inside the U-Boot prompt enter the following commands using a serial console:');
+call add_block('code', 'sh' , 'setenv bootcmd “run distro_bootcmd”
 saveenv
-
-boot
+boot');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 15, 'Bake an image for VisionFive2?');
 
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 15);
 
-call add_block('text', 'txt', 'first, we need to build the core-image-weston image. Next, we can run the validation as follows:');
+call add_block('text', 'txt', 'first, we need to build the `core-image-weston` image. Next, we can run the validation as follows:');
 call add_block('code', 'sh' , 'runqemu gl sdk core-image-weston');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Run an image on qemu?');
 
-call add_block('text', 'txt', 'first, we need to build the core-image-full-cmdline image and run QEMU with the following command line:');
+call add_block('text', 'txt', 'first, we need to build the `core-image-full-cmdline` image and run QEMU with the following command line:');
 call add_block('code', 'sh' , 'runqemu qemux86-64 qemuparams="-m 128" core-image-full-cmdline');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Use runqemu to validate memory constraints?');
 
 call add_block('text', 'txt', 'The integration or validation testing support uses the testimage class to execute the images inside the target.');
-call add_block('text', 'txt', 'First, we enabled the testimage support by adding IMAGE_CLASSES += "testimage" in build/conf/local.conf and made sure to build the core-image-weston image.');
-call add_block('text', 'txt', 'Then, we must build the core-image-weston image. We are ready now to start the execution of testimage with the following command:');
+call add_block('text', 'txt', 'First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.');
+call add_block('text', 'txt', 'Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:');
 call add_block('code', 'sh' , 'bitbake -c testimage core-image-weston');
 call create_note_with_name('Embedded Linux Development Using Yocto Project', 16, 'Use runqemu to help with image regression tests?');
 
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 16);
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh' , '');
-call add_block('code', 'bb' , '');
-call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, '');
+call add_block('text', 'txt', 'The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, 'Enable build information generation and layer revisioning?');
+
+call add_block('text', 'txt', '- `recipes-backport`: Backports of recipes coming from new Yocto Project releases
+- `recipes-staging`: New recipes or bbappend files adding missing package configurations or bug fixes');
+call add_block('text', 'txt', 'New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, 'Where are the backports of poky when new version gets released?');
+
+call add_block('text', 'txt', 'When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, 'Why do we need to create a custom distribution?');
+
+call add_block('text', 'txt', 'A typical starting point is copying the `core-image-base.bb` file to our custom layer as `myproduct-image.bb` and extending it, adding what we need for the product’s image. In addition, we create an image called `myproduct-image-dev.bb` for use during development and make sure it requires `myproduct-image.bb` along with the artifacts used only for development, avoiding code duplication. This way, we have two images for production and development, but they share the same core features and packages.');
+call create_note_with_name('Embedded Linux Development Using Yocto Project', 17, 'What is the best way to create a minimal image?');
 
 call set_section_as_complete('Embedded Linux Development Using Yocto Project', 17);
 
