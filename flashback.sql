@@ -234,32 +234,73 @@ $$;
 ALTER FUNCTION flashback.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) OWNER TO flashback;
 
 --
--- Name: export_section_data(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: export_resource(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.export_section_data(section_index integer) RETURNS TABLE(note text)
+CREATE FUNCTION flashback.export_resource(resource_index integer) RETURNS TABLE(section_index integer, note_index bigint, note text)
     LANGUAGE plpgsql
     AS $$
 begin
-    --copy(
     return query
-        select E'**' || n.heading || E'**\n\n' || string_agg(
-                case when b.type = 'code' then
-                    E'```' || b.language || E'\n' || content || E'\n```'
-                else
-                    content
-                end, E'\n\n' order by b.position
-            ) || E'\n\n---\n\n' as content
+        select s.number, e.note_index, e.note
+        from flashback.resources r
+        join flashback.sections s on s.resource_id = r.id
+        join lateral export_section(s.id) e on true
+        where r.id = resource_index
+        order by e.note_index, s.number;
+end; $$;
+
+
+ALTER FUNCTION flashback.export_resource(resource_index integer) OWNER TO flashback;
+
+--
+-- Name: export_resource_by_name(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.export_resource_by_name(resource_name character varying) RETURNS TABLE(section_index integer, note_index bigint, note text)
+    LANGUAGE plpgsql
+    AS $$
+declare resource_index integer;
+begin
+    select id into resource_index from resources where name = resource_name;
+
+    return query
+        select s.number, e.note_index, e.note
+        from flashback.resources r
+        join flashback.sections s on s.resource_id = r.id
+        join lateral export_section(s.id) e on true
+        where r.id = resource_index
+        order by e.note_index, s.number;
+end; $$;
+
+
+ALTER FUNCTION flashback.export_resource_by_name(resource_name character varying) OWNER TO flashback;
+
+--
+-- Name: export_section(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.export_section(section_index integer) RETURNS TABLE(note_index bigint, note text)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+        ( select 0 as note_index, E'## ' || p.pattern || E' ' || s.number || E'\n' as content
+        from flashback.sections s
+        join flashback.resources r on r.id = s.resource_id
+        join flashback.section_name_patterns p on p.id = r.section_pattern_id
+        where s.id = section_index )
+        union all
+        ( select row_number() over (order by n.creation), E'### ' || n.heading || E'\n\n' || string_agg( case when b.type = 'code' then E'```' || b.language || E'\n' || content || E'\n```' else content end, E'\n\n' order by b.position) || E'\n\n---\n' as content
         from flashback.notes n
         join flashback.note_blocks b on b.note_id = n.id
         where n.section_id = section_index
         group by n.heading, n.creation
-        order by n.creation;
-    --) to '/tmp/cmake-notes.csv' with (format csv, header false);
+        order by n.creation );
 end; $$;
 
 
-ALTER FUNCTION flashback.export_section_data(section_index integer) OWNER TO flashback;
+ALTER FUNCTION flashback.export_section(section_index integer) OWNER TO flashback;
 
 --
 -- Name: get_editing_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
