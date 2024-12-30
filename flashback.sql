@@ -10917,6 +10917,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9388	3532	By default, the PR service is disabled. We can enable it to run locally by adding the `PRSERV_HOST` variable in a global configuration file.	text	txt	2024-12-23 17:32:55.513027	1
 9389	3532	build/conf/local.conf	text	path	2024-12-23 17:32:55.513027	2
 9390	3532	PRSERV_HOST = "localhost:0"	code	bb	2024-12-23 17:32:55.513027	3
+9687	3662	After copying the content to the SD card, the machine should boot nicely.	text	txt	2024-12-30 22:47:32.534765	8
 9391	3532	With multiple computers working against a shared package feed, we must have a single PR service running used by all building systems associated with the package feed. In this case, we start the PR service in the server using `bitbake-prserv` command:	text	txt	2024-12-23 17:32:55.513027	4
 9392	3532	bitbake-prserv --host <ip> --port <port> --start	code	sh	2024-12-23 17:32:55.513027	5
 9393	3532	In addition, we need to update the bitbake configuration file of each build system and assign the PR service address to `PRSERV_HOST` variable.	text	txt	2024-12-23 17:32:55.513027	6
@@ -11173,6 +11174,68 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9646	3645	bitbake virtual/kernel -c diffconfig	code	sh	2024-12-29 13:02:11.389147	3
 9647	3645	The config fragment file is created under the `<build>/tmp/work` directory. We should copy this fragment file to the layer and use it in a `.bbappend` file in order to get it applied.	text	txt	2024-12-29 13:02:11.389147	4
 9648	3646	bitbake virtual/kernel -c savedefconfig	code	sh	2024-12-29 13:02:11.390364	1
+9649	3647	- `LICENSE`: This describes the license under which the package was released.\n- `LIC_FILES_CHKSUM`: This may not seem very useful at first sight. It describes the license file and checksum for a particular package, and we may find much variation in how a project describes its license. The most common license files are stored in `poky/meta/files/common-licenses/`.	text	txt	2024-12-30 22:47:32.503793	1
+9650	3648	Some projects include a file, such as `COPYING` or `LICENSE`, which specifies the license for the source code. Others use a header note in each file or the main file. The `LIC_FILES_CHKSUM` variable has the checksum for the license text of a project; if any letters are changed, the checksum is changed as well. This ensures that any change is noted and consciously accepted by the developer.	text	txt	2024-12-30 22:47:32.513203	1
+9651	3649	BitBake launches a build error and points to the project that had its license changed.	text	txt	2024-12-30 22:47:32.515024	1
+9652	3649	To be able to build anything again, you must change the `LIC_FILE_CHKSUM` value accordingly and update the `LICENSE` field to match the license change.	text	txt	2024-12-30 22:47:32.515024	2
+9653	3650	By default, Poky does not use any recipe with a commercial license restriction. In the recipe file, the `LICENSE_FLAGS` variable is used to identify which license restriction that recipe has. For example, the `gstreamer1.0-plugins-ugly` recipe has:	text	txt	2024-12-30 22:47:32.51675	1
+9654	3650	LICENSE_FLAGS = "commercial"	code	bb	2024-12-30 22:47:32.51675	2
+9655	3650	Which indicates to Poky that this recipe requires the commercial license flag to be explicitly accepted for the recipe to be used. To allow the use of this recipe we can add `LICENSE_FLAGS_ACCEPTED` in our custom distribution, e.g. `<my-layer>/conf/distro/my-distro.conf` or inside `build/conf/local.conf` during the initial development stages.	text	txt	2024-12-30 22:47:32.51675	3
+9656	3651	LICENSE_FLAGS_ACCEPTED = "commercial_gstreamer1.0-plugins-ugly"	code	bb	2024-12-30 22:47:32.518423	1
+9657	3651	By specifying recipe name in the value, we accept only the commercial license flag from `gstreamer1.0-plugins-ugly`. It is good practice to ensure this flag is enabled for a set of recipes that you have permission to use in a commercial setting.	text	txt	2024-12-30 22:47:32.518423	2
+9658	3652	To help us achieve copyleft compliance, Poky generates a license manifest during the image build, located at build/tmp/deploy/licenses/<image_name-machine_name>-<datastamp>/.	text	txt	2024-12-30 22:47:32.520166	1
+9659	3652	The license manifest for each recipe is under `build/tmp/deploy/licenses/<package-name>`.	text	txt	2024-12-30 22:47:32.520166	2
+9660	3653	The most apparent way Poky can help us to provide the source code of every project used in our image is by sharing the `DL_DIR` content. However, this approach has one crucial pitfall – any proprietary source code will be shared within `DL_DIR` if it is shared as is. In addition, this approach will share any source code, including parts not required by copyleft compliance.	text	txt	2024-12-30 22:47:32.521986	1
+9661	3653	Poky must be configured to archive the source code before the final image is created. To have it, we can add the following variables into `build/conf/local.conf`:	text	txt	2024-12-30 22:47:32.521986	2
+9662	3653	INHERIT += "archiver"\nARCHIVER_MODE[src] = "original"	code	bb	2024-12-30 22:47:32.521986	3
+9663	3654	The archiver class copies the source code, patches, and scripts for the filtered license set. The default configuration is to have `COPYLEFT_LICENSE_INCLUDE` set to `"GPL* LGPL* AGPL*"` so the recipes that use source code licensed on those licenses are copied under the `build/tmp/deploy/sources/<architecture>` directories.	text	txt	2024-12-30 22:47:32.523025	1
+9664	3655	The archiver class also supports the `COPYLEFT_LICENSE_EXCLUDE` variable to ensure packages that use source code licensed on some specific licenses never go into the sources directory. By default, it is set to `"CLOSED Proprietary"`.	text	txt	2024-12-30 22:47:32.52397	1
+9665	3656	If we want to include the patched source code, we will only use `ARCHIVER_MODE[src] = "patched";` this way, Poky will wrap the project source code after the `do_patch` task. It includes modifications from recipes or the `.bbappend` file.	text	txt	2024-12-30 22:47:32.525093	1
+9666	3657	To have a reproducible build environment, we can share the configured project, in other words, the project after the `do_configure` task.	text	txt	2024-12-30 22:47:32.526187	1
+9667	3657	ARCHIVER_MODE[src] = "configured"	code	bb	2024-12-30 22:47:32.526187	2
+9668	3658	For all flavors of source code, the default resulting file is a tarball; other options will add `ARCHIVER_MODE[srpm] = "1"` to `build/conf/local.conf`, and the resulting file will be an `SRPM` package.	text	txt	2024-12-30 22:47:32.527087	1
+9669	3659	When providing the source code, the license text is shared inside it. If we want the license text inside our final image, we can add the following to build`/conf/local.conf`:	text	txt	2024-12-30 22:47:32.528095	1
+9670	3659	COPY_LIC_MANIFEST = "1"\nCOPY_LIC_DIRS = "1"	code	bb	2024-12-30 22:47:32.528095	2
+9671	3659	The license files will be placed inside the rootfs, under `/usr/share/common-licenses/`.	text	txt	2024-12-30 22:47:32.528095	3
+9672	3660	|Manufacturer|Layer|\n|-|-|\n|Allwinner|meta-allwinner|\n|AMD|meta-amd|\n|Intel|meta-intel|\n|NXP|meta-freescale, meta-freescale-3rdparty|\n|Raspberry Pi|meta-raspberrypi|\n|RISC-V|meta-riscv|\n|Texas Instruments|meta-ti|	text	txt	2024-12-30 22:47:32.531288	1
+9673	3661	git clone git://git.yoctoproject.org/poky -b scarthgap	code	sh	2024-12-30 22:47:32.53334	1
+9674	3661	source oe-init-build-env beaglebone	code	sh	2024-12-30 22:47:32.53334	2
+9675	3661	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt	2024-12-30 22:47:32.53334	3
+9676	3661	MACHINE=beaglebone-yocto bitbake core-image-full-cmdline	code	bb	2024-12-30 22:47:32.53334	4
+9677	3661	After the build process is over, the image will be available inside the `build/tmp/deploy/images/beaglebone-yocto/` directory. The file we want to use is `core-image-full-cmdline-beaglebone-yocto.wic.`	text	txt	2024-12-30 22:47:32.53334	5
+9678	3661	sudo dd if=core-image-full-cmdline-beaglebone-yocto.wic of=/dev/<media>	code	sh	2024-12-30 22:47:32.53334	6
+9679	3661	After copying the content to the SD card, the machine should boot nicely.	text	txt	2024-12-30 22:47:32.53334	7
+9680	3662	git clone git://git.yoctoproject.org/poky -b scarthgap	code	sh	2024-12-30 22:47:32.534765	1
+9681	3662	source oe-init-build-env rpi4	code	sh	2024-12-30 22:47:32.534765	2
+9682	3662	bitbake-layers layerindex-fetch meta-raspberrypi	code	sh	2024-12-30 22:47:32.534765	3
+9683	3662	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt	2024-12-30 22:47:32.534765	4
+9684	3662	MACHINE=raspberrypi4 bitbake core-image-full-cmdline	code	sh	2024-12-30 22:47:32.534765	5
+9685	3662	After the build process is over, the image will be available inside the `build/tmp/deploy/images/raspberrypi4/` directory. The file we want to use is `core-image-full-cmdline-raspberrypi4.wic.bz2.`	text	txt	2024-12-30 22:47:32.534765	6
+9686	3662	bzcat core-image-full-cmdline-raspberrypi4.wic.bz2 | sudo dd of=/dev/<media>	code	sh	2024-12-30 22:47:32.534765	7
+9688	3663	To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.	text	txt	2024-12-30 22:47:32.536074	1
+9689	3663	git clone git://git.yoctoproject.org/poky -b scarthgap	code	sh	2024-12-30 22:47:32.536074	2
+9690	3663	source oe-init-build-env visionfive	code	sh	2024-12-30 22:47:32.536074	3
+9691	3663	bitbake-layers layerindex-fetch meta-riscv	code	sh	2024-12-30 22:47:32.536074	4
+9692	3663	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt	2024-12-30 22:47:32.536074	5
+9693	3663	MACHINE=visionfive bitbake core-image-full-cmdline	code	sh	2024-12-30 22:47:32.536074	6
+9694	3663	After the build process is over, the image will be available inside the `build/tmp/deploy/images/visionfive/` directory. The file we want to use is `core-image-full-cmdline-visionfive.wic.gz`.	text	txt	2024-12-30 22:47:32.536074	7
+9695	3663	zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>	code	sh	2024-12-30 22:47:32.536074	8
+9696	3663	VisionFive doesn’t have a default boot target and requires manual intervention to boot.	text	txt	2024-12-30 22:47:32.536074	9
+9697	3663	Inside the U-Boot prompt enter the following commands using a serial console:	text	txt	2024-12-30 22:47:32.536074	10
+9698	3663	setenv bootcmd “run distro_bootcmd”\nsaveenv\nboot	code	sh	2024-12-30 22:47:32.536074	11
+9699	3664	first, we need to build the `core-image-weston` image. Next, we can run the validation as follows:	text	txt	2024-12-30 22:47:32.538479	1
+9700	3664	runqemu gl sdk core-image-weston	code	sh	2024-12-30 22:47:32.538479	2
+9701	3665	first, we need to build the `core-image-full-cmdline` image and run QEMU with the following command line:	text	txt	2024-12-30 22:47:32.540362	1
+9702	3665	runqemu qemux86-64 qemuparams="-m 128" core-image-full-cmdline	code	sh	2024-12-30 22:47:32.540362	2
+9703	3666	The integration or validation testing support uses the testimage class to execute the images inside the target.	text	txt	2024-12-30 22:47:32.54223	1
+9704	3666	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt	2024-12-30 22:47:32.54223	2
+9705	3666	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt	2024-12-30 22:47:32.54223	3
+9706	3666	bitbake -c testimage core-image-weston	code	sh	2024-12-30 22:47:32.54223	4
+9707	3667	The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.	text	txt	2024-12-30 22:47:32.543945	1
+9708	3668	- `recipes-backport`: Backports of recipes coming from new Yocto Project releases\n- `recipes-staging`: New recipes or bbappend files adding missing package configurations or bug fixes	text	txt	2024-12-30 22:47:32.544877	1
+9709	3668	New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.	text	txt	2024-12-30 22:47:32.544877	2
+9710	3669	When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)	text	txt	2024-12-30 22:47:32.545828	1
+9711	3670	A typical starting point is copying the `core-image-base.bb` file to our custom layer as `myproduct-image.bb` and extending it, adding what we need for the product’s image. In addition, we create an image called `myproduct-image-dev.bb` for use during development and make sure it requires `myproduct-image.bb` along with the artifacts used only for development, avoiding code duplication. This way, we have two images for production and development, but they share the same core features and packages.	text	txt	2024-12-30 22:47:32.546712	1
 \.
 
 
@@ -14971,6 +15034,30 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3644	798	Configure the kernel using menuconfig?	open	2024-12-29 13:02:11.387899	2024-12-29 13:02:11.387899
 3645	798	Create a configuration fragment from the kernel?	open	2024-12-29 13:02:11.389147	2024-12-29 13:02:11.389147
 3646	798	Save the complete configuration of the kernel?	open	2024-12-29 13:02:11.390364	2024-12-29 13:02:11.390364
+3647	799	What variables describe the package license?	open	2024-12-30 22:47:32.503793	2024-12-30 22:47:32.503793
+3648	799	How does bitbake keep track of the project license?	open	2024-12-30 22:47:32.513203	2024-12-30 22:47:32.513203
+3649	799	What happens when bitbake detects a different license checksum?	open	2024-12-30 22:47:32.515024	2024-12-30 22:47:32.515024
+3650	799	What restrictions exist with commercial licenses?	open	2024-12-30 22:47:32.51675	2024-12-30 22:47:32.51675
+3651	799	Restrict a commercial license to a recipe?	open	2024-12-30 22:47:32.518423	2024-12-30 22:47:32.518423
+3652	799	Where does bitbake generate license manifest?	open	2024-12-30 22:47:32.520166	2024-12-30 22:47:32.520166
+3653	799	Configure Poky to provide the source code of packages under copyleft?	open	2024-12-30 22:47:32.521986	2024-12-30 22:47:32.521986
+3654	799	What recipes are included when providing the source code?	open	2024-12-30 22:47:32.523025	2024-12-30 22:47:32.523025
+3655	799	Exclude recipes from source code extraction?	open	2024-12-30 22:47:32.52397	2024-12-30 22:47:32.52397
+3656	799	Provide the source code with the modifications applied to it?	open	2024-12-30 22:47:32.525093	2024-12-30 22:47:32.525093
+3657	799	Provide the source code with the procedure used to build the project?	open	2024-12-30 22:47:32.526187	2024-12-30 22:47:32.526187
+3658	799	Change the default archive mode of source code generation?	open	2024-12-30 22:47:32.527087	2024-12-30 22:47:32.527087
+3659	799	Provide license text in the image?	open	2024-12-30 22:47:32.528095	2024-12-30 22:47:32.528095
+3660	800	What are the widely used BSP layers?	open	2024-12-30 22:47:32.531288	2024-12-30 22:47:32.531288
+3661	800	Bake an image for BeagleBone Black?	open	2024-12-30 22:47:32.53334	2024-12-30 22:47:32.53334
+3662	800	Bake an image for Raspberry Pi 4?	open	2024-12-30 22:47:32.534765	2024-12-30 22:47:32.534765
+3663	800	Bake an image for VisionFive2?	open	2024-12-30 22:47:32.536074	2024-12-30 22:47:32.536074
+3664	801	Run an image on qemu?	open	2024-12-30 22:47:32.538479	2024-12-30 22:47:32.538479
+3665	801	Use runqemu to validate memory constraints?	open	2024-12-30 22:47:32.540362	2024-12-30 22:47:32.540362
+3666	801	Use runqemu to help with image regression tests?	open	2024-12-30 22:47:32.54223	2024-12-30 22:47:32.54223
+3667	802	Enable build information generation and layer revisioning?	open	2024-12-30 22:47:32.543945	2024-12-30 22:47:32.543945
+3668	802	Where are the backports of poky when new version gets released?	open	2024-12-30 22:47:32.544877	2024-12-30 22:47:32.544877
+3669	802	Why do we need to create a custom distribution?	open	2024-12-30 22:47:32.545828	2024-12-30 22:47:32.545828
+3670	802	What is the best way to create a minimal image?	open	2024-12-30 22:47:32.546712	2024-12-30 22:47:32.546712
 \.
 
 
@@ -21258,7 +21345,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
-59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-29 13:02:11.390364	1	\N
+59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 \.
 
 
@@ -21345,7 +21432,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 695	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	21
 769	57	open	\N	2024-07-28 09:45:03.518283	2024-07-28 09:45:03.518283	8
 839	62	open	\N	2024-07-28 09:45:04.316203	2024-07-28 09:45:04.316203	2
-802	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	17
 815	60	open	\N	2024-07-28 09:45:04.004299	2024-07-28 09:45:04.004299	13
 824	61	open	\N	2024-07-28 09:45:04.229409	2024-07-28 09:45:04.229409	9
 841	62	open	\N	2024-07-28 09:45:04.316203	2024-07-28 09:45:04.316203	4
@@ -21482,7 +21568,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 483	44	writing	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	13
 1050	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	4
 84	19	open	\N	2024-07-28 09:44:56.217196	2024-07-28 09:44:56.217196	20
-799	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	14
 276	31	open	\N	2024-07-28 09:44:58.31114	2024-07-28 09:44:58.31114	4
 646	51	open	\N	2024-07-28 09:45:02.294764	2024-07-28 09:45:02.294764	9
 1259	83	writing	\N	2024-07-28 09:45:08.749863	2024-07-28 09:45:08.749863	12
@@ -21698,7 +21783,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1015	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	38
 954	68	open	\N	2024-07-28 09:45:05.579846	2024-07-28 09:45:05.579846	37
 1218	81	open	\N	2024-07-28 09:45:08.385454	2024-07-28 09:45:08.385454	3
-800	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	15
 204	25	open	\N	2024-07-28 09:44:57.364303	2024-07-28 09:44:57.364303	18
 1021	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	44
 5	15	writing	\N	2024-07-28 09:44:55.45901	2024-07-28 09:44:55.45901	5
@@ -22606,7 +22690,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1114	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	14
 274	31	open	\N	2024-07-28 09:44:58.31114	2024-07-28 09:44:58.31114	2
 1304	86	open	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	12
-801	59	open	\N	2024-07-28 09:45:03.853918	2024-07-28 09:45:03.853918	16
 163	23	open	\N	2024-07-28 09:44:56.96975	2024-07-28 09:44:56.96975	31
 1302	86	open	\N	2024-07-28 09:45:09.295457	2024-07-28 09:45:09.295457	10
 1103	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	3
@@ -22852,6 +22935,10 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
 797	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 19:21:57.509366	12
 798	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-29 13:02:11.391609	13
+799	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.529456	14
+800	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.537021	15
+801	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.543239	16
+802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
 \.
 
 
@@ -25137,7 +25224,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9648, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9711, true);
 
 
 --
@@ -25165,7 +25252,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3646, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3670, true);
 
 
 --
