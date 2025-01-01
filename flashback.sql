@@ -1026,7 +1026,8 @@ CREATE TABLE flashback.notes (
     heading character varying(400) NOT NULL,
     state flashback.publication_state DEFAULT 'open'::flashback.publication_state NOT NULL,
     creation timestamp without time zone DEFAULT now() NOT NULL,
-    updated timestamp without time zone DEFAULT now() NOT NULL
+    updated timestamp without time zone DEFAULT now() NOT NULL,
+    number integer DEFAULT 0 NOT NULL
 );
 
 
@@ -2392,6 +2393,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 611	125	    section .text\n        push rbp\n        mov rbp, rsp	text	txt	2024-07-28 09:57:15.363865	8
 612	125	    %IF CREATE\n        mov rdi, filename\n        call create\n        mov qword[fd], rax      ; save file descriptor\n    %ENDIF	text	txt	2024-07-28 09:57:15.3856	9
 843	171	    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:57:49.503704	7
+9729	3679	if(<file> IS_NEWER_THAN <file>)	code	cmake	2025-01-01 23:19:08.464571	1
 613	125	    %IF WRITE\n        mov rdi, qword[fd]      ; file descriptor\n        mov rsi, text           ; address of string\n        mov rdx, qword[length]  ; length of string\n        call write\n    %ENDIF	text	txt	2024-07-28 09:57:15.408332	10
 614	125	    %IF CLOSE\n        mov rdi, qword[fd]      ; file descriptor\n        call close\n    %ENDIF	code	txt	2024-07-28 09:57:15.430053	11
 615	126	section .data\n    CREATE equ 1            ; use for conditional assembly	text	txt	2024-07-28 09:57:16.78818	1
@@ -2584,6 +2586,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 801	164	#include <iostream>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:57:42.979069	2
 802	164	int main()\n{\n    boost::asio::io_service service;\n    boost::asio::io_service::work work{service};\n    service.run();\n    // will not be reached: blocking service\n}	code	txt	2024-07-28 09:57:42.999371	3
 845	172	void connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}	text	txt	2024-07-28 09:57:50.467778	2
+9730	3680	if(IS_DIRECTORY <path>)	code	cmake	2025-01-01 23:19:08.479215	1
 803	164	The `boost::asio::io_service::work` class is responsible for telling the\n`io_service` object when the work starts and when it has finished. It will\nmake sure that the `io_service::run()` function will not exit during the time\nthe work is underway. Also, it will make sure that the `io_service::run()`\nfunction exits when there is no unfinished work remaining.	text	txt	2024-07-28 09:57:43.020592	4
 804	165	The `poll()` function will run the `io_service` object's event processing loop\nwithout blocking the execution of the thread. This will run the handlers until\nthere are no more ready handlers remaining or until the `io_service` object\nhas been stopped.	text	txt	2024-07-28 09:57:43.552234	1
 805	165	#include <iostream>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:57:43.573337	2
@@ -2982,6 +2985,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 1199	244	void setup_signals(void)\n{\nstruct sigaction action;\naction.sa_flags = SA_RESTART;\naction.sa_handler = clean_up;\nsigfillset(&action.sa_mask);\nsigaction(SIGINT, &action, NULL);\nsigaction(SIGTERM, &action, NULL);\nsigaction(SIGABRT, &action, NULL);\nsigaction(SIGQUIT, &action, NULL);\nsigaction(SIGHUP, &action, NULL);\nsigaction(SIGPIPE, &action, NULL);\n}	code	txt	2024-07-28 09:58:44.628658	15
 1200	245	#include <stdio.h>\n#include <errno.h>\n#include <fcntl.h>\n#include <string.h>\n#include <mqueue.h>\n#include <sys/stat.h>\n#include <sys/types.h>	text	txt	2024-07-28 09:58:45.627112	1
 1201	245	int main(int argc, char **argv)\n{\nif (argc != 2)\n{\nfprintf(stderr, "usage: %s <message>\\\\n", argv[0]);\nreturn 1;\n}	text	txt	2024-07-28 09:58:45.648009	2
+9731	3681	if(IS_SYMLINK <file>)	code	cmake	2025-01-01 23:19:08.480862	1
 1202	245	int fd = 0;\nchar message[100] = {0};\nstrncpy(message, argv[1], sizeof(message));	text	txt	2024-07-28 09:58:45.669214	3
 1203	245	struct mq_attr attributes;\nattributes.mq_maxmsg = 10;\nattributes.mq_msgsize = 100;	text	txt	2024-07-28 09:58:45.690389	4
 1204	245	fd = mq_open("/msgs", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH, &attributes);\nif (fd == -1)\n{\nperror("cannot create message queue");\nreturn errno;\n}	text	txt	2024-07-28 09:58:45.711455	5
@@ -3033,6 +3037,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 1248	249	if (unlink(socket_name) == -1)\nperror("cannot remove socket");	text	txt	2024-07-28 09:58:52.217103	21
 1249	249	exit(errno);\n}	code	txt	2024-07-28 09:58:52.23745	22
 1250	250		code	txt	2024-07-28 09:58:52.35876	1
+9732	3682	if(IS_ABSOLUTE <path>)	code	cmake	2025-01-01 23:19:08.482559	1
 1251	251	#include <stdio.h>\n#include <unistd.h>\n#include <pthread.h>	text	txt	2024-07-28 09:58:53.445376	1
 1252	251	void *worker(void *);\nvoid *progress(void *);	text	txt	2024-07-28 09:58:53.466179	2
 1253	251	int main()\n{\npthread_t worker_thread = 0;\npthread_t progress_thread = 0;\npthread_attr_t attributes;	text	txt	2024-07-28 09:58:53.487412	3
@@ -3089,6 +3094,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 1306	273	cmake -S <source_dir> -B <build_dir> -G <generator>\ncmake -S . -B build -G 'Unix Makefiles'	code	txt	2024-07-28 09:59:01.92967	1
 1307	274	1. `STATIC`: archives of object files for use when linking other targets.\n2. `SHARED`: libraries that can be linked and loaded at runtime.\n3. `OBJECT`: compile sources in the list to object files, but then neither\n  archive into a static library nor linking them into a shared object. The\n  use of object libraries is particularly useful if one needs to create both\n  static and shared libraries in one go.\n4. `MODULE`: similar to dynamic shared objects (DSO) but not linked to any\n  other target within the project, but may be loaded dynamicly later on.\n  Useful for building a runtime plugin.\n5. `IMPORTED`: library located outside the project. Useful to model\n  pre-existing dependencies of the project that are provided by upstream\n  packages. As such these libraries are immutable.\n6. `INTERFACE`: special library similar to `IMPORTED`, but it is mutable and\n  has no location. Useful to model usage requirements for a target that is\n  outside our project.\n7. `ALIAS`: an alias for pre-existing library target within the project.	text	txt	2024-07-28 09:59:02.377099	1
 1815	416	    std::vector<std::size_t> name_length;\n    std::ranges::copy(range | std::views::elements<2>, std::ostream_iterator<long>(std::cout, " "));\n    // 4 5 5\n}	code	txt	2024-07-28 10:00:41.990157	4
+9734	3683	if("/a///b/c" PATH_EQUAL "/a/b/c")	code	cmake	2025-01-01 23:19:08.484454	2
 1308	275	cmake_minimum_required(VERSION 3.20 FATAL_ERROR)\nproject(Sample LANGUAGES CXX)\nadd_executable(program main.cpp)\nadd_library(message-shared SHARED message.hpp message.cpp)\nadd_library(message-static STATIC message.hpp message.cpp)\ntarget_link_libraries(program message-shared)	code	txt	2024-07-28 09:59:02.73341	1
 1309	276	cmake_minimum_required(VERSION 3.20 FATAL_ERROR)\nproject(Sample LANGUAGES CXX)\nadd_executable(program main.cpp)\nadd_library(message-object OBJECT message.hpp message.cpp)\nset_target_properties(message-object PROPERTIES POSITION_INDEPENDENT_CODE 1)\nadd_library(message-shared SHARED $<TARGET_OBJECTS:message-object>)\nset_target_properties(message-shared PROPERTIES OUTPUT_NAME "message")\nadd_library(message-static STATIC $<TARGET_OBJECTS:message-object>)\nset_target_properties(message-static PROPERTIES OUTPUT_NAME "message")\ntarget_link_libraries(program message-shared)	code	txt	2024-07-28 09:59:03.132371	1
 1310	277	PIE is enabled by default on Linux and Mac OSX.	text	txt	2024-07-28 09:59:03.38243	1
@@ -3172,6 +3178,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 1472	337	Correctly calling swap requires pulling the default std::swap version to the local scope.	text	txt	2024-07-28 09:59:45.811566	2
 1473	337	#include <algorithm>	text	txt	2024-07-28 09:59:45.832204	3
 1474	337	namespace library\n{\n    struct container { long value; };\n}	text	txt	2024-07-28 09:59:45.852856	4
+9735	3684	cmake_path()	code	cmake	2025-01-01 23:19:08.486663	1
 1475	337	int main()\n{\n    library::container a{3}, b{4};\n    std::ranges::swap(a, b); // first calls library::swap\n                             // then it calls the default move-swap\n}	code	txt	2024-07-28 09:59:45.873335	5
 1476	338	| feature | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:59:46.561469	1
 1477	338	The `std::iter_swap` is an indirect swap, swapping values behind two forward iterators.	text	txt	2024-07-28 09:59:46.583457	2
@@ -3216,6 +3223,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 1515	344	#include <algorithm>\n#include <ranges>\n#include <vector>\n#include <list>	text	txt	2024-07-28 09:59:51.833083	2
 1516	344	struct Account\n{\n    long value() { return value_; }\n    long value_;\n};	text	txt	2024-07-28 09:59:51.852954	3
 1517	344	int main()\n{\n    std::vector<long> series1{6,2,4,1,5,3};\n    std::sort(series1.begin(), series1.end());	text	txt	2024-07-28 09:59:51.873761	4
+9736	3685	`foreach` and `while`.	text	txt	2025-01-01 23:19:08.489922	1
 1518	344	    std::list<long> series2{6,2,4,1,5,3};\n    //std::sort(series2.begin(), series2.end()); // won't compile\n    series2.sort();	text	txt	2024-07-28 09:59:51.89547	5
 1519	344	    // With C++20, we can take advantage of projections to sort by a method or member\n    std::vector<Account> accounts{{6},{2},{4},{1},{5},{3}};\n    std::ranges::sort(accounts, std::greater<>{}, &Account::value);\n}	code	txt	2024-07-28 09:59:51.916663	6
 1520	345	The `std::sort` is free to re-arrange equivalent elements, which can be undesirable when re-sorting an already sorted range.\nThe `std::stable_sort` provides the additional guarantee of preserving the relative order of equal elements.	text	txt	2024-07-28 09:59:52.794982	1
@@ -10756,6 +10764,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9228	3458	cmake --build build	code	sh	2024-12-15 18:57:04.191334	8
 9229	3459	The `CMakePackageConfigHelpers` module provides access to the `configure_package_config_file()` command.	text	txt	2024-12-15 18:57:04.192368	1
 9230	3459	configure_package_config_file(<template> <output> INSTALL_DESTINATION <path> [PATH_VARS <var>...] [NO_SET_AND_CHECK_MACRO] [NO_CHECK_REQUIRED_COMPONENTS_MACRO] [INSTALL_PREFIX <path>])	code	cmake	2024-12-15 18:57:04.192368	2
+9737	3685	while(<condition>)\n    <command>\nendwhile()	code	cmake	2025-01-01 23:19:08.489922	2
 9231	3459	install(EXPORT CalcTargets DESTINATION ${CMAKE_INSTALL_LIBDIR}/calc/cmake NAMESPACE Calc::)\ninclude(CMakePackageConfigHelpers)\nset(LIB_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/calc)\nconfigure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/CalcConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/CalcConfig.cmake INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/calc/cmake PATH_VARS LIB_INSTALL_DIR)	code	cmake	2024-12-15 18:57:04.192368	3
 9232	3460	This version can be used when projects use this package:	text	txt	2024-12-15 18:57:04.193548	1
 9233	3460	find_package(Calc 1.2.3 REQUIRED)	code	cmake	2024-12-15 18:57:04.193548	2
@@ -11109,6 +11118,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9580	3614	devtool add https://guthub.com/ossystems/bbexamle	code	sh	2024-12-28 19:21:57.485702	6
 9581	3614	devtool ran the recipetool to generate a recipe and automatically configure all pre-built information into the new recipe file.	text	txt	2024-12-28 19:21:57.485702	7
 9582	3615	devtool finish bbexample ../meta-newlayer	code	sh	2024-12-28 19:21:57.487129	1
+9738	3685	foreach(<loop_variable> RANGE <max>)\n    <command>\nendforeach()	code	cmake	2025-01-01 23:19:08.489922	3
 9583	3615	`meta-newlayer/recipes-bbexample/bbexample/bbexample_git.bb` file will be created but should not be taken as a final recipe. We should check for compilation options, extra metadata information, and so on.	text	txt	2024-12-28 19:21:57.487129	2
 9584	3616	Even though creating a new machine definition for use in Poky is a straightforward task, it shouldn’t be underestimated. Depending on the set of features we need to support at the BSP layer, it can involve checking the bootloader, kernel, and hardware support drivers.	text	txt	2024-12-28 19:21:57.48969	1
 9585	3616	The prevailing set of variables used in a machine definition is as follows:	text	txt	2024-12-28 19:21:57.48969	2
@@ -11174,6 +11184,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9646	3645	bitbake virtual/kernel -c diffconfig	code	sh	2024-12-29 13:02:11.389147	3
 9647	3645	The config fragment file is created under the `<build>/tmp/work` directory. We should copy this fragment file to the layer and use it in a `.bbappend` file in order to get it applied.	text	txt	2024-12-29 13:02:11.389147	4
 9648	3646	bitbake virtual/kernel -c savedefconfig	code	sh	2024-12-29 13:02:11.390364	1
+9733	3683	Since CMake 3.24 `PATH_EQUAL` compares two paths but does not normalize any of the arguments except collapsing multiple path separators.	text	txt	2025-01-01 23:19:08.484454	1
 9649	3647	- `LICENSE`: This describes the license under which the package was released.\n- `LIC_FILES_CHKSUM`: This may not seem very useful at first sight. It describes the license file and checksum for a particular package, and we may find much variation in how a project describes its license. The most common license files are stored in `poky/meta/files/common-licenses/`.	text	txt	2024-12-30 22:47:32.503793	1
 9650	3648	Some projects include a file, such as `COPYING` or `LICENSE`, which specifies the license for the source code. Others use a header note in each file or the main file. The `LIC_FILES_CHKSUM` variable has the checksum for the license text of a project; if any letters are changed, the checksum is changed as well. This ensures that any change is noted and consciously accepted by the developer.	text	txt	2024-12-30 22:47:32.513203	1
 9651	3649	BitBake launches a build error and points to the project that had its license changed.	text	txt	2024-12-30 22:47:32.515024	1
@@ -11253,6 +11264,46 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9726	3678	add_library(database SHARED src/database.cpp)\ntarget_linclude_directories(database PUBLIC include)	code	cmake	2025-01-01 08:45:05.194893	3
 9727	3678	add_library(network SHARED src/network.cpp)\ntarget_linclude_directories(network PUBLIC include)	code	cmake	2025-01-01 08:45:05.194893	4
 9728	3678	cmake_minimum_required(VERSION 3.30.0)\nproject(Sample VERSION 1.0 LANGUAGES CXX)\n\nadd_subdirectory(database)\nadd_subdirectory(network)\n\nadd_executable(program main.cpp)\ntarget_link_libraries(program PRIVATE network database)	code	cmake	2025-01-01 08:45:05.194893	5
+9739	3685	In above variation of `foreach`, iteration begins from 0.	text	txt	2025-01-01 23:19:08.489922	4
+9740	3685	foreach(<loop_variable> RANGE <min> <max> [step])\n    <command>\nendforeach()	code	cmake	2025-01-01 23:19:08.489922	5
+9741	3685	foreach(<loop_variable> IN [LISTS <lists>] [ITEMS <item>])\n    <command>\nendforeach()	code	cmake	2025-01-01 23:19:08.489922	6
+9742	3685	Since CMake 3.17 there is another variation of `foreach`:	text	txt	2025-01-01 23:19:08.489922	7
+9743	3685	foreach(<loop_variable> IN ZIP_LISTS <list>...)	code	cmake	2025-01-01 23:19:08.489922	8
+9744	3685	set(words "one;two;three")\nset(numbers "1;2;3")\nforeach(value IN ZIP_LISTS words numbers)\n    message("${value_0}, ${value_1}")\nendforeach()	code	cmake	2025-01-01 23:19:08.489922	9
+9745	3685	Or loop variables can be as many as there are lists:	text	txt	2025-01-01 23:19:08.489922	10
+9746	3685	foreach(<loop_variable>... IN ZIP_LISTS <list>...)	code	cmake	2025-01-01 23:19:08.489922	11
+9747	3685	foreach(word number IN ZIP_LISTS words numbers)\n    message("${word} ${number}")\nendforeach()	code	cmake	2025-01-01 23:19:08.489922	12
+9748	3686	Since CMake 3.21 loop variables are restricted to the local scope of the loop.	text	txt	2025-01-01 23:19:08.491889	1
+9749	3687	`function()` and `macro()`	text	txt	2025-01-01 23:19:08.493478	1
+9750	3687	macro(<name> [<argument>...])\n    <command>\nendmacro()	code	cmake	2025-01-01 23:19:08.493478	2
+9751	3687	function(<name> [<argument>...])\n    <command>\nendfunction()	code	cmake	2025-01-01 23:19:08.493478	3
+9752	3688	`function()` create a scope, but `macro()` will be replaced like a preprocessor macro in C++, therefore the scope of a `macro()` is the same as its surroundings.	text	txt	2025-01-01 23:19:08.494998	1
+9753	3688	macro(change_variable_inline variable value)\n    set(variable "${value}")\nendmacro()	code	cmake	2025-01-01 23:19:08.494998	2
+9754	3688	set(number 1)\nchange_variable_inline(number 2)\n# number = 2	code	cmake	2025-01-01 23:19:08.494998	3
+9755	3689	- `ARGC`: number of arguments\n- `ARGV`: list of arguments\n- `ARGV<index>`: indexed argument\n- `ARGN`: list of arguments passed by caller after the last expected argument, also known as positional arguments	text	txt	2025-01-01 23:19:08.496386	1
+9756	3689	function(print STREAM)\n    message("${STREAM}")\nendfunction()	code	cmake	2025-01-01 23:19:08.496386	2
+9757	3690	- `CMAKE_CURRENT_FUNCTION`\n- `CMAKE_CURRENT_FUNCTION_LIST_DIR`\n- `CMAKE_CURRENT_FUNCTION_LIST_FILE`\n- `CMAKE_CURRENT_FUNCTION_LIST_LINE`	text	txt	2025-01-01 23:19:08.497651	1
+9758	3691	message(<level> <string>...)	code	cmake	2025-01-01 23:19:08.49893	1
+9759	3692	- `FATA_ERROR`\n- `SEND_ERROR`\n- `WARNING`\n- `AUTHOR_WARNING`\n- `DEPRECATION`\n- `NOTICE`\n- `STATUS`\n- `VERBOSE`\n- `DEBUG`\n- `TRACE`	text	txt	2025-01-01 23:19:08.500262	1
+9760	3693	In complex debugging scenarios, it can be helpful to indicate in which context the message is occuring.	text	txt	2025-01-01 23:19:08.501688	1
+9761	3693	list(APPEND CMAKE_MESSAGE_CONTEXT network)\nmessage(FATAL_ERROR "Fatal Problem")	code	cmake	2025-01-01 23:19:08.501688	2
+9762	3693	cmake -P context.cmake --log-context	code	sh	2025-01-01 23:19:08.501688	3
+9763	3694	include(<file>|<module> [OPTIONAL] [RESULT_VARIABLE <variable>])	code	cmake	2025-01-01 23:19:08.503548	1
+9764	3694	Either it takes a file name with `.cmake` extension and tries to open it, or it considers given name as a module and searches for the file `<module>.cmake` in `CMAKE_MODULE_PATH` and then in the CMake module directory.	text	txt	2025-01-01 23:19:08.503548	2
+9765	3694	When file cannot be reached, CMake raises error unless `OPTIONAL` is set. The result of optional inclusion can be captured with `RESULT_VARIABLE` but it will be in surrounding scope. The variable will be the path to the included file or `NOTFOUND` otherwise.	text	txt	2025-01-01 23:19:08.503548	3
+9766	3695	include_guard([DIRECTORY|GLOBAL])	code	cmake	2025-01-01 23:19:08.505256	1
+9767	3695	To protect from inclusion in unrelated function scopes that will not share variables with each other, we can use `DIRECTORY` or `GLOBAL` arguments.	text	txt	2025-01-01 23:19:08.505256	2
+9768	3696	file(READ <filename> <content_variable> [...])	code	cmake	2025-01-01 23:19:08.506789	1
+9769	3697	file(WRITE|APPEND <filename> <content>...)	code	cmake	2025-01-01 23:19:08.508041	1
+9770	3698	file(DOWNLOAD <url> [file] [...])	code	cmake	2025-01-01 23:19:08.509337	1
+9771	3699	Running another process only works during the configuration stage.	text	txt	2025-01-01 23:19:08.51118	1
+9772	3699	execute_process(COMMAND <command> [argument]... [OPTIONS])	code	cmake	2025-01-01 23:19:08.51118	2
+9773	3699	We should make sure the command is already available on the host based on which operating system is running.	text	txt	2025-01-01 23:19:08.51118	3
+9774	3699	When multiple commands specified, they will be chained and output of one will be passed to another.	text	txt	2025-01-01 23:19:08.51118	4
+9775	3699	`TIMEOUT <seconds>` can be passed as an option.	text	txt	2025-01-01 23:19:08.51118	5
+9776	3699	`WORKING_DIRECTORY <directory>` can also be set to explicitly change the working directory of the process.	text	txt	2025-01-01 23:19:08.51118	6
+9777	3699	The exit code of all processes can be taken by the list `RESULTS_VARIABLE <variable>` as an option, or the exit code of the last command simply by `RESULT_VARIABLE <variable>`.	text	txt	2025-01-01 23:19:08.51118	7
+9778	3699	Standard output and error of the process can be taken by `OUTPUT_VARIABLE <variable>` and `ERROR_VARIABLE <variable>` respectively.	text	txt	2025-01-01 23:19:08.51118	8
 \.
 
 
@@ -11488,3601 +11539,3622 @@ COPY flashback.note_usage (id, user_id, note_id, duration, updated) FROM stdin;
 -- Data for Name: notes; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM stdin;
-1	113	What are the main data structure operations?	open	2024-07-28 09:55:47.305832	2024-07-28 09:55:47.305832
-2	113	How do we measure the speed of an operation in code?	open	2024-07-28 09:55:47.475222	2024-07-28 09:55:47.475222
-3	113	How many steps does each of four main operations take for an array?	open	2024-07-28 09:55:47.859131	2024-07-28 09:55:47.859131
-4	113	What's the difference between an array-based set and an array?	open	2024-07-28 09:55:48.089014	2024-07-28 09:55:48.089014
-5	113	How many steps does each of four main operations take for an array-based set?	open	2024-07-28 09:55:48.515362	2024-07-28 09:55:48.515362
-6	114	how many steps does each of four main operations take for an ordered array?	open	2024-07-28 09:55:48.950372	2024-07-28 09:55:48.950372
-7	114	What are the advantages and disadvantages of using ordered array over unordered array?	open	2024-07-28 09:55:50.81459	2024-07-28 09:55:50.81459
-8	115	What is the key question of Big O notation and what does it express?	open	2024-07-28 09:55:51.312281	2024-07-28 09:55:51.312281
-9	115	What are the order of main operations for arrays?	open	2024-07-28 09:55:51.549741	2024-07-28 09:55:51.549741
-10	115	What are the order of main operations for array-based sets?	open	2024-07-28 09:55:51.811274	2024-07-28 09:55:51.811274
-11	115	What are the order of main operations for ordered arrays?	open	2024-07-28 09:55:52.0485	2024-07-28 09:55:52.0485
-12	115	What does the constant time in <code>O(1)</code> mean?	open	2024-07-28 09:55:52.217086	2024-07-28 09:55:52.217086
-13	115	What does <code>O(log N)</code> mean in terms of number of steps taken in an algorithm?	open	2024-07-28 09:55:52.422502	2024-07-28 09:55:52.422502
-14	116	What are the steps taken to sort an array using <b>Bubble Sort</b> algorithm, and what is its efficiency in terms of Big O?	open	2024-07-28 09:55:54.705023	2024-07-28 09:55:54.705023
-15	117	What steps are taken in sorting an array using <b>Selection Sort</b> algorithm and what is its efficiency in terms of Big O?	open	2024-07-28 09:55:56.508519	2024-07-28 09:55:56.508519
-16	117	What are the general categories of algorithm speeds?	open	2024-07-28 09:55:57.077248	2024-07-28 09:55:57.077248
-17	117	How do algorithms are classified into different categories of Big O?	open	2024-07-28 09:55:57.251271	2024-07-28 09:55:57.251271
-18	117	How two algorithms in the same category can be compared?	open	2024-07-28 09:55:57.472889	2024-07-28 09:55:57.472889
-19	118	What steps are taken to sort an array using <b>Insertion Sort</b> algorithm and what is its efficiency?	open	2024-07-28 09:55:59.964247	2024-07-28 09:55:59.964247
-20	118	Having different orders of magnitude in the efficiency of an algorithm, how does Big O notation represents the efficiency?	open	2024-07-28 09:56:00.740476	2024-07-28 09:56:00.740476
-21	118	What are the wrost, average and best case scenarios of <b>Bubble Sort</b>, <b>Selection Sort</b>, and <b>Insertion Sort</b>?	open	2024-07-28 09:56:00.950292	2024-07-28 09:56:00.950292
-22	118	What considerations should be taken into account when choosing between <b>Insertion Sort</b> and <b>Selection Sort</b>?	open	2024-07-28 09:56:01.174614	2024-07-28 09:56:01.174614
-23	120	What is a hash table?	open	2024-07-28 09:56:01.41011	2024-07-28 09:56:01.41011
-24	120	What characteristics should a function have in order to be a valid hash function?	open	2024-07-28 09:56:01.619507	2024-07-28 09:56:01.619507
-25	120	What is the common value of <b>load factor</b> in implementation of hash tables?	open	2024-07-28 09:56:01.790954	2024-07-28 09:56:01.790954
-26	120	How hash tables can be used for non-paired objects instead of arrays in order to make look up operations efficient?	open	2024-07-28 09:56:01.978794	2024-07-28 09:56:01.978794
-27	121	What constraints do stacks have?	open	2024-07-28 09:56:02.246876	2024-07-28 09:56:02.246876
-28	121	What operations should stack data structures support?	open	2024-07-28 09:56:02.46748	2024-07-28 09:56:02.46748
-29	121	What is an <b>Abstract Data Type</b>?	open	2024-07-28 09:56:02.692465	2024-07-28 09:56:02.692465
-30	121	What constraints do queues have?	open	2024-07-28 09:56:02.952293	2024-07-28 09:56:02.952293
-31	121	What are the main operations of queues?	open	2024-07-28 09:56:03.155232	2024-07-28 09:56:03.155232
-32	122	What is base case and why all recursive calls should have one?	open	2024-07-28 09:56:03.405223	2024-07-28 09:56:03.405223
-33	122	How recursive code can be read?	open	2024-07-28 09:56:04.229877	2024-07-28 09:56:04.229877
-34	122	When does stack overflow occur in recursive calls?	open	2024-07-28 09:56:04.620005	2024-07-28 09:56:04.620005
-35	124	What is <b>Overlapping Subproblems</b> in recursion?	open	2024-07-28 09:56:04.862494	2024-07-28 09:56:04.862494
-36	124	What is <b>Dynamic Programming</b> and how can it be an optimization to recursion?	open	2024-07-28 09:56:05.157248	2024-07-28 09:56:05.157248
-37	124	How does <b>Dynamic Programming</b> using <b>Memoization</b> helps in optimizing recursive calls?	open	2024-07-28 09:56:05.385756	2024-07-28 09:56:05.385756
-38	124	How does <b>Dynamic Programming</b> using <b>Iteration</b> helps in optimizing recursive calls?	open	2024-07-28 09:56:05.579969	2024-07-28 09:56:05.579969
-39	125	What is the concept of partitioning in <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:05.834753	2024-07-28 09:56:05.834753
-40	125	What is the implementation of <i>partition</i> algorithm?	open	2024-07-28 09:56:09.271026	2024-07-28 09:56:09.271026
-41	125	What steps are taken in <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:10.268324	2024-07-28 09:56:10.268324
-42	125	What is the efficiency of <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:11.179861	2024-07-28 09:56:11.179861
-43	125	Compared to <b>Insertion Sort</b>, what are the best and worst cases of <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:11.667603	2024-07-28 09:56:11.667603
-44	125	What is the <b>Quick Select</b> algorithm and where is it best known to be used?	open	2024-07-28 09:56:12.904228	2024-07-28 09:56:12.904228
-45	126	What the linked list data structure is contained of?	open	2024-07-28 09:56:13.36198	2024-07-28 09:56:13.36198
-46	126	What is a node in node-based data structures?	open	2024-07-28 09:56:14.122563	2024-07-28 09:56:14.122563
-47	126	How does a linked list data structure manages its nodes?	open	2024-07-28 09:56:15.17778	2024-07-28 09:56:15.17778
-48	126	What difference do arrays and node-based data structures have in four main operations of algorithms?	open	2024-07-28 09:56:18.86028	2024-07-28 09:56:18.86028
-49	126	What is Doubly Linked List?	open	2024-07-28 09:56:21.01805	2024-07-28 09:56:21.01805
-50	126	Where does doubly linked list can be used to optimize operations?	open	2024-07-28 09:56:21.982616	2024-07-28 09:56:21.982616
-51	127	What is a tree data structure?	open	2024-07-28 09:56:22.290899	2024-07-28 09:56:22.290899
-52	127	What is the structure of a tree?	open	2024-07-28 09:56:22.548665	2024-07-28 09:56:22.548665
-53	127	What is a Binary Search Tree?	open	2024-07-28 09:56:23.221471	2024-07-28 09:56:23.221471
-54	127	What steps are taken in searching a binary search tree?	open	2024-07-28 09:56:23.849663	2024-07-28 09:56:23.849663
-55	127	What steps are taken for inserting into a binary search tree?	open	2024-07-28 09:56:24.36605	2024-07-28 09:56:24.36605
-56	127	What steps are taken to delete a value in a binary search tree?	open	2024-07-28 09:56:24.619821	2024-07-28 09:56:24.619821
-57	127	How to find the successor node in a binary search tree when a node with two children is being deleted?	open	2024-07-28 09:56:26.245868	2024-07-28 09:56:26.245868
-58	127	What is the traversal algorithm for binary search tree?	open	2024-07-28 09:56:26.795731	2024-07-28 09:56:26.795731
-59	128	What is a priority queue?	open	2024-07-28 09:56:27.046429	2024-07-28 09:56:27.046429
-60	128	Why priority queues cannot be implemented by ordered arrays as their underlying data structure?	open	2024-07-28 09:56:27.248499	2024-07-28 09:56:27.248499
-61	128	What is a Binary Heap data structure?	open	2024-07-28 09:56:27.443349	2024-07-28 09:56:27.443349
-62	128	What conditions a Binary Max-Heap should meet to be valid?	open	2024-07-28 09:56:27.672503	2024-07-28 09:56:27.672503
-63	128	What conditions does a tree require to be a valid tree?	open	2024-07-28 09:56:28.209676	2024-07-28 09:56:28.209676
-64	128	What is a complete tree?	open	2024-07-28 09:56:28.736188	2024-07-28 09:56:28.736188
-65	471	Compile an x64 assembly program?	open	2024-07-28 09:56:29.765563	2024-07-28 09:56:29.765563
-66	471	Write exit procedure in x64 Assembly?	open	2024-07-28 09:56:30.286434	2024-07-28 09:56:30.286434
-67	472	Convert decimal, binary, and hexadecimal representations of integral and floating point numbers?	open	2024-07-28 09:56:30.536936	2024-07-28 09:56:30.536936
-68	472	Name x64 registers?	open	2024-07-28 09:56:31.009699	2024-07-28 09:56:31.009699
-69	472	What is the name of <b>Instruction Pointer</b> register?	open	2024-07-28 09:56:31.227903	2024-07-28 09:56:31.227903
-70	472	Name the flag registers?	open	2024-07-28 09:56:31.583867	2024-07-28 09:56:31.583867
-71	472	Name SIMD registers?	open	2024-07-28 09:56:31.810848	2024-07-28 09:56:31.810848
-72	473	Debug a compiled program with gdb?	open	2024-07-28 09:56:32.087245	2024-07-28 09:56:32.087245
-73	473	List source lines in debugging?	open	2024-07-28 09:56:32.350132	2024-07-28 09:56:32.350132
-74	473	Change the line number of source listing?	open	2024-07-28 09:56:32.619898	2024-07-28 09:56:32.619898
-75	473	Set disassembly flavor in gdb?	open	2024-07-28 09:56:32.926107	2024-07-28 09:56:32.926107
-76	473	Store gdb configurations in file for future use?	open	2024-07-28 09:56:33.149882	2024-07-28 09:56:33.149882
-77	473	Disassemble a function or line of source in gdb?	open	2024-07-28 09:56:33.432495	2024-07-28 09:56:33.432495
-78	473	Examine an address in memory in gdb?	open	2024-07-28 09:56:33.772475	2024-07-28 09:56:33.772475
-79	473	Set breakpoints in gdb?	open	2024-07-28 09:56:34.015804	2024-07-28 09:56:34.015804
-80	473	Start execution of the debugging program in gdb?	open	2024-07-28 09:56:34.293067	2024-07-28 09:56:34.293067
-81	473	Inspect registers in gdb?	open	2024-07-28 09:56:34.607238	2024-07-28 09:56:34.607238
-82	473	Inspect the breakpoint, stack, threads and other resources of the debugging program in gdb?	open	2024-07-28 09:56:34.987738	2024-07-28 09:56:34.987738
-83	473	Manipulate breakpoints in gdb?	open	2024-07-28 09:56:35.346491	2024-07-28 09:56:35.346491
-84	473	Change executation of the debugging program in gdb?	open	2024-07-28 09:56:35.73267	2024-07-28 09:56:35.73267
-85	473	Print variables through debugging session?	open	2024-07-28 09:56:35.964855	2024-07-28 09:56:35.964855
-86	473	Enable TUI in gdb:	open	2024-07-28 09:56:36.254515	2024-07-28 09:56:36.254515
-87	474	Create values in data section of memory?	open	2024-07-28 09:56:37.070796	2024-07-28 09:56:37.070796
-88	474	Use external functions from C in x64 assembly code?	open	2024-07-28 09:56:38.29116	2024-07-28 09:56:38.29116
-89	474	Exit program without directly writing the exit syscall?	open	2024-07-28 09:56:38.82609	2024-07-28 09:56:38.82609
-90	477	Conditionally change the execution flow?	open	2024-07-28 09:56:40.203016	2024-07-28 09:56:40.203016
-91	477	Repeat execution of a code section by manually counting down?	open	2024-07-28 09:56:41.4621	2024-07-28 09:56:41.4621
-92	477	Repeat execution of a code section by automatically counting down?	open	2024-07-28 09:56:42.809054	2024-07-28 09:56:42.809054
-93	478	Consecutively store a sequence of data into read-only memory section?	open	2024-07-28 09:56:43.284119	2024-07-28 09:56:43.284119
-94	478	Preserve uninitialized variables in a writable memory section?	open	2024-07-28 09:56:43.665562	2024-07-28 09:56:43.665562
-95	478	Load the address of an array into a register to run operations on?	open	2024-07-28 09:56:44.424671	2024-07-28 09:56:44.424671
-96	478	Read the ELF header of an executable object?	open	2024-07-28 09:56:44.806582	2024-07-28 09:56:44.806582
-97	478	Read symbols of an executable object?	open	2024-07-28 09:56:45.054325	2024-07-28 09:56:45.054325
-98	478	Sort executable object symbols based on its memory locations?	open	2024-07-28 09:56:45.299112	2024-07-28 09:56:45.299112
-99	479	Make arithmetic operations on integers?	open	2024-07-28 09:56:46.87937	2024-07-28 09:56:46.87937
-100	480	Monitor `rsp` register and watch the changes after pushing into and popping from the stack to reverse a string:	open	2024-07-28 09:56:48.548554	2024-07-28 09:56:48.548554
-101	481	Specify how many bits each floating point number occupies for exponent and fraction?	open	2024-07-28 09:56:49.178258	2024-07-28 09:56:49.178258
-102	481	Do arithmetic operations with floating point numbers in assembly:	open	2024-07-28 09:56:50.44146	2024-07-28 09:56:50.44146
-103	482	Abbreviate function epilogue by using `leave` instruction:	open	2024-07-28 09:56:51.133222	2024-07-28 09:56:51.133222
-104	482	Call a procedure enclosed with a stack frame?	open	2024-07-28 09:56:52.00452	2024-07-28 09:56:52.00452
-105	482	Return integral or floating-point values from functions:	open	2024-07-28 09:56:53.14969	2024-07-28 09:56:53.14969
-106	482	Use local sections in a function to declare local variables:	open	2024-07-28 09:56:54.561834	2024-07-28 09:56:54.561834
-107	483	Align the stack after function call with stack frame:	open	2024-07-28 09:56:55.596732	2024-07-28 09:56:55.596732
-108	484	Expose a function to external linkage?	open	2024-07-28 09:56:57.841306	2024-07-28 09:56:57.841306
-109	484	Expose a variable to external linkage?	open	2024-07-28 09:56:58.796934	2024-07-28 09:56:58.796934
-110	485	Use calling conventions to transfer variables from callee to caller functions?	open	2024-07-28 09:57:00.712895	2024-07-28 09:57:00.712895
-111	486	Evaluate bit-wise operations?	open	2024-07-28 09:57:02.370248	2024-07-28 09:57:02.370248
-112	487	Set and reset specific bits of numeric variable?	open	2024-07-28 09:57:03.435259	2024-07-28 09:57:03.435259
-113	487	Check if its 8th bit of a quadword variable is set?	open	2024-07-28 09:57:04.265482	2024-07-28 09:57:04.265482
-114	488	Use inline procedures to avoid runtime overhead of function calls?	open	2024-07-28 09:57:05.347175	2024-07-28 09:57:05.347175
-115	488	How can it be verified if defined macros are replaced in executable object using `objdump` command?	open	2024-07-28 09:57:05.736127	2024-07-28 09:57:05.736127
-116	489	Write into standard output stream directly using system calls?	open	2024-07-28 09:57:06.29568	2024-07-28 09:57:06.29568
-117	489	Read from standard input stream directly using system calls?	open	2024-07-28 09:57:06.89297	2024-07-28 09:57:06.89297
-118	489	Count input string before printing so that stack overflow is prevented?	open	2024-07-28 09:57:07.917836	2024-07-28 09:57:07.917836
-119	489	Limit reading from standard input by a maximum length to prevent stack overflows?	open	2024-07-28 09:57:09.890374	2024-07-28 09:57:09.890374
-120	490	What header contains Linux system calls?	open	2024-07-28 09:57:10.475688	2024-07-28 09:57:10.475688
-121	490	What header contains file operation constants?	open	2024-07-28 09:57:10.67671	2024-07-28 09:57:10.67671
-122	490	Specify an octal number?	open	2024-07-28 09:57:10.998483	2024-07-28 09:57:10.998483
-123	490	Use preprocessor directives to conditionally compile a part of x64 assembly program?	open	2024-07-28 09:57:11.684446	2024-07-28 09:57:11.684446
-124	490	Open and close a file in x64 assembly?	open	2024-07-28 09:57:13.534901	2024-07-28 09:57:13.534901
-125	490	Write content to a file in x64 assembly?	open	2024-07-28 09:57:15.192711	2024-07-28 09:57:15.192711
-126	490	Truncate a file in x64 assembly?	open	2024-07-28 09:57:16.76457	2024-07-28 09:57:16.76457
-127	490	Append into a file in x64 assembly?	open	2024-07-28 09:57:17.173818	2024-07-28 09:57:17.173818
-128	490	Write to a specific offset of a file in x64 assembly?	open	2024-07-28 09:57:17.416466	2024-07-28 09:57:17.416466
-129	490	Read from a file in x64 assembly?	open	2024-07-28 09:57:17.656068	2024-07-28 09:57:17.656068
-130	490	Read from a specific offset of a file in x64 assembly?	open	2024-07-28 09:57:17.878343	2024-07-28 09:57:17.878343
-131	490	Delete a file in x64 assembly?	open	2024-07-28 09:57:18.068844	2024-07-28 09:57:18.068844
-132	491	What registers are used to read command line arguments from an x64 assembly program?	open	2024-07-28 09:57:18.320833	2024-07-28 09:57:18.320833
-133	491	Read command line arguments from an x64 assembly program?	open	2024-07-28 09:57:19.165651	2024-07-28 09:57:19.165651
-134	491	How command line arguments stored in registers can be inspected in debugger?	open	2024-07-28 09:57:19.619261	2024-07-28 09:57:19.619261
-135	492	Use an assembly function in a C source?	open	2024-07-28 09:57:20.497468	2024-07-28 09:57:20.497468
-136	493	How many of inline assembly types are available and why should they be used?	open	2024-07-28 09:57:20.938616	2024-07-28 09:57:20.938616
-137	493	Write a basic inline assembly in C programs?	open	2024-07-28 09:57:21.457516	2024-07-28 09:57:21.457516
-212	304	Update file timestamp:	open	2024-07-28 09:58:12.573895	2024-07-28 09:58:12.573895
-138	493	Write extended inline assembly in C programs? (needs work)	open	2024-07-28 09:57:22.542824	2024-07-28 09:57:22.542824
-139	494	Fill a buffer with a value using a simple loop in x64 assembly?	open	2024-07-28 09:57:23.507429	2024-07-28 09:57:23.507429
-140	494	Fill a buffer with a value using a simple loop and `stosb` instruction?	open	2024-07-28 09:57:24.375409	2024-07-28 09:57:24.375409
-141	494	Fill a buffer with a value without using a loop?	open	2024-07-28 09:57:25.152671	2024-07-28 09:57:25.152671
-142	494	Copy contents of a buffer into another without a loop?	open	2024-07-28 09:57:26.247625	2024-07-28 09:57:26.247625
-143	494	Reverse copy the content of a buffer into another without a loop?	open	2024-07-28 09:57:27.460189	2024-07-28 09:57:27.460189
-144	494	Compare two strings in x64 assembly without a loop? <span style="color:green">(needs work)</span>	open	2024-07-28 09:57:29.094539	2024-07-28 09:57:29.094539
-145	494	Scan a string if a character exists in it without a loop?	open	2024-07-28 09:57:30.384571	2024-07-28 09:57:30.384571
-146	495	Indicate that a literal number is in hexadecimal base in x64 assembly?	open	2024-07-28 09:57:30.840709	2024-07-28 09:57:30.840709
-147	495	Obtain the CPU information of the processor in x64 assembly?	open	2024-07-28 09:57:31.60502	2024-07-28 09:57:31.60502
-148	495	Check the processors which version of SSE extensions do they support?	open	2024-07-28 09:57:34.530296	2024-07-28 09:57:34.530296
-149	496	How many registers of SSE are available on any processor supporting it?	open	2024-07-28 09:57:35.420315	2024-07-28 09:57:35.420315
-150	496	What are the two types of data that can be stored on SSE registers?	open	2024-07-28 09:57:35.666127	2024-07-28 09:57:35.666127
-151	496	What are AVX registers and how much data can they hold?	open	2024-07-28 09:57:35.869789	2024-07-28 09:57:35.869789
-152	496	How does alignment of data in `.data` and `.bss` sections can improve performance of a program?	open	2024-07-28 09:57:36.073205	2024-07-28 09:57:36.073205
-153	496	How can we align data in `.data` and `.bss` sections in specific byte sizes?	open	2024-07-28 09:57:36.337119	2024-07-28 09:57:36.337119
-154	497	What register is responsible for controlling the floating-point operations?	open	2024-07-28 09:57:36.612832	2024-07-28 09:57:36.612832
-155	838	What API does the boost library represent for TCP/IP standard?	open	2024-07-28 09:57:37.208632	2024-07-28 09:57:37.208632
-156	838	Represent the IP address and port of an endpoint?	open	2024-07-28 09:57:37.60842	2024-07-28 09:57:37.60842
-157	838	Create an endpoint to designate the address of a network node?	open	2024-07-28 09:57:38.641601	2024-07-28 09:57:38.641601
-158	838	Create an endpoint in the server to designate addresses on which the server wants to listen?	open	2024-07-28 09:57:39.26184	2024-07-28 09:57:39.26184
-159	838	How many sockets are available?	open	2024-07-28 09:57:39.736333	2024-07-28 09:57:39.736333
-160	838	Create an active socket in client code?	open	2024-07-28 09:57:40.54003	2024-07-28 09:57:40.54003
-161	838	Create a passive socket in server code?	open	2024-07-28 09:57:41.501085	2024-07-28 09:57:41.501085
-162	1413	What is the objective of <code>io_context</code> in boost?	open	2024-07-28 09:57:42.073003	2024-07-28 09:57:42.073003
-163	1413	What is the objective of <code>io_object</code> in boost?	open	2024-07-28 09:57:42.318867	2024-07-28 09:57:42.318867
-164	1413	Start an event processing loop on a worker thread?	open	2024-07-28 09:57:42.932695	2024-07-28 09:57:42.932695
-165	1413	Start an event processing loop without blocking thread execution?	open	2024-07-28 09:57:43.528461	2024-07-28 09:57:43.528461
-166	1413	Start an event processing loop to run queued tasks?	open	2024-07-28 09:57:44.44249	2024-07-28 09:57:44.44249
-167	1413	Start an event processing loop to run tasks out of queue?	open	2024-07-28 09:57:45.47465	2024-07-28 09:57:45.47465
-168	1414	Serialize concurrent execution of an event processing loop?	open	2024-07-28 09:57:46.464795	2024-07-28 09:57:46.464795
-169	1414	Handle exceptional asynchronous control flow in an event processing loop?	open	2024-07-28 09:57:47.489682	2024-07-28 09:57:47.489682
-170	1414	Expire a task when reached to a deadline?	open	2024-07-28 09:57:48.417147	2024-07-28 09:57:48.417147
-171	1415	Write a client establishing a synchronous tcp connection to a server?	open	2024-07-28 09:57:49.35368	2024-07-28 09:57:49.35368
-172	1415	Write a client establishing an asynchronous tcp connection to a server?	open	2024-07-28 09:57:50.424164	2024-07-28 09:57:50.424164
-173	1415	Write a server accepting synchronous tcp requests?	open	2024-07-28 09:57:51.800493	2024-07-28 09:57:51.800493
-174	1415	Write a server accepting asynchronous tcp requests?	open	2024-07-28 09:57:53.371759	2024-07-28 09:57:53.371759
-175	1415	Write and read from server socket?	open	2024-07-28 09:57:56.451929	2024-07-28 09:57:56.451929
-176	1416	Begin debugging session of an executable?	open	2024-07-28 09:57:57.138849	2024-07-28 09:57:57.138849
-177	1416	Step through program execution in debugging session?	open	2024-07-28 09:57:57.427261	2024-07-28 09:57:57.427261
-178	1416	Show source code in debugging session?	open	2024-07-28 09:57:57.632105	2024-07-28 09:57:57.632105
-179	1416	Set breakpoints on a program?	open	2024-07-28 09:57:57.932638	2024-07-28 09:57:57.932638
-180	1416	Delete a breakpoint from a program?	open	2024-07-28 09:57:58.133757	2024-07-28 09:57:58.133757
-181	1416	Print the value of an object?	open	2024-07-28 09:57:58.322162	2024-07-28 09:57:58.322162
-182	1416	Modify the value of a variable?	open	2024-07-28 09:57:58.52488	2024-07-28 09:57:58.52488
-183	1416	Inspect the type of a variable?	open	2024-07-28 09:57:58.710099	2024-07-28 09:57:58.710099
-184	1416	Run shell commands in debugging session?	open	2024-07-28 09:57:58.932877	2024-07-28 09:57:58.932877
-185	652	Create a joinable thread.	open	2024-07-28 09:57:59.224213	2024-07-28 09:57:59.224213
-186	652	code sample	open	2024-07-28 09:57:59.854827	2024-07-28 09:57:59.854827
-187	652	Create a detached thread.	open	2024-07-28 09:58:00.037722	2024-07-28 09:58:00.037722
-188	1134	Read basic networking manuals:	open	2024-07-28 09:58:00.234484	2024-07-28 09:58:00.234484
-189	1134	List network interfaces:	open	2024-07-28 09:58:00.462421	2024-07-28 09:58:00.462421
-190	1134	Get socket address:	open	2024-07-28 09:58:00.523597	2024-07-28 09:58:00.523597
-191	1135	Create server:	open	2024-07-28 09:58:00.699469	2024-07-28 09:58:00.699469
-192	1141	Send mail:	open	2024-07-28 09:58:01.055496	2024-07-28 09:58:01.055496
-193	300	Lookup system calls in manual pages:	open	2024-07-28 09:58:01.379588	2024-07-28 09:58:01.379588
-194	300	Get multiple numbers from user and sum:	open	2024-07-28 09:58:02.244034	2024-07-28 09:58:02.244034
-195	300	Parse command-line options:	open	2024-07-28 09:58:03.39668	2024-07-28 09:58:03.39668
-196	301	Terminate program execution when unrecoverable error occurs:	open	2024-07-28 09:58:03.855715	2024-07-28 09:58:03.855715
-197	301	Write to standard output using file stream and file descriptor:	open	2024-07-28 09:58:04.313083	2024-07-28 09:58:04.313083
-198	301	Invert user input character case:	open	2024-07-28 09:58:05.093636	2024-07-28 09:58:05.093636
-199	301	Make user input consists of a range of valid characters:	open	2024-07-28 09:58:05.69683	2024-07-28 09:58:05.69683
-200	301	Print shell environments and check if shell supports colored output:	open	2024-07-28 09:58:06.292593	2024-07-28 09:58:06.292593
-201	302	Link against a library, create a shared object, change C standard in compiler options:	open	2024-07-28 09:58:06.600341	2024-07-28 09:58:06.600341
-202	302	Write into the standard output by directly using the `write` system call:	open	2024-07-28 09:58:06.868394	2024-07-28 09:58:06.868394
-203	302	Get system resources and file system information:	open	2024-07-28 09:58:07.603659	2024-07-28 09:58:07.603659
-204	302	Posix documentations can be found by `apropos -s7 posix`:	open	2024-07-28 09:58:07.822396	2024-07-28 09:58:07.822396
-205	302	Use feature test macros:	open	2024-07-28 09:58:07.973733	2024-07-28 09:58:07.973733
-206	302	Inspect four stages of compilation:	open	2024-07-28 09:58:08.207329	2024-07-28 09:58:08.207329
-207	302	Use make to build programs:	open	2024-07-28 09:58:08.319662	2024-07-28 09:58:08.319662
-208	303	Check error numbers after system call:	open	2024-07-28 09:58:08.766704	2024-07-28 09:58:08.766704
-209	304	Create a file:	open	2024-07-28 09:58:09.786408	2024-07-28 09:58:09.786408
-210	304	Read inode information of a file:	open	2024-07-28 09:58:10.759089	2024-07-28 09:58:10.759089
-211	304	Create soft links and hard links:	open	2024-07-28 09:58:11.777422	2024-07-28 09:58:11.777422
-213	304	Delete a file:	open	2024-07-28 09:58:13.305597	2024-07-28 09:58:13.305597
-214	304	Get access rights and ownership of a file:	open	2024-07-28 09:58:14.506364	2024-07-28 09:58:14.506364
-215	304	Change access mode of a file:	open	2024-07-28 09:58:15.578485	2024-07-28 09:58:15.578485
-216	304	Change ownership of a file:	open	2024-07-28 09:58:16.918193	2024-07-28 09:58:16.918193
-217	304	Write to file with file descriptor:	open	2024-07-28 09:58:18.171272	2024-07-28 09:58:18.171272
-218	304	Read from file with file descriptor:	open	2024-07-28 09:58:19.272692	2024-07-28 09:58:19.272692
-219	304	Read from and write to file with file stream:	open	2024-07-28 09:58:20.321214	2024-07-28 09:58:20.321214
-220	304	Read/write binary data from/to file:	open	2024-07-28 09:58:21.624704	2024-07-28 09:58:21.624704
-221	304	Move around inside a file with file descriptor:	open	2024-07-28 09:58:22.988312	2024-07-28 09:58:22.988312
-222	304	Move around a file with file stream:	open	2024-07-28 09:58:24.235349	2024-07-28 09:58:24.235349
-223	305	Handle signals:	open	2024-07-28 09:58:25.275214	2024-07-28 09:58:25.275214
-224	305	Ignore signals:	open	2024-07-28 09:58:26.224145	2024-07-28 09:58:26.224145
-225	305	Fork a new process:	open	2024-07-28 09:58:27.287862	2024-07-28 09:58:27.287862
-226	305	Create a zombie process:	open	2024-07-28 09:58:28.192826	2024-07-28 09:58:28.192826
-227	305	Create an orphan process:	open	2024-07-28 09:58:28.948195	2024-07-28 09:58:28.948195
-228	305	Replace execution of a forked process with another program:	open	2024-07-28 09:58:29.959412	2024-07-28 09:58:29.959412
-229	305	Run an external program without replacing execution of the process:	open	2024-07-28 09:58:30.414021	2024-07-28 09:58:30.414021
-230	305	Create a SysV style daemon running in background:	open	2024-07-28 09:58:33.238572	2024-07-28 09:58:33.238572
-231	306	Write systemd(1) unit file for a daemon:	open	2024-07-28 09:58:34.294385	2024-07-28 09:58:34.294385
-232	306	Create a systemd style daemon:	open	2024-07-28 09:58:34.719983	2024-07-28 09:58:34.719983
-233	307	Use `libcurl` shared library to retrieve public IP:	open	2024-07-28 09:58:35.301703	2024-07-28 09:58:35.301703
-234	307	Inspect function names in shared objects:	open	2024-07-28 09:58:35.619778	2024-07-28 09:58:35.619778
-235	307	Create static and dynamic libraries:	open	2024-07-28 09:58:35.942181	2024-07-28 09:58:35.942181
-236	307	Install a dynamic library on system:	open	2024-07-28 09:58:36.158044	2024-07-28 09:58:36.158044
-237	308	Inspect terminal information:	open	2024-07-28 09:58:36.41572	2024-07-28 09:58:36.41572
-238	308	Check if process connected to terminal:	open	2024-07-28 09:58:36.785561	2024-07-28 09:58:36.785561
-239	308	Create a PTY:	open	2024-07-28 09:58:38.475565	2024-07-28 09:58:38.475565
-240	308	Disable echo on PTY:	open	2024-07-28 09:58:39.384604	2024-07-28 09:58:39.384604
-241	308	Get terminal size:	open	2024-07-28 09:58:39.919041	2024-07-28 09:58:39.919041
-242	309	Send signals to a process given by user:	open	2024-07-28 09:58:40.740623	2024-07-28 09:58:40.740623
-243	309	Create a pipe between a parent and a forked child process:	open	2024-07-28 09:58:42.139287	2024-07-28 09:58:42.139287
-244	309	Create a message sender and receiver using FIFO:	open	2024-07-28 09:58:44.316487	2024-07-28 09:58:44.316487
-245	309	Create a message sender message queue:	open	2024-07-28 09:58:45.603673	2024-07-28 09:58:45.603673
-246	309	Create a message receiver using message queues:	open	2024-07-28 09:58:47.111304	2024-07-28 09:58:47.111304
-247	309	Create a shared memory between a parent process and its child:	open	2024-07-28 09:58:48.581535	2024-07-28 09:58:48.581535
-248	309	Create a shared memory between two distinct processes:	open	2024-07-28 09:58:48.834757	2024-07-28 09:58:48.834757
-249	309	Create a server communicating over Unix sockets:	open	2024-07-28 09:58:51.771952	2024-07-28 09:58:51.771952
-250	309	Create a server communicating over Unix sockets:	open	2024-07-28 09:58:52.335887	2024-07-28 09:58:52.335887
-251	310	Create two threads to handle two different jobs:	open	2024-07-28 09:58:53.422896	2024-07-28 09:58:53.422896
-252	310	Synchronize working threads using mutex locks:	open	2024-07-28 09:58:55.034735	2024-07-28 09:58:55.034735
-253	310	Use condition variables to synchronize threads:	open	2024-07-28 09:58:56.609471	2024-07-28 09:58:56.609471
-254	311	Start debugger:	open	2024-07-28 09:58:57.084638	2024-07-28 09:58:57.084638
-255	311	Start a program in debugger:	open	2024-07-28 09:58:57.227425	2024-07-28 09:58:57.227425
-256	311	Create a break in debugger:	open	2024-07-28 09:58:57.398183	2024-07-28 09:58:57.398183
-257	311	Watch a variable changing through program execution:	open	2024-07-28 09:58:57.539896	2024-07-28 09:58:57.539896
-258	311	Move forward next statement:	open	2024-07-28 09:58:57.677525	2024-07-28 09:58:57.677525
-259	311	Print variable content in each deubbing step:	open	2024-07-28 09:58:57.844661	2024-07-28 09:58:57.844661
-260	311	Step into function:	open	2024-07-28 09:58:57.983928	2024-07-28 09:58:57.983928
-261	311	Return from stepped in function:	open	2024-07-28 09:58:58.130622	2024-07-28 09:58:58.130622
-262	311	Examine memory in debugger:	open	2024-07-28 09:58:58.324112	2024-07-28 09:58:58.324112
-263	311	Modify variables during debugging:	open	2024-07-28 09:58:58.528805	2024-07-28 09:58:58.528805
-264	311	Follow a fork in program:	open	2024-07-28 09:58:58.706489	2024-07-28 09:58:58.706489
-265	311	Debug threads of program:	open	2024-07-28 09:58:58.888594	2024-07-28 09:58:58.888594
-266	311	Use Valgrind to check memory leaks:	open	2024-07-28 09:58:59.05343	2024-07-28 09:58:59.05343
-267	1362	What should be the bare minimum content of a <code>CMakeLists.txt</code> file?	open	2024-07-28 09:59:00.597888	2024-07-28 09:59:00.597888
-268	1362	Separate source and build directories when building a project with cmake?	open	2024-07-28 09:59:00.806212	2024-07-28 09:59:00.806212
-269	1362	Build a project?	open	2024-07-28 09:59:01.014268	2024-07-28 09:59:01.014268
-270	1362	Specify the exact target to build?	open	2024-07-28 09:59:01.22789	2024-07-28 09:59:01.22789
-271	1362	Show possible targets within a project?	open	2024-07-28 09:59:01.437977	2024-07-28 09:59:01.437977
-272	1362	What targets are predefined by cmake?	open	2024-07-28 09:59:01.677396	2024-07-28 09:59:01.677396
-273	1362	Explicitly specify generator for building the project?	open	2024-07-28 09:59:01.907917	2024-07-28 09:59:01.907917
-274	1362	How many library types are defined in cmake?	open	2024-07-28 09:59:02.352826	2024-07-28 09:59:02.352826
-275	1362	Create static and shared libraries?	open	2024-07-28 09:59:02.709631	2024-07-28 09:59:02.709631
-276	1362	Use common library object to use static and shared in one go?	open	2024-07-28 09:59:03.108304	2024-07-28 09:59:03.108304
-277	1362	Enable position independent executable for an executable?	open	2024-07-28 09:59:03.360629	2024-07-28 09:59:03.360629
-278	1362	Change the name of the target on output?	open	2024-07-28 09:59:03.598507	2024-07-28 09:59:03.598507
-279	1362	What is the default library build strategy when library type is not specified?	open	2024-07-28 09:59:04.016695	2024-07-28 09:59:04.016695
-280	1362	What values are equivalent to true and false in cmake?	open	2024-07-28 09:59:04.321302	2024-07-28 09:59:04.321302
-281	1362	Use conditional statements to either make libraries and link to program or build them into one executable?	open	2024-07-28 09:59:04.936301	2024-07-28 09:59:04.936301
-282	1362	What is the better alternative to making variables optional for user than using if expressions?	open	2024-07-28 09:59:05.638759	2024-07-28 09:59:05.638759
-283	1362	What is the common way to pass source files to targets?	open	2024-07-28 09:59:05.972292	2024-07-28 09:59:05.972292
-284	1362	Make an option dependent to another?	open	2024-07-28 09:59:06.411024	2024-07-28 09:59:06.411024
-325	1261	How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?	open	2024-07-28 09:59:37.425501	2024-07-28 09:59:37.425501
-326	1261	How to use <code>std::for_each</code> algorithm with a capturing lambda to sum values of a container?	open	2024-07-28 09:59:37.891289	2024-07-28 09:59:37.891289
-327	1261	How to use <code>std::for_each</code> algorithm with unsequenced parallel execution model to sum values of a container?	open	2024-07-28 09:59:38.43251	2024-07-28 09:59:38.43251
-328	1261	How to use ranges algorithm <code>std::ranges::for_each</code> to sum values of a container?	open	2024-07-28 09:59:38.927268	2024-07-28 09:59:38.927268
-329	1261	What is a sentinel and how is it different compared to a range?	open	2024-07-28 09:59:40.010298	2024-07-28 09:59:40.010298
-330	1261	How to move iterators back and forth regardless of their bidirectional support?	open	2024-07-28 09:59:40.808345	2024-07-28 09:59:40.808345
-331	1261	How to think of standard algorithms in terms of ranges instead of iterators?	open	2024-07-28 09:59:41.396833	2024-07-28 09:59:41.396833
-332	1261	Find the end iterator of a maximal sorted sub-range using standard algorithms?	open	2024-07-28 09:59:42.04189	2024-07-28 09:59:42.04189
-333	1261	Iterate over all the elements of a container using <code>std::for_each</code>?	open	2024-07-28 09:59:42.727597	2024-07-28 09:59:42.727597
-334	1261	How to use parallel executaion on <code>std::for_each</code> to invoke an expensive operation for each element of a container?	open	2024-07-28 09:59:43.675576	2024-07-28 09:59:43.675576
-335	1261	Use range based <code>std::for_each</code> utilizing a projection to invoke external methods?	open	2024-07-28 09:59:44.380025	2024-07-28 09:59:44.380025
-336	1261	Iterate over a limited number of a container using <code>std::for_each_n</code>?	open	2024-07-28 09:59:45.041885	2024-07-28 09:59:45.041885
-337	1261	How to swap two values?	open	2024-07-28 09:59:45.769753	2024-07-28 09:59:45.769753
-338	1261	Swap values of a range using <code>std::iter_swap</code>?	open	2024-07-28 09:59:46.539384	2024-07-28 09:59:46.539384
-339	1261	How to exchange elements between two non-overlapping ranges using <code>std::swap_ranges</code>?	open	2024-07-28 09:59:47.168266	2024-07-28 09:59:47.168266
-340	1261	What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?	open	2024-07-28 09:59:48.141584	2024-07-28 09:59:48.141584
-341	1261	Compare if one range is lexicographically less than another using <code>std::lexicographical_compare</code> and <code>std::ranges::lexicographical_compare</code>?	open	2024-07-28 09:59:49.496607	2024-07-28 09:59:49.496607
-342	1261	Compare if one range is lexicographically less than another using spaceship operator equivalent of <code>std::lexicographical_compare</code>?	open	2024-07-28 09:59:50.532692	2024-07-28 09:59:50.532692
-343	1261	What iterator type does the sort function operates on?	open	2024-07-28 09:59:50.928647	2024-07-28 09:59:50.928647
-344	1261	Sort a range using <code>std::sort</code>?	open	2024-07-28 09:59:51.788309	2024-07-28 09:59:51.788309
-345	1261	Sort a range of paired values providing an additional guarantee of preserving the relative order of equal elements?	open	2024-07-28 09:59:52.771563	2024-07-28 09:59:52.771563
-346	1261	Check if a range is already sorted in ascending order?	open	2024-07-28 09:59:53.590484	2024-07-28 09:59:53.590484
-347	1261	Find the end iterator of the maximal sorted sub-range within a range using standard algorithms?	open	2024-07-28 09:59:54.226525	2024-07-28 09:59:54.226525
-348	1261	Partially sort a range within a given sub-range?	open	2024-07-28 09:59:54.968003	2024-07-28 09:59:54.968003
-349	1261	Partially sort a range within a given sub-range and write results to another range?	open	2024-07-28 09:59:55.802184	2024-07-28 09:59:55.802184
-350	1261	Reorder a vector of objects partitioned in two sections?	open	2024-07-28 09:59:56.725477	2024-07-28 09:59:56.725477
-351	1261	Guarantee the ordering of equal elements in partitioning a range?	open	2024-07-28 09:59:57.343422	2024-07-28 09:59:57.343422
-352	1261	Check if a range is partitioned?	open	2024-07-28 09:59:57.959309	2024-07-28 09:59:57.959309
-353	1261	Copy the reordering results of partitioning a vector?	open	2024-07-28 09:59:58.697672	2024-07-28 09:59:58.697672
-354	1261	Find the nth element within a range?	open	2024-07-28 09:59:59.509753	2024-07-28 09:59:59.509753
-355	1261	Find the lower and upper bounds of a value within a sorted range?	open	2024-07-28 10:00:01.057605	2024-07-28 10:00:01.057605
-356	1261	Return both lower and upper bounds of a value within a range?	open	2024-07-28 10:00:01.901104	2024-07-28 10:00:01.901104
-357	1261	Return the upper bound of a value within a range using a predicate?	open	2024-07-28 10:00:02.512238	2024-07-28 10:00:02.512238
-358	1261	Check the presence of a value within a range?	open	2024-07-28 10:00:03.22962	2024-07-28 10:00:03.22962
-613	863	Replace filename in a path?	open	2024-07-28 10:02:46.68336	2024-07-28 10:02:46.68336
-359	1261	Determine whether one range is contained within another range?	open	2024-07-28 10:00:03.833135	2024-07-28 10:00:03.833135
-360	1261	Merge two sorted ranges into one?	open	2024-07-28 10:00:04.671069	2024-07-28 10:00:04.671069
-361	1261	Merge two consecutive sub-ranges within a range?	open	2024-07-28 10:00:05.249665	2024-07-28 10:00:05.249665
-362	1261	Remove consecutive duplicate values within a sorted range?	open	2024-07-28 10:00:06.112437	2024-07-28 10:00:06.112437
-363	1261	Produce a range containing elements present in the first range but not in the second range?	open	2024-07-28 10:00:06.776069	2024-07-28 10:00:06.776069
-364	1261	Produce a range containing elements present only in one of two ranges, but not both?	open	2024-07-28 10:00:07.378686	2024-07-28 10:00:07.378686
-365	1261	Produce a range containing elements present in either of the ranges?	open	2024-07-28 10:00:07.988049	2024-07-28 10:00:07.988049
-366	1261	Produce a range containing elements present in both of the ranges?	open	2024-07-28 10:00:08.602617	2024-07-28 10:00:08.602617
-367	1261	Apply a transformation function to each element within a range?	open	2024-07-28 10:00:09.368291	2024-07-28 10:00:09.368291
-368	1261	Remove elements that match the given value within a range?	open	2024-07-28 10:00:09.977569	2024-07-28 10:00:09.977569
-369	1261	Remove elements for which the given predicate evaluates true within a range?	open	2024-07-28 10:00:10.567153	2024-07-28 10:00:10.567153
-370	1261	Replace elements that match the given value within a range?	open	2024-07-28 10:00:11.153003	2024-07-28 10:00:11.153003
-371	1261	Replace elements for which the given predicate evaluates to true within a range?	open	2024-07-28 10:00:11.732379	2024-07-28 10:00:11.732379
-372	1261	Reverse the order of elements in a range?	open	2024-07-28 10:00:12.315236	2024-07-28 10:00:12.315236
-373	1261	Rearrange elements in the range from <code>[first, middle), [middle, last)</code> to <code>[middle, last), [first, middle)</code>?	open	2024-07-28 10:00:12.973731	2024-07-28 10:00:12.973731
-374	1261	Move elements in the provided range by the specified amount of positions into left or right?	open	2024-07-28 10:00:13.806483	2024-07-28 10:00:13.806483
-375	1261	Rearrange elements in the given array in a randomly order?	open	2024-07-28 10:00:14.498314	2024-07-28 10:00:14.498314
-376	1261	Rearrange elements of given array so that they are in their next or previous permutation?	open	2024-07-28 10:00:15.159298	2024-07-28 10:00:15.159298
-377	1261	Check whether two ranges have the same content but not necessarily the same order of elements?	open	2024-07-28 10:00:15.737136	2024-07-28 10:00:15.737136
-378	1261	Accumulate the elements of a range?	open	2024-07-28 10:00:16.405343	2024-07-28 10:00:16.405343
-379	1261	Accumulate pairs of elements over two ranges into a single value?	open	2024-07-28 10:00:17.175685	2024-07-28 10:00:17.175685
-380	1261	Accumulate pairs of elements over two ranges and copy into the output range?	open	2024-07-28 10:00:17.888275	2024-07-28 10:00:17.888275
-381	1261	Calculate the difference of adjacent elements within a raneg?	open	2024-07-28 10:00:18.659841	2024-07-28 10:00:18.659841
-382	1261	Reduce a range?	open	2024-07-28 10:00:19.354626	2024-07-28 10:00:19.354626
-383	1261	Calculate a sum of all elements?	open	2024-07-28 10:00:19.928095	2024-07-28 10:00:19.928095
-384	1261	Accumulate the values of a range by summing each value with its previous elements?	open	2024-07-28 10:00:20.756925	2024-07-28 10:00:20.756925
-385	1261	Accumulate the values of a range by summing each value with its previous elements by applying a custom predicate?	open	2024-07-28 10:00:21.579751	2024-07-28 10:00:21.579751
-386	1261	Indicate if all of the elements within a range evaluate to true for a predicate?	open	2024-07-28 10:00:22.224403	2024-07-28 10:00:22.224403
-387	1261	Indicate if at least one element within a range evaluates to true for a predicate?	open	2024-07-28 10:00:22.809799	2024-07-28 10:00:22.809799
-388	1261	Indicate if no elements within a range evaluates to true for a predicate?	open	2024-07-28 10:00:23.400709	2024-07-28 10:00:23.400709
-389	1261	Fill a range by consecutively assigning the given value to each element?	open	2024-07-28 10:00:24.019647	2024-07-28 10:00:24.019647
-390	1261	Fill a range by consecutively assigning the given value to a limited number of elements?	open	2024-07-28 10:00:24.628393	2024-07-28 10:00:24.628393
-391	1261	Fill a range by consecutively assigning the result of the provided generator?	open	2024-07-28 10:00:25.207939	2024-07-28 10:00:25.207939
-392	1261	Fill the specified number of elements within a range by consecutively assigning the result of the provided generator?	open	2024-07-28 10:00:25.776782	2024-07-28 10:00:25.776782
-393	1261	Generate elements by consecutively assigning the result of applying the prefix <code>operator++</code>, starting with the initial value?	open	2024-07-28 10:00:26.381371	2024-07-28 10:00:26.381371
-394	1261	Copy a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:27.070667	2024-07-28 10:00:27.070667
-395	1261	Move a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:27.717638	2024-07-28 10:00:27.717638
-396	1261	Copy and move a non-overlapping and overlapping ranges in the opposite direction?	open	2024-07-28 10:00:28.557018	2024-07-28 10:00:28.557018
-397	1261	Copy only a limited elements of a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:29.211668	2024-07-28 10:00:29.211668
-398	1261	Selectively copy elements for which the predicate returns true?	open	2024-07-28 10:00:29.852066	2024-07-28 10:00:29.852066
-399	1261	Selectively copy elements for which the predicate returns false?	open	2024-07-28 10:00:30.459731	2024-07-28 10:00:30.459731
-400	1261	Selectively copy elements that do not match the provided value?	open	2024-07-28 10:00:31.093147	2024-07-28 10:00:31.093147
-401	1261	Copy a random selection N elements from the source range to the destination range utilising the provided random number generator?	open	2024-07-28 10:00:31.791918	2024-07-28 10:00:31.791918
-402	1261	Replace elements in a range matching a value?	open	2024-07-28 10:00:32.454437	2024-07-28 10:00:32.454437
-403	1261	Replace elements in a range for which the predicate evaluates to true?	open	2024-07-28 10:00:33.074553	2024-07-28 10:00:33.074553
-404	1261	Copy elements of a range into another in reverse order?	open	2024-07-28 10:00:33.689266	2024-07-28 10:00:33.689266
-405	1261	Copy elements <code>[middle, last)</code>, followed by <code>[first, middle)</code> from a range into another?	open	2024-07-28 10:00:34.361993	2024-07-28 10:00:34.361993
-406	1261	Construct and destroy a single element at a given address?	open	2024-07-28 10:00:35.158115	2024-07-28 10:00:35.158115
-407	1261	Reorder elements in the given range such that the elements maintain the max-heap property?	open	2024-07-28 10:00:35.893673	2024-07-28 10:00:35.893673
-408	1261	Push and pop values to heap?	open	2024-07-28 10:00:36.958926	2024-07-28 10:00:36.958926
-409	1261	Sort the elements in a heap?	open	2024-07-28 10:00:37.697485	2024-07-28 10:00:37.697485
-410	1261	Check if a range is a heap?	open	2024-07-28 10:00:38.29123	2024-07-28 10:00:38.29123
-411	1261	Check how further a range is a heap?	open	2024-07-28 10:00:38.932553	2024-07-28 10:00:38.932553
-412	1261	Find the first element matching the given value within a range?	open	2024-07-28 10:00:39.772811	2024-07-28 10:00:39.772811
-413	1261	Find the first element for which the predicate evaluates to true?	open	2024-07-28 10:00:40.186021	2024-07-28 10:00:40.186021
-414	1261	Find the first element for which the predicate evaluates to false?	open	2024-07-28 10:00:40.553396	2024-07-28 10:00:40.553396
-415	1261	Produce the view of the first elements and a range of second elements from a range of paired elements using views?	open	2024-07-28 10:00:41.233936	2024-07-28 10:00:41.233936
-416	1261	Produce the view of Nth elements from a range of tuple-like elements?	open	2024-07-28 10:00:41.903854	2024-07-28 10:00:41.903854
-417	1261	Apply a transformation functor to every element of the view of a range?	open	2024-07-28 10:00:42.520334	2024-07-28 10:00:42.520334
-418	1261	Take first N elements of the view of a range?	open	2024-07-28 10:00:43.045588	2024-07-28 10:00:43.045588
-419	1261	Take the sequence of elements from the view of a range for which the predicate evaluates to true?	open	2024-07-28 10:00:43.512886	2024-07-28 10:00:43.512886
-420	1261	Drop the first N elements of the view of a range?	open	2024-07-28 10:00:43.972993	2024-07-28 10:00:43.972993
-614	863	Replace extension in a path?	open	2024-07-28 10:02:46.913747	2024-07-28 10:02:46.913747
-421	1261	Drop the sequence of elements from the view of a range for which the predicate evaluates to true?	open	2024-07-28 10:00:44.456505	2024-07-28 10:00:44.456505
-422	1261	Filter the view of a range to consist all elements that satisfy the provided predicate?	open	2024-07-28 10:00:44.928707	2024-07-28 10:00:44.928707
-423	1261	Reverse the view of a range for bidirectional ranges?	open	2024-07-28 10:00:45.393356	2024-07-28 10:00:45.393356
-424	1261	Adapt an iterator and the number of elements following it into the view of a range?	open	2024-07-28 10:00:45.851523	2024-07-28 10:00:45.851523
-425	1261	Adapt a view into a range with a begin and end iterator of matching types for non-range versions of algorithms?	open	2024-07-28 10:00:46.327175	2024-07-28 10:00:46.327175
-426	1261	Represent the view of all the elements of a range?	open	2024-07-28 10:00:46.782416	2024-07-28 10:00:46.782416
-427	1261	Split a single range into a view over sub-ranges? (incomplete)	open	2024-07-28 10:00:47.48368	2024-07-28 10:00:47.48368
-428	1261	Flatten a splited view of a range?	open	2024-07-28 10:00:47.703984	2024-07-28 10:00:47.703984
-429	1261	Represent an empty view?	open	2024-07-28 10:00:48.083458	2024-07-28 10:00:48.083458
-430	1261	Represent a single element view?	open	2024-07-28 10:00:48.545581	2024-07-28 10:00:48.545581
-431	1261	Represent a view of the generated sequence formed by repeatedly incrementing an initial value?	open	2024-07-28 10:00:49.064427	2024-07-28 10:00:49.064427
-432	1261	Represent a view obtained by successively applying the istream input iterator?	open	2024-07-28 10:00:49.547664	2024-07-28 10:00:49.547664
-433	437	Use modules to import the entire standard library functionality?	open	2024-07-28 10:00:50.179428	2024-07-28 10:00:50.179428
-439	1036	How to create a thread?	open	2024-07-28 10:00:55.778699	2024-07-28 10:00:55.778699
-440	1037	How to launch a thread using callable objects?	open	2024-07-28 10:00:56.824328	2024-07-28 10:00:56.824328
-441	1037	How to wait for a thread to complete?	open	2024-07-28 10:00:57.735647	2024-07-28 10:00:57.735647
-442	1037	Join threads on normal and exceptional exists:	open	2024-07-28 10:00:58.541309	2024-07-28 10:00:58.541309
-443	1037	Use RAII idiom to handle joining threads:	open	2024-07-28 10:00:59.236399	2024-07-28 10:00:59.236399
-444	1037	How to run threads in background?	open	2024-07-28 10:00:59.740113	2024-07-28 10:00:59.740113
-445	1037	How to pass arguments to a thread?	open	2024-07-28 10:01:00.963079	2024-07-28 10:01:00.963079
-446	1037	How to transfer ownership of a thread?	open	2024-07-28 10:01:01.684897	2024-07-28 10:01:01.684897
-447	1037	Choosing number of threads at runtime:	open	2024-07-28 10:01:02.360898	2024-07-28 10:01:02.360898
-448	1037	Identify threads:	open	2024-07-28 10:01:02.839723	2024-07-28 10:01:02.839723
-449	1038	Protect a critical section of code by marking it as mutually exclusive?	open	2024-07-28 10:01:03.860105	2024-07-28 10:01:03.860105
-450	1038	What is the problem of a data structure interface when it returns an element in multi-threaded environment?	open	2024-07-28 10:01:04.529648	2024-07-28 10:01:04.529648
-451	1038	Protect the interface of a data structure that provides a method to return elements and suffers from data race when shared between two threads?	open	2024-07-28 10:01:06.130079	2024-07-28 10:01:06.130079
-452	1038	What granularity is acceptable when locking exclusive content?	open	2024-07-28 10:01:06.902738	2024-07-28 10:01:06.902738
-453	1038	What is the common problem when using multiple fine-grained locking schemes?	open	2024-07-28 10:01:07.173251	2024-07-28 10:01:07.173251
-454	1038	What is the common solution to avoid deadlock?	open	2024-07-28 10:01:08.505987	2024-07-28 10:01:08.505987
-455	1038	Sequentially lock two mutexes with a guarantee that they won't deadlock?	open	2024-07-28 10:01:09.118769	2024-07-28 10:01:09.118769
-456	1038	How different is a unique lock compared to a regular lock guard?	open	2024-07-28 10:01:10.054773	2024-07-28 10:01:10.054773
-457	1347	Where does move semantics apply optimizations compared to prior C++11 standard?	open	2024-07-28 10:01:10.93329	2024-07-28 10:01:10.93329
-458	1347	How move semantics can be implemented for a class?	open	2024-07-28 10:01:12.064151	2024-07-28 10:01:12.064151
-459	1347	What happens to an object when move semantics is not available?	open	2024-07-28 10:01:12.463552	2024-07-28 10:01:12.463552
-460	1347	What happens to an object declared with <code>const</code> when moved?	open	2024-07-28 10:01:12.867894	2024-07-28 10:01:12.867894
-461	1347	Why return values should not be marked as <code>const</code>?	open	2024-07-28 10:01:13.279467	2024-07-28 10:01:13.279467
-462	1347	What should be the state of an object after it has been moved?	open	2024-07-28 10:01:13.510276	2024-07-28 10:01:13.510276
-463	1347	When do compilers automatically switch to move semantics?	open	2024-07-28 10:01:13.741601	2024-07-28 10:01:13.741601
-464	1348	What header file should be included when using move semantics?	open	2024-07-28 10:01:14.01039	2024-07-28 10:01:14.01039
-465	1348	What is the equivallent form of <code>std::move()</code>?	open	2024-07-28 10:01:14.234513	2024-07-28 10:01:14.234513
-466	1348	What is the behavior of a parameter that is declared as an rvalue reference?	open	2024-07-28 10:01:14.750789	2024-07-28 10:01:14.750789
-467	1348	What is the moved-from object state?	open	2024-07-28 10:01:15.327644	2024-07-28 10:01:15.327644
-468	1348	What are the major ways of call-by-reference and what kind of arguments does each take?	open	2024-07-28 10:01:16.630606	2024-07-28 10:01:16.630606
-469	1348	When does the call-by-value become cheap with move semantics?	open	2024-07-28 10:01:17.664083	2024-07-28 10:01:17.664083
-470	1349	Why does automatic move operations disable when user declares special member functions?	open	2024-07-28 10:01:18.095213	2024-07-28 10:01:18.095213
-471	1349	Based on the exact rules for <i>generated special member functions</i> when would copy constructor and copy assignment operator automatically be generated?	open	2024-07-28 10:01:18.407778	2024-07-28 10:01:18.407778
-472	1349	Based on the exact rules for <i>generated special member functions</i> when would move constructor and move assignment operator be automatically generated?	open	2024-07-28 10:01:18.760752	2024-07-28 10:01:18.760752
-473	1349	Based on the exact rules for <i>generated special member functions</i> when would destructor disable automatic move operations?	open	2024-07-28 10:01:19.030404	2024-07-28 10:01:19.030404
-474	1349	What does it mean to say move semantics is not passed through?	open	2024-07-28 10:01:19.553773	2024-07-28 10:01:19.553773
-475	1349	What special member functions are generated by default for a class?	open	2024-07-28 10:01:20.057493	2024-07-28 10:01:20.057493
-476	1349	When do move operations become broken?	open	2024-07-28 10:01:20.386839	2024-07-28 10:01:20.386839
-477	1349	How to deal with moving an object to itself?	open	2024-07-28 10:01:20.968116	2024-07-28 10:01:20.968116
-478	1349	Why deleting moving operations does not make semantic sence?	open	2024-07-28 10:01:22.13421	2024-07-28 10:01:22.13421
-479	1349	How to properly disable move semantics in an object without disabling fallback mechanism?	open	2024-07-28 10:01:22.867711	2024-07-28 10:01:22.867711
-480	1349	How does move operation work for a class containing a member with disabled move operations?	open	2024-07-28 10:01:23.675754	2024-07-28 10:01:23.675754
-481	1349	What declarations does the <b>Rule of Five</b> formulate to simplify special member functions generation?	open	2024-07-28 10:01:24.029648	2024-07-28 10:01:24.029648
-482	1350	Why should we avoid using move operations when returning a local object?	open	2024-07-28 10:01:24.483608	2024-07-28 10:01:24.483608
-483	1350	When would passing by value becomes cheaper than passing by const lvalue references?	open	2024-07-28 10:01:27.784108	2024-07-28 10:01:27.784108
-863	65	Build an executable from C++ source?	open	2024-07-28 10:05:19.582909	2024-07-28 10:05:19.582909
-484	1350	Does <code>virtual</code> destructor in a base class disable automatic move operations in its derived classes?	open	2024-07-28 10:01:29.036753	2024-07-28 10:01:29.036753
-485	1350	When to take arguments by value and when to take by references?	open	2024-07-28 10:01:29.419282	2024-07-28 10:01:29.419282
-486	1351	How to implement getter member functions using move semantics and reference semantics in order to avoid expensive copy of returned object?	open	2024-07-28 10:01:31.016351	2024-07-28 10:01:31.016351
-487	1351	How many reference qualified member functions can we implement and how would each of them be called?	open	2024-07-28 10:01:32.267272	2024-07-28 10:01:32.267272
-488	1351	Is it possible to overload for both reference and non-reference qualifiers?	open	2024-07-28 10:01:32.807562	2024-07-28 10:01:32.807562
-489	1351	Why should we use reference qualifiers?	open	2024-07-28 10:01:33.144511	2024-07-28 10:01:33.144511
-490	1351	What references qualifiers should be used for assignment operators to prevent accidental assignment of a new value to a temporary object?	open	2024-07-28 10:01:34.514951	2024-07-28 10:01:34.514951
-491	1353	Why <i>strong exception handling guarantee</i> is required for <code>std::vector</code> to use move operations instead of copying objects?	open	2024-07-28 10:01:35.984662	2024-07-28 10:01:35.984662
-492	1353	What condition can be specified for <code>noexcept</code>?	open	2024-07-28 10:01:36.374884	2024-07-28 10:01:36.374884
-493	1353	What does <code>noexcept</code> change when overloading functions?	open	2024-07-28 10:01:36.544444	2024-07-28 10:01:36.544444
-494	1353	What changes does <code>noexcept</code> imply in a class hierarchy?	open	2024-07-28 10:01:37.496524	2024-07-28 10:01:37.496524
-495	1353	What are the <i>strong exception handling guarantees</i> for classes with copy and move special member functions generated but not implemented?	open	2024-07-28 10:01:38.226592	2024-07-28 10:01:38.226592
-496	1353	What are the <i>strong exception handling guarantees</i> for classes having special member functions defaulted?	open	2024-07-28 10:01:38.755738	2024-07-28 10:01:38.755738
-497	1353	What happens when generated an specified <code>noexception</code> condition contradicts for special member functions?	open	2024-07-28 10:01:39.247682	2024-07-28 10:01:39.247682
-498	1355	What are the prerequisites of having a perfect universal reference?	open	2024-07-28 10:01:39.810817	2024-07-28 10:01:39.810817
-499	1355	What is the difference between a universal reference and an rvalue reference?	open	2024-07-28 10:01:40.222645	2024-07-28 10:01:40.222645
-500	1355	What is the overload resolution for universal references?	open	2024-07-28 10:01:40.87332	2024-07-28 10:01:40.87332
-501	1355	What is the semantic meaning of <code>std::forward</code>?	open	2024-07-28 10:01:41.21984	2024-07-28 10:01:41.21984
-502	1355	Perfect forward function arguments to another function?	open	2024-07-28 10:01:41.705702	2024-07-28 10:01:41.705702
-503	1355	Perfect forward a parameter pack of a function to another?	open	2024-07-28 10:01:42.087389	2024-07-28 10:01:42.087389
-504	1355	Perfect forward a return value?	open	2024-07-28 10:01:42.573384	2024-07-28 10:01:42.573384
-505	1359	How to declare move-only types?	open	2024-07-28 10:01:43.466162	2024-07-28 10:01:43.466162
-506	1359	What happens to a move-only object when removed from a container?	open	2024-07-28 10:01:44.073685	2024-07-28 10:01:44.073685
-507	1359	Why <code>std::initializer_list</code>s cannot be used for move-only objects?	open	2024-07-28 10:01:44.421373	2024-07-28 10:01:44.421373
-508	1359	What is the only way to iterate over move-only elements of a container?	open	2024-07-28 10:01:44.851674	2024-07-28 10:01:44.851674
-509	1359	What is the only way to pass or return move-only values?	open	2024-07-28 10:01:45.447149	2024-07-28 10:01:45.447149
-510	1359	How to ensure that we have lost the ownership of a move-only object when passed to a function?	open	2024-07-28 10:01:45.74993	2024-07-28 10:01:45.74993
-511	1360	How to move elements of a range to another using move semantics and the C++ standard library algorithms?	open	2024-07-28 10:01:46.757201	2024-07-28 10:01:46.757201
-512	1360	How to use move iterators in algorithms when we no longer want the elements of a container?	open	2024-07-28 10:01:47.905639	2024-07-28 10:01:47.905639
-513	1360	How to use move iterators to construct containers?	open	2024-07-28 10:01:48.688242	2024-07-28 10:01:48.688242
-514	1361	When do the capacity of strings shrink?	open	2024-07-28 10:01:49.189243	2024-07-28 10:01:49.189243
-515	1361	When do containers support move semantics?	open	2024-07-28 10:01:49.857094	2024-07-28 10:01:49.857094
-516	1361	What does the C++ standard guarantee for move operations on containers?	open	2024-07-28 10:01:50.408327	2024-07-28 10:01:50.408327
-517	1361	How many ways are there for elements to be moved into a container?	open	2024-07-28 10:01:51.37083	2024-07-28 10:01:51.37083
-518	1361	How does <code>std::array</code> support move semantics?	open	2024-07-28 10:01:51.878975	2024-07-28 10:01:51.878975
-519	1361	How does <code>std::pair</code> support move semantics?	open	2024-07-28 10:01:52.502236	2024-07-28 10:01:52.502236
-520	1418	What are the alternatives to templates which should be avoided by using templates?	open	2024-07-28 10:01:52.910819	2024-07-28 10:01:52.910819
-521	1418	What are the alternatives to typename keyword?	open	2024-07-28 10:01:53.168682	2024-07-28 10:01:53.168682
-522	1418	What are the translation phases of a template?	open	2024-07-28 10:01:53.67816	2024-07-28 10:01:53.67816
-523	1418	What happens when a function template triggers its instantiation?	open	2024-07-28 10:01:53.980681	2024-07-28 10:01:53.980681
-524	1418	What is the signature of a function template?	open	2024-07-28 10:01:54.332704	2024-07-28 10:01:54.332704
-525	1418	What requirements should the type of a function template parameter meet?	open	2024-07-28 10:01:54.66866	2024-07-28 10:01:54.66866
-526	1418	Use a function template with different types?	open	2024-07-28 10:01:55.079502	2024-07-28 10:01:55.079502
-527	1418	How does the compile deduce the type of function template arguments?	open	2024-07-28 10:01:55.554631	2024-07-28 10:01:55.554631
-528	1418	What are the limits of type conversion during type deduction of function template arguments?	open	2024-07-28 10:01:56.319454	2024-07-28 10:01:56.319454
-529	1418	What are the common ways to handle type conversions during type deduction of function template arguments?	open	2024-07-28 10:01:57.127746	2024-07-28 10:01:57.127746
-530	1418	How does the compiler deduce the default function template parameters?	open	2024-07-28 10:01:57.78069	2024-07-28 10:01:57.78069
-531	1418	Declare a function template with multiple template parameters?	open	2024-07-28 10:01:58.220646	2024-07-28 10:01:58.220646
-532	1418	What are the common ways of handling return type deduction for function templates having multiple function template parameters?	open	2024-07-28 10:01:58.457518	2024-07-28 10:01:58.457518
-533	1418	What are the disadvantages of using additional template parameter for return types when having multiple function template parameters?	open	2024-07-28 10:01:59.129197	2024-07-28 10:01:59.129197
-534	1418	What are the disadvantages of using automatic deduction of return types when multiple function template parameters are used?	open	2024-07-28 10:01:59.668412	2024-07-28 10:01:59.668412
-535	1418	Use trailing return type to deduce the return type of a function template?	open	2024-07-28 10:02:00.12157	2024-07-28 10:02:00.12157
-536	1418	What is the drawback of using trailing return type?	open	2024-07-28 10:02:00.769536	2024-07-28 10:02:00.769536
-537	1418	Use common type as the return type of a function template?	open	2024-07-28 10:02:01.4396	2024-07-28 10:02:01.4396
-538	1418	When does auto type decays?	open	2024-07-28 10:02:01.877655	2024-07-28 10:02:01.877655
-539	1418	What are the use cases of default template arguments?	open	2024-07-28 10:02:02.451715	2024-07-28 10:02:02.451715
-540	1418	What ordering default template parameter can have?	open	2024-07-28 10:02:02.994316	2024-07-28 10:02:02.994316
-541	1418	What are the rules of overload resolution for matching a function template overload by a compiler?	open	2024-07-28 10:02:03.978313	2024-07-28 10:02:03.978313
-542	1418	What happens when there are two matching template overloads for a function call?	open	2024-07-28 10:02:04.606735	2024-07-28 10:02:04.606735
-543	1418	What are the common use cases of overloading function templates?	open	2024-07-28 10:02:05.512302	2024-07-28 10:02:05.512302
-544	1418	What is the drawback of overloading function templates?	open	2024-07-28 10:02:06.857285	2024-07-28 10:02:06.857285
-545	1418	When a template function overload would be missed by a call?	open	2024-07-28 10:02:07.76851	2024-07-28 10:02:07.76851
-546	1419	Declare a class template?	open	2024-07-28 10:02:08.485559	2024-07-28 10:02:08.485559
-547	1419	Declare copy constructor and copy assignment operator of a class template?	open	2024-07-28 10:02:09.288416	2024-07-28 10:02:09.288416
-548	1419	Define the member functions of a class template outside of the scope of the class?	open	2024-07-28 10:02:09.865197	2024-07-28 10:02:09.865197
-549	1419	Declare a friend function template in a class template?	open	2024-07-28 10:02:10.856266	2024-07-28 10:02:10.856266
-550	1419	Specialize a class template for a specific type?	open	2024-07-28 10:02:11.708711	2024-07-28 10:02:11.708711
-551	1419	Partially specialize a class template for pointers?	open	2024-07-28 10:02:12.465606	2024-07-28 10:02:12.465606
-552	1419	What are the possible template specializations of a class template with multiple template parameters?	open	2024-07-28 10:02:13.508631	2024-07-28 10:02:13.508631
-553	1419	Define default values for class template parameters?	open	2024-07-28 10:02:14.747602	2024-07-28 10:02:14.747602
-554	1419	Define an alias template?	open	2024-07-28 10:02:15.195301	2024-07-28 10:02:15.195301
-555	1419	Use alias templates for member types of class templates?	open	2024-07-28 10:02:15.786769	2024-07-28 10:02:15.786769
-556	1419	Under what condition class templates do not require specifying template parameters?	open	2024-07-28 10:02:16.221318	2024-07-28 10:02:16.221318
-557	1419	What is the common way of supporting type deduction for a class template?	open	2024-07-28 10:02:16.70555	2024-07-28 10:02:16.70555
-558	1419	What is the drawback of supporting class template argument deduction by providing constructors passing initial argument?	open	2024-07-28 10:02:17.597614	2024-07-28 10:02:17.597614
-559	1419	What is the drawback of passing arguments of a template type by reference when supporting class template argument deduction?	open	2024-07-28 10:02:18.516496	2024-07-28 10:02:18.516496
-560	1419	Disable automatic deduction of raw character pointers using deduction guides instead of constructors passing arguments?	open	2024-07-28 10:02:19.152185	2024-07-28 10:02:19.152185
-561	1419	Where are the edge cases where deduction guides do not work?	open	2024-07-28 10:02:19.698829	2024-07-28 10:02:19.698829
-562	1419	Define deduction guides for aggregate class templates?	open	2024-07-28 10:02:20.487223	2024-07-28 10:02:20.487223
-563	1420	What are the use cases of nontype template parameters?	open	2024-07-28 10:02:21.249662	2024-07-28 10:02:21.249662
-564	1420	How nontype template parameters can be initialized?	open	2024-07-28 10:02:21.777316	2024-07-28 10:02:21.777316
-565	1420	What is the relation between objects of a class instantiated by different nontype template parameter values?	open	2024-07-28 10:02:22.251451	2024-07-28 10:02:22.251451
-566	1420	What is the use case of nontype class template parameters with default values?	open	2024-07-28 10:02:22.670568	2024-07-28 10:02:22.670568
-567	250	Check if <code>/usr/src/linux/version</code> file exists?	open	2024-07-28 10:02:23.77034	2024-07-28 10:02:23.77034
-568	250	Get the current path of executing program?	open	2024-07-28 10:02:24.305585	2024-07-28 10:02:24.305585
-569	250	Get the canonical form of a path?	open	2024-07-28 10:02:25.071619	2024-07-28 10:02:25.071619
-570	250	Get the canonical form of a path relative to another path?	open	2024-07-28 10:02:25.969602	2024-07-28 10:02:25.969602
-571	250	Get the absolute path of <code>./.local/bin</code>?	open	2024-07-28 10:02:26.776297	2024-07-28 10:02:26.776297
-572	250	Concatenate two paths?	open	2024-07-28 10:02:27.277666	2024-07-28 10:02:27.277666
-573	250	Check if two paths are addressing the same location?	open	2024-07-28 10:02:27.858774	2024-07-28 10:02:27.858774
-574	250	Get the type of a file from its path?	open	2024-07-28 10:02:28.350914	2024-07-28 10:02:28.350914
-575	250	Make the type checking of a file cheaper by not calling system calls?	open	2024-07-28 10:02:28.859529	2024-07-28 10:02:28.859529
-576	250	Check if the permission of a file includes user, group, and others access?	open	2024-07-28 10:02:29.483203	2024-07-28 10:02:29.483203
-577	250	Get the size of a regular file?	open	2024-07-28 10:02:29.803883	2024-07-28 10:02:29.803883
-578	250	Iterate over the entries of a directory?	open	2024-07-28 10:02:30.231244	2024-07-28 10:02:30.231244
-579	844	Use structured binding to initialize multiple entities?	open	2024-07-28 10:02:30.814795	2024-07-28 10:02:30.814795
-580	844	Use const and reference qualifiers with structured binding?	open	2024-07-28 10:02:31.426851	2024-07-28 10:02:31.426851
-581	844	Use move semantics with structured bindings?	open	2024-07-28 10:02:32.053232	2024-07-28 10:02:32.053232
-582	844	Use class and structures in structured bindings?	open	2024-07-28 10:02:32.815416	2024-07-28 10:02:32.815416
-583	844	Use raw arrays in structured binding?	open	2024-07-28 10:02:33.222635	2024-07-28 10:02:33.222635
-584	844	Use `std::pair`, `std::tuple`, and `std::array` in structured binding?	open	2024-07-28 10:02:33.784293	2024-07-28 10:02:33.784293
-585	844	Make a custom type compatible with tuple interface to be used in structured binding?	open	2024-07-28 10:02:34.043334	2024-07-28 10:02:34.043334
-586	853	Write a C++ function to decide at compile time wether it should return a passed string, call <code>std::to_string()</code> for a passed integral or floating-point value, or try to convert the passed argument to std::string.	open	2024-07-28 10:02:34.320557	2024-07-28 10:02:34.320557
-587	858	What object can be used in C++ STL to have a value with certain type or not have any value at all?	open	2024-07-28 10:02:34.696406	2024-07-28 10:02:34.696406
-588	858	How can <code>std::optional<></code> be used as return values?	open	2024-07-28 10:02:35.356222	2024-07-28 10:02:35.356222
-589	863	What are the constituents of a path?	open	2024-07-28 10:02:35.76472	2024-07-28 10:02:35.76472
-590	863	What path formats are available?	open	2024-07-28 10:02:36.278526	2024-07-28 10:02:36.278526
-591	863	What are the properties of a normalized path?	open	2024-07-28 10:02:36.696954	2024-07-28 10:02:36.696954
-592	863	What are the differences of member and free-standing functions of path?	open	2024-07-28 10:02:37.322937	2024-07-28 10:02:37.322937
-593	863	How many error handling approaches are available on filesystem library?	open	2024-07-28 10:02:37.705644	2024-07-28 10:02:37.705644
-594	863	Handle a filesystem operation error with exceptions?	open	2024-07-28 10:02:38.28483	2024-07-28 10:02:38.28483
-595	863	Handle a filesystem operation error with error code?	open	2024-07-28 10:02:38.831048	2024-07-28 10:02:38.831048
-596	863	What are the supporting different file types?	open	2024-07-28 10:02:39.391006	2024-07-28 10:02:39.391006
-597	863	Create a path with different string types?	open	2024-07-28 10:02:39.824001	2024-07-28 10:02:39.824001
-598	863	Create a path with a range?	open	2024-07-28 10:02:40.167991	2024-07-28 10:02:40.167991
-599	863	Get current path of the executing process?	open	2024-07-28 10:02:40.507861	2024-07-28 10:02:40.507861
-600	863	Get the path of temporary directory?	open	2024-07-28 10:02:40.825422	2024-07-28 10:02:40.825422
-601	863	Yield whether a path is empty?	open	2024-07-28 10:02:41.107461	2024-07-28 10:02:41.107461
-602	863	Yield whether a path is absolute or relative?	open	2024-07-28 10:02:41.390978	2024-07-28 10:02:41.390978
-603	863	Yield all the constituents of a path?	open	2024-07-28 10:02:42.164873	2024-07-28 10:02:42.164873
-604	863	Yield if a path is normalized?	open	2024-07-28 10:02:42.604911	2024-07-28 10:02:42.604911
-605	863	Yield a path as string objects of any byte size?	open	2024-07-28 10:02:43.010139	2024-07-28 10:02:43.010139
-606	863	Yield a relative path from two paths?	open	2024-07-28 10:02:43.478921	2024-07-28 10:02:43.478921
-607	863	Yield a path as a generic string?	open	2024-07-28 10:02:44.210808	2024-07-28 10:02:44.210808
-608	863	Concatenate a string to a path?	open	2024-07-28 10:02:44.74648	2024-07-28 10:02:44.74648
-609	863	Append a subpath to a path?	open	2024-07-28 10:02:45.268637	2024-07-28 10:02:45.268637
-610	863	Add extension to a file path that does not already have an extension?	open	2024-07-28 10:02:45.582249	2024-07-28 10:02:45.582249
-611	863	Assign a string to a path as a new path?	open	2024-07-28 10:02:46.017685	2024-07-28 10:02:46.017685
-612	863	Swap two path objects?	open	2024-07-28 10:02:46.382501	2024-07-28 10:02:46.382501
-615	863	Convert directory separators inside a path to the native format?	open	2024-07-28 10:02:47.18438	2024-07-28 10:02:47.18438
-616	863	Remove filename from a path?	open	2024-07-28 10:02:47.464557	2024-07-28 10:02:47.464557
-617	863	Remove extension from a path?	open	2024-07-28 10:02:47.69662	2024-07-28 10:02:47.69662
-618	863	What comparison operators are supported by path objects?	open	2024-07-28 10:02:47.886046	2024-07-28 10:02:47.886046
-619	863	Compare two paths <code>tmp/f</code> and <code>tmp/./f</code>?	open	2024-07-28 10:02:48.470748	2024-07-28 10:02:48.470748
-620	863	Compare two paths holding symbolic links?	open	2024-07-28 10:02:48.949309	2024-07-28 10:02:48.949309
-621	863	Check for existance of a file?	open	2024-07-28 10:02:49.252011	2024-07-28 10:02:49.252011
-622	863	Check if a file is a regular file or a directory or a symbolic link?	open	2024-07-28 10:02:49.573626	2024-07-28 10:02:49.573626
-623	863	Check if a file is neither a regular nor a directory nor a symbolic link?	open	2024-07-28 10:02:49.805818	2024-07-28 10:02:49.805818
-624	863	Check if a file is a special block, character, a fifo or a socket file?	open	2024-07-28 10:02:50.08421	2024-07-28 10:02:50.08421
-625	863	Check if a file is empty?	open	2024-07-28 10:02:50.363487	2024-07-28 10:02:50.363487
-626	863	Get the size of a file in bytes?	open	2024-07-28 10:02:50.660633	2024-07-28 10:02:50.660633
-627	863	Get the number of hard links to a file?	open	2024-07-28 10:02:50.883703	2024-07-28 10:02:50.883703
-628	863	Get the last time a file was written into?	open	2024-07-28 10:02:51.329631	2024-07-28 10:02:51.329631
-629	863	Yield information about the disk space available at a given path?	open	2024-07-28 10:02:51.869278	2024-07-28 10:02:51.869278
-630	863	Rename a file?	open	2024-07-28 10:02:52.242418	2024-07-28 10:02:52.242418
-631	863	Change the timepoint of the last write access of a file?	open	2024-07-28 10:02:52.520727	2024-07-28 10:02:52.520727
-632	863	Replace the permissions of a file?	open	2024-07-28 10:02:52.993841	2024-07-28 10:02:52.993841
-633	863	Resize a regular file?	open	2024-07-28 10:02:53.295648	2024-07-28 10:02:53.295648
-634	863	Change the current directory of the process?	open	2024-07-28 10:02:53.523477	2024-07-28 10:02:53.523477
-635	863	Check if a file exists?	open	2024-07-28 10:02:54.110552	2024-07-28 10:02:54.110552
-636	863	Use filesystem operations without following symbolic links?	open	2024-07-28 10:02:54.501944	2024-07-28 10:02:54.501944
-637	863	Yield the status of a file following any symbolic links?	open	2024-07-28 10:02:54.736702	2024-07-28 10:02:54.736702
-638	863	Yield the status of a file without following symbolic links?	open	2024-07-28 10:02:54.957348	2024-07-28 10:02:54.957348
-639	863	Improve performance of file operation calls using file status?	open	2024-07-28 10:02:55.410979	2024-07-28 10:02:55.410979
-640	863	Yield the type of a file using file status?	open	2024-07-28 10:02:56.058045	2024-07-28 10:02:56.058045
-641	863	Yield the permissions of a file using its file status?	open	2024-07-28 10:02:56.360624	2024-07-28 10:02:56.360624
-642	863	Yield the type of a file?	open	2024-07-28 10:02:56.754454	2024-07-28 10:02:56.754454
-643	863	Yield which permissions does a file have?	open	2024-07-28 10:02:57.705255	2024-07-28 10:02:57.705255
-644	863	Create a regular file?	open	2024-07-28 10:02:58.077738	2024-07-28 10:02:58.077738
-645	863	Create a directory inside an existing directory?	open	2024-07-28 10:02:58.614001	2024-07-28 10:02:58.614001
-646	863	Create a tree of nested directories?	open	2024-07-28 10:02:58.911129	2024-07-28 10:02:58.911129
-647	863	Create a symbolic link to a regular file?	open	2024-07-28 10:02:59.257902	2024-07-28 10:02:59.257902
-648	863	Create a symbolic link to a directory?	open	2024-07-28 10:02:59.508611	2024-07-28 10:02:59.508611
-649	863	Create a hard link from a file?	open	2024-07-28 10:02:59.747727	2024-07-28 10:02:59.747727
-650	863	Copy from a file of any type?	open	2024-07-28 10:03:00.011634	2024-07-28 10:03:00.011634
-651	863	Copy from a regular file?	open	2024-07-28 10:03:00.239772	2024-07-28 10:03:00.239772
-652	863	Why there is copy options?	open	2024-07-28 10:03:00.849562	2024-07-28 10:03:00.849562
-653	863	Copy a symbolic link?	open	2024-07-28 10:03:01.140163	2024-07-28 10:03:01.140163
-654	863	Remove a file?	open	2024-07-28 10:03:01.428586	2024-07-28 10:03:01.428586
-655	863	Recursively remove a directory and all of its contents?	open	2024-07-28 10:03:01.750927	2024-07-28 10:03:01.750927
-656	863	Yield the file an existing symbolic link refers to?	open	2024-07-28 10:03:02.057845	2024-07-28 10:03:02.057845
-657	863	Yield the absolute path of an existing path?	open	2024-07-28 10:03:02.492142	2024-07-28 10:03:02.492142
-658	863	Yield the relative path from current directory to a path?	open	2024-07-28 10:03:02.81497	2024-07-28 10:03:02.81497
-659	863	Yield the relative path from a base path to another path?	open	2024-07-28 10:03:03.059253	2024-07-28 10:03:03.059253
-660	863	Iterate over the entries of a directory?	open	2024-07-28 10:03:03.387505	2024-07-28 10:03:03.387505
-661	863	Recursively iterate over directories with following symbolic links?	open	2024-07-28 10:03:03.613822	2024-07-28 10:03:03.613822
-662	863	What are the directory iterator options?	open	2024-07-28 10:03:04.08782	2024-07-28 10:03:04.08782
-663	863	What operations are supported by directory entries?	open	2024-07-28 10:03:05.021749	2024-07-28 10:03:05.021749
-664	96	Generate a string formatted with an integral value?	open	2024-07-28 10:03:05.713741	2024-07-28 10:03:05.713741
-665	96	Specify the order of replacement values in a formatted string?	open	2024-07-28 10:03:06.069396	2024-07-28 10:03:06.069396
-666	96	Align values to left, center, and right in a formatted string?	open	2024-07-28 10:03:06.42955	2024-07-28 10:03:06.42955
-667	96	Implement a simple <code>print()</code> function taking format parameters?	open	2024-07-28 10:03:06.975206	2024-07-28 10:03:06.975206
-668	96	Enable formatting for user defined types?	open	2024-07-28 10:03:08.02827	2024-07-28 10:03:08.02827
-669	96	Evaluate string and vector operations at compile time?	open	2024-07-28 10:03:08.611661	2024-07-28 10:03:08.611661
-674	336	Compare two derived objects having a base class?	open	2024-07-28 10:03:16.054631	2024-07-28 10:03:16.054631
-675	336	What is the compatibility defect of comparison operators in C++20?	open	2024-07-28 10:03:17.223623	2024-07-28 10:03:17.223623
-676	337	Declare an abbreviated function template?	open	2024-07-28 10:03:18.32665	2024-07-28 10:03:18.32665
-677	337	What restrictions do abbreviated function templates have compared to generic lambdas?	open	2024-07-28 10:03:18.962319	2024-07-28 10:03:18.962319
-678	337	Pass an abbreviated function template as a parameter?	open	2024-07-28 10:03:20.339233	2024-07-28 10:03:20.339233
-679	337	What are the rules for abbreviated function template parameters?	open	2024-07-28 10:03:21.12823	2024-07-28 10:03:21.12823
-680	337	Partially specify abbreviated function template parameters?	open	2024-07-28 10:03:21.588822	2024-07-28 10:03:21.588822
-681	337	Combine template and <code>auto</code> parameters?	open	2024-07-28 10:03:21.977222	2024-07-28 10:03:21.977222
-682	337	Specify parameter types for a mixed template and <code>auto</code> parameters?	open	2024-07-28 10:03:23.171227	2024-07-28 10:03:23.171227
-683	338	How many ways constraints can be applied to a template?	open	2024-07-28 10:03:23.603146	2024-07-28 10:03:23.603146
-684	338	Constraint a template function with a requirement to not be available if raw pointers are passed?	open	2024-07-28 10:03:24.140193	2024-07-28 10:03:24.140193
-685	338	Implement a concept to constraint passing only raw pointers?	open	2024-07-28 10:03:24.530901	2024-07-28 10:03:24.530901
-686	338	Apply a concept restricting parameters only to take raw pointers to a template?	open	2024-07-28 10:03:25.309481	2024-07-28 10:03:25.309481
-687	338	Using overload resolution with concepts implement two function templates for pointers and non-pointers?	open	2024-07-28 10:03:26.269351	2024-07-28 10:03:26.269351
-688	338	How many ways concepts can be applied into templates?	open	2024-07-28 10:03:27.30684	2024-07-28 10:03:27.30684
-689	338	In how many ways a template can be constrained?	open	2024-07-28 10:03:27.701707	2024-07-28 10:03:27.701707
-690	338	What is the advantage of using trailing requires clause over regular requires clause?	open	2024-07-28 10:03:28.16223	2024-07-28 10:03:28.16223
-691	338	Constraint a template to take only two comparable types?	open	2024-07-28 10:03:28.748402	2024-07-28 10:03:28.748402
-692	338	Constraint a template to only accept objects supporting pointer deference operator?	open	2024-07-28 10:03:29.462736	2024-07-28 10:03:29.462736
-693	338	What difference does it take for constraints to declare parameters as value or reference?	open	2024-07-28 10:03:29.752404	2024-07-28 10:03:29.752404
-694	338	Constraint a template with a requires expression?	open	2024-07-28 10:03:30.388757	2024-07-28 10:03:30.388757
-695	340	What are the preconditions and requirements of <code>std::ranges::sort()</code> to accept a container?	open	2024-07-28 10:03:30.739214	2024-07-28 10:03:30.739214
-696	340	How to use ranges to sort a container?	open	2024-07-28 10:03:31.132712	2024-07-28 10:03:31.132712
-697	340	What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?	open	2024-07-28 10:03:31.367783	2024-07-28 10:03:31.367783
-698	340	How to iterate over first 5 elements of a range using view adaptors?	open	2024-07-28 10:03:31.59941	2024-07-28 10:03:31.59941
-699	340	How to sort only the first 5 elements of a container using ranges?	open	2024-07-28 10:03:31.991039	2024-07-28 10:03:31.991039
-700	340	How to generate a sequence of values using views?	open	2024-07-28 10:03:32.221496	2024-07-28 10:03:32.221496
-701	340	How to use combination of ranges and views that don't generate values to make filtering blocks?	open	2024-07-28 10:03:32.640408	2024-07-28 10:03:32.640408
-702	340	How to use a sentinel as an end of a range in iterating over a container?	open	2024-07-28 10:03:32.850316	2024-07-28 10:03:32.850316
-703	1148	What aspects of a solution identifies good design?	open	2024-07-28 10:03:33.396815	2024-07-28 10:03:33.396815
-704	1148	Specify the process of designing an ADT by using a program that lists holidays as a model?	open	2024-07-28 10:03:34.324897	2024-07-28 10:03:34.324897
-705	1148	Specify the process of designing an ADT by using an appointment book as a model:	open	2024-07-28 10:03:35.824946	2024-07-28 10:03:35.824946
-706	1148	Step through the process of designing the interface of a bag as a container and test it:	open	2024-07-28 10:03:38.583687	2024-07-28 10:03:38.583687
-707	762	Use <code>auto</code> to initialize objects in different forms?	open	2024-07-28 10:03:40.585659	2024-07-28 10:03:40.585659
-708	762	Create type aliases?	open	2024-07-28 10:03:41.270743	2024-07-28 10:03:41.270743
-709	762	Create alias templates?	open	2024-07-28 10:03:41.945287	2024-07-28 10:03:41.945287
-710	762	Use uniform initialization to initialize objects of types?	open	2024-07-28 10:03:43.131462	2024-07-28 10:03:43.131462
-711	762	Initialize non-static member variables?	open	2024-07-28 10:03:43.849667	2024-07-28 10:03:43.849667
-712	762	Evaluate alignment of structures by considering theirs size of members?	open	2024-07-28 10:03:45.102803	2024-07-28 10:03:45.102803
-713	762	Query alignment of object types?	open	2024-07-28 10:03:45.705424	2024-07-28 10:03:45.705424
-714	762	Set alignment of structures?	open	2024-07-28 10:03:46.992439	2024-07-28 10:03:46.992439
-715	762	Use scoped enumerations<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:47.65586	2024-07-28 10:03:47.65586
-716	762	Export enumerators of a scoped enumeration by `using` directive<span style="color:green">(c++20)</span>?	open	2024-07-28 10:03:48.301791	2024-07-28 10:03:48.301791
-717	762	Use override to ensure correct declaration of virtual methods both in base and derived classes?	open	2024-07-28 10:03:48.973779	2024-07-28 10:03:48.973779
-718	762	Use final to prevent virtual method override?	open	2024-07-28 10:03:49.712815	2024-07-28 10:03:49.712815
-719	762	Use final to prevent inheritance of a class?	open	2024-07-28 10:03:50.339999	2024-07-28 10:03:50.339999
-720	762	Use range-based for loop to iterate on a range<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:51.280074	2024-07-28 10:03:51.280074
-721	762	Enable range-based for loops for custom types?	open	2024-07-28 10:03:53.798516	2024-07-28 10:03:53.798516
-722	762	Avoid implicit conversion of classes using explicit constructors and conversion operators?	open	2024-07-28 10:03:54.875509	2024-07-28 10:03:54.875509
-723	762	Use unnamed namespaces instead of static globals?	open	2024-07-28 10:03:55.772226	2024-07-28 10:03:55.772226
-724	762	Use an unnamed namespace to use an internal linkage variable as a non-type template argument?	open	2024-07-28 10:03:56.405487	2024-07-28 10:03:56.405487
-725	762	Use inline namespaces for symbol versioning<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:58.641451	2024-07-28 10:03:58.641451
-726	762	Use structured bindings to handle multi-return values<span style="color:green">(c++17)</span>?	open	2024-07-28 10:03:59.493694	2024-07-28 10:03:59.493694
-727	762	Simplify code with Class Template Argument Deduction<span style="color:green">(c++17)</span>?	open	2024-07-28 10:03:59.84875	2024-07-28 10:03:59.84875
-728	763	What is the C++ approach for converting integers and floating-point numbers into strings?	open	2024-07-28 10:04:00.105225	2024-07-28 10:04:00.105225
-729	763	How string represented numbers can be converted to numeric types in C++?	open	2024-07-28 10:04:00.494024	2024-07-28 10:04:00.494024
-730	763	What is the second and third parameters of `std::ston` functions family?	open	2024-07-28 10:04:00.900529	2024-07-28 10:04:00.900529
-731	763	What characters a valid integral number can have in string to numeric conversion functions?	open	2024-07-28 10:04:01.260462	2024-07-28 10:04:01.260462
-732	763	What exceptions do numeric to string conversion functions throw when conversion fails?	open	2024-07-28 10:04:01.868309	2024-07-28 10:04:01.868309
-733	763	What are special floating-point values representing infinity and not-a-number in string to floating-point conversion functions?	open	2024-07-28 10:04:02.358864	2024-07-28 10:04:02.358864
-734	763	How to get the smallest and largest finite numbers of a type using `std::numeric_limits<T>` class template?	open	2024-07-28 10:04:02.792288	2024-07-28 10:04:02.792288
-735	763	Specify a simple implementation of finding the minimum number in a range of a generic type?	open	2024-07-28 10:04:03.368469	2024-07-28 10:04:03.368469
-736	763	How can we retrieve the number of bits excluding the sign bit if present, for integral types and the number of bits of the mantissa for floating-point types?	open	2024-07-28 10:04:03.820861	2024-07-28 10:04:03.820861
-737	763	How can we retrieve the longest possible digits of a decimal type that can be represented without a change?	open	2024-07-28 10:04:04.170333	2024-07-28 10:04:04.170333
-738	763	How `std::numeric_limits<T>` class template can be used to identify if a numeric type is signed?	open	2024-07-28 10:04:04.448811	2024-07-28 10:04:04.448811
-739	763	How `std::numeric_limits<T>` class template can be used to verify a numeric type is an integer?	open	2024-07-28 10:04:04.750176	2024-07-28 10:04:04.750176
-740	763	How to make sure if a floating-point value is exact using `std::numeric_limits<T>` class template?	open	2024-07-28 10:04:05.020268	2024-07-28 10:04:05.020268
-741	763	How to verify if a floating-point value holds infinity value?	open	2024-07-28 10:04:05.290589	2024-07-28 10:04:05.290589
-742	763	How can we get the minimum and maximum value that a random engine can generate?	open	2024-07-28 10:04:05.646099	2024-07-28 10:04:05.646099
-743	763	How seed a random generator to initialize the algorithm corporated within it?	open	2024-07-28 10:04:06.092003	2024-07-28 10:04:06.092003
-744	763	What method does the random engines use to generate a random number?	open	2024-07-28 10:04:06.493308	2024-07-28 10:04:06.493308
-745	763	How can we discard generated number of a random engine?	open	2024-07-28 10:04:06.812456	2024-07-28 10:04:06.812456
-746	763	How to initialize all bits of internal state of a psudo-random number generator?	open	2024-07-28 10:04:07.372934	2024-07-28 10:04:07.372934
-747	763	What types can be used to create a cooked user-defined literal?	open	2024-07-28 10:04:07.876531	2024-07-28 10:04:07.876531
-748	763	How to create a user-defined literal in order to construct a type in compile time?	open	2024-07-28 10:04:08.496619	2024-07-28 10:04:08.496619
-749	763	Express different types of strings that string literals can generate?	open	2024-07-28 10:04:09.007524	2024-07-28 10:04:09.007524
-750	763	Express different types of chrono objects that chrono literals can generate?	open	2024-07-28 10:04:09.466818	2024-07-28 10:04:09.466818
-751	763	Express how literals can be used to construct a `std::complex` object?	open	2024-07-28 10:04:09.862623	2024-07-28 10:04:09.862623
-752	763	What signatues can a literal operator or a literal operator template have to overload user-defined literals?	open	2024-07-28 10:04:10.220452	2024-07-28 10:04:10.220452
-753	763	How literal operators or literal operator templates can be used to construct a numberic value by its binary representation?	open	2024-07-28 10:04:11.335229	2024-07-28 10:04:11.335229
-754	763	How to create strings containing special characters without escaping them?	open	2024-07-28 10:04:11.780537	2024-07-28 10:04:11.780537
-755	763	Express different types of strings that raw string literals can generate?	open	2024-07-28 10:04:12.311177	2024-07-28 10:04:12.311177
-756	763	Convert a string to lowercase or uppercase?	open	2024-07-28 10:04:13.268617	2024-07-28 10:04:13.268617
-757	763	How to reverse a string?	open	2024-07-28 10:04:13.927324	2024-07-28 10:04:13.927324
-758	763	How to trim a string?	open	2024-07-28 10:04:14.486337	2024-07-28 10:04:14.486337
-759	763	How to remove all occurances of a character from a string?	open	2024-07-28 10:04:15.014188	2024-07-28 10:04:15.014188
-760	763	How to split a string based on user specified delimiter?	open	2024-07-28 10:04:15.804951	2024-07-28 10:04:15.804951
-761	763	How a `regex` object can be constructed?	open	2024-07-28 10:04:16.330003	2024-07-28 10:04:16.330003
-762	763	How to make regular expressions case insensitive?	open	2024-07-28 10:04:16.646887	2024-07-28 10:04:16.646887
-763	763	How regular expressions can be used to verify the format of a string?	open	2024-07-28 10:04:17.38725	2024-07-28 10:04:17.38725
-764	763	How to retrieve submatches of a regular expresssion matched with a string?	open	2024-07-28 10:04:18.374146	2024-07-28 10:04:18.374146
-765	763	How can we use different regular expression engines?	open	2024-07-28 10:04:19.028416	2024-07-28 10:04:19.028416
-766	763	How to search for the first occurance of a pattern in a string using regular expressions?	open	2024-07-28 10:04:19.841082	2024-07-28 10:04:19.841082
-767	763	How to find all occurences of a regular expression in a given text?	open	2024-07-28 10:04:21.152357	2024-07-28 10:04:21.152357
-768	763	How to replace the content of a string using regular expressions?	open	2024-07-28 10:04:21.756106	2024-07-28 10:04:21.756106
-769	763	How to reposition submatches of a string using regular expressions?	open	2024-07-28 10:04:22.236441	2024-07-28 10:04:22.236441
-770	763	How `std::string_view` can be used to prevent string copy?	open	2024-07-28 10:04:22.965918	2024-07-28 10:04:22.965918
-771	763	Find the first and last occurance of a character in a <code>string_view</code>?	open	2024-07-28 10:04:23.354219	2024-07-28 10:04:23.354219
-772	763	Remove tailing and trailing characters from a <code>string_view</code>?	open	2024-07-28 10:04:23.765469	2024-07-28 10:04:23.765469
-773	763	How to construct a `std::basic_string` from a `std::basic_string_view`?	open	2024-07-28 10:04:24.143677	2024-07-28 10:04:24.143677
-774	764	How to notify compiler to default construct a class member function?	open	2024-07-28 10:04:24.536119	2024-07-28 10:04:24.536119
-775	764	How to notify compiler that a function is `deleted`?	open	2024-07-28 10:04:24.93925	2024-07-28 10:04:24.93925
-776	764	When does the compiler generate each of special member functions of a class and what prohibits it?	open	2024-07-28 10:04:25.279364	2024-07-28 10:04:25.279364
-777	764	How to specify that a class is not copyable and implicitly not movable?	open	2024-07-28 10:04:25.699292	2024-07-28 10:04:25.699292
-778	764	How to declare that class that is not copyable, but is movable?	open	2024-07-28 10:04:26.372928	2024-07-28 10:04:26.372928
-2275	1361	What is the state of a moved-from string?	open	2024-09-18 17:08:47.376766	2024-09-18 17:08:47.376766
-779	764	How to declare a class member function `defaulted` outside of the body of that class?	open	2024-07-28 10:04:26.926619	2024-07-28 10:04:26.926619
-780	764	How to define an anonymous lambda as a primitive function in algorithm function templates to count the numbers of a range that are between a minimum and maximum value?	open	2024-07-28 10:04:27.43766	2024-07-28 10:04:27.43766
-781	764	How to define a named lambda as a primitive to be used in algorithm function template to count possitive numbers of a range?	open	2024-07-28 10:04:27.866976	2024-07-28 10:04:27.866976
-782	764	How to define a generic lambda function as a primitive to be used in algorithm function templates to accumulate values of a range?	open	2024-07-28 10:04:28.401221	2024-07-28 10:04:28.401221
-783	764	What are the different capture forms of lambdas both in forms of copy and reference?	open	2024-07-28 10:04:29.002779	2024-07-28 10:04:29.002779
-784	764	What is the general form of a lambda expression and how would each part affect its behavior?	open	2024-07-28 10:04:29.445828	2024-07-28 10:04:29.445828
-785	764	How to make a lambda capture an rvalue reference as a means of move-semantics?	open	2024-07-28 10:04:29.736003	2024-07-28 10:04:29.736003
-786	764	How to capture an entire temporary object by a lambda within it to use its member functions and variables?	open	2024-07-28 10:04:30.340836	2024-07-28 10:04:30.340836
-787	764	How to write a template lambda to restrict the use of it with only some types, such as a container or types that satisfy a concept? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:30.81209	2024-07-28 10:04:30.81209
-788	764	How to write a template lambda to make sure two or more arguments of it actually have the same type? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:31.173153	2024-07-28 10:04:31.173153
-789	764	How to write a template lambda when you need to know the parameter type so that, for example, we can create instances of it, invoke its static methods, or use its iterator types? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:31.995043	2024-07-28 10:04:31.995043
-790	764	How to perfect forward a template lambda? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:32.561545	2024-07-28 10:04:32.561545
-791	764	How to write a recursive lambda so that it calculates the fibonacci sequence?	open	2024-07-28 10:04:33.232705	2024-07-28 10:04:33.232705
-792	764	How to write a variadic function template to add variable number of arguments?	open	2024-07-28 10:04:34.049107	2024-07-28 10:04:34.049107
-793	764	How to write a fold expression to simplify a variadic function template that adds arbitrary values?	open	2024-07-28 10:04:34.643568	2024-07-28 10:04:34.643568
-794	764	How to write a fold expression with less-than comparison operator so that variadic function template `min()` returns the smallest object in an arbitrary number of objects?	open	2024-07-28 10:04:35.814822	2024-07-28 10:04:35.814822
-795	764	How to implement a higher-order mapping function to apply a function to the elements of a range and return a new range in the same order?	open	2024-07-28 10:04:36.999757	2024-07-28 10:04:36.999757
-796	764	How to use a higher-order mapping function to retain a vector of absolute values from a vector of integral numbers?	open	2024-07-28 10:04:37.801523	2024-07-28 10:04:37.801523
-797	764	How to implement a higher-order folding function to apply a combining function to the elements of the range to produce a single result?	open	2024-07-28 10:04:38.556831	2024-07-28 10:04:38.556831
-798	764	How to use a higher-order folding function template to accumulate values of a vector of integral types?	open	2024-07-28 10:04:39.150967	2024-07-28 10:04:39.150967
-799	764	How to use a higher-order folding function template to count the number of words in a text based on their already computed appearances, available in a `std::map<string, int>`?	open	2024-07-28 10:04:39.784696	2024-07-28 10:04:39.784696
-800	764	How to uniformly invoke any callable?	open	2024-07-28 10:04:40.717505	2024-07-28 10:04:40.717505
-801	764	How to uniformly call a variadic function template? <span style="color:green">(needs work)</span>	open	2024-07-28 10:04:42.09554	2024-07-28 10:04:42.09554
-802	765	How to write a header to avoid duplicate definitions?	open	2024-07-28 10:04:42.566509	2024-07-28 10:04:42.566509
-864	66	Abbreviate namespaces to avoid repetition?	open	2024-07-28 10:05:20.00918	2024-07-28 10:05:20.00918
-803	765	How to write compiler-specific code using conditional compilation with compiler macros?	open	2024-07-28 10:04:43.040874	2024-07-28 10:04:43.040874
-804	765	How to write target-specific code based on compiler and system architecture?	open	2024-07-28 10:04:43.927024	2024-07-28 10:04:43.927024
-805	765	How to write a configuration-specific code using compiler variables?	open	2024-07-28 10:04:44.363641	2024-07-28 10:04:44.363641
-806	765	How can stringizing operator be used to create an identifier?	open	2024-07-28 10:04:44.656717	2024-07-28 10:04:44.656717
-807	765	How can concatanation operator be used to concatanate identifiers together?	open	2024-07-28 10:04:44.936782	2024-07-28 10:04:44.936782
-808	765	How to use compile-time assertion to check conditions?	open	2024-07-28 10:04:45.343303	2024-07-28 10:04:45.343303
-809	765	How to use compile-time assertion to to make sure a class can be used with POD types?	open	2024-07-28 10:04:45.944568	2024-07-28 10:04:45.944568
-810	765	How to conditionally compile a class by enabling its template parameter types?	open	2024-07-28 10:04:46.730461	2024-07-28 10:04:46.730461
-811	765	How to select compile time branches with `constexpr if`?	open	2024-07-28 10:04:47.761439	2024-07-28 10:04:47.761439
-812	765	How to use attributes to prevent user from discarding a return value?	open	2024-07-28 10:04:48.09852	2024-07-28 10:04:48.09852
-813	765	How to use attributes to prevent user from discarding enumeration as function return types?	open	2024-07-28 10:04:48.496076	2024-07-28 10:04:48.496076
-814	765	How to use attributes to mark a function as deprecated?	open	2024-07-28 10:04:49.026651	2024-07-28 10:04:49.026651
-815	765	How to use attributes to tell compiler not to warn about unused variables?	open	2024-07-28 10:04:49.404052	2024-07-28 10:04:49.404052
-816	765	How to tell compiler about intentional fallthrough cases of a switch statement?	open	2024-07-28 10:04:49.903407	2024-07-28 10:04:49.903407
-817	765	How to tell compiler which cases of switch statements are more possibly used than others?	open	2024-07-28 10:04:50.352341	2024-07-28 10:04:50.352341
-818	768	How to write into a <code>std::ofstream</code> object and discarding its previous content?	open	2024-07-28 10:04:50.863126	2024-07-28 10:04:50.863126
-819	768	How to append data into a <code>std::ofstream</code> object?	open	2024-07-28 10:04:51.45042	2024-07-28 10:04:51.45042
-820	768	How to write into a <code>std::ofstream</code> object in binary format and discard its previous content?	open	2024-07-28 10:04:51.974942	2024-07-28 10:04:51.974942
-821	768	How to write a sequence of data into a <code>std::ofstream</code> in binary form?	open	2024-07-28 10:04:52.52364	2024-07-28 10:04:52.52364
-822	768	How to evaluate the size of a file by changing the position of file indicator to the end and then moving back?	open	2024-07-28 10:04:53.292734	2024-07-28 10:04:53.292734
-823	768	How to read the entire content of a file to a buffer?	open	2024-07-28 10:04:54.063577	2024-07-28 10:04:54.063577
-824	768	What template parameters does the <code>std::basic\\_fstream</code> and its input/output ancestor classes can take and what are their typedef abbreviations?	open	2024-07-28 10:04:54.514686	2024-07-28 10:04:54.514686
-825	768	Which constructors of <code>std::basic\\_fstream</code> class internally calls <code>open()</code> on its underlying <code>std::basic\\_filebuf</code> raw file object?	open	2024-07-28 10:04:54.853734	2024-07-28 10:04:54.853734
-826	768	What are the different open modes of a <code>std::basic\\_fstream</code> file object?	open	2024-07-28 10:04:55.18973	2024-07-28 10:04:55.18973
-827	768	How to read how many bytes have been successfully read in a read operation from a <code>std::basic\\_fstream</code> object?	open	2024-07-28 10:04:55.78819	2024-07-28 10:04:55.78819
-828	768	What exceptions does <code>std::basic\\_fstream</code> throw when read or write operations fail?	open	2024-07-28 10:04:56.528201	2024-07-28 10:04:56.528201
-829	768	How to initialize a <code>std::vector</code> object with the content of a <code>std::basic\\_ifstream</code> object directly using <code>std::istreambuf\\_iterator</code> iterator?	open	2024-07-28 10:04:57.08139	2024-07-28 10:04:57.08139
-830	768	How to assign the content of a <code>std::basic\\_ifstream</code> object into a <code>std::vector</code> object?	open	2024-07-28 10:04:57.704355	2024-07-28 10:04:57.704355
-831	768	How to write the content of a <code>std::basic\\_ifstream</code> object into a <code>std::vector</code> object using <code>std::ifstreambuf\\_iterator</code> and <code>std::back\\_inserter</code> adapter?	open	2024-07-28 10:04:58.375886	2024-07-28 10:04:58.375886
-832	773	What are the main module properties?	open	2024-07-28 10:04:58.715422	2024-07-28 10:04:58.715422
-833	773	Import a module in a translation unit?	open	2024-07-28 10:04:59.15422	2024-07-28 10:04:59.15422
-834	773	Express a module to be used within another translation unit?	open	2024-07-28 10:05:00.226466	2024-07-28 10:05:00.226466
-835	773	What are the constituents of a module?	open	2024-07-28 10:05:00.828988	2024-07-28 10:05:00.828988
-836	773	What is a module partition?	open	2024-07-28 10:05:01.17464	2024-07-28 10:05:01.17464
-837	773	What is a module interface partition?	open	2024-07-28 10:05:02.662653	2024-07-28 10:05:02.662653
-838	773	What is a module implementation partition?	open	2024-07-28 10:05:03.964102	2024-07-28 10:05:03.964102
-839	773	What is the difference between module partitions and submodules?	open	2024-07-28 10:05:06.040565	2024-07-28 10:05:06.040565
-840	773	Specify requirements on template arguments with concepts?	open	2024-07-28 10:05:06.765914	2024-07-28 10:05:06.765914
-841	149	What are the standard iterators?	open	2024-07-28 10:05:07.333323	2024-07-28 10:05:07.333323
-842	149	What iterator types are publically provided by standard data structures?	open	2024-07-28 10:05:07.743255	2024-07-28 10:05:07.743255
-843	149	What non-member functions are provided by standard to return supported iterators?	open	2024-07-28 10:05:08.155935	2024-07-28 10:05:08.155935
-844	149	What is the advantage of having argument dependent lookup supported?	open	2024-07-28 10:05:08.61644	2024-07-28 10:05:08.61644
-845	149	When does a function supports argument dependent lookup?	open	2024-07-28 10:05:08.971682	2024-07-28 10:05:08.971682
-846	149	Compute the distance between two iterators of a container?	open	2024-07-28 10:05:09.282694	2024-07-28 10:05:09.282694
-847	149	What iterator type traits are supported by the standard?	open	2024-07-28 10:05:10.103761	2024-07-28 10:05:10.103761
-848	149	What stream iterators are provided by the standard?	open	2024-07-28 10:05:10.499062	2024-07-28 10:05:10.499062
-849	149	Use output stream iterator to write values to an output stream?	open	2024-07-28 10:05:11.074284	2024-07-28 10:05:11.074284
-850	149	Use input stream iterator to read values from an input stream?	open	2024-07-28 10:05:11.673635	2024-07-28 10:05:11.673635
-851	149	What iterator adapters are supported by the standard?	open	2024-07-28 10:05:12.286396	2024-07-28 10:05:12.286396
-852	149	Use iterator adapters to populate containers only supporting <code>push_back()</code>?	open	2024-07-28 10:05:12.970354	2024-07-28 10:05:12.970354
-853	149	Use iterator adapters to populate containers only supporting <code>push_front()</code>?	open	2024-07-28 10:05:13.701321	2024-07-28 10:05:13.701321
-854	149	Use iterator adapters to populate containers only supporting <code>insert()</code>?	open	2024-07-28 10:05:14.574251	2024-07-28 10:05:14.574251
-855	149	What are the use cases of reverse iterators?	open	2024-07-28 10:05:15.110459	2024-07-28 10:05:15.110459
-856	149	Obtain the base iterator from a reverse iterator?	open	2024-07-28 10:05:15.760296	2024-07-28 10:05:15.760296
-857	149	What are the use cases of move iterators?	open	2024-07-28 10:05:16.503325	2024-07-28 10:05:16.503325
-858	150	What semantics do standard containers use to take values?	open	2024-07-28 10:05:17.07605	2024-07-28 10:05:17.07605
-859	150	What are the default template parameters of standard containers?	open	2024-07-28 10:05:17.670611	2024-07-28 10:05:17.670611
-860	150	What are the requirements on elements in standard containers?	open	2024-07-28 10:05:18.15242	2024-07-28 10:05:18.15242
-861	150	What are the sequential standard containers?	open	2024-07-28 10:05:18.49343	2024-07-28 10:05:18.49343
-862	150	What is the memory layout of a vector?	open	2024-07-28 10:05:18.970995	2024-07-28 10:05:18.970995
-865	66	Declare and define a function separately?	open	2024-07-28 10:05:20.482198	2024-07-28 10:05:20.482198
-866	67	Initialize scoped and global variables?	open	2024-07-28 10:05:21.080766	2024-07-28 10:05:21.080766
-867	67	Determine the size of an expression?	open	2024-07-28 10:05:21.506903	2024-07-28 10:05:21.506903
-868	67	Initialize a variable without narrowing?	open	2024-07-28 10:05:21.792992	2024-07-28 10:05:21.792992
-869	67	Initialize variables with automatic type deduction?	open	2024-07-28 10:05:22.006753	2024-07-28 10:05:22.006753
-870	67	Define a new type based on predefined types?	open	2024-07-28 10:05:22.24768	2024-07-28 10:05:22.24768
-871	67	How many constants are available in C++?	open	2024-07-28 10:05:22.560473	2024-07-28 10:05:22.560473
-872	67	Initialize a constant?	open	2024-07-28 10:05:22.765342	2024-07-28 10:05:22.765342
-873	67	Declare a function evaluated at compile time?	open	2024-07-28 10:05:23.047873	2024-07-28 10:05:23.047873
-874	67	Ensure compile time evaluation of a function?	open	2024-07-28 10:05:23.516662	2024-07-28 10:05:23.516662
-875	67	Declare a type containing limited constants?	open	2024-07-28 10:05:23.979068	2024-07-28 10:05:23.979068
-876	728	Inspect the value of c++ standard number using predefined macro:	open	2024-07-28 10:05:24.70092	2024-07-28 10:05:24.70092
-877	729	Prefer `nullptr` over `NULL`:	open	2024-07-28 10:05:25.168569	2024-07-28 10:05:25.168569
-878	729	Use automatic type deduction with auto:	open	2024-07-28 10:05:25.752403	2024-07-28 10:05:25.752403
-879	729	Initialize objects with uniform initialization:	open	2024-07-28 10:05:26.408147	2024-07-28 10:05:26.408147
-880	729	Allow implicit conversion for member initializer list on constructor:	open	2024-07-28 10:05:27.233335	2024-07-28 10:05:27.233335
-881	729	Use range-based for instead of raw for loops:	open	2024-07-28 10:05:27.650308	2024-07-28 10:05:27.650308
-882	729	Use rvalue references where copy is not necessary:	open	2024-07-28 10:05:27.937602	2024-07-28 10:05:27.937602
-883	729	Rvalue reference rules:	open	2024-07-28 10:05:28.420385	2024-07-28 10:05:28.420385
-884	729	Use raw string literals to avoid escaping special characters:	open	2024-07-28 10:05:28.822067	2024-07-28 10:05:28.822067
-885	729	Check whether *move assignment* for two passed types of a template function is possible:	open	2024-07-28 10:05:29.268624	2024-07-28 10:05:29.268624
-886	729	Express possible usage of **noexcept**:	open	2024-07-28 10:05:29.537081	2024-07-28 10:05:29.537081
-887	729	Make a function compile time expression:	open	2024-07-28 10:05:30.048991	2024-07-28 10:05:30.048991
-888	729	Use parameter pack in variadic templates:	open	2024-07-28 10:05:30.714681	2024-07-28 10:05:30.714681
-889	729	Use alias templates:	open	2024-07-28 10:05:31.194441	2024-07-28 10:05:31.194441
-890	729	Use default template argument:	open	2024-07-28 10:05:31.685279	2024-07-28 10:05:31.685279
-891	729	Define a lambda and call it directly:	open	2024-07-28 10:05:32.074178	2024-07-28 10:05:32.074178
-892	729	Make lambda stateful with `mutable` operator:	open	2024-07-28 10:05:32.902545	2024-07-28 10:05:32.902545
-893	729	Use decltype to evaluate the type of an expression:	open	2024-07-28 10:05:33.397433	2024-07-28 10:05:33.397433
-894	729	Deduce function return type by decltype:	open	2024-07-28 10:05:33.711238	2024-07-28 10:05:33.711238
-895	729	Use scoped enumerations:	open	2024-07-28 10:05:34.012763	2024-07-28 10:05:34.012763
-896	729	Evaluate the underlying type of an enumeration type:	open	2024-07-28 10:05:34.340632	2024-07-28 10:05:34.340632
-897	729	Use nontype template parameter:	open	2024-07-28 10:05:34.80117	2024-07-28 10:05:34.80117
-898	729	Use `typename` keyword to specify followed expression a type:	open	2024-07-28 10:05:35.381224	2024-07-28 10:05:35.381224
-899	729	Relax the rule of exact match in methods taking an argument with the same type of class, by providing a different template type for the member function:	open	2024-07-28 10:05:36.395657	2024-07-28 10:05:36.395657
-2292	1361	What is the state of a moved-from string?	open	2024-09-18 17:09:19.162754	2024-09-18 17:09:19.162754
-900	729	Prevent implicitly declared copy constructor call when template constructor provided to enable implicit type conversions when objects are copied:	open	2024-07-28 10:05:37.072175	2024-07-28 10:05:37.072175
-901	729	Explicitly initialize fundamendal types in template:	open	2024-07-28 10:05:37.573179	2024-07-28 10:05:37.573179
-902	729	End program without returning from `main()`:	open	2024-07-28 10:05:38.142091	2024-07-28 10:05:38.142091
-903	730	Use namespace to avoid name colision:	open	2024-07-28 10:05:38.707745	2024-07-28 10:05:38.707745
-904	730	Use namespace alias to shorten nested namespaces:	open	2024-07-28 10:05:39.104728	2024-07-28 10:05:39.104728
-905	730	Use using declaration to make namespace objects locally visible:	open	2024-07-28 10:05:39.599363	2024-07-28 10:05:39.599363
-906	730	Use using directive to flatten a namespace:	open	2024-07-28 10:05:40.074062	2024-07-28 10:05:40.074062
-907	730	Include header files for C++ standard library and backward compatible C headers:	open	2024-07-28 10:05:40.391242	2024-07-28 10:05:40.391242
-908	730	Use exceptions to handle unexpected conditions:	open	2024-07-28 10:05:41.003079	2024-07-28 10:05:41.003079
-2159	267	Configure Vim to work with ctags:	open	2024-07-28 10:13:45.112876	2024-07-28 10:13:45.112876
-909	730	Use error code and error conditions to handle errors:	open	2024-07-28 10:05:41.775565	2024-07-28 10:05:41.775565
-910	731	What is <code>std::pair</code> type and where is it defined in C++ standard library?	open	2024-07-28 10:05:42.314324	2024-07-28 10:05:42.314324
-911	731	How to construct a <code>std::pair</code> using its default constructors?	open	2024-07-28 10:05:42.675404	2024-07-28 10:05:42.675404
-912	731	How to construct a <code>std::pair</code> using its copy constructor or copy assignment operator?	open	2024-07-28 10:05:43.190706	2024-07-28 10:05:43.190706
-913	731	How to construct a <code>std::pair</code> using its move constructor or move assignment operator?	open	2024-07-28 10:05:43.53193	2024-07-28 10:05:43.53193
-914	731	How <code>std::make\\_pair</code> can be used to create a <code>std::pair</code>?	open	2024-07-28 10:05:44.112842	2024-07-28 10:05:44.112842
-915	731	How member variables of <code>std::pair</code> struct can be accessed?	open	2024-07-28 10:05:44.535113	2024-07-28 10:05:44.535113
-916	731	What comparison operators does the <code>std::pair</code> support?	open	2024-07-28 10:05:45.095851	2024-07-28 10:05:45.095851
-917	731	How two <code>std::pair</code> objects can be swapped?	open	2024-07-28 10:05:45.394634	2024-07-28 10:05:45.394634
-918	731	Which containers use <code>std::pair</code> to manage their elements?	open	2024-07-28 10:05:45.704889	2024-07-28 10:05:45.704889
-919	731	How to construct parameter types of a <code>std::pair</code> piecewise by using tuples as its parameters?	open	2024-07-28 10:05:46.60009	2024-07-28 10:05:46.60009
-920	731	How a <code>std::tuple</code> can be constructed?	open	2024-07-28 10:05:47.246243	2024-07-28 10:05:47.246243
-921	731	How to construct tuples using <code>make\\_tuple</code> function helper?	open	2024-07-28 10:05:47.643864	2024-07-28 10:05:47.643864
-922	731	How to access elements of a tuple?	open	2024-07-28 10:05:48.097599	2024-07-28 10:05:48.097599
-923	731	What comparison operators does a tuple support?	open	2024-07-28 10:05:48.69304	2024-07-28 10:05:48.69304
-924	731	How to swap two tuple objects?	open	2024-07-28 10:05:49.065554	2024-07-28 10:05:49.065554
-925	731	How to assign tuple elements directly on objects using <code>tie</code>?	open	2024-07-28 10:05:49.398124	2024-07-28 10:05:49.398124
-926	731	How does explicit constructor of a tuple can be initialized with initializer lists?	open	2024-07-28 10:05:50.135751	2024-07-28 10:05:50.135751
-927	731	How to identify how many types does a tuple hold?	open	2024-07-28 10:05:50.685279	2024-07-28 10:05:50.685279
-928	731	How to retrieve the type of tuple elements?	open	2024-07-28 10:05:51.133509	2024-07-28 10:05:51.133509
-929	731	How to concatanate elements of two tupples to create another?	open	2024-07-28 10:05:51.640099	2024-07-28 10:05:51.640099
-930	731	How to convert between tuple and pair?	open	2024-07-28 10:05:51.962557	2024-07-28 10:05:51.962557
-931	731	What ownership concepts do smart pointers implement in standard library?	open	2024-07-28 10:05:52.200673	2024-07-28 10:05:52.200673
-932	731	What pointers implement shared ownership in standard library?	open	2024-07-28 10:05:52.392932	2024-07-28 10:05:52.392932
-933	731	What pointers implement exclusive ownership in standard library?	open	2024-07-28 10:05:52.562742	2024-07-28 10:05:52.562742
-934	731	What exception an empty <code>std::weak\\_ptr</code> would throw when dereferrenced?	open	2024-07-28 10:05:52.732156	2024-07-28 10:05:52.732156
-935	731	What class should be inheritted to enable sharing this pointer?	open	2024-07-28 10:05:52.933315	2024-07-28 10:05:52.933315
-936	731	What operations does std::shared\\_ptr support in standard library?	open	2024-07-28 10:05:53.96812	2024-07-28 10:05:53.96812
-937	731	How std::shared\\_ptr can be constructed?	open	2024-07-28 10:05:54.492324	2024-07-28 10:05:54.492324
-938	731	What is the advantage of using std::make\\_shared helper function?	open	2024-07-28 10:05:54.902236	2024-07-28 10:05:54.902236
-939	731	How to assign a new pointer to <code>std::shared\\_ptr</code> when it was default constructed or previous object which the pointer was pointing to is destroyed?	open	2024-07-28 10:05:55.317756	2024-07-28 10:05:55.317756
-940	731	How to count the references of a <code>std::shared\\_ptr</code> object?	open	2024-07-28 10:05:55.94587	2024-07-28 10:05:55.94587
-941	731	How does the ownership of shared pointers get destroyed?	open	2024-07-28 10:05:56.833185	2024-07-28 10:05:56.833185
-942	731	How to create a shared pointer with a custom deleter?	open	2024-07-28 10:05:57.709885	2024-07-28 10:05:57.709885
-943	744	Use asynchronous call to a function and retrieve return value as result?	open	2024-07-28 10:05:58.774528	2024-07-28 10:05:58.774528
-944	744	Why is it necessary to take the returning future object from the async call?	open	2024-07-28 10:05:59.230756	2024-07-28 10:05:59.230756
-945	744	What are the possible executions when calling a function asynchronously?	open	2024-07-28 10:05:59.630774	2024-07-28 10:05:59.630774
-946	744	Specialize a future that calls a function with no return value?	open	2024-07-28 10:05:59.930656	2024-07-28 10:05:59.930656
-947	744	What are the available async policies?	open	2024-07-28 10:06:01.020171	2024-07-28 10:06:01.020171
-948	744	When does asking for result might cause execution of two threads in sequence?	open	2024-07-28 10:06:01.604038	2024-07-28 10:06:01.604038
-949	744	What is the best practice for running functionalities asynchronously?	open	2024-07-28 10:06:01.919679	2024-07-28 10:06:01.919679
-950	744	What would happen if the system fails to execute functionality after directing async call with async launch policy?	open	2024-07-28 10:06:02.347005	2024-07-28 10:06:02.347005
-951	744	What happens when the result of functionality is never requested after an async call with async launch policy?	open	2024-07-28 10:06:02.803944	2024-07-28 10:06:02.803944
-952	744	What if the returning future of an async call gets discarded?	open	2024-07-28 10:06:03.190821	2024-07-28 10:06:03.190821
-953	744	What are the use cases of using deferred launch policy over async calls?	open	2024-07-28 10:06:03.561753	2024-07-28 10:06:03.561753
-954	744	What happens when exceptions raise in async called functions?	open	2024-07-28 10:06:04.432328	2024-07-28 10:06:04.432328
-955	744	What is the state of a future after finishing execution?	open	2024-07-28 10:06:04.772895	2024-07-28 10:06:04.772895
-956	744	What methods a future provides on its interface to wait for the execution?	open	2024-07-28 10:06:05.315424	2024-07-28 10:06:05.315424
-957	744	What happens to a future when <code>wait()</code> is called before execution starts?	open	2024-07-28 10:06:05.844916	2024-07-28 10:06:05.844916
-958	744	What are the possible future states after a call to waiting functions?	open	2024-07-28 10:06:07.075806	2024-07-28 10:06:07.075806
-959	749	How to check if docker is connected to server?	open	2024-07-28 10:06:08.439615	2024-07-28 10:06:08.439615
-960	749	How to list available images on host?	open	2024-07-28 10:06:08.834128	2024-07-28 10:06:08.834128
-961	749	How to run a container from an existing image?	open	2024-07-28 10:06:09.294362	2024-07-28 10:06:09.294362
-962	749	How to exit a container's shell without killing its process in docker?	open	2024-07-28 10:06:09.640462	2024-07-28 10:06:09.640462
-963	749	How to attach host's shell to the shell of a running container?	open	2024-07-28 10:06:10.039621	2024-07-28 10:06:10.039621
-964	749	How to stop a container?	open	2024-07-28 10:06:10.428949	2024-07-28 10:06:10.428949
-965	749	How to start a stopped container?	open	2024-07-28 10:06:10.803455	2024-07-28 10:06:10.803455
-966	749	How to stop and remove a container?	open	2024-07-28 10:06:11.17395	2024-07-28 10:06:11.17395
-967	749	How to list containers in docker?	open	2024-07-28 10:06:11.523968	2024-07-28 10:06:11.523968
-968	749	How to verify that a container was successfully deleted by docker?	open	2024-07-28 10:06:11.838614	2024-07-28 10:06:11.838614
-969	751	How to retrieve detailed information of installed docker on host?	open	2024-07-28 10:06:12.166615	2024-07-28 10:06:12.166615
-970	751	How to pull an image from official repositories?	open	2024-07-28 10:06:12.430871	2024-07-28 10:06:12.430871
-971	751	How to pull an image from unofficial repositories?	open	2024-07-28 10:06:12.843002	2024-07-28 10:06:12.843002
-972	751	How to pull an image from other registeries?	open	2024-07-28 10:06:13.246885	2024-07-28 10:06:13.246885
-973	751	What is a dangling image in docker and how can we list them?	open	2024-07-28 10:06:13.661332	2024-07-28 10:06:13.661332
-974	751	How to remove all dangling images in docker?	open	2024-07-28 10:06:14.108297	2024-07-28 10:06:14.108297
-975	751	What are the common filtering options for listing images in docker?	open	2024-07-28 10:06:14.763863	2024-07-28 10:06:14.763863
-976	751	How to format the output of image lists in docker?	open	2024-07-28 10:06:15.242984	2024-07-28 10:06:15.242984
-977	751	How to search an image on registeries?	open	2024-07-28 10:06:15.894305	2024-07-28 10:06:15.894305
-978	751	How to inspect the layers of an image?	open	2024-07-28 10:06:16.31439	2024-07-28 10:06:16.31439
-979	751	How to see the build history of an image and its image layers?	open	2024-07-28 10:06:16.659823	2024-07-28 10:06:16.659823
-980	751	How to see the digests of an image in docker?	open	2024-07-28 10:06:16.958179	2024-07-28 10:06:16.958179
-981	751	How does docker use manifests to fetch host compatible image layers when pulling images?	open	2024-07-28 10:06:17.358098	2024-07-28 10:06:17.358098
-982	751	How to create an image for different platforms and architectures?	open	2024-07-28 10:06:18.116915	2024-07-28 10:06:18.116915
-983	751	How to remove an image in docker?	open	2024-07-28 10:06:18.723	2024-07-28 10:06:18.723
-984	752	What are docker restart policies and how can they be applied to containers?	open	2024-07-28 10:06:19.220245	2024-07-28 10:06:19.220245
-985	752	What is the behavior of <code>always</code> docker restart policy?	open	2024-07-28 10:06:19.669471	2024-07-28 10:06:19.669471
-986	752	What is the <code>unless-stopped</code> docker restart policy?	open	2024-07-28 10:06:19.990715	2024-07-28 10:06:19.990715
-987	752	What is the <code>on-failure</code> docker restart policy?	open	2024-07-28 10:06:20.303401	2024-07-28 10:06:20.303401
-988	752	How does default programs are embedded in docker images so that containers know which program to run when they are launched with no arguments?	open	2024-07-28 10:06:20.640298	2024-07-28 10:06:20.640298
-989	753	How to write a Dockerfile for a Linux based image containing a nodejs program?	open	2024-07-28 10:06:21.5894	2024-07-28 10:06:21.5894
-990	753	How to build an image from its Dockerfile?	open	2024-07-28 10:06:22.046554	2024-07-28 10:06:22.046554
-991	753	What are the prerequisites of pushing images into DockerHub?	open	2024-07-28 10:06:22.586176	2024-07-28 10:06:22.586176
-992	753	How is it possible to push an image into a registry other than the DockerHub?	open	2024-07-28 10:06:22.94197	2024-07-28 10:06:22.94197
-993	753	How to add an additional tag to an image?	open	2024-07-28 10:06:23.224469	2024-07-28 10:06:23.224469
-994	753	How to write comments in Dockerfile?	open	2024-07-28 10:06:23.419569	2024-07-28 10:06:23.419569
-995	753	What instructions in Dockerfile do create new layers into an image?	open	2024-07-28 10:06:23.773496	2024-07-28 10:06:23.773496
-996	753	How to view the instructions that were used to build an image?	open	2024-07-28 10:06:24.050311	2024-07-28 10:06:24.050311
-997	753	How to make docker ignore caches in creation of image layers?	open	2024-07-28 10:06:24.282179	2024-07-28 10:06:24.282179
-998	753	How does involved filesystem invalidate docker cache when the corresponding instruction has not changed in Dockerfile?	open	2024-07-28 10:06:24.656549	2024-07-28 10:06:24.656549
-999	753	What is a squashed image and how can it be built?	open	2024-07-28 10:06:24.95448	2024-07-28 10:06:24.95448
-1140	1377	Where to download the Raspberry Pi bootloader from?	open	2024-07-28 10:07:10.954005	2024-07-28 10:07:10.954005
-1000	753	How can we avoid installing excessive packages by <code>apt</code> when installing packages in docker images?	open	2024-07-28 10:06:25.300806	2024-07-28 10:06:25.300806
-1001	755	What is a <b>Docker Swarm</b>?	open	2024-07-28 10:06:25.558393	2024-07-28 10:06:25.558393
-1002	755	How many types of swarm nodes exist?	open	2024-07-28 10:06:25.75593	2024-07-28 10:06:25.75593
-1003	755	How does a swarm is maintained?	open	2024-07-28 10:06:25.954394	2024-07-28 10:06:25.954394
-1004	755	What are different swarm modes?	open	2024-07-28 10:06:26.229734	2024-07-28 10:06:26.229734
-1005	755	How to initialize a swarm?	open	2024-07-28 10:06:26.481852	2024-07-28 10:06:26.481852
-1006	755	What is the default port for <b>Docker Swarm</b>?	open	2024-07-28 10:06:26.70119	2024-07-28 10:06:26.70119
-1007	755	how to list available <i>swarm</i> nodes?	open	2024-07-28 10:06:26.96876	2024-07-28 10:06:26.96876
-1008	755	How to extract tokens to join Docker nodes to a swarm?	open	2024-07-28 10:06:27.28474	2024-07-28 10:06:27.28474
-1009	755	How to join Docker nodes to a swarm?	open	2024-07-28 10:06:27.633033	2024-07-28 10:06:27.633033
-1010	755	How does the high availability mechanism of <b>Docker Swarm</b> work?	open	2024-07-28 10:06:27.940283	2024-07-28 10:06:27.940283
-1011	755	What are the best practices to apply on Swarm high availability?	open	2024-07-28 10:06:28.281681	2024-07-28 10:06:28.281681
-1012	755	What is advantage of locking a swarm?	open	2024-07-28 10:06:28.571073	2024-07-28 10:06:28.571073
-1013	755	How to apply a lock to a swarm?	open	2024-07-28 10:06:28.983438	2024-07-28 10:06:28.983438
-1014	755	How to check the current swarm unlock key?	open	2024-07-28 10:06:29.275225	2024-07-28 10:06:29.275225
-1015	755	How to re-join Docker nodes to a locked swarm?	open	2024-07-28 10:06:29.857177	2024-07-28 10:06:29.857177
-1016	755	How many ways exist to create a docker service?	open	2024-07-28 10:06:30.170737	2024-07-28 10:06:30.170737
-1017	755	How to create a docker service?	open	2024-07-28 10:06:30.384794	2024-07-28 10:06:30.384794
-1018	755	How to list services running by docker?	open	2024-07-28 10:06:30.597428	2024-07-28 10:06:30.597428
-1019	755	How to list the service replicas in docker?	open	2024-07-28 10:06:30.809046	2024-07-28 10:06:30.809046
-1020	755	How to inspect a docker service?	open	2024-07-28 10:06:31.015264	2024-07-28 10:06:31.015264
-1021	755	What are the differences of replicated and global docker services?	open	2024-07-28 10:06:31.270652	2024-07-28 10:06:31.270652
-1022	755	How to scale up and down a docker serivce?	open	2024-07-28 10:06:31.558859	2024-07-28 10:06:31.558859
-1023	755	How to remove a docker service?	open	2024-07-28 10:06:31.728097	2024-07-28 10:06:31.728097
-1024	755	How to create an overlay network for a docker service?	open	2024-07-28 10:06:31.981282	2024-07-28 10:06:31.981282
-1025	755	How to list available docker networks?	open	2024-07-28 10:06:32.207261	2024-07-28 10:06:32.207261
-1026	755	How to create a docker service and attach it to a network?	open	2024-07-28 10:06:32.380988	2024-07-28 10:06:32.380988
-1027	755	How many publishing modes are available in docker service creation?	open	2024-07-28 10:06:32.604597	2024-07-28 10:06:32.604597
-1028	755	How to create docker service replicas on <b>host mode</b>?	open	2024-07-28 10:06:32.91308	2024-07-28 10:06:32.91308
-1029	755	How to push an update image to the swarm in a staged manner?	open	2024-07-28 10:06:33.196717	2024-07-28 10:06:33.196717
-1030	755	How to troubleshoot docker services by printing its logs?	open	2024-07-28 10:06:33.449721	2024-07-28 10:06:33.449721
-1031	755	How to configure docker daemon to log on different logging drivers?	open	2024-07-28 10:06:33.896632	2024-07-28 10:06:33.896632
-1032	755	What makes the urge to make swarm backups?	open	2024-07-28 10:06:34.162425	2024-07-28 10:06:34.162425
-1033	755	What is a swarm backup file contained of?	open	2024-07-28 10:06:34.356938	2024-07-28 10:06:34.356938
-1034	755	How to perform a docker swarm backup and restore operation?	open	2024-07-28 10:06:35.242118	2024-07-28 10:06:35.242118
-1035	758	Create a volume?	open	2024-07-28 10:06:35.808205	2024-07-28 10:06:35.808205
-1036	758	List available volumes?	open	2024-07-28 10:06:36.110883	2024-07-28 10:06:36.110883
-1037	758	Inspect into a volume?	open	2024-07-28 10:06:36.396675	2024-07-28 10:06:36.396675
-1038	758	Delete a volume?	open	2024-07-28 10:06:36.749799	2024-07-28 10:06:36.749799
-1039	758	Delete all volumes?	open	2024-07-28 10:06:37.01554	2024-07-28 10:06:37.01554
-1040	758	Create a volume in Dockerfile?	open	2024-07-28 10:06:37.37572	2024-07-28 10:06:37.37572
-1041	758	Attach a volume to a container?	open	2024-07-28 10:06:37.879253	2024-07-28 10:06:37.879253
-1042	758	Attach a volume to a cluster?	open	2024-07-28 10:06:38.331097	2024-07-28 10:06:38.331097
-1043	758	Install a plugin on docker?	open	2024-07-28 10:06:38.640152	2024-07-28 10:06:38.640152
-1044	758	List available plugins?	open	2024-07-28 10:06:38.910202	2024-07-28 10:06:38.910202
-1045	758	Create a volume with an installed plugin?	open	2024-07-28 10:06:39.137768	2024-07-28 10:06:39.137768
-1046	758	What is the potential data corruption on a shared volume between nodes?	open	2024-07-28 10:06:39.490656	2024-07-28 10:06:39.490656
-1047	760	What analyzing tool scans images for vulnerability?	open	2024-07-28 10:06:39.8582	2024-07-28 10:06:39.8582
-1048	760	Verify the integrity of images?	open	2024-07-28 10:06:40.071675	2024-07-28 10:06:40.071675
-1049	760	What kernel feature provides container isolation?	open	2024-07-28 10:06:40.322108	2024-07-28 10:06:40.322108
-1050	760	What kernel feature provides container resource management?	open	2024-07-28 10:06:40.678806	2024-07-28 10:06:40.678806
-1051	760	Secure the network connections of a swarm?	open	2024-07-28 10:06:41.340956	2024-07-28 10:06:41.340956
-1052	760	Join new managers in a swarm?	open	2024-07-28 10:06:41.973354	2024-07-28 10:06:41.973354
-1053	760	Revoke compromised token and issue new swarm join-token?	open	2024-07-28 10:06:42.26506	2024-07-28 10:06:42.26506
-1054	760	Inspect a node’s client certificate?	open	2024-07-28 10:06:42.473297	2024-07-28 10:06:42.473297
-1055	760	Configure the swarm certificate rotation period?	open	2024-07-28 10:06:42.756205	2024-07-28 10:06:42.756205
-1056	760	Manage CA related configuration?	open	2024-07-28 10:06:43.008476	2024-07-28 10:06:43.008476
-1057	760	Configure <b>Docker Content Trust</b> to sign images?	open	2024-07-28 10:06:43.744939	2024-07-28 10:06:43.744939
-1058	760	Inspect signing data of an image?	open	2024-07-28 10:06:44.166369	2024-07-28 10:06:44.166369
-1059	760	Permanently configure docker to verify image push and pull operations?	open	2024-07-28 10:06:44.542543	2024-07-28 10:06:44.542543
-1060	760	Create a secret on swarm to store credentials?	open	2024-07-28 10:06:44.986945	2024-07-28 10:06:44.986945
-1061	528	How many ways exist to create a docker image?	open	2024-07-28 10:06:45.585256	2024-07-28 10:06:45.585256
-1062	528	How to write a basic Dockerfile?	open	2024-07-28 10:06:46.615577	2024-07-28 10:06:46.615577
-1063	528	How to build an image using a Dockerfile?	open	2024-07-28 10:06:47.161614	2024-07-28 10:06:47.161614
-1064	528	How to tag an image after building it?	open	2024-07-28 10:06:47.431646	2024-07-28 10:06:47.431646
-1065	528	How to run a container?	open	2024-07-28 10:06:47.75109	2024-07-28 10:06:47.75109
-1066	528	How to terminate the process and the container?	open	2024-07-28 10:06:47.940438	2024-07-28 10:06:47.940438
-1067	528	How to list the running processes in docker?	open	2024-07-28 10:06:48.230172	2024-07-28 10:06:48.230172
-1068	528	How to restart a stopped container?	open	2024-07-28 10:06:48.498372	2024-07-28 10:06:48.498372
-1069	528	How to check what files have been affected since the image was instantiated as a container?	open	2024-07-28 10:06:48.799645	2024-07-28 10:06:48.799645
-1070	529	How to make docker daemon accessible from outside network?	open	2024-07-28 10:06:49.313252	2024-07-28 10:06:49.313252
-1071	529	How to run a container in background?	open	2024-07-28 10:06:49.951786	2024-07-28 10:06:49.951786
-1072	529	How to see the logs of a container?	open	2024-07-28 10:06:50.282177	2024-07-28 10:06:50.282177
-1073	529	How to recover a service when it stops in the background?	open	2024-07-28 10:06:50.654513	2024-07-28 10:06:50.654513
-1074	529	How to monitor docker API traffic using socat?	open	2024-07-28 10:06:50.932679	2024-07-28 10:06:50.932679
-1075	529	How to search for images on Docker Hub?	open	2024-07-28 10:06:51.161551	2024-07-28 10:06:51.161551
-1076	515	What communication channel is used by containers to talk to each other?	open	2024-07-28 10:06:51.668879	2024-07-28 10:06:51.668879
-1077	515	What facilities are available to extend the Docker functionality?	open	2024-07-28 10:06:51.949866	2024-07-28 10:06:51.949866
-1078	516	Where should we check regularly for deprecation of features and removal on recent updates?	open	2024-07-28 10:06:52.202923	2024-07-28 10:06:52.202923
-1079	516	Enable docker daemon to start on boot up?	open	2024-07-28 10:06:52.441249	2024-07-28 10:06:52.441249
-1080	516	Connect docker client to a remote server?	open	2024-07-28 10:06:52.662298	2024-07-28 10:06:52.662298
-1081	516	Configure client to permanently connect to a remote server?	open	2024-07-28 10:06:53.026448	2024-07-28 10:06:53.026448
-1082	516	List all the contexts available to client?	open	2024-07-28 10:06:53.322711	2024-07-28 10:06:53.322711
-1083	516	Switch client context to make it connect to another remote server?	open	2024-07-28 10:06:53.558233	2024-07-28 10:06:53.558233
-1084	516	Manually run docker daemon?	open	2024-07-28 10:06:53.837895	2024-07-28 10:06:53.837895
-1085	786	What is the default referencing build system in the Yocto Project?	open	2024-07-28 10:06:54.505334	2024-07-28 10:06:54.505334
-1086	786	What are the constituents of the Poky build tool?	open	2024-07-28 10:06:54.954981	2024-07-28 10:06:54.954981
-1087	786	What are the responsibilities of BitBake in the Yocto Project?	open	2024-07-28 10:06:55.375643	2024-07-28 10:06:55.375643
-1088	786	What are the responsibilities of OpenEmbedded Core in the Yocto Project?	open	2024-07-28 10:06:55.722119	2024-07-28 10:06:55.722119
-1089	786	What are the responsibilities of Metadata in the Yocto Project?	open	2024-07-28 10:06:56.113529	2024-07-28 10:06:56.113529
-1090	786	What are the release cycles of the Yocto Project?	open	2024-07-28 10:06:56.468035	2024-07-28 10:06:56.468035
-1091	787	Get poky source code?	open	2024-07-28 10:06:56.775953	2024-07-28 10:06:56.775953
-1092	787	Set up the building environment using <code>oe-init-build-env</code>?	open	2024-07-28 10:06:57.010335	2024-07-28 10:06:57.010335
-1093	787	What configuration variable is required for build system?	open	2024-07-28 10:06:57.271623	2024-07-28 10:06:57.271623
-1094	1377	What are prerequisites for communicating with an embedded device?	open	2024-07-28 10:06:57.855577	2024-07-28 10:06:57.855577
-1095	1377	How to connect to an embedded device using <code>picocom</code> through <code>/dev/ttyUSB0</code> device driver?	open	2024-07-28 10:06:58.258627	2024-07-28 10:06:58.258627
-1096	1377	How to list the GNU GCC compiler default configurations?	open	2024-07-28 10:06:58.535205	2024-07-28 10:06:58.535205
-1097	1377	How to inspect the detailed steps the GNU GCC takes to compile a source file?	open	2024-07-28 10:06:58.757258	2024-07-28 10:06:58.757258
-1098	1377	How to inspect the meta data of an executable file?	open	2024-07-28 10:06:58.975064	2024-07-28 10:06:58.975064
-1099	1377	How to remove symbol table from an executable file using binary utilities?	open	2024-07-28 10:06:59.203003	2024-07-28 10:06:59.203003
-1100	1377	How to use GNU GCC compiler to compile C source files separately?	open	2024-07-28 10:06:59.470314	2024-07-28 10:06:59.470314
-1101	1377	How to list the symbol paths within an executable file?	open	2024-07-28 10:06:59.702519	2024-07-28 10:06:59.702519
-1102	1377	Why do C libraries require kernel headers and how kernel headers can be installed?	open	2024-07-28 10:07:00.121311	2024-07-28 10:07:00.121311
-1103	1377	What is the GNU GCC compiler flag to specify processor architecture and processor specific optimization?	open	2024-07-28 10:07:00.479103	2024-07-28 10:07:00.479103
-1104	1377	What toolchains are available to use in kernel image build process?	open	2024-07-28 10:07:00.807131	2024-07-28 10:07:00.807131
-1105	1377	How to build <code>Crosstool-ng</code>?	open	2024-07-28 10:07:01.157713	2024-07-28 10:07:01.157713
-1106	1377	How to list <code>Crosstool-ng</code> sample configurations?	open	2024-07-28 10:07:01.386189	2024-07-28 10:07:01.386189
-1107	1377	How to use <code>Crosstool-ng</code> to show a brief info of current or specified configuration?	open	2024-07-28 10:07:01.81283	2024-07-28 10:07:01.81283
-2309	1361	What is the state of a moved-from string?	open	2024-09-18 17:09:42.49916	2024-09-18 17:09:42.49916
-1108	1377	How to use <code>Crosstool-ng</code> to load a target specific configuration sample?	open	2024-07-28 10:07:02.122103	2024-07-28 10:07:02.122103
-1109	1377	How to use <code>Crosstool-ng</code> to configure selected architecture specific cross-toolchain?	open	2024-07-28 10:07:02.432924	2024-07-28 10:07:02.432924
-1110	1377	How to use <code>Crosstool-ng</code> to print the tuple of the currently configured toolchain?	open	2024-07-28 10:07:02.675159	2024-07-28 10:07:02.675159
-2149	257	Inspect buffer list:	open	2024-07-28 10:13:42.36548	2024-07-28 10:13:42.36548
-1111	1377	How to use <code>Crosstool-ng</code> to separate downloading source files from building stage?	open	2024-07-28 10:07:02.895912	2024-07-28 10:07:02.895912
-1112	1377	How to use <code>Crosstool-ng</code> to build the desired architecture specific cross-toolchain?	open	2024-07-28 10:07:03.167434	2024-07-28 10:07:03.167434
-1113	1377	How to set library and headers path for a cross-compiled GNU GCC compiler?	open	2024-07-28 10:07:03.422944	2024-07-28 10:07:03.422944
-1114	1377	How to obtain U-Boot and configure it?	open	2024-07-28 10:07:03.936302	2024-07-28 10:07:03.936302
-1115	1377	How to load a file from a filesystem to RAM within U-Boot shell?	open	2024-07-28 10:07:04.579041	2024-07-28 10:07:04.579041
-1116	1377	What command can be used within U-Boot shell to load a kernel image into RAM from network?	open	2024-07-28 10:07:04.889564	2024-07-28 10:07:04.889564
-1117	1377	What command can be used within U-Boot shell to test network conectivity?	open	2024-07-28 10:07:05.134245	2024-07-28 10:07:05.134245
-1118	1377	What utilities can be used within U-Boot shell to load a kernel image from serial line to RAM?	open	2024-07-28 10:07:05.313492	2024-07-28 10:07:05.313492
-1119	1377	What command can be used within U-Boot shell to control the USB subsystem?	open	2024-07-28 10:07:05.536151	2024-07-28 10:07:05.536151
-1120	1377	What command can be used within U-Boot shell to control MMC subsystem?	open	2024-07-28 10:07:05.768042	2024-07-28 10:07:05.768042
-1121	1377	What command can be used within U-Boot shell to read, write and erase contents to NAND flash?	open	2024-07-28 10:07:05.984119	2024-07-28 10:07:05.984119
-1122	1377	What commands can be used within U-Boot shell to erase, modify protection or write contents to NOR flash?	open	2024-07-28 10:07:06.252871	2024-07-28 10:07:06.252871
-1123	1377	What command can be used within U-Boot shell to display memory info?	open	2024-07-28 10:07:06.475892	2024-07-28 10:07:06.475892
-1124	1377	What command can be used within U-Boot shell to modify memory info?	open	2024-07-28 10:07:06.695739	2024-07-28 10:07:06.695739
-1125	1377	What command can be used within U-Boot shell to display board information?	open	2024-07-28 10:07:06.920967	2024-07-28 10:07:06.920967
-1126	1377	What command can be used within U-Boot shell to display environment variables?	open	2024-07-28 10:07:07.163192	2024-07-28 10:07:07.163192
-1127	1377	What command can be used within U-Boot shell to set environment variables?	open	2024-07-28 10:07:07.382241	2024-07-28 10:07:07.382241
-1128	1377	What command can be used within U-Boot shell to edit an environment variable?	open	2024-07-28 10:07:07.623056	2024-07-28 10:07:07.623056
-1129	1377	What command can be used within U-Boot shell to save environment variables permanently?	open	2024-07-28 10:07:07.85112	2024-07-28 10:07:07.85112
-1130	1377	What environment variable can be set within U-Boot shell to specify the boot command sequence that U-Boot should automatically execute at boot time?	open	2024-07-28 10:07:08.121342	2024-07-28 10:07:08.121342
-1131	1377	What environment variable can be set within U-Boot shell to be passed to the kernel as arguments?	open	2024-07-28 10:07:08.372669	2024-07-28 10:07:08.372669
-1132	1377	What environment variables should be set within U-Boot shell to load an image into RAM from network?	open	2024-07-28 10:07:08.611004	2024-07-28 10:07:08.611004
-1133	1377	What command can be used within U-Boot shell to see the size of the latest copy into memory?	open	2024-07-28 10:07:08.896913	2024-07-28 10:07:08.896913
-1134	1377	How to write conditional expressions within U-Boot shell?	open	2024-07-28 10:07:09.179061	2024-07-28 10:07:09.179061
-1135	1377	How to run a script within U-Boot shell?	open	2024-07-28 10:07:09.446497	2024-07-28 10:07:09.446497
-1136	1377	How to reference other variable within U-Boot shell?	open	2024-07-28 10:07:09.701905	2024-07-28 10:07:09.701905
-1137	1377	What does the <code>source</code> command do in U-Boot shell environment?	open	2024-07-28 10:07:10.076567	2024-07-28 10:07:10.076567
-1138	1377	Edit an environment variable on U-Boot command line?	open	2024-07-28 10:07:10.380237	2024-07-28 10:07:10.380237
-1139	1377	Restart the board with a U-Boot command?	open	2024-07-28 10:07:10.629826	2024-07-28 10:07:10.629826
-1141	1377	What files are required to to boot using a Raspberry Pi device?	open	2024-07-28 10:07:11.736677	2024-07-28 10:07:11.736677
-1142	1377	How to list all available processors available to QEMU?	open	2024-07-28 10:07:12.14453	2024-07-28 10:07:12.14453
-1143	1377	How to use <code>qemu-system-arm</code> command to boot into <code>u-boot</code>?	open	2024-07-28 10:07:12.365396	2024-07-28 10:07:12.365396
-1144	1377	How to create a patch?	open	2024-07-28 10:07:12.554546	2024-07-28 10:07:12.554546
-1145	1377	What environment variable is required when building the kernel?	open	2024-07-28 10:07:12.838069	2024-07-28 10:07:12.838069
-1146	1377	What kernel config is recommended to use for desktop systems?	open	2024-07-28 10:07:13.10138	2024-07-28 10:07:13.10138
-1147	1377	Save your modified config as a default config to be used later?	open	2024-07-28 10:07:13.362543	2024-07-28 10:07:13.362543
-1148	1377	What are the different types of a kernel configuration option?	open	2024-07-28 10:07:13.750541	2024-07-28 10:07:13.750541
-1149	1377	What dependencies are available for kernel configutration options?	open	2024-07-28 10:07:14.207202	2024-07-28 10:07:14.207202
-1150	1377	Make building process faster by running build in parallel?	open	2024-07-28 10:07:14.483696	2024-07-28 10:07:14.483696
-1151	1377	Make building process faster multiple times by caching build artifacts?	open	2024-07-28 10:07:14.731892	2024-07-28 10:07:14.731892
-1152	1377	What are the kernel build artifacts?	open	2024-07-28 10:07:15.011146	2024-07-28 10:07:15.011146
-1153	1377	How many installation targets do we have to run?	open	2024-07-28 10:07:15.291824	2024-07-28 10:07:15.291824
-1154	1377	Install built kernel from source tree?	open	2024-07-28 10:07:15.539442	2024-07-28 10:07:15.539442
-1155	1377	What artifacts will be installed from the kernel source tree?	open	2024-07-28 10:07:15.774363	2024-07-28 10:07:15.774363
-1156	1377	Which files should we install on root filesystem of the device?	open	2024-07-28 10:07:16.137581	2024-07-28 10:07:16.137581
-1157	1377	Install modules from source tree?	open	2024-07-28 10:07:16.419435	2024-07-28 10:07:16.419435
-1158	1377	Change the default path to module installation?	open	2024-07-28 10:07:16.682715	2024-07-28 10:07:16.682715
-1159	1377	What artifacts will be installed by modules installation?	open	2024-07-28 10:07:16.982159	2024-07-28 10:07:16.982159
-1160	1377	What cleaning targets do we have in kernel source?	open	2024-07-28 10:07:17.262128	2024-07-28 10:07:17.262128
-1161	1377	Archive current kernel version?	open	2024-07-28 10:07:17.53448	2024-07-28 10:07:17.53448
-1162	1377	What is the purpose of using device trees?	open	2024-07-28 10:07:17.855263	2024-07-28 10:07:17.855263
-1163	1377	What is the hierarchy of a device tree source describing a specific device?	open	2024-07-28 10:07:18.112774	2024-07-28 10:07:18.112774
-1164	1377	What commands can be used in U-Boot to load kernel images?	open	2024-07-28 10:07:18.413156	2024-07-28 10:07:18.413156
-1165	1377	Load kernel on U-Boot command line from ftp service?	open	2024-07-28 10:07:18.771808	2024-07-28 10:07:18.771808
-1166	1377	Load kernel on U-Boot command line from MMC storage?	open	2024-07-28 10:07:19.050511	2024-07-28 10:07:19.050511
-1167	1377	Automatically load kernel on boot up using U-Boot command line?	open	2024-07-28 10:07:19.328186	2024-07-28 10:07:19.328186
-1168	1377	What is a kernel command line?	open	2024-07-28 10:07:19.668526	2024-07-28 10:07:19.668526
-1169	1377	Where is the list of all kernel command line arguments?	open	2024-07-28 10:07:19.904382	2024-07-28 10:07:19.904382
-1170	1377	What are the priorities of passing command line arguments?	open	2024-07-28 10:07:20.157142	2024-07-28 10:07:20.157142
-1171	1377	Where the dependency of modules are specified?	open	2024-07-28 10:07:20.472183	2024-07-28 10:07:20.472183
-1172	1377	What is the kernel logging mechanism?	open	2024-07-28 10:07:20.778407	2024-07-28 10:07:20.778407
-1173	1377	Filter kernel log messages using log level?	open	2024-07-28 10:07:21.064991	2024-07-28 10:07:21.064991
-1174	1377	Where is the device node representing kernel log buffer?	open	2024-07-28 10:07:21.302428	2024-07-28 10:07:21.302428
-1175	1377	Print the information about a module?	open	2024-07-28 10:07:21.624433	2024-07-28 10:07:21.624433
-1176	1377	List kernel modules?	open	2024-07-28 10:07:21.927966	2024-07-28 10:07:21.927966
-1177	1377	Insert modules?	open	2024-07-28 10:07:22.260254	2024-07-28 10:07:22.260254
-1178	1377	Which tool loads kernel modules while also loading their dependencies?	open	2024-07-28 10:07:22.542125	2024-07-28 10:07:22.542125
-1179	1377	Pass parameters to a module through modprobe configuration?	open	2024-07-28 10:07:22.855595	2024-07-28 10:07:22.855595
-1180	1377	Pass parameters to a module through kernel parameters?	open	2024-07-28 10:07:23.127187	2024-07-28 10:07:23.127187
-1181	1377	Where can you find module parameters?	open	2024-07-28 10:07:23.450725	2024-07-28 10:07:23.450725
-1182	1377	Mount a filesystem for a USB storage device?	open	2024-07-28 10:07:23.830258	2024-07-28 10:07:23.830258
-1183	1377	Unmount a filesystem?	open	2024-07-28 10:07:24.189268	2024-07-28 10:07:24.189268
-1184	1377	Where can we mount a root filesystem from?	open	2024-07-28 10:07:24.670063	2024-07-28 10:07:24.670063
-1185	1377	Use NFS protocol to mount a root filesystem?	open	2024-07-28 10:07:25.287605	2024-07-28 10:07:25.287605
-1186	1377	Boot up a virtual system into U-Boot command line?	open	2024-07-28 10:07:26.05286	2024-07-28 10:07:26.05286
-1187	1377	Create an initramfs?	open	2024-07-28 10:07:26.596804	2024-07-28 10:07:26.596804
-1188	1377	What component is responsible for loading device files into the kernel?	open	2024-07-28 10:07:26.93971	2024-07-28 10:07:26.93971
-1189	1377	Create proc virtual filesystem?	open	2024-07-28 10:07:27.201835	2024-07-28 10:07:27.201835
-1190	1377	Where are the process related information on the system?	open	2024-07-28 10:07:27.482803	2024-07-28 10:07:27.482803
-1191	1377	What files in the system contain general device-related information?	open	2024-07-28 10:07:27.797886	2024-07-28 10:07:27.797886
-1192	1377	What information does sysfs hold from the system?	open	2024-07-28 10:07:28.106818	2024-07-28 10:07:28.106818
-1193	1377	What sequence does kernel follow to call init?	open	2024-07-28 10:07:28.456429	2024-07-28 10:07:28.456429
-1194	1377	Create a simple init program to prevent kernel panic?	open	2024-07-28 10:07:29.085106	2024-07-28 10:07:29.085106
-1195	1417	How to build a kernel image using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:30.153584	2024-07-28 10:07:30.153584
-1196	1417	How to add a package to the root filesystem of built qemu image using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:30.761239	2024-07-28 10:07:30.761239
-1197	1417	How to build a <code>qemuarm64</code> image with <b>SATO</b> as desktop environment for mobile devices using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:31.2945	2024-07-28 10:07:31.2945
-1198	1029	What are the input requirements for the Yocto Project?	open	2024-07-28 10:07:31.628396	2024-07-28 10:07:31.628396
-1199	1029	What are the expected outputs from the Yocto Project?	open	2024-07-28 10:07:31.891202	2024-07-28 10:07:31.891202
-1200	1029	What is the Yocto Project's reference build system?	open	2024-07-28 10:07:32.09586	2024-07-28 10:07:32.09586
-1201	1029	What are the constituents of the Poky build system?	open	2024-07-28 10:07:32.390181	2024-07-28 10:07:32.390181
-1202	1029	What are the building blocks of the Metadata component in the Poky build system?	open	2024-07-28 10:07:32.782356	2024-07-28 10:07:32.782356
-1203	1031	What are the different roles and their tasks in Linux-based software development teams?	open	2024-07-28 10:07:33.27859	2024-07-28 10:07:33.27859
-1204	46	Specify the life cycle of Embedded Linux projects?	open	2024-07-28 10:07:33.623397	2024-07-28 10:07:33.623397
-1205	46	Specify the elements of Embedded Linux?	open	2024-07-28 10:07:33.867525	2024-07-28 10:07:33.867525
-1206	46	Specify hardware requirements for Embedded Linux?	open	2024-07-28 10:07:34.12605	2024-07-28 10:07:34.12605
-1207	47	What are the main three components of the GNU toolchains?	open	2024-07-28 10:07:34.404651	2024-07-28 10:07:34.404651
-1208	47	What components are used in the tuple used to prefixed in GNU toolchains?	open	2024-07-28 10:07:34.679253	2024-07-28 10:07:34.679253
-1209	47	Print the tuple embedded in GNU GCC compiler?	open	2024-07-28 10:07:34.907592	2024-07-28 10:07:34.907592
-1210	47	What C libraries are commonly used in toolchains?	open	2024-07-28 10:07:35.146253	2024-07-28 10:07:35.146253
-1211	47	What toolchains are available to build cross-toolchains with?	open	2024-07-28 10:07:35.336548	2024-07-28 10:07:35.336548
-1212	47	Build and install <i>crosstool-ng</i>?	open	2024-07-28 10:07:35.710647	2024-07-28 10:07:35.710647
-1213	47	Print the list of crosstool-ng sample configurations?	open	2024-07-28 10:07:35.954	2024-07-28 10:07:35.954
-1214	47	Inspect the configuration details of crosstool-ng targets?	open	2024-07-28 10:07:36.272407	2024-07-28 10:07:36.272407
-1215	47	Build a cross-toolchain for Raspberry Pi Zero?	open	2024-07-28 10:07:36.750325	2024-07-28 10:07:36.750325
-1216	47	Build a cross-toolchain for BeagleBone Black?	open	2024-07-28 10:07:37.302833	2024-07-28 10:07:37.302833
-1217	47	Build a cross-toolchain for QEMU?	open	2024-07-28 10:07:37.789638	2024-07-28 10:07:37.789638
-1218	47	Get the version and configurations of a native or cross-compiled GCC compiler?	open	2024-07-28 10:07:38.063893	2024-07-28 10:07:38.063893
-1219	47	Override the default processor configuration options using GCC compiler?	open	2024-07-28 10:07:38.28669	2024-07-28 10:07:38.28669
-1220	47	List available architecture specific options in a project source tree using GCC compiler?	open	2024-07-28 10:07:38.517315	2024-07-28 10:07:38.517315
-1221	47	Print the <code>sysroot</code> path using GCC compiler?	open	2024-07-28 10:07:38.775878	2024-07-28 10:07:38.775878
-1222	47	What are the main C library components?	open	2024-07-28 10:07:38.997263	2024-07-28 10:07:38.997263
-1223	47	Print the linked libraries of an executable using GNU toolchains?	open	2024-07-28 10:07:39.203633	2024-07-28 10:07:39.203633
-1224	47	Print the runtime linker used for an executable using GNU toolchains?	open	2024-07-28 10:07:39.424955	2024-07-28 10:07:39.424955
-1225	47	Compile by linking libraries statically using GNU GCC compiler?	open	2024-07-28 10:07:39.691766	2024-07-28 10:07:39.691766
-1226	47	Where are static libraries located in <code>sysroot</code> directory used by GNU toolchains?	open	2024-07-28 10:07:39.97168	2024-07-28 10:07:39.97168
-1227	47	Use GNU toolchains to create a static library containing two executable objects compiled from C source files?	open	2024-07-28 10:07:40.253968	2024-07-28 10:07:40.253968
-1228	47	Use GNU toolchains to create a shared library containing two executable objects compiled from C source files?	open	2024-07-28 10:07:40.57524	2024-07-28 10:07:40.57524
-1229	47	Use GNU cross-toolchains to print the <code>SONAME</code> of a shared library?	open	2024-07-28 10:07:40.845115	2024-07-28 10:07:40.845115
-1230	47	Use GNU toolchains to cross-compile for a specific target?	open	2024-07-28 10:07:41.234969	2024-07-28 10:07:41.234969
-1231	47	Build and install GNU Autotools?	open	2024-07-28 10:07:41.640666	2024-07-28 10:07:41.640666
-1232	47	Override the toolchain in an autotools compatible project?	open	2024-07-28 10:07:41.876288	2024-07-28 10:07:41.876288
-1233	47	Use <code>crosstool-ng</code> to cross compile <i>SQlite</i> and add it to an existing toolchain?	open	2024-07-28 10:07:42.245503	2024-07-28 10:07:42.245503
-1234	47	Prepare <code>pkg-config</code> to look up library dependencies in a sysroot?	open	2024-07-28 10:07:42.557183	2024-07-28 10:07:42.557183
-1235	47	Use CMake to cross compile a project?	open	2024-07-28 10:07:42.866883	2024-07-28 10:07:42.866883
-1236	48	Describe the boot sequence in an embedded device?	open	2024-07-28 10:07:43.098409	2024-07-28 10:07:43.098409
-1237	48	Describe what parameters should be passed to the kernel on moving from the bootloader to a kernel?	open	2024-07-28 10:07:43.346721	2024-07-28 10:07:43.346721
-1238	48	What is a Device Tree and where is its specification?	open	2024-07-28 10:07:43.518714	2024-07-28 10:07:43.518714
-1239	48	What are the common properties of device tree specification?	open	2024-07-28 10:07:44.212874	2024-07-28 10:07:44.212874
-1240	48	Specify an interrupt controller in a device tree source?	open	2024-07-28 10:07:44.903231	2024-07-28 10:07:44.903231
-1241	48	Use <code>include</code> in a device tree source?	open	2024-07-28 10:07:45.190975	2024-07-28 10:07:45.190975
-1242	48	Overlay nodes on top of another to create a composite tree in which the outer layers extend or modify the inner ones?	open	2024-07-28 10:07:46.058064	2024-07-28 10:07:46.058064
-1243	48	Use <code>dtc</code> to compile a device tree source?	open	2024-07-28 10:07:46.380748	2024-07-28 10:07:46.380748
-1244	48	Build and install <b>U-Boot</b> from source?	open	2024-07-28 10:07:46.9972	2024-07-28 10:07:46.9972
-1245	48	Use U-Boot to read flash memory over serial console?	open	2024-07-28 10:07:47.327935	2024-07-28 10:07:47.327935
-1246	48	Set environment variables in U-Boot environment?	open	2024-07-28 10:07:47.650529	2024-07-28 10:07:47.650529
-1247	48	Use <code>mkimage</code> to create a compressed kernel image from an uncompressed kernel image?	open	2024-07-28 10:07:47.940347	2024-07-28 10:07:47.940347
-1248	48	Load a kernel image in a U-Boot shell environment?	open	2024-07-28 10:07:48.197314	2024-07-28 10:07:48.197314
-1249	48	Boot a kernel image across network in a U-Boot shell environment?	open	2024-07-28 10:07:48.609636	2024-07-28 10:07:48.609636
-1250	48	Boot Linux kernel after loading it within U-Boot shell environment?	open	2024-07-28 10:07:48.849574	2024-07-28 10:07:48.849574
-1251	48	Automate the boot process in U-Boot shell environment?	open	2024-07-28 10:07:49.093978	2024-07-28 10:07:49.093978
-1252	49	What is the first required action to aquire appropriate kernel source either for kernel development or embedded use?	open	2024-07-28 10:07:49.485848	2024-07-28 10:07:49.485848
-1253	49	What is an appropriate path to keep track of kernel release changes?	open	2024-07-28 10:07:49.750522	2024-07-28 10:07:49.750522
-1254	49	What is the basic layout of the kernel source tree?	open	2024-07-28 10:07:50.114081	2024-07-28 10:07:50.114081
-1255	49	What is the name of the kernel configuration mechanism and how can it be used?	open	2024-07-28 10:07:50.351443	2024-07-28 10:07:50.351443
-1256	49	What are possible values to the <code>ARCH</code> environment variable using in building the kernel source?	open	2024-07-28 10:07:50.553741	2024-07-28 10:07:50.553741
-1257	49	What are the constructs of each menu in a <code>Kconfig</code> file?	open	2024-07-28 10:07:51.026563	2024-07-28 10:07:51.026563
-1258	49	What types can each <code>config</code> have in a <code>Kconfig</code> menu?	open	2024-07-28 10:07:51.310181	2024-07-28 10:07:51.310181
-1259	49	What construct can be used to express dependencies or reverse dependencies for a <code>config</code> in a <code>Kconfig</code> menu?	open	2024-07-28 10:07:51.857561	2024-07-28 10:07:51.857561
-1260	49	What configuration utilities are available to use for configuring kernel build?	open	2024-07-28 10:07:52.173647	2024-07-28 10:07:52.173647
-1261	49	Use GNU <code>make</code> to find all possible kernel configuration targets?	open	2024-07-28 10:07:52.590833	2024-07-28 10:07:52.590833
-1262	49	Use GNU <code>make</code> to configure kernel source tree for a specific architecture?	open	2024-07-28 10:07:52.970117	2024-07-28 10:07:52.970117
-1263	49	What configuration target takes an old <code>.config</code> file and asks for options added in new kernel?	open	2024-07-28 10:07:53.405232	2024-07-28 10:07:53.405232
-1264	49	What file holds configuration options generated by beginning the kernel build and where is the file?	open	2024-07-28 10:07:53.674627	2024-07-28 10:07:53.674627
-1265	49	Identify which kernel version and kernel release do we have in kernel source tree?	open	2024-07-28 10:07:53.966822	2024-07-28 10:07:53.966822
-1266	49	By which configuration option can kernel release be appended with release information?	open	2024-07-28 10:07:54.177366	2024-07-28 10:07:54.177366
-1267	49	How does the <code>Kbuild</code> work with configuration options to properly build kernel?	open	2024-07-28 10:07:54.451731	2024-07-28 10:07:54.451731
-1268	49	By assuming to have a complete <code>.config</code> file in the kernel source, what are the required environment variables to be given to <code>make</code> to build the kernel?	open	2024-07-28 10:07:54.661273	2024-07-28 10:07:54.661273
-1269	49	Which kernel target should be used to generate kernel image?	open	2024-07-28 10:07:54.999539	2024-07-28 10:07:54.999539
-1270	49	Solve different relocation addresses of the kernel with multi-platform ARM <code>uImage</code>?	open	2024-07-28 10:07:55.265916	2024-07-28 10:07:55.265916
-1271	49	What are the build artifacts of <code>Kbuild</code>?	open	2024-07-28 10:07:55.568691	2024-07-28 10:07:55.568691
-1272	49	Make debug symbols available in the <code>vmlinux</code> kernel image?	open	2024-07-28 10:07:55.762272	2024-07-28 10:07:55.762272
-1273	49	See the actual commands being executed in kernel build process in case build fails?	open	2024-07-28 10:07:55.998954	2024-07-28 10:07:55.998954
-1274	49	What are the required steps after building a kernel image?	open	2024-07-28 10:07:56.505005	2024-07-28 10:07:56.505005
-1275	49	How many cleaning <code>make</code> targets are available?	open	2024-07-28 10:07:56.834839	2024-07-28 10:07:56.834839
-1276	49	What are the steps required to build a kernel for the Raspberry Pi 4?	open	2024-07-28 10:07:57.956783	2024-07-28 10:07:57.956783
-1277	49	What are the steps required to build a kernel for the Raspberry Pi Zero?	open	2024-07-28 10:07:58.810802	2024-07-28 10:07:58.810802
-1278	49	What are the steps required to build a kernel for the BeagleBone Black?	open	2024-07-28 10:07:59.186051	2024-07-28 10:07:59.186051
-1279	49	What are the steps required to build a kernel for the QEMU?	open	2024-07-28 10:07:59.490832	2024-07-28 10:07:59.490832
-1280	49	Assuming kernel image and device tree blobs are built and put on the microSD already, what are the required boot instructions on Raspberry Pi 4?	open	2024-07-28 10:07:59.743154	2024-07-28 10:07:59.743154
-1281	49	What are the required boot instructions on BeagleBone Black?	open	2024-07-28 10:08:00.022924	2024-07-28 10:08:00.022924
-1282	49	What are the required boot instructions on QEMU?	open	2024-07-28 10:08:00.241472	2024-07-28 10:08:00.241472
-1283	49	What is the early user space after kernel is booted?	open	2024-07-28 10:08:00.606938	2024-07-28 10:08:00.606938
-1284	49	What are the essential kernel command lines?	open	2024-07-28 10:08:01.069857	2024-07-28 10:08:01.069857
-1285	49	Reduce the time of calculating the constant <code>loops_per_jiffy</code> variable on boot time?	open	2024-07-28 10:08:01.259309	2024-07-28 10:08:01.259309
-1286	49	What are the required procedures to port Linux to a new board?	open	2024-07-28 10:08:01.457189	2024-07-28 10:08:01.457189
-1287	49	Assuming a new device is designed similar to BeagleBone Black and a new device tree needs to be ported for it, what are the necessary steps to make one?	open	2024-07-28 10:08:03.16711	2024-07-28 10:08:03.16711
-1288	1398	Compile a program with debugging information?	open	2024-07-28 10:08:03.754196	2024-07-28 10:08:03.754196
-1289	419	How does <code>eBPF</code> help us to learn application behavior?	open	2024-07-28 10:08:13.272943	2024-07-28 10:08:13.272943
-1290	419	What does the <code>eBPF</code> verifier?	open	2024-07-28 10:08:13.439554	2024-07-28 10:08:13.439554
-1291	419	What is the advantage of dynamic loading functionality in <code>eBPF</code>?	open	2024-07-28 10:08:13.66934	2024-07-28 10:08:13.66934
-1292	419	How efficient is loading <code>eBPF</code> programs?	open	2024-07-28 10:08:13.884486	2024-07-28 10:08:13.884486
-1293	420	How to load a simple <code>eBPF</code> code in python's BCC library as a simplified example?	open	2024-07-28 10:08:14.98458	2024-07-28 10:08:14.98458
-1294	420	What capabilities are required for eBPF programs to run?	open	2024-07-28 10:08:15.42517	2024-07-28 10:08:15.42517
-1295	420	Where does the <code>eBPF</code> trace printing function write output?	open	2024-07-28 10:08:15.663691	2024-07-28 10:08:15.663691
-1296	420	What is the convenient alternative to trace output by <code>bpf_trace_printk</code> helper function?	open	2024-07-28 10:08:15.884711	2024-07-28 10:08:15.884711
-1297	420	What is an <code>eBPF</code> map?	open	2024-07-28 10:08:16.055989	2024-07-28 10:08:16.055989
-1298	901	Download the Linux kernel for building?	open	2024-07-28 10:08:16.885521	2024-07-28 10:08:16.885521
-1299	901	Describe each directory in the kernel source tree?	open	2024-07-28 10:08:17.48606	2024-07-28 10:08:17.48606
-2146	256	Use the contents of a buffer for standard input or output:	open	2024-07-28 10:13:41.774368	2024-07-28 10:13:41.774368
-1300	901	What assumptions and flags are enabled by <code>kbuild</code> infrastructure based on the target architecture?	open	2024-07-28 10:08:17.911128	2024-07-28 10:08:17.911128
-1301	901	What <code>make</code> target options can be used to configure the kernel?	open	2024-07-28 10:08:18.224362	2024-07-28 10:08:18.224362
-1302	901	Where will be the kernel configurations stored?	open	2024-07-28 10:08:18.398435	2024-07-28 10:08:18.398435
-2150	257	Switch to alternate buffer:	open	2024-07-28 10:13:42.565566	2024-07-28 10:13:42.565566
-1303	901	Generate a preconfigured <code>.config</code> file tuned for a specific platform in the kernel source tree?	open	2024-07-28 10:08:18.897062	2024-07-28 10:08:18.897062
-1304	901	Revert configuration changes in kernel source tree after generating new <code>.config</code> file?	open	2024-07-28 10:08:19.127857	2024-07-28 10:08:19.127857
-1305	901	Create a new default configuration target in kernel source tree?	open	2024-07-28 10:08:19.614339	2024-07-28 10:08:19.614339
-1306	901	Generate a default configuration file for <code>x86_64</code> target in the kernel source tree?	open	2024-07-28 10:08:19.936187	2024-07-28 10:08:19.936187
-1307	901	Generate a default configuration file for <code>BeagleBone Black</code> target in kernel source tree?	open	2024-07-28 10:08:20.164878	2024-07-28 10:08:20.164878
-1308	901	Include new kernel configurations into an old <code>.config</code> file?	open	2024-07-28 10:08:20.639563	2024-07-28 10:08:20.639563
-1309	901	Use the kernel configuration file on a running machine as an initial configurtion?	open	2024-07-28 10:08:21.172803	2024-07-28 10:08:21.172803
-1310	901	What kernel configuration options allows accessing kernel configuration file on runtime?	open	2024-07-28 10:08:21.447141	2024-07-28 10:08:21.447141
-1311	901	What kernel configuration option allows extending the kernel command line from within the configuration?	open	2024-07-28 10:08:21.800359	2024-07-28 10:08:21.800359
-1312	901	What kernel configuration option makes the kernel symbol table available in <code>/proc/kallsyms</code>?	open	2024-07-28 10:08:22.038421	2024-07-28 10:08:22.038421
-1313	901	What kernel configuration option enables timing information while printing messages from the kernel?	open	2024-07-28 10:08:22.20572	2024-07-28 10:08:22.20572
-1314	901	What kernel configuration option allows debugging input devices?	open	2024-07-28 10:08:22.390316	2024-07-28 10:08:22.390316
-1315	901	What kernel configuration option enables system request key combinations to recover system after crash?	open	2024-07-28 10:08:22.561145	2024-07-28 10:08:22.561145
-1316	901	What kernel configuration option enables the <code>ftrace</code> tracer support?	open	2024-07-28 10:08:22.726662	2024-07-28 10:08:22.726662
-1317	901	What kernel configuration option allows tracing any non-inline function in the kernel?	open	2024-07-28 10:08:22.941609	2024-07-28 10:08:22.941609
-1318	901	What kernel configuration option allows tracking off periods of IRQs in the kernel?	open	2024-07-28 10:08:23.109447	2024-07-28 10:08:23.109447
-1319	901	What kernel configuration option allows measuring preemption off latency and schedule latency tracing?	open	2024-07-28 10:08:23.331203	2024-07-28 10:08:23.331203
-1320	901	What <code>make</code> target should be used to build the kernel in the source tree?	open	2024-07-28 10:08:23.741073	2024-07-28 10:08:23.741073
-1321	901	Where do kernel build artifact will be stored in the source tree?	open	2024-07-28 10:08:24.056113	2024-07-28 10:08:24.056113
-1322	901	Install the kernel binary file on native and non-native targets?	open	2024-07-28 10:08:24.351481	2024-07-28 10:08:24.351481
-1323	901	Build and install kernel modules?	open	2024-07-28 10:08:24.709429	2024-07-28 10:08:24.709429
-1324	901	Override the installation path of compiled module binaries after the <code>modules_install</code> target is executed?	open	2024-07-28 10:08:25.12147	2024-07-28 10:08:25.12147
-1325	901	What artifacts does <code>make modules_install</code> command generate on the host machine?	open	2024-07-28 10:08:25.486428	2024-07-28 10:08:25.486428
-1326	902	How many module types are available?	open	2024-07-28 10:08:25.898605	2024-07-28 10:08:25.898605
-1327	902	What kernel configuration option enables module loading on runtime?	open	2024-07-28 10:08:26.120393	2024-07-28 10:08:26.120393
-1328	902	What kernel configuration option enables unloading modules on runtime?	open	2024-07-28 10:08:26.305498	2024-07-28 10:08:26.305498
-1329	902	What kernel configuration option ignores safely unloading modules having dependencies?	open	2024-07-28 10:08:26.515125	2024-07-28 10:08:26.515125
-1330	902	What is the basic skeleton of a kernel module?	open	2024-07-28 10:08:27.106976	2024-07-28 10:08:27.106976
-1331	902	What functions are the entry points of all kernel modules?	open	2024-07-28 10:08:27.468121	2024-07-28 10:08:27.468121
-1332	902	What are the <code>\\_\\_init</code> and <code>\\_\\_exit</code> function prefixes in kernel modules?	open	2024-07-28 10:08:28.125671	2024-07-28 10:08:28.125671
-1333	902	What section is used in kernel objects to store module information?	open	2024-07-28 10:08:28.399339	2024-07-28 10:08:28.399339
-1334	902	What macros are commonly used in kernel modules to store module information?	open	2024-07-28 10:08:28.609525	2024-07-28 10:08:28.609525
-1335	902	What is the real underlying macro provided by the kernel to add an entry to the <code>.modinfo</code> section?	open	2024-07-28 10:08:28.817222	2024-07-28 10:08:28.817222
-1336	902	What utility dumps the <code>.modinfo</code> section of kernel modules?	open	2024-07-28 10:08:29.044522	2024-07-28 10:08:29.044522
-1337	902	What are the differences of <code>EXPORT_SYMBOL</code> and <code>EXPORT_SYMBOL_GPL</code> macros exporting symbols based on license?	open	2024-07-28 10:08:29.448513	2024-07-28 10:08:29.448513
-1338	902	What is the <b>out-of-tree</b> kernel module building?	open	2024-07-28 10:08:29.721488	2024-07-28 10:08:29.721488
-1339	902	What is the <b>built-in</b> kernel module building?	open	2024-07-28 10:08:29.944168	2024-07-28 10:08:29.944168
-1340	902	Write a custom <code>Makefile</code> for <b>out-of-tree</b> kernel modules?	open	2024-07-28 10:08:30.657534	2024-07-28 10:08:30.657534
-1341	902	What <code>make</code> targets should be available when writing a custom <code>Makefile</code> for kernel modules?	open	2024-07-28 10:08:31.06764	2024-07-28 10:08:31.06764
-1342	902	Write configuration dependent target in <code>Makefile</code> for a <b>built-in</b> kernel module?	open	2024-07-28 10:08:31.551615	2024-07-28 10:08:31.551615
-1343	902	Specify multiple source files in a custom <code>Makefile</code> for a specific target?	open	2024-07-28 10:08:32.349182	2024-07-28 10:08:32.349182
-1344	902	Specify compiler and linker flags in <code>Makefile</code> for kernel module building?	open	2024-07-28 10:08:32.752343	2024-07-28 10:08:32.752343
-1345	902	Include other kernel source directories within a <code>Makefile</code>?	open	2024-07-28 10:08:33.069804	2024-07-28 10:08:33.069804
-1346	902	Obtain a prebuilt kernel for building <b>out-of-tree</b> module?	open	2024-07-28 10:08:33.572016	2024-07-28 10:08:33.572016
-1347	902	Load and unload an <b>out-of-tree</b> built kernel module?	open	2024-07-28 10:08:33.913456	2024-07-28 10:08:33.913456
-1348	902	Write <code>Makefile</code> for a <b>built-in</b> kernel module?	open	2024-07-28 10:08:34.624778	2024-07-28 10:08:34.624778
-1349	902	Define parameters in kernel modules?	open	2024-07-28 10:08:35.668602	2024-07-28 10:08:35.668602
-1350	902	What psuedo-files represent module parameters?	open	2024-07-28 10:08:36.046101	2024-07-28 10:08:36.046101
-1351	902	Pass parameters to built-in modules?	open	2024-07-28 10:08:36.300211	2024-07-28 10:08:36.300211
-1352	902	How kernel functions can be called from a kernel module?	open	2024-07-28 10:08:36.652991	2024-07-28 10:08:36.652991
-1353	902	How does <code>depmod</code> utility determine module dependencies?	open	2024-07-28 10:08:36.922822	2024-07-28 10:08:36.922822
-1354	902	How does <code>modprobe</code> utility loads modules?	open	2024-07-28 10:08:37.222972	2024-07-28 10:08:37.222972
-1355	902	How does <code>depmod</code> utility map devices to their drivers?	open	2024-07-28 10:08:37.747836	2024-07-28 10:08:37.747836
-1356	902	Load a module at boot time?	open	2024-07-28 10:08:38.113636	2024-07-28 10:08:38.113636
-1357	902	Unload an automatically loaded module?	open	2024-07-28 10:08:38.530993	2024-07-28 10:08:38.530993
-1358	902	List loaded modules?	open	2024-07-28 10:08:39.014878	2024-07-28 10:08:39.014878
-1359	902	Where the error macros defined are defined?	open	2024-07-28 10:08:39.273843	2024-07-28 10:08:39.273843
-2326	1361	What is the state of a moved-from string?	open	2024-09-18 17:20:08.978522	2024-09-18 17:20:08.978522
-1360	902	What is the standard way to return an error in kernel modules?	open	2024-07-28 10:08:39.602605	2024-07-28 10:08:39.602605
-1361	902	Why <code>goto</code> statement is preferable over than nested <code>if</code>s in kernel modules?	open	2024-07-28 10:08:40.393536	2024-07-28 10:08:40.393536
-1362	902	What is the standard way of handling null pointer errors in kernel modules?	open	2024-07-28 10:08:41.679516	2024-07-28 10:08:41.679516
-1363	902	Where are the <code>printk()</code> function log levels are defined?	open	2024-07-28 10:08:42.039261	2024-07-28 10:08:42.039261
-1364	902	What are the recommended helper functions alternative to <code>printk()</code>?	open	2024-07-28 10:08:42.279312	2024-07-28 10:08:42.279312
-1365	902	What are the log levels of kernel printing helper functions?	open	2024-07-28 10:08:42.634528	2024-07-28 10:08:42.634528
-1366	902	What is the default kernel log level?	open	2024-07-28 10:08:43.010089	2024-07-28 10:08:43.010089
-1367	902	Change current kernel log level?	open	2024-07-28 10:08:43.267508	2024-07-28 10:08:43.267508
-1368	902	Prefix the module output messages with a custom string?	open	2024-07-28 10:08:43.652509	2024-07-28 10:08:43.652509
-1369	903	How many synchronization mechanisms for accessibility of shared resources are available in the kernel?	open	2024-07-28 10:08:44.225306	2024-07-28 10:08:44.225306
-1370	903	What is a spinlock?	open	2024-07-28 10:08:44.671655	2024-07-28 10:08:44.671655
-1371	903	How does spinlocks operate on a CPU?	open	2024-07-28 10:08:45.006431	2024-07-28 10:08:45.006431
-1372	903	Define a spinlock in module source?	open	2024-07-28 10:08:45.733425	2024-07-28 10:08:45.733425
-1373	903	Lock a previously defined spinlock in module source?	open	2024-07-28 10:08:46.132176	2024-07-28 10:08:46.132176
-1374	903	What are the limitations of locking/unlocking spinlocks in a kernel module?	open	2024-07-28 10:08:46.440812	2024-07-28 10:08:46.440812
-1375	903	Prevent deadlock caused by IRQs when using spinlocks?	open	2024-07-28 10:08:46.74964	2024-07-28 10:08:46.74964
-1376	903	How does spinlocks affect preemtion after locking and unlocking?	open	2024-07-28 10:08:47.013191	2024-07-28 10:08:47.013191
-1377	903	Store and restore previous IRQs status when using spinlocks?	open	2024-07-28 10:08:47.470837	2024-07-28 10:08:47.470837
-1378	903	How a critical section can be protected from being preemted by kernel?	open	2024-07-28 10:08:47.838613	2024-07-28 10:08:47.838613
-1379	903	What is a mutex and how does it operate?	open	2024-07-28 10:08:48.356733	2024-07-28 10:08:48.356733
-1380	903	Initialize a mutex in the kernel?	open	2024-07-28 10:08:49.036916	2024-07-28 10:08:49.036916
-1381	903	Acquire a mutex in the kernel?	open	2024-07-28 10:08:49.587854	2024-07-28 10:08:49.587854
-1382	903	Release an acquired mutex in the kernel?	open	2024-07-28 10:08:49.941971	2024-07-28 10:08:49.941971
-1383	903	Check mutex locking availability before acquiring it?	open	2024-07-28 10:08:50.253074	2024-07-28 10:08:50.253074
-1384	903	What are specific rules while using mutexes in the kernel?	open	2024-07-28 10:08:50.687208	2024-07-28 10:08:50.687208
-1385	903	What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?	open	2024-07-28 10:08:50.935394	2024-07-28 10:08:50.935394
-1386	903	Acquire a lock only if it is not already held by another contender?	open	2024-07-28 10:08:51.753977	2024-07-28 10:08:51.753977
-1387	903	What does the term sleeping mean in the kernel?	open	2024-07-28 10:08:52.072111	2024-07-28 10:08:52.072111
-1388	903	What passive waiting mechanisms are implemented in the kernel?	open	2024-07-28 10:08:52.471431	2024-07-28 10:08:52.471431
-1389	903	What queues are implemented in the kernel to hold tasks?	open	2024-07-28 10:08:52.761022	2024-07-28 10:08:52.761022
-1390	903	What is a wait queue?	open	2024-07-28 10:08:53.215783	2024-07-28 10:08:53.215783
-1391	903	Initialize a wait queue?	open	2024-07-28 10:08:53.604016	2024-07-28 10:08:53.604016
-1392	903	Put a process to sleep waiting for an event to occur?	open	2024-07-28 10:08:54.081534	2024-07-28 10:08:54.081534
-1393	903	Put a process to sleep waiting either for an event to occur or a timeout to be reached?	open	2024-07-28 10:08:54.455428	2024-07-28 10:08:54.455428
-1394	903	What values does the <code>wait_event_timeout()</code> function return?	open	2024-07-28 10:08:54.732974	2024-07-28 10:08:54.732974
-1395	903	Convert standard time units to jiffies?	open	2024-07-28 10:08:55.010687	2024-07-28 10:08:55.010687
-1396	903	Wake up a process waiting on a wait queue?	open	2024-07-28 10:08:55.381359	2024-07-28 10:08:55.381359
-1397	903	What values do <code>wait_up</code> family functions return?	open	2024-07-28 10:08:55.654159	2024-07-28 10:08:55.654159
-1398	624	Where are the linux modules located?	open	2024-07-28 10:08:56.037736	2024-07-28 10:08:56.037736
-1399	624	How to load a loadable kernel module?	open	2024-07-28 10:08:56.386849	2024-07-28 10:08:56.386849
-1400	624	What modules does <code>lsmod</code> show?	open	2024-07-28 10:08:56.605988	2024-07-28 10:08:56.605988
-1401	624	Where does <code>lsmod</code> collects information about modules?	open	2024-07-28 10:08:56.804742	2024-07-28 10:08:56.804742
-1402	624	Remove a loaded module from the kernel?	open	2024-07-28 10:08:57.044243	2024-07-28 10:08:57.044243
-1403	624	Where are module dependencies stored?	open	2024-07-28 10:08:57.243882	2024-07-28 10:08:57.243882
-1404	624	Dynamically load a module and its dependencies?	open	2024-07-28 10:08:57.545567	2024-07-28 10:08:57.545567
-1405	624	Retrieve module information?	open	2024-07-28 10:08:57.822206	2024-07-28 10:08:57.822206
-1406	430	What mechanisms are required for user space applications to gain access to the underlying device drivers within the kernel?	open	2024-07-28 10:08:58.317315	2024-07-28 10:08:58.317315
-1407	430	How does <b>Linux Device Model</b> expose device driver details to user space?	open	2024-07-28 10:08:58.598275	2024-07-28 10:08:58.598275
-1408	430	What inode attributes are used to distinguish between device files?	open	2024-07-28 10:08:58.854232	2024-07-28 10:08:58.854232
-1409	430	What is a device driver namespace?	open	2024-07-28 10:08:59.190664	2024-07-28 10:08:59.190664
-1410	430	What is the difference between block and char devices in namespaces?	open	2024-07-28 10:08:59.428118	2024-07-28 10:08:59.428118
-1411	430	What distinguishes device classes in the kernel?	open	2024-07-28 10:09:00.002628	2024-07-28 10:09:00.002628
-1412	430	What are the major components of <b>Linux Device Model</b>?	open	2024-07-28 10:09:00.328328	2024-07-28 10:09:00.328328
-1413	430	Where devices should be registered?	open	2024-07-28 10:09:00.561166	2024-07-28 10:09:00.561166
-1414	430	What is the job of buses?	open	2024-07-28 10:09:00.784577	2024-07-28 10:09:00.784577
-1415	430	What is the initial step of a device driver once a device binds?	open	2024-07-28 10:09:01.248121	2024-07-28 10:09:01.248121
-1416	430	What is a good starting step to learn writing device drivers?	open	2024-07-28 10:09:01.620023	2024-07-28 10:09:01.620023
-1417	430	Handle unsupported file operation method by propegating an error from kernel driver to user space proces?	open	2024-07-28 10:09:02.083979	2024-07-28 10:09:02.083979
-1418	430	Handle unsupported <code>llseek</code> file operation?	open	2024-07-28 10:09:02.613244	2024-07-28 10:09:02.613244
-1419	430	Register a misc driver in the kernel?	open	2024-07-28 10:09:03.902908	2024-07-28 10:09:03.902908
-1420	430	What is the entry point of device drivers?	open	2024-07-28 10:09:04.524388	2024-07-28 10:09:04.524388
-1421	430	Assign file operations on a misc driver?	open	2024-07-28 10:09:05.99614	2024-07-28 10:09:05.99614
-1422	430	Implement open file operation function in device driver?	open	2024-07-28 10:09:06.779026	2024-07-28 10:09:06.779026
-1423	430	Implement read file operation function in device driver?	open	2024-07-28 10:09:08.192646	2024-07-28 10:09:08.192646
-1424	430	Try out the open, read, write, and close file operation methods of a driver?	open	2024-07-28 10:09:08.850544	2024-07-28 10:09:08.850544
-1425	430	Copy data from kernel to user space?	open	2024-07-28 10:09:09.723223	2024-07-28 10:09:09.723223
-1426	430	Copy data from user to kernel space?	open	2024-07-28 10:09:10.10608	2024-07-28 10:09:10.10608
-1427	458	How to use <code>sparse</code> as the <b>static analyzer</b> in kbuild?	open	2024-07-28 10:09:10.746893	2024-07-28 10:09:10.746893
-1428	458	What are the most commonly used <b>tracing</b> and <b>profiling</b> tools in the kernel development?	open	2024-07-28 10:09:11.082986	2024-07-28 10:09:11.082986
-1429	458	What tool is commonly used to examine and interpret LTTng's output?	open	2024-07-28 10:09:11.305673	2024-07-28 10:09:11.305673
-1430	458	What is the BPF frontend?	open	2024-07-28 10:09:11.514264	2024-07-28 10:09:11.514264
-1431	458	What kernel version started supporting BPF?	open	2024-07-28 10:09:11.744683	2024-07-28 10:09:11.744683
-1432	458	What is the important dependency of BPF on a Linux system?	open	2024-07-28 10:09:11.969885	2024-07-28 10:09:11.969885
-2151	257	Jump directly to a buffer using number:	open	2024-07-28 10:13:42.744556	2024-07-28 10:13:42.744556
-1433	458	What tool is used as automated test suite and static and dynamic analysis for kernel modules?	open	2024-07-28 10:09:12.189633	2024-07-28 10:09:12.189633
-1434	458	What is the name of cross toolchain required to build the kernel?	open	2024-07-28 10:09:12.449849	2024-07-28 10:09:12.449849
-1435	458	What is the name of emulator required to run kernel on it?	open	2024-07-28 10:09:12.740584	2024-07-28 10:09:12.740584
-1436	458	Use static analysis tools for Kernel source:	open	2024-07-28 10:09:13.24453	2024-07-28 10:09:13.24453
-1437	458	Use sparce to analyze kernel source:	open	2024-07-28 10:09:13.536526	2024-07-28 10:09:13.536526
-1438	458	Trace and profiling tools for kernel:	open	2024-07-28 10:09:13.775151	2024-07-28 10:09:13.775151
-1439	458	Performance analysis tool for kernel:	open	2024-07-28 10:09:14.041052	2024-07-28 10:09:14.041052
-1440	458	Linux Driver Verification (LDV) project:	open	2024-07-28 10:09:14.244627	2024-07-28 10:09:14.244627
-1441	459	How to check the kernel version on host system?	open	2024-07-28 10:09:14.474748	2024-07-28 10:09:14.474748
-1442	459	How to review the history of the kernel development process using git?	open	2024-07-28 10:09:14.766376	2024-07-28 10:09:14.766376
-1443	459	What is the kernel development workflow?	open	2024-07-28 10:09:15.136458	2024-07-28 10:09:15.136458
-1444	459	How many kernel release types exist?	open	2024-07-28 10:09:15.493	2024-07-28 10:09:15.493
-1445	459	How to retrieve current list kernel releases?	open	2024-07-28 10:09:15.79476	2024-07-28 10:09:15.79476
-1446	459	What script can be used to safely download and verify kernel source tree?	open	2024-07-28 10:09:16.108522	2024-07-28 10:09:16.108522
-1447	459	What are the steps of building the kernel?	open	2024-07-28 10:09:16.405047	2024-07-28 10:09:16.405047
-1448	459	Where can kernel archive be downloaded?	open	2024-07-28 10:09:16.645264	2024-07-28 10:09:16.645264
-1449	459	Where can kernel source be cloned?	open	2024-07-28 10:09:16.87042	2024-07-28 10:09:16.87042
-1450	459	How to make sure about the version of the cloned kernel source tree?	open	2024-07-28 10:09:17.095527	2024-07-28 10:09:17.095527
-1451	459	Where is the list of kernel maintainers?	open	2024-07-28 10:09:17.266208	2024-07-28 10:09:17.266208
-1452	459	What script can be used to find the maintainers of a specific module?	open	2024-07-28 10:09:17.435363	2024-07-28 10:09:17.435363
-1453	459	What is the purpose of each directory in the kernel source tree?	open	2024-07-28 10:09:17.870183	2024-07-28 10:09:17.870183
-1454	459	How to build kernel documentations from source?	open	2024-07-28 10:09:18.197498	2024-07-28 10:09:18.197498
-1455	459	What code browsing tools are available to be used in kernel source tree?	open	2024-07-28 10:09:18.433582	2024-07-28 10:09:18.433582
-1456	459	How to generate tags using code browsing tools in the kernel source tree?	open	2024-07-28 10:09:18.645868	2024-07-28 10:09:18.645868
-1457	459	Where is the default kernel config file stored?	open	2024-07-28 10:09:18.82609	2024-07-28 10:09:18.82609
-1458	459	What configuration targets are available in the kernel build system?	open	2024-07-28 10:09:19.018121	2024-07-28 10:09:19.018121
-1459	459	Where can platform specific configuration files be found in the kernel source tree?	open	2024-07-28 10:09:19.17662	2024-07-28 10:09:19.17662
-1460	459	How to configure kernel with the existing modules?	open	2024-07-28 10:09:19.364839	2024-07-28 10:09:19.364839
-1461	459	How to use existing kernel configuration in the kbuild?	open	2024-07-28 10:09:19.599931	2024-07-28 10:09:19.599931
-1462	459	What UI configuration options are available for the kbuild system?	open	2024-07-28 10:09:19.788051	2024-07-28 10:09:19.788051
-1463	459	How many option types are available in <code>menuconfig</code> target?	open	2024-07-28 10:09:20.035342	2024-07-28 10:09:20.035342
-1464	470	How to emulate raspberry pi on Linux?	open	2024-07-28 10:09:20.253522	2024-07-28 10:09:20.253522
-1465	470	Choose between microprocessors for embedded Linux project:	open	2024-07-28 10:09:20.452971	2024-07-28 10:09:20.452971
-1466	470	Deprecated things in kernel:	open	2024-07-28 10:09:20.614166	2024-07-28 10:09:20.614166
-1467	470	External resources:	open	2024-07-28 10:09:20.8733	2024-07-28 10:09:20.8733
-1468	661	How many synchronization mechanisms for accessibility of shared resources are available in the kernel?	open	2024-07-28 10:09:21.196363	2024-07-28 10:09:21.196363
-1469	661	What is a spinlock?	open	2024-07-28 10:09:21.475345	2024-07-28 10:09:21.475345
-1470	661	How does spinlocks operate on a CPU?	open	2024-07-28 10:09:21.672194	2024-07-28 10:09:21.672194
-1471	661	Define a spinlock in module source?	open	2024-07-28 10:09:22.079558	2024-07-28 10:09:22.079558
-1472	661	Lock a previously defined spinlock in module source?	open	2024-07-28 10:09:22.307801	2024-07-28 10:09:22.307801
-1473	661	What are the limitations of locking/unlocking spinlocks in a kernel module?	open	2024-07-28 10:09:22.509184	2024-07-28 10:09:22.509184
-1474	661	Prevent deadlock caused by IRQs when using spinlocks?	open	2024-07-28 10:09:22.770871	2024-07-28 10:09:22.770871
-1475	661	How does spinlocks affect preemtion after locking and unlocking?	open	2024-07-28 10:09:22.95405	2024-07-28 10:09:22.95405
-1476	661	Store and restore previous IRQs status when using spinlocks?	open	2024-07-28 10:09:23.378483	2024-07-28 10:09:23.378483
-1477	661	How a critical section can be protected from being preemted by kernel?	open	2024-07-28 10:09:23.77974	2024-07-28 10:09:23.77974
-1478	661	What is a mutex and how does it operate?	open	2024-07-28 10:09:24.370852	2024-07-28 10:09:24.370852
-1479	661	Initialize a mutex in the kernel?	open	2024-07-28 10:09:25.142952	2024-07-28 10:09:25.142952
-1480	661	Acquire a mutex in the kernel?	open	2024-07-28 10:09:25.817574	2024-07-28 10:09:25.817574
-1481	661	Release an acquired mutex in the kernel?	open	2024-07-28 10:09:26.220284	2024-07-28 10:09:26.220284
-1482	661	Check mutex locking availability before acquiring it?	open	2024-07-28 10:09:26.524122	2024-07-28 10:09:26.524122
-1483	661	What are specific rules while using mutexes in the kernel?	open	2024-07-28 10:09:26.938438	2024-07-28 10:09:26.938438
-1484	661	What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?	open	2024-07-28 10:09:27.221813	2024-07-28 10:09:27.221813
-1485	661	Acquire a lock only if it is not already held by another contender?	open	2024-07-28 10:09:28.035091	2024-07-28 10:09:28.035091
-1486	1248	What are the sudo proprietary alternatives on Unix systems?	open	2024-07-28 10:09:28.595507	2024-07-28 10:09:28.595507
-1487	1248	What version of sudo should be installed on a server at least?	open	2024-07-28 10:09:28.821594	2024-07-28 10:09:28.821594
-1488	1249	How to run a command with root privileges using <code>sudo</code>?	open	2024-07-28 10:09:29.07356	2024-07-28 10:09:29.07356
-1489	1249	How to run a command on behalf of a specific user with sudo?	open	2024-07-28 10:09:29.321909	2024-07-28 10:09:29.321909
-1490	1249	How to run a command on behalf of a specific group with sudo?	open	2024-07-28 10:09:29.587849	2024-07-28 10:09:29.587849
-1491	1249	Where are the sudo rules stored on system and how can it be editted properly?	open	2024-07-28 10:09:29.824158	2024-07-28 10:09:29.824158
-1492	1249	What is the general form of each line of sudo rules and what is the definition and scope of each part?	open	2024-07-28 10:09:30.136597	2024-07-28 10:09:30.136597
-1493	1249	Why is it best practice to specify a specific <code>hostname</code> rather than <code>ALL</code> in sudo rules?	open	2024-07-28 10:09:30.363442	2024-07-28 10:09:30.363442
-1494	1249	How to specify multiple options on each sudo rule?	open	2024-07-28 10:09:30.629878	2024-07-28 10:09:30.629878
-1495	1249	How to specify commands to run by a specific user on behalf some other user except root in sudo rules?	open	2024-07-28 10:09:30.964453	2024-07-28 10:09:30.964453
-1496	1249	Can sudo rules be specified multiple times for users on different hosts and commands?	open	2024-07-28 10:09:31.277718	2024-07-28 10:09:31.277718
-1497	1249	How to break long rules into multiple lines?	open	2024-07-28 10:09:31.585028	2024-07-28 10:09:31.585028
-1498	1249	What rules match in sudo when multiple rules exist in sudoers file?	open	2024-07-28 10:09:31.828741	2024-07-28 10:09:31.828741
-1499	1249	How to use negate operator to exclude one item from a list in sudoers file?	open	2024-07-28 10:09:32.034752	2024-07-28 10:09:32.034752
-1500	1249	What must be written in the last line of sudoers file to be accepted by visudo?	open	2024-07-28 10:09:32.211899	2024-07-28 10:09:32.211899
-2152	258	Open another file in vim to edit:	open	2024-07-28 10:13:43.000603	2024-07-28 10:13:43.000603
-1501	1250	What editor does the <code>visudo</code> use to edit <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:32.50831	2024-07-28 10:09:32.50831
-1502	1250	How to keep editing <code>/etc/sudoers</code> file after making a syntactical error in <code>visudo</code> and save it?	open	2024-07-28 10:09:32.6974	2024-07-28 10:09:32.6974
-1503	1250	How to retain older <code>/etc/sudoers</code> file after attempting to save incorrect changes by <code>visudo</code>?	open	2024-07-28 10:09:32.905111	2024-07-28 10:09:32.905111
-2160	267	Auto-generate tags file in Vim:	open	2024-07-28 10:13:45.471761	2024-07-28 10:13:45.471761
-1504	1250	How to put an emergency rescue rule in <code>/etc/sudoers</code> file by <code>visudo</code> in case every other access rules failed?	open	2024-07-28 10:09:33.17151	2024-07-28 10:09:33.17151
-1505	1250	How to tell what a user can access with <code>sudo</code>?	open	2024-07-28 10:09:33.464625	2024-07-28 10:09:33.464625
-1506	1251	What mechanism is used in <code>sudo</code> rules to simplify overwhelmingly repeated rules and similar possible options?	open	2024-07-28 10:09:33.870075	2024-07-28 10:09:33.870075
-1507	1251	How can asterisk become harmful when used in different parts of rules like command arguments?	open	2024-07-28 10:09:34.293884	2024-07-28 10:09:34.293884
-1508	1251	How wildcards can be carefully used to not expose accessibility to users?	open	2024-07-28 10:09:34.623	2024-07-28 10:09:34.623
-1509	1251	How to match for specific option characters of a command in <code>/etc/sudoers</code> file using wildcards?	open	2024-07-28 10:09:34.868729	2024-07-28 10:09:34.868729
-1510	1251	How to authorize a user using a command only without arguments in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:35.158254	2024-07-28 10:09:35.158254
-1511	1251	How to use aliases in <code>/etc/sudoers</code> file to create a named list of similar items?	open	2024-07-28 10:09:35.620627	2024-07-28 10:09:35.620627
-1512	1251	What types of users does the <code>sudo</code> recognize in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:35.971768	2024-07-28 10:09:35.971768
-1513	1251	How to specify an operating system group in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:36.351317	2024-07-28 10:09:36.351317
-1514	1251	How to specify users of <code>/etc/sudoers</code> file with <code>UID</code>?	open	2024-07-28 10:09:36.702375	2024-07-28 10:09:36.702375
-1515	1251	How to specify members of a group in <code>/etc/sudoers</code> using their GID?	open	2024-07-28 10:09:37.006104	2024-07-28 10:09:37.006104
-1516	1251	How to list usernames with aliases in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:37.520846	2024-07-28 10:09:37.520846
-1517	1251	How does <code>sudo</code> determines the hostname on a system?	open	2024-07-28 10:09:37.974653	2024-07-28 10:09:37.974653
-1518	1251	How many forms the host can be specified in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.366864	2024-07-28 10:09:38.366864
-1519	1251	How hosts can be aliased in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.652547	2024-07-28 10:09:38.652547
-1520	1251	How to specify a list of run-as users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.933407	2024-07-28 10:09:38.933407
-1521	1251	How to specify run-as aliases in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.197409	2024-07-28 10:09:39.197409
-1522	1251	How to create a list of command in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.460733	2024-07-28 10:09:39.460733
-1523	1251	How to specify a command alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.699567	2024-07-28 10:09:39.699567
-1524	1251	What the command tags are and how they can be speicified in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.985466	2024-07-28 10:09:39.985466
-1525	1251	How can lists be negated in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:40.345291	2024-07-28 10:09:40.345291
-1526	1251	Why is it dangerious to use negation in a command list and alias?	open	2024-07-28 10:09:40.780283	2024-07-28 10:09:40.780283
-1527	1252	What option types are available to use in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.063444	2024-07-28 10:09:41.063444
-1528	1252	How boolean options can be enabled or disabled in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.405182	2024-07-28 10:09:41.405182
-1529	1252	What option should be enabled in <code>sudo</code> to insult users who can't type their password?	open	2024-07-28 10:09:41.695843	2024-07-28 10:09:41.695843
-1530	1252	How integer options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.042888	2024-07-28 10:09:42.042888
-1531	1252	How string options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.419994	2024-07-28 10:09:42.419994
-1532	1252	How list options can be written in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.756986	2024-07-28 10:09:42.756986
-1533	1252	How to set <code>sudo</code> options for specific users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.174811	2024-07-28 10:09:43.174811
-1534	1252	How to limit <code>sudo</code> default options per host or host alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.494224	2024-07-28 10:09:43.494224
-1535	1252	How to limit <code>sudo</code> default options per command or command alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.834098	2024-07-28 10:09:43.834098
-1536	1252	How to limit <code>sudo</code> default options per run-as in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:44.119095	2024-07-28 10:09:44.119095
-1537	1252	How to limit the times users attempt incorrect passwords in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:44.388495	2024-07-28 10:09:44.388495
-1538	1252	How can sudo be limited to a specific number of minutes before it asks users their password?	open	2024-07-28 10:09:44.632487	2024-07-28 10:09:44.632487
-1539	1252	How to enforce users to enter their password every time they run privileged commands?	open	2024-07-28 10:09:44.876894	2024-07-28 10:09:44.876894
-1540	1252	How to change the default value of bad password message in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:45.112592	2024-07-28 10:09:45.112592
-1541	1252	How to set or remove the first <code>sudo</code> use lecture for specific users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:45.395145	2024-07-28 10:09:45.395145
-1542	1252	How to write and set a custom lecture message for <code>sudo</code>?	open	2024-07-28 10:09:45.605571	2024-07-28 10:09:45.605571
-1543	1252	How to raise user's maximum awareness on sensitive commands like <code>fdisk</code> both by lecturing them and asking them password each time?	open	2024-07-28 10:09:45.869321	2024-07-28 10:09:45.869321
-1544	1253	What tags are used to restrict users from accessing shell escapes by <code>sudo</code>?	open	2024-07-28 10:09:46.285422	2024-07-28 10:09:46.285422
-1545	1253	How to properly avoid shell escapes and give users permission of editing privileged files without restricting them to a certain editor?	open	2024-07-28 10:09:46.629717	2024-07-28 10:09:46.629717
-1546	1253	What editor does <code>sudo</code> use to open files using <code>sudoedit</code>?	open	2024-07-28 10:09:46.89757	2024-07-28 10:09:46.89757
-1547	1253	How to specify which editor to be used by <code>sudoedit</code> in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:47.131606	2024-07-28 10:09:47.131606
-1548	1254	How to identify <code>sudo</code> default configurations?	open	2024-07-28 10:09:47.388212	2024-07-28 10:09:47.388212
-1549	1254	Where is the <code>sudo</code> configuration file?	open	2024-07-28 10:09:47.637709	2024-07-28 10:09:47.637709
-1550	1254	What are the valid configuration types in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:09:47.861193	2024-07-28 10:09:47.861193
-1551	1254	How Plugin configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.167862	2024-07-28 10:09:48.167862
-1552	1254	How Path configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.528025	2024-07-28 10:09:48.528025
-1553	1254	Hw Set configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.922815	2024-07-28 10:09:48.922815
-1554	1254	How to enable core dumps from setuid programs on FreeBSD, OpenBSD and Linux systems?	open	2024-07-28 10:09:49.411201	2024-07-28 10:09:49.411201
-1555	1255	What environment variables do <code>sudo</code> exclude from the list of user ennvironment variables for the shell instance running by <code>sudo</code>?	open	2024-07-28 10:09:49.807495	2024-07-28 10:09:49.807495
-2153	258	Inspect current working directory in vim:	open	2024-07-28 10:13:43.258817	2024-07-28 10:13:43.258817
-1556	1255	How to define a list of environment variables that <code>sudo</code> should retain when running a shell instance in case whitelisting environment variables is desired?	open	2024-07-28 10:09:50.048736	2024-07-28 10:09:50.048736
-1557	1255	How to allow users to retian all of their envinronment variables <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.371244	2024-07-28 10:09:50.371244
-2161	267	Jump back from definition using the tag history:	open	2024-07-28 10:13:45.733681	2024-07-28 10:13:45.733681
-1558	1255	How to delete specific environment variables in <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.691703	2024-07-28 10:09:50.691703
-1559	1255	How to allow users write a security policy to override their environment variables for specific commands when a software changes quickly and those values might need constant updating? (maybe can break into smaller parts)	open	2024-07-28 10:09:51.385334	2024-07-28 10:09:51.385334
-1560	1255	How to run privileged commands as a target user, in the target user's shell environment by <code>sudo</code>?	open	2024-07-28 10:09:51.921222	2024-07-28 10:09:51.921222
-1561	1255	What are the sudo-specifi environment variables of commands running under <code>sudo</code>?	open	2024-07-28 10:09:52.292222	2024-07-28 10:09:52.292222
-1562	1255	How to set PATH environment variable securely in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:52.620175	2024-07-28 10:09:52.620175
-1563	1255	How to define new environment variables in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:53.046657	2024-07-28 10:09:53.046657
-1564	1255	How to start a root shell by running <code>sudo</code> wth no arguments?	open	2024-07-28 10:09:53.49709	2024-07-28 10:09:53.49709
-1565	1255	How to retain a root shell but with your own environment using <code>sudo</code>?	open	2024-07-28 10:09:53.844067	2024-07-28 10:09:53.844067
-1566	1255	How to run an external program by sudo but not attached to a terminal and still ask users their passwords?	open	2024-07-28 10:09:54.156007	2024-07-28 10:09:54.156007
-1567	1255	How to let automated processes run arbitrary commands only via <code>sudo</code>?	open	2024-07-28 10:09:54.492738	2024-07-28 10:09:54.492738
-1568	1256	How to generate digests for command integrity verification in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:54.747107	2024-07-28 10:09:54.747107
-1569	1256	What algorithms are good to be used for generating digests in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:55.056303	2024-07-28 10:09:55.056303
-1570	1256	How to write a sudoers rule to validate the generated digests for command integrity verfication in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:55.394892	2024-07-28 10:09:55.394892
-1571	1256	How to write digests for a command having different digests on different operating systems?	open	2024-07-28 10:09:55.677807	2024-07-28 10:09:55.677807
-1572	1257	What are the common ways of misconfiguring `sudo`?	open	2024-07-28 10:09:55.951085	2024-07-28 10:09:55.951085
-1573	1257	How to enable the use of DNS in /etc/sudoers file?	open	2024-07-28 10:09:56.216021	2024-07-28 10:09:56.216021
-1574	1257	How to write DNS entries in <code>/etc/sudoers</code> file to make <code>sudo</code> query DNS in case local hostnames could not be found?	open	2024-07-28 10:09:56.481224	2024-07-28 10:09:56.481224
-1575	1257	How can hostname-based protections of <code>sudo</code> break down in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:56.700484	2024-07-28 10:09:56.700484
-1576	1257	How IP addersses can be used as alternatives to hostnames in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:56.965348	2024-07-28 10:09:56.965348
-1577	1257	How to include specific policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.196558	2024-07-28 10:09:57.196558
-1578	1257	How to include host specific policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.454632	2024-07-28 10:09:57.454632
-1579	1257	How to include a directory holding policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.792705	2024-07-28 10:09:57.792705
-1580	1257	How to write the sudoers files in include directory so that <code>sudo</code> will read them in a sorted order?	open	2024-07-28 10:09:58.122892	2024-07-28 10:09:58.122892
-1581	1257	What validation does the <code>visudo</code> on included sudoers files?	open	2024-07-28 10:09:58.380604	2024-07-28 10:09:58.380604
-1582	1257	How to check the syntax of a sudoers file using <code>visudo</code>?	open	2024-07-28 10:09:58.641407	2024-07-28 10:09:58.641407
-1583	1257	How to strictly check referenced but not defined aliases, cycling alias dependencies, and syntax errors in a sudoers file using <code>visudo</code>?	open	2024-07-28 10:09:58.867907	2024-07-28 10:09:58.867907
-1584	1257	How to check permissions and ownership of sudoers file along side strict checking of their syntax using <code>visudo</code>?	open	2024-07-28 10:09:59.098208	2024-07-28 10:09:59.098208
-1585	1259	How many logging mechanisms does the <code>sudo</code>?	open	2024-07-28 10:09:59.390294	2024-07-28 10:09:59.390294
-1586	1259	Where does the <code>sudo</code> store logs?	open	2024-07-28 10:09:59.741447	2024-07-28 10:09:59.741447
-1587	1259	How to adjust when <code>sudo</code> notifies events in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:10:00.023433	2024-07-28 10:10:00.023433
-1588	1259	What events does sudo support to notify?	open	2024-07-28 10:10:00.267482	2024-07-28 10:10:00.267482
-1589	1259	How many debug logging levels does <code>sudo</code> have?	open	2024-07-28 10:10:00.682242	2024-07-28 10:10:00.682242
-1590	1259	How to enable <code>sudo</code> debugging in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:10:01.142899	2024-07-28 10:10:01.142899
-1591	1259	How to enable logging the output of processes running under <code>sudo</code> so that they can later be used by <code>sudoreplay</code>?	open	2024-07-28 10:10:01.578232	2024-07-28 10:10:01.578232
-1592	1259	Where is the default log file generated by <code>log\\_output</code> option in <code>sudo</code>?	open	2024-07-28 10:10:01.884779	2024-07-28 10:10:01.884779
-1593	1259	How to enable input logging in <code>/etc/sudoers</code> file and why it should be avoided?	open	2024-07-28 10:10:02.136244	2024-07-28 10:10:02.136244
-1594	1259	What tags can be used to enable or disable input and output logging on a per-command basis in <code>/etc/sudoers</code> file?	open	2024-07-28 10:10:02.376165	2024-07-28 10:10:02.376165
-1595	1259	How to authorize admins to use <code>sudoreplay</code> to check <code>sudo</code> logs?	open	2024-07-28 10:10:02.594305	2024-07-28 10:10:02.594305
-1596	1259	How to use <code>sudoreplay</code> to see what commands have executed by users?	open	2024-07-28 10:10:02.809435	2024-07-28 10:10:02.809435
-1597	1259	How to view a session of a command which was logged by <code>sudoreplay</code>?	open	2024-07-28 10:10:03.054655	2024-07-28 10:10:03.054655
-1598	1259	How to alter playback of the <code>sudoreplay</code> session view?	open	2024-07-28 10:10:03.265189	2024-07-28 10:10:03.265189
-1599	1259	How to search for a command in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:03.509315	2024-07-28 10:10:03.509315
-1600	1259	how to search for commands that were executed in a specific path in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:03.801019	2024-07-28 10:10:03.801019
-1601	1259	How to search for commands that were executed by a particular user in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.059225	2024-07-28 10:10:04.059225
-1602	1259	How to search for commands that were executed by a particular group in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.303047	2024-07-28 10:10:04.303047
-1603	1259	How to search for commands that were executed by a particular user but run as another user in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.53888	2024-07-28 10:10:04.53888
-1604	1259	How to search for commands that were executed in a particular terminal device in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.776834	2024-07-28 10:10:04.776834
-1605	1259	How to search for commands that were executed on a specific date and time in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.054858	2024-07-28 10:10:05.054858
-1606	1259	How to search for commands by concatenating search keywords to result a specific criteria in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.285308	2024-07-28 10:10:05.285308
-1607	1259	How to search for commands by choosing between one of two search keywords in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.522745	2024-07-28 10:10:05.522745
-1608	1259	How to search for commands by combinig multiple search keywords in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.785486	2024-07-28 10:10:05.785486
-1609	1260	What is the best practice for using sudo when it comes to the need of running shell scripts with super user?	open	2024-07-28 10:10:06.041411	2024-07-28 10:10:06.041411
-1610	962	How to install a virtual machine in VirtualBox?	open	2024-07-28 10:10:09.759117	2024-07-28 10:10:09.759117
-1611	962	How to installing the EPEL repository on the CentOS and AlmaLinux virtual machines?	open	2024-07-28 10:10:11.033898	2024-07-28 10:10:11.033898
-1612	962	Why should we keep the Linux systems updated?	open	2024-07-28 10:10:11.406125	2024-07-28 10:10:11.406125
-1613	962	How to update Debian-based systems?	open	2024-07-28 10:10:11.681464	2024-07-28 10:10:11.681464
-1614	962	How to remove some old packages that are no longer needed on Debian-based systems?	open	2024-07-28 10:10:11.920752	2024-07-28 10:10:11.920752
-1615	962	How to configure auto updates for Ubuntu?	open	2024-07-28 10:10:12.148283	2024-07-28 10:10:12.148283
-1616	962	How to enable auto-update on Ubuntu?	open	2024-07-28 10:10:12.547849	2024-07-28 10:10:12.547849
-1617	962	How to enable auto-reboot after unattended upgrades on Ubuntu?	open	2024-07-28 10:10:13.695924	2024-07-28 10:10:13.695924
-1618	962	How to auto-update Red Hat 7-based systems?	open	2024-07-28 10:10:14.898512	2024-07-28 10:10:14.898512
-1619	962	How to send mails containing update reports?	open	2024-07-28 10:10:15.560899	2024-07-28 10:10:15.560899
-1620	962	How to see if system needs to be restarted after an update?	open	2024-07-28 10:10:15.958164	2024-07-28 10:10:15.958164
-1621	962	How to enable auto-update on Red Hat 8/9-based systems?	open	2024-07-28 10:10:16.666558	2024-07-28 10:10:16.666558
-1622	963	Why is it more secure to use <code>sudo</code> to do administrative tasks than logging in as root?	open	2024-07-28 10:10:17.057314	2024-07-28 10:10:17.057314
-1623	963	How to allow a user to do everything, including logging in to the root command prompt using <code>sudo</code>?	open	2024-07-28 10:10:17.591075	2024-07-28 10:10:17.591075
-1624	963	How to add a user to the administrative group?	open	2024-07-28 10:10:18.173759	2024-07-28 10:10:18.173759
-1625	963	What differences does <code>useradd</code> have in Red Hat and non-Red Hat distros?	open	2024-07-28 10:10:18.715806	2024-07-28 10:10:18.715806
-1626	963	How to lock <i>root</i> user account after a clear Linux setup?	open	2024-07-28 10:10:19.061755	2024-07-28 10:10:19.061755
-1627	963	How to give members of a user group full sudo power in the sudo policy file?	open	2024-07-28 10:10:19.4635	2024-07-28 10:10:19.4635
-1628	963	How to assign specific software privileges on a group of users?	open	2024-07-28 10:10:20.053801	2024-07-28 10:10:20.053801
-1629	963	How to allow users to execute commands with specific subcommands, options or arguments as root?	open	2024-07-28 10:10:20.71591	2024-07-28 10:10:20.71591
-1630	963	How to assign privileges to either a Linux group or an individual user?	open	2024-07-28 10:10:21.14799	2024-07-28 10:10:21.14799
-1631	963	How to assign privileges on a group of users across a network?	open	2024-07-28 10:10:21.514988	2024-07-28 10:10:21.514988
-1632	963	How to disable sudo timer in order to protect system from physical access to open terminal?	open	2024-07-28 10:10:22.017525	2024-07-28 10:10:22.017525
-1633	963	How users can view their <code>sudo</code> privileges?	open	2024-07-28 10:10:22.377457	2024-07-28 10:10:22.377457
-1634	963	How to prevent users from shell escapes with sudo?	open	2024-07-28 10:10:23.535563	2024-07-28 10:10:23.535563
-1635	963	How to give users limited access to dangerous file editing commands when needed?	open	2024-07-28 10:10:24.213331	2024-07-28 10:10:24.213331
-1636	963	How to deal with differences between the different Linux and Unix distributions on a network when writing in sudo policy file?	open	2024-07-28 10:10:24.464812	2024-07-28 10:10:24.464812
-1637	963	How to let users run commands as other users?	open	2024-07-28 10:10:25.062181	2024-07-28 10:10:25.062181
-1638	963	How to prevent abuse via a user’s shell scripts?	open	2024-07-28 10:10:26.164769	2024-07-28 10:10:26.164769
-1639	963	How to protect a system from default user accounts after a fresh setup?	open	2024-07-28 10:10:26.920645	2024-07-28 10:10:26.920645
-1640	963	How to reconfigure <code>sudo</code> to ask user's password instead of root user in SUSE disto?	open	2024-07-28 10:10:27.713446	2024-07-28 10:10:27.713446
-1641	963	How to enable JSON formatted logging on <code>sudo</code>?	open	2024-07-28 10:10:28.128809	2024-07-28 10:10:28.128809
-1642	963	How to collect logs from multiple machines centrally into a server?	open	2024-07-28 10:10:28.489866	2024-07-28 10:10:28.489866
-1643	963	How to record user activity within a shell session started through <code>sudo</code>?	open	2024-07-28 10:10:28.79332	2024-07-28 10:10:28.79332
-1644	963	How to prevent user from running a specific command even when they have shell access taken from <code>sudo</code>?	open	2024-07-28 10:10:29.346176	2024-07-28 10:10:29.346176
-1645	964	Where is the configuration file for the command <code>useradd</code>?	open	2024-07-28 10:10:29.649956	2024-07-28 10:10:29.649956
-1646	964	How configure <code>useradd</code> utility to set default user home directory permissions on Red Hat-based systems?	open	2024-07-28 10:10:29.974666	2024-07-28 10:10:29.974666
-1647	964	What configuration directive controls the default permissions of users' home directories?	open	2024-07-28 10:10:30.520192	2024-07-28 10:10:30.520192
-1648	964	How configure <code>useradd</code> utility to set default user home directory permissions on Debian-based systems?	open	2024-07-28 10:10:31.141516	2024-07-28 10:10:31.141516
-1649	964	How to create a new user on Debian-based systems?	open	2024-07-28 10:10:31.577114	2024-07-28 10:10:31.577114
-1650	964	What are the differences of <code>adduser</code> and <code>useradd</code> utilities?	open	2024-07-28 10:10:32.03613	2024-07-28 10:10:32.03613
-1651	964	How to encrypt user's home directory using <code>adduser</code> utility?	open	2024-07-28 10:10:32.657187	2024-07-28 10:10:32.657187
-1652	964	How to enforce strong password criteria for users?	open	2024-07-28 10:10:34.270818	2024-07-28 10:10:34.270818
-1653	964	How to enforce password and account expiration on Linux?	open	2024-07-28 10:10:35.090134	2024-07-28 10:10:35.090134
-1654	964	How to configure default expiry data for `useradd` for Red Hat-type systems?	open	2024-07-28 10:10:35.708411	2024-07-28 10:10:35.708411
-1655	964	How to set expiry data on a user with <code>useradd</code> and <code>usermod</code> utility?	open	2024-07-28 10:10:36.746845	2024-07-28 10:10:36.746845
-1656	964	How to set expiry data on a user with <code>chage</code> utility?	open	2024-07-28 10:10:37.372076	2024-07-28 10:10:37.372076
-1657	964	How to force users to change their password the first time they logs in?	open	2024-07-28 10:10:37.645156	2024-07-28 10:10:37.645156
-1658	964	How to prevent brute-force password attacks on Linux user accounts?	open	2024-07-28 10:10:38.602259	2024-07-28 10:10:38.602259
-1659	964	How to configure <code>pam_faillock</code> on AlmaLinux 8/9?	open	2024-07-28 10:10:40.071879	2024-07-28 10:10:40.071879
-1660	964	How to configure <code>pam_faillock</code> on Ubuntu 20.04 and Ubuntu 22.04?	open	2024-07-28 10:10:40.854737	2024-07-28 10:10:40.854737
-1661	964	How to lock Linux user accounts?	open	2024-07-28 10:10:41.494158	2024-07-28 10:10:41.494158
-1662	964	How to lock the root user account on Linux?	open	2024-07-28 10:10:41.893263	2024-07-28 10:10:41.893263
-1663	964	How to set up security banners on Linux systems?	open	2024-07-28 10:10:42.444777	2024-07-28 10:10:42.444777
-1664	964	How to detect compromised passwords?	open	2024-07-28 10:10:42.923511	2024-07-28 10:10:42.923511
-1665	965	How to look at the current configuration of the <code>iptables</code> rules?	open	2024-07-28 10:10:43.389779	2024-07-28 10:10:43.389779
-1666	965	What <code>iptables</code> rule allows incoming packets from servers that our host has requested a connection to?	open	2024-07-28 10:10:43.775797	2024-07-28 10:10:43.775797
-1667	965	How to write <code>iptables</code> rules to open up a ports?	open	2024-07-28 10:10:44.321979	2024-07-28 10:10:44.321979
-1668	965	How to add an <code>iptables</code> rule to allow loopback interface?	open	2024-07-28 10:10:44.715703	2024-07-28 10:10:44.715703
-1669	965	How to block ICMP packets by <code>iptables</code> rules?	open	2024-07-28 10:10:45.281621	2024-07-28 10:10:45.281621
-1670	965	How to change the <code>iptables</code> default chain policy?	open	2024-07-28 10:10:45.685662	2024-07-28 10:10:45.685662
-1671	965	How to make iptables rules permanent?	open	2024-07-28 10:10:46.198278	2024-07-28 10:10:46.198278
-1672	965	How to block invalid packets before they travel through the entire <code>INPUT</code> chain in <code>iptables</code> rules?	open	2024-07-28 10:10:46.622742	2024-07-28 10:10:46.622742
-1673	965	How to perform a port availability test on a machine when <code>iptables</code> blocks <code>INVALID</code> packets from <code>PREROUTING</code> chain?	open	2024-07-28 10:10:47.484268	2024-07-28 10:10:47.484268
-1674	965	How to block ICMP packets over IPv6 by <code>iptables</code> rules?	open	2024-07-28 10:10:48.991982	2024-07-28 10:10:48.991982
-1675	965	How to list installed tables in <code>nftables</code>?	open	2024-07-28 10:10:49.494098	2024-07-28 10:10:49.494098
-1676	965	How to configure <code>nftables</code>?	open	2024-07-28 10:10:50.463526	2024-07-28 10:10:50.463526
-1677	965	How to prefix <code>nftables</code> log messages?	open	2024-07-28 10:10:50.990759	2024-07-28 10:10:50.990759
-1678	965	How to use <code>nftables</code> to block certain IP addresses from reaching specific ports?	open	2024-07-28 10:10:51.748107	2024-07-28 10:10:51.748107
-1679	965	How to IPv4 rules with IPv6 rules in the same <code>nftables</code> configuration file?	open	2024-07-28 10:10:52.062347	2024-07-28 10:10:52.062347
-1680	965	How to stop an attack in progress quickly without bringing down the system?	open	2024-07-28 10:10:53.769168	2024-07-28 10:10:53.769168
-1681	289	What mechanism should be used to prevent users from logging into <b>root</b> account on a Linux system when high privileges are needed?	open	2024-07-28 10:10:54.602446	2024-07-28 10:10:54.602446
-1682	289	How to reduce the damage caused by privileged accessibilities on a system while these privileges are required?	open	2024-07-28 10:10:54.799422	2024-07-28 10:10:54.799422
-1683	289	How can we add a user to <i>sudo</i> group?	open	2024-07-28 10:10:55.211904	2024-07-28 10:10:55.211904
-1684	289	What file changes the default behavior of <i>useradd</i> command when creating accounts?	open	2024-07-28 10:10:55.523206	2024-07-28 10:10:55.523206
-1685	289	How to disable remote root login to prevent full system access from users?	open	2024-07-28 10:10:56.034645	2024-07-28 10:10:56.034645
-1686	289	How to change default SSH port on Linux system to prevent brute-force attacks on default port?	open	2024-07-28 10:10:56.413929	2024-07-28 10:10:56.413929
-1687	289	How to restrict SSH connections only to a certain address family?	open	2024-07-28 10:10:56.817981	2024-07-28 10:10:56.817981
-1688	289	What modules is used to enfore users from following strict password policies?	open	2024-07-28 10:10:57.305685	2024-07-28 10:10:57.305685
-1689	289	How to use <b>Pluggable Authentication Modules (PAM)</b> to implement password policies and enforce users to follow strict rules for setting their passwords?	open	2024-07-28 10:10:57.915424	2024-07-28 10:10:57.915424
-1690	289	How to restrict SSH access to only users in <i>sshusers</i> group on a remote server?	open	2024-07-28 10:10:58.832937	2024-07-28 10:10:58.832937
-1691	290	What is the name of firewall mechanism used in the Linux kernel and what is the common firewall interface used to interact with it?	open	2024-07-28 10:10:59.466986	2024-07-28 10:10:59.466986
-1692	290	How to get all the zones from firewalld?	open	2024-07-28 10:10:59.773146	2024-07-28 10:10:59.773146
-1693	290	How to list all the allowed services in a specific zone from firewalld?	open	2024-07-28 10:11:00.014308	2024-07-28 10:11:00.014308
-1694	290	How to list all the allowed ports in a specific zone from firewalld?	open	2024-07-28 10:11:00.257209	2024-07-28 10:11:00.257209
-1695	290	How to list all the information of the default zone from firewalld?	open	2024-07-28 10:11:00.518855	2024-07-28 10:11:00.518855
-1696	290	How to list all the information of all the zones from firewalld?	open	2024-07-28 10:11:00.762629	2024-07-28 10:11:00.762629
-1697	290	How to make changes permanently on firewalld?	open	2024-07-28 10:11:00.938654	2024-07-28 10:11:00.938654
-1698	290	How to create a new zone on firewalld?	open	2024-07-28 10:11:01.179322	2024-07-28 10:11:01.179322
-1699	290	How to reload firewalld so that new configuration is applied?	open	2024-07-28 10:11:01.420793	2024-07-28 10:11:01.420793
-1700	290	How to add a service to the newly created zone in firewalld?	open	2024-07-28 10:11:01.686009	2024-07-28 10:11:01.686009
-1701	290	How to identify the default zone used in firewalld?	open	2024-07-28 10:11:01.896118	2024-07-28 10:11:01.896118
-1702	290	How to set a custom firewalld zone as default?	open	2024-07-28 10:11:02.206138	2024-07-28 10:11:02.206138
-1703	290	How to list zones and the interfaces associated with them in firewalld?	open	2024-07-28 10:11:02.495757	2024-07-28 10:11:02.495757
-1704	290	How to retrieve all the services available on the network to specify in firewalld?	open	2024-07-28 10:11:02.734274	2024-07-28 10:11:02.734274
-1705	290	How to allow a service in the default zone of firewalld?	open	2024-07-28 10:11:03.006774	2024-07-28 10:11:03.006774
-1706	290	How to remove a service from default zone in firewalld?	open	2024-07-28 10:11:03.272658	2024-07-28 10:11:03.272658
-1707	290	How to allow a new port in the default zone of firewalld?	open	2024-07-28 10:11:03.50875	2024-07-28 10:11:03.50875
-1708	290	How to remove a port in the default zone of firewalld?	open	2024-07-28 10:11:03.789781	2024-07-28 10:11:03.789781
-1709	291	How to create a 4096-bits RSA encripted SSH key to securely connect to remote server with it?	open	2024-07-28 10:11:04.02381	2024-07-28 10:11:04.02381
-1710	291	How to securely transfer locally generated SSH key to remote server?	open	2024-07-28 10:11:04.249071	2024-07-28 10:11:04.249071
-1711	291	How to identify open and active ports on system?	open	2024-07-28 10:11:04.57669	2024-07-28 10:11:04.57669
-1712	291	How to enable two factor authentication on a server to add an additional security layer for user logins?	open	2024-07-28 10:11:05.573835	2024-07-28 10:11:05.573835
-1713	291	How to disable IPv4 or IPv6 on a server?	open	2024-07-28 10:11:06.14364	2024-07-28 10:11:06.14364
-1714	291	What <b>Mandatory Access Control</b> modules are available for Linux systems?	open	2024-07-28 10:11:06.374088	2024-07-28 10:11:06.374088
-1715	291	How to restrict the use of old passwords on Linux using <b>Pluggable Authentication Module (PAM)</b>?	open	2024-07-28 10:11:06.751442	2024-07-28 10:11:06.751442
-1716	291	What tool can be used to prevent brute-force authentication attempts by blocking their IP addresses?	open	2024-07-28 10:11:07.545575	2024-07-28 10:11:07.545575
-1717	291	How to list all the blocked addresses by fail2ban?	open	2024-07-28 10:11:07.855714	2024-07-28 10:11:07.855714
-1718	293	What encryption tools are available on Linux?	open	2024-07-28 10:11:08.161887	2024-07-28 10:11:08.161887
-1719	293	What tool is used to sign files, verify integrity, and encrypt or decrypt files in Linux systems?	open	2024-07-28 10:11:08.635195	2024-07-28 10:11:08.635195
-1720	293	How to encrypt and decrypt files using GnuPG?	open	2024-07-28 10:11:09.087955	2024-07-28 10:11:09.087955
-1721	293	What tool should be used to encrypt files by Blowfish cipher?	open	2024-07-28 10:11:09.531774	2024-07-28 10:11:09.531774
-1722	293	How to encrypt or decrypt files using bcrypt?	open	2024-07-28 10:11:09.964183	2024-07-28 10:11:09.964183
-1723	293	How to use ccrypt and cdecrypt to encrypt and decrypt files on Linux?	open	2024-07-28 10:11:10.4188	2024-07-28 10:11:10.4188
-1724	293	How to encrypt and decrypt files with compression using zip on Linux?	open	2024-07-28 10:11:10.843852	2024-07-28 10:11:10.843852
-1725	293	How to encrypt and decrypt files using 7za tool on Linux?	open	2024-07-28 10:11:11.140428	2024-07-28 10:11:11.140428
-1726	293	How to encrypt and decrypt files using openssl tool on Linux?	open	2024-07-28 10:11:11.378104	2024-07-28 10:11:11.378104
-1727	295	What kernel module can be used to encrypt block devices and what is the userspace interface for it?	open	2024-07-28 10:11:11.817251	2024-07-28 10:11:11.817251
-1728	295	How to check if filesystem encryption module is available on kernel?	open	2024-07-28 10:11:12.06899	2024-07-28 10:11:12.06899
-1729	295	How to use cryptsetup to encrypt or decrypt a partition on Linux systems?	open	2024-07-28 10:11:12.341438	2024-07-28 10:11:12.341438
-1730	296	How ACL permissions of files on Linux systems?	open	2024-07-28 10:11:12.724147	2024-07-28 10:11:12.724147
-1731	299	What tools are used to scan a system on network?	open	2024-07-28 10:11:13.080182	2024-07-28 10:11:13.080182
-1732	625	What is the constituents of a vector?	open	2024-07-28 10:11:13.479772	2024-07-28 10:11:13.479772
-1733	625	What is the notation of a vector coordinated 3 units to the right and 2 units above?	open	2024-07-28 10:11:13.687266	2024-07-28 10:11:13.687266
-1734	625	What is the location of a coordinated vector?	open	2024-07-28 10:11:13.877935	2024-07-28 10:11:13.877935
-1735	625	Where is the standard position of a vector?	open	2024-07-28 10:11:14.040231	2024-07-28 10:11:14.040231
-1736	625	What two vectors are considered equal?	open	2024-07-28 10:11:14.246894	2024-07-28 10:11:14.246894
-1737	625	What is zero vector?	open	2024-07-28 10:11:14.414484	2024-07-28 10:11:14.414484
-1738	625	What is the result of addition of two vectors $v = (v₁, v₂)$ and $w = (w₁, w₂)$?	open	2024-07-28 10:11:14.669612	2024-07-28 10:11:14.669612
-1739	625	What is the geometric representation of addition of two vectors $v$ and $w$?	open	2024-07-28 10:11:14.967041	2024-07-28 10:11:14.967041
-1740	625	What are the properties of vector addition?	open	2024-07-28 10:11:15.199437	2024-07-28 10:11:15.199437
-1741	625	Practice: Compute the following vector sums $(2, 5, −1) + (1, −1, 2)$ and $(1, 2) + (3, 1) + (2, -1)$?	open	2024-07-28 10:11:15.452316	2024-07-28 10:11:15.452316
-1742	625	What is the result of multiplication of scalar $c$ to vector $v = (v₁, v₂)$?	open	2024-07-28 10:11:15.894921	2024-07-28 10:11:15.894921
-1743	625	What are the properties of scalar to vector multiplication?	open	2024-07-28 10:11:16.222236	2024-07-28 10:11:16.222236
-1744	625	Practice: Solve the following equations $x − (3 , 2 , 1) = (1 , 2 , 3) − 3x$ and $x + 2(v + w) = −v − 3(x − w)$ for the vector $x$?	open	2024-07-28 10:11:16.843094	2024-07-28 10:11:16.843094
-1745	625	What is the result of subtraction of vector $v = (v₁, v₂)$ to vector $w = (w₁, w₂)$?	open	2024-07-28 10:11:17.192705	2024-07-28 10:11:17.192705
-1746	625	What is the geometric representation of subtraction of two vectors $v$ and $w$?	open	2024-07-28 10:11:17.384982	2024-07-28 10:11:17.384982
-1747	625	What are linear combinations of vectors $v_1 , v_2 , ... , v_k$?	open	2024-07-28 10:11:17.857341	2024-07-28 10:11:17.857341
-1748	625	What are the standard basis vectors?	open	2024-07-28 10:11:18.314205	2024-07-28 10:11:18.314205
-1749	625	How vector $v$ can be represented as a linear combination with standard basis vectors?	open	2024-07-28 10:11:18.530416	2024-07-28 10:11:18.530416
-1750	625	Practice: compute $3e_1 - 2e_2 + e_3 \\in \\mathbb{R}^3$?	open	2024-07-28 10:11:18.683314	2024-07-28 10:11:18.683314
-1751	625	Practice: Write $(3,5,-2,-1)$ as a linear combination of $e_1,e_2,e_3,e_4 \\in \\mathbb{R}^4$?	open	2024-07-28 10:11:18.841172	2024-07-28 10:11:18.841172
-1752	625	What is the result of dot product operation?	open	2024-07-28 10:11:19.104684	2024-07-28 10:11:19.104684
-1753	625	What is the geometric representation of the dot product of two vectors?	open	2024-07-28 10:11:19.299717	2024-07-28 10:11:19.299717
-1754	625	How does dot product work on higher dimensions?	open	2024-07-28 10:11:19.44288	2024-07-28 10:11:19.44288
-1755	625	What are the properties of the dot product?	open	2024-07-28 10:11:19.688597	2024-07-28 10:11:19.688597
-1756	625	Practice: compute $\\frac{1}{2}(-1,-3,2).(6,-4,2)$?	open	2024-07-28 10:11:19.908121	2024-07-28 10:11:19.908121
-1757	626	Compute the length of a vector?	open	2024-07-28 10:11:20.329677	2024-07-28 10:11:20.329677
-1758	626	Practice: compute the length of $\\vec{v} = (3,4)$?	open	2024-07-28 10:11:20.612333	2024-07-28 10:11:20.612333
-1759	626	Practice: compute the length of $\\vec{v} = (\\cos{\\theta},\\sin{\\theta})$?	open	2024-07-28 10:11:20.815939	2024-07-28 10:11:20.815939
-1760	626	What are the properties of vector length?	open	2024-07-28 10:11:21.061767	2024-07-28 10:11:21.061767
-1761	626	What is the normalization of a vector?	open	2024-07-28 10:11:21.375298	2024-07-28 10:11:21.375298
-1762	626	Evaluate the unit vector of any non-zero vector?	open	2024-07-28 10:11:21.646497	2024-07-28 10:11:21.646497
-1763	626	Practice: Normalize the vector $(3,4) \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:21.911575	2024-07-28 10:11:21.911575
-1764	627	What is the Cauchy Schwarz inequality theorem?	open	2024-07-28 10:11:22.151212	2024-07-28 10:11:22.151212
-1765	627	What is the Triangle Inequality theorem?	open	2024-07-28 10:11:22.381916	2024-07-28 10:11:22.381916
-1766	629	What are the two properties of linear transformation functions?	open	2024-07-28 10:11:22.828845	2024-07-28 10:11:22.828845
-1767	629	Determine whether or not function $T(v_1, v_2) = (1+v_1, 2+v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.082645	2024-07-28 10:11:23.082645
-1768	629	Determine whether or not function $T(v_1, v_2) = (v_1-v_2, v_1v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.2896	2024-07-28 10:11:23.2896
-1769	629	Determine whether or not function $T(v_1, v_2) = (v_1-v_2, v_1+v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.459793	2024-07-28 10:11:23.459793
-1770	629	Using the fact that linear transformation functions preserve linear combinations, write linear transformation T(v) as linear combination of its basis vectors when T: R^n → R^n?	open	2024-07-28 10:11:23.789528	2024-07-28 10:11:23.789528
-1771	629	Compute $T(2,3)$ supposing $T: R^2 → R^2$ is a linear transformation for which we have its standard basis vector transformations $T(e₁)=(1,1)$ and $T(e₂)=(-1,1)$.	open	2024-07-28 10:11:24.041505	2024-07-28 10:11:24.041505
-1772	629	Find a general formula for $T(v₁,v₂)$ when $T: R^2 → R^2$ is a linear transformation for which we have its standard basis vector transformations $T(e₁)=(1,1)$ and $T(e₂)=(-1,1)$.	open	2024-07-28 10:11:24.286269	2024-07-28 10:11:24.286269
-1773	629	What method is used to construct a matrix called the standard matrix of $T$ that does the linear transformation by matrix multiplication?	open	2024-07-28 10:11:24.486504	2024-07-28 10:11:24.486504
-1774	629	Find the standard matrix of linear transformation $T(v₁,v₂) = (v₁+2v₂, 3v₁+4v₂)$ when $v₁,v₂ \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:24.754914	2024-07-28 10:11:24.754914
-1775	629	Find the standard matrix of linear transformation $T(v₁,v₂) = (3v₁-v₂+v₃, 2v₁+4v₂-2v₃)$ when $v₁,v₂ \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:25.039882	2024-07-28 10:11:25.039882
-1776	629	What mathematical operations on standard matrix of linear transformations and scalars are allowed?	open	2024-07-28 10:11:25.361038	2024-07-28 10:11:25.361038
-1777	629	What is the result of multiplication of zero linear transformation function to any vector?	open	2024-07-28 10:11:25.61403	2024-07-28 10:11:25.61403
-1778	629	What is the result of multiplication of identify linear transformation function to any vector?	open	2024-07-28 10:11:25.901478	2024-07-28 10:11:25.901478
-1779	629	What is the main property of diagonal linear transformation function $T: R^n → R^n$?	open	2024-07-28 10:11:26.278998	2024-07-28 10:11:26.278998
-1780	629	How can we construct a linear transformation Pu that projects a vector onto a line?	open	2024-07-28 10:11:26.488264	2024-07-28 10:11:26.488264
-1781	629	Find the standard matrices of the linear transformations that project onto the lines in the direction of vector u = (1,0) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:26.692785	2024-07-28 10:11:26.692785
-1782	629	Find the standard matrices of the linear transformations that project onto the lines in the direction of vector w = (1,2,3) \\in \\mathbb{R}^3?	open	2024-07-28 10:11:26.940236	2024-07-28 10:11:26.940236
-1783	629	What is the linear transformation of reflection of a space through a line in the direction of the unit vector u?	open	2024-07-28 10:11:27.122513	2024-07-28 10:11:27.122513
-1784	629	Find the standard matrices of the linear transformations that reflect through the lines in the direction of u = (0,1) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:27.278141	2024-07-28 10:11:27.278141
-1785	629	Find the standard matrices of the linear transformations that reflect through the lines in the direction of w = (1,1,1) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:27.481766	2024-07-28 10:11:27.481766
-2154	258	Open a file in path relative to editing file:	open	2024-07-28 10:13:43.546517	2024-07-28 10:13:43.546517
-1786	629	Find the entries of the vector that is obtained by reflecting v = (-1,3) through the line going through the origin at an angle of π/3 counter-clockwise from the x-axis.	open	2024-07-28 10:11:27.694011	2024-07-28 10:11:27.694011
-1787	629	What is the linear transformation of rotation in two dimensions?	open	2024-07-28 10:11:27.877496	2024-07-28 10:11:27.877496
-2162	267	Specify jump to multi-match definitions:	open	2024-07-28 10:13:45.90679	2024-07-28 10:13:45.90679
-1788	629	Find the standard matrix of the linear transformation that rotates R^2 by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.026385	2024-07-28 10:11:28.026385
-1789	629	Find the standard matrix of the linear transformation that rotates R^2 by π/6 radians clockwise?	open	2024-07-28 10:11:28.207187	2024-07-28 10:11:28.207187
-1790	629	Rotate vector v = (1,3) by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.363845	2024-07-28 10:11:28.363845
-1791	629	Rotate vector w = (√3,3) by π/6 radians clockwise?	open	2024-07-28 10:11:28.544462	2024-07-28 10:11:28.544462
-1792	629	What is the linear transformation function of rotation in higher dimensions?	open	2024-07-28 10:11:28.696809	2024-07-28 10:11:28.696809
-1793	629	Rotate v = (3,-1,2) around the z-axis by an angle of θ = 2π/3 in the direction from the positive x-axis to the positive y-axis?	open	2024-07-28 10:11:28.916507	2024-07-28 10:11:28.916507
-1794	629	How can two linear transformation functions T: R^n → Rm and S: Rm → R^n  be in a composition operation S○T: R^n → Rp?	open	2024-07-28 10:11:29.088771	2024-07-28 10:11:29.088771
-1795	629	Find the standard matrix of the linear transformation T that reflects R^2 through the line y = ¾x and then stretches it in the x-direction by a factor of 2 and in the y-direction by a factor of 3?	open	2024-07-28 10:11:29.395037	2024-07-28 10:11:29.395037
-1796	1310	Why $y^2 = x^2$ is not a function?	open	2024-07-28 10:11:29.868606	2024-07-28 10:11:29.868606
-1797	1310	Find the domain and range of $\\sqrt{x^2-3x}$ and $\\frac{4}{3-t}$?	open	2024-07-28 10:11:30.11684	2024-07-28 10:11:30.11684
-1798	1310	A point $P$ in the first quadrant lies on the graph of the function $f(x) = \\sqrt{x}$. Express the coordinates of $P$ as functions of the slope of the line joining $P$ to the origin?	open	2024-07-28 10:11:30.299016	2024-07-28 10:11:30.299016
-1799	1310	Consider the point $(x, y)$ lying on the graph of $y = 2x - 3$. Let $L$ be the distance between the points $(x, y)$ and $(4, 0)$. Write $L$ as a function of $y$?	open	2024-07-28 10:11:30.468366	2024-07-28 10:11:30.468366
-1800	1310	What is the function graph?	open	2024-07-28 10:11:30.709213	2024-07-28 10:11:30.709213
-1801	1310	Find the natural domain and graph the $f(x) = 1 - 2x - x^2$ and $g(t) = 1/|t|$ functions?	open	2024-07-28 10:11:30.934301	2024-07-28 10:11:30.934301
-1802	1310	Find the domain of $y = \\frac{x+3}{4 - \\sqrt{x^2-9}}$?	open	2024-07-28 10:11:31.135279	2024-07-28 10:11:31.135279
-1803	1310	Find the range of $y = 2 + \\sqrt{9+x^2}$	open	2024-07-28 10:11:31.299436	2024-07-28 10:11:31.299436
-1804	1310	What is the vertical line test?	open	2024-07-28 10:11:31.4935	2024-07-28 10:11:31.4935
-1805	1310	What is a piece-wise function?	open	2024-07-28 10:11:31.900091	2024-07-28 10:11:31.900091
-1806	1310	Graph the function $$\\begin{equation}f(x) = \\begin{cases}1/x & x < 0 \\\\ x & 0 \\le x \\end{cases}\\end{equation}$$?	open	2024-07-28 10:11:32.103591	2024-07-28 10:11:32.103591
-1807	1310	What is an increasing or decreasing function?	open	2024-07-28 10:11:32.400251	2024-07-28 10:11:32.400251
-1808	1310	What symmetries, if any, do the graphs of functions $y = x^3/8$, $y = -x^{3/2}$ and $y = (-x)^{2/3}$ have?	open	2024-07-28 10:11:32.628662	2024-07-28 10:11:32.628662
-1809	1310	Check whether functions $f(x) = x^4 + 3x^2 - 1$, $g(x) = \\frac{1}{x^1-1}$, $h(t) = 2t + 1$ and $\\sin{2x}$ are even, odd, or neither?	open	2024-07-28 10:11:32.844807	2024-07-28 10:11:32.844807
-1810	1310	What function is a linear function?	open	2024-07-28 10:11:33.116633	2024-07-28 10:11:33.116633
-1811	1310	When two variables become proportional to each other?	open	2024-07-28 10:11:33.408194	2024-07-28 10:11:33.408194
-1812	1310	The variables $r$ and $s$ are inversely proportional, and $r = 6$ when $s = 4$. Determine $s$ when $r = 10$?	open	2024-07-28 10:11:33.63351	2024-07-28 10:11:33.63351
-1813	1310	A box with an open top is to be constructed from a rectangular piece of cardboard with dimensions 14 cm. by 22 cm. by cutting out equal squares of side $x$ at each corner and then folding up the sides as in the figure. Express the volume $V$ of the box as a function of $x$?	open	2024-07-28 10:11:33.83084	2024-07-28 10:11:33.83084
-1814	1310	What function is a power function?	open	2024-07-28 10:11:34.017212	2024-07-28 10:11:34.017212
-1815	1310	What functions are polynomial functions?	open	2024-07-28 10:11:34.40455	2024-07-28 10:11:34.40455
-1816	1310	What functions are the rational functions?	open	2024-07-28 10:11:34.842021	2024-07-28 10:11:34.842021
-1817	1310	What functions are algebraic functions?	open	2024-07-28 10:11:35.102114	2024-07-28 10:11:35.102114
-1818	1310	What functions are trigonometric functions?	open	2024-07-28 10:11:35.327415	2024-07-28 10:11:35.327415
-1819	1310	What functions are exponential functions?	open	2024-07-28 10:11:35.531051	2024-07-28 10:11:35.531051
-1820	1310	What functions are logarithmic functions?	open	2024-07-28 10:11:35.772762	2024-07-28 10:11:35.772762
-1821	1310	What functions are transcendental functions?	open	2024-07-28 10:11:36.091944	2024-07-28 10:11:36.091944
-1822	3	What are the basic data types in OpenCV?	open	2024-07-28 10:11:36.671332	2024-07-28 10:11:36.671332
-1823	3	What operations are supported by <code>cv::Point<></code> template class?	open	2024-07-28 10:11:37.07614	2024-07-28 10:11:37.07614
-1824	3	What operations are supported by <code>cv::Scalar</code> class?	open	2024-07-28 10:11:37.517653	2024-07-28 10:11:37.517653
-1825	3	What operations are supported by <code>cv::Size</code> class?	open	2024-07-28 10:11:37.926269	2024-07-28 10:11:37.926269
-1826	3	What operations are supported by <code>cv::Rect</code> class?	open	2024-07-28 10:11:38.518157	2024-07-28 10:11:38.518157
-1827	3	What operations are supported by <code>cv::RotatedRect</code> class?	open	2024-07-28 10:11:38.949472	2024-07-28 10:11:38.949472
-1828	3	What operations are supported by <code>cv::Matx</code> template class?	open	2024-07-28 10:11:39.778073	2024-07-28 10:11:39.778073
-1829	3	What operations are supported by <code>cv::Vec</code> template class?	open	2024-07-28 10:11:40.176412	2024-07-28 10:11:40.176412
-1830	3	What operations are supported by <code>cv::Complex<></code> class template?	open	2024-07-28 10:11:40.635869	2024-07-28 10:11:40.635869
-1831	6	What image channels are affected by drawing functions?	open	2024-07-28 10:11:41.059611	2024-07-28 10:11:41.059611
-1832	6	What data type is used to specify color by convention?	open	2024-07-28 10:11:41.415629	2024-07-28 10:11:41.415629
-1833	6	What line types are used by drawing functions?	open	2024-07-28 10:11:42.215164	2024-07-28 10:11:42.215164
-1834	6	What values can be accepted as thickness parameter of drawing functions?	open	2024-07-28 10:11:42.528174	2024-07-28 10:11:42.528174
-1835	6	Draw a circle on an image?	open	2024-07-28 10:11:43.337559	2024-07-28 10:11:43.337559
-1836	273	Install OpenCV library?	open	2024-07-28 10:11:44.248268	2024-07-28 10:11:44.248268
-1837	273	Include OpenCV headers in source file?	open	2024-07-28 10:11:44.492905	2024-07-28 10:11:44.492905
-1838	273	Print the size of a matrix?	open	2024-07-28 10:11:44.752781	2024-07-28 10:11:44.752781
-1839	273	Open an image from file?	open	2024-07-28 10:11:44.987285	2024-07-28 10:11:44.987285
-1840	273	Display an image on a window?	open	2024-07-28 10:11:45.510951	2024-07-28 10:11:45.510951
-1841	273	Save a processed image into a file?	open	2024-07-28 10:11:45.879173	2024-07-28 10:11:45.879173
-1842	273	Transform image by flipping an image horizontally?	open	2024-07-28 10:11:46.348797	2024-07-28 10:11:46.348797
-1843	273	Get the number of image channels?	open	2024-07-28 10:11:46.672338	2024-07-28 10:11:46.672338
-1844	273	Set a mouse callback to get notified when user clicks on image?	open	2024-07-28 10:11:47.571899	2024-07-28 10:11:47.571899
-1845	273	Draw a circle on an image?	open	2024-07-28 10:11:48.288889	2024-07-28 10:11:48.288889
-1846	273	Draw a rectangle on an image?	open	2024-07-28 10:11:48.993988	2024-07-28 10:11:48.993988
-1847	273	Draw a text on an image?	open	2024-07-28 10:11:49.757404	2024-07-28 10:11:49.757404
-1848	273	Create a single channel gray image?	open	2024-07-28 10:11:50.338684	2024-07-28 10:11:50.338684
-1849	273	Recreate an image object?	open	2024-07-28 10:11:50.745252	2024-07-28 10:11:50.745252
-1850	273	Copy an image object into another?	open	2024-07-28 10:11:51.126068	2024-07-28 10:11:51.126068
-1851	273	Convert an image into another image of different type?	open	2024-07-28 10:11:51.488585	2024-07-28 10:11:51.488585
-1852	273	Occupy the region of interest in an image with a rectangle?	open	2024-07-28 10:11:52.037734	2024-07-28 10:11:52.037734
-1853	273	Occupy the region of interest in an image with ranges?	open	2024-07-28 10:11:52.563845	2024-07-28 10:11:52.563845
-1854	273	Specify columns and rows of an image as region of interest?	open	2024-07-28 10:11:52.879136	2024-07-28 10:11:52.879136
-1855	273	Mask an image so that only a part of it will be affected by operations?	open	2024-07-28 10:11:53.360427	2024-07-28 10:11:53.360427
-1856	205	What is the meaning of ACID terminology?	open	2024-07-28 10:11:54.245883	2024-07-28 10:11:54.245883
-1857	205	How does PostgreSQL store data on storage?	open	2024-07-28 10:11:54.439586	2024-07-28 10:11:54.439586
-1858	205	How long is the life time of a PostgreSQL release?	open	2024-07-28 10:11:54.659021	2024-07-28 10:11:54.659021
-1859	205	What is a PostgreSQL cluster?	open	2024-07-28 10:11:54.861403	2024-07-28 10:11:54.861403
-1860	205	What is a schema?	open	2024-07-28 10:11:55.065479	2024-07-28 10:11:55.065479
-1861	205	What are the building blocks of an instance?	open	2024-07-28 10:11:55.284157	2024-07-28 10:11:55.284157
-1862	205	What schema an object in postgres belongs to?	open	2024-07-28 10:11:55.480544	2024-07-28 10:11:55.480544
-1863	205	What schema do users belong to?	open	2024-07-28 10:11:55.686628	2024-07-28 10:11:55.686628
-1864	205	How many user categories exist in postgres?	open	2024-07-28 10:11:55.910539	2024-07-28 10:11:55.910539
-1865	205	How many superusers are allowed in a postgres instance?	open	2024-07-28 10:11:56.110735	2024-07-28 10:11:56.110735
-1866	205	Where are the internal postgres instance data stored?	open	2024-07-28 10:11:56.335733	2024-07-28 10:11:56.335733
-1867	205	Where does postgres store its data?	open	2024-07-28 10:11:56.543922	2024-07-28 10:11:56.543922
-1868	205	What is <code>PGDATA</code> contained of?	open	2024-07-28 10:11:56.746754	2024-07-28 10:11:56.746754
-1869	205	How is it possible to have multiple postgres installations?	open	2024-07-28 10:11:56.947897	2024-07-28 10:11:56.947897
-1870	205	When does postgres need the <code>PGDATA</code> directory?	open	2024-07-28 10:11:57.156662	2024-07-28 10:11:57.156662
-1871	205	What is the purpose of postgres's first process?	open	2024-07-28 10:11:57.35942	2024-07-28 10:11:57.35942
-1872	205	How does postgres handles connections?	open	2024-07-28 10:11:57.56693	2024-07-28 10:11:57.56693
-1873	205	Build postgres from source?	open	2024-07-28 10:11:58.117255	2024-07-28 10:11:58.117255
-1874	205	How to add systemd support to postgres installation?	open	2024-07-28 10:11:58.421106	2024-07-28 10:11:58.421106
-1875	205	Build postgres using pgenv?	open	2024-07-28 10:11:58.710729	2024-07-28 10:11:58.710729
-1876	205	Connect to a postgres instance?	open	2024-07-28 10:11:58.933981	2024-07-28 10:11:58.933981
-1877	205	What libraries are required for C++ projects to link to postgres?	open	2024-07-28 10:11:59.176615	2024-07-28 10:11:59.176615
-1878	206	What utility manages postgres clusters?	open	2024-07-28 10:11:59.414767	2024-07-28 10:11:59.414767
-1879	206	What are the <code>pg_ctl</code> basic commands?	open	2024-07-28 10:11:59.721168	2024-07-28 10:11:59.721168
-1880	206	What is the main process running postgres?	open	2024-07-28 10:11:59.934688	2024-07-28 10:11:59.934688
-1881	206	How many stopping modes are possible for postgres?	open	2024-07-28 10:12:00.290786	2024-07-28 10:12:00.290786
-1882	206	What user does postgres needs to operate?	open	2024-07-28 10:12:00.620139	2024-07-28 10:12:00.620139
-1883	206	How does postgres know when the storage is?	open	2024-07-28 10:12:00.993726	2024-07-28 10:12:00.993726
-1884	206	What are the names of template databases?	open	2024-07-28 10:12:01.251298	2024-07-28 10:12:01.251298
-1885	206	Connect to an instance using psql?	open	2024-07-28 10:12:01.575133	2024-07-28 10:12:01.575133
-1886	206	What command is used to quit the interactive terminal?	open	2024-07-28 10:12:01.847871	2024-07-28 10:12:01.847871
-1887	206	List all available databases in an instance?	open	2024-07-28 10:12:02.103238	2024-07-28 10:12:02.103238
-1888	206	What tool can be used to create a postgres cluster?	open	2024-07-28 10:12:02.402077	2024-07-28 10:12:02.402077
-1889	206	Enable authentication on local connections?	open	2024-07-28 10:12:02.758127	2024-07-28 10:12:02.758127
-1890	206	How does initdb create a cluster?	open	2024-07-28 10:12:02.999313	2024-07-28 10:12:02.999313
-1891	206	Enter a SQL statement via psql?	open	2024-07-28 10:12:03.320712	2024-07-28 10:12:03.320712
-1892	206	What is the secondary statement terminator in psql?	open	2024-07-28 10:12:03.586543	2024-07-28 10:12:03.586543
-1893	206	What command opens an editor to edit psql query buffer?	open	2024-07-28 10:12:03.862373	2024-07-28 10:12:03.862373
-1894	206	What psql command executes sql statements from a file?	open	2024-07-28 10:12:04.129608	2024-07-28 10:12:04.129608
-1895	206	What command gives help information about psql?	open	2024-07-28 10:12:04.390113	2024-07-28 10:12:04.390113
-1896	206	What command gives help with the psql commands?	open	2024-07-28 10:12:04.632764	2024-07-28 10:12:04.632764
-1897	355	What web service gives free access to a postgres client?	open	2024-07-28 10:12:05.504269	2024-07-28 10:12:05.504269
-1898	355	Create a table of cities holding name, country, population and area of each?	open	2024-07-28 10:12:05.735465	2024-07-28 10:12:05.735465
-1899	355	Insert data into a table?	open	2024-07-28 10:12:06.03549	2024-07-28 10:12:06.03549
-1900	355	Retrieve information from a table?	open	2024-07-28 10:12:06.281182	2024-07-28 10:12:06.281182
-1901	355	Calculate the arithmetic operations of two columns from a table?	open	2024-07-28 10:12:06.719481	2024-07-28 10:12:06.719481
-1902	355	Name the operational generated column in a query?	open	2024-07-28 10:12:06.974806	2024-07-28 10:12:06.974806
-1903	355	What string operations are available in SQL?	open	2024-07-28 10:12:07.315185	2024-07-28 10:12:07.315185
-1904	356	Limit the results of a query?	open	2024-07-28 10:12:07.590504	2024-07-28 10:12:07.590504
-1905	356	What parts of a select query does the database read first?	open	2024-07-28 10:12:07.919076	2024-07-28 10:12:07.919076
-1906	356	Filter query result by checking the existance of a column in a set of values?	open	2024-07-28 10:12:08.211121	2024-07-28 10:12:08.211121
-1907	356	Reverse the filtering of a query by checking the none-existance of a column in a set of values?	open	2024-07-28 10:12:08.465194	2024-07-28 10:12:08.465194
-1908	356	What comparison operators are supported by SQL?	open	2024-07-28 10:12:08.806328	2024-07-28 10:12:08.806328
-1909	356	What compound operators are supported by SQL?	open	2024-07-28 10:12:09.142126	2024-07-28 10:12:09.142126
-1910	356	Limit the results of a query by comparing the calculated values of two columns?	open	2024-07-28 10:12:09.396567	2024-07-28 10:12:09.396567
-1911	356	Update a cell within a very big table?	open	2024-07-28 10:12:09.627148	2024-07-28 10:12:09.627148
-1912	356	Delete a row from a table?	open	2024-07-28 10:12:09.890639	2024-07-28 10:12:09.890639
-1913	356	Delete all rows of a table?	open	2024-07-28 10:12:10.151822	2024-07-28 10:12:10.151822
-1914	357	How many relationships are possible between data?	open	2024-07-28 10:12:10.432464	2024-07-28 10:12:10.432464
-1915	357	What are the characteristics of a primary key?	open	2024-07-28 10:12:10.690463	2024-07-28 10:12:10.690463
-1916	357	What is the common way of making a primary key auto generate a unique id in postgres?	open	2024-07-28 10:12:11.074675	2024-07-28 10:12:11.074675
-1917	357	What are the characteristics of a foreign key?	open	2024-07-28 10:12:11.368767	2024-07-28 10:12:11.368767
-1918	357	What statement is used to create a foreign key?	open	2024-07-28 10:12:11.674135	2024-07-28 10:12:11.674135
-1919	357	What happens when record gets inserted without foreign key?	open	2024-07-28 10:12:12.015887	2024-07-28 10:12:12.015887
-1920	357	What constraints are supported by SQL when referencing record of a foreign key is deleted?	open	2024-07-28 10:12:12.349306	2024-07-28 10:12:12.349306
-1921	357	What is the default behavior of postgres when deleting a record being referenced by foreign keys?	open	2024-07-28 10:12:12.718322	2024-07-28 10:12:12.718322
-1922	357	Query two tables by associating them on foreign keys?	open	2024-07-28 10:12:13.017507	2024-07-28 10:12:13.017507
-1923	357	What statement can be used to set default value for a foreign key when referenced record is deleted?	open	2024-07-28 10:12:13.367457	2024-07-28 10:12:13.367457
-1924	358	How many joins are supported by SQL?	open	2024-07-28 10:12:14.203501	2024-07-28 10:12:14.203501
-1925	358	Filter the records of a join query with a condition?	open	2024-07-28 10:12:14.635528	2024-07-28 10:12:14.635528
-1926	359	What are the main characteristics of grouping operation?	open	2024-07-28 10:12:14.924692	2024-07-28 10:12:14.924692
-1927	359	What steps are taken to group a table by a specific column?	open	2024-07-28 10:12:15.191999	2024-07-28 10:12:15.191999
-1928	359	Group records of a table by one of its colums?	open	2024-07-28 10:12:15.445982	2024-07-28 10:12:15.445982
-1929	359	What is the use case of having clause?	open	2024-07-28 10:12:15.963473	2024-07-28 10:12:15.963473
-1930	359	Filter a set a groups of records grouped by a specific column?	open	2024-07-28 10:12:16.30708	2024-07-28 10:12:16.30708
-1931	359	What are the main characterestics of aggregation operations?	open	2024-07-28 10:12:16.513321	2024-07-28 10:12:16.513321
-1932	359	What are the common aggregate functions?	open	2024-07-28 10:12:16.764955	2024-07-28 10:12:16.764955
-1933	359	Count how many comments each user have posted?	open	2024-07-28 10:12:17.055176	2024-07-28 10:12:17.055176
-1934	359	What is the behavior of count aggregate function when grouped column has a null value?	open	2024-07-28 10:12:17.41088	2024-07-28 10:12:17.41088
-1935	359	Find the most commented photo of a photo sharing app?	open	2024-07-28 10:12:17.702854	2024-07-28 10:12:17.702854
-1936	359	Find the sum of all comments from each photo record in a photo sharing app?	open	2024-07-28 10:12:17.954357	2024-07-28 10:12:17.954357
-1937	361	Reorder records of the result set with ascending and descending order?	open	2024-07-28 10:12:18.393276	2024-07-28 10:12:18.393276
-1938	361	Set a second ordering rule for result set?	open	2024-07-28 10:12:18.676719	2024-07-28 10:12:18.676719
-1939	361	What is the use case of limit?	open	2024-07-28 10:12:19.013276	2024-07-28 10:12:19.013276
-1940	361	Where should the limit clause be located in query?	open	2024-07-28 10:12:19.240758	2024-07-28 10:12:19.240758
-1941	361	What is the use case of offset?	open	2024-07-28 10:12:19.565696	2024-07-28 10:12:19.565696
-1942	361	Where should the offset clause be located within a query?	open	2024-07-28 10:12:19.763219	2024-07-28 10:12:19.763219
-1943	362	What is the use case of union clause?	open	2024-07-28 10:12:20.079356	2024-07-28 10:12:20.079356
-1944	362	What is the prerequisite of a union?	open	2024-07-28 10:12:20.268383	2024-07-28 10:12:20.268383
-1945	362	Combine two different result sets with and without duplicates?	open	2024-07-28 10:12:20.822331	2024-07-28 10:12:20.822331
-1946	362	When would parenthesis be mandatory for union queries?	open	2024-07-28 10:12:21.250117	2024-07-28 10:12:21.250117
-1947	362	Collect the intersection of two result sets?	open	2024-07-28 10:12:21.661901	2024-07-28 10:12:21.661901
-1948	362	Find the records appearing in first result set and not in second result set?	open	2024-07-28 10:12:22.072077	2024-07-28 10:12:22.072077
-1949	363	Where are subqueries mostly used?	open	2024-07-28 10:12:22.475701	2024-07-28 10:12:22.475701
-1950	363	Use a subquery to give a single value in select clause?	open	2024-07-28 10:12:22.771089	2024-07-28 10:12:22.771089
-1951	363	Use a subquery in from clause as a source of data?	open	2024-07-28 10:12:23.044594	2024-07-28 10:12:23.044594
-1952	368	When creating a table define a column not taking null value?	open	2024-07-28 10:12:23.47246	2024-07-28 10:12:23.47246
-1953	368	Modify a table after creation and set a column not to take null value?	open	2024-07-28 10:12:23.68306	2024-07-28 10:12:23.68306
-1954	368	Update all null values of a column to set 0 instead?	open	2024-07-28 10:12:23.925583	2024-07-28 10:12:23.925583
-1955	368	What input data validation constraints do we have in database side?	open	2024-07-28 10:12:24.147498	2024-07-28 10:12:24.147498
-1956	368	Set a default value for a column?	open	2024-07-28 10:12:24.519918	2024-07-28 10:12:24.519918
-1957	368	Alter a column to add default value?	open	2024-07-28 10:12:24.733658	2024-07-28 10:12:24.733658
-1958	368	Define a column as having only unique values?	open	2024-07-28 10:12:25.065729	2024-07-28 10:12:25.065729
-1959	368	Add a uniqueness constraint to a column?	open	2024-07-28 10:12:25.313715	2024-07-28 10:12:25.313715
-1960	368	Remove uniqueness constraint on a column?	open	2024-07-28 10:12:25.533425	2024-07-28 10:12:25.533425
-1961	368	Define a column to take unique values in combination of multiple columns?	open	2024-07-28 10:12:25.896165	2024-07-28 10:12:25.896165
-1962	368	Add uniqueness value to multiple columns?	open	2024-07-28 10:12:26.109576	2024-07-28 10:12:26.109576
-1963	368	Define a column with a check constraint on its value?	open	2024-07-28 10:12:26.485081	2024-07-28 10:12:26.485081
-1964	368	Add a check constraint after column is created?	open	2024-07-28 10:12:26.691045	2024-07-28 10:12:26.691045
-1965	368	Define multiple columns with a check on all of them?	open	2024-07-28 10:12:27.047035	2024-07-28 10:12:27.047035
-1966	369	Name a few web services for drawing database diagrams?	open	2024-07-28 10:12:27.350192	2024-07-28 10:12:27.350192
-1967	370	In case of associative constraints, check if either of two columns exist in a row?	open	2024-07-28 10:12:27.715307	2024-07-28 10:12:27.715307
-1968	376	Find where the data directory is in an instance?	open	2024-07-28 10:12:28.021851	2024-07-28 10:12:28.021851
-1969	376	Retrieve the name and identifier of databases in an instance?	open	2024-07-28 10:12:28.282679	2024-07-28 10:12:28.282679
-1970	376	Retrieve information about the objects inside a database?	open	2024-07-28 10:12:28.490548	2024-07-28 10:12:28.490548
-1971	376	What are the building blocks of a database file?	open	2024-07-28 10:12:28.714397	2024-07-28 10:12:28.714397
-1972	376	What is the structure of each block in postgres?	open	2024-07-28 10:12:29.064369	2024-07-28 10:12:29.064369
-1973	377	What is an index?	open	2024-07-28 10:12:29.263146	2024-07-28 10:12:29.263146
-1974	377	Create an index for a table?	open	2024-07-28 10:12:29.535316	2024-07-28 10:12:29.535316
-1975	377	Drop an index?	open	2024-07-28 10:12:29.778873	2024-07-28 10:12:29.778873
-1976	377	Analyze a query?	open	2024-07-28 10:12:30.015502	2024-07-28 10:12:30.015502
-1977	377	Estimate the overall size of an index on memory?	open	2024-07-28 10:12:30.292782	2024-07-28 10:12:30.292782
-1978	377	Convert a size value to human readable memory size?	open	2024-07-28 10:12:30.538686	2024-07-28 10:12:30.538686
-1979	377	What index types are supported by postgres?	open	2024-07-28 10:12:30.830698	2024-07-28 10:12:30.830698
-1980	377	When do indexes are automatically created?	open	2024-07-28 10:12:31.037549	2024-07-28 10:12:31.037549
-1981	377	Query all the auto generated indexes?	open	2024-07-28 10:12:31.309822	2024-07-28 10:12:31.309822
-1982	377	What is the data structure behind an index?	open	2024-07-28 10:12:31.59174	2024-07-28 10:12:31.59174
-1983	377	Create an extension that helps on examining pages?	open	2024-07-28 10:12:31.807298	2024-07-28 10:12:31.807298
-1984	377	Find the root node of an index?	open	2024-07-28 10:12:32.026196	2024-07-28 10:12:32.026196
-1985	377	Find all the leaf nodes of an index?	open	2024-07-28 10:12:32.296655	2024-07-28 10:12:32.296655
-1986	377	Inspect the ctid column of a table?	open	2024-07-28 10:12:32.628898	2024-07-28 10:12:32.628898
-1987	377	What the first row in the page items table does?	open	2024-07-28 10:12:32.883091	2024-07-28 10:12:32.883091
-1988	377	What are the stages of query execution in postgres?	open	2024-07-28 10:12:33.127233	2024-07-28 10:12:33.127233
-1989	377	What is the difference between plain explain and explain analyze?	open	2024-07-28 10:12:33.361189	2024-07-28 10:12:33.361189
-1990	378	Inspect the statistics of a table?	open	2024-07-28 10:12:33.609135	2024-07-28 10:12:33.609135
-1991	379	How does postgres calculate the cost of page loading and rows?	open	2024-07-28 10:12:33.951193	2024-07-28 10:12:33.951193
-1992	1281	Where the Qt installer can be found?	open	2024-07-28 10:12:34.43911	2024-07-28 10:12:34.43911
-1993	1281	How to update Qt components after manual installation?	open	2024-07-28 10:12:34.782054	2024-07-28 10:12:34.782054
-1994	1284	What are the basic types provided by the QML?	open	2024-07-28 10:12:35.135727	2024-07-28 10:12:35.135727
-1995	1330	Import a QML module to create a window?	open	2024-07-28 10:12:37.259399	2024-07-28 10:12:37.259399
-1996	1330	What identifies an element in QML?	open	2024-07-28 10:12:37.478552	2024-07-28 10:12:37.478552
-1997	1330	What is the binding mechanism?	open	2024-07-28 10:12:37.871586	2024-07-28 10:12:37.871586
-1998	1330	What is a group property?	open	2024-07-28 10:12:38.272105	2024-07-28 10:12:38.272105
-1999	1330	How javascript functions can be declared in QML?	open	2024-07-28 10:12:38.819916	2024-07-28 10:12:38.819916
-2000	1330	Define a globaly accessible root element in QML code?	open	2024-07-28 10:12:39.31318	2024-07-28 10:12:39.31318
-2001	1330	Specify exact coordinations of an element?	open	2024-07-28 10:12:39.672207	2024-07-28 10:12:39.672207
-2002	1330	Create a new custom property?	open	2024-07-28 10:12:39.952459	2024-07-28 10:12:39.952459
-2003	1330	Create an alias property pointing to another element's property?	open	2024-07-28 10:12:40.388777	2024-07-28 10:12:40.388777
-2004	1330	Attach the signal of a property when its width and height changes?	open	2024-07-28 10:12:40.654775	2024-07-28 10:12:40.654775
-2005	1330	What is the requirement of an element in order to receive key events?	open	2024-07-28 10:12:41.070553	2024-07-28 10:12:41.070553
-2006	1330	What element is the most basic type to be inherited by other visual elements?	open	2024-07-28 10:12:41.367192	2024-07-28 10:12:41.367192
-2007	1330	What are the basic properties of item element?	open	2024-07-28 10:12:41.817914	2024-07-28 10:12:41.817914
-2008	1330	What are the additional basic properties of a rectangle over item element?	open	2024-07-28 10:12:42.23665	2024-07-28 10:12:42.23665
-2009	1330	Make rectangle edges curved?	open	2024-07-28 10:12:42.573257	2024-07-28 10:12:42.573257
-2010	1330	Make a custom gradient over a rectangle?	open	2024-07-28 10:12:43.226395	2024-07-28 10:12:43.226395
-2011	1330	Display a text on main window?	open	2024-07-28 10:12:43.616149	2024-07-28 10:12:43.616149
-2012	1330	Break a long text with an elide in the middle?	open	2024-07-28 10:12:43.937008	2024-07-28 10:12:43.937008
-2013	1330	Select a font family and font size for a text element?	open	2024-07-28 10:12:44.289366	2024-07-28 10:12:44.289366
-2014	1330	Set alignment for a text element?	open	2024-07-28 10:12:44.705798	2024-07-28 10:12:44.705798
-2015	1330	Use style to color a text element?	open	2024-07-28 10:12:45.046357	2024-07-28 10:12:45.046357
-2016	1330	What are the common image formats supported by QML?	open	2024-07-28 10:12:45.344128	2024-07-28 10:12:45.344128
-2017	1330	Load an image as a resource?	open	2024-07-28 10:12:45.77861	2024-07-28 10:12:45.77861
-2018	1330	Crop an image reaching outside of boudaries?	open	2024-07-28 10:12:46.118445	2024-07-28 10:12:46.118445
-2019	1330	What are the possible values for image fill modes?	open	2024-07-28 10:12:46.503856	2024-07-28 10:12:46.503856
-2020	1330	Get notified when user clicks on an element?	open	2024-07-28 10:12:46.856399	2024-07-28 10:12:46.856399
-2021	1330	What is a component?	open	2024-07-28 10:12:47.103129	2024-07-28 10:12:47.103129
-2022	1330	Create a button component to be used on other components?	open	2024-07-28 10:12:47.529539	2024-07-28 10:12:47.529539
-2023	1330	Export properties of a component to be used as an API?	open	2024-07-28 10:12:47.844438	2024-07-28 10:12:47.844438
-2024	1330	What are the simple transformation properties?	open	2024-07-28 10:12:48.291775	2024-07-28 10:12:48.291775
-2025	1330	What feature can be used to smooth movements when rasterized edges can be seen in graphics?	open	2024-07-28 10:12:48.603517	2024-07-28 10:12:48.603517
-2026	1330	Use a helper function to extract the lighter or darker color?	open	2024-07-28 10:12:48.959441	2024-07-28 10:12:48.959441
-2027	1330	Position multiple elements in a row?	open	2024-07-28 10:12:50.581906	2024-07-28 10:12:50.581906
-2028	1330	Position multiple elements in a column?	open	2024-07-28 10:12:52.274379	2024-07-28 10:12:52.274379
-2029	1330	Position multiple elements in a grid?	open	2024-07-28 10:12:53.706002	2024-07-28 10:12:53.706002
-2030	1330	Position multiple elements into a flow?	open	2024-07-28 10:12:55.059027	2024-07-28 10:12:55.059027
-2031	1330	Fill out a grid with blue squares using a repeater?	open	2024-07-28 10:12:56.909576	2024-07-28 10:12:56.909576
-2032	1330	What are the anchoring properties for visual elements?	open	2024-07-28 10:12:57.361507	2024-07-28 10:12:57.361507
-2033	1330	What additional anchor property does a text element have?	open	2024-07-28 10:12:57.539862	2024-07-28 10:12:57.539862
-2034	1330	What are the offsets of anchors?	open	2024-07-28 10:12:57.799598	2024-07-28 10:12:57.799598
-2035	1330	What input constraints does <code>TextInput</code> support?	open	2024-07-28 10:12:58.063578	2024-07-28 10:12:58.063578
-2036	1330	Make a tab <code>KeyNavigation</code> for multiple <code>TextInput</code> elements in a column?	open	2024-07-28 10:12:59.352017	2024-07-28 10:12:59.352017
-2037	1330	Get multi-line input from user?	open	2024-07-28 10:13:00.35566	2024-07-28 10:13:00.35566
-2038	1330	What property can record key presses?	open	2024-07-28 10:13:00.654346	2024-07-28 10:13:00.654346
-2039	1330	Record user key presses?	open	2024-07-28 10:13:01.376718	2024-07-28 10:13:01.376718
-2040	1330	How to precompile QML to avoid the initial startup penalty induced by the initial parsing?	open	2024-07-28 10:13:01.712007	2024-07-28 10:13:01.712007
-2041	1331	Where do animations apply?	open	2024-07-28 10:13:01.95732	2024-07-28 10:13:01.95732
-2042	1331	Animate an object rotating horizontally?	open	2024-07-28 10:13:03.100632	2024-07-28 10:13:03.100632
-2043	1331	Animate an object to fade away?	open	2024-07-28 10:13:03.499007	2024-07-28 10:13:03.499007
-2044	1331	How many types of animation elements exist?	open	2024-07-28 10:13:03.969513	2024-07-28 10:13:03.969513
-2045	1331	What action elements are used to change a property or to run a script during an ongoing animation?	open	2024-07-28 10:13:04.351282	2024-07-28 10:13:04.351282
-2046	1331	What are the possible ways of applying animations?	open	2024-07-28 10:13:04.660479	2024-07-28 10:13:04.660479
-2047	1331	Enable wrapping on Text elements?	open	2024-07-28 10:13:04.944166	2024-07-28 10:13:04.944166
-2048	1331	How many easing curves are available for animations?	open	2024-07-28 10:13:05.294237	2024-07-28 10:13:05.294237
-2049	1331	Animate an object moving horizontally with an easing curve?	open	2024-07-28 10:13:06.336204	2024-07-28 10:13:06.336204
-2050	1331	What type can be used to fine-tune the animations?	open	2024-07-28 10:13:06.773499	2024-07-28 10:13:06.773499
-2051	1331	How many ways exist to group animations?	open	2024-07-28 10:13:07.131711	2024-07-28 10:13:07.131711
-2052	1331	Animate an object to cross the window diagonally?	open	2024-07-28 10:13:08.499935	2024-07-28 10:13:08.499935
-2053	1331	Animate a ball moving forward and bouncing on the floor twice?	open	2024-07-28 10:13:08.88348	2024-07-28 10:13:08.88348
-2054	1331	What is the basic form of a state?	open	2024-07-28 10:13:09.950634	2024-07-28 10:13:09.950634
-2055	1331	Describe two different states of an object having different colors?	open	2024-07-28 10:13:11.26709	2024-07-28 10:13:11.26709
-2056	1331	What is the basic form of a transition?	open	2024-07-28 10:13:11.916651	2024-07-28 10:13:11.916651
-2057	1332	What modules can be imported to use UI Controls?	open	2024-07-28 10:13:12.249538	2024-07-28 10:13:12.249538
-2058	1332	What QtQuick Template is offten used to create a desktop application?	open	2024-07-28 10:13:12.646264	2024-07-28 10:13:12.646264
-2059	886	How do browsers detect existance of a captive portal?	open	2024-07-28 10:13:13.608344	2024-07-28 10:13:13.608344
-2060	886	What is a target AP?	open	2024-07-28 10:13:13.836072	2024-07-28 10:13:13.836072
-2061	886	What are the requirements of attacking a captive portal?	open	2024-07-28 10:13:14.071083	2024-07-28 10:13:14.071083
-2062	886	Capture a handshake from an access point?	open	2024-07-28 10:13:14.812587	2024-07-28 10:13:14.812587
-2063	886	Create a captive portal?	open	2024-07-28 10:13:17.66276	2024-07-28 10:13:17.66276
-2064	803	What are the main phases of compiling a C code?	open	2024-07-28 10:13:18.514246	2024-07-28 10:13:18.514246
-2065	803	Stop compiler processing source after preprocessing phase?	open	2024-07-28 10:13:19.026769	2024-07-28 10:13:19.026769
-2066	803	Specify the assembly flavor for gcc?	open	2024-07-28 10:13:19.362182	2024-07-28 10:13:19.362182
-2067	803	Stop compiler processing source after compilation phase?	open	2024-07-28 10:13:19.592349	2024-07-28 10:13:19.592349
-2068	803	Stop compiler processing source after assembly phase?	open	2024-07-28 10:13:19.82591	2024-07-28 10:13:19.82591
-2069	803	How many relocatable files exist?	open	2024-07-28 10:13:20.092585	2024-07-28 10:13:20.092585
-2070	803	View the symbolic information of an executable?	open	2024-07-28 10:13:20.319654	2024-07-28 10:13:20.319654
-2071	803	What formats are used to represent debugging symbols for executables?	open	2024-07-28 10:13:20.590921	2024-07-28 10:13:20.590921
-2072	803	What library can be used to programmatically parse debugging symbols?	open	2024-07-28 10:13:20.759809	2024-07-28 10:13:20.759809
-2073	803	Strip all the debugging symbols of an executable?	open	2024-07-28 10:13:21.047581	2024-07-28 10:13:21.047581
-2074	803	Specify the assembly flavor for objdump utility?	open	2024-07-28 10:13:21.304529	2024-07-28 10:13:21.304529
-2075	803	Inspect the rodata section of an object file?	open	2024-07-28 10:13:21.551165	2024-07-28 10:13:21.551165
-2076	803	Disassembly an object file?	open	2024-07-28 10:13:21.813539	2024-07-28 10:13:21.813539
-2077	803	List all the relocation symbols present in an object file?	open	2024-07-28 10:13:22.051348	2024-07-28 10:13:22.051348
-2078	803	What address do relocation offsets are pointing to in relocation table of an object file?	open	2024-07-28 10:13:22.435045	2024-07-28 10:13:22.435045
-2079	803	List all the available sections in an object file?	open	2024-07-28 10:13:22.679129	2024-07-28 10:13:22.679129
-2080	675	Specify the execution procedure of an executable?	open	2024-07-28 10:13:23.273946	2024-07-28 10:13:23.273946
-2081	675	Which direction each of the sections grow in binary files?	open	2024-07-28 10:13:23.732451	2024-07-28 10:13:23.732451
-2082	675	Specify register groups in assembly language?	open	2024-07-28 10:13:24.027917	2024-07-28 10:13:24.027917
-2083	676	When buffers become vulnerable to stack overflows?	open	2024-07-28 10:13:24.452319	2024-07-28 10:13:24.452319
-2084	676	Write past the array bounds in C?	open	2024-07-28 10:13:25.073903	2024-07-28 10:13:25.073903
-2085	676	What values does the calling convention put on the stack?	open	2024-07-28 10:13:26.073048	2024-07-28 10:13:26.073048
-2086	676	What happens when data is writen past the array boundaries on the stack?	open	2024-07-28 10:13:27.133155	2024-07-28 10:13:27.133155
-2087	676	Control the execution path of a program vulnerable to buffer overflow?	open	2024-07-28 10:13:27.715983	2024-07-28 10:13:27.715983
-2088	676	Translate a hexadecimal address into shellcode?	open	2024-07-28 10:13:28.046367	2024-07-28 10:13:28.046367
-2089	676	Get shell access by exploiting a program vulnerable to buffer overflow?	open	2024-07-28 10:13:28.616888	2024-07-28 10:13:28.616888
-2090	676	Inject an already prepared shellcode into a process?	open	2024-07-28 10:13:29.171704	2024-07-28 10:13:29.171704
-2091	252	Start learning about Vim:	open	2024-07-28 10:13:29.716563	2024-07-28 10:13:29.716563
-2092	252	Start reading Vim reference manual:	open	2024-07-28 10:13:29.887887	2024-07-28 10:13:29.887887
-2093	252	Also read the quick reference:	open	2024-07-28 10:13:30.066615	2024-07-28 10:13:30.066615
-2094	252	Then study the Vim's user manual to learn essential commands:	open	2024-07-28 10:13:30.277889	2024-07-28 10:13:30.277889
-2095	252	Repeat actions with dot command:	open	2024-07-28 10:13:30.446409	2024-07-28 10:13:30.446409
-2096	252	Use compound commands:	open	2024-07-28 10:13:30.716167	2024-07-28 10:13:30.716167
-2097	252	Find a character and repeat:	open	2024-07-28 10:13:30.955158	2024-07-28 10:13:30.955158
-2098	252	Search word under cursor:	open	2024-07-28 10:13:31.165537	2024-07-28 10:13:31.165537
-2099	253	Use counts to modify numbers:	open	2024-07-28 10:13:31.418232	2024-07-28 10:13:31.418232
-2100	253	Change a number with different base like octal or binary:	open	2024-07-28 10:13:31.649749	2024-07-28 10:13:31.649749
-2101	253	Change word behind cursor:	open	2024-07-28 10:13:31.822872	2024-07-28 10:13:31.822872
-2102	253	Apply operations on a line by duplicating operators:	open	2024-07-28 10:13:32.073735	2024-07-28 10:13:32.073735
-2103	253	Combine **operator + motion** to take action:	open	2024-07-28 10:13:32.694401	2024-07-28 10:13:32.694401
-2104	254	Correct a character, a word, or a line in **Insert mode** by backspacing:	open	2024-07-28 10:13:33.090623	2024-07-28 10:13:33.090623
-2105	254	Go back to normal mode from **Insert mode**:	open	2024-07-28 10:13:33.301716	2024-07-28 10:13:33.301716
-2106	254	Temporarily go to insert-normal mode from **Insert mode** to enter a command:	open	2024-07-28 10:13:33.473095	2024-07-28 10:13:33.473095
-2107	254	Redraw screen with the current line in the middle without being interrupted:	open	2024-07-28 10:13:33.680657	2024-07-28 10:13:33.680657
-2108	254	Paste from register without leaving the **Insert mode**:	open	2024-07-28 10:13:33.872737	2024-07-28 10:13:33.872737
-2109	254	Paste text in **Insert mode** literally with unindents indented:	open	2024-07-28 10:13:34.080336	2024-07-28 10:13:34.080336
-2110	254	Calculate simple arithmatic using expression register in **Insert mode**:	open	2024-07-28 10:13:34.270319	2024-07-28 10:13:34.270319
-2111	254	Insert unusual characters by character code in **Insert mode**:	open	2024-07-28 10:13:34.475209	2024-07-28 10:13:34.475209
-2112	254	Find the numeric code of character under the cursor:	open	2024-07-28 10:13:34.647645	2024-07-28 10:13:34.647645
-2113	254	Insert special symbols using digraph:	open	2024-07-28 10:13:34.874202	2024-07-28 10:13:34.874202
-2114	254	Overwrite existing text with replace mode:	open	2024-07-28 10:13:35.096895	2024-07-28 10:13:35.096895
-2115	255	Insert into **Visual mode** from normal mode and select text in character-wise, line-wise, and block-wise mode:	open	2024-07-28 10:13:35.342377	2024-07-28 10:13:35.342377
-2116	255	Insert into **Select mode** from different modes:	open	2024-07-28 10:13:35.545719	2024-07-28 10:13:35.545719
-2117	255	Reselect the last visual selection:	open	2024-07-28 10:13:35.733014	2024-07-28 10:13:35.733014
-2118	255	Switch between visual modes:	open	2024-07-28 10:13:35.942582	2024-07-28 10:13:35.942582
-2119	255	Toggle the free end of a visual selection:	open	2024-07-28 10:13:36.143895	2024-07-28 10:13:36.143895
-2120	255	Prefer operators over visual commands where possible:	open	2024-07-28 10:13:36.384081	2024-07-28 10:13:36.384081
-2121	255	Inspect the differences between repeating an operator and a visual section:	open	2024-07-28 10:13:36.55375	2024-07-28 10:13:36.55375
-2122	255	Separate two columns of a text with | using visual block mode:	open	2024-07-28 10:13:36.875794	2024-07-28 10:13:36.875794
-2123	255	Write a horizontal line using visual line mode:	open	2024-07-28 10:13:37.216643	2024-07-28 10:13:37.216643
-2124	256	Enter into Command-line mode:	open	2024-07-28 10:13:37.49077	2024-07-28 10:13:37.49077
-2125	256	Edit a file after entering into Vim:	open	2024-07-28 10:13:37.721686	2024-07-28 10:13:37.721686
-2126	256	Write file contents into file:	open	2024-07-28 10:13:37.914354	2024-07-28 10:13:37.914354
-2127	256	Create a tab:	open	2024-07-28 10:13:38.088405	2024-07-28 10:13:38.088405
-2128	256	Split window:	open	2024-07-28 10:13:38.311099	2024-07-28 10:13:38.311099
-2129	256	Inspect the list of Ex commands:	open	2024-07-28 10:13:38.481667	2024-07-28 10:13:38.481667
-2130	256	Inspect the differences of Vi and Vim:	open	2024-07-28 10:13:38.684149	2024-07-28 10:13:38.684149
-2131	256	Copy current line to the first line:	open	2024-07-28 10:13:38.870402	2024-07-28 10:13:38.870402
-2132	256	Move next line to previous line:	open	2024-07-28 10:13:39.071232	2024-07-28 10:13:39.071232
-2133	256	Repeat last Ex Command:	open	2024-07-28 10:13:39.247312	2024-07-28 10:13:39.247312
-2134	256	Run normal mode commands across a range:	open	2024-07-28 10:13:39.44492	2024-07-28 10:13:39.44492
-2135	256	Tab-complete Ex commands:	open	2024-07-28 10:13:39.629408	2024-07-28 10:13:39.629408
-2136	256	Create a tab-complete behavior for custom Ex commands:	open	2024-07-28 10:13:39.830985	2024-07-28 10:13:39.830985
-2137	256	Change tab-completion behavior:	open	2024-07-28 10:13:40.008631	2024-07-28 10:13:40.008631
-2138	256	Insert current word under cursor to command promt:	open	2024-07-28 10:13:40.19577	2024-07-28 10:13:40.19577
-2139	256	Recall persistent commands from history after vim relaunch:	open	2024-07-28 10:13:40.418246	2024-07-28 10:13:40.418246
-2140	256	Use command line window to enter Ex commands:	open	2024-07-28 10:13:40.597218	2024-07-28 10:13:40.597218
-2141	256	Switch from command prompt to command line window:	open	2024-07-28 10:13:40.797672	2024-07-28 10:13:40.797672
-2142	256	Execute programs in shell from Vim:	open	2024-07-28 10:13:40.988257	2024-07-28 10:13:40.988257
-2143	256	Use the shorthand for current filename in command prompt:	open	2024-07-28 10:13:41.189846	2024-07-28 10:13:41.189846
-2144	256	Change current filename by filename modifiers:	open	2024-07-28 10:13:41.360776	2024-07-28 10:13:41.360776
-2145	256	Start an interactive shell in Vim:	open	2024-07-28 10:13:41.528902	2024-07-28 10:13:41.528902
-2147	256	Filter the contents of a buffer through an external command:	open	2024-07-28 10:13:41.987543	2024-07-28 10:13:41.987543
-2148	256	Use a {motion} to filter then contents of a buffer through an external command:	open	2024-07-28 10:13:42.162877	2024-07-28 10:13:42.162877
-2155	258	Configure `path` for finding files:	open	2024-07-28 10:13:43.868517	2024-07-28 10:13:43.868517
-2156	258	Find a file by its filename in vim:	open	2024-07-28 10:13:44.138715	2024-07-28 10:13:44.138715
-2157	258	Navigate file explorer in vim by opening a directory:	open	2024-07-28 10:13:44.457245	2024-07-28 10:13:44.457245
-2158	267	Create a tag file in project directory:	open	2024-07-28 10:13:44.814326	2024-07-28 10:13:44.814326
-2163	267	Select tag from matchlist after jumping to a wrong definition:	open	2024-07-28 10:13:46.168003	2024-07-28 10:13:46.168003
-2164	267	Manual match with a tag:	open	2024-07-28 10:13:46.381586	2024-07-28 10:13:46.381586
-2165	268	Compile a project inside Vim:	open	2024-07-28 10:13:46.622051	2024-07-28 10:13:46.622051
-2166	268	Browse the Quickfix list:	open	2024-07-28 10:13:46.860341	2024-07-28 10:13:46.860341
-2167	268	Jump through errors generated by make:	open	2024-07-28 10:13:47.129769	2024-07-28 10:13:47.129769
-2168	268	Jump to the Nth error:	open	2024-07-28 10:13:47.305469	2024-07-28 10:13:47.305469
-2169	268	Jump to the first error in next file:	open	2024-07-28 10:13:47.526174	2024-07-28 10:13:47.526174
-2170	268	Use quickfix actions only for the active window:	open	2024-07-28 10:13:47.899301	2024-07-28 10:13:47.899301
-2171	268	Refer back to previous or next quickfix results:	open	2024-07-28 10:13:48.241238	2024-07-28 10:13:48.241238
-2172	268	Configure :make to invoke another program:	open	2024-07-28 10:13:48.518085	2024-07-28 10:13:48.518085
-2173	268	Populate the quickfix list by program output:	open	2024-07-28 10:13:48.845251	2024-07-28 10:13:48.845251
-2174	268	Setup makeprg and errorformat using compiler command:	open	2024-07-28 10:13:49.139804	2024-07-28 10:13:49.139804
-2175	1446	How many stages does CMake have to build a project?	open	2024-08-18 14:51:01.213425	2024-08-18 14:51:01.213425
-2176	1446	What file does CMake use as cache in configuration stage?	open	2024-08-18 14:51:01.215727	2024-08-18 14:51:01.215727
-2177	1446	What are the crucial CMake commands needed in every project?	open	2024-08-18 14:51:01.218323	2024-08-18 14:51:01.218323
-2178	1446	Run CMake for configuration stage of a project?	open	2024-08-18 14:51:01.220381	2024-08-18 14:51:01.220381
-2179	1446	Run CMake for building stage of a project?	open	2024-08-18 14:51:01.221813	2024-08-18 14:51:01.221813
-2180	1446	Build latest CMake version from source?	open	2024-08-18 14:51:01.22286	2024-08-18 14:51:01.22286
-2181	1446	What commands are available after a clean installation of CMake?	open	2024-08-18 14:51:01.223983	2024-08-18 14:51:01.223983
-2182	1446	Specify generator when configuring a project with CMake?	open	2024-08-18 14:51:01.225156	2024-08-18 14:51:01.225156
-2183	1446	Get help from CMake on a shell?	open	2024-08-18 14:51:01.227189	2024-08-18 14:51:01.227189
-2184	1446	Get a list of detailed help from CMake on shell?	open	2024-08-18 14:51:01.228976	2024-08-18 14:51:01.228976
-2185	1446	Specify a cache when configuring a project with CMake?	open	2024-08-18 14:51:01.230911	2024-08-18 14:51:01.230911
-2186	1446	Initialize existing cache variables when configuring a project with CMake?	open	2024-08-18 14:51:01.231923	2024-08-18 14:51:01.231923
-2187	1446	Specify build type when configuring a project with CMake?	open	2024-08-18 14:51:01.232887	2024-08-18 14:51:01.232887
-2188	1446	List all the cache variables of a project?	open	2024-08-18 14:51:01.233953	2024-08-18 14:51:01.233953
-2193	1446	What is a message context?	open	2024-08-18 14:51:01.238573	2024-08-18 14:51:01.238573
-2234	1461	Which version of CMake does support presets?	open	2024-08-18 14:51:01.284975	2024-08-18 14:51:01.284975
-2235	1461	What features do CMake presets offer?	open	2024-08-18 14:51:01.285713	2024-08-18 14:51:01.285713
-2236	1461	Where should CMake preset files reside to be recognizable?	open	2024-08-18 14:51:01.286425	2024-08-18 14:51:01.286425
-2237	1461	What stages do CMake presets can be defined for?	open	2024-08-18 14:51:01.287113	2024-08-18 14:51:01.287113
-2238	1461	List CMake presets specific for configuration stage?	open	2024-08-18 14:51:01.28778	2024-08-18 14:51:01.28778
-2239	1461	List CMake presets specific for build stage?	open	2024-08-18 14:51:01.288526	2024-08-18 14:51:01.288526
-2240	1461	List CMake presets specific for test stage?	open	2024-08-18 14:51:01.289271	2024-08-18 14:51:01.289271
-2241	1461	List CMake workflow presets?	open	2024-08-18 14:51:01.29001	2024-08-18 14:51:01.29001
-2242	1461	Use a project defined CMake preset?	open	2024-08-18 14:51:01.290683	2024-08-18 14:51:01.290683
-2243	1461	What is the format of a CMake preset file?	open	2024-08-18 14:51:01.29174	2024-08-18 14:51:01.29174
-2244	1461	What is the common mandatory field in all CMake presets?	open	2024-08-18 14:51:01.293669	2024-08-18 14:51:01.293669
-2245	1461	What are the optional fields in all CMake presets?	open	2024-08-18 14:51:01.295344	2024-08-18 14:51:01.295344
-2246	1461	What common dependency exists in CMake stage specific presets?	open	2024-08-18 14:51:01.297165	2024-08-18 14:51:01.297165
-2247	1461	What are the CMake configuration stage specific preset fields?	open	2024-08-18 14:51:01.29807	2024-08-18 14:51:01.29807
-2248	1461	What is the precedence of preset variables in CMake?	open	2024-08-18 14:51:01.298839	2024-08-18 14:51:01.298839
-2249	1461	What are the CMake build stage specific preset fields?	open	2024-08-18 14:51:01.299685	2024-08-18 14:51:01.299685
-2250	1461	What are the CMake test stage specific preset fields?	open	2024-08-18 14:51:01.300642	2024-08-18 14:51:01.300642
-2251	1461	What are the CMake package stage specific preset fields?	open	2024-08-18 14:51:01.301403	2024-08-18 14:51:01.301403
-2252	1461	What is the work around for creating an install stage preset?	open	2024-08-18 14:51:01.302148	2024-08-18 14:51:01.302148
-2253	1461	Run a CMake workflow by first wiping the build tree and clearing cache?	open	2024-08-18 14:51:01.302849	2024-08-18 14:51:01.302849
-2254	1461	Define a CMake workflow in a project?	open	2024-08-18 14:51:01.303556	2024-08-18 14:51:01.303556
-2255	1461	What is the structure of a condition in CMake presets?	open	2024-08-18 14:51:01.304244	2024-08-18 14:51:01.304244
-2256	1461	What types of conditions exists in CMake presets?	open	2024-08-18 14:51:01.305316	2024-08-18 14:51:01.305316
-2257	1461	What are the available macros in CMake presets?	open	2024-08-18 14:51:01.306221	2024-08-18 14:51:01.306221
-2189	1446	Remove a cache variable from the configuration of a project?	open	2024-08-18 14:51:01.234763	2024-08-18 14:51:01.234763
-2190	1446	Get project agnostic general information about variables, commands, marcros and other settings?	open	2024-08-18 14:51:01.235644	2024-08-18 14:51:01.235644
-2191	1446	Change the log level of CMake?	open	2024-08-18 14:51:01.236728	2024-08-18 14:51:01.236728
-2192	1446	What CMake command prints logs?	open	2024-08-18 14:51:01.237656	2024-08-18 14:51:01.237656
-2194	1446	Enable context in CMake logs?	open	2024-08-18 14:51:01.239566	2024-08-18 14:51:01.239566
-2195	1446	What is the most verbose option of loggin for CMake?	open	2024-08-18 14:51:01.240557	2024-08-18 14:51:01.240557
-2196	1446	What are CMake presets?	open	2024-08-18 14:51:01.241709	2024-08-18 14:51:01.241709
-2197	1446	List available CMake presets?	open	2024-08-18 14:51:01.243463	2024-08-18 14:51:01.243463
-2198	1446	Choose a CMake preset for a project?	open	2024-08-18 14:51:01.245492	2024-08-18 14:51:01.245492
-2199	1446	Run CMake to configure a project by erasiing previous configurations first?	open	2024-08-18 14:51:01.247484	2024-08-18 14:51:01.247484
-2200	1446	Run CMake in building stage with parallel jobs?	open	2024-08-18 14:51:01.248754	2024-08-18 14:51:01.248754
-2201	1446	Specify a target in building stage of a project?	open	2024-08-18 14:51:01.249676	2024-08-18 14:51:01.249676
-2202	1446	Clean the build tree?	open	2024-08-18 14:51:01.250652	2024-08-18 14:51:01.250652
-2203	1446	Build a project by first cleaning the build tree?	open	2024-08-18 14:51:01.25157	2024-08-18 14:51:01.25157
-2204	1446	Specify which configuration should be used in building stage by multi-configuration supported generators?	open	2024-08-18 14:51:01.25248	2024-08-18 14:51:01.25248
-2205	1446	Generate debugging logs on building stage?	open	2024-08-18 14:51:01.253435	2024-08-18 14:51:01.253435
-2206	1446	Use CMake to install build artifacts?	open	2024-08-18 14:51:01.254336	2024-08-18 14:51:01.254336
-2207	1446	Change the default installation path in installation stage?	open	2024-08-18 14:51:01.255289	2024-08-18 14:51:01.255289
-2208	1446	Explicitly specify which components you want to install on installation stage?	open	2024-08-18 14:51:01.25621	2024-08-18 14:51:01.25621
-2209	1446	Specify default directory permissions on installatino stage?	open	2024-08-18 14:51:01.25716	2024-08-18 14:51:01.25716
-2210	1446	Generate debugging logs on installation stage?	open	2024-08-18 14:51:01.258216	2024-08-18 14:51:01.258216
-2211	1446	Run a cmake script?	open	2024-08-18 14:51:01.25999	2024-08-18 14:51:01.25999
-2212	1446	Use CMake to run a platform independent command?	open	2024-08-18 14:51:01.261806	2024-08-18 14:51:01.261806
-2213	1446	Use CMake to run checksum?	open	2024-08-18 14:51:01.263784	2024-08-18 14:51:01.263784
-2214	1446	Where do workflows can be used?	open	2024-08-18 14:51:01.264861	2024-08-18 14:51:01.264861
-2215	1446	Get a list of presets in a workflow?	open	2024-08-18 14:51:01.265667	2024-08-18 14:51:01.265667
-2216	1446	Execute a workflow preset?	open	2024-08-18 14:51:01.266414	2024-08-18 14:51:01.266414
-2217	1446	Run all the tests in a project?	open	2024-08-18 14:51:01.26714	2024-08-18 14:51:01.26714
-2218	1446	What GUI interfaces does cmake have?	open	2024-08-18 14:51:01.267901	2024-08-18 14:51:01.267901
-2219	1446	Where is the source directory?	open	2024-08-18 14:51:01.2687	2024-08-18 14:51:01.2687
-2220	1446	Where is the build directory?	open	2024-08-18 14:51:01.269489	2024-08-18 14:51:01.269489
-2221	1446	What is Listfiles?	open	2024-08-18 14:51:01.270258	2024-08-18 14:51:01.270258
-2222	1446	What is the main CMake listfile in a project?	open	2024-08-18 14:51:01.271129	2024-08-18 14:51:01.271129
-2223	1446	What is the structure of a cache file?	open	2024-08-18 14:51:01.271899	2024-08-18 14:51:01.271899
-2224	1446	What is a CMake package configuration file?	open	2024-08-18 14:51:01.272828	2024-08-18 14:51:01.272828
-2225	1446	What are the common CMake artifacts resulted in generation stage?	open	2024-08-18 14:51:01.273662	2024-08-18 14:51:01.273662
-2226	1446	What are preset files?	open	2024-08-18 14:51:01.274597	2024-08-18 14:51:01.274597
-2227	1446	What are the advantages of running CMake scripts rather than external scripts?	open	2024-08-18 14:51:01.27625	2024-08-18 14:51:01.27625
-2228	1446	What is the minimum requirements of a CMake script file?	open	2024-08-18 14:51:01.278419	2024-08-18 14:51:01.278419
-2229	1446	What are the CMake utility modules?	open	2024-08-18 14:51:01.280803	2024-08-18 14:51:01.280803
-2230	1446	Use a CMake utility module?	open	2024-08-18 14:51:01.281705	2024-08-18 14:51:01.281705
-2231	1446	What are the CMake find modules?	open	2024-08-18 14:51:01.282591	2024-08-18 14:51:01.282591
-2232	1446	Get the list of CMake modules?	open	2024-08-18 14:51:01.283356	2024-08-18 14:51:01.283356
-2276	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:08:47.381065	2024-09-18 17:08:47.381065
-2277	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:08:47.382923	2024-09-18 17:08:47.382923
-2278	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:08:47.384277	2024-09-18 17:08:47.384277
-2279	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:08:47.385635	2024-09-18 17:08:47.385635
-2280	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:08:47.387076	2024-09-18 17:08:47.387076
-2281	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:08:47.388583	2024-09-18 17:08:47.388583
-2282	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:08:47.389554	2024-09-18 17:08:47.389554
-2283	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:08:47.390476	2024-09-18 17:08:47.390476
-2284	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:08:47.391363	2024-09-18 17:08:47.391363
-2285	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:08:47.39223	2024-09-18 17:08:47.39223
-2286	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:08:47.39311	2024-09-18 17:08:47.39311
-2287	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:08:47.393966	2024-09-18 17:08:47.393966
-2288	1361	What types in multithreading are move only?	open	2024-09-18 17:08:47.394819	2024-09-18 17:08:47.394819
-2289	1361	How does the thread constructor take arguments?	open	2024-09-18 17:08:47.395762	2024-09-18 17:08:47.395762
-2290	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:08:47.396696	2024-09-18 17:08:47.396696
-2291	1361	Pass string literals as universal references?	open	2024-09-18 17:08:47.39778	2024-09-18 17:08:47.39778
-2293	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:09:19.167077	2024-09-18 17:09:19.167077
-2294	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:09:19.169002	2024-09-18 17:09:19.169002
-2295	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:09:19.170611	2024-09-18 17:09:19.170611
-2296	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:09:19.172279	2024-09-18 17:09:19.172279
-2297	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:09:19.173887	2024-09-18 17:09:19.173887
-2298	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:09:19.175671	2024-09-18 17:09:19.175671
-2299	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:09:19.176885	2024-09-18 17:09:19.176885
-2300	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:09:19.178012	2024-09-18 17:09:19.178012
-2301	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:09:19.179153	2024-09-18 17:09:19.179153
-2302	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:09:19.180118	2024-09-18 17:09:19.180118
-2303	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:09:19.181282	2024-09-18 17:09:19.181282
-2304	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:09:19.183328	2024-09-18 17:09:19.183328
-2305	1361	What types in multithreading are move only?	open	2024-09-18 17:09:19.184517	2024-09-18 17:09:19.184517
-2306	1361	How does the thread constructor take arguments?	open	2024-09-18 17:09:19.185643	2024-09-18 17:09:19.185643
-2307	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:19.18668	2024-09-18 17:09:19.18668
-2308	1361	Pass string literals as universal references?	open	2024-09-18 17:09:19.188021	2024-09-18 17:09:19.188021
-2310	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:09:42.503108	2024-09-18 17:09:42.503108
-2311	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:09:42.504922	2024-09-18 17:09:42.504922
-2312	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:09:42.506258	2024-09-18 17:09:42.506258
-2313	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:09:42.507851	2024-09-18 17:09:42.507851
-2314	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:09:42.510067	2024-09-18 17:09:42.510067
-2315	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:09:42.512331	2024-09-18 17:09:42.512331
-2316	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:09:42.513962	2024-09-18 17:09:42.513962
-2317	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:09:42.515518	2024-09-18 17:09:42.515518
-2318	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:09:42.516519	2024-09-18 17:09:42.516519
-2319	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:09:42.517428	2024-09-18 17:09:42.517428
-2320	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:09:42.518353	2024-09-18 17:09:42.518353
-2321	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:09:42.519289	2024-09-18 17:09:42.519289
-2322	1361	What types in multithreading are move only?	open	2024-09-18 17:09:42.520264	2024-09-18 17:09:42.520264
-2323	1361	How does the thread constructor take arguments?	open	2024-09-18 17:09:42.521459	2024-09-18 17:09:42.521459
-2324	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:42.522544	2024-09-18 17:09:42.522544
-2325	1361	Pass string literals as universal references?	open	2024-09-18 17:09:42.52375	2024-09-18 17:09:42.52375
-2327	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:20:08.983415	2024-09-18 17:20:08.983415
-3348	1571	Use formatted messages in static assertion?	open	2024-11-27 21:53:14.144908	2024-11-27 21:53:14.144908
-2328	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:20:08.985051	2024-09-18 17:20:08.985051
-2329	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:20:08.986641	2024-09-18 17:20:08.986641
-2330	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:20:08.988433	2024-09-18 17:20:08.988433
-2331	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:20:08.990052	2024-09-18 17:20:08.990052
-2332	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:20:08.991308	2024-09-18 17:20:08.991308
-2333	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:20:08.992595	2024-09-18 17:20:08.992595
-2334	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:20:08.993885	2024-09-18 17:20:08.993885
-2335	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:20:08.995148	2024-09-18 17:20:08.995148
-2336	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:20:08.996277	2024-09-18 17:20:08.996277
-2337	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:20:08.997255	2024-09-18 17:20:08.997255
-2338	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:20:08.998145	2024-09-18 17:20:08.998145
-2339	1361	What types in multithreading are move only?	open	2024-09-18 17:20:08.999003	2024-09-18 17:20:08.999003
-2340	1361	How does the thread constructor take arguments?	open	2024-09-18 17:20:08.999937	2024-09-18 17:20:08.999937
-2341	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:20:09.000946	2024-09-18 17:20:09.000946
-2342	1361	Pass string literals as universal references?	open	2024-09-18 17:20:09.002003	2024-09-18 17:20:09.002003
-434	1293	What is the foundation of C++ memory model for concurrency?	open	2024-07-28 10:00:50.71788	2024-07-28 10:00:50.71788
-435	1293	What are the levels of expertise in multithreading?	open	2024-07-28 10:00:51.048242	2024-07-28 10:00:51.048242
-436	1293	How to use <code>std::atomic_flag</code> to make spinlock mechanism?	open	2024-07-28 10:00:52.225477	2024-07-28 10:00:52.225477
-437	1293	How to use <code>std::mutex</code> to make spinlock mechanism?	open	2024-07-28 10:00:53.372976	2024-07-28 10:00:53.372976
-438	1293	Use condition variables to synchronize two threads?	open	2024-07-28 10:00:54.916437	2024-07-28 10:00:54.916437
-2343	1293	What are the basic building blocks of C++ concurrency?	open	2024-09-19 14:56:13.921899	2024-09-19 14:56:13.921899
-2344	1293	What are the higher abstraction layers of C++ concurrency?	open	2024-09-19 14:56:13.926985	2024-09-19 14:56:13.926985
-2345	1293	What are the sequential consistency guarantees?	open	2024-09-19 14:56:13.929234	2024-09-19 14:56:13.929234
-2346	1293	What is an atomic data type?	open	2024-09-19 14:56:13.931719	2024-09-19 14:56:13.931719
-2347	1293	What does multithreading in C++ consist of?	open	2024-09-19 14:56:13.933883	2024-09-19 14:56:13.933883
-2348	1293	What is an execution unit?	open	2024-09-19 14:56:13.936465	2024-09-19 14:56:13.936465
-2349	1293	What is a callable unit?	open	2024-09-19 14:56:13.939256	2024-09-19 14:56:13.939256
-2350	1293	What is the life-time of an execution unit?	open	2024-09-19 14:56:13.940712	2024-09-19 14:56:13.940712
-2351	1293	How many ending strategies can a thread creator perform on its threads?	open	2024-09-19 14:56:13.942494	2024-09-19 14:56:13.942494
-2352	1293	What is a joinable thread?	open	2024-09-19 14:56:13.943582	2024-09-19 14:56:13.943582
-2353	1293	What happens when a joinable thread execution ends?	open	2024-09-19 14:56:13.944609	2024-09-19 14:56:13.944609
-2354	1293	What does a thread take in its constructor?	open	2024-09-19 14:56:13.945567	2024-09-19 14:56:13.945567
-2355	1293	What is a shared data?	open	2024-09-19 14:56:13.946458	2024-09-19 14:56:13.946458
-2356	1293	What components can be used to coordinate access to a shared data?	open	2024-09-19 14:56:13.947647	2024-09-19 14:56:13.947647
-2357	1293	How a mutex locks access to a shared data?	open	2024-09-19 14:56:13.948718	2024-09-19 14:56:13.948718
-2358	1293	What is the basic use case of a lock?	open	2024-09-19 14:56:13.949846	2024-09-19 14:56:13.949846
-2359	1293	What locks exist in C++?	open	2024-09-19 14:56:13.950799	2024-09-19 14:56:13.950799
-2360	1293	How many ways exist to initialize a read-only variable accessible to multiple threads?	open	2024-09-19 14:56:13.951779	2024-09-19 14:56:13.951779
-2361	1293	What is a thread-local data?	open	2024-09-19 14:56:13.952791	2024-09-19 14:56:13.952791
-2362	1293	What is a condition variable?	open	2024-09-19 14:56:13.953727	2024-09-19 14:56:13.953727
-2363	1293	What are the use cases of condition variables?	open	2024-09-19 14:56:13.954768	2024-09-19 14:56:13.954768
-2364	1293	What is a task?	open	2024-09-19 14:56:13.95577	2024-09-19 14:56:13.95577
-2365	1293	What objects can be transferred in the communication channel made by a task?	open	2024-09-19 14:56:13.956706	2024-09-19 14:56:13.956706
-2366	1293	What are the execution policies?	open	2024-09-19 14:56:13.95767	2024-09-19 14:56:13.95767
-2367	1293	What are the advantages of using jthread?	open	2024-09-19 14:56:13.958641	2024-09-19 14:56:13.958641
-2368	1293	What are the drawbacks of using shared and weak pointers in multiple threads?	open	2024-09-19 14:56:13.959691	2024-09-19 14:56:13.959691
-2369	1293	What are the atomic shared pointers?	open	2024-09-19 14:56:13.960796	2024-09-19 14:56:13.960796
-2370	1293	What are the use cases of latch and barriers?	open	2024-09-19 14:56:13.962792	2024-09-19 14:56:13.962792
-2371	1293	What is the difference between latches and barriers?	open	2024-09-19 14:56:13.964808	2024-09-19 14:56:13.964808
-2372	1293	What is a counting semaphore?	open	2024-09-19 14:56:13.966494	2024-09-19 14:56:13.966494
-2373	1293	What is a coroutine?	open	2024-09-19 14:56:13.968168	2024-09-19 14:56:13.968168
-2374	1293	What are the use cases of coroutines?	open	2024-09-19 14:56:13.969339	2024-09-19 14:56:13.969339
-2375	1293	What is an executors?	open	2024-09-19 14:56:13.970354	2024-09-19 14:56:13.970354
-2376	1293	What member functions are new in extended futures?	open	2024-09-19 14:56:13.971293	2024-09-19 14:56:13.971293
-2377	1293	What is a transactional memory model?	open	2024-09-19 14:56:13.972298	2024-09-19 14:56:13.972298
-2378	1293	What transactional memory block types exist in C++?	open	2024-09-19 14:56:13.973147	2024-09-19 14:56:13.973147
-2379	1293	What is the execution order of transactional memory blocks?	open	2024-09-19 14:56:13.97404	2024-09-19 14:56:13.97404
-2380	1293	What are the differences between existing transactional memory blocks?	open	2024-09-19 14:56:13.974979	2024-09-19 14:56:13.974979
-2381	1293	What is a task block?	open	2024-09-19 14:56:13.975939	2024-09-19 14:56:13.975939
-2382	1293	What is the meaning of data parallel programming?	open	2024-09-19 14:56:13.976861	2024-09-19 14:56:13.976861
-2418	1553	What scopes does OpenEmbedded build system have?	open	2024-09-22 10:06:26.819644	2024-09-22 10:06:26.819644
-2419	1553	Assign a value to a variable discarding its previous value?	open	2024-09-22 10:06:26.82154	2024-09-22 10:06:26.82154
-2420	1553	How many different variable expansions exists in OpenEmbedded build system?	open	2024-09-22 10:06:26.824365	2024-09-22 10:06:26.824365
-2421	1553	Append values to a variable with and without spaces?	open	2024-09-22 10:06:26.82672	2024-09-22 10:06:26.82672
-2422	1553	Prepend values to a variable with and without spaces?	open	2024-09-22 10:06:26.82875	2024-09-22 10:06:26.82875
-2423	1553	Make a default value for a variable?	open	2024-09-22 10:06:26.830887	2024-09-22 10:06:26.830887
-2424	1553	What is the difference between default and weak default values?	open	2024-09-22 10:06:26.833559	2024-09-22 10:06:26.833559
-2425	1553	What is the preferred way of modifying a variable?	open	2024-09-22 10:06:26.835627	2024-09-22 10:06:26.835627
-2426	1553	What does override operators do?	open	2024-09-22 10:06:26.83779	2024-09-22 10:06:26.83779
-2427	1553	Append to a variable using override operators?	open	2024-09-22 10:06:26.840005	2024-09-22 10:06:26.840005
-2428	1553	Prepend to a variable using override operators?	open	2024-09-22 10:06:26.842048	2024-09-22 10:06:26.842048
-2429	1553	Remove all occurances of a value within a variable using override operators?	open	2024-09-22 10:06:26.843961	2024-09-22 10:06:26.843961
-2430	1553	What does the dropbear package do?	open	2024-09-22 10:06:26.845783	2024-09-22 10:06:26.845783
-2431	1553	Assign on a variable only for a specific machine?	open	2024-09-22 10:06:26.848246	2024-09-22 10:06:26.848246
-2432	1553	What is the precedence between override assignments and regular assignments?	open	2024-09-22 10:06:26.850927	2024-09-22 10:06:26.850927
-2434	1553	What is the precedence of override operators?	open	2024-09-22 10:06:26.855264	2024-09-22 10:06:26.855264
-2481	1557	What URI schemes exist?	open	2024-09-22 10:06:26.957417	2024-09-22 10:06:26.957417
-2482	1557	What pattern does git scheme have?	open	2024-09-22 10:06:26.959182	2024-09-22 10:06:26.959182
-2483	1557	What variables can be used as mirror locations?	open	2024-09-22 10:06:26.961474	2024-09-22 10:06:26.961474
-2484	1557	What configuration variable defines the location where sources are downloaded?	open	2024-09-22 10:06:26.963472	2024-09-22 10:06:26.963472
-2485	1557	Use checksums to verify integrity of a package?	open	2024-09-22 10:06:26.96564	2024-09-22 10:06:26.96564
-2486	1557	What variable is used to locate source files with file scheme?	open	2024-09-22 10:06:26.968076	2024-09-22 10:06:26.968076
-2487	1557	What paths are automatically appended to <code>FILESPATH</code>?	open	2024-09-22 10:06:26.970001	2024-09-22 10:06:26.970001
-2488	1557	What does <code>FILESOVERRIDES</code> variable contain?	open	2024-09-22 10:06:26.971933	2024-09-22 10:06:26.971933
-2489	1557	What variables defines the source files location?	open	2024-09-22 10:06:26.974296	2024-09-22 10:06:26.974296
-2490	1557	What variable defines the license files location?	open	2024-09-22 10:06:26.97675	2024-09-22 10:06:26.97675
-2491	1557	What variable defines build-time dependencies of a recipe?	open	2024-09-22 10:06:26.978648	2024-09-22 10:06:26.978648
-2495	1558	What are the default tasks?	open	2024-09-22 10:06:26.986927	2024-09-22 10:06:26.986927
-2496	1558	Get a list of existing tasks from a recipe?	open	2024-09-22 10:06:26.988803	2024-09-22 10:06:26.988803
-2497	1558	What variable defines the location of generated objects during build?	open	2024-09-22 10:06:26.990674	2024-09-22 10:06:26.990674
-2498	1558	What variable defines the location where files are installed?	open	2024-09-22 10:06:26.992512	2024-09-22 10:06:26.992512
-2499	1558	What variable points to the working directory of recipe?	open	2024-09-22 10:06:26.994367	2024-09-22 10:06:26.994367
-2500	1558	What is the general syntax of a task?	open	2024-09-22 10:06:26.996427	2024-09-22 10:06:26.996427
-2501	1558	What each of default tasks work on which location variables?	open	2024-09-22 10:06:26.998409	2024-09-22 10:06:26.998409
-2502	1558	Add a task in a recipe?	open	2024-09-22 10:06:27.00027	2024-09-22 10:06:27.00027
-2503	1559	Take the precedence of gcc arguments without making patches?	open	2024-09-22 10:06:27.002413	2024-09-22 10:06:27.002413
-2504	1559	Which files are always applied after sources are fetched and extracted?	open	2024-09-22 10:06:27.004577	2024-09-22 10:06:27.004577
-2505	1559	Specify a tool to patch the sources listed in <code>SRC_URI</code>	open	2024-09-22 10:06:27.006869	2024-09-22 10:06:27.006869
-2506	1559	Specify how to resolve a conflict in patch?	open	2024-09-22 10:06:27.009292	2024-09-22 10:06:27.009292
-2507	1559	Write a recipe to install an program from GitHub?	open	2024-09-22 10:06:27.011378	2024-09-22 10:06:27.011378
-2508	1559	Write a version agnostic include file for a custom program?	open	2024-09-22 10:06:27.013177	2024-09-22 10:06:27.013177
-2509	1559	Use a version agnostic include file in a recipe?	open	2024-09-22 10:06:27.01514	2024-09-22 10:06:27.01514
-2510	1559	Where the run and log files are located?	open	2024-09-22 10:06:27.017288	2024-09-22 10:06:27.017288
-2511	1559	Get the value of a variable used in a recipe?	open	2024-09-22 10:06:27.019242	2024-09-22 10:06:27.019242
-2512	1559	List the entire environment variables in poky?	open	2024-09-22 10:06:27.020853	2024-09-22 10:06:27.020853
-2438	1553	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921
-2454	1553	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584
-2455	1553	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199
-2456	1553	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655
-2457	1553	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011
-2458	1553	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358
-2459	1553	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528
-2460	1553	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467
-2461	1553	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302
-2462	1553	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375
-2463	1553	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558
-2469	1554	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782
-2470	1554	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673
-2471	1554	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745
-2472	1554	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843
-2473	1554	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776
-2513	1559	List the environment variables of a recipe?	open	2024-09-22 10:06:27.022834	2024-09-22 10:06:27.022834
-2514	1559	Extend a recipe in third-party layers?	open	2024-09-22 10:06:27.025138	2024-09-22 10:06:27.025138
-2515	1559	What are the considerations of extending a recipe?	open	2024-09-22 10:06:27.027948	2024-09-22 10:06:27.027948
-2517	1559	Extend a task?	open	2024-09-22 10:06:27.033461	2024-09-22 10:06:27.033461
-2518	1560	Use a class in a custome recipe?	open	2024-09-22 10:06:27.035993	2024-09-22 10:06:27.035993
-2519	1560	What are the common classes?	open	2024-09-22 10:06:27.037848	2024-09-22 10:06:27.037848
-2520	1560	Which class is automatically inherited by all recipes?	open	2024-09-22 10:06:27.039712	2024-09-22 10:06:27.039712
-2521	1560	What common tasks are defaulted by base class?	open	2024-09-22 10:06:27.042298	2024-09-22 10:06:27.042298
-2522	1560	Where is <code>EXTRA_OEMAKE</code> useful?	open	2024-09-22 10:06:27.044257	2024-09-22 10:06:27.044257
-2523	1560	What does kernel class do?	open	2024-09-22 10:06:27.046382	2024-09-22 10:06:27.046382
-2524	1560	What does autotools class do?	open	2024-09-22 10:06:27.048528	2024-09-22 10:06:27.048528
-2525	1560	What does useradd class do?	open	2024-09-22 10:06:27.051225	2024-09-22 10:06:27.051225
-2526	1560	Which variable can be used to specify the packages that require their own users?	open	2024-09-22 10:06:27.053324	2024-09-22 10:06:27.053324
-2527	1560	Which class should be used when we need to install pre-built files into the generated root filesystem?	open	2024-09-22 10:06:27.055826	2024-09-22 10:06:27.055826
-2528	1561	Which variables is used to find the files to be included?	open	2024-09-22 10:06:27.057753	2024-09-22 10:06:27.057753
-2529	1561	What keywords are used to include files from recipes?	open	2024-09-22 10:06:27.059945	2024-09-22 10:06:27.059945
-2530	1561	How does inheriting in configuration files work?	open	2024-09-22 10:06:27.062135	2024-09-22 10:06:27.062135
-2531	1561	What is the difference between <code>include</code> and <code>require</code>?	open	2024-09-22 10:06:27.064288	2024-09-22 10:06:27.064288
-2532	1561	Debug build failures by using a development shell?	open	2024-09-22 10:06:27.066709	2024-09-22 10:06:27.066709
-2533	1561	Differenciate two builds?	open	2024-09-22 10:06:27.06979	2024-09-22 10:06:27.06979
-2534	1561	What locations are used by bitbake to retrieve files?	open	2024-09-22 10:06:27.073782	2024-09-22 10:06:27.073782
-2535	1561	Export full environment to a shell to debug a build?	open	2024-09-22 10:06:27.075651	2024-09-22 10:06:27.075651
-2536	1561	Enable build history to differenciate between two builds?	open	2024-09-22 10:06:27.077857	2024-09-22 10:06:27.077857
-2537	1561	Check the difference between two builds?	open	2024-09-22 10:06:27.079721	2024-09-22 10:06:27.079721
-2538	1561	Which class can be used to add mirrors?	open	2024-09-22 10:06:27.082295	2024-09-22 10:06:27.082295
-2544	1562	What is the convention in naming layers?	open	2024-09-22 10:06:27.094913	2024-09-22 10:06:27.094913
-2545	1562	What do layers isolate within their boundaries?	open	2024-09-22 10:06:27.096769	2024-09-22 10:06:27.096769
-2546	1562	What are the common layers in Poky?	open	2024-09-22 10:06:27.099389	2024-09-22 10:06:27.099389
-2547	1562	Where is the list of maintained layers?	open	2024-09-22 10:06:27.101606	2024-09-22 10:06:27.101606
-2548	1562	Where are the bitbake layers located?	open	2024-09-22 10:06:27.10355	2024-09-22 10:06:27.10355
-2549	1562	Include another layer?	open	2024-09-22 10:06:27.105798	2024-09-22 10:06:27.105798
-2558	1563	Which metadata files are parsed by bitbake automatically?	open	2024-09-22 10:06:27.124949	2024-09-22 10:06:27.124949
-2559	1563	Define a new layer dependency?	open	2024-09-22 10:06:27.126807	2024-09-22 10:06:27.126807
-2560	1563	Specify which yocto version a layer is compatible with?	open	2024-09-22 10:06:27.128801	2024-09-22 10:06:27.128801
-2561	1563	What is a BSP layer?	open	2024-09-22 10:06:27.131033	2024-09-22 10:06:27.131033
-2562	1563	What are the machine configurations in a BSP layers?	open	2024-09-22 10:06:27.133818	2024-09-22 10:06:27.133818
-2563	1563	What configuration variable is used to describe target machine architecture?	open	2024-09-22 10:06:27.135929	2024-09-22 10:06:27.135929
-2564	1563	What configuration variable is used to describe target kernel?	open	2024-09-22 10:06:27.13788	2024-09-22 10:06:27.13788
-2565	1563	What configuration variable is used to describe target machine features?	open	2024-09-22 10:06:27.139796	2024-09-22 10:06:27.139796
-2566	1563	What configuration variable is used to describe the serial console used to attach to target devide?	open	2024-09-22 10:06:27.141652	2024-09-22 10:06:27.141652
-2567	1563	What configuration variable is used to describe the target kernel image type?	open	2024-09-22 10:06:27.143825	2024-09-22 10:06:27.143825
-2575	1564	In how many ways the kernel can be built with yocto?	open	2024-09-22 10:06:27.160797	2024-09-22 10:06:27.160797
-2576	1564	Use <code>linux-yocto</code> to build a specific kernel in an image?	open	2024-09-22 10:06:27.163108	2024-09-22 10:06:27.163108
-2577	1564	What is the advanced metadata?	open	2024-09-22 10:06:27.165612	2024-09-22 10:06:27.165612
-2578	1564	What is a Kernel Metadata?	open	2024-09-22 10:06:27.168342	2024-09-22 10:06:27.168342
-2579	1564	Write a simple kernel metadata specifying a configuration and a patch?	open	2024-09-22 10:06:27.170754	2024-09-22 10:06:27.170754
-2580	1564	What is advantage of creating a distribution layer?	open	2024-09-22 10:06:27.172827	2024-09-22 10:06:27.172827
-2581	1564	Where is the configuration for a distro layer?	open	2024-09-22 10:06:27.17469	2024-09-22 10:06:27.17469
-2582	1564	What configuration variable is mandatory in a distro layer config file?	open	2024-09-22 10:06:27.176714	2024-09-22 10:06:27.176714
-2583	1564	What informational configuration variables are used in a distro layer config file?	open	2024-09-22 10:06:27.179003	2024-09-22 10:06:27.179003
-2584	1564	What configuration variable is used in distro layers to toggle features?	open	2024-09-22 10:06:27.180961	2024-09-22 10:06:27.180961
-2585	1564	What configuration variable holds the intersection of distro and machine features?	open	2024-09-22 10:06:27.183154	2024-09-22 10:06:27.183154
-2586	1564	Define a toolchain in a distro layer?	open	2024-09-22 10:06:27.185724	2024-09-22 10:06:27.185724
-2587	1564	What sample files are created in distro layers?	open	2024-09-22 10:06:27.18779	2024-09-22 10:06:27.18779
-2588	1564	What configuration variable holds the path to sample config files?	open	2024-09-22 10:06:27.190291	2024-09-22 10:06:27.190291
-2589	1565	What is an image?	open	2024-09-22 10:06:27.192416	2024-09-22 10:06:27.192416
-2590	1565	What is the difference between an image and a machine layer?	open	2024-09-22 10:06:27.194452	2024-09-22 10:06:27.194452
-2591	1565	Where is the location of images?	open	2024-09-22 10:06:27.196265	2024-09-22 10:06:27.196265
-2592	1565	What are the common images used in poky?	open	2024-09-22 10:06:27.198741	2024-09-22 10:06:27.198741
-2593	1565	What an image is made of?	open	2024-09-22 10:06:27.201185	2024-09-22 10:06:27.201185
-2594	1565	What class is inherited by images?	open	2024-09-22 10:06:27.203197	2024-09-22 10:06:27.203197
-2595	1565	What configuration variable is used in an image as the generated image name?	open	2024-09-22 10:06:27.20516	2024-09-22 10:06:27.20516
-2596	1565	What configuration variable is used in an image to hold the list of packages to be installed?	open	2024-09-22 10:06:27.207106	2024-09-22 10:06:27.207106
-2597	1565	What configuration variable is used in an image as the root filesystem size?	open	2024-09-22 10:06:27.208852	2024-09-22 10:06:27.208852
-2598	1565	What configuration variable is used in an image to hold the list of features used in the image?	open	2024-09-22 10:06:27.210725	2024-09-22 10:06:27.210725
-2599	1565	What configuration variable is used in an image to hold the list of formats to be used to create the image?	open	2024-09-22 10:06:27.21256	2024-09-22 10:06:27.21256
-2600	1565	What configuration variable is used in an image to hold the list of locales to be supported?	open	2024-09-22 10:06:27.2145	2024-09-22 10:06:27.2145
-2601	1565	What configuration variable is used in an image as the package type used by the build system?	open	2024-09-22 10:06:27.216646	2024-09-22 10:06:27.216646
-2602	1565	What configuration variable is used in an image as shell commands to run at post process?	open	2024-09-22 10:06:27.218739	2024-09-22 10:06:27.218739
-2603	1565	What configuration variable is used in an image as recipes to be built with the image?	open	2024-09-22 10:06:27.220622	2024-09-22 10:06:27.220622
-2604	1565	What is the first steps of image creation?	open	2024-09-22 10:06:27.222942	2024-09-22 10:06:27.222942
-2605	1566	What variables change how root filesystem is created?	open	2024-09-22 10:06:27.225086	2024-09-22 10:06:27.225086
-2606	1566	Where are the root filesystem related files located in poky?	open	2024-09-22 10:06:27.227033	2024-09-22 10:06:27.227033
-2607	1566	Where are the image type instructions located?	open	2024-09-22 10:06:27.228933	2024-09-22 10:06:27.228933
-2687	1486	When do we need to specify template arguments for class templates?	open	2024-09-28 14:30:48.18392	2024-09-28 14:30:48.18392
-2688	1486	Use compile-time type deduction to declare a non-type template parameter?	open	2024-09-28 14:30:48.187622	2024-09-28 14:30:48.187622
-2620	1567	In what script languages can recipes be written?	open	2024-09-22 10:06:27.258774	2024-09-22 10:06:27.258774
-2621	1567	What Python modules are automatically included when used?	open	2024-09-22 10:06:27.26164	2024-09-22 10:06:27.26164
-2622	1567	Write an anonymous Python function in a recipe?	open	2024-09-22 10:06:27.263889	2024-09-22 10:06:27.263889
-2623	1567	Write an inline Python function in a recipe?	open	2024-09-22 10:06:27.266215	2024-09-22 10:06:27.266215
-2624	1567	Access <code>D</code> configuration variable in recipe tasks?	open	2024-09-22 10:06:27.269164	2024-09-22 10:06:27.269164
-2625	1567	What are the use cases of variable flags?	open	2024-09-22 10:06:27.271564	2024-09-22 10:06:27.271564
-2626	1567	What variable flag is used to store the result of md5 hash?	open	2024-09-22 10:06:27.273581	2024-09-22 10:06:27.273581
-2627	1567	What variable flag can be used to make a directory before a task runs?	open	2024-09-22 10:06:27.275724	2024-09-22 10:06:27.275724
-2628	1567	What variable flag can be used to disable the execution of the task?	open	2024-09-22 10:06:27.277557	2024-09-22 10:06:27.277557
-2629	1567	What variable flag can be used to disable timestamp modification each time a task runs?	open	2024-09-22 10:06:27.279504	2024-09-22 10:06:27.279504
-2642	1568	What configuration variable holds the list of packages to be built?	open	2024-09-22 10:06:27.311877	2024-09-22 10:06:27.311877
-2643	1568	What configuration variable allows to check dependencies?	open	2024-09-22 10:06:27.314251	2024-09-22 10:06:27.314251
-2644	1568	What configuration variable allows creation of empty packages?	open	2024-09-22 10:06:27.316931	2024-09-22 10:06:27.316931
-2645	1568	What configuration variable is used to prevent overwriting during the update process?	open	2024-09-22 10:06:27.319538	2024-09-22 10:06:27.319538
-2646	1568	What configuration variable lists the files to be included in a package?	open	2024-09-22 10:06:27.321883	2024-09-22 10:06:27.321883
-2647	1568	What configuration variable tracks the changes in licenses?	open	2024-09-22 10:06:27.324465	2024-09-22 10:06:27.324465
-2648	1568	Which recipes should contain licensing information?	open	2024-09-22 10:06:27.327062	2024-09-22 10:06:27.327062
-2649	1568	Specify which licenses cannot be integrated into the image?	open	2024-09-22 10:06:27.329821	2024-09-22 10:06:27.329821
-2650	1568	Define a license for commercial components?	open	2024-09-22 10:06:27.334467	2024-09-22 10:06:27.334467
-3356	1572	Install OpenCV from source?	open	2024-11-29 22:54:18.246075	2024-11-29 22:54:18.246075
-2651	1568	Where does bitbake generate the manifest of all licenses?	open	2024-09-22 10:06:27.337151	2024-09-22 10:06:27.337151
-2652	1568	Include the license manifest into the root filesystem?	open	2024-09-22 10:06:27.340114	2024-09-22 10:06:27.340114
-2653	1569	What tools does an SDK provide?	open	2024-09-22 10:06:27.342569	2024-09-22 10:06:27.342569
-2654	1569	What is the form of an SDK generated by poky?	open	2024-09-22 10:06:27.345425	2024-09-22 10:06:27.345425
-2655	1569	What SDK can be used to do low level development?	open	2024-09-22 10:06:27.34792	2024-09-22 10:06:27.34792
-2656	1569	Create a generic SDK for bootloader and kernel development?	open	2024-09-22 10:06:27.350954	2024-09-22 10:06:27.350954
-2657	1569	Where will be the generated generic SDK stored?	open	2024-09-22 10:06:27.353524	2024-09-22 10:06:27.353524
-2658	1569	What SDK can be used to develop applications running on a target?	open	2024-09-22 10:06:27.356	2024-09-22 10:06:27.356
-2659	1569	What task is responsible for generating an SDK?	open	2024-09-22 10:06:27.358434	2024-09-22 10:06:27.358434
-2660	1569	Generate an SDK for an image?	open	2024-09-22 10:06:27.360877	2024-09-22 10:06:27.360877
-2661	1569	What configuration variables control what will be installed in an SDK?	open	2024-09-22 10:06:27.364051	2024-09-22 10:06:27.364051
-2662	1569	Install an SDK?	open	2024-09-22 10:06:27.367128	2024-09-22 10:06:27.367128
-2663	1569	Use an installed SDK?	open	2024-09-22 10:06:27.37016	2024-09-22 10:06:27.37016
-2664	1569	What environment variables will be exported by an SDK?	open	2024-09-22 10:06:27.37292	2024-09-22 10:06:27.37292
-2667	1570	What are the advantages of using devtool?	open	2024-09-22 10:06:27.380755	2024-09-22 10:06:27.380755
-2668	1570	Where is devtool located?	open	2024-09-22 10:06:27.383352	2024-09-22 10:06:27.383352
-2669	1570	Where does devtool manage sources?	open	2024-09-22 10:06:27.386335	2024-09-22 10:06:27.386335
-2670	1570	Create a new recipe with devtool?	open	2024-09-22 10:06:27.388743	2024-09-22 10:06:27.388743
-2671	1570	Modify a recipe with devtool?	open	2024-09-22 10:06:27.3911	2024-09-22 10:06:27.3911
-2672	1570	Upgrade a recipe with devtool?	open	2024-09-22 10:06:27.393414	2024-09-22 10:06:27.393414
-2673	1570	Edit a recipe with an editor using devtool?	open	2024-09-22 10:06:27.395933	2024-09-22 10:06:27.395933
-2674	1570	Build a recipe with devtool?	open	2024-09-22 10:06:27.398504	2024-09-22 10:06:27.398504
-2675	1570	Build an image with the additional devtool recipes?	open	2024-09-22 10:06:27.401275	2024-09-22 10:06:27.401275
-2676	1570	Upload the recipes packages to the target using devtool?	open	2024-09-22 10:06:27.403819	2024-09-22 10:06:27.403819
-2677	1570	Generate patches from git commits made locally with devtool?	open	2024-09-22 10:06:27.406359	2024-09-22 10:06:27.406359
-2678	1570	Remove a recipe from devtool?	open	2024-09-22 10:06:27.408624	2024-09-22 10:06:27.408624
-2689	1486	What is the substitution to recurring templates?	open	2024-09-28 14:30:48.189625	2024-09-28 14:30:48.189625
-2690	1486	What is the initializer list defect when initializing an integer?	open	2024-09-28 14:30:48.191659	2024-09-28 14:30:48.191659
-2691	1486	Declare a compile-time evaluated lambda?	open	2024-09-28 14:30:48.19355	2024-09-28 14:30:48.19355
-2692	1486	What is the smallest character code?	open	2024-09-28 14:30:48.195565	2024-09-28 14:30:48.195565
-2693	1486	Capture <code>this</code> in a lambda by value?	open	2024-09-28 14:30:48.197539	2024-09-28 14:30:48.197539
-2694	1486	Declare an inline variable?	open	2024-09-28 14:30:48.198851	2024-09-28 14:30:48.198851
-2695	1486	Define nested namespaces?	open	2024-09-28 14:30:48.200018	2024-09-28 14:30:48.200018
-2696	1486	Store the return values of a function into structured bindings?	open	2024-09-28 14:30:48.201296	2024-09-28 14:30:48.201296
-2697	1486	Initialize a variable used for evaluation in an if statement within the statement?	open	2024-09-28 14:30:48.202394	2024-09-28 14:30:48.202394
-2698	1486	Use compile-time if statement to check if template argument is integral, string, or a base of an object?	open	2024-09-28 14:30:48.203705	2024-09-28 14:30:48.203705
-2699	1486	Write a hexadecimal floating-point literal number?	open	2024-09-28 14:30:48.205002	2024-09-28 14:30:48.205002
-2700	1486	Direct initialize an enumeration?	open	2024-09-28 14:30:48.206308	2024-09-28 14:30:48.206308
-2701	1486	Explicitly specify fallthrough of a case in switch statement?	open	2024-09-28 14:30:48.207819	2024-09-28 14:30:48.207819
-2702	1486	Prevent function caller from discarding the return value?	open	2024-09-28 14:30:48.209214	2024-09-28 14:30:48.209214
-2703	1486	Specify that a variable is intentionally left unused?	open	2024-09-28 14:30:48.210575	2024-09-28 14:30:48.210575
-2704	1486	Write a static assertion without a message?	open	2024-09-28 14:30:48.211926	2024-09-28 14:30:48.211926
-2705	1487	How many assertion variations exist?	open	2024-10-05 21:49:48.999396	2024-10-05 21:49:48.999396
-2706	1487	Provide a custom failure message to an assertion?	open	2024-10-05 21:49:49.004871	2024-10-05 21:49:49.004871
-2707	1487	What string types are allowed to extract into assertions?	open	2024-10-05 21:49:49.007897	2024-10-05 21:49:49.007897
-2708	1487	Define a test unit with a comparison for equality?	open	2024-10-05 21:49:49.010461	2024-10-05 21:49:49.010461
-2709	1487	When does a test fail?	open	2024-10-05 21:49:49.013626	2024-10-05 21:49:49.013626
-2710	1487	What are the arguments of a test unit?	open	2024-10-05 21:49:49.01656	2024-10-05 21:49:49.01656
-2711	1487	What testing feature can be used to share data between multiple tests?	open	2024-10-05 21:49:49.019906	2024-10-05 21:49:49.019906
-2712	1487	Write a test case that uses a fixture?	open	2024-10-05 21:49:49.021985	2024-10-05 21:49:49.021985
-2713	1487	What is the naming convention of test fixtures?	open	2024-10-05 21:49:49.024014	2024-10-05 21:49:49.024014
-2714	1487	What is the lifetime of a fixture?	open	2024-10-05 21:49:49.026181	2024-10-05 21:49:49.026181
-2715	1487	Define a test fixture for Queue class?	open	2024-10-05 21:49:49.028012	2024-10-05 21:49:49.028012
-2716	1487	What are the advantages of using constructor over <code>SetUp()</code> virtual function?	open	2024-10-05 21:49:49.030268	2024-10-05 21:49:49.030268
-2717	1487	What are the advantages of using <code>SetUp()</code> virtual function over constructor?	open	2024-10-05 21:49:49.032816	2024-10-05 21:49:49.032816
-2718	1487	What are the advantages of using <code>TearDown()</code> virtual function over destructor?	open	2024-10-05 21:49:49.035058	2024-10-05 21:49:49.035058
-2719	1487	Initialize tests by parsing arguments?	open	2024-10-05 21:49:49.037389	2024-10-05 21:49:49.037389
-2720	1487	What function macro is used to run tests across all linking units?	open	2024-10-05 21:49:49.039645	2024-10-05 21:49:49.039645
-2721	1487	What is the preferred way of building and running tests?	open	2024-10-05 21:49:49.041441	2024-10-05 21:49:49.041441
-2722	1487	Write a test entry point?	open	2024-10-05 21:49:49.04342	2024-10-05 21:49:49.04342
-2723	1487	When should we write manual main function for tests?	open	2024-10-05 21:49:49.045297	2024-10-05 21:49:49.045297
-2724	1487	What are the limitations of using GoogleTest assertions in threads?	open	2024-10-05 21:49:49.047751	2024-10-05 21:49:49.047751
-2682	1464	What is the responsibility of OpenGL?	open	2024-09-23 20:32:01.29794	2024-09-23 20:32:01.29794
-2683	1464	What cross-platform window systems are available to use with OpenGL?	open	2024-09-23 20:32:01.300609	2024-09-23 20:32:01.300609
-2684	1464	Install GLFW from source?	open	2024-09-23 20:32:01.303471	2024-09-23 20:32:01.303471
-2685	1464	Create a window with GLFW?	open	2024-09-23 20:32:01.305907	2024-09-23 20:32:01.305907
-2686	1464	Draw a colored triangle?	open	2024-09-23 20:32:01.308282	2024-09-23 20:32:01.308282
-2777	1489	What is a mock?	open	2024-10-07 21:15:43.789371	2024-10-07 21:15:43.789371
-2778	1489	What is the workflow of running a mock object?	open	2024-10-07 21:15:43.802311	2024-10-07 21:15:43.802311
-2779	1489	What are the use cases of mocks?	open	2024-10-07 21:15:43.805209	2024-10-07 21:15:43.805209
-2780	1489	Write a mock for Queue class?	open	2024-10-07 21:15:43.80856	2024-10-07 21:15:43.80856
-2781	1489	Use a MockQueue in a test?	open	2024-10-07 21:15:43.811555	2024-10-07 21:15:43.811555
-2782	1489	What is the ordering of mock expectation calls?	open	2024-10-07 21:15:43.814194	2024-10-07 21:15:43.814194
-2783	1489	What is the general syntax of a mock?	open	2024-10-07 21:15:43.81707	2024-10-07 21:15:43.81707
-2784	1489	Where matchers are used in mocks?	open	2024-10-07 21:15:43.819084	2024-10-07 21:15:43.819084
-2785	1489	Specify an expectation for a mock that the argument given to its method will be at least 100?	open	2024-10-07 21:15:43.821039	2024-10-07 21:15:43.821039
-2786	1489	Ignore an argument when it is not in our interest when it is passed to a mock method?	open	2024-10-07 21:15:43.8235	2024-10-07 21:15:43.8235
-2787	1489	What is a cardinality in mock functions?	open	2024-10-07 21:15:43.82559	2024-10-07 21:15:43.82559
-2788	1489	Specify a method in a mock that should never be called?	open	2024-10-07 21:15:43.827379	2024-10-07 21:15:43.827379
-2789	1489	What is the cardinality of a mock when <code>Times()</code> is omitted?	open	2024-10-07 21:15:43.829476	2024-10-07 21:15:43.829476
-2790	1489	What is the default behavior of gMock when a mock function returns?	open	2024-10-07 21:15:43.831777	2024-10-07 21:15:43.831777
-2791	1489	Specify the return value of mock function for three calls?	open	2024-10-07 21:15:43.833462	2024-10-07 21:15:43.833462
-2792	1489	Specify the return value of a mock function for indefinite calls?	open	2024-10-07 21:15:43.835579	2024-10-07 21:15:43.835579
-2793	1489	What happens if the cardinality is bigger than the specified return occurrances?	open	2024-10-07 21:15:43.837436	2024-10-07 21:15:43.837436
-2794	1489	In what order expectations are searched?	open	2024-10-07 21:15:43.839435	2024-10-07 21:15:43.839435
-2795	1489	Specify multiple expectations for a mock function?	open	2024-10-07 21:15:43.84192	2024-10-07 21:15:43.84192
-2796	1489	What is the best practice in ordering of multiple expectations?	open	2024-10-07 21:15:43.844194	2024-10-07 21:15:43.844194
-2797	1489	Verify that the call to a series of mock functions are in a specific order?	open	2024-10-07 21:15:43.846818	2024-10-07 21:15:43.846818
-2798	1489	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	open	2024-10-07 21:15:43.848771	2024-10-07 21:15:43.848771
-2799	1489	What are the downsides of expectations being sticky?	open	2024-10-07 21:15:43.85086	2024-10-07 21:15:43.85086
-2800	1489	Specify a series of expectations that retire after reaching invocation upper bounds?	open	2024-10-07 21:15:43.85282	2024-10-07 21:15:43.85282
-2801	608	How many components does CMake have?	open	2024-10-12 15:54:52.704786	2024-10-12 15:54:52.704786
-2802	608	How many graphical interfaces officially exists for cmake?	open	2024-10-12 15:54:52.711731	2024-10-12 15:54:52.711731
-2803	608	Install Cmake?	open	2024-10-12 15:54:52.713577	2024-10-12 15:54:52.713577
-2804	608	Configure and build a project?	open	2024-10-12 15:54:52.715244	2024-10-12 15:54:52.715244
-2805	608	What are the artifacts of CMake configuration stage?	open	2024-10-12 15:54:52.716774	2024-10-12 15:54:52.716774
-2806	608	Write a minimal CMake listfile?	open	2024-10-12 15:54:52.71834	2024-10-12 15:54:52.71834
-2807	608	What are the stages of building by cmake?	open	2024-10-12 15:54:52.719957	2024-10-12 15:54:52.719957
-2808	608	Specify which generator should be used in build?	open	2024-10-12 15:54:52.721072	2024-10-12 15:54:52.721072
-2809	608	Where is the source directory?	open	2024-10-12 15:54:52.722152	2024-10-12 15:54:52.722152
-2810	608	What is the definition of a project in CMake?	open	2024-10-12 15:54:52.723376	2024-10-12 15:54:52.723376
-2811	608	What variable holds the project name?	open	2024-10-12 15:54:52.724375	2024-10-12 15:54:52.724375
-2812	608	Determine if the project is the top level project?	open	2024-10-12 15:54:52.725279	2024-10-12 15:54:52.725279
-2813	608	What variable holds project description?	open	2024-10-12 15:54:52.726169	2024-10-12 15:54:52.726169
-2814	608	What variables hold project version information?	open	2024-10-12 15:54:52.727277	2024-10-12 15:54:52.727277
-2815	608	Declare and initialize a variable?	open	2024-10-12 15:54:52.72814	2024-10-12 15:54:52.72814
-2816	608	Clear a variable?	open	2024-10-12 15:54:52.729055	2024-10-12 15:54:52.729055
-2817	608	Reference a variable?	open	2024-10-12 15:54:52.729983	2024-10-12 15:54:52.729983
-2818	608	Reference two nested variables?	open	2024-10-12 15:54:52.730984	2024-10-12 15:54:52.730984
-2819	608	How many scopes exist?	open	2024-10-12 15:54:52.73233	2024-10-12 15:54:52.73233
-2820	608	Make variable visible to its parent scope?	open	2024-10-12 15:54:52.733309	2024-10-12 15:54:52.733309
-2821	1447	How many execution modes exist in CMake?	open	2024-10-12 22:35:28.020789	2024-10-12 22:35:28.020789
-2822	1447	What case sensitivity does CMake follow for writing commands?	open	2024-10-12 22:35:28.027395	2024-10-12 22:35:28.027395
-2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034
-2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216
-2900	1506	Get the list of environment variables?	open	2024-10-13 09:59:13.363492	2024-10-13 09:59:13.363492
-2763	1538	Write a wildcard matcher?	open	2024-10-05 21:49:49.139994	2024-10-05 21:49:49.139994
-2764	1538	What arithmetic comparison matchers exist?	open	2024-10-05 21:49:49.14252	2024-10-05 21:49:49.14252
-2765	1538	What boolean comparison matchers exist?	open	2024-10-05 21:49:49.144529	2024-10-05 21:49:49.144529
-2766	1538	What pointer comparison matchers exist?	open	2024-10-05 21:49:49.146696	2024-10-05 21:49:49.146696
-2767	1538	What matcher exists to check for returned <code>std::optional<></code> object?	open	2024-10-05 21:49:49.1492	2024-10-05 21:49:49.1492
-2768	1538	What matcher exists to check for returneed <code>std::variant<></code> object?	open	2024-10-05 21:49:49.151739	2024-10-05 21:49:49.151739
-2769	1538	What matcher should be used when given argument is a reference?	open	2024-10-05 21:49:49.153779	2024-10-05 21:49:49.153779
-2770	1538	What matcher can be used when testing a function template?	open	2024-10-05 21:49:49.155866	2024-10-05 21:49:49.155866
-2771	1538	What value category is used in matchers to take arguments?	open	2024-10-05 21:49:49.158001	2024-10-05 21:49:49.158001
-2773	1538	What matchers exist for comparing equality of doubles?	open	2024-10-05 21:49:49.162266	2024-10-05 21:49:49.162266
-2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045
-2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595
-2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143
-2828	1447	What are the basic variable manipulation commands in CMake?	open	2024-10-12 22:35:28.051866	2024-10-12 22:35:28.051866
-2829	1447	Create a normal CMake variable?	open	2024-10-12 22:35:28.05473	2024-10-12 22:35:28.05473
-2830	1447	Remove a normal CMake variable?	open	2024-10-12 22:35:28.057009	2024-10-12 22:35:28.057009
-2831	1447	What is the syntax of referencing a CMake variable?	open	2024-10-12 22:35:28.059294	2024-10-12 22:35:28.059294
-2832	1447	What is the syntax of referencing a CMake environment variable?	open	2024-10-12 22:35:28.062256	2024-10-12 22:35:28.062256
-2833	1447	What is the syntax of referencing a CMake cache variable?	open	2024-10-12 22:35:28.064931	2024-10-12 22:35:28.064931
-2834	1447	How does CMake traverse scopes to reference a variable?	open	2024-10-12 22:35:28.068765	2024-10-12 22:35:28.068765
-2835	1447	What variable will be changed when assigning a value to a variable reference instead of a variable name in CMake listfile?	open	2024-10-12 22:35:28.071496	2024-10-12 22:35:28.071496
-2836	1447	What is the precedence of CMake variable evaluation in different variable categories?	open	2024-10-12 22:35:28.074077	2024-10-12 22:35:28.074077
-2837	1447	What normal variables are defined as arguments passed to CMake?	open	2024-10-12 22:35:28.077101	2024-10-12 22:35:28.077101
-2838	1447	What are the CMake environment variables coming from?	open	2024-10-12 22:35:28.079967	2024-10-12 22:35:28.079967
-2839	1447	What is the lifetime of CMake environment variables?	open	2024-10-12 22:35:28.082223	2024-10-12 22:35:28.082223
-2840	1447	What is the lifetime of CMake cache variables?	open	2024-10-12 22:35:28.085243	2024-10-12 22:35:28.085243
-2841	1447	Define a CMake cache variable?	open	2024-10-12 22:35:28.089679	2024-10-12 22:35:28.089679
-2842	1447	What variable types exist for CMake cache variables?	open	2024-10-12 22:35:28.093746	2024-10-12 22:35:28.093746
-2843	1447	How many scopes exist in CMake?	open	2024-10-12 22:35:28.096389	2024-10-12 22:35:28.096389
-2844	1447	What is the difference between inner and outer CMake scopes?	open	2024-10-12 22:35:28.099357	2024-10-12 22:35:28.099357
-2845	1447	Which CMake commands create file scopes?	open	2024-10-12 22:35:28.102631	2024-10-12 22:35:28.102631
-2846	1447	Create a new block in a CMake listfile?	open	2024-10-12 22:35:28.107124	2024-10-12 22:35:28.107124
-2847	1447	Propagate a variable in a block to the outer scope in a CMake listfile?	open	2024-10-12 22:35:28.111272	2024-10-12 22:35:28.111272
-2848	1447	How does a CMake list store its values?	open	2024-10-12 22:35:28.113503	2024-10-12 22:35:28.113503
-2849	1447	Create a list?	open	2024-10-12 22:35:28.115904	2024-10-12 22:35:28.115904
-2850	1447	What happens when an unquoted list is passed as a parameter?	open	2024-10-12 22:35:28.119902	2024-10-12 22:35:28.119902
-2851	1447	Print the elements of a list?	open	2024-10-12 22:35:28.124496	2024-10-12 22:35:28.124496
-2852	1447	Get the size of a list?	open	2024-10-12 22:35:28.127098	2024-10-12 22:35:28.127098
-2853	1447	Get the value of a particular element in the list?	open	2024-10-12 22:35:28.129277	2024-10-12 22:35:28.129277
-2854	1447	Combine two lists?	open	2024-10-12 22:35:28.131498	2024-10-12 22:35:28.131498
-2855	1447	Extract a range of elements within a list?	open	2024-10-12 22:35:28.133847	2024-10-12 22:35:28.133847
-2856	1447	Find an element within a list?	open	2024-10-12 22:35:28.136384	2024-10-12 22:35:28.136384
-2857	1447	Push elements into a list?	open	2024-10-12 22:35:28.138929	2024-10-12 22:35:28.138929
-2858	1447	Filter elements within a list?	open	2024-10-12 22:35:28.141278	2024-10-12 22:35:28.141278
-2859	1447	Insert elements into a list?	open	2024-10-12 22:35:28.143714	2024-10-12 22:35:28.143714
-2860	1447	Pop the last element within a list?	open	2024-10-12 22:35:28.145954	2024-10-12 22:35:28.145954
-2861	1447	Pop the first element within a list?	open	2024-10-12 22:35:28.148114	2024-10-12 22:35:28.148114
-2862	1447	Push an element at the beginning of a list?	open	2024-10-12 22:35:28.150413	2024-10-12 22:35:28.150413
-2863	1447	Remove an element by value from a list?	open	2024-10-12 22:35:28.152913	2024-10-12 22:35:28.152913
-2864	1447	Remove an element by index from a list?	open	2024-10-12 22:35:28.155525	2024-10-12 22:35:28.155525
-2865	1447	Remove duplicate entries of a list?	open	2024-10-12 22:35:28.158191	2024-10-12 22:35:28.158191
-2866	1447	Transform elements of a list?	open	2024-10-12 22:35:28.160546	2024-10-12 22:35:28.160546
-2867	1447	Reverse the elements of a list?	open	2024-10-12 22:35:28.162852	2024-10-12 22:35:28.162852
-2868	1447	Sort the elements of a list?	open	2024-10-12 22:35:28.165099	2024-10-12 22:35:28.165099
-2869	1447	Write a conditional block?	open	2024-10-12 22:35:28.167309	2024-10-12 22:35:28.167309
-2870	1447	How many conditional operators exist in CMake?	open	2024-10-12 22:35:28.170354	2024-10-12 22:35:28.170354
-2871	1447	Write two nested conditional expressions?	open	2024-10-12 22:35:28.173011	2024-10-12 22:35:28.173011
-2872	1447	How variables can be used as conditional operands?	open	2024-10-12 22:35:28.175777	2024-10-12 22:35:28.175777
-2873	1447	How strings are evaluated as conditional operands?	open	2024-10-12 22:35:28.178219	2024-10-12 22:35:28.178219
-2874	1447	What are the differences between a braced reference and an unbraced reference as a conditional operand?	open	2024-10-12 22:35:28.180899	2024-10-12 22:35:28.180899
-2875	1447	What is the best practice to check if a variable is defined?	open	2024-10-12 22:35:28.18351	2024-10-12 22:35:28.18351
-2876	1447	What comparison operators are available for integral types?	open	2024-10-12 22:35:28.186048	2024-10-12 22:35:28.186048
-2877	1447	What comparison operators are available for version type?	open	2024-10-12 22:35:28.188855	2024-10-12 22:35:28.188855
-2878	1447	What comparison operators are available for string type?	open	2024-10-12 22:35:28.191451	2024-10-12 22:35:28.191451
-2879	1447	Compare if a value matches with a regular expression?	open	2024-10-12 22:35:28.193741	2024-10-12 22:35:28.193741
-2889	838	What information does an endpoint contain?	open	2024-10-13 09:23:38.437063	2024-10-13 09:23:38.437063
-2890	838	How many forms an endpoint address can have?	open	2024-10-13 09:23:38.441883	2024-10-13 09:23:38.441883
-2891	838	Create a tcp and udp endpoint for client?	open	2024-10-13 09:23:38.444998	2024-10-13 09:23:38.444998
-2892	838	Create a tcp and udp endpoint for server?	open	2024-10-13 09:23:38.448211	2024-10-13 09:23:38.448211
-2893	838	How many address types exist?	open	2024-10-13 09:23:38.451437	2024-10-13 09:23:38.451437
-2894	838	What is the difference between active and passive sockets?	open	2024-10-13 09:23:38.454668	2024-10-13 09:23:38.454668
-2895	838	Create an active socket?	open	2024-10-13 09:23:38.457564	2024-10-13 09:23:38.457564
-2896	838	Create a passive socket?	open	2024-10-13 09:23:38.459278	2024-10-13 09:23:38.459278
-2897	838	Resolve a DNS name?	open	2024-10-13 09:23:38.460276	2024-10-13 09:23:38.460276
-2898	1496	What is the use case of a mutex?	open	2024-10-13 09:55:46.60045	2024-10-13 09:55:46.60045
-2899	1496	How does mutex lock executions of other threads accessing a shared resource?	open	2024-10-13 09:55:46.604041	2024-10-13 09:55:46.604041
-2901	1506	What are the useful environment variables?	open	2024-10-13 09:59:13.366819	2024-10-13 09:59:13.366819
-2902	1506	List contents of current directory?	open	2024-10-13 09:59:13.370187	2024-10-13 09:59:13.370187
-2903	1506	Create a directory?	open	2024-10-13 09:59:13.372934	2024-10-13 09:59:13.372934
-2904	1506	List active processes running under current shell?	open	2024-10-13 09:59:13.375242	2024-10-13 09:59:13.375242
-2905	1506	List active processes of whole system?	open	2024-10-13 09:59:13.378081	2024-10-13 09:59:13.378081
-2906	1506	What is the shebang line in bsah script?	open	2024-10-13 09:59:13.381396	2024-10-13 09:59:13.381396
-2907	1506	Make a shell script file executable?	open	2024-10-13 09:59:13.38286	2024-10-13 09:59:13.38286
-2908	1506	Dry run a script without executing commands for debugging?	open	2024-10-13 09:59:13.383816	2024-10-13 09:59:13.383816
-2909	1506	Run a script by printing line by line execution for debugging?	open	2024-10-13 09:59:13.384872	2024-10-13 09:59:13.384872
-2923	1521	How many routine types exist?	open	2024-10-13 10:12:00.011634	2024-10-13 10:12:00.011634
-2924	1521	When does a function is considered a coroutine?	open	2024-10-13 10:12:00.014774	2024-10-13 10:12:00.014774
-2925	1524	What semantics a coroutine return type must follow?	open	2024-10-13 10:12:00.019166	2024-10-13 10:12:00.019166
-2926	1524	What are the standard awaiter objects in the standard?	open	2024-10-13 10:12:00.021499	2024-10-13 10:12:00.021499
-2927	1524	What type is the primary standard type for <code>promise_type</code>?	open	2024-10-13 10:12:00.022893	2024-10-13 10:12:00.022893
-2928	1524	What is the signature of a coroutine handle?	open	2024-10-13 10:12:00.024558	2024-10-13 10:12:00.024558
-2929	1524	How to resume the execution of a paused coroutine?	open	2024-10-13 10:12:00.025962	2024-10-13 10:12:00.025962
-2930	1524	How many coroutine initializations exist?	open	2024-10-13 10:12:00.027137	2024-10-13 10:12:00.027137
-2931	1524	What are the restricutions on coroutines?	open	2024-10-13 10:12:00.028291	2024-10-13 10:12:00.028291
-2932	1524	What subroutines can become a coroutine?	open	2024-10-13 10:12:00.029342	2024-10-13 10:12:00.029342
-2933	1524	What does <code>co_yield</code> do?	open	2024-10-13 10:12:00.030578	2024-10-13 10:12:00.030578
-2934	1524	What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?	open	2024-10-13 10:12:00.03172	2024-10-13 10:12:00.03172
-2935	1524		open	2024-10-13 10:12:00.032792	2024-10-13 10:12:00.032792
-2936	1447	Access to tokens after matching string with a regular expression?	open	2024-10-13 10:12:58.059943	2024-10-13 10:12:58.059943
-2937	1447	Check if value is in a list?	open	2024-10-13 10:12:58.063903	2024-10-13 10:12:58.063903
-2938	1447	Check if a command is available for invokation in current CMake version?	open	2024-10-13 10:12:58.065658	2024-10-13 10:12:58.065658
-2939	1447	Check if a policy exists?	open	2024-10-13 10:12:58.067188	2024-10-13 10:12:58.067188
-2940	1447	Check if a test exists?	open	2024-10-13 10:12:58.069694	2024-10-13 10:12:58.069694
-2941	1447	Check if a target is defined?	open	2024-10-13 10:12:58.072075	2024-10-13 10:12:58.072075
-2942	1447	What is a target?	open	2024-10-13 10:12:58.074958	2024-10-13 10:12:58.074958
-2943	1447	Check if a file exists?	open	2024-10-13 10:12:58.077001	2024-10-13 10:12:58.077001
-2944	1361	What is the state of a moved-from string?	open	2024-10-13 10:15:50.845358	2024-10-13 10:15:50.845358
-2945	1361	What is the use case of <code>std::optional</code>?	open	2024-10-13 10:15:50.849342	2024-10-13 10:15:50.849342
-2946	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-10-13 10:15:50.851219	2024-10-13 10:15:50.851219
-2947	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-10-13 10:15:50.852638	2024-10-13 10:15:50.852638
-2948	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-10-13 10:15:50.855153	2024-10-13 10:15:50.855153
-2949	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-10-13 10:15:50.856463	2024-10-13 10:15:50.856463
-2950	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-10-13 10:15:50.85782	2024-10-13 10:15:50.85782
-2951	1361	How do IOStream objects take advantage of move semantics?	open	2024-10-13 10:15:50.859166	2024-10-13 10:15:50.859166
-2952	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-10-13 10:15:50.860561	2024-10-13 10:15:50.860561
-2953	1361	Use a temporary file stream object to write into a file?	open	2024-10-13 10:15:50.861757	2024-10-13 10:15:50.861757
-2954	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-10-13 10:15:50.863077	2024-10-13 10:15:50.863077
-2955	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-10-13 10:15:50.864335	2024-10-13 10:15:50.864335
-2956	1361	What types in multithreading are neither copyable nor movable?	open	2024-10-13 10:15:50.865675	2024-10-13 10:15:50.865675
-2957	1361	What types in multithreading are move only?	open	2024-10-13 10:15:50.867002	2024-10-13 10:15:50.867002
-2958	1361	How does the thread constructor take arguments?	open	2024-10-13 10:15:50.868342	2024-10-13 10:15:50.868342
-2959	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-10-13 10:15:50.869549	2024-10-13 10:15:50.869549
-2960	1361	Pass string literals as universal references?	open	2024-10-13 10:15:50.870874	2024-10-13 10:15:50.870874
-2961	786	What is Poky?	open	2024-10-13 10:20:47.82438	2024-10-13 10:20:47.82438
-2962	786	What is the usage of bitbake?	open	2024-10-13 10:20:47.828242	2024-10-13 10:20:47.828242
-2963	786	How does bitbake operate?	open	2024-10-13 10:20:47.829918	2024-10-13 10:20:47.829918
-2964	786	What is OpenEmbedded Core?	open	2024-10-13 10:20:47.831354	2024-10-13 10:20:47.831354
-2965	786	What is a metadata made of?	open	2024-10-13 10:20:47.832738	2024-10-13 10:20:47.832738
-2966	787	Get poky source tree?	open	2024-10-13 10:20:47.834643	2024-10-13 10:20:47.834643
-2967	787	Prepare the poky build environment?	open	2024-10-13 10:20:47.836879	2024-10-13 10:20:47.836879
-2968	1490	What parameters does a mock method take?	open	2024-10-13 10:23:12.029325	2024-10-13 10:23:12.029325
-2969	1490	What qualifiers are possible to specify as the fourth parameter of mock method?	open	2024-10-13 10:23:12.0333	2024-10-13 10:23:12.0333
-2970	1490	Write an expectation call to a mock method when the method returns a const reference to a string?	open	2024-10-13 10:23:12.03509	2024-10-13 10:23:12.03509
-2971	1490	Write an expectation call to a mock method when the method is const qualified?	open	2024-10-13 10:23:12.036758	2024-10-13 10:23:12.036758
-2972	1490	What is an unprotected comma?	open	2024-10-13 10:23:12.038871	2024-10-13 10:23:12.038871
-2973	1490	In which access specifier a mock method is allowed to be written?	open	2024-10-13 10:23:12.040675	2024-10-13 10:23:12.040675
-2974	1490	Write mock methods for overloaded functions?	open	2024-10-13 10:23:12.04246	2024-10-13 10:23:12.04246
-2975	207	What user is created on postgres by default?	open	2024-10-13 10:24:58.431786	2024-10-13 10:24:58.431786
-2976	207	What is a role?	open	2024-10-13 10:24:58.435847	2024-10-13 10:24:58.435847
-2977	207	What is the difference between roles and permissions scopes?	open	2024-10-13 10:24:58.437385	2024-10-13 10:24:58.437385
-2978	207	Create a new role having privileges to login in to the cluter?	open	2024-10-13 10:24:58.438945	2024-10-13 10:24:58.438945
-2979	207	What are the general forms of role creation options?	open	2024-10-13 10:24:58.44043	2024-10-13 10:24:58.44043
-2980	207	Create a role with superuser privileges?	open	2024-10-13 10:24:58.441713	2024-10-13 10:24:58.441713
-2981	207	Create a role without a password?	open	2024-10-13 10:24:58.443241	2024-10-13 10:24:58.443241
-2982	207	Limit the number of connections a role can make to the cluster?	open	2024-10-13 10:24:58.444309	2024-10-13 10:24:58.444309
-2983	207	Create a role that will be expired within a year?	open	2024-10-13 10:24:58.445326	2024-10-13 10:24:58.445326
-2984	207	Create a group?	open	2024-10-13 10:24:58.446465	2024-10-13 10:24:58.446465
-2985	207	Join a role into a group when creating one?	open	2024-10-13 10:24:58.447777	2024-10-13 10:24:58.447777
-2986	207	Join a role into a group after its creation?	open	2024-10-13 10:24:58.449061	2024-10-13 10:24:58.449061
-2987	207	Specify an admin for a group when creating one?	open	2024-10-13 10:24:58.450545	2024-10-13 10:24:58.450545
-2988	207	Specify an admin for a group after its creation?	open	2024-10-13 10:24:58.451881	2024-10-13 10:24:58.451881
-2989	207	Remove a role?	open	2024-10-13 10:24:58.453027	2024-10-13 10:24:58.453027
-2990	207	Inspect current role?	open	2024-10-13 10:24:58.454146	2024-10-13 10:24:58.454146
-2991	207	Get a list of all available roles in the cluster?	open	2024-10-13 10:24:58.455162	2024-10-13 10:24:58.455162
-2992	207	List the groups a role is a member of?	open	2024-10-13 10:24:58.456197	2024-10-13 10:24:58.456197
-2993	207	Get a user information from roles catalog?	open	2024-10-13 10:24:58.457231	2024-10-13 10:24:58.457231
-2994	207	Get sensitive information of roles in the cluster?	open	2024-10-13 10:24:58.458275	2024-10-13 10:24:58.458275
-2995	207	Where is the host-based access firewall defined?	open	2024-10-13 10:24:58.459273	2024-10-13 10:24:58.459273
-2996	207	Perform configuration reload on a cluster by means of an SQL statement?	open	2024-10-13 10:24:58.460222	2024-10-13 10:24:58.460222
-2997	207	What is the structure of the host-based access file?	open	2024-10-13 10:24:58.461163	2024-10-13 10:24:58.461163
-2998	207	What is the priority of the hba rules?	open	2024-10-13 10:24:58.462149	2024-10-13 10:24:58.462149
-2999	207	Accept connections to a group of users except one of the members?	open	2024-10-13 10:24:58.463091	2024-10-13 10:24:58.463091
-3000	207	Specify a file in hba rules?	open	2024-10-13 10:24:58.464026	2024-10-13 10:24:58.464026
-3001	207	Inspect the hba rules of the cluster using SQL?	open	2024-10-13 10:24:58.4651	2024-10-13 10:24:58.4651
-3002	208	What type of commands exist in database?	open	2024-10-13 10:24:58.46624	2024-10-13 10:24:58.46624
-3003	208	Connect to a postgres instance?	open	2024-10-13 10:24:58.467293	2024-10-13 10:24:58.467293
-3004	208	Switch postgres to expanded mode?	open	2024-10-13 10:24:58.468329	2024-10-13 10:24:58.468329
-3005	208	List databases present in the cluster?	open	2024-10-13 10:24:58.469407	2024-10-13 10:24:58.469407
-3006	208	Connect to a database in psql?	open	2024-10-13 10:24:58.47036	2024-10-13 10:24:58.47036
-3007	208	Create a new database?	open	2024-10-13 10:24:58.471298	2024-10-13 10:24:58.471298
-3008	208	What database is used to clone as new ones?	open	2024-10-13 10:24:58.472288	2024-10-13 10:24:58.472288
-3009	208	Why is there two template databases?	open	2024-10-13 10:24:58.473247	2024-10-13 10:24:58.473247
-3010	208	What is a schema?	open	2024-10-13 10:24:58.474202	2024-10-13 10:24:58.474202
-3011	208	What schema can be used by a normal user?	open	2024-10-13 10:24:58.47521	2024-10-13 10:24:58.47521
-3012	208	What is the <code>search_path</code> variable?	open	2024-10-13 10:24:58.476204	2024-10-13 10:24:58.476204
-3013	208	Allow a user to create database objects in a custom schema?	open	2024-10-13 10:24:58.477098	2024-10-13 10:24:58.477098
-3014	208	List all available databases?	open	2024-10-13 10:24:58.477974	2024-10-13 10:24:58.477974
-3015	208	Create a database from a user defined template?	open	2024-10-13 10:24:58.478883	2024-10-13 10:24:58.478883
-3016	208	Drop a database?	open	2024-10-13 10:24:58.479835	2024-10-13 10:24:58.479835
-3017	208	Drop a table from a database?	open	2024-10-13 10:24:58.480814	2024-10-13 10:24:58.480814
-3018	208	Get the size of a database?	open	2024-10-13 10:24:58.482026	2024-10-13 10:24:58.482026
-3019	208	Find the Object ID of a database on storage?	open	2024-10-13 10:24:58.483148	2024-10-13 10:24:58.483148
-3020	208	Create a table?	open	2024-10-13 10:24:58.484158	2024-10-13 10:24:58.484158
-3021	208	Create a table only when it doesn't already exist?	open	2024-10-13 10:24:58.485209	2024-10-13 10:24:58.485209
-3022	208	How many table types exist?	open	2024-10-13 10:24:58.486465	2024-10-13 10:24:58.486465
-3023	208	How temp tables can be dropped automatically?	open	2024-10-13 10:24:58.487389	2024-10-13 10:24:58.487389
-3024	208	Get the object ID of a table on storage?	open	2024-10-13 10:24:58.488281	2024-10-13 10:24:58.488281
-3025	208	How many ways are possible to insert into data a table?	open	2024-10-13 10:24:58.489171	2024-10-13 10:24:58.489171
-3026	208	Insert data into a table with value expressions?	open	2024-10-13 10:24:58.490161	2024-10-13 10:24:58.490161
-3027	208	Select data from a table out of order?	open	2024-10-13 10:24:58.491067	2024-10-13 10:24:58.491067
-3028	208	Order the output of a select query?	open	2024-10-13 10:24:58.491935	2024-10-13 10:24:58.491935
-3029	208	Insert multiple rows into a table in one insertion?	open	2024-10-13 10:24:58.492831	2024-10-13 10:24:58.492831
-3030	208	Filter select query results?	open	2024-10-13 10:24:58.493878	2024-10-13 10:24:58.493878
-3031	208	How many ordering directions exist?	open	2024-10-13 10:24:58.494825	2024-10-13 10:24:58.494825
-3032	208	Write an order by clause with column positions?	open	2024-10-13 10:24:58.495762	2024-10-13 10:24:58.495762
-3033	661	When access to a resource should be synchronized?	open	2024-10-13 10:29:09.670137	2024-10-13 10:29:09.670137
-3034	661	How many synchronization mechanisms are available in the kernel?	open	2024-10-13 10:29:09.674309	2024-10-13 10:29:09.674309
-3035	661	What is the granularity of synchronization operations in the kernel?	open	2024-10-13 10:29:09.676337	2024-10-13 10:29:09.676337
-3036	661	What locking types are available in the kernel?	open	2024-10-13 10:29:09.678605	2024-10-13 10:29:09.678605
-3037	661	What conditional variable types are available in the kernel?	open	2024-10-13 10:29:09.681764	2024-10-13 10:29:09.681764
-3038	661	What are the use cases of conditional variables in the kernel?	open	2024-10-13 10:29:09.684516	2024-10-13 10:29:09.684516
-3039	661	What does the locking mechanism in the kernel depend on?	open	2024-10-13 10:29:09.686601	2024-10-13 10:29:09.686601
-3040	661	What is a simple workaround for a system to ensure atomicity of synchronization operations?	open	2024-10-13 10:29:09.688069	2024-10-13 10:29:09.688069
-3041	661	How does spinlocks operate?	open	2024-10-13 10:29:09.689731	2024-10-13 10:29:09.689731
-3042	661	How does preemption toggle in a CPU?	open	2024-10-13 10:29:09.691425	2024-10-13 10:29:09.691425
-3043	661	Why does changing of preemption status depends on atomic operations?	open	2024-10-13 10:29:09.692847	2024-10-13 10:29:09.692847
-3044	661	Create and initialize a spinlock using macro?	open	2024-10-13 10:29:09.694466	2024-10-13 10:29:09.694466
-3045	661	Dynamically create and initialize a spinlock?	open	2024-10-13 10:29:09.69594	2024-10-13 10:29:09.69594
-3046	661	Lock and unlock a spinlock?	open	2024-10-13 10:29:09.697425	2024-10-13 10:29:09.697425
-3047	661	What are the use cases of spin_lock_irq and spin_unlock variations?	open	2024-10-13 10:29:09.699163	2024-10-13 10:29:09.699163
-3048	661	What are the side effects of disabling and enabling interrupts by spinlocks?	open	2024-10-13 10:29:09.701906	2024-10-13 10:29:09.701906
-3049	661	What is the safe way of enabling and disabling spinlocks?	open	2024-10-13 10:29:09.704598	2024-10-13 10:29:09.704598
-3050	661	What can invoke a scheduler in critical section?	open	2024-10-13 10:29:09.706155	2024-10-13 10:29:09.706155
-3051	661	When is the consequence of calling the scheduler in a critical section?	open	2024-10-13 10:29:09.707504	2024-10-13 10:29:09.707504
-3052	661	What is the difference between a mutex and a spinlock?	open	2024-10-13 10:29:09.709037	2024-10-13 10:29:09.709037
-3053	661	What constructs a mutex?	open	2024-10-13 10:29:09.710724	2024-10-13 10:29:09.710724
-3054	661	Statically define and initialize a mutex?	open	2024-10-13 10:29:09.712174	2024-10-13 10:29:09.712174
-3055	661	Dynamically define and initialize a mutex?	open	2024-10-13 10:29:09.713605	2024-10-13 10:29:09.713605
-3056	661	How many functions exist to acquire a mutex?	open	2024-10-13 10:29:09.715616	2024-10-13 10:29:09.715616
-3057	661	Unlock a mutex?	open	2024-10-13 10:29:09.719061	2024-10-13 10:29:09.719061
-3058	661	Check if a mutex is locked?	open	2024-10-13 10:29:09.721418	2024-10-13 10:29:09.721418
-3059	661	What mutex locking function is recommended to be used?	open	2024-10-13 10:29:09.722968	2024-10-13 10:29:09.722968
-3060	661	What are the rules to using mutex in the kernel?	open	2024-10-13 10:29:09.724373	2024-10-13 10:29:09.724373
-3061	661	Where is spinlock defined in the kernel?	open	2024-10-13 10:29:09.725658	2024-10-13 10:29:09.725658
-3062	661	Where is mutex defined in the kernel?	open	2024-10-13 10:29:09.726978	2024-10-13 10:29:09.726978
-3063	661	What are the use cases of try-lock functions?	open	2024-10-13 10:29:09.728349	2024-10-13 10:29:09.728349
-3064	661	What are the try-lock functions for spinlock and mutex?	open	2024-10-13 10:29:09.730245	2024-10-13 10:29:09.730245
-3065	661	Try locking a spinlock without spinning?	open	2024-10-13 10:29:09.731704	2024-10-13 10:29:09.731704
-3066	661	Try locking a mutex without sleeping?	open	2024-10-13 10:29:09.734084	2024-10-13 10:29:09.734084
-3070	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:35:52.300872	2024-10-13 15:35:52.300872
-3071	787	Define the target machine to the project?	open	2024-10-13 15:35:52.305008	2024-10-13 15:35:52.305008
-3072	787	List all available images?	open	2024-10-13 15:35:52.307427	2024-10-13 15:35:52.307427
-3073	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:36:57.24333	2024-10-13 15:36:57.24333
-3074	787	Define the target machine to the project?	open	2024-10-13 15:36:57.248412	2024-10-13 15:36:57.248412
-3075	787	List all available images?	open	2024-10-13 15:36:57.251518	2024-10-13 15:36:57.251518
-3076	1490	Mock a class template?	open	2024-10-14 14:13:53.605146	2024-10-14 14:13:53.605146
-3077	1490	Mock a non-virtual method?	open	2024-10-14 14:13:53.609621	2024-10-14 14:13:53.609621
-3078	1490	Mock a free function?	open	2024-10-14 14:13:53.612419	2024-10-14 14:13:53.612419
-3079	1490	What is an uninteresting call?	open	2024-10-14 14:13:53.614269	2024-10-14 14:13:53.614269
-3080	1490	What is a nice mock?	open	2024-10-14 14:13:53.616682	2024-10-14 14:13:53.616682
-3081	1490	What is a strict mock?	open	2024-10-14 14:13:53.618754	2024-10-14 14:13:53.618754
-3082	1490	What are the limitations of nice and strict mocks?	open	2024-10-14 14:13:53.620991	2024-10-14 14:13:53.620991
-3083	1490	What is a naggy mock?	open	2024-10-14 14:13:53.62219	2024-10-14 14:13:53.62219
-3084	206	Query the name of current database?	open	2024-10-20 11:28:18.387971	2024-10-20 11:28:18.387971
-3085	206	Query current date?	open	2024-10-20 11:28:18.391256	2024-10-20 11:28:18.391256
-3086	206	Query current date and time?	open	2024-10-20 11:28:18.393246	2024-10-20 11:28:18.393246
-3087	207	What command line utility creates user in a postgres instance?	open	2024-10-20 11:28:18.397215	2024-10-20 11:28:18.397215
-3088	207	What command line utility removes user in a postgres instance?	open	2024-10-20 11:28:18.399848	2024-10-20 11:28:18.399848
-3089	208	Sort result set by putting null values on top?	open	2024-10-23 22:52:27.117938	2024-10-23 22:52:27.117938
-3090	208	Sort result set by putting null values at the bottom?	open	2024-10-23 22:52:27.132796	2024-10-23 22:52:27.132796
-3091	208	Copy a table?	open	2024-10-23 22:52:27.133992	2024-10-23 22:52:27.133992
-3092	208	Update values of a table?	open	2024-10-23 22:52:27.135036	2024-10-23 22:52:27.135036
-3093	208	Delete rows from a table?	open	2024-10-23 22:52:27.136166	2024-10-23 22:52:27.136166
-3094	210	What is a window function?	open	2024-10-23 22:52:27.138433	2024-10-23 22:52:27.138433
-3095	210	What is the difference between window functions and aggregation functions?	open	2024-10-23 22:52:27.140476	2024-10-23 22:52:27.140476
-3096	210	How the results of aggregation functions and window functions can become identical?	open	2024-10-23 22:52:27.141578	2024-10-23 22:52:27.141578
-3097	210	Query a table to count the rows based on two different conditions?	open	2024-10-23 22:52:27.142551	2024-10-23 22:52:27.142551
-3098	210	Write aliases for window functions?	open	2024-10-23 22:52:27.143473	2024-10-23 22:52:27.143473
-3099	210	What aggregate functions can be used with window functions?	open	2024-10-23 22:52:27.144409	2024-10-23 22:52:27.144409
-3100	210	Write a statement to generate a series of numbers?	open	2024-10-23 22:52:27.145349	2024-10-23 22:52:27.145349
-3101	210	Write a statement to numberize each of the partitioned rows?	open	2024-10-23 22:52:27.146428	2024-10-23 22:52:27.146428
-3102	210	Write a statement to numerize each row in the result set?	open	2024-10-23 22:52:27.147513	2024-10-23 22:52:27.147513
-3103	210	Sort the values inside a window?	open	2024-10-23 22:52:27.148797	2024-10-23 22:52:27.148797
-3104	210	Write a statement to show the first value of a partition on each row?	open	2024-10-23 22:52:27.150145	2024-10-23 22:52:27.150145
-3105	210	Write a statement to show the last value of a partition on each row?	open	2024-10-23 22:52:27.151453	2024-10-23 22:52:27.151453
-3106	210	Rank rows within partitions with gaps?	open	2024-10-23 22:52:27.15255	2024-10-23 22:52:27.15255
-3107	210	Rank rows within partitions without gaps?	open	2024-10-23 22:52:27.153662	2024-10-23 22:52:27.153662
-3108	210	Write a statement that returns the offset rows before the current row within a partition?	open	2024-10-23 22:52:27.154779	2024-10-23 22:52:27.154779
-3109	210	Write a statement that returns the offset rows after the current row within a partition?	open	2024-10-23 22:52:27.155909	2024-10-23 22:52:27.155909
-3110	210	Write a statement that returns computation of the fraction of partition rows that are neighbours to the current row?	open	2024-10-23 22:52:27.15689	2024-10-23 22:52:27.15689
-3111	210	Write a statement to assign a bucket for each partition?	open	2024-10-23 22:52:27.157861	2024-10-23 22:52:27.157861
-3112	1294	What happens when two threads access the same memory location?	open	2024-10-27 16:25:47.43163	2024-10-27 16:25:47.43163
-3113	1294	What are the contract levels in thread executions?	open	2024-10-27 16:25:47.442613	2024-10-27 16:25:47.442613
-3114	1294	What subjectives are the foundation of C++ memory model?	open	2024-10-27 16:25:47.446709	2024-10-27 16:25:47.446709
-3115	1294	What are the guarantees of the sequential consistency?	open	2024-10-27 16:25:47.451874	2024-10-27 16:25:47.451874
-3116	1294	What is the ordering of strong and weak memory models?	open	2024-10-27 16:25:47.454143	2024-10-27 16:25:47.454143
-3117	1294	What are the guarantees of the relaxed semantics?	open	2024-10-27 16:25:47.456671	2024-10-27 16:25:47.456671
-3118	1294	What are the guarantees of the acquire release semantics?	open	2024-10-27 16:25:47.461062	2024-10-27 16:25:47.461062
-3119	1294	What memory order is applied to atomic operations by default?	open	2024-10-27 16:25:47.464717	2024-10-27 16:25:47.464717
-3120	1294	What are the functionalities of an <code>atomic_flag</code> type?	open	2024-10-27 16:25:47.469286	2024-10-27 16:25:47.469286
-3121	1294	Construct an atomic flag?	open	2024-10-27 16:25:47.471515	2024-10-27 16:25:47.471515
-3122	1294	What is the only lock-free guaranteed atomic type?	open	2024-10-27 16:25:47.473707	2024-10-27 16:25:47.473707
-3123	1294	Check if the atomic type is lock free?	open	2024-10-27 16:25:47.477623	2024-10-27 16:25:47.477623
-3124	1294	What are the use cases of a spinlock?	open	2024-10-27 16:25:47.481168	2024-10-27 16:25:47.481168
-3125	1294	What is the base of a spinlock?	open	2024-10-27 16:25:47.484069	2024-10-27 16:25:47.484069
-3126	1294	What is the major difference between mutex and spinlock?	open	2024-10-27 16:25:47.485978	2024-10-27 16:25:47.485978
-3127	1294	Use an atomic flag to notify waiting threads?	open	2024-10-27 16:25:47.488108	2024-10-27 16:25:47.488108
-3128	1294	When does an atomic flag lose notifications?	open	2024-10-27 16:25:47.49011	2024-10-27 16:25:47.49011
-3129	1294	What are the basic atomic types?	open	2024-10-27 16:25:47.493469	2024-10-27 16:25:47.493469
-3130	1294	What are the template specialization atomic types?	open	2024-10-27 16:25:47.497199	2024-10-27 16:25:47.497199
-3131	1294	What template specializations of atomic type extends the fundamental atomic interface?	open	2024-10-27 16:25:47.50065	2024-10-27 16:25:47.50065
-3132	1294	What is the downside of extended atomic interfaces?	open	2024-10-27 16:25:47.503497	2024-10-27 16:25:47.503497
-3133	1294	What operations does fundamental atomic interface support?	open	2024-10-27 16:25:47.508117	2024-10-27 16:25:47.508117
-3134	1294	What is the difference between atomic boolean and atomic flag?	open	2024-10-27 16:25:47.513215	2024-10-27 16:25:47.513215
-3135	1294	Use an atomic boolean to protect a shared value in a critical section using C++11 fundamental atomic interface?	open	2024-10-27 16:25:47.517961	2024-10-27 16:25:47.517961
-3136	1294	What is the difference between the way atomic boolean and condition variable query the atomic value?	open	2024-10-27 16:25:47.521163	2024-10-27 16:25:47.521163
-3137	1294	Use an atomic boolean to protect a shared value in a critical section using C++20 fundamental atomic interface?	open	2024-10-27 16:25:47.523682	2024-10-27 16:25:47.523682
-3138	1294	What is the functionality of <code>compare_exchange_strong</code> in a fundamental atomic interface?	open	2024-10-27 16:25:47.527947	2024-10-27 16:25:47.527947
-3139	1294	Why does <code>compare_exchange_weak</code> exists in the fundamental atomic interface?	open	2024-10-27 16:25:47.53184	2024-10-27 16:25:47.53184
-3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127
-3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291
-3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188
-3148	1538	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767
-3143	217	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191
-3144	217	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056
-3145	217	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117
-3164	217	What strategy does postgres optimizer use to choose between different access methods?	open	2024-10-27 23:27:17.046817	2024-10-27 23:27:17.046817
-3165	217	When does optimizer avoids iterating over all the possible execution plans?	open	2024-10-27 23:27:17.050719	2024-10-27 23:27:17.050719
-3166	217	What is a node?	open	2024-10-27 23:27:17.052907	2024-10-27 23:27:17.052907
-3167	217	How nodes can interact with each other?	open	2024-10-27 23:27:17.054564	2024-10-27 23:27:17.054564
-2725	1537	What are the use cases of succeed and fail assertions?	open	2024-10-05 21:49:49.050374	2024-10-05 21:49:49.050374
-2726	1537	What is the use case of succeed assertion?	open	2024-10-05 21:49:49.05297	2024-10-05 21:49:49.05297
-2727	1537	What is the use case of fail assertion?	open	2024-10-05 21:49:49.055184	2024-10-05 21:49:49.055184
-2728	1537	What is the limitation of using fail assertion?	open	2024-10-05 21:49:49.05718	2024-10-05 21:49:49.05718
-2729	1537	Write a non-fatal failure assertion?	open	2024-10-05 21:49:49.059202	2024-10-05 21:49:49.059202
-2730	1537	Write a non-fatal failure for a specific line of file?	open	2024-10-05 21:49:49.061245	2024-10-05 21:49:49.061245
-2731	1537	What is an assertion matcher?	open	2024-10-05 21:49:49.063656	2024-10-05 21:49:49.063656
-2732	1537	In what namespace are matchers defined?	open	2024-10-05 21:49:49.066066	2024-10-05 21:49:49.066066
-2733	1537	What is the best practice for equality matching using matchers?	open	2024-10-05 21:49:49.068875	2024-10-05 21:49:49.068875
-2734	1537	Write test assertions to evaluate boolean values?	open	2024-10-05 21:49:49.071367	2024-10-05 21:49:49.071367
-2735	1537	What are the binary comparison assertions?	open	2024-10-05 21:49:49.0739	2024-10-05 21:49:49.0739
-2736	1537	What are the requirements of writing binary comparison test assertions?	open	2024-10-05 21:49:49.075844	2024-10-05 21:49:49.075844
-2737	1537	When does GoogleTest print assertion arguments when the assertion fails?	open	2024-10-05 21:49:49.078147	2024-10-05 21:49:49.078147
-2738	1537	What is the evaluation order of arguments in assertions?	open	2024-10-05 21:49:49.080131	2024-10-05 21:49:49.080131
-2739	1537	What is the behavior of comparison assertions for pointers and C-style strings?	open	2024-10-05 21:49:49.082518	2024-10-05 21:49:49.082518
-2740	1537	Write a test to verify comparison of a pointer or a C-style string with null?	open	2024-10-05 21:49:49.085133	2024-10-05 21:49:49.085133
-2741	1537	Write a test to verify comparison of two C-style strings for equality and inequality?	open	2024-10-05 21:49:49.087384	2024-10-05 21:49:49.087384
-2742	1537	Write a test to verify comparison of two C-style strings without case sensitivity?	open	2024-10-05 21:49:49.089468	2024-10-05 21:49:49.089468
-2743	1537	Write a test to verify comparison of two floating point values?	open	2024-10-05 21:49:49.091738	2024-10-05 21:49:49.091738
-2744	1537	Write a test to verify if difference of two floating points does not exceed an absolute error bound?	open	2024-10-05 21:49:49.093643	2024-10-05 21:49:49.093643
-2745	1537	What are the exception assertions?	open	2024-10-05 21:49:49.095609	2024-10-05 21:49:49.095609
-2746	1537	Write a test to verify that a statement throws a specific exception type?	open	2024-10-05 21:49:49.097901	2024-10-05 21:49:49.097901
-2747	1537	Write a test to verify that a statement throws any exception?	open	2024-10-05 21:49:49.100376	2024-10-05 21:49:49.100376
-2748	1537	Write a test to verify that a statement does not throw any exceptions?	open	2024-10-05 21:49:49.102581	2024-10-05 21:49:49.102581
-2749	1537	Write a test to verify the return value of a predicate with given arguments?	open	2024-10-05 21:49:49.106393	2024-10-05 21:49:49.106393
-2750	1537	How overloaded functions and function templates should be treated when given as argument to predicate assertions?	open	2024-10-05 21:49:49.109207	2024-10-05 21:49:49.109207
-2751	1537	What is a predicate formatter?	open	2024-10-05 21:49:49.111562	2024-10-05 21:49:49.111562
-2752	1537	Create an assertion result object?	open	2024-10-05 21:49:49.114084	2024-10-05 21:49:49.114084
-2753	1537	What are the assertions taking predicate formatter?	open	2024-10-05 21:49:49.117509	2024-10-05 21:49:49.117509
-2754	1537	Write a test to verify a predicate using predicate formatter?	open	2024-10-05 21:49:49.120103	2024-10-05 21:49:49.120103
-2755	1537	What is the use case of death assertions?	open	2024-10-05 21:49:49.122318	2024-10-05 21:49:49.122318
-2756	1537	When does a death assertion asserts?	open	2024-10-05 21:49:49.124532	2024-10-05 21:49:49.124532
-2757	1537	What is the difference between exception tests and death tests?	open	2024-10-05 21:49:49.126425	2024-10-05 21:49:49.126425
-2758	1537	What arguments does a death test take?	open	2024-10-05 21:49:49.128773	2024-10-05 21:49:49.128773
-2759	1537	Write a death test to verify exit status of a statement when death tsets are supported?	open	2024-10-05 21:49:49.130974	2024-10-05 21:49:49.130974
-2760	1537	What are the use cases of exit assertions?	open	2024-10-05 21:49:49.133366	2024-10-05 21:49:49.133366
-2761	1537	What are the common predicates used to verify exit status of a statement in exit assertions?	open	2024-10-05 21:49:49.135594	2024-10-05 21:49:49.135594
-2762	1537	What is the predicate type that exit assertions take as second argument?	open	2024-10-05 21:49:49.137763	2024-10-05 21:49:49.137763
-2772	1538	What is the difference between using boolean comparison matchers and assertions?	open	2024-10-05 21:49:49.159777	2024-10-05 21:49:49.159777
-2774	1538	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687
-2775	1538	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234
-2776	1538	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838
-3146	1538	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903
-3147	1538	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833
-3149	1538	 Verify given string contains a substring?	open	2024-10-27 21:26:28.201965	2024-10-27 21:26:28.201965
-3150	1538	 Verify given string is empty?	open	2024-10-27 21:26:28.205266	2024-10-27 21:26:28.205266
-3151	1538	 Verify given string starts with a prefix?	open	2024-10-27 21:26:28.208129	2024-10-27 21:26:28.208129
-3152	1538	Verify two strings are equal without case sensitivity?	open	2024-10-27 21:26:28.211171	2024-10-27 21:26:28.211171
-3153	1538	Verify two strings are not equal regardless of their case?	open	2024-10-27 21:26:28.213723	2024-10-27 21:26:28.213723
-3154	1538	Verify two strings are equal?	open	2024-10-27 21:26:28.216172	2024-10-27 21:26:28.216172
-3155	1538	Verify two strings are not equal?	open	2024-10-27 21:26:28.218667	2024-10-27 21:26:28.218667
-3156	1538	Verify given argument is a base64 escaped sequence of a string?	open	2024-10-27 21:26:28.22108	2024-10-27 21:26:28.22108
-3157	1538	Verify a container that does not provide size method contains an expected number of elements?	open	2024-10-27 21:26:28.223721	2024-10-27 21:26:28.223721
-3158	1538	Verify a container that provides size method contains an expected number of elements?	open	2024-10-27 21:26:28.226508	2024-10-27 21:26:28.226508
-3159	1538	Verify two containers are equal?	open	2024-10-27 21:26:28.229719	2024-10-27 21:26:28.229719
-3160	1538	Verify a container contains an expected value?	open	2024-10-27 21:26:28.232525	2024-10-27 21:26:28.232525
-3161	1538	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643
-3162	1538	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522
-3163	1538	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333
-3168	1538	Verify that a container matches a given range element-wise?	open	2024-10-30 00:14:55.19302	2024-10-30 00:14:55.19302
-3169	1538	Verify that a container is empty?	open	2024-10-30 00:14:55.198961	2024-10-30 00:14:55.198961
-3170	1538	Verify that a container is a subset of given range?	open	2024-10-30 00:14:55.202977	2024-10-30 00:14:55.202977
-3171	1538	Verify that a container is a superset of given range?	open	2024-10-30 00:14:55.206234	2024-10-30 00:14:55.206234
-3172	1538	Match each of the elements of a container with a matcher compared to another range?	open	2024-10-30 00:14:55.209237	2024-10-30 00:14:55.209237
-3173	1538	Verify the size of a container?	open	2024-10-30 00:14:55.212159	2024-10-30 00:14:55.212159
-3174	1538	Verify that elements of a container match a series of criteria without orders?	open	2024-10-30 00:14:55.215381	2024-10-30 00:14:55.215381
-3289	459	Shallow clone the kernel source?	open	2024-11-16 23:53:47.322787	2024-11-16 23:53:47.322787
-3175	1538	Match each of the elements of a container with a criteria without ordering?	open	2024-10-30 00:14:55.217447	2024-10-30 00:14:55.217447
-3176	1538	Verify a container holds given elements after being sorted?	open	2024-10-30 00:14:55.219173	2024-10-30 00:14:55.219173
-3177	1538	Verify a container holds given elements after being sorted by a predicate?	open	2024-10-30 00:14:55.221089	2024-10-30 00:14:55.221089
-3178	1538	Verify that member of a class that a pointer is pointing to matches to a criteria?	open	2024-10-30 21:41:01.73066	2024-10-30 21:41:01.73066
-3179	1538	Verify a map contains a key matching a certain criteria?	open	2024-10-30 21:41:01.746216	2024-10-30 21:41:01.746216
-3180	1538	Verify a pair contains expected key and value?	open	2024-10-30 21:41:01.749203	2024-10-30 21:41:01.749203
-3181	1538	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	open	2024-10-30 21:41:01.751893	2024-10-30 21:41:01.751893
-3182	1538	Verify that the returning object from a member function matches a criteria when called by the test?	open	2024-10-30 21:41:01.754831	2024-10-30 21:41:01.754831
-3183	1538	Verify the result of calling a function matches a pattern?	open	2024-10-30 21:41:01.757644	2024-10-30 21:41:01.757644
-3184	1538	Verify the address of given argument matches a pattern?	open	2024-10-30 21:41:01.760646	2024-10-30 21:41:01.760646
-3185	1538	Verify that given pointer is pointing to an object that matches a pattern?	open	2024-10-30 21:41:01.765078	2024-10-30 21:41:01.765078
-3186	1538	Verify that given pointer holds a pointer that matches a pattern?	open	2024-10-30 21:41:01.76945	2024-10-30 21:41:01.76945
-3187	1538	Verify that given pointer matches a pattern after a dynamic cast to specified type?	open	2024-10-30 21:41:01.772708	2024-10-30 21:41:01.772708
-3188	1538	Verify that all the arguments of a tuple matches a pattern?	open	2024-10-30 21:41:01.775342	2024-10-30 21:41:01.775342
-3189	1538	Composite multiple matches into one?	open	2024-10-30 21:41:01.779047	2024-10-30 21:41:01.779047
-3190	1538	Make sure at least one of a few matchers apply?	open	2024-10-30 21:41:01.784323	2024-10-30 21:41:01.784323
-3191	1538	Verify that given argument does not match a pattern?	open	2024-10-30 21:41:01.788063	2024-10-30 21:41:01.788063
-3192	1538	Use a ternary like operator to conditionally compare the given argument to one of the two existing patterns?	open	2024-10-30 21:41:01.790524	2024-10-30 21:41:01.790524
-3193	1538	Cast a matcher to another matcher type?	open	2024-10-30 21:41:01.793048	2024-10-30 21:41:01.793048
-3194	1538	Verify that a predicate returns true when given argument is passed into it?	open	2024-10-30 21:41:01.797412	2024-10-30 21:41:01.797412
-3195	1538	Use a matcher as a predicate?	open	2024-10-30 21:41:01.801656	2024-10-30 21:41:01.801656
-3196	1538	Use a matcher to redirect results into a listener?	open	2024-10-30 21:41:01.805058	2024-10-30 21:41:01.805058
-3197	1538	Verify a value matches a pattern?	open	2024-10-30 21:41:01.807468	2024-10-30 21:41:01.807468
-3198	1538	Define a matcher taking no arguments?	open	2024-10-30 21:41:01.809763	2024-10-30 21:41:01.809763
-3199	1538	Define a matcher taking argumetns?	open	2024-10-30 21:41:01.813532	2024-10-30 21:41:01.813532
-3200	1538	Define a matcher taking a range?	open	2024-10-30 21:41:01.817887	2024-10-30 21:41:01.817887
-3201	1538	What are the restrictions of defining a matcher?	open	2024-10-30 21:41:01.822841	2024-10-30 21:41:01.822841
-2679	1464	What are the properties of the tiniest unit of a graphical unit?	open	2024-09-23 20:32:01.289898	2024-09-23 20:32:01.289898
-2680	1464	What is a pipeline?	open	2024-09-23 20:32:01.293364	2024-09-23 20:32:01.293364
-2681	1464	What are the pipeline stages?	open	2024-09-23 20:32:01.295344	2024-09-23 20:32:01.295344
-3202	1464	What is an OpenGL context?	open	2024-11-01 17:40:38.408669	2024-11-01 17:40:38.408669
-3203	1465	How circles are drawn in OpenGL?	open	2024-11-01 17:40:38.418294	2024-11-01 17:40:38.418294
-3204	1465	What are the coordinates of screen corners in OpenGL?	open	2024-11-01 17:40:38.42091	2024-11-01 17:40:38.42091
-3205	1465	Coordinate the triangles rotating the origin to shape a circle?	open	2024-11-01 17:40:38.423694	2024-11-01 17:40:38.423694
-3206	1465	Draw a circle?	open	2024-11-01 17:40:38.427169	2024-11-01 17:40:38.427169
-3207	1465	What are the transformation slots?	open	2024-11-01 17:40:38.430882	2024-11-01 17:40:38.430882
-3208	1465	Select each of the transformation slots?	open	2024-11-01 17:40:38.435554	2024-11-01 17:40:38.435554
-3209	1465	Reset model view matrix to identity matrix?	open	2024-11-01 17:40:38.438418	2024-11-01 17:40:38.438418
-3210	1465	Scale down a circle to look smaller?	open	2024-11-01 17:40:38.441023	2024-11-01 17:40:38.441023
-3211	1465	Store and restore matrix state before and after translations?	open	2024-11-01 17:40:38.443058	2024-11-01 17:40:38.443058
-3212	1465		open	2024-11-01 17:40:38.445461	2024-11-01 17:40:38.445461
-3213	1465		open	2024-11-01 17:40:38.447709	2024-11-01 17:40:38.447709
-3214	1465	Rotate a two dimensional circles rotating around z axis?	open	2024-11-01 17:40:38.45027	2024-11-01 17:40:38.45027
-3215	1466	What structure is used instead of a vertex due to performance reasons?	open	2024-11-01 18:40:02.344728	2024-11-01 18:40:02.344728
-3216	1466	What is the modern pipeline for shaders?	open	2024-11-01 18:40:02.350755	2024-11-01 18:40:02.350755
-3217	1466	What is the vertex structure?	open	2024-11-01 18:40:02.353754	2024-11-01 18:40:02.353754
-3218	1466	What each slot of a shaders do in pipeline?	open	2024-11-01 18:40:02.358443	2024-11-01 18:40:02.358443
-3219	1466	What slots exist in the rendering pipeline?	open	2024-11-01 19:32:39.065707	2024-11-01 19:32:39.065707
-3220	1466	Initialize a shader class?	open	2024-11-01 19:32:39.073691	2024-11-01 19:32:39.073691
-3221	1466	Compile a shader in source?	open	2024-11-01 19:32:39.076742	2024-11-01 19:32:39.076742
-3222	1466	Create a fragment shader?	open	2024-11-01 19:32:39.07931	2024-11-01 19:32:39.07931
-3223	1466	Attach shaders to a program?	open	2024-11-01 19:32:39.081865	2024-11-01 19:32:39.081865
-3224	1466	Link program shader?	open	2024-11-01 19:32:39.084718	2024-11-01 19:32:39.084718
-3225	1466	Create a vertex and fragment shader to create a program?	open	2024-11-01 19:32:39.087846	2024-11-01 19:32:39.087846
-3226	1466	What type categories exist in GLSL?	open	2024-11-01 22:34:14.753322	2024-11-01 22:34:14.753322
-3227	1466	What are the basic types in GLSL?	open	2024-11-01 22:34:14.76982	2024-11-01 22:34:14.76982
-3228	1466	What are the vector types in GLSL?	open	2024-11-01 22:34:14.770953	2024-11-01 22:34:14.770953
-3229	1466	What are the matrix types in GLSL?	open	2024-11-01 22:34:14.771987	2024-11-01 22:34:14.771987
-3230	1466	What is the syntax of constructing a GLSL object?	open	2024-11-01 22:34:14.773242	2024-11-01 22:34:14.773242
-3231	1466	What syntax does accessing to elements have in GLSL?	open	2024-11-01 22:34:14.77438	2024-11-01 22:34:14.77438
-3232	1466	Write a basic vertex shader?	open	2024-11-01 22:34:14.775568	2024-11-01 22:34:14.775568
-3233	1466	Define inputs of a vertex shader?	open	2024-11-01 22:34:14.776736	2024-11-01 22:34:14.776736
-3234	1466	What shader type will be rendered by rasterizer?	open	2024-11-01 22:34:14.777737	2024-11-01 22:34:14.777737
-3235	1466	What variable must be initialized in a vertex shader?	open	2024-11-01 22:34:14.778755	2024-11-01 22:34:14.778755
-3236	1466	Write a basic fragment shader?	open	2024-11-01 22:34:14.779757	2024-11-01 22:34:14.779757
-3237	1466	How the input data for vertex shaders can be supplied?	open	2024-11-01 22:34:14.78082	2024-11-01 22:34:14.78082
-3238	1466	What stage in the rendering pipeline is responsible for copying data into GPU?	open	2024-11-01 22:34:14.781892	2024-11-01 22:34:14.781892
-3239	1466	Define a vertex buffer object?	open	2024-11-01 22:34:14.783869	2024-11-01 22:34:14.783869
-3240	1466	Bind a vertex buffer object?	open	2024-11-01 22:34:14.785918	2024-11-01 22:34:14.785918
-3241	1466	Copy the vertex buffer object into GPU?	open	2024-11-01 22:34:14.787947	2024-11-01 22:34:14.787947
-3242	1466	Define an attribute location for a shader?	open	2024-11-01 22:34:14.789222	2024-11-01 22:34:14.789222
-3243	1466	What arguments does <code>glVertexAttribPointer</code> take?	open	2024-11-01 22:34:14.7902	2024-11-01 22:34:14.7902
-3244	1466	What function draws triangles defined in shader program?	open	2024-11-01 22:34:14.791217	2024-11-01 22:34:14.791217
-3245	1466	Define matrices to the vertex shader?	open	2024-11-01 22:34:14.792313	2024-11-01 22:34:14.792313
-3246	1466	Draw two triangles with touching bases forming a square?	open	2024-11-01 22:34:14.793403	2024-11-01 22:34:14.793403
-3247	1466	Get access to the coordinations of fragments?	open	2024-11-02 10:31:32.778004	2024-11-02 10:31:32.778004
-3248	1466	Get the time information from GLFW?	open	2024-11-02 10:31:32.786267	2024-11-02 10:31:32.786267
-3249	1467	Load a texture?	open	2024-11-02 11:30:33.910898	2024-11-02 11:30:33.910898
-3250	1467	Draw a few pixels using textures?	open	2024-11-02 11:30:33.9171	2024-11-02 11:30:33.9171
-3251	1467	Load a bitmap image using textures?	open	2024-11-02 11:30:33.92029	2024-11-02 11:30:33.92029
-3252	1468	Rotate a cube?	open	2024-11-02 11:30:33.924374	2024-11-02 11:30:33.924374
-3253	1468	Use GLM math library?	open	2024-11-02 11:30:33.926832	2024-11-02 11:30:33.926832
-3254	1468	Texture a cube?	open	2024-11-02 11:30:33.929636	2024-11-02 11:30:33.929636
-3255	1468	Project a cube with correct perspectives?	open	2024-11-02 11:30:33.932927	2024-11-02 11:30:33.932927
-3256	1540	What are each parts of the SOLID principle?	open	2024-11-02 22:09:08.689532	2024-11-02 22:09:08.689532
-3257	1540	What does the single responsibility principle define?	open	2024-11-02 22:09:08.704996	2024-11-02 22:09:08.704996
-3258	1540	What does the open closed principle define?	open	2024-11-02 22:09:08.710076	2024-11-02 22:09:08.710076
-3259	1540	What does the liskov substitution principle define?	open	2024-11-02 22:09:08.71313	2024-11-02 22:09:08.71313
-3260	1540	What does the interface segregation principle define?	open	2024-11-02 22:09:08.716526	2024-11-02 22:09:08.716526
-3261	1540	What does the dependency inversion principle define?	open	2024-11-02 22:09:08.721556	2024-11-02 22:09:08.721556
-3262	336	What is the downsides of declaring all comparison operators manually?	open	2024-11-03 16:19:44.031758	2024-11-03 16:19:44.031758
-3263	336	What is the behavior of compilers when they cannot find a matching inequality operator for two objects?	open	2024-11-03 16:19:44.038182	2024-11-03 16:19:44.038182
-3264	336	What is the behavior of compilers when they cannot find a matching relational operator for two objects?	open	2024-11-03 16:19:44.040072	2024-11-03 16:19:44.040072
-3265	336	How does a defaulted member <code>operator<=></code> expand?	open	2024-11-03 16:19:44.041755	2024-11-03 16:19:44.041755
-3266	336	What header should be included when defaulting spaceship operator?	open	2024-11-03 16:19:44.04312	2024-11-03 16:19:44.04312
-3267	336	What qualifiers automatically apply to default generated operators?	open	2024-11-03 16:19:44.044915	2024-11-03 16:19:44.044915
-3268	336	When should we define equality and spaceship operators manually?	open	2024-11-03 16:19:44.046587	2024-11-03 16:19:44.046587
-3269	336	What expression does a compiler use to rewrite a relational operator when a matching definition is not found?	open	2024-11-03 16:19:44.047779	2024-11-03 16:19:44.047779
-3270	336	What is the return type of spaceship operator?	open	2024-11-03 16:19:44.048882	2024-11-03 16:19:44.048882
-3271	336	What is the precedence of spaceship operator compared to other comparison operators?	open	2024-11-03 16:19:44.049937	2024-11-03 16:19:44.049937
-3272	336	Where can we directly call for comparison of two types with spaceship operator?	open	2024-11-03 16:19:44.050981	2024-11-03 16:19:44.050981
-3273	336	What are the comparison category types?	open	2024-11-03 16:19:44.052095	2024-11-03 16:19:44.052095
-3274	336	What is the best practice for defining the return value of spaceship operator?	open	2024-11-03 16:19:44.053139	2024-11-03 16:19:44.053139
-3275	336	What type the spaceship operator does not support?	open	2024-11-03 16:19:44.05407	2024-11-03 16:19:44.05407
-3276	336	What types are supported by spaceship operator?	open	2024-11-03 16:19:44.055063	2024-11-03 16:19:44.055063
-3277	336	What comparison category type does comparing supported types generate?	open	2024-11-03 16:19:44.055904	2024-11-03 16:19:44.055904
-3278	336	What comparison category type is safe to be used when comparing fundamental or standard library types?	open	2024-11-03 16:19:44.056829	2024-11-03 16:19:44.056829
-3279	336	Which comparison category type should be used when returning a comparison result with multiple ordering criteria?	open	2024-11-03 16:19:44.057794	2024-11-03 16:19:44.057794
-3280	336	What is the best practice when partial or weak ordering must be mapped to strong ordering?	open	2024-11-03 16:19:44.058664	2024-11-03 16:19:44.058664
-3281	336	What are the requirements of defaulting spaceship and equality operators?	open	2024-11-03 16:19:44.059562	2024-11-03 16:19:44.059562
-3282	336	When does the defaulted equality operator is automatically defined?	open	2024-11-03 16:19:44.060387	2024-11-03 16:19:44.060387
-3283	336	What is the advantage of using <code>std::compare_three_way</code> function object?	open	2024-11-03 16:19:44.061222	2024-11-03 16:19:44.061222
-3284	336	What type trait can be used to forward declare spaceship operator?	open	2024-11-03 16:19:44.062059	2024-11-03 16:19:44.062059
-3285	336	What type is used to compare two ranges?	open	2024-11-03 16:19:44.062935	2024-11-03 16:19:44.062935
-3286	336	What are the limitations of using lexicographical compare three way functions?	open	2024-11-03 16:19:44.063814	2024-11-03 16:19:44.063814
-2383	1382	What is the output of yocto?	open	2024-09-22 10:06:26.739554	2024-09-22 10:06:26.739554
-2384	1382	What is the name of the build engine in yocto?	open	2024-09-22 10:06:26.746094	2024-09-22 10:06:26.746094
-2385	1382	What does bitbake do?	open	2024-09-22 10:06:26.748849	2024-09-22 10:06:26.748849
-2386	1382	What is the name of the text files parsed by bitbake?	open	2024-09-22 10:06:26.751843	2024-09-22 10:06:26.751843
-2387	1382	What is the building blocks of a recipe?	open	2024-09-22 10:06:26.754733	2024-09-22 10:06:26.754733
-2388	1382	What does bitbake take as an input?	open	2024-09-22 10:06:26.757109	2024-09-22 10:06:26.757109
-2389	1382	What is the building blocks of a metadata?	open	2024-09-22 10:06:26.759875	2024-09-22 10:06:26.759875
-2390	1382	What is the core layer of metadata?	open	2024-09-22 10:06:26.761843	2024-09-22 10:06:26.761843
-2391	1382	What is a poky layer?	open	2024-09-22 10:06:26.76369	2024-09-22 10:06:26.76369
-2392	1382	What is a poky distribution?	open	2024-09-22 10:06:26.766334	2024-09-22 10:06:26.766334
-2393	1382	What meta layer is used to build images for a beagle bone black board?	open	2024-09-22 10:06:26.768297	2024-09-22 10:06:26.768297
-2433	1553	Append to a variable only for a specific machine using override variables?	open	2024-09-22 10:06:26.85332	2024-09-22 10:06:26.85332
-2415	1553	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938
-2416	1553	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149
-2417	1553	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171
-2452	1553	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219
-2453	1553	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196
-2413	1552	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627
-2414	1552	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619
-2464	1553	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107
-2465	1553	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041
-2466	1553	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897
-2467	1553	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743
-2492	1557	What variable defines runtime dependencies of a recipe?	open	2024-09-22 10:06:26.980677	2024-09-22 10:06:26.980677
-2493	1557	Reflect the dependency of a recipe on a specific version of another recipe?	open	2024-09-22 10:06:26.982994	2024-09-22 10:06:26.982994
-2494	1557	Inspect the dependencies of an image?	open	2024-09-22 10:06:26.984972	2024-09-22 10:06:26.984972
-2516	1559	Which variable should be changed when new files are added in recipe extension?	open	2024-09-22 10:06:27.030955	2024-09-22 10:06:27.030955
-2539	1561	Create a local mirror by downloading all the sources?	open	2024-09-22 10:06:27.084852	2024-09-22 10:06:27.084852
-2540	1561	Which task is responsible for downloading sources?	open	2024-09-22 10:06:27.086835	2024-09-22 10:06:27.086835
-2541	1561	Disable network access in a recipe?	open	2024-09-22 10:06:27.088738	2024-09-22 10:06:27.088738
-2542	1561	Restrict bitbake to only download files from the <code>PREMIRRORS</code>?	open	2024-09-22 10:06:27.090811	2024-09-22 10:06:27.090811
-2543	1561	Download all the sources to run builds with network disabled?	open	2024-09-22 10:06:27.092916	2024-09-22 10:06:27.092916
-2550	1562	What tool is used to inspect layers?	open	2024-09-22 10:06:27.10789	2024-09-22 10:06:27.10789
-2551	1562	Get a list of layers?	open	2024-09-22 10:06:27.109875	2024-09-22 10:06:27.109875
-2552	1562	Add an existing layer?	open	2024-09-22 10:06:27.111804	2024-09-22 10:06:27.111804
-2553	1562	Remove a layer?	open	2024-09-22 10:06:27.113716	2024-09-22 10:06:27.113716
-2554	1562	What layers provide board support?	open	2024-09-22 10:06:27.116108	2024-09-22 10:06:27.116108
-2555	1562	What layers provide application support?	open	2024-09-22 10:06:27.118633	2024-09-22 10:06:27.118633
-2556	1562	Create a new layer?	open	2024-09-22 10:06:27.121077	2024-09-22 10:06:27.121077
-2557	1562	What is the skeleton of a newly created layer?	open	2024-09-22 10:06:27.12306	2024-09-22 10:06:27.12306
-2568	1563	What bootloader is used in Poky by default?	open	2024-09-22 10:06:27.146159	2024-09-22 10:06:27.146159
-2569	1563	What configuration variable is used in UBoot recipe to name of the SPL binary?	open	2024-09-22 10:06:27.14812	2024-09-22 10:06:27.14812
-2570	1563	What configuration variable is used in UBoot recipe as a suffix to bootloader name?	open	2024-09-22 10:06:27.150388	2024-09-22 10:06:27.150388
-2571	1563	What configuration variable is used in UBoot recipe as the target architecture?	open	2024-09-22 10:06:27.152552	2024-09-22 10:06:27.152552
-2572	1563	What configuration variable is used in UBoot recipe as the bootloader entry point?	open	2024-09-22 10:06:27.154394	2024-09-22 10:06:27.154394
-2573	1563	What configuration variable is used in UBoot recipe as the bootloader load address?	open	2024-09-22 10:06:27.156378	2024-09-22 10:06:27.156378
-2574	1563	What configuration variable is used in UBoot recipe as the make target used to build the bootloader?	open	2024-09-22 10:06:27.158537	2024-09-22 10:06:27.158537
-2608	1566	What are the steps to creating an image type?	open	2024-09-22 10:06:27.231346	2024-09-22 10:06:27.231346
-2609	1566	What are the steps to creating an image conversion type?	open	2024-09-22 10:06:27.234757	2024-09-22 10:06:27.234757
-2610	1566	Use wic to create a flashable image?	open	2024-09-22 10:06:27.237105	2024-09-22 10:06:27.237105
-2611	1566	What is the use cases of bmaptool?	open	2024-09-22 10:06:27.239235	2024-09-22 10:06:27.239235
-2612	1566	What is the structure of a package group?	open	2024-09-22 10:06:27.241394	2024-09-22 10:06:27.241394
-2613	1566	What is the required configuration variable in a package group class?	open	2024-09-22 10:06:27.243317	2024-09-22 10:06:27.243317
-2614	1566	What are the common package groups?	open	2024-09-22 10:06:27.245458	2024-09-22 10:06:27.245458
-2615	1566	Where is a sysroot directory?	open	2024-09-22 10:06:27.247772	2024-09-22 10:06:27.247772
-2616	1566	What is the concept of per-recipe sysroot?	open	2024-09-22 10:06:27.250228	2024-09-22 10:06:27.250228
-2617	1566	What a recipe sysroot is made of?	open	2024-09-22 10:06:27.252418	2024-09-22 10:06:27.252418
-2618	1566	Where is the recipe sysroot located?	open	2024-09-22 10:06:27.254639	2024-09-22 10:06:27.254639
-2619	1566	What is the output recipe sysroot used by other dependent recipes?	open	2024-09-22 10:06:27.256769	2024-09-22 10:06:27.256769
-2630	1567	What variable flag can be used to store task documentation?	open	2024-09-22 10:06:27.281831	2024-09-22 10:06:27.281831
-2631	1567	What variable flag can be used to add a dependency between specific tasks?	open	2024-09-22 10:06:27.284881	2024-09-22 10:06:27.284881
-2632	1567	What configuration variable controls build on a per feature granularity?	open	2024-09-22 10:06:27.286951	2024-09-22 10:06:27.286951
-2633	1567	What are the arguments used by <code>PACKAGECONIFG</code> configuration variable?	open	2024-09-22 10:06:27.289396	2024-09-22 10:06:27.289396
-2634	1567	Conditionally configure wifi feature in a package if it is enabled?	open	2024-09-22 10:06:27.291505	2024-09-22 10:06:27.291505
-2635	1567	Conditionally configure bluetooth feature in a package if it is enabled?	open	2024-09-22 10:06:27.293553	2024-09-22 10:06:27.293553
-2636	1567	Conditionally configure openvpn feature in a package if it is enabled?	open	2024-09-22 10:06:27.295605	2024-09-22 10:06:27.295605
-2637	1567	Add a feature in a recipe configuration?	open	2024-09-22 10:06:27.298136	2024-09-22 10:06:27.298136
-2638	1567	Add a feature in a distro configuration?	open	2024-09-22 10:06:27.300405	2024-09-22 10:06:27.300405
-2639	1567	List available <code>PACKAGECONFIG</code> flags?	open	2024-09-22 10:06:27.303099	2024-09-22 10:06:27.303099
-2640	1567	Check if a value exists in varaible?	open	2024-09-22 10:06:27.306231	2024-09-22 10:06:27.306231
-2641	1567	Using inline Python functions return all the values of a variable for a specific flag?	open	2024-09-22 10:06:27.309147	2024-09-22 10:06:27.309147
-2665	1569	Use a SDK to build an application for a target?	open	2024-09-22 10:06:27.375191	2024-09-22 10:06:27.375191
-2666	1569	Use a SDK to build kernel?	open	2024-09-22 10:06:27.37839	2024-09-22 10:06:27.37839
-3067	1570	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066
-3068	1570	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966
-3069	1570	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652
-2400	1382	What does the <code>oe-init-build-env</code> file do in poky?	open	2024-09-22 10:06:26.781642	2024-09-22 10:06:26.781642
-2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374
-2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061
-2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937
-2468	1553	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646
-2474	1554	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649
-2475	1554	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478
-2476	1554	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954
-2477	1554	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144
-2478	1554	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027
-2479	1554	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329
-2406	1552	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665
-2407	1552	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732
-2408	1552	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417
-2410	1552	Initialize the build directory with poky?	open	2024-09-22 10:06:26.802607	2024-09-22 10:06:26.802607
-2411	1552	What variable defines the architecture of target machine to build for in poky?	open	2024-09-22 10:06:26.804735	2024-09-22 10:06:26.804735
-2412	1552	What are the optional variables to speed up the build process?	open	2024-09-22 10:06:26.806845	2024-09-22 10:06:26.806845
-2394	1382	Get poky reference system?	open	2024-09-22 10:06:26.770167	2024-09-22 10:06:26.770167
-2397	1382	What is the contents of <code>meta-skeleton</code> directory in poky source tree?	open	2024-09-22 10:06:26.775795	2024-09-22 10:06:26.775795
-2398	1382	What is the contents of <code>meta-poky</code> directory in poky source tree?	open	2024-09-22 10:06:26.777659	2024-09-22 10:06:26.777659
-2399	1382	What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?	open	2024-09-22 10:06:26.779433	2024-09-22 10:06:26.779433
-2409	1382	Get poky repository?	open	2024-09-22 10:06:26.800576	2024-09-22 10:06:26.800576
-2402	1552	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723
-2403	1552	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504
-2404	1552	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316
-2405	1552	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573
-2435	1553	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715
-2436	1553	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027
-2437	1553	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989
-2439	1553	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123
-2440	1553	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296
-2441	1553	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929
-2442	1553	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449
-2443	1553	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595
-2444	1553	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544
-2445	1553	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458
-2446	1553	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312
-2447	1553	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126
-2448	1553	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574
-2449	1553	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839
-2450	1553	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156
-2451	1553	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336
-2480	1554	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532
-3287	1553	Why should not we use direct assignment in configuration files?	open	2024-11-10 14:03:34.326084	2024-11-10 14:03:34.326084
-3288	1553	What is the advantage of using override operators?	open	2024-11-10 14:03:34.330867	2024-11-10 14:03:34.330867
-3290	459	Unshallow the cloned kernel source?	open	2024-11-16 23:53:47.32897	2024-11-16 23:53:47.32897
-3291	459	Clone the stable kernel?	open	2024-11-16 23:53:47.331381	2024-11-16 23:53:47.331381
-3292	459	What does the <code>ARCH</code> environment variable point to when cross compiling?	open	2024-11-16 23:53:47.333882	2024-11-16 23:53:47.333882
-3293	459	What is the role of <code>io_uring</code> in the kernel?	open	2024-11-16 23:53:47.336038	2024-11-16 23:53:47.336038
-3294	459	What are the building blocks of Kconfig infrastructure?	open	2024-11-16 23:53:47.338401	2024-11-16 23:53:47.338401
-3295	459	What symbol is used for each configurable kernel feature?	open	2024-11-16 23:53:47.340745	2024-11-16 23:53:47.340745
-3296	459	Where the configuration options are stored?	open	2024-11-16 23:53:47.342669	2024-11-16 23:53:47.342669
-3297	459	What is the final artifact of kernel configuration system?	open	2024-11-16 23:53:47.344687	2024-11-16 23:53:47.344687
-3298	459	How toggling of a feature in the build system is defined?	open	2024-11-16 23:53:47.347108	2024-11-16 23:53:47.347108
-3299	459	Where is the starting point of kernel build system?	open	2024-11-17 16:33:28.584611	2024-11-17 16:33:28.584611
-3300	459	Clean up every configuration artifacts in kernel source?	open	2024-11-17 16:33:28.59586	2024-11-17 16:33:28.59586
-3301	459	Generate default kernel configuration?	open	2024-11-17 16:33:28.600548	2024-11-17 16:33:28.600548
-3302	459	What is the order of fallback configuration files used by Kconfig as the default kernel config?	open	2024-11-17 16:33:28.603726	2024-11-17 16:33:28.603726
-3303	459	How the <code>.config</code> file is produced?	open	2024-11-17 16:33:28.606671	2024-11-17 16:33:28.606671
-3304	459	Save the currect configuration as the default configuration for an architecture?	open	2024-11-17 16:33:28.609471	2024-11-17 16:33:28.609471
-3305	459	Use current distribution configuration?	open	2024-11-17 16:33:28.613333	2024-11-17 16:33:28.613333
-3306	459	List the new configuration options when already having an old config?	open	2024-11-17 16:33:28.617433	2024-11-17 16:33:28.617433
-3307	459	Use distribution configuration but preserve the original configurations for specific drivers?	open	2024-11-17 16:33:28.622251	2024-11-17 16:33:28.622251
-3308	459	Fine tune kernel configuration with a graphical user?	open	2024-11-17 16:33:28.624753	2024-11-17 16:33:28.624753
-3309	459	What kernel configuration options enable accessing to kernel configurations?	open	2024-11-17 16:33:28.626851	2024-11-17 16:33:28.626851
-3310	459	What component turns configs into header files to be used by kernel build system?	open	2024-11-17 16:33:28.628952	2024-11-17 16:33:28.628952
-3311	459	Check the difference of two kernel configuration files?	open	2024-11-17 16:33:28.632422	2024-11-17 16:33:28.632422
-3312	459	Toggle individual kernel configuration options without interacting with user interfaces?	open	2024-11-17 16:33:28.636209	2024-11-17 16:33:28.636209
-3313	459	Make sure the kernel configuration has security options enabled?	open	2024-11-17 16:33:28.639647	2024-11-17 16:33:28.639647
-3314	459	Enable GCC arch specific security features?	open	2024-11-17 16:33:28.642099	2024-11-17 16:33:28.642099
-3315	459	Enable availability of kernel headers 	open	2024-11-17 16:33:28.644544	2024-11-17 16:33:28.644544
-3316	459	Enable BPF Type Format metadata to enable kernel debugging information generation?	open	2024-11-17 16:33:28.647471	2024-11-17 16:33:28.647471
-3317	459	Enable kernel build system to treat warnings as errors during the build process?	open	2024-11-17 16:33:28.651397	2024-11-17 16:33:28.651397
-3318	459	Check for a configuration availability in code?	open	2024-11-17 16:33:28.654627	2024-11-17 16:33:28.654627
-3319	209	Filter the resultset by arithmetic conditions?	open	2024-11-21 23:59:46.592705	2024-11-21 23:59:46.592705
-3320	209	Filter the resultset to only records with a substring?	open	2024-11-21 23:59:46.608103	2024-11-21 23:59:46.608103
-3321	209	Use case-insensitive filtering to match a substring?	open	2024-11-21 23:59:46.611379	2024-11-21 23:59:46.611379
-3322	209	Use a function to return the non-null value?	open	2024-11-21 23:59:46.614408	2024-11-21 23:59:46.614408
-3323	209	Change the null presentation in queries?	open	2024-11-21 23:59:46.617237	2024-11-21 23:59:46.617237
-3324	209	Use a descriptive name for columns resulting of function calls?	open	2024-11-21 23:59:46.620887	2024-11-21 23:59:46.620887
-3325	209	Filter out the duplicate results from a resultset?	open	2024-11-21 23:59:46.625836	2024-11-21 23:59:46.625836
-3326	209	Limit the number of query results to specific rows?	open	2024-11-21 23:59:46.629066	2024-11-21 23:59:46.629066
-3327	209	Limit the query results to a number of rows somewhere in the middle?	open	2024-11-21 23:59:46.631152	2024-11-21 23:59:46.631152
-3328	209	Duplicate a table structure without copying rows?	open	2024-11-21 23:59:46.633214	2024-11-21 23:59:46.633214
-3329	209	Filter query results by limiting a column only to a subset of values?	open	2024-11-21 23:59:46.635512	2024-11-21 23:59:46.635512
-3330	209	Filter query results by matching a subquery?	open	2024-11-21 23:59:46.638472	2024-11-21 23:59:46.638472
-3331	209	Filter query results by checking the existance of a subquery?	open	2024-11-21 23:59:46.642383	2024-11-21 23:59:46.642383
-3332	1352	What happens to an object in moved-from state when it goes out of scope?	open	2024-11-23 14:11:23.066669	2024-11-23 14:11:23.066669
-3333	1352	What are the requirements in behavior of a moved-from object?	open	2024-11-23 14:11:23.078365	2024-11-23 14:11:23.078365
-3334	1352	What guarantees should we give when desining a class?	open	2024-11-23 14:11:23.080313	2024-11-23 14:11:23.080313
-3335	1352	What is an invariant?	open	2024-11-23 14:11:23.082087	2024-11-23 14:11:23.082087
-3336	1352	Why should we avoid full guarantee to moved-from state types?	open	2024-11-23 14:11:23.08366	2024-11-23 14:11:23.08366
-3337	1352	What are the fixes for types that contain non-destructible members?	open	2024-11-23 14:11:23.08533	2024-11-23 14:11:23.08533
-3338	1352	What options are available when a moved member value breaks invariants?	open	2024-11-23 14:11:23.086931	2024-11-23 14:11:23.086931
-3339	1354	Why do we need value categories besides types?	open	2024-11-24 15:19:44.418311	2024-11-24 15:19:44.418311
-3340	1354	What are the primary value categories in C language?	open	2024-11-24 15:19:44.422792	2024-11-24 15:19:44.422792
-3341	1354	What value category will a statement have when type is const?	open	2024-11-24 15:19:44.425379	2024-11-24 15:19:44.425379
-3342	1354	What is the value category of a moved-from object?	open	2024-11-24 15:19:44.42807	2024-11-24 15:19:44.42807
-3343	1354	What statements are lvalue?	open	2024-11-24 15:19:44.430867	2024-11-24 15:19:44.430867
-3344	1354	What statements are prvalues?	open	2024-11-24 15:19:44.433034	2024-11-24 15:19:44.433034
-3345	1354	What statements are xvalues?	open	2024-11-24 15:19:44.434935	2024-11-24 15:19:44.434935
-3346	1354	What is the generalized explanation of value categories in C++17?	open	2024-11-24 15:19:44.43606	2024-11-24 15:19:44.43606
-3347	1354	What is materialization?	open	2024-11-24 15:19:44.43767	2024-11-24 15:19:44.43767
-3349	1571	Delete a function with giving reasons for it?	open	2024-11-27 21:53:14.153381	2024-11-27 21:53:14.153381
-3350	1571	Create a break point in code?	open	2024-11-27 21:53:14.155412	2024-11-27 21:53:14.155412
-3351	1571	Check if debugger is running the program?	open	2024-11-27 21:53:14.156989	2024-11-27 21:53:14.156989
-3352	1571	Use a name placeholder where naming an object is not necessary?	open	2024-11-27 21:53:14.15892	2024-11-27 21:53:14.15892
-3353	1571	Declare a structured binding as a condition?	open	2024-11-27 21:53:14.160641	2024-11-27 21:53:14.160641
-3354	1571	Apply attributes to members of structured bindings?	open	2024-11-27 21:53:14.162241	2024-11-27 21:53:14.162241
-3355	1571	Take a real and imaginary values from a complex?	open	2024-11-27 21:53:14.163735	2024-11-27 21:53:14.163735
-3357	1573	Use OpenCV in a simple CMake configured project?	open	2024-11-29 22:54:18.252375	2024-11-29 22:54:18.252375
-3358	1573	What type is used to store image data?	open	2024-11-29 22:54:18.255685	2024-11-29 22:54:18.255685
-3359	1573	Read an image from file?	open	2024-11-29 22:54:18.258904	2024-11-29 22:54:18.258904
-3360	1573	Write an image to file?	open	2024-11-29 22:54:18.26159	2024-11-29 22:54:18.26159
-3361	1573	What coloring formats are possible to apply on importing images?	open	2024-11-29 22:54:18.264695	2024-11-29 22:54:18.264695
-3362	1573	Retrieve the number of rows and columns within a matrix?	open	2024-11-29 22:54:18.267841	2024-11-29 22:54:18.267841
-3363	1573	What type is used to contain pixel information?	open	2024-11-29 22:54:18.269955	2024-11-29 22:54:18.269955
-3364	1573	Retrieve a pixel from a matrix?	open	2024-11-29 22:54:18.27189	2024-11-29 22:54:18.27189
-3365	1573	Display an image in a window?	open	2024-11-29 22:54:18.273961	2024-11-29 22:54:18.273961
-3366	1573	Record video feed from a camera?	open	2024-11-29 22:54:18.275824	2024-11-29 22:54:18.275824
-3367	1573	What are the basic objects in OpenCV?	open	2024-11-29 22:54:18.27824	2024-11-29 22:54:18.27824
-3368	1573	What type aliases are available for <code>cv::Vec</code> class template?	open	2024-11-29 22:54:18.280133	2024-11-29 22:54:18.280133
-3369	1573	What operations does <code>cv::Vec</code> class template support?	open	2024-11-29 22:54:18.281844	2024-11-29 22:54:18.281844
-3370	1573	What operations does Scalar type support?	open	2024-11-29 22:54:18.283891	2024-11-29 22:54:18.283891
-3371	1573	What operations does Point type support?	open	2024-11-29 22:54:18.286261	2024-11-29 22:54:18.286261
-3372	1573	What type aliases are available for Point class template?	open	2024-11-29 22:54:18.288216	2024-11-29 22:54:18.288216
-3373	1573	What operations does Size type support?	open	2024-11-29 22:54:18.290245	2024-11-29 22:54:18.290245
-3374	1573	Initialize an object of type Rect?	open	2024-11-29 22:54:18.292325	2024-11-29 22:54:18.292325
-3375	1573	Initialize an object of type RotatedRect?	open	2024-11-29 22:54:18.294168	2024-11-29 22:54:18.294168
-3376	1573	Retrieve the bounding rectangle of a rotated rectangle?	open	2024-11-29 22:54:18.295924	2024-11-29 22:54:18.295924
-3377	1573	Create a matrix with specific channels?	open	2024-11-29 22:54:18.297678	2024-11-29 22:54:18.297678
-3378	1573	How many channel options are available?	open	2024-11-29 22:54:18.299446	2024-11-29 22:54:18.299446
-3379	1573	Initialize a matrix with zeros?	open	2024-11-29 22:54:18.301627	2024-11-29 22:54:18.301627
-3380	1573	Initialize a matrix with ones?	open	2024-11-29 22:54:18.303862	2024-11-29 22:54:18.303862
-3381	1573	Create an eye matrix?	open	2024-11-29 22:54:18.305865	2024-11-29 22:54:18.305865
-3382	1573	What operations are supported on Mat type?	open	2024-11-29 22:54:18.308008	2024-11-29 22:54:18.308008
-3383	1573	Count non-zero elements in a matrix?	open	2024-11-29 22:54:18.309827	2024-11-29 22:54:18.309827
-3384	1573	Calculate mean standard deviation of a matrix?	open	2024-11-29 22:54:18.311597	2024-11-29 22:54:18.311597
-3385	1573	Locate minimum and maximum values in a matrix?	open	2024-11-29 22:54:18.313324	2024-11-29 22:54:18.313324
-3386	1573	Store matrix data in a persistent storage?	open	2024-11-29 22:54:18.315022	2024-11-29 22:54:18.315022
-3387	1573	Read data from a persistent storage?	open	2024-11-29 22:54:18.316913	2024-11-29 22:54:18.316913
-3388	1354	What special rule do functions have in value categories?	open	2024-12-01 22:08:01.385167	2024-12-01 22:08:01.385167
-3389	1354	What special rules do data members have in value categories?	open	2024-12-01 22:08:01.395207	2024-12-01 22:08:01.395207
-3390	1354	What is the impact of value categories when binding an rvalue to lvalue references?	open	2024-12-01 22:08:01.398968	2024-12-01 22:08:01.398968
-3391	1354	What is the overload resolution with references?	open	2024-12-01 22:08:01.40199	2024-12-01 22:08:01.40199
-3392	1354	What is the priority between reference and value overload resolutions?	open	2024-12-01 22:08:01.404644	2024-12-01 22:08:01.404644
-3393	1354	When does an lvalue become an rvalue?	open	2024-12-01 22:08:01.407748	2024-12-01 22:08:01.407748
-3394	1354	When does an rvalue become an lvalue?	open	2024-12-01 22:08:01.411388	2024-12-01 22:08:01.411388
-3395	1354	What operator can be used to determine the type of names?	open	2024-12-01 22:08:01.413404	2024-12-01 22:08:01.413404
-3396	1354	What operator can be used to determine the value category of an expression?	open	2024-12-01 22:08:01.415513	2024-12-01 22:08:01.415513
-3397	1355	Determine the value category of an expression?	open	2024-12-01 22:08:01.418235	2024-12-01 22:08:01.418235
-3398	1584	How many parallel programming paradigms exist?	open	2024-12-05 16:21:03.609023	2024-12-05 16:21:03.609023
-3399	1584	What is the difference between preemptive and non-preemptive concurrency?	open	2024-12-05 16:21:03.618759	2024-12-05 16:21:03.618759
-3400	1584	What are the advantages of preemptive multitasking?	open	2024-12-05 16:21:03.621423	2024-12-05 16:21:03.621423
-3401	1584	Use Amdahl's law to measure the speed-up factor of a parallel system?	open	2024-12-05 16:21:03.623147	2024-12-05 16:21:03.623147
-3402	1584	Use Gustafson's law to compute the speed-up gained by using multiple processors?	open	2024-12-05 16:21:03.624707	2024-12-05 16:21:03.624707
-3403	1355	Forward an object that is passed with move semantics to a function?	open	2024-12-06 16:27:19.40459	2024-12-06 16:27:19.40459
-3404	1355	What is the workaround to having different overloads for each parameter in a generic code?	open	2024-12-06 16:27:19.420811	2024-12-06 16:27:19.420811
-3405	1355	What are the requirements of perfect forwarding?	open	2024-12-06 16:27:19.42263	2024-12-06 16:27:19.42263
-3406	1355	Perfectly forward variadic template arguments?	open	2024-12-06 16:27:19.42417	2024-12-06 16:27:19.42417
-3407	1355	What is the difference between an rvalue reference and a universal reference?	open	2024-12-06 16:27:19.425913	2024-12-06 16:27:19.425913
-3408	1355	What difference does it make to const qualify a universal reference?	open	2024-12-06 16:27:19.427602	2024-12-06 16:27:19.427602
-3409	1355	What does <code>std::forward</code> do?	open	2024-12-06 16:27:19.429631	2024-12-06 16:27:19.429631
-3410	1355	Call a member function of an object passed as a universal reference when we no longer need that object?	open	2024-12-06 16:27:19.430919	2024-12-06 16:27:19.430919
-3411	1355	What is the overload resolution of binding all references including universal references?	open	2024-12-06 16:27:19.4321	2024-12-06 16:27:19.4321
-3412	1355	What is the side effect of universal reference overloads on copy and move constructors?	open	2024-12-06 16:27:19.433411	2024-12-06 16:27:19.433411
-3413	1355	Avoid accidental overload resolution with universal reference in a generic constructor?	open	2024-12-06 16:27:19.434758	2024-12-06 16:27:19.434758
-3414	1355	Perfectly forward parameters of a lambda?	open	2024-12-06 16:27:19.436119	2024-12-06 16:27:19.436119
-3415	1356	What is the advantage of universal references over const lvalue references?	open	2024-12-07 22:38:53.140965	2024-12-07 22:38:53.140965
-3416	1356	Why cannot we use <code>std::forward<>()</code> twice in an object?	open	2024-12-07 22:38:53.145845	2024-12-07 22:38:53.145845
-3417	1356	What is the deduced type of a universal reference?	open	2024-12-07 22:38:53.148352	2024-12-07 22:38:53.148352
-3418	1356	Check for constness of an argument?	open	2024-12-07 22:38:53.150412	2024-12-07 22:38:53.150412
-3419	1356	Divide the execution of a function based on constness of its argument?	open	2024-12-07 22:38:53.152206	2024-12-07 22:38:53.152206
-3420	1356	Check whether the passed argument of an object is an lvalue or an rvalue?	open	2024-12-07 22:38:53.153851	2024-12-07 22:38:53.153851
-3421	1356	Restrict a universal reference to a specifc type?	open	2024-12-07 22:38:53.156453	2024-12-07 22:38:53.156453
-3422	1356	What corner cases exist that rvalue references might look like universal references?	open	2024-12-07 22:38:53.157778	2024-12-07 22:38:53.157778
-3423	1356	Where does reference collapsing rule apply?	open	2024-12-07 22:38:53.15917	2024-12-07 22:38:53.15917
-3424	1356	How does reference collapsing apply for <code>std::move()</code> and <code>std::reference<>()</code>?	open	2024-12-07 22:38:53.160865	2024-12-07 22:38:53.160865
-3425	1356	What are the side effects of explicitly specifying the type of the template parameter when declared as a universal reference?	open	2024-12-07 23:31:28.5878	2024-12-07 23:31:28.5878
-3426	1356	When does template parameter deduction conflicts happens with universal references?	open	2024-12-07 23:31:28.592694	2024-12-07 23:31:28.592694
-3427	1356	Declare a function taking a pure rvalue reference of generic types?	open	2024-12-07 23:31:28.595987	2024-12-07 23:31:28.595987
-3428	1459	What is the most appropriate way of making the targets of a project available to other projects system-wide?	open	2024-12-14 09:40:42.536907	2024-12-14 09:40:42.536907
-3429	1459	Define an export file to be used by consuming projects?	open	2024-12-14 09:40:42.545616	2024-12-14 09:40:42.545616
-3430	1459	What are the alternative approaches to exporting a target?	open	2024-12-14 09:40:42.547789	2024-12-14 09:40:42.547789
-3431	1459	Why the generated export file cannot be used system-wide?	open	2024-12-14 09:40:42.549391	2024-12-14 09:40:42.549391
-3432	1459	Install a built project on your host system?	open	2024-12-15 18:57:04.153628	2024-12-15 18:57:04.153628
-3433	1459	What CMake command installs artifacts?	open	2024-12-15 18:57:04.157849	2024-12-15 18:57:04.157849
-3434	1459	What artifacts can be installed by CMake?	open	2024-12-15 18:57:04.160225	2024-12-15 18:57:04.160225
-3435	1459	Specify the location where an artifact would be copied in install command?	open	2024-12-15 18:57:04.162368	2024-12-15 18:57:04.162368
-3436	1459	Set permissions for an artifact in install command?	open	2024-12-15 18:57:04.16419	2024-12-15 18:57:04.16419
-3437	1459	Specify in which configurations an artifact should be installed in install command?	open	2024-12-15 18:57:04.166034	2024-12-15 18:57:04.166034
-3438	1459	Suppress errors when the installable files do not exist in install command?	open	2024-12-15 18:57:04.167475	2024-12-15 18:57:04.167475
-3439	1459	Specify in which export component an artifact belongs to in install command?	open	2024-12-15 18:57:04.168485	2024-12-15 18:57:04.168485
-3440	1459	Exclude an artifact from the default build process in install command?	open	2024-12-15 18:57:04.169622	2024-12-15 18:57:04.169622
-3441	1459	What command installs executable and library artifacts?	open	2024-12-15 18:57:04.170975	2024-12-15 18:57:04.170975
-3442	1459	Specify the export file in which an artifact should belong to in install command?	open	2024-12-15 18:57:04.172239	2024-12-15 18:57:04.172239
-3443	1459	What artifact types an installable artifact can have?	open	2024-12-15 18:57:04.173295	2024-12-15 18:57:04.173295
-3444	1459	What are the default installation paths for each of the artifact types?	open	2024-12-15 18:57:04.17444	2024-12-15 18:57:04.17444
-3445	1459	What utility module aims detecting platform specific installation paths?	open	2024-12-15 18:57:04.1753	2024-12-15 18:57:04.1753
-3446	1459	What path is the defacto standard for library headers to be installed?	open	2024-12-15 18:57:04.176304	2024-12-15 18:57:04.176304
-3447	1459	Specify a file set for target headers to be installed in an appropriate location?	open	2024-12-15 18:57:04.177706	2024-12-15 18:57:04.177706
-3448	1459	Install files and assets into system-wide accessible locations?	open	2024-12-15 18:57:04.179372	2024-12-15 18:57:04.179372
-3449	1459	Invoke scripts during installation?	open	2024-12-15 18:57:04.180582	2024-12-15 18:57:04.180582
-3450	1459	Specify runtime dependencies for a target?	open	2024-12-15 18:57:04.181832	2024-12-15 18:57:04.181832
-3451	1459	What steps are required to make a project accessible system-wide?	open	2024-12-15 18:57:04.182778	2024-12-15 18:57:04.182778
-3452	1459	Make include directories relocatable?	open	2024-12-15 18:57:04.184231	2024-12-15 18:57:04.184231
-3453	1459	Install an export file?	open	2024-12-15 18:57:04.18526	2024-12-15 18:57:04.18526
-3454	1459	What are the building blocks of a package definition config file?	open	2024-12-15 18:57:04.186167	2024-12-15 18:57:04.186167
-3455	1459	What are the requirements of a package?	open	2024-12-15 18:57:04.187456	2024-12-15 18:57:04.187456
-3456	1459	What are the requirements of package location and name?	open	2024-12-15 18:57:04.188948	2024-12-15 18:57:04.188948
-3457	1459	What does a basic config file contain?	open	2024-12-15 18:57:04.189985	2024-12-15 18:57:04.189985
-3458	1459	Make a library visible by other projects through <code>find_package()</code>?	open	2024-12-15 18:57:04.191334	2024-12-15 18:57:04.191334
-3459	1459	Check path availability in a config file?	open	2024-12-15 18:57:04.192368	2024-12-15 18:57:04.192368
-3460	1459	Generate package version file?	open	2024-12-15 18:57:04.193548	2024-12-15 18:57:04.193548
-3461	1459	Define components to be used in package finding?	open	2024-12-15 18:57:04.194565	2024-12-15 18:57:04.194565
-3462	1459	Make a symbolic linke to a versioned shared library?	open	2024-12-15 18:57:04.195571	2024-12-15 18:57:04.195571
-3463	1459	What package generators are available?	open	2024-12-15 18:57:04.196751	2024-12-15 18:57:04.196751
-3464	1459	What information is needed in the project before packing it?	open	2024-12-15 18:57:04.198124	2024-12-15 18:57:04.198124
-3465	1459	Create a package from a project?	open	2024-12-15 18:57:04.199281	2024-12-15 18:57:04.199281
-3466	787	What predefined images exist in poky?	open	2024-12-21 10:35:23.080574	2024-12-21 10:35:23.080574
-3467	787	Build an image?	open	2024-12-21 10:35:23.08758	2024-12-21 10:35:23.08758
-3468	787	What layer provides necessary tool to run built images?	open	2024-12-21 10:35:23.089748	2024-12-21 10:35:23.089748
-3469	788	What is the role of Toaster in the Yocto project?	open	2024-12-21 12:09:06.509635	2024-12-21 12:09:06.509635
-3470	788	Install toaster and its requirements?	open	2024-12-21 12:09:06.513737	2024-12-21 12:09:06.513737
-3471	788	Start toaster?	open	2024-12-21 12:09:06.516636	2024-12-21 12:09:06.516636
-3472	789	Where is the configuration file for each layer?	open	2024-12-21 12:09:06.520544	2024-12-21 12:09:06.520544
-3473	789	What metadata types exist?	open	2024-12-21 12:09:06.522213	2024-12-21 12:09:06.522213
-3474	789	What is the role of configurations in layers?	open	2024-12-21 12:09:06.523645	2024-12-21 12:09:06.523645
-3475	789	What is the role of classes in layers?	open	2024-12-21 12:09:06.525176	2024-12-21 12:09:06.525176
-3476	789	What are the required variables in the configuration file of a layer?	open	2024-12-21 12:09:06.526324	2024-12-21 12:09:06.526324
-3477	790	What configuration files are be parsed by bitbake?	open	2024-12-21 16:09:33.74025	2024-12-21 16:09:33.74025
-3478	790	What configuration variable is used to list required layers in metadata?	open	2024-12-21 16:09:33.744301	2024-12-21 16:09:33.744301
-3479	790	What is the metadata parsing order of bitbake?	open	2024-12-21 16:09:33.746387	2024-12-21 16:09:33.746387
-3480	790	When does architecture specific metadata loads into metadata?	open	2024-12-21 16:09:33.748137	2024-12-21 16:09:33.748137
-3481	790	What dependencies exist in metadata?	open	2024-12-21 16:09:33.75007	2024-12-21 16:09:33.75007
-3482	790	What recipes will only run on host and not the target device?	open	2024-12-21 16:09:33.751637	2024-12-21 16:09:33.751637
-3483	790	What configuration variables hold metadata dependencies?	open	2024-12-21 16:09:33.753338	2024-12-21 16:09:33.753338
-3484	790	What configuration variable is used to satisfy metadata dependecies?	open	2024-12-21 16:09:33.754583	2024-12-21 16:09:33.754583
-3485	790	What configuration variable signifies higher precedence of a provider over others?	open	2024-12-21 16:09:33.755646	2024-12-21 16:09:33.755646
-3486	790	How many ways exist for a provider to provide a functionality?	open	2024-12-21 16:09:33.756774	2024-12-21 16:09:33.756774
-3487	790	When do we use virtual namespace in provider names?	open	2024-12-21 16:09:33.758042	2024-12-21 16:09:33.758042
-3488	790	What is the preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.759134	2024-12-21 16:09:33.759134
-3489	790	Override the default version preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.760254	2024-12-21 16:09:33.760254
-3490	790	Change the default version preference of a recipe?	open	2024-12-21 16:09:33.761444	2024-12-21 16:09:33.761444
-3491	790	What mechanism does bitbake have to fetch sources?	open	2024-12-21 16:09:33.762551	2024-12-21 16:09:33.762551
-3492	790	What recipe variable is used to fetch source files?	open	2024-12-21 16:09:33.763607	2024-12-21 16:09:33.763607
-3493	790	What mechanism is used by bitbake to verify downloaded files?	open	2024-12-21 16:09:33.764575	2024-12-21 16:09:33.764575
-3494	790	Override the download path in a layer?	open	2024-12-21 16:09:33.76564	2024-12-21 16:09:33.76564
-3495	790	How does bitbake avoid conflicts between possible git repositories with the same project name?	open	2024-12-21 16:09:33.766818	2024-12-21 16:09:33.766818
-3496	790	What are the use cases of <code>SRCREV</code> variable?	open	2024-12-21 16:09:33.767775	2024-12-21 16:09:33.767775
-3497	790	Specify branch and protocol of a git repository to be fetched?	open	2024-12-21 16:09:33.768809	2024-12-21 16:09:33.768809
-3498	790	What are the use cases of mirrors?	open	2024-12-21 16:09:33.769779	2024-12-21 16:09:33.769779
-3499	790	What locations are searched by bitbake to download a repository?	open	2024-12-21 16:09:33.770721	2024-12-21 16:09:33.770721
-3500	790	Instruct the build system to redirect any download request to a local server?	open	2024-12-21 16:09:33.772046	2024-12-21 16:09:33.772046
-3501	790	Share downloads between multiple build directories?	open	2024-12-21 16:09:33.773287	2024-12-21 16:09:33.773287
-3502	790	Disable internet access to bitbake?	open	2024-12-21 16:09:33.774656	2024-12-21 16:09:33.774656
-3503	790	Run a specific task?	open	2024-12-21 16:09:33.775739	2024-12-21 16:09:33.775739
-3504	790	List the defined tasks for a recipe?	open	2024-12-21 16:09:33.777187	2024-12-21 16:09:33.777187
-3505	790	What is a task?	open	2024-12-21 16:09:33.778815	2024-12-21 16:09:33.778815
-3506	790	What are the common tasks specified in each recipe?	open	2024-12-21 16:09:33.779798	2024-12-21 16:09:33.779798
-3507	791	What are the entries of the build directory after image creation?	open	2024-12-23 12:32:36.959745	2024-12-23 12:32:36.959745
-3508	791	Which directories are critical to know for analyzing the build process and troubleshooting?	open	2024-12-23 12:32:36.964118	2024-12-23 12:32:36.964118
-3509	791	What directory is modified in each step of the build process?	open	2024-12-23 12:32:36.965887	2024-12-23 12:32:36.965887
-3510	791	What is the structure of work directory?	open	2024-12-23 12:32:36.968179	2024-12-23 12:32:36.968179
-3511	791	Reduce disk usage after each recipe compilation by removing artifacts?	open	2024-12-23 12:32:36.970039	2024-12-23 12:32:36.970039
-3512	791	Where does the list sysroot providers for each recipe reside?	open	2024-12-23 12:32:36.971582	2024-12-23 12:32:36.971582
-3513	791	What is the general approach to fix broken builds when a missing header or link failure happens?	open	2024-12-23 12:32:36.973033	2024-12-23 12:32:36.973033
-3514	792	What package formats are available to poky?	open	2024-12-23 17:32:55.473494	2024-12-23 17:32:55.473494
-3515	792	Select a package format?	open	2024-12-23 17:32:55.478001	2024-12-23 17:32:55.478001
-3516	792	What package installation scripts are available in a recipe?	open	2024-12-23 17:32:55.480366	2024-12-23 17:32:55.480366
-3517	792	Run post installation scripts on target devices instead of host?	open	2024-12-23 17:32:55.48391	2024-12-23 17:32:55.48391
-3518	792	What variable holds the path to the installation directory?	open	2024-12-23 17:32:55.48661	2024-12-23 17:32:55.48661
-3519	792	What is the best practice to run target specific processes?	open	2024-12-23 17:32:55.488274	2024-12-23 17:32:55.488274
-3520	792	What is a shared state cache?	open	2024-12-23 17:32:55.489917	2024-12-23 17:32:55.489917
-3521	792	Clean the shared state cache?	open	2024-12-23 17:32:55.49139	2024-12-23 17:32:55.49139
-3522	792	Enforce building from scratch?	open	2024-12-23 17:32:55.49386	2024-12-23 17:32:55.49386
-3523	792	What variables are used in package versioning of poky?	open	2024-12-23 17:32:55.49651	2024-12-23 17:32:55.49651
-3524	792	What variables are used to specify runtime package dependencies?	open	2024-12-23 17:32:55.499345	2024-12-23 17:32:55.499345
-3525	792	What is the role of rootfs directory?	open	2024-12-23 17:32:55.501502	2024-12-23 17:32:55.501502
-3526	792	What variable holds the list of packages to be installed into rootfs?	open	2024-12-23 17:32:55.502991	2024-12-23 17:32:55.502991
-3527	792	What variable holds the filesystem types to be generated?	open	2024-12-23 17:32:55.50438	2024-12-23 17:32:55.50438
-3528	792	What are the steps of rootfs directory generation?	open	2024-12-23 17:32:55.505826	2024-12-23 17:32:55.505826
-3529	792	What is a package feed?	open	2024-12-23 17:32:55.507409	2024-12-23 17:32:55.507409
-3530	792	What are the use cases of package feeds?	open	2024-12-23 17:32:55.508888	2024-12-23 17:32:55.508888
-3531	792	What is the role of PR service in package versioning?	open	2024-12-23 17:32:55.51023	2024-12-23 17:32:55.51023
-3532	792	Enable PR service in a layer?	open	2024-12-23 17:32:55.513027	2024-12-23 17:32:55.513027
-3533	792	What is the role of package index?	open	2024-12-23 17:32:55.51583	2024-12-23 17:32:55.51583
-3534	792	Where do installed packages reside?	open	2024-12-23 17:32:55.517932	2024-12-23 17:32:55.517932
-3535	792	Add support for package management to an image?	open	2024-12-23 17:32:55.519775	2024-12-23 17:32:55.519775
-3536	793	How many types a metadata covers?	open	2024-12-24 11:02:23.777862	2024-12-24 11:02:23.777862
-3537	793	What is the language of a recipe?	open	2024-12-24 11:02:23.791329	2024-12-24 11:02:23.791329
-3538	793	Trace the variable changes during execution of a recipe?	open	2024-12-24 11:02:23.792735	2024-12-24 11:02:23.792735
-3539	793	Assign value to a variable in a recipe file?	open	2024-12-24 11:02:23.793889	2024-12-24 11:02:23.793889
-3540	793	Use variable expansion in value assignment?	open	2024-12-24 11:02:23.795803	2024-12-24 11:02:23.795803
-3541	793	How many expansion rules exist?	open	2024-12-24 11:02:23.797003	2024-12-24 11:02:23.797003
-3542	793	How many assignments with different priorities exist?	open	2024-12-24 11:02:23.798435	2024-12-24 11:02:23.798435
-3543	793	Use an immediate variable expansion?	open	2024-12-24 11:02:23.799436	2024-12-24 11:02:23.799436
-3544	793	Append and prepend a value to a list?	open	2024-12-24 11:02:23.800604	2024-12-24 11:02:23.800604
-3545	793	Append and prepend a value to a string?	open	2024-12-24 11:02:23.801632	2024-12-24 11:02:23.801632
-3546	793	What are the differences between both variations of string append and prepend operators?	open	2024-12-24 11:02:23.802606	2024-12-24 11:02:23.802606
-3547	793	Remove an item from a list?	open	2024-12-24 11:02:23.803587	2024-12-24 11:02:23.803587
-3548	793	What variable is used to control the conditional metadata override?	open	2024-12-24 11:02:23.804676	2024-12-24 11:02:23.804676
-3549	793	Conditionally assign value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.805628	2024-12-24 11:02:23.805628
-3550	793	Conditionally append and prepend value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.806552	2024-12-24 11:02:23.806552
-3551	793	How many ways exist to include another recipe file?	open	2024-12-24 11:02:23.807822	2024-12-24 11:02:23.807822
-3552	793	Use inline Python code?	open	2024-12-24 11:02:23.808801	2024-12-24 11:02:23.808801
-3553	793	Define a Shell function inside a recipe?	open	2024-12-24 11:02:23.809776	2024-12-24 11:02:23.809776
-3554	793	Define a Python function inside a recipe?	open	2024-12-24 11:02:23.811035	2024-12-24 11:02:23.811035
-3555	793	Get access to global datastore of bitbake within a Python function?	open	2024-12-24 11:02:23.812756	2024-12-24 11:02:23.812756
-3556	793	Inherit from a class inside a recipe?	open	2024-12-24 11:02:23.814062	2024-12-24 11:02:23.814062
-3557	794	What is a toolchain?	open	2024-12-25 21:59:50.259956	2024-12-25 21:59:50.259956
-3558	794	What is an SDK?	open	2024-12-25 21:59:50.266847	2024-12-25 21:59:50.266847
-3559	794	Generate a native SDK for development on target device?	open	2024-12-25 21:59:50.269304	2024-12-25 21:59:50.269304
-3560	794	What SDK types can bitbake generate?	open	2024-12-25 21:59:50.271207	2024-12-25 21:59:50.271207
-3561	794	In how many places an SDK can be generated?	open	2024-12-25 21:59:50.272354	2024-12-25 21:59:50.272354
-3562	794	Build a generic standard SDK?	open	2024-12-25 21:59:50.273536	2024-12-25 21:59:50.273536
-3563	794	Where are the generated SDK files after build?	open	2024-12-25 21:59:50.274775	2024-12-25 21:59:50.274775
-3564	794	Install an SDK?	open	2024-12-25 21:59:50.27614	2024-12-25 21:59:50.27614
-3565	794	What machine architecture is supported by a standard SDK?	open	2024-12-25 21:59:50.277176	2024-12-25 21:59:50.277176
-3566	794	Use an installed standard SDK to build a custom application?	open	2024-12-25 21:59:50.278329	2024-12-25 21:59:50.278329
-3567	794	Use an installed standard SDK to build the kernel?	open	2024-12-25 21:59:50.279646	2024-12-25 21:59:50.279646
-3568	794	Build an extensible SDK?	open	2024-12-25 21:59:50.280776	2024-12-25 21:59:50.280776
-3569	794	Install an extensible SDK?	open	2024-12-25 21:59:50.281847	2024-12-25 21:59:50.281847
-3570	794	What are the advantages of using an extensible SDK?	open	2024-12-25 21:59:50.282869	2024-12-25 21:59:50.282869
-3571	794	Build an image using an installed extensible SDK?	open	2024-12-25 21:59:50.284004	2024-12-25 21:59:50.284004
-3572	794	Run an image using an installed extensible SDK?	open	2024-12-25 21:59:50.285045	2024-12-25 21:59:50.285045
-3573	794	Create a recipe from an external git repository using an installed extensible SDK?	open	2024-12-25 21:59:50.286193	2024-12-25 21:59:50.286193
-3574	794	Build a recipe using an installed extensible SDK?	open	2024-12-25 21:59:50.287485	2024-12-25 21:59:50.287485
-3575	794	Deploy an image to the target using an installed extensible SDK?	open	2024-12-25 21:59:50.288921	2024-12-25 21:59:50.288921
-3576	794	Extend an installed extensible SDK?	open	2024-12-25 21:59:50.291414	2024-12-25 21:59:50.291414
-3577	794	What are the use cases of a shared extensible SDK?	open	2024-12-25 21:59:50.293255	2024-12-25 21:59:50.293255
-3578	795	What are the common ways of debugging the metadata?	open	2024-12-26 10:13:56.232488	2024-12-26 10:13:56.232488
-3579	795	What are the advantages of checking the build history?	open	2024-12-26 10:13:56.24661	2024-12-26 10:13:56.24661
-3580	795	Enable build history to observe differences between subsequent builds?	open	2024-12-26 10:13:56.248233	2024-12-26 10:13:56.248233
-3581	795	Check the difference of two subsequent builds?	open	2024-12-26 10:13:56.25107	2024-12-26 10:13:56.25107
-3582	795	Where can we check for installation splits?	open	2024-12-26 10:13:56.253049	2024-12-26 10:13:56.253049
-3583	795	Where can we check for the failures due to missing artifacts in sysroot?	open	2024-12-26 10:13:56.254685	2024-12-26 10:13:56.254685
-3584	795	What tool can be used to inspect built packages?	open	2024-12-26 10:13:56.255863	2024-12-26 10:13:56.255863
-3585	795	Find all packages related to a built package?	open	2024-12-26 10:13:56.256874	2024-12-26 10:13:56.256874
-3586	795	Find the package that owns a specific file?	open	2024-12-26 10:13:56.257782	2024-12-26 10:13:56.257782
-3587	795	Find the current version of a package?	open	2024-12-26 10:13:56.258711	2024-12-26 10:13:56.258711
-3588	795	List all the files for the given package?	open	2024-12-26 10:13:56.259825	2024-12-26 10:13:56.259825
-3589	795	What logging functions are available for use in Python and Shell functions?	open	2024-12-26 10:13:56.261233	2024-12-26 10:13:56.261233
-3590	795	Where are the Python and Shell logs stored?	open	2024-12-26 10:13:56.262571	2024-12-26 10:13:56.262571
-3591	795	What tool can be used to inspect value changes of a variable?	open	2024-12-26 10:13:56.26353	2024-12-26 10:13:56.26353
-3592	795	Inspect the value changes of a variable in a metadata?	open	2024-12-26 10:13:56.264581	2024-12-26 10:13:56.264581
-3593	795	What are the use cases of a development shell?	open	2024-12-26 10:13:56.266557	2024-12-26 10:13:56.266557
-3594	795	Run a development shell over the kernel image?	open	2024-12-26 10:13:56.268498	2024-12-26 10:13:56.268498
-3595	795	Install debugging packages containing debug symbols in an image?	open	2024-12-26 10:13:56.270291	2024-12-26 10:13:56.270291
-3596	795	Why remote debugging is usually a better option than debugging on target device?	open	2024-12-26 10:13:56.27137	2024-12-26 10:13:56.27137
-3597	796	List all layers?	open	2024-12-28 12:14:27.150905	2024-12-28 12:14:27.150905
-3598	796	What are the essential properties of a layer?	open	2024-12-28 12:14:27.155569	2024-12-28 12:14:27.155569
-3599	796	What kinds of layers exist?	open	2024-12-28 12:14:27.157596	2024-12-28 12:14:27.157596
-3600	796	What is the common way to deal with permanent chances that need to be applied as special requirements?	open	2024-12-28 12:14:27.159672	2024-12-28 12:14:27.159672
-3601	796	What are the entries of a layer?	open	2024-12-28 12:14:27.16181	2024-12-28 12:14:27.16181
-3602	796	Add an existing meta layer?	open	2024-12-28 12:14:27.163585	2024-12-28 12:14:27.163585
-3603	796	Check for the availability of a layer in the community?	open	2024-12-28 12:14:27.165122	2024-12-28 12:14:27.165122
-3604	796	Add an existing meta layer from OpenEmbedded Layer Index?	open	2024-12-28 12:14:27.166331	2024-12-28 12:14:27.166331
-3605	797	Create a new layer?	open	2024-12-28 19:21:57.454328	2024-12-28 19:21:57.454328
-3606	797	What needs to be changed in the base of a layer right after its creation?	open	2024-12-28 19:21:57.472395	2024-12-28 19:21:57.472395
-3607	797	What is an image?	open	2024-12-28 19:21:57.474974	2024-12-28 19:21:57.474974
-3608	797	What are the possible ways of creating a new image?	open	2024-12-28 19:21:57.477212	2024-12-28 19:21:57.477212
-3609	797	Add a new features and remove an existing feature from an image?	open	2024-12-28 19:21:57.478704	2024-12-28 19:21:57.478704
-3610	797	Create a new imagine from scratch?	open	2024-12-28 19:21:57.480184	2024-12-28 19:21:57.480184
-3611	797	What image features are currently supported?	open	2024-12-28 19:21:57.481798	2024-12-28 19:21:57.481798
-3612	797	What happens when both openssh and dropbear appears for installation?	open	2024-12-28 19:21:57.48302	2024-12-28 19:21:57.48302
-3613	797	Where do the built packages go?	open	2024-12-28 19:21:57.484215	2024-12-28 19:21:57.484215
-3614	797	What class provides the steps to build a project based on autotools?	open	2024-12-28 19:21:57.485702	2024-12-28 19:21:57.485702
-3615	797	Copy the recipe file to the target layer?	open	2024-12-28 19:21:57.487129	2024-12-28 19:21:57.487129
-3616	797	What are the necessary actions to add support to a new machine definition?	open	2024-12-28 19:21:57.48969	2024-12-28 19:21:57.48969
-3617	797	What variable holds the list of software needed by a machine to be installed?	open	2024-12-28 19:21:57.49183	2024-12-28 19:21:57.49183
-3618	797	What values are currently available for <codde>MACHINE_FEATURES</code>?	open	2024-12-28 19:21:57.493649	2024-12-28 19:21:57.493649
-3619	797	At what stage the machine image should be created?	open	2024-12-28 19:21:57.494904	2024-12-28 19:21:57.494904
-3620	797	What tool is used to partition an image?	open	2024-12-28 19:21:57.496094	2024-12-28 19:21:57.496094
-3621	797	Add partitions to an image?	open	2024-12-28 19:21:57.497311	2024-12-28 19:21:57.497311
-3622	797	When do we have to create a distribution?	open	2024-12-28 19:21:57.498487	2024-12-28 19:21:57.498487
-3623	797	What are the use cases of distributions?	open	2024-12-28 19:21:57.499658	2024-12-28 19:21:57.499658
-3624	797	Create a new distribution to replace wayland by frame buffer?	open	2024-12-28 19:21:57.500973	2024-12-28 19:21:57.500973
-3625	797	What variable defines the features used in a distro?	open	2024-12-28 19:21:57.50217	2024-12-28 19:21:57.50217
-3626	797	What distro features are available?	open	2024-12-28 19:21:57.503436	2024-12-28 19:21:57.503436
-3627	797	What are the differences of machine features and distro features?	open	2024-12-28 19:21:57.505166	2024-12-28 19:21:57.505166
-3628	797	What are the parsing order of configuration files in a layer?	open	2024-12-28 19:21:57.506589	2024-12-28 19:21:57.506589
-3629	797	What are the scope of configuration and recipe variables?	open	2024-12-28 19:21:57.507907	2024-12-28 19:21:57.507907
-3630	798	What is the best practice to change a preexisting recipe?	open	2024-12-29 13:02:11.352824	2024-12-29 13:02:11.352824
-3631	798	Change a preexisting recipe?	open	2024-12-29 13:02:11.369492	2024-12-29 13:02:11.369492
-3632	798	What is the order of applying changes when more than one <code>.bbappend</code> exist?	open	2024-12-29 13:02:11.371397	2024-12-29 13:02:11.371397
-3633	798	Extend a task?	open	2024-12-29 13:02:11.372957	2024-12-29 13:02:11.372957
-3634	798	Add extra options to a recipe based tool?	open	2024-12-29 13:02:11.374976	2024-12-29 13:02:11.374976
-3635	798	What configuration variables exist for build systems?	open	2024-12-29 13:02:11.376633	2024-12-29 13:02:11.376633
-3636	798	What variable is used to make patch files visible?	open	2024-12-29 13:02:11.378725	2024-12-29 13:02:11.378725
-3637	798	What variable is used to add additional configuration files to an existing package?	open	2024-12-29 13:02:11.38003	2024-12-29 13:02:11.38003
-3638	798	What are the commonly used variables to represent paths?	open	2024-12-29 13:02:11.381166	2024-12-29 13:02:11.381166
-3639	798	Where does bitbake find recipe files?	open	2024-12-29 13:02:11.382625	2024-12-29 13:02:11.382625
-3640	798	What variable is used to configure features of a recipe?	open	2024-12-29 13:02:11.383575	2024-12-29 13:02:11.383575
-3641	798	What values are placed in the placeholders of <code>PACKAGECONFIG</code>?	open	2024-12-29 13:02:11.384712	2024-12-29 13:02:11.384712
-3642	798	Add a feature to a recipe?	open	2024-12-29 13:02:11.385847	2024-12-29 13:02:11.385847
-3643	798	What are the prerequisites of configuring a project based on Kconfig?	open	2024-12-29 13:02:11.386969	2024-12-29 13:02:11.386969
-3644	798	Configure the kernel using menuconfig?	open	2024-12-29 13:02:11.387899	2024-12-29 13:02:11.387899
-3645	798	Create a configuration fragment from the kernel?	open	2024-12-29 13:02:11.389147	2024-12-29 13:02:11.389147
-3646	798	Save the complete configuration of the kernel?	open	2024-12-29 13:02:11.390364	2024-12-29 13:02:11.390364
-3647	799	What variables describe the package license?	open	2024-12-30 22:47:32.503793	2024-12-30 22:47:32.503793
-3648	799	How does bitbake keep track of the project license?	open	2024-12-30 22:47:32.513203	2024-12-30 22:47:32.513203
-3649	799	What happens when bitbake detects a different license checksum?	open	2024-12-30 22:47:32.515024	2024-12-30 22:47:32.515024
-3650	799	What restrictions exist with commercial licenses?	open	2024-12-30 22:47:32.51675	2024-12-30 22:47:32.51675
-3651	799	Restrict a commercial license to a recipe?	open	2024-12-30 22:47:32.518423	2024-12-30 22:47:32.518423
-3652	799	Where does bitbake generate license manifest?	open	2024-12-30 22:47:32.520166	2024-12-30 22:47:32.520166
-3653	799	Configure Poky to provide the source code of packages under copyleft?	open	2024-12-30 22:47:32.521986	2024-12-30 22:47:32.521986
-3654	799	What recipes are included when providing the source code?	open	2024-12-30 22:47:32.523025	2024-12-30 22:47:32.523025
-3655	799	Exclude recipes from source code extraction?	open	2024-12-30 22:47:32.52397	2024-12-30 22:47:32.52397
-3656	799	Provide the source code with the modifications applied to it?	open	2024-12-30 22:47:32.525093	2024-12-30 22:47:32.525093
-3657	799	Provide the source code with the procedure used to build the project?	open	2024-12-30 22:47:32.526187	2024-12-30 22:47:32.526187
-3658	799	Change the default archive mode of source code generation?	open	2024-12-30 22:47:32.527087	2024-12-30 22:47:32.527087
-3659	799	Provide license text in the image?	open	2024-12-30 22:47:32.528095	2024-12-30 22:47:32.528095
-3660	800	What are the widely used BSP layers?	open	2024-12-30 22:47:32.531288	2024-12-30 22:47:32.531288
-3661	800	Bake an image for BeagleBone Black?	open	2024-12-30 22:47:32.53334	2024-12-30 22:47:32.53334
-3662	800	Bake an image for Raspberry Pi 4?	open	2024-12-30 22:47:32.534765	2024-12-30 22:47:32.534765
-3663	800	Bake an image for VisionFive2?	open	2024-12-30 22:47:32.536074	2024-12-30 22:47:32.536074
-3664	801	Run an image on qemu?	open	2024-12-30 22:47:32.538479	2024-12-30 22:47:32.538479
-3665	801	Use runqemu to validate memory constraints?	open	2024-12-30 22:47:32.540362	2024-12-30 22:47:32.540362
-3666	801	Use runqemu to help with image regression tests?	open	2024-12-30 22:47:32.54223	2024-12-30 22:47:32.54223
-3667	802	Enable build information generation and layer revisioning?	open	2024-12-30 22:47:32.543945	2024-12-30 22:47:32.543945
-3668	802	Where are the backports of poky when new version gets released?	open	2024-12-30 22:47:32.544877	2024-12-30 22:47:32.544877
-3669	802	Why do we need to create a custom distribution?	open	2024-12-30 22:47:32.545828	2024-12-30 22:47:32.545828
-3670	802	What is the best way to create a minimal image?	open	2024-12-30 22:47:32.546712	2024-12-30 22:47:32.546712
-3671	1449	What are the side effects of assigning the minimum required version to a cmake listfile?	open	2025-01-01 08:45:05.179655	2025-01-01 08:45:05.179655
-3672	1449	Define project details in CMake listfile?	open	2025-01-01 08:45:05.186454	2025-01-01 08:45:05.186454
-3673	1449	What languages are supported by CMake?	open	2025-01-01 08:45:05.18785	2025-01-01 08:45:05.18785
-3674	1449	What variables provide the version information about the project?	open	2025-01-01 08:45:05.189166	2025-01-01 08:45:05.189166
-3675	1449	What variables provide project information?	open	2025-01-01 08:45:05.190539	2025-01-01 08:45:05.190539
-3676	1449	Include another CMake listfile?	open	2025-01-01 08:45:05.192047	2025-01-01 08:45:05.192047
-3677	1449	What are the disadvantages of including another listfile?	open	2025-01-01 08:45:05.193764	2025-01-01 08:45:05.193764
-3678	1449	Include another CMake listfile with a scope?	open	2025-01-01 08:45:05.194893	2025-01-01 08:45:05.194893
+COPY flashback.notes (id, section_id, heading, state, creation, updated, number) FROM stdin;
+1	113	What are the main data structure operations?	open	2024-07-28 09:55:47.305832	2024-07-28 09:55:47.305832	0
+2	113	How do we measure the speed of an operation in code?	open	2024-07-28 09:55:47.475222	2024-07-28 09:55:47.475222	0
+3	113	How many steps does each of four main operations take for an array?	open	2024-07-28 09:55:47.859131	2024-07-28 09:55:47.859131	0
+4	113	What's the difference between an array-based set and an array?	open	2024-07-28 09:55:48.089014	2024-07-28 09:55:48.089014	0
+5	113	How many steps does each of four main operations take for an array-based set?	open	2024-07-28 09:55:48.515362	2024-07-28 09:55:48.515362	0
+6	114	how many steps does each of four main operations take for an ordered array?	open	2024-07-28 09:55:48.950372	2024-07-28 09:55:48.950372	0
+7	114	What are the advantages and disadvantages of using ordered array over unordered array?	open	2024-07-28 09:55:50.81459	2024-07-28 09:55:50.81459	0
+8	115	What is the key question of Big O notation and what does it express?	open	2024-07-28 09:55:51.312281	2024-07-28 09:55:51.312281	0
+9	115	What are the order of main operations for arrays?	open	2024-07-28 09:55:51.549741	2024-07-28 09:55:51.549741	0
+10	115	What are the order of main operations for array-based sets?	open	2024-07-28 09:55:51.811274	2024-07-28 09:55:51.811274	0
+11	115	What are the order of main operations for ordered arrays?	open	2024-07-28 09:55:52.0485	2024-07-28 09:55:52.0485	0
+12	115	What does the constant time in <code>O(1)</code> mean?	open	2024-07-28 09:55:52.217086	2024-07-28 09:55:52.217086	0
+13	115	What does <code>O(log N)</code> mean in terms of number of steps taken in an algorithm?	open	2024-07-28 09:55:52.422502	2024-07-28 09:55:52.422502	0
+14	116	What are the steps taken to sort an array using <b>Bubble Sort</b> algorithm, and what is its efficiency in terms of Big O?	open	2024-07-28 09:55:54.705023	2024-07-28 09:55:54.705023	0
+15	117	What steps are taken in sorting an array using <b>Selection Sort</b> algorithm and what is its efficiency in terms of Big O?	open	2024-07-28 09:55:56.508519	2024-07-28 09:55:56.508519	0
+16	117	What are the general categories of algorithm speeds?	open	2024-07-28 09:55:57.077248	2024-07-28 09:55:57.077248	0
+17	117	How do algorithms are classified into different categories of Big O?	open	2024-07-28 09:55:57.251271	2024-07-28 09:55:57.251271	0
+18	117	How two algorithms in the same category can be compared?	open	2024-07-28 09:55:57.472889	2024-07-28 09:55:57.472889	0
+19	118	What steps are taken to sort an array using <b>Insertion Sort</b> algorithm and what is its efficiency?	open	2024-07-28 09:55:59.964247	2024-07-28 09:55:59.964247	0
+20	118	Having different orders of magnitude in the efficiency of an algorithm, how does Big O notation represents the efficiency?	open	2024-07-28 09:56:00.740476	2024-07-28 09:56:00.740476	0
+21	118	What are the wrost, average and best case scenarios of <b>Bubble Sort</b>, <b>Selection Sort</b>, and <b>Insertion Sort</b>?	open	2024-07-28 09:56:00.950292	2024-07-28 09:56:00.950292	0
+22	118	What considerations should be taken into account when choosing between <b>Insertion Sort</b> and <b>Selection Sort</b>?	open	2024-07-28 09:56:01.174614	2024-07-28 09:56:01.174614	0
+23	120	What is a hash table?	open	2024-07-28 09:56:01.41011	2024-07-28 09:56:01.41011	0
+24	120	What characteristics should a function have in order to be a valid hash function?	open	2024-07-28 09:56:01.619507	2024-07-28 09:56:01.619507	0
+25	120	What is the common value of <b>load factor</b> in implementation of hash tables?	open	2024-07-28 09:56:01.790954	2024-07-28 09:56:01.790954	0
+26	120	How hash tables can be used for non-paired objects instead of arrays in order to make look up operations efficient?	open	2024-07-28 09:56:01.978794	2024-07-28 09:56:01.978794	0
+27	121	What constraints do stacks have?	open	2024-07-28 09:56:02.246876	2024-07-28 09:56:02.246876	0
+28	121	What operations should stack data structures support?	open	2024-07-28 09:56:02.46748	2024-07-28 09:56:02.46748	0
+29	121	What is an <b>Abstract Data Type</b>?	open	2024-07-28 09:56:02.692465	2024-07-28 09:56:02.692465	0
+30	121	What constraints do queues have?	open	2024-07-28 09:56:02.952293	2024-07-28 09:56:02.952293	0
+31	121	What are the main operations of queues?	open	2024-07-28 09:56:03.155232	2024-07-28 09:56:03.155232	0
+32	122	What is base case and why all recursive calls should have one?	open	2024-07-28 09:56:03.405223	2024-07-28 09:56:03.405223	0
+33	122	How recursive code can be read?	open	2024-07-28 09:56:04.229877	2024-07-28 09:56:04.229877	0
+34	122	When does stack overflow occur in recursive calls?	open	2024-07-28 09:56:04.620005	2024-07-28 09:56:04.620005	0
+35	124	What is <b>Overlapping Subproblems</b> in recursion?	open	2024-07-28 09:56:04.862494	2024-07-28 09:56:04.862494	0
+36	124	What is <b>Dynamic Programming</b> and how can it be an optimization to recursion?	open	2024-07-28 09:56:05.157248	2024-07-28 09:56:05.157248	0
+37	124	How does <b>Dynamic Programming</b> using <b>Memoization</b> helps in optimizing recursive calls?	open	2024-07-28 09:56:05.385756	2024-07-28 09:56:05.385756	0
+38	124	How does <b>Dynamic Programming</b> using <b>Iteration</b> helps in optimizing recursive calls?	open	2024-07-28 09:56:05.579969	2024-07-28 09:56:05.579969	0
+39	125	What is the concept of partitioning in <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:05.834753	2024-07-28 09:56:05.834753	0
+40	125	What is the implementation of <i>partition</i> algorithm?	open	2024-07-28 09:56:09.271026	2024-07-28 09:56:09.271026	0
+41	125	What steps are taken in <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:10.268324	2024-07-28 09:56:10.268324	0
+42	125	What is the efficiency of <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:11.179861	2024-07-28 09:56:11.179861	0
+43	125	Compared to <b>Insertion Sort</b>, what are the best and worst cases of <b>Quick Sort</b> algorithm?	open	2024-07-28 09:56:11.667603	2024-07-28 09:56:11.667603	0
+44	125	What is the <b>Quick Select</b> algorithm and where is it best known to be used?	open	2024-07-28 09:56:12.904228	2024-07-28 09:56:12.904228	0
+45	126	What the linked list data structure is contained of?	open	2024-07-28 09:56:13.36198	2024-07-28 09:56:13.36198	0
+46	126	What is a node in node-based data structures?	open	2024-07-28 09:56:14.122563	2024-07-28 09:56:14.122563	0
+47	126	How does a linked list data structure manages its nodes?	open	2024-07-28 09:56:15.17778	2024-07-28 09:56:15.17778	0
+48	126	What difference do arrays and node-based data structures have in four main operations of algorithms?	open	2024-07-28 09:56:18.86028	2024-07-28 09:56:18.86028	0
+49	126	What is Doubly Linked List?	open	2024-07-28 09:56:21.01805	2024-07-28 09:56:21.01805	0
+50	126	Where does doubly linked list can be used to optimize operations?	open	2024-07-28 09:56:21.982616	2024-07-28 09:56:21.982616	0
+51	127	What is a tree data structure?	open	2024-07-28 09:56:22.290899	2024-07-28 09:56:22.290899	0
+52	127	What is the structure of a tree?	open	2024-07-28 09:56:22.548665	2024-07-28 09:56:22.548665	0
+53	127	What is a Binary Search Tree?	open	2024-07-28 09:56:23.221471	2024-07-28 09:56:23.221471	0
+54	127	What steps are taken in searching a binary search tree?	open	2024-07-28 09:56:23.849663	2024-07-28 09:56:23.849663	0
+55	127	What steps are taken for inserting into a binary search tree?	open	2024-07-28 09:56:24.36605	2024-07-28 09:56:24.36605	0
+56	127	What steps are taken to delete a value in a binary search tree?	open	2024-07-28 09:56:24.619821	2024-07-28 09:56:24.619821	0
+57	127	How to find the successor node in a binary search tree when a node with two children is being deleted?	open	2024-07-28 09:56:26.245868	2024-07-28 09:56:26.245868	0
+58	127	What is the traversal algorithm for binary search tree?	open	2024-07-28 09:56:26.795731	2024-07-28 09:56:26.795731	0
+59	128	What is a priority queue?	open	2024-07-28 09:56:27.046429	2024-07-28 09:56:27.046429	0
+60	128	Why priority queues cannot be implemented by ordered arrays as their underlying data structure?	open	2024-07-28 09:56:27.248499	2024-07-28 09:56:27.248499	0
+61	128	What is a Binary Heap data structure?	open	2024-07-28 09:56:27.443349	2024-07-28 09:56:27.443349	0
+62	128	What conditions a Binary Max-Heap should meet to be valid?	open	2024-07-28 09:56:27.672503	2024-07-28 09:56:27.672503	0
+63	128	What conditions does a tree require to be a valid tree?	open	2024-07-28 09:56:28.209676	2024-07-28 09:56:28.209676	0
+64	128	What is a complete tree?	open	2024-07-28 09:56:28.736188	2024-07-28 09:56:28.736188	0
+65	471	Compile an x64 assembly program?	open	2024-07-28 09:56:29.765563	2024-07-28 09:56:29.765563	0
+66	471	Write exit procedure in x64 Assembly?	open	2024-07-28 09:56:30.286434	2024-07-28 09:56:30.286434	0
+67	472	Convert decimal, binary, and hexadecimal representations of integral and floating point numbers?	open	2024-07-28 09:56:30.536936	2024-07-28 09:56:30.536936	0
+68	472	Name x64 registers?	open	2024-07-28 09:56:31.009699	2024-07-28 09:56:31.009699	0
+69	472	What is the name of <b>Instruction Pointer</b> register?	open	2024-07-28 09:56:31.227903	2024-07-28 09:56:31.227903	0
+70	472	Name the flag registers?	open	2024-07-28 09:56:31.583867	2024-07-28 09:56:31.583867	0
+71	472	Name SIMD registers?	open	2024-07-28 09:56:31.810848	2024-07-28 09:56:31.810848	0
+72	473	Debug a compiled program with gdb?	open	2024-07-28 09:56:32.087245	2024-07-28 09:56:32.087245	0
+73	473	List source lines in debugging?	open	2024-07-28 09:56:32.350132	2024-07-28 09:56:32.350132	0
+74	473	Change the line number of source listing?	open	2024-07-28 09:56:32.619898	2024-07-28 09:56:32.619898	0
+75	473	Set disassembly flavor in gdb?	open	2024-07-28 09:56:32.926107	2024-07-28 09:56:32.926107	0
+76	473	Store gdb configurations in file for future use?	open	2024-07-28 09:56:33.149882	2024-07-28 09:56:33.149882	0
+77	473	Disassemble a function or line of source in gdb?	open	2024-07-28 09:56:33.432495	2024-07-28 09:56:33.432495	0
+78	473	Examine an address in memory in gdb?	open	2024-07-28 09:56:33.772475	2024-07-28 09:56:33.772475	0
+79	473	Set breakpoints in gdb?	open	2024-07-28 09:56:34.015804	2024-07-28 09:56:34.015804	0
+80	473	Start execution of the debugging program in gdb?	open	2024-07-28 09:56:34.293067	2024-07-28 09:56:34.293067	0
+81	473	Inspect registers in gdb?	open	2024-07-28 09:56:34.607238	2024-07-28 09:56:34.607238	0
+82	473	Inspect the breakpoint, stack, threads and other resources of the debugging program in gdb?	open	2024-07-28 09:56:34.987738	2024-07-28 09:56:34.987738	0
+83	473	Manipulate breakpoints in gdb?	open	2024-07-28 09:56:35.346491	2024-07-28 09:56:35.346491	0
+84	473	Change executation of the debugging program in gdb?	open	2024-07-28 09:56:35.73267	2024-07-28 09:56:35.73267	0
+85	473	Print variables through debugging session?	open	2024-07-28 09:56:35.964855	2024-07-28 09:56:35.964855	0
+86	473	Enable TUI in gdb:	open	2024-07-28 09:56:36.254515	2024-07-28 09:56:36.254515	0
+87	474	Create values in data section of memory?	open	2024-07-28 09:56:37.070796	2024-07-28 09:56:37.070796	0
+88	474	Use external functions from C in x64 assembly code?	open	2024-07-28 09:56:38.29116	2024-07-28 09:56:38.29116	0
+89	474	Exit program without directly writing the exit syscall?	open	2024-07-28 09:56:38.82609	2024-07-28 09:56:38.82609	0
+90	477	Conditionally change the execution flow?	open	2024-07-28 09:56:40.203016	2024-07-28 09:56:40.203016	0
+91	477	Repeat execution of a code section by manually counting down?	open	2024-07-28 09:56:41.4621	2024-07-28 09:56:41.4621	0
+92	477	Repeat execution of a code section by automatically counting down?	open	2024-07-28 09:56:42.809054	2024-07-28 09:56:42.809054	0
+93	478	Consecutively store a sequence of data into read-only memory section?	open	2024-07-28 09:56:43.284119	2024-07-28 09:56:43.284119	0
+94	478	Preserve uninitialized variables in a writable memory section?	open	2024-07-28 09:56:43.665562	2024-07-28 09:56:43.665562	0
+95	478	Load the address of an array into a register to run operations on?	open	2024-07-28 09:56:44.424671	2024-07-28 09:56:44.424671	0
+96	478	Read the ELF header of an executable object?	open	2024-07-28 09:56:44.806582	2024-07-28 09:56:44.806582	0
+97	478	Read symbols of an executable object?	open	2024-07-28 09:56:45.054325	2024-07-28 09:56:45.054325	0
+98	478	Sort executable object symbols based on its memory locations?	open	2024-07-28 09:56:45.299112	2024-07-28 09:56:45.299112	0
+99	479	Make arithmetic operations on integers?	open	2024-07-28 09:56:46.87937	2024-07-28 09:56:46.87937	0
+100	480	Monitor `rsp` register and watch the changes after pushing into and popping from the stack to reverse a string:	open	2024-07-28 09:56:48.548554	2024-07-28 09:56:48.548554	0
+101	481	Specify how many bits each floating point number occupies for exponent and fraction?	open	2024-07-28 09:56:49.178258	2024-07-28 09:56:49.178258	0
+102	481	Do arithmetic operations with floating point numbers in assembly:	open	2024-07-28 09:56:50.44146	2024-07-28 09:56:50.44146	0
+103	482	Abbreviate function epilogue by using `leave` instruction:	open	2024-07-28 09:56:51.133222	2024-07-28 09:56:51.133222	0
+104	482	Call a procedure enclosed with a stack frame?	open	2024-07-28 09:56:52.00452	2024-07-28 09:56:52.00452	0
+105	482	Return integral or floating-point values from functions:	open	2024-07-28 09:56:53.14969	2024-07-28 09:56:53.14969	0
+106	482	Use local sections in a function to declare local variables:	open	2024-07-28 09:56:54.561834	2024-07-28 09:56:54.561834	0
+107	483	Align the stack after function call with stack frame:	open	2024-07-28 09:56:55.596732	2024-07-28 09:56:55.596732	0
+108	484	Expose a function to external linkage?	open	2024-07-28 09:56:57.841306	2024-07-28 09:56:57.841306	0
+109	484	Expose a variable to external linkage?	open	2024-07-28 09:56:58.796934	2024-07-28 09:56:58.796934	0
+110	485	Use calling conventions to transfer variables from callee to caller functions?	open	2024-07-28 09:57:00.712895	2024-07-28 09:57:00.712895	0
+111	486	Evaluate bit-wise operations?	open	2024-07-28 09:57:02.370248	2024-07-28 09:57:02.370248	0
+112	487	Set and reset specific bits of numeric variable?	open	2024-07-28 09:57:03.435259	2024-07-28 09:57:03.435259	0
+113	487	Check if its 8th bit of a quadword variable is set?	open	2024-07-28 09:57:04.265482	2024-07-28 09:57:04.265482	0
+114	488	Use inline procedures to avoid runtime overhead of function calls?	open	2024-07-28 09:57:05.347175	2024-07-28 09:57:05.347175	0
+115	488	How can it be verified if defined macros are replaced in executable object using `objdump` command?	open	2024-07-28 09:57:05.736127	2024-07-28 09:57:05.736127	0
+116	489	Write into standard output stream directly using system calls?	open	2024-07-28 09:57:06.29568	2024-07-28 09:57:06.29568	0
+117	489	Read from standard input stream directly using system calls?	open	2024-07-28 09:57:06.89297	2024-07-28 09:57:06.89297	0
+118	489	Count input string before printing so that stack overflow is prevented?	open	2024-07-28 09:57:07.917836	2024-07-28 09:57:07.917836	0
+119	489	Limit reading from standard input by a maximum length to prevent stack overflows?	open	2024-07-28 09:57:09.890374	2024-07-28 09:57:09.890374	0
+120	490	What header contains Linux system calls?	open	2024-07-28 09:57:10.475688	2024-07-28 09:57:10.475688	0
+121	490	What header contains file operation constants?	open	2024-07-28 09:57:10.67671	2024-07-28 09:57:10.67671	0
+122	490	Specify an octal number?	open	2024-07-28 09:57:10.998483	2024-07-28 09:57:10.998483	0
+123	490	Use preprocessor directives to conditionally compile a part of x64 assembly program?	open	2024-07-28 09:57:11.684446	2024-07-28 09:57:11.684446	0
+124	490	Open and close a file in x64 assembly?	open	2024-07-28 09:57:13.534901	2024-07-28 09:57:13.534901	0
+125	490	Write content to a file in x64 assembly?	open	2024-07-28 09:57:15.192711	2024-07-28 09:57:15.192711	0
+126	490	Truncate a file in x64 assembly?	open	2024-07-28 09:57:16.76457	2024-07-28 09:57:16.76457	0
+127	490	Append into a file in x64 assembly?	open	2024-07-28 09:57:17.173818	2024-07-28 09:57:17.173818	0
+128	490	Write to a specific offset of a file in x64 assembly?	open	2024-07-28 09:57:17.416466	2024-07-28 09:57:17.416466	0
+129	490	Read from a file in x64 assembly?	open	2024-07-28 09:57:17.656068	2024-07-28 09:57:17.656068	0
+130	490	Read from a specific offset of a file in x64 assembly?	open	2024-07-28 09:57:17.878343	2024-07-28 09:57:17.878343	0
+131	490	Delete a file in x64 assembly?	open	2024-07-28 09:57:18.068844	2024-07-28 09:57:18.068844	0
+132	491	What registers are used to read command line arguments from an x64 assembly program?	open	2024-07-28 09:57:18.320833	2024-07-28 09:57:18.320833	0
+133	491	Read command line arguments from an x64 assembly program?	open	2024-07-28 09:57:19.165651	2024-07-28 09:57:19.165651	0
+134	491	How command line arguments stored in registers can be inspected in debugger?	open	2024-07-28 09:57:19.619261	2024-07-28 09:57:19.619261	0
+135	492	Use an assembly function in a C source?	open	2024-07-28 09:57:20.497468	2024-07-28 09:57:20.497468	0
+136	493	How many of inline assembly types are available and why should they be used?	open	2024-07-28 09:57:20.938616	2024-07-28 09:57:20.938616	0
+137	493	Write a basic inline assembly in C programs?	open	2024-07-28 09:57:21.457516	2024-07-28 09:57:21.457516	0
+212	304	Update file timestamp:	open	2024-07-28 09:58:12.573895	2024-07-28 09:58:12.573895	0
+138	493	Write extended inline assembly in C programs? (needs work)	open	2024-07-28 09:57:22.542824	2024-07-28 09:57:22.542824	0
+139	494	Fill a buffer with a value using a simple loop in x64 assembly?	open	2024-07-28 09:57:23.507429	2024-07-28 09:57:23.507429	0
+140	494	Fill a buffer with a value using a simple loop and `stosb` instruction?	open	2024-07-28 09:57:24.375409	2024-07-28 09:57:24.375409	0
+141	494	Fill a buffer with a value without using a loop?	open	2024-07-28 09:57:25.152671	2024-07-28 09:57:25.152671	0
+142	494	Copy contents of a buffer into another without a loop?	open	2024-07-28 09:57:26.247625	2024-07-28 09:57:26.247625	0
+143	494	Reverse copy the content of a buffer into another without a loop?	open	2024-07-28 09:57:27.460189	2024-07-28 09:57:27.460189	0
+144	494	Compare two strings in x64 assembly without a loop? <span style="color:green">(needs work)</span>	open	2024-07-28 09:57:29.094539	2024-07-28 09:57:29.094539	0
+145	494	Scan a string if a character exists in it without a loop?	open	2024-07-28 09:57:30.384571	2024-07-28 09:57:30.384571	0
+146	495	Indicate that a literal number is in hexadecimal base in x64 assembly?	open	2024-07-28 09:57:30.840709	2024-07-28 09:57:30.840709	0
+147	495	Obtain the CPU information of the processor in x64 assembly?	open	2024-07-28 09:57:31.60502	2024-07-28 09:57:31.60502	0
+148	495	Check the processors which version of SSE extensions do they support?	open	2024-07-28 09:57:34.530296	2024-07-28 09:57:34.530296	0
+149	496	How many registers of SSE are available on any processor supporting it?	open	2024-07-28 09:57:35.420315	2024-07-28 09:57:35.420315	0
+150	496	What are the two types of data that can be stored on SSE registers?	open	2024-07-28 09:57:35.666127	2024-07-28 09:57:35.666127	0
+151	496	What are AVX registers and how much data can they hold?	open	2024-07-28 09:57:35.869789	2024-07-28 09:57:35.869789	0
+152	496	How does alignment of data in `.data` and `.bss` sections can improve performance of a program?	open	2024-07-28 09:57:36.073205	2024-07-28 09:57:36.073205	0
+153	496	How can we align data in `.data` and `.bss` sections in specific byte sizes?	open	2024-07-28 09:57:36.337119	2024-07-28 09:57:36.337119	0
+154	497	What register is responsible for controlling the floating-point operations?	open	2024-07-28 09:57:36.612832	2024-07-28 09:57:36.612832	0
+155	838	What API does the boost library represent for TCP/IP standard?	open	2024-07-28 09:57:37.208632	2024-07-28 09:57:37.208632	0
+156	838	Represent the IP address and port of an endpoint?	open	2024-07-28 09:57:37.60842	2024-07-28 09:57:37.60842	0
+157	838	Create an endpoint to designate the address of a network node?	open	2024-07-28 09:57:38.641601	2024-07-28 09:57:38.641601	0
+158	838	Create an endpoint in the server to designate addresses on which the server wants to listen?	open	2024-07-28 09:57:39.26184	2024-07-28 09:57:39.26184	0
+159	838	How many sockets are available?	open	2024-07-28 09:57:39.736333	2024-07-28 09:57:39.736333	0
+160	838	Create an active socket in client code?	open	2024-07-28 09:57:40.54003	2024-07-28 09:57:40.54003	0
+161	838	Create a passive socket in server code?	open	2024-07-28 09:57:41.501085	2024-07-28 09:57:41.501085	0
+162	1413	What is the objective of <code>io_context</code> in boost?	open	2024-07-28 09:57:42.073003	2024-07-28 09:57:42.073003	0
+163	1413	What is the objective of <code>io_object</code> in boost?	open	2024-07-28 09:57:42.318867	2024-07-28 09:57:42.318867	0
+164	1413	Start an event processing loop on a worker thread?	open	2024-07-28 09:57:42.932695	2024-07-28 09:57:42.932695	0
+165	1413	Start an event processing loop without blocking thread execution?	open	2024-07-28 09:57:43.528461	2024-07-28 09:57:43.528461	0
+166	1413	Start an event processing loop to run queued tasks?	open	2024-07-28 09:57:44.44249	2024-07-28 09:57:44.44249	0
+167	1413	Start an event processing loop to run tasks out of queue?	open	2024-07-28 09:57:45.47465	2024-07-28 09:57:45.47465	0
+168	1414	Serialize concurrent execution of an event processing loop?	open	2024-07-28 09:57:46.464795	2024-07-28 09:57:46.464795	0
+169	1414	Handle exceptional asynchronous control flow in an event processing loop?	open	2024-07-28 09:57:47.489682	2024-07-28 09:57:47.489682	0
+170	1414	Expire a task when reached to a deadline?	open	2024-07-28 09:57:48.417147	2024-07-28 09:57:48.417147	0
+171	1415	Write a client establishing a synchronous tcp connection to a server?	open	2024-07-28 09:57:49.35368	2024-07-28 09:57:49.35368	0
+172	1415	Write a client establishing an asynchronous tcp connection to a server?	open	2024-07-28 09:57:50.424164	2024-07-28 09:57:50.424164	0
+173	1415	Write a server accepting synchronous tcp requests?	open	2024-07-28 09:57:51.800493	2024-07-28 09:57:51.800493	0
+174	1415	Write a server accepting asynchronous tcp requests?	open	2024-07-28 09:57:53.371759	2024-07-28 09:57:53.371759	0
+175	1415	Write and read from server socket?	open	2024-07-28 09:57:56.451929	2024-07-28 09:57:56.451929	0
+176	1416	Begin debugging session of an executable?	open	2024-07-28 09:57:57.138849	2024-07-28 09:57:57.138849	0
+177	1416	Step through program execution in debugging session?	open	2024-07-28 09:57:57.427261	2024-07-28 09:57:57.427261	0
+178	1416	Show source code in debugging session?	open	2024-07-28 09:57:57.632105	2024-07-28 09:57:57.632105	0
+179	1416	Set breakpoints on a program?	open	2024-07-28 09:57:57.932638	2024-07-28 09:57:57.932638	0
+180	1416	Delete a breakpoint from a program?	open	2024-07-28 09:57:58.133757	2024-07-28 09:57:58.133757	0
+181	1416	Print the value of an object?	open	2024-07-28 09:57:58.322162	2024-07-28 09:57:58.322162	0
+182	1416	Modify the value of a variable?	open	2024-07-28 09:57:58.52488	2024-07-28 09:57:58.52488	0
+183	1416	Inspect the type of a variable?	open	2024-07-28 09:57:58.710099	2024-07-28 09:57:58.710099	0
+184	1416	Run shell commands in debugging session?	open	2024-07-28 09:57:58.932877	2024-07-28 09:57:58.932877	0
+185	652	Create a joinable thread.	open	2024-07-28 09:57:59.224213	2024-07-28 09:57:59.224213	0
+186	652	code sample	open	2024-07-28 09:57:59.854827	2024-07-28 09:57:59.854827	0
+187	652	Create a detached thread.	open	2024-07-28 09:58:00.037722	2024-07-28 09:58:00.037722	0
+188	1134	Read basic networking manuals:	open	2024-07-28 09:58:00.234484	2024-07-28 09:58:00.234484	0
+189	1134	List network interfaces:	open	2024-07-28 09:58:00.462421	2024-07-28 09:58:00.462421	0
+190	1134	Get socket address:	open	2024-07-28 09:58:00.523597	2024-07-28 09:58:00.523597	0
+191	1135	Create server:	open	2024-07-28 09:58:00.699469	2024-07-28 09:58:00.699469	0
+192	1141	Send mail:	open	2024-07-28 09:58:01.055496	2024-07-28 09:58:01.055496	0
+193	300	Lookup system calls in manual pages:	open	2024-07-28 09:58:01.379588	2024-07-28 09:58:01.379588	0
+194	300	Get multiple numbers from user and sum:	open	2024-07-28 09:58:02.244034	2024-07-28 09:58:02.244034	0
+195	300	Parse command-line options:	open	2024-07-28 09:58:03.39668	2024-07-28 09:58:03.39668	0
+196	301	Terminate program execution when unrecoverable error occurs:	open	2024-07-28 09:58:03.855715	2024-07-28 09:58:03.855715	0
+197	301	Write to standard output using file stream and file descriptor:	open	2024-07-28 09:58:04.313083	2024-07-28 09:58:04.313083	0
+198	301	Invert user input character case:	open	2024-07-28 09:58:05.093636	2024-07-28 09:58:05.093636	0
+199	301	Make user input consists of a range of valid characters:	open	2024-07-28 09:58:05.69683	2024-07-28 09:58:05.69683	0
+200	301	Print shell environments and check if shell supports colored output:	open	2024-07-28 09:58:06.292593	2024-07-28 09:58:06.292593	0
+201	302	Link against a library, create a shared object, change C standard in compiler options:	open	2024-07-28 09:58:06.600341	2024-07-28 09:58:06.600341	0
+202	302	Write into the standard output by directly using the `write` system call:	open	2024-07-28 09:58:06.868394	2024-07-28 09:58:06.868394	0
+203	302	Get system resources and file system information:	open	2024-07-28 09:58:07.603659	2024-07-28 09:58:07.603659	0
+204	302	Posix documentations can be found by `apropos -s7 posix`:	open	2024-07-28 09:58:07.822396	2024-07-28 09:58:07.822396	0
+205	302	Use feature test macros:	open	2024-07-28 09:58:07.973733	2024-07-28 09:58:07.973733	0
+206	302	Inspect four stages of compilation:	open	2024-07-28 09:58:08.207329	2024-07-28 09:58:08.207329	0
+207	302	Use make to build programs:	open	2024-07-28 09:58:08.319662	2024-07-28 09:58:08.319662	0
+208	303	Check error numbers after system call:	open	2024-07-28 09:58:08.766704	2024-07-28 09:58:08.766704	0
+209	304	Create a file:	open	2024-07-28 09:58:09.786408	2024-07-28 09:58:09.786408	0
+210	304	Read inode information of a file:	open	2024-07-28 09:58:10.759089	2024-07-28 09:58:10.759089	0
+211	304	Create soft links and hard links:	open	2024-07-28 09:58:11.777422	2024-07-28 09:58:11.777422	0
+213	304	Delete a file:	open	2024-07-28 09:58:13.305597	2024-07-28 09:58:13.305597	0
+214	304	Get access rights and ownership of a file:	open	2024-07-28 09:58:14.506364	2024-07-28 09:58:14.506364	0
+215	304	Change access mode of a file:	open	2024-07-28 09:58:15.578485	2024-07-28 09:58:15.578485	0
+216	304	Change ownership of a file:	open	2024-07-28 09:58:16.918193	2024-07-28 09:58:16.918193	0
+217	304	Write to file with file descriptor:	open	2024-07-28 09:58:18.171272	2024-07-28 09:58:18.171272	0
+218	304	Read from file with file descriptor:	open	2024-07-28 09:58:19.272692	2024-07-28 09:58:19.272692	0
+219	304	Read from and write to file with file stream:	open	2024-07-28 09:58:20.321214	2024-07-28 09:58:20.321214	0
+220	304	Read/write binary data from/to file:	open	2024-07-28 09:58:21.624704	2024-07-28 09:58:21.624704	0
+221	304	Move around inside a file with file descriptor:	open	2024-07-28 09:58:22.988312	2024-07-28 09:58:22.988312	0
+222	304	Move around a file with file stream:	open	2024-07-28 09:58:24.235349	2024-07-28 09:58:24.235349	0
+223	305	Handle signals:	open	2024-07-28 09:58:25.275214	2024-07-28 09:58:25.275214	0
+224	305	Ignore signals:	open	2024-07-28 09:58:26.224145	2024-07-28 09:58:26.224145	0
+225	305	Fork a new process:	open	2024-07-28 09:58:27.287862	2024-07-28 09:58:27.287862	0
+226	305	Create a zombie process:	open	2024-07-28 09:58:28.192826	2024-07-28 09:58:28.192826	0
+227	305	Create an orphan process:	open	2024-07-28 09:58:28.948195	2024-07-28 09:58:28.948195	0
+228	305	Replace execution of a forked process with another program:	open	2024-07-28 09:58:29.959412	2024-07-28 09:58:29.959412	0
+229	305	Run an external program without replacing execution of the process:	open	2024-07-28 09:58:30.414021	2024-07-28 09:58:30.414021	0
+230	305	Create a SysV style daemon running in background:	open	2024-07-28 09:58:33.238572	2024-07-28 09:58:33.238572	0
+231	306	Write systemd(1) unit file for a daemon:	open	2024-07-28 09:58:34.294385	2024-07-28 09:58:34.294385	0
+232	306	Create a systemd style daemon:	open	2024-07-28 09:58:34.719983	2024-07-28 09:58:34.719983	0
+233	307	Use `libcurl` shared library to retrieve public IP:	open	2024-07-28 09:58:35.301703	2024-07-28 09:58:35.301703	0
+234	307	Inspect function names in shared objects:	open	2024-07-28 09:58:35.619778	2024-07-28 09:58:35.619778	0
+235	307	Create static and dynamic libraries:	open	2024-07-28 09:58:35.942181	2024-07-28 09:58:35.942181	0
+236	307	Install a dynamic library on system:	open	2024-07-28 09:58:36.158044	2024-07-28 09:58:36.158044	0
+237	308	Inspect terminal information:	open	2024-07-28 09:58:36.41572	2024-07-28 09:58:36.41572	0
+238	308	Check if process connected to terminal:	open	2024-07-28 09:58:36.785561	2024-07-28 09:58:36.785561	0
+239	308	Create a PTY:	open	2024-07-28 09:58:38.475565	2024-07-28 09:58:38.475565	0
+240	308	Disable echo on PTY:	open	2024-07-28 09:58:39.384604	2024-07-28 09:58:39.384604	0
+241	308	Get terminal size:	open	2024-07-28 09:58:39.919041	2024-07-28 09:58:39.919041	0
+242	309	Send signals to a process given by user:	open	2024-07-28 09:58:40.740623	2024-07-28 09:58:40.740623	0
+243	309	Create a pipe between a parent and a forked child process:	open	2024-07-28 09:58:42.139287	2024-07-28 09:58:42.139287	0
+244	309	Create a message sender and receiver using FIFO:	open	2024-07-28 09:58:44.316487	2024-07-28 09:58:44.316487	0
+245	309	Create a message sender message queue:	open	2024-07-28 09:58:45.603673	2024-07-28 09:58:45.603673	0
+246	309	Create a message receiver using message queues:	open	2024-07-28 09:58:47.111304	2024-07-28 09:58:47.111304	0
+247	309	Create a shared memory between a parent process and its child:	open	2024-07-28 09:58:48.581535	2024-07-28 09:58:48.581535	0
+248	309	Create a shared memory between two distinct processes:	open	2024-07-28 09:58:48.834757	2024-07-28 09:58:48.834757	0
+249	309	Create a server communicating over Unix sockets:	open	2024-07-28 09:58:51.771952	2024-07-28 09:58:51.771952	0
+250	309	Create a server communicating over Unix sockets:	open	2024-07-28 09:58:52.335887	2024-07-28 09:58:52.335887	0
+251	310	Create two threads to handle two different jobs:	open	2024-07-28 09:58:53.422896	2024-07-28 09:58:53.422896	0
+252	310	Synchronize working threads using mutex locks:	open	2024-07-28 09:58:55.034735	2024-07-28 09:58:55.034735	0
+253	310	Use condition variables to synchronize threads:	open	2024-07-28 09:58:56.609471	2024-07-28 09:58:56.609471	0
+254	311	Start debugger:	open	2024-07-28 09:58:57.084638	2024-07-28 09:58:57.084638	0
+255	311	Start a program in debugger:	open	2024-07-28 09:58:57.227425	2024-07-28 09:58:57.227425	0
+256	311	Create a break in debugger:	open	2024-07-28 09:58:57.398183	2024-07-28 09:58:57.398183	0
+257	311	Watch a variable changing through program execution:	open	2024-07-28 09:58:57.539896	2024-07-28 09:58:57.539896	0
+258	311	Move forward next statement:	open	2024-07-28 09:58:57.677525	2024-07-28 09:58:57.677525	0
+259	311	Print variable content in each deubbing step:	open	2024-07-28 09:58:57.844661	2024-07-28 09:58:57.844661	0
+260	311	Step into function:	open	2024-07-28 09:58:57.983928	2024-07-28 09:58:57.983928	0
+261	311	Return from stepped in function:	open	2024-07-28 09:58:58.130622	2024-07-28 09:58:58.130622	0
+262	311	Examine memory in debugger:	open	2024-07-28 09:58:58.324112	2024-07-28 09:58:58.324112	0
+263	311	Modify variables during debugging:	open	2024-07-28 09:58:58.528805	2024-07-28 09:58:58.528805	0
+264	311	Follow a fork in program:	open	2024-07-28 09:58:58.706489	2024-07-28 09:58:58.706489	0
+265	311	Debug threads of program:	open	2024-07-28 09:58:58.888594	2024-07-28 09:58:58.888594	0
+266	311	Use Valgrind to check memory leaks:	open	2024-07-28 09:58:59.05343	2024-07-28 09:58:59.05343	0
+267	1362	What should be the bare minimum content of a <code>CMakeLists.txt</code> file?	open	2024-07-28 09:59:00.597888	2024-07-28 09:59:00.597888	0
+268	1362	Separate source and build directories when building a project with cmake?	open	2024-07-28 09:59:00.806212	2024-07-28 09:59:00.806212	0
+269	1362	Build a project?	open	2024-07-28 09:59:01.014268	2024-07-28 09:59:01.014268	0
+270	1362	Specify the exact target to build?	open	2024-07-28 09:59:01.22789	2024-07-28 09:59:01.22789	0
+271	1362	Show possible targets within a project?	open	2024-07-28 09:59:01.437977	2024-07-28 09:59:01.437977	0
+272	1362	What targets are predefined by cmake?	open	2024-07-28 09:59:01.677396	2024-07-28 09:59:01.677396	0
+273	1362	Explicitly specify generator for building the project?	open	2024-07-28 09:59:01.907917	2024-07-28 09:59:01.907917	0
+274	1362	How many library types are defined in cmake?	open	2024-07-28 09:59:02.352826	2024-07-28 09:59:02.352826	0
+275	1362	Create static and shared libraries?	open	2024-07-28 09:59:02.709631	2024-07-28 09:59:02.709631	0
+276	1362	Use common library object to use static and shared in one go?	open	2024-07-28 09:59:03.108304	2024-07-28 09:59:03.108304	0
+277	1362	Enable position independent executable for an executable?	open	2024-07-28 09:59:03.360629	2024-07-28 09:59:03.360629	0
+278	1362	Change the name of the target on output?	open	2024-07-28 09:59:03.598507	2024-07-28 09:59:03.598507	0
+279	1362	What is the default library build strategy when library type is not specified?	open	2024-07-28 09:59:04.016695	2024-07-28 09:59:04.016695	0
+280	1362	What values are equivalent to true and false in cmake?	open	2024-07-28 09:59:04.321302	2024-07-28 09:59:04.321302	0
+281	1362	Use conditional statements to either make libraries and link to program or build them into one executable?	open	2024-07-28 09:59:04.936301	2024-07-28 09:59:04.936301	0
+282	1362	What is the better alternative to making variables optional for user than using if expressions?	open	2024-07-28 09:59:05.638759	2024-07-28 09:59:05.638759	0
+283	1362	What is the common way to pass source files to targets?	open	2024-07-28 09:59:05.972292	2024-07-28 09:59:05.972292	0
+284	1362	Make an option dependent to another?	open	2024-07-28 09:59:06.411024	2024-07-28 09:59:06.411024	0
+325	1261	How to use <code>std::for_each</code> algorithm with a predicate to sum values of a container?	open	2024-07-28 09:59:37.425501	2024-07-28 09:59:37.425501	0
+326	1261	How to use <code>std::for_each</code> algorithm with a capturing lambda to sum values of a container?	open	2024-07-28 09:59:37.891289	2024-07-28 09:59:37.891289	0
+327	1261	How to use <code>std::for_each</code> algorithm with unsequenced parallel execution model to sum values of a container?	open	2024-07-28 09:59:38.43251	2024-07-28 09:59:38.43251	0
+328	1261	How to use ranges algorithm <code>std::ranges::for_each</code> to sum values of a container?	open	2024-07-28 09:59:38.927268	2024-07-28 09:59:38.927268	0
+329	1261	What is a sentinel and how is it different compared to a range?	open	2024-07-28 09:59:40.010298	2024-07-28 09:59:40.010298	0
+330	1261	How to move iterators back and forth regardless of their bidirectional support?	open	2024-07-28 09:59:40.808345	2024-07-28 09:59:40.808345	0
+331	1261	How to think of standard algorithms in terms of ranges instead of iterators?	open	2024-07-28 09:59:41.396833	2024-07-28 09:59:41.396833	0
+332	1261	Find the end iterator of a maximal sorted sub-range using standard algorithms?	open	2024-07-28 09:59:42.04189	2024-07-28 09:59:42.04189	0
+333	1261	Iterate over all the elements of a container using <code>std::for_each</code>?	open	2024-07-28 09:59:42.727597	2024-07-28 09:59:42.727597	0
+334	1261	How to use parallel executaion on <code>std::for_each</code> to invoke an expensive operation for each element of a container?	open	2024-07-28 09:59:43.675576	2024-07-28 09:59:43.675576	0
+335	1261	Use range based <code>std::for_each</code> utilizing a projection to invoke external methods?	open	2024-07-28 09:59:44.380025	2024-07-28 09:59:44.380025	0
+336	1261	Iterate over a limited number of a container using <code>std::for_each_n</code>?	open	2024-07-28 09:59:45.041885	2024-07-28 09:59:45.041885	0
+337	1261	How to swap two values?	open	2024-07-28 09:59:45.769753	2024-07-28 09:59:45.769753	0
+338	1261	Swap values of a range using <code>std::iter_swap</code>?	open	2024-07-28 09:59:46.539384	2024-07-28 09:59:46.539384	0
+339	1261	How to exchange elements between two non-overlapping ranges using <code>std::swap_ranges</code>?	open	2024-07-28 09:59:47.168266	2024-07-28 09:59:47.168266	0
+340	1261	What is the minimum requirement for a type to be comparable with <code>strict_weak_ordering</code>?	open	2024-07-28 09:59:48.141584	2024-07-28 09:59:48.141584	0
+341	1261	Compare if one range is lexicographically less than another using <code>std::lexicographical_compare</code> and <code>std::ranges::lexicographical_compare</code>?	open	2024-07-28 09:59:49.496607	2024-07-28 09:59:49.496607	0
+342	1261	Compare if one range is lexicographically less than another using spaceship operator equivalent of <code>std::lexicographical_compare</code>?	open	2024-07-28 09:59:50.532692	2024-07-28 09:59:50.532692	0
+343	1261	What iterator type does the sort function operates on?	open	2024-07-28 09:59:50.928647	2024-07-28 09:59:50.928647	0
+344	1261	Sort a range using <code>std::sort</code>?	open	2024-07-28 09:59:51.788309	2024-07-28 09:59:51.788309	0
+345	1261	Sort a range of paired values providing an additional guarantee of preserving the relative order of equal elements?	open	2024-07-28 09:59:52.771563	2024-07-28 09:59:52.771563	0
+346	1261	Check if a range is already sorted in ascending order?	open	2024-07-28 09:59:53.590484	2024-07-28 09:59:53.590484	0
+347	1261	Find the end iterator of the maximal sorted sub-range within a range using standard algorithms?	open	2024-07-28 09:59:54.226525	2024-07-28 09:59:54.226525	0
+348	1261	Partially sort a range within a given sub-range?	open	2024-07-28 09:59:54.968003	2024-07-28 09:59:54.968003	0
+349	1261	Partially sort a range within a given sub-range and write results to another range?	open	2024-07-28 09:59:55.802184	2024-07-28 09:59:55.802184	0
+350	1261	Reorder a vector of objects partitioned in two sections?	open	2024-07-28 09:59:56.725477	2024-07-28 09:59:56.725477	0
+351	1261	Guarantee the ordering of equal elements in partitioning a range?	open	2024-07-28 09:59:57.343422	2024-07-28 09:59:57.343422	0
+352	1261	Check if a range is partitioned?	open	2024-07-28 09:59:57.959309	2024-07-28 09:59:57.959309	0
+353	1261	Copy the reordering results of partitioning a vector?	open	2024-07-28 09:59:58.697672	2024-07-28 09:59:58.697672	0
+354	1261	Find the nth element within a range?	open	2024-07-28 09:59:59.509753	2024-07-28 09:59:59.509753	0
+355	1261	Find the lower and upper bounds of a value within a sorted range?	open	2024-07-28 10:00:01.057605	2024-07-28 10:00:01.057605	0
+356	1261	Return both lower and upper bounds of a value within a range?	open	2024-07-28 10:00:01.901104	2024-07-28 10:00:01.901104	0
+357	1261	Return the upper bound of a value within a range using a predicate?	open	2024-07-28 10:00:02.512238	2024-07-28 10:00:02.512238	0
+358	1261	Check the presence of a value within a range?	open	2024-07-28 10:00:03.22962	2024-07-28 10:00:03.22962	0
+613	863	Replace filename in a path?	open	2024-07-28 10:02:46.68336	2024-07-28 10:02:46.68336	0
+359	1261	Determine whether one range is contained within another range?	open	2024-07-28 10:00:03.833135	2024-07-28 10:00:03.833135	0
+360	1261	Merge two sorted ranges into one?	open	2024-07-28 10:00:04.671069	2024-07-28 10:00:04.671069	0
+361	1261	Merge two consecutive sub-ranges within a range?	open	2024-07-28 10:00:05.249665	2024-07-28 10:00:05.249665	0
+362	1261	Remove consecutive duplicate values within a sorted range?	open	2024-07-28 10:00:06.112437	2024-07-28 10:00:06.112437	0
+363	1261	Produce a range containing elements present in the first range but not in the second range?	open	2024-07-28 10:00:06.776069	2024-07-28 10:00:06.776069	0
+364	1261	Produce a range containing elements present only in one of two ranges, but not both?	open	2024-07-28 10:00:07.378686	2024-07-28 10:00:07.378686	0
+365	1261	Produce a range containing elements present in either of the ranges?	open	2024-07-28 10:00:07.988049	2024-07-28 10:00:07.988049	0
+366	1261	Produce a range containing elements present in both of the ranges?	open	2024-07-28 10:00:08.602617	2024-07-28 10:00:08.602617	0
+367	1261	Apply a transformation function to each element within a range?	open	2024-07-28 10:00:09.368291	2024-07-28 10:00:09.368291	0
+368	1261	Remove elements that match the given value within a range?	open	2024-07-28 10:00:09.977569	2024-07-28 10:00:09.977569	0
+369	1261	Remove elements for which the given predicate evaluates true within a range?	open	2024-07-28 10:00:10.567153	2024-07-28 10:00:10.567153	0
+370	1261	Replace elements that match the given value within a range?	open	2024-07-28 10:00:11.153003	2024-07-28 10:00:11.153003	0
+371	1261	Replace elements for which the given predicate evaluates to true within a range?	open	2024-07-28 10:00:11.732379	2024-07-28 10:00:11.732379	0
+372	1261	Reverse the order of elements in a range?	open	2024-07-28 10:00:12.315236	2024-07-28 10:00:12.315236	0
+373	1261	Rearrange elements in the range from <code>[first, middle), [middle, last)</code> to <code>[middle, last), [first, middle)</code>?	open	2024-07-28 10:00:12.973731	2024-07-28 10:00:12.973731	0
+374	1261	Move elements in the provided range by the specified amount of positions into left or right?	open	2024-07-28 10:00:13.806483	2024-07-28 10:00:13.806483	0
+375	1261	Rearrange elements in the given array in a randomly order?	open	2024-07-28 10:00:14.498314	2024-07-28 10:00:14.498314	0
+376	1261	Rearrange elements of given array so that they are in their next or previous permutation?	open	2024-07-28 10:00:15.159298	2024-07-28 10:00:15.159298	0
+377	1261	Check whether two ranges have the same content but not necessarily the same order of elements?	open	2024-07-28 10:00:15.737136	2024-07-28 10:00:15.737136	0
+378	1261	Accumulate the elements of a range?	open	2024-07-28 10:00:16.405343	2024-07-28 10:00:16.405343	0
+379	1261	Accumulate pairs of elements over two ranges into a single value?	open	2024-07-28 10:00:17.175685	2024-07-28 10:00:17.175685	0
+380	1261	Accumulate pairs of elements over two ranges and copy into the output range?	open	2024-07-28 10:00:17.888275	2024-07-28 10:00:17.888275	0
+381	1261	Calculate the difference of adjacent elements within a raneg?	open	2024-07-28 10:00:18.659841	2024-07-28 10:00:18.659841	0
+382	1261	Reduce a range?	open	2024-07-28 10:00:19.354626	2024-07-28 10:00:19.354626	0
+383	1261	Calculate a sum of all elements?	open	2024-07-28 10:00:19.928095	2024-07-28 10:00:19.928095	0
+384	1261	Accumulate the values of a range by summing each value with its previous elements?	open	2024-07-28 10:00:20.756925	2024-07-28 10:00:20.756925	0
+385	1261	Accumulate the values of a range by summing each value with its previous elements by applying a custom predicate?	open	2024-07-28 10:00:21.579751	2024-07-28 10:00:21.579751	0
+386	1261	Indicate if all of the elements within a range evaluate to true for a predicate?	open	2024-07-28 10:00:22.224403	2024-07-28 10:00:22.224403	0
+387	1261	Indicate if at least one element within a range evaluates to true for a predicate?	open	2024-07-28 10:00:22.809799	2024-07-28 10:00:22.809799	0
+388	1261	Indicate if no elements within a range evaluates to true for a predicate?	open	2024-07-28 10:00:23.400709	2024-07-28 10:00:23.400709	0
+389	1261	Fill a range by consecutively assigning the given value to each element?	open	2024-07-28 10:00:24.019647	2024-07-28 10:00:24.019647	0
+390	1261	Fill a range by consecutively assigning the given value to a limited number of elements?	open	2024-07-28 10:00:24.628393	2024-07-28 10:00:24.628393	0
+391	1261	Fill a range by consecutively assigning the result of the provided generator?	open	2024-07-28 10:00:25.207939	2024-07-28 10:00:25.207939	0
+392	1261	Fill the specified number of elements within a range by consecutively assigning the result of the provided generator?	open	2024-07-28 10:00:25.776782	2024-07-28 10:00:25.776782	0
+393	1261	Generate elements by consecutively assigning the result of applying the prefix <code>operator++</code>, starting with the initial value?	open	2024-07-28 10:00:26.381371	2024-07-28 10:00:26.381371	0
+394	1261	Copy a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:27.070667	2024-07-28 10:00:27.070667	0
+395	1261	Move a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:27.717638	2024-07-28 10:00:27.717638	0
+396	1261	Copy and move a non-overlapping and overlapping ranges in the opposite direction?	open	2024-07-28 10:00:28.557018	2024-07-28 10:00:28.557018	0
+397	1261	Copy only a limited elements of a non-overlapping and overlapping ranges?	open	2024-07-28 10:00:29.211668	2024-07-28 10:00:29.211668	0
+398	1261	Selectively copy elements for which the predicate returns true?	open	2024-07-28 10:00:29.852066	2024-07-28 10:00:29.852066	0
+399	1261	Selectively copy elements for which the predicate returns false?	open	2024-07-28 10:00:30.459731	2024-07-28 10:00:30.459731	0
+400	1261	Selectively copy elements that do not match the provided value?	open	2024-07-28 10:00:31.093147	2024-07-28 10:00:31.093147	0
+401	1261	Copy a random selection N elements from the source range to the destination range utilising the provided random number generator?	open	2024-07-28 10:00:31.791918	2024-07-28 10:00:31.791918	0
+402	1261	Replace elements in a range matching a value?	open	2024-07-28 10:00:32.454437	2024-07-28 10:00:32.454437	0
+403	1261	Replace elements in a range for which the predicate evaluates to true?	open	2024-07-28 10:00:33.074553	2024-07-28 10:00:33.074553	0
+404	1261	Copy elements of a range into another in reverse order?	open	2024-07-28 10:00:33.689266	2024-07-28 10:00:33.689266	0
+405	1261	Copy elements <code>[middle, last)</code>, followed by <code>[first, middle)</code> from a range into another?	open	2024-07-28 10:00:34.361993	2024-07-28 10:00:34.361993	0
+406	1261	Construct and destroy a single element at a given address?	open	2024-07-28 10:00:35.158115	2024-07-28 10:00:35.158115	0
+407	1261	Reorder elements in the given range such that the elements maintain the max-heap property?	open	2024-07-28 10:00:35.893673	2024-07-28 10:00:35.893673	0
+408	1261	Push and pop values to heap?	open	2024-07-28 10:00:36.958926	2024-07-28 10:00:36.958926	0
+409	1261	Sort the elements in a heap?	open	2024-07-28 10:00:37.697485	2024-07-28 10:00:37.697485	0
+410	1261	Check if a range is a heap?	open	2024-07-28 10:00:38.29123	2024-07-28 10:00:38.29123	0
+411	1261	Check how further a range is a heap?	open	2024-07-28 10:00:38.932553	2024-07-28 10:00:38.932553	0
+412	1261	Find the first element matching the given value within a range?	open	2024-07-28 10:00:39.772811	2024-07-28 10:00:39.772811	0
+413	1261	Find the first element for which the predicate evaluates to true?	open	2024-07-28 10:00:40.186021	2024-07-28 10:00:40.186021	0
+414	1261	Find the first element for which the predicate evaluates to false?	open	2024-07-28 10:00:40.553396	2024-07-28 10:00:40.553396	0
+415	1261	Produce the view of the first elements and a range of second elements from a range of paired elements using views?	open	2024-07-28 10:00:41.233936	2024-07-28 10:00:41.233936	0
+416	1261	Produce the view of Nth elements from a range of tuple-like elements?	open	2024-07-28 10:00:41.903854	2024-07-28 10:00:41.903854	0
+417	1261	Apply a transformation functor to every element of the view of a range?	open	2024-07-28 10:00:42.520334	2024-07-28 10:00:42.520334	0
+418	1261	Take first N elements of the view of a range?	open	2024-07-28 10:00:43.045588	2024-07-28 10:00:43.045588	0
+419	1261	Take the sequence of elements from the view of a range for which the predicate evaluates to true?	open	2024-07-28 10:00:43.512886	2024-07-28 10:00:43.512886	0
+420	1261	Drop the first N elements of the view of a range?	open	2024-07-28 10:00:43.972993	2024-07-28 10:00:43.972993	0
+614	863	Replace extension in a path?	open	2024-07-28 10:02:46.913747	2024-07-28 10:02:46.913747	0
+421	1261	Drop the sequence of elements from the view of a range for which the predicate evaluates to true?	open	2024-07-28 10:00:44.456505	2024-07-28 10:00:44.456505	0
+422	1261	Filter the view of a range to consist all elements that satisfy the provided predicate?	open	2024-07-28 10:00:44.928707	2024-07-28 10:00:44.928707	0
+423	1261	Reverse the view of a range for bidirectional ranges?	open	2024-07-28 10:00:45.393356	2024-07-28 10:00:45.393356	0
+424	1261	Adapt an iterator and the number of elements following it into the view of a range?	open	2024-07-28 10:00:45.851523	2024-07-28 10:00:45.851523	0
+425	1261	Adapt a view into a range with a begin and end iterator of matching types for non-range versions of algorithms?	open	2024-07-28 10:00:46.327175	2024-07-28 10:00:46.327175	0
+426	1261	Represent the view of all the elements of a range?	open	2024-07-28 10:00:46.782416	2024-07-28 10:00:46.782416	0
+427	1261	Split a single range into a view over sub-ranges? (incomplete)	open	2024-07-28 10:00:47.48368	2024-07-28 10:00:47.48368	0
+428	1261	Flatten a splited view of a range?	open	2024-07-28 10:00:47.703984	2024-07-28 10:00:47.703984	0
+429	1261	Represent an empty view?	open	2024-07-28 10:00:48.083458	2024-07-28 10:00:48.083458	0
+430	1261	Represent a single element view?	open	2024-07-28 10:00:48.545581	2024-07-28 10:00:48.545581	0
+431	1261	Represent a view of the generated sequence formed by repeatedly incrementing an initial value?	open	2024-07-28 10:00:49.064427	2024-07-28 10:00:49.064427	0
+432	1261	Represent a view obtained by successively applying the istream input iterator?	open	2024-07-28 10:00:49.547664	2024-07-28 10:00:49.547664	0
+433	437	Use modules to import the entire standard library functionality?	open	2024-07-28 10:00:50.179428	2024-07-28 10:00:50.179428	0
+439	1036	How to create a thread?	open	2024-07-28 10:00:55.778699	2024-07-28 10:00:55.778699	0
+440	1037	How to launch a thread using callable objects?	open	2024-07-28 10:00:56.824328	2024-07-28 10:00:56.824328	0
+441	1037	How to wait for a thread to complete?	open	2024-07-28 10:00:57.735647	2024-07-28 10:00:57.735647	0
+442	1037	Join threads on normal and exceptional exists:	open	2024-07-28 10:00:58.541309	2024-07-28 10:00:58.541309	0
+443	1037	Use RAII idiom to handle joining threads:	open	2024-07-28 10:00:59.236399	2024-07-28 10:00:59.236399	0
+444	1037	How to run threads in background?	open	2024-07-28 10:00:59.740113	2024-07-28 10:00:59.740113	0
+445	1037	How to pass arguments to a thread?	open	2024-07-28 10:01:00.963079	2024-07-28 10:01:00.963079	0
+446	1037	How to transfer ownership of a thread?	open	2024-07-28 10:01:01.684897	2024-07-28 10:01:01.684897	0
+447	1037	Choosing number of threads at runtime:	open	2024-07-28 10:01:02.360898	2024-07-28 10:01:02.360898	0
+448	1037	Identify threads:	open	2024-07-28 10:01:02.839723	2024-07-28 10:01:02.839723	0
+449	1038	Protect a critical section of code by marking it as mutually exclusive?	open	2024-07-28 10:01:03.860105	2024-07-28 10:01:03.860105	0
+450	1038	What is the problem of a data structure interface when it returns an element in multi-threaded environment?	open	2024-07-28 10:01:04.529648	2024-07-28 10:01:04.529648	0
+451	1038	Protect the interface of a data structure that provides a method to return elements and suffers from data race when shared between two threads?	open	2024-07-28 10:01:06.130079	2024-07-28 10:01:06.130079	0
+452	1038	What granularity is acceptable when locking exclusive content?	open	2024-07-28 10:01:06.902738	2024-07-28 10:01:06.902738	0
+453	1038	What is the common problem when using multiple fine-grained locking schemes?	open	2024-07-28 10:01:07.173251	2024-07-28 10:01:07.173251	0
+454	1038	What is the common solution to avoid deadlock?	open	2024-07-28 10:01:08.505987	2024-07-28 10:01:08.505987	0
+455	1038	Sequentially lock two mutexes with a guarantee that they won't deadlock?	open	2024-07-28 10:01:09.118769	2024-07-28 10:01:09.118769	0
+456	1038	How different is a unique lock compared to a regular lock guard?	open	2024-07-28 10:01:10.054773	2024-07-28 10:01:10.054773	0
+457	1347	Where does move semantics apply optimizations compared to prior C++11 standard?	open	2024-07-28 10:01:10.93329	2024-07-28 10:01:10.93329	0
+458	1347	How move semantics can be implemented for a class?	open	2024-07-28 10:01:12.064151	2024-07-28 10:01:12.064151	0
+459	1347	What happens to an object when move semantics is not available?	open	2024-07-28 10:01:12.463552	2024-07-28 10:01:12.463552	0
+460	1347	What happens to an object declared with <code>const</code> when moved?	open	2024-07-28 10:01:12.867894	2024-07-28 10:01:12.867894	0
+461	1347	Why return values should not be marked as <code>const</code>?	open	2024-07-28 10:01:13.279467	2024-07-28 10:01:13.279467	0
+462	1347	What should be the state of an object after it has been moved?	open	2024-07-28 10:01:13.510276	2024-07-28 10:01:13.510276	0
+463	1347	When do compilers automatically switch to move semantics?	open	2024-07-28 10:01:13.741601	2024-07-28 10:01:13.741601	0
+464	1348	What header file should be included when using move semantics?	open	2024-07-28 10:01:14.01039	2024-07-28 10:01:14.01039	0
+465	1348	What is the equivallent form of <code>std::move()</code>?	open	2024-07-28 10:01:14.234513	2024-07-28 10:01:14.234513	0
+466	1348	What is the behavior of a parameter that is declared as an rvalue reference?	open	2024-07-28 10:01:14.750789	2024-07-28 10:01:14.750789	0
+467	1348	What is the moved-from object state?	open	2024-07-28 10:01:15.327644	2024-07-28 10:01:15.327644	0
+468	1348	What are the major ways of call-by-reference and what kind of arguments does each take?	open	2024-07-28 10:01:16.630606	2024-07-28 10:01:16.630606	0
+469	1348	When does the call-by-value become cheap with move semantics?	open	2024-07-28 10:01:17.664083	2024-07-28 10:01:17.664083	0
+470	1349	Why does automatic move operations disable when user declares special member functions?	open	2024-07-28 10:01:18.095213	2024-07-28 10:01:18.095213	0
+471	1349	Based on the exact rules for <i>generated special member functions</i> when would copy constructor and copy assignment operator automatically be generated?	open	2024-07-28 10:01:18.407778	2024-07-28 10:01:18.407778	0
+472	1349	Based on the exact rules for <i>generated special member functions</i> when would move constructor and move assignment operator be automatically generated?	open	2024-07-28 10:01:18.760752	2024-07-28 10:01:18.760752	0
+473	1349	Based on the exact rules for <i>generated special member functions</i> when would destructor disable automatic move operations?	open	2024-07-28 10:01:19.030404	2024-07-28 10:01:19.030404	0
+474	1349	What does it mean to say move semantics is not passed through?	open	2024-07-28 10:01:19.553773	2024-07-28 10:01:19.553773	0
+475	1349	What special member functions are generated by default for a class?	open	2024-07-28 10:01:20.057493	2024-07-28 10:01:20.057493	0
+476	1349	When do move operations become broken?	open	2024-07-28 10:01:20.386839	2024-07-28 10:01:20.386839	0
+477	1349	How to deal with moving an object to itself?	open	2024-07-28 10:01:20.968116	2024-07-28 10:01:20.968116	0
+478	1349	Why deleting moving operations does not make semantic sence?	open	2024-07-28 10:01:22.13421	2024-07-28 10:01:22.13421	0
+479	1349	How to properly disable move semantics in an object without disabling fallback mechanism?	open	2024-07-28 10:01:22.867711	2024-07-28 10:01:22.867711	0
+480	1349	How does move operation work for a class containing a member with disabled move operations?	open	2024-07-28 10:01:23.675754	2024-07-28 10:01:23.675754	0
+481	1349	What declarations does the <b>Rule of Five</b> formulate to simplify special member functions generation?	open	2024-07-28 10:01:24.029648	2024-07-28 10:01:24.029648	0
+482	1350	Why should we avoid using move operations when returning a local object?	open	2024-07-28 10:01:24.483608	2024-07-28 10:01:24.483608	0
+483	1350	When would passing by value becomes cheaper than passing by const lvalue references?	open	2024-07-28 10:01:27.784108	2024-07-28 10:01:27.784108	0
+863	65	Build an executable from C++ source?	open	2024-07-28 10:05:19.582909	2024-07-28 10:05:19.582909	0
+484	1350	Does <code>virtual</code> destructor in a base class disable automatic move operations in its derived classes?	open	2024-07-28 10:01:29.036753	2024-07-28 10:01:29.036753	0
+485	1350	When to take arguments by value and when to take by references?	open	2024-07-28 10:01:29.419282	2024-07-28 10:01:29.419282	0
+486	1351	How to implement getter member functions using move semantics and reference semantics in order to avoid expensive copy of returned object?	open	2024-07-28 10:01:31.016351	2024-07-28 10:01:31.016351	0
+487	1351	How many reference qualified member functions can we implement and how would each of them be called?	open	2024-07-28 10:01:32.267272	2024-07-28 10:01:32.267272	0
+488	1351	Is it possible to overload for both reference and non-reference qualifiers?	open	2024-07-28 10:01:32.807562	2024-07-28 10:01:32.807562	0
+489	1351	Why should we use reference qualifiers?	open	2024-07-28 10:01:33.144511	2024-07-28 10:01:33.144511	0
+490	1351	What references qualifiers should be used for assignment operators to prevent accidental assignment of a new value to a temporary object?	open	2024-07-28 10:01:34.514951	2024-07-28 10:01:34.514951	0
+491	1353	Why <i>strong exception handling guarantee</i> is required for <code>std::vector</code> to use move operations instead of copying objects?	open	2024-07-28 10:01:35.984662	2024-07-28 10:01:35.984662	0
+492	1353	What condition can be specified for <code>noexcept</code>?	open	2024-07-28 10:01:36.374884	2024-07-28 10:01:36.374884	0
+493	1353	What does <code>noexcept</code> change when overloading functions?	open	2024-07-28 10:01:36.544444	2024-07-28 10:01:36.544444	0
+494	1353	What changes does <code>noexcept</code> imply in a class hierarchy?	open	2024-07-28 10:01:37.496524	2024-07-28 10:01:37.496524	0
+495	1353	What are the <i>strong exception handling guarantees</i> for classes with copy and move special member functions generated but not implemented?	open	2024-07-28 10:01:38.226592	2024-07-28 10:01:38.226592	0
+496	1353	What are the <i>strong exception handling guarantees</i> for classes having special member functions defaulted?	open	2024-07-28 10:01:38.755738	2024-07-28 10:01:38.755738	0
+497	1353	What happens when generated an specified <code>noexception</code> condition contradicts for special member functions?	open	2024-07-28 10:01:39.247682	2024-07-28 10:01:39.247682	0
+498	1355	What are the prerequisites of having a perfect universal reference?	open	2024-07-28 10:01:39.810817	2024-07-28 10:01:39.810817	0
+499	1355	What is the difference between a universal reference and an rvalue reference?	open	2024-07-28 10:01:40.222645	2024-07-28 10:01:40.222645	0
+500	1355	What is the overload resolution for universal references?	open	2024-07-28 10:01:40.87332	2024-07-28 10:01:40.87332	0
+501	1355	What is the semantic meaning of <code>std::forward</code>?	open	2024-07-28 10:01:41.21984	2024-07-28 10:01:41.21984	0
+502	1355	Perfect forward function arguments to another function?	open	2024-07-28 10:01:41.705702	2024-07-28 10:01:41.705702	0
+503	1355	Perfect forward a parameter pack of a function to another?	open	2024-07-28 10:01:42.087389	2024-07-28 10:01:42.087389	0
+504	1355	Perfect forward a return value?	open	2024-07-28 10:01:42.573384	2024-07-28 10:01:42.573384	0
+505	1359	How to declare move-only types?	open	2024-07-28 10:01:43.466162	2024-07-28 10:01:43.466162	0
+506	1359	What happens to a move-only object when removed from a container?	open	2024-07-28 10:01:44.073685	2024-07-28 10:01:44.073685	0
+507	1359	Why <code>std::initializer_list</code>s cannot be used for move-only objects?	open	2024-07-28 10:01:44.421373	2024-07-28 10:01:44.421373	0
+508	1359	What is the only way to iterate over move-only elements of a container?	open	2024-07-28 10:01:44.851674	2024-07-28 10:01:44.851674	0
+509	1359	What is the only way to pass or return move-only values?	open	2024-07-28 10:01:45.447149	2024-07-28 10:01:45.447149	0
+510	1359	How to ensure that we have lost the ownership of a move-only object when passed to a function?	open	2024-07-28 10:01:45.74993	2024-07-28 10:01:45.74993	0
+511	1360	How to move elements of a range to another using move semantics and the C++ standard library algorithms?	open	2024-07-28 10:01:46.757201	2024-07-28 10:01:46.757201	0
+512	1360	How to use move iterators in algorithms when we no longer want the elements of a container?	open	2024-07-28 10:01:47.905639	2024-07-28 10:01:47.905639	0
+513	1360	How to use move iterators to construct containers?	open	2024-07-28 10:01:48.688242	2024-07-28 10:01:48.688242	0
+514	1361	When do the capacity of strings shrink?	open	2024-07-28 10:01:49.189243	2024-07-28 10:01:49.189243	0
+515	1361	When do containers support move semantics?	open	2024-07-28 10:01:49.857094	2024-07-28 10:01:49.857094	0
+516	1361	What does the C++ standard guarantee for move operations on containers?	open	2024-07-28 10:01:50.408327	2024-07-28 10:01:50.408327	0
+517	1361	How many ways are there for elements to be moved into a container?	open	2024-07-28 10:01:51.37083	2024-07-28 10:01:51.37083	0
+518	1361	How does <code>std::array</code> support move semantics?	open	2024-07-28 10:01:51.878975	2024-07-28 10:01:51.878975	0
+519	1361	How does <code>std::pair</code> support move semantics?	open	2024-07-28 10:01:52.502236	2024-07-28 10:01:52.502236	0
+520	1418	What are the alternatives to templates which should be avoided by using templates?	open	2024-07-28 10:01:52.910819	2024-07-28 10:01:52.910819	0
+521	1418	What are the alternatives to typename keyword?	open	2024-07-28 10:01:53.168682	2024-07-28 10:01:53.168682	0
+522	1418	What are the translation phases of a template?	open	2024-07-28 10:01:53.67816	2024-07-28 10:01:53.67816	0
+523	1418	What happens when a function template triggers its instantiation?	open	2024-07-28 10:01:53.980681	2024-07-28 10:01:53.980681	0
+524	1418	What is the signature of a function template?	open	2024-07-28 10:01:54.332704	2024-07-28 10:01:54.332704	0
+525	1418	What requirements should the type of a function template parameter meet?	open	2024-07-28 10:01:54.66866	2024-07-28 10:01:54.66866	0
+526	1418	Use a function template with different types?	open	2024-07-28 10:01:55.079502	2024-07-28 10:01:55.079502	0
+527	1418	How does the compile deduce the type of function template arguments?	open	2024-07-28 10:01:55.554631	2024-07-28 10:01:55.554631	0
+528	1418	What are the limits of type conversion during type deduction of function template arguments?	open	2024-07-28 10:01:56.319454	2024-07-28 10:01:56.319454	0
+529	1418	What are the common ways to handle type conversions during type deduction of function template arguments?	open	2024-07-28 10:01:57.127746	2024-07-28 10:01:57.127746	0
+530	1418	How does the compiler deduce the default function template parameters?	open	2024-07-28 10:01:57.78069	2024-07-28 10:01:57.78069	0
+531	1418	Declare a function template with multiple template parameters?	open	2024-07-28 10:01:58.220646	2024-07-28 10:01:58.220646	0
+532	1418	What are the common ways of handling return type deduction for function templates having multiple function template parameters?	open	2024-07-28 10:01:58.457518	2024-07-28 10:01:58.457518	0
+533	1418	What are the disadvantages of using additional template parameter for return types when having multiple function template parameters?	open	2024-07-28 10:01:59.129197	2024-07-28 10:01:59.129197	0
+534	1418	What are the disadvantages of using automatic deduction of return types when multiple function template parameters are used?	open	2024-07-28 10:01:59.668412	2024-07-28 10:01:59.668412	0
+535	1418	Use trailing return type to deduce the return type of a function template?	open	2024-07-28 10:02:00.12157	2024-07-28 10:02:00.12157	0
+536	1418	What is the drawback of using trailing return type?	open	2024-07-28 10:02:00.769536	2024-07-28 10:02:00.769536	0
+537	1418	Use common type as the return type of a function template?	open	2024-07-28 10:02:01.4396	2024-07-28 10:02:01.4396	0
+538	1418	When does auto type decays?	open	2024-07-28 10:02:01.877655	2024-07-28 10:02:01.877655	0
+539	1418	What are the use cases of default template arguments?	open	2024-07-28 10:02:02.451715	2024-07-28 10:02:02.451715	0
+540	1418	What ordering default template parameter can have?	open	2024-07-28 10:02:02.994316	2024-07-28 10:02:02.994316	0
+541	1418	What are the rules of overload resolution for matching a function template overload by a compiler?	open	2024-07-28 10:02:03.978313	2024-07-28 10:02:03.978313	0
+542	1418	What happens when there are two matching template overloads for a function call?	open	2024-07-28 10:02:04.606735	2024-07-28 10:02:04.606735	0
+543	1418	What are the common use cases of overloading function templates?	open	2024-07-28 10:02:05.512302	2024-07-28 10:02:05.512302	0
+544	1418	What is the drawback of overloading function templates?	open	2024-07-28 10:02:06.857285	2024-07-28 10:02:06.857285	0
+545	1418	When a template function overload would be missed by a call?	open	2024-07-28 10:02:07.76851	2024-07-28 10:02:07.76851	0
+546	1419	Declare a class template?	open	2024-07-28 10:02:08.485559	2024-07-28 10:02:08.485559	0
+547	1419	Declare copy constructor and copy assignment operator of a class template?	open	2024-07-28 10:02:09.288416	2024-07-28 10:02:09.288416	0
+548	1419	Define the member functions of a class template outside of the scope of the class?	open	2024-07-28 10:02:09.865197	2024-07-28 10:02:09.865197	0
+549	1419	Declare a friend function template in a class template?	open	2024-07-28 10:02:10.856266	2024-07-28 10:02:10.856266	0
+550	1419	Specialize a class template for a specific type?	open	2024-07-28 10:02:11.708711	2024-07-28 10:02:11.708711	0
+551	1419	Partially specialize a class template for pointers?	open	2024-07-28 10:02:12.465606	2024-07-28 10:02:12.465606	0
+552	1419	What are the possible template specializations of a class template with multiple template parameters?	open	2024-07-28 10:02:13.508631	2024-07-28 10:02:13.508631	0
+553	1419	Define default values for class template parameters?	open	2024-07-28 10:02:14.747602	2024-07-28 10:02:14.747602	0
+554	1419	Define an alias template?	open	2024-07-28 10:02:15.195301	2024-07-28 10:02:15.195301	0
+555	1419	Use alias templates for member types of class templates?	open	2024-07-28 10:02:15.786769	2024-07-28 10:02:15.786769	0
+556	1419	Under what condition class templates do not require specifying template parameters?	open	2024-07-28 10:02:16.221318	2024-07-28 10:02:16.221318	0
+557	1419	What is the common way of supporting type deduction for a class template?	open	2024-07-28 10:02:16.70555	2024-07-28 10:02:16.70555	0
+558	1419	What is the drawback of supporting class template argument deduction by providing constructors passing initial argument?	open	2024-07-28 10:02:17.597614	2024-07-28 10:02:17.597614	0
+559	1419	What is the drawback of passing arguments of a template type by reference when supporting class template argument deduction?	open	2024-07-28 10:02:18.516496	2024-07-28 10:02:18.516496	0
+560	1419	Disable automatic deduction of raw character pointers using deduction guides instead of constructors passing arguments?	open	2024-07-28 10:02:19.152185	2024-07-28 10:02:19.152185	0
+561	1419	Where are the edge cases where deduction guides do not work?	open	2024-07-28 10:02:19.698829	2024-07-28 10:02:19.698829	0
+562	1419	Define deduction guides for aggregate class templates?	open	2024-07-28 10:02:20.487223	2024-07-28 10:02:20.487223	0
+563	1420	What are the use cases of nontype template parameters?	open	2024-07-28 10:02:21.249662	2024-07-28 10:02:21.249662	0
+564	1420	How nontype template parameters can be initialized?	open	2024-07-28 10:02:21.777316	2024-07-28 10:02:21.777316	0
+565	1420	What is the relation between objects of a class instantiated by different nontype template parameter values?	open	2024-07-28 10:02:22.251451	2024-07-28 10:02:22.251451	0
+566	1420	What is the use case of nontype class template parameters with default values?	open	2024-07-28 10:02:22.670568	2024-07-28 10:02:22.670568	0
+567	250	Check if <code>/usr/src/linux/version</code> file exists?	open	2024-07-28 10:02:23.77034	2024-07-28 10:02:23.77034	0
+568	250	Get the current path of executing program?	open	2024-07-28 10:02:24.305585	2024-07-28 10:02:24.305585	0
+569	250	Get the canonical form of a path?	open	2024-07-28 10:02:25.071619	2024-07-28 10:02:25.071619	0
+570	250	Get the canonical form of a path relative to another path?	open	2024-07-28 10:02:25.969602	2024-07-28 10:02:25.969602	0
+571	250	Get the absolute path of <code>./.local/bin</code>?	open	2024-07-28 10:02:26.776297	2024-07-28 10:02:26.776297	0
+572	250	Concatenate two paths?	open	2024-07-28 10:02:27.277666	2024-07-28 10:02:27.277666	0
+573	250	Check if two paths are addressing the same location?	open	2024-07-28 10:02:27.858774	2024-07-28 10:02:27.858774	0
+574	250	Get the type of a file from its path?	open	2024-07-28 10:02:28.350914	2024-07-28 10:02:28.350914	0
+575	250	Make the type checking of a file cheaper by not calling system calls?	open	2024-07-28 10:02:28.859529	2024-07-28 10:02:28.859529	0
+576	250	Check if the permission of a file includes user, group, and others access?	open	2024-07-28 10:02:29.483203	2024-07-28 10:02:29.483203	0
+577	250	Get the size of a regular file?	open	2024-07-28 10:02:29.803883	2024-07-28 10:02:29.803883	0
+578	250	Iterate over the entries of a directory?	open	2024-07-28 10:02:30.231244	2024-07-28 10:02:30.231244	0
+579	844	Use structured binding to initialize multiple entities?	open	2024-07-28 10:02:30.814795	2024-07-28 10:02:30.814795	0
+580	844	Use const and reference qualifiers with structured binding?	open	2024-07-28 10:02:31.426851	2024-07-28 10:02:31.426851	0
+581	844	Use move semantics with structured bindings?	open	2024-07-28 10:02:32.053232	2024-07-28 10:02:32.053232	0
+582	844	Use class and structures in structured bindings?	open	2024-07-28 10:02:32.815416	2024-07-28 10:02:32.815416	0
+583	844	Use raw arrays in structured binding?	open	2024-07-28 10:02:33.222635	2024-07-28 10:02:33.222635	0
+584	844	Use `std::pair`, `std::tuple`, and `std::array` in structured binding?	open	2024-07-28 10:02:33.784293	2024-07-28 10:02:33.784293	0
+585	844	Make a custom type compatible with tuple interface to be used in structured binding?	open	2024-07-28 10:02:34.043334	2024-07-28 10:02:34.043334	0
+586	853	Write a C++ function to decide at compile time wether it should return a passed string, call <code>std::to_string()</code> for a passed integral or floating-point value, or try to convert the passed argument to std::string.	open	2024-07-28 10:02:34.320557	2024-07-28 10:02:34.320557	0
+587	858	What object can be used in C++ STL to have a value with certain type or not have any value at all?	open	2024-07-28 10:02:34.696406	2024-07-28 10:02:34.696406	0
+588	858	How can <code>std::optional<></code> be used as return values?	open	2024-07-28 10:02:35.356222	2024-07-28 10:02:35.356222	0
+589	863	What are the constituents of a path?	open	2024-07-28 10:02:35.76472	2024-07-28 10:02:35.76472	0
+590	863	What path formats are available?	open	2024-07-28 10:02:36.278526	2024-07-28 10:02:36.278526	0
+591	863	What are the properties of a normalized path?	open	2024-07-28 10:02:36.696954	2024-07-28 10:02:36.696954	0
+592	863	What are the differences of member and free-standing functions of path?	open	2024-07-28 10:02:37.322937	2024-07-28 10:02:37.322937	0
+593	863	How many error handling approaches are available on filesystem library?	open	2024-07-28 10:02:37.705644	2024-07-28 10:02:37.705644	0
+594	863	Handle a filesystem operation error with exceptions?	open	2024-07-28 10:02:38.28483	2024-07-28 10:02:38.28483	0
+595	863	Handle a filesystem operation error with error code?	open	2024-07-28 10:02:38.831048	2024-07-28 10:02:38.831048	0
+596	863	What are the supporting different file types?	open	2024-07-28 10:02:39.391006	2024-07-28 10:02:39.391006	0
+597	863	Create a path with different string types?	open	2024-07-28 10:02:39.824001	2024-07-28 10:02:39.824001	0
+598	863	Create a path with a range?	open	2024-07-28 10:02:40.167991	2024-07-28 10:02:40.167991	0
+599	863	Get current path of the executing process?	open	2024-07-28 10:02:40.507861	2024-07-28 10:02:40.507861	0
+600	863	Get the path of temporary directory?	open	2024-07-28 10:02:40.825422	2024-07-28 10:02:40.825422	0
+601	863	Yield whether a path is empty?	open	2024-07-28 10:02:41.107461	2024-07-28 10:02:41.107461	0
+602	863	Yield whether a path is absolute or relative?	open	2024-07-28 10:02:41.390978	2024-07-28 10:02:41.390978	0
+603	863	Yield all the constituents of a path?	open	2024-07-28 10:02:42.164873	2024-07-28 10:02:42.164873	0
+604	863	Yield if a path is normalized?	open	2024-07-28 10:02:42.604911	2024-07-28 10:02:42.604911	0
+605	863	Yield a path as string objects of any byte size?	open	2024-07-28 10:02:43.010139	2024-07-28 10:02:43.010139	0
+606	863	Yield a relative path from two paths?	open	2024-07-28 10:02:43.478921	2024-07-28 10:02:43.478921	0
+607	863	Yield a path as a generic string?	open	2024-07-28 10:02:44.210808	2024-07-28 10:02:44.210808	0
+608	863	Concatenate a string to a path?	open	2024-07-28 10:02:44.74648	2024-07-28 10:02:44.74648	0
+609	863	Append a subpath to a path?	open	2024-07-28 10:02:45.268637	2024-07-28 10:02:45.268637	0
+610	863	Add extension to a file path that does not already have an extension?	open	2024-07-28 10:02:45.582249	2024-07-28 10:02:45.582249	0
+611	863	Assign a string to a path as a new path?	open	2024-07-28 10:02:46.017685	2024-07-28 10:02:46.017685	0
+612	863	Swap two path objects?	open	2024-07-28 10:02:46.382501	2024-07-28 10:02:46.382501	0
+615	863	Convert directory separators inside a path to the native format?	open	2024-07-28 10:02:47.18438	2024-07-28 10:02:47.18438	0
+616	863	Remove filename from a path?	open	2024-07-28 10:02:47.464557	2024-07-28 10:02:47.464557	0
+617	863	Remove extension from a path?	open	2024-07-28 10:02:47.69662	2024-07-28 10:02:47.69662	0
+618	863	What comparison operators are supported by path objects?	open	2024-07-28 10:02:47.886046	2024-07-28 10:02:47.886046	0
+619	863	Compare two paths <code>tmp/f</code> and <code>tmp/./f</code>?	open	2024-07-28 10:02:48.470748	2024-07-28 10:02:48.470748	0
+620	863	Compare two paths holding symbolic links?	open	2024-07-28 10:02:48.949309	2024-07-28 10:02:48.949309	0
+621	863	Check for existance of a file?	open	2024-07-28 10:02:49.252011	2024-07-28 10:02:49.252011	0
+622	863	Check if a file is a regular file or a directory or a symbolic link?	open	2024-07-28 10:02:49.573626	2024-07-28 10:02:49.573626	0
+623	863	Check if a file is neither a regular nor a directory nor a symbolic link?	open	2024-07-28 10:02:49.805818	2024-07-28 10:02:49.805818	0
+624	863	Check if a file is a special block, character, a fifo or a socket file?	open	2024-07-28 10:02:50.08421	2024-07-28 10:02:50.08421	0
+625	863	Check if a file is empty?	open	2024-07-28 10:02:50.363487	2024-07-28 10:02:50.363487	0
+626	863	Get the size of a file in bytes?	open	2024-07-28 10:02:50.660633	2024-07-28 10:02:50.660633	0
+627	863	Get the number of hard links to a file?	open	2024-07-28 10:02:50.883703	2024-07-28 10:02:50.883703	0
+628	863	Get the last time a file was written into?	open	2024-07-28 10:02:51.329631	2024-07-28 10:02:51.329631	0
+629	863	Yield information about the disk space available at a given path?	open	2024-07-28 10:02:51.869278	2024-07-28 10:02:51.869278	0
+630	863	Rename a file?	open	2024-07-28 10:02:52.242418	2024-07-28 10:02:52.242418	0
+631	863	Change the timepoint of the last write access of a file?	open	2024-07-28 10:02:52.520727	2024-07-28 10:02:52.520727	0
+632	863	Replace the permissions of a file?	open	2024-07-28 10:02:52.993841	2024-07-28 10:02:52.993841	0
+633	863	Resize a regular file?	open	2024-07-28 10:02:53.295648	2024-07-28 10:02:53.295648	0
+634	863	Change the current directory of the process?	open	2024-07-28 10:02:53.523477	2024-07-28 10:02:53.523477	0
+635	863	Check if a file exists?	open	2024-07-28 10:02:54.110552	2024-07-28 10:02:54.110552	0
+636	863	Use filesystem operations without following symbolic links?	open	2024-07-28 10:02:54.501944	2024-07-28 10:02:54.501944	0
+637	863	Yield the status of a file following any symbolic links?	open	2024-07-28 10:02:54.736702	2024-07-28 10:02:54.736702	0
+638	863	Yield the status of a file without following symbolic links?	open	2024-07-28 10:02:54.957348	2024-07-28 10:02:54.957348	0
+639	863	Improve performance of file operation calls using file status?	open	2024-07-28 10:02:55.410979	2024-07-28 10:02:55.410979	0
+640	863	Yield the type of a file using file status?	open	2024-07-28 10:02:56.058045	2024-07-28 10:02:56.058045	0
+641	863	Yield the permissions of a file using its file status?	open	2024-07-28 10:02:56.360624	2024-07-28 10:02:56.360624	0
+642	863	Yield the type of a file?	open	2024-07-28 10:02:56.754454	2024-07-28 10:02:56.754454	0
+643	863	Yield which permissions does a file have?	open	2024-07-28 10:02:57.705255	2024-07-28 10:02:57.705255	0
+644	863	Create a regular file?	open	2024-07-28 10:02:58.077738	2024-07-28 10:02:58.077738	0
+645	863	Create a directory inside an existing directory?	open	2024-07-28 10:02:58.614001	2024-07-28 10:02:58.614001	0
+646	863	Create a tree of nested directories?	open	2024-07-28 10:02:58.911129	2024-07-28 10:02:58.911129	0
+647	863	Create a symbolic link to a regular file?	open	2024-07-28 10:02:59.257902	2024-07-28 10:02:59.257902	0
+648	863	Create a symbolic link to a directory?	open	2024-07-28 10:02:59.508611	2024-07-28 10:02:59.508611	0
+649	863	Create a hard link from a file?	open	2024-07-28 10:02:59.747727	2024-07-28 10:02:59.747727	0
+650	863	Copy from a file of any type?	open	2024-07-28 10:03:00.011634	2024-07-28 10:03:00.011634	0
+651	863	Copy from a regular file?	open	2024-07-28 10:03:00.239772	2024-07-28 10:03:00.239772	0
+652	863	Why there is copy options?	open	2024-07-28 10:03:00.849562	2024-07-28 10:03:00.849562	0
+653	863	Copy a symbolic link?	open	2024-07-28 10:03:01.140163	2024-07-28 10:03:01.140163	0
+654	863	Remove a file?	open	2024-07-28 10:03:01.428586	2024-07-28 10:03:01.428586	0
+655	863	Recursively remove a directory and all of its contents?	open	2024-07-28 10:03:01.750927	2024-07-28 10:03:01.750927	0
+656	863	Yield the file an existing symbolic link refers to?	open	2024-07-28 10:03:02.057845	2024-07-28 10:03:02.057845	0
+657	863	Yield the absolute path of an existing path?	open	2024-07-28 10:03:02.492142	2024-07-28 10:03:02.492142	0
+658	863	Yield the relative path from current directory to a path?	open	2024-07-28 10:03:02.81497	2024-07-28 10:03:02.81497	0
+659	863	Yield the relative path from a base path to another path?	open	2024-07-28 10:03:03.059253	2024-07-28 10:03:03.059253	0
+660	863	Iterate over the entries of a directory?	open	2024-07-28 10:03:03.387505	2024-07-28 10:03:03.387505	0
+661	863	Recursively iterate over directories with following symbolic links?	open	2024-07-28 10:03:03.613822	2024-07-28 10:03:03.613822	0
+662	863	What are the directory iterator options?	open	2024-07-28 10:03:04.08782	2024-07-28 10:03:04.08782	0
+663	863	What operations are supported by directory entries?	open	2024-07-28 10:03:05.021749	2024-07-28 10:03:05.021749	0
+664	96	Generate a string formatted with an integral value?	open	2024-07-28 10:03:05.713741	2024-07-28 10:03:05.713741	0
+665	96	Specify the order of replacement values in a formatted string?	open	2024-07-28 10:03:06.069396	2024-07-28 10:03:06.069396	0
+666	96	Align values to left, center, and right in a formatted string?	open	2024-07-28 10:03:06.42955	2024-07-28 10:03:06.42955	0
+667	96	Implement a simple <code>print()</code> function taking format parameters?	open	2024-07-28 10:03:06.975206	2024-07-28 10:03:06.975206	0
+668	96	Enable formatting for user defined types?	open	2024-07-28 10:03:08.02827	2024-07-28 10:03:08.02827	0
+669	96	Evaluate string and vector operations at compile time?	open	2024-07-28 10:03:08.611661	2024-07-28 10:03:08.611661	0
+674	336	Compare two derived objects having a base class?	open	2024-07-28 10:03:16.054631	2024-07-28 10:03:16.054631	0
+675	336	What is the compatibility defect of comparison operators in C++20?	open	2024-07-28 10:03:17.223623	2024-07-28 10:03:17.223623	0
+676	337	Declare an abbreviated function template?	open	2024-07-28 10:03:18.32665	2024-07-28 10:03:18.32665	0
+677	337	What restrictions do abbreviated function templates have compared to generic lambdas?	open	2024-07-28 10:03:18.962319	2024-07-28 10:03:18.962319	0
+678	337	Pass an abbreviated function template as a parameter?	open	2024-07-28 10:03:20.339233	2024-07-28 10:03:20.339233	0
+679	337	What are the rules for abbreviated function template parameters?	open	2024-07-28 10:03:21.12823	2024-07-28 10:03:21.12823	0
+680	337	Partially specify abbreviated function template parameters?	open	2024-07-28 10:03:21.588822	2024-07-28 10:03:21.588822	0
+681	337	Combine template and <code>auto</code> parameters?	open	2024-07-28 10:03:21.977222	2024-07-28 10:03:21.977222	0
+682	337	Specify parameter types for a mixed template and <code>auto</code> parameters?	open	2024-07-28 10:03:23.171227	2024-07-28 10:03:23.171227	0
+683	338	How many ways constraints can be applied to a template?	open	2024-07-28 10:03:23.603146	2024-07-28 10:03:23.603146	0
+684	338	Constraint a template function with a requirement to not be available if raw pointers are passed?	open	2024-07-28 10:03:24.140193	2024-07-28 10:03:24.140193	0
+685	338	Implement a concept to constraint passing only raw pointers?	open	2024-07-28 10:03:24.530901	2024-07-28 10:03:24.530901	0
+686	338	Apply a concept restricting parameters only to take raw pointers to a template?	open	2024-07-28 10:03:25.309481	2024-07-28 10:03:25.309481	0
+687	338	Using overload resolution with concepts implement two function templates for pointers and non-pointers?	open	2024-07-28 10:03:26.269351	2024-07-28 10:03:26.269351	0
+688	338	How many ways concepts can be applied into templates?	open	2024-07-28 10:03:27.30684	2024-07-28 10:03:27.30684	0
+689	338	In how many ways a template can be constrained?	open	2024-07-28 10:03:27.701707	2024-07-28 10:03:27.701707	0
+690	338	What is the advantage of using trailing requires clause over regular requires clause?	open	2024-07-28 10:03:28.16223	2024-07-28 10:03:28.16223	0
+691	338	Constraint a template to take only two comparable types?	open	2024-07-28 10:03:28.748402	2024-07-28 10:03:28.748402	0
+692	338	Constraint a template to only accept objects supporting pointer deference operator?	open	2024-07-28 10:03:29.462736	2024-07-28 10:03:29.462736	0
+693	338	What difference does it take for constraints to declare parameters as value or reference?	open	2024-07-28 10:03:29.752404	2024-07-28 10:03:29.752404	0
+694	338	Constraint a template with a requires expression?	open	2024-07-28 10:03:30.388757	2024-07-28 10:03:30.388757	0
+695	340	What are the preconditions and requirements of <code>std::ranges::sort()</code> to accept a container?	open	2024-07-28 10:03:30.739214	2024-07-28 10:03:30.739214	0
+696	340	How to use ranges to sort a container?	open	2024-07-28 10:03:31.132712	2024-07-28 10:03:31.132712	0
+697	340	What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?	open	2024-07-28 10:03:31.367783	2024-07-28 10:03:31.367783	0
+698	340	How to iterate over first 5 elements of a range using view adaptors?	open	2024-07-28 10:03:31.59941	2024-07-28 10:03:31.59941	0
+699	340	How to sort only the first 5 elements of a container using ranges?	open	2024-07-28 10:03:31.991039	2024-07-28 10:03:31.991039	0
+700	340	How to generate a sequence of values using views?	open	2024-07-28 10:03:32.221496	2024-07-28 10:03:32.221496	0
+701	340	How to use combination of ranges and views that don't generate values to make filtering blocks?	open	2024-07-28 10:03:32.640408	2024-07-28 10:03:32.640408	0
+702	340	How to use a sentinel as an end of a range in iterating over a container?	open	2024-07-28 10:03:32.850316	2024-07-28 10:03:32.850316	0
+703	1148	What aspects of a solution identifies good design?	open	2024-07-28 10:03:33.396815	2024-07-28 10:03:33.396815	0
+704	1148	Specify the process of designing an ADT by using a program that lists holidays as a model?	open	2024-07-28 10:03:34.324897	2024-07-28 10:03:34.324897	0
+705	1148	Specify the process of designing an ADT by using an appointment book as a model:	open	2024-07-28 10:03:35.824946	2024-07-28 10:03:35.824946	0
+706	1148	Step through the process of designing the interface of a bag as a container and test it:	open	2024-07-28 10:03:38.583687	2024-07-28 10:03:38.583687	0
+707	762	Use <code>auto</code> to initialize objects in different forms?	open	2024-07-28 10:03:40.585659	2024-07-28 10:03:40.585659	0
+708	762	Create type aliases?	open	2024-07-28 10:03:41.270743	2024-07-28 10:03:41.270743	0
+709	762	Create alias templates?	open	2024-07-28 10:03:41.945287	2024-07-28 10:03:41.945287	0
+710	762	Use uniform initialization to initialize objects of types?	open	2024-07-28 10:03:43.131462	2024-07-28 10:03:43.131462	0
+711	762	Initialize non-static member variables?	open	2024-07-28 10:03:43.849667	2024-07-28 10:03:43.849667	0
+712	762	Evaluate alignment of structures by considering theirs size of members?	open	2024-07-28 10:03:45.102803	2024-07-28 10:03:45.102803	0
+713	762	Query alignment of object types?	open	2024-07-28 10:03:45.705424	2024-07-28 10:03:45.705424	0
+714	762	Set alignment of structures?	open	2024-07-28 10:03:46.992439	2024-07-28 10:03:46.992439	0
+715	762	Use scoped enumerations<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:47.65586	2024-07-28 10:03:47.65586	0
+716	762	Export enumerators of a scoped enumeration by `using` directive<span style="color:green">(c++20)</span>?	open	2024-07-28 10:03:48.301791	2024-07-28 10:03:48.301791	0
+717	762	Use override to ensure correct declaration of virtual methods both in base and derived classes?	open	2024-07-28 10:03:48.973779	2024-07-28 10:03:48.973779	0
+718	762	Use final to prevent virtual method override?	open	2024-07-28 10:03:49.712815	2024-07-28 10:03:49.712815	0
+719	762	Use final to prevent inheritance of a class?	open	2024-07-28 10:03:50.339999	2024-07-28 10:03:50.339999	0
+720	762	Use range-based for loop to iterate on a range<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:51.280074	2024-07-28 10:03:51.280074	0
+721	762	Enable range-based for loops for custom types?	open	2024-07-28 10:03:53.798516	2024-07-28 10:03:53.798516	0
+722	762	Avoid implicit conversion of classes using explicit constructors and conversion operators?	open	2024-07-28 10:03:54.875509	2024-07-28 10:03:54.875509	0
+723	762	Use unnamed namespaces instead of static globals?	open	2024-07-28 10:03:55.772226	2024-07-28 10:03:55.772226	0
+724	762	Use an unnamed namespace to use an internal linkage variable as a non-type template argument?	open	2024-07-28 10:03:56.405487	2024-07-28 10:03:56.405487	0
+725	762	Use inline namespaces for symbol versioning<span style="color:green">(c++11)</span>?	open	2024-07-28 10:03:58.641451	2024-07-28 10:03:58.641451	0
+726	762	Use structured bindings to handle multi-return values<span style="color:green">(c++17)</span>?	open	2024-07-28 10:03:59.493694	2024-07-28 10:03:59.493694	0
+727	762	Simplify code with Class Template Argument Deduction<span style="color:green">(c++17)</span>?	open	2024-07-28 10:03:59.84875	2024-07-28 10:03:59.84875	0
+728	763	What is the C++ approach for converting integers and floating-point numbers into strings?	open	2024-07-28 10:04:00.105225	2024-07-28 10:04:00.105225	0
+729	763	How string represented numbers can be converted to numeric types in C++?	open	2024-07-28 10:04:00.494024	2024-07-28 10:04:00.494024	0
+730	763	What is the second and third parameters of `std::ston` functions family?	open	2024-07-28 10:04:00.900529	2024-07-28 10:04:00.900529	0
+731	763	What characters a valid integral number can have in string to numeric conversion functions?	open	2024-07-28 10:04:01.260462	2024-07-28 10:04:01.260462	0
+732	763	What exceptions do numeric to string conversion functions throw when conversion fails?	open	2024-07-28 10:04:01.868309	2024-07-28 10:04:01.868309	0
+733	763	What are special floating-point values representing infinity and not-a-number in string to floating-point conversion functions?	open	2024-07-28 10:04:02.358864	2024-07-28 10:04:02.358864	0
+734	763	How to get the smallest and largest finite numbers of a type using `std::numeric_limits<T>` class template?	open	2024-07-28 10:04:02.792288	2024-07-28 10:04:02.792288	0
+735	763	Specify a simple implementation of finding the minimum number in a range of a generic type?	open	2024-07-28 10:04:03.368469	2024-07-28 10:04:03.368469	0
+736	763	How can we retrieve the number of bits excluding the sign bit if present, for integral types and the number of bits of the mantissa for floating-point types?	open	2024-07-28 10:04:03.820861	2024-07-28 10:04:03.820861	0
+737	763	How can we retrieve the longest possible digits of a decimal type that can be represented without a change?	open	2024-07-28 10:04:04.170333	2024-07-28 10:04:04.170333	0
+738	763	How `std::numeric_limits<T>` class template can be used to identify if a numeric type is signed?	open	2024-07-28 10:04:04.448811	2024-07-28 10:04:04.448811	0
+739	763	How `std::numeric_limits<T>` class template can be used to verify a numeric type is an integer?	open	2024-07-28 10:04:04.750176	2024-07-28 10:04:04.750176	0
+740	763	How to make sure if a floating-point value is exact using `std::numeric_limits<T>` class template?	open	2024-07-28 10:04:05.020268	2024-07-28 10:04:05.020268	0
+741	763	How to verify if a floating-point value holds infinity value?	open	2024-07-28 10:04:05.290589	2024-07-28 10:04:05.290589	0
+742	763	How can we get the minimum and maximum value that a random engine can generate?	open	2024-07-28 10:04:05.646099	2024-07-28 10:04:05.646099	0
+743	763	How seed a random generator to initialize the algorithm corporated within it?	open	2024-07-28 10:04:06.092003	2024-07-28 10:04:06.092003	0
+744	763	What method does the random engines use to generate a random number?	open	2024-07-28 10:04:06.493308	2024-07-28 10:04:06.493308	0
+745	763	How can we discard generated number of a random engine?	open	2024-07-28 10:04:06.812456	2024-07-28 10:04:06.812456	0
+746	763	How to initialize all bits of internal state of a psudo-random number generator?	open	2024-07-28 10:04:07.372934	2024-07-28 10:04:07.372934	0
+747	763	What types can be used to create a cooked user-defined literal?	open	2024-07-28 10:04:07.876531	2024-07-28 10:04:07.876531	0
+748	763	How to create a user-defined literal in order to construct a type in compile time?	open	2024-07-28 10:04:08.496619	2024-07-28 10:04:08.496619	0
+749	763	Express different types of strings that string literals can generate?	open	2024-07-28 10:04:09.007524	2024-07-28 10:04:09.007524	0
+750	763	Express different types of chrono objects that chrono literals can generate?	open	2024-07-28 10:04:09.466818	2024-07-28 10:04:09.466818	0
+751	763	Express how literals can be used to construct a `std::complex` object?	open	2024-07-28 10:04:09.862623	2024-07-28 10:04:09.862623	0
+752	763	What signatues can a literal operator or a literal operator template have to overload user-defined literals?	open	2024-07-28 10:04:10.220452	2024-07-28 10:04:10.220452	0
+753	763	How literal operators or literal operator templates can be used to construct a numberic value by its binary representation?	open	2024-07-28 10:04:11.335229	2024-07-28 10:04:11.335229	0
+754	763	How to create strings containing special characters without escaping them?	open	2024-07-28 10:04:11.780537	2024-07-28 10:04:11.780537	0
+755	763	Express different types of strings that raw string literals can generate?	open	2024-07-28 10:04:12.311177	2024-07-28 10:04:12.311177	0
+756	763	Convert a string to lowercase or uppercase?	open	2024-07-28 10:04:13.268617	2024-07-28 10:04:13.268617	0
+757	763	How to reverse a string?	open	2024-07-28 10:04:13.927324	2024-07-28 10:04:13.927324	0
+758	763	How to trim a string?	open	2024-07-28 10:04:14.486337	2024-07-28 10:04:14.486337	0
+759	763	How to remove all occurances of a character from a string?	open	2024-07-28 10:04:15.014188	2024-07-28 10:04:15.014188	0
+760	763	How to split a string based on user specified delimiter?	open	2024-07-28 10:04:15.804951	2024-07-28 10:04:15.804951	0
+761	763	How a `regex` object can be constructed?	open	2024-07-28 10:04:16.330003	2024-07-28 10:04:16.330003	0
+762	763	How to make regular expressions case insensitive?	open	2024-07-28 10:04:16.646887	2024-07-28 10:04:16.646887	0
+763	763	How regular expressions can be used to verify the format of a string?	open	2024-07-28 10:04:17.38725	2024-07-28 10:04:17.38725	0
+764	763	How to retrieve submatches of a regular expresssion matched with a string?	open	2024-07-28 10:04:18.374146	2024-07-28 10:04:18.374146	0
+765	763	How can we use different regular expression engines?	open	2024-07-28 10:04:19.028416	2024-07-28 10:04:19.028416	0
+766	763	How to search for the first occurance of a pattern in a string using regular expressions?	open	2024-07-28 10:04:19.841082	2024-07-28 10:04:19.841082	0
+767	763	How to find all occurences of a regular expression in a given text?	open	2024-07-28 10:04:21.152357	2024-07-28 10:04:21.152357	0
+768	763	How to replace the content of a string using regular expressions?	open	2024-07-28 10:04:21.756106	2024-07-28 10:04:21.756106	0
+769	763	How to reposition submatches of a string using regular expressions?	open	2024-07-28 10:04:22.236441	2024-07-28 10:04:22.236441	0
+770	763	How `std::string_view` can be used to prevent string copy?	open	2024-07-28 10:04:22.965918	2024-07-28 10:04:22.965918	0
+771	763	Find the first and last occurance of a character in a <code>string_view</code>?	open	2024-07-28 10:04:23.354219	2024-07-28 10:04:23.354219	0
+772	763	Remove tailing and trailing characters from a <code>string_view</code>?	open	2024-07-28 10:04:23.765469	2024-07-28 10:04:23.765469	0
+773	763	How to construct a `std::basic_string` from a `std::basic_string_view`?	open	2024-07-28 10:04:24.143677	2024-07-28 10:04:24.143677	0
+774	764	How to notify compiler to default construct a class member function?	open	2024-07-28 10:04:24.536119	2024-07-28 10:04:24.536119	0
+775	764	How to notify compiler that a function is `deleted`?	open	2024-07-28 10:04:24.93925	2024-07-28 10:04:24.93925	0
+776	764	When does the compiler generate each of special member functions of a class and what prohibits it?	open	2024-07-28 10:04:25.279364	2024-07-28 10:04:25.279364	0
+777	764	How to specify that a class is not copyable and implicitly not movable?	open	2024-07-28 10:04:25.699292	2024-07-28 10:04:25.699292	0
+778	764	How to declare that class that is not copyable, but is movable?	open	2024-07-28 10:04:26.372928	2024-07-28 10:04:26.372928	0
+2275	1361	What is the state of a moved-from string?	open	2024-09-18 17:08:47.376766	2024-09-18 17:08:47.376766	0
+779	764	How to declare a class member function `defaulted` outside of the body of that class?	open	2024-07-28 10:04:26.926619	2024-07-28 10:04:26.926619	0
+780	764	How to define an anonymous lambda as a primitive function in algorithm function templates to count the numbers of a range that are between a minimum and maximum value?	open	2024-07-28 10:04:27.43766	2024-07-28 10:04:27.43766	0
+781	764	How to define a named lambda as a primitive to be used in algorithm function template to count possitive numbers of a range?	open	2024-07-28 10:04:27.866976	2024-07-28 10:04:27.866976	0
+782	764	How to define a generic lambda function as a primitive to be used in algorithm function templates to accumulate values of a range?	open	2024-07-28 10:04:28.401221	2024-07-28 10:04:28.401221	0
+783	764	What are the different capture forms of lambdas both in forms of copy and reference?	open	2024-07-28 10:04:29.002779	2024-07-28 10:04:29.002779	0
+784	764	What is the general form of a lambda expression and how would each part affect its behavior?	open	2024-07-28 10:04:29.445828	2024-07-28 10:04:29.445828	0
+785	764	How to make a lambda capture an rvalue reference as a means of move-semantics?	open	2024-07-28 10:04:29.736003	2024-07-28 10:04:29.736003	0
+786	764	How to capture an entire temporary object by a lambda within it to use its member functions and variables?	open	2024-07-28 10:04:30.340836	2024-07-28 10:04:30.340836	0
+787	764	How to write a template lambda to restrict the use of it with only some types, such as a container or types that satisfy a concept? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:30.81209	2024-07-28 10:04:30.81209	0
+788	764	How to write a template lambda to make sure two or more arguments of it actually have the same type? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:31.173153	2024-07-28 10:04:31.173153	0
+789	764	How to write a template lambda when you need to know the parameter type so that, for example, we can create instances of it, invoke its static methods, or use its iterator types? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:31.995043	2024-07-28 10:04:31.995043	0
+790	764	How to perfect forward a template lambda? <span style="color:green">(c++20)</span>	open	2024-07-28 10:04:32.561545	2024-07-28 10:04:32.561545	0
+791	764	How to write a recursive lambda so that it calculates the fibonacci sequence?	open	2024-07-28 10:04:33.232705	2024-07-28 10:04:33.232705	0
+792	764	How to write a variadic function template to add variable number of arguments?	open	2024-07-28 10:04:34.049107	2024-07-28 10:04:34.049107	0
+793	764	How to write a fold expression to simplify a variadic function template that adds arbitrary values?	open	2024-07-28 10:04:34.643568	2024-07-28 10:04:34.643568	0
+794	764	How to write a fold expression with less-than comparison operator so that variadic function template `min()` returns the smallest object in an arbitrary number of objects?	open	2024-07-28 10:04:35.814822	2024-07-28 10:04:35.814822	0
+795	764	How to implement a higher-order mapping function to apply a function to the elements of a range and return a new range in the same order?	open	2024-07-28 10:04:36.999757	2024-07-28 10:04:36.999757	0
+796	764	How to use a higher-order mapping function to retain a vector of absolute values from a vector of integral numbers?	open	2024-07-28 10:04:37.801523	2024-07-28 10:04:37.801523	0
+797	764	How to implement a higher-order folding function to apply a combining function to the elements of the range to produce a single result?	open	2024-07-28 10:04:38.556831	2024-07-28 10:04:38.556831	0
+798	764	How to use a higher-order folding function template to accumulate values of a vector of integral types?	open	2024-07-28 10:04:39.150967	2024-07-28 10:04:39.150967	0
+799	764	How to use a higher-order folding function template to count the number of words in a text based on their already computed appearances, available in a `std::map<string, int>`?	open	2024-07-28 10:04:39.784696	2024-07-28 10:04:39.784696	0
+800	764	How to uniformly invoke any callable?	open	2024-07-28 10:04:40.717505	2024-07-28 10:04:40.717505	0
+801	764	How to uniformly call a variadic function template? <span style="color:green">(needs work)</span>	open	2024-07-28 10:04:42.09554	2024-07-28 10:04:42.09554	0
+802	765	How to write a header to avoid duplicate definitions?	open	2024-07-28 10:04:42.566509	2024-07-28 10:04:42.566509	0
+864	66	Abbreviate namespaces to avoid repetition?	open	2024-07-28 10:05:20.00918	2024-07-28 10:05:20.00918	0
+803	765	How to write compiler-specific code using conditional compilation with compiler macros?	open	2024-07-28 10:04:43.040874	2024-07-28 10:04:43.040874	0
+804	765	How to write target-specific code based on compiler and system architecture?	open	2024-07-28 10:04:43.927024	2024-07-28 10:04:43.927024	0
+805	765	How to write a configuration-specific code using compiler variables?	open	2024-07-28 10:04:44.363641	2024-07-28 10:04:44.363641	0
+806	765	How can stringizing operator be used to create an identifier?	open	2024-07-28 10:04:44.656717	2024-07-28 10:04:44.656717	0
+807	765	How can concatanation operator be used to concatanate identifiers together?	open	2024-07-28 10:04:44.936782	2024-07-28 10:04:44.936782	0
+808	765	How to use compile-time assertion to check conditions?	open	2024-07-28 10:04:45.343303	2024-07-28 10:04:45.343303	0
+809	765	How to use compile-time assertion to to make sure a class can be used with POD types?	open	2024-07-28 10:04:45.944568	2024-07-28 10:04:45.944568	0
+810	765	How to conditionally compile a class by enabling its template parameter types?	open	2024-07-28 10:04:46.730461	2024-07-28 10:04:46.730461	0
+811	765	How to select compile time branches with `constexpr if`?	open	2024-07-28 10:04:47.761439	2024-07-28 10:04:47.761439	0
+812	765	How to use attributes to prevent user from discarding a return value?	open	2024-07-28 10:04:48.09852	2024-07-28 10:04:48.09852	0
+813	765	How to use attributes to prevent user from discarding enumeration as function return types?	open	2024-07-28 10:04:48.496076	2024-07-28 10:04:48.496076	0
+814	765	How to use attributes to mark a function as deprecated?	open	2024-07-28 10:04:49.026651	2024-07-28 10:04:49.026651	0
+815	765	How to use attributes to tell compiler not to warn about unused variables?	open	2024-07-28 10:04:49.404052	2024-07-28 10:04:49.404052	0
+816	765	How to tell compiler about intentional fallthrough cases of a switch statement?	open	2024-07-28 10:04:49.903407	2024-07-28 10:04:49.903407	0
+817	765	How to tell compiler which cases of switch statements are more possibly used than others?	open	2024-07-28 10:04:50.352341	2024-07-28 10:04:50.352341	0
+818	768	How to write into a <code>std::ofstream</code> object and discarding its previous content?	open	2024-07-28 10:04:50.863126	2024-07-28 10:04:50.863126	0
+819	768	How to append data into a <code>std::ofstream</code> object?	open	2024-07-28 10:04:51.45042	2024-07-28 10:04:51.45042	0
+820	768	How to write into a <code>std::ofstream</code> object in binary format and discard its previous content?	open	2024-07-28 10:04:51.974942	2024-07-28 10:04:51.974942	0
+821	768	How to write a sequence of data into a <code>std::ofstream</code> in binary form?	open	2024-07-28 10:04:52.52364	2024-07-28 10:04:52.52364	0
+822	768	How to evaluate the size of a file by changing the position of file indicator to the end and then moving back?	open	2024-07-28 10:04:53.292734	2024-07-28 10:04:53.292734	0
+823	768	How to read the entire content of a file to a buffer?	open	2024-07-28 10:04:54.063577	2024-07-28 10:04:54.063577	0
+824	768	What template parameters does the <code>std::basic\\_fstream</code> and its input/output ancestor classes can take and what are their typedef abbreviations?	open	2024-07-28 10:04:54.514686	2024-07-28 10:04:54.514686	0
+825	768	Which constructors of <code>std::basic\\_fstream</code> class internally calls <code>open()</code> on its underlying <code>std::basic\\_filebuf</code> raw file object?	open	2024-07-28 10:04:54.853734	2024-07-28 10:04:54.853734	0
+826	768	What are the different open modes of a <code>std::basic\\_fstream</code> file object?	open	2024-07-28 10:04:55.18973	2024-07-28 10:04:55.18973	0
+827	768	How to read how many bytes have been successfully read in a read operation from a <code>std::basic\\_fstream</code> object?	open	2024-07-28 10:04:55.78819	2024-07-28 10:04:55.78819	0
+828	768	What exceptions does <code>std::basic\\_fstream</code> throw when read or write operations fail?	open	2024-07-28 10:04:56.528201	2024-07-28 10:04:56.528201	0
+829	768	How to initialize a <code>std::vector</code> object with the content of a <code>std::basic\\_ifstream</code> object directly using <code>std::istreambuf\\_iterator</code> iterator?	open	2024-07-28 10:04:57.08139	2024-07-28 10:04:57.08139	0
+830	768	How to assign the content of a <code>std::basic\\_ifstream</code> object into a <code>std::vector</code> object?	open	2024-07-28 10:04:57.704355	2024-07-28 10:04:57.704355	0
+831	768	How to write the content of a <code>std::basic\\_ifstream</code> object into a <code>std::vector</code> object using <code>std::ifstreambuf\\_iterator</code> and <code>std::back\\_inserter</code> adapter?	open	2024-07-28 10:04:58.375886	2024-07-28 10:04:58.375886	0
+832	773	What are the main module properties?	open	2024-07-28 10:04:58.715422	2024-07-28 10:04:58.715422	0
+833	773	Import a module in a translation unit?	open	2024-07-28 10:04:59.15422	2024-07-28 10:04:59.15422	0
+834	773	Express a module to be used within another translation unit?	open	2024-07-28 10:05:00.226466	2024-07-28 10:05:00.226466	0
+835	773	What are the constituents of a module?	open	2024-07-28 10:05:00.828988	2024-07-28 10:05:00.828988	0
+836	773	What is a module partition?	open	2024-07-28 10:05:01.17464	2024-07-28 10:05:01.17464	0
+837	773	What is a module interface partition?	open	2024-07-28 10:05:02.662653	2024-07-28 10:05:02.662653	0
+838	773	What is a module implementation partition?	open	2024-07-28 10:05:03.964102	2024-07-28 10:05:03.964102	0
+839	773	What is the difference between module partitions and submodules?	open	2024-07-28 10:05:06.040565	2024-07-28 10:05:06.040565	0
+840	773	Specify requirements on template arguments with concepts?	open	2024-07-28 10:05:06.765914	2024-07-28 10:05:06.765914	0
+841	149	What are the standard iterators?	open	2024-07-28 10:05:07.333323	2024-07-28 10:05:07.333323	0
+842	149	What iterator types are publically provided by standard data structures?	open	2024-07-28 10:05:07.743255	2024-07-28 10:05:07.743255	0
+843	149	What non-member functions are provided by standard to return supported iterators?	open	2024-07-28 10:05:08.155935	2024-07-28 10:05:08.155935	0
+844	149	What is the advantage of having argument dependent lookup supported?	open	2024-07-28 10:05:08.61644	2024-07-28 10:05:08.61644	0
+845	149	When does a function supports argument dependent lookup?	open	2024-07-28 10:05:08.971682	2024-07-28 10:05:08.971682	0
+846	149	Compute the distance between two iterators of a container?	open	2024-07-28 10:05:09.282694	2024-07-28 10:05:09.282694	0
+847	149	What iterator type traits are supported by the standard?	open	2024-07-28 10:05:10.103761	2024-07-28 10:05:10.103761	0
+848	149	What stream iterators are provided by the standard?	open	2024-07-28 10:05:10.499062	2024-07-28 10:05:10.499062	0
+849	149	Use output stream iterator to write values to an output stream?	open	2024-07-28 10:05:11.074284	2024-07-28 10:05:11.074284	0
+850	149	Use input stream iterator to read values from an input stream?	open	2024-07-28 10:05:11.673635	2024-07-28 10:05:11.673635	0
+851	149	What iterator adapters are supported by the standard?	open	2024-07-28 10:05:12.286396	2024-07-28 10:05:12.286396	0
+852	149	Use iterator adapters to populate containers only supporting <code>push_back()</code>?	open	2024-07-28 10:05:12.970354	2024-07-28 10:05:12.970354	0
+853	149	Use iterator adapters to populate containers only supporting <code>push_front()</code>?	open	2024-07-28 10:05:13.701321	2024-07-28 10:05:13.701321	0
+854	149	Use iterator adapters to populate containers only supporting <code>insert()</code>?	open	2024-07-28 10:05:14.574251	2024-07-28 10:05:14.574251	0
+855	149	What are the use cases of reverse iterators?	open	2024-07-28 10:05:15.110459	2024-07-28 10:05:15.110459	0
+856	149	Obtain the base iterator from a reverse iterator?	open	2024-07-28 10:05:15.760296	2024-07-28 10:05:15.760296	0
+857	149	What are the use cases of move iterators?	open	2024-07-28 10:05:16.503325	2024-07-28 10:05:16.503325	0
+858	150	What semantics do standard containers use to take values?	open	2024-07-28 10:05:17.07605	2024-07-28 10:05:17.07605	0
+859	150	What are the default template parameters of standard containers?	open	2024-07-28 10:05:17.670611	2024-07-28 10:05:17.670611	0
+860	150	What are the requirements on elements in standard containers?	open	2024-07-28 10:05:18.15242	2024-07-28 10:05:18.15242	0
+861	150	What are the sequential standard containers?	open	2024-07-28 10:05:18.49343	2024-07-28 10:05:18.49343	0
+862	150	What is the memory layout of a vector?	open	2024-07-28 10:05:18.970995	2024-07-28 10:05:18.970995	0
+865	66	Declare and define a function separately?	open	2024-07-28 10:05:20.482198	2024-07-28 10:05:20.482198	0
+866	67	Initialize scoped and global variables?	open	2024-07-28 10:05:21.080766	2024-07-28 10:05:21.080766	0
+867	67	Determine the size of an expression?	open	2024-07-28 10:05:21.506903	2024-07-28 10:05:21.506903	0
+868	67	Initialize a variable without narrowing?	open	2024-07-28 10:05:21.792992	2024-07-28 10:05:21.792992	0
+869	67	Initialize variables with automatic type deduction?	open	2024-07-28 10:05:22.006753	2024-07-28 10:05:22.006753	0
+870	67	Define a new type based on predefined types?	open	2024-07-28 10:05:22.24768	2024-07-28 10:05:22.24768	0
+871	67	How many constants are available in C++?	open	2024-07-28 10:05:22.560473	2024-07-28 10:05:22.560473	0
+872	67	Initialize a constant?	open	2024-07-28 10:05:22.765342	2024-07-28 10:05:22.765342	0
+873	67	Declare a function evaluated at compile time?	open	2024-07-28 10:05:23.047873	2024-07-28 10:05:23.047873	0
+874	67	Ensure compile time evaluation of a function?	open	2024-07-28 10:05:23.516662	2024-07-28 10:05:23.516662	0
+875	67	Declare a type containing limited constants?	open	2024-07-28 10:05:23.979068	2024-07-28 10:05:23.979068	0
+876	728	Inspect the value of c++ standard number using predefined macro:	open	2024-07-28 10:05:24.70092	2024-07-28 10:05:24.70092	0
+877	729	Prefer `nullptr` over `NULL`:	open	2024-07-28 10:05:25.168569	2024-07-28 10:05:25.168569	0
+878	729	Use automatic type deduction with auto:	open	2024-07-28 10:05:25.752403	2024-07-28 10:05:25.752403	0
+879	729	Initialize objects with uniform initialization:	open	2024-07-28 10:05:26.408147	2024-07-28 10:05:26.408147	0
+880	729	Allow implicit conversion for member initializer list on constructor:	open	2024-07-28 10:05:27.233335	2024-07-28 10:05:27.233335	0
+881	729	Use range-based for instead of raw for loops:	open	2024-07-28 10:05:27.650308	2024-07-28 10:05:27.650308	0
+882	729	Use rvalue references where copy is not necessary:	open	2024-07-28 10:05:27.937602	2024-07-28 10:05:27.937602	0
+883	729	Rvalue reference rules:	open	2024-07-28 10:05:28.420385	2024-07-28 10:05:28.420385	0
+884	729	Use raw string literals to avoid escaping special characters:	open	2024-07-28 10:05:28.822067	2024-07-28 10:05:28.822067	0
+885	729	Check whether *move assignment* for two passed types of a template function is possible:	open	2024-07-28 10:05:29.268624	2024-07-28 10:05:29.268624	0
+886	729	Express possible usage of **noexcept**:	open	2024-07-28 10:05:29.537081	2024-07-28 10:05:29.537081	0
+887	729	Make a function compile time expression:	open	2024-07-28 10:05:30.048991	2024-07-28 10:05:30.048991	0
+888	729	Use parameter pack in variadic templates:	open	2024-07-28 10:05:30.714681	2024-07-28 10:05:30.714681	0
+889	729	Use alias templates:	open	2024-07-28 10:05:31.194441	2024-07-28 10:05:31.194441	0
+890	729	Use default template argument:	open	2024-07-28 10:05:31.685279	2024-07-28 10:05:31.685279	0
+891	729	Define a lambda and call it directly:	open	2024-07-28 10:05:32.074178	2024-07-28 10:05:32.074178	0
+892	729	Make lambda stateful with `mutable` operator:	open	2024-07-28 10:05:32.902545	2024-07-28 10:05:32.902545	0
+893	729	Use decltype to evaluate the type of an expression:	open	2024-07-28 10:05:33.397433	2024-07-28 10:05:33.397433	0
+894	729	Deduce function return type by decltype:	open	2024-07-28 10:05:33.711238	2024-07-28 10:05:33.711238	0
+895	729	Use scoped enumerations:	open	2024-07-28 10:05:34.012763	2024-07-28 10:05:34.012763	0
+896	729	Evaluate the underlying type of an enumeration type:	open	2024-07-28 10:05:34.340632	2024-07-28 10:05:34.340632	0
+897	729	Use nontype template parameter:	open	2024-07-28 10:05:34.80117	2024-07-28 10:05:34.80117	0
+898	729	Use `typename` keyword to specify followed expression a type:	open	2024-07-28 10:05:35.381224	2024-07-28 10:05:35.381224	0
+899	729	Relax the rule of exact match in methods taking an argument with the same type of class, by providing a different template type for the member function:	open	2024-07-28 10:05:36.395657	2024-07-28 10:05:36.395657	0
+2292	1361	What is the state of a moved-from string?	open	2024-09-18 17:09:19.162754	2024-09-18 17:09:19.162754	0
+900	729	Prevent implicitly declared copy constructor call when template constructor provided to enable implicit type conversions when objects are copied:	open	2024-07-28 10:05:37.072175	2024-07-28 10:05:37.072175	0
+901	729	Explicitly initialize fundamendal types in template:	open	2024-07-28 10:05:37.573179	2024-07-28 10:05:37.573179	0
+902	729	End program without returning from `main()`:	open	2024-07-28 10:05:38.142091	2024-07-28 10:05:38.142091	0
+903	730	Use namespace to avoid name colision:	open	2024-07-28 10:05:38.707745	2024-07-28 10:05:38.707745	0
+904	730	Use namespace alias to shorten nested namespaces:	open	2024-07-28 10:05:39.104728	2024-07-28 10:05:39.104728	0
+905	730	Use using declaration to make namespace objects locally visible:	open	2024-07-28 10:05:39.599363	2024-07-28 10:05:39.599363	0
+906	730	Use using directive to flatten a namespace:	open	2024-07-28 10:05:40.074062	2024-07-28 10:05:40.074062	0
+907	730	Include header files for C++ standard library and backward compatible C headers:	open	2024-07-28 10:05:40.391242	2024-07-28 10:05:40.391242	0
+908	730	Use exceptions to handle unexpected conditions:	open	2024-07-28 10:05:41.003079	2024-07-28 10:05:41.003079	0
+2159	267	Configure Vim to work with ctags:	open	2024-07-28 10:13:45.112876	2024-07-28 10:13:45.112876	0
+909	730	Use error code and error conditions to handle errors:	open	2024-07-28 10:05:41.775565	2024-07-28 10:05:41.775565	0
+910	731	What is <code>std::pair</code> type and where is it defined in C++ standard library?	open	2024-07-28 10:05:42.314324	2024-07-28 10:05:42.314324	0
+911	731	How to construct a <code>std::pair</code> using its default constructors?	open	2024-07-28 10:05:42.675404	2024-07-28 10:05:42.675404	0
+912	731	How to construct a <code>std::pair</code> using its copy constructor or copy assignment operator?	open	2024-07-28 10:05:43.190706	2024-07-28 10:05:43.190706	0
+913	731	How to construct a <code>std::pair</code> using its move constructor or move assignment operator?	open	2024-07-28 10:05:43.53193	2024-07-28 10:05:43.53193	0
+914	731	How <code>std::make\\_pair</code> can be used to create a <code>std::pair</code>?	open	2024-07-28 10:05:44.112842	2024-07-28 10:05:44.112842	0
+915	731	How member variables of <code>std::pair</code> struct can be accessed?	open	2024-07-28 10:05:44.535113	2024-07-28 10:05:44.535113	0
+916	731	What comparison operators does the <code>std::pair</code> support?	open	2024-07-28 10:05:45.095851	2024-07-28 10:05:45.095851	0
+917	731	How two <code>std::pair</code> objects can be swapped?	open	2024-07-28 10:05:45.394634	2024-07-28 10:05:45.394634	0
+918	731	Which containers use <code>std::pair</code> to manage their elements?	open	2024-07-28 10:05:45.704889	2024-07-28 10:05:45.704889	0
+919	731	How to construct parameter types of a <code>std::pair</code> piecewise by using tuples as its parameters?	open	2024-07-28 10:05:46.60009	2024-07-28 10:05:46.60009	0
+920	731	How a <code>std::tuple</code> can be constructed?	open	2024-07-28 10:05:47.246243	2024-07-28 10:05:47.246243	0
+921	731	How to construct tuples using <code>make\\_tuple</code> function helper?	open	2024-07-28 10:05:47.643864	2024-07-28 10:05:47.643864	0
+922	731	How to access elements of a tuple?	open	2024-07-28 10:05:48.097599	2024-07-28 10:05:48.097599	0
+923	731	What comparison operators does a tuple support?	open	2024-07-28 10:05:48.69304	2024-07-28 10:05:48.69304	0
+924	731	How to swap two tuple objects?	open	2024-07-28 10:05:49.065554	2024-07-28 10:05:49.065554	0
+925	731	How to assign tuple elements directly on objects using <code>tie</code>?	open	2024-07-28 10:05:49.398124	2024-07-28 10:05:49.398124	0
+926	731	How does explicit constructor of a tuple can be initialized with initializer lists?	open	2024-07-28 10:05:50.135751	2024-07-28 10:05:50.135751	0
+927	731	How to identify how many types does a tuple hold?	open	2024-07-28 10:05:50.685279	2024-07-28 10:05:50.685279	0
+928	731	How to retrieve the type of tuple elements?	open	2024-07-28 10:05:51.133509	2024-07-28 10:05:51.133509	0
+929	731	How to concatanate elements of two tupples to create another?	open	2024-07-28 10:05:51.640099	2024-07-28 10:05:51.640099	0
+930	731	How to convert between tuple and pair?	open	2024-07-28 10:05:51.962557	2024-07-28 10:05:51.962557	0
+931	731	What ownership concepts do smart pointers implement in standard library?	open	2024-07-28 10:05:52.200673	2024-07-28 10:05:52.200673	0
+932	731	What pointers implement shared ownership in standard library?	open	2024-07-28 10:05:52.392932	2024-07-28 10:05:52.392932	0
+933	731	What pointers implement exclusive ownership in standard library?	open	2024-07-28 10:05:52.562742	2024-07-28 10:05:52.562742	0
+934	731	What exception an empty <code>std::weak\\_ptr</code> would throw when dereferrenced?	open	2024-07-28 10:05:52.732156	2024-07-28 10:05:52.732156	0
+935	731	What class should be inheritted to enable sharing this pointer?	open	2024-07-28 10:05:52.933315	2024-07-28 10:05:52.933315	0
+936	731	What operations does std::shared\\_ptr support in standard library?	open	2024-07-28 10:05:53.96812	2024-07-28 10:05:53.96812	0
+937	731	How std::shared\\_ptr can be constructed?	open	2024-07-28 10:05:54.492324	2024-07-28 10:05:54.492324	0
+938	731	What is the advantage of using std::make\\_shared helper function?	open	2024-07-28 10:05:54.902236	2024-07-28 10:05:54.902236	0
+939	731	How to assign a new pointer to <code>std::shared\\_ptr</code> when it was default constructed or previous object which the pointer was pointing to is destroyed?	open	2024-07-28 10:05:55.317756	2024-07-28 10:05:55.317756	0
+940	731	How to count the references of a <code>std::shared\\_ptr</code> object?	open	2024-07-28 10:05:55.94587	2024-07-28 10:05:55.94587	0
+941	731	How does the ownership of shared pointers get destroyed?	open	2024-07-28 10:05:56.833185	2024-07-28 10:05:56.833185	0
+942	731	How to create a shared pointer with a custom deleter?	open	2024-07-28 10:05:57.709885	2024-07-28 10:05:57.709885	0
+943	744	Use asynchronous call to a function and retrieve return value as result?	open	2024-07-28 10:05:58.774528	2024-07-28 10:05:58.774528	0
+944	744	Why is it necessary to take the returning future object from the async call?	open	2024-07-28 10:05:59.230756	2024-07-28 10:05:59.230756	0
+945	744	What are the possible executions when calling a function asynchronously?	open	2024-07-28 10:05:59.630774	2024-07-28 10:05:59.630774	0
+946	744	Specialize a future that calls a function with no return value?	open	2024-07-28 10:05:59.930656	2024-07-28 10:05:59.930656	0
+947	744	What are the available async policies?	open	2024-07-28 10:06:01.020171	2024-07-28 10:06:01.020171	0
+948	744	When does asking for result might cause execution of two threads in sequence?	open	2024-07-28 10:06:01.604038	2024-07-28 10:06:01.604038	0
+949	744	What is the best practice for running functionalities asynchronously?	open	2024-07-28 10:06:01.919679	2024-07-28 10:06:01.919679	0
+950	744	What would happen if the system fails to execute functionality after directing async call with async launch policy?	open	2024-07-28 10:06:02.347005	2024-07-28 10:06:02.347005	0
+951	744	What happens when the result of functionality is never requested after an async call with async launch policy?	open	2024-07-28 10:06:02.803944	2024-07-28 10:06:02.803944	0
+952	744	What if the returning future of an async call gets discarded?	open	2024-07-28 10:06:03.190821	2024-07-28 10:06:03.190821	0
+953	744	What are the use cases of using deferred launch policy over async calls?	open	2024-07-28 10:06:03.561753	2024-07-28 10:06:03.561753	0
+954	744	What happens when exceptions raise in async called functions?	open	2024-07-28 10:06:04.432328	2024-07-28 10:06:04.432328	0
+955	744	What is the state of a future after finishing execution?	open	2024-07-28 10:06:04.772895	2024-07-28 10:06:04.772895	0
+956	744	What methods a future provides on its interface to wait for the execution?	open	2024-07-28 10:06:05.315424	2024-07-28 10:06:05.315424	0
+957	744	What happens to a future when <code>wait()</code> is called before execution starts?	open	2024-07-28 10:06:05.844916	2024-07-28 10:06:05.844916	0
+958	744	What are the possible future states after a call to waiting functions?	open	2024-07-28 10:06:07.075806	2024-07-28 10:06:07.075806	0
+959	749	How to check if docker is connected to server?	open	2024-07-28 10:06:08.439615	2024-07-28 10:06:08.439615	0
+960	749	How to list available images on host?	open	2024-07-28 10:06:08.834128	2024-07-28 10:06:08.834128	0
+961	749	How to run a container from an existing image?	open	2024-07-28 10:06:09.294362	2024-07-28 10:06:09.294362	0
+962	749	How to exit a container's shell without killing its process in docker?	open	2024-07-28 10:06:09.640462	2024-07-28 10:06:09.640462	0
+963	749	How to attach host's shell to the shell of a running container?	open	2024-07-28 10:06:10.039621	2024-07-28 10:06:10.039621	0
+964	749	How to stop a container?	open	2024-07-28 10:06:10.428949	2024-07-28 10:06:10.428949	0
+965	749	How to start a stopped container?	open	2024-07-28 10:06:10.803455	2024-07-28 10:06:10.803455	0
+966	749	How to stop and remove a container?	open	2024-07-28 10:06:11.17395	2024-07-28 10:06:11.17395	0
+967	749	How to list containers in docker?	open	2024-07-28 10:06:11.523968	2024-07-28 10:06:11.523968	0
+968	749	How to verify that a container was successfully deleted by docker?	open	2024-07-28 10:06:11.838614	2024-07-28 10:06:11.838614	0
+969	751	How to retrieve detailed information of installed docker on host?	open	2024-07-28 10:06:12.166615	2024-07-28 10:06:12.166615	0
+970	751	How to pull an image from official repositories?	open	2024-07-28 10:06:12.430871	2024-07-28 10:06:12.430871	0
+971	751	How to pull an image from unofficial repositories?	open	2024-07-28 10:06:12.843002	2024-07-28 10:06:12.843002	0
+972	751	How to pull an image from other registeries?	open	2024-07-28 10:06:13.246885	2024-07-28 10:06:13.246885	0
+973	751	What is a dangling image in docker and how can we list them?	open	2024-07-28 10:06:13.661332	2024-07-28 10:06:13.661332	0
+974	751	How to remove all dangling images in docker?	open	2024-07-28 10:06:14.108297	2024-07-28 10:06:14.108297	0
+975	751	What are the common filtering options for listing images in docker?	open	2024-07-28 10:06:14.763863	2024-07-28 10:06:14.763863	0
+976	751	How to format the output of image lists in docker?	open	2024-07-28 10:06:15.242984	2024-07-28 10:06:15.242984	0
+977	751	How to search an image on registeries?	open	2024-07-28 10:06:15.894305	2024-07-28 10:06:15.894305	0
+978	751	How to inspect the layers of an image?	open	2024-07-28 10:06:16.31439	2024-07-28 10:06:16.31439	0
+979	751	How to see the build history of an image and its image layers?	open	2024-07-28 10:06:16.659823	2024-07-28 10:06:16.659823	0
+980	751	How to see the digests of an image in docker?	open	2024-07-28 10:06:16.958179	2024-07-28 10:06:16.958179	0
+981	751	How does docker use manifests to fetch host compatible image layers when pulling images?	open	2024-07-28 10:06:17.358098	2024-07-28 10:06:17.358098	0
+982	751	How to create an image for different platforms and architectures?	open	2024-07-28 10:06:18.116915	2024-07-28 10:06:18.116915	0
+983	751	How to remove an image in docker?	open	2024-07-28 10:06:18.723	2024-07-28 10:06:18.723	0
+984	752	What are docker restart policies and how can they be applied to containers?	open	2024-07-28 10:06:19.220245	2024-07-28 10:06:19.220245	0
+985	752	What is the behavior of <code>always</code> docker restart policy?	open	2024-07-28 10:06:19.669471	2024-07-28 10:06:19.669471	0
+986	752	What is the <code>unless-stopped</code> docker restart policy?	open	2024-07-28 10:06:19.990715	2024-07-28 10:06:19.990715	0
+987	752	What is the <code>on-failure</code> docker restart policy?	open	2024-07-28 10:06:20.303401	2024-07-28 10:06:20.303401	0
+988	752	How does default programs are embedded in docker images so that containers know which program to run when they are launched with no arguments?	open	2024-07-28 10:06:20.640298	2024-07-28 10:06:20.640298	0
+989	753	How to write a Dockerfile for a Linux based image containing a nodejs program?	open	2024-07-28 10:06:21.5894	2024-07-28 10:06:21.5894	0
+990	753	How to build an image from its Dockerfile?	open	2024-07-28 10:06:22.046554	2024-07-28 10:06:22.046554	0
+991	753	What are the prerequisites of pushing images into DockerHub?	open	2024-07-28 10:06:22.586176	2024-07-28 10:06:22.586176	0
+992	753	How is it possible to push an image into a registry other than the DockerHub?	open	2024-07-28 10:06:22.94197	2024-07-28 10:06:22.94197	0
+993	753	How to add an additional tag to an image?	open	2024-07-28 10:06:23.224469	2024-07-28 10:06:23.224469	0
+994	753	How to write comments in Dockerfile?	open	2024-07-28 10:06:23.419569	2024-07-28 10:06:23.419569	0
+995	753	What instructions in Dockerfile do create new layers into an image?	open	2024-07-28 10:06:23.773496	2024-07-28 10:06:23.773496	0
+996	753	How to view the instructions that were used to build an image?	open	2024-07-28 10:06:24.050311	2024-07-28 10:06:24.050311	0
+997	753	How to make docker ignore caches in creation of image layers?	open	2024-07-28 10:06:24.282179	2024-07-28 10:06:24.282179	0
+998	753	How does involved filesystem invalidate docker cache when the corresponding instruction has not changed in Dockerfile?	open	2024-07-28 10:06:24.656549	2024-07-28 10:06:24.656549	0
+999	753	What is a squashed image and how can it be built?	open	2024-07-28 10:06:24.95448	2024-07-28 10:06:24.95448	0
+1140	1377	Where to download the Raspberry Pi bootloader from?	open	2024-07-28 10:07:10.954005	2024-07-28 10:07:10.954005	0
+1000	753	How can we avoid installing excessive packages by <code>apt</code> when installing packages in docker images?	open	2024-07-28 10:06:25.300806	2024-07-28 10:06:25.300806	0
+1001	755	What is a <b>Docker Swarm</b>?	open	2024-07-28 10:06:25.558393	2024-07-28 10:06:25.558393	0
+1002	755	How many types of swarm nodes exist?	open	2024-07-28 10:06:25.75593	2024-07-28 10:06:25.75593	0
+1003	755	How does a swarm is maintained?	open	2024-07-28 10:06:25.954394	2024-07-28 10:06:25.954394	0
+1004	755	What are different swarm modes?	open	2024-07-28 10:06:26.229734	2024-07-28 10:06:26.229734	0
+1005	755	How to initialize a swarm?	open	2024-07-28 10:06:26.481852	2024-07-28 10:06:26.481852	0
+1006	755	What is the default port for <b>Docker Swarm</b>?	open	2024-07-28 10:06:26.70119	2024-07-28 10:06:26.70119	0
+1007	755	how to list available <i>swarm</i> nodes?	open	2024-07-28 10:06:26.96876	2024-07-28 10:06:26.96876	0
+1008	755	How to extract tokens to join Docker nodes to a swarm?	open	2024-07-28 10:06:27.28474	2024-07-28 10:06:27.28474	0
+1009	755	How to join Docker nodes to a swarm?	open	2024-07-28 10:06:27.633033	2024-07-28 10:06:27.633033	0
+1010	755	How does the high availability mechanism of <b>Docker Swarm</b> work?	open	2024-07-28 10:06:27.940283	2024-07-28 10:06:27.940283	0
+1011	755	What are the best practices to apply on Swarm high availability?	open	2024-07-28 10:06:28.281681	2024-07-28 10:06:28.281681	0
+1012	755	What is advantage of locking a swarm?	open	2024-07-28 10:06:28.571073	2024-07-28 10:06:28.571073	0
+1013	755	How to apply a lock to a swarm?	open	2024-07-28 10:06:28.983438	2024-07-28 10:06:28.983438	0
+1014	755	How to check the current swarm unlock key?	open	2024-07-28 10:06:29.275225	2024-07-28 10:06:29.275225	0
+1015	755	How to re-join Docker nodes to a locked swarm?	open	2024-07-28 10:06:29.857177	2024-07-28 10:06:29.857177	0
+1016	755	How many ways exist to create a docker service?	open	2024-07-28 10:06:30.170737	2024-07-28 10:06:30.170737	0
+1017	755	How to create a docker service?	open	2024-07-28 10:06:30.384794	2024-07-28 10:06:30.384794	0
+1018	755	How to list services running by docker?	open	2024-07-28 10:06:30.597428	2024-07-28 10:06:30.597428	0
+1019	755	How to list the service replicas in docker?	open	2024-07-28 10:06:30.809046	2024-07-28 10:06:30.809046	0
+1020	755	How to inspect a docker service?	open	2024-07-28 10:06:31.015264	2024-07-28 10:06:31.015264	0
+1021	755	What are the differences of replicated and global docker services?	open	2024-07-28 10:06:31.270652	2024-07-28 10:06:31.270652	0
+1022	755	How to scale up and down a docker serivce?	open	2024-07-28 10:06:31.558859	2024-07-28 10:06:31.558859	0
+1023	755	How to remove a docker service?	open	2024-07-28 10:06:31.728097	2024-07-28 10:06:31.728097	0
+1024	755	How to create an overlay network for a docker service?	open	2024-07-28 10:06:31.981282	2024-07-28 10:06:31.981282	0
+1025	755	How to list available docker networks?	open	2024-07-28 10:06:32.207261	2024-07-28 10:06:32.207261	0
+1026	755	How to create a docker service and attach it to a network?	open	2024-07-28 10:06:32.380988	2024-07-28 10:06:32.380988	0
+1027	755	How many publishing modes are available in docker service creation?	open	2024-07-28 10:06:32.604597	2024-07-28 10:06:32.604597	0
+1028	755	How to create docker service replicas on <b>host mode</b>?	open	2024-07-28 10:06:32.91308	2024-07-28 10:06:32.91308	0
+1029	755	How to push an update image to the swarm in a staged manner?	open	2024-07-28 10:06:33.196717	2024-07-28 10:06:33.196717	0
+1030	755	How to troubleshoot docker services by printing its logs?	open	2024-07-28 10:06:33.449721	2024-07-28 10:06:33.449721	0
+1031	755	How to configure docker daemon to log on different logging drivers?	open	2024-07-28 10:06:33.896632	2024-07-28 10:06:33.896632	0
+1032	755	What makes the urge to make swarm backups?	open	2024-07-28 10:06:34.162425	2024-07-28 10:06:34.162425	0
+1033	755	What is a swarm backup file contained of?	open	2024-07-28 10:06:34.356938	2024-07-28 10:06:34.356938	0
+1034	755	How to perform a docker swarm backup and restore operation?	open	2024-07-28 10:06:35.242118	2024-07-28 10:06:35.242118	0
+1035	758	Create a volume?	open	2024-07-28 10:06:35.808205	2024-07-28 10:06:35.808205	0
+1036	758	List available volumes?	open	2024-07-28 10:06:36.110883	2024-07-28 10:06:36.110883	0
+1037	758	Inspect into a volume?	open	2024-07-28 10:06:36.396675	2024-07-28 10:06:36.396675	0
+1038	758	Delete a volume?	open	2024-07-28 10:06:36.749799	2024-07-28 10:06:36.749799	0
+1039	758	Delete all volumes?	open	2024-07-28 10:06:37.01554	2024-07-28 10:06:37.01554	0
+1040	758	Create a volume in Dockerfile?	open	2024-07-28 10:06:37.37572	2024-07-28 10:06:37.37572	0
+1041	758	Attach a volume to a container?	open	2024-07-28 10:06:37.879253	2024-07-28 10:06:37.879253	0
+1042	758	Attach a volume to a cluster?	open	2024-07-28 10:06:38.331097	2024-07-28 10:06:38.331097	0
+1043	758	Install a plugin on docker?	open	2024-07-28 10:06:38.640152	2024-07-28 10:06:38.640152	0
+1044	758	List available plugins?	open	2024-07-28 10:06:38.910202	2024-07-28 10:06:38.910202	0
+1045	758	Create a volume with an installed plugin?	open	2024-07-28 10:06:39.137768	2024-07-28 10:06:39.137768	0
+1046	758	What is the potential data corruption on a shared volume between nodes?	open	2024-07-28 10:06:39.490656	2024-07-28 10:06:39.490656	0
+1047	760	What analyzing tool scans images for vulnerability?	open	2024-07-28 10:06:39.8582	2024-07-28 10:06:39.8582	0
+1048	760	Verify the integrity of images?	open	2024-07-28 10:06:40.071675	2024-07-28 10:06:40.071675	0
+1049	760	What kernel feature provides container isolation?	open	2024-07-28 10:06:40.322108	2024-07-28 10:06:40.322108	0
+1050	760	What kernel feature provides container resource management?	open	2024-07-28 10:06:40.678806	2024-07-28 10:06:40.678806	0
+1051	760	Secure the network connections of a swarm?	open	2024-07-28 10:06:41.340956	2024-07-28 10:06:41.340956	0
+1052	760	Join new managers in a swarm?	open	2024-07-28 10:06:41.973354	2024-07-28 10:06:41.973354	0
+1053	760	Revoke compromised token and issue new swarm join-token?	open	2024-07-28 10:06:42.26506	2024-07-28 10:06:42.26506	0
+1054	760	Inspect a node’s client certificate?	open	2024-07-28 10:06:42.473297	2024-07-28 10:06:42.473297	0
+1055	760	Configure the swarm certificate rotation period?	open	2024-07-28 10:06:42.756205	2024-07-28 10:06:42.756205	0
+1056	760	Manage CA related configuration?	open	2024-07-28 10:06:43.008476	2024-07-28 10:06:43.008476	0
+1057	760	Configure <b>Docker Content Trust</b> to sign images?	open	2024-07-28 10:06:43.744939	2024-07-28 10:06:43.744939	0
+1058	760	Inspect signing data of an image?	open	2024-07-28 10:06:44.166369	2024-07-28 10:06:44.166369	0
+1059	760	Permanently configure docker to verify image push and pull operations?	open	2024-07-28 10:06:44.542543	2024-07-28 10:06:44.542543	0
+1060	760	Create a secret on swarm to store credentials?	open	2024-07-28 10:06:44.986945	2024-07-28 10:06:44.986945	0
+1061	528	How many ways exist to create a docker image?	open	2024-07-28 10:06:45.585256	2024-07-28 10:06:45.585256	0
+1062	528	How to write a basic Dockerfile?	open	2024-07-28 10:06:46.615577	2024-07-28 10:06:46.615577	0
+1063	528	How to build an image using a Dockerfile?	open	2024-07-28 10:06:47.161614	2024-07-28 10:06:47.161614	0
+1064	528	How to tag an image after building it?	open	2024-07-28 10:06:47.431646	2024-07-28 10:06:47.431646	0
+1065	528	How to run a container?	open	2024-07-28 10:06:47.75109	2024-07-28 10:06:47.75109	0
+1066	528	How to terminate the process and the container?	open	2024-07-28 10:06:47.940438	2024-07-28 10:06:47.940438	0
+1067	528	How to list the running processes in docker?	open	2024-07-28 10:06:48.230172	2024-07-28 10:06:48.230172	0
+1068	528	How to restart a stopped container?	open	2024-07-28 10:06:48.498372	2024-07-28 10:06:48.498372	0
+1069	528	How to check what files have been affected since the image was instantiated as a container?	open	2024-07-28 10:06:48.799645	2024-07-28 10:06:48.799645	0
+1070	529	How to make docker daemon accessible from outside network?	open	2024-07-28 10:06:49.313252	2024-07-28 10:06:49.313252	0
+1071	529	How to run a container in background?	open	2024-07-28 10:06:49.951786	2024-07-28 10:06:49.951786	0
+1072	529	How to see the logs of a container?	open	2024-07-28 10:06:50.282177	2024-07-28 10:06:50.282177	0
+1073	529	How to recover a service when it stops in the background?	open	2024-07-28 10:06:50.654513	2024-07-28 10:06:50.654513	0
+1074	529	How to monitor docker API traffic using socat?	open	2024-07-28 10:06:50.932679	2024-07-28 10:06:50.932679	0
+1075	529	How to search for images on Docker Hub?	open	2024-07-28 10:06:51.161551	2024-07-28 10:06:51.161551	0
+1076	515	What communication channel is used by containers to talk to each other?	open	2024-07-28 10:06:51.668879	2024-07-28 10:06:51.668879	0
+1077	515	What facilities are available to extend the Docker functionality?	open	2024-07-28 10:06:51.949866	2024-07-28 10:06:51.949866	0
+1078	516	Where should we check regularly for deprecation of features and removal on recent updates?	open	2024-07-28 10:06:52.202923	2024-07-28 10:06:52.202923	0
+1079	516	Enable docker daemon to start on boot up?	open	2024-07-28 10:06:52.441249	2024-07-28 10:06:52.441249	0
+1080	516	Connect docker client to a remote server?	open	2024-07-28 10:06:52.662298	2024-07-28 10:06:52.662298	0
+1081	516	Configure client to permanently connect to a remote server?	open	2024-07-28 10:06:53.026448	2024-07-28 10:06:53.026448	0
+1082	516	List all the contexts available to client?	open	2024-07-28 10:06:53.322711	2024-07-28 10:06:53.322711	0
+1083	516	Switch client context to make it connect to another remote server?	open	2024-07-28 10:06:53.558233	2024-07-28 10:06:53.558233	0
+1084	516	Manually run docker daemon?	open	2024-07-28 10:06:53.837895	2024-07-28 10:06:53.837895	0
+1085	786	What is the default referencing build system in the Yocto Project?	open	2024-07-28 10:06:54.505334	2024-07-28 10:06:54.505334	0
+1086	786	What are the constituents of the Poky build tool?	open	2024-07-28 10:06:54.954981	2024-07-28 10:06:54.954981	0
+1087	786	What are the responsibilities of BitBake in the Yocto Project?	open	2024-07-28 10:06:55.375643	2024-07-28 10:06:55.375643	0
+1088	786	What are the responsibilities of OpenEmbedded Core in the Yocto Project?	open	2024-07-28 10:06:55.722119	2024-07-28 10:06:55.722119	0
+1089	786	What are the responsibilities of Metadata in the Yocto Project?	open	2024-07-28 10:06:56.113529	2024-07-28 10:06:56.113529	0
+1090	786	What are the release cycles of the Yocto Project?	open	2024-07-28 10:06:56.468035	2024-07-28 10:06:56.468035	0
+1091	787	Get poky source code?	open	2024-07-28 10:06:56.775953	2024-07-28 10:06:56.775953	0
+1092	787	Set up the building environment using <code>oe-init-build-env</code>?	open	2024-07-28 10:06:57.010335	2024-07-28 10:06:57.010335	0
+1093	787	What configuration variable is required for build system?	open	2024-07-28 10:06:57.271623	2024-07-28 10:06:57.271623	0
+1094	1377	What are prerequisites for communicating with an embedded device?	open	2024-07-28 10:06:57.855577	2024-07-28 10:06:57.855577	0
+1095	1377	How to connect to an embedded device using <code>picocom</code> through <code>/dev/ttyUSB0</code> device driver?	open	2024-07-28 10:06:58.258627	2024-07-28 10:06:58.258627	0
+1096	1377	How to list the GNU GCC compiler default configurations?	open	2024-07-28 10:06:58.535205	2024-07-28 10:06:58.535205	0
+1097	1377	How to inspect the detailed steps the GNU GCC takes to compile a source file?	open	2024-07-28 10:06:58.757258	2024-07-28 10:06:58.757258	0
+1098	1377	How to inspect the meta data of an executable file?	open	2024-07-28 10:06:58.975064	2024-07-28 10:06:58.975064	0
+1099	1377	How to remove symbol table from an executable file using binary utilities?	open	2024-07-28 10:06:59.203003	2024-07-28 10:06:59.203003	0
+1100	1377	How to use GNU GCC compiler to compile C source files separately?	open	2024-07-28 10:06:59.470314	2024-07-28 10:06:59.470314	0
+1101	1377	How to list the symbol paths within an executable file?	open	2024-07-28 10:06:59.702519	2024-07-28 10:06:59.702519	0
+1102	1377	Why do C libraries require kernel headers and how kernel headers can be installed?	open	2024-07-28 10:07:00.121311	2024-07-28 10:07:00.121311	0
+1103	1377	What is the GNU GCC compiler flag to specify processor architecture and processor specific optimization?	open	2024-07-28 10:07:00.479103	2024-07-28 10:07:00.479103	0
+1104	1377	What toolchains are available to use in kernel image build process?	open	2024-07-28 10:07:00.807131	2024-07-28 10:07:00.807131	0
+1105	1377	How to build <code>Crosstool-ng</code>?	open	2024-07-28 10:07:01.157713	2024-07-28 10:07:01.157713	0
+1106	1377	How to list <code>Crosstool-ng</code> sample configurations?	open	2024-07-28 10:07:01.386189	2024-07-28 10:07:01.386189	0
+1107	1377	How to use <code>Crosstool-ng</code> to show a brief info of current or specified configuration?	open	2024-07-28 10:07:01.81283	2024-07-28 10:07:01.81283	0
+2309	1361	What is the state of a moved-from string?	open	2024-09-18 17:09:42.49916	2024-09-18 17:09:42.49916	0
+1108	1377	How to use <code>Crosstool-ng</code> to load a target specific configuration sample?	open	2024-07-28 10:07:02.122103	2024-07-28 10:07:02.122103	0
+1109	1377	How to use <code>Crosstool-ng</code> to configure selected architecture specific cross-toolchain?	open	2024-07-28 10:07:02.432924	2024-07-28 10:07:02.432924	0
+1110	1377	How to use <code>Crosstool-ng</code> to print the tuple of the currently configured toolchain?	open	2024-07-28 10:07:02.675159	2024-07-28 10:07:02.675159	0
+2149	257	Inspect buffer list:	open	2024-07-28 10:13:42.36548	2024-07-28 10:13:42.36548	0
+1111	1377	How to use <code>Crosstool-ng</code> to separate downloading source files from building stage?	open	2024-07-28 10:07:02.895912	2024-07-28 10:07:02.895912	0
+1112	1377	How to use <code>Crosstool-ng</code> to build the desired architecture specific cross-toolchain?	open	2024-07-28 10:07:03.167434	2024-07-28 10:07:03.167434	0
+1113	1377	How to set library and headers path for a cross-compiled GNU GCC compiler?	open	2024-07-28 10:07:03.422944	2024-07-28 10:07:03.422944	0
+1114	1377	How to obtain U-Boot and configure it?	open	2024-07-28 10:07:03.936302	2024-07-28 10:07:03.936302	0
+1115	1377	How to load a file from a filesystem to RAM within U-Boot shell?	open	2024-07-28 10:07:04.579041	2024-07-28 10:07:04.579041	0
+1116	1377	What command can be used within U-Boot shell to load a kernel image into RAM from network?	open	2024-07-28 10:07:04.889564	2024-07-28 10:07:04.889564	0
+1117	1377	What command can be used within U-Boot shell to test network conectivity?	open	2024-07-28 10:07:05.134245	2024-07-28 10:07:05.134245	0
+1118	1377	What utilities can be used within U-Boot shell to load a kernel image from serial line to RAM?	open	2024-07-28 10:07:05.313492	2024-07-28 10:07:05.313492	0
+1119	1377	What command can be used within U-Boot shell to control the USB subsystem?	open	2024-07-28 10:07:05.536151	2024-07-28 10:07:05.536151	0
+1120	1377	What command can be used within U-Boot shell to control MMC subsystem?	open	2024-07-28 10:07:05.768042	2024-07-28 10:07:05.768042	0
+1121	1377	What command can be used within U-Boot shell to read, write and erase contents to NAND flash?	open	2024-07-28 10:07:05.984119	2024-07-28 10:07:05.984119	0
+1122	1377	What commands can be used within U-Boot shell to erase, modify protection or write contents to NOR flash?	open	2024-07-28 10:07:06.252871	2024-07-28 10:07:06.252871	0
+1123	1377	What command can be used within U-Boot shell to display memory info?	open	2024-07-28 10:07:06.475892	2024-07-28 10:07:06.475892	0
+1124	1377	What command can be used within U-Boot shell to modify memory info?	open	2024-07-28 10:07:06.695739	2024-07-28 10:07:06.695739	0
+1125	1377	What command can be used within U-Boot shell to display board information?	open	2024-07-28 10:07:06.920967	2024-07-28 10:07:06.920967	0
+1126	1377	What command can be used within U-Boot shell to display environment variables?	open	2024-07-28 10:07:07.163192	2024-07-28 10:07:07.163192	0
+1127	1377	What command can be used within U-Boot shell to set environment variables?	open	2024-07-28 10:07:07.382241	2024-07-28 10:07:07.382241	0
+1128	1377	What command can be used within U-Boot shell to edit an environment variable?	open	2024-07-28 10:07:07.623056	2024-07-28 10:07:07.623056	0
+1129	1377	What command can be used within U-Boot shell to save environment variables permanently?	open	2024-07-28 10:07:07.85112	2024-07-28 10:07:07.85112	0
+1130	1377	What environment variable can be set within U-Boot shell to specify the boot command sequence that U-Boot should automatically execute at boot time?	open	2024-07-28 10:07:08.121342	2024-07-28 10:07:08.121342	0
+1131	1377	What environment variable can be set within U-Boot shell to be passed to the kernel as arguments?	open	2024-07-28 10:07:08.372669	2024-07-28 10:07:08.372669	0
+1132	1377	What environment variables should be set within U-Boot shell to load an image into RAM from network?	open	2024-07-28 10:07:08.611004	2024-07-28 10:07:08.611004	0
+1133	1377	What command can be used within U-Boot shell to see the size of the latest copy into memory?	open	2024-07-28 10:07:08.896913	2024-07-28 10:07:08.896913	0
+1134	1377	How to write conditional expressions within U-Boot shell?	open	2024-07-28 10:07:09.179061	2024-07-28 10:07:09.179061	0
+1135	1377	How to run a script within U-Boot shell?	open	2024-07-28 10:07:09.446497	2024-07-28 10:07:09.446497	0
+1136	1377	How to reference other variable within U-Boot shell?	open	2024-07-28 10:07:09.701905	2024-07-28 10:07:09.701905	0
+1137	1377	What does the <code>source</code> command do in U-Boot shell environment?	open	2024-07-28 10:07:10.076567	2024-07-28 10:07:10.076567	0
+1138	1377	Edit an environment variable on U-Boot command line?	open	2024-07-28 10:07:10.380237	2024-07-28 10:07:10.380237	0
+1139	1377	Restart the board with a U-Boot command?	open	2024-07-28 10:07:10.629826	2024-07-28 10:07:10.629826	0
+1141	1377	What files are required to to boot using a Raspberry Pi device?	open	2024-07-28 10:07:11.736677	2024-07-28 10:07:11.736677	0
+1142	1377	How to list all available processors available to QEMU?	open	2024-07-28 10:07:12.14453	2024-07-28 10:07:12.14453	0
+1143	1377	How to use <code>qemu-system-arm</code> command to boot into <code>u-boot</code>?	open	2024-07-28 10:07:12.365396	2024-07-28 10:07:12.365396	0
+1144	1377	How to create a patch?	open	2024-07-28 10:07:12.554546	2024-07-28 10:07:12.554546	0
+1145	1377	What environment variable is required when building the kernel?	open	2024-07-28 10:07:12.838069	2024-07-28 10:07:12.838069	0
+1146	1377	What kernel config is recommended to use for desktop systems?	open	2024-07-28 10:07:13.10138	2024-07-28 10:07:13.10138	0
+1147	1377	Save your modified config as a default config to be used later?	open	2024-07-28 10:07:13.362543	2024-07-28 10:07:13.362543	0
+1148	1377	What are the different types of a kernel configuration option?	open	2024-07-28 10:07:13.750541	2024-07-28 10:07:13.750541	0
+1149	1377	What dependencies are available for kernel configutration options?	open	2024-07-28 10:07:14.207202	2024-07-28 10:07:14.207202	0
+1150	1377	Make building process faster by running build in parallel?	open	2024-07-28 10:07:14.483696	2024-07-28 10:07:14.483696	0
+1151	1377	Make building process faster multiple times by caching build artifacts?	open	2024-07-28 10:07:14.731892	2024-07-28 10:07:14.731892	0
+1152	1377	What are the kernel build artifacts?	open	2024-07-28 10:07:15.011146	2024-07-28 10:07:15.011146	0
+1153	1377	How many installation targets do we have to run?	open	2024-07-28 10:07:15.291824	2024-07-28 10:07:15.291824	0
+1154	1377	Install built kernel from source tree?	open	2024-07-28 10:07:15.539442	2024-07-28 10:07:15.539442	0
+1155	1377	What artifacts will be installed from the kernel source tree?	open	2024-07-28 10:07:15.774363	2024-07-28 10:07:15.774363	0
+1156	1377	Which files should we install on root filesystem of the device?	open	2024-07-28 10:07:16.137581	2024-07-28 10:07:16.137581	0
+1157	1377	Install modules from source tree?	open	2024-07-28 10:07:16.419435	2024-07-28 10:07:16.419435	0
+1158	1377	Change the default path to module installation?	open	2024-07-28 10:07:16.682715	2024-07-28 10:07:16.682715	0
+1159	1377	What artifacts will be installed by modules installation?	open	2024-07-28 10:07:16.982159	2024-07-28 10:07:16.982159	0
+1160	1377	What cleaning targets do we have in kernel source?	open	2024-07-28 10:07:17.262128	2024-07-28 10:07:17.262128	0
+1161	1377	Archive current kernel version?	open	2024-07-28 10:07:17.53448	2024-07-28 10:07:17.53448	0
+1162	1377	What is the purpose of using device trees?	open	2024-07-28 10:07:17.855263	2024-07-28 10:07:17.855263	0
+1163	1377	What is the hierarchy of a device tree source describing a specific device?	open	2024-07-28 10:07:18.112774	2024-07-28 10:07:18.112774	0
+1164	1377	What commands can be used in U-Boot to load kernel images?	open	2024-07-28 10:07:18.413156	2024-07-28 10:07:18.413156	0
+1165	1377	Load kernel on U-Boot command line from ftp service?	open	2024-07-28 10:07:18.771808	2024-07-28 10:07:18.771808	0
+1166	1377	Load kernel on U-Boot command line from MMC storage?	open	2024-07-28 10:07:19.050511	2024-07-28 10:07:19.050511	0
+1167	1377	Automatically load kernel on boot up using U-Boot command line?	open	2024-07-28 10:07:19.328186	2024-07-28 10:07:19.328186	0
+1168	1377	What is a kernel command line?	open	2024-07-28 10:07:19.668526	2024-07-28 10:07:19.668526	0
+1169	1377	Where is the list of all kernel command line arguments?	open	2024-07-28 10:07:19.904382	2024-07-28 10:07:19.904382	0
+1170	1377	What are the priorities of passing command line arguments?	open	2024-07-28 10:07:20.157142	2024-07-28 10:07:20.157142	0
+1171	1377	Where the dependency of modules are specified?	open	2024-07-28 10:07:20.472183	2024-07-28 10:07:20.472183	0
+1172	1377	What is the kernel logging mechanism?	open	2024-07-28 10:07:20.778407	2024-07-28 10:07:20.778407	0
+1173	1377	Filter kernel log messages using log level?	open	2024-07-28 10:07:21.064991	2024-07-28 10:07:21.064991	0
+1174	1377	Where is the device node representing kernel log buffer?	open	2024-07-28 10:07:21.302428	2024-07-28 10:07:21.302428	0
+1175	1377	Print the information about a module?	open	2024-07-28 10:07:21.624433	2024-07-28 10:07:21.624433	0
+1176	1377	List kernel modules?	open	2024-07-28 10:07:21.927966	2024-07-28 10:07:21.927966	0
+1177	1377	Insert modules?	open	2024-07-28 10:07:22.260254	2024-07-28 10:07:22.260254	0
+1178	1377	Which tool loads kernel modules while also loading their dependencies?	open	2024-07-28 10:07:22.542125	2024-07-28 10:07:22.542125	0
+1179	1377	Pass parameters to a module through modprobe configuration?	open	2024-07-28 10:07:22.855595	2024-07-28 10:07:22.855595	0
+1180	1377	Pass parameters to a module through kernel parameters?	open	2024-07-28 10:07:23.127187	2024-07-28 10:07:23.127187	0
+1181	1377	Where can you find module parameters?	open	2024-07-28 10:07:23.450725	2024-07-28 10:07:23.450725	0
+1182	1377	Mount a filesystem for a USB storage device?	open	2024-07-28 10:07:23.830258	2024-07-28 10:07:23.830258	0
+1183	1377	Unmount a filesystem?	open	2024-07-28 10:07:24.189268	2024-07-28 10:07:24.189268	0
+1184	1377	Where can we mount a root filesystem from?	open	2024-07-28 10:07:24.670063	2024-07-28 10:07:24.670063	0
+1185	1377	Use NFS protocol to mount a root filesystem?	open	2024-07-28 10:07:25.287605	2024-07-28 10:07:25.287605	0
+1186	1377	Boot up a virtual system into U-Boot command line?	open	2024-07-28 10:07:26.05286	2024-07-28 10:07:26.05286	0
+1187	1377	Create an initramfs?	open	2024-07-28 10:07:26.596804	2024-07-28 10:07:26.596804	0
+1188	1377	What component is responsible for loading device files into the kernel?	open	2024-07-28 10:07:26.93971	2024-07-28 10:07:26.93971	0
+1189	1377	Create proc virtual filesystem?	open	2024-07-28 10:07:27.201835	2024-07-28 10:07:27.201835	0
+1190	1377	Where are the process related information on the system?	open	2024-07-28 10:07:27.482803	2024-07-28 10:07:27.482803	0
+1191	1377	What files in the system contain general device-related information?	open	2024-07-28 10:07:27.797886	2024-07-28 10:07:27.797886	0
+1192	1377	What information does sysfs hold from the system?	open	2024-07-28 10:07:28.106818	2024-07-28 10:07:28.106818	0
+1193	1377	What sequence does kernel follow to call init?	open	2024-07-28 10:07:28.456429	2024-07-28 10:07:28.456429	0
+1194	1377	Create a simple init program to prevent kernel panic?	open	2024-07-28 10:07:29.085106	2024-07-28 10:07:29.085106	0
+1195	1417	How to build a kernel image using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:30.153584	2024-07-28 10:07:30.153584	0
+1196	1417	How to add a package to the root filesystem of built qemu image using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:30.761239	2024-07-28 10:07:30.761239	0
+1197	1417	How to build a <code>qemuarm64</code> image with <b>SATO</b> as desktop environment for mobile devices using <b>Yocto Poky</b> tools?	open	2024-07-28 10:07:31.2945	2024-07-28 10:07:31.2945	0
+1198	1029	What are the input requirements for the Yocto Project?	open	2024-07-28 10:07:31.628396	2024-07-28 10:07:31.628396	0
+1199	1029	What are the expected outputs from the Yocto Project?	open	2024-07-28 10:07:31.891202	2024-07-28 10:07:31.891202	0
+1200	1029	What is the Yocto Project's reference build system?	open	2024-07-28 10:07:32.09586	2024-07-28 10:07:32.09586	0
+1201	1029	What are the constituents of the Poky build system?	open	2024-07-28 10:07:32.390181	2024-07-28 10:07:32.390181	0
+1202	1029	What are the building blocks of the Metadata component in the Poky build system?	open	2024-07-28 10:07:32.782356	2024-07-28 10:07:32.782356	0
+1203	1031	What are the different roles and their tasks in Linux-based software development teams?	open	2024-07-28 10:07:33.27859	2024-07-28 10:07:33.27859	0
+1204	46	Specify the life cycle of Embedded Linux projects?	open	2024-07-28 10:07:33.623397	2024-07-28 10:07:33.623397	0
+1205	46	Specify the elements of Embedded Linux?	open	2024-07-28 10:07:33.867525	2024-07-28 10:07:33.867525	0
+1206	46	Specify hardware requirements for Embedded Linux?	open	2024-07-28 10:07:34.12605	2024-07-28 10:07:34.12605	0
+1207	47	What are the main three components of the GNU toolchains?	open	2024-07-28 10:07:34.404651	2024-07-28 10:07:34.404651	0
+1208	47	What components are used in the tuple used to prefixed in GNU toolchains?	open	2024-07-28 10:07:34.679253	2024-07-28 10:07:34.679253	0
+1209	47	Print the tuple embedded in GNU GCC compiler?	open	2024-07-28 10:07:34.907592	2024-07-28 10:07:34.907592	0
+1210	47	What C libraries are commonly used in toolchains?	open	2024-07-28 10:07:35.146253	2024-07-28 10:07:35.146253	0
+1211	47	What toolchains are available to build cross-toolchains with?	open	2024-07-28 10:07:35.336548	2024-07-28 10:07:35.336548	0
+1212	47	Build and install <i>crosstool-ng</i>?	open	2024-07-28 10:07:35.710647	2024-07-28 10:07:35.710647	0
+1213	47	Print the list of crosstool-ng sample configurations?	open	2024-07-28 10:07:35.954	2024-07-28 10:07:35.954	0
+1214	47	Inspect the configuration details of crosstool-ng targets?	open	2024-07-28 10:07:36.272407	2024-07-28 10:07:36.272407	0
+1215	47	Build a cross-toolchain for Raspberry Pi Zero?	open	2024-07-28 10:07:36.750325	2024-07-28 10:07:36.750325	0
+1216	47	Build a cross-toolchain for BeagleBone Black?	open	2024-07-28 10:07:37.302833	2024-07-28 10:07:37.302833	0
+1217	47	Build a cross-toolchain for QEMU?	open	2024-07-28 10:07:37.789638	2024-07-28 10:07:37.789638	0
+1218	47	Get the version and configurations of a native or cross-compiled GCC compiler?	open	2024-07-28 10:07:38.063893	2024-07-28 10:07:38.063893	0
+1219	47	Override the default processor configuration options using GCC compiler?	open	2024-07-28 10:07:38.28669	2024-07-28 10:07:38.28669	0
+1220	47	List available architecture specific options in a project source tree using GCC compiler?	open	2024-07-28 10:07:38.517315	2024-07-28 10:07:38.517315	0
+1221	47	Print the <code>sysroot</code> path using GCC compiler?	open	2024-07-28 10:07:38.775878	2024-07-28 10:07:38.775878	0
+1222	47	What are the main C library components?	open	2024-07-28 10:07:38.997263	2024-07-28 10:07:38.997263	0
+1223	47	Print the linked libraries of an executable using GNU toolchains?	open	2024-07-28 10:07:39.203633	2024-07-28 10:07:39.203633	0
+1224	47	Print the runtime linker used for an executable using GNU toolchains?	open	2024-07-28 10:07:39.424955	2024-07-28 10:07:39.424955	0
+1225	47	Compile by linking libraries statically using GNU GCC compiler?	open	2024-07-28 10:07:39.691766	2024-07-28 10:07:39.691766	0
+1226	47	Where are static libraries located in <code>sysroot</code> directory used by GNU toolchains?	open	2024-07-28 10:07:39.97168	2024-07-28 10:07:39.97168	0
+1227	47	Use GNU toolchains to create a static library containing two executable objects compiled from C source files?	open	2024-07-28 10:07:40.253968	2024-07-28 10:07:40.253968	0
+1228	47	Use GNU toolchains to create a shared library containing two executable objects compiled from C source files?	open	2024-07-28 10:07:40.57524	2024-07-28 10:07:40.57524	0
+1229	47	Use GNU cross-toolchains to print the <code>SONAME</code> of a shared library?	open	2024-07-28 10:07:40.845115	2024-07-28 10:07:40.845115	0
+1230	47	Use GNU toolchains to cross-compile for a specific target?	open	2024-07-28 10:07:41.234969	2024-07-28 10:07:41.234969	0
+1231	47	Build and install GNU Autotools?	open	2024-07-28 10:07:41.640666	2024-07-28 10:07:41.640666	0
+1232	47	Override the toolchain in an autotools compatible project?	open	2024-07-28 10:07:41.876288	2024-07-28 10:07:41.876288	0
+1233	47	Use <code>crosstool-ng</code> to cross compile <i>SQlite</i> and add it to an existing toolchain?	open	2024-07-28 10:07:42.245503	2024-07-28 10:07:42.245503	0
+1234	47	Prepare <code>pkg-config</code> to look up library dependencies in a sysroot?	open	2024-07-28 10:07:42.557183	2024-07-28 10:07:42.557183	0
+1235	47	Use CMake to cross compile a project?	open	2024-07-28 10:07:42.866883	2024-07-28 10:07:42.866883	0
+1236	48	Describe the boot sequence in an embedded device?	open	2024-07-28 10:07:43.098409	2024-07-28 10:07:43.098409	0
+1237	48	Describe what parameters should be passed to the kernel on moving from the bootloader to a kernel?	open	2024-07-28 10:07:43.346721	2024-07-28 10:07:43.346721	0
+1238	48	What is a Device Tree and where is its specification?	open	2024-07-28 10:07:43.518714	2024-07-28 10:07:43.518714	0
+1239	48	What are the common properties of device tree specification?	open	2024-07-28 10:07:44.212874	2024-07-28 10:07:44.212874	0
+1240	48	Specify an interrupt controller in a device tree source?	open	2024-07-28 10:07:44.903231	2024-07-28 10:07:44.903231	0
+1241	48	Use <code>include</code> in a device tree source?	open	2024-07-28 10:07:45.190975	2024-07-28 10:07:45.190975	0
+1242	48	Overlay nodes on top of another to create a composite tree in which the outer layers extend or modify the inner ones?	open	2024-07-28 10:07:46.058064	2024-07-28 10:07:46.058064	0
+1243	48	Use <code>dtc</code> to compile a device tree source?	open	2024-07-28 10:07:46.380748	2024-07-28 10:07:46.380748	0
+1244	48	Build and install <b>U-Boot</b> from source?	open	2024-07-28 10:07:46.9972	2024-07-28 10:07:46.9972	0
+1245	48	Use U-Boot to read flash memory over serial console?	open	2024-07-28 10:07:47.327935	2024-07-28 10:07:47.327935	0
+1246	48	Set environment variables in U-Boot environment?	open	2024-07-28 10:07:47.650529	2024-07-28 10:07:47.650529	0
+1247	48	Use <code>mkimage</code> to create a compressed kernel image from an uncompressed kernel image?	open	2024-07-28 10:07:47.940347	2024-07-28 10:07:47.940347	0
+1248	48	Load a kernel image in a U-Boot shell environment?	open	2024-07-28 10:07:48.197314	2024-07-28 10:07:48.197314	0
+1249	48	Boot a kernel image across network in a U-Boot shell environment?	open	2024-07-28 10:07:48.609636	2024-07-28 10:07:48.609636	0
+1250	48	Boot Linux kernel after loading it within U-Boot shell environment?	open	2024-07-28 10:07:48.849574	2024-07-28 10:07:48.849574	0
+1251	48	Automate the boot process in U-Boot shell environment?	open	2024-07-28 10:07:49.093978	2024-07-28 10:07:49.093978	0
+1252	49	What is the first required action to aquire appropriate kernel source either for kernel development or embedded use?	open	2024-07-28 10:07:49.485848	2024-07-28 10:07:49.485848	0
+1253	49	What is an appropriate path to keep track of kernel release changes?	open	2024-07-28 10:07:49.750522	2024-07-28 10:07:49.750522	0
+1254	49	What is the basic layout of the kernel source tree?	open	2024-07-28 10:07:50.114081	2024-07-28 10:07:50.114081	0
+1255	49	What is the name of the kernel configuration mechanism and how can it be used?	open	2024-07-28 10:07:50.351443	2024-07-28 10:07:50.351443	0
+1256	49	What are possible values to the <code>ARCH</code> environment variable using in building the kernel source?	open	2024-07-28 10:07:50.553741	2024-07-28 10:07:50.553741	0
+1257	49	What are the constructs of each menu in a <code>Kconfig</code> file?	open	2024-07-28 10:07:51.026563	2024-07-28 10:07:51.026563	0
+1258	49	What types can each <code>config</code> have in a <code>Kconfig</code> menu?	open	2024-07-28 10:07:51.310181	2024-07-28 10:07:51.310181	0
+1259	49	What construct can be used to express dependencies or reverse dependencies for a <code>config</code> in a <code>Kconfig</code> menu?	open	2024-07-28 10:07:51.857561	2024-07-28 10:07:51.857561	0
+1260	49	What configuration utilities are available to use for configuring kernel build?	open	2024-07-28 10:07:52.173647	2024-07-28 10:07:52.173647	0
+1261	49	Use GNU <code>make</code> to find all possible kernel configuration targets?	open	2024-07-28 10:07:52.590833	2024-07-28 10:07:52.590833	0
+1262	49	Use GNU <code>make</code> to configure kernel source tree for a specific architecture?	open	2024-07-28 10:07:52.970117	2024-07-28 10:07:52.970117	0
+1263	49	What configuration target takes an old <code>.config</code> file and asks for options added in new kernel?	open	2024-07-28 10:07:53.405232	2024-07-28 10:07:53.405232	0
+1264	49	What file holds configuration options generated by beginning the kernel build and where is the file?	open	2024-07-28 10:07:53.674627	2024-07-28 10:07:53.674627	0
+1265	49	Identify which kernel version and kernel release do we have in kernel source tree?	open	2024-07-28 10:07:53.966822	2024-07-28 10:07:53.966822	0
+1266	49	By which configuration option can kernel release be appended with release information?	open	2024-07-28 10:07:54.177366	2024-07-28 10:07:54.177366	0
+1267	49	How does the <code>Kbuild</code> work with configuration options to properly build kernel?	open	2024-07-28 10:07:54.451731	2024-07-28 10:07:54.451731	0
+1268	49	By assuming to have a complete <code>.config</code> file in the kernel source, what are the required environment variables to be given to <code>make</code> to build the kernel?	open	2024-07-28 10:07:54.661273	2024-07-28 10:07:54.661273	0
+1269	49	Which kernel target should be used to generate kernel image?	open	2024-07-28 10:07:54.999539	2024-07-28 10:07:54.999539	0
+1270	49	Solve different relocation addresses of the kernel with multi-platform ARM <code>uImage</code>?	open	2024-07-28 10:07:55.265916	2024-07-28 10:07:55.265916	0
+1271	49	What are the build artifacts of <code>Kbuild</code>?	open	2024-07-28 10:07:55.568691	2024-07-28 10:07:55.568691	0
+1272	49	Make debug symbols available in the <code>vmlinux</code> kernel image?	open	2024-07-28 10:07:55.762272	2024-07-28 10:07:55.762272	0
+1273	49	See the actual commands being executed in kernel build process in case build fails?	open	2024-07-28 10:07:55.998954	2024-07-28 10:07:55.998954	0
+1274	49	What are the required steps after building a kernel image?	open	2024-07-28 10:07:56.505005	2024-07-28 10:07:56.505005	0
+1275	49	How many cleaning <code>make</code> targets are available?	open	2024-07-28 10:07:56.834839	2024-07-28 10:07:56.834839	0
+1276	49	What are the steps required to build a kernel for the Raspberry Pi 4?	open	2024-07-28 10:07:57.956783	2024-07-28 10:07:57.956783	0
+1277	49	What are the steps required to build a kernel for the Raspberry Pi Zero?	open	2024-07-28 10:07:58.810802	2024-07-28 10:07:58.810802	0
+1278	49	What are the steps required to build a kernel for the BeagleBone Black?	open	2024-07-28 10:07:59.186051	2024-07-28 10:07:59.186051	0
+1279	49	What are the steps required to build a kernel for the QEMU?	open	2024-07-28 10:07:59.490832	2024-07-28 10:07:59.490832	0
+1280	49	Assuming kernel image and device tree blobs are built and put on the microSD already, what are the required boot instructions on Raspberry Pi 4?	open	2024-07-28 10:07:59.743154	2024-07-28 10:07:59.743154	0
+1281	49	What are the required boot instructions on BeagleBone Black?	open	2024-07-28 10:08:00.022924	2024-07-28 10:08:00.022924	0
+1282	49	What are the required boot instructions on QEMU?	open	2024-07-28 10:08:00.241472	2024-07-28 10:08:00.241472	0
+1283	49	What is the early user space after kernel is booted?	open	2024-07-28 10:08:00.606938	2024-07-28 10:08:00.606938	0
+1284	49	What are the essential kernel command lines?	open	2024-07-28 10:08:01.069857	2024-07-28 10:08:01.069857	0
+1285	49	Reduce the time of calculating the constant <code>loops_per_jiffy</code> variable on boot time?	open	2024-07-28 10:08:01.259309	2024-07-28 10:08:01.259309	0
+1286	49	What are the required procedures to port Linux to a new board?	open	2024-07-28 10:08:01.457189	2024-07-28 10:08:01.457189	0
+1287	49	Assuming a new device is designed similar to BeagleBone Black and a new device tree needs to be ported for it, what are the necessary steps to make one?	open	2024-07-28 10:08:03.16711	2024-07-28 10:08:03.16711	0
+1288	1398	Compile a program with debugging information?	open	2024-07-28 10:08:03.754196	2024-07-28 10:08:03.754196	0
+1289	419	How does <code>eBPF</code> help us to learn application behavior?	open	2024-07-28 10:08:13.272943	2024-07-28 10:08:13.272943	0
+1290	419	What does the <code>eBPF</code> verifier?	open	2024-07-28 10:08:13.439554	2024-07-28 10:08:13.439554	0
+1291	419	What is the advantage of dynamic loading functionality in <code>eBPF</code>?	open	2024-07-28 10:08:13.66934	2024-07-28 10:08:13.66934	0
+1292	419	How efficient is loading <code>eBPF</code> programs?	open	2024-07-28 10:08:13.884486	2024-07-28 10:08:13.884486	0
+1293	420	How to load a simple <code>eBPF</code> code in python's BCC library as a simplified example?	open	2024-07-28 10:08:14.98458	2024-07-28 10:08:14.98458	0
+1294	420	What capabilities are required for eBPF programs to run?	open	2024-07-28 10:08:15.42517	2024-07-28 10:08:15.42517	0
+1295	420	Where does the <code>eBPF</code> trace printing function write output?	open	2024-07-28 10:08:15.663691	2024-07-28 10:08:15.663691	0
+1296	420	What is the convenient alternative to trace output by <code>bpf_trace_printk</code> helper function?	open	2024-07-28 10:08:15.884711	2024-07-28 10:08:15.884711	0
+1297	420	What is an <code>eBPF</code> map?	open	2024-07-28 10:08:16.055989	2024-07-28 10:08:16.055989	0
+1298	901	Download the Linux kernel for building?	open	2024-07-28 10:08:16.885521	2024-07-28 10:08:16.885521	0
+1299	901	Describe each directory in the kernel source tree?	open	2024-07-28 10:08:17.48606	2024-07-28 10:08:17.48606	0
+2146	256	Use the contents of a buffer for standard input or output:	open	2024-07-28 10:13:41.774368	2024-07-28 10:13:41.774368	0
+1300	901	What assumptions and flags are enabled by <code>kbuild</code> infrastructure based on the target architecture?	open	2024-07-28 10:08:17.911128	2024-07-28 10:08:17.911128	0
+1301	901	What <code>make</code> target options can be used to configure the kernel?	open	2024-07-28 10:08:18.224362	2024-07-28 10:08:18.224362	0
+1302	901	Where will be the kernel configurations stored?	open	2024-07-28 10:08:18.398435	2024-07-28 10:08:18.398435	0
+2150	257	Switch to alternate buffer:	open	2024-07-28 10:13:42.565566	2024-07-28 10:13:42.565566	0
+1303	901	Generate a preconfigured <code>.config</code> file tuned for a specific platform in the kernel source tree?	open	2024-07-28 10:08:18.897062	2024-07-28 10:08:18.897062	0
+1304	901	Revert configuration changes in kernel source tree after generating new <code>.config</code> file?	open	2024-07-28 10:08:19.127857	2024-07-28 10:08:19.127857	0
+1305	901	Create a new default configuration target in kernel source tree?	open	2024-07-28 10:08:19.614339	2024-07-28 10:08:19.614339	0
+1306	901	Generate a default configuration file for <code>x86_64</code> target in the kernel source tree?	open	2024-07-28 10:08:19.936187	2024-07-28 10:08:19.936187	0
+1307	901	Generate a default configuration file for <code>BeagleBone Black</code> target in kernel source tree?	open	2024-07-28 10:08:20.164878	2024-07-28 10:08:20.164878	0
+1308	901	Include new kernel configurations into an old <code>.config</code> file?	open	2024-07-28 10:08:20.639563	2024-07-28 10:08:20.639563	0
+1309	901	Use the kernel configuration file on a running machine as an initial configurtion?	open	2024-07-28 10:08:21.172803	2024-07-28 10:08:21.172803	0
+1310	901	What kernel configuration options allows accessing kernel configuration file on runtime?	open	2024-07-28 10:08:21.447141	2024-07-28 10:08:21.447141	0
+1311	901	What kernel configuration option allows extending the kernel command line from within the configuration?	open	2024-07-28 10:08:21.800359	2024-07-28 10:08:21.800359	0
+1312	901	What kernel configuration option makes the kernel symbol table available in <code>/proc/kallsyms</code>?	open	2024-07-28 10:08:22.038421	2024-07-28 10:08:22.038421	0
+1313	901	What kernel configuration option enables timing information while printing messages from the kernel?	open	2024-07-28 10:08:22.20572	2024-07-28 10:08:22.20572	0
+1314	901	What kernel configuration option allows debugging input devices?	open	2024-07-28 10:08:22.390316	2024-07-28 10:08:22.390316	0
+1315	901	What kernel configuration option enables system request key combinations to recover system after crash?	open	2024-07-28 10:08:22.561145	2024-07-28 10:08:22.561145	0
+1316	901	What kernel configuration option enables the <code>ftrace</code> tracer support?	open	2024-07-28 10:08:22.726662	2024-07-28 10:08:22.726662	0
+1317	901	What kernel configuration option allows tracing any non-inline function in the kernel?	open	2024-07-28 10:08:22.941609	2024-07-28 10:08:22.941609	0
+1318	901	What kernel configuration option allows tracking off periods of IRQs in the kernel?	open	2024-07-28 10:08:23.109447	2024-07-28 10:08:23.109447	0
+1319	901	What kernel configuration option allows measuring preemption off latency and schedule latency tracing?	open	2024-07-28 10:08:23.331203	2024-07-28 10:08:23.331203	0
+1320	901	What <code>make</code> target should be used to build the kernel in the source tree?	open	2024-07-28 10:08:23.741073	2024-07-28 10:08:23.741073	0
+1321	901	Where do kernel build artifact will be stored in the source tree?	open	2024-07-28 10:08:24.056113	2024-07-28 10:08:24.056113	0
+1322	901	Install the kernel binary file on native and non-native targets?	open	2024-07-28 10:08:24.351481	2024-07-28 10:08:24.351481	0
+1323	901	Build and install kernel modules?	open	2024-07-28 10:08:24.709429	2024-07-28 10:08:24.709429	0
+1324	901	Override the installation path of compiled module binaries after the <code>modules_install</code> target is executed?	open	2024-07-28 10:08:25.12147	2024-07-28 10:08:25.12147	0
+1325	901	What artifacts does <code>make modules_install</code> command generate on the host machine?	open	2024-07-28 10:08:25.486428	2024-07-28 10:08:25.486428	0
+1326	902	How many module types are available?	open	2024-07-28 10:08:25.898605	2024-07-28 10:08:25.898605	0
+1327	902	What kernel configuration option enables module loading on runtime?	open	2024-07-28 10:08:26.120393	2024-07-28 10:08:26.120393	0
+1328	902	What kernel configuration option enables unloading modules on runtime?	open	2024-07-28 10:08:26.305498	2024-07-28 10:08:26.305498	0
+1329	902	What kernel configuration option ignores safely unloading modules having dependencies?	open	2024-07-28 10:08:26.515125	2024-07-28 10:08:26.515125	0
+1330	902	What is the basic skeleton of a kernel module?	open	2024-07-28 10:08:27.106976	2024-07-28 10:08:27.106976	0
+1331	902	What functions are the entry points of all kernel modules?	open	2024-07-28 10:08:27.468121	2024-07-28 10:08:27.468121	0
+1332	902	What are the <code>\\_\\_init</code> and <code>\\_\\_exit</code> function prefixes in kernel modules?	open	2024-07-28 10:08:28.125671	2024-07-28 10:08:28.125671	0
+1333	902	What section is used in kernel objects to store module information?	open	2024-07-28 10:08:28.399339	2024-07-28 10:08:28.399339	0
+1334	902	What macros are commonly used in kernel modules to store module information?	open	2024-07-28 10:08:28.609525	2024-07-28 10:08:28.609525	0
+1335	902	What is the real underlying macro provided by the kernel to add an entry to the <code>.modinfo</code> section?	open	2024-07-28 10:08:28.817222	2024-07-28 10:08:28.817222	0
+1336	902	What utility dumps the <code>.modinfo</code> section of kernel modules?	open	2024-07-28 10:08:29.044522	2024-07-28 10:08:29.044522	0
+1337	902	What are the differences of <code>EXPORT_SYMBOL</code> and <code>EXPORT_SYMBOL_GPL</code> macros exporting symbols based on license?	open	2024-07-28 10:08:29.448513	2024-07-28 10:08:29.448513	0
+1338	902	What is the <b>out-of-tree</b> kernel module building?	open	2024-07-28 10:08:29.721488	2024-07-28 10:08:29.721488	0
+1339	902	What is the <b>built-in</b> kernel module building?	open	2024-07-28 10:08:29.944168	2024-07-28 10:08:29.944168	0
+1340	902	Write a custom <code>Makefile</code> for <b>out-of-tree</b> kernel modules?	open	2024-07-28 10:08:30.657534	2024-07-28 10:08:30.657534	0
+1341	902	What <code>make</code> targets should be available when writing a custom <code>Makefile</code> for kernel modules?	open	2024-07-28 10:08:31.06764	2024-07-28 10:08:31.06764	0
+1342	902	Write configuration dependent target in <code>Makefile</code> for a <b>built-in</b> kernel module?	open	2024-07-28 10:08:31.551615	2024-07-28 10:08:31.551615	0
+1343	902	Specify multiple source files in a custom <code>Makefile</code> for a specific target?	open	2024-07-28 10:08:32.349182	2024-07-28 10:08:32.349182	0
+1344	902	Specify compiler and linker flags in <code>Makefile</code> for kernel module building?	open	2024-07-28 10:08:32.752343	2024-07-28 10:08:32.752343	0
+1345	902	Include other kernel source directories within a <code>Makefile</code>?	open	2024-07-28 10:08:33.069804	2024-07-28 10:08:33.069804	0
+1346	902	Obtain a prebuilt kernel for building <b>out-of-tree</b> module?	open	2024-07-28 10:08:33.572016	2024-07-28 10:08:33.572016	0
+1347	902	Load and unload an <b>out-of-tree</b> built kernel module?	open	2024-07-28 10:08:33.913456	2024-07-28 10:08:33.913456	0
+1348	902	Write <code>Makefile</code> for a <b>built-in</b> kernel module?	open	2024-07-28 10:08:34.624778	2024-07-28 10:08:34.624778	0
+1349	902	Define parameters in kernel modules?	open	2024-07-28 10:08:35.668602	2024-07-28 10:08:35.668602	0
+1350	902	What psuedo-files represent module parameters?	open	2024-07-28 10:08:36.046101	2024-07-28 10:08:36.046101	0
+1351	902	Pass parameters to built-in modules?	open	2024-07-28 10:08:36.300211	2024-07-28 10:08:36.300211	0
+1352	902	How kernel functions can be called from a kernel module?	open	2024-07-28 10:08:36.652991	2024-07-28 10:08:36.652991	0
+1353	902	How does <code>depmod</code> utility determine module dependencies?	open	2024-07-28 10:08:36.922822	2024-07-28 10:08:36.922822	0
+1354	902	How does <code>modprobe</code> utility loads modules?	open	2024-07-28 10:08:37.222972	2024-07-28 10:08:37.222972	0
+1355	902	How does <code>depmod</code> utility map devices to their drivers?	open	2024-07-28 10:08:37.747836	2024-07-28 10:08:37.747836	0
+1356	902	Load a module at boot time?	open	2024-07-28 10:08:38.113636	2024-07-28 10:08:38.113636	0
+1357	902	Unload an automatically loaded module?	open	2024-07-28 10:08:38.530993	2024-07-28 10:08:38.530993	0
+1358	902	List loaded modules?	open	2024-07-28 10:08:39.014878	2024-07-28 10:08:39.014878	0
+1359	902	Where the error macros defined are defined?	open	2024-07-28 10:08:39.273843	2024-07-28 10:08:39.273843	0
+2326	1361	What is the state of a moved-from string?	open	2024-09-18 17:20:08.978522	2024-09-18 17:20:08.978522	0
+1360	902	What is the standard way to return an error in kernel modules?	open	2024-07-28 10:08:39.602605	2024-07-28 10:08:39.602605	0
+1361	902	Why <code>goto</code> statement is preferable over than nested <code>if</code>s in kernel modules?	open	2024-07-28 10:08:40.393536	2024-07-28 10:08:40.393536	0
+1362	902	What is the standard way of handling null pointer errors in kernel modules?	open	2024-07-28 10:08:41.679516	2024-07-28 10:08:41.679516	0
+1363	902	Where are the <code>printk()</code> function log levels are defined?	open	2024-07-28 10:08:42.039261	2024-07-28 10:08:42.039261	0
+1364	902	What are the recommended helper functions alternative to <code>printk()</code>?	open	2024-07-28 10:08:42.279312	2024-07-28 10:08:42.279312	0
+1365	902	What are the log levels of kernel printing helper functions?	open	2024-07-28 10:08:42.634528	2024-07-28 10:08:42.634528	0
+1366	902	What is the default kernel log level?	open	2024-07-28 10:08:43.010089	2024-07-28 10:08:43.010089	0
+1367	902	Change current kernel log level?	open	2024-07-28 10:08:43.267508	2024-07-28 10:08:43.267508	0
+1368	902	Prefix the module output messages with a custom string?	open	2024-07-28 10:08:43.652509	2024-07-28 10:08:43.652509	0
+1369	903	How many synchronization mechanisms for accessibility of shared resources are available in the kernel?	open	2024-07-28 10:08:44.225306	2024-07-28 10:08:44.225306	0
+1370	903	What is a spinlock?	open	2024-07-28 10:08:44.671655	2024-07-28 10:08:44.671655	0
+1371	903	How does spinlocks operate on a CPU?	open	2024-07-28 10:08:45.006431	2024-07-28 10:08:45.006431	0
+1372	903	Define a spinlock in module source?	open	2024-07-28 10:08:45.733425	2024-07-28 10:08:45.733425	0
+1373	903	Lock a previously defined spinlock in module source?	open	2024-07-28 10:08:46.132176	2024-07-28 10:08:46.132176	0
+1374	903	What are the limitations of locking/unlocking spinlocks in a kernel module?	open	2024-07-28 10:08:46.440812	2024-07-28 10:08:46.440812	0
+1375	903	Prevent deadlock caused by IRQs when using spinlocks?	open	2024-07-28 10:08:46.74964	2024-07-28 10:08:46.74964	0
+1376	903	How does spinlocks affect preemtion after locking and unlocking?	open	2024-07-28 10:08:47.013191	2024-07-28 10:08:47.013191	0
+1377	903	Store and restore previous IRQs status when using spinlocks?	open	2024-07-28 10:08:47.470837	2024-07-28 10:08:47.470837	0
+1378	903	How a critical section can be protected from being preemted by kernel?	open	2024-07-28 10:08:47.838613	2024-07-28 10:08:47.838613	0
+1379	903	What is a mutex and how does it operate?	open	2024-07-28 10:08:48.356733	2024-07-28 10:08:48.356733	0
+1380	903	Initialize a mutex in the kernel?	open	2024-07-28 10:08:49.036916	2024-07-28 10:08:49.036916	0
+1381	903	Acquire a mutex in the kernel?	open	2024-07-28 10:08:49.587854	2024-07-28 10:08:49.587854	0
+1382	903	Release an acquired mutex in the kernel?	open	2024-07-28 10:08:49.941971	2024-07-28 10:08:49.941971	0
+1383	903	Check mutex locking availability before acquiring it?	open	2024-07-28 10:08:50.253074	2024-07-28 10:08:50.253074	0
+1384	903	What are specific rules while using mutexes in the kernel?	open	2024-07-28 10:08:50.687208	2024-07-28 10:08:50.687208	0
+1385	903	What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?	open	2024-07-28 10:08:50.935394	2024-07-28 10:08:50.935394	0
+1386	903	Acquire a lock only if it is not already held by another contender?	open	2024-07-28 10:08:51.753977	2024-07-28 10:08:51.753977	0
+1387	903	What does the term sleeping mean in the kernel?	open	2024-07-28 10:08:52.072111	2024-07-28 10:08:52.072111	0
+1388	903	What passive waiting mechanisms are implemented in the kernel?	open	2024-07-28 10:08:52.471431	2024-07-28 10:08:52.471431	0
+1389	903	What queues are implemented in the kernel to hold tasks?	open	2024-07-28 10:08:52.761022	2024-07-28 10:08:52.761022	0
+1390	903	What is a wait queue?	open	2024-07-28 10:08:53.215783	2024-07-28 10:08:53.215783	0
+1391	903	Initialize a wait queue?	open	2024-07-28 10:08:53.604016	2024-07-28 10:08:53.604016	0
+1392	903	Put a process to sleep waiting for an event to occur?	open	2024-07-28 10:08:54.081534	2024-07-28 10:08:54.081534	0
+1393	903	Put a process to sleep waiting either for an event to occur or a timeout to be reached?	open	2024-07-28 10:08:54.455428	2024-07-28 10:08:54.455428	0
+1394	903	What values does the <code>wait_event_timeout()</code> function return?	open	2024-07-28 10:08:54.732974	2024-07-28 10:08:54.732974	0
+1395	903	Convert standard time units to jiffies?	open	2024-07-28 10:08:55.010687	2024-07-28 10:08:55.010687	0
+1396	903	Wake up a process waiting on a wait queue?	open	2024-07-28 10:08:55.381359	2024-07-28 10:08:55.381359	0
+1397	903	What values do <code>wait_up</code> family functions return?	open	2024-07-28 10:08:55.654159	2024-07-28 10:08:55.654159	0
+1398	624	Where are the linux modules located?	open	2024-07-28 10:08:56.037736	2024-07-28 10:08:56.037736	0
+1399	624	How to load a loadable kernel module?	open	2024-07-28 10:08:56.386849	2024-07-28 10:08:56.386849	0
+1400	624	What modules does <code>lsmod</code> show?	open	2024-07-28 10:08:56.605988	2024-07-28 10:08:56.605988	0
+1401	624	Where does <code>lsmod</code> collects information about modules?	open	2024-07-28 10:08:56.804742	2024-07-28 10:08:56.804742	0
+1402	624	Remove a loaded module from the kernel?	open	2024-07-28 10:08:57.044243	2024-07-28 10:08:57.044243	0
+1403	624	Where are module dependencies stored?	open	2024-07-28 10:08:57.243882	2024-07-28 10:08:57.243882	0
+1404	624	Dynamically load a module and its dependencies?	open	2024-07-28 10:08:57.545567	2024-07-28 10:08:57.545567	0
+1405	624	Retrieve module information?	open	2024-07-28 10:08:57.822206	2024-07-28 10:08:57.822206	0
+1406	430	What mechanisms are required for user space applications to gain access to the underlying device drivers within the kernel?	open	2024-07-28 10:08:58.317315	2024-07-28 10:08:58.317315	0
+1407	430	How does <b>Linux Device Model</b> expose device driver details to user space?	open	2024-07-28 10:08:58.598275	2024-07-28 10:08:58.598275	0
+1408	430	What inode attributes are used to distinguish between device files?	open	2024-07-28 10:08:58.854232	2024-07-28 10:08:58.854232	0
+1409	430	What is a device driver namespace?	open	2024-07-28 10:08:59.190664	2024-07-28 10:08:59.190664	0
+1410	430	What is the difference between block and char devices in namespaces?	open	2024-07-28 10:08:59.428118	2024-07-28 10:08:59.428118	0
+1411	430	What distinguishes device classes in the kernel?	open	2024-07-28 10:09:00.002628	2024-07-28 10:09:00.002628	0
+1412	430	What are the major components of <b>Linux Device Model</b>?	open	2024-07-28 10:09:00.328328	2024-07-28 10:09:00.328328	0
+1413	430	Where devices should be registered?	open	2024-07-28 10:09:00.561166	2024-07-28 10:09:00.561166	0
+1414	430	What is the job of buses?	open	2024-07-28 10:09:00.784577	2024-07-28 10:09:00.784577	0
+1415	430	What is the initial step of a device driver once a device binds?	open	2024-07-28 10:09:01.248121	2024-07-28 10:09:01.248121	0
+1416	430	What is a good starting step to learn writing device drivers?	open	2024-07-28 10:09:01.620023	2024-07-28 10:09:01.620023	0
+1417	430	Handle unsupported file operation method by propegating an error from kernel driver to user space proces?	open	2024-07-28 10:09:02.083979	2024-07-28 10:09:02.083979	0
+1418	430	Handle unsupported <code>llseek</code> file operation?	open	2024-07-28 10:09:02.613244	2024-07-28 10:09:02.613244	0
+1419	430	Register a misc driver in the kernel?	open	2024-07-28 10:09:03.902908	2024-07-28 10:09:03.902908	0
+1420	430	What is the entry point of device drivers?	open	2024-07-28 10:09:04.524388	2024-07-28 10:09:04.524388	0
+1421	430	Assign file operations on a misc driver?	open	2024-07-28 10:09:05.99614	2024-07-28 10:09:05.99614	0
+1422	430	Implement open file operation function in device driver?	open	2024-07-28 10:09:06.779026	2024-07-28 10:09:06.779026	0
+1423	430	Implement read file operation function in device driver?	open	2024-07-28 10:09:08.192646	2024-07-28 10:09:08.192646	0
+1424	430	Try out the open, read, write, and close file operation methods of a driver?	open	2024-07-28 10:09:08.850544	2024-07-28 10:09:08.850544	0
+1425	430	Copy data from kernel to user space?	open	2024-07-28 10:09:09.723223	2024-07-28 10:09:09.723223	0
+1426	430	Copy data from user to kernel space?	open	2024-07-28 10:09:10.10608	2024-07-28 10:09:10.10608	0
+1427	458	How to use <code>sparse</code> as the <b>static analyzer</b> in kbuild?	open	2024-07-28 10:09:10.746893	2024-07-28 10:09:10.746893	0
+1428	458	What are the most commonly used <b>tracing</b> and <b>profiling</b> tools in the kernel development?	open	2024-07-28 10:09:11.082986	2024-07-28 10:09:11.082986	0
+1429	458	What tool is commonly used to examine and interpret LTTng's output?	open	2024-07-28 10:09:11.305673	2024-07-28 10:09:11.305673	0
+1430	458	What is the BPF frontend?	open	2024-07-28 10:09:11.514264	2024-07-28 10:09:11.514264	0
+1431	458	What kernel version started supporting BPF?	open	2024-07-28 10:09:11.744683	2024-07-28 10:09:11.744683	0
+1432	458	What is the important dependency of BPF on a Linux system?	open	2024-07-28 10:09:11.969885	2024-07-28 10:09:11.969885	0
+2151	257	Jump directly to a buffer using number:	open	2024-07-28 10:13:42.744556	2024-07-28 10:13:42.744556	0
+1433	458	What tool is used as automated test suite and static and dynamic analysis for kernel modules?	open	2024-07-28 10:09:12.189633	2024-07-28 10:09:12.189633	0
+1434	458	What is the name of cross toolchain required to build the kernel?	open	2024-07-28 10:09:12.449849	2024-07-28 10:09:12.449849	0
+1435	458	What is the name of emulator required to run kernel on it?	open	2024-07-28 10:09:12.740584	2024-07-28 10:09:12.740584	0
+1436	458	Use static analysis tools for Kernel source:	open	2024-07-28 10:09:13.24453	2024-07-28 10:09:13.24453	0
+1437	458	Use sparce to analyze kernel source:	open	2024-07-28 10:09:13.536526	2024-07-28 10:09:13.536526	0
+1438	458	Trace and profiling tools for kernel:	open	2024-07-28 10:09:13.775151	2024-07-28 10:09:13.775151	0
+1439	458	Performance analysis tool for kernel:	open	2024-07-28 10:09:14.041052	2024-07-28 10:09:14.041052	0
+1440	458	Linux Driver Verification (LDV) project:	open	2024-07-28 10:09:14.244627	2024-07-28 10:09:14.244627	0
+1441	459	How to check the kernel version on host system?	open	2024-07-28 10:09:14.474748	2024-07-28 10:09:14.474748	0
+1442	459	How to review the history of the kernel development process using git?	open	2024-07-28 10:09:14.766376	2024-07-28 10:09:14.766376	0
+1443	459	What is the kernel development workflow?	open	2024-07-28 10:09:15.136458	2024-07-28 10:09:15.136458	0
+1444	459	How many kernel release types exist?	open	2024-07-28 10:09:15.493	2024-07-28 10:09:15.493	0
+1445	459	How to retrieve current list kernel releases?	open	2024-07-28 10:09:15.79476	2024-07-28 10:09:15.79476	0
+1446	459	What script can be used to safely download and verify kernel source tree?	open	2024-07-28 10:09:16.108522	2024-07-28 10:09:16.108522	0
+1447	459	What are the steps of building the kernel?	open	2024-07-28 10:09:16.405047	2024-07-28 10:09:16.405047	0
+1448	459	Where can kernel archive be downloaded?	open	2024-07-28 10:09:16.645264	2024-07-28 10:09:16.645264	0
+1449	459	Where can kernel source be cloned?	open	2024-07-28 10:09:16.87042	2024-07-28 10:09:16.87042	0
+1450	459	How to make sure about the version of the cloned kernel source tree?	open	2024-07-28 10:09:17.095527	2024-07-28 10:09:17.095527	0
+1451	459	Where is the list of kernel maintainers?	open	2024-07-28 10:09:17.266208	2024-07-28 10:09:17.266208	0
+1452	459	What script can be used to find the maintainers of a specific module?	open	2024-07-28 10:09:17.435363	2024-07-28 10:09:17.435363	0
+1453	459	What is the purpose of each directory in the kernel source tree?	open	2024-07-28 10:09:17.870183	2024-07-28 10:09:17.870183	0
+1454	459	How to build kernel documentations from source?	open	2024-07-28 10:09:18.197498	2024-07-28 10:09:18.197498	0
+1455	459	What code browsing tools are available to be used in kernel source tree?	open	2024-07-28 10:09:18.433582	2024-07-28 10:09:18.433582	0
+1456	459	How to generate tags using code browsing tools in the kernel source tree?	open	2024-07-28 10:09:18.645868	2024-07-28 10:09:18.645868	0
+1457	459	Where is the default kernel config file stored?	open	2024-07-28 10:09:18.82609	2024-07-28 10:09:18.82609	0
+1458	459	What configuration targets are available in the kernel build system?	open	2024-07-28 10:09:19.018121	2024-07-28 10:09:19.018121	0
+1459	459	Where can platform specific configuration files be found in the kernel source tree?	open	2024-07-28 10:09:19.17662	2024-07-28 10:09:19.17662	0
+1460	459	How to configure kernel with the existing modules?	open	2024-07-28 10:09:19.364839	2024-07-28 10:09:19.364839	0
+1461	459	How to use existing kernel configuration in the kbuild?	open	2024-07-28 10:09:19.599931	2024-07-28 10:09:19.599931	0
+1462	459	What UI configuration options are available for the kbuild system?	open	2024-07-28 10:09:19.788051	2024-07-28 10:09:19.788051	0
+1463	459	How many option types are available in <code>menuconfig</code> target?	open	2024-07-28 10:09:20.035342	2024-07-28 10:09:20.035342	0
+1464	470	How to emulate raspberry pi on Linux?	open	2024-07-28 10:09:20.253522	2024-07-28 10:09:20.253522	0
+1465	470	Choose between microprocessors for embedded Linux project:	open	2024-07-28 10:09:20.452971	2024-07-28 10:09:20.452971	0
+1466	470	Deprecated things in kernel:	open	2024-07-28 10:09:20.614166	2024-07-28 10:09:20.614166	0
+1467	470	External resources:	open	2024-07-28 10:09:20.8733	2024-07-28 10:09:20.8733	0
+1468	661	How many synchronization mechanisms for accessibility of shared resources are available in the kernel?	open	2024-07-28 10:09:21.196363	2024-07-28 10:09:21.196363	0
+1469	661	What is a spinlock?	open	2024-07-28 10:09:21.475345	2024-07-28 10:09:21.475345	0
+1470	661	How does spinlocks operate on a CPU?	open	2024-07-28 10:09:21.672194	2024-07-28 10:09:21.672194	0
+1471	661	Define a spinlock in module source?	open	2024-07-28 10:09:22.079558	2024-07-28 10:09:22.079558	0
+1472	661	Lock a previously defined spinlock in module source?	open	2024-07-28 10:09:22.307801	2024-07-28 10:09:22.307801	0
+1473	661	What are the limitations of locking/unlocking spinlocks in a kernel module?	open	2024-07-28 10:09:22.509184	2024-07-28 10:09:22.509184	0
+1474	661	Prevent deadlock caused by IRQs when using spinlocks?	open	2024-07-28 10:09:22.770871	2024-07-28 10:09:22.770871	0
+1475	661	How does spinlocks affect preemtion after locking and unlocking?	open	2024-07-28 10:09:22.95405	2024-07-28 10:09:22.95405	0
+1476	661	Store and restore previous IRQs status when using spinlocks?	open	2024-07-28 10:09:23.378483	2024-07-28 10:09:23.378483	0
+1477	661	How a critical section can be protected from being preemted by kernel?	open	2024-07-28 10:09:23.77974	2024-07-28 10:09:23.77974	0
+1478	661	What is a mutex and how does it operate?	open	2024-07-28 10:09:24.370852	2024-07-28 10:09:24.370852	0
+1479	661	Initialize a mutex in the kernel?	open	2024-07-28 10:09:25.142952	2024-07-28 10:09:25.142952	0
+1480	661	Acquire a mutex in the kernel?	open	2024-07-28 10:09:25.817574	2024-07-28 10:09:25.817574	0
+1481	661	Release an acquired mutex in the kernel?	open	2024-07-28 10:09:26.220284	2024-07-28 10:09:26.220284	0
+1482	661	Check mutex locking availability before acquiring it?	open	2024-07-28 10:09:26.524122	2024-07-28 10:09:26.524122	0
+1483	661	What are specific rules while using mutexes in the kernel?	open	2024-07-28 10:09:26.938438	2024-07-28 10:09:26.938438	0
+1484	661	What is more efficient between spinlocks and mutexes compared in terms of CPU cycles?	open	2024-07-28 10:09:27.221813	2024-07-28 10:09:27.221813	0
+1485	661	Acquire a lock only if it is not already held by another contender?	open	2024-07-28 10:09:28.035091	2024-07-28 10:09:28.035091	0
+1486	1248	What are the sudo proprietary alternatives on Unix systems?	open	2024-07-28 10:09:28.595507	2024-07-28 10:09:28.595507	0
+1487	1248	What version of sudo should be installed on a server at least?	open	2024-07-28 10:09:28.821594	2024-07-28 10:09:28.821594	0
+1488	1249	How to run a command with root privileges using <code>sudo</code>?	open	2024-07-28 10:09:29.07356	2024-07-28 10:09:29.07356	0
+1489	1249	How to run a command on behalf of a specific user with sudo?	open	2024-07-28 10:09:29.321909	2024-07-28 10:09:29.321909	0
+1490	1249	How to run a command on behalf of a specific group with sudo?	open	2024-07-28 10:09:29.587849	2024-07-28 10:09:29.587849	0
+1491	1249	Where are the sudo rules stored on system and how can it be editted properly?	open	2024-07-28 10:09:29.824158	2024-07-28 10:09:29.824158	0
+1492	1249	What is the general form of each line of sudo rules and what is the definition and scope of each part?	open	2024-07-28 10:09:30.136597	2024-07-28 10:09:30.136597	0
+1493	1249	Why is it best practice to specify a specific <code>hostname</code> rather than <code>ALL</code> in sudo rules?	open	2024-07-28 10:09:30.363442	2024-07-28 10:09:30.363442	0
+1494	1249	How to specify multiple options on each sudo rule?	open	2024-07-28 10:09:30.629878	2024-07-28 10:09:30.629878	0
+1495	1249	How to specify commands to run by a specific user on behalf some other user except root in sudo rules?	open	2024-07-28 10:09:30.964453	2024-07-28 10:09:30.964453	0
+1496	1249	Can sudo rules be specified multiple times for users on different hosts and commands?	open	2024-07-28 10:09:31.277718	2024-07-28 10:09:31.277718	0
+1497	1249	How to break long rules into multiple lines?	open	2024-07-28 10:09:31.585028	2024-07-28 10:09:31.585028	0
+1498	1249	What rules match in sudo when multiple rules exist in sudoers file?	open	2024-07-28 10:09:31.828741	2024-07-28 10:09:31.828741	0
+1499	1249	How to use negate operator to exclude one item from a list in sudoers file?	open	2024-07-28 10:09:32.034752	2024-07-28 10:09:32.034752	0
+1500	1249	What must be written in the last line of sudoers file to be accepted by visudo?	open	2024-07-28 10:09:32.211899	2024-07-28 10:09:32.211899	0
+2152	258	Open another file in vim to edit:	open	2024-07-28 10:13:43.000603	2024-07-28 10:13:43.000603	0
+1501	1250	What editor does the <code>visudo</code> use to edit <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:32.50831	2024-07-28 10:09:32.50831	0
+1502	1250	How to keep editing <code>/etc/sudoers</code> file after making a syntactical error in <code>visudo</code> and save it?	open	2024-07-28 10:09:32.6974	2024-07-28 10:09:32.6974	0
+1503	1250	How to retain older <code>/etc/sudoers</code> file after attempting to save incorrect changes by <code>visudo</code>?	open	2024-07-28 10:09:32.905111	2024-07-28 10:09:32.905111	0
+2160	267	Auto-generate tags file in Vim:	open	2024-07-28 10:13:45.471761	2024-07-28 10:13:45.471761	0
+1504	1250	How to put an emergency rescue rule in <code>/etc/sudoers</code> file by <code>visudo</code> in case every other access rules failed?	open	2024-07-28 10:09:33.17151	2024-07-28 10:09:33.17151	0
+1505	1250	How to tell what a user can access with <code>sudo</code>?	open	2024-07-28 10:09:33.464625	2024-07-28 10:09:33.464625	0
+1506	1251	What mechanism is used in <code>sudo</code> rules to simplify overwhelmingly repeated rules and similar possible options?	open	2024-07-28 10:09:33.870075	2024-07-28 10:09:33.870075	0
+1507	1251	How can asterisk become harmful when used in different parts of rules like command arguments?	open	2024-07-28 10:09:34.293884	2024-07-28 10:09:34.293884	0
+1508	1251	How wildcards can be carefully used to not expose accessibility to users?	open	2024-07-28 10:09:34.623	2024-07-28 10:09:34.623	0
+1509	1251	How to match for specific option characters of a command in <code>/etc/sudoers</code> file using wildcards?	open	2024-07-28 10:09:34.868729	2024-07-28 10:09:34.868729	0
+1510	1251	How to authorize a user using a command only without arguments in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:35.158254	2024-07-28 10:09:35.158254	0
+1511	1251	How to use aliases in <code>/etc/sudoers</code> file to create a named list of similar items?	open	2024-07-28 10:09:35.620627	2024-07-28 10:09:35.620627	0
+1512	1251	What types of users does the <code>sudo</code> recognize in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:35.971768	2024-07-28 10:09:35.971768	0
+1513	1251	How to specify an operating system group in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:36.351317	2024-07-28 10:09:36.351317	0
+1514	1251	How to specify users of <code>/etc/sudoers</code> file with <code>UID</code>?	open	2024-07-28 10:09:36.702375	2024-07-28 10:09:36.702375	0
+1515	1251	How to specify members of a group in <code>/etc/sudoers</code> using their GID?	open	2024-07-28 10:09:37.006104	2024-07-28 10:09:37.006104	0
+1516	1251	How to list usernames with aliases in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:37.520846	2024-07-28 10:09:37.520846	0
+1517	1251	How does <code>sudo</code> determines the hostname on a system?	open	2024-07-28 10:09:37.974653	2024-07-28 10:09:37.974653	0
+1518	1251	How many forms the host can be specified in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.366864	2024-07-28 10:09:38.366864	0
+1519	1251	How hosts can be aliased in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.652547	2024-07-28 10:09:38.652547	0
+1520	1251	How to specify a list of run-as users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:38.933407	2024-07-28 10:09:38.933407	0
+1521	1251	How to specify run-as aliases in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.197409	2024-07-28 10:09:39.197409	0
+1522	1251	How to create a list of command in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.460733	2024-07-28 10:09:39.460733	0
+1523	1251	How to specify a command alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.699567	2024-07-28 10:09:39.699567	0
+1524	1251	What the command tags are and how they can be speicified in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:39.985466	2024-07-28 10:09:39.985466	0
+1525	1251	How can lists be negated in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:40.345291	2024-07-28 10:09:40.345291	0
+1526	1251	Why is it dangerious to use negation in a command list and alias?	open	2024-07-28 10:09:40.780283	2024-07-28 10:09:40.780283	0
+1527	1252	What option types are available to use in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.063444	2024-07-28 10:09:41.063444	0
+1528	1252	How boolean options can be enabled or disabled in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.405182	2024-07-28 10:09:41.405182	0
+1529	1252	What option should be enabled in <code>sudo</code> to insult users who can't type their password?	open	2024-07-28 10:09:41.695843	2024-07-28 10:09:41.695843	0
+1530	1252	How integer options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.042888	2024-07-28 10:09:42.042888	0
+1531	1252	How string options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.419994	2024-07-28 10:09:42.419994	0
+1532	1252	How list options can be written in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.756986	2024-07-28 10:09:42.756986	0
+1533	1252	How to set <code>sudo</code> options for specific users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.174811	2024-07-28 10:09:43.174811	0
+1534	1252	How to limit <code>sudo</code> default options per host or host alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.494224	2024-07-28 10:09:43.494224	0
+1535	1252	How to limit <code>sudo</code> default options per command or command alias in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:43.834098	2024-07-28 10:09:43.834098	0
+1536	1252	How to limit <code>sudo</code> default options per run-as in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:44.119095	2024-07-28 10:09:44.119095	0
+1537	1252	How to limit the times users attempt incorrect passwords in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:44.388495	2024-07-28 10:09:44.388495	0
+1538	1252	How can sudo be limited to a specific number of minutes before it asks users their password?	open	2024-07-28 10:09:44.632487	2024-07-28 10:09:44.632487	0
+1539	1252	How to enforce users to enter their password every time they run privileged commands?	open	2024-07-28 10:09:44.876894	2024-07-28 10:09:44.876894	0
+1540	1252	How to change the default value of bad password message in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:45.112592	2024-07-28 10:09:45.112592	0
+1541	1252	How to set or remove the first <code>sudo</code> use lecture for specific users in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:45.395145	2024-07-28 10:09:45.395145	0
+1542	1252	How to write and set a custom lecture message for <code>sudo</code>?	open	2024-07-28 10:09:45.605571	2024-07-28 10:09:45.605571	0
+1543	1252	How to raise user's maximum awareness on sensitive commands like <code>fdisk</code> both by lecturing them and asking them password each time?	open	2024-07-28 10:09:45.869321	2024-07-28 10:09:45.869321	0
+1544	1253	What tags are used to restrict users from accessing shell escapes by <code>sudo</code>?	open	2024-07-28 10:09:46.285422	2024-07-28 10:09:46.285422	0
+1545	1253	How to properly avoid shell escapes and give users permission of editing privileged files without restricting them to a certain editor?	open	2024-07-28 10:09:46.629717	2024-07-28 10:09:46.629717	0
+1546	1253	What editor does <code>sudo</code> use to open files using <code>sudoedit</code>?	open	2024-07-28 10:09:46.89757	2024-07-28 10:09:46.89757	0
+1547	1253	How to specify which editor to be used by <code>sudoedit</code> in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:47.131606	2024-07-28 10:09:47.131606	0
+1548	1254	How to identify <code>sudo</code> default configurations?	open	2024-07-28 10:09:47.388212	2024-07-28 10:09:47.388212	0
+1549	1254	Where is the <code>sudo</code> configuration file?	open	2024-07-28 10:09:47.637709	2024-07-28 10:09:47.637709	0
+1550	1254	What are the valid configuration types in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:09:47.861193	2024-07-28 10:09:47.861193	0
+1551	1254	How Plugin configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.167862	2024-07-28 10:09:48.167862	0
+1552	1254	How Path configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.528025	2024-07-28 10:09:48.528025	0
+1553	1254	Hw Set configuration type can be used in /etc/sudo.conf file?	open	2024-07-28 10:09:48.922815	2024-07-28 10:09:48.922815	0
+1554	1254	How to enable core dumps from setuid programs on FreeBSD, OpenBSD and Linux systems?	open	2024-07-28 10:09:49.411201	2024-07-28 10:09:49.411201	0
+1555	1255	What environment variables do <code>sudo</code> exclude from the list of user ennvironment variables for the shell instance running by <code>sudo</code>?	open	2024-07-28 10:09:49.807495	2024-07-28 10:09:49.807495	0
+2153	258	Inspect current working directory in vim:	open	2024-07-28 10:13:43.258817	2024-07-28 10:13:43.258817	0
+1556	1255	How to define a list of environment variables that <code>sudo</code> should retain when running a shell instance in case whitelisting environment variables is desired?	open	2024-07-28 10:09:50.048736	2024-07-28 10:09:50.048736	0
+1557	1255	How to allow users to retian all of their envinronment variables <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.371244	2024-07-28 10:09:50.371244	0
+2161	267	Jump back from definition using the tag history:	open	2024-07-28 10:13:45.733681	2024-07-28 10:13:45.733681	0
+1558	1255	How to delete specific environment variables in <code>/etc/sudoers</code> file when blacklisting environment variables is desired?	open	2024-07-28 10:09:50.691703	2024-07-28 10:09:50.691703	0
+1559	1255	How to allow users write a security policy to override their environment variables for specific commands when a software changes quickly and those values might need constant updating? (maybe can break into smaller parts)	open	2024-07-28 10:09:51.385334	2024-07-28 10:09:51.385334	0
+1560	1255	How to run privileged commands as a target user, in the target user's shell environment by <code>sudo</code>?	open	2024-07-28 10:09:51.921222	2024-07-28 10:09:51.921222	0
+1561	1255	What are the sudo-specifi environment variables of commands running under <code>sudo</code>?	open	2024-07-28 10:09:52.292222	2024-07-28 10:09:52.292222	0
+1562	1255	How to set PATH environment variable securely in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:52.620175	2024-07-28 10:09:52.620175	0
+1563	1255	How to define new environment variables in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:53.046657	2024-07-28 10:09:53.046657	0
+1564	1255	How to start a root shell by running <code>sudo</code> wth no arguments?	open	2024-07-28 10:09:53.49709	2024-07-28 10:09:53.49709	0
+1565	1255	How to retain a root shell but with your own environment using <code>sudo</code>?	open	2024-07-28 10:09:53.844067	2024-07-28 10:09:53.844067	0
+1566	1255	How to run an external program by sudo but not attached to a terminal and still ask users their passwords?	open	2024-07-28 10:09:54.156007	2024-07-28 10:09:54.156007	0
+1567	1255	How to let automated processes run arbitrary commands only via <code>sudo</code>?	open	2024-07-28 10:09:54.492738	2024-07-28 10:09:54.492738	0
+1568	1256	How to generate digests for command integrity verification in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:54.747107	2024-07-28 10:09:54.747107	0
+1569	1256	What algorithms are good to be used for generating digests in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:55.056303	2024-07-28 10:09:55.056303	0
+1570	1256	How to write a sudoers rule to validate the generated digests for command integrity verfication in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:55.394892	2024-07-28 10:09:55.394892	0
+1571	1256	How to write digests for a command having different digests on different operating systems?	open	2024-07-28 10:09:55.677807	2024-07-28 10:09:55.677807	0
+1572	1257	What are the common ways of misconfiguring `sudo`?	open	2024-07-28 10:09:55.951085	2024-07-28 10:09:55.951085	0
+1573	1257	How to enable the use of DNS in /etc/sudoers file?	open	2024-07-28 10:09:56.216021	2024-07-28 10:09:56.216021	0
+1574	1257	How to write DNS entries in <code>/etc/sudoers</code> file to make <code>sudo</code> query DNS in case local hostnames could not be found?	open	2024-07-28 10:09:56.481224	2024-07-28 10:09:56.481224	0
+1575	1257	How can hostname-based protections of <code>sudo</code> break down in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:56.700484	2024-07-28 10:09:56.700484	0
+1576	1257	How IP addersses can be used as alternatives to hostnames in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:56.965348	2024-07-28 10:09:56.965348	0
+1577	1257	How to include specific policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.196558	2024-07-28 10:09:57.196558	0
+1578	1257	How to include host specific policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.454632	2024-07-28 10:09:57.454632	0
+1579	1257	How to include a directory holding policy files when <code>/etc/sudoers</code> file is distributed on multiple networks?	open	2024-07-28 10:09:57.792705	2024-07-28 10:09:57.792705	0
+1580	1257	How to write the sudoers files in include directory so that <code>sudo</code> will read them in a sorted order?	open	2024-07-28 10:09:58.122892	2024-07-28 10:09:58.122892	0
+1581	1257	What validation does the <code>visudo</code> on included sudoers files?	open	2024-07-28 10:09:58.380604	2024-07-28 10:09:58.380604	0
+1582	1257	How to check the syntax of a sudoers file using <code>visudo</code>?	open	2024-07-28 10:09:58.641407	2024-07-28 10:09:58.641407	0
+1583	1257	How to strictly check referenced but not defined aliases, cycling alias dependencies, and syntax errors in a sudoers file using <code>visudo</code>?	open	2024-07-28 10:09:58.867907	2024-07-28 10:09:58.867907	0
+1584	1257	How to check permissions and ownership of sudoers file along side strict checking of their syntax using <code>visudo</code>?	open	2024-07-28 10:09:59.098208	2024-07-28 10:09:59.098208	0
+1585	1259	How many logging mechanisms does the <code>sudo</code>?	open	2024-07-28 10:09:59.390294	2024-07-28 10:09:59.390294	0
+1586	1259	Where does the <code>sudo</code> store logs?	open	2024-07-28 10:09:59.741447	2024-07-28 10:09:59.741447	0
+1587	1259	How to adjust when <code>sudo</code> notifies events in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:10:00.023433	2024-07-28 10:10:00.023433	0
+1588	1259	What events does sudo support to notify?	open	2024-07-28 10:10:00.267482	2024-07-28 10:10:00.267482	0
+1589	1259	How many debug logging levels does <code>sudo</code> have?	open	2024-07-28 10:10:00.682242	2024-07-28 10:10:00.682242	0
+1590	1259	How to enable <code>sudo</code> debugging in <code>/etc/sudo.conf</code> file?	open	2024-07-28 10:10:01.142899	2024-07-28 10:10:01.142899	0
+1591	1259	How to enable logging the output of processes running under <code>sudo</code> so that they can later be used by <code>sudoreplay</code>?	open	2024-07-28 10:10:01.578232	2024-07-28 10:10:01.578232	0
+1592	1259	Where is the default log file generated by <code>log\\_output</code> option in <code>sudo</code>?	open	2024-07-28 10:10:01.884779	2024-07-28 10:10:01.884779	0
+1593	1259	How to enable input logging in <code>/etc/sudoers</code> file and why it should be avoided?	open	2024-07-28 10:10:02.136244	2024-07-28 10:10:02.136244	0
+1594	1259	What tags can be used to enable or disable input and output logging on a per-command basis in <code>/etc/sudoers</code> file?	open	2024-07-28 10:10:02.376165	2024-07-28 10:10:02.376165	0
+1595	1259	How to authorize admins to use <code>sudoreplay</code> to check <code>sudo</code> logs?	open	2024-07-28 10:10:02.594305	2024-07-28 10:10:02.594305	0
+1596	1259	How to use <code>sudoreplay</code> to see what commands have executed by users?	open	2024-07-28 10:10:02.809435	2024-07-28 10:10:02.809435	0
+1597	1259	How to view a session of a command which was logged by <code>sudoreplay</code>?	open	2024-07-28 10:10:03.054655	2024-07-28 10:10:03.054655	0
+1598	1259	How to alter playback of the <code>sudoreplay</code> session view?	open	2024-07-28 10:10:03.265189	2024-07-28 10:10:03.265189	0
+1599	1259	How to search for a command in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:03.509315	2024-07-28 10:10:03.509315	0
+1600	1259	how to search for commands that were executed in a specific path in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:03.801019	2024-07-28 10:10:03.801019	0
+1601	1259	How to search for commands that were executed by a particular user in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.059225	2024-07-28 10:10:04.059225	0
+1602	1259	How to search for commands that were executed by a particular group in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.303047	2024-07-28 10:10:04.303047	0
+1603	1259	How to search for commands that were executed by a particular user but run as another user in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.53888	2024-07-28 10:10:04.53888	0
+1604	1259	How to search for commands that were executed in a particular terminal device in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:04.776834	2024-07-28 10:10:04.776834	0
+1605	1259	How to search for commands that were executed on a specific date and time in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.054858	2024-07-28 10:10:05.054858	0
+1606	1259	How to search for commands by concatenating search keywords to result a specific criteria in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.285308	2024-07-28 10:10:05.285308	0
+1607	1259	How to search for commands by choosing between one of two search keywords in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.522745	2024-07-28 10:10:05.522745	0
+1608	1259	How to search for commands by combinig multiple search keywords in <code>sudoreplay</code> logs?	open	2024-07-28 10:10:05.785486	2024-07-28 10:10:05.785486	0
+1609	1260	What is the best practice for using sudo when it comes to the need of running shell scripts with super user?	open	2024-07-28 10:10:06.041411	2024-07-28 10:10:06.041411	0
+1610	962	How to install a virtual machine in VirtualBox?	open	2024-07-28 10:10:09.759117	2024-07-28 10:10:09.759117	0
+1611	962	How to installing the EPEL repository on the CentOS and AlmaLinux virtual machines?	open	2024-07-28 10:10:11.033898	2024-07-28 10:10:11.033898	0
+1612	962	Why should we keep the Linux systems updated?	open	2024-07-28 10:10:11.406125	2024-07-28 10:10:11.406125	0
+1613	962	How to update Debian-based systems?	open	2024-07-28 10:10:11.681464	2024-07-28 10:10:11.681464	0
+1614	962	How to remove some old packages that are no longer needed on Debian-based systems?	open	2024-07-28 10:10:11.920752	2024-07-28 10:10:11.920752	0
+1615	962	How to configure auto updates for Ubuntu?	open	2024-07-28 10:10:12.148283	2024-07-28 10:10:12.148283	0
+1616	962	How to enable auto-update on Ubuntu?	open	2024-07-28 10:10:12.547849	2024-07-28 10:10:12.547849	0
+1617	962	How to enable auto-reboot after unattended upgrades on Ubuntu?	open	2024-07-28 10:10:13.695924	2024-07-28 10:10:13.695924	0
+1618	962	How to auto-update Red Hat 7-based systems?	open	2024-07-28 10:10:14.898512	2024-07-28 10:10:14.898512	0
+1619	962	How to send mails containing update reports?	open	2024-07-28 10:10:15.560899	2024-07-28 10:10:15.560899	0
+1620	962	How to see if system needs to be restarted after an update?	open	2024-07-28 10:10:15.958164	2024-07-28 10:10:15.958164	0
+1621	962	How to enable auto-update on Red Hat 8/9-based systems?	open	2024-07-28 10:10:16.666558	2024-07-28 10:10:16.666558	0
+1622	963	Why is it more secure to use <code>sudo</code> to do administrative tasks than logging in as root?	open	2024-07-28 10:10:17.057314	2024-07-28 10:10:17.057314	0
+1623	963	How to allow a user to do everything, including logging in to the root command prompt using <code>sudo</code>?	open	2024-07-28 10:10:17.591075	2024-07-28 10:10:17.591075	0
+1624	963	How to add a user to the administrative group?	open	2024-07-28 10:10:18.173759	2024-07-28 10:10:18.173759	0
+1625	963	What differences does <code>useradd</code> have in Red Hat and non-Red Hat distros?	open	2024-07-28 10:10:18.715806	2024-07-28 10:10:18.715806	0
+1626	963	How to lock <i>root</i> user account after a clear Linux setup?	open	2024-07-28 10:10:19.061755	2024-07-28 10:10:19.061755	0
+1627	963	How to give members of a user group full sudo power in the sudo policy file?	open	2024-07-28 10:10:19.4635	2024-07-28 10:10:19.4635	0
+1628	963	How to assign specific software privileges on a group of users?	open	2024-07-28 10:10:20.053801	2024-07-28 10:10:20.053801	0
+1629	963	How to allow users to execute commands with specific subcommands, options or arguments as root?	open	2024-07-28 10:10:20.71591	2024-07-28 10:10:20.71591	0
+1630	963	How to assign privileges to either a Linux group or an individual user?	open	2024-07-28 10:10:21.14799	2024-07-28 10:10:21.14799	0
+1631	963	How to assign privileges on a group of users across a network?	open	2024-07-28 10:10:21.514988	2024-07-28 10:10:21.514988	0
+1632	963	How to disable sudo timer in order to protect system from physical access to open terminal?	open	2024-07-28 10:10:22.017525	2024-07-28 10:10:22.017525	0
+1633	963	How users can view their <code>sudo</code> privileges?	open	2024-07-28 10:10:22.377457	2024-07-28 10:10:22.377457	0
+1634	963	How to prevent users from shell escapes with sudo?	open	2024-07-28 10:10:23.535563	2024-07-28 10:10:23.535563	0
+1635	963	How to give users limited access to dangerous file editing commands when needed?	open	2024-07-28 10:10:24.213331	2024-07-28 10:10:24.213331	0
+1636	963	How to deal with differences between the different Linux and Unix distributions on a network when writing in sudo policy file?	open	2024-07-28 10:10:24.464812	2024-07-28 10:10:24.464812	0
+1637	963	How to let users run commands as other users?	open	2024-07-28 10:10:25.062181	2024-07-28 10:10:25.062181	0
+1638	963	How to prevent abuse via a user’s shell scripts?	open	2024-07-28 10:10:26.164769	2024-07-28 10:10:26.164769	0
+1639	963	How to protect a system from default user accounts after a fresh setup?	open	2024-07-28 10:10:26.920645	2024-07-28 10:10:26.920645	0
+1640	963	How to reconfigure <code>sudo</code> to ask user's password instead of root user in SUSE disto?	open	2024-07-28 10:10:27.713446	2024-07-28 10:10:27.713446	0
+1641	963	How to enable JSON formatted logging on <code>sudo</code>?	open	2024-07-28 10:10:28.128809	2024-07-28 10:10:28.128809	0
+1642	963	How to collect logs from multiple machines centrally into a server?	open	2024-07-28 10:10:28.489866	2024-07-28 10:10:28.489866	0
+1643	963	How to record user activity within a shell session started through <code>sudo</code>?	open	2024-07-28 10:10:28.79332	2024-07-28 10:10:28.79332	0
+1644	963	How to prevent user from running a specific command even when they have shell access taken from <code>sudo</code>?	open	2024-07-28 10:10:29.346176	2024-07-28 10:10:29.346176	0
+1645	964	Where is the configuration file for the command <code>useradd</code>?	open	2024-07-28 10:10:29.649956	2024-07-28 10:10:29.649956	0
+1646	964	How configure <code>useradd</code> utility to set default user home directory permissions on Red Hat-based systems?	open	2024-07-28 10:10:29.974666	2024-07-28 10:10:29.974666	0
+1647	964	What configuration directive controls the default permissions of users' home directories?	open	2024-07-28 10:10:30.520192	2024-07-28 10:10:30.520192	0
+1648	964	How configure <code>useradd</code> utility to set default user home directory permissions on Debian-based systems?	open	2024-07-28 10:10:31.141516	2024-07-28 10:10:31.141516	0
+1649	964	How to create a new user on Debian-based systems?	open	2024-07-28 10:10:31.577114	2024-07-28 10:10:31.577114	0
+1650	964	What are the differences of <code>adduser</code> and <code>useradd</code> utilities?	open	2024-07-28 10:10:32.03613	2024-07-28 10:10:32.03613	0
+1651	964	How to encrypt user's home directory using <code>adduser</code> utility?	open	2024-07-28 10:10:32.657187	2024-07-28 10:10:32.657187	0
+1652	964	How to enforce strong password criteria for users?	open	2024-07-28 10:10:34.270818	2024-07-28 10:10:34.270818	0
+1653	964	How to enforce password and account expiration on Linux?	open	2024-07-28 10:10:35.090134	2024-07-28 10:10:35.090134	0
+1654	964	How to configure default expiry data for `useradd` for Red Hat-type systems?	open	2024-07-28 10:10:35.708411	2024-07-28 10:10:35.708411	0
+1655	964	How to set expiry data on a user with <code>useradd</code> and <code>usermod</code> utility?	open	2024-07-28 10:10:36.746845	2024-07-28 10:10:36.746845	0
+1656	964	How to set expiry data on a user with <code>chage</code> utility?	open	2024-07-28 10:10:37.372076	2024-07-28 10:10:37.372076	0
+1657	964	How to force users to change their password the first time they logs in?	open	2024-07-28 10:10:37.645156	2024-07-28 10:10:37.645156	0
+1658	964	How to prevent brute-force password attacks on Linux user accounts?	open	2024-07-28 10:10:38.602259	2024-07-28 10:10:38.602259	0
+1659	964	How to configure <code>pam_faillock</code> on AlmaLinux 8/9?	open	2024-07-28 10:10:40.071879	2024-07-28 10:10:40.071879	0
+1660	964	How to configure <code>pam_faillock</code> on Ubuntu 20.04 and Ubuntu 22.04?	open	2024-07-28 10:10:40.854737	2024-07-28 10:10:40.854737	0
+1661	964	How to lock Linux user accounts?	open	2024-07-28 10:10:41.494158	2024-07-28 10:10:41.494158	0
+1662	964	How to lock the root user account on Linux?	open	2024-07-28 10:10:41.893263	2024-07-28 10:10:41.893263	0
+1663	964	How to set up security banners on Linux systems?	open	2024-07-28 10:10:42.444777	2024-07-28 10:10:42.444777	0
+1664	964	How to detect compromised passwords?	open	2024-07-28 10:10:42.923511	2024-07-28 10:10:42.923511	0
+1665	965	How to look at the current configuration of the <code>iptables</code> rules?	open	2024-07-28 10:10:43.389779	2024-07-28 10:10:43.389779	0
+1666	965	What <code>iptables</code> rule allows incoming packets from servers that our host has requested a connection to?	open	2024-07-28 10:10:43.775797	2024-07-28 10:10:43.775797	0
+1667	965	How to write <code>iptables</code> rules to open up a ports?	open	2024-07-28 10:10:44.321979	2024-07-28 10:10:44.321979	0
+1668	965	How to add an <code>iptables</code> rule to allow loopback interface?	open	2024-07-28 10:10:44.715703	2024-07-28 10:10:44.715703	0
+1669	965	How to block ICMP packets by <code>iptables</code> rules?	open	2024-07-28 10:10:45.281621	2024-07-28 10:10:45.281621	0
+1670	965	How to change the <code>iptables</code> default chain policy?	open	2024-07-28 10:10:45.685662	2024-07-28 10:10:45.685662	0
+1671	965	How to make iptables rules permanent?	open	2024-07-28 10:10:46.198278	2024-07-28 10:10:46.198278	0
+1672	965	How to block invalid packets before they travel through the entire <code>INPUT</code> chain in <code>iptables</code> rules?	open	2024-07-28 10:10:46.622742	2024-07-28 10:10:46.622742	0
+1673	965	How to perform a port availability test on a machine when <code>iptables</code> blocks <code>INVALID</code> packets from <code>PREROUTING</code> chain?	open	2024-07-28 10:10:47.484268	2024-07-28 10:10:47.484268	0
+1674	965	How to block ICMP packets over IPv6 by <code>iptables</code> rules?	open	2024-07-28 10:10:48.991982	2024-07-28 10:10:48.991982	0
+1675	965	How to list installed tables in <code>nftables</code>?	open	2024-07-28 10:10:49.494098	2024-07-28 10:10:49.494098	0
+1676	965	How to configure <code>nftables</code>?	open	2024-07-28 10:10:50.463526	2024-07-28 10:10:50.463526	0
+1677	965	How to prefix <code>nftables</code> log messages?	open	2024-07-28 10:10:50.990759	2024-07-28 10:10:50.990759	0
+1678	965	How to use <code>nftables</code> to block certain IP addresses from reaching specific ports?	open	2024-07-28 10:10:51.748107	2024-07-28 10:10:51.748107	0
+1679	965	How to IPv4 rules with IPv6 rules in the same <code>nftables</code> configuration file?	open	2024-07-28 10:10:52.062347	2024-07-28 10:10:52.062347	0
+1680	965	How to stop an attack in progress quickly without bringing down the system?	open	2024-07-28 10:10:53.769168	2024-07-28 10:10:53.769168	0
+1681	289	What mechanism should be used to prevent users from logging into <b>root</b> account on a Linux system when high privileges are needed?	open	2024-07-28 10:10:54.602446	2024-07-28 10:10:54.602446	0
+1682	289	How to reduce the damage caused by privileged accessibilities on a system while these privileges are required?	open	2024-07-28 10:10:54.799422	2024-07-28 10:10:54.799422	0
+1683	289	How can we add a user to <i>sudo</i> group?	open	2024-07-28 10:10:55.211904	2024-07-28 10:10:55.211904	0
+1684	289	What file changes the default behavior of <i>useradd</i> command when creating accounts?	open	2024-07-28 10:10:55.523206	2024-07-28 10:10:55.523206	0
+1685	289	How to disable remote root login to prevent full system access from users?	open	2024-07-28 10:10:56.034645	2024-07-28 10:10:56.034645	0
+1686	289	How to change default SSH port on Linux system to prevent brute-force attacks on default port?	open	2024-07-28 10:10:56.413929	2024-07-28 10:10:56.413929	0
+1687	289	How to restrict SSH connections only to a certain address family?	open	2024-07-28 10:10:56.817981	2024-07-28 10:10:56.817981	0
+1688	289	What modules is used to enfore users from following strict password policies?	open	2024-07-28 10:10:57.305685	2024-07-28 10:10:57.305685	0
+1689	289	How to use <b>Pluggable Authentication Modules (PAM)</b> to implement password policies and enforce users to follow strict rules for setting their passwords?	open	2024-07-28 10:10:57.915424	2024-07-28 10:10:57.915424	0
+1690	289	How to restrict SSH access to only users in <i>sshusers</i> group on a remote server?	open	2024-07-28 10:10:58.832937	2024-07-28 10:10:58.832937	0
+1691	290	What is the name of firewall mechanism used in the Linux kernel and what is the common firewall interface used to interact with it?	open	2024-07-28 10:10:59.466986	2024-07-28 10:10:59.466986	0
+1692	290	How to get all the zones from firewalld?	open	2024-07-28 10:10:59.773146	2024-07-28 10:10:59.773146	0
+1693	290	How to list all the allowed services in a specific zone from firewalld?	open	2024-07-28 10:11:00.014308	2024-07-28 10:11:00.014308	0
+1694	290	How to list all the allowed ports in a specific zone from firewalld?	open	2024-07-28 10:11:00.257209	2024-07-28 10:11:00.257209	0
+1695	290	How to list all the information of the default zone from firewalld?	open	2024-07-28 10:11:00.518855	2024-07-28 10:11:00.518855	0
+1696	290	How to list all the information of all the zones from firewalld?	open	2024-07-28 10:11:00.762629	2024-07-28 10:11:00.762629	0
+1697	290	How to make changes permanently on firewalld?	open	2024-07-28 10:11:00.938654	2024-07-28 10:11:00.938654	0
+1698	290	How to create a new zone on firewalld?	open	2024-07-28 10:11:01.179322	2024-07-28 10:11:01.179322	0
+1699	290	How to reload firewalld so that new configuration is applied?	open	2024-07-28 10:11:01.420793	2024-07-28 10:11:01.420793	0
+1700	290	How to add a service to the newly created zone in firewalld?	open	2024-07-28 10:11:01.686009	2024-07-28 10:11:01.686009	0
+1701	290	How to identify the default zone used in firewalld?	open	2024-07-28 10:11:01.896118	2024-07-28 10:11:01.896118	0
+1702	290	How to set a custom firewalld zone as default?	open	2024-07-28 10:11:02.206138	2024-07-28 10:11:02.206138	0
+1703	290	How to list zones and the interfaces associated with them in firewalld?	open	2024-07-28 10:11:02.495757	2024-07-28 10:11:02.495757	0
+1704	290	How to retrieve all the services available on the network to specify in firewalld?	open	2024-07-28 10:11:02.734274	2024-07-28 10:11:02.734274	0
+1705	290	How to allow a service in the default zone of firewalld?	open	2024-07-28 10:11:03.006774	2024-07-28 10:11:03.006774	0
+1706	290	How to remove a service from default zone in firewalld?	open	2024-07-28 10:11:03.272658	2024-07-28 10:11:03.272658	0
+1707	290	How to allow a new port in the default zone of firewalld?	open	2024-07-28 10:11:03.50875	2024-07-28 10:11:03.50875	0
+1708	290	How to remove a port in the default zone of firewalld?	open	2024-07-28 10:11:03.789781	2024-07-28 10:11:03.789781	0
+1709	291	How to create a 4096-bits RSA encripted SSH key to securely connect to remote server with it?	open	2024-07-28 10:11:04.02381	2024-07-28 10:11:04.02381	0
+1710	291	How to securely transfer locally generated SSH key to remote server?	open	2024-07-28 10:11:04.249071	2024-07-28 10:11:04.249071	0
+1711	291	How to identify open and active ports on system?	open	2024-07-28 10:11:04.57669	2024-07-28 10:11:04.57669	0
+1712	291	How to enable two factor authentication on a server to add an additional security layer for user logins?	open	2024-07-28 10:11:05.573835	2024-07-28 10:11:05.573835	0
+1713	291	How to disable IPv4 or IPv6 on a server?	open	2024-07-28 10:11:06.14364	2024-07-28 10:11:06.14364	0
+1714	291	What <b>Mandatory Access Control</b> modules are available for Linux systems?	open	2024-07-28 10:11:06.374088	2024-07-28 10:11:06.374088	0
+1715	291	How to restrict the use of old passwords on Linux using <b>Pluggable Authentication Module (PAM)</b>?	open	2024-07-28 10:11:06.751442	2024-07-28 10:11:06.751442	0
+1716	291	What tool can be used to prevent brute-force authentication attempts by blocking their IP addresses?	open	2024-07-28 10:11:07.545575	2024-07-28 10:11:07.545575	0
+1717	291	How to list all the blocked addresses by fail2ban?	open	2024-07-28 10:11:07.855714	2024-07-28 10:11:07.855714	0
+1718	293	What encryption tools are available on Linux?	open	2024-07-28 10:11:08.161887	2024-07-28 10:11:08.161887	0
+1719	293	What tool is used to sign files, verify integrity, and encrypt or decrypt files in Linux systems?	open	2024-07-28 10:11:08.635195	2024-07-28 10:11:08.635195	0
+1720	293	How to encrypt and decrypt files using GnuPG?	open	2024-07-28 10:11:09.087955	2024-07-28 10:11:09.087955	0
+1721	293	What tool should be used to encrypt files by Blowfish cipher?	open	2024-07-28 10:11:09.531774	2024-07-28 10:11:09.531774	0
+1722	293	How to encrypt or decrypt files using bcrypt?	open	2024-07-28 10:11:09.964183	2024-07-28 10:11:09.964183	0
+1723	293	How to use ccrypt and cdecrypt to encrypt and decrypt files on Linux?	open	2024-07-28 10:11:10.4188	2024-07-28 10:11:10.4188	0
+1724	293	How to encrypt and decrypt files with compression using zip on Linux?	open	2024-07-28 10:11:10.843852	2024-07-28 10:11:10.843852	0
+1725	293	How to encrypt and decrypt files using 7za tool on Linux?	open	2024-07-28 10:11:11.140428	2024-07-28 10:11:11.140428	0
+1726	293	How to encrypt and decrypt files using openssl tool on Linux?	open	2024-07-28 10:11:11.378104	2024-07-28 10:11:11.378104	0
+1727	295	What kernel module can be used to encrypt block devices and what is the userspace interface for it?	open	2024-07-28 10:11:11.817251	2024-07-28 10:11:11.817251	0
+1728	295	How to check if filesystem encryption module is available on kernel?	open	2024-07-28 10:11:12.06899	2024-07-28 10:11:12.06899	0
+1729	295	How to use cryptsetup to encrypt or decrypt a partition on Linux systems?	open	2024-07-28 10:11:12.341438	2024-07-28 10:11:12.341438	0
+1730	296	How ACL permissions of files on Linux systems?	open	2024-07-28 10:11:12.724147	2024-07-28 10:11:12.724147	0
+1731	299	What tools are used to scan a system on network?	open	2024-07-28 10:11:13.080182	2024-07-28 10:11:13.080182	0
+1732	625	What is the constituents of a vector?	open	2024-07-28 10:11:13.479772	2024-07-28 10:11:13.479772	0
+1733	625	What is the notation of a vector coordinated 3 units to the right and 2 units above?	open	2024-07-28 10:11:13.687266	2024-07-28 10:11:13.687266	0
+1734	625	What is the location of a coordinated vector?	open	2024-07-28 10:11:13.877935	2024-07-28 10:11:13.877935	0
+1735	625	Where is the standard position of a vector?	open	2024-07-28 10:11:14.040231	2024-07-28 10:11:14.040231	0
+1736	625	What two vectors are considered equal?	open	2024-07-28 10:11:14.246894	2024-07-28 10:11:14.246894	0
+1737	625	What is zero vector?	open	2024-07-28 10:11:14.414484	2024-07-28 10:11:14.414484	0
+1738	625	What is the result of addition of two vectors $v = (v₁, v₂)$ and $w = (w₁, w₂)$?	open	2024-07-28 10:11:14.669612	2024-07-28 10:11:14.669612	0
+1739	625	What is the geometric representation of addition of two vectors $v$ and $w$?	open	2024-07-28 10:11:14.967041	2024-07-28 10:11:14.967041	0
+1740	625	What are the properties of vector addition?	open	2024-07-28 10:11:15.199437	2024-07-28 10:11:15.199437	0
+1741	625	Practice: Compute the following vector sums $(2, 5, −1) + (1, −1, 2)$ and $(1, 2) + (3, 1) + (2, -1)$?	open	2024-07-28 10:11:15.452316	2024-07-28 10:11:15.452316	0
+1742	625	What is the result of multiplication of scalar $c$ to vector $v = (v₁, v₂)$?	open	2024-07-28 10:11:15.894921	2024-07-28 10:11:15.894921	0
+1743	625	What are the properties of scalar to vector multiplication?	open	2024-07-28 10:11:16.222236	2024-07-28 10:11:16.222236	0
+1744	625	Practice: Solve the following equations $x − (3 , 2 , 1) = (1 , 2 , 3) − 3x$ and $x + 2(v + w) = −v − 3(x − w)$ for the vector $x$?	open	2024-07-28 10:11:16.843094	2024-07-28 10:11:16.843094	0
+1745	625	What is the result of subtraction of vector $v = (v₁, v₂)$ to vector $w = (w₁, w₂)$?	open	2024-07-28 10:11:17.192705	2024-07-28 10:11:17.192705	0
+1746	625	What is the geometric representation of subtraction of two vectors $v$ and $w$?	open	2024-07-28 10:11:17.384982	2024-07-28 10:11:17.384982	0
+1747	625	What are linear combinations of vectors $v_1 , v_2 , ... , v_k$?	open	2024-07-28 10:11:17.857341	2024-07-28 10:11:17.857341	0
+1748	625	What are the standard basis vectors?	open	2024-07-28 10:11:18.314205	2024-07-28 10:11:18.314205	0
+1749	625	How vector $v$ can be represented as a linear combination with standard basis vectors?	open	2024-07-28 10:11:18.530416	2024-07-28 10:11:18.530416	0
+1750	625	Practice: compute $3e_1 - 2e_2 + e_3 \\in \\mathbb{R}^3$?	open	2024-07-28 10:11:18.683314	2024-07-28 10:11:18.683314	0
+1751	625	Practice: Write $(3,5,-2,-1)$ as a linear combination of $e_1,e_2,e_3,e_4 \\in \\mathbb{R}^4$?	open	2024-07-28 10:11:18.841172	2024-07-28 10:11:18.841172	0
+1752	625	What is the result of dot product operation?	open	2024-07-28 10:11:19.104684	2024-07-28 10:11:19.104684	0
+1753	625	What is the geometric representation of the dot product of two vectors?	open	2024-07-28 10:11:19.299717	2024-07-28 10:11:19.299717	0
+1754	625	How does dot product work on higher dimensions?	open	2024-07-28 10:11:19.44288	2024-07-28 10:11:19.44288	0
+1755	625	What are the properties of the dot product?	open	2024-07-28 10:11:19.688597	2024-07-28 10:11:19.688597	0
+1756	625	Practice: compute $\\frac{1}{2}(-1,-3,2).(6,-4,2)$?	open	2024-07-28 10:11:19.908121	2024-07-28 10:11:19.908121	0
+1757	626	Compute the length of a vector?	open	2024-07-28 10:11:20.329677	2024-07-28 10:11:20.329677	0
+1758	626	Practice: compute the length of $\\vec{v} = (3,4)$?	open	2024-07-28 10:11:20.612333	2024-07-28 10:11:20.612333	0
+1759	626	Practice: compute the length of $\\vec{v} = (\\cos{\\theta},\\sin{\\theta})$?	open	2024-07-28 10:11:20.815939	2024-07-28 10:11:20.815939	0
+1760	626	What are the properties of vector length?	open	2024-07-28 10:11:21.061767	2024-07-28 10:11:21.061767	0
+1761	626	What is the normalization of a vector?	open	2024-07-28 10:11:21.375298	2024-07-28 10:11:21.375298	0
+1762	626	Evaluate the unit vector of any non-zero vector?	open	2024-07-28 10:11:21.646497	2024-07-28 10:11:21.646497	0
+1763	626	Practice: Normalize the vector $(3,4) \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:21.911575	2024-07-28 10:11:21.911575	0
+1764	627	What is the Cauchy Schwarz inequality theorem?	open	2024-07-28 10:11:22.151212	2024-07-28 10:11:22.151212	0
+1765	627	What is the Triangle Inequality theorem?	open	2024-07-28 10:11:22.381916	2024-07-28 10:11:22.381916	0
+1766	629	What are the two properties of linear transformation functions?	open	2024-07-28 10:11:22.828845	2024-07-28 10:11:22.828845	0
+1767	629	Determine whether or not function $T(v_1, v_2) = (1+v_1, 2+v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.082645	2024-07-28 10:11:23.082645	0
+1768	629	Determine whether or not function $T(v_1, v_2) = (v_1-v_2, v_1v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.2896	2024-07-28 10:11:23.2896	0
+1769	629	Determine whether or not function $T(v_1, v_2) = (v_1-v_2, v_1+v_2)$ when $T: R^2 → R^2$ is a linear transformation?	open	2024-07-28 10:11:23.459793	2024-07-28 10:11:23.459793	0
+1770	629	Using the fact that linear transformation functions preserve linear combinations, write linear transformation T(v) as linear combination of its basis vectors when T: R^n → R^n?	open	2024-07-28 10:11:23.789528	2024-07-28 10:11:23.789528	0
+1771	629	Compute $T(2,3)$ supposing $T: R^2 → R^2$ is a linear transformation for which we have its standard basis vector transformations $T(e₁)=(1,1)$ and $T(e₂)=(-1,1)$.	open	2024-07-28 10:11:24.041505	2024-07-28 10:11:24.041505	0
+1772	629	Find a general formula for $T(v₁,v₂)$ when $T: R^2 → R^2$ is a linear transformation for which we have its standard basis vector transformations $T(e₁)=(1,1)$ and $T(e₂)=(-1,1)$.	open	2024-07-28 10:11:24.286269	2024-07-28 10:11:24.286269	0
+1773	629	What method is used to construct a matrix called the standard matrix of $T$ that does the linear transformation by matrix multiplication?	open	2024-07-28 10:11:24.486504	2024-07-28 10:11:24.486504	0
+1774	629	Find the standard matrix of linear transformation $T(v₁,v₂) = (v₁+2v₂, 3v₁+4v₂)$ when $v₁,v₂ \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:24.754914	2024-07-28 10:11:24.754914	0
+1775	629	Find the standard matrix of linear transformation $T(v₁,v₂) = (3v₁-v₂+v₃, 2v₁+4v₂-2v₃)$ when $v₁,v₂ \\in \\mathbb{R}^2$?	open	2024-07-28 10:11:25.039882	2024-07-28 10:11:25.039882	0
+1776	629	What mathematical operations on standard matrix of linear transformations and scalars are allowed?	open	2024-07-28 10:11:25.361038	2024-07-28 10:11:25.361038	0
+1777	629	What is the result of multiplication of zero linear transformation function to any vector?	open	2024-07-28 10:11:25.61403	2024-07-28 10:11:25.61403	0
+1778	629	What is the result of multiplication of identify linear transformation function to any vector?	open	2024-07-28 10:11:25.901478	2024-07-28 10:11:25.901478	0
+1779	629	What is the main property of diagonal linear transformation function $T: R^n → R^n$?	open	2024-07-28 10:11:26.278998	2024-07-28 10:11:26.278998	0
+1780	629	How can we construct a linear transformation Pu that projects a vector onto a line?	open	2024-07-28 10:11:26.488264	2024-07-28 10:11:26.488264	0
+1781	629	Find the standard matrices of the linear transformations that project onto the lines in the direction of vector u = (1,0) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:26.692785	2024-07-28 10:11:26.692785	0
+1782	629	Find the standard matrices of the linear transformations that project onto the lines in the direction of vector w = (1,2,3) \\in \\mathbb{R}^3?	open	2024-07-28 10:11:26.940236	2024-07-28 10:11:26.940236	0
+1783	629	What is the linear transformation of reflection of a space through a line in the direction of the unit vector u?	open	2024-07-28 10:11:27.122513	2024-07-28 10:11:27.122513	0
+1784	629	Find the standard matrices of the linear transformations that reflect through the lines in the direction of u = (0,1) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:27.278141	2024-07-28 10:11:27.278141	0
+1785	629	Find the standard matrices of the linear transformations that reflect through the lines in the direction of w = (1,1,1) \\in \\mathbb{R}^2?	open	2024-07-28 10:11:27.481766	2024-07-28 10:11:27.481766	0
+2154	258	Open a file in path relative to editing file:	open	2024-07-28 10:13:43.546517	2024-07-28 10:13:43.546517	0
+1786	629	Find the entries of the vector that is obtained by reflecting v = (-1,3) through the line going through the origin at an angle of π/3 counter-clockwise from the x-axis.	open	2024-07-28 10:11:27.694011	2024-07-28 10:11:27.694011	0
+1787	629	What is the linear transformation of rotation in two dimensions?	open	2024-07-28 10:11:27.877496	2024-07-28 10:11:27.877496	0
+2162	267	Specify jump to multi-match definitions:	open	2024-07-28 10:13:45.90679	2024-07-28 10:13:45.90679	0
+1788	629	Find the standard matrix of the linear transformation that rotates R^2 by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.026385	2024-07-28 10:11:28.026385	0
+1789	629	Find the standard matrix of the linear transformation that rotates R^2 by π/6 radians clockwise?	open	2024-07-28 10:11:28.207187	2024-07-28 10:11:28.207187	0
+1790	629	Rotate vector v = (1,3) by π/4 radians counter-clockwise?	open	2024-07-28 10:11:28.363845	2024-07-28 10:11:28.363845	0
+1791	629	Rotate vector w = (√3,3) by π/6 radians clockwise?	open	2024-07-28 10:11:28.544462	2024-07-28 10:11:28.544462	0
+1792	629	What is the linear transformation function of rotation in higher dimensions?	open	2024-07-28 10:11:28.696809	2024-07-28 10:11:28.696809	0
+1793	629	Rotate v = (3,-1,2) around the z-axis by an angle of θ = 2π/3 in the direction from the positive x-axis to the positive y-axis?	open	2024-07-28 10:11:28.916507	2024-07-28 10:11:28.916507	0
+1794	629	How can two linear transformation functions T: R^n → Rm and S: Rm → R^n  be in a composition operation S○T: R^n → Rp?	open	2024-07-28 10:11:29.088771	2024-07-28 10:11:29.088771	0
+1795	629	Find the standard matrix of the linear transformation T that reflects R^2 through the line y = ¾x and then stretches it in the x-direction by a factor of 2 and in the y-direction by a factor of 3?	open	2024-07-28 10:11:29.395037	2024-07-28 10:11:29.395037	0
+1796	1310	Why $y^2 = x^2$ is not a function?	open	2024-07-28 10:11:29.868606	2024-07-28 10:11:29.868606	0
+1797	1310	Find the domain and range of $\\sqrt{x^2-3x}$ and $\\frac{4}{3-t}$?	open	2024-07-28 10:11:30.11684	2024-07-28 10:11:30.11684	0
+1798	1310	A point $P$ in the first quadrant lies on the graph of the function $f(x) = \\sqrt{x}$. Express the coordinates of $P$ as functions of the slope of the line joining $P$ to the origin?	open	2024-07-28 10:11:30.299016	2024-07-28 10:11:30.299016	0
+1799	1310	Consider the point $(x, y)$ lying on the graph of $y = 2x - 3$. Let $L$ be the distance between the points $(x, y)$ and $(4, 0)$. Write $L$ as a function of $y$?	open	2024-07-28 10:11:30.468366	2024-07-28 10:11:30.468366	0
+1800	1310	What is the function graph?	open	2024-07-28 10:11:30.709213	2024-07-28 10:11:30.709213	0
+1801	1310	Find the natural domain and graph the $f(x) = 1 - 2x - x^2$ and $g(t) = 1/|t|$ functions?	open	2024-07-28 10:11:30.934301	2024-07-28 10:11:30.934301	0
+1802	1310	Find the domain of $y = \\frac{x+3}{4 - \\sqrt{x^2-9}}$?	open	2024-07-28 10:11:31.135279	2024-07-28 10:11:31.135279	0
+1803	1310	Find the range of $y = 2 + \\sqrt{9+x^2}$	open	2024-07-28 10:11:31.299436	2024-07-28 10:11:31.299436	0
+1804	1310	What is the vertical line test?	open	2024-07-28 10:11:31.4935	2024-07-28 10:11:31.4935	0
+1805	1310	What is a piece-wise function?	open	2024-07-28 10:11:31.900091	2024-07-28 10:11:31.900091	0
+1806	1310	Graph the function $$\\begin{equation}f(x) = \\begin{cases}1/x & x < 0 \\\\ x & 0 \\le x \\end{cases}\\end{equation}$$?	open	2024-07-28 10:11:32.103591	2024-07-28 10:11:32.103591	0
+1807	1310	What is an increasing or decreasing function?	open	2024-07-28 10:11:32.400251	2024-07-28 10:11:32.400251	0
+1808	1310	What symmetries, if any, do the graphs of functions $y = x^3/8$, $y = -x^{3/2}$ and $y = (-x)^{2/3}$ have?	open	2024-07-28 10:11:32.628662	2024-07-28 10:11:32.628662	0
+1809	1310	Check whether functions $f(x) = x^4 + 3x^2 - 1$, $g(x) = \\frac{1}{x^1-1}$, $h(t) = 2t + 1$ and $\\sin{2x}$ are even, odd, or neither?	open	2024-07-28 10:11:32.844807	2024-07-28 10:11:32.844807	0
+1810	1310	What function is a linear function?	open	2024-07-28 10:11:33.116633	2024-07-28 10:11:33.116633	0
+1811	1310	When two variables become proportional to each other?	open	2024-07-28 10:11:33.408194	2024-07-28 10:11:33.408194	0
+1812	1310	The variables $r$ and $s$ are inversely proportional, and $r = 6$ when $s = 4$. Determine $s$ when $r = 10$?	open	2024-07-28 10:11:33.63351	2024-07-28 10:11:33.63351	0
+1813	1310	A box with an open top is to be constructed from a rectangular piece of cardboard with dimensions 14 cm. by 22 cm. by cutting out equal squares of side $x$ at each corner and then folding up the sides as in the figure. Express the volume $V$ of the box as a function of $x$?	open	2024-07-28 10:11:33.83084	2024-07-28 10:11:33.83084	0
+1814	1310	What function is a power function?	open	2024-07-28 10:11:34.017212	2024-07-28 10:11:34.017212	0
+1815	1310	What functions are polynomial functions?	open	2024-07-28 10:11:34.40455	2024-07-28 10:11:34.40455	0
+1816	1310	What functions are the rational functions?	open	2024-07-28 10:11:34.842021	2024-07-28 10:11:34.842021	0
+1817	1310	What functions are algebraic functions?	open	2024-07-28 10:11:35.102114	2024-07-28 10:11:35.102114	0
+1818	1310	What functions are trigonometric functions?	open	2024-07-28 10:11:35.327415	2024-07-28 10:11:35.327415	0
+1819	1310	What functions are exponential functions?	open	2024-07-28 10:11:35.531051	2024-07-28 10:11:35.531051	0
+1820	1310	What functions are logarithmic functions?	open	2024-07-28 10:11:35.772762	2024-07-28 10:11:35.772762	0
+1821	1310	What functions are transcendental functions?	open	2024-07-28 10:11:36.091944	2024-07-28 10:11:36.091944	0
+1822	3	What are the basic data types in OpenCV?	open	2024-07-28 10:11:36.671332	2024-07-28 10:11:36.671332	0
+1823	3	What operations are supported by <code>cv::Point<></code> template class?	open	2024-07-28 10:11:37.07614	2024-07-28 10:11:37.07614	0
+1824	3	What operations are supported by <code>cv::Scalar</code> class?	open	2024-07-28 10:11:37.517653	2024-07-28 10:11:37.517653	0
+1825	3	What operations are supported by <code>cv::Size</code> class?	open	2024-07-28 10:11:37.926269	2024-07-28 10:11:37.926269	0
+1826	3	What operations are supported by <code>cv::Rect</code> class?	open	2024-07-28 10:11:38.518157	2024-07-28 10:11:38.518157	0
+1827	3	What operations are supported by <code>cv::RotatedRect</code> class?	open	2024-07-28 10:11:38.949472	2024-07-28 10:11:38.949472	0
+1828	3	What operations are supported by <code>cv::Matx</code> template class?	open	2024-07-28 10:11:39.778073	2024-07-28 10:11:39.778073	0
+1829	3	What operations are supported by <code>cv::Vec</code> template class?	open	2024-07-28 10:11:40.176412	2024-07-28 10:11:40.176412	0
+1830	3	What operations are supported by <code>cv::Complex<></code> class template?	open	2024-07-28 10:11:40.635869	2024-07-28 10:11:40.635869	0
+1831	6	What image channels are affected by drawing functions?	open	2024-07-28 10:11:41.059611	2024-07-28 10:11:41.059611	0
+1832	6	What data type is used to specify color by convention?	open	2024-07-28 10:11:41.415629	2024-07-28 10:11:41.415629	0
+1833	6	What line types are used by drawing functions?	open	2024-07-28 10:11:42.215164	2024-07-28 10:11:42.215164	0
+1834	6	What values can be accepted as thickness parameter of drawing functions?	open	2024-07-28 10:11:42.528174	2024-07-28 10:11:42.528174	0
+1835	6	Draw a circle on an image?	open	2024-07-28 10:11:43.337559	2024-07-28 10:11:43.337559	0
+1836	273	Install OpenCV library?	open	2024-07-28 10:11:44.248268	2024-07-28 10:11:44.248268	0
+1837	273	Include OpenCV headers in source file?	open	2024-07-28 10:11:44.492905	2024-07-28 10:11:44.492905	0
+1838	273	Print the size of a matrix?	open	2024-07-28 10:11:44.752781	2024-07-28 10:11:44.752781	0
+1839	273	Open an image from file?	open	2024-07-28 10:11:44.987285	2024-07-28 10:11:44.987285	0
+1840	273	Display an image on a window?	open	2024-07-28 10:11:45.510951	2024-07-28 10:11:45.510951	0
+1841	273	Save a processed image into a file?	open	2024-07-28 10:11:45.879173	2024-07-28 10:11:45.879173	0
+1842	273	Transform image by flipping an image horizontally?	open	2024-07-28 10:11:46.348797	2024-07-28 10:11:46.348797	0
+1843	273	Get the number of image channels?	open	2024-07-28 10:11:46.672338	2024-07-28 10:11:46.672338	0
+1844	273	Set a mouse callback to get notified when user clicks on image?	open	2024-07-28 10:11:47.571899	2024-07-28 10:11:47.571899	0
+1845	273	Draw a circle on an image?	open	2024-07-28 10:11:48.288889	2024-07-28 10:11:48.288889	0
+1846	273	Draw a rectangle on an image?	open	2024-07-28 10:11:48.993988	2024-07-28 10:11:48.993988	0
+1847	273	Draw a text on an image?	open	2024-07-28 10:11:49.757404	2024-07-28 10:11:49.757404	0
+1848	273	Create a single channel gray image?	open	2024-07-28 10:11:50.338684	2024-07-28 10:11:50.338684	0
+1849	273	Recreate an image object?	open	2024-07-28 10:11:50.745252	2024-07-28 10:11:50.745252	0
+1850	273	Copy an image object into another?	open	2024-07-28 10:11:51.126068	2024-07-28 10:11:51.126068	0
+1851	273	Convert an image into another image of different type?	open	2024-07-28 10:11:51.488585	2024-07-28 10:11:51.488585	0
+1852	273	Occupy the region of interest in an image with a rectangle?	open	2024-07-28 10:11:52.037734	2024-07-28 10:11:52.037734	0
+1853	273	Occupy the region of interest in an image with ranges?	open	2024-07-28 10:11:52.563845	2024-07-28 10:11:52.563845	0
+1854	273	Specify columns and rows of an image as region of interest?	open	2024-07-28 10:11:52.879136	2024-07-28 10:11:52.879136	0
+1855	273	Mask an image so that only a part of it will be affected by operations?	open	2024-07-28 10:11:53.360427	2024-07-28 10:11:53.360427	0
+1856	205	What is the meaning of ACID terminology?	open	2024-07-28 10:11:54.245883	2024-07-28 10:11:54.245883	0
+1857	205	How does PostgreSQL store data on storage?	open	2024-07-28 10:11:54.439586	2024-07-28 10:11:54.439586	0
+1858	205	How long is the life time of a PostgreSQL release?	open	2024-07-28 10:11:54.659021	2024-07-28 10:11:54.659021	0
+1859	205	What is a PostgreSQL cluster?	open	2024-07-28 10:11:54.861403	2024-07-28 10:11:54.861403	0
+1860	205	What is a schema?	open	2024-07-28 10:11:55.065479	2024-07-28 10:11:55.065479	0
+1861	205	What are the building blocks of an instance?	open	2024-07-28 10:11:55.284157	2024-07-28 10:11:55.284157	0
+1862	205	What schema an object in postgres belongs to?	open	2024-07-28 10:11:55.480544	2024-07-28 10:11:55.480544	0
+1863	205	What schema do users belong to?	open	2024-07-28 10:11:55.686628	2024-07-28 10:11:55.686628	0
+1864	205	How many user categories exist in postgres?	open	2024-07-28 10:11:55.910539	2024-07-28 10:11:55.910539	0
+1865	205	How many superusers are allowed in a postgres instance?	open	2024-07-28 10:11:56.110735	2024-07-28 10:11:56.110735	0
+1866	205	Where are the internal postgres instance data stored?	open	2024-07-28 10:11:56.335733	2024-07-28 10:11:56.335733	0
+1867	205	Where does postgres store its data?	open	2024-07-28 10:11:56.543922	2024-07-28 10:11:56.543922	0
+1868	205	What is <code>PGDATA</code> contained of?	open	2024-07-28 10:11:56.746754	2024-07-28 10:11:56.746754	0
+1869	205	How is it possible to have multiple postgres installations?	open	2024-07-28 10:11:56.947897	2024-07-28 10:11:56.947897	0
+1870	205	When does postgres need the <code>PGDATA</code> directory?	open	2024-07-28 10:11:57.156662	2024-07-28 10:11:57.156662	0
+1871	205	What is the purpose of postgres's first process?	open	2024-07-28 10:11:57.35942	2024-07-28 10:11:57.35942	0
+1872	205	How does postgres handles connections?	open	2024-07-28 10:11:57.56693	2024-07-28 10:11:57.56693	0
+1873	205	Build postgres from source?	open	2024-07-28 10:11:58.117255	2024-07-28 10:11:58.117255	0
+1874	205	How to add systemd support to postgres installation?	open	2024-07-28 10:11:58.421106	2024-07-28 10:11:58.421106	0
+1875	205	Build postgres using pgenv?	open	2024-07-28 10:11:58.710729	2024-07-28 10:11:58.710729	0
+1876	205	Connect to a postgres instance?	open	2024-07-28 10:11:58.933981	2024-07-28 10:11:58.933981	0
+1877	205	What libraries are required for C++ projects to link to postgres?	open	2024-07-28 10:11:59.176615	2024-07-28 10:11:59.176615	0
+1878	206	What utility manages postgres clusters?	open	2024-07-28 10:11:59.414767	2024-07-28 10:11:59.414767	0
+1879	206	What are the <code>pg_ctl</code> basic commands?	open	2024-07-28 10:11:59.721168	2024-07-28 10:11:59.721168	0
+1880	206	What is the main process running postgres?	open	2024-07-28 10:11:59.934688	2024-07-28 10:11:59.934688	0
+1881	206	How many stopping modes are possible for postgres?	open	2024-07-28 10:12:00.290786	2024-07-28 10:12:00.290786	0
+1882	206	What user does postgres needs to operate?	open	2024-07-28 10:12:00.620139	2024-07-28 10:12:00.620139	0
+1883	206	How does postgres know when the storage is?	open	2024-07-28 10:12:00.993726	2024-07-28 10:12:00.993726	0
+1884	206	What are the names of template databases?	open	2024-07-28 10:12:01.251298	2024-07-28 10:12:01.251298	0
+1885	206	Connect to an instance using psql?	open	2024-07-28 10:12:01.575133	2024-07-28 10:12:01.575133	0
+1886	206	What command is used to quit the interactive terminal?	open	2024-07-28 10:12:01.847871	2024-07-28 10:12:01.847871	0
+1887	206	List all available databases in an instance?	open	2024-07-28 10:12:02.103238	2024-07-28 10:12:02.103238	0
+1888	206	What tool can be used to create a postgres cluster?	open	2024-07-28 10:12:02.402077	2024-07-28 10:12:02.402077	0
+1889	206	Enable authentication on local connections?	open	2024-07-28 10:12:02.758127	2024-07-28 10:12:02.758127	0
+1890	206	How does initdb create a cluster?	open	2024-07-28 10:12:02.999313	2024-07-28 10:12:02.999313	0
+1891	206	Enter a SQL statement via psql?	open	2024-07-28 10:12:03.320712	2024-07-28 10:12:03.320712	0
+1892	206	What is the secondary statement terminator in psql?	open	2024-07-28 10:12:03.586543	2024-07-28 10:12:03.586543	0
+1893	206	What command opens an editor to edit psql query buffer?	open	2024-07-28 10:12:03.862373	2024-07-28 10:12:03.862373	0
+1894	206	What psql command executes sql statements from a file?	open	2024-07-28 10:12:04.129608	2024-07-28 10:12:04.129608	0
+1895	206	What command gives help information about psql?	open	2024-07-28 10:12:04.390113	2024-07-28 10:12:04.390113	0
+1896	206	What command gives help with the psql commands?	open	2024-07-28 10:12:04.632764	2024-07-28 10:12:04.632764	0
+1897	355	What web service gives free access to a postgres client?	open	2024-07-28 10:12:05.504269	2024-07-28 10:12:05.504269	0
+1898	355	Create a table of cities holding name, country, population and area of each?	open	2024-07-28 10:12:05.735465	2024-07-28 10:12:05.735465	0
+1899	355	Insert data into a table?	open	2024-07-28 10:12:06.03549	2024-07-28 10:12:06.03549	0
+1900	355	Retrieve information from a table?	open	2024-07-28 10:12:06.281182	2024-07-28 10:12:06.281182	0
+1901	355	Calculate the arithmetic operations of two columns from a table?	open	2024-07-28 10:12:06.719481	2024-07-28 10:12:06.719481	0
+1902	355	Name the operational generated column in a query?	open	2024-07-28 10:12:06.974806	2024-07-28 10:12:06.974806	0
+1903	355	What string operations are available in SQL?	open	2024-07-28 10:12:07.315185	2024-07-28 10:12:07.315185	0
+1904	356	Limit the results of a query?	open	2024-07-28 10:12:07.590504	2024-07-28 10:12:07.590504	0
+1905	356	What parts of a select query does the database read first?	open	2024-07-28 10:12:07.919076	2024-07-28 10:12:07.919076	0
+1906	356	Filter query result by checking the existance of a column in a set of values?	open	2024-07-28 10:12:08.211121	2024-07-28 10:12:08.211121	0
+1907	356	Reverse the filtering of a query by checking the none-existance of a column in a set of values?	open	2024-07-28 10:12:08.465194	2024-07-28 10:12:08.465194	0
+1908	356	What comparison operators are supported by SQL?	open	2024-07-28 10:12:08.806328	2024-07-28 10:12:08.806328	0
+1909	356	What compound operators are supported by SQL?	open	2024-07-28 10:12:09.142126	2024-07-28 10:12:09.142126	0
+1910	356	Limit the results of a query by comparing the calculated values of two columns?	open	2024-07-28 10:12:09.396567	2024-07-28 10:12:09.396567	0
+1911	356	Update a cell within a very big table?	open	2024-07-28 10:12:09.627148	2024-07-28 10:12:09.627148	0
+1912	356	Delete a row from a table?	open	2024-07-28 10:12:09.890639	2024-07-28 10:12:09.890639	0
+1913	356	Delete all rows of a table?	open	2024-07-28 10:12:10.151822	2024-07-28 10:12:10.151822	0
+1914	357	How many relationships are possible between data?	open	2024-07-28 10:12:10.432464	2024-07-28 10:12:10.432464	0
+1915	357	What are the characteristics of a primary key?	open	2024-07-28 10:12:10.690463	2024-07-28 10:12:10.690463	0
+1916	357	What is the common way of making a primary key auto generate a unique id in postgres?	open	2024-07-28 10:12:11.074675	2024-07-28 10:12:11.074675	0
+1917	357	What are the characteristics of a foreign key?	open	2024-07-28 10:12:11.368767	2024-07-28 10:12:11.368767	0
+1918	357	What statement is used to create a foreign key?	open	2024-07-28 10:12:11.674135	2024-07-28 10:12:11.674135	0
+1919	357	What happens when record gets inserted without foreign key?	open	2024-07-28 10:12:12.015887	2024-07-28 10:12:12.015887	0
+1920	357	What constraints are supported by SQL when referencing record of a foreign key is deleted?	open	2024-07-28 10:12:12.349306	2024-07-28 10:12:12.349306	0
+1921	357	What is the default behavior of postgres when deleting a record being referenced by foreign keys?	open	2024-07-28 10:12:12.718322	2024-07-28 10:12:12.718322	0
+1922	357	Query two tables by associating them on foreign keys?	open	2024-07-28 10:12:13.017507	2024-07-28 10:12:13.017507	0
+1923	357	What statement can be used to set default value for a foreign key when referenced record is deleted?	open	2024-07-28 10:12:13.367457	2024-07-28 10:12:13.367457	0
+1924	358	How many joins are supported by SQL?	open	2024-07-28 10:12:14.203501	2024-07-28 10:12:14.203501	0
+1925	358	Filter the records of a join query with a condition?	open	2024-07-28 10:12:14.635528	2024-07-28 10:12:14.635528	0
+1926	359	What are the main characteristics of grouping operation?	open	2024-07-28 10:12:14.924692	2024-07-28 10:12:14.924692	0
+1927	359	What steps are taken to group a table by a specific column?	open	2024-07-28 10:12:15.191999	2024-07-28 10:12:15.191999	0
+1928	359	Group records of a table by one of its colums?	open	2024-07-28 10:12:15.445982	2024-07-28 10:12:15.445982	0
+1929	359	What is the use case of having clause?	open	2024-07-28 10:12:15.963473	2024-07-28 10:12:15.963473	0
+1930	359	Filter a set a groups of records grouped by a specific column?	open	2024-07-28 10:12:16.30708	2024-07-28 10:12:16.30708	0
+1931	359	What are the main characterestics of aggregation operations?	open	2024-07-28 10:12:16.513321	2024-07-28 10:12:16.513321	0
+1932	359	What are the common aggregate functions?	open	2024-07-28 10:12:16.764955	2024-07-28 10:12:16.764955	0
+1933	359	Count how many comments each user have posted?	open	2024-07-28 10:12:17.055176	2024-07-28 10:12:17.055176	0
+1934	359	What is the behavior of count aggregate function when grouped column has a null value?	open	2024-07-28 10:12:17.41088	2024-07-28 10:12:17.41088	0
+1935	359	Find the most commented photo of a photo sharing app?	open	2024-07-28 10:12:17.702854	2024-07-28 10:12:17.702854	0
+1936	359	Find the sum of all comments from each photo record in a photo sharing app?	open	2024-07-28 10:12:17.954357	2024-07-28 10:12:17.954357	0
+1937	361	Reorder records of the result set with ascending and descending order?	open	2024-07-28 10:12:18.393276	2024-07-28 10:12:18.393276	0
+1938	361	Set a second ordering rule for result set?	open	2024-07-28 10:12:18.676719	2024-07-28 10:12:18.676719	0
+1939	361	What is the use case of limit?	open	2024-07-28 10:12:19.013276	2024-07-28 10:12:19.013276	0
+1940	361	Where should the limit clause be located in query?	open	2024-07-28 10:12:19.240758	2024-07-28 10:12:19.240758	0
+1941	361	What is the use case of offset?	open	2024-07-28 10:12:19.565696	2024-07-28 10:12:19.565696	0
+1942	361	Where should the offset clause be located within a query?	open	2024-07-28 10:12:19.763219	2024-07-28 10:12:19.763219	0
+1943	362	What is the use case of union clause?	open	2024-07-28 10:12:20.079356	2024-07-28 10:12:20.079356	0
+1944	362	What is the prerequisite of a union?	open	2024-07-28 10:12:20.268383	2024-07-28 10:12:20.268383	0
+1945	362	Combine two different result sets with and without duplicates?	open	2024-07-28 10:12:20.822331	2024-07-28 10:12:20.822331	0
+1946	362	When would parenthesis be mandatory for union queries?	open	2024-07-28 10:12:21.250117	2024-07-28 10:12:21.250117	0
+1947	362	Collect the intersection of two result sets?	open	2024-07-28 10:12:21.661901	2024-07-28 10:12:21.661901	0
+1948	362	Find the records appearing in first result set and not in second result set?	open	2024-07-28 10:12:22.072077	2024-07-28 10:12:22.072077	0
+1949	363	Where are subqueries mostly used?	open	2024-07-28 10:12:22.475701	2024-07-28 10:12:22.475701	0
+1950	363	Use a subquery to give a single value in select clause?	open	2024-07-28 10:12:22.771089	2024-07-28 10:12:22.771089	0
+1951	363	Use a subquery in from clause as a source of data?	open	2024-07-28 10:12:23.044594	2024-07-28 10:12:23.044594	0
+1952	368	When creating a table define a column not taking null value?	open	2024-07-28 10:12:23.47246	2024-07-28 10:12:23.47246	0
+1953	368	Modify a table after creation and set a column not to take null value?	open	2024-07-28 10:12:23.68306	2024-07-28 10:12:23.68306	0
+1954	368	Update all null values of a column to set 0 instead?	open	2024-07-28 10:12:23.925583	2024-07-28 10:12:23.925583	0
+1955	368	What input data validation constraints do we have in database side?	open	2024-07-28 10:12:24.147498	2024-07-28 10:12:24.147498	0
+1956	368	Set a default value for a column?	open	2024-07-28 10:12:24.519918	2024-07-28 10:12:24.519918	0
+1957	368	Alter a column to add default value?	open	2024-07-28 10:12:24.733658	2024-07-28 10:12:24.733658	0
+1958	368	Define a column as having only unique values?	open	2024-07-28 10:12:25.065729	2024-07-28 10:12:25.065729	0
+1959	368	Add a uniqueness constraint to a column?	open	2024-07-28 10:12:25.313715	2024-07-28 10:12:25.313715	0
+1960	368	Remove uniqueness constraint on a column?	open	2024-07-28 10:12:25.533425	2024-07-28 10:12:25.533425	0
+1961	368	Define a column to take unique values in combination of multiple columns?	open	2024-07-28 10:12:25.896165	2024-07-28 10:12:25.896165	0
+1962	368	Add uniqueness value to multiple columns?	open	2024-07-28 10:12:26.109576	2024-07-28 10:12:26.109576	0
+1963	368	Define a column with a check constraint on its value?	open	2024-07-28 10:12:26.485081	2024-07-28 10:12:26.485081	0
+1964	368	Add a check constraint after column is created?	open	2024-07-28 10:12:26.691045	2024-07-28 10:12:26.691045	0
+1965	368	Define multiple columns with a check on all of them?	open	2024-07-28 10:12:27.047035	2024-07-28 10:12:27.047035	0
+1966	369	Name a few web services for drawing database diagrams?	open	2024-07-28 10:12:27.350192	2024-07-28 10:12:27.350192	0
+1967	370	In case of associative constraints, check if either of two columns exist in a row?	open	2024-07-28 10:12:27.715307	2024-07-28 10:12:27.715307	0
+1968	376	Find where the data directory is in an instance?	open	2024-07-28 10:12:28.021851	2024-07-28 10:12:28.021851	0
+1969	376	Retrieve the name and identifier of databases in an instance?	open	2024-07-28 10:12:28.282679	2024-07-28 10:12:28.282679	0
+1970	376	Retrieve information about the objects inside a database?	open	2024-07-28 10:12:28.490548	2024-07-28 10:12:28.490548	0
+1971	376	What are the building blocks of a database file?	open	2024-07-28 10:12:28.714397	2024-07-28 10:12:28.714397	0
+1972	376	What is the structure of each block in postgres?	open	2024-07-28 10:12:29.064369	2024-07-28 10:12:29.064369	0
+1973	377	What is an index?	open	2024-07-28 10:12:29.263146	2024-07-28 10:12:29.263146	0
+1974	377	Create an index for a table?	open	2024-07-28 10:12:29.535316	2024-07-28 10:12:29.535316	0
+1975	377	Drop an index?	open	2024-07-28 10:12:29.778873	2024-07-28 10:12:29.778873	0
+1976	377	Analyze a query?	open	2024-07-28 10:12:30.015502	2024-07-28 10:12:30.015502	0
+1977	377	Estimate the overall size of an index on memory?	open	2024-07-28 10:12:30.292782	2024-07-28 10:12:30.292782	0
+1978	377	Convert a size value to human readable memory size?	open	2024-07-28 10:12:30.538686	2024-07-28 10:12:30.538686	0
+1979	377	What index types are supported by postgres?	open	2024-07-28 10:12:30.830698	2024-07-28 10:12:30.830698	0
+1980	377	When do indexes are automatically created?	open	2024-07-28 10:12:31.037549	2024-07-28 10:12:31.037549	0
+1981	377	Query all the auto generated indexes?	open	2024-07-28 10:12:31.309822	2024-07-28 10:12:31.309822	0
+1982	377	What is the data structure behind an index?	open	2024-07-28 10:12:31.59174	2024-07-28 10:12:31.59174	0
+1983	377	Create an extension that helps on examining pages?	open	2024-07-28 10:12:31.807298	2024-07-28 10:12:31.807298	0
+1984	377	Find the root node of an index?	open	2024-07-28 10:12:32.026196	2024-07-28 10:12:32.026196	0
+1985	377	Find all the leaf nodes of an index?	open	2024-07-28 10:12:32.296655	2024-07-28 10:12:32.296655	0
+1986	377	Inspect the ctid column of a table?	open	2024-07-28 10:12:32.628898	2024-07-28 10:12:32.628898	0
+1987	377	What the first row in the page items table does?	open	2024-07-28 10:12:32.883091	2024-07-28 10:12:32.883091	0
+1988	377	What are the stages of query execution in postgres?	open	2024-07-28 10:12:33.127233	2024-07-28 10:12:33.127233	0
+1989	377	What is the difference between plain explain and explain analyze?	open	2024-07-28 10:12:33.361189	2024-07-28 10:12:33.361189	0
+1990	378	Inspect the statistics of a table?	open	2024-07-28 10:12:33.609135	2024-07-28 10:12:33.609135	0
+1991	379	How does postgres calculate the cost of page loading and rows?	open	2024-07-28 10:12:33.951193	2024-07-28 10:12:33.951193	0
+1992	1281	Where the Qt installer can be found?	open	2024-07-28 10:12:34.43911	2024-07-28 10:12:34.43911	0
+1993	1281	How to update Qt components after manual installation?	open	2024-07-28 10:12:34.782054	2024-07-28 10:12:34.782054	0
+1994	1284	What are the basic types provided by the QML?	open	2024-07-28 10:12:35.135727	2024-07-28 10:12:35.135727	0
+1995	1330	Import a QML module to create a window?	open	2024-07-28 10:12:37.259399	2024-07-28 10:12:37.259399	0
+1996	1330	What identifies an element in QML?	open	2024-07-28 10:12:37.478552	2024-07-28 10:12:37.478552	0
+1997	1330	What is the binding mechanism?	open	2024-07-28 10:12:37.871586	2024-07-28 10:12:37.871586	0
+1998	1330	What is a group property?	open	2024-07-28 10:12:38.272105	2024-07-28 10:12:38.272105	0
+1999	1330	How javascript functions can be declared in QML?	open	2024-07-28 10:12:38.819916	2024-07-28 10:12:38.819916	0
+2000	1330	Define a globaly accessible root element in QML code?	open	2024-07-28 10:12:39.31318	2024-07-28 10:12:39.31318	0
+2001	1330	Specify exact coordinations of an element?	open	2024-07-28 10:12:39.672207	2024-07-28 10:12:39.672207	0
+2002	1330	Create a new custom property?	open	2024-07-28 10:12:39.952459	2024-07-28 10:12:39.952459	0
+2003	1330	Create an alias property pointing to another element's property?	open	2024-07-28 10:12:40.388777	2024-07-28 10:12:40.388777	0
+2004	1330	Attach the signal of a property when its width and height changes?	open	2024-07-28 10:12:40.654775	2024-07-28 10:12:40.654775	0
+2005	1330	What is the requirement of an element in order to receive key events?	open	2024-07-28 10:12:41.070553	2024-07-28 10:12:41.070553	0
+2006	1330	What element is the most basic type to be inherited by other visual elements?	open	2024-07-28 10:12:41.367192	2024-07-28 10:12:41.367192	0
+2007	1330	What are the basic properties of item element?	open	2024-07-28 10:12:41.817914	2024-07-28 10:12:41.817914	0
+2008	1330	What are the additional basic properties of a rectangle over item element?	open	2024-07-28 10:12:42.23665	2024-07-28 10:12:42.23665	0
+2009	1330	Make rectangle edges curved?	open	2024-07-28 10:12:42.573257	2024-07-28 10:12:42.573257	0
+2010	1330	Make a custom gradient over a rectangle?	open	2024-07-28 10:12:43.226395	2024-07-28 10:12:43.226395	0
+2011	1330	Display a text on main window?	open	2024-07-28 10:12:43.616149	2024-07-28 10:12:43.616149	0
+2012	1330	Break a long text with an elide in the middle?	open	2024-07-28 10:12:43.937008	2024-07-28 10:12:43.937008	0
+2013	1330	Select a font family and font size for a text element?	open	2024-07-28 10:12:44.289366	2024-07-28 10:12:44.289366	0
+2014	1330	Set alignment for a text element?	open	2024-07-28 10:12:44.705798	2024-07-28 10:12:44.705798	0
+2015	1330	Use style to color a text element?	open	2024-07-28 10:12:45.046357	2024-07-28 10:12:45.046357	0
+2016	1330	What are the common image formats supported by QML?	open	2024-07-28 10:12:45.344128	2024-07-28 10:12:45.344128	0
+2017	1330	Load an image as a resource?	open	2024-07-28 10:12:45.77861	2024-07-28 10:12:45.77861	0
+2018	1330	Crop an image reaching outside of boudaries?	open	2024-07-28 10:12:46.118445	2024-07-28 10:12:46.118445	0
+2019	1330	What are the possible values for image fill modes?	open	2024-07-28 10:12:46.503856	2024-07-28 10:12:46.503856	0
+2020	1330	Get notified when user clicks on an element?	open	2024-07-28 10:12:46.856399	2024-07-28 10:12:46.856399	0
+2021	1330	What is a component?	open	2024-07-28 10:12:47.103129	2024-07-28 10:12:47.103129	0
+2022	1330	Create a button component to be used on other components?	open	2024-07-28 10:12:47.529539	2024-07-28 10:12:47.529539	0
+2023	1330	Export properties of a component to be used as an API?	open	2024-07-28 10:12:47.844438	2024-07-28 10:12:47.844438	0
+2024	1330	What are the simple transformation properties?	open	2024-07-28 10:12:48.291775	2024-07-28 10:12:48.291775	0
+2025	1330	What feature can be used to smooth movements when rasterized edges can be seen in graphics?	open	2024-07-28 10:12:48.603517	2024-07-28 10:12:48.603517	0
+2026	1330	Use a helper function to extract the lighter or darker color?	open	2024-07-28 10:12:48.959441	2024-07-28 10:12:48.959441	0
+2027	1330	Position multiple elements in a row?	open	2024-07-28 10:12:50.581906	2024-07-28 10:12:50.581906	0
+2028	1330	Position multiple elements in a column?	open	2024-07-28 10:12:52.274379	2024-07-28 10:12:52.274379	0
+2029	1330	Position multiple elements in a grid?	open	2024-07-28 10:12:53.706002	2024-07-28 10:12:53.706002	0
+2030	1330	Position multiple elements into a flow?	open	2024-07-28 10:12:55.059027	2024-07-28 10:12:55.059027	0
+2031	1330	Fill out a grid with blue squares using a repeater?	open	2024-07-28 10:12:56.909576	2024-07-28 10:12:56.909576	0
+2032	1330	What are the anchoring properties for visual elements?	open	2024-07-28 10:12:57.361507	2024-07-28 10:12:57.361507	0
+2033	1330	What additional anchor property does a text element have?	open	2024-07-28 10:12:57.539862	2024-07-28 10:12:57.539862	0
+2034	1330	What are the offsets of anchors?	open	2024-07-28 10:12:57.799598	2024-07-28 10:12:57.799598	0
+2035	1330	What input constraints does <code>TextInput</code> support?	open	2024-07-28 10:12:58.063578	2024-07-28 10:12:58.063578	0
+2036	1330	Make a tab <code>KeyNavigation</code> for multiple <code>TextInput</code> elements in a column?	open	2024-07-28 10:12:59.352017	2024-07-28 10:12:59.352017	0
+2037	1330	Get multi-line input from user?	open	2024-07-28 10:13:00.35566	2024-07-28 10:13:00.35566	0
+2038	1330	What property can record key presses?	open	2024-07-28 10:13:00.654346	2024-07-28 10:13:00.654346	0
+2039	1330	Record user key presses?	open	2024-07-28 10:13:01.376718	2024-07-28 10:13:01.376718	0
+2040	1330	How to precompile QML to avoid the initial startup penalty induced by the initial parsing?	open	2024-07-28 10:13:01.712007	2024-07-28 10:13:01.712007	0
+2041	1331	Where do animations apply?	open	2024-07-28 10:13:01.95732	2024-07-28 10:13:01.95732	0
+2042	1331	Animate an object rotating horizontally?	open	2024-07-28 10:13:03.100632	2024-07-28 10:13:03.100632	0
+2043	1331	Animate an object to fade away?	open	2024-07-28 10:13:03.499007	2024-07-28 10:13:03.499007	0
+2044	1331	How many types of animation elements exist?	open	2024-07-28 10:13:03.969513	2024-07-28 10:13:03.969513	0
+2045	1331	What action elements are used to change a property or to run a script during an ongoing animation?	open	2024-07-28 10:13:04.351282	2024-07-28 10:13:04.351282	0
+2046	1331	What are the possible ways of applying animations?	open	2024-07-28 10:13:04.660479	2024-07-28 10:13:04.660479	0
+2047	1331	Enable wrapping on Text elements?	open	2024-07-28 10:13:04.944166	2024-07-28 10:13:04.944166	0
+2048	1331	How many easing curves are available for animations?	open	2024-07-28 10:13:05.294237	2024-07-28 10:13:05.294237	0
+2049	1331	Animate an object moving horizontally with an easing curve?	open	2024-07-28 10:13:06.336204	2024-07-28 10:13:06.336204	0
+2050	1331	What type can be used to fine-tune the animations?	open	2024-07-28 10:13:06.773499	2024-07-28 10:13:06.773499	0
+2051	1331	How many ways exist to group animations?	open	2024-07-28 10:13:07.131711	2024-07-28 10:13:07.131711	0
+2052	1331	Animate an object to cross the window diagonally?	open	2024-07-28 10:13:08.499935	2024-07-28 10:13:08.499935	0
+2053	1331	Animate a ball moving forward and bouncing on the floor twice?	open	2024-07-28 10:13:08.88348	2024-07-28 10:13:08.88348	0
+2054	1331	What is the basic form of a state?	open	2024-07-28 10:13:09.950634	2024-07-28 10:13:09.950634	0
+2055	1331	Describe two different states of an object having different colors?	open	2024-07-28 10:13:11.26709	2024-07-28 10:13:11.26709	0
+2056	1331	What is the basic form of a transition?	open	2024-07-28 10:13:11.916651	2024-07-28 10:13:11.916651	0
+2057	1332	What modules can be imported to use UI Controls?	open	2024-07-28 10:13:12.249538	2024-07-28 10:13:12.249538	0
+2058	1332	What QtQuick Template is offten used to create a desktop application?	open	2024-07-28 10:13:12.646264	2024-07-28 10:13:12.646264	0
+2059	886	How do browsers detect existance of a captive portal?	open	2024-07-28 10:13:13.608344	2024-07-28 10:13:13.608344	0
+2060	886	What is a target AP?	open	2024-07-28 10:13:13.836072	2024-07-28 10:13:13.836072	0
+2061	886	What are the requirements of attacking a captive portal?	open	2024-07-28 10:13:14.071083	2024-07-28 10:13:14.071083	0
+2062	886	Capture a handshake from an access point?	open	2024-07-28 10:13:14.812587	2024-07-28 10:13:14.812587	0
+2063	886	Create a captive portal?	open	2024-07-28 10:13:17.66276	2024-07-28 10:13:17.66276	0
+2064	803	What are the main phases of compiling a C code?	open	2024-07-28 10:13:18.514246	2024-07-28 10:13:18.514246	0
+2065	803	Stop compiler processing source after preprocessing phase?	open	2024-07-28 10:13:19.026769	2024-07-28 10:13:19.026769	0
+2066	803	Specify the assembly flavor for gcc?	open	2024-07-28 10:13:19.362182	2024-07-28 10:13:19.362182	0
+2067	803	Stop compiler processing source after compilation phase?	open	2024-07-28 10:13:19.592349	2024-07-28 10:13:19.592349	0
+2068	803	Stop compiler processing source after assembly phase?	open	2024-07-28 10:13:19.82591	2024-07-28 10:13:19.82591	0
+2069	803	How many relocatable files exist?	open	2024-07-28 10:13:20.092585	2024-07-28 10:13:20.092585	0
+2070	803	View the symbolic information of an executable?	open	2024-07-28 10:13:20.319654	2024-07-28 10:13:20.319654	0
+2071	803	What formats are used to represent debugging symbols for executables?	open	2024-07-28 10:13:20.590921	2024-07-28 10:13:20.590921	0
+2072	803	What library can be used to programmatically parse debugging symbols?	open	2024-07-28 10:13:20.759809	2024-07-28 10:13:20.759809	0
+2073	803	Strip all the debugging symbols of an executable?	open	2024-07-28 10:13:21.047581	2024-07-28 10:13:21.047581	0
+2074	803	Specify the assembly flavor for objdump utility?	open	2024-07-28 10:13:21.304529	2024-07-28 10:13:21.304529	0
+2075	803	Inspect the rodata section of an object file?	open	2024-07-28 10:13:21.551165	2024-07-28 10:13:21.551165	0
+2076	803	Disassembly an object file?	open	2024-07-28 10:13:21.813539	2024-07-28 10:13:21.813539	0
+2077	803	List all the relocation symbols present in an object file?	open	2024-07-28 10:13:22.051348	2024-07-28 10:13:22.051348	0
+2078	803	What address do relocation offsets are pointing to in relocation table of an object file?	open	2024-07-28 10:13:22.435045	2024-07-28 10:13:22.435045	0
+2079	803	List all the available sections in an object file?	open	2024-07-28 10:13:22.679129	2024-07-28 10:13:22.679129	0
+2080	675	Specify the execution procedure of an executable?	open	2024-07-28 10:13:23.273946	2024-07-28 10:13:23.273946	0
+2081	675	Which direction each of the sections grow in binary files?	open	2024-07-28 10:13:23.732451	2024-07-28 10:13:23.732451	0
+2082	675	Specify register groups in assembly language?	open	2024-07-28 10:13:24.027917	2024-07-28 10:13:24.027917	0
+2083	676	When buffers become vulnerable to stack overflows?	open	2024-07-28 10:13:24.452319	2024-07-28 10:13:24.452319	0
+2084	676	Write past the array bounds in C?	open	2024-07-28 10:13:25.073903	2024-07-28 10:13:25.073903	0
+2085	676	What values does the calling convention put on the stack?	open	2024-07-28 10:13:26.073048	2024-07-28 10:13:26.073048	0
+2086	676	What happens when data is writen past the array boundaries on the stack?	open	2024-07-28 10:13:27.133155	2024-07-28 10:13:27.133155	0
+2087	676	Control the execution path of a program vulnerable to buffer overflow?	open	2024-07-28 10:13:27.715983	2024-07-28 10:13:27.715983	0
+2088	676	Translate a hexadecimal address into shellcode?	open	2024-07-28 10:13:28.046367	2024-07-28 10:13:28.046367	0
+2089	676	Get shell access by exploiting a program vulnerable to buffer overflow?	open	2024-07-28 10:13:28.616888	2024-07-28 10:13:28.616888	0
+2090	676	Inject an already prepared shellcode into a process?	open	2024-07-28 10:13:29.171704	2024-07-28 10:13:29.171704	0
+2091	252	Start learning about Vim:	open	2024-07-28 10:13:29.716563	2024-07-28 10:13:29.716563	0
+2092	252	Start reading Vim reference manual:	open	2024-07-28 10:13:29.887887	2024-07-28 10:13:29.887887	0
+2093	252	Also read the quick reference:	open	2024-07-28 10:13:30.066615	2024-07-28 10:13:30.066615	0
+2094	252	Then study the Vim's user manual to learn essential commands:	open	2024-07-28 10:13:30.277889	2024-07-28 10:13:30.277889	0
+2095	252	Repeat actions with dot command:	open	2024-07-28 10:13:30.446409	2024-07-28 10:13:30.446409	0
+2096	252	Use compound commands:	open	2024-07-28 10:13:30.716167	2024-07-28 10:13:30.716167	0
+2097	252	Find a character and repeat:	open	2024-07-28 10:13:30.955158	2024-07-28 10:13:30.955158	0
+2098	252	Search word under cursor:	open	2024-07-28 10:13:31.165537	2024-07-28 10:13:31.165537	0
+2099	253	Use counts to modify numbers:	open	2024-07-28 10:13:31.418232	2024-07-28 10:13:31.418232	0
+2100	253	Change a number with different base like octal or binary:	open	2024-07-28 10:13:31.649749	2024-07-28 10:13:31.649749	0
+2101	253	Change word behind cursor:	open	2024-07-28 10:13:31.822872	2024-07-28 10:13:31.822872	0
+2102	253	Apply operations on a line by duplicating operators:	open	2024-07-28 10:13:32.073735	2024-07-28 10:13:32.073735	0
+2103	253	Combine **operator + motion** to take action:	open	2024-07-28 10:13:32.694401	2024-07-28 10:13:32.694401	0
+2104	254	Correct a character, a word, or a line in **Insert mode** by backspacing:	open	2024-07-28 10:13:33.090623	2024-07-28 10:13:33.090623	0
+2105	254	Go back to normal mode from **Insert mode**:	open	2024-07-28 10:13:33.301716	2024-07-28 10:13:33.301716	0
+2106	254	Temporarily go to insert-normal mode from **Insert mode** to enter a command:	open	2024-07-28 10:13:33.473095	2024-07-28 10:13:33.473095	0
+2107	254	Redraw screen with the current line in the middle without being interrupted:	open	2024-07-28 10:13:33.680657	2024-07-28 10:13:33.680657	0
+2108	254	Paste from register without leaving the **Insert mode**:	open	2024-07-28 10:13:33.872737	2024-07-28 10:13:33.872737	0
+2109	254	Paste text in **Insert mode** literally with unindents indented:	open	2024-07-28 10:13:34.080336	2024-07-28 10:13:34.080336	0
+2110	254	Calculate simple arithmatic using expression register in **Insert mode**:	open	2024-07-28 10:13:34.270319	2024-07-28 10:13:34.270319	0
+2111	254	Insert unusual characters by character code in **Insert mode**:	open	2024-07-28 10:13:34.475209	2024-07-28 10:13:34.475209	0
+2112	254	Find the numeric code of character under the cursor:	open	2024-07-28 10:13:34.647645	2024-07-28 10:13:34.647645	0
+2113	254	Insert special symbols using digraph:	open	2024-07-28 10:13:34.874202	2024-07-28 10:13:34.874202	0
+2114	254	Overwrite existing text with replace mode:	open	2024-07-28 10:13:35.096895	2024-07-28 10:13:35.096895	0
+2115	255	Insert into **Visual mode** from normal mode and select text in character-wise, line-wise, and block-wise mode:	open	2024-07-28 10:13:35.342377	2024-07-28 10:13:35.342377	0
+2116	255	Insert into **Select mode** from different modes:	open	2024-07-28 10:13:35.545719	2024-07-28 10:13:35.545719	0
+2117	255	Reselect the last visual selection:	open	2024-07-28 10:13:35.733014	2024-07-28 10:13:35.733014	0
+2118	255	Switch between visual modes:	open	2024-07-28 10:13:35.942582	2024-07-28 10:13:35.942582	0
+2119	255	Toggle the free end of a visual selection:	open	2024-07-28 10:13:36.143895	2024-07-28 10:13:36.143895	0
+2120	255	Prefer operators over visual commands where possible:	open	2024-07-28 10:13:36.384081	2024-07-28 10:13:36.384081	0
+2121	255	Inspect the differences between repeating an operator and a visual section:	open	2024-07-28 10:13:36.55375	2024-07-28 10:13:36.55375	0
+2122	255	Separate two columns of a text with | using visual block mode:	open	2024-07-28 10:13:36.875794	2024-07-28 10:13:36.875794	0
+2123	255	Write a horizontal line using visual line mode:	open	2024-07-28 10:13:37.216643	2024-07-28 10:13:37.216643	0
+2124	256	Enter into Command-line mode:	open	2024-07-28 10:13:37.49077	2024-07-28 10:13:37.49077	0
+2125	256	Edit a file after entering into Vim:	open	2024-07-28 10:13:37.721686	2024-07-28 10:13:37.721686	0
+2126	256	Write file contents into file:	open	2024-07-28 10:13:37.914354	2024-07-28 10:13:37.914354	0
+2127	256	Create a tab:	open	2024-07-28 10:13:38.088405	2024-07-28 10:13:38.088405	0
+2128	256	Split window:	open	2024-07-28 10:13:38.311099	2024-07-28 10:13:38.311099	0
+2129	256	Inspect the list of Ex commands:	open	2024-07-28 10:13:38.481667	2024-07-28 10:13:38.481667	0
+2130	256	Inspect the differences of Vi and Vim:	open	2024-07-28 10:13:38.684149	2024-07-28 10:13:38.684149	0
+2131	256	Copy current line to the first line:	open	2024-07-28 10:13:38.870402	2024-07-28 10:13:38.870402	0
+2132	256	Move next line to previous line:	open	2024-07-28 10:13:39.071232	2024-07-28 10:13:39.071232	0
+2133	256	Repeat last Ex Command:	open	2024-07-28 10:13:39.247312	2024-07-28 10:13:39.247312	0
+2134	256	Run normal mode commands across a range:	open	2024-07-28 10:13:39.44492	2024-07-28 10:13:39.44492	0
+2135	256	Tab-complete Ex commands:	open	2024-07-28 10:13:39.629408	2024-07-28 10:13:39.629408	0
+2136	256	Create a tab-complete behavior for custom Ex commands:	open	2024-07-28 10:13:39.830985	2024-07-28 10:13:39.830985	0
+2137	256	Change tab-completion behavior:	open	2024-07-28 10:13:40.008631	2024-07-28 10:13:40.008631	0
+2138	256	Insert current word under cursor to command promt:	open	2024-07-28 10:13:40.19577	2024-07-28 10:13:40.19577	0
+2139	256	Recall persistent commands from history after vim relaunch:	open	2024-07-28 10:13:40.418246	2024-07-28 10:13:40.418246	0
+2140	256	Use command line window to enter Ex commands:	open	2024-07-28 10:13:40.597218	2024-07-28 10:13:40.597218	0
+2141	256	Switch from command prompt to command line window:	open	2024-07-28 10:13:40.797672	2024-07-28 10:13:40.797672	0
+2142	256	Execute programs in shell from Vim:	open	2024-07-28 10:13:40.988257	2024-07-28 10:13:40.988257	0
+2143	256	Use the shorthand for current filename in command prompt:	open	2024-07-28 10:13:41.189846	2024-07-28 10:13:41.189846	0
+2144	256	Change current filename by filename modifiers:	open	2024-07-28 10:13:41.360776	2024-07-28 10:13:41.360776	0
+2145	256	Start an interactive shell in Vim:	open	2024-07-28 10:13:41.528902	2024-07-28 10:13:41.528902	0
+2147	256	Filter the contents of a buffer through an external command:	open	2024-07-28 10:13:41.987543	2024-07-28 10:13:41.987543	0
+2148	256	Use a {motion} to filter then contents of a buffer through an external command:	open	2024-07-28 10:13:42.162877	2024-07-28 10:13:42.162877	0
+2155	258	Configure `path` for finding files:	open	2024-07-28 10:13:43.868517	2024-07-28 10:13:43.868517	0
+2156	258	Find a file by its filename in vim:	open	2024-07-28 10:13:44.138715	2024-07-28 10:13:44.138715	0
+2157	258	Navigate file explorer in vim by opening a directory:	open	2024-07-28 10:13:44.457245	2024-07-28 10:13:44.457245	0
+2158	267	Create a tag file in project directory:	open	2024-07-28 10:13:44.814326	2024-07-28 10:13:44.814326	0
+2163	267	Select tag from matchlist after jumping to a wrong definition:	open	2024-07-28 10:13:46.168003	2024-07-28 10:13:46.168003	0
+2164	267	Manual match with a tag:	open	2024-07-28 10:13:46.381586	2024-07-28 10:13:46.381586	0
+2165	268	Compile a project inside Vim:	open	2024-07-28 10:13:46.622051	2024-07-28 10:13:46.622051	0
+2166	268	Browse the Quickfix list:	open	2024-07-28 10:13:46.860341	2024-07-28 10:13:46.860341	0
+2167	268	Jump through errors generated by make:	open	2024-07-28 10:13:47.129769	2024-07-28 10:13:47.129769	0
+2168	268	Jump to the Nth error:	open	2024-07-28 10:13:47.305469	2024-07-28 10:13:47.305469	0
+2169	268	Jump to the first error in next file:	open	2024-07-28 10:13:47.526174	2024-07-28 10:13:47.526174	0
+2170	268	Use quickfix actions only for the active window:	open	2024-07-28 10:13:47.899301	2024-07-28 10:13:47.899301	0
+2171	268	Refer back to previous or next quickfix results:	open	2024-07-28 10:13:48.241238	2024-07-28 10:13:48.241238	0
+2172	268	Configure :make to invoke another program:	open	2024-07-28 10:13:48.518085	2024-07-28 10:13:48.518085	0
+2173	268	Populate the quickfix list by program output:	open	2024-07-28 10:13:48.845251	2024-07-28 10:13:48.845251	0
+2174	268	Setup makeprg and errorformat using compiler command:	open	2024-07-28 10:13:49.139804	2024-07-28 10:13:49.139804	0
+2175	1446	How many stages does CMake have to build a project?	open	2024-08-18 14:51:01.213425	2024-08-18 14:51:01.213425	0
+2176	1446	What file does CMake use as cache in configuration stage?	open	2024-08-18 14:51:01.215727	2024-08-18 14:51:01.215727	0
+2177	1446	What are the crucial CMake commands needed in every project?	open	2024-08-18 14:51:01.218323	2024-08-18 14:51:01.218323	0
+2178	1446	Run CMake for configuration stage of a project?	open	2024-08-18 14:51:01.220381	2024-08-18 14:51:01.220381	0
+2179	1446	Run CMake for building stage of a project?	open	2024-08-18 14:51:01.221813	2024-08-18 14:51:01.221813	0
+2180	1446	Build latest CMake version from source?	open	2024-08-18 14:51:01.22286	2024-08-18 14:51:01.22286	0
+2181	1446	What commands are available after a clean installation of CMake?	open	2024-08-18 14:51:01.223983	2024-08-18 14:51:01.223983	0
+2182	1446	Specify generator when configuring a project with CMake?	open	2024-08-18 14:51:01.225156	2024-08-18 14:51:01.225156	0
+2183	1446	Get help from CMake on a shell?	open	2024-08-18 14:51:01.227189	2024-08-18 14:51:01.227189	0
+2184	1446	Get a list of detailed help from CMake on shell?	open	2024-08-18 14:51:01.228976	2024-08-18 14:51:01.228976	0
+2185	1446	Specify a cache when configuring a project with CMake?	open	2024-08-18 14:51:01.230911	2024-08-18 14:51:01.230911	0
+2186	1446	Initialize existing cache variables when configuring a project with CMake?	open	2024-08-18 14:51:01.231923	2024-08-18 14:51:01.231923	0
+2187	1446	Specify build type when configuring a project with CMake?	open	2024-08-18 14:51:01.232887	2024-08-18 14:51:01.232887	0
+2188	1446	List all the cache variables of a project?	open	2024-08-18 14:51:01.233953	2024-08-18 14:51:01.233953	0
+2193	1446	What is a message context?	open	2024-08-18 14:51:01.238573	2024-08-18 14:51:01.238573	0
+2234	1461	Which version of CMake does support presets?	open	2024-08-18 14:51:01.284975	2024-08-18 14:51:01.284975	0
+2235	1461	What features do CMake presets offer?	open	2024-08-18 14:51:01.285713	2024-08-18 14:51:01.285713	0
+2236	1461	Where should CMake preset files reside to be recognizable?	open	2024-08-18 14:51:01.286425	2024-08-18 14:51:01.286425	0
+2237	1461	What stages do CMake presets can be defined for?	open	2024-08-18 14:51:01.287113	2024-08-18 14:51:01.287113	0
+2238	1461	List CMake presets specific for configuration stage?	open	2024-08-18 14:51:01.28778	2024-08-18 14:51:01.28778	0
+2239	1461	List CMake presets specific for build stage?	open	2024-08-18 14:51:01.288526	2024-08-18 14:51:01.288526	0
+2240	1461	List CMake presets specific for test stage?	open	2024-08-18 14:51:01.289271	2024-08-18 14:51:01.289271	0
+2241	1461	List CMake workflow presets?	open	2024-08-18 14:51:01.29001	2024-08-18 14:51:01.29001	0
+2242	1461	Use a project defined CMake preset?	open	2024-08-18 14:51:01.290683	2024-08-18 14:51:01.290683	0
+2243	1461	What is the format of a CMake preset file?	open	2024-08-18 14:51:01.29174	2024-08-18 14:51:01.29174	0
+2244	1461	What is the common mandatory field in all CMake presets?	open	2024-08-18 14:51:01.293669	2024-08-18 14:51:01.293669	0
+2245	1461	What are the optional fields in all CMake presets?	open	2024-08-18 14:51:01.295344	2024-08-18 14:51:01.295344	0
+2246	1461	What common dependency exists in CMake stage specific presets?	open	2024-08-18 14:51:01.297165	2024-08-18 14:51:01.297165	0
+2247	1461	What are the CMake configuration stage specific preset fields?	open	2024-08-18 14:51:01.29807	2024-08-18 14:51:01.29807	0
+2248	1461	What is the precedence of preset variables in CMake?	open	2024-08-18 14:51:01.298839	2024-08-18 14:51:01.298839	0
+2249	1461	What are the CMake build stage specific preset fields?	open	2024-08-18 14:51:01.299685	2024-08-18 14:51:01.299685	0
+2250	1461	What are the CMake test stage specific preset fields?	open	2024-08-18 14:51:01.300642	2024-08-18 14:51:01.300642	0
+2251	1461	What are the CMake package stage specific preset fields?	open	2024-08-18 14:51:01.301403	2024-08-18 14:51:01.301403	0
+2252	1461	What is the work around for creating an install stage preset?	open	2024-08-18 14:51:01.302148	2024-08-18 14:51:01.302148	0
+2253	1461	Run a CMake workflow by first wiping the build tree and clearing cache?	open	2024-08-18 14:51:01.302849	2024-08-18 14:51:01.302849	0
+2254	1461	Define a CMake workflow in a project?	open	2024-08-18 14:51:01.303556	2024-08-18 14:51:01.303556	0
+2255	1461	What is the structure of a condition in CMake presets?	open	2024-08-18 14:51:01.304244	2024-08-18 14:51:01.304244	0
+2256	1461	What types of conditions exists in CMake presets?	open	2024-08-18 14:51:01.305316	2024-08-18 14:51:01.305316	0
+2257	1461	What are the available macros in CMake presets?	open	2024-08-18 14:51:01.306221	2024-08-18 14:51:01.306221	0
+2189	1446	Remove a cache variable from the configuration of a project?	open	2024-08-18 14:51:01.234763	2024-08-18 14:51:01.234763	0
+2190	1446	Get project agnostic general information about variables, commands, marcros and other settings?	open	2024-08-18 14:51:01.235644	2024-08-18 14:51:01.235644	0
+2191	1446	Change the log level of CMake?	open	2024-08-18 14:51:01.236728	2024-08-18 14:51:01.236728	0
+2192	1446	What CMake command prints logs?	open	2024-08-18 14:51:01.237656	2024-08-18 14:51:01.237656	0
+2194	1446	Enable context in CMake logs?	open	2024-08-18 14:51:01.239566	2024-08-18 14:51:01.239566	0
+2195	1446	What is the most verbose option of loggin for CMake?	open	2024-08-18 14:51:01.240557	2024-08-18 14:51:01.240557	0
+2196	1446	What are CMake presets?	open	2024-08-18 14:51:01.241709	2024-08-18 14:51:01.241709	0
+2197	1446	List available CMake presets?	open	2024-08-18 14:51:01.243463	2024-08-18 14:51:01.243463	0
+2198	1446	Choose a CMake preset for a project?	open	2024-08-18 14:51:01.245492	2024-08-18 14:51:01.245492	0
+2199	1446	Run CMake to configure a project by erasiing previous configurations first?	open	2024-08-18 14:51:01.247484	2024-08-18 14:51:01.247484	0
+2200	1446	Run CMake in building stage with parallel jobs?	open	2024-08-18 14:51:01.248754	2024-08-18 14:51:01.248754	0
+2201	1446	Specify a target in building stage of a project?	open	2024-08-18 14:51:01.249676	2024-08-18 14:51:01.249676	0
+2202	1446	Clean the build tree?	open	2024-08-18 14:51:01.250652	2024-08-18 14:51:01.250652	0
+2203	1446	Build a project by first cleaning the build tree?	open	2024-08-18 14:51:01.25157	2024-08-18 14:51:01.25157	0
+2204	1446	Specify which configuration should be used in building stage by multi-configuration supported generators?	open	2024-08-18 14:51:01.25248	2024-08-18 14:51:01.25248	0
+2205	1446	Generate debugging logs on building stage?	open	2024-08-18 14:51:01.253435	2024-08-18 14:51:01.253435	0
+2206	1446	Use CMake to install build artifacts?	open	2024-08-18 14:51:01.254336	2024-08-18 14:51:01.254336	0
+2207	1446	Change the default installation path in installation stage?	open	2024-08-18 14:51:01.255289	2024-08-18 14:51:01.255289	0
+2208	1446	Explicitly specify which components you want to install on installation stage?	open	2024-08-18 14:51:01.25621	2024-08-18 14:51:01.25621	0
+2209	1446	Specify default directory permissions on installatino stage?	open	2024-08-18 14:51:01.25716	2024-08-18 14:51:01.25716	0
+2210	1446	Generate debugging logs on installation stage?	open	2024-08-18 14:51:01.258216	2024-08-18 14:51:01.258216	0
+2211	1446	Run a cmake script?	open	2024-08-18 14:51:01.25999	2024-08-18 14:51:01.25999	0
+2212	1446	Use CMake to run a platform independent command?	open	2024-08-18 14:51:01.261806	2024-08-18 14:51:01.261806	0
+2213	1446	Use CMake to run checksum?	open	2024-08-18 14:51:01.263784	2024-08-18 14:51:01.263784	0
+2214	1446	Where do workflows can be used?	open	2024-08-18 14:51:01.264861	2024-08-18 14:51:01.264861	0
+2215	1446	Get a list of presets in a workflow?	open	2024-08-18 14:51:01.265667	2024-08-18 14:51:01.265667	0
+2216	1446	Execute a workflow preset?	open	2024-08-18 14:51:01.266414	2024-08-18 14:51:01.266414	0
+2217	1446	Run all the tests in a project?	open	2024-08-18 14:51:01.26714	2024-08-18 14:51:01.26714	0
+2218	1446	What GUI interfaces does cmake have?	open	2024-08-18 14:51:01.267901	2024-08-18 14:51:01.267901	0
+2219	1446	Where is the source directory?	open	2024-08-18 14:51:01.2687	2024-08-18 14:51:01.2687	0
+2220	1446	Where is the build directory?	open	2024-08-18 14:51:01.269489	2024-08-18 14:51:01.269489	0
+2221	1446	What is Listfiles?	open	2024-08-18 14:51:01.270258	2024-08-18 14:51:01.270258	0
+2222	1446	What is the main CMake listfile in a project?	open	2024-08-18 14:51:01.271129	2024-08-18 14:51:01.271129	0
+2223	1446	What is the structure of a cache file?	open	2024-08-18 14:51:01.271899	2024-08-18 14:51:01.271899	0
+2224	1446	What is a CMake package configuration file?	open	2024-08-18 14:51:01.272828	2024-08-18 14:51:01.272828	0
+2225	1446	What are the common CMake artifacts resulted in generation stage?	open	2024-08-18 14:51:01.273662	2024-08-18 14:51:01.273662	0
+2226	1446	What are preset files?	open	2024-08-18 14:51:01.274597	2024-08-18 14:51:01.274597	0
+2227	1446	What are the advantages of running CMake scripts rather than external scripts?	open	2024-08-18 14:51:01.27625	2024-08-18 14:51:01.27625	0
+2228	1446	What is the minimum requirements of a CMake script file?	open	2024-08-18 14:51:01.278419	2024-08-18 14:51:01.278419	0
+2229	1446	What are the CMake utility modules?	open	2024-08-18 14:51:01.280803	2024-08-18 14:51:01.280803	0
+2230	1446	Use a CMake utility module?	open	2024-08-18 14:51:01.281705	2024-08-18 14:51:01.281705	0
+2231	1446	What are the CMake find modules?	open	2024-08-18 14:51:01.282591	2024-08-18 14:51:01.282591	0
+2232	1446	Get the list of CMake modules?	open	2024-08-18 14:51:01.283356	2024-08-18 14:51:01.283356	0
+2276	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:08:47.381065	2024-09-18 17:08:47.381065	0
+2277	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:08:47.382923	2024-09-18 17:08:47.382923	0
+2278	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:08:47.384277	2024-09-18 17:08:47.384277	0
+2279	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:08:47.385635	2024-09-18 17:08:47.385635	0
+2280	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:08:47.387076	2024-09-18 17:08:47.387076	0
+2281	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:08:47.388583	2024-09-18 17:08:47.388583	0
+2282	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:08:47.389554	2024-09-18 17:08:47.389554	0
+2283	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:08:47.390476	2024-09-18 17:08:47.390476	0
+2284	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:08:47.391363	2024-09-18 17:08:47.391363	0
+2285	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:08:47.39223	2024-09-18 17:08:47.39223	0
+2286	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:08:47.39311	2024-09-18 17:08:47.39311	0
+2287	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:08:47.393966	2024-09-18 17:08:47.393966	0
+2288	1361	What types in multithreading are move only?	open	2024-09-18 17:08:47.394819	2024-09-18 17:08:47.394819	0
+2289	1361	How does the thread constructor take arguments?	open	2024-09-18 17:08:47.395762	2024-09-18 17:08:47.395762	0
+2290	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:08:47.396696	2024-09-18 17:08:47.396696	0
+2291	1361	Pass string literals as universal references?	open	2024-09-18 17:08:47.39778	2024-09-18 17:08:47.39778	0
+2293	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:09:19.167077	2024-09-18 17:09:19.167077	0
+2294	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:09:19.169002	2024-09-18 17:09:19.169002	0
+2295	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:09:19.170611	2024-09-18 17:09:19.170611	0
+2296	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:09:19.172279	2024-09-18 17:09:19.172279	0
+2297	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:09:19.173887	2024-09-18 17:09:19.173887	0
+2298	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:09:19.175671	2024-09-18 17:09:19.175671	0
+2299	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:09:19.176885	2024-09-18 17:09:19.176885	0
+2300	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:09:19.178012	2024-09-18 17:09:19.178012	0
+2301	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:09:19.179153	2024-09-18 17:09:19.179153	0
+2302	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:09:19.180118	2024-09-18 17:09:19.180118	0
+2303	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:09:19.181282	2024-09-18 17:09:19.181282	0
+2304	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:09:19.183328	2024-09-18 17:09:19.183328	0
+2305	1361	What types in multithreading are move only?	open	2024-09-18 17:09:19.184517	2024-09-18 17:09:19.184517	0
+2306	1361	How does the thread constructor take arguments?	open	2024-09-18 17:09:19.185643	2024-09-18 17:09:19.185643	0
+2307	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:19.18668	2024-09-18 17:09:19.18668	0
+2308	1361	Pass string literals as universal references?	open	2024-09-18 17:09:19.188021	2024-09-18 17:09:19.188021	0
+2310	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:09:42.503108	2024-09-18 17:09:42.503108	0
+2311	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:09:42.504922	2024-09-18 17:09:42.504922	0
+2312	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:09:42.506258	2024-09-18 17:09:42.506258	0
+2313	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:09:42.507851	2024-09-18 17:09:42.507851	0
+2314	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:09:42.510067	2024-09-18 17:09:42.510067	0
+2315	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:09:42.512331	2024-09-18 17:09:42.512331	0
+2316	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:09:42.513962	2024-09-18 17:09:42.513962	0
+2317	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:09:42.515518	2024-09-18 17:09:42.515518	0
+2318	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:09:42.516519	2024-09-18 17:09:42.516519	0
+2319	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:09:42.517428	2024-09-18 17:09:42.517428	0
+2320	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:09:42.518353	2024-09-18 17:09:42.518353	0
+2321	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:09:42.519289	2024-09-18 17:09:42.519289	0
+2322	1361	What types in multithreading are move only?	open	2024-09-18 17:09:42.520264	2024-09-18 17:09:42.520264	0
+2323	1361	How does the thread constructor take arguments?	open	2024-09-18 17:09:42.521459	2024-09-18 17:09:42.521459	0
+2324	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:42.522544	2024-09-18 17:09:42.522544	0
+2325	1361	Pass string literals as universal references?	open	2024-09-18 17:09:42.52375	2024-09-18 17:09:42.52375	0
+2327	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:20:08.983415	2024-09-18 17:20:08.983415	0
+3348	1571	Use formatted messages in static assertion?	open	2024-11-27 21:53:14.144908	2024-11-27 21:53:14.144908	0
+2328	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:20:08.985051	2024-09-18 17:20:08.985051	0
+2329	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:20:08.986641	2024-09-18 17:20:08.986641	0
+2330	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-09-18 17:20:08.988433	2024-09-18 17:20:08.988433	0
+2331	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-09-18 17:20:08.990052	2024-09-18 17:20:08.990052	0
+2332	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-09-18 17:20:08.991308	2024-09-18 17:20:08.991308	0
+2333	1361	How do IOStream objects take advantage of move semantics?	open	2024-09-18 17:20:08.992595	2024-09-18 17:20:08.992595	0
+2334	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-09-18 17:20:08.993885	2024-09-18 17:20:08.993885	0
+2335	1361	Use a temporary file stream object to write into a file?	open	2024-09-18 17:20:08.995148	2024-09-18 17:20:08.995148	0
+2336	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-09-18 17:20:08.996277	2024-09-18 17:20:08.996277	0
+2337	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-09-18 17:20:08.997255	2024-09-18 17:20:08.997255	0
+2338	1361	What types in multithreading are neither copyable nor movable?	open	2024-09-18 17:20:08.998145	2024-09-18 17:20:08.998145	0
+2339	1361	What types in multithreading are move only?	open	2024-09-18 17:20:08.999003	2024-09-18 17:20:08.999003	0
+2340	1361	How does the thread constructor take arguments?	open	2024-09-18 17:20:08.999937	2024-09-18 17:20:08.999937	0
+2341	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:20:09.000946	2024-09-18 17:20:09.000946	0
+2342	1361	Pass string literals as universal references?	open	2024-09-18 17:20:09.002003	2024-09-18 17:20:09.002003	0
+434	1293	What is the foundation of C++ memory model for concurrency?	open	2024-07-28 10:00:50.71788	2024-07-28 10:00:50.71788	0
+435	1293	What are the levels of expertise in multithreading?	open	2024-07-28 10:00:51.048242	2024-07-28 10:00:51.048242	0
+436	1293	How to use <code>std::atomic_flag</code> to make spinlock mechanism?	open	2024-07-28 10:00:52.225477	2024-07-28 10:00:52.225477	0
+437	1293	How to use <code>std::mutex</code> to make spinlock mechanism?	open	2024-07-28 10:00:53.372976	2024-07-28 10:00:53.372976	0
+438	1293	Use condition variables to synchronize two threads?	open	2024-07-28 10:00:54.916437	2024-07-28 10:00:54.916437	0
+2343	1293	What are the basic building blocks of C++ concurrency?	open	2024-09-19 14:56:13.921899	2024-09-19 14:56:13.921899	0
+2344	1293	What are the higher abstraction layers of C++ concurrency?	open	2024-09-19 14:56:13.926985	2024-09-19 14:56:13.926985	0
+2345	1293	What are the sequential consistency guarantees?	open	2024-09-19 14:56:13.929234	2024-09-19 14:56:13.929234	0
+2346	1293	What is an atomic data type?	open	2024-09-19 14:56:13.931719	2024-09-19 14:56:13.931719	0
+2347	1293	What does multithreading in C++ consist of?	open	2024-09-19 14:56:13.933883	2024-09-19 14:56:13.933883	0
+2348	1293	What is an execution unit?	open	2024-09-19 14:56:13.936465	2024-09-19 14:56:13.936465	0
+2349	1293	What is a callable unit?	open	2024-09-19 14:56:13.939256	2024-09-19 14:56:13.939256	0
+2350	1293	What is the life-time of an execution unit?	open	2024-09-19 14:56:13.940712	2024-09-19 14:56:13.940712	0
+2351	1293	How many ending strategies can a thread creator perform on its threads?	open	2024-09-19 14:56:13.942494	2024-09-19 14:56:13.942494	0
+2352	1293	What is a joinable thread?	open	2024-09-19 14:56:13.943582	2024-09-19 14:56:13.943582	0
+2353	1293	What happens when a joinable thread execution ends?	open	2024-09-19 14:56:13.944609	2024-09-19 14:56:13.944609	0
+2354	1293	What does a thread take in its constructor?	open	2024-09-19 14:56:13.945567	2024-09-19 14:56:13.945567	0
+2355	1293	What is a shared data?	open	2024-09-19 14:56:13.946458	2024-09-19 14:56:13.946458	0
+2356	1293	What components can be used to coordinate access to a shared data?	open	2024-09-19 14:56:13.947647	2024-09-19 14:56:13.947647	0
+2357	1293	How a mutex locks access to a shared data?	open	2024-09-19 14:56:13.948718	2024-09-19 14:56:13.948718	0
+2358	1293	What is the basic use case of a lock?	open	2024-09-19 14:56:13.949846	2024-09-19 14:56:13.949846	0
+2359	1293	What locks exist in C++?	open	2024-09-19 14:56:13.950799	2024-09-19 14:56:13.950799	0
+2360	1293	How many ways exist to initialize a read-only variable accessible to multiple threads?	open	2024-09-19 14:56:13.951779	2024-09-19 14:56:13.951779	0
+2361	1293	What is a thread-local data?	open	2024-09-19 14:56:13.952791	2024-09-19 14:56:13.952791	0
+2362	1293	What is a condition variable?	open	2024-09-19 14:56:13.953727	2024-09-19 14:56:13.953727	0
+2363	1293	What are the use cases of condition variables?	open	2024-09-19 14:56:13.954768	2024-09-19 14:56:13.954768	0
+2364	1293	What is a task?	open	2024-09-19 14:56:13.95577	2024-09-19 14:56:13.95577	0
+2365	1293	What objects can be transferred in the communication channel made by a task?	open	2024-09-19 14:56:13.956706	2024-09-19 14:56:13.956706	0
+2366	1293	What are the execution policies?	open	2024-09-19 14:56:13.95767	2024-09-19 14:56:13.95767	0
+2367	1293	What are the advantages of using jthread?	open	2024-09-19 14:56:13.958641	2024-09-19 14:56:13.958641	0
+2368	1293	What are the drawbacks of using shared and weak pointers in multiple threads?	open	2024-09-19 14:56:13.959691	2024-09-19 14:56:13.959691	0
+2369	1293	What are the atomic shared pointers?	open	2024-09-19 14:56:13.960796	2024-09-19 14:56:13.960796	0
+2370	1293	What are the use cases of latch and barriers?	open	2024-09-19 14:56:13.962792	2024-09-19 14:56:13.962792	0
+2371	1293	What is the difference between latches and barriers?	open	2024-09-19 14:56:13.964808	2024-09-19 14:56:13.964808	0
+2372	1293	What is a counting semaphore?	open	2024-09-19 14:56:13.966494	2024-09-19 14:56:13.966494	0
+2373	1293	What is a coroutine?	open	2024-09-19 14:56:13.968168	2024-09-19 14:56:13.968168	0
+2374	1293	What are the use cases of coroutines?	open	2024-09-19 14:56:13.969339	2024-09-19 14:56:13.969339	0
+2375	1293	What is an executors?	open	2024-09-19 14:56:13.970354	2024-09-19 14:56:13.970354	0
+2376	1293	What member functions are new in extended futures?	open	2024-09-19 14:56:13.971293	2024-09-19 14:56:13.971293	0
+2377	1293	What is a transactional memory model?	open	2024-09-19 14:56:13.972298	2024-09-19 14:56:13.972298	0
+2378	1293	What transactional memory block types exist in C++?	open	2024-09-19 14:56:13.973147	2024-09-19 14:56:13.973147	0
+2379	1293	What is the execution order of transactional memory blocks?	open	2024-09-19 14:56:13.97404	2024-09-19 14:56:13.97404	0
+2380	1293	What are the differences between existing transactional memory blocks?	open	2024-09-19 14:56:13.974979	2024-09-19 14:56:13.974979	0
+2381	1293	What is a task block?	open	2024-09-19 14:56:13.975939	2024-09-19 14:56:13.975939	0
+2382	1293	What is the meaning of data parallel programming?	open	2024-09-19 14:56:13.976861	2024-09-19 14:56:13.976861	0
+2418	1553	What scopes does OpenEmbedded build system have?	open	2024-09-22 10:06:26.819644	2024-09-22 10:06:26.819644	0
+2419	1553	Assign a value to a variable discarding its previous value?	open	2024-09-22 10:06:26.82154	2024-09-22 10:06:26.82154	0
+2420	1553	How many different variable expansions exists in OpenEmbedded build system?	open	2024-09-22 10:06:26.824365	2024-09-22 10:06:26.824365	0
+2421	1553	Append values to a variable with and without spaces?	open	2024-09-22 10:06:26.82672	2024-09-22 10:06:26.82672	0
+2422	1553	Prepend values to a variable with and without spaces?	open	2024-09-22 10:06:26.82875	2024-09-22 10:06:26.82875	0
+2423	1553	Make a default value for a variable?	open	2024-09-22 10:06:26.830887	2024-09-22 10:06:26.830887	0
+2424	1553	What is the difference between default and weak default values?	open	2024-09-22 10:06:26.833559	2024-09-22 10:06:26.833559	0
+2425	1553	What is the preferred way of modifying a variable?	open	2024-09-22 10:06:26.835627	2024-09-22 10:06:26.835627	0
+2426	1553	What does override operators do?	open	2024-09-22 10:06:26.83779	2024-09-22 10:06:26.83779	0
+2427	1553	Append to a variable using override operators?	open	2024-09-22 10:06:26.840005	2024-09-22 10:06:26.840005	0
+2428	1553	Prepend to a variable using override operators?	open	2024-09-22 10:06:26.842048	2024-09-22 10:06:26.842048	0
+2429	1553	Remove all occurances of a value within a variable using override operators?	open	2024-09-22 10:06:26.843961	2024-09-22 10:06:26.843961	0
+2430	1553	What does the dropbear package do?	open	2024-09-22 10:06:26.845783	2024-09-22 10:06:26.845783	0
+2431	1553	Assign on a variable only for a specific machine?	open	2024-09-22 10:06:26.848246	2024-09-22 10:06:26.848246	0
+2432	1553	What is the precedence between override assignments and regular assignments?	open	2024-09-22 10:06:26.850927	2024-09-22 10:06:26.850927	0
+2434	1553	What is the precedence of override operators?	open	2024-09-22 10:06:26.855264	2024-09-22 10:06:26.855264	0
+2481	1557	What URI schemes exist?	open	2024-09-22 10:06:26.957417	2024-09-22 10:06:26.957417	0
+2482	1557	What pattern does git scheme have?	open	2024-09-22 10:06:26.959182	2024-09-22 10:06:26.959182	0
+2483	1557	What variables can be used as mirror locations?	open	2024-09-22 10:06:26.961474	2024-09-22 10:06:26.961474	0
+2484	1557	What configuration variable defines the location where sources are downloaded?	open	2024-09-22 10:06:26.963472	2024-09-22 10:06:26.963472	0
+2485	1557	Use checksums to verify integrity of a package?	open	2024-09-22 10:06:26.96564	2024-09-22 10:06:26.96564	0
+2486	1557	What variable is used to locate source files with file scheme?	open	2024-09-22 10:06:26.968076	2024-09-22 10:06:26.968076	0
+2487	1557	What paths are automatically appended to <code>FILESPATH</code>?	open	2024-09-22 10:06:26.970001	2024-09-22 10:06:26.970001	0
+2488	1557	What does <code>FILESOVERRIDES</code> variable contain?	open	2024-09-22 10:06:26.971933	2024-09-22 10:06:26.971933	0
+2489	1557	What variables defines the source files location?	open	2024-09-22 10:06:26.974296	2024-09-22 10:06:26.974296	0
+2490	1557	What variable defines the license files location?	open	2024-09-22 10:06:26.97675	2024-09-22 10:06:26.97675	0
+2491	1557	What variable defines build-time dependencies of a recipe?	open	2024-09-22 10:06:26.978648	2024-09-22 10:06:26.978648	0
+2495	1558	What are the default tasks?	open	2024-09-22 10:06:26.986927	2024-09-22 10:06:26.986927	0
+2496	1558	Get a list of existing tasks from a recipe?	open	2024-09-22 10:06:26.988803	2024-09-22 10:06:26.988803	0
+2497	1558	What variable defines the location of generated objects during build?	open	2024-09-22 10:06:26.990674	2024-09-22 10:06:26.990674	0
+2498	1558	What variable defines the location where files are installed?	open	2024-09-22 10:06:26.992512	2024-09-22 10:06:26.992512	0
+2499	1558	What variable points to the working directory of recipe?	open	2024-09-22 10:06:26.994367	2024-09-22 10:06:26.994367	0
+2500	1558	What is the general syntax of a task?	open	2024-09-22 10:06:26.996427	2024-09-22 10:06:26.996427	0
+2501	1558	What each of default tasks work on which location variables?	open	2024-09-22 10:06:26.998409	2024-09-22 10:06:26.998409	0
+2502	1558	Add a task in a recipe?	open	2024-09-22 10:06:27.00027	2024-09-22 10:06:27.00027	0
+2503	1559	Take the precedence of gcc arguments without making patches?	open	2024-09-22 10:06:27.002413	2024-09-22 10:06:27.002413	0
+2504	1559	Which files are always applied after sources are fetched and extracted?	open	2024-09-22 10:06:27.004577	2024-09-22 10:06:27.004577	0
+2505	1559	Specify a tool to patch the sources listed in <code>SRC_URI</code>	open	2024-09-22 10:06:27.006869	2024-09-22 10:06:27.006869	0
+2506	1559	Specify how to resolve a conflict in patch?	open	2024-09-22 10:06:27.009292	2024-09-22 10:06:27.009292	0
+2507	1559	Write a recipe to install an program from GitHub?	open	2024-09-22 10:06:27.011378	2024-09-22 10:06:27.011378	0
+2508	1559	Write a version agnostic include file for a custom program?	open	2024-09-22 10:06:27.013177	2024-09-22 10:06:27.013177	0
+2509	1559	Use a version agnostic include file in a recipe?	open	2024-09-22 10:06:27.01514	2024-09-22 10:06:27.01514	0
+2510	1559	Where the run and log files are located?	open	2024-09-22 10:06:27.017288	2024-09-22 10:06:27.017288	0
+2511	1559	Get the value of a variable used in a recipe?	open	2024-09-22 10:06:27.019242	2024-09-22 10:06:27.019242	0
+2512	1559	List the entire environment variables in poky?	open	2024-09-22 10:06:27.020853	2024-09-22 10:06:27.020853	0
+2438	1553	Locate a recipe file?	open	2024-09-22 10:06:26.862921	2024-09-22 10:06:26.862921	0
+2454	1553	Run a specific bitbake recipe?	open	2024-09-22 10:06:26.896584	2024-09-22 10:06:26.896584	0
+2455	1553	Run a specific task in a bitbake recipe?	open	2024-09-22 10:06:26.899199	2024-09-22 10:06:26.899199	0
+2456	1553	List all recipes?	open	2024-09-22 10:06:26.901655	2024-09-22 10:06:26.901655	0
+2457	1553	List all tasks within a recipe?	open	2024-09-22 10:06:26.904011	2024-09-22 10:06:26.904011	0
+2458	1553	Force bitbake to run a recipe regardless of previous runs?	open	2024-09-22 10:06:26.906358	2024-09-22 10:06:26.906358	0
+2459	1553	What bitbake target can be used to build all recipes?	open	2024-09-22 10:06:26.908528	2024-09-22 10:06:26.908528	0
+2460	1553	Run a specific task for all recipes?	open	2024-09-22 10:06:26.910467	2024-09-22 10:06:26.910467	0
+2461	1553	What is the naming pattern of tasks in recipes?	open	2024-09-22 10:06:26.912302	2024-09-22 10:06:26.912302	0
+2462	1553	What are the common tasks found in recipes?	open	2024-09-22 10:06:26.914375	2024-09-22 10:06:26.914375	0
+2463	1553	Run a specific task for all recipes of an image?	open	2024-09-22 10:06:26.916558	2024-09-22 10:06:26.916558	0
+2469	1554	What does a recipe do?	open	2024-09-22 10:06:26.928782	2024-09-22 10:06:26.928782	0
+2470	1554	What steps do recipes define?	open	2024-09-22 10:06:26.930673	2024-09-22 10:06:26.930673	0
+2471	1554	What is the pattern in recipe file names?	open	2024-09-22 10:06:26.932745	2024-09-22 10:06:26.932745	0
+2472	1554	What is the output of a recipe?	open	2024-09-22 10:06:26.934843	2024-09-22 10:06:26.934843	0
+2473	1554	What a recipe is made of?	open	2024-09-22 10:06:26.936776	2024-09-22 10:06:26.936776	0
+2513	1559	List the environment variables of a recipe?	open	2024-09-22 10:06:27.022834	2024-09-22 10:06:27.022834	0
+2514	1559	Extend a recipe in third-party layers?	open	2024-09-22 10:06:27.025138	2024-09-22 10:06:27.025138	0
+2515	1559	What are the considerations of extending a recipe?	open	2024-09-22 10:06:27.027948	2024-09-22 10:06:27.027948	0
+2517	1559	Extend a task?	open	2024-09-22 10:06:27.033461	2024-09-22 10:06:27.033461	0
+2518	1560	Use a class in a custome recipe?	open	2024-09-22 10:06:27.035993	2024-09-22 10:06:27.035993	0
+2519	1560	What are the common classes?	open	2024-09-22 10:06:27.037848	2024-09-22 10:06:27.037848	0
+2520	1560	Which class is automatically inherited by all recipes?	open	2024-09-22 10:06:27.039712	2024-09-22 10:06:27.039712	0
+2521	1560	What common tasks are defaulted by base class?	open	2024-09-22 10:06:27.042298	2024-09-22 10:06:27.042298	0
+2522	1560	Where is <code>EXTRA_OEMAKE</code> useful?	open	2024-09-22 10:06:27.044257	2024-09-22 10:06:27.044257	0
+2523	1560	What does kernel class do?	open	2024-09-22 10:06:27.046382	2024-09-22 10:06:27.046382	0
+2524	1560	What does autotools class do?	open	2024-09-22 10:06:27.048528	2024-09-22 10:06:27.048528	0
+2525	1560	What does useradd class do?	open	2024-09-22 10:06:27.051225	2024-09-22 10:06:27.051225	0
+2526	1560	Which variable can be used to specify the packages that require their own users?	open	2024-09-22 10:06:27.053324	2024-09-22 10:06:27.053324	0
+2527	1560	Which class should be used when we need to install pre-built files into the generated root filesystem?	open	2024-09-22 10:06:27.055826	2024-09-22 10:06:27.055826	0
+2528	1561	Which variables is used to find the files to be included?	open	2024-09-22 10:06:27.057753	2024-09-22 10:06:27.057753	0
+2529	1561	What keywords are used to include files from recipes?	open	2024-09-22 10:06:27.059945	2024-09-22 10:06:27.059945	0
+2530	1561	How does inheriting in configuration files work?	open	2024-09-22 10:06:27.062135	2024-09-22 10:06:27.062135	0
+2531	1561	What is the difference between <code>include</code> and <code>require</code>?	open	2024-09-22 10:06:27.064288	2024-09-22 10:06:27.064288	0
+2532	1561	Debug build failures by using a development shell?	open	2024-09-22 10:06:27.066709	2024-09-22 10:06:27.066709	0
+2533	1561	Differenciate two builds?	open	2024-09-22 10:06:27.06979	2024-09-22 10:06:27.06979	0
+2534	1561	What locations are used by bitbake to retrieve files?	open	2024-09-22 10:06:27.073782	2024-09-22 10:06:27.073782	0
+2535	1561	Export full environment to a shell to debug a build?	open	2024-09-22 10:06:27.075651	2024-09-22 10:06:27.075651	0
+2536	1561	Enable build history to differenciate between two builds?	open	2024-09-22 10:06:27.077857	2024-09-22 10:06:27.077857	0
+2537	1561	Check the difference between two builds?	open	2024-09-22 10:06:27.079721	2024-09-22 10:06:27.079721	0
+2538	1561	Which class can be used to add mirrors?	open	2024-09-22 10:06:27.082295	2024-09-22 10:06:27.082295	0
+2544	1562	What is the convention in naming layers?	open	2024-09-22 10:06:27.094913	2024-09-22 10:06:27.094913	0
+2545	1562	What do layers isolate within their boundaries?	open	2024-09-22 10:06:27.096769	2024-09-22 10:06:27.096769	0
+2546	1562	What are the common layers in Poky?	open	2024-09-22 10:06:27.099389	2024-09-22 10:06:27.099389	0
+2547	1562	Where is the list of maintained layers?	open	2024-09-22 10:06:27.101606	2024-09-22 10:06:27.101606	0
+2548	1562	Where are the bitbake layers located?	open	2024-09-22 10:06:27.10355	2024-09-22 10:06:27.10355	0
+2549	1562	Include another layer?	open	2024-09-22 10:06:27.105798	2024-09-22 10:06:27.105798	0
+2558	1563	Which metadata files are parsed by bitbake automatically?	open	2024-09-22 10:06:27.124949	2024-09-22 10:06:27.124949	0
+2559	1563	Define a new layer dependency?	open	2024-09-22 10:06:27.126807	2024-09-22 10:06:27.126807	0
+2560	1563	Specify which yocto version a layer is compatible with?	open	2024-09-22 10:06:27.128801	2024-09-22 10:06:27.128801	0
+2561	1563	What is a BSP layer?	open	2024-09-22 10:06:27.131033	2024-09-22 10:06:27.131033	0
+2562	1563	What are the machine configurations in a BSP layers?	open	2024-09-22 10:06:27.133818	2024-09-22 10:06:27.133818	0
+2563	1563	What configuration variable is used to describe target machine architecture?	open	2024-09-22 10:06:27.135929	2024-09-22 10:06:27.135929	0
+2564	1563	What configuration variable is used to describe target kernel?	open	2024-09-22 10:06:27.13788	2024-09-22 10:06:27.13788	0
+2565	1563	What configuration variable is used to describe target machine features?	open	2024-09-22 10:06:27.139796	2024-09-22 10:06:27.139796	0
+2566	1563	What configuration variable is used to describe the serial console used to attach to target devide?	open	2024-09-22 10:06:27.141652	2024-09-22 10:06:27.141652	0
+2567	1563	What configuration variable is used to describe the target kernel image type?	open	2024-09-22 10:06:27.143825	2024-09-22 10:06:27.143825	0
+2575	1564	In how many ways the kernel can be built with yocto?	open	2024-09-22 10:06:27.160797	2024-09-22 10:06:27.160797	0
+2576	1564	Use <code>linux-yocto</code> to build a specific kernel in an image?	open	2024-09-22 10:06:27.163108	2024-09-22 10:06:27.163108	0
+2577	1564	What is the advanced metadata?	open	2024-09-22 10:06:27.165612	2024-09-22 10:06:27.165612	0
+2578	1564	What is a Kernel Metadata?	open	2024-09-22 10:06:27.168342	2024-09-22 10:06:27.168342	0
+2579	1564	Write a simple kernel metadata specifying a configuration and a patch?	open	2024-09-22 10:06:27.170754	2024-09-22 10:06:27.170754	0
+2580	1564	What is advantage of creating a distribution layer?	open	2024-09-22 10:06:27.172827	2024-09-22 10:06:27.172827	0
+2581	1564	Where is the configuration for a distro layer?	open	2024-09-22 10:06:27.17469	2024-09-22 10:06:27.17469	0
+2582	1564	What configuration variable is mandatory in a distro layer config file?	open	2024-09-22 10:06:27.176714	2024-09-22 10:06:27.176714	0
+2583	1564	What informational configuration variables are used in a distro layer config file?	open	2024-09-22 10:06:27.179003	2024-09-22 10:06:27.179003	0
+2584	1564	What configuration variable is used in distro layers to toggle features?	open	2024-09-22 10:06:27.180961	2024-09-22 10:06:27.180961	0
+2585	1564	What configuration variable holds the intersection of distro and machine features?	open	2024-09-22 10:06:27.183154	2024-09-22 10:06:27.183154	0
+2586	1564	Define a toolchain in a distro layer?	open	2024-09-22 10:06:27.185724	2024-09-22 10:06:27.185724	0
+2587	1564	What sample files are created in distro layers?	open	2024-09-22 10:06:27.18779	2024-09-22 10:06:27.18779	0
+2588	1564	What configuration variable holds the path to sample config files?	open	2024-09-22 10:06:27.190291	2024-09-22 10:06:27.190291	0
+2589	1565	What is an image?	open	2024-09-22 10:06:27.192416	2024-09-22 10:06:27.192416	0
+2590	1565	What is the difference between an image and a machine layer?	open	2024-09-22 10:06:27.194452	2024-09-22 10:06:27.194452	0
+2591	1565	Where is the location of images?	open	2024-09-22 10:06:27.196265	2024-09-22 10:06:27.196265	0
+2592	1565	What are the common images used in poky?	open	2024-09-22 10:06:27.198741	2024-09-22 10:06:27.198741	0
+2593	1565	What an image is made of?	open	2024-09-22 10:06:27.201185	2024-09-22 10:06:27.201185	0
+2594	1565	What class is inherited by images?	open	2024-09-22 10:06:27.203197	2024-09-22 10:06:27.203197	0
+2595	1565	What configuration variable is used in an image as the generated image name?	open	2024-09-22 10:06:27.20516	2024-09-22 10:06:27.20516	0
+2596	1565	What configuration variable is used in an image to hold the list of packages to be installed?	open	2024-09-22 10:06:27.207106	2024-09-22 10:06:27.207106	0
+2597	1565	What configuration variable is used in an image as the root filesystem size?	open	2024-09-22 10:06:27.208852	2024-09-22 10:06:27.208852	0
+2598	1565	What configuration variable is used in an image to hold the list of features used in the image?	open	2024-09-22 10:06:27.210725	2024-09-22 10:06:27.210725	0
+2599	1565	What configuration variable is used in an image to hold the list of formats to be used to create the image?	open	2024-09-22 10:06:27.21256	2024-09-22 10:06:27.21256	0
+2600	1565	What configuration variable is used in an image to hold the list of locales to be supported?	open	2024-09-22 10:06:27.2145	2024-09-22 10:06:27.2145	0
+2601	1565	What configuration variable is used in an image as the package type used by the build system?	open	2024-09-22 10:06:27.216646	2024-09-22 10:06:27.216646	0
+2602	1565	What configuration variable is used in an image as shell commands to run at post process?	open	2024-09-22 10:06:27.218739	2024-09-22 10:06:27.218739	0
+2603	1565	What configuration variable is used in an image as recipes to be built with the image?	open	2024-09-22 10:06:27.220622	2024-09-22 10:06:27.220622	0
+2604	1565	What is the first steps of image creation?	open	2024-09-22 10:06:27.222942	2024-09-22 10:06:27.222942	0
+2605	1566	What variables change how root filesystem is created?	open	2024-09-22 10:06:27.225086	2024-09-22 10:06:27.225086	0
+2606	1566	Where are the root filesystem related files located in poky?	open	2024-09-22 10:06:27.227033	2024-09-22 10:06:27.227033	0
+2607	1566	Where are the image type instructions located?	open	2024-09-22 10:06:27.228933	2024-09-22 10:06:27.228933	0
+2687	1486	When do we need to specify template arguments for class templates?	open	2024-09-28 14:30:48.18392	2024-09-28 14:30:48.18392	0
+2688	1486	Use compile-time type deduction to declare a non-type template parameter?	open	2024-09-28 14:30:48.187622	2024-09-28 14:30:48.187622	0
+2620	1567	In what script languages can recipes be written?	open	2024-09-22 10:06:27.258774	2024-09-22 10:06:27.258774	0
+2621	1567	What Python modules are automatically included when used?	open	2024-09-22 10:06:27.26164	2024-09-22 10:06:27.26164	0
+2622	1567	Write an anonymous Python function in a recipe?	open	2024-09-22 10:06:27.263889	2024-09-22 10:06:27.263889	0
+2623	1567	Write an inline Python function in a recipe?	open	2024-09-22 10:06:27.266215	2024-09-22 10:06:27.266215	0
+2624	1567	Access <code>D</code> configuration variable in recipe tasks?	open	2024-09-22 10:06:27.269164	2024-09-22 10:06:27.269164	0
+2625	1567	What are the use cases of variable flags?	open	2024-09-22 10:06:27.271564	2024-09-22 10:06:27.271564	0
+2626	1567	What variable flag is used to store the result of md5 hash?	open	2024-09-22 10:06:27.273581	2024-09-22 10:06:27.273581	0
+2627	1567	What variable flag can be used to make a directory before a task runs?	open	2024-09-22 10:06:27.275724	2024-09-22 10:06:27.275724	0
+2628	1567	What variable flag can be used to disable the execution of the task?	open	2024-09-22 10:06:27.277557	2024-09-22 10:06:27.277557	0
+2629	1567	What variable flag can be used to disable timestamp modification each time a task runs?	open	2024-09-22 10:06:27.279504	2024-09-22 10:06:27.279504	0
+2642	1568	What configuration variable holds the list of packages to be built?	open	2024-09-22 10:06:27.311877	2024-09-22 10:06:27.311877	0
+2643	1568	What configuration variable allows to check dependencies?	open	2024-09-22 10:06:27.314251	2024-09-22 10:06:27.314251	0
+2644	1568	What configuration variable allows creation of empty packages?	open	2024-09-22 10:06:27.316931	2024-09-22 10:06:27.316931	0
+2645	1568	What configuration variable is used to prevent overwriting during the update process?	open	2024-09-22 10:06:27.319538	2024-09-22 10:06:27.319538	0
+2646	1568	What configuration variable lists the files to be included in a package?	open	2024-09-22 10:06:27.321883	2024-09-22 10:06:27.321883	0
+2647	1568	What configuration variable tracks the changes in licenses?	open	2024-09-22 10:06:27.324465	2024-09-22 10:06:27.324465	0
+2648	1568	Which recipes should contain licensing information?	open	2024-09-22 10:06:27.327062	2024-09-22 10:06:27.327062	0
+2649	1568	Specify which licenses cannot be integrated into the image?	open	2024-09-22 10:06:27.329821	2024-09-22 10:06:27.329821	0
+2650	1568	Define a license for commercial components?	open	2024-09-22 10:06:27.334467	2024-09-22 10:06:27.334467	0
+3356	1572	Install OpenCV from source?	open	2024-11-29 22:54:18.246075	2024-11-29 22:54:18.246075	0
+2651	1568	Where does bitbake generate the manifest of all licenses?	open	2024-09-22 10:06:27.337151	2024-09-22 10:06:27.337151	0
+2652	1568	Include the license manifest into the root filesystem?	open	2024-09-22 10:06:27.340114	2024-09-22 10:06:27.340114	0
+2653	1569	What tools does an SDK provide?	open	2024-09-22 10:06:27.342569	2024-09-22 10:06:27.342569	0
+2654	1569	What is the form of an SDK generated by poky?	open	2024-09-22 10:06:27.345425	2024-09-22 10:06:27.345425	0
+2655	1569	What SDK can be used to do low level development?	open	2024-09-22 10:06:27.34792	2024-09-22 10:06:27.34792	0
+2656	1569	Create a generic SDK for bootloader and kernel development?	open	2024-09-22 10:06:27.350954	2024-09-22 10:06:27.350954	0
+2657	1569	Where will be the generated generic SDK stored?	open	2024-09-22 10:06:27.353524	2024-09-22 10:06:27.353524	0
+2658	1569	What SDK can be used to develop applications running on a target?	open	2024-09-22 10:06:27.356	2024-09-22 10:06:27.356	0
+2659	1569	What task is responsible for generating an SDK?	open	2024-09-22 10:06:27.358434	2024-09-22 10:06:27.358434	0
+2660	1569	Generate an SDK for an image?	open	2024-09-22 10:06:27.360877	2024-09-22 10:06:27.360877	0
+2661	1569	What configuration variables control what will be installed in an SDK?	open	2024-09-22 10:06:27.364051	2024-09-22 10:06:27.364051	0
+2662	1569	Install an SDK?	open	2024-09-22 10:06:27.367128	2024-09-22 10:06:27.367128	0
+2663	1569	Use an installed SDK?	open	2024-09-22 10:06:27.37016	2024-09-22 10:06:27.37016	0
+2664	1569	What environment variables will be exported by an SDK?	open	2024-09-22 10:06:27.37292	2024-09-22 10:06:27.37292	0
+2667	1570	What are the advantages of using devtool?	open	2024-09-22 10:06:27.380755	2024-09-22 10:06:27.380755	0
+2668	1570	Where is devtool located?	open	2024-09-22 10:06:27.383352	2024-09-22 10:06:27.383352	0
+2669	1570	Where does devtool manage sources?	open	2024-09-22 10:06:27.386335	2024-09-22 10:06:27.386335	0
+2670	1570	Create a new recipe with devtool?	open	2024-09-22 10:06:27.388743	2024-09-22 10:06:27.388743	0
+2671	1570	Modify a recipe with devtool?	open	2024-09-22 10:06:27.3911	2024-09-22 10:06:27.3911	0
+2672	1570	Upgrade a recipe with devtool?	open	2024-09-22 10:06:27.393414	2024-09-22 10:06:27.393414	0
+2673	1570	Edit a recipe with an editor using devtool?	open	2024-09-22 10:06:27.395933	2024-09-22 10:06:27.395933	0
+2674	1570	Build a recipe with devtool?	open	2024-09-22 10:06:27.398504	2024-09-22 10:06:27.398504	0
+2675	1570	Build an image with the additional devtool recipes?	open	2024-09-22 10:06:27.401275	2024-09-22 10:06:27.401275	0
+2676	1570	Upload the recipes packages to the target using devtool?	open	2024-09-22 10:06:27.403819	2024-09-22 10:06:27.403819	0
+2677	1570	Generate patches from git commits made locally with devtool?	open	2024-09-22 10:06:27.406359	2024-09-22 10:06:27.406359	0
+2678	1570	Remove a recipe from devtool?	open	2024-09-22 10:06:27.408624	2024-09-22 10:06:27.408624	0
+2689	1486	What is the substitution to recurring templates?	open	2024-09-28 14:30:48.189625	2024-09-28 14:30:48.189625	0
+2690	1486	What is the initializer list defect when initializing an integer?	open	2024-09-28 14:30:48.191659	2024-09-28 14:30:48.191659	0
+2691	1486	Declare a compile-time evaluated lambda?	open	2024-09-28 14:30:48.19355	2024-09-28 14:30:48.19355	0
+2692	1486	What is the smallest character code?	open	2024-09-28 14:30:48.195565	2024-09-28 14:30:48.195565	0
+2693	1486	Capture <code>this</code> in a lambda by value?	open	2024-09-28 14:30:48.197539	2024-09-28 14:30:48.197539	0
+2694	1486	Declare an inline variable?	open	2024-09-28 14:30:48.198851	2024-09-28 14:30:48.198851	0
+2695	1486	Define nested namespaces?	open	2024-09-28 14:30:48.200018	2024-09-28 14:30:48.200018	0
+2696	1486	Store the return values of a function into structured bindings?	open	2024-09-28 14:30:48.201296	2024-09-28 14:30:48.201296	0
+2697	1486	Initialize a variable used for evaluation in an if statement within the statement?	open	2024-09-28 14:30:48.202394	2024-09-28 14:30:48.202394	0
+2698	1486	Use compile-time if statement to check if template argument is integral, string, or a base of an object?	open	2024-09-28 14:30:48.203705	2024-09-28 14:30:48.203705	0
+2699	1486	Write a hexadecimal floating-point literal number?	open	2024-09-28 14:30:48.205002	2024-09-28 14:30:48.205002	0
+2700	1486	Direct initialize an enumeration?	open	2024-09-28 14:30:48.206308	2024-09-28 14:30:48.206308	0
+2701	1486	Explicitly specify fallthrough of a case in switch statement?	open	2024-09-28 14:30:48.207819	2024-09-28 14:30:48.207819	0
+2702	1486	Prevent function caller from discarding the return value?	open	2024-09-28 14:30:48.209214	2024-09-28 14:30:48.209214	0
+2703	1486	Specify that a variable is intentionally left unused?	open	2024-09-28 14:30:48.210575	2024-09-28 14:30:48.210575	0
+2704	1486	Write a static assertion without a message?	open	2024-09-28 14:30:48.211926	2024-09-28 14:30:48.211926	0
+2705	1487	How many assertion variations exist?	open	2024-10-05 21:49:48.999396	2024-10-05 21:49:48.999396	0
+2706	1487	Provide a custom failure message to an assertion?	open	2024-10-05 21:49:49.004871	2024-10-05 21:49:49.004871	0
+2707	1487	What string types are allowed to extract into assertions?	open	2024-10-05 21:49:49.007897	2024-10-05 21:49:49.007897	0
+2708	1487	Define a test unit with a comparison for equality?	open	2024-10-05 21:49:49.010461	2024-10-05 21:49:49.010461	0
+2709	1487	When does a test fail?	open	2024-10-05 21:49:49.013626	2024-10-05 21:49:49.013626	0
+2710	1487	What are the arguments of a test unit?	open	2024-10-05 21:49:49.01656	2024-10-05 21:49:49.01656	0
+2711	1487	What testing feature can be used to share data between multiple tests?	open	2024-10-05 21:49:49.019906	2024-10-05 21:49:49.019906	0
+2712	1487	Write a test case that uses a fixture?	open	2024-10-05 21:49:49.021985	2024-10-05 21:49:49.021985	0
+2713	1487	What is the naming convention of test fixtures?	open	2024-10-05 21:49:49.024014	2024-10-05 21:49:49.024014	0
+2714	1487	What is the lifetime of a fixture?	open	2024-10-05 21:49:49.026181	2024-10-05 21:49:49.026181	0
+2715	1487	Define a test fixture for Queue class?	open	2024-10-05 21:49:49.028012	2024-10-05 21:49:49.028012	0
+2716	1487	What are the advantages of using constructor over <code>SetUp()</code> virtual function?	open	2024-10-05 21:49:49.030268	2024-10-05 21:49:49.030268	0
+2717	1487	What are the advantages of using <code>SetUp()</code> virtual function over constructor?	open	2024-10-05 21:49:49.032816	2024-10-05 21:49:49.032816	0
+2718	1487	What are the advantages of using <code>TearDown()</code> virtual function over destructor?	open	2024-10-05 21:49:49.035058	2024-10-05 21:49:49.035058	0
+2719	1487	Initialize tests by parsing arguments?	open	2024-10-05 21:49:49.037389	2024-10-05 21:49:49.037389	0
+2720	1487	What function macro is used to run tests across all linking units?	open	2024-10-05 21:49:49.039645	2024-10-05 21:49:49.039645	0
+2721	1487	What is the preferred way of building and running tests?	open	2024-10-05 21:49:49.041441	2024-10-05 21:49:49.041441	0
+2722	1487	Write a test entry point?	open	2024-10-05 21:49:49.04342	2024-10-05 21:49:49.04342	0
+2723	1487	When should we write manual main function for tests?	open	2024-10-05 21:49:49.045297	2024-10-05 21:49:49.045297	0
+2724	1487	What are the limitations of using GoogleTest assertions in threads?	open	2024-10-05 21:49:49.047751	2024-10-05 21:49:49.047751	0
+2682	1464	What is the responsibility of OpenGL?	open	2024-09-23 20:32:01.29794	2024-09-23 20:32:01.29794	0
+2683	1464	What cross-platform window systems are available to use with OpenGL?	open	2024-09-23 20:32:01.300609	2024-09-23 20:32:01.300609	0
+2684	1464	Install GLFW from source?	open	2024-09-23 20:32:01.303471	2024-09-23 20:32:01.303471	0
+2685	1464	Create a window with GLFW?	open	2024-09-23 20:32:01.305907	2024-09-23 20:32:01.305907	0
+2686	1464	Draw a colored triangle?	open	2024-09-23 20:32:01.308282	2024-09-23 20:32:01.308282	0
+2777	1489	What is a mock?	open	2024-10-07 21:15:43.789371	2024-10-07 21:15:43.789371	0
+2778	1489	What is the workflow of running a mock object?	open	2024-10-07 21:15:43.802311	2024-10-07 21:15:43.802311	0
+2779	1489	What are the use cases of mocks?	open	2024-10-07 21:15:43.805209	2024-10-07 21:15:43.805209	0
+2780	1489	Write a mock for Queue class?	open	2024-10-07 21:15:43.80856	2024-10-07 21:15:43.80856	0
+2781	1489	Use a MockQueue in a test?	open	2024-10-07 21:15:43.811555	2024-10-07 21:15:43.811555	0
+2782	1489	What is the ordering of mock expectation calls?	open	2024-10-07 21:15:43.814194	2024-10-07 21:15:43.814194	0
+2783	1489	What is the general syntax of a mock?	open	2024-10-07 21:15:43.81707	2024-10-07 21:15:43.81707	0
+2784	1489	Where matchers are used in mocks?	open	2024-10-07 21:15:43.819084	2024-10-07 21:15:43.819084	0
+2785	1489	Specify an expectation for a mock that the argument given to its method will be at least 100?	open	2024-10-07 21:15:43.821039	2024-10-07 21:15:43.821039	0
+2786	1489	Ignore an argument when it is not in our interest when it is passed to a mock method?	open	2024-10-07 21:15:43.8235	2024-10-07 21:15:43.8235	0
+2787	1489	What is a cardinality in mock functions?	open	2024-10-07 21:15:43.82559	2024-10-07 21:15:43.82559	0
+2788	1489	Specify a method in a mock that should never be called?	open	2024-10-07 21:15:43.827379	2024-10-07 21:15:43.827379	0
+2789	1489	What is the cardinality of a mock when <code>Times()</code> is omitted?	open	2024-10-07 21:15:43.829476	2024-10-07 21:15:43.829476	0
+2790	1489	What is the default behavior of gMock when a mock function returns?	open	2024-10-07 21:15:43.831777	2024-10-07 21:15:43.831777	0
+2791	1489	Specify the return value of mock function for three calls?	open	2024-10-07 21:15:43.833462	2024-10-07 21:15:43.833462	0
+2792	1489	Specify the return value of a mock function for indefinite calls?	open	2024-10-07 21:15:43.835579	2024-10-07 21:15:43.835579	0
+2793	1489	What happens if the cardinality is bigger than the specified return occurrances?	open	2024-10-07 21:15:43.837436	2024-10-07 21:15:43.837436	0
+2794	1489	In what order expectations are searched?	open	2024-10-07 21:15:43.839435	2024-10-07 21:15:43.839435	0
+2795	1489	Specify multiple expectations for a mock function?	open	2024-10-07 21:15:43.84192	2024-10-07 21:15:43.84192	0
+2796	1489	What is the best practice in ordering of multiple expectations?	open	2024-10-07 21:15:43.844194	2024-10-07 21:15:43.844194	0
+2797	1489	Verify that the call to a series of mock functions are in a specific order?	open	2024-10-07 21:15:43.846818	2024-10-07 21:15:43.846818	0
+2798	1489	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	open	2024-10-07 21:15:43.848771	2024-10-07 21:15:43.848771	0
+2799	1489	What are the downsides of expectations being sticky?	open	2024-10-07 21:15:43.85086	2024-10-07 21:15:43.85086	0
+2800	1489	Specify a series of expectations that retire after reaching invocation upper bounds?	open	2024-10-07 21:15:43.85282	2024-10-07 21:15:43.85282	0
+2801	608	How many components does CMake have?	open	2024-10-12 15:54:52.704786	2024-10-12 15:54:52.704786	0
+2802	608	How many graphical interfaces officially exists for cmake?	open	2024-10-12 15:54:52.711731	2024-10-12 15:54:52.711731	0
+2803	608	Install Cmake?	open	2024-10-12 15:54:52.713577	2024-10-12 15:54:52.713577	0
+2804	608	Configure and build a project?	open	2024-10-12 15:54:52.715244	2024-10-12 15:54:52.715244	0
+2805	608	What are the artifacts of CMake configuration stage?	open	2024-10-12 15:54:52.716774	2024-10-12 15:54:52.716774	0
+2806	608	Write a minimal CMake listfile?	open	2024-10-12 15:54:52.71834	2024-10-12 15:54:52.71834	0
+2807	608	What are the stages of building by cmake?	open	2024-10-12 15:54:52.719957	2024-10-12 15:54:52.719957	0
+2808	608	Specify which generator should be used in build?	open	2024-10-12 15:54:52.721072	2024-10-12 15:54:52.721072	0
+2809	608	Where is the source directory?	open	2024-10-12 15:54:52.722152	2024-10-12 15:54:52.722152	0
+2810	608	What is the definition of a project in CMake?	open	2024-10-12 15:54:52.723376	2024-10-12 15:54:52.723376	0
+2811	608	What variable holds the project name?	open	2024-10-12 15:54:52.724375	2024-10-12 15:54:52.724375	0
+2812	608	Determine if the project is the top level project?	open	2024-10-12 15:54:52.725279	2024-10-12 15:54:52.725279	0
+2813	608	What variable holds project description?	open	2024-10-12 15:54:52.726169	2024-10-12 15:54:52.726169	0
+2814	608	What variables hold project version information?	open	2024-10-12 15:54:52.727277	2024-10-12 15:54:52.727277	0
+2815	608	Declare and initialize a variable?	open	2024-10-12 15:54:52.72814	2024-10-12 15:54:52.72814	0
+2816	608	Clear a variable?	open	2024-10-12 15:54:52.729055	2024-10-12 15:54:52.729055	0
+2817	608	Reference a variable?	open	2024-10-12 15:54:52.729983	2024-10-12 15:54:52.729983	0
+2818	608	Reference two nested variables?	open	2024-10-12 15:54:52.730984	2024-10-12 15:54:52.730984	0
+2819	608	How many scopes exist?	open	2024-10-12 15:54:52.73233	2024-10-12 15:54:52.73233	0
+2820	608	Make variable visible to its parent scope?	open	2024-10-12 15:54:52.733309	2024-10-12 15:54:52.733309	0
+2821	1447	How many execution modes exist in CMake?	open	2024-10-12 22:35:28.020789	2024-10-12 22:35:28.020789	0
+2822	1447	What case sensitivity does CMake follow for writing commands?	open	2024-10-12 22:35:28.027395	2024-10-12 22:35:28.027395	0
+2823	1447	What is the syntax of a comment in CMake listfiles?	open	2024-10-12 22:35:28.032034	2024-10-12 22:35:28.032034	0
+2824	1447	How many types of arguments exist in CMake?	open	2024-10-12 22:35:28.037216	2024-10-12 22:35:28.037216	0
+2900	1506	Get the list of environment variables?	open	2024-10-13 09:59:13.363492	2024-10-13 09:59:13.363492	0
+2763	1538	Write a wildcard matcher?	open	2024-10-05 21:49:49.139994	2024-10-05 21:49:49.139994	0
+2764	1538	What arithmetic comparison matchers exist?	open	2024-10-05 21:49:49.14252	2024-10-05 21:49:49.14252	0
+2765	1538	What boolean comparison matchers exist?	open	2024-10-05 21:49:49.144529	2024-10-05 21:49:49.144529	0
+2766	1538	What pointer comparison matchers exist?	open	2024-10-05 21:49:49.146696	2024-10-05 21:49:49.146696	0
+2767	1538	What matcher exists to check for returned <code>std::optional<></code> object?	open	2024-10-05 21:49:49.1492	2024-10-05 21:49:49.1492	0
+2768	1538	What matcher exists to check for returneed <code>std::variant<></code> object?	open	2024-10-05 21:49:49.151739	2024-10-05 21:49:49.151739	0
+2769	1538	What matcher should be used when given argument is a reference?	open	2024-10-05 21:49:49.153779	2024-10-05 21:49:49.153779	0
+2770	1538	What matcher can be used when testing a function template?	open	2024-10-05 21:49:49.155866	2024-10-05 21:49:49.155866	0
+2771	1538	What value category is used in matchers to take arguments?	open	2024-10-05 21:49:49.158001	2024-10-05 21:49:49.158001	0
+2773	1538	What matchers exist for comparing equality of doubles?	open	2024-10-05 21:49:49.162266	2024-10-05 21:49:49.162266	0
+2825	1447	How many variable categories exist in CMake?	open	2024-10-12 22:35:28.041045	2024-10-12 22:35:28.041045	0
+2826	1447	Are CMake variables case sensitivity?	open	2024-10-12 22:35:28.04595	2024-10-12 22:35:28.04595	0
+2827	1447	What is the default type of variables in CMake?	open	2024-10-12 22:35:28.049143	2024-10-12 22:35:28.049143	0
+2828	1447	What are the basic variable manipulation commands in CMake?	open	2024-10-12 22:35:28.051866	2024-10-12 22:35:28.051866	0
+2829	1447	Create a normal CMake variable?	open	2024-10-12 22:35:28.05473	2024-10-12 22:35:28.05473	0
+2830	1447	Remove a normal CMake variable?	open	2024-10-12 22:35:28.057009	2024-10-12 22:35:28.057009	0
+2831	1447	What is the syntax of referencing a CMake variable?	open	2024-10-12 22:35:28.059294	2024-10-12 22:35:28.059294	0
+2832	1447	What is the syntax of referencing a CMake environment variable?	open	2024-10-12 22:35:28.062256	2024-10-12 22:35:28.062256	0
+2833	1447	What is the syntax of referencing a CMake cache variable?	open	2024-10-12 22:35:28.064931	2024-10-12 22:35:28.064931	0
+2834	1447	How does CMake traverse scopes to reference a variable?	open	2024-10-12 22:35:28.068765	2024-10-12 22:35:28.068765	0
+2835	1447	What variable will be changed when assigning a value to a variable reference instead of a variable name in CMake listfile?	open	2024-10-12 22:35:28.071496	2024-10-12 22:35:28.071496	0
+2836	1447	What is the precedence of CMake variable evaluation in different variable categories?	open	2024-10-12 22:35:28.074077	2024-10-12 22:35:28.074077	0
+2837	1447	What normal variables are defined as arguments passed to CMake?	open	2024-10-12 22:35:28.077101	2024-10-12 22:35:28.077101	0
+2838	1447	What are the CMake environment variables coming from?	open	2024-10-12 22:35:28.079967	2024-10-12 22:35:28.079967	0
+2839	1447	What is the lifetime of CMake environment variables?	open	2024-10-12 22:35:28.082223	2024-10-12 22:35:28.082223	0
+2840	1447	What is the lifetime of CMake cache variables?	open	2024-10-12 22:35:28.085243	2024-10-12 22:35:28.085243	0
+2841	1447	Define a CMake cache variable?	open	2024-10-12 22:35:28.089679	2024-10-12 22:35:28.089679	0
+2842	1447	What variable types exist for CMake cache variables?	open	2024-10-12 22:35:28.093746	2024-10-12 22:35:28.093746	0
+2843	1447	How many scopes exist in CMake?	open	2024-10-12 22:35:28.096389	2024-10-12 22:35:28.096389	0
+2844	1447	What is the difference between inner and outer CMake scopes?	open	2024-10-12 22:35:28.099357	2024-10-12 22:35:28.099357	0
+2845	1447	Which CMake commands create file scopes?	open	2024-10-12 22:35:28.102631	2024-10-12 22:35:28.102631	0
+2846	1447	Create a new block in a CMake listfile?	open	2024-10-12 22:35:28.107124	2024-10-12 22:35:28.107124	0
+2847	1447	Propagate a variable in a block to the outer scope in a CMake listfile?	open	2024-10-12 22:35:28.111272	2024-10-12 22:35:28.111272	0
+2848	1447	How does a CMake list store its values?	open	2024-10-12 22:35:28.113503	2024-10-12 22:35:28.113503	0
+2849	1447	Create a list?	open	2024-10-12 22:35:28.115904	2024-10-12 22:35:28.115904	0
+2850	1447	What happens when an unquoted list is passed as a parameter?	open	2024-10-12 22:35:28.119902	2024-10-12 22:35:28.119902	0
+2851	1447	Print the elements of a list?	open	2024-10-12 22:35:28.124496	2024-10-12 22:35:28.124496	0
+2852	1447	Get the size of a list?	open	2024-10-12 22:35:28.127098	2024-10-12 22:35:28.127098	0
+2853	1447	Get the value of a particular element in the list?	open	2024-10-12 22:35:28.129277	2024-10-12 22:35:28.129277	0
+2854	1447	Combine two lists?	open	2024-10-12 22:35:28.131498	2024-10-12 22:35:28.131498	0
+2855	1447	Extract a range of elements within a list?	open	2024-10-12 22:35:28.133847	2024-10-12 22:35:28.133847	0
+2856	1447	Find an element within a list?	open	2024-10-12 22:35:28.136384	2024-10-12 22:35:28.136384	0
+2857	1447	Push elements into a list?	open	2024-10-12 22:35:28.138929	2024-10-12 22:35:28.138929	0
+2858	1447	Filter elements within a list?	open	2024-10-12 22:35:28.141278	2024-10-12 22:35:28.141278	0
+2859	1447	Insert elements into a list?	open	2024-10-12 22:35:28.143714	2024-10-12 22:35:28.143714	0
+2860	1447	Pop the last element within a list?	open	2024-10-12 22:35:28.145954	2024-10-12 22:35:28.145954	0
+2861	1447	Pop the first element within a list?	open	2024-10-12 22:35:28.148114	2024-10-12 22:35:28.148114	0
+2862	1447	Push an element at the beginning of a list?	open	2024-10-12 22:35:28.150413	2024-10-12 22:35:28.150413	0
+2863	1447	Remove an element by value from a list?	open	2024-10-12 22:35:28.152913	2024-10-12 22:35:28.152913	0
+2864	1447	Remove an element by index from a list?	open	2024-10-12 22:35:28.155525	2024-10-12 22:35:28.155525	0
+2865	1447	Remove duplicate entries of a list?	open	2024-10-12 22:35:28.158191	2024-10-12 22:35:28.158191	0
+2866	1447	Transform elements of a list?	open	2024-10-12 22:35:28.160546	2024-10-12 22:35:28.160546	0
+2867	1447	Reverse the elements of a list?	open	2024-10-12 22:35:28.162852	2024-10-12 22:35:28.162852	0
+2868	1447	Sort the elements of a list?	open	2024-10-12 22:35:28.165099	2024-10-12 22:35:28.165099	0
+2869	1447	Write a conditional block?	open	2024-10-12 22:35:28.167309	2024-10-12 22:35:28.167309	0
+2870	1447	How many conditional operators exist in CMake?	open	2024-10-12 22:35:28.170354	2024-10-12 22:35:28.170354	0
+2871	1447	Write two nested conditional expressions?	open	2024-10-12 22:35:28.173011	2024-10-12 22:35:28.173011	0
+2872	1447	How variables can be used as conditional operands?	open	2024-10-12 22:35:28.175777	2024-10-12 22:35:28.175777	0
+2873	1447	How strings are evaluated as conditional operands?	open	2024-10-12 22:35:28.178219	2024-10-12 22:35:28.178219	0
+2874	1447	What are the differences between a braced reference and an unbraced reference as a conditional operand?	open	2024-10-12 22:35:28.180899	2024-10-12 22:35:28.180899	0
+2875	1447	What is the best practice to check if a variable is defined?	open	2024-10-12 22:35:28.18351	2024-10-12 22:35:28.18351	0
+2876	1447	What comparison operators are available for integral types?	open	2024-10-12 22:35:28.186048	2024-10-12 22:35:28.186048	0
+2877	1447	What comparison operators are available for version type?	open	2024-10-12 22:35:28.188855	2024-10-12 22:35:28.188855	0
+2878	1447	What comparison operators are available for string type?	open	2024-10-12 22:35:28.191451	2024-10-12 22:35:28.191451	0
+2879	1447	Compare if a value matches with a regular expression?	open	2024-10-12 22:35:28.193741	2024-10-12 22:35:28.193741	0
+2889	838	What information does an endpoint contain?	open	2024-10-13 09:23:38.437063	2024-10-13 09:23:38.437063	0
+2890	838	How many forms an endpoint address can have?	open	2024-10-13 09:23:38.441883	2024-10-13 09:23:38.441883	0
+2891	838	Create a tcp and udp endpoint for client?	open	2024-10-13 09:23:38.444998	2024-10-13 09:23:38.444998	0
+2892	838	Create a tcp and udp endpoint for server?	open	2024-10-13 09:23:38.448211	2024-10-13 09:23:38.448211	0
+2893	838	How many address types exist?	open	2024-10-13 09:23:38.451437	2024-10-13 09:23:38.451437	0
+2894	838	What is the difference between active and passive sockets?	open	2024-10-13 09:23:38.454668	2024-10-13 09:23:38.454668	0
+2895	838	Create an active socket?	open	2024-10-13 09:23:38.457564	2024-10-13 09:23:38.457564	0
+2896	838	Create a passive socket?	open	2024-10-13 09:23:38.459278	2024-10-13 09:23:38.459278	0
+2897	838	Resolve a DNS name?	open	2024-10-13 09:23:38.460276	2024-10-13 09:23:38.460276	0
+2898	1496	What is the use case of a mutex?	open	2024-10-13 09:55:46.60045	2024-10-13 09:55:46.60045	0
+2899	1496	How does mutex lock executions of other threads accessing a shared resource?	open	2024-10-13 09:55:46.604041	2024-10-13 09:55:46.604041	0
+2901	1506	What are the useful environment variables?	open	2024-10-13 09:59:13.366819	2024-10-13 09:59:13.366819	0
+2902	1506	List contents of current directory?	open	2024-10-13 09:59:13.370187	2024-10-13 09:59:13.370187	0
+2903	1506	Create a directory?	open	2024-10-13 09:59:13.372934	2024-10-13 09:59:13.372934	0
+2904	1506	List active processes running under current shell?	open	2024-10-13 09:59:13.375242	2024-10-13 09:59:13.375242	0
+2905	1506	List active processes of whole system?	open	2024-10-13 09:59:13.378081	2024-10-13 09:59:13.378081	0
+2906	1506	What is the shebang line in bsah script?	open	2024-10-13 09:59:13.381396	2024-10-13 09:59:13.381396	0
+2907	1506	Make a shell script file executable?	open	2024-10-13 09:59:13.38286	2024-10-13 09:59:13.38286	0
+2908	1506	Dry run a script without executing commands for debugging?	open	2024-10-13 09:59:13.383816	2024-10-13 09:59:13.383816	0
+2909	1506	Run a script by printing line by line execution for debugging?	open	2024-10-13 09:59:13.384872	2024-10-13 09:59:13.384872	0
+2923	1521	How many routine types exist?	open	2024-10-13 10:12:00.011634	2024-10-13 10:12:00.011634	0
+2924	1521	When does a function is considered a coroutine?	open	2024-10-13 10:12:00.014774	2024-10-13 10:12:00.014774	0
+2925	1524	What semantics a coroutine return type must follow?	open	2024-10-13 10:12:00.019166	2024-10-13 10:12:00.019166	0
+2926	1524	What are the standard awaiter objects in the standard?	open	2024-10-13 10:12:00.021499	2024-10-13 10:12:00.021499	0
+2927	1524	What type is the primary standard type for <code>promise_type</code>?	open	2024-10-13 10:12:00.022893	2024-10-13 10:12:00.022893	0
+2928	1524	What is the signature of a coroutine handle?	open	2024-10-13 10:12:00.024558	2024-10-13 10:12:00.024558	0
+2929	1524	How to resume the execution of a paused coroutine?	open	2024-10-13 10:12:00.025962	2024-10-13 10:12:00.025962	0
+2930	1524	How many coroutine initializations exist?	open	2024-10-13 10:12:00.027137	2024-10-13 10:12:00.027137	0
+2931	1524	What are the restricutions on coroutines?	open	2024-10-13 10:12:00.028291	2024-10-13 10:12:00.028291	0
+2932	1524	What subroutines can become a coroutine?	open	2024-10-13 10:12:00.029342	2024-10-13 10:12:00.029342	0
+2933	1524	What does <code>co_yield</code> do?	open	2024-10-13 10:12:00.030578	2024-10-13 10:12:00.030578	0
+2934	1524	What requirements should the return type of a coroutine have to be used with <code>co_yield</code>?	open	2024-10-13 10:12:00.03172	2024-10-13 10:12:00.03172	0
+2935	1524		open	2024-10-13 10:12:00.032792	2024-10-13 10:12:00.032792	0
+2936	1447	Access to tokens after matching string with a regular expression?	open	2024-10-13 10:12:58.059943	2024-10-13 10:12:58.059943	0
+2937	1447	Check if value is in a list?	open	2024-10-13 10:12:58.063903	2024-10-13 10:12:58.063903	0
+2938	1447	Check if a command is available for invokation in current CMake version?	open	2024-10-13 10:12:58.065658	2024-10-13 10:12:58.065658	0
+2939	1447	Check if a policy exists?	open	2024-10-13 10:12:58.067188	2024-10-13 10:12:58.067188	0
+2940	1447	Check if a test exists?	open	2024-10-13 10:12:58.069694	2024-10-13 10:12:58.069694	0
+2941	1447	Check if a target is defined?	open	2024-10-13 10:12:58.072075	2024-10-13 10:12:58.072075	0
+2942	1447	What is a target?	open	2024-10-13 10:12:58.074958	2024-10-13 10:12:58.074958	0
+2943	1447	Check if a file exists?	open	2024-10-13 10:12:58.077001	2024-10-13 10:12:58.077001	0
+2944	1361	What is the state of a moved-from string?	open	2024-10-13 10:15:50.845358	2024-10-13 10:15:50.845358	0
+2945	1361	What is the use case of <code>std::optional</code>?	open	2024-10-13 10:15:50.849342	2024-10-13 10:15:50.849342	0
+2946	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-10-13 10:15:50.851219	2024-10-13 10:15:50.851219	0
+2947	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-10-13 10:15:50.852638	2024-10-13 10:15:50.852638	0
+2948	1361	When does using a <code>std::shared_ptr</code> become expensive?	open	2024-10-13 10:15:50.855153	2024-10-13 10:15:50.855153	0
+2949	1361	How does move semantics optimize the iteration over a collection of shared pointers?	open	2024-10-13 10:15:50.856463	2024-10-13 10:15:50.856463	0
+2950	1361	How does <code>std::unique_ptr</code> take advantage of move semantics?	open	2024-10-13 10:15:50.85782	2024-10-13 10:15:50.85782	0
+2951	1361	How do IOStream objects take advantage of move semantics?	open	2024-10-13 10:15:50.859166	2024-10-13 10:15:50.859166	0
+2952	1361	Why cannot we be sure if functions take the ownership of passed rvalue objects or not?	open	2024-10-13 10:15:50.860561	2024-10-13 10:15:50.860561	0
+2953	1361	Use a temporary file stream object to write into a file?	open	2024-10-13 10:15:50.861757	2024-10-13 10:15:50.861757	0
+2954	1361	Use a temporary string stream object to extract words into separate string objects?	open	2024-10-13 10:15:50.863077	2024-10-13 10:15:50.863077	0
+2955	1361	Use a temporary string stream object split a multi-line string into separate lines?	open	2024-10-13 10:15:50.864335	2024-10-13 10:15:50.864335	0
+2956	1361	What types in multithreading are neither copyable nor movable?	open	2024-10-13 10:15:50.865675	2024-10-13 10:15:50.865675	0
+2957	1361	What types in multithreading are move only?	open	2024-10-13 10:15:50.867002	2024-10-13 10:15:50.867002	0
+2958	1361	How does the thread constructor take arguments?	open	2024-10-13 10:15:50.868342	2024-10-13 10:15:50.868342	0
+2959	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-10-13 10:15:50.869549	2024-10-13 10:15:50.869549	0
+2960	1361	Pass string literals as universal references?	open	2024-10-13 10:15:50.870874	2024-10-13 10:15:50.870874	0
+2961	786	What is Poky?	open	2024-10-13 10:20:47.82438	2024-10-13 10:20:47.82438	0
+2962	786	What is the usage of bitbake?	open	2024-10-13 10:20:47.828242	2024-10-13 10:20:47.828242	0
+2963	786	How does bitbake operate?	open	2024-10-13 10:20:47.829918	2024-10-13 10:20:47.829918	0
+2964	786	What is OpenEmbedded Core?	open	2024-10-13 10:20:47.831354	2024-10-13 10:20:47.831354	0
+2965	786	What is a metadata made of?	open	2024-10-13 10:20:47.832738	2024-10-13 10:20:47.832738	0
+2966	787	Get poky source tree?	open	2024-10-13 10:20:47.834643	2024-10-13 10:20:47.834643	0
+2967	787	Prepare the poky build environment?	open	2024-10-13 10:20:47.836879	2024-10-13 10:20:47.836879	0
+2968	1490	What parameters does a mock method take?	open	2024-10-13 10:23:12.029325	2024-10-13 10:23:12.029325	0
+2969	1490	What qualifiers are possible to specify as the fourth parameter of mock method?	open	2024-10-13 10:23:12.0333	2024-10-13 10:23:12.0333	0
+2970	1490	Write an expectation call to a mock method when the method returns a const reference to a string?	open	2024-10-13 10:23:12.03509	2024-10-13 10:23:12.03509	0
+2971	1490	Write an expectation call to a mock method when the method is const qualified?	open	2024-10-13 10:23:12.036758	2024-10-13 10:23:12.036758	0
+2972	1490	What is an unprotected comma?	open	2024-10-13 10:23:12.038871	2024-10-13 10:23:12.038871	0
+2973	1490	In which access specifier a mock method is allowed to be written?	open	2024-10-13 10:23:12.040675	2024-10-13 10:23:12.040675	0
+2974	1490	Write mock methods for overloaded functions?	open	2024-10-13 10:23:12.04246	2024-10-13 10:23:12.04246	0
+2975	207	What user is created on postgres by default?	open	2024-10-13 10:24:58.431786	2024-10-13 10:24:58.431786	0
+2976	207	What is a role?	open	2024-10-13 10:24:58.435847	2024-10-13 10:24:58.435847	0
+2977	207	What is the difference between roles and permissions scopes?	open	2024-10-13 10:24:58.437385	2024-10-13 10:24:58.437385	0
+2978	207	Create a new role having privileges to login in to the cluter?	open	2024-10-13 10:24:58.438945	2024-10-13 10:24:58.438945	0
+2979	207	What are the general forms of role creation options?	open	2024-10-13 10:24:58.44043	2024-10-13 10:24:58.44043	0
+2980	207	Create a role with superuser privileges?	open	2024-10-13 10:24:58.441713	2024-10-13 10:24:58.441713	0
+2981	207	Create a role without a password?	open	2024-10-13 10:24:58.443241	2024-10-13 10:24:58.443241	0
+2982	207	Limit the number of connections a role can make to the cluster?	open	2024-10-13 10:24:58.444309	2024-10-13 10:24:58.444309	0
+2983	207	Create a role that will be expired within a year?	open	2024-10-13 10:24:58.445326	2024-10-13 10:24:58.445326	0
+2984	207	Create a group?	open	2024-10-13 10:24:58.446465	2024-10-13 10:24:58.446465	0
+2985	207	Join a role into a group when creating one?	open	2024-10-13 10:24:58.447777	2024-10-13 10:24:58.447777	0
+2986	207	Join a role into a group after its creation?	open	2024-10-13 10:24:58.449061	2024-10-13 10:24:58.449061	0
+2987	207	Specify an admin for a group when creating one?	open	2024-10-13 10:24:58.450545	2024-10-13 10:24:58.450545	0
+2988	207	Specify an admin for a group after its creation?	open	2024-10-13 10:24:58.451881	2024-10-13 10:24:58.451881	0
+2989	207	Remove a role?	open	2024-10-13 10:24:58.453027	2024-10-13 10:24:58.453027	0
+2990	207	Inspect current role?	open	2024-10-13 10:24:58.454146	2024-10-13 10:24:58.454146	0
+2991	207	Get a list of all available roles in the cluster?	open	2024-10-13 10:24:58.455162	2024-10-13 10:24:58.455162	0
+2992	207	List the groups a role is a member of?	open	2024-10-13 10:24:58.456197	2024-10-13 10:24:58.456197	0
+2993	207	Get a user information from roles catalog?	open	2024-10-13 10:24:58.457231	2024-10-13 10:24:58.457231	0
+2994	207	Get sensitive information of roles in the cluster?	open	2024-10-13 10:24:58.458275	2024-10-13 10:24:58.458275	0
+2995	207	Where is the host-based access firewall defined?	open	2024-10-13 10:24:58.459273	2024-10-13 10:24:58.459273	0
+2996	207	Perform configuration reload on a cluster by means of an SQL statement?	open	2024-10-13 10:24:58.460222	2024-10-13 10:24:58.460222	0
+2997	207	What is the structure of the host-based access file?	open	2024-10-13 10:24:58.461163	2024-10-13 10:24:58.461163	0
+2998	207	What is the priority of the hba rules?	open	2024-10-13 10:24:58.462149	2024-10-13 10:24:58.462149	0
+2999	207	Accept connections to a group of users except one of the members?	open	2024-10-13 10:24:58.463091	2024-10-13 10:24:58.463091	0
+3000	207	Specify a file in hba rules?	open	2024-10-13 10:24:58.464026	2024-10-13 10:24:58.464026	0
+3001	207	Inspect the hba rules of the cluster using SQL?	open	2024-10-13 10:24:58.4651	2024-10-13 10:24:58.4651	0
+3002	208	What type of commands exist in database?	open	2024-10-13 10:24:58.46624	2024-10-13 10:24:58.46624	0
+3003	208	Connect to a postgres instance?	open	2024-10-13 10:24:58.467293	2024-10-13 10:24:58.467293	0
+3004	208	Switch postgres to expanded mode?	open	2024-10-13 10:24:58.468329	2024-10-13 10:24:58.468329	0
+3005	208	List databases present in the cluster?	open	2024-10-13 10:24:58.469407	2024-10-13 10:24:58.469407	0
+3006	208	Connect to a database in psql?	open	2024-10-13 10:24:58.47036	2024-10-13 10:24:58.47036	0
+3007	208	Create a new database?	open	2024-10-13 10:24:58.471298	2024-10-13 10:24:58.471298	0
+3008	208	What database is used to clone as new ones?	open	2024-10-13 10:24:58.472288	2024-10-13 10:24:58.472288	0
+3009	208	Why is there two template databases?	open	2024-10-13 10:24:58.473247	2024-10-13 10:24:58.473247	0
+3010	208	What is a schema?	open	2024-10-13 10:24:58.474202	2024-10-13 10:24:58.474202	0
+3011	208	What schema can be used by a normal user?	open	2024-10-13 10:24:58.47521	2024-10-13 10:24:58.47521	0
+3012	208	What is the <code>search_path</code> variable?	open	2024-10-13 10:24:58.476204	2024-10-13 10:24:58.476204	0
+3013	208	Allow a user to create database objects in a custom schema?	open	2024-10-13 10:24:58.477098	2024-10-13 10:24:58.477098	0
+3014	208	List all available databases?	open	2024-10-13 10:24:58.477974	2024-10-13 10:24:58.477974	0
+3015	208	Create a database from a user defined template?	open	2024-10-13 10:24:58.478883	2024-10-13 10:24:58.478883	0
+3016	208	Drop a database?	open	2024-10-13 10:24:58.479835	2024-10-13 10:24:58.479835	0
+3017	208	Drop a table from a database?	open	2024-10-13 10:24:58.480814	2024-10-13 10:24:58.480814	0
+3018	208	Get the size of a database?	open	2024-10-13 10:24:58.482026	2024-10-13 10:24:58.482026	0
+3019	208	Find the Object ID of a database on storage?	open	2024-10-13 10:24:58.483148	2024-10-13 10:24:58.483148	0
+3020	208	Create a table?	open	2024-10-13 10:24:58.484158	2024-10-13 10:24:58.484158	0
+3021	208	Create a table only when it doesn't already exist?	open	2024-10-13 10:24:58.485209	2024-10-13 10:24:58.485209	0
+3022	208	How many table types exist?	open	2024-10-13 10:24:58.486465	2024-10-13 10:24:58.486465	0
+3023	208	How temp tables can be dropped automatically?	open	2024-10-13 10:24:58.487389	2024-10-13 10:24:58.487389	0
+3024	208	Get the object ID of a table on storage?	open	2024-10-13 10:24:58.488281	2024-10-13 10:24:58.488281	0
+3025	208	How many ways are possible to insert into data a table?	open	2024-10-13 10:24:58.489171	2024-10-13 10:24:58.489171	0
+3026	208	Insert data into a table with value expressions?	open	2024-10-13 10:24:58.490161	2024-10-13 10:24:58.490161	0
+3027	208	Select data from a table out of order?	open	2024-10-13 10:24:58.491067	2024-10-13 10:24:58.491067	0
+3028	208	Order the output of a select query?	open	2024-10-13 10:24:58.491935	2024-10-13 10:24:58.491935	0
+3029	208	Insert multiple rows into a table in one insertion?	open	2024-10-13 10:24:58.492831	2024-10-13 10:24:58.492831	0
+3030	208	Filter select query results?	open	2024-10-13 10:24:58.493878	2024-10-13 10:24:58.493878	0
+3031	208	How many ordering directions exist?	open	2024-10-13 10:24:58.494825	2024-10-13 10:24:58.494825	0
+3032	208	Write an order by clause with column positions?	open	2024-10-13 10:24:58.495762	2024-10-13 10:24:58.495762	0
+3033	661	When access to a resource should be synchronized?	open	2024-10-13 10:29:09.670137	2024-10-13 10:29:09.670137	0
+3034	661	How many synchronization mechanisms are available in the kernel?	open	2024-10-13 10:29:09.674309	2024-10-13 10:29:09.674309	0
+3035	661	What is the granularity of synchronization operations in the kernel?	open	2024-10-13 10:29:09.676337	2024-10-13 10:29:09.676337	0
+3036	661	What locking types are available in the kernel?	open	2024-10-13 10:29:09.678605	2024-10-13 10:29:09.678605	0
+3037	661	What conditional variable types are available in the kernel?	open	2024-10-13 10:29:09.681764	2024-10-13 10:29:09.681764	0
+3038	661	What are the use cases of conditional variables in the kernel?	open	2024-10-13 10:29:09.684516	2024-10-13 10:29:09.684516	0
+3039	661	What does the locking mechanism in the kernel depend on?	open	2024-10-13 10:29:09.686601	2024-10-13 10:29:09.686601	0
+3040	661	What is a simple workaround for a system to ensure atomicity of synchronization operations?	open	2024-10-13 10:29:09.688069	2024-10-13 10:29:09.688069	0
+3041	661	How does spinlocks operate?	open	2024-10-13 10:29:09.689731	2024-10-13 10:29:09.689731	0
+3042	661	How does preemption toggle in a CPU?	open	2024-10-13 10:29:09.691425	2024-10-13 10:29:09.691425	0
+3043	661	Why does changing of preemption status depends on atomic operations?	open	2024-10-13 10:29:09.692847	2024-10-13 10:29:09.692847	0
+3044	661	Create and initialize a spinlock using macro?	open	2024-10-13 10:29:09.694466	2024-10-13 10:29:09.694466	0
+3045	661	Dynamically create and initialize a spinlock?	open	2024-10-13 10:29:09.69594	2024-10-13 10:29:09.69594	0
+3046	661	Lock and unlock a spinlock?	open	2024-10-13 10:29:09.697425	2024-10-13 10:29:09.697425	0
+3047	661	What are the use cases of spin_lock_irq and spin_unlock variations?	open	2024-10-13 10:29:09.699163	2024-10-13 10:29:09.699163	0
+3048	661	What are the side effects of disabling and enabling interrupts by spinlocks?	open	2024-10-13 10:29:09.701906	2024-10-13 10:29:09.701906	0
+3049	661	What is the safe way of enabling and disabling spinlocks?	open	2024-10-13 10:29:09.704598	2024-10-13 10:29:09.704598	0
+3050	661	What can invoke a scheduler in critical section?	open	2024-10-13 10:29:09.706155	2024-10-13 10:29:09.706155	0
+3051	661	When is the consequence of calling the scheduler in a critical section?	open	2024-10-13 10:29:09.707504	2024-10-13 10:29:09.707504	0
+3052	661	What is the difference between a mutex and a spinlock?	open	2024-10-13 10:29:09.709037	2024-10-13 10:29:09.709037	0
+3053	661	What constructs a mutex?	open	2024-10-13 10:29:09.710724	2024-10-13 10:29:09.710724	0
+3054	661	Statically define and initialize a mutex?	open	2024-10-13 10:29:09.712174	2024-10-13 10:29:09.712174	0
+3055	661	Dynamically define and initialize a mutex?	open	2024-10-13 10:29:09.713605	2024-10-13 10:29:09.713605	0
+3056	661	How many functions exist to acquire a mutex?	open	2024-10-13 10:29:09.715616	2024-10-13 10:29:09.715616	0
+3057	661	Unlock a mutex?	open	2024-10-13 10:29:09.719061	2024-10-13 10:29:09.719061	0
+3058	661	Check if a mutex is locked?	open	2024-10-13 10:29:09.721418	2024-10-13 10:29:09.721418	0
+3059	661	What mutex locking function is recommended to be used?	open	2024-10-13 10:29:09.722968	2024-10-13 10:29:09.722968	0
+3060	661	What are the rules to using mutex in the kernel?	open	2024-10-13 10:29:09.724373	2024-10-13 10:29:09.724373	0
+3061	661	Where is spinlock defined in the kernel?	open	2024-10-13 10:29:09.725658	2024-10-13 10:29:09.725658	0
+3062	661	Where is mutex defined in the kernel?	open	2024-10-13 10:29:09.726978	2024-10-13 10:29:09.726978	0
+3063	661	What are the use cases of try-lock functions?	open	2024-10-13 10:29:09.728349	2024-10-13 10:29:09.728349	0
+3064	661	What are the try-lock functions for spinlock and mutex?	open	2024-10-13 10:29:09.730245	2024-10-13 10:29:09.730245	0
+3065	661	Try locking a spinlock without spinning?	open	2024-10-13 10:29:09.731704	2024-10-13 10:29:09.731704	0
+3066	661	Try locking a mutex without sleeping?	open	2024-10-13 10:29:09.734084	2024-10-13 10:29:09.734084	0
+3070	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:35:52.300872	2024-10-13 15:35:52.300872	0
+3071	787	Define the target machine to the project?	open	2024-10-13 15:35:52.305008	2024-10-13 15:35:52.305008	0
+3072	787	List all available images?	open	2024-10-13 15:35:52.307427	2024-10-13 15:35:52.307427	0
+3073	787	What is the role of <code>conf/local.conf</code> file?	open	2024-10-13 15:36:57.24333	2024-10-13 15:36:57.24333	0
+3074	787	Define the target machine to the project?	open	2024-10-13 15:36:57.248412	2024-10-13 15:36:57.248412	0
+3075	787	List all available images?	open	2024-10-13 15:36:57.251518	2024-10-13 15:36:57.251518	0
+3076	1490	Mock a class template?	open	2024-10-14 14:13:53.605146	2024-10-14 14:13:53.605146	0
+3077	1490	Mock a non-virtual method?	open	2024-10-14 14:13:53.609621	2024-10-14 14:13:53.609621	0
+3078	1490	Mock a free function?	open	2024-10-14 14:13:53.612419	2024-10-14 14:13:53.612419	0
+3079	1490	What is an uninteresting call?	open	2024-10-14 14:13:53.614269	2024-10-14 14:13:53.614269	0
+3080	1490	What is a nice mock?	open	2024-10-14 14:13:53.616682	2024-10-14 14:13:53.616682	0
+3081	1490	What is a strict mock?	open	2024-10-14 14:13:53.618754	2024-10-14 14:13:53.618754	0
+3082	1490	What are the limitations of nice and strict mocks?	open	2024-10-14 14:13:53.620991	2024-10-14 14:13:53.620991	0
+3083	1490	What is a naggy mock?	open	2024-10-14 14:13:53.62219	2024-10-14 14:13:53.62219	0
+3084	206	Query the name of current database?	open	2024-10-20 11:28:18.387971	2024-10-20 11:28:18.387971	0
+3085	206	Query current date?	open	2024-10-20 11:28:18.391256	2024-10-20 11:28:18.391256	0
+3086	206	Query current date and time?	open	2024-10-20 11:28:18.393246	2024-10-20 11:28:18.393246	0
+3087	207	What command line utility creates user in a postgres instance?	open	2024-10-20 11:28:18.397215	2024-10-20 11:28:18.397215	0
+3088	207	What command line utility removes user in a postgres instance?	open	2024-10-20 11:28:18.399848	2024-10-20 11:28:18.399848	0
+3089	208	Sort result set by putting null values on top?	open	2024-10-23 22:52:27.117938	2024-10-23 22:52:27.117938	0
+3090	208	Sort result set by putting null values at the bottom?	open	2024-10-23 22:52:27.132796	2024-10-23 22:52:27.132796	0
+3091	208	Copy a table?	open	2024-10-23 22:52:27.133992	2024-10-23 22:52:27.133992	0
+3092	208	Update values of a table?	open	2024-10-23 22:52:27.135036	2024-10-23 22:52:27.135036	0
+3093	208	Delete rows from a table?	open	2024-10-23 22:52:27.136166	2024-10-23 22:52:27.136166	0
+3094	210	What is a window function?	open	2024-10-23 22:52:27.138433	2024-10-23 22:52:27.138433	0
+3095	210	What is the difference between window functions and aggregation functions?	open	2024-10-23 22:52:27.140476	2024-10-23 22:52:27.140476	0
+3096	210	How the results of aggregation functions and window functions can become identical?	open	2024-10-23 22:52:27.141578	2024-10-23 22:52:27.141578	0
+3097	210	Query a table to count the rows based on two different conditions?	open	2024-10-23 22:52:27.142551	2024-10-23 22:52:27.142551	0
+3098	210	Write aliases for window functions?	open	2024-10-23 22:52:27.143473	2024-10-23 22:52:27.143473	0
+3099	210	What aggregate functions can be used with window functions?	open	2024-10-23 22:52:27.144409	2024-10-23 22:52:27.144409	0
+3100	210	Write a statement to generate a series of numbers?	open	2024-10-23 22:52:27.145349	2024-10-23 22:52:27.145349	0
+3101	210	Write a statement to numberize each of the partitioned rows?	open	2024-10-23 22:52:27.146428	2024-10-23 22:52:27.146428	0
+3102	210	Write a statement to numerize each row in the result set?	open	2024-10-23 22:52:27.147513	2024-10-23 22:52:27.147513	0
+3103	210	Sort the values inside a window?	open	2024-10-23 22:52:27.148797	2024-10-23 22:52:27.148797	0
+3104	210	Write a statement to show the first value of a partition on each row?	open	2024-10-23 22:52:27.150145	2024-10-23 22:52:27.150145	0
+3105	210	Write a statement to show the last value of a partition on each row?	open	2024-10-23 22:52:27.151453	2024-10-23 22:52:27.151453	0
+3106	210	Rank rows within partitions with gaps?	open	2024-10-23 22:52:27.15255	2024-10-23 22:52:27.15255	0
+3107	210	Rank rows within partitions without gaps?	open	2024-10-23 22:52:27.153662	2024-10-23 22:52:27.153662	0
+3108	210	Write a statement that returns the offset rows before the current row within a partition?	open	2024-10-23 22:52:27.154779	2024-10-23 22:52:27.154779	0
+3109	210	Write a statement that returns the offset rows after the current row within a partition?	open	2024-10-23 22:52:27.155909	2024-10-23 22:52:27.155909	0
+3110	210	Write a statement that returns computation of the fraction of partition rows that are neighbours to the current row?	open	2024-10-23 22:52:27.15689	2024-10-23 22:52:27.15689	0
+3111	210	Write a statement to assign a bucket for each partition?	open	2024-10-23 22:52:27.157861	2024-10-23 22:52:27.157861	0
+3112	1294	What happens when two threads access the same memory location?	open	2024-10-27 16:25:47.43163	2024-10-27 16:25:47.43163	0
+3113	1294	What are the contract levels in thread executions?	open	2024-10-27 16:25:47.442613	2024-10-27 16:25:47.442613	0
+3114	1294	What subjectives are the foundation of C++ memory model?	open	2024-10-27 16:25:47.446709	2024-10-27 16:25:47.446709	0
+3115	1294	What are the guarantees of the sequential consistency?	open	2024-10-27 16:25:47.451874	2024-10-27 16:25:47.451874	0
+3116	1294	What is the ordering of strong and weak memory models?	open	2024-10-27 16:25:47.454143	2024-10-27 16:25:47.454143	0
+3117	1294	What are the guarantees of the relaxed semantics?	open	2024-10-27 16:25:47.456671	2024-10-27 16:25:47.456671	0
+3118	1294	What are the guarantees of the acquire release semantics?	open	2024-10-27 16:25:47.461062	2024-10-27 16:25:47.461062	0
+3119	1294	What memory order is applied to atomic operations by default?	open	2024-10-27 16:25:47.464717	2024-10-27 16:25:47.464717	0
+3120	1294	What are the functionalities of an <code>atomic_flag</code> type?	open	2024-10-27 16:25:47.469286	2024-10-27 16:25:47.469286	0
+3121	1294	Construct an atomic flag?	open	2024-10-27 16:25:47.471515	2024-10-27 16:25:47.471515	0
+3122	1294	What is the only lock-free guaranteed atomic type?	open	2024-10-27 16:25:47.473707	2024-10-27 16:25:47.473707	0
+3123	1294	Check if the atomic type is lock free?	open	2024-10-27 16:25:47.477623	2024-10-27 16:25:47.477623	0
+3124	1294	What are the use cases of a spinlock?	open	2024-10-27 16:25:47.481168	2024-10-27 16:25:47.481168	0
+3125	1294	What is the base of a spinlock?	open	2024-10-27 16:25:47.484069	2024-10-27 16:25:47.484069	0
+3126	1294	What is the major difference between mutex and spinlock?	open	2024-10-27 16:25:47.485978	2024-10-27 16:25:47.485978	0
+3127	1294	Use an atomic flag to notify waiting threads?	open	2024-10-27 16:25:47.488108	2024-10-27 16:25:47.488108	0
+3128	1294	When does an atomic flag lose notifications?	open	2024-10-27 16:25:47.49011	2024-10-27 16:25:47.49011	0
+3129	1294	What are the basic atomic types?	open	2024-10-27 16:25:47.493469	2024-10-27 16:25:47.493469	0
+3130	1294	What are the template specialization atomic types?	open	2024-10-27 16:25:47.497199	2024-10-27 16:25:47.497199	0
+3131	1294	What template specializations of atomic type extends the fundamental atomic interface?	open	2024-10-27 16:25:47.50065	2024-10-27 16:25:47.50065	0
+3132	1294	What is the downside of extended atomic interfaces?	open	2024-10-27 16:25:47.503497	2024-10-27 16:25:47.503497	0
+3133	1294	What operations does fundamental atomic interface support?	open	2024-10-27 16:25:47.508117	2024-10-27 16:25:47.508117	0
+3134	1294	What is the difference between atomic boolean and atomic flag?	open	2024-10-27 16:25:47.513215	2024-10-27 16:25:47.513215	0
+3135	1294	Use an atomic boolean to protect a shared value in a critical section using C++11 fundamental atomic interface?	open	2024-10-27 16:25:47.517961	2024-10-27 16:25:47.517961	0
+3136	1294	What is the difference between the way atomic boolean and condition variable query the atomic value?	open	2024-10-27 16:25:47.521163	2024-10-27 16:25:47.521163	0
+3137	1294	Use an atomic boolean to protect a shared value in a critical section using C++20 fundamental atomic interface?	open	2024-10-27 16:25:47.523682	2024-10-27 16:25:47.523682	0
+3138	1294	What is the functionality of <code>compare_exchange_strong</code> in a fundamental atomic interface?	open	2024-10-27 16:25:47.527947	2024-10-27 16:25:47.527947	0
+3139	1294	Why does <code>compare_exchange_weak</code> exists in the fundamental atomic interface?	open	2024-10-27 16:25:47.53184	2024-10-27 16:25:47.53184	0
+3140	1294	What restrictions apply to user-defined types to be supported by the fundamental atomic interface?	open	2024-10-27 16:25:47.535127	2024-10-27 16:25:47.535127	0
+3141	1294	Check if a user-defined type is compatible to the fundamental atomic interface?	open	2024-10-27 16:25:47.537291	2024-10-27 16:25:47.537291	0
+3142	1294	Why there is a template specialization of atomic for shared pointers?	open	2024-10-27 16:25:47.539188	2024-10-27 16:25:47.539188	0
+3148	1538	 Verify given string ends with a suffix?	open	2024-10-27 21:26:28.198767	2024-10-27 21:26:28.198767	0
+3143	217	What components are responsible for optimized access of data?	open	2024-10-27 21:22:32.86191	2024-10-27 21:22:32.86191	0
+3144	217	What is the meaning of declarative execution of database?	open	2024-10-27 21:22:32.876056	2024-10-27 21:22:32.876056	0
+3145	217	What are the four stages of execution?	open	2024-10-27 21:22:32.881117	2024-10-27 21:22:32.881117	0
+3164	217	What strategy does postgres optimizer use to choose between different access methods?	open	2024-10-27 23:27:17.046817	2024-10-27 23:27:17.046817	0
+3165	217	When does optimizer avoids iterating over all the possible execution plans?	open	2024-10-27 23:27:17.050719	2024-10-27 23:27:17.050719	0
+3166	217	What is a node?	open	2024-10-27 23:27:17.052907	2024-10-27 23:27:17.052907	0
+3167	217	How nodes can interact with each other?	open	2024-10-27 23:27:17.054564	2024-10-27 23:27:17.054564	0
+2725	1537	What are the use cases of succeed and fail assertions?	open	2024-10-05 21:49:49.050374	2024-10-05 21:49:49.050374	0
+2726	1537	What is the use case of succeed assertion?	open	2024-10-05 21:49:49.05297	2024-10-05 21:49:49.05297	0
+2727	1537	What is the use case of fail assertion?	open	2024-10-05 21:49:49.055184	2024-10-05 21:49:49.055184	0
+2728	1537	What is the limitation of using fail assertion?	open	2024-10-05 21:49:49.05718	2024-10-05 21:49:49.05718	0
+2729	1537	Write a non-fatal failure assertion?	open	2024-10-05 21:49:49.059202	2024-10-05 21:49:49.059202	0
+2730	1537	Write a non-fatal failure for a specific line of file?	open	2024-10-05 21:49:49.061245	2024-10-05 21:49:49.061245	0
+2731	1537	What is an assertion matcher?	open	2024-10-05 21:49:49.063656	2024-10-05 21:49:49.063656	0
+2732	1537	In what namespace are matchers defined?	open	2024-10-05 21:49:49.066066	2024-10-05 21:49:49.066066	0
+2733	1537	What is the best practice for equality matching using matchers?	open	2024-10-05 21:49:49.068875	2024-10-05 21:49:49.068875	0
+2734	1537	Write test assertions to evaluate boolean values?	open	2024-10-05 21:49:49.071367	2024-10-05 21:49:49.071367	0
+2735	1537	What are the binary comparison assertions?	open	2024-10-05 21:49:49.0739	2024-10-05 21:49:49.0739	0
+2736	1537	What are the requirements of writing binary comparison test assertions?	open	2024-10-05 21:49:49.075844	2024-10-05 21:49:49.075844	0
+2737	1537	When does GoogleTest print assertion arguments when the assertion fails?	open	2024-10-05 21:49:49.078147	2024-10-05 21:49:49.078147	0
+2738	1537	What is the evaluation order of arguments in assertions?	open	2024-10-05 21:49:49.080131	2024-10-05 21:49:49.080131	0
+2739	1537	What is the behavior of comparison assertions for pointers and C-style strings?	open	2024-10-05 21:49:49.082518	2024-10-05 21:49:49.082518	0
+2740	1537	Write a test to verify comparison of a pointer or a C-style string with null?	open	2024-10-05 21:49:49.085133	2024-10-05 21:49:49.085133	0
+2741	1537	Write a test to verify comparison of two C-style strings for equality and inequality?	open	2024-10-05 21:49:49.087384	2024-10-05 21:49:49.087384	0
+2742	1537	Write a test to verify comparison of two C-style strings without case sensitivity?	open	2024-10-05 21:49:49.089468	2024-10-05 21:49:49.089468	0
+2743	1537	Write a test to verify comparison of two floating point values?	open	2024-10-05 21:49:49.091738	2024-10-05 21:49:49.091738	0
+2744	1537	Write a test to verify if difference of two floating points does not exceed an absolute error bound?	open	2024-10-05 21:49:49.093643	2024-10-05 21:49:49.093643	0
+2745	1537	What are the exception assertions?	open	2024-10-05 21:49:49.095609	2024-10-05 21:49:49.095609	0
+2746	1537	Write a test to verify that a statement throws a specific exception type?	open	2024-10-05 21:49:49.097901	2024-10-05 21:49:49.097901	0
+2747	1537	Write a test to verify that a statement throws any exception?	open	2024-10-05 21:49:49.100376	2024-10-05 21:49:49.100376	0
+2748	1537	Write a test to verify that a statement does not throw any exceptions?	open	2024-10-05 21:49:49.102581	2024-10-05 21:49:49.102581	0
+2749	1537	Write a test to verify the return value of a predicate with given arguments?	open	2024-10-05 21:49:49.106393	2024-10-05 21:49:49.106393	0
+2750	1537	How overloaded functions and function templates should be treated when given as argument to predicate assertions?	open	2024-10-05 21:49:49.109207	2024-10-05 21:49:49.109207	0
+2751	1537	What is a predicate formatter?	open	2024-10-05 21:49:49.111562	2024-10-05 21:49:49.111562	0
+2752	1537	Create an assertion result object?	open	2024-10-05 21:49:49.114084	2024-10-05 21:49:49.114084	0
+2753	1537	What are the assertions taking predicate formatter?	open	2024-10-05 21:49:49.117509	2024-10-05 21:49:49.117509	0
+2754	1537	Write a test to verify a predicate using predicate formatter?	open	2024-10-05 21:49:49.120103	2024-10-05 21:49:49.120103	0
+2755	1537	What is the use case of death assertions?	open	2024-10-05 21:49:49.122318	2024-10-05 21:49:49.122318	0
+2756	1537	When does a death assertion asserts?	open	2024-10-05 21:49:49.124532	2024-10-05 21:49:49.124532	0
+2757	1537	What is the difference between exception tests and death tests?	open	2024-10-05 21:49:49.126425	2024-10-05 21:49:49.126425	0
+2758	1537	What arguments does a death test take?	open	2024-10-05 21:49:49.128773	2024-10-05 21:49:49.128773	0
+2759	1537	Write a death test to verify exit status of a statement when death tsets are supported?	open	2024-10-05 21:49:49.130974	2024-10-05 21:49:49.130974	0
+2760	1537	What are the use cases of exit assertions?	open	2024-10-05 21:49:49.133366	2024-10-05 21:49:49.133366	0
+2761	1537	What are the common predicates used to verify exit status of a statement in exit assertions?	open	2024-10-05 21:49:49.135594	2024-10-05 21:49:49.135594	0
+2762	1537	What is the predicate type that exit assertions take as second argument?	open	2024-10-05 21:49:49.137763	2024-10-05 21:49:49.137763	0
+2772	1538	What is the difference between using boolean comparison matchers and assertions?	open	2024-10-05 21:49:49.159777	2024-10-05 21:49:49.159777	0
+2774	1538	What is the difference between variants of floating-point matchers?	open	2024-10-05 21:49:49.164687	2024-10-05 21:49:49.164687	0
+2775	1538	Write a test to compare any floating point value to <code>NaN</code>	open	2024-10-05 21:49:49.167234	2024-10-05 21:49:49.167234	0
+2776	1538	What matchers exist to compare two floating-point values with specified approximity?	open	2024-10-05 21:49:49.169838	2024-10-05 21:49:49.169838	0
+3146	1538	 Verify given string contains a match against a regular expression?	open	2024-10-27 21:26:28.18903	2024-10-27 21:26:28.18903	0
+3147	1538	 Verify given string entirely matches against a regular expression?	open	2024-10-27 21:26:28.195833	2024-10-27 21:26:28.195833	0
+3149	1538	 Verify given string contains a substring?	open	2024-10-27 21:26:28.201965	2024-10-27 21:26:28.201965	0
+3150	1538	 Verify given string is empty?	open	2024-10-27 21:26:28.205266	2024-10-27 21:26:28.205266	0
+3151	1538	 Verify given string starts with a prefix?	open	2024-10-27 21:26:28.208129	2024-10-27 21:26:28.208129	0
+3152	1538	Verify two strings are equal without case sensitivity?	open	2024-10-27 21:26:28.211171	2024-10-27 21:26:28.211171	0
+3153	1538	Verify two strings are not equal regardless of their case?	open	2024-10-27 21:26:28.213723	2024-10-27 21:26:28.213723	0
+3154	1538	Verify two strings are equal?	open	2024-10-27 21:26:28.216172	2024-10-27 21:26:28.216172	0
+3155	1538	Verify two strings are not equal?	open	2024-10-27 21:26:28.218667	2024-10-27 21:26:28.218667	0
+3156	1538	Verify given argument is a base64 escaped sequence of a string?	open	2024-10-27 21:26:28.22108	2024-10-27 21:26:28.22108	0
+3157	1538	Verify a container that does not provide size method contains an expected number of elements?	open	2024-10-27 21:26:28.223721	2024-10-27 21:26:28.223721	0
+3158	1538	Verify a container that provides size method contains an expected number of elements?	open	2024-10-27 21:26:28.226508	2024-10-27 21:26:28.226508	0
+3159	1538	Verify two containers are equal?	open	2024-10-27 21:26:28.229719	2024-10-27 21:26:28.229719	0
+3160	1538	Verify a container contains an expected value?	open	2024-10-27 21:26:28.232525	2024-10-27 21:26:28.232525	0
+3161	1538	Verify a container has an expected repition of a value?	open	2024-10-27 21:26:28.235643	2024-10-27 21:26:28.235643	0
+3162	1538	Verify that each element of a container matches with a value or a matcher?	open	2024-10-27 21:26:28.238522	2024-10-27 21:26:28.238522	0
+3163	1538	Verify what each element of a container should match with?	open	2024-10-27 21:26:28.241333	2024-10-27 21:26:28.241333	0
+3168	1538	Verify that a container matches a given range element-wise?	open	2024-10-30 00:14:55.19302	2024-10-30 00:14:55.19302	0
+3169	1538	Verify that a container is empty?	open	2024-10-30 00:14:55.198961	2024-10-30 00:14:55.198961	0
+3170	1538	Verify that a container is a subset of given range?	open	2024-10-30 00:14:55.202977	2024-10-30 00:14:55.202977	0
+3171	1538	Verify that a container is a superset of given range?	open	2024-10-30 00:14:55.206234	2024-10-30 00:14:55.206234	0
+3172	1538	Match each of the elements of a container with a matcher compared to another range?	open	2024-10-30 00:14:55.209237	2024-10-30 00:14:55.209237	0
+3173	1538	Verify the size of a container?	open	2024-10-30 00:14:55.212159	2024-10-30 00:14:55.212159	0
+3174	1538	Verify that elements of a container match a series of criteria without orders?	open	2024-10-30 00:14:55.215381	2024-10-30 00:14:55.215381	0
+3289	459	Shallow clone the kernel source?	open	2024-11-16 23:53:47.322787	2024-11-16 23:53:47.322787	0
+3175	1538	Match each of the elements of a container with a criteria without ordering?	open	2024-10-30 00:14:55.217447	2024-10-30 00:14:55.217447	0
+3176	1538	Verify a container holds given elements after being sorted?	open	2024-10-30 00:14:55.219173	2024-10-30 00:14:55.219173	0
+3177	1538	Verify a container holds given elements after being sorted by a predicate?	open	2024-10-30 00:14:55.221089	2024-10-30 00:14:55.221089	0
+3178	1538	Verify that member of a class that a pointer is pointing to matches to a criteria?	open	2024-10-30 21:41:01.73066	2024-10-30 21:41:01.73066	0
+3179	1538	Verify a map contains a key matching a certain criteria?	open	2024-10-30 21:41:01.746216	2024-10-30 21:41:01.746216	0
+3180	1538	Verify a pair contains expected key and value?	open	2024-10-30 21:41:01.749203	2024-10-30 21:41:01.749203	0
+3181	1538	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	open	2024-10-30 21:41:01.751893	2024-10-30 21:41:01.751893	0
+3182	1538	Verify that the returning object from a member function matches a criteria when called by the test?	open	2024-10-30 21:41:01.754831	2024-10-30 21:41:01.754831	0
+3183	1538	Verify the result of calling a function matches a pattern?	open	2024-10-30 21:41:01.757644	2024-10-30 21:41:01.757644	0
+3184	1538	Verify the address of given argument matches a pattern?	open	2024-10-30 21:41:01.760646	2024-10-30 21:41:01.760646	0
+3185	1538	Verify that given pointer is pointing to an object that matches a pattern?	open	2024-10-30 21:41:01.765078	2024-10-30 21:41:01.765078	0
+3186	1538	Verify that given pointer holds a pointer that matches a pattern?	open	2024-10-30 21:41:01.76945	2024-10-30 21:41:01.76945	0
+3187	1538	Verify that given pointer matches a pattern after a dynamic cast to specified type?	open	2024-10-30 21:41:01.772708	2024-10-30 21:41:01.772708	0
+3188	1538	Verify that all the arguments of a tuple matches a pattern?	open	2024-10-30 21:41:01.775342	2024-10-30 21:41:01.775342	0
+3189	1538	Composite multiple matches into one?	open	2024-10-30 21:41:01.779047	2024-10-30 21:41:01.779047	0
+3190	1538	Make sure at least one of a few matchers apply?	open	2024-10-30 21:41:01.784323	2024-10-30 21:41:01.784323	0
+3191	1538	Verify that given argument does not match a pattern?	open	2024-10-30 21:41:01.788063	2024-10-30 21:41:01.788063	0
+3192	1538	Use a ternary like operator to conditionally compare the given argument to one of the two existing patterns?	open	2024-10-30 21:41:01.790524	2024-10-30 21:41:01.790524	0
+3193	1538	Cast a matcher to another matcher type?	open	2024-10-30 21:41:01.793048	2024-10-30 21:41:01.793048	0
+3194	1538	Verify that a predicate returns true when given argument is passed into it?	open	2024-10-30 21:41:01.797412	2024-10-30 21:41:01.797412	0
+3195	1538	Use a matcher as a predicate?	open	2024-10-30 21:41:01.801656	2024-10-30 21:41:01.801656	0
+3196	1538	Use a matcher to redirect results into a listener?	open	2024-10-30 21:41:01.805058	2024-10-30 21:41:01.805058	0
+3197	1538	Verify a value matches a pattern?	open	2024-10-30 21:41:01.807468	2024-10-30 21:41:01.807468	0
+3198	1538	Define a matcher taking no arguments?	open	2024-10-30 21:41:01.809763	2024-10-30 21:41:01.809763	0
+3199	1538	Define a matcher taking argumetns?	open	2024-10-30 21:41:01.813532	2024-10-30 21:41:01.813532	0
+3200	1538	Define a matcher taking a range?	open	2024-10-30 21:41:01.817887	2024-10-30 21:41:01.817887	0
+3201	1538	What are the restrictions of defining a matcher?	open	2024-10-30 21:41:01.822841	2024-10-30 21:41:01.822841	0
+2679	1464	What are the properties of the tiniest unit of a graphical unit?	open	2024-09-23 20:32:01.289898	2024-09-23 20:32:01.289898	0
+2680	1464	What is a pipeline?	open	2024-09-23 20:32:01.293364	2024-09-23 20:32:01.293364	0
+2681	1464	What are the pipeline stages?	open	2024-09-23 20:32:01.295344	2024-09-23 20:32:01.295344	0
+3202	1464	What is an OpenGL context?	open	2024-11-01 17:40:38.408669	2024-11-01 17:40:38.408669	0
+3203	1465	How circles are drawn in OpenGL?	open	2024-11-01 17:40:38.418294	2024-11-01 17:40:38.418294	0
+3204	1465	What are the coordinates of screen corners in OpenGL?	open	2024-11-01 17:40:38.42091	2024-11-01 17:40:38.42091	0
+3205	1465	Coordinate the triangles rotating the origin to shape a circle?	open	2024-11-01 17:40:38.423694	2024-11-01 17:40:38.423694	0
+3206	1465	Draw a circle?	open	2024-11-01 17:40:38.427169	2024-11-01 17:40:38.427169	0
+3207	1465	What are the transformation slots?	open	2024-11-01 17:40:38.430882	2024-11-01 17:40:38.430882	0
+3208	1465	Select each of the transformation slots?	open	2024-11-01 17:40:38.435554	2024-11-01 17:40:38.435554	0
+3209	1465	Reset model view matrix to identity matrix?	open	2024-11-01 17:40:38.438418	2024-11-01 17:40:38.438418	0
+3210	1465	Scale down a circle to look smaller?	open	2024-11-01 17:40:38.441023	2024-11-01 17:40:38.441023	0
+3211	1465	Store and restore matrix state before and after translations?	open	2024-11-01 17:40:38.443058	2024-11-01 17:40:38.443058	0
+3212	1465		open	2024-11-01 17:40:38.445461	2024-11-01 17:40:38.445461	0
+3213	1465		open	2024-11-01 17:40:38.447709	2024-11-01 17:40:38.447709	0
+3214	1465	Rotate a two dimensional circles rotating around z axis?	open	2024-11-01 17:40:38.45027	2024-11-01 17:40:38.45027	0
+3215	1466	What structure is used instead of a vertex due to performance reasons?	open	2024-11-01 18:40:02.344728	2024-11-01 18:40:02.344728	0
+3216	1466	What is the modern pipeline for shaders?	open	2024-11-01 18:40:02.350755	2024-11-01 18:40:02.350755	0
+3217	1466	What is the vertex structure?	open	2024-11-01 18:40:02.353754	2024-11-01 18:40:02.353754	0
+3218	1466	What each slot of a shaders do in pipeline?	open	2024-11-01 18:40:02.358443	2024-11-01 18:40:02.358443	0
+3219	1466	What slots exist in the rendering pipeline?	open	2024-11-01 19:32:39.065707	2024-11-01 19:32:39.065707	0
+3220	1466	Initialize a shader class?	open	2024-11-01 19:32:39.073691	2024-11-01 19:32:39.073691	0
+3221	1466	Compile a shader in source?	open	2024-11-01 19:32:39.076742	2024-11-01 19:32:39.076742	0
+3222	1466	Create a fragment shader?	open	2024-11-01 19:32:39.07931	2024-11-01 19:32:39.07931	0
+3223	1466	Attach shaders to a program?	open	2024-11-01 19:32:39.081865	2024-11-01 19:32:39.081865	0
+3224	1466	Link program shader?	open	2024-11-01 19:32:39.084718	2024-11-01 19:32:39.084718	0
+3225	1466	Create a vertex and fragment shader to create a program?	open	2024-11-01 19:32:39.087846	2024-11-01 19:32:39.087846	0
+3226	1466	What type categories exist in GLSL?	open	2024-11-01 22:34:14.753322	2024-11-01 22:34:14.753322	0
+3227	1466	What are the basic types in GLSL?	open	2024-11-01 22:34:14.76982	2024-11-01 22:34:14.76982	0
+3228	1466	What are the vector types in GLSL?	open	2024-11-01 22:34:14.770953	2024-11-01 22:34:14.770953	0
+3229	1466	What are the matrix types in GLSL?	open	2024-11-01 22:34:14.771987	2024-11-01 22:34:14.771987	0
+3230	1466	What is the syntax of constructing a GLSL object?	open	2024-11-01 22:34:14.773242	2024-11-01 22:34:14.773242	0
+3231	1466	What syntax does accessing to elements have in GLSL?	open	2024-11-01 22:34:14.77438	2024-11-01 22:34:14.77438	0
+3232	1466	Write a basic vertex shader?	open	2024-11-01 22:34:14.775568	2024-11-01 22:34:14.775568	0
+3233	1466	Define inputs of a vertex shader?	open	2024-11-01 22:34:14.776736	2024-11-01 22:34:14.776736	0
+3234	1466	What shader type will be rendered by rasterizer?	open	2024-11-01 22:34:14.777737	2024-11-01 22:34:14.777737	0
+3235	1466	What variable must be initialized in a vertex shader?	open	2024-11-01 22:34:14.778755	2024-11-01 22:34:14.778755	0
+3236	1466	Write a basic fragment shader?	open	2024-11-01 22:34:14.779757	2024-11-01 22:34:14.779757	0
+3237	1466	How the input data for vertex shaders can be supplied?	open	2024-11-01 22:34:14.78082	2024-11-01 22:34:14.78082	0
+3238	1466	What stage in the rendering pipeline is responsible for copying data into GPU?	open	2024-11-01 22:34:14.781892	2024-11-01 22:34:14.781892	0
+3239	1466	Define a vertex buffer object?	open	2024-11-01 22:34:14.783869	2024-11-01 22:34:14.783869	0
+3240	1466	Bind a vertex buffer object?	open	2024-11-01 22:34:14.785918	2024-11-01 22:34:14.785918	0
+3241	1466	Copy the vertex buffer object into GPU?	open	2024-11-01 22:34:14.787947	2024-11-01 22:34:14.787947	0
+3242	1466	Define an attribute location for a shader?	open	2024-11-01 22:34:14.789222	2024-11-01 22:34:14.789222	0
+3243	1466	What arguments does <code>glVertexAttribPointer</code> take?	open	2024-11-01 22:34:14.7902	2024-11-01 22:34:14.7902	0
+3244	1466	What function draws triangles defined in shader program?	open	2024-11-01 22:34:14.791217	2024-11-01 22:34:14.791217	0
+3245	1466	Define matrices to the vertex shader?	open	2024-11-01 22:34:14.792313	2024-11-01 22:34:14.792313	0
+3246	1466	Draw two triangles with touching bases forming a square?	open	2024-11-01 22:34:14.793403	2024-11-01 22:34:14.793403	0
+3247	1466	Get access to the coordinations of fragments?	open	2024-11-02 10:31:32.778004	2024-11-02 10:31:32.778004	0
+3248	1466	Get the time information from GLFW?	open	2024-11-02 10:31:32.786267	2024-11-02 10:31:32.786267	0
+3249	1467	Load a texture?	open	2024-11-02 11:30:33.910898	2024-11-02 11:30:33.910898	0
+3250	1467	Draw a few pixels using textures?	open	2024-11-02 11:30:33.9171	2024-11-02 11:30:33.9171	0
+3251	1467	Load a bitmap image using textures?	open	2024-11-02 11:30:33.92029	2024-11-02 11:30:33.92029	0
+3252	1468	Rotate a cube?	open	2024-11-02 11:30:33.924374	2024-11-02 11:30:33.924374	0
+3253	1468	Use GLM math library?	open	2024-11-02 11:30:33.926832	2024-11-02 11:30:33.926832	0
+3254	1468	Texture a cube?	open	2024-11-02 11:30:33.929636	2024-11-02 11:30:33.929636	0
+3255	1468	Project a cube with correct perspectives?	open	2024-11-02 11:30:33.932927	2024-11-02 11:30:33.932927	0
+3256	1540	What are each parts of the SOLID principle?	open	2024-11-02 22:09:08.689532	2024-11-02 22:09:08.689532	0
+3257	1540	What does the single responsibility principle define?	open	2024-11-02 22:09:08.704996	2024-11-02 22:09:08.704996	0
+3258	1540	What does the open closed principle define?	open	2024-11-02 22:09:08.710076	2024-11-02 22:09:08.710076	0
+3259	1540	What does the liskov substitution principle define?	open	2024-11-02 22:09:08.71313	2024-11-02 22:09:08.71313	0
+3260	1540	What does the interface segregation principle define?	open	2024-11-02 22:09:08.716526	2024-11-02 22:09:08.716526	0
+3261	1540	What does the dependency inversion principle define?	open	2024-11-02 22:09:08.721556	2024-11-02 22:09:08.721556	0
+3262	336	What is the downsides of declaring all comparison operators manually?	open	2024-11-03 16:19:44.031758	2024-11-03 16:19:44.031758	0
+3263	336	What is the behavior of compilers when they cannot find a matching inequality operator for two objects?	open	2024-11-03 16:19:44.038182	2024-11-03 16:19:44.038182	0
+3264	336	What is the behavior of compilers when they cannot find a matching relational operator for two objects?	open	2024-11-03 16:19:44.040072	2024-11-03 16:19:44.040072	0
+3265	336	How does a defaulted member <code>operator<=></code> expand?	open	2024-11-03 16:19:44.041755	2024-11-03 16:19:44.041755	0
+3266	336	What header should be included when defaulting spaceship operator?	open	2024-11-03 16:19:44.04312	2024-11-03 16:19:44.04312	0
+3267	336	What qualifiers automatically apply to default generated operators?	open	2024-11-03 16:19:44.044915	2024-11-03 16:19:44.044915	0
+3268	336	When should we define equality and spaceship operators manually?	open	2024-11-03 16:19:44.046587	2024-11-03 16:19:44.046587	0
+3269	336	What expression does a compiler use to rewrite a relational operator when a matching definition is not found?	open	2024-11-03 16:19:44.047779	2024-11-03 16:19:44.047779	0
+3270	336	What is the return type of spaceship operator?	open	2024-11-03 16:19:44.048882	2024-11-03 16:19:44.048882	0
+3271	336	What is the precedence of spaceship operator compared to other comparison operators?	open	2024-11-03 16:19:44.049937	2024-11-03 16:19:44.049937	0
+3272	336	Where can we directly call for comparison of two types with spaceship operator?	open	2024-11-03 16:19:44.050981	2024-11-03 16:19:44.050981	0
+3273	336	What are the comparison category types?	open	2024-11-03 16:19:44.052095	2024-11-03 16:19:44.052095	0
+3274	336	What is the best practice for defining the return value of spaceship operator?	open	2024-11-03 16:19:44.053139	2024-11-03 16:19:44.053139	0
+3275	336	What type the spaceship operator does not support?	open	2024-11-03 16:19:44.05407	2024-11-03 16:19:44.05407	0
+3276	336	What types are supported by spaceship operator?	open	2024-11-03 16:19:44.055063	2024-11-03 16:19:44.055063	0
+3277	336	What comparison category type does comparing supported types generate?	open	2024-11-03 16:19:44.055904	2024-11-03 16:19:44.055904	0
+3278	336	What comparison category type is safe to be used when comparing fundamental or standard library types?	open	2024-11-03 16:19:44.056829	2024-11-03 16:19:44.056829	0
+3279	336	Which comparison category type should be used when returning a comparison result with multiple ordering criteria?	open	2024-11-03 16:19:44.057794	2024-11-03 16:19:44.057794	0
+3280	336	What is the best practice when partial or weak ordering must be mapped to strong ordering?	open	2024-11-03 16:19:44.058664	2024-11-03 16:19:44.058664	0
+3281	336	What are the requirements of defaulting spaceship and equality operators?	open	2024-11-03 16:19:44.059562	2024-11-03 16:19:44.059562	0
+3282	336	When does the defaulted equality operator is automatically defined?	open	2024-11-03 16:19:44.060387	2024-11-03 16:19:44.060387	0
+3283	336	What is the advantage of using <code>std::compare_three_way</code> function object?	open	2024-11-03 16:19:44.061222	2024-11-03 16:19:44.061222	0
+3284	336	What type trait can be used to forward declare spaceship operator?	open	2024-11-03 16:19:44.062059	2024-11-03 16:19:44.062059	0
+3285	336	What type is used to compare two ranges?	open	2024-11-03 16:19:44.062935	2024-11-03 16:19:44.062935	0
+3286	336	What are the limitations of using lexicographical compare three way functions?	open	2024-11-03 16:19:44.063814	2024-11-03 16:19:44.063814	0
+2383	1382	What is the output of yocto?	open	2024-09-22 10:06:26.739554	2024-09-22 10:06:26.739554	0
+2384	1382	What is the name of the build engine in yocto?	open	2024-09-22 10:06:26.746094	2024-09-22 10:06:26.746094	0
+2385	1382	What does bitbake do?	open	2024-09-22 10:06:26.748849	2024-09-22 10:06:26.748849	0
+2386	1382	What is the name of the text files parsed by bitbake?	open	2024-09-22 10:06:26.751843	2024-09-22 10:06:26.751843	0
+2387	1382	What is the building blocks of a recipe?	open	2024-09-22 10:06:26.754733	2024-09-22 10:06:26.754733	0
+2388	1382	What does bitbake take as an input?	open	2024-09-22 10:06:26.757109	2024-09-22 10:06:26.757109	0
+2389	1382	What is the building blocks of a metadata?	open	2024-09-22 10:06:26.759875	2024-09-22 10:06:26.759875	0
+2390	1382	What is the core layer of metadata?	open	2024-09-22 10:06:26.761843	2024-09-22 10:06:26.761843	0
+2391	1382	What is a poky layer?	open	2024-09-22 10:06:26.76369	2024-09-22 10:06:26.76369	0
+2392	1382	What is a poky distribution?	open	2024-09-22 10:06:26.766334	2024-09-22 10:06:26.766334	0
+2393	1382	What meta layer is used to build images for a beagle bone black board?	open	2024-09-22 10:06:26.768297	2024-09-22 10:06:26.768297	0
+2433	1553	Append to a variable only for a specific machine using override variables?	open	2024-09-22 10:06:26.85332	2024-09-22 10:06:26.85332	0
+2415	1553	How does OpenEmbedded build system hold project information?	open	2024-09-22 10:06:26.812938	2024-09-22 10:06:26.812938	0
+2416	1553	Expand an already assigned variable?	open	2024-09-22 10:06:26.8149	2024-09-22 10:06:26.8149	0
+2417	1553	What are the properties of variables?	open	2024-09-22 10:06:26.817171	2024-09-22 10:06:26.817171	0
+2452	1553	What variable holds the packages being installed in the image?	open	2024-09-22 10:06:26.892219	2024-09-22 10:06:26.892219	0
+2453	1553	What are the recipe name modifiers?	open	2024-09-22 10:06:26.894196	2024-09-22 10:06:26.894196	0
+2413	1552	Get help from bitbake manual?	open	2024-09-22 10:06:26.808627	2024-09-22 10:06:26.808627	0
+2414	1552	Build an image for a target machine with poky?	open	2024-09-22 10:06:26.810619	2024-09-22 10:06:26.810619	0
+2464	1553	Where does bitbake store cache files?	open	2024-09-22 10:06:26.919107	2024-09-22 10:06:26.919107	0
+2465	1553	What variable holds the path to cache?	open	2024-09-22 10:06:26.921041	2024-09-22 10:06:26.921041	0
+2466	1553	What is the default location to cache?	open	2024-09-22 10:06:26.922897	2024-09-22 10:06:26.922897	0
+2467	1553	What is the content of bitbake cache?	open	2024-09-22 10:06:26.924743	2024-09-22 10:06:26.924743	0
+2492	1557	What variable defines runtime dependencies of a recipe?	open	2024-09-22 10:06:26.980677	2024-09-22 10:06:26.980677	0
+2493	1557	Reflect the dependency of a recipe on a specific version of another recipe?	open	2024-09-22 10:06:26.982994	2024-09-22 10:06:26.982994	0
+2494	1557	Inspect the dependencies of an image?	open	2024-09-22 10:06:26.984972	2024-09-22 10:06:26.984972	0
+2516	1559	Which variable should be changed when new files are added in recipe extension?	open	2024-09-22 10:06:27.030955	2024-09-22 10:06:27.030955	0
+2539	1561	Create a local mirror by downloading all the sources?	open	2024-09-22 10:06:27.084852	2024-09-22 10:06:27.084852	0
+2540	1561	Which task is responsible for downloading sources?	open	2024-09-22 10:06:27.086835	2024-09-22 10:06:27.086835	0
+2541	1561	Disable network access in a recipe?	open	2024-09-22 10:06:27.088738	2024-09-22 10:06:27.088738	0
+2542	1561	Restrict bitbake to only download files from the <code>PREMIRRORS</code>?	open	2024-09-22 10:06:27.090811	2024-09-22 10:06:27.090811	0
+2543	1561	Download all the sources to run builds with network disabled?	open	2024-09-22 10:06:27.092916	2024-09-22 10:06:27.092916	0
+2550	1562	What tool is used to inspect layers?	open	2024-09-22 10:06:27.10789	2024-09-22 10:06:27.10789	0
+2551	1562	Get a list of layers?	open	2024-09-22 10:06:27.109875	2024-09-22 10:06:27.109875	0
+2552	1562	Add an existing layer?	open	2024-09-22 10:06:27.111804	2024-09-22 10:06:27.111804	0
+2553	1562	Remove a layer?	open	2024-09-22 10:06:27.113716	2024-09-22 10:06:27.113716	0
+2554	1562	What layers provide board support?	open	2024-09-22 10:06:27.116108	2024-09-22 10:06:27.116108	0
+2555	1562	What layers provide application support?	open	2024-09-22 10:06:27.118633	2024-09-22 10:06:27.118633	0
+2556	1562	Create a new layer?	open	2024-09-22 10:06:27.121077	2024-09-22 10:06:27.121077	0
+2557	1562	What is the skeleton of a newly created layer?	open	2024-09-22 10:06:27.12306	2024-09-22 10:06:27.12306	0
+2568	1563	What bootloader is used in Poky by default?	open	2024-09-22 10:06:27.146159	2024-09-22 10:06:27.146159	0
+2569	1563	What configuration variable is used in UBoot recipe to name of the SPL binary?	open	2024-09-22 10:06:27.14812	2024-09-22 10:06:27.14812	0
+2570	1563	What configuration variable is used in UBoot recipe as a suffix to bootloader name?	open	2024-09-22 10:06:27.150388	2024-09-22 10:06:27.150388	0
+2571	1563	What configuration variable is used in UBoot recipe as the target architecture?	open	2024-09-22 10:06:27.152552	2024-09-22 10:06:27.152552	0
+2572	1563	What configuration variable is used in UBoot recipe as the bootloader entry point?	open	2024-09-22 10:06:27.154394	2024-09-22 10:06:27.154394	0
+2573	1563	What configuration variable is used in UBoot recipe as the bootloader load address?	open	2024-09-22 10:06:27.156378	2024-09-22 10:06:27.156378	0
+2574	1563	What configuration variable is used in UBoot recipe as the make target used to build the bootloader?	open	2024-09-22 10:06:27.158537	2024-09-22 10:06:27.158537	0
+2608	1566	What are the steps to creating an image type?	open	2024-09-22 10:06:27.231346	2024-09-22 10:06:27.231346	0
+2609	1566	What are the steps to creating an image conversion type?	open	2024-09-22 10:06:27.234757	2024-09-22 10:06:27.234757	0
+2610	1566	Use wic to create a flashable image?	open	2024-09-22 10:06:27.237105	2024-09-22 10:06:27.237105	0
+2611	1566	What is the use cases of bmaptool?	open	2024-09-22 10:06:27.239235	2024-09-22 10:06:27.239235	0
+2612	1566	What is the structure of a package group?	open	2024-09-22 10:06:27.241394	2024-09-22 10:06:27.241394	0
+2613	1566	What is the required configuration variable in a package group class?	open	2024-09-22 10:06:27.243317	2024-09-22 10:06:27.243317	0
+2614	1566	What are the common package groups?	open	2024-09-22 10:06:27.245458	2024-09-22 10:06:27.245458	0
+2615	1566	Where is a sysroot directory?	open	2024-09-22 10:06:27.247772	2024-09-22 10:06:27.247772	0
+2616	1566	What is the concept of per-recipe sysroot?	open	2024-09-22 10:06:27.250228	2024-09-22 10:06:27.250228	0
+2617	1566	What a recipe sysroot is made of?	open	2024-09-22 10:06:27.252418	2024-09-22 10:06:27.252418	0
+2618	1566	Where is the recipe sysroot located?	open	2024-09-22 10:06:27.254639	2024-09-22 10:06:27.254639	0
+2619	1566	What is the output recipe sysroot used by other dependent recipes?	open	2024-09-22 10:06:27.256769	2024-09-22 10:06:27.256769	0
+2630	1567	What variable flag can be used to store task documentation?	open	2024-09-22 10:06:27.281831	2024-09-22 10:06:27.281831	0
+2631	1567	What variable flag can be used to add a dependency between specific tasks?	open	2024-09-22 10:06:27.284881	2024-09-22 10:06:27.284881	0
+2632	1567	What configuration variable controls build on a per feature granularity?	open	2024-09-22 10:06:27.286951	2024-09-22 10:06:27.286951	0
+2633	1567	What are the arguments used by <code>PACKAGECONIFG</code> configuration variable?	open	2024-09-22 10:06:27.289396	2024-09-22 10:06:27.289396	0
+2634	1567	Conditionally configure wifi feature in a package if it is enabled?	open	2024-09-22 10:06:27.291505	2024-09-22 10:06:27.291505	0
+2635	1567	Conditionally configure bluetooth feature in a package if it is enabled?	open	2024-09-22 10:06:27.293553	2024-09-22 10:06:27.293553	0
+2636	1567	Conditionally configure openvpn feature in a package if it is enabled?	open	2024-09-22 10:06:27.295605	2024-09-22 10:06:27.295605	0
+2637	1567	Add a feature in a recipe configuration?	open	2024-09-22 10:06:27.298136	2024-09-22 10:06:27.298136	0
+2638	1567	Add a feature in a distro configuration?	open	2024-09-22 10:06:27.300405	2024-09-22 10:06:27.300405	0
+2639	1567	List available <code>PACKAGECONFIG</code> flags?	open	2024-09-22 10:06:27.303099	2024-09-22 10:06:27.303099	0
+2640	1567	Check if a value exists in varaible?	open	2024-09-22 10:06:27.306231	2024-09-22 10:06:27.306231	0
+2641	1567	Using inline Python functions return all the values of a variable for a specific flag?	open	2024-09-22 10:06:27.309147	2024-09-22 10:06:27.309147	0
+2665	1569	Use a SDK to build an application for a target?	open	2024-09-22 10:06:27.375191	2024-09-22 10:06:27.375191	0
+2666	1569	Use a SDK to build kernel?	open	2024-09-22 10:06:27.37839	2024-09-22 10:06:27.37839	0
+3067	1570	What are the different roles in embedded Linux development projects?	open	2024-10-13 10:59:49.489066	2024-10-13 10:59:49.489066	0
+3068	1570	What are the possible system integration strategies?	open	2024-10-13 10:59:49.492966	2024-10-13 10:59:49.492966	0
+3069	1570	What are the inputs and outputs of a build system?	open	2024-10-13 10:59:49.494652	2024-10-13 10:59:49.494652	0
+2400	1382	What does the <code>oe-init-build-env</code> file do in poky?	open	2024-09-22 10:06:26.781642	2024-09-22 10:06:26.781642	0
+2401	1382	What is the contents of <code>script</code> directory in poky source tree?	open	2024-09-22 10:06:26.78374	2024-09-22 10:06:26.78374	0
+2395	1382	What is the contents of <code>bitbake</code> directory in poky source tree?	open	2024-09-22 10:06:26.772061	2024-09-22 10:06:26.772061	0
+2396	1382	What is the contents of <code>meta</code> directory in poky source tree?	open	2024-09-22 10:06:26.773937	2024-09-22 10:06:26.773937	0
+2468	1553	Clean up the bitbake cache from builds older than a month?	open	2024-09-22 10:06:26.926646	2024-09-22 10:06:26.926646	0
+2474	1554	What configuration variables are already available in a recipe?	open	2024-09-22 10:06:26.940649	2024-09-22 10:06:26.940649	0
+2475	1554	What is the content of <code>.inc</code> files?	open	2024-09-22 10:06:26.943478	2024-09-22 10:06:26.943478	0
+2476	1554	What is written in a recipe file?	open	2024-09-22 10:06:26.945954	2024-09-22 10:06:26.945954	0
+2477	1554	Where are the recipe run and log files located?	open	2024-09-22 10:06:26.948144	2024-09-22 10:06:26.948144	0
+2478	1554	How many sections does a recipe have?	open	2024-09-22 10:06:26.95027	2024-09-22 10:06:26.95027	0
+2479	1554	What is written in a recipe header section?	open	2024-09-22 10:06:26.953329	2024-09-22 10:06:26.953329	0
+2406	1552	What does the <code>oe-init-build-env</code> script generate?	open	2024-09-22 10:06:26.793665	2024-09-22 10:06:26.793665	0
+2407	1552	Prepare build environment with poky?	open	2024-09-22 10:06:26.795732	2024-09-22 10:06:26.795732	0
+2408	1552	Build an image with poky?	open	2024-09-22 10:06:26.798417	2024-09-22 10:06:26.798417	0
+2410	1552	Initialize the build directory with poky?	open	2024-09-22 10:06:26.802607	2024-09-22 10:06:26.802607	0
+2411	1552	What variable defines the architecture of target machine to build for in poky?	open	2024-09-22 10:06:26.804735	2024-09-22 10:06:26.804735	0
+2412	1552	What are the optional variables to speed up the build process?	open	2024-09-22 10:06:26.806845	2024-09-22 10:06:26.806845	0
+2394	1382	Get poky reference system?	open	2024-09-22 10:06:26.770167	2024-09-22 10:06:26.770167	0
+2397	1382	What is the contents of <code>meta-skeleton</code> directory in poky source tree?	open	2024-09-22 10:06:26.775795	2024-09-22 10:06:26.775795	0
+2398	1382	What is the contents of <code>meta-poky</code> directory in poky source tree?	open	2024-09-22 10:06:26.777659	2024-09-22 10:06:26.777659	0
+2399	1382	What is the contents of <code>meta-yocto-bsp</code> directory in poky source tree?	open	2024-09-22 10:06:26.779433	2024-09-22 10:06:26.779433	0
+2409	1382	Get poky repository?	open	2024-09-22 10:06:26.800576	2024-09-22 10:06:26.800576	0
+2402	1552	What commands are available after sourcing <code>oe-init-build-env</code> script?	open	2024-09-22 10:06:26.785723	2024-09-22 10:06:26.785723	0
+2403	1552	What are the common targets in bitbake?	open	2024-09-22 10:06:26.787504	2024-09-22 10:06:26.787504	0
+2404	1552	What environment variables does <code>oe-init-build-env</code> script provide?	open	2024-09-22 10:06:26.789316	2024-09-22 10:06:26.789316	0
+2405	1552	What configuration files exist in a bitbake generated build directory?	open	2024-09-22 10:06:26.791573	2024-09-22 10:06:26.791573	0
+2435	1553	Get the list of all places where a variable was modified?	open	2024-09-22 10:06:26.85715	2024-09-22 10:06:26.85715	0
+2436	1553	Get information from a recipe specific variables?	open	2024-09-22 10:06:26.859027	2024-09-22 10:06:26.859027	0
+2437	1553	Get information from a recipe specific environment variable?	open	2024-09-22 10:06:26.860989	2024-09-22 10:06:26.860989	0
+2439	1553	Get package name of a recipe?	open	2024-09-22 10:06:26.865123	2024-09-22 10:06:26.865123	0
+2440	1553	Which variable holds virtual package names?	open	2024-09-22 10:06:26.867296	2024-09-22 10:06:26.867296	0
+2441	1553	What recipes can provide virtual packages?	open	2024-09-22 10:06:26.86929	2024-09-22 10:06:26.86929	0
+2442	1553	What are the building blocks of virtual packages?	open	2024-09-22 10:06:26.871449	2024-09-22 10:06:26.871449	0
+2443	1553	What are the common virtual packages in Poky?	open	2024-09-22 10:06:26.873595	2024-09-22 10:06:26.873595	0
+2444	1553	What virtual package variants exist for bootloader?	open	2024-09-22 10:06:26.87544	2024-09-22 10:06:26.87544	0
+2445	1553	What virtual package variants exist for kernel?	open	2024-09-22 10:06:26.877458	2024-09-22 10:06:26.877458	0
+2446	1553	What virtual package variants exist for libc?	open	2024-09-22 10:06:26.879312	2024-09-22 10:06:26.879312	0
+2447	1553	What virtual package variants exist for xserver?	open	2024-09-22 10:06:26.88126	2024-09-22 10:06:26.88126	0
+2448	1553	Select a variant of a virtual package?	open	2024-09-22 10:06:26.883574	2024-09-22 10:06:26.883574	0
+2449	1553	Which provider has a higher priority in build?	open	2024-09-22 10:06:26.885839	2024-09-22 10:06:26.885839	0
+2450	1553	Explicitly select a specific version of a provider when many exist?	open	2024-09-22 10:06:26.888156	2024-09-22 10:06:26.888156	0
+2451	1553	What packages are included in the install?	open	2024-09-22 10:06:26.890336	2024-09-22 10:06:26.890336	0
+2480	1554	What variable defines where and how to retrieve the needed elements within a recipe?	open	2024-09-22 10:06:26.955532	2024-09-22 10:06:26.955532	0
+3287	1553	Why should not we use direct assignment in configuration files?	open	2024-11-10 14:03:34.326084	2024-11-10 14:03:34.326084	0
+3288	1553	What is the advantage of using override operators?	open	2024-11-10 14:03:34.330867	2024-11-10 14:03:34.330867	0
+3290	459	Unshallow the cloned kernel source?	open	2024-11-16 23:53:47.32897	2024-11-16 23:53:47.32897	0
+3291	459	Clone the stable kernel?	open	2024-11-16 23:53:47.331381	2024-11-16 23:53:47.331381	0
+3292	459	What does the <code>ARCH</code> environment variable point to when cross compiling?	open	2024-11-16 23:53:47.333882	2024-11-16 23:53:47.333882	0
+3293	459	What is the role of <code>io_uring</code> in the kernel?	open	2024-11-16 23:53:47.336038	2024-11-16 23:53:47.336038	0
+3294	459	What are the building blocks of Kconfig infrastructure?	open	2024-11-16 23:53:47.338401	2024-11-16 23:53:47.338401	0
+3295	459	What symbol is used for each configurable kernel feature?	open	2024-11-16 23:53:47.340745	2024-11-16 23:53:47.340745	0
+3296	459	Where the configuration options are stored?	open	2024-11-16 23:53:47.342669	2024-11-16 23:53:47.342669	0
+3297	459	What is the final artifact of kernel configuration system?	open	2024-11-16 23:53:47.344687	2024-11-16 23:53:47.344687	0
+3298	459	How toggling of a feature in the build system is defined?	open	2024-11-16 23:53:47.347108	2024-11-16 23:53:47.347108	0
+3299	459	Where is the starting point of kernel build system?	open	2024-11-17 16:33:28.584611	2024-11-17 16:33:28.584611	0
+3300	459	Clean up every configuration artifacts in kernel source?	open	2024-11-17 16:33:28.59586	2024-11-17 16:33:28.59586	0
+3301	459	Generate default kernel configuration?	open	2024-11-17 16:33:28.600548	2024-11-17 16:33:28.600548	0
+3302	459	What is the order of fallback configuration files used by Kconfig as the default kernel config?	open	2024-11-17 16:33:28.603726	2024-11-17 16:33:28.603726	0
+3303	459	How the <code>.config</code> file is produced?	open	2024-11-17 16:33:28.606671	2024-11-17 16:33:28.606671	0
+3304	459	Save the currect configuration as the default configuration for an architecture?	open	2024-11-17 16:33:28.609471	2024-11-17 16:33:28.609471	0
+3305	459	Use current distribution configuration?	open	2024-11-17 16:33:28.613333	2024-11-17 16:33:28.613333	0
+3306	459	List the new configuration options when already having an old config?	open	2024-11-17 16:33:28.617433	2024-11-17 16:33:28.617433	0
+3307	459	Use distribution configuration but preserve the original configurations for specific drivers?	open	2024-11-17 16:33:28.622251	2024-11-17 16:33:28.622251	0
+3308	459	Fine tune kernel configuration with a graphical user?	open	2024-11-17 16:33:28.624753	2024-11-17 16:33:28.624753	0
+3309	459	What kernel configuration options enable accessing to kernel configurations?	open	2024-11-17 16:33:28.626851	2024-11-17 16:33:28.626851	0
+3310	459	What component turns configs into header files to be used by kernel build system?	open	2024-11-17 16:33:28.628952	2024-11-17 16:33:28.628952	0
+3311	459	Check the difference of two kernel configuration files?	open	2024-11-17 16:33:28.632422	2024-11-17 16:33:28.632422	0
+3312	459	Toggle individual kernel configuration options without interacting with user interfaces?	open	2024-11-17 16:33:28.636209	2024-11-17 16:33:28.636209	0
+3313	459	Make sure the kernel configuration has security options enabled?	open	2024-11-17 16:33:28.639647	2024-11-17 16:33:28.639647	0
+3314	459	Enable GCC arch specific security features?	open	2024-11-17 16:33:28.642099	2024-11-17 16:33:28.642099	0
+3315	459	Enable availability of kernel headers 	open	2024-11-17 16:33:28.644544	2024-11-17 16:33:28.644544	0
+3316	459	Enable BPF Type Format metadata to enable kernel debugging information generation?	open	2024-11-17 16:33:28.647471	2024-11-17 16:33:28.647471	0
+3317	459	Enable kernel build system to treat warnings as errors during the build process?	open	2024-11-17 16:33:28.651397	2024-11-17 16:33:28.651397	0
+3318	459	Check for a configuration availability in code?	open	2024-11-17 16:33:28.654627	2024-11-17 16:33:28.654627	0
+3319	209	Filter the resultset by arithmetic conditions?	open	2024-11-21 23:59:46.592705	2024-11-21 23:59:46.592705	0
+3320	209	Filter the resultset to only records with a substring?	open	2024-11-21 23:59:46.608103	2024-11-21 23:59:46.608103	0
+3321	209	Use case-insensitive filtering to match a substring?	open	2024-11-21 23:59:46.611379	2024-11-21 23:59:46.611379	0
+3322	209	Use a function to return the non-null value?	open	2024-11-21 23:59:46.614408	2024-11-21 23:59:46.614408	0
+3323	209	Change the null presentation in queries?	open	2024-11-21 23:59:46.617237	2024-11-21 23:59:46.617237	0
+3324	209	Use a descriptive name for columns resulting of function calls?	open	2024-11-21 23:59:46.620887	2024-11-21 23:59:46.620887	0
+3325	209	Filter out the duplicate results from a resultset?	open	2024-11-21 23:59:46.625836	2024-11-21 23:59:46.625836	0
+3326	209	Limit the number of query results to specific rows?	open	2024-11-21 23:59:46.629066	2024-11-21 23:59:46.629066	0
+3327	209	Limit the query results to a number of rows somewhere in the middle?	open	2024-11-21 23:59:46.631152	2024-11-21 23:59:46.631152	0
+3328	209	Duplicate a table structure without copying rows?	open	2024-11-21 23:59:46.633214	2024-11-21 23:59:46.633214	0
+3329	209	Filter query results by limiting a column only to a subset of values?	open	2024-11-21 23:59:46.635512	2024-11-21 23:59:46.635512	0
+3330	209	Filter query results by matching a subquery?	open	2024-11-21 23:59:46.638472	2024-11-21 23:59:46.638472	0
+3331	209	Filter query results by checking the existance of a subquery?	open	2024-11-21 23:59:46.642383	2024-11-21 23:59:46.642383	0
+3332	1352	What happens to an object in moved-from state when it goes out of scope?	open	2024-11-23 14:11:23.066669	2024-11-23 14:11:23.066669	0
+3333	1352	What are the requirements in behavior of a moved-from object?	open	2024-11-23 14:11:23.078365	2024-11-23 14:11:23.078365	0
+3334	1352	What guarantees should we give when desining a class?	open	2024-11-23 14:11:23.080313	2024-11-23 14:11:23.080313	0
+3335	1352	What is an invariant?	open	2024-11-23 14:11:23.082087	2024-11-23 14:11:23.082087	0
+3336	1352	Why should we avoid full guarantee to moved-from state types?	open	2024-11-23 14:11:23.08366	2024-11-23 14:11:23.08366	0
+3337	1352	What are the fixes for types that contain non-destructible members?	open	2024-11-23 14:11:23.08533	2024-11-23 14:11:23.08533	0
+3338	1352	What options are available when a moved member value breaks invariants?	open	2024-11-23 14:11:23.086931	2024-11-23 14:11:23.086931	0
+3339	1354	Why do we need value categories besides types?	open	2024-11-24 15:19:44.418311	2024-11-24 15:19:44.418311	0
+3340	1354	What are the primary value categories in C language?	open	2024-11-24 15:19:44.422792	2024-11-24 15:19:44.422792	0
+3341	1354	What value category will a statement have when type is const?	open	2024-11-24 15:19:44.425379	2024-11-24 15:19:44.425379	0
+3342	1354	What is the value category of a moved-from object?	open	2024-11-24 15:19:44.42807	2024-11-24 15:19:44.42807	0
+3343	1354	What statements are lvalue?	open	2024-11-24 15:19:44.430867	2024-11-24 15:19:44.430867	0
+3344	1354	What statements are prvalues?	open	2024-11-24 15:19:44.433034	2024-11-24 15:19:44.433034	0
+3345	1354	What statements are xvalues?	open	2024-11-24 15:19:44.434935	2024-11-24 15:19:44.434935	0
+3346	1354	What is the generalized explanation of value categories in C++17?	open	2024-11-24 15:19:44.43606	2024-11-24 15:19:44.43606	0
+3347	1354	What is materialization?	open	2024-11-24 15:19:44.43767	2024-11-24 15:19:44.43767	0
+3349	1571	Delete a function with giving reasons for it?	open	2024-11-27 21:53:14.153381	2024-11-27 21:53:14.153381	0
+3350	1571	Create a break point in code?	open	2024-11-27 21:53:14.155412	2024-11-27 21:53:14.155412	0
+3351	1571	Check if debugger is running the program?	open	2024-11-27 21:53:14.156989	2024-11-27 21:53:14.156989	0
+3352	1571	Use a name placeholder where naming an object is not necessary?	open	2024-11-27 21:53:14.15892	2024-11-27 21:53:14.15892	0
+3353	1571	Declare a structured binding as a condition?	open	2024-11-27 21:53:14.160641	2024-11-27 21:53:14.160641	0
+3354	1571	Apply attributes to members of structured bindings?	open	2024-11-27 21:53:14.162241	2024-11-27 21:53:14.162241	0
+3355	1571	Take a real and imaginary values from a complex?	open	2024-11-27 21:53:14.163735	2024-11-27 21:53:14.163735	0
+3357	1573	Use OpenCV in a simple CMake configured project?	open	2024-11-29 22:54:18.252375	2024-11-29 22:54:18.252375	0
+3358	1573	What type is used to store image data?	open	2024-11-29 22:54:18.255685	2024-11-29 22:54:18.255685	0
+3359	1573	Read an image from file?	open	2024-11-29 22:54:18.258904	2024-11-29 22:54:18.258904	0
+3360	1573	Write an image to file?	open	2024-11-29 22:54:18.26159	2024-11-29 22:54:18.26159	0
+3361	1573	What coloring formats are possible to apply on importing images?	open	2024-11-29 22:54:18.264695	2024-11-29 22:54:18.264695	0
+3362	1573	Retrieve the number of rows and columns within a matrix?	open	2024-11-29 22:54:18.267841	2024-11-29 22:54:18.267841	0
+3363	1573	What type is used to contain pixel information?	open	2024-11-29 22:54:18.269955	2024-11-29 22:54:18.269955	0
+3364	1573	Retrieve a pixel from a matrix?	open	2024-11-29 22:54:18.27189	2024-11-29 22:54:18.27189	0
+3365	1573	Display an image in a window?	open	2024-11-29 22:54:18.273961	2024-11-29 22:54:18.273961	0
+3366	1573	Record video feed from a camera?	open	2024-11-29 22:54:18.275824	2024-11-29 22:54:18.275824	0
+3367	1573	What are the basic objects in OpenCV?	open	2024-11-29 22:54:18.27824	2024-11-29 22:54:18.27824	0
+3368	1573	What type aliases are available for <code>cv::Vec</code> class template?	open	2024-11-29 22:54:18.280133	2024-11-29 22:54:18.280133	0
+3369	1573	What operations does <code>cv::Vec</code> class template support?	open	2024-11-29 22:54:18.281844	2024-11-29 22:54:18.281844	0
+3370	1573	What operations does Scalar type support?	open	2024-11-29 22:54:18.283891	2024-11-29 22:54:18.283891	0
+3371	1573	What operations does Point type support?	open	2024-11-29 22:54:18.286261	2024-11-29 22:54:18.286261	0
+3372	1573	What type aliases are available for Point class template?	open	2024-11-29 22:54:18.288216	2024-11-29 22:54:18.288216	0
+3373	1573	What operations does Size type support?	open	2024-11-29 22:54:18.290245	2024-11-29 22:54:18.290245	0
+3374	1573	Initialize an object of type Rect?	open	2024-11-29 22:54:18.292325	2024-11-29 22:54:18.292325	0
+3375	1573	Initialize an object of type RotatedRect?	open	2024-11-29 22:54:18.294168	2024-11-29 22:54:18.294168	0
+3376	1573	Retrieve the bounding rectangle of a rotated rectangle?	open	2024-11-29 22:54:18.295924	2024-11-29 22:54:18.295924	0
+3377	1573	Create a matrix with specific channels?	open	2024-11-29 22:54:18.297678	2024-11-29 22:54:18.297678	0
+3378	1573	How many channel options are available?	open	2024-11-29 22:54:18.299446	2024-11-29 22:54:18.299446	0
+3379	1573	Initialize a matrix with zeros?	open	2024-11-29 22:54:18.301627	2024-11-29 22:54:18.301627	0
+3380	1573	Initialize a matrix with ones?	open	2024-11-29 22:54:18.303862	2024-11-29 22:54:18.303862	0
+3381	1573	Create an eye matrix?	open	2024-11-29 22:54:18.305865	2024-11-29 22:54:18.305865	0
+3382	1573	What operations are supported on Mat type?	open	2024-11-29 22:54:18.308008	2024-11-29 22:54:18.308008	0
+3383	1573	Count non-zero elements in a matrix?	open	2024-11-29 22:54:18.309827	2024-11-29 22:54:18.309827	0
+3384	1573	Calculate mean standard deviation of a matrix?	open	2024-11-29 22:54:18.311597	2024-11-29 22:54:18.311597	0
+3385	1573	Locate minimum and maximum values in a matrix?	open	2024-11-29 22:54:18.313324	2024-11-29 22:54:18.313324	0
+3386	1573	Store matrix data in a persistent storage?	open	2024-11-29 22:54:18.315022	2024-11-29 22:54:18.315022	0
+3387	1573	Read data from a persistent storage?	open	2024-11-29 22:54:18.316913	2024-11-29 22:54:18.316913	0
+3388	1354	What special rule do functions have in value categories?	open	2024-12-01 22:08:01.385167	2024-12-01 22:08:01.385167	0
+3389	1354	What special rules do data members have in value categories?	open	2024-12-01 22:08:01.395207	2024-12-01 22:08:01.395207	0
+3390	1354	What is the impact of value categories when binding an rvalue to lvalue references?	open	2024-12-01 22:08:01.398968	2024-12-01 22:08:01.398968	0
+3391	1354	What is the overload resolution with references?	open	2024-12-01 22:08:01.40199	2024-12-01 22:08:01.40199	0
+3392	1354	What is the priority between reference and value overload resolutions?	open	2024-12-01 22:08:01.404644	2024-12-01 22:08:01.404644	0
+3393	1354	When does an lvalue become an rvalue?	open	2024-12-01 22:08:01.407748	2024-12-01 22:08:01.407748	0
+3394	1354	When does an rvalue become an lvalue?	open	2024-12-01 22:08:01.411388	2024-12-01 22:08:01.411388	0
+3395	1354	What operator can be used to determine the type of names?	open	2024-12-01 22:08:01.413404	2024-12-01 22:08:01.413404	0
+3396	1354	What operator can be used to determine the value category of an expression?	open	2024-12-01 22:08:01.415513	2024-12-01 22:08:01.415513	0
+3397	1355	Determine the value category of an expression?	open	2024-12-01 22:08:01.418235	2024-12-01 22:08:01.418235	0
+3398	1584	How many parallel programming paradigms exist?	open	2024-12-05 16:21:03.609023	2024-12-05 16:21:03.609023	0
+3399	1584	What is the difference between preemptive and non-preemptive concurrency?	open	2024-12-05 16:21:03.618759	2024-12-05 16:21:03.618759	0
+3400	1584	What are the advantages of preemptive multitasking?	open	2024-12-05 16:21:03.621423	2024-12-05 16:21:03.621423	0
+3401	1584	Use Amdahl's law to measure the speed-up factor of a parallel system?	open	2024-12-05 16:21:03.623147	2024-12-05 16:21:03.623147	0
+3402	1584	Use Gustafson's law to compute the speed-up gained by using multiple processors?	open	2024-12-05 16:21:03.624707	2024-12-05 16:21:03.624707	0
+3403	1355	Forward an object that is passed with move semantics to a function?	open	2024-12-06 16:27:19.40459	2024-12-06 16:27:19.40459	0
+3404	1355	What is the workaround to having different overloads for each parameter in a generic code?	open	2024-12-06 16:27:19.420811	2024-12-06 16:27:19.420811	0
+3405	1355	What are the requirements of perfect forwarding?	open	2024-12-06 16:27:19.42263	2024-12-06 16:27:19.42263	0
+3406	1355	Perfectly forward variadic template arguments?	open	2024-12-06 16:27:19.42417	2024-12-06 16:27:19.42417	0
+3407	1355	What is the difference between an rvalue reference and a universal reference?	open	2024-12-06 16:27:19.425913	2024-12-06 16:27:19.425913	0
+3408	1355	What difference does it make to const qualify a universal reference?	open	2024-12-06 16:27:19.427602	2024-12-06 16:27:19.427602	0
+3409	1355	What does <code>std::forward</code> do?	open	2024-12-06 16:27:19.429631	2024-12-06 16:27:19.429631	0
+3410	1355	Call a member function of an object passed as a universal reference when we no longer need that object?	open	2024-12-06 16:27:19.430919	2024-12-06 16:27:19.430919	0
+3411	1355	What is the overload resolution of binding all references including universal references?	open	2024-12-06 16:27:19.4321	2024-12-06 16:27:19.4321	0
+3412	1355	What is the side effect of universal reference overloads on copy and move constructors?	open	2024-12-06 16:27:19.433411	2024-12-06 16:27:19.433411	0
+3413	1355	Avoid accidental overload resolution with universal reference in a generic constructor?	open	2024-12-06 16:27:19.434758	2024-12-06 16:27:19.434758	0
+3414	1355	Perfectly forward parameters of a lambda?	open	2024-12-06 16:27:19.436119	2024-12-06 16:27:19.436119	0
+3415	1356	What is the advantage of universal references over const lvalue references?	open	2024-12-07 22:38:53.140965	2024-12-07 22:38:53.140965	0
+3416	1356	Why cannot we use <code>std::forward<>()</code> twice in an object?	open	2024-12-07 22:38:53.145845	2024-12-07 22:38:53.145845	0
+3417	1356	What is the deduced type of a universal reference?	open	2024-12-07 22:38:53.148352	2024-12-07 22:38:53.148352	0
+3418	1356	Check for constness of an argument?	open	2024-12-07 22:38:53.150412	2024-12-07 22:38:53.150412	0
+3419	1356	Divide the execution of a function based on constness of its argument?	open	2024-12-07 22:38:53.152206	2024-12-07 22:38:53.152206	0
+3420	1356	Check whether the passed argument of an object is an lvalue or an rvalue?	open	2024-12-07 22:38:53.153851	2024-12-07 22:38:53.153851	0
+3421	1356	Restrict a universal reference to a specifc type?	open	2024-12-07 22:38:53.156453	2024-12-07 22:38:53.156453	0
+3422	1356	What corner cases exist that rvalue references might look like universal references?	open	2024-12-07 22:38:53.157778	2024-12-07 22:38:53.157778	0
+3423	1356	Where does reference collapsing rule apply?	open	2024-12-07 22:38:53.15917	2024-12-07 22:38:53.15917	0
+3424	1356	How does reference collapsing apply for <code>std::move()</code> and <code>std::reference<>()</code>?	open	2024-12-07 22:38:53.160865	2024-12-07 22:38:53.160865	0
+3425	1356	What are the side effects of explicitly specifying the type of the template parameter when declared as a universal reference?	open	2024-12-07 23:31:28.5878	2024-12-07 23:31:28.5878	0
+3426	1356	When does template parameter deduction conflicts happens with universal references?	open	2024-12-07 23:31:28.592694	2024-12-07 23:31:28.592694	0
+3427	1356	Declare a function taking a pure rvalue reference of generic types?	open	2024-12-07 23:31:28.595987	2024-12-07 23:31:28.595987	0
+3428	1459	What is the most appropriate way of making the targets of a project available to other projects system-wide?	open	2024-12-14 09:40:42.536907	2024-12-14 09:40:42.536907	0
+3429	1459	Define an export file to be used by consuming projects?	open	2024-12-14 09:40:42.545616	2024-12-14 09:40:42.545616	0
+3430	1459	What are the alternative approaches to exporting a target?	open	2024-12-14 09:40:42.547789	2024-12-14 09:40:42.547789	0
+3431	1459	Why the generated export file cannot be used system-wide?	open	2024-12-14 09:40:42.549391	2024-12-14 09:40:42.549391	0
+3432	1459	Install a built project on your host system?	open	2024-12-15 18:57:04.153628	2024-12-15 18:57:04.153628	0
+3433	1459	What CMake command installs artifacts?	open	2024-12-15 18:57:04.157849	2024-12-15 18:57:04.157849	0
+3434	1459	What artifacts can be installed by CMake?	open	2024-12-15 18:57:04.160225	2024-12-15 18:57:04.160225	0
+3435	1459	Specify the location where an artifact would be copied in install command?	open	2024-12-15 18:57:04.162368	2024-12-15 18:57:04.162368	0
+3436	1459	Set permissions for an artifact in install command?	open	2024-12-15 18:57:04.16419	2024-12-15 18:57:04.16419	0
+3437	1459	Specify in which configurations an artifact should be installed in install command?	open	2024-12-15 18:57:04.166034	2024-12-15 18:57:04.166034	0
+3438	1459	Suppress errors when the installable files do not exist in install command?	open	2024-12-15 18:57:04.167475	2024-12-15 18:57:04.167475	0
+3439	1459	Specify in which export component an artifact belongs to in install command?	open	2024-12-15 18:57:04.168485	2024-12-15 18:57:04.168485	0
+3440	1459	Exclude an artifact from the default build process in install command?	open	2024-12-15 18:57:04.169622	2024-12-15 18:57:04.169622	0
+3441	1459	What command installs executable and library artifacts?	open	2024-12-15 18:57:04.170975	2024-12-15 18:57:04.170975	0
+3442	1459	Specify the export file in which an artifact should belong to in install command?	open	2024-12-15 18:57:04.172239	2024-12-15 18:57:04.172239	0
+3443	1459	What artifact types an installable artifact can have?	open	2024-12-15 18:57:04.173295	2024-12-15 18:57:04.173295	0
+3444	1459	What are the default installation paths for each of the artifact types?	open	2024-12-15 18:57:04.17444	2024-12-15 18:57:04.17444	0
+3445	1459	What utility module aims detecting platform specific installation paths?	open	2024-12-15 18:57:04.1753	2024-12-15 18:57:04.1753	0
+3446	1459	What path is the defacto standard for library headers to be installed?	open	2024-12-15 18:57:04.176304	2024-12-15 18:57:04.176304	0
+3447	1459	Specify a file set for target headers to be installed in an appropriate location?	open	2024-12-15 18:57:04.177706	2024-12-15 18:57:04.177706	0
+3448	1459	Install files and assets into system-wide accessible locations?	open	2024-12-15 18:57:04.179372	2024-12-15 18:57:04.179372	0
+3449	1459	Invoke scripts during installation?	open	2024-12-15 18:57:04.180582	2024-12-15 18:57:04.180582	0
+3450	1459	Specify runtime dependencies for a target?	open	2024-12-15 18:57:04.181832	2024-12-15 18:57:04.181832	0
+3451	1459	What steps are required to make a project accessible system-wide?	open	2024-12-15 18:57:04.182778	2024-12-15 18:57:04.182778	0
+3452	1459	Make include directories relocatable?	open	2024-12-15 18:57:04.184231	2024-12-15 18:57:04.184231	0
+3453	1459	Install an export file?	open	2024-12-15 18:57:04.18526	2024-12-15 18:57:04.18526	0
+3454	1459	What are the building blocks of a package definition config file?	open	2024-12-15 18:57:04.186167	2024-12-15 18:57:04.186167	0
+3455	1459	What are the requirements of a package?	open	2024-12-15 18:57:04.187456	2024-12-15 18:57:04.187456	0
+3456	1459	What are the requirements of package location and name?	open	2024-12-15 18:57:04.188948	2024-12-15 18:57:04.188948	0
+3457	1459	What does a basic config file contain?	open	2024-12-15 18:57:04.189985	2024-12-15 18:57:04.189985	0
+3458	1459	Make a library visible by other projects through <code>find_package()</code>?	open	2024-12-15 18:57:04.191334	2024-12-15 18:57:04.191334	0
+3459	1459	Check path availability in a config file?	open	2024-12-15 18:57:04.192368	2024-12-15 18:57:04.192368	0
+3460	1459	Generate package version file?	open	2024-12-15 18:57:04.193548	2024-12-15 18:57:04.193548	0
+3461	1459	Define components to be used in package finding?	open	2024-12-15 18:57:04.194565	2024-12-15 18:57:04.194565	0
+3462	1459	Make a symbolic linke to a versioned shared library?	open	2024-12-15 18:57:04.195571	2024-12-15 18:57:04.195571	0
+3463	1459	What package generators are available?	open	2024-12-15 18:57:04.196751	2024-12-15 18:57:04.196751	0
+3464	1459	What information is needed in the project before packing it?	open	2024-12-15 18:57:04.198124	2024-12-15 18:57:04.198124	0
+3465	1459	Create a package from a project?	open	2024-12-15 18:57:04.199281	2024-12-15 18:57:04.199281	0
+3466	787	What predefined images exist in poky?	open	2024-12-21 10:35:23.080574	2024-12-21 10:35:23.080574	0
+3467	787	Build an image?	open	2024-12-21 10:35:23.08758	2024-12-21 10:35:23.08758	0
+3468	787	What layer provides necessary tool to run built images?	open	2024-12-21 10:35:23.089748	2024-12-21 10:35:23.089748	0
+3469	788	What is the role of Toaster in the Yocto project?	open	2024-12-21 12:09:06.509635	2024-12-21 12:09:06.509635	0
+3470	788	Install toaster and its requirements?	open	2024-12-21 12:09:06.513737	2024-12-21 12:09:06.513737	0
+3471	788	Start toaster?	open	2024-12-21 12:09:06.516636	2024-12-21 12:09:06.516636	0
+3472	789	Where is the configuration file for each layer?	open	2024-12-21 12:09:06.520544	2024-12-21 12:09:06.520544	0
+3473	789	What metadata types exist?	open	2024-12-21 12:09:06.522213	2024-12-21 12:09:06.522213	0
+3474	789	What is the role of configurations in layers?	open	2024-12-21 12:09:06.523645	2024-12-21 12:09:06.523645	0
+3475	789	What is the role of classes in layers?	open	2024-12-21 12:09:06.525176	2024-12-21 12:09:06.525176	0
+3476	789	What are the required variables in the configuration file of a layer?	open	2024-12-21 12:09:06.526324	2024-12-21 12:09:06.526324	0
+3477	790	What configuration files are be parsed by bitbake?	open	2024-12-21 16:09:33.74025	2024-12-21 16:09:33.74025	0
+3478	790	What configuration variable is used to list required layers in metadata?	open	2024-12-21 16:09:33.744301	2024-12-21 16:09:33.744301	0
+3479	790	What is the metadata parsing order of bitbake?	open	2024-12-21 16:09:33.746387	2024-12-21 16:09:33.746387	0
+3480	790	When does architecture specific metadata loads into metadata?	open	2024-12-21 16:09:33.748137	2024-12-21 16:09:33.748137	0
+3481	790	What dependencies exist in metadata?	open	2024-12-21 16:09:33.75007	2024-12-21 16:09:33.75007	0
+3482	790	What recipes will only run on host and not the target device?	open	2024-12-21 16:09:33.751637	2024-12-21 16:09:33.751637	0
+3483	790	What configuration variables hold metadata dependencies?	open	2024-12-21 16:09:33.753338	2024-12-21 16:09:33.753338	0
+3484	790	What configuration variable is used to satisfy metadata dependecies?	open	2024-12-21 16:09:33.754583	2024-12-21 16:09:33.754583	0
+3485	790	What configuration variable signifies higher precedence of a provider over others?	open	2024-12-21 16:09:33.755646	2024-12-21 16:09:33.755646	0
+3486	790	How many ways exist for a provider to provide a functionality?	open	2024-12-21 16:09:33.756774	2024-12-21 16:09:33.756774	0
+3487	790	When do we use virtual namespace in provider names?	open	2024-12-21 16:09:33.758042	2024-12-21 16:09:33.758042	0
+3488	790	What is the preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.759134	2024-12-21 16:09:33.759134	0
+3489	790	Override the default version preference of bitbake over selecting between multiple versions of the same provider?	open	2024-12-21 16:09:33.760254	2024-12-21 16:09:33.760254	0
+3490	790	Change the default version preference of a recipe?	open	2024-12-21 16:09:33.761444	2024-12-21 16:09:33.761444	0
+3491	790	What mechanism does bitbake have to fetch sources?	open	2024-12-21 16:09:33.762551	2024-12-21 16:09:33.762551	0
+3492	790	What recipe variable is used to fetch source files?	open	2024-12-21 16:09:33.763607	2024-12-21 16:09:33.763607	0
+3493	790	What mechanism is used by bitbake to verify downloaded files?	open	2024-12-21 16:09:33.764575	2024-12-21 16:09:33.764575	0
+3494	790	Override the download path in a layer?	open	2024-12-21 16:09:33.76564	2024-12-21 16:09:33.76564	0
+3495	790	How does bitbake avoid conflicts between possible git repositories with the same project name?	open	2024-12-21 16:09:33.766818	2024-12-21 16:09:33.766818	0
+3496	790	What are the use cases of <code>SRCREV</code> variable?	open	2024-12-21 16:09:33.767775	2024-12-21 16:09:33.767775	0
+3497	790	Specify branch and protocol of a git repository to be fetched?	open	2024-12-21 16:09:33.768809	2024-12-21 16:09:33.768809	0
+3498	790	What are the use cases of mirrors?	open	2024-12-21 16:09:33.769779	2024-12-21 16:09:33.769779	0
+3499	790	What locations are searched by bitbake to download a repository?	open	2024-12-21 16:09:33.770721	2024-12-21 16:09:33.770721	0
+3500	790	Instruct the build system to redirect any download request to a local server?	open	2024-12-21 16:09:33.772046	2024-12-21 16:09:33.772046	0
+3501	790	Share downloads between multiple build directories?	open	2024-12-21 16:09:33.773287	2024-12-21 16:09:33.773287	0
+3502	790	Disable internet access to bitbake?	open	2024-12-21 16:09:33.774656	2024-12-21 16:09:33.774656	0
+3503	790	Run a specific task?	open	2024-12-21 16:09:33.775739	2024-12-21 16:09:33.775739	0
+3504	790	List the defined tasks for a recipe?	open	2024-12-21 16:09:33.777187	2024-12-21 16:09:33.777187	0
+3505	790	What is a task?	open	2024-12-21 16:09:33.778815	2024-12-21 16:09:33.778815	0
+3506	790	What are the common tasks specified in each recipe?	open	2024-12-21 16:09:33.779798	2024-12-21 16:09:33.779798	0
+3507	791	What are the entries of the build directory after image creation?	open	2024-12-23 12:32:36.959745	2024-12-23 12:32:36.959745	0
+3508	791	Which directories are critical to know for analyzing the build process and troubleshooting?	open	2024-12-23 12:32:36.964118	2024-12-23 12:32:36.964118	0
+3509	791	What directory is modified in each step of the build process?	open	2024-12-23 12:32:36.965887	2024-12-23 12:32:36.965887	0
+3510	791	What is the structure of work directory?	open	2024-12-23 12:32:36.968179	2024-12-23 12:32:36.968179	0
+3511	791	Reduce disk usage after each recipe compilation by removing artifacts?	open	2024-12-23 12:32:36.970039	2024-12-23 12:32:36.970039	0
+3512	791	Where does the list sysroot providers for each recipe reside?	open	2024-12-23 12:32:36.971582	2024-12-23 12:32:36.971582	0
+3513	791	What is the general approach to fix broken builds when a missing header or link failure happens?	open	2024-12-23 12:32:36.973033	2024-12-23 12:32:36.973033	0
+3514	792	What package formats are available to poky?	open	2024-12-23 17:32:55.473494	2024-12-23 17:32:55.473494	0
+3515	792	Select a package format?	open	2024-12-23 17:32:55.478001	2024-12-23 17:32:55.478001	0
+3516	792	What package installation scripts are available in a recipe?	open	2024-12-23 17:32:55.480366	2024-12-23 17:32:55.480366	0
+3517	792	Run post installation scripts on target devices instead of host?	open	2024-12-23 17:32:55.48391	2024-12-23 17:32:55.48391	0
+3518	792	What variable holds the path to the installation directory?	open	2024-12-23 17:32:55.48661	2024-12-23 17:32:55.48661	0
+3519	792	What is the best practice to run target specific processes?	open	2024-12-23 17:32:55.488274	2024-12-23 17:32:55.488274	0
+3520	792	What is a shared state cache?	open	2024-12-23 17:32:55.489917	2024-12-23 17:32:55.489917	0
+3521	792	Clean the shared state cache?	open	2024-12-23 17:32:55.49139	2024-12-23 17:32:55.49139	0
+3522	792	Enforce building from scratch?	open	2024-12-23 17:32:55.49386	2024-12-23 17:32:55.49386	0
+3523	792	What variables are used in package versioning of poky?	open	2024-12-23 17:32:55.49651	2024-12-23 17:32:55.49651	0
+3524	792	What variables are used to specify runtime package dependencies?	open	2024-12-23 17:32:55.499345	2024-12-23 17:32:55.499345	0
+3525	792	What is the role of rootfs directory?	open	2024-12-23 17:32:55.501502	2024-12-23 17:32:55.501502	0
+3526	792	What variable holds the list of packages to be installed into rootfs?	open	2024-12-23 17:32:55.502991	2024-12-23 17:32:55.502991	0
+3527	792	What variable holds the filesystem types to be generated?	open	2024-12-23 17:32:55.50438	2024-12-23 17:32:55.50438	0
+3528	792	What are the steps of rootfs directory generation?	open	2024-12-23 17:32:55.505826	2024-12-23 17:32:55.505826	0
+3529	792	What is a package feed?	open	2024-12-23 17:32:55.507409	2024-12-23 17:32:55.507409	0
+3530	792	What are the use cases of package feeds?	open	2024-12-23 17:32:55.508888	2024-12-23 17:32:55.508888	0
+3531	792	What is the role of PR service in package versioning?	open	2024-12-23 17:32:55.51023	2024-12-23 17:32:55.51023	0
+3532	792	Enable PR service in a layer?	open	2024-12-23 17:32:55.513027	2024-12-23 17:32:55.513027	0
+3533	792	What is the role of package index?	open	2024-12-23 17:32:55.51583	2024-12-23 17:32:55.51583	0
+3534	792	Where do installed packages reside?	open	2024-12-23 17:32:55.517932	2024-12-23 17:32:55.517932	0
+3535	792	Add support for package management to an image?	open	2024-12-23 17:32:55.519775	2024-12-23 17:32:55.519775	0
+3536	793	How many types a metadata covers?	open	2024-12-24 11:02:23.777862	2024-12-24 11:02:23.777862	0
+3537	793	What is the language of a recipe?	open	2024-12-24 11:02:23.791329	2024-12-24 11:02:23.791329	0
+3538	793	Trace the variable changes during execution of a recipe?	open	2024-12-24 11:02:23.792735	2024-12-24 11:02:23.792735	0
+3539	793	Assign value to a variable in a recipe file?	open	2024-12-24 11:02:23.793889	2024-12-24 11:02:23.793889	0
+3540	793	Use variable expansion in value assignment?	open	2024-12-24 11:02:23.795803	2024-12-24 11:02:23.795803	0
+3541	793	How many expansion rules exist?	open	2024-12-24 11:02:23.797003	2024-12-24 11:02:23.797003	0
+3542	793	How many assignments with different priorities exist?	open	2024-12-24 11:02:23.798435	2024-12-24 11:02:23.798435	0
+3543	793	Use an immediate variable expansion?	open	2024-12-24 11:02:23.799436	2024-12-24 11:02:23.799436	0
+3544	793	Append and prepend a value to a list?	open	2024-12-24 11:02:23.800604	2024-12-24 11:02:23.800604	0
+3545	793	Append and prepend a value to a string?	open	2024-12-24 11:02:23.801632	2024-12-24 11:02:23.801632	0
+3546	793	What are the differences between both variations of string append and prepend operators?	open	2024-12-24 11:02:23.802606	2024-12-24 11:02:23.802606	0
+3547	793	Remove an item from a list?	open	2024-12-24 11:02:23.803587	2024-12-24 11:02:23.803587	0
+3548	793	What variable is used to control the conditional metadata override?	open	2024-12-24 11:02:23.804676	2024-12-24 11:02:23.804676	0
+3549	793	Conditionally assign value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.805628	2024-12-24 11:02:23.805628	0
+3550	793	Conditionally append and prepend value to a variable only when target device is Beagle Bone?	open	2024-12-24 11:02:23.806552	2024-12-24 11:02:23.806552	0
+3551	793	How many ways exist to include another recipe file?	open	2024-12-24 11:02:23.807822	2024-12-24 11:02:23.807822	0
+3552	793	Use inline Python code?	open	2024-12-24 11:02:23.808801	2024-12-24 11:02:23.808801	0
+3553	793	Define a Shell function inside a recipe?	open	2024-12-24 11:02:23.809776	2024-12-24 11:02:23.809776	0
+3554	793	Define a Python function inside a recipe?	open	2024-12-24 11:02:23.811035	2024-12-24 11:02:23.811035	0
+3555	793	Get access to global datastore of bitbake within a Python function?	open	2024-12-24 11:02:23.812756	2024-12-24 11:02:23.812756	0
+3556	793	Inherit from a class inside a recipe?	open	2024-12-24 11:02:23.814062	2024-12-24 11:02:23.814062	0
+3557	794	What is a toolchain?	open	2024-12-25 21:59:50.259956	2024-12-25 21:59:50.259956	0
+3558	794	What is an SDK?	open	2024-12-25 21:59:50.266847	2024-12-25 21:59:50.266847	0
+3559	794	Generate a native SDK for development on target device?	open	2024-12-25 21:59:50.269304	2024-12-25 21:59:50.269304	0
+3560	794	What SDK types can bitbake generate?	open	2024-12-25 21:59:50.271207	2024-12-25 21:59:50.271207	0
+3561	794	In how many places an SDK can be generated?	open	2024-12-25 21:59:50.272354	2024-12-25 21:59:50.272354	0
+3562	794	Build a generic standard SDK?	open	2024-12-25 21:59:50.273536	2024-12-25 21:59:50.273536	0
+3563	794	Where are the generated SDK files after build?	open	2024-12-25 21:59:50.274775	2024-12-25 21:59:50.274775	0
+3564	794	Install an SDK?	open	2024-12-25 21:59:50.27614	2024-12-25 21:59:50.27614	0
+3565	794	What machine architecture is supported by a standard SDK?	open	2024-12-25 21:59:50.277176	2024-12-25 21:59:50.277176	0
+3566	794	Use an installed standard SDK to build a custom application?	open	2024-12-25 21:59:50.278329	2024-12-25 21:59:50.278329	0
+3567	794	Use an installed standard SDK to build the kernel?	open	2024-12-25 21:59:50.279646	2024-12-25 21:59:50.279646	0
+3568	794	Build an extensible SDK?	open	2024-12-25 21:59:50.280776	2024-12-25 21:59:50.280776	0
+3569	794	Install an extensible SDK?	open	2024-12-25 21:59:50.281847	2024-12-25 21:59:50.281847	0
+3570	794	What are the advantages of using an extensible SDK?	open	2024-12-25 21:59:50.282869	2024-12-25 21:59:50.282869	0
+3571	794	Build an image using an installed extensible SDK?	open	2024-12-25 21:59:50.284004	2024-12-25 21:59:50.284004	0
+3572	794	Run an image using an installed extensible SDK?	open	2024-12-25 21:59:50.285045	2024-12-25 21:59:50.285045	0
+3573	794	Create a recipe from an external git repository using an installed extensible SDK?	open	2024-12-25 21:59:50.286193	2024-12-25 21:59:50.286193	0
+3574	794	Build a recipe using an installed extensible SDK?	open	2024-12-25 21:59:50.287485	2024-12-25 21:59:50.287485	0
+3575	794	Deploy an image to the target using an installed extensible SDK?	open	2024-12-25 21:59:50.288921	2024-12-25 21:59:50.288921	0
+3576	794	Extend an installed extensible SDK?	open	2024-12-25 21:59:50.291414	2024-12-25 21:59:50.291414	0
+3577	794	What are the use cases of a shared extensible SDK?	open	2024-12-25 21:59:50.293255	2024-12-25 21:59:50.293255	0
+3578	795	What are the common ways of debugging the metadata?	open	2024-12-26 10:13:56.232488	2024-12-26 10:13:56.232488	0
+3579	795	What are the advantages of checking the build history?	open	2024-12-26 10:13:56.24661	2024-12-26 10:13:56.24661	0
+3580	795	Enable build history to observe differences between subsequent builds?	open	2024-12-26 10:13:56.248233	2024-12-26 10:13:56.248233	0
+3581	795	Check the difference of two subsequent builds?	open	2024-12-26 10:13:56.25107	2024-12-26 10:13:56.25107	0
+3582	795	Where can we check for installation splits?	open	2024-12-26 10:13:56.253049	2024-12-26 10:13:56.253049	0
+3583	795	Where can we check for the failures due to missing artifacts in sysroot?	open	2024-12-26 10:13:56.254685	2024-12-26 10:13:56.254685	0
+3584	795	What tool can be used to inspect built packages?	open	2024-12-26 10:13:56.255863	2024-12-26 10:13:56.255863	0
+3585	795	Find all packages related to a built package?	open	2024-12-26 10:13:56.256874	2024-12-26 10:13:56.256874	0
+3586	795	Find the package that owns a specific file?	open	2024-12-26 10:13:56.257782	2024-12-26 10:13:56.257782	0
+3587	795	Find the current version of a package?	open	2024-12-26 10:13:56.258711	2024-12-26 10:13:56.258711	0
+3588	795	List all the files for the given package?	open	2024-12-26 10:13:56.259825	2024-12-26 10:13:56.259825	0
+3589	795	What logging functions are available for use in Python and Shell functions?	open	2024-12-26 10:13:56.261233	2024-12-26 10:13:56.261233	0
+3590	795	Where are the Python and Shell logs stored?	open	2024-12-26 10:13:56.262571	2024-12-26 10:13:56.262571	0
+3591	795	What tool can be used to inspect value changes of a variable?	open	2024-12-26 10:13:56.26353	2024-12-26 10:13:56.26353	0
+3592	795	Inspect the value changes of a variable in a metadata?	open	2024-12-26 10:13:56.264581	2024-12-26 10:13:56.264581	0
+3593	795	What are the use cases of a development shell?	open	2024-12-26 10:13:56.266557	2024-12-26 10:13:56.266557	0
+3594	795	Run a development shell over the kernel image?	open	2024-12-26 10:13:56.268498	2024-12-26 10:13:56.268498	0
+3595	795	Install debugging packages containing debug symbols in an image?	open	2024-12-26 10:13:56.270291	2024-12-26 10:13:56.270291	0
+3596	795	Why remote debugging is usually a better option than debugging on target device?	open	2024-12-26 10:13:56.27137	2024-12-26 10:13:56.27137	0
+3597	796	List all layers?	open	2024-12-28 12:14:27.150905	2024-12-28 12:14:27.150905	0
+3598	796	What are the essential properties of a layer?	open	2024-12-28 12:14:27.155569	2024-12-28 12:14:27.155569	0
+3599	796	What kinds of layers exist?	open	2024-12-28 12:14:27.157596	2024-12-28 12:14:27.157596	0
+3600	796	What is the common way to deal with permanent chances that need to be applied as special requirements?	open	2024-12-28 12:14:27.159672	2024-12-28 12:14:27.159672	0
+3601	796	What are the entries of a layer?	open	2024-12-28 12:14:27.16181	2024-12-28 12:14:27.16181	0
+3602	796	Add an existing meta layer?	open	2024-12-28 12:14:27.163585	2024-12-28 12:14:27.163585	0
+3603	796	Check for the availability of a layer in the community?	open	2024-12-28 12:14:27.165122	2024-12-28 12:14:27.165122	0
+3604	796	Add an existing meta layer from OpenEmbedded Layer Index?	open	2024-12-28 12:14:27.166331	2024-12-28 12:14:27.166331	0
+3605	797	Create a new layer?	open	2024-12-28 19:21:57.454328	2024-12-28 19:21:57.454328	0
+3606	797	What needs to be changed in the base of a layer right after its creation?	open	2024-12-28 19:21:57.472395	2024-12-28 19:21:57.472395	0
+3607	797	What is an image?	open	2024-12-28 19:21:57.474974	2024-12-28 19:21:57.474974	0
+3608	797	What are the possible ways of creating a new image?	open	2024-12-28 19:21:57.477212	2024-12-28 19:21:57.477212	0
+3609	797	Add a new features and remove an existing feature from an image?	open	2024-12-28 19:21:57.478704	2024-12-28 19:21:57.478704	0
+3610	797	Create a new imagine from scratch?	open	2024-12-28 19:21:57.480184	2024-12-28 19:21:57.480184	0
+3611	797	What image features are currently supported?	open	2024-12-28 19:21:57.481798	2024-12-28 19:21:57.481798	0
+3612	797	What happens when both openssh and dropbear appears for installation?	open	2024-12-28 19:21:57.48302	2024-12-28 19:21:57.48302	0
+3613	797	Where do the built packages go?	open	2024-12-28 19:21:57.484215	2024-12-28 19:21:57.484215	0
+3614	797	What class provides the steps to build a project based on autotools?	open	2024-12-28 19:21:57.485702	2024-12-28 19:21:57.485702	0
+3615	797	Copy the recipe file to the target layer?	open	2024-12-28 19:21:57.487129	2024-12-28 19:21:57.487129	0
+3616	797	What are the necessary actions to add support to a new machine definition?	open	2024-12-28 19:21:57.48969	2024-12-28 19:21:57.48969	0
+3617	797	What variable holds the list of software needed by a machine to be installed?	open	2024-12-28 19:21:57.49183	2024-12-28 19:21:57.49183	0
+3618	797	What values are currently available for <codde>MACHINE_FEATURES</code>?	open	2024-12-28 19:21:57.493649	2024-12-28 19:21:57.493649	0
+3619	797	At what stage the machine image should be created?	open	2024-12-28 19:21:57.494904	2024-12-28 19:21:57.494904	0
+3620	797	What tool is used to partition an image?	open	2024-12-28 19:21:57.496094	2024-12-28 19:21:57.496094	0
+3621	797	Add partitions to an image?	open	2024-12-28 19:21:57.497311	2024-12-28 19:21:57.497311	0
+3622	797	When do we have to create a distribution?	open	2024-12-28 19:21:57.498487	2024-12-28 19:21:57.498487	0
+3623	797	What are the use cases of distributions?	open	2024-12-28 19:21:57.499658	2024-12-28 19:21:57.499658	0
+3624	797	Create a new distribution to replace wayland by frame buffer?	open	2024-12-28 19:21:57.500973	2024-12-28 19:21:57.500973	0
+3625	797	What variable defines the features used in a distro?	open	2024-12-28 19:21:57.50217	2024-12-28 19:21:57.50217	0
+3626	797	What distro features are available?	open	2024-12-28 19:21:57.503436	2024-12-28 19:21:57.503436	0
+3627	797	What are the differences of machine features and distro features?	open	2024-12-28 19:21:57.505166	2024-12-28 19:21:57.505166	0
+3628	797	What are the parsing order of configuration files in a layer?	open	2024-12-28 19:21:57.506589	2024-12-28 19:21:57.506589	0
+3629	797	What are the scope of configuration and recipe variables?	open	2024-12-28 19:21:57.507907	2024-12-28 19:21:57.507907	0
+3630	798	What is the best practice to change a preexisting recipe?	open	2024-12-29 13:02:11.352824	2024-12-29 13:02:11.352824	0
+3631	798	Change a preexisting recipe?	open	2024-12-29 13:02:11.369492	2024-12-29 13:02:11.369492	0
+3632	798	What is the order of applying changes when more than one <code>.bbappend</code> exist?	open	2024-12-29 13:02:11.371397	2024-12-29 13:02:11.371397	0
+3633	798	Extend a task?	open	2024-12-29 13:02:11.372957	2024-12-29 13:02:11.372957	0
+3634	798	Add extra options to a recipe based tool?	open	2024-12-29 13:02:11.374976	2024-12-29 13:02:11.374976	0
+3635	798	What configuration variables exist for build systems?	open	2024-12-29 13:02:11.376633	2024-12-29 13:02:11.376633	0
+3636	798	What variable is used to make patch files visible?	open	2024-12-29 13:02:11.378725	2024-12-29 13:02:11.378725	0
+3637	798	What variable is used to add additional configuration files to an existing package?	open	2024-12-29 13:02:11.38003	2024-12-29 13:02:11.38003	0
+3638	798	What are the commonly used variables to represent paths?	open	2024-12-29 13:02:11.381166	2024-12-29 13:02:11.381166	0
+3639	798	Where does bitbake find recipe files?	open	2024-12-29 13:02:11.382625	2024-12-29 13:02:11.382625	0
+3640	798	What variable is used to configure features of a recipe?	open	2024-12-29 13:02:11.383575	2024-12-29 13:02:11.383575	0
+3641	798	What values are placed in the placeholders of <code>PACKAGECONFIG</code>?	open	2024-12-29 13:02:11.384712	2024-12-29 13:02:11.384712	0
+3642	798	Add a feature to a recipe?	open	2024-12-29 13:02:11.385847	2024-12-29 13:02:11.385847	0
+3643	798	What are the prerequisites of configuring a project based on Kconfig?	open	2024-12-29 13:02:11.386969	2024-12-29 13:02:11.386969	0
+3644	798	Configure the kernel using menuconfig?	open	2024-12-29 13:02:11.387899	2024-12-29 13:02:11.387899	0
+3645	798	Create a configuration fragment from the kernel?	open	2024-12-29 13:02:11.389147	2024-12-29 13:02:11.389147	0
+3646	798	Save the complete configuration of the kernel?	open	2024-12-29 13:02:11.390364	2024-12-29 13:02:11.390364	0
+3647	799	What variables describe the package license?	open	2024-12-30 22:47:32.503793	2024-12-30 22:47:32.503793	0
+3648	799	How does bitbake keep track of the project license?	open	2024-12-30 22:47:32.513203	2024-12-30 22:47:32.513203	0
+3649	799	What happens when bitbake detects a different license checksum?	open	2024-12-30 22:47:32.515024	2024-12-30 22:47:32.515024	0
+3650	799	What restrictions exist with commercial licenses?	open	2024-12-30 22:47:32.51675	2024-12-30 22:47:32.51675	0
+3651	799	Restrict a commercial license to a recipe?	open	2024-12-30 22:47:32.518423	2024-12-30 22:47:32.518423	0
+3652	799	Where does bitbake generate license manifest?	open	2024-12-30 22:47:32.520166	2024-12-30 22:47:32.520166	0
+3653	799	Configure Poky to provide the source code of packages under copyleft?	open	2024-12-30 22:47:32.521986	2024-12-30 22:47:32.521986	0
+3654	799	What recipes are included when providing the source code?	open	2024-12-30 22:47:32.523025	2024-12-30 22:47:32.523025	0
+3655	799	Exclude recipes from source code extraction?	open	2024-12-30 22:47:32.52397	2024-12-30 22:47:32.52397	0
+3656	799	Provide the source code with the modifications applied to it?	open	2024-12-30 22:47:32.525093	2024-12-30 22:47:32.525093	0
+3657	799	Provide the source code with the procedure used to build the project?	open	2024-12-30 22:47:32.526187	2024-12-30 22:47:32.526187	0
+3658	799	Change the default archive mode of source code generation?	open	2024-12-30 22:47:32.527087	2024-12-30 22:47:32.527087	0
+3659	799	Provide license text in the image?	open	2024-12-30 22:47:32.528095	2024-12-30 22:47:32.528095	0
+3660	800	What are the widely used BSP layers?	open	2024-12-30 22:47:32.531288	2024-12-30 22:47:32.531288	0
+3661	800	Bake an image for BeagleBone Black?	open	2024-12-30 22:47:32.53334	2024-12-30 22:47:32.53334	0
+3662	800	Bake an image for Raspberry Pi 4?	open	2024-12-30 22:47:32.534765	2024-12-30 22:47:32.534765	0
+3663	800	Bake an image for VisionFive2?	open	2024-12-30 22:47:32.536074	2024-12-30 22:47:32.536074	0
+3664	801	Run an image on qemu?	open	2024-12-30 22:47:32.538479	2024-12-30 22:47:32.538479	0
+3665	801	Use runqemu to validate memory constraints?	open	2024-12-30 22:47:32.540362	2024-12-30 22:47:32.540362	0
+3666	801	Use runqemu to help with image regression tests?	open	2024-12-30 22:47:32.54223	2024-12-30 22:47:32.54223	0
+3667	802	Enable build information generation and layer revisioning?	open	2024-12-30 22:47:32.543945	2024-12-30 22:47:32.543945	0
+3668	802	Where are the backports of poky when new version gets released?	open	2024-12-30 22:47:32.544877	2024-12-30 22:47:32.544877	0
+3669	802	Why do we need to create a custom distribution?	open	2024-12-30 22:47:32.545828	2024-12-30 22:47:32.545828	0
+3670	802	What is the best way to create a minimal image?	open	2024-12-30 22:47:32.546712	2024-12-30 22:47:32.546712	0
+3671	1449	What are the side effects of assigning the minimum required version to a cmake listfile?	open	2025-01-01 08:45:05.179655	2025-01-01 08:45:05.179655	0
+3672	1449	Define project details in CMake listfile?	open	2025-01-01 08:45:05.186454	2025-01-01 08:45:05.186454	0
+3673	1449	What languages are supported by CMake?	open	2025-01-01 08:45:05.18785	2025-01-01 08:45:05.18785	0
+3674	1449	What variables provide the version information about the project?	open	2025-01-01 08:45:05.189166	2025-01-01 08:45:05.189166	0
+3675	1449	What variables provide project information?	open	2025-01-01 08:45:05.190539	2025-01-01 08:45:05.190539	0
+3676	1449	Include another CMake listfile?	open	2025-01-01 08:45:05.192047	2025-01-01 08:45:05.192047	0
+3677	1449	What are the disadvantages of including another listfile?	open	2025-01-01 08:45:05.193764	2025-01-01 08:45:05.193764	0
+3678	1449	Include another CMake listfile with a scope?	open	2025-01-01 08:45:05.194893	2025-01-01 08:45:05.194893	0
+3679	1447	Compare creation date of two files?	open	2025-01-01 23:19:08.464571	2025-01-01 23:19:08.464571	0
+3680	1447	Check if a path is a directory?	open	2025-01-01 23:19:08.479215	2025-01-01 23:19:08.479215	0
+3681	1447	Check if a path is a symbolic link?	open	2025-01-01 23:19:08.480862	2025-01-01 23:19:08.480862	0
+3682	1447	Check if a path is absolute?	open	2025-01-01 23:19:08.482559	2025-01-01 23:19:08.482559	0
+3683	1447	Compare equality of two paths?	open	2025-01-01 23:19:08.484454	2025-01-01 23:19:08.484454	0
+3684	1447	What command manipulates paths?	open	2025-01-01 23:19:08.486663	2025-01-01 23:19:08.486663	0
+3685	1447	How many loops exist in CMake?	open	2025-01-01 23:19:08.489922	2025-01-01 23:19:08.489922	0
+3686	1447	What is the scope of loop variables?	open	2025-01-01 23:19:08.491889	2025-01-01 23:19:08.491889	0
+3687	1447	How many function types exist in CMake?	open	2025-01-01 23:19:08.493478	2025-01-01 23:19:08.493478	0
+3688	1447	What scopes do function and macro have?	open	2025-01-01 23:19:08.494998	2025-01-01 23:19:08.494998	0
+3689	1447	What variables are provided in a function as function arguments?	open	2025-01-01 23:19:08.496386	2025-01-01 23:19:08.496386	0
+3690	1447	What variables provide function information in a function scope?	open	2025-01-01 23:19:08.497651	2025-01-01 23:19:08.497651	0
+3691	1447	What function prints logs into the standard streams?	open	2025-01-01 23:19:08.49893	2025-01-01 23:19:08.49893	0
+3692	1447	What log levels exist?	open	2025-01-01 23:19:08.500262	2025-01-01 23:19:08.500262	0
+3693	1447	What is the message context?	open	2025-01-01 23:19:08.501688	2025-01-01 23:19:08.501688	0
+3694	1447	What arguments does inclusion function take?	open	2025-01-01 23:19:08.503548	2025-01-01 23:19:08.503548	0
+3695	1447	Guard a listfile from multiple inclusion?	open	2025-01-01 23:19:08.505256	2025-01-01 23:19:08.505256	0
+3696	1447	Read the content of a file?	open	2025-01-01 23:19:08.506789	2025-01-01 23:19:08.506789	0
+3697	1447	Write into a file?	open	2025-01-01 23:19:08.508041	2025-01-01 23:19:08.508041	0
+3698	1447	Download a file?	open	2025-01-01 23:19:08.509337	2025-01-01 23:19:08.509337	0
+3699	1447	Run another process and collect its output?	open	2025-01-01 23:19:08.51118	2025-01-01 23:19:08.51118	0
 \.
 
 
@@ -21370,7 +21442,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
-98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	1	\N
+98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
 \.
 
 
@@ -22835,7 +22907,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1535	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	12
 1536	106	open	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.016594	13
 1524	106	writing	\N	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	1
-1447	98	writing	\N	2024-08-18 14:51:01.210115	2024-10-13 10:12:58.077001	2
 661	52	writing	\N	2024-07-28 09:45:02.456043	2024-10-13 10:29:09.734084	1
 1507	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	2
 1508	104	open	\N	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.360502	3
@@ -22964,6 +23035,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 801	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.543239	16
 802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
 1449	98	writing	\N	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	4
+1447	98	completed	\N	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.512025	2
 \.
 
 
@@ -24411,7 +24483,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	838	2024-10-13 09:23:38.460276
 1	1361	2024-10-13 10:15:50.870874
 1	1489	2024-10-14 12:16:16.921759
-1	1447	2024-10-13 10:12:58.077001
 1	661	2024-10-13 10:29:09.734084
 1	1518	2024-10-13 11:08:13.847027
 1	1519	2024-10-13 11:08:13.847027
@@ -24536,6 +24607,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	788	2024-12-21 16:10:56.413434
 1	789	2024-12-21 16:11:39.124533
 1	1459	2024-12-25 16:09:17.56381
+1	1447	2025-01-01 15:51:43.695438
 \.
 
 
@@ -25249,7 +25321,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9728, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9778, true);
 
 
 --
@@ -25277,7 +25349,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3678, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3699, true);
 
 
 --
