@@ -11236,6 +11236,23 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9709	3668	New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.	text	txt	2024-12-30 22:47:32.544877	2
 9710	3669	When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)	text	txt	2024-12-30 22:47:32.545828	1
 9711	3670	A typical starting point is copying the `core-image-base.bb` file to our custom layer as `myproduct-image.bb` and extending it, adding what we need for the product’s image. In addition, we create an image called `myproduct-image-dev.bb` for use during development and make sure it requires `myproduct-image.bb` along with the artifacts used only for development, avoiding code duplication. This way, we have two images for production and development, but they share the same core features and packages.	text	txt	2024-12-30 22:47:32.546712	1
+9712	3671	By calling `cmake_minimum_required(VERSION)`, CMake will implicitly trigger `cmake_policy(VERSION)`. Policies change every aspect of the CMake behavior, even with `project()` command. So it is adviced to always to this command before defining the project itselt.	text	txt	2025-01-01 08:45:05.179655	1
+9713	3671	cmake_minimum_required(VERISON 3.30.0)	code	cmake	2025-01-01 08:45:05.179655	2
+9714	3672	project(<name> VERSION <version> LANGUAGES <language> DESCRIPTION <description> HOMEPAGE_URL <link>)	code	cmake	2025-01-01 08:45:05.186454	1
+9715	3673	ASM,ASM_NASM,ASM_MASM,ASMMARMASM,ASM-ATT,C,CXX,CUDA,OBJC,OBJCXX,Fortran,HIP,ISPC,CSharp,Java	text	list	2025-01-01 08:45:05.18785	1
+9716	3674	- `PROJECT_VERSION`\n- `<project-name>_VERSION`\n- `CMAKE_PROJECT_VERSION`: only top level listfile\n- `PROJECT_VERSION_MAJOR`, `<project-name>_VERSION_MAJOR`\n- `PROJECT_VERSION_MINOR`, `<project-name>_VERSION_MINOR`\n- `PROJECT_VERSION_PATCH`, `<project-name>_VERSION_PATCH`\n- `PROJECT_VERSION_TWEAK`, `<project-name>_VERSION_TWEAK`\n	text	txt	2025-01-01 08:45:05.189166	1
+9717	3675	- `PROJECT_DESCRIPTION`, `<project-name>_DESCRIPTION`\n- `PROJECT_HOMEPAGE_URL`, `<project-name>_HOMEPAGE_URL`	text	txt	2025-01-01 08:45:05.190539	1
+9718	3676	include(<filename>.cmake)	code	cmake	2025-01-01 08:45:05.192047	1
+9719	3676	This command will bring everything defined within the scope of current listfile.	text	txt	2025-01-01 08:45:05.192047	2
+9720	3677	After inclusion of another listfile, the variables from the nested directory will pollute the top-level scope and vice versa. There will be no scopes in inclusion. This has its own use cases and cannot be considered a defect.	text	txt	2025-01-01 08:45:05.193764	1
+9721	3677	set(source_files src/main.cpp) # path must be relative to consumer with inclusion	code	cmake	2025-01-01 08:45:05.193764	2
+9722	3677	cmake_minimum_required(VERSION 3.30.0)\nproject(Producer LANGUAGES CXX)\n\ninclude(src/sources.cmake)\nadd_executable(program ${source_files})	code	cmake	2025-01-01 08:45:05.193764	3
+9723	3677	All the paths are relative to the top level listfile. All directories will share the same configuration.	text	txt	2025-01-01 08:45:05.193764	4
+9724	3678	add_subdirectory(<source-dir> [binary-dir] [EXCLUDE_FROM_ALL])	code	cmake	2025-01-01 08:45:05.194893	1
+9725	3678	In contrast to `include()` command, `add_subdirectory()` introduces a variable scope and it is the recommended way of inclusion.	text	txt	2025-01-01 08:45:05.194893	2
+9726	3678	add_library(database SHARED src/database.cpp)\ntarget_linclude_directories(database PUBLIC include)	code	cmake	2025-01-01 08:45:05.194893	3
+9727	3678	add_library(network SHARED src/network.cpp)\ntarget_linclude_directories(network PUBLIC include)	code	cmake	2025-01-01 08:45:05.194893	4
+9728	3678	cmake_minimum_required(VERSION 3.30.0)\nproject(Sample VERSION 1.0 LANGUAGES CXX)\n\nadd_subdirectory(database)\nadd_subdirectory(network)\n\nadd_executable(program main.cpp)\ntarget_link_libraries(program PRIVATE network database)	code	cmake	2025-01-01 08:45:05.194893	5
 \.
 
 
@@ -15058,6 +15075,14 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated) FROM st
 3668	802	Where are the backports of poky when new version gets released?	open	2024-12-30 22:47:32.544877	2024-12-30 22:47:32.544877
 3669	802	Why do we need to create a custom distribution?	open	2024-12-30 22:47:32.545828	2024-12-30 22:47:32.545828
 3670	802	What is the best way to create a minimal image?	open	2024-12-30 22:47:32.546712	2024-12-30 22:47:32.546712
+3671	1449	What are the side effects of assigning the minimum required version to a cmake listfile?	open	2025-01-01 08:45:05.179655	2025-01-01 08:45:05.179655
+3672	1449	Define project details in CMake listfile?	open	2025-01-01 08:45:05.186454	2025-01-01 08:45:05.186454
+3673	1449	What languages are supported by CMake?	open	2025-01-01 08:45:05.18785	2025-01-01 08:45:05.18785
+3674	1449	What variables provide the version information about the project?	open	2025-01-01 08:45:05.189166	2025-01-01 08:45:05.189166
+3675	1449	What variables provide project information?	open	2025-01-01 08:45:05.190539	2025-01-01 08:45:05.190539
+3676	1449	Include another CMake listfile?	open	2025-01-01 08:45:05.192047	2025-01-01 08:45:05.192047
+3677	1449	What are the disadvantages of including another listfile?	open	2025-01-01 08:45:05.193764	2025-01-01 08:45:05.193764
+3678	1449	Include another CMake listfile with a scope?	open	2025-01-01 08:45:05.194893	2025-01-01 08:45:05.194893
 \.
 
 
@@ -21344,8 +21369,8 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
-98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2024-12-15 18:57:04.199281	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
+98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	1	\N
 \.
 
 
@@ -22161,7 +22186,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 597	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	54
 1291	85	open	\N	2024-07-28 09:45:09.104434	2024-07-28 09:45:09.104434	11
 193	25	open	\N	2024-07-28 09:44:57.364303	2024-07-28 09:44:57.364303	7
-1449	98	open	\N	2024-08-18 14:51:01.210115	2024-08-18 14:51:01.210115	4
 1435	97	open	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	18
 1012	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	35
 730	55	writing	\N	2024-07-28 09:45:03.195427	2024-07-28 09:45:03.195427	4
@@ -22939,6 +22963,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 800	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.537021	15
 801	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.543239	16
 802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
+1449	98	writing	\N	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	4
 \.
 
 
@@ -25224,7 +25249,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9711, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9728, true);
 
 
 --
@@ -25252,7 +25277,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3670, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3678, true);
 
 
 --
