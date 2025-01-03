@@ -11304,6 +11304,78 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9776	3699	`WORKING_DIRECTORY <directory>` can also be set to explicitly change the working directory of the process.	text	txt	2025-01-01 23:19:08.51118	6
 9777	3699	The exit code of all processes can be taken by the list `RESULTS_VARIABLE <variable>` as an option, or the exit code of the last command simply by `RESULT_VARIABLE <variable>`.	text	txt	2025-01-01 23:19:08.51118	7
 9778	3699	Standard output and error of the process can be taken by `OUTPUT_VARIABLE <variable>` and `ERROR_VARIABLE <variable>` respectively.	text	txt	2025-01-01 23:19:08.51118	8
+9779	3700	GitHub Action workflows are YAML files with a `.yml` or `.yaml` extension that are located in the `.github/workflows` directory in a repository.	text	txt	2025-01-03 20:38:12.201495	1
+9780	3701	Typically, workflows are started with the `name` property, which sets the display name of the workflow in the UI, and then the `on` property which is the trigger of the workflow.	text	txt	2025-01-03 20:38:12.207386	1
+9781	3701	name: First Workflow\non:\n  push:\n    # other properties\n  workflow-dispatch:\n    # other properties	code	yml	2025-01-03 20:38:12.207386	2
+9782	3701	A workflow can have multiple triggers.	text	txt	2025-01-03 20:38:12.207386	3
+9783	3702	Most arguments, for example branches or paths are sequences and need a dash for each entry if you are not using the JSON syntax.	text	txt	2025-01-03 20:38:12.209015	1
+9784	3702	name: First Workflow\non:\n  push:\n    branch:\n      - 'release'\n    path:\n      - 'src/'	code	yml	2025-01-03 20:38:12.209015	2
+9785	3703	The `*` character can be used as a wildcard in paths and `**` as a recursive wildcard. `*` is a special character in YAML, so you need to use quotation marks in that case:	text	txt	2025-01-03 20:38:12.210583	1
+9786	3703	on:\n  push:\n    branches:\n      - 'release/**'\n    paths:\n      - 'doc/**'	code	yml	2025-01-03 20:38:12.210583	2
+9787	3704	After configuring the triggers for a workflow, jobs should be defined as another root element. Jobs are a map in YAML, each property is a key that is not a predefined keyword and only specifies an identifier.	text	txt	2025-01-03 20:38:12.212131	1
+9788	3704	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    # other properties	code	yml	2025-01-03 20:38:12.212131	2
+9789	3705	The name of a job object can only contain alphanumeric values, a dash, and an underscore. If you want any other characters to be displayed in the workflow, you can use the name property:	text	txt	2025-01-03 20:38:12.213713	1
+9790	3705	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    name: Initial Job	code	yml	2025-01-03 20:38:12.213713	2
+9791	3706	Every job needs a runner that executes it. Runners are identified by labels.	text	txt	2025-01-03 20:38:12.21549	1
+9792	3706	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    runs-on: ubuntu-latest	code	yml	2025-01-03 20:38:12.21549	2
+9793	3707	A job consists of a sequence of steps that are executed one after the other. The most basic step is the `- run: <command>`, which will execute a command-line command:	text	txt	2025-01-03 20:38:12.216739	1
+9794	3707	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Greetings\n      - run: date\n      - shell: bash	code	yml	2025-01-03 20:38:12.216739	2
+9795	3707	The `name` is optional and sets the output of the step in the log.	text	txt	2025-01-03 20:38:12.216739	3
+9796	3708	The `shell` property in a job steps is optional and will default to `bash` on non-Windows platforms, with a fallback to `sh`. On Windows, the default is PowerShell Core (`pwsh`), with a fallback to `cmd`. But you could configure any shell you want with the `{0}` placeholder for the input of the step.	text	txt	2025-01-03 20:38:12.217942	1
+9797	3708	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - run: date\n      - shell: perl {0}	code	yml	2025-01-03 20:38:12.217942	2
+9798	3709	To add variable output, we can use expressions that are written between `${{` and `}}`. In the expression, you can use values from context objects such as the GitHub context.	text	txt	2025-01-03 20:38:12.219083	1
+9799	3709	name: First Workflow\non:\n  push:\n    branch:\n      - 'release/*'\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "Running as ${{ github.actor }}"	code	yml	2025-01-03 20:38:12.219083	2
+9800	3710	The syntax is `{path}@{ref}`. The path points to a physical location on GitHub and can be `{owner}/{repo}` if the actions are in the root of a repository or `{owner}/{repo}/{path}` if the actions are in a subfolder. The reference after `@{ref}` is any git reference that points to a commit. It can be a tag, branch, or an individual commit SHA.	text	txt	2025-01-03 20:38:12.220143	1
+9801	3710		code	yml	2025-01-03 20:38:12.220143	2
+9802	3711	GitHub Actions workflows will not automatically download the code from your repository. If you want to do something with files in your repository, you have to check out the content first. This is done using the checkout action.	text	txt	2025-01-03 20:38:12.221127	1
+9803	3711	name: First Workflow\non:\n  push:\n    branch:\n      - 'release/*'\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    checkout:\n      - name: Checkout\n        uses: actions/checkout@v4.1.0\n    steps:\n      - run: echo "Running as ${{ github.actor }}"	code	yml	2025-01-03 20:38:12.221127	2
+9804	3712	We can display files in repository after checking out by adding an extra step `- run: tree`:	text	txt	2025-01-03 20:38:12.222124	1
+9805	3712	name: First Workflow\non:\n  push:\n    branch:\n      - 'release/*'\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    checkout:\n      - name: Checkout\n        uses: actions/checkout@v4.1.0\n    steps:\n      - run: echo "Running as ${{ github.actor }}"\n      - run: tree	code	yml	2025-01-03 20:38:12.222124	2
+9806	3713	You can write comments by prefixing text with a hash.	text	txt	2025-01-03 20:38:12.223136	1
+9807	3713	# first line is usually the name of the file	code	yml	2025-01-03 20:38:12.223136	2
+9808	3714	you can assign a value to a variable with the following syntax: `key: value`.	text	txt	2025-01-03 20:38:12.224191	1
+9809	3714	name: Initial Workflow	code	yml	2025-01-03 20:38:12.224191	2
+9810	3714	key is the name of the variable. Depending on the data type of value, the type of the variable will be different. Note that keys and values can contain spaces and do not need quotation marks!	text	txt	2025-01-03 20:38:12.224191	3
+9811	3715	You can quote keys and values with single or double quotes. Double quotes use the backslash as the escape pattern, while single quotes use an additional single quote to scape..	text	txt	2025-01-03 20:38:12.225321	1
+9812	3715	name: "Initial Workflow"	code	yml	2025-01-03 20:38:12.225321	2
+9813	3715	Only add quotes if you use some special characters or you want to force certain values to be a string.	text	txt	2025-01-03 20:38:12.225321	3
+9814	3716	In YAML, there are two different collection types: maps and lists.	text	txt	2025-01-03 20:38:12.226508	1
+9815	3716	Maps use two spaces of indentation:	text	txt	2025-01-03 20:38:12.226508	2
+9816	3716	parent_type:\n  key1: value1\n  key2: value2\n  nested_type:\n    key1: value1	code	yml	2025-01-03 20:38:12.226508	3
+9817	3716	A sequence is an ordered list of items and has a dash before each line:	text	txt	2025-01-03 20:38:12.226508	4
+9818	3716	sequence:\n  - item1\n  - item2\n  - item3	code	yml	2025-01-03 20:38:12.226508	5
+9819	3717	Since YAML is a superset of JSON, you can also use the JSON syntax to put collections in one line:	text	txt	2025-01-03 20:38:12.227522	1
+9820	3717	key: [item1, item2, item3]\nkey: {key1: value1, key2: value2}	code	yml	2025-01-03 20:38:12.227522	2
+9821	3718	There are three types of triggers for workflows:	text	txt	2025-01-03 20:38:12.228547	1
+9822	3718	- Webhook triggers\n- Scheduled triggers\n- Manual triggers	text	txt	2025-01-03 20:38:12.228547	2
+9823	3719	Webhook triggers start the workflow based on an event in GitHub. There are many webhook triggers available. For example, we can run a workflow on a push, an issues event, a repository event, or a discussions event.	text	txt	2025-01-03 20:38:12.22957	1
+9824	3719	name: Initial Workflow\non:\n  push:\n    branches:\n      - 'release/*'	code	yml	2025-01-03 20:38:12.22957	2
+9825	3720	Scheduled triggers can run the workflow at multiple scheduled times. The syntax is the same syntax used for cron jobs:	text	txt	2025-01-03 20:38:12.230581	1
+9826	3720	on:\n  schedule:\n    # every 15th minute\n    - cron:  '*/15 * * * *'\n    # every hour from 9am to 5pm\n    - cron:  '0 9-17 * * *'\n    # every Friday at midnight\n    - cron:  '0 2 * * FRI'	code	yml	2025-01-03 20:38:12.230581	2
+9827	3721	Manual triggers allow you to start the workflow manually. The `workflow_dispatch` trigger will allow you to start the workflow using the web UI or GitHub CLI.	text	txt	2025-01-03 20:38:12.231566	1
+9828	3722	You can define input parameters for this trigger using the `inputs` property. The `repository_dispatch` trigger can be used to trigger the workflow using the API. This trigger can also be filtered by certain event types and can accept additional JSON payload that can be accessed in the workflow.	text	txt	2025-01-03 20:38:12.232909	1
+9829	3722	If the action has defined `inputs`, you can specify them using the with property:	text	txt	2025-01-03 20:38:12.232909	2
+9830	3722	jobs:\n  - uses: ActionsInAction/HelloWorld@v1\n    with:\n      WhoToGreet: Brian	code	yml	2025-01-03 20:38:12.232909	3
+9831	3722	You can also set environment variables for steps using the `env` property:	text	txt	2025-01-03 20:38:12.232909	4
+9832	3722	jobs:\n  - uses: ActionsInAction/HelloWorld@v1\n    env:\n      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	code	yml	2025-01-03 20:38:12.232909	5
+9833	3723	Secret names are not case-sensitive, and they can only contain normal characters (`[a-z]` and `[A-Z]`), numbers (`[0-9]`), and an underscore (`_`). They must not start with `GITHUB_` or a number.	text	txt	2025-01-03 20:38:12.234214	1
+9834	3723	The best practice is to name secrets with uppercase words separated by the underscore character.	text	txt	2025-01-03 20:38:12.234214	2
+9835	3724	${{ secrets.MY_SECRET }}	code	yml	2025-01-03 20:38:12.235146	1
+9836	3725	gh secret set secret-name	code	sh	2025-01-03 20:38:12.236159	1
+9837	3726	gh variable set var-name	code	sh	2025-01-03 20:38:12.237063	1
+9838	3727	You will be prompted for the secret or variable values, or you can read the value from a file, pipe it to the command, or specify it as the body (`-b` or `--body`):	text	txt	2025-01-03 20:38:12.238111	1
+9839	3727	gh secret set secret-name < secret.txt	code	sh	2025-01-03 20:38:12.238111	2
+9840	3727	gh variable set var-name --body config-value	code	sh	2025-01-03 20:38:12.238111	3
+9841	3728	Environments are used to describe a general deployment target such as development, test, staging, or production.	text	txt	2025-01-03 20:38:12.239611	1
+9842	3728		code	yml	2025-01-03 20:38:12.239611	2
+9843	3729	We associate a job with an environment using `environment` property:	text	txt	2025-01-03 20:38:12.241485	1
+9844	3729	name: Initial Workflow\non:\n  # other properties\njobs:\n  second_job:\n    runs-on: ubuntu-latest\n    environment: Test	code	yml	2025-01-03 20:38:12.241485	2
+9845	3730	name: Initial Workflow\non:\n  # other properties\njobs:\n  second_job:\n    runs-on: ubuntu-latest\n    needs: first_job	code	yml	2025-01-03 20:38:12.242518	1
+9846	3731	If you are setting secrets or variables for an environment using the GitHub CLI, then you can specify them using the ``--env` (`-e`)` argument. For organization secrets, you set the visibility (`--visibility` or `-v`) to all, private, or selected. For selected, you must specify one or more repos using `--repos` (`-r`):	text	txt	2025-01-03 20:38:12.243659	1
+9847	3731	gh secret set secret-name --env environment-name	code	sh	2025-01-03 20:38:12.243659	2
+9848	3731	gh secret set secret-name --org org -v private	code	sh	2025-01-03 20:38:12.243659	3
+9849	3731	gh secret set secret-name --org org -v selected -r repo	code	sh	2025-01-03 20:38:12.243659	4
+9850	3732	name: Initial Workflow\non:\n  # other properties\njobs:\n  third_job:\n    runs-on: ubuntu-latest\n    environment:\n      name: Production\n      url: https://example.com\n    needs:\n      - first_job\n      - second_job	code	yml	2025-01-03 20:38:12.24491	1
 \.
 
 
@@ -12046,6 +12118,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 546	1419	Declare a class template?	open	2024-07-28 10:02:08.485559	2024-07-28 10:02:08.485559	0
 547	1419	Declare copy constructor and copy assignment operator of a class template?	open	2024-07-28 10:02:09.288416	2024-07-28 10:02:09.288416	0
 548	1419	Define the member functions of a class template outside of the scope of the class?	open	2024-07-28 10:02:09.865197	2024-07-28 10:02:09.865197	0
+3700	1599	Where workflows are written?	open	2025-01-03 20:38:12.201495	2025-01-03 20:38:12.201495	0
 549	1419	Declare a friend function template in a class template?	open	2024-07-28 10:02:10.856266	2024-07-28 10:02:10.856266	0
 550	1419	Specialize a class template for a specific type?	open	2024-07-28 10:02:11.708711	2024-07-28 10:02:11.708711	0
 551	1419	Partially specialize a class template for pointers?	open	2024-07-28 10:02:12.465606	2024-07-28 10:02:12.465606	0
@@ -14052,6 +14125,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 2694	1486	Declare an inline variable?	open	2024-09-28 14:30:48.198851	2024-09-28 14:30:48.198851	0
 2695	1486	Define nested namespaces?	open	2024-09-28 14:30:48.200018	2024-09-28 14:30:48.200018	0
 2696	1486	Store the return values of a function into structured bindings?	open	2024-09-28 14:30:48.201296	2024-09-28 14:30:48.201296	0
+3701	1599	What are the least required properties to start up a workflow?	open	2025-01-03 20:38:12.207386	2025-01-03 20:38:12.207386	0
 2697	1486	Initialize a variable used for evaluation in an if statement within the statement?	open	2024-09-28 14:30:48.202394	2024-09-28 14:30:48.202394	0
 2698	1486	Use compile-time if statement to check if template argument is integral, string, or a base of an object?	open	2024-09-28 14:30:48.203705	2024-09-28 14:30:48.203705	0
 2699	1486	Write a hexadecimal floating-point literal number?	open	2024-09-28 14:30:48.205002	2024-09-28 14:30:48.205002	0
@@ -15155,6 +15229,37 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3697	1447	Write into a file?	open	2025-01-01 23:19:08.508041	2025-01-01 23:19:08.508041	0
 3698	1447	Download a file?	open	2025-01-01 23:19:08.509337	2025-01-01 23:19:08.509337	0
 3699	1447	Run another process and collect its output?	open	2025-01-01 23:19:08.51118	2025-01-01 23:19:08.51118	0
+3702	1599	How sequences are expressed in yml syntax?	open	2025-01-03 20:38:12.209015	2025-01-03 20:38:12.209015	0
+3703	1599	What wildcards express any character in yml?	open	2025-01-03 20:38:12.210583	2025-01-03 20:38:12.210583	0
+3704	1599	What are jobs in workflows?	open	2025-01-03 20:38:12.212131	2025-01-03 20:38:12.212131	0
+3705	1599	What characters are allowed in job names?	open	2025-01-03 20:38:12.213713	2025-01-03 20:38:12.213713	0
+3706	1599	What is the required element for a job?	open	2025-01-03 20:38:12.21549	2025-01-03 20:38:12.21549	0
+3707	1599	Define a command to be executed by a runner?	open	2025-01-03 20:38:12.216739	2025-01-03 20:38:12.216739	0
+3708	1599	What shells are available in jobs?	open	2025-01-03 20:38:12.217942	2025-01-03 20:38:12.217942	0
+3709	1599	What are the use cases of expressions?	open	2025-01-03 20:38:12.219083	2025-01-03 20:38:12.219083	0
+3710	1599	What location on GitHub do actions refer to?	open	2025-01-03 20:38:12.220143	2025-01-03 20:38:12.220143	0
+3711	1599	What are the use cases of the checkout action?	open	2025-01-03 20:38:12.221127	2025-01-03 20:38:12.221127	0
+3712	1599	Show repository files after checking out?	open	2025-01-03 20:38:12.222124	2025-01-03 20:38:12.222124	0
+3713	1599	What is the comment character in YAML syntax?	open	2025-01-03 20:38:12.223136	2025-01-03 20:38:12.223136	0
+3714	1599	What is the syntax of assigning a value in YAML?	open	2025-01-03 20:38:12.224191	2025-01-03 20:38:12.224191	0
+3715	1599	What characters can be used to surround a string value in YAML?	open	2025-01-03 20:38:12.225321	2025-01-03 20:38:12.225321	0
+3716	1599	What data types are available in YAML?	open	2025-01-03 20:38:12.226508	2025-01-03 20:38:12.226508	0
+3717	1599	How can we use JSON syntax in YAML?	open	2025-01-03 20:38:12.227522	2025-01-03 20:38:12.227522	0
+3718	1599	What triggers are available in GitHub workflows?	open	2025-01-03 20:38:12.228547	2025-01-03 20:38:12.228547	0
+3719	1599	How do webhook triggers function?	open	2025-01-03 20:38:12.22957	2025-01-03 20:38:12.22957	0
+3720	1599	How do scheduled triggers function?	open	2025-01-03 20:38:12.230581	2025-01-03 20:38:12.230581	0
+3721	1599	How do manual triggers function?	open	2025-01-03 20:38:12.231566	2025-01-03 20:38:12.231566	0
+3722	1599	Take inputs to pass to workflows?	open	2025-01-03 20:38:12.232909	2025-01-03 20:38:12.232909	0
+3723	1599	What characters are acceptable in secret names?	open	2025-01-03 20:38:12.234214	2025-01-03 20:38:12.234214	0
+3724	1599	What expression expands to the secret value?	open	2025-01-03 20:38:12.235146	2025-01-03 20:38:12.235146	0
+3725	1599	Create a secret?	open	2025-01-03 20:38:12.236159	2025-01-03 20:38:12.236159	0
+3726	1599	Create a variable?	open	2025-01-03 20:38:12.237063	2025-01-03 20:38:12.237063	0
+3727	1599	How many ways are possible to pass values when creating variables?	open	2025-01-03 20:38:12.238111	2025-01-03 20:38:12.238111	0
+3728	1599	What are the use cases of environments?	open	2025-01-03 20:38:12.239611	2025-01-03 20:38:12.239611	0
+3729	1599	Specify an environment in a job?	open	2025-01-03 20:38:12.241485	2025-01-03 20:38:12.241485	0
+3730	1599	Depend a job to another?	open	2025-01-03 20:38:12.242518	2025-01-03 20:38:12.242518	0
+3731	1599	Set secrets in environments?	open	2025-01-03 20:38:12.243659	2025-01-03 20:38:12.243659	0
+3732	1599	Specify URL for a job?	open	2025-01-03 20:38:12.24491	2025-01-03 20:38:12.24491	0
 \.
 
 
@@ -21443,6 +21548,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
+110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.24491	1	\N
 \.
 
 
@@ -23036,6 +23142,13 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
 1449	98	writing	\N	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	4
 1447	98	completed	\N	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.512025	2
+1600	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	2
+1601	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	3
+1602	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	4
+1603	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	5
+1604	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	6
+1605	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	7
+1599	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.245789	1
 \.
 
 
@@ -24731,6 +24844,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	1
 15	108
 6	109
+27	110
 \.
 
 
@@ -25322,7 +25436,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9778, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9850, true);
 
 
 --
@@ -25350,7 +25464,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3699, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3732, true);
 
 
 --
@@ -25406,7 +25520,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 109, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 110, true);
 
 
 --
@@ -25427,7 +25541,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1598, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1605, true);
 
 
 --
