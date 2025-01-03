@@ -12841,6 +12841,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 1341	902	What <code>make</code> targets should be available when writing a custom <code>Makefile</code> for kernel modules?	open	2024-07-28 10:08:31.06764	2024-07-28 10:08:31.06764	0
 1342	902	Write configuration dependent target in <code>Makefile</code> for a <b>built-in</b> kernel module?	open	2024-07-28 10:08:31.551615	2024-07-28 10:08:31.551615	0
 1343	902	Specify multiple source files in a custom <code>Makefile</code> for a specific target?	open	2024-07-28 10:08:32.349182	2024-07-28 10:08:32.349182	0
+2308	1361	Pass string literals as universal references?	open	2024-09-18 17:09:19.188021	2024-09-18 17:09:19.188021	0
 1344	902	Specify compiler and linker flags in <code>Makefile</code> for kernel module building?	open	2024-07-28 10:08:32.752343	2024-07-28 10:08:32.752343	0
 1345	902	Include other kernel source directories within a <code>Makefile</code>?	open	2024-07-28 10:08:33.069804	2024-07-28 10:08:33.069804	0
 1346	902	Obtain a prebuilt kernel for building <b>out-of-tree</b> module?	open	2024-07-28 10:08:33.572016	2024-07-28 10:08:33.572016	0
@@ -13782,7 +13783,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 2305	1361	What types in multithreading are move only?	open	2024-09-18 17:09:19.184517	2024-09-18 17:09:19.184517	0
 2306	1361	How does the thread constructor take arguments?	open	2024-09-18 17:09:19.185643	2024-09-18 17:09:19.185643	0
 2307	1361	Use move semantics to pass future and promise types to two different threads passing value?	open	2024-09-18 17:09:19.18668	2024-09-18 17:09:19.18668	0
-2308	1361	Pass string literals as universal references?	open	2024-09-18 17:09:19.188021	2024-09-18 17:09:19.188021	0
 2310	1361	What is the use case of <code>std::optional</code>?	open	2024-09-18 17:09:42.503108	2024-09-18 17:09:42.503108	0
 2311	1361	How does <code>std::optional</code> take advantage of move semantics?	open	2024-09-18 17:09:42.504922	2024-09-18 17:09:42.504922	0
 2312	1361	What methods in <code>std::optional</code> overload with move semantics?	open	2024-09-18 17:09:42.506258	2024-09-18 17:09:42.506258	0
@@ -24796,6 +24796,7 @@ COPY flashback.subjects (id, name, creation, updated) FROM stdin;
 24	GoogleTest	2024-09-12 10:59:46.423264	2024-09-12 10:59:46.423264
 25	OpenGL	2024-09-23 17:59:59.23805	2024-09-23 17:59:59.23805
 26	Yocto	2024-09-27 10:13:16.039172	2024-09-27 10:13:16.039172
+27	GitHub	2025-01-03 19:08:32.573019	2025-01-03 19:08:32.573019
 \.
 
 
@@ -25440,7 +25441,7 @@ SELECT pg_catalog.setval('flashback.subject_editing_id_seq', 1, false);
 -- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.subjects_id_seq', 26, true);
+SELECT pg_catalog.setval('flashback.subjects_id_seq', 27, true);
 
 
 --
