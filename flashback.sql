@@ -11411,6 +11411,27 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9865	3739	name: Release\non:\n  release:\n    types: [created]\n  push:\n    tags:\n      - v*\n    branches:\n      - release\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      packages: write\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: Build\n        run: echo "building"\n      - name: Release\n        id: create_release\n        uses: actions/create-release@v1\n        with:\n          tag_name: ${{ github.refname }}\n          release_name: "Release ${{ github.refname }}"\n        body: "Release notes for ${{ github.refname }}"\n        draft: false\n        prerelease: false\n      env:\n        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      - name: Upload\n        uses: actions/upload-release-asset@v1\n        with:\n          upload_url: ${{ steps.create_release.outputs.upload_url }}\n          asset_path: ./package.tar.gz\n          asset_name: package.tar.gz\n          asset_content_type: application/gzip	code	yml	2025-01-05 02:37:52.389039	2
 9866	3739	Finally, create a release:	text	txt	2025-01-05 02:37:52.389039	3
 9867	3739	gh release create ${{ github.refname }} --generate-notes	code	sh	2025-01-05 02:37:52.389039	4
+9868	3740	Passing output values to subsequent steps and jobs works by redirecting a name-value pair to the environment file `$GITHUB_OUTPUT`:	text	txt	2025-01-05 16:23:18.60943	1
+9869	3740	jobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Initialize\n        id: initial-action\n        run: echo "special_value=42" >> "$GITHUB_OUTPUT"\n      - name: Print\n        run: echo "value: ${{ steps.initial-action.outputs.special_value }}"	code	yml	2025-01-05 16:23:18.60943	2
+9870	3741	jobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Initialize\n        id: initial-action\n        run: echo "special_value=42" >> "$GITHUB_ENV"\n      - name: Print\n        run: echo "value: ${{ env.special_value }}"	code	yml	2025-01-05 16:23:18.613507	1
+9871	3742	jobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Initial Action\n        id: initial-action\n        run: echo "should_run=true" >> "$GITHUB_OUTPUT"\n      - name: Conditional Action\n        if: ${{ steps.initial-action.outputs.should_run == true }}\n        run: echo "Conditional Step Executed"	code	yml	2025-01-05 16:23:18.615664	1
+9872	3742	In an `if` property, `${{ }}` syntax can be omitted.	text	txt	2025-01-05 16:23:18.615664	2
+9873	3742	- name: Conditional Action\n  if: steps.initial-action.outputs.should_run == true\n  run: echo "Conditional Step Executed"	code	yml	2025-01-05 16:23:18.615664	3
+9874	3743	contains(search, item)\ncontains('some value', 'some')\ncontains(github.event.issue.labels.*.name, 'bug')	code	yml	2025-01-05 16:23:18.619937	1
+9875	3743	startsWith(search, item)	code	yml	2025-01-05 16:23:18.619937	2
+9876	3743	endsWith(search, item)	code	yml	2025-01-05 16:23:18.619937	3
+9877	3743	format(format_string, v...)\nformat('{0} {1} {2}', env.project_name, env.project_version, env.project_author)	code	yml	2025-01-05 16:23:18.619937	4
+9878	3743	join(array, separator)	code	yml	2025-01-05 16:23:18.619937	5
+9879	3743	toJSON(value)	code	yml	2025-01-05 16:23:18.619937	6
+9880	3743	fromJSON(value)	code	yml	2025-01-05 16:23:18.619937	7
+9881	3743	hashFiles(path)	code	yml	2025-01-05 16:23:18.619937	8
+9882	3744	- `success()`\n- `always()`\n- `cancelled()`\n- `failure()`	text	txt	2025-01-05 16:23:18.621964	1
+9883	3744	jobs:\n  action:\n    runs-on: ubuntu-latest\n    steps:\n      - run: exit 1\n      - name: Failure Exit\n        run: echo "Job exited with failure"\n        if: ${{ failure() }}	code	yml	2025-01-05 16:23:18.621964	2
+9884	3745	Download the [latest runner](https://github.com/actions/runner/releases/latest) and unpack it.	text	txt	2025-01-05 16:23:18.624673	1
+9885	3745	FROM ubuntu:latest\n\nRUN apt update && apt upgrade --yes && apt install --yes --no-install-recommends ca-certificate curl bash tar liblttng-ust1 libkrb5-3 zlib1g libssl1.1 libicu63 && apt clean\n\nENV RUNNER_ALLOW_RUNASROOT="1"\n\nWORKDIR /workdir\n\nRUN curl -O -L https://github.com/actions/runner/releases/download/v2.321.0/actions-runner-linux-x64-2.321.0.tar.gz\nRUN tar xzf actions-runner-linux-x64-2.321.0.tar.gz\nRUN bash actions-runner/bin/installdependencies.sh\nRUN bash actions-runner/config.sh --url https://github.com/<owner>/<repo> --token <token>\n\nENTRYPOINT bash actions-runner/run.sh	code	docker	2025-01-05 16:23:18.624673	2
+9886	3745	After execution, runner should be available on GitHub as a self-hosted runner. We can now use `self-runner` runner on our jobs:	text	txt	2025-01-05 16:23:18.624673	3
+9887	3745	name: Workflow\non:\n  push: [workflow-dispatch]\njobs:\n  action:\n    runs-on: self-hosted\n    steps:\n      - name: System Information\n        shell: bash\n        run: |-\n          echo "Runner: ${{ runner.name }}"\n          echo "OS: ${{ runner.os }}"\n          echo "Arch: ${{ runner.arch }}"	code	yml	2025-01-05 16:23:18.624673	4
+9888	3746	./config.sh remove --token <token>	code	sh	2025-01-05 16:23:18.626264	1
 \.
 
 
@@ -15302,6 +15323,13 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3737	1601	Specify that jobs should be run on a docker image?	open	2025-01-05 02:37:52.381055	2025-01-05 02:37:52.381055	0
 3738	1601	Reference to another workflow file in current workflow?	open	2025-01-05 02:37:52.38516	2025-01-05 02:37:52.38516	0
 3739	1604		open	2025-01-05 02:37:52.389039	2025-01-05 02:37:52.389039	0
+3740	1601	Create a variable to be used in subsequent steps?	open	2025-01-05 16:23:18.60943	2025-01-05 16:23:18.60943	0
+3741	1601	Create an environment variable to be used in subsequent steps?	open	2025-01-05 16:23:18.613507	2025-01-05 16:23:18.613507	0
+3742	1601	Make the execution of an action conditional?	open	2025-01-05 16:23:18.615664	2025-01-05 16:23:18.615664	0
+3743	1601	What functions are available in action expressions?	open	2025-01-05 16:23:18.619937	2025-01-05 16:23:18.619937	0
+3744	1601	What functions are available to check for job status?	open	2025-01-05 16:23:18.621964	2025-01-05 16:23:18.621964	0
+3745	1602	Create a self-hosted runner?	open	2025-01-05 16:23:18.624673	2025-01-05 16:23:18.624673	0
+3746	1602	Remove a self-hosted runner?	open	2025-01-05 16:23:18.626264	2025-01-05 16:23:18.626264	0
 \.
 
 
@@ -21590,7 +21618,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
-110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.389039	1	\N
+110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.626264	1	\N
 \.
 
 
@@ -23184,13 +23212,13 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
 1449	98	writing	\N	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	4
 1447	98	completed	\N	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.512025	2
-1602	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	4
 1603	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	5
 1599	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.245789	1
 1600	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.376342	2
-1601	110	writing	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.38516	3
 1604	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.391684	6
 1605	110	ignored	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.392955	7
+1601	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.622986	3
+1602	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.627091	4
 \.
 
 
@@ -25485,7 +25513,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9867, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9888, true);
 
 
 --
@@ -25513,7 +25541,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3739, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3746, true);
 
 
 --
