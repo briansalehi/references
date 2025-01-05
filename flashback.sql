@@ -724,6 +724,24 @@ end; $$;
 ALTER PROCEDURE flashback.set_section_as_complete_id(IN resource_index integer, IN section_number integer) OWNER TO flashback;
 
 --
+-- Name: set_section_as_ignored(character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.set_section_as_ignored(IN resource_name character varying, IN section_number integer)
+    LANGUAGE plpgsql
+    AS $$
+declare resource_index integer;
+declare section_index integer;
+begin
+    select id into resource_index from flashback.resources where name = resource_name;
+    select id into section_index from flashback.sections where resource_id = resource_index and number = section_number;
+    update flashback.sections set state = 'ignored', updated = now() where id = section_index;
+end; $$;
+
+
+ALTER PROCEDURE flashback.set_section_as_ignored(IN resource_name character varying, IN section_number integer) OWNER TO flashback;
+
+--
 -- Name: user_login(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -24721,6 +24739,13 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	789	2024-12-21 16:11:39.124533
 1	1459	2024-12-25 16:09:17.56381
 1	1447	2025-01-01 15:51:43.695438
+1	1600	2025-01-03 20:39:37.103309
+1	1601	2025-01-03 20:39:37.103309
+1	1602	2025-01-03 20:39:37.103309
+1	1603	2025-01-03 20:39:37.103309
+1	1604	2025-01-03 20:39:37.103309
+1	1605	2025-01-03 20:39:37.103309
+1	1599	2025-01-04 12:15:17.46786
 \.
 
 
