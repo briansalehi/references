@@ -11371,6 +11371,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9825	3720	Scheduled triggers can run the workflow at multiple scheduled times. The syntax is the same syntax used for cron jobs:	text	txt	2025-01-03 20:38:12.230581	1
 9826	3720	on:\n  schedule:\n    # every 15th minute\n    - cron:  '*/15 * * * *'\n    # every hour from 9am to 5pm\n    - cron:  '0 9-17 * * *'\n    # every Friday at midnight\n    - cron:  '0 2 * * FRI'	code	yml	2025-01-03 20:38:12.230581	2
 9827	3721	Manual triggers allow you to start the workflow manually. The `workflow_dispatch` trigger will allow you to start the workflow using the web UI or GitHub CLI.	text	txt	2025-01-03 20:38:12.231566	1
+9851	3733	We can specify log levels using `::level::` syntax, which level can be either of `debug`, `notice`, `warning`, `error` values.	text	txt	2025-01-05 02:37:52.354186	1
 9828	3722	You can define input parameters for this trigger using the `inputs` property. The `repository_dispatch` trigger can be used to trigger the workflow using the API. This trigger can also be filtered by certain event types and can accept additional JSON payload that can be accessed in the workflow.	text	txt	2025-01-03 20:38:12.232909	1
 9829	3722	If the action has defined `inputs`, you can specify them using the with property:	text	txt	2025-01-03 20:38:12.232909	2
 9830	3722	jobs:\n  - uses: ActionsInAction/HelloWorld@v1\n    with:\n      WhoToGreet: Brian	code	yml	2025-01-03 20:38:12.232909	3
@@ -11394,6 +11395,22 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9848	3731	gh secret set secret-name --org org -v private	code	sh	2025-01-03 20:38:12.243659	3
 9849	3731	gh secret set secret-name --org org -v selected -r repo	code	sh	2025-01-03 20:38:12.243659	4
 9850	3732	name: Initial Workflow\non:\n  # other properties\njobs:\n  third_job:\n    runs-on: ubuntu-latest\n    environment:\n      name: Production\n      url: https://example.com\n    needs:\n      - first_job\n      - second_job	code	yml	2025-01-03 20:38:12.24491	1
+9852	3733	name: Initial\non:\n  workflow-dispatch:\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    steps:\n      - run: |\n          echo "::debug::This is a debug message"\n          echo "::notice::This is a notice message"\n          echo "::warning::This is a warning message"\n          echo "::error::This is an error message"	code	yml	2025-01-05 02:37:52.354186	2
+9853	3733	`warning` and `error` annotations also mark actions as failed.	text	txt	2025-01-05 02:37:52.354186	3
+9854	3734	By adding the variable `ACTIONS_STEP_DEBUG` set as true, all actions will have very verbose output to workflow logs.	text	txt	2025-01-05 02:37:52.369504	1
+9855	3734	gh variable set ACTIONS_STEP_DEBUG --body true	code	sh	2025-01-05 02:37:52.369504	2
+9856	3735	name: Initial\non:\n  workflow-dispatch:\njobs:\n  initial:\n    runs-on: ubuntu-latest\n    container:\n      image: custom-name:latest	code	yml	2025-01-05 02:37:52.373807	1
+9857	3736	inputs:\n  actor:\n    description: 'Use who runs the workflow'\n    required: true\n    default: 'unknown'	code	yml	2025-01-05 02:37:52.378311	1
+9858	3737	name: 'Docker Action'\ndescription: 'Run actions on a custom docker image'\nruns:\n  using: docker\n  image: Dockefile\n  args:\n    - <arguments>	code	yml	2025-01-05 02:37:52.381055	1
+9859	3738	All actions are defined by a file called `action.yml` in the source of a repository:	text	txt	2025-01-05 02:37:52.38516	1
+9860	3738	name: 'Docker Action'\ndescription: 'Run actions on a custom docker image'\ninputs:\n  actor:\n    required: true\n    default: 'user'\nruns:\n  using: docker\n  image: Dockefile\n  args:\n    - ${{ inputs.actor }}	code	yml	2025-01-05 02:37:52.38516	2
+9861	3738	The `runs` section in the `action.yml` file defines what type of action it is.	text	txt	2025-01-05 02:37:52.38516	3
+9862	3738	The action is ready to be used within workflow:	text	txt	2025-01-05 02:37:52.38516	4
+9863	3738	name: Workflow\non:\n  push:\njobs:\n  ci:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: ./\n        with:\n          actor: 'brian'	code	yml	2025-01-05 02:37:52.38516	5
+9864	3739	Create a new workflow `.github/workflows/release.yml` and write a `release` and `push` trigger which will be based on either `tags` or `branches`. Then add a job `publish` and give it permissions to read the repository and write into packages, then checkout the repository, build the project, create a release with `create-release` action, and upload assets using `upload-release-asset` action for every file:	text	txt	2025-01-05 02:37:52.389039	1
+9865	3739	name: Release\non:\n  release:\n    types: [created]\n  push:\n    tags:\n      - v*\n    branches:\n      - release\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      packages: write\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: Build\n        run: echo "building"\n      - name: Release\n        id: create_release\n        uses: actions/create-release@v1\n        with:\n          tag_name: ${{ github.refname }}\n          release_name: "Release ${{ github.refname }}"\n        body: "Release notes for ${{ github.refname }}"\n        draft: false\n        prerelease: false\n      env:\n        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      - name: Upload\n        uses: actions/upload-release-asset@v1\n        with:\n          upload_url: ${{ steps.create_release.outputs.upload_url }}\n          asset_path: ./package.tar.gz\n          asset_name: package.tar.gz\n          asset_content_type: application/gzip	code	yml	2025-01-05 02:37:52.389039	2
+9866	3739	Finally, create a release:	text	txt	2025-01-05 02:37:52.389039	3
+9867	3739	gh release create ${{ github.refname }} --generate-notes	code	sh	2025-01-05 02:37:52.389039	4
 \.
 
 
@@ -12433,6 +12450,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 846	149	Compute the distance between two iterators of a container?	open	2024-07-28 10:05:09.282694	2024-07-28 10:05:09.282694	0
 847	149	What iterator type traits are supported by the standard?	open	2024-07-28 10:05:10.103761	2024-07-28 10:05:10.103761	0
 848	149	What stream iterators are provided by the standard?	open	2024-07-28 10:05:10.499062	2024-07-28 10:05:10.499062	0
+3733	1600	How many log annotations exist?	open	2025-01-05 02:37:52.354186	2025-01-05 02:37:52.354186	0
 849	149	Use output stream iterator to write values to an output stream?	open	2024-07-28 10:05:11.074284	2024-07-28 10:05:11.074284	0
 850	149	Use input stream iterator to read values from an input stream?	open	2024-07-28 10:05:11.673635	2024-07-28 10:05:11.673635	0
 851	149	What iterator adapters are supported by the standard?	open	2024-07-28 10:05:12.286396	2024-07-28 10:05:12.286396	0
@@ -15278,6 +15296,12 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3730	1599	Depend a job to another?	open	2025-01-03 20:38:12.242518	2025-01-03 20:38:12.242518	0
 3731	1599	Set secrets in environments?	open	2025-01-03 20:38:12.243659	2025-01-03 20:38:12.243659	0
 3732	1599	Specify URL for a job?	open	2025-01-03 20:38:12.24491	2025-01-03 20:38:12.24491	0
+3734	1600	Make all the actions logs more verbose?	open	2025-01-05 02:37:52.369504	2025-01-05 02:37:52.369504	0
+3735	1600	Specify custom docker image to run actions on?	open	2025-01-05 02:37:52.373807	2025-01-05 02:37:52.373807	0
+3736	1601	Specify inputs for an action?	open	2025-01-05 02:37:52.378311	2025-01-05 02:37:52.378311	0
+3737	1601	Specify that jobs should be run on a docker image?	open	2025-01-05 02:37:52.381055	2025-01-05 02:37:52.381055	0
+3738	1601	Reference to another workflow file in current workflow?	open	2025-01-05 02:37:52.38516	2025-01-05 02:37:52.38516	0
+3739	1604		open	2025-01-05 02:37:52.389039	2025-01-05 02:37:52.389039	0
 \.
 
 
@@ -21566,7 +21590,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
-110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.24491	1	\N
+110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.389039	1	\N
 \.
 
 
@@ -23160,13 +23184,13 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 802	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-30 22:47:32.547472	17
 1449	98	writing	\N	2024-08-18 14:51:01.210115	2025-01-01 08:45:05.194893	4
 1447	98	completed	\N	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.512025	2
-1600	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	2
-1601	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	3
 1602	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	4
 1603	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	5
-1604	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	6
-1605	110	open	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.197376	7
 1599	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-03 20:38:12.245789	1
+1600	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.376342	2
+1601	110	writing	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.38516	3
+1604	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.391684	6
+1605	110	ignored	\N	2025-01-03 20:38:12.197376	2025-01-05 02:37:52.392955	7
 \.
 
 
@@ -25461,7 +25485,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9850, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9867, true);
 
 
 --
@@ -25489,7 +25513,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3732, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3739, true);
 
 
 --
