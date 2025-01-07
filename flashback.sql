@@ -11330,6 +11330,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9784	3702	name: First Workflow\non:\n  push:\n    branch:\n      - 'release'\n    path:\n      - 'src/'	code	yml	2025-01-03 20:38:12.209015	2
 9785	3703	The `*` character can be used as a wildcard in paths and `**` as a recursive wildcard. `*` is a special character in YAML, so you need to use quotation marks in that case:	text	txt	2025-01-03 20:38:12.210583	1
 9786	3703	on:\n  push:\n    branches:\n      - 'release/**'\n    paths:\n      - 'doc/**'	code	yml	2025-01-03 20:38:12.210583	2
+9889	3747	Use the `-B` option to specify a directory to hold the build files.	text	txt	2025-01-07 20:26:11.778699	1
 9787	3704	After configuring the triggers for a workflow, jobs should be defined as another root element. Jobs are a map in YAML, each property is a key that is not a predefined keyword and only specifies an identifier.	text	txt	2025-01-03 20:38:12.212131	1
 9788	3704	name: First Workflow\non:\n  # other properties\njobs:\n  initial:\n    # other properties	code	yml	2025-01-03 20:38:12.212131	2
 9789	3705	The name of a job object can only contain alphanumeric values, a dash, and an underscore. If you want any other characters to be displayed in the workflow, you can use the name property:	text	txt	2025-01-03 20:38:12.213713	1
@@ -11372,6 +11373,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9826	3720	on:\n  schedule:\n    # every 15th minute\n    - cron:  '*/15 * * * *'\n    # every hour from 9am to 5pm\n    - cron:  '0 9-17 * * *'\n    # every Friday at midnight\n    - cron:  '0 2 * * FRI'	code	yml	2025-01-03 20:38:12.230581	2
 9827	3721	Manual triggers allow you to start the workflow manually. The `workflow_dispatch` trigger will allow you to start the workflow using the web UI or GitHub CLI.	text	txt	2025-01-03 20:38:12.231566	1
 9851	3733	We can specify log levels using `::level::` syntax, which level can be either of `debug`, `notice`, `warning`, `error` values.	text	txt	2025-01-05 02:37:52.354186	1
+9890	3747	cmake -B build	code	sh	2025-01-07 20:26:11.778699	2
 9828	3722	You can define input parameters for this trigger using the `inputs` property. The `repository_dispatch` trigger can be used to trigger the workflow using the API. This trigger can also be filtered by certain event types and can accept additional JSON payload that can be accessed in the workflow.	text	txt	2025-01-03 20:38:12.232909	1
 9829	3722	If the action has defined `inputs`, you can specify them using the with property:	text	txt	2025-01-03 20:38:12.232909	2
 9830	3722	jobs:\n  - uses: ActionsInAction/HelloWorld@v1\n    with:\n      WhoToGreet: Brian	code	yml	2025-01-03 20:38:12.232909	3
@@ -11432,6 +11434,29 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9886	3745	After execution, runner should be available on GitHub as a self-hosted runner. We can now use `self-runner` runner on our jobs:	text	txt	2025-01-05 16:23:18.624673	3
 9887	3745	name: Workflow\non:\n  push: [workflow-dispatch]\njobs:\n  action:\n    runs-on: self-hosted\n    steps:\n      - name: System Information\n        shell: bash\n        run: |-\n          echo "Runner: ${{ runner.name }}"\n          echo "OS: ${{ runner.os }}"\n          echo "Arch: ${{ runner.arch }}"	code	yml	2025-01-05 16:23:18.624673	4
 9888	3746	./config.sh remove --token <token>	code	sh	2025-01-05 16:23:18.626264	1
+9891	3748	It’s common to add some variation of build to our `.gitignore` file so we don’t accidentally start tracking these files.	text	txt	2025-01-07 20:26:11.790831	1
+9892	3748	echo 'build*/' >> .gitignore	code	sh	2025-01-07 20:26:11.790831	2
+9893	3749	If `cmake` is not invoked from the same directory as the `CMakeLists.txt` file, it’s possible to supply a separate command-line argument, `-S`, and a path to where that file lives.	text	txt	2025-01-07 20:26:11.794109	1
+9894	3749	cmake -S ~/.local/src/project -B ~/.local/share/build-project-release	code	cmake	2025-01-07 20:26:11.794109	2
+9895	3750	Configure and Generate stages both happen when we run:	text	txt	2025-01-07 20:26:11.798542	1
+9896	3750	cmake -B build	code	cmake	2025-01-07 20:26:11.798542	2
+9897	3750	The Build step requires a new command:	text	txt	2025-01-07 20:26:11.798542	3
+9898	3750	cmake --build build	code	cmake	2025-01-07 20:26:11.798542	4
+9899	3751	The underlying build system is Make in Linux. On Windows, the Visual Studio/MSBuild project files will be generated and then built.	text	txt	2025-01-07 20:26:11.80306	1
+9900	3752	Make is referred to as what is called single-config, while Visual Studio is multi-config.	text	txt	2025-01-07 20:26:11.80676	1
+9901	3753	cmake_minimum_required(VERSION 3.30.0)\nproject(project LANGUAGES CXX)\nset(CMAKE_CXX_STANDARD 26)\nadd_executable(program)\ntarget_sources(program PRIVATE main.cpp)	code	cmake	2025-01-07 20:26:11.809462	1
+9902	3754	Essentially policies are a way for the CMake maintainers to avoid breaking changes for projects as new versions of CMake are rolled out.	text	txt	2025-01-07 20:26:11.81131	1
+9903	3755	A target is usually an executable or a library. We can also create special custom target commands. Targets make it possible to encapsulate a set of properties and behaviors together.	text	txt	2025-01-07 20:26:11.813337	1
+9904	3756	project(<name> VERSION <version> LANGUAGES <language>... DESCRIPTION <description> HOMEPAGE_URL <url>)	code	cmake	2025-01-07 20:26:11.817197	1
+9905	3756	When project does not use programming languages, `NONE` should be specified. When `LANGUAGES` not specified, `C` and `CXX` are enabled by default.	text	txt	2025-01-07 20:26:11.817197	2
+9906	3757	- `PROJECT_NAME`, `CMAKE_PROJECT_NAME`\n- `PROJECT_IS_TOP_LEVEL`\n- `PROJECT_SOURCE_DIR`\n- `PROJECT_BINARY_DIR`\n- `PROJECT_VERSION`, `CMAKE_PROJECT_VERSION`\n- `PROJECT_VERSION_MAJOR`, `CMAKE_PROJECT_VERSION_MAJOR`\n- `PROJECT_VERSION_MINOR`, `CMAKE_PROJECT_VERSION_MINOR`\n- `PROJECT_VERSION_PATCH`, `CMAKE_PROJECT_VERSION_PATCH`\n- `PROJECT_VERSION_TWEAK`, `CMAKE_PROJECT_VERSION_TWEAK`\n- `PROJECT_LANGUAGES`, `CMAKE_PROJECT_LANGUAGES`\n- `PROJECT_DESCRIPTION`, `CMAKE_PROJECT_DESCRIPTION`\n- `PROJECT_HOMEPAGE_URL`, `CMAKE_PROJECT_HOMEPAGE_URL`	text	txt	2025-01-07 20:26:11.820572	1
+9907	3758	Variables like `PROJECT_NAME` belongs to the project scope but the project might not be the top level project. In case we want to get the top level project variables we should prefix the variable with `CMAKE_`.	text	txt	2025-01-07 20:26:11.82367	1
+9908	3758	message(${PROJECT_NAME}) # current project	code	cmake	2025-01-07 20:26:11.82367	2
+9909	3758	message(${CMAKE_PROJECT_NAME}) # top level project	code	cmake	2025-01-07 20:26:11.82367	3
+9910	3759	executables, libraries, and custom commands.	text	txt	2025-01-07 20:26:11.825912	1
+9911	3759	add_executable()	code	cmake	2025-01-07 20:26:11.825912	2
+9912	3759	add_library()	code	cmake	2025-01-07 20:26:11.825912	3
+9913	3759	add_custom_command()	code	cmake	2025-01-07 20:26:11.825912	4
 \.
 
 
@@ -12916,6 +12941,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 1288	1398	Compile a program with debugging information?	open	2024-07-28 10:08:03.754196	2024-07-28 10:08:03.754196	0
 1289	419	How does <code>eBPF</code> help us to learn application behavior?	open	2024-07-28 10:08:13.272943	2024-07-28 10:08:13.272943	0
 1290	419	What does the <code>eBPF</code> verifier?	open	2024-07-28 10:08:13.439554	2024-07-28 10:08:13.439554	0
+3747	1606	Configure a project?	open	2025-01-07 20:26:11.778699	2025-01-07 20:26:11.778699	0
 1291	419	What is the advantage of dynamic loading functionality in <code>eBPF</code>?	open	2024-07-28 10:08:13.66934	2024-07-28 10:08:13.66934	0
 1292	419	How efficient is loading <code>eBPF</code> programs?	open	2024-07-28 10:08:13.884486	2024-07-28 10:08:13.884486	0
 1293	420	How to load a simple <code>eBPF</code> code in python's BCC library as a simplified example?	open	2024-07-28 10:08:14.98458	2024-07-28 10:08:14.98458	0
@@ -15330,6 +15356,18 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3744	1601	What functions are available to check for job status?	open	2025-01-05 16:23:18.621964	2025-01-05 16:23:18.621964	0
 3745	1602	Create a self-hosted runner?	open	2025-01-05 16:23:18.624673	2025-01-05 16:23:18.624673	0
 3746	1602	Remove a self-hosted runner?	open	2025-01-05 16:23:18.626264	2025-01-05 16:23:18.626264	0
+3748	1606	What directories should be ignored in projects?	open	2025-01-07 20:26:11.790831	2025-01-07 20:26:11.790831	0
+3749	1606	Configure a project from another path?	open	2025-01-07 20:26:11.794109	2025-01-07 20:26:11.794109	0
+3750	1606	What are the first stages of cmake execution?	open	2025-01-07 20:26:11.798542	2025-01-07 20:26:11.798542	0
+3751	1606	What is the underlying build system?	open	2025-01-07 20:26:11.80306	2025-01-07 20:26:11.80306	0
+3752	1606	What is the incompatibility difference between build systems?	open	2025-01-07 20:26:11.80676	2025-01-07 20:26:11.80676	0
+3753	1606	What is the minimum required commands to build a project?	open	2025-01-07 20:26:11.809462	2025-01-07 20:26:11.809462	0
+3754	1606	What is a policy?	open	2025-01-07 20:26:11.81131	2025-01-07 20:26:11.81131	0
+3755	1606	What is a target?	open	2025-01-07 20:26:11.813337	2025-01-07 20:26:11.813337	0
+3756	1606	What options are available for <code>project()</code> command?	open	2025-01-07 20:26:11.817197	2025-01-07 20:26:11.817197	0
+3757	1606	What variables will be provided by the <code>project()</code> command?	open	2025-01-07 20:26:11.820572	2025-01-07 20:26:11.820572	0
+3758	1606	What is the difference between variables and their CMAKE prefixed counterparts?	open	2025-01-07 20:26:11.82367	2025-01-07 20:26:11.82367	0
+3759	1606	What are the available target types?	open	2025-01-07 20:26:11.825912	2025-01-07 20:26:11.825912	0
 \.
 
 
@@ -21619,6 +21657,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
 110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.626264	1	\N
+111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1	\N
 \.
 
 
@@ -23219,6 +23258,17 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1601	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.622986	3
 1602	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.627091	4
 1603	110	ignored	\N	2025-01-03 20:38:12.197376	2025-01-05 16:44:03.30081	5
+1607	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	2
+1608	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	3
+1609	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	4
+1610	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	5
+1611	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	6
+1612	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	7
+1613	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	8
+1614	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	9
+1615	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	10
+1616	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	11
+1606	111	writing	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1
 \.
 
 
@@ -24922,6 +24972,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 15	108
 6	109
 27	110
+27	111
 \.
 
 
@@ -25513,7 +25564,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9888, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9913, true);
 
 
 --
@@ -25541,7 +25592,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3746, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3759, true);
 
 
 --
@@ -25597,7 +25648,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 110, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 111, true);
 
 
 --
@@ -25618,7 +25669,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1605, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1616, true);
 
 
 --
