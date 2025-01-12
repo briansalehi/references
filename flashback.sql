@@ -11457,6 +11457,37 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9911	3759	add_executable()	code	cmake	2025-01-07 20:26:11.825912	2
 9912	3759	add_library()	code	cmake	2025-01-07 20:26:11.825912	3
 9913	3759	add_custom_command()	code	cmake	2025-01-07 20:26:11.825912	4
+9914	3760	- Events: causes that trigger workflows\n- Jobs: sequence of tasks that could run in parallel or sequentially\n- Steps: individual tasks running in sequence	text	txt	2025-01-12 22:43:51.509846	1
+9915	3761	- Code events: `push`, `pull_request`, `pull_request_review`\n- Issue events: `issues`, `issue_comment`, `milestone`\n- Scheduled events: `schedule`\n- Manual events: `workflow_dispatch`\n- Repository events: `repository`, `team`, `organization`\n- External events: `repository_dispatch`, `workflow_run`, `page_build`, `registry_package`	text	txt	2025-01-12 22:43:51.516268	1
+9916	3762	- `ubuntu-latest`\n- `macos-latest`\n- `windows-latest`\n- `self-hosted`	text	txt	2025-01-12 22:43:51.518879	1
+9917	3763		text	txt	2025-01-12 22:43:51.521664	1
+9918	3763	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      # ...	code	yml	2025-01-12 22:43:51.521664	2
+9919	3764	Jobs within a workflow run in parallel by default to speed up the overall execution time of the workflow. However, we can define dependencies between jobs using the `needs` keyword:	text	txt	2025-01-12 22:43:51.527054	1
+9920	3764	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      # ...\n  test:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      # ...\n  deploy:\n    runs-on: ubuntu-latest\n    needs: test\n    steps:\n      # ...	code	yml	2025-01-12 22:43:51.527054	2
+9921	3765	- Shell commands: running directly on runners\n- Built-in actions: provided by GitHub to do specific workflow actions\n- Community and third-party actions: simplifies common tasks provided by the community	text	txt	2025-01-12 22:43:51.531621	1
+9922	3766	- `name`: optional name for each step to be displayed in logs\n- `run`: the command to execute when step type is a shell command\n- `uses`: the action identifier to use when step type is a built-in action\n- `with`: set of input parameters to pass to the action in key-value pairs\n- `if`: a conditional expression that determines whether the step should be executed	text	txt	2025-01-12 22:43:51.5349	1
+9923	3766	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  checkout:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n  build:\n    runs-on: ubuntu-latest\n    needs: checkout\n    steps:\n      - name: Configure\n        run: cmake -S project -B build -D CMAKE_BUILD_TYPE=Release\n      - name: Build\n        run: cmake --build build --parallel\n  test:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - name: Test\n        run: ctest --testdir build\n  deploy:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - name: Deploy\n        run: cpack -G "DEB;RPM" --config build/CPackConfig.cmake\n  docs:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - name: Generate Documentation\n        if: github.ref_name == 'release'\n        run: ctest --testdir build	code	yml	2025-01-12 22:43:51.5349	2
+9924	3767	GitHub Actions does not checkout the source repository by default, by doing so is as easy as using `checkout` action:	text	txt	2025-01-12 22:43:51.537031	1
+9925	3767	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  checkout:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4	code	yml	2025-01-12 22:43:51.537031	2
+9926	3768	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  setup-node:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/setup-node@v4\n        with:\n          node-version: latest	code	yml	2025-01-12 22:43:51.539242	1
+9927	3769	name: Workflow\npermissions:\n  contents: write\non:\n  tags:\n    - v*\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/create-release@v4\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n        with:\n          tag_name: ${{ github.ref_name }}\n          release_name: "Release ${{ github.ref_name }}"\n          body: "Release notes for ${{ github.ref_name }}"\n          draft: false\n          prerelease: false	code	yml	2025-01-12 22:43:51.543693	1
+9928	3770	The `GITHUB_TOKEN` is provided by GitHub Actions, we do not need to create one.	text	txt	2025-01-12 22:43:51.547412	1
+9929	3770	name: Workflow\non: [push, workflow_dispatch]\npermissions:\n  contents: write\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/create-release@v1\n        with:\n          tag_name: ${{ github.ref_name }}\n          release_name: "Release ${{ github.ref_name }}"\n          body: "Release notes for ${{ github.refname }}"\n          prerelease: false\n          draft: false\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	code	yml	2025-01-12 22:43:51.547412	2
+9930	3771	The `GITHUB_TOKEN` is provided by GitHub Actions, we do not need to create one.	text	txt	2025-01-12 22:43:51.550348	1
+9931	3771	name: Workflow\non: [push, workflow_dispatch]\npermissions:\n  contents: write\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/create-release@v1\n        with:\n          tag_name: ${{ github.ref_name }}\n          release_name: "Release ${{ github.ref_name }}"\n          body: "Release notes for ${{ github.refname }}"\n          prerelease: false\n          draft: false\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      - uses: actions/upload-release-asset@v1\n        with:\n          upload_url: ${{ steps.create-release.outputs.upload_url\n          asset_path: ${{ env.package-path }}\n          asset_name: ${{ env.package-name }}\n          asset_content_type: ${{ env.package-type }}\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}	code	yml	2025-01-12 22:43:51.550348	2
+9932	3772	We can for example cache the npm build steps by hashing `package.json` file.	text	txt	2025-01-12 22:43:51.552532	1
+9933	3772	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  cache:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Save Cache\n        uses: actions/cache@v2\n        with:\n          path: ~/.npm\n          key: ${{ runner.os }}-cache-${{ hashFiles('**/package-lock.json') }}\n      - name: Restore Cache\n        uses: actions/cache@v2\n        with:\n          path: ~/.npm\n          restore-key: |\n            ${{ runner.os }}-npm-\n          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}	code	yml	2025-01-12 22:43:51.552532	2
+9934	3773	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  upload:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - uses: actions/upload-artifact@v4\n        with:\n          name: artifacts\n          path: build/\n          retention-days: 1	code	yml	2025-01-12 22:43:51.554445	1
+9935	3774	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  download:\n    runs-on: ubuntu-latest\n    needs: build\n    steps:\n      - uses: actions/download-artifact@v4\n        with:\n          name: artifacts\n          path: assets/\n        run: ls assets/	code	yml	2025-01-12 22:43:51.55739	1
+9936	3775	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  delete:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: geekyeggo/delete-artifact@v5\n        with:\n          name: artifacts	code	yml	2025-01-12 22:43:51.561294	1
+9937	3776	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  conditional:\n    runs-on: ubuntu-latest\n    if: github.event_name == 'push'\n    steps:\n      - uses: actions/checkout@v4	code	yml	2025-01-12 22:43:51.564664	1
+9938	3777	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  immortal:\n    runs-on: ubuntu-latest\n    steps:\n      - id: test\n        run: ./build/test-program\n        continue-on-failure: true\n      - if: steps.test.outcome == 'failure'\n        run: echo "Test Failed"	code	yml	2025-01-12 22:43:51.567004	1
+9939	3778		text	txt	2025-01-12 22:43:51.568939	1
+9940	3778	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  output:\n    runs-on: ubuntu-latest\n    steps:\n      - id: generate-random\n        run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"\n      - run: echo "number: ${{ steps.generate-random.outputs.number }}"	code	yml	2025-01-12 22:43:51.568939	2
+9941	3779	To have outputs for a job, we need to define it at the job level.	text	txt	2025-01-12 22:43:51.570963	1
+9942	3779	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  producer:\n    runs-on: ubuntu-latest\n    outputs:\n      number: ${{ steps.generate-random.outputs.number }}\n    steps:\n      - id: generate-random\n        run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"\n  consumer:\n    runs-on: ubuntu-latest\n    needs: producer\n    steps:\n      - run: echo "number: ${{ needs.producer.outputs.number }}"	code	yml	2025-01-12 22:43:51.570963	2
+9943	3780		text	txt	2025-01-12 22:43:51.573999	1
+9944	3780	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  build:\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest, macos-latest]\n        node: [14, 16]\n    runs-on: ${{ matrix.os }}\n    steps:\n      - uses: actions/checkout@v4\n      - id: cache\n        uses: actions/cache@v2\n        with:\n          path: ~/.npm\n          key: ${{ runner.os }}-npm-${{ matrix.node }}-${{ hashFile('**/package-lock.json') }}	code	yml	2025-01-12 22:43:51.573999	2
 \.
 
 
@@ -15368,6 +15399,27 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3757	1606	What variables will be provided by the <code>project()</code> command?	open	2025-01-07 20:26:11.820572	2025-01-07 20:26:11.820572	0
 3758	1606	What is the difference between variables and their CMAKE prefixed counterparts?	open	2025-01-07 20:26:11.82367	2025-01-07 20:26:11.82367	0
 3759	1606	What are the available target types?	open	2025-01-07 20:26:11.825912	2025-01-07 20:26:11.825912	0
+3760	1618	What are the building blocks of a workflow?	open	2025-01-12 22:43:51.509846	2025-01-12 22:43:51.509846	0
+3761	1618	What event types exist to trigger workflows?	open	2025-01-12 22:43:51.516268	2025-01-12 22:43:51.516268	0
+3762	1618	What runners are supported?	open	2025-01-12 22:43:51.518879	2025-01-12 22:43:51.518879	0
+3763	1618	Create a job?	open	2025-01-12 22:43:51.521664	2025-01-12 22:43:51.521664	0
+3764	1618	Create multiple jobs running in sequence?	open	2025-01-12 22:43:51.527054	2025-01-12 22:43:51.527054	0
+3765	1618	How many types exist for steps?	open	2025-01-12 22:43:51.531621	2025-01-12 22:43:51.531621	0
+3766	1618	What are the steps properties?	open	2025-01-12 22:43:51.5349	2025-01-12 22:43:51.5349	0
+3767	1618	Write a job to checkout the source repository?	open	2025-01-12 22:43:51.537031	2025-01-12 22:43:51.537031	0
+3768	1618	Write a job to setup nodejs modules?	open	2025-01-12 22:43:51.539242	2025-01-12 22:43:51.539242	0
+3769	1618	Give enough permissions to an action to create a release?	open	2025-01-12 22:43:51.543693	2025-01-12 22:43:51.543693	0
+3770	1618	Write a job to create a release?	open	2025-01-12 22:43:51.547412	2025-01-12 22:43:51.547412	0
+3771	1618	Write a job to release generated artifacts?	open	2025-01-12 22:43:51.550348	2025-01-12 22:43:51.550348	0
+3772	1618	Write a job to cache a step?	open	2025-01-12 22:43:51.552532	2025-01-12 22:43:51.552532	0
+3773	1618	Write a job to upload artifacts in storage?	open	2025-01-12 22:43:51.554445	2025-01-12 22:43:51.554445	0
+3774	1618	Write a job to download artifacts from storage?	open	2025-01-12 22:43:51.55739	2025-01-12 22:43:51.55739	0
+3775	1618	Write a job to delete artifacts within storage?	open	2025-01-12 22:43:51.561294	2025-01-12 22:43:51.561294	0
+3776	1618	Make job execution conditional?	open	2025-01-12 22:43:51.564664	2025-01-12 22:43:51.564664	0
+3777	1618	Write a job to continue execution even after failure?	open	2025-01-12 22:43:51.567004	2025-01-12 22:43:51.567004	0
+3778	1618	Create an output for a step?	open	2025-01-12 22:43:51.568939	2025-01-12 22:43:51.568939	0
+3779	1618	Create an output for a job?	open	2025-01-12 22:43:51.570963	2025-01-12 22:43:51.570963	0
+3780	1618	Run a job on a matrix of runners?	open	2025-01-12 22:43:51.573999	2025-01-12 22:43:51.573999	0
 \.
 
 
@@ -21658,6 +21710,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
 110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.626264	1	\N
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1	\N
+112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
 \.
 
 
@@ -23269,6 +23322,22 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1615	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	10
 1616	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	11
 1606	111	writing	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1
+1619	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	3
+1620	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	4
+1621	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	5
+1622	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	6
+1623	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	7
+1624	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	8
+1625	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	9
+1626	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	10
+1627	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	11
+1628	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	12
+1629	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	13
+1630	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	14
+1631	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	15
+1632	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	16
+1617	112	ignored	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.506865	1
+1618	112	writing	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	2
 \.
 
 
@@ -24984,6 +25053,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 6	109
 27	110
 27	111
+27	112
 \.
 
 
@@ -25576,7 +25646,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9913, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9944, true);
 
 
 --
@@ -25604,7 +25674,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3759, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3780, true);
 
 
 --
@@ -25660,7 +25730,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 111, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 112, true);
 
 
 --
@@ -25681,7 +25751,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1616, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1632, true);
 
 
 --
