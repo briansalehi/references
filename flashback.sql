@@ -11488,6 +11488,11 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9942	3779	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  producer:\n    runs-on: ubuntu-latest\n    outputs:\n      number: ${{ steps.generate-random.outputs.number }}\n    steps:\n      - id: generate-random\n        run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"\n  consumer:\n    runs-on: ubuntu-latest\n    needs: producer\n    steps:\n      - run: echo "number: ${{ needs.producer.outputs.number }}"	code	yml	2025-01-12 22:43:51.570963	2
 9943	3780		text	txt	2025-01-12 22:43:51.573999	1
 9944	3780	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  build:\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest, macos-latest]\n        node: [14, 16]\n    runs-on: ${{ matrix.os }}\n    steps:\n      - uses: actions/checkout@v4\n      - id: cache\n        uses: actions/cache@v2\n        with:\n          path: ~/.npm\n          key: ${{ runner.os }}-npm-${{ matrix.node }}-${{ hashFile('**/package-lock.json') }}	code	yml	2025-01-12 22:43:51.573999	2
+9945	3781	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::acceptor acceptor{context, endpoint.protocol()};\n\n    try\n    {\n        acceptor.bind(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.607229	1
+9946	3782	UDP servers do not establish connections and use active sockets to wait for incoming requests.	text	txt	2025-01-15 23:06:24.612238	1
+9947	3782	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::udp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::udp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.bind(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.612238	2
+9948	3783	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address::from_string("::1")};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.connect(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.615131	1
+9949	3784	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::acceptor acceptor{context, endpoint.protocol()};\n\n    try\n    {\n        acceptor.bind(endpoint);\n        acceptor.listen(10);\n\n        boost::asio::ip::tcp::socket client{context};\n\n        acceptor.accept(client);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.617679	1
 \.
 
 
@@ -13219,6 +13224,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 1527	1252	What option types are available to use in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.063444	2024-07-28 10:09:41.063444	0
 1528	1252	How boolean options can be enabled or disabled in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:41.405182	2024-07-28 10:09:41.405182	0
 1529	1252	What option should be enabled in <code>sudo</code> to insult users who can't type their password?	open	2024-07-28 10:09:41.695843	2024-07-28 10:09:41.695843	0
+3781	838	Bind a TCP acceptor to a port?	open	2025-01-15 23:06:24.607229	2025-01-15 23:06:24.607229	0
 1530	1252	How integer options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.042888	2024-07-28 10:09:42.042888	0
 1531	1252	How string options can be used in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.419994	2024-07-28 10:09:42.419994	0
 1532	1252	How list options can be written in <code>/etc/sudoers</code> file?	open	2024-07-28 10:09:42.756986	2024-07-28 10:09:42.756986	0
@@ -14035,6 +14041,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 2367	1293	What are the advantages of using jthread?	open	2024-09-19 14:56:13.958641	2024-09-19 14:56:13.958641	0
 2368	1293	What are the drawbacks of using shared and weak pointers in multiple threads?	open	2024-09-19 14:56:13.959691	2024-09-19 14:56:13.959691	0
 2369	1293	What are the atomic shared pointers?	open	2024-09-19 14:56:13.960796	2024-09-19 14:56:13.960796	0
+3782	838	Bind a UDP acceptor to a port?	open	2025-01-15 23:06:24.612238	2025-01-15 23:06:24.612238	0
 2370	1293	What are the use cases of latch and barriers?	open	2024-09-19 14:56:13.962792	2024-09-19 14:56:13.962792	0
 2371	1293	What is the difference between latches and barriers?	open	2024-09-19 14:56:13.964808	2024-09-19 14:56:13.964808	0
 2372	1293	What is a counting semaphore?	open	2024-09-19 14:56:13.966494	2024-09-19 14:56:13.966494	0
@@ -14173,6 +14180,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 2595	1565	What configuration variable is used in an image as the generated image name?	open	2024-09-22 10:06:27.20516	2024-09-22 10:06:27.20516	0
 2596	1565	What configuration variable is used in an image to hold the list of packages to be installed?	open	2024-09-22 10:06:27.207106	2024-09-22 10:06:27.207106	0
 2597	1565	What configuration variable is used in an image as the root filesystem size?	open	2024-09-22 10:06:27.208852	2024-09-22 10:06:27.208852	0
+3783	838	Connect socket to a server address?	open	2025-01-15 23:06:24.615131	2025-01-15 23:06:24.615131	0
 2598	1565	What configuration variable is used in an image to hold the list of features used in the image?	open	2024-09-22 10:06:27.210725	2024-09-22 10:06:27.210725	0
 2599	1565	What configuration variable is used in an image to hold the list of formats to be used to create the image?	open	2024-09-22 10:06:27.21256	2024-09-22 10:06:27.21256	0
 2600	1565	What configuration variable is used in an image to hold the list of locales to be supported?	open	2024-09-22 10:06:27.2145	2024-09-22 10:06:27.2145	0
@@ -15420,6 +15428,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3778	1618	Create an output for a step?	open	2025-01-12 22:43:51.568939	2025-01-12 22:43:51.568939	0
 3779	1618	Create an output for a job?	open	2025-01-12 22:43:51.570963	2025-01-12 22:43:51.570963	0
 3780	1618	Run a job on a matrix of runners?	open	2025-01-12 22:43:51.573999	2025-01-12 22:43:51.573999	0
+3784	838	Accept connections by listening on a port?	open	2025-01-15 23:06:24.617679	2025-01-15 23:06:24.617679	0
 \.
 
 
@@ -21604,7 +21613,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 7	Daily C++ Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 15	Learning OpenCV 3	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 65	Offensive Security Wireless Professional (OSWP)	\N	video	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	4	\N
-62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 55	The C++ Standard Library: A Tutorial and Reference	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Nicolai M. Josuttis
 16	Calculus: Concepts and Contexts	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 17	Qt6 Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -21711,6 +21719,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.626264	1	\N
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1	\N
 112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
+62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 \.
 
 
@@ -23141,7 +23150,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1359	89	completed	\N	2024-07-28 09:45:09.867651	2024-07-28 09:45:09.867651	13
 1486	101	completed	\N	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	1
 608	48	writing	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	1
-838	62	writing	\N	2024-07-28 09:45:04.316203	2024-10-13 09:23:38.460276	1
 1492	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	1
 1493	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	2
 1494	103	open	\N	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.597127	3
@@ -23338,6 +23346,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1632	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	16
 1617	112	ignored	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.506865	1
 1618	112	writing	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	2
+838	62	completed	\N	2024-07-28 09:45:04.316203	2025-01-15 23:06:24.618925	1
 \.
 
 
@@ -25662,7 +25671,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9944, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9949, true);
 
 
 --
@@ -25690,7 +25699,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3780, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3784, true);
 
 
 --
