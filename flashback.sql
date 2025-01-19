@@ -11493,6 +11493,26 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9947	3782	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::udp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::udp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.bind(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.612238	2
 9948	3783	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address::from_string("::1")};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.connect(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.615131	1
 9949	3784	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::acceptor acceptor{context, endpoint.protocol()};\n\n    try\n    {\n        acceptor.bind(endpoint);\n        acceptor.listen(10);\n\n        boost::asio::ip::tcp::socket client{context};\n\n        acceptor.accept(client);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp	2025-01-15 23:06:24.617679	1
+9950	3785	In the past, PostgreSQL supported an instance-wide configuration variable called `old_snapshot_threshold`.	text	txt	2025-01-19 14:10:35.130224	1
+9951	3785	The community has removed this feature and introduced a new variable called `transaction_timeout`, which can be set per session.	text	txt	2025-01-19 14:10:35.130224	2
+9952	3785	The default value of this new setting is `unlimited`, or more accurately, `0`.	text	txt	2025-01-19 14:10:35.130224	3
+9953	3786	If you want to limit the duration of your transaction, you can simply set `transaction_timeout` inside your session:	text	txt	2025-01-19 14:10:35.137162	1
+9954	3786	SET transaction_timeout TO 5000;	code	sql	2025-01-19 14:10:35.137162	2
+9955	3786	BEGIN;	code	sql	2025-01-19 14:10:35.137162	3
+9956	3786	SELECT now();	code	sql	2025-01-19 14:10:35.137162	4
+9957	3787	Imagine somebody changes your data structure by creating a table, an index, or some other kind of object. An event trigger allows us to react to those events and execute code as needed.	text	txt	2025-01-19 14:10:35.138807	1
+9958	3787	SHOW event_triggers;	code	sql	2025-01-19 14:10:35.138807	2
+9959	3787	Event triggers will fire for all applicable statements.	text	txt	2025-01-19 14:10:35.138807	3
+9960	3788	In PostgreSQL, a trigger will always launch a function. Therefore, the first step is to come up with the function we want to run.	text	txt	2025-01-19 14:10:35.140145	1
+9961	3789	Login trigger is a trigger that is supposed to track login attempts in a table.	text	txt	2025-01-19 14:10:35.142022	1
+9962	3789	We should return event_trigger type when we want to trigger events.	text	txt	2025-01-19 14:10:35.142022	2
+9963	3789	CREATE TABLE user_logins (\n    id serial,\n    who text\n);	code	sql	2025-01-19 14:10:35.142022	3
+9964	3789	CREATE FUNCTION on_login_proc()\nRETURNS event_trigger AS\n$$\nBEGIN\n    INSERT INTO user_logins (who)\n    VALUES (SESSION_USER);\n    RAISE NOTICE 'User logged in';\nEND;\n$$ LANGUAGE plpgsql;	code	sql	2025-01-19 14:10:35.142022	4
+9965	3789	The return value of this function is a special data type specifically designed for this purpose.	text	txt	2025-01-19 14:10:35.142022	5
+9966	3789	Then we create the event itself:	text	txt	2025-01-19 14:10:35.142022	6
+9967	3789	CREATE EVENT TRIGGER on_login_event\nON ddl_command_start\nEXECUTE FUNCTION on_login_proc();	code	sql	2025-01-19 14:10:35.142022	7
+9968	3789	We can then enable the trigger:	text	txt	2025-01-19 14:10:35.142022	8
+9969	3789	ALTER EVENT TRIGGER on_login_trigger ENABLE ALWAYS;	code	sql	2025-01-19 14:10:35.142022	9
 \.
 
 
@@ -15429,6 +15449,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3779	1618	Create an output for a job?	open	2025-01-12 22:43:51.570963	2025-01-12 22:43:51.570963	0
 3780	1618	Run a job on a matrix of runners?	open	2025-01-12 22:43:51.573999	2025-01-12 22:43:51.573999	0
 3784	838	Accept connections by listening on a port?	open	2025-01-15 23:06:24.617679	2025-01-15 23:06:24.617679	0
+3785	1633	What variable is used to limit a transaction lifetime?	open	2025-01-19 14:10:35.130224	2025-01-19 14:10:35.130224	0
+3786	1633	Limit the lifetime of a transaction?	open	2025-01-19 14:10:35.137162	2025-01-19 14:10:35.137162	0
+3787	1633	What feature can be used to react to events inside the database?	open	2025-01-19 14:10:35.138807	2025-01-19 14:10:35.138807	0
+3788	1633	What is the only requirement of a trigger?	open	2025-01-19 14:10:35.140145	2025-01-19 14:10:35.140145	0
+3789	1633	Create a trigger to track logins?	open	2025-01-19 14:10:35.142022	2025-01-19 14:10:35.142022	0
 \.
 
 
@@ -21720,6 +21745,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1	\N
 112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
+113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
 \.
 
 
@@ -23347,6 +23373,19 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1617	112	ignored	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.506865	1
 1618	112	writing	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	2
 838	62	completed	\N	2024-07-28 09:45:04.316203	2025-01-15 23:06:24.618925	1
+1634	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	2
+1635	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	3
+1636	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	4
+1637	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	5
+1638	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	6
+1639	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	7
+1640	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	8
+1641	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	9
+1642	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	10
+1643	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	11
+1644	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	12
+1645	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	13
+1633	113	writing	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1
 \.
 
 
@@ -24911,10 +24950,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1603	2025-01-03 20:39:37.103309
 1	1604	2025-01-03 20:39:37.103309
 1	1605	2025-01-03 20:39:37.103309
-1	1599	2025-01-09 23:24:31.542797
-1	1600	2025-01-09 23:26:25.325869
-1	1601	2025-01-09 23:35:41.123991
-1	1602	2025-01-09 23:38:15.065886
 1	1554	2025-01-09 23:47:58.124523
 1	1029	2025-01-09 23:48:41.635465
 1	1607	2025-01-07 21:40:45.930833
@@ -24953,6 +24988,10 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	789	2025-01-18 09:53:48.979848
 1	796	2025-01-18 10:08:13.753262
 1	1347	2025-01-18 10:10:20.524073
+1	1599	2025-01-18 23:27:29.501996
+1	1600	2025-01-18 23:30:41.455467
+1	1601	2025-01-18 23:52:37.844376
+1	1602	2025-01-18 23:53:01.182248
 \.
 
 
@@ -25079,6 +25118,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 27	110
 27	111
 27	112
+18	113
 \.
 
 
@@ -25671,7 +25711,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9949, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9969, true);
 
 
 --
@@ -25699,7 +25739,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3784, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3789, true);
 
 
 --
@@ -25755,7 +25795,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 112, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 113, true);
 
 
 --
@@ -25776,7 +25816,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1632, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1645, true);
 
 
 --
