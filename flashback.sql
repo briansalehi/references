@@ -7728,11 +7728,9 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6038	1795	Compute the two standard matrices individually and then multiply them together:\nA unit vector on the line y = ¾x is u = (⅗,⅘), and the reflection Fu has standard matrix:\n[Fu] = 2[(⅗,⅘)]\\\\[⅗ ⅘] - [(1,0) (0,1)]\nThe diagonal stretch D has standard matrix:\n[D] = [(2,0) (0,3)]\nThe standard matrix of the composite linear transformation T = D○Fu is thus the product of these two individual standard matrices:\n[T] = [D]\\\\[Fu]	text	txt	2024-07-28 10:11:29.417645	1
 6039	1796	A function $f$ from a set $D$ to a set $Y$ is a rule that assigns a unique value $f(x)$ in $Y$ to each $x$ in $D$.	text	txt	2024-07-28 10:11:29.89101	1
 6040	1796	The value of one variable quantity, say $y$, depends on the value of another variable quantity, which we often call $x$.\nWe say that $y$ is a function of $x$ and write this symbolically as	text	txt	2024-07-28 10:11:29.912194	2
-6041	1796	$y = f(x)$ ($y$ equals $f$ of $x$)	text	txt	2024-07-28 10:11:29.93286	3
 6042	1796	The symbol $f$ represents the function, the letter $x$ is the **independent variable** representing the input value to $f$, and $y$ is the **dependent variable** or ouput value of $f$ at $x$.	text	txt	2024-07-28 10:11:29.954925	4
 6043	1800	If $f$ is a function with domain $D$, its graph consists of the points in the Cartesian plane whose coordinates are the input-output pairs for $f$.	text	txt	2024-07-28 10:11:30.730654	1
 6044	1800	In set notation the graph is	text	txt	2024-07-28 10:11:30.751266	2
-6045	1800	${(x, f(x)) | x ∈ D}$	text	txt	2024-07-28 10:11:30.772287	3
 6046	1804	A function $f$ can have only one value $f(x)$ for each $x$ in its domain, so no vertical line can interact the graph of a function more than once.	text	txt	2024-07-28 10:11:31.514657	1
 6047	1805	Sometimes a function is described in pieces by using different formulas on different parts of its domain.	text	txt	2024-07-28 10:11:31.921424	1
 6048	1805	\\\\begin{equation}\n  f(x) = \\\\begin{cases}\n    1 & x ≤ 0 \\\\\\\\\n    x+1 & x > 0\n  \\\\end{cases}\n\\\\end{equation}	code	txt	2024-07-28 10:11:31.942332	2
@@ -7748,7 +7746,6 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6058	1811	If the variable $y$ is proportional to the reciprocal $1/x$, then it is said that $y$ is **inversely proportional** to $x$.	text	txt	2024-07-28 10:11:33.473166	3
 6059	1814	A function $f(x) = x^n$, where $a$ is a constant, is called a **power function**.	text	txt	2024-07-28 10:11:34.039075	1
 6060	1815	A function $p$ is a **polynomial** if	text	txt	2024-07-28 10:11:34.42629	1
-6061	1815	\\\\begin{equation}\n  p(x) = a_nx^n + a_(n-1)x^(n-1) + ... + a_1x + a_0\n\\\\end{equation}	code	txt	2024-07-28 10:11:34.447327	2
 6062	1815	where $n$ is a nonnegative integer and the numbers $a_0,a_1,a_2,...,a_n$ are real constants called the **coefficients** of the polynomial.	text	txt	2024-07-28 10:11:34.467931	3
 6063	1815	All polynomials have domain $(-\\\\inf,\\\\inf)$.	text	txt	2024-07-28 10:11:34.487661	4
 6064	1816	A **rational function** is a quotient or ratio $f(x) = p(x)/q(x)$, where $p$ and $q$ are polynomials.	text	txt	2024-07-28 10:11:34.864696	1
@@ -7763,6 +7760,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6073	1821	They include the trigonometric, inverse trigonometric, exponential, and logarithmic functions, and many other functions as well.	text	txt	2024-07-28 10:11:36.132869	2
 6074	1821	The catenary is one example of a transcendental function.\nIts graph has the shape of a cable, like a telephone line or electric cable, strung from one support to another and hanging freely under its own weight.	text	txt	2024-07-28 10:11:36.154375	3
 6075	1822	- Template class `cv::Point<>` with aliases in form of `cv::Point{2,3}{i,f,d}`\n- Class `cv::Scalar<>` a four dimensional point derived from `cv::Vec<double, 4>`\n- Template class `cv::Vec<>` known as *fixed vector classes* with aliases in form of `cv::Vec{2,3,4,6}{b,w,s,i,f,d}`\n- Template class `cv::Matx<>` known as *fixed matrix classes* with aliases in form of `cv::Matx{1,2,3,4,6}{1,2,3,4,6}{f,d}`\n- Template class `cv::Size<>` with aliases in form of `cv::Size{2,3}{i,f,d}`\n- Class `cv::Rect<>`\n- Class `cv::RotatedRect<>`	text	txt	2024-07-28 10:11:36.693643	1
+6041	1796	y = f(x)	code	math	2024-07-28 10:11:29.93286	3
+6045	1800	\\{(x, f(x)) | x \\in D\\}	code	math	2024-07-28 10:11:30.772287	3
 6076	1823	The point class is a container of two or three values of one of the primitive\ntypes and are derived from their own template.	text	txt	2024-07-28 10:11:37.098435	1
 6077	1823	|Operation|Example|\n|---|---|\n|Default constructors|`cv::Point2i{}` `cv::Point3f{}`|\n|Copy constructor|`cv::Point3f{p}`|\n|Value constructor|`cv::Point2i{x0, x1}` `cv::Point3d{x0, x1, x2}`|\n|Cast to fixed vector|`(cv::Vec3d) cv::Point3d{}`|\n|Member access|`p.x` `p.y`|\n|Dot product|`float x = p1.dot(p2)`|\n|Double-precision dot product|`double x = p1.ddot(p2)`|\n|Cross product|`p1.cross(p2)`|\n|Query if Point is inside Rect|`p.inside(r)`|	text	txt	2024-07-28 10:11:37.120338	2
 6078	1824	A four-dimensional point class derived from `cv::Vec<double, 4>` inheriting\nall of the vector algebra operations, member access functions, and other\nproperties.	text	txt	2024-07-28 10:11:37.539703	1
@@ -11483,6 +11482,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9937	3776	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  conditional:\n    runs-on: ubuntu-latest\n    if: github.event_name == 'push'\n    steps:\n      - uses: actions/checkout@v4	code	yml	2025-01-12 22:43:51.564664	1
 9938	3777	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  immortal:\n    runs-on: ubuntu-latest\n    steps:\n      - id: test\n        run: ./build/test-program\n        continue-on-failure: true\n      - if: steps.test.outcome == 'failure'\n        run: echo "Test Failed"	code	yml	2025-01-12 22:43:51.567004	1
 9939	3778		text	txt	2025-01-12 22:43:51.568939	1
+6061	1815	p(x) = a_nx^n + a_(n-1)x^(n-1) + ... + a_1x + a_0	code	math	2024-07-28 10:11:34.447327	2
 9940	3778	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  output:\n    runs-on: ubuntu-latest\n    steps:\n      - id: generate-random\n        run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"\n      - run: echo "number: ${{ steps.generate-random.outputs.number }}"	code	yml	2025-01-12 22:43:51.568939	2
 9941	3779	To have outputs for a job, we need to define it at the job level.	text	txt	2025-01-12 22:43:51.570963	1
 9942	3779	name: Workflow\non: [push, workflow_dispatch]\njobs:\n  producer:\n    runs-on: ubuntu-latest\n    outputs:\n      number: ${{ steps.generate-random.outputs.number }}\n    steps:\n      - id: generate-random\n        run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"\n  consumer:\n    runs-on: ubuntu-latest\n    needs: producer\n    steps:\n      - run: echo "number: ${{ needs.producer.outputs.number }}"	code	yml	2025-01-12 22:43:51.570963	2
@@ -23559,8 +23559,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1261	2024-08-07 22:44:43.138201
 1	1284	2024-08-07 22:44:43.138201
 1	1281	2024-08-07 22:44:43.138201
-1	1294	2024-08-07 22:44:43.138201
-1	1310	2024-08-07 22:44:43.138201
 1	1330	2024-08-07 22:44:43.138201
 1	1331	2024-08-07 22:44:43.138201
 1	1332	2024-08-07 22:44:43.138201
@@ -23579,6 +23577,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1398	2024-08-07 22:44:43.138201
 1	1415	2024-08-07 22:44:43.138201
 1	1414	2024-08-07 22:44:43.138201
+1	1294	2025-01-26 00:02:47.692485
 1	1416	2024-08-07 22:44:43.138201
 1	1417	2024-08-07 22:44:43.138201
 1	1419	2024-08-07 22:44:43.138201
@@ -24984,14 +24983,28 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1632	2025-01-12 22:45:54.598195
 1	1617	2025-01-12 22:45:54.598195
 1	1618	2025-01-12 22:45:54.598195
-1	1584	2025-01-18 09:52:44.489269
 1	789	2025-01-18 09:53:48.979848
 1	796	2025-01-18 10:08:13.753262
 1	1347	2025-01-18 10:10:20.524073
-1	1599	2025-01-18 23:27:29.501996
-1	1600	2025-01-18 23:30:41.455467
 1	1601	2025-01-18 23:52:37.844376
 1	1602	2025-01-18 23:53:01.182248
+1	1599	2025-01-20 21:43:22.780008
+1	1600	2025-01-20 21:44:31.380122
+1	1584	2025-01-21 14:31:42.90139
+1	1310	2025-01-21 14:33:18.950282
+1	1634	2025-01-19 14:11:35.02102
+1	1635	2025-01-19 14:11:35.02102
+1	1636	2025-01-19 14:11:35.02102
+1	1637	2025-01-19 14:11:35.02102
+1	1638	2025-01-19 14:11:35.02102
+1	1639	2025-01-19 14:11:35.02102
+1	1640	2025-01-19 14:11:35.02102
+1	1641	2025-01-19 14:11:35.02102
+1	1642	2025-01-19 14:11:35.02102
+1	1643	2025-01-19 14:11:35.02102
+1	1644	2025-01-19 14:11:35.02102
+1	1645	2025-01-19 14:11:35.02102
+1	1633	2025-01-19 14:11:35.02102
 \.
 
 
