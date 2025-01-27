@@ -11513,6 +11513,24 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9967	3789	CREATE EVENT TRIGGER on_login_event\nON ddl_command_start\nEXECUTE FUNCTION on_login_proc();	code	sql	2025-01-19 14:10:35.142022	7
 9968	3789	We can then enable the trigger:	text	txt	2025-01-19 14:10:35.142022	8
 9969	3789	ALTER EVENT TRIGGER on_login_trigger ENABLE ALWAYS;	code	sql	2025-01-19 14:10:35.142022	9
+9970	3790	Key-Value pairs, where key can only contain alphanumeric values with dash and underscore, and value can contain integer type, string type with single or double quotes.	text	txt	2025-01-27 23:38:15.368985	1
+9971	3790	name: Release Workflow	code	yml	2025-01-27 23:38:15.368985	2
+9972	3790	Dictionaries are nested objects than end in key-value pairs	text	txt	2025-01-27 23:38:15.368985	3
+9973	3790	on:\n  do-something:\n    runs-on: ubuntu-24.04	code	yml	2025-01-27 23:38:15.368985	4
+9974	3790	A Sequence is a dictionary key that each of its entries start with a dash, and after dash can be any other type.	text	txt	2025-01-27 23:38:15.368985	5
+9975	3790	steps:\n  - name: Configure\n    run: echo configuring\n  - name: Build\n    run: echo building	code	yml	2025-01-27 23:38:15.368985	6
+9976	3791	A sequence of tasks that are defined at a repository level and start executing these sequence of tasks when gets triggered by one or more conditions defined within the workflow.	text	txt	2025-01-27 23:38:15.379563	1
+9977	3791	Each workflow might have one or a few jobs. Jobs define the sequence of tasks that are supposed to run in the workflow. Jobs in a workflow run in parallel, unless we define a dependency between them.	text	txt	2025-01-27 23:38:15.379563	2
+9978	3791	Steps are the sequence of actions that run in a job.	text	txt	2025-01-27 23:38:15.379563	3
+9979	3791	name: Workflow\non: push\njobs:\n  release:\n    name: "Sequence of tasks are here"\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "A task runs here"\n  validate:\n    name: "Second job that runs in parallel"\n    runs-on: ubuntu-latest\n    steps:\n      - run; echo "Validate some stuff"	code	yml	2025-01-27 23:38:15.379563	4
+9980	3792	When all of the tasks within all jobs exit successfully with 0 error code, the workflow exits successfully.	text	txt	2025-01-27 23:38:15.381459	1
+9981	3792	name: Workflow\non: push\njobs:\n  release:\n    name: "Sequence of tasks are here"\n    runs-on: ubuntu-latest\n    steps:\n      - run: exit 1\n      - run: echo "This job fails and you will never see this output"	code	yml	2025-01-27 23:38:15.381459	2
+9982	3793	- Repository events: `push`, `issues`, `pull_request`, `pull_request_review`, `fork`\n- Manual trigger: triggered via UI, triggered via API, triggered from another workflow\n- Schedule: cron jobs	text	txt	2025-01-27 23:38:15.38328	1
+9983	3793	name: Workflow\non:\n  push:\n  issues:\n  pull_request:\n  pull_request_review:\n  fork:\n  workflow_dispatch:\n  schedule:\n    - cron: "0 * * * *"\njobs:\n  first-job:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.event_name }}	code	yml	2025-01-27 23:38:15.38328	2
+9984	3794	Ubuntu, MacOS, Windows	text	list	2025-01-27 23:38:15.386386	1
+9985	3794	name: Workflow\non: workflow_dispatch\njobs:\n  linux:\n    runs-on: ubuntu-latest\n    steps:\n      - run: uname -s\n  windows:\n    runs-on: windows-latest\n    steps:\n      - shell: bash\n        run: uname -s\n  macos:\n    runs-on: macos-latest\n    steps:\n      - run: uname -s	code	yml	2025-01-27 23:38:15.386386	2
+9986	3795	Actions are prebuilt jobs ready to be used. Actions might take inputs and generate outputs.	text	txt	2025-01-27 23:38:15.388996	1
+9987	3795	name: Workflow\non: workflow_dispatch\njobs:\n  checkout:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4	code	yml	2025-01-27 23:38:15.388996	2
 \.
 
 
@@ -15454,6 +15472,12 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3787	1633	What feature can be used to react to events inside the database?	open	2025-01-19 14:10:35.138807	2025-01-19 14:10:35.138807	0
 3788	1633	What is the only requirement of a trigger?	open	2025-01-19 14:10:35.140145	2025-01-19 14:10:35.140145	0
 3789	1633	Create a trigger to track logins?	open	2025-01-19 14:10:35.142022	2025-01-19 14:10:35.142022	0
+3790	1647	How many types exist in YAML syntax?	open	2025-01-27 23:38:15.368985	2025-01-27 23:38:15.368985	0
+3791	1648	What is a workflow?	open	2025-01-27 23:38:15.379563	2025-01-27 23:38:15.379563	0
+3792	1648	When does a workflow complete execution of tasks successfully?	open	2025-01-27 23:38:15.381459	2025-01-27 23:38:15.381459	0
+3793	1648	What workflow triggers exist?	open	2025-01-27 23:38:15.38328	2025-01-27 23:38:15.38328	0
+3794	1650	What runners exist in workflows?	open	2025-01-27 23:38:15.386386	2025-01-27 23:38:15.386386	0
+3795	1651	What are the actions?	open	2025-01-27 23:38:15.388996	2025-01-27 23:38:15.388996	0
 \.
 
 
@@ -21746,6 +21770,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
+114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.388996	1	\N
 \.
 
 
@@ -23386,6 +23411,25 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1644	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	12
 1645	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	13
 1633	113	writing	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1
+1652	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	7
+1653	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	8
+1654	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	9
+1655	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	10
+1656	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	11
+1657	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	12
+1658	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	13
+1659	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	14
+1660	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	15
+1661	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	16
+1662	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	17
+1663	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	18
+1664	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	19
+1646	114	ignored	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.364936	1
+1647	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.376854	2
+1648	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.384472	3
+1649	114	ignored	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.385154	4
+1650	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.387688	5
+1651	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.390183	6
 \.
 
 
@@ -25132,6 +25176,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 27	111
 27	112
 18	113
+27	114
 \.
 
 
@@ -25724,7 +25769,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9969, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9987, true);
 
 
 --
@@ -25752,7 +25797,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3789, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3795, true);
 
 
 --
@@ -25808,7 +25853,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 113, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 114, true);
 
 
 --
@@ -25829,7 +25874,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1645, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1664, true);
 
 
 --
