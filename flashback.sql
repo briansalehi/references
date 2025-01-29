@@ -11531,6 +11531,11 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9985	3794	name: Workflow\non: workflow_dispatch\njobs:\n  linux:\n    runs-on: ubuntu-latest\n    steps:\n      - run: uname -s\n  windows:\n    runs-on: windows-latest\n    steps:\n      - shell: bash\n        run: uname -s\n  macos:\n    runs-on: macos-latest\n    steps:\n      - run: uname -s	code	yml	2025-01-27 23:38:15.386386	2
 9986	3795	Actions are prebuilt jobs ready to be used. Actions might take inputs and generate outputs.	text	txt	2025-01-27 23:38:15.388996	1
 9987	3795	name: Workflow\non: workflow_dispatch\njobs:\n  checkout:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4	code	yml	2025-01-27 23:38:15.388996	2
+9988	3796	- `branches`, `branches_ignore`\n- `tags`, `tags_ignore`\n- `paths`, `paths_ignore`	text	txt	2025-01-29 23:13:21.688999	1
+9989	3796	name: Workflow\non:\n  push:\n    branches:\n      - release\n    tags:\n      - v*\n    paths:\n      - src/**\n      - include/**\n    paths-ignore:\n      - docs/**\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.ref }}	code	yml	2025-01-29 23:13:21.688999	2
+9990	3797	\n- `assigned`, `unassigned`\n- `labeled`, `unlabeled`\n- `opened`\n- `edited`\n- `closed`\n- `reopened`\n- `synchronize`\n- `converted_to_draft`\n- `locked`, `unlocked`\n- `ready_for_review`, `review_requested`, `review_request_removed`\n- `auto_merge_enabled`, `auto_merge_disabled`	text	txt	2025-01-29 23:13:21.701795	1
+9991	3797	name: Workflow\non:\n  pull_request:\n    types:\n      - opened\n      - reopened\n      - sychronize\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.ref }}	code	yml	2025-01-29 23:13:21.701795	2
+9992	3798	name: Workflow\non:\n  pull_request:\n    types: [opened, sychronize]\n    branches:\n      - main\n      - releases/**\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.ref }}	code	yml	2025-01-29 23:13:21.706831	1
 \.
 
 
@@ -14568,6 +14573,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3035	661	What is the granularity of synchronization operations in the kernel?	open	2024-10-13 10:29:09.676337	2024-10-13 10:29:09.676337	0
 3036	661	What locking types are available in the kernel?	open	2024-10-13 10:29:09.678605	2024-10-13 10:29:09.678605	0
 3037	661	What conditional variable types are available in the kernel?	open	2024-10-13 10:29:09.681764	2024-10-13 10:29:09.681764	0
+3796	1652	What push events are supported?	open	2025-01-29 23:13:21.688999	2025-01-29 23:13:21.688999	0
 3038	661	What are the use cases of conditional variables in the kernel?	open	2024-10-13 10:29:09.684516	2024-10-13 10:29:09.684516	0
 3039	661	What does the locking mechanism in the kernel depend on?	open	2024-10-13 10:29:09.686601	2024-10-13 10:29:09.686601	0
 3040	661	What is a simple workaround for a system to ensure atomicity of synchronization operations?	open	2024-10-13 10:29:09.688069	2024-10-13 10:29:09.688069	0
@@ -15478,6 +15484,8 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3793	1648	What workflow triggers exist?	open	2025-01-27 23:38:15.38328	2025-01-27 23:38:15.38328	0
 3794	1650	What runners exist in workflows?	open	2025-01-27 23:38:15.386386	2025-01-27 23:38:15.386386	0
 3795	1651	What are the actions?	open	2025-01-27 23:38:15.388996	2025-01-27 23:38:15.388996	0
+3797	1652	How many pull request events are available?	open	2025-01-29 23:13:21.701795	2025-01-29 23:13:21.701795	0
+3798	1652	Limit a pull request trigger to only apply to specific branches?	open	2025-01-29 23:13:21.706831	2025-01-29 23:13:21.706831	0
 \.
 
 
@@ -21770,7 +21778,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
-114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.388996	1	\N
+114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.706831	1	\N
 \.
 
 
@@ -23411,7 +23419,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1644	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	12
 1645	113	open	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.124141	13
 1633	113	writing	\N	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1
-1652	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	7
 1653	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	8
 1654	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	9
 1655	114	open	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.35632	10
@@ -23430,6 +23437,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1649	114	ignored	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.385154	4
 1650	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.387688	5
 1651	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.390183	6
+1652	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.709316	7
 \.
 
 
@@ -25769,7 +25777,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9987, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9992, true);
 
 
 --
@@ -25797,7 +25805,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3795, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3798, true);
 
 
 --
