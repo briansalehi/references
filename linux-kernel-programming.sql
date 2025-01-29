@@ -6,6 +6,31 @@ call add_block('code', 'c',   '');
 call add_block('code', 'sh',  '');
 call create_note_with_name('Linux Kernel Programming', 3, '');
 
+call add_block('text', 'txt', '');
+call add_block('code', 'c',   '');
+call add_block('code', 'sh',  '');
+call create_note_with_name('Linux Kernel Programming', 3, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'c',   '');
+call add_block('code', 'sh',  '');
+call create_note_with_name('Linux Kernel Programming', 3, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'c',   '');
+call add_block('code', 'sh',  '');
+call create_note_with_name('Linux Kernel Programming', 3, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'c',   '');
+call add_block('code', 'sh',  '');
+call create_note_with_name('Linux Kernel Programming', 3, '');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'c',   '');
+call add_block('code', 'sh',  '');
+call create_note_with_name('Linux Kernel Programming', 3, '');
+
 call set_section_as_complete('Linux Kernel Programming', 3);
 
 drop procedure add_block;
