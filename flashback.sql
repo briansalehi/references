@@ -7830,6 +7830,8 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6141	1847	static constexpr auto image_path{"sample.png"};\nstatic constexpr auto window{"Preview"};\nstatic constexpr auto name{"Object"};	text	txt	2024-07-28 10:11:49.799783	2
 6142	1847	int main()\n{\n    cv::Mat image = cv::imread(image_path, cv::IMREAD_COLOR);\n    cv::namedWindow(window);\n    cv::Point topleft{500, 200};\n    cv::Point bottomright{800, 600};\n    int thickness{2};\n    cv::Scalar color{0, 0, 255, 0};\n    double scale{2.0};	text	txt	2024-07-28 10:11:49.821935	3
 6143	1847	    cv::rectangle(image, topleft, bottomright, color, thickness);\n    cv::putText(image, name, position, cv::FONT_HERSHEY_PLAIN, scale, color, thickness);\n    cv::imshow(window, image);\n    cv::waitKey(0);\n    cv::destroyWindow(window);\n}	code	txt	2024-07-28 10:11:49.842696	4
+6455	2036	    Rectangle {\n        anchors.fill: parent\n        color: 'lightsteelblue'\n        border.color: 'gray'\n    }	text	txt	2024-07-28 10:12:59.414114	3
+6456	2036	    property alias text: input.text\n    property alias input: input	text	txt	2024-07-28 10:12:59.434325	4
 6144	1848	You need to specify the type of each matrix element. The letter `U` means it\nis unsigned. You can also declare signed numbers by using the letter `S`. For\na color image, you would specify three channels. You can also declare\nintegers (signed or unsigned) of size 16 and 32. You also have access to\n32-bit and 64-bit floating-point numbers	text	txt	2024-07-28 10:11:50.36288	1
 6145	1848	`CV_8U`: 1-byte pixel image with a single channel.\n`CV_8UC3`: 1-byte pixel image with 3 channels.\n`CV_16SC3`: 2-byte pixel image with 3 channels.\n`CV_32F`: 4-byte floating point pixel image.	text	txt	2024-07-28 10:11:50.383908	2
 6146	1848	#include <opencv2/core.hpp>	text	txt	2024-07-28 10:11:50.403893	3
@@ -8119,8 +8121,6 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6432	2030	*DarkSquare.qml*\nRectangle {\n    id: root\n    width: 95\n    height: 95\n    color: 'darkgray'\n    border.color: Qt.lighter(color)\n}	code	txt	2024-07-28 10:12:55.140568	4
 6433	2030	*BlueSquare.qml*\nRectangle {\n    id: root\n    width: 95\n    height: 95\n    color: 'blue'\n    border.color: Qt.lighter(color)\n}	code	txt	2024-07-28 10:12:55.160475	5
 6434	2030	*Main.qml*\nimport QtQuick	text	txt	2024-07-28 10:12:55.180513	6
-6455	2036	    Rectangle {\n        anchors.fill: parent\n        color: 'lightsteelblue'\n        border.color: 'gray'\n    }	text	txt	2024-07-28 10:12:59.414114	3
-6456	2036	    property alias text: input.text\n    property alias input: input	text	txt	2024-07-28 10:12:59.434325	4
 6457	2036	    TextInput {\n        id: input\n        height: 50\n        anchors.fill: parent\n        anchors.margins: 4\n        focus: true\n    }\n}	code	txt	2024-07-28 10:12:59.455601	5
 6458	2036	*Main.qml*\nimport QtQuick	text	txt	2024-07-28 10:12:59.477146	6
 6459	2036	Window {\n    width: 640\n    height: 480\n    visible: true\n    title: qsTr("Credentials")	text	txt	2024-07-28 10:12:59.499081	7
@@ -8257,6 +8257,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 6591	2077	readelf --relocs example.o	code	txt	2024-07-28 10:13:22.074144	1
 8806	3324	select coalesce(profile_picture, 'profile.png') as profile_picture from users;	code	sql	2024-11-21 23:59:46.620887	1
 8807	3325	select distinct name from users;	code	sql	2024-11-21 23:59:46.625836	1
+9993	3799	**Creation:** A new process is created using the `fork()` system call, which creates a new process by duplicating an existing one.	text	txt	2025-01-30 14:40:53.468553	1
 6592	2078	The leftmost column of each line in the `readelf --relocs` output is the\noffset in the object file where the resolved reference must be filled in. The\noffset equals to the offset of the instruction that needs to be fixed, plus\n1. This is because you only want to overwrite the operand of the instruction,\nnot the opcode of the instruction which happens to be only 1 byte. So to\npoint to the instruction's operand, the relocation symbol needs to skip past\nthe opcode byte.	text	txt	2024-07-28 10:13:22.456364	1
 6593	2078	readelf --relocs example.o	code	txt	2024-07-28 10:13:22.476309	2
 6594	2079	readelf --sections example.o	code	txt	2024-07-28 10:13:22.701982	1
@@ -11536,6 +11537,38 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 9990	3797	\n- `assigned`, `unassigned`\n- `labeled`, `unlabeled`\n- `opened`\n- `edited`\n- `closed`\n- `reopened`\n- `synchronize`\n- `converted_to_draft`\n- `locked`, `unlocked`\n- `ready_for_review`, `review_requested`, `review_request_removed`\n- `auto_merge_enabled`, `auto_merge_disabled`	text	txt	2025-01-29 23:13:21.701795	1
 9991	3797	name: Workflow\non:\n  pull_request:\n    types:\n      - opened\n      - reopened\n      - sychronize\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.ref }}	code	yml	2025-01-29 23:13:21.701795	2
 9992	3798	name: Workflow\non:\n  pull_request:\n    types: [opened, sychronize]\n    branches:\n      - main\n      - releases/**\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ${{ github.ref }}	code	yml	2025-01-29 23:13:21.706831	1
+9994	3799	**Execution:** After creation, the child process may execute the same code as the parent or use the `exec()` family of system calls to load and run a different program. If the parent process has more than one thread of execution, only the thread calling `fork()` is duplicated in the child process. Any Mutual Exclusions, condition variables, or other synchronization primitives that were held by other threads at the time of the fork remain in their then-current state in the parent but do not carry over to the child. This can lead to complex synchronization issues, as mutexes that were locked by other threads (which do not exist in the child) might remain in a locked state, potentially causing deadlocks if the child tries to unlock or wait on these primitives.	text	txt	2025-01-30 14:40:53.468553	2
+9995	3799	**Termination:** A process terminates either voluntarily, by calling the exit() system call, or involuntarily, due to receiving a signal from another process that causes it to stop. Upon termination, the process returns an exit status to its parent process and releases its resources back to the system.	text	txt	2025-01-30 14:40:53.468553	3
+9996	3800	**Pipes** are simple IPC mechanisms providing unidirectional communication between processes. A **named pipe** or a FIFO, extends pipe mechanism by providing a pipe that is accessible via a name in the filesystem, allowing unrelated processes to communicate.	text	txt	2025-01-30 14:40:53.472391	1
+9997	3800	**Signals** can be sent to a process to notify it of events. While they are not a method for transferring data, signals are useful for controlling process behavior and triggering actions within processes.	text	txt	2025-01-30 14:40:53.472391	2
+9998	3800	**Message queues** allow processes to exchange messages in a FIFO manner. Unlike pipes, message queues support asynchronous communication, whereby messages are stored in a queue and can be retrieved by the receiving process at its convenience.	text	txt	2025-01-30 14:40:53.472391	3
+9999	3800	**Semaphores** are used for synchronization, helping processes manage access to shared resources. They prevent race conditions by ensuring that only a specified number of processes can access a resource at any given time.	text	txt	2025-01-30 14:40:53.472391	4
+10000	3800	**Shared memory** enables multiple processes to access and manipulate the same segment of physical memory. To ensure data integrity and prevent conflicts, shared memory requires synchronization mechanisms such as semaphores or mutexes.	text	txt	2025-01-30 14:40:53.472391	5
+10001	3800	**Sockets** are used to establish and maintain connections between processes, and they support both connection-oriented where it is important to ensure that all data is delivered reliably and in the correct order such as file transfer and remote login, and connectionless communication by which no reliable connection is established between two processes before data is transferred, often used for streaming media and real-time gaming, where it is more important to have low latency than to guarantee reliable delivery of all data.	text	txt	2025-01-30 14:40:53.472391	6
+10002	3801	- Daemons run in the background and lack controlling terminal\n- Daemons run independently of user sessions but may wait for system events and rely on the system triggers\n- Each daemon is tailored to execute a specific task or a set of tasks	text	txt	2025-01-30 14:40:53.473963	1
+10003	3802	Detaching from the terminal: the `fort()` system call make a clone of the running process detached from the terminal. The parent process exits after the fork, leaving the child process running in the background.	text	txt	2025-01-30 14:40:53.475866	1
+10004	3802	Session creation: the `setsid()` system call creates a new session and designates the calling process as the leader of both the session and the process group. This step is crucial for complete detachment from the terminal.	text	txt	2025-01-30 14:40:53.475866	2
+10005	3802	Working directory change: to prevent blocking the unmounting of the filesystem, daemons typically change their working directory to the root directory.	text	txt	2025-01-30 14:40:53.475866	3
+10006	3802	File descriptor handling: inherited file descriptors are closed by daemons, and stdin, stdout, and stderr are often redirected to /dev/null.	text	txt	2025-01-30 14:40:53.475866	4
+10007	3802	Signal handling: Proper handling of signals, such as SIGHUP for configuration reloading or SIGTERM for graceful shutdown, is essential for effective daemon management.	text	txt	2025-01-30 14:40:53.475866	5
+10008	3803	A process is an instance of a running program that owns its private set of resources, including memory, file descriptors, and execution context. Threads are closely intertwined with the process they belong to, allowing them to share the same memory space and resources within a process, including file descriptors, heap memory, and any other global data structures allocated by the process. Threads represent a lightweight and efficient way to execute multiple tasks within a single process.	text	txt	2025-01-30 14:40:53.477884	1
+10009	3804	Effective synchronization is crucial in multithreaded programming to avoid race conditions, deadlocks, and other concurrency-related issues. Synchronization primitives and techniques have been developed such as mutexes, which provide exclusive access to a shared resource, semaphores, which allow for controlled access to a limited number of resources, and condition variables, which enable threads to wait for specific conditions to be met before proceeding.	text	txt	2025-01-30 14:40:53.48069	1
+10010	3805	Coroutines can be defined as functions that can be paused and resumed at specific points. Coroutines are cooperative, which means that they must explicitly yield control to the caller in order to switch execution context. This can be a disadvantage in some cases, but it can also be an advantage, as it gives the user program more control over the execution of coroutines.	text	txt	2025-01-30 14:40:53.483252	1
+10011	3806	**Creation** involves a function, which takes several parameters. Thread’s attributes, such as its scheduling policy, stack size, priority, and the function that the thread will execute.	text	txt	2025-01-30 14:40:53.484841	1
+10012	3806	**Execution** starts by executing its assigned routine. The thread can perform various tasks independently or interact with other threads if necessary. Threads can also create and manage their own local variables and data structures, making them self-contained and capable of performing specific tasks concurrently.	text	txt	2025-01-30 14:40:53.484841	2
+10013	3806	**Synchronization** is required ensure orderly access to shared resources and prevent data corruption. Common synchronization primitives include locks, semaphores, and barriers. Proper synchronization allows threads to coordinate their activities, avoiding race conditions, deadlocks, and other issues that can arise in concurrent programming.	text	txt	2025-01-30 14:40:53.484841	3
+10014	3806	**Termination** can happen in several ways. It can explicitly call the function to terminate itself. It can also terminate by returning from its start routine. In some cases, a thread can be canceled by another thread using the function. Upon termination, the system reclaims the resources allocated to the thread, and any pending operations or locks held by the thread are released.	text	txt	2025-01-30 14:40:53.484841	4
+10015	3807	**Mutexes:** enforce exclusive access to critical sections of code, once locked by a thread, prevents other threads from entering the protected section until the mutex is unlocked.	text	txt	2025-01-30 14:40:53.486115	1
+10016	3807	**Semaphores:** more versatile than mutexes, used for a wider range of synchronization tasks, including signaling between threads. A semaphore maintains an integer counter that can be incremented (signaling) or decremented (waiting) by threads. Semaphores allow for more complex coordination patterns, such as counting semaphores for resource allocation and binary semaphores similar to mutexes.	text	txt	2025-01-30 14:40:53.486115	2
+10017	3807	**Condition Variables:** used for thread synchronization based on specific conditions. Threads can block (wait on) a condition variable until a particular condition becomes true. Other threads can signal the condition variable, causing waiting threads to wake up and continue execution. Often used in conjunction with mutexes to achieve more fine-grained synchronization and avoid busy waiting.	text	txt	2025-01-30 14:40:53.486115	3
+10018	3807	**Barriers:** allow a group of threads to synchronize their execution, ensuring that all threads reach a certain point before proceeding further.	text	txt	2025-01-30 14:40:53.486115	4
+10019	3807	**Read-Write Locks:** provide a way to control concurrent access to shared data, allowing multiple readers but only a single writer at a time.	text	txt	2025-01-30 14:40:53.486115	5
+10020	3807	**Spinlocks:** a type of mutex that involves busy waiting, continuously checking a memory location until it becomes available.	text	txt	2025-01-30 14:40:53.486115	6
+10021	3808		text	txt	2025-01-30 14:40:53.487443	1
+10022	3808	**Race conditions** occur when multiple threads access and modify shared data concurrently.	text	txt	2025-01-30 14:40:53.487443	2
+10023	3808	**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.	text	txt	2025-01-30 14:40:53.487443	3
+10024	3808	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt	2025-01-30 14:40:53.487443	4
+10025	3808	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	code	cpp	2025-01-30 14:40:53.487443	5
 \.
 
 
@@ -15486,6 +15519,16 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3795	1651	What are the actions?	open	2025-01-27 23:38:15.388996	2025-01-27 23:38:15.388996	0
 3797	1652	How many pull request events are available?	open	2025-01-29 23:13:21.701795	2025-01-29 23:13:21.701795	0
 3798	1652	Limit a pull request trigger to only apply to specific branches?	open	2025-01-29 23:13:21.706831	2025-01-29 23:13:21.706831	0
+3799	1585	What is the life cycle of a process?	open	2025-01-30 14:40:53.468553	2025-01-30 14:40:53.468553	0
+3800	1585	What are the major Inter Process Communication mechanisms supported by Linux?	open	2025-01-30 14:40:53.472391	2025-01-30 14:40:53.472391	0
+3801	1585	What are the main characteristics of a daemon?	open	2025-01-30 14:40:53.473963	2025-01-30 14:40:53.473963	0
+3802	1585	What are the steps into creating a daemon?	open	2025-01-30 14:40:53.475866	2025-01-30 14:40:53.475866	0
+3803	1585	What are the major differences between a process and a thread?	open	2025-01-30 14:40:53.477884	2025-01-30 14:40:53.477884	0
+3804	1585	What are the use cases of syncronization primitives?	open	2025-01-30 14:40:53.48069	2025-01-30 14:40:53.48069	0
+3805	1585	What are the characteristics of coroutines?	open	2025-01-30 14:40:53.483252	2025-01-30 14:40:53.483252	0
+3806	1585	What is the life cycle of a thread?	open	2025-01-30 14:40:53.484841	2025-01-30 14:40:53.484841	0
+3807	1585	What are the common synchronization primitives?	open	2025-01-30 14:40:53.486115	2025-01-30 14:40:53.486115	0
+3808	1585	What are the common synchronization failures?	open	2025-01-30 14:40:53.487443	2025-01-30 14:40:53.487443	0
 \.
 
 
@@ -21769,7 +21812,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 108	Learn OpenCV 4 by Building Projects	https://subscription.packtpub.com/book/data/9781789341225	book	2024-11-29 22:54:18.241024	2024-11-29 22:54:18.316913	1	\N
-109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.624707	1	\N
 89	C++ Move Semantics: The Complete Guide	https://leanpub.com/cppmove	book	2024-07-28 09:44:55.224368	2024-12-07 23:31:28.595987	1	\N
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
@@ -21779,6 +21821,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
 114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.706831	1	\N
+109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 14:40:53.487443	1	\N
 \.
 
 
@@ -23332,7 +23375,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1573	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.708469	2
 1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
 1354	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.419761	8
-1585	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	2
 1586	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	3
 1587	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	4
 1588	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	5
@@ -23438,6 +23480,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1650	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.387688	5
 1651	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.390183	6
 1652	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.709316	7
+1585	109	completed	\N	2024-12-05 16:21:03.593753	2025-01-30 14:40:53.488319	2
 \.
 
 
@@ -25057,6 +25100,25 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1644	2025-01-19 14:11:35.02102
 1	1645	2025-01-19 14:11:35.02102
 1	1633	2025-01-19 14:11:35.02102
+1	1653	2025-01-29 23:14:07.655243
+1	1654	2025-01-29 23:14:07.655243
+1	1655	2025-01-29 23:14:07.655243
+1	1656	2025-01-29 23:14:07.655243
+1	1657	2025-01-29 23:14:07.655243
+1	1658	2025-01-29 23:14:07.655243
+1	1659	2025-01-29 23:14:07.655243
+1	1660	2025-01-29 23:14:07.655243
+1	1661	2025-01-29 23:14:07.655243
+1	1662	2025-01-29 23:14:07.655243
+1	1663	2025-01-29 23:14:07.655243
+1	1664	2025-01-29 23:14:07.655243
+1	1646	2025-01-29 23:14:07.655243
+1	1647	2025-01-29 23:14:07.655243
+1	1648	2025-01-29 23:14:07.655243
+1	1649	2025-01-29 23:14:07.655243
+1	1650	2025-01-29 23:14:07.655243
+1	1651	2025-01-29 23:14:07.655243
+1	1652	2025-01-29 23:14:07.655243
 \.
 
 
@@ -25777,7 +25839,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 9992, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10025, true);
 
 
 --
@@ -25805,7 +25867,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3798, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3808, true);
 
 
 --
