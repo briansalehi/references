@@ -41,31 +41,88 @@ call add_block('text', 'txt', '**Synchronization** is required ensure orderly ac
 call add_block('text', 'txt', '**Termination** can happen in several ways. It can explicitly call the function to terminate itself. It can also terminate by returning from its start routine. In some cases, a thread can be canceled by another thread using the function. Upon termination, the system reclaims the resources allocated to the thread, and any pending operations or locks held by the thread are released.');
 call create_note_with_name('Asynchronous Programming with C++', 2, 'What is the life cycle of a thread?');
 
-
-    Mutexes: Mutexes are used to enforce exclusive access to critical sections of code. A mutex can be locked by a thread, preventing other threads from entering the protected section until the mutex is unlocked. Mutexes guarantee that only one thread can execute the critical section at any given time, ensuring data integrity and preventing race conditions.
-    Semaphores: Semaphores are more versatile than mutexes and can be used for a wider range of synchronization tasks, including signaling between threads. A semaphore maintains an integer counter that can be incremented (signaling) or decremented (waiting) by threads. Semaphores allow for more complex coordination patterns, such as counting semaphores (for resource allocation) and binary semaphores (similar to mutexes).
-    Condition variables: Condition variables are used for thread synchronization based on specific conditions. Threads can block (wait on) a condition variable until a particular condition becomes true. Other threads can signal the condition variable, causing waiting threads to wake up and continue execution. Condition variables are often used in conjunction with mutexes to achieve more fine-grained synchronization and avoid busy waiting.
-    Additional synchronization primitives: In addition to the core synchronization primitives discussed previously, there are several other synchronization mechanisms:
-        Barriers: Barriers allow a group of threads to synchronize their execution, ensuring that all threads reach a certain point before proceeding further
-        Read-write locks: Read-write locks provide a way to control concurrent access to shared data, allowing multiple readers but only a single writer at a time
-        Spinlocks: Spinlocks are a type of mutex that involves busy waiting, continuously checking a memory location until it becomes available
-
-        
-    Race conditions occur when multiple threads access and modify shared data concurrently. The outcome of a race condition depends on the non-deterministic sequencing of threads’ operations, which can lead to unpredictable and inconsistent results. For example, consider two threads that are updating a shared counter. If the threads increment the counter concurrently, the final value may be incorrect due to a race condition.
-    Deadlocks occur when two or more threads wait indefinitely for resources held by each other. This creates a cycle of dependencies that cannot be resolved, causing the threads to become permanently blocked. For instance, consider two threads that are waiting for each other to release locks on shared resources. If neither thread releases the lock it holds, a deadlock occurs.
-    Starvation occurs when a thread is perpetually denied access to resources it needs to make progress. This can happen when other threads continuously acquire and hold resources, leaving the starved thread unable to execute.
-    Livelocks are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.
-
+call add_block('text', 'txt', '**Mutexes:** enforce exclusive access to critical sections of code, once locked by a thread, prevents other threads from entering the protected section until the mutex is unlocked.');
+call add_block('text', 'txt', '**Semaphores:** more versatile than mutexes, used for a wider range of synchronization tasks, including signaling between threads. A semaphore maintains an integer counter that can be incremented (signaling) or decremented (waiting) by threads. Semaphores allow for more complex coordination patterns, such as counting semaphores for resource allocation and binary semaphores similar to mutexes.');
+call add_block('text', 'txt', '**Condition Variables:** used for thread synchronization based on specific conditions. Threads can block (wait on) a condition variable until a particular condition becomes true. Other threads can signal the condition variable, causing waiting threads to wake up and continue execution. Often used in conjunction with mutexes to achieve more fine-grained synchronization and avoid busy waiting.');
+call add_block('text', 'txt', '**Barriers:** allow a group of threads to synchronize their execution, ensuring that all threads reach a certain point before proceeding further.');
+call add_block('text', 'txt', '**Read-Write Locks:** provide a way to control concurrent access to shared data, allowing multiple readers but only a single writer at a time.');
+call add_block('text', 'txt', '**Spinlocks:** a type of mutex that involves busy waiting, continuously checking a memory location until it becomes available.');
+call create_note_with_name('Asynchronous Programming with C++', 2, 'What are the common synchronization primitives?');
 
 call add_block('text', 'txt', '');
-call add_block('code', 'cpp', '');
-call create_note_with_name('Asynchronous Programming with C++', 2, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', '');
-call create_note_with_name('Asynchronous Programming with C++', 2, '');
+call add_block('text', 'txt', '**Race conditions** occur when multiple threads access and modify shared data concurrently.');
+call add_block('text', 'txt', '**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.');
+call add_block('text', 'txt', '**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.');
+call add_block('code', 'cpp', '**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.');
+call create_note_with_name('Asynchronous Programming with C++', 2, 'What are the common synchronization failures?');
 
 call set_section_as_complete('Asynchronous Programming with C++', 2);
+
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 3, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 3);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 4, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 4);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 5, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 5);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 6, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 6);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 7, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 7);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 8, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 8);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 9, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 9);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 10, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 10);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 11, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 11);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 12, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 12);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Asynchronous Programming with C++', 13, '');
+--
+--call set_section_as_complete('Asynchronous Programming with C++', 13);
 
 drop procedure add_block;
 drop table temp_blocks;
