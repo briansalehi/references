@@ -8258,6 +8258,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 8806	3324	select coalesce(profile_picture, 'profile.png') as profile_picture from users;	code	sql	2024-11-21 23:59:46.620887	1
 8807	3325	select distinct name from users;	code	sql	2024-11-21 23:59:46.625836	1
 9993	3799	**Creation:** A new process is created using the `fork()` system call, which creates a new process by duplicating an existing one.	text	txt	2025-01-30 14:40:53.468553	1
+10032	3813	std::this_thread::sleep_for(std::chrono::duration);	code	cpp	2025-01-30 22:03:26.356983	1
 6592	2078	The leftmost column of each line in the `readelf --relocs` output is the\noffset in the object file where the resolved reference must be filled in. The\noffset equals to the offset of the instruction that needs to be fixed, plus\n1. This is because you only want to overwrite the operand of the instruction,\nnot the opcode of the instruction which happens to be only 1 byte. So to\npoint to the instruction's operand, the relocation symbol needs to skip past\nthe opcode byte.	text	txt	2024-07-28 10:13:22.456364	1
 6593	2078	readelf --relocs example.o	code	txt	2024-07-28 10:13:22.476309	2
 6594	2079	readelf --sections example.o	code	txt	2024-07-28 10:13:22.701982	1
@@ -11548,6 +11549,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10002	3801	- Daemons run in the background and lack controlling terminal\n- Daemons run independently of user sessions but may wait for system events and rely on the system triggers\n- Each daemon is tailored to execute a specific task or a set of tasks	text	txt	2025-01-30 14:40:53.473963	1
 10003	3802	Detaching from the terminal: the `fort()` system call make a clone of the running process detached from the terminal. The parent process exits after the fork, leaving the child process running in the background.	text	txt	2025-01-30 14:40:53.475866	1
 10004	3802	Session creation: the `setsid()` system call creates a new session and designates the calling process as the leader of both the session and the process group. This step is crucial for complete detachment from the terminal.	text	txt	2025-01-30 14:40:53.475866	2
+10033	3813	std::this_thread::sleep_until(std::chrono::time_point);	code	cpp	2025-01-30 22:03:26.356983	2
 10005	3802	Working directory change: to prevent blocking the unmounting of the filesystem, daemons typically change their working directory to the root directory.	text	txt	2025-01-30 14:40:53.475866	3
 10006	3802	File descriptor handling: inherited file descriptors are closed by daemons, and stdin, stdout, and stderr are often redirected to /dev/null.	text	txt	2025-01-30 14:40:53.475866	4
 10007	3802	Signal handling: Proper handling of signals, such as SIGHUP for configuration reloading or SIGTERM for graceful shutdown, is essential for effective daemon management.	text	txt	2025-01-30 14:40:53.475866	5
@@ -11569,6 +11571,16 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10023	3808	**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.	text	txt	2025-01-30 14:40:53.487443	3
 10024	3808	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt	2025-01-30 14:40:53.487443	4
 10025	3808	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	code	cpp	2025-01-30 14:40:53.487443	5
+10026	3809	- Kernel threads only used by drivers in kernel space\n- User space native threads created by the kernel using a kernel API, such as standard threads\n- User space lightweight or virtual threads emulated by a runtime or library, such as coroutines	text	txt	2025-01-30 22:03:26.348695	1
+10027	3810	When a thread is constructed, it executes immediately. The only delay might be due to OS scheduling process. The order of execution between the parent and children are not defined.	text	txt	2025-01-30 22:03:26.352021	1
+10028	3810	#include <thread>\n\nvoid task_function() { };\nauto task_lambda = [] { };\nstruct task { void operator() { } } task_functor;\nstruct some_type { void do_something() { } } task_object;\nstruct some_other_type { static void do_something() { } };\n\nstd::jthread{task_function};\nstd::jthread{task_lambda};\nstd::jthread{task_functor};\nstd::jthread{&some_type::do_something, &task_object};\nstd::jthread{&some_other_type::do_something};	code	cpp	2025-01-30 22:03:26.352021	2
+10029	3811	std::size_t const core_count{std::thread::hardware_concurrency()};	code	cpp	2025-01-30 22:03:26.353727	1
+10030	3811	The value returned by this function should only be considered as a hint. It may return 0 when not well defined.	text	txt	2025-01-30 22:03:26.353727	2
+10031	3812	#include <thread>\n#include <iostream>\n#include <syncstream>\n\nstruct output\n{\n    std::size_t const core_count;\n\n    output(): core_count{std::thread::hardware_concurrency()}\n    {\n        for (std::size_t core_index{0}; core_index < core_count; ++core_index)\n        {\n            std::jthread{&output::write, this, core_index};\n        }\n    }\n\n    void write(std::size_t const value)\n    {\n        std::osyncstream{std::cout} << value << ' ';\n    }\n};\n\nint main()\n{\n    output{};\n}	code	cpp	2025-01-30 22:03:26.355354	1
+10034	3814	`std::thread::id` is a lightweight class that defines a unique identifier of thread objects. Thread identifier objects can be compared, serialized, and printed via an output stream. They can also be used as a key in mapping containers, as they are supported by the `std::hash` function.	text	txt	2025-01-30 22:03:26.358771	1
+10035	3814	#include <thread>\n#include <iostream>\n\nvoid main()\n{\n    std::cout << std::this_thread::get_id() << std::endl;\n}	code	cpp	2025-01-30 22:03:26.358771	2
+10036	3815		text	txt	2025-01-30 22:03:26.360568	1
+10037	3815		code	cpp	2025-01-30 22:03:26.360568	2
 \.
 
 
@@ -14677,6 +14689,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3108	210	Write a statement that returns the offset rows before the current row within a partition?	open	2024-10-23 22:52:27.154779	2024-10-23 22:52:27.154779	0
 3109	210	Write a statement that returns the offset rows after the current row within a partition?	open	2024-10-23 22:52:27.155909	2024-10-23 22:52:27.155909	0
 3110	210	Write a statement that returns computation of the fraction of partition rows that are neighbours to the current row?	open	2024-10-23 22:52:27.15689	2024-10-23 22:52:27.15689	0
+3809	1586	How many thread types exist?	open	2025-01-30 22:03:26.348695	2025-01-30 22:03:26.348695	0
 3111	210	Write a statement to assign a bucket for each partition?	open	2024-10-23 22:52:27.157861	2024-10-23 22:52:27.157861	0
 3112	1294	What happens when two threads access the same memory location?	open	2024-10-27 16:25:47.43163	2024-10-27 16:25:47.43163	0
 3113	1294	What are the contract levels in thread executions?	open	2024-10-27 16:25:47.442613	2024-10-27 16:25:47.442613	0
@@ -15274,6 +15287,7 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3543	793	Use an immediate variable expansion?	open	2024-12-24 11:02:23.799436	2024-12-24 11:02:23.799436	0
 3544	793	Append and prepend a value to a list?	open	2024-12-24 11:02:23.800604	2024-12-24 11:02:23.800604	0
 3545	793	Append and prepend a value to a string?	open	2024-12-24 11:02:23.801632	2024-12-24 11:02:23.801632	0
+3810	1586	Construct a thread of execution?	open	2025-01-30 22:03:26.352021	2025-01-30 22:03:26.352021	0
 3546	793	What are the differences between both variations of string append and prepend operators?	open	2024-12-24 11:02:23.802606	2024-12-24 11:02:23.802606	0
 3547	793	Remove an item from a list?	open	2024-12-24 11:02:23.803587	2024-12-24 11:02:23.803587	0
 3548	793	What variable is used to control the conditional metadata override?	open	2024-12-24 11:02:23.804676	2024-12-24 11:02:23.804676	0
@@ -15529,6 +15543,11 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3806	1585	What is the life cycle of a thread?	open	2025-01-30 14:40:53.484841	2025-01-30 14:40:53.484841	0
 3807	1585	What are the common synchronization primitives?	open	2025-01-30 14:40:53.486115	2025-01-30 14:40:53.486115	0
 3808	1585	What are the common synchronization failures?	open	2025-01-30 14:40:53.487443	2025-01-30 14:40:53.487443	0
+3811	1586	Check how many threads can run on the host in parallel?	open	2025-01-30 22:03:26.353727	2025-01-30 22:03:26.353727	0
+3812	1586	Synchronize writes into an output stream from multiple threads?	open	2025-01-30 22:03:26.355354	2025-01-30 22:03:26.355354	0
+3813	1586	How many thread sleeping functions exist?	open	2025-01-30 22:03:26.356983	2025-01-30 22:03:26.356983	0
+3814	1586	What type is the identifier of a thread?	open	2025-01-30 22:03:26.358771	2025-01-30 22:03:26.358771	0
+3815	1586		open	2025-01-30 22:03:26.360568	2025-01-30 22:03:26.360568	0
 \.
 
 
@@ -21821,7 +21840,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
 114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.706831	1	\N
-109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 14:40:53.487443	1	\N
+109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	1	\N
 \.
 
 
@@ -23375,7 +23394,6 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1573	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.708469	2
 1572	108	completed	\N	2024-11-29 22:54:18.241024	2024-11-29 22:55:22.705346	1
 1354	89	completed	\N	2024-07-28 09:45:09.867651	2024-12-01 22:08:01.419761	8
-1586	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	3
 1587	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	4
 1588	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	5
 1589	109	open	\N	2024-12-05 16:21:03.593753	2024-12-05 16:21:03.593753	6
@@ -23403,6 +23421,7 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 792	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-23 17:32:55.520639	7
 793	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-24 11:02:23.815104	8
 794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
+1586	109	writing	\N	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	3
 795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
 796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
 797	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 19:21:57.509366	12
@@ -25839,7 +25858,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10025, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10037, true);
 
 
 --
@@ -25867,7 +25886,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3808, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3815, true);
 
 
 --
