@@ -4,24 +4,31 @@ Collection of notes taken from multiple resources.
 
 ## Subjects
 
+* Algorithms
 * Boost
+* C
 * C++
-* Qt
-* OpenCV
 * CMake
-* PostgreSQL
+* Docker
 * Embedded Linux
+* Git
+* GitHub
+* GNU Debugger
+* GoogleTest
+* LaTeX
 * Linux Administration
 * Linux Kernel
-* Docker
-* GDB
-* Git
 * Mathematics
+* OpenCV
+* OpenGL
 * OpenSSL
 * Perf
-* Security
+* Postgres
+* Qt
+* Software Security
+* Tmux
 * Valgrind
 * Vim
-* tmux
+* Vulkan
 * x64 Assembly
-* LaTeX
+* Yocto
