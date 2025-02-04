@@ -11581,6 +11581,131 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10035	3814	#include <thread>\n#include <iostream>\n\nvoid main()\n{\n    std::cout << std::this_thread::get_id() << std::endl;\n}	code	cpp	2025-01-30 22:03:26.358771	2
 10036	3815		text	txt	2025-01-30 22:03:26.360568	1
 10037	3815		code	cpp	2025-01-30 22:03:26.360568	2
+10038	3816	Not all commands might be available on all distributions.	text	txt	2025-02-04 23:38:07.861555	1
+10039	3816	lshw	code	sh	2025-02-04 23:38:07.861555	2
+10040	3816	lspci	code	sh	2025-02-04 23:38:07.861555	3
+10041	3816	lsusb	code	sh	2025-02-04 23:38:07.861555	4
+10042	3816	lsblk	code	sh	2025-02-04 23:38:07.861555	5
+10043	3816	lscpu	code	sh	2025-02-04 23:38:07.861555	6
+10044	3816	lsdev	code	sh	2025-02-04 23:38:07.861555	7
+10045	3817	There are many useful options for this command.	text	txt	2025-02-04 23:38:07.87013	1
+10046	3817	hdparm -I /dev/sda	code	sh	2025-02-04 23:38:07.87013	2
+10047	3818	Using `strace` we can trace system calls within a program.	text	txt	2025-02-04 23:38:07.873178	1
+10048	3818	strace -c date	code	sh	2025-02-04 23:38:07.873178	2
+10049	3818	strace bash -c "cd /lookforme" |& grep "/lookforme"	code	sh	2025-02-04 23:38:07.873178	3
+10050	3819	journalctl -k -f	code	sh	2025-02-04 23:38:07.875674	1
+10051	3820	The `proc` and `sysfs` are virtual file systems that do not store anything on disk but are only available on RAM.	text	txt	2025-02-04 23:38:07.878211	1
+10052	3820	The `/proc` directory holds all the process's information.	text	txt	2025-02-04 23:38:07.878211	2
+10053	3821	cat /proc/cmdline	code	sh	2025-02-04 23:38:07.880936	1
+10054	3821	journalctl -k | grep BOOT_IMAGE	code	sh	2025-02-04 23:38:07.880936	2
+10055	3821	When the kernel does not know a parameter, it passes the argument to user space for user analysis and utilities.	text	txt	2025-02-04 23:38:07.880936	3
+10056	3822	cat /proc/meminfo	code	sh	2025-02-04 23:38:07.884151	1
+10057	3823	The `/sys` mount point has the `sysfs` file system and holds the information about the hardware detected by the kernel.	text	txt	2025-02-04 23:38:07.88727	1
+10058	3824	The `debugfs` file system is mounted in `/sys/kernel/debug` and provides debugging information.	text	txt	2025-02-04 23:38:07.889668	1
+10059	3825	The tracing mounts in `/sys/kernel/tracing` which provides powerful tracing functionality.	text	txt	2025-02-04 23:38:07.89209	1
+10060	3826	Each loaded kernel module contains information in the `/sys/module` directory.	text	txt	2025-02-04 23:38:07.893985	1
+10061	3827	/sys/dev	text	path	2025-02-04 23:38:07.895996	1
+10062	3827	/sys/block	text	path	2025-02-04 23:38:07.895996	2
+10063	3828	/sys/class	text	path	2025-02-04 23:38:07.898329	1
+10064	3828	For example, for network devices:	text	txt	2025-02-04 23:38:07.898329	2
+10065	3828	/sys/class/net	code	sh	2025-02-04 23:38:07.898329	3
+10066	3829	strace -e openat lspci	code	sh	2025-02-04 23:38:07.900541	1
+10067	3830	/usr/share/hwdata/pci.ids	text	path	2025-02-04 23:38:07.903685	1
+10068	3831	Device files are the entry to device drivers from user spaces and a way to communicate to the kernel.	text	txt	2025-02-04 23:38:07.906927	1
+10069	3831	Device files have major number, minor number, and type (c or d).	text	txt	2025-02-04 23:38:07.906927	2
+10070	3831	Device files are created when the driver is loaded.	text	txt	2025-02-04 23:38:07.906927	3
+10071	3832	Character drivers can implement `open()`, `write()` `read()` and `ioctl()` so that user space processes can open, read from and write into the device file when possible.	text	txt	2025-02-04 23:38:07.909347	1
+10072	3832	For example, the following device file will call for `open()` and `write()` functions.	text	txt	2025-02-04 23:38:07.909347	2
+10073	3832	echo > /dev/null	code	sh	2025-02-04 23:38:07.909347	3
+10074	3833	strace cat /dev/null	code	sh	2025-02-04 23:38:07.911231	1
+10075	3834	strace bash -c "echo > /dev/zero"	code	sh	2025-02-04 23:38:07.913296	1
+10076	3835	Grand Unified Bootloader loads into RAM after BIOS or self-test (POST). Then it will load the kernel and initial ramdisk to boot up the system.	text	txt	2025-02-04 23:38:07.916753	1
+10077	3836	GRUB can find kernel by finding its file.	text	txt	2025-02-04 23:38:07.918774	1
+10078	3837	/etc/default/grub	text	path	2025-02-04 23:38:07.920884	1
+10079	3837	/etc/grub.d/	text	path	2025-02-04 23:38:07.920884	2
+10080	3838	/etc/grub.d/40_custom	text	path	2025-02-04 23:38:07.922996	1
+10081	3838	Generally, GRUB customizations are written inside this file.	text	txt	2025-02-04 23:38:07.922996	2
+10082	3839	grub2-mkconfig -o /boot/grub/grub.cfg	code	sh	2025-02-04 23:38:07.92525	1
+10083	3840	/boot/grub/grub.cfg	text	path	2025-02-04 23:38:07.927146	1
+10084	3841	Usually console access is read-only in kernel parameters as `ro` but we can change it to `rw`.	text	txt	2025-02-04 23:38:07.929144	1
+10085	3841	linux /vmlinuz-6.13.0 rw	code	sh	2025-02-04 23:38:07.929144	2
+10086	3842	Documentation/kernel-parameters.txt	text	txt	2025-02-04 23:38:07.93115	1
+10087	3842	Many of parameters are registered with `_setup()` inside the kernel source.	text	txt	2025-02-04 23:38:07.93115	2
+10088	3843	crashkernel	code	sh	2025-02-04 23:38:07.932936	1
+10089	3844	enforcing	code	sh	2025-02-04 23:38:07.934683	1
+10090	3845	ftrace	code	sh	2025-02-04 23:38:07.936507	1
+10091	3846	clearcpuid	code	sh	2025-02-04 23:38:07.938254	1
+10092	3847	init=/usr/bin/bash	code	sh	2025-02-04 23:38:07.940325	1
+10093	3847	And to change the default to run in the ramdisk:	text	txt	2025-02-04 23:38:07.940325	2
+10094	3847	rdinit	code	sh	2025-02-04 23:38:07.940325	3
+10095	3848	Initial RAM disk or initrd mounts the root file system in `/` so that the rest of the system can be loaded.	text	txt	2025-02-04 23:38:07.942618	1
+10096	3849	The very first process in the user space that will be started by the kernel.	text	txt	2025-02-04 23:38:07.944745	1
+10097	3849	When no program named init could be found, kernel will try to start a shell.	text	txt	2025-02-04 23:38:07.944745	2
+10098	3849	On desktops and modern systems, the init is a link to systemd.	text	txt	2025-02-04 23:38:07.944745	3
+10099	3850	/etc/systemd/system/	text	path	2025-02-04 23:38:07.946796	1
+10100	3850	/run/systemd/system/	text	path	2025-02-04 23:38:07.946796	2
+10101	3850		code	sh	2025-02-04 23:38:07.946796	3
+10102	3851	`.ko` and when compressed `.zst`.	text	txt	2025-02-04 23:38:07.949506	1
+10103	3852	/lib/modules/$(uname -r)/	text	path	2025-02-04 23:38:07.951391	1
+10104	3853	/lib/modules/$(uname -r)/	text	path	2025-02-04 23:38:07.953339	1
+10105	3853	Moules are organized in different subdirectories.	text	txt	2025-02-04 23:38:07.953339	2
+10106	3854	wc -l /lib/modules/$(uname -r)/modules.dep	code	sh	2025-02-04 23:38:07.955219	1
+10107	3854	Each loaded module has an entry inside module dependencies file.	text	txt	2025-02-04 23:38:07.955219	2
+10108	3855	lsmod	code	sh	2025-02-04 23:38:07.956967	1
+10109	3856	rmmod <module>	code	sh	2025-02-04 23:38:07.958778	1
+10110	3857	modinfo <module>	code	sh	2025-02-04 23:38:07.960557	1
+10111	3858	depmod	code	sh	2025-02-04 23:38:07.9623	1
+10112	3859	insmod <module>.ko	code	sh	2025-02-04 23:38:07.964044	1
+10113	3860	modprobe	code	sh	2025-02-04 23:38:07.965958	1
+10114	3860	This command uses module dependency tree under `/lib/modules/$(uname -r)` to load dependent modules.	text	txt	2025-02-04 23:38:07.965958	2
+10115	3861	Some modules are loaded inside initrd but then never used in root file system.	text	txt	2025-02-04 23:38:07.967687	1
+10116	3862	There should already be a Makefile in the working directory and the source file for the module.	text	txt	2025-02-04 23:38:07.970817	1
+10117	3862	obj-m := practice.o	code	Makefile	2025-02-04 23:38:07.970817	2
+10118	3862	#include <linux/init.h>\n#include <linux/module.h>\n#include <linux/sched.h>\n\nstatic int prepare_practice(void)\n{\n    printk("Practice module loaded\\n");\n    return 0;\n}\n\nstatic void remove_practice(void)\n{\n    printk("Practice module unloaded\\n");\n}\n\nmodule_init(prepare_practice);\nmodule_exit(remove_practice);\nMODULE_LICENSE("GPL");	code	c	2025-02-04 23:38:07.970817	3
+10119	3862	make -C /usr/src/kernels/$(uname -r)/ M=$PWD modules	code	sh	2025-02-04 23:38:07.970817	4
+10120	3862	make -C /lib/modules/$(uname -r)/build/ M=$PWD modules	code	sh	2025-02-04 23:38:07.970817	5
+10121	3862	sudo insmod practice.ko	code	sh	2025-02-04 23:38:07.970817	6
+10122	3862	sudo rmmod practice	code	sh	2025-02-04 23:38:07.970817	7
+10123	3862	sudo journalctl -k	code	sh	2025-02-04 23:38:07.970817	8
+10124	3863	Initialization function but returning non-zero should indicate a problem in initialization. Each error code means something specific.	text	txt	2025-02-04 23:38:07.97273	1
+10125	3864	make config	code	sh	2025-02-04 23:38:07.97693	1
+10126	3864	make menuconfig	code	sh	2025-02-04 23:38:07.97693	2
+10127	3864	make nconfig	code	sh	2025-02-04 23:38:07.97693	3
+10128	3864	make xconfig	code	sh	2025-02-04 23:38:07.97693	4
+10129	3864	make gconfig	code	sh	2025-02-04 23:38:07.97693	5
+10130	3865	make clean	code	sh	2025-02-04 23:38:07.979331	1
+10131	3865	make mrproper	code	sh	2025-02-04 23:38:07.979331	2
+10132	3865	make distclean	code	sh	2025-02-04 23:38:07.979331	3
+10133	3866	make all	code	sh	2025-02-04 23:38:07.981914	1
+10134	3866	make bzImage*	code	sh	2025-02-04 23:38:07.981914	2
+10135	3866	make vmlinux*	code	sh	2025-02-04 23:38:07.981914	3
+10136	3866	make modules*	code	sh	2025-02-04 23:38:07.981914	4
+10137	3867	make INSTALL_MOD_PATH=/ modules_install	code	sh	2025-02-04 23:38:07.984071	1
+10138	3867	make INSTALL_PATH=/sbin install	code	sh	2025-02-04 23:38:07.984071	2
+10139	3868	make htmldocs	code	sh	2025-02-04 23:38:07.986268	1
+10140	3868	make SPHINXDIRS="scheduler" pdfdocs	code	sh	2025-02-04 23:38:07.986268	2
+10141	3868	make SPHINXDIRS="locking" pdfdocs	code	sh	2025-02-04 23:38:07.986268	3
+10142	3869	make cscope	code	sh	2025-02-04 23:38:07.988306	1
+10143	3869	make tags	code	sh	2025-02-04 23:38:07.988306	2
+10144	3870	grep -rli sys_read include	code	sh	2025-02-04 23:38:07.990726	1
+10145	3870	cscope -d	code	sh	2025-02-04 23:38:07.990726	2
+10146	3870	nvim -t sys_read	code	sh	2025-02-04 23:38:07.990726	3
+10147	3871	`drivers/char/mem.c` file implements `read_null()` and `write_null()` functions for `/dev/null` device.	text	txt	2025-02-04 23:38:07.992699	1
+10148	3872	ip addr	code	sh	2025-02-04 23:38:07.995158	1
+10149	3872	ethtool -i wlp1s0	code	sh	2025-02-04 23:38:07.995158	2
+10150	3872	modinfo iwlwifi	code	sh	2025-02-04 23:38:07.995158	3
+10151	3872	/usr/src/kernels/$(uname -r)/drivers/net/wireless/intel/iwlwifi	text	path	2025-02-04 23:38:07.995158	4
+10152	3873	make bzImage	code	sh	2025-02-04 23:38:07.998675	1
+10153	3873	make uImage	code	sh	2025-02-04 23:38:07.998675	2
+10154	3873	make vmlinux	code	sh	2025-02-04 23:38:07.998675	3
+10155	3874	make modules	code	sh	2025-02-04 23:38:08.000533	1
+10156	3875	make modules_install	code	sh	2025-02-04 23:38:08.003056	1
+10157	3875	This command will install all kernel modules with their hierarchies inside `/lib/modules/$(uname -r)/` directory.	text	txt	2025-02-04 23:38:08.003056	2
+10158	3875	make install	code	sh	2025-02-04 23:38:08.003056	3
+10159	3875	Installs bzImage into `/boot` by renaming it to `vmlinuz-$(uname -r)`.	text	txt	2025-02-04 23:38:08.003056	4
+10160	3875	Also might install initramfs or initrd.	text	txt	2025-02-04 23:38:08.003056	5
+10161	3876	make M=$PWD -C /usr/src/kernels/$(uname -r) clean	code	sh	2025-02-04 23:38:08.004809	1
+10162	3877	make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm uImage	code	sh	2025-02-04 23:38:08.006489	1
 \.
 
 
@@ -15548,6 +15673,68 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3813	1586	How many thread sleeping functions exist?	open	2025-01-30 22:03:26.356983	2025-01-30 22:03:26.356983	0
 3814	1586	What type is the identifier of a thread?	open	2025-01-30 22:03:26.358771	2025-01-30 22:03:26.358771	0
 3815	1586		open	2025-01-30 22:03:26.360568	2025-01-30 22:03:26.360568	0
+3816	1665	What commands give information about the system?	open	2025-02-04 23:38:07.861555	2025-02-04 23:38:07.861555	0
+3817	1665	Inspect the information from a disk?	open	2025-02-04 23:38:07.87013	2025-02-04 23:38:07.87013	0
+3818	1665	Inspect what system calls a program is calling?	open	2025-02-04 23:38:07.873178	2025-02-04 23:38:07.873178	0
+3819	1665	Read kernel logs?	open	2025-02-04 23:38:07.875674	2025-02-04 23:38:07.875674	0
+3820	1665	What file system holds process info and where is it mounted?	open	2025-02-04 23:38:07.878211	2025-02-04 23:38:07.878211	0
+3821	1665	Where can we find kernel boot parameters?	open	2025-02-04 23:38:07.880936	2025-02-04 23:38:07.880936	0
+3822	1665	Where can we find memory state?	open	2025-02-04 23:38:07.884151	2025-02-04 23:38:07.884151	0
+3823	1665	What file system holds the hardware information?	open	2025-02-04 23:38:07.88727	2025-02-04 23:38:07.88727	0
+3824	1665	Where does debug file system mount in the system?	open	2025-02-04 23:38:07.889668	2025-02-04 23:38:07.889668	0
+3825	1665	Where does tracing file system mount in the system?	open	2025-02-04 23:38:07.89209	2025-02-04 23:38:07.89209	0
+3826	1665	Where does each of kernel modules mount in the system?	open	2025-02-04 23:38:07.893985	2025-02-04 23:38:07.893985	0
+3827	1665	Where can we find information about block and character device drivers?	open	2025-02-04 23:38:07.895996	2025-02-04 23:38:07.895996	0
+3828	1665	Where can we find information about classes of devices?	open	2025-02-04 23:38:07.898329	2025-02-04 23:38:07.898329	0
+3829	1665	From which file does lspci get its information?	open	2025-02-04 23:38:07.900541	2025-02-04 23:38:07.900541	0
+3830	1665	What file contains vendor and device identifiers?	open	2025-02-04 23:38:07.903685	2025-02-04 23:38:07.903685	0
+3831	1665	What are device files?	open	2025-02-04 23:38:07.906927	2025-02-04 23:38:07.906927	0
+3832	1665	How system calls can become available for a device file?	open	2025-02-04 23:38:07.909347	2025-02-04 23:38:07.909347	0
+3833	1665	Investigate what happens when you read from <code>/dev/null</code>?	open	2025-02-04 23:38:07.911231	2025-02-04 23:38:07.911231	0
+3834	1665	Investigate what heppens when you write into <code>/dev/zero</code>?	open	2025-02-04 23:38:07.913296	2025-02-04 23:38:07.913296	0
+3835	1666	When does GRUB loads into RAM and loads what components?	open	2025-02-04 23:38:07.916753	2025-02-04 23:38:07.916753	0
+3836	1666	How does GRUB find the kernel?	open	2025-02-04 23:38:07.918774	2025-02-04 23:38:07.918774	0
+3837	1666	Where are the GRUB configuration files?	open	2025-02-04 23:38:07.920884	2025-02-04 23:38:07.920884	0
+3838	1666	Where the initial customization of GRUB can take place?	open	2025-02-04 23:38:07.922996	2025-02-04 23:38:07.922996	0
+3839	1666	What command applies the changes in GRUB configurations?	open	2025-02-04 23:38:07.92525	2025-02-04 23:38:07.92525	0
+3840	1666	Where are the kernel parameters defined?	open	2025-02-04 23:38:07.927146	2025-02-04 23:38:07.927146	0
+3841	1666	What kernel parameters will give us shell access?	open	2025-02-04 23:38:07.929144	2025-02-04 23:38:07.929144	0
+3842	1666	Where are all of the kernel parameters defined?	open	2025-02-04 23:38:07.93115	2025-02-04 23:38:07.93115	0
+3843	1666	What parameter preserves memory for a crash kernel?	open	2025-02-04 23:38:07.932936	2025-02-04 23:38:07.932936	0
+3844	1666	What kernel parameter enforces SELinux?	open	2025-02-04 23:38:07.934683	2025-02-04 23:38:07.934683	0
+3845	1666	What kernel parameter starts tracer early to help debugging boot problems?	open	2025-02-04 23:38:07.936507	2025-02-04 23:38:07.936507	0
+3846	1666	What kernel parameter disables cpu features?	open	2025-02-04 23:38:07.938254	2025-02-04 23:38:07.938254	0
+3847	1666	What kernel parameter specifies what program to run instead of default initializer?	open	2025-02-04 23:38:07.940325	2025-02-04 23:38:07.940325	0
+3848	1666	What are the responsibilities of initial root file system?	open	2025-02-04 23:38:07.942618	2025-02-04 23:38:07.942618	0
+3849	1666	What is an init?	open	2025-02-04 23:38:07.944745	2025-02-04 23:38:07.944745	0
+3850	1666	Where the systemd service files can be found?	open	2025-02-04 23:38:07.946796	2025-02-04 23:38:07.946796	0
+3851	1667	What are the file extensions of kernel modules?	open	2025-02-04 23:38:07.949506	2025-02-04 23:38:07.949506	0
+3852	1667	Where is the list of modules stored?	open	2025-02-04 23:38:07.951391	2025-02-04 23:38:07.951391	0
+3853	1667	Where are the kernel modules located?	open	2025-02-04 23:38:07.953339	2025-02-04 23:38:07.953339	0
+3854	1667	Find how many modules are available on a system?	open	2025-02-04 23:38:07.955219	2025-02-04 23:38:07.955219	0
+3855	1667	List loaded kernel modules in a chronological order?	open	2025-02-04 23:38:07.956967	2025-02-04 23:38:07.956967	0
+3856	1667	Remove a module?	open	2025-02-04 23:38:07.958778	2025-02-04 23:38:07.958778	0
+3857	1667	Get information from a module?	open	2025-02-04 23:38:07.960557	2025-02-04 23:38:07.960557	0
+3858	1667	Find what modules depend on a specific module?	open	2025-02-04 23:38:07.9623	2025-02-04 23:38:07.9623	0
+3859	1667	Insert a module?	open	2025-02-04 23:38:07.964044	2025-02-04 23:38:07.964044	0
+3860	1667	Insert a module with all of its dependencies?	open	2025-02-04 23:38:07.965958	2025-02-04 23:38:07.965958	0
+3861	1667	Why do some modules appear unused on the system?	open	2025-02-04 23:38:07.967687	2025-02-04 23:38:07.967687	0
+3862	1667	What commands are needed to build and load a kernel module?	open	2025-02-04 23:38:07.970817	2025-02-04 23:38:07.970817	0
+3863	1667	What happens when a kernel module returns non-zero on initialization?	open	2025-02-04 23:38:07.97273	2025-02-04 23:38:07.97273	0
+3864	1668	What configuration targets are available in the kernel source tree?	open	2025-02-04 23:38:07.97693	2025-02-04 23:38:07.97693	0
+3865	1668	What clean up targets are available in the kernel source tree?	open	2025-02-04 23:38:07.979331	2025-02-04 23:38:07.979331	0
+3866	1668	What build targets are available in the kernel source tree?	open	2025-02-04 23:38:07.981914	2025-02-04 23:38:07.981914	0
+3867	1668	What install targets are available in the kernel source tree?	open	2025-02-04 23:38:07.984071	2025-02-04 23:38:07.984071	0
+3868	1668	What documentation targets are available in the kernel source tree?	open	2025-02-04 23:38:07.986268	2025-02-04 23:38:07.986268	0
+3869	1668	What source tagging targets are available in the kernel source tree?	open	2025-02-04 23:38:07.988306	2025-02-04 23:38:07.988306	0
+3870	1668	What commands can help searching in the kernel source tree?	open	2025-02-04 23:38:07.990726	2025-02-04 23:38:07.990726	0
+3871	1668	What driver implements reading and writing functions of null device?	open	2025-02-04 23:38:07.992699	2025-02-04 23:38:07.992699	0
+3872	1668	Find the driver in use by available network devices on your system?	open	2025-02-04 23:38:07.995158	2025-02-04 23:38:07.995158	0
+3873	1669	What make target builds a bootable image?	open	2025-02-04 23:38:07.998675	2025-02-04 23:38:07.998675	0
+3874	1669	What make target builds modules?	open	2025-02-04 23:38:08.000533	2025-02-04 23:38:08.000533	0
+3875	1669	What make target installs build artifacts?	open	2025-02-04 23:38:08.003056	2025-02-04 23:38:08.003056	0
+3876	1669	Clean artifacts from custom module project directory?	open	2025-02-04 23:38:08.004809	2025-02-04 23:38:08.004809	0
+3877	1669	What additional arguments does make command take to cross compile the kernel image for a target device?	open	2025-02-04 23:38:08.006489	2025-02-04 23:38:08.006489	0
 \.
 
 
@@ -21841,6 +22028,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
 114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.706831	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	1	\N
+115	Advanced Linux: The Linux Kernel	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769/discover-and-control-hardware?autoSkip=true&resume=false	video	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.006489	1	\N
 \.
 
 
@@ -23500,6 +23688,11 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1651	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-27 23:38:15.390183	6
 1652	114	completed	\N	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.709316	7
 1585	109	completed	\N	2024-12-05 16:21:03.593753	2025-01-30 14:40:53.488319	2
+1668	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.996901	4
+1666	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.948239	2
+1669	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.007848	5
+1665	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.915083	1
+1667	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.974204	3
 \.
 
 
@@ -25266,6 +25459,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 27	112
 18	113
 27	114
+11	115
 \.
 
 
@@ -25858,7 +26052,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10037, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10162, true);
 
 
 --
@@ -25886,7 +26080,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3815, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3877, true);
 
 
 --
@@ -25942,7 +26136,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 114, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 115, true);
 
 
 --
@@ -25963,7 +26157,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1664, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1669, true);
 
 
 --
