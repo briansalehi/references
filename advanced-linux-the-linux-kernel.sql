@@ -245,9 +245,8 @@ call add_block('code', 'sh', 'cscope -d');
 call add_block('code', 'sh', 'nvim -t sys_read');
 call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What commands can help searching in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('text', 'txt', '`drivers/char/mem.c` file implements `read_null()` and `write_null()` functions for `/dev/null` device.');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What driver implements reading and writing functions of null device?');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'sh', '');
