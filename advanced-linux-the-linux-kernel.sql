@@ -248,23 +248,34 @@ call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What commands
 call add_block('text', 'txt', '`drivers/char/mem.c` file implements `read_null()` and `write_null()` functions for `/dev/null` device.');
 call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What driver implements reading and writing functions of null device?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'ip addr');
+call add_block('code', 'sh', 'ethtool -i wlp1s0');
+call add_block('code', 'sh', 'modinfo iwlwifi');
+call add_block('text', 'path', '/usr/src/kernels/$(uname -r)/drivers/net/wireless/intel/iwlwifi');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'Find the driver in use by available network devices on your system?');
 
 call set_section_as_complete('Advanced Linux: The Linux Kernel', 4);
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 5, '');
+call add_block('code', 'sh', 'make bzImage');
+call add_block('code', 'sh', 'make uImage');
+call add_block('code', 'sh', 'make vmlinux');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 5, 'What make target builds a bootable image?');
+
+call add_block('code', 'sh', 'make modules');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 5, 'What make target builds modules?');
+
+call add_block('code', 'sh', 'make modules_install');
+call add_block('text', 'txt', 'This command will install all kernel modules with their hierarchies inside `/lib/modules/$(uname -r)/` directory.');
+call add_block('code', 'sh', 'make install');
+call add_block('text', 'txt', 'Installs bzImage into `/boot` by renaming it to `vmlinuz-$(uname -r)`.');
+call add_block('text', 'txt', 'Also might install initramfs or initrd.');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 5, 'What make target installs build artifacts?');
+
+call add_block('code', 'sh', 'make M=$PWD -C /usr/src/kernels/$(uname -r) clean');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 5, 'Clean artifacts from custom module project directory?');
+
+call add_block('code', 'sh', 'make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm uImage');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 5, 'What additional arguments does make command take to cross compile the kernel image for a target device?');
 
 call set_section_as_complete('Advanced Linux: The Linux Kernel', 5);
 
