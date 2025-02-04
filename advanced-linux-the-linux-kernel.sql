@@ -209,33 +209,41 @@ call create_note_with_name('Advanced Linux: The Linux Kernel', 3, 'What happens 
 
 call set_section_as_complete('Advanced Linux: The Linux Kernel', 3);
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make config');
+call add_block('code', 'sh', 'make menuconfig');
+call add_block('code', 'sh', 'make nconfig');
+call add_block('code', 'sh', 'make xconfig');
+call add_block('code', 'sh', 'make gconfig');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What configuration targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make clean');
+call add_block('code', 'sh', 'make mrproper');
+call add_block('code', 'sh', 'make distclean');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What clean up targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make all');
+call add_block('code', 'sh', 'make bzImage*');
+call add_block('code', 'sh', 'make vmlinux*');
+call add_block('code', 'sh', 'make modules*');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What build targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make INSTALL_MOD_PATH=/ modules_install');
+call add_block('code', 'sh', 'make INSTALL_PATH=/sbin install');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What install targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make htmldocs');
+call add_block('code', 'sh', 'make SPHINXDIRS="scheduler" pdfdocs');
+call add_block('code', 'sh', 'make SPHINXDIRS="locking" pdfdocs');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What documentation targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'make cscope');
+call add_block('code', 'sh', 'make tags');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What source tagging targets are available in the kernel source tree?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'sh', '');
-call create_note_with_name('Advanced Linux: The Linux Kernel', 4, '');
+call add_block('code', 'sh', 'grep -rli sys_read include');
+call add_block('code', 'sh', 'cscope -d');
+call add_block('code', 'sh', 'nvim -t sys_read');
+call create_note_with_name('Advanced Linux: The Linux Kernel', 4, 'What commands can help searching in the kernel source tree?');
 
 call add_block('text', 'txt', '');
 call add_block('code', 'sh', '');
