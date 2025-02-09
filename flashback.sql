@@ -13190,7 +13190,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 1288	1398	Compile a program with debugging information?	open	2024-07-28 10:08:03.754196	2024-07-28 10:08:03.754196	0
 1289	419	How does <code>eBPF</code> help us to learn application behavior?	open	2024-07-28 10:08:13.272943	2024-07-28 10:08:13.272943	0
 1290	419	What does the <code>eBPF</code> verifier?	open	2024-07-28 10:08:13.439554	2024-07-28 10:08:13.439554	0
-3747	1606	Configure a project?	open	2025-01-07 20:26:11.778699	2025-01-07 20:26:11.778699	0
 1291	419	What is the advantage of dynamic loading functionality in <code>eBPF</code>?	open	2024-07-28 10:08:13.66934	2024-07-28 10:08:13.66934	0
 1292	419	How efficient is loading <code>eBPF</code> programs?	open	2024-07-28 10:08:13.884486	2024-07-28 10:08:13.884486	0
 1293	420	How to load a simple <code>eBPF</code> code in python's BCC library as a simplified example?	open	2024-07-28 10:08:14.98458	2024-07-28 10:08:14.98458	0
@@ -15611,18 +15610,6 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3744	1601	What functions are available to check for job status?	open	2025-01-05 16:23:18.621964	2025-01-05 16:23:18.621964	0
 3745	1602	Create a self-hosted runner?	open	2025-01-05 16:23:18.624673	2025-01-05 16:23:18.624673	0
 3746	1602	Remove a self-hosted runner?	open	2025-01-05 16:23:18.626264	2025-01-05 16:23:18.626264	0
-3748	1606	What directories should be ignored in projects?	open	2025-01-07 20:26:11.790831	2025-01-07 20:26:11.790831	0
-3749	1606	Configure a project from another path?	open	2025-01-07 20:26:11.794109	2025-01-07 20:26:11.794109	0
-3750	1606	What are the first stages of cmake execution?	open	2025-01-07 20:26:11.798542	2025-01-07 20:26:11.798542	0
-3751	1606	What is the underlying build system?	open	2025-01-07 20:26:11.80306	2025-01-07 20:26:11.80306	0
-3752	1606	What is the incompatibility difference between build systems?	open	2025-01-07 20:26:11.80676	2025-01-07 20:26:11.80676	0
-3753	1606	What is the minimum required commands to build a project?	open	2025-01-07 20:26:11.809462	2025-01-07 20:26:11.809462	0
-3754	1606	What is a policy?	open	2025-01-07 20:26:11.81131	2025-01-07 20:26:11.81131	0
-3755	1606	What is a target?	open	2025-01-07 20:26:11.813337	2025-01-07 20:26:11.813337	0
-3756	1606	What options are available for <code>project()</code> command?	open	2025-01-07 20:26:11.817197	2025-01-07 20:26:11.817197	0
-3757	1606	What variables will be provided by the <code>project()</code> command?	open	2025-01-07 20:26:11.820572	2025-01-07 20:26:11.820572	0
-3758	1606	What is the difference between variables and their CMAKE prefixed counterparts?	open	2025-01-07 20:26:11.82367	2025-01-07 20:26:11.82367	0
-3759	1606	What are the available target types?	open	2025-01-07 20:26:11.825912	2025-01-07 20:26:11.825912	0
 3760	1618	What are the building blocks of a workflow?	open	2025-01-12 22:43:51.509846	2025-01-12 22:43:51.509846	0
 3761	1618	What event types exist to trigger workflows?	open	2025-01-12 22:43:51.516268	2025-01-12 22:43:51.516268	0
 3762	1618	What runners are supported?	open	2025-01-12 22:43:51.518879	2025-01-12 22:43:51.518879	0
@@ -15735,6 +15722,19 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3875	1669	What make target installs build artifacts?	open	2025-02-04 23:38:08.003056	2025-02-04 23:38:08.003056	0
 3876	1669	Clean artifacts from custom module project directory?	open	2025-02-04 23:38:08.004809	2025-02-04 23:38:08.004809	0
 3877	1669	What additional arguments does make command take to cross compile the kernel image for a target device?	open	2025-02-04 23:38:08.006489	2025-02-04 23:38:08.006489	0
+3747	1607	Configure a project?	open	2025-01-07 20:26:11.778699	2025-01-07 20:26:11.778699	0
+3748	1607	What directories should be ignored in projects?	open	2025-01-07 20:26:11.790831	2025-01-07 20:26:11.790831	0
+3749	1607	Configure a project from another path?	open	2025-01-07 20:26:11.794109	2025-01-07 20:26:11.794109	0
+3750	1607	What are the first stages of cmake execution?	open	2025-01-07 20:26:11.798542	2025-01-07 20:26:11.798542	0
+3751	1607	What is the underlying build system?	open	2025-01-07 20:26:11.80306	2025-01-07 20:26:11.80306	0
+3752	1607	What is the incompatibility difference between build systems?	open	2025-01-07 20:26:11.80676	2025-01-07 20:26:11.80676	0
+3753	1607	What is the minimum required commands to build a project?	open	2025-01-07 20:26:11.809462	2025-01-07 20:26:11.809462	0
+3754	1607	What is a policy?	open	2025-01-07 20:26:11.81131	2025-01-07 20:26:11.81131	0
+3755	1607	What is a target?	open	2025-01-07 20:26:11.813337	2025-01-07 20:26:11.813337	0
+3756	1607	What options are available for <code>project()</code> command?	open	2025-01-07 20:26:11.817197	2025-01-07 20:26:11.817197	0
+3757	1607	What variables will be provided by the <code>project()</code> command?	open	2025-01-07 20:26:11.820572	2025-01-07 20:26:11.820572	0
+3758	1607	What is the difference between variables and their CMAKE prefixed counterparts?	open	2025-01-07 20:26:11.82367	2025-01-07 20:26:11.82367	0
+3759	1607	What are the available target types?	open	2025-01-07 20:26:11.825912	2025-01-07 20:26:11.825912	0
 \.
 
 
@@ -25267,7 +25267,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1614	2025-01-07 21:40:45.930833
 1	1615	2025-01-07 21:40:45.930833
 1	1616	2025-01-07 21:40:45.930833
-1	1606	2025-01-07 21:40:45.930833
 1	786	2025-01-15 00:05:23.063618
 1	787	2025-01-15 00:10:38.049485
 1	788	2025-01-15 00:15:21.059191
@@ -25331,6 +25330,12 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1650	2025-01-29 23:14:07.655243
 1	1651	2025-01-29 23:14:07.655243
 1	1652	2025-01-29 23:14:07.655243
+1	1606	2025-02-09 16:02:58.003657
+1	1668	2025-02-04 23:39:50.169113
+1	1669	2025-02-04 23:39:50.169113
+1	1665	2025-02-06 18:33:16.682551
+1	1666	2025-02-06 19:54:10.409407
+1	1667	2025-02-06 20:37:46.849617
 \.
 
 
