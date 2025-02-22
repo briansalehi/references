@@ -49,11 +49,11 @@ class mixin: T
 };$$);
 call add_block('text', 'txt', 'This pattern allows hierarchical composition of types:');
 call add_block('code', 'cpp', $$Top<Middle<Bottom>> hierarchy;$$);
-call add_block('text', 'txt', 'This implements the traits of all three classes, with need to construct a new `TopMiddleBottom` class.');
+call add_block('text', 'txt', 'This implements the traits of all three classes, without the need to construct a new `TopMiddleBottom` class.');
 call add_block('text', 'txt', 'This pattern can be used in Decorator pattern.');
 call create_note_with_name('Design Patterns in Modern C++20', 1, 'Use mixin inheritance pattern to implement a composition type?');
 
-call add_block('text', 'txt', 'When a class might have multiple behaviors within its methods, to make sure all variations follow the same API, we can make an interface with the functionalities shared between implementations, then we can use curiously recurring template pattern to implement multiple variations. This can be a substitution for standard concepts in standards prior to C++20.');
+call add_block('text', 'txt', 'When a class might have multiple behaviors within its methods, to make sure all variations follow the same API, we can make an interface with the functionalities shared between implementations, then we can use curiously recurring template pattern to implement multiple variations. This can be a substitution for C++ concepts prior to C++20.');
 call add_block('code', 'cpp', $$template<typename Impl>
 class basic_notifier
 {
