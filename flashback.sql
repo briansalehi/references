@@ -11706,6 +11706,73 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10160	3875	Also might install initramfs or initrd.	text	txt	2025-02-04 23:38:08.003056	5
 10161	3876	make M=$PWD -C /usr/src/kernels/$(uname -r) clean	code	sh	2025-02-04 23:38:08.004809	1
 10162	3877	make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm uImage	code	sh	2025-02-04 23:38:08.006489	1
+10163	3878	target_compile_features(<target> PRIVATE cxx_std_23 cxx_restrict)	code	cmake	2025-02-23 23:06:51.367416	1
+10164	3879	cmake -G Ninja -B build-release	code	sh	2025-02-23 23:06:51.375818	1
+10165	3879	cmake -G "Unix Makefiles" -B build-release	code	sh	2025-02-23 23:06:51.375818	2
+10166	3880	When switching to another generator, the binary directory should be rebuilt.	text	txt	2025-02-23 23:06:51.379948	1
+10167	3880	cmake -G Ninja -B build-release	code	sh	2025-02-23 23:06:51.379948	2
+10168	3880	cmake -G "Unix Makefiles" -B build-release --fresh	code	sh	2025-02-23 23:06:51.379948	3
+10169	3880	This option was added in 3.24 release.	text	txt	2025-02-23 23:06:51.379948	4
+10170	3881	To avoid overwriting release configurations with debug info, it is best to separate each configuration by different binary directories.	text	txt	2025-02-23 23:06:51.383734	1
+10171	3881	cmake -G Ninja -B build-release -D CMAKE_BUILD_TYPE=Release	code	sh	2025-02-23 23:06:51.383734	2
+10172	3881	cmake --build build-release	code	sh	2025-02-23 23:06:51.383734	3
+10173	3881	cmake -G Ninja -B build-debug -D CMAKE_BUILD_TYPE=Debug	code	sh	2025-02-23 23:06:51.383734	4
+10174	3881	cmake --build build-debug	code	sh	2025-02-23 23:06:51.383734	5
+10175	3882	Multi-config generators will create subdirectories inside the build folder. In case of Ninja Multi-Config, binary directories will be `Debug`, `Release`, `RelWithDebInfo`.	text	txt	2025-02-23 23:06:51.388193	1
+10176	3882	cmake -G "Ninja Multi-Config" -B build	code	sh	2025-02-23 23:06:51.388193	2
+10177	3882	cmake --build build --config Debug	code	sh	2025-02-23 23:06:51.388193	3
+10178	3882	cmake --build build --config Release	code	sh	2025-02-23 23:06:51.388193	4
+10213	3900	We’re not technically linking against the library, but we must add the target as a dependency so that the include search paths for our target get populated.	text	txt	2025-02-23 23:06:51.419662	1
+10214	3900	target_include_directories(<lib> INTERFACE $<BUILD_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)	code	cmake	2025-02-23 23:06:51.419662	2
+10179	3883	1. Copy the third-party library into source directory.\n2.  If third-party project is using CMake, it’s possible to use a feature called `add_subdirectory` to add that library relatively cleanly. Any modifications will make future upgrades incredibly painful. A `LICENSE` file exists in that library’s root folder.\n3. Git submodules have the advantage of keeping the source files of third-party dependencies out of project but submodules can make cloning and updating the project more complex.\n4. `FetchContent` solves all of these problems, keeping good hygiene between code and dependencies and avoiding unwanted complexity or maintenance headaches.	text	txt	2025-02-23 23:06:51.391595	1
+10180	3884	FetchContent allows us to keep the source of any third-party dependency out of codebase. A target can depend on the targets provided by the dependency at configure time. The dependency will be built at the same time as the project.	text	txt	2025-02-23 23:06:51.393767	1
+10181	3885	The build artifacts will added to a folder called `_deps` inside the build directory.	text	txt	2025-02-23 23:06:51.39501	1
+10182	3886	When building using `FetchContent` we are building dependencies at the same time as the project. This often adds unnecessary work and makes it difficult to rebuild the project without also rebuilding the dependencies.	text	txt	2025-02-23 23:06:51.396337	1
+10183	3886	Dependencies might become publicly inaccessible by removal or renaming.	text	txt	2025-02-23 23:06:51.396337	2
+10184	3886	If a dependency we wish to use doesn’t currently have CMake support, we can’t use it with `FetchContent`.	text	txt	2025-02-23 23:06:51.396337	3
+10185	3887	include(FetchContent)\nFetchContent_Declare(<name> GIT_REPOSITORY <url> GIT_TAG <tag>)\nFetchContent_MakeAvailable(<name>)\ntarget_link_libraries(<target> PRIVATE <name>)	code	cmake	2025-02-23 23:06:51.3976	1
+10186	3888	If you are developing an application and a library at the same time, and they are both closely related, it can be tedious to keep the application in sync when making small incremental changes to the library. You need to commit your changes, push them to the remote repository, and then pull the changes down again in the application project. A better approach is to tell FetchContent to look directly at that source folder instead of downloading the dependency and storing it locally.	text	txt	2025-02-23 23:06:51.398791	1
+10187	3888	This is meant as a temporary convenience and isn’t something to push to your main branch.	text	txt	2025-02-23 23:06:51.398791	2
+10188	3888	FetchContent_Declare(<name> SOURCE_DIR <path>)	code	cmake	2025-02-23 23:06:51.398791	3
+10189	3889	Multiple dependencies can be listed.	text	txt	2025-02-23 23:06:51.399931	1
+10190	3889	FetchContent_MakeAvailable(<name>...)	code	cmake	2025-02-23 23:06:51.399931	2
+10191	3890	`FetchContent_MakeAvailable` is actually an abstraction over several lower-level CMake commands like `FetchContent_GetProperties`, `FetchContent_Populate`, etc. The CMake documentation recommends using `FetchContent_MakeAvailable` unless there is a good reason not to.	text	txt	2025-02-23 23:06:51.401014	1
+10192	3891	To enable or disable features of an imported library, add cache values after declaration and before making them available in the project.	text	txt	2025-02-23 23:06:51.403012	1
+10193	3891	FetchContent_Declare(<name> GIT_REPOSITORY <link> GIT_TAG <tag>)\nset(WITH_TEST ON CACHE BOOL "Enable testing")\nset(WITH_UI OFF CACHE BOOL "Enable User Interface")\nFetchContent_MakeAvailable(<name>)	code	cmake	2025-02-23 23:06:51.403012	2
+10194	3892	To ensure an application can include headers, we should use public headers. This is great because it means clients don’t need to mess around setting their own include directories; they just link against the target and inherit this property automatically.	text	txt	2025-02-23 23:06:51.406244	1
+10195	3892	target_include_directories(<target> public ${CMAKE_CURRENT_SOURCE_DIR}/include)	code	cmake	2025-02-23 23:06:51.406244	2
+10196	3893	The term generator expression refers to the time the expression is evaluated. Generator expressions are evaluated at project generation time, which happens as the second stage right after CMake configuration. Every time we’ve run `cmake -B build`, CMake first runs the configure step and then runs the generate step. This is where generator expressions are evaluated, and project files are created.	text	txt	2025-02-23 23:06:51.409099	1
+10197	3893	target_include_directories(<target> PUBLIC $<INSTALL_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)	code	cmake	2025-02-23 23:06:51.409099	2
+10198	3894	This allows us to use different include paths based on whether we’re building the library or using it after it has been installed.	text	txt	2025-02-23 23:06:51.411676	1
+10199	3894	target_include_directories(<target> PUBLIC $<BUILD_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)	code	cmake	2025-02-23 23:06:51.411676	2
+10200	3895	The `BUILD_LOCAL_INTERFACE` generator expression is new in CMake 3.26 and it will only expand its contents when used by **another target in the same build system**, whereas `BUILD_INTERFACE` will expand its contents when used by **another target in the same build system** and when **the property is exported** using the `export` command. As we don’t intend to export our targets from the build tree, we’re opting for the more restrictive of the two commands.	text	txt	2025-02-23 23:06:51.413111	1
+10201	3895	target_include_directories(<target> PUBLIC $<BUILD_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)	code	cmake	2025-02-23 23:06:51.413111	2
+10202	3895	target_include_directories(<target> PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)	code	cmake	2025-02-23 23:06:51.413111	3
+10203	3896	FetchContent_Declare(<name> GIT_REPOSITORY <link> GIT_TAG <tag> SOURCE_SUBDIR <path>)	code	cmake	2025-02-23 23:06:51.414266	1
+10204	3897	Windows requires symbols from a shared library to be explicitly exported; otherwise, they are hidden, and they’re only available internally to the library. This contrasts with macOS and Linux, where all symbols are usually exported by default.	text	txt	2025-02-23 23:06:51.415418	1
+10205	3897	include(GenerateExportHeader)\ngenerate_export_header(<target> BASE_NAME <name>)	code	cmake	2025-02-23 23:06:51.415418	2
+10206	3897	This will create the `<name>_export.h` header file in the build directory. This brings us back to changing `target_include_directories()` to also include the build directory.	text	txt	2025-02-23 23:06:51.415418	3
+10207	3897	target_include_directories(<target> PUBLIC $<BUILD_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include;${CMAKE_CURRENT_BINARY_DIR}>)	text	txt	2025-02-23 23:06:51.415418	4
+10208	3898	The absolute path of where the library can be found when it is built is baked into the application.	text	txt	2025-02-23 23:06:51.416514	1
+10209	3898	set_target_properties(<target> PROPERTIES BUILD_RPATH "$<$<PLATFORM_ID:Linux>:$ORIGIN>$<$<PLATFORM_ID:Darwin>:@loader_path>")	code	cmake	2025-02-23 23:06:51.416514	2
+10210	3899	set_target_properties(<target> PROPERTIES C_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON C_STANDARD_REQUIRED ON C_EXTENSIONS OFF)	code	cmake	2025-02-23 23:06:51.417666	1
+10211	3899	Arguably, setting the language standard is more intuitive this way:	text	txt	2025-02-23 23:06:51.417666	2
+10212	3899	target_compile_features(<target> PRIVATE c_std_17)	code	cmake	2025-02-23 23:06:51.417666	3
+10215	3901	{\n    "version": 8,\n    "cmakeVersion": {\n        "major": 3,\n        "minor": 30,\n        "patch": 0\n    },\n    "configurationPreset": [\n        {\n            "name": "amd64-release",\n            "displayName": "amd64 Release Configuration",\n            "generator": "Ninja Multi-Config",\n            "binaryDir": "${sourceDir}/build-release",\n            "cacheVariables": {\n                "WITH_TESTS": "ON"\n            }\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.422708	1
+10216	3902	Macros are variables in presets that will be expanded to meaningful values.	text	txt	2025-02-23 23:06:51.426091	1
+10217	3902	${sourceDir}	code	cmake	2025-02-23 23:06:51.426091	2
+10218	3902	${binaryDir}	code	cmake	2025-02-23 23:06:51.426091	3
+10219	3902	${presetName}	code	cmake	2025-02-23 23:06:51.426091	4
+10220	3903	A small selection of pairs are not inherited, including `name`, `displayName`, `description`, and `inherits` itself, but nearly everything else is.	text	txt	2025-02-23 23:06:51.428536	1
+10221	3903	{\n    "version": 8,\n    "configurationPreset": [\n        {\n            "name": "base",\n            "hidden": true,\n            "binaryDir": "${sourceDir}/build-${presetName}"\n        },\n        {\n            "name": "amd64-release",\n            "inherits": "base",\n            "cacheVariables": {\n                "TARGET_PLATFORM": "amd64"\n            }\n        },\n        {\n            "name": "arm64-release",\n            "inherits": "base",\n            "cacheVariables": {\n                "TARGET_PLATFORM": "arm64"\n            }\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.428536	2
+10222	3904	Manipulating predefined presets by library authors are easy but we will be back to the problem of typing long commands. Customized configurations can be written in user specific presets.	text	txt	2025-02-23 23:06:51.429876	1
+10223	3904	{\n    "version": 8,\n    "configurationPresets": [\n        {\n            "name": "amd64-release-static",\n            "inherits": amd64-release",\n            "generator": "Ninja Multi-Config",\n            "cacheVariables": {\n                "SHARED_LIBS": ON\n            }\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.429876	2
+10224	3905	{\n    "version": 8,\n    "configurationPresets": [\n        {\n            "name": "amd64-linux-release",\n            "displayName": "AMD64 Linux Specific Release"\n            "binaryDir": "${sourceDir}/build-${presetName}",\n            "condition": {\n                "type": "equals",\n                "lhs": "${hostSystemName}",\n                "rhs": "Linux"\n            }\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.430988	1
+10225	3906	{\n    "version": 8,\n    "configurationPresets": [ ],\n    "buildPresets": [\n        {\n            "name": "shared",\n            "configurePreset": "shared",\n            "configuration": "Release"\n        },\n        {\n            "name": "static",\n            "configurePreset": "static",\n            "configuration": "Release"\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.432164	1
+10226	3906	A better way for changing configuration type of presets is to use `--config` option:	text	txt	2025-02-23 23:06:51.432164	2
+10227	3906	cmake --build --preset static --config Debug	code	sh	2025-02-23 23:06:51.432164	3
+10228	3907	{\n    "version": 8,\n    "workflowPresets": [\n        {\n            "name": "static",\n            "steps": [\n                {\n                    "type": "configure",\n                    "name": "static"\n                },\n                {\n                    "type": "build",\n                    "name": "static"\n                }\n            ]\n        }\n    ]\n}	code	json	2025-02-23 23:06:51.433314	1
+10229	3907	Configuration cannot be overwritten by command options in workflows.	text	txt	2025-02-23 23:06:51.433314	2
 \.
 
 
@@ -15735,6 +15802,36 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3757	1607	What variables will be provided by the <code>project()</code> command?	open	2025-01-07 20:26:11.820572	2025-01-07 20:26:11.820572	0
 3758	1607	What is the difference between variables and their CMAKE prefixed counterparts?	open	2025-01-07 20:26:11.82367	2025-01-07 20:26:11.82367	0
 3759	1607	What are the available target types?	open	2025-01-07 20:26:11.825912	2025-01-07 20:26:11.825912	0
+3878	1607	Specify languages features for a single target?	open	2025-02-23 23:06:51.367416	2025-02-23 23:06:51.367416	0
+3879	1607	Explicitly specify which generator should be used to build the project?	open	2025-02-23 23:06:51.375818	2025-02-23 23:06:51.375818	0
+3880	1607	Start over building the binary directory?	open	2025-02-23 23:06:51.379948	2025-02-23 23:06:51.379948	0
+3881	1607	Build a project with single-config generators?	open	2025-02-23 23:06:51.383734	2025-02-23 23:06:51.383734	0
+3882	1607	Build a project with multi-config generators?	open	2025-02-23 23:06:51.388193	2025-02-23 23:06:51.388193	0
+3883	1607	What options are available to add a third-party dependency to a project?	open	2025-02-23 23:06:51.391595	2025-02-23 23:06:51.391595	0
+3884	1608	What are the advantages of <code>FetchContent</code> over <code>add_subdirectory</code>?	open	2025-02-23 23:06:51.393767	2025-02-23 23:06:51.393767	0
+3885	1608	Where the dependencies will be stored by <code>FetchContent</code>?	open	2025-02-23 23:06:51.39501	2025-02-23 23:06:51.39501	0
+3886	1608	What are the disadvantages of using <code>FetchContent</code>?	open	2025-02-23 23:06:51.396337	2025-02-23 23:06:51.396337	0
+3887	1608	Integrate an external library into the project from a remote source?	open	2025-02-23 23:06:51.3976	2025-02-23 23:06:51.3976	0
+3888	1608	Integrate an external library into the project from a local path?	open	2025-02-23 23:06:51.398791	2025-02-23 23:06:51.398791	0
+3889	1608	Add an external library to our project and make the dependency ready to use	open	2025-02-23 23:06:51.399931	2025-02-23 23:06:51.399931	0
+3890	1608	What wrapper can be used to fetch contents with ease?	open	2025-02-23 23:06:51.401014	2025-02-23 23:06:51.401014	0
+3891	1608	Toggle features of an imported external library?	open	2025-02-23 23:06:51.403012	2025-02-23 23:06:51.403012	0
+3892	1609	Make library’s headers visible to clients?	open	2025-02-23 23:06:51.406244	2025-02-23 23:06:51.406244	0
+3893	1609	What does the term generator expressions refer to?	open	2025-02-23 23:06:51.409099	2025-02-23 23:06:51.409099	0
+3894	1609	Why should we specify two interfaces for library headers?	open	2025-02-23 23:06:51.411676	2025-02-23 23:06:51.411676	0
+3895	1609	What is the difference between the two existing build interfaces?	open	2025-02-23 23:06:51.413111	2025-02-23 23:06:51.413111	0
+3896	1609	Specify which subdirectory should be fetched when importing an external library?	open	2025-02-23 23:06:51.414266	2025-02-23 23:06:51.414266	0
+3897	1609	What extra step needs to be done for shared libraries on Windows to be exported?	open	2025-02-23 23:06:51.415418	2025-02-23 23:06:51.415418	0
+3898	1609	Bake the run path into a library where it can be loaded after build and installation?	open	2025-02-23 23:06:51.416514	2025-02-23 23:06:51.416514	0
+3899	1609	What target properties should be avoided when making cross platform projects?	open	2025-02-23 23:06:51.417666	2025-02-23 23:06:51.417666	0
+3900	1609	Why do we need to link targets to a header only library?	open	2025-02-23 23:06:51.419662	2025-02-23 23:06:51.419662	0
+3901	1610	Write a configuration preset?	open	2025-02-23 23:06:51.422708	2025-02-23 23:06:51.422708	0
+3902	1610	What are the macros?	open	2025-02-23 23:06:51.426091	2025-02-23 23:06:51.426091	0
+3903	1610	What is the best practice in inheritance of presets?	open	2025-02-23 23:06:51.428536	2025-02-23 23:06:51.428536	0
+3904	1610	When do user specified presets become handy?	open	2025-02-23 23:06:51.429876	2025-02-23 23:06:51.429876	0
+3905	1610	Put a condition on a preset?	open	2025-02-23 23:06:51.430988	2025-02-23 23:06:51.430988	0
+3906	1610	Write a build preset?	open	2025-02-23 23:06:51.432164	2025-02-23 23:06:51.432164	0
+3907	1610	Write a workflow preset?	open	2025-02-23 23:06:51.433314	2025-02-23 23:06:51.433314	0
 \.
 
 
@@ -22021,7 +22118,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 59	Embedded Linux Development Using Yocto Project	\N	book	2024-07-28 09:44:55.224368	2024-12-30 22:47:32.546712	1	\N
 98	Modern CMake for C++	https://subscription.packtpub.com/book/programming/9781805121800	book	2024-08-18 14:51:01.210115	2025-01-01 23:19:08.51118	1	\N
 110	GitHub Actions Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781835468944	book	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.626264	1	\N
-111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1	\N
 112	Mastering GitHub Actions	https://subscription.packtpub.com/book/cloud-and-networking/9781805128625	book	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.573999	1	\N
 62	Boost.Asio C++ Network Programming Cookbook	https://subscription.packtpub.com/book/cloud-and-networking/9781783986545	book	2024-07-28 09:44:55.224368	2025-01-15 23:06:24.617679	1	\N
 113	Mastering PostgreSQL 17	https://subscription.packtpub.com/book/data/9781836205975	book	2025-01-19 14:10:35.124141	2025-01-19 14:10:35.142022	1	\N
@@ -22029,6 +22125,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	1	\N
 115	Advanced Linux: The Linux Kernel	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769/discover-and-control-hardware?autoSkip=true&resume=false	video	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.006489	1	\N
 12	LinkedIn Course: C++ Design Patterns: Creational	https://www.linkedin.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	1	Olivia Chiu Stone
+111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 \.
 
 
@@ -23627,17 +23724,12 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1601	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.622986	3
 1602	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.627091	4
 1603	110	ignored	\N	2025-01-03 20:38:12.197376	2025-01-05 16:44:03.30081	5
-1607	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	2
-1608	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	3
-1609	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	4
-1610	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	5
 1611	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	6
 1612	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	7
 1613	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	8
 1614	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	9
 1615	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	10
 1616	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	11
-1606	111	writing	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.825912	1
 1619	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	3
 1620	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	4
 1621	112	open	\N	2025-01-12 22:43:51.497679	2025-01-12 22:43:51.497679	5
@@ -23693,6 +23785,11 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1669	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.007848	5
 1665	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.915083	1
 1667	115	completed	\N	2025-02-04 23:38:07.850623	2025-02-04 23:38:07.974204	3
+1606	111	ignored	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.434185	1
+1607	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.435297	2
+1608	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.437386	3
+1609	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.439038	4
+1610	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.440622	5
 \.
 
 
@@ -26057,7 +26154,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10162, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10229, true);
 
 
 --
@@ -26085,7 +26182,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3877, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3907, true);
 
 
 --
