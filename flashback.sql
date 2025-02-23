@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.2
--- Dumped by pg_dump version 17.2
+-- Dumped from database version 17.3
+-- Dumped by pg_dump version 17.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21991,7 +21991,6 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 8	C++ Daily Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 9	https://www.cppstories.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
 11	mdadm(1)	Unix Manual	manual	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
-12	LinkedIn Course: C++ Design Patterns: Creational by Olivia Chiu Stone	https://www.linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
 13	Kevin Dankwardt's Linux Device Drivers	https://www.linkedin.com/learning/linux-device-drivers	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
 14	LinkedIn Course: Linux Device Drivers	https://linkedin.com	course	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	4	\N
 3	Boost	https://boost.org	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
@@ -22029,6 +22028,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 114	GitHub Actions Masterclass	https://subscription.packtpub.com/video/business-and-other/9781837025411	video	2025-01-27 23:38:15.35632	2025-01-29 23:13:21.706831	1	\N
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	1	\N
 115	Advanced Linux: The Linux Kernel	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769/discover-and-control-hardware?autoSkip=true&resume=false	video	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.006489	1	\N
+12	LinkedIn Course: C++ Design Patterns: Creational	https://www.linkedin.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	1	Olivia Chiu Stone
 \.
 
 
@@ -23884,7 +23884,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1414	2024-08-07 22:44:43.138201
 1	1294	2025-01-26 00:02:47.692485
 1	430	2025-01-28 00:14:28.423385
-1	458	2025-01-27 23:58:17.442879
 1	1416	2024-08-07 22:44:43.138201
 1	1419	2024-08-07 22:44:43.138201
 1	1418	2024-08-07 22:44:43.138201
@@ -25291,7 +25290,6 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	789	2025-01-18 09:53:48.979848
 1	796	2025-01-18 10:08:13.753262
 1	1347	2025-01-18 10:10:20.524073
-1	1602	2025-01-18 23:53:01.182248
 1	1584	2025-01-21 14:31:42.90139
 1	1310	2025-01-21 14:33:18.950282
 1	1417	2025-01-28 00:15:07.316404
@@ -25336,6 +25334,8 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1665	2025-02-06 18:33:16.682551
 1	1666	2025-02-06 19:54:10.409407
 1	1667	2025-02-06 20:37:46.849617
+1	458	2025-02-17 21:43:02.449741
+1	1602	2025-02-22 20:56:43.554574
 \.
 
 
