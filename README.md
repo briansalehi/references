@@ -9,24 +9,30 @@ Collection of notes taken from multiple resources.
 * C
 * C++
 * CMake
+* cscope
+* ctags
 * Docker
 * Embedded Linux
+* eBPF
 * Git
-* GitHub
+* GitHub Actions
 * GNU Debugger
 * GoogleTest
 * LaTeX
 * Linux Administration
-* Linux Kernel
+* Linux Kernel Development
 * Mathematics
 * OpenCV
 * OpenGL
 * OpenSSL
 * Perf
+* Plantuml
 * Postgres
+* Python
 * Qt
+* Rust
 * Software Security
-* Tmux
+* tmux
 * Valgrind
 * Vim
 * Vulkan
