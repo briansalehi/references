@@ -183,11 +183,109 @@ call create_note_with_name('Behavioral Design Patterns in C++', 4, 'What are the
 
 call set_section_as_complete('Behavioral Design Patterns in C++', 4);
 
---call add_block('text', 'txt', '');
---call add_block('code', 'cpp', $$$$);
---call create_note_with_name('Behavioral Design Patterns in C++', 5, '');
---
---call set_section_as_complete('Behavioral Design Patterns in C++', 5);
+call add_block('text', 'txt', 'Where there are requests from one part of an application called *invoker*, to another component called receiver, by first design we might directly connect these two to directly call on each other. But if later we need to know the state of these requests in order to implement features like undo and redo, we need to make these requests into instances of command class. The difference is that requests were functions but now they are classes with the advantage of having states.');
+call create_note_with_name('Behavioral Design Patterns in C++', 5, 'Where are the common use cases of the command pattern?');
+
+call add_block('code', 'plantuml', $$class invoker as "User" <<Invoker>> {
+    - receiver
+}
+
+class receiver as "Bank Account" <<Receiver>> {
+    + withdraw(amount: int): void
+    + deposit(amount: int): void
+}
+
+receiver -o invoker: < aggregates$$);
+call add_block('text', 'txt', 'The invoker and receiver classes can be decoupled like this:');
+call add_block('code', 'plantuml', $$abstract command {
+    - receiver
+    {abstract} + execute(): void
+}
+
+class withdraw_command {
+    + execute(): void
+}
+
+class deposit_command {
+    + execute(): void
+}
+
+class invoker as "User" <<Invoker>> {
+    - command
+}
+
+class receiver as "Bank Account" <<Receiver>> {
+    + withdraw(amount: int): void
+    + deposit(amount: int): void
+}
+
+command <|.. withdraw_command: > implements
+command <|.. deposit_command: > implements
+command -o invoker: < aggregates
+receiver -o command: < aggregates$$);
+call create_note_with_name('Behavioral Design Patterns in C++', 5, 'What is the structure of the command pattern?');
+
+call add_block('code', 'cpp', $$#include <iostream>
+
+class bank_account
+{
+private:
+    int m_balance;
+    int m_overdraft_limit;
+
+public:
+    explicit bank_account(): m_overdraft_limit{-500} { }
+    explicit bank_account(int balance, int overdraft_limit = -500): m_balance{balance}, m_overdraft_limit{overdraft_limit} { }
+
+    void withdraw(int amount) { m_balance-= amount; }
+    void deposit(int amount) { m_balance+= amount; }
+    int balance() const { return m_balance; }
+};
+
+class command
+{
+    virtual void execute() const = 0;
+};
+
+class withdraw_command: public command
+{
+private:
+    int amount;
+    bank_account& account;
+
+public:
+    explicit withdraw_command(bank_account& account, int const amount): amount{amount}, account{account} { }
+
+    void execute() const override { account.withdraw(amount); }
+};
+
+class deposit_command: public command
+{
+private:
+    int amount;
+    bank_account& account;
+
+public:
+    explicit deposit_command(bank_account& account, int const amount): amount{amount}, account{account} { }
+
+    void execute() const override { account.deposit(amount); }
+};
+
+int main()
+{
+    bank_account account{1000};
+    withdraw_command action{account, 10};
+    std::cout << account.balance() << std::endl; // 1000
+    action.execute();
+    std::cout << account.balance() << std::endl; // 990
+}$$);
+call create_note_with_name('Behavioral Design Patterns in C++', 5, 'Use command pattern to decouple invoker and receiver classes?');
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', $$$$);
+call create_note_with_name('Behavioral Design Patterns in C++', 5, '');
+
+call set_section_as_complete('Behavioral Design Patterns in C++', 5);
 --
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
