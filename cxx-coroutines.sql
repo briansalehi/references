@@ -218,5 +218,11 @@ call flashback.create_note_with_name('Mastering Modern CPP Features', 1, 'What r
 call flashback.add_block('', 'text', 'txt');
 call flashback.create_note_with_name('Mastering Modern CPP Features', 1, '');
 
+call flashback.add_block('', 'text', 'txt');
+call flashback.add_block('', 'code', 'cpp');
+call flashback.create_note_with_name('', 1, '');
+
+call set_section_as_completed('', 1);
+
 drop procedure add_block;
 drop table temp_blocks;
