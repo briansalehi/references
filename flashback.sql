@@ -11793,6 +11793,7 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10247	3915	The function `void unhandled_exception()` is the function that handles exceptions in a coroutine.	text	txt	2025-04-06 18:26:50.501418	1
 10248	3915	struct return_type\n{\n    struct promise_type\n    {\n        return_type get_return_object() { return {}; }\n        void return_void() { }\n        void unhandled_exception() { }\n    };\n};	code	cpp	2025-04-06 18:26:50.501418	2
 10249	3916	The functions `initial_suspend()` and `final_suspend()` are the customization points where allow us to execute some code when the coroutine first starts executing, and then shortly before the coroutine ends executing normally.	text	txt	2025-04-06 18:26:50.502427	1
+10286	3930	The configuration command which is only for configuration, and runtime functions which are the commands that can be performed on emails durin runtime.	text	txt	2025-05-03 22:26:42.982366	1
 10250	3916	struct return_type\n{\n    struct promise_type\n    {\n        return_type get_return_object() { return {}; }\n        void return_void() { }\n        void unhandled_exception() { }\n\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n    };\n};	code	cpp	2025-04-06 18:26:50.502427	2
 10251	3917	struct return_type\n{\n    struct promise_type\n    {\n    };\n};	code	cpp	2025-04-06 18:26:50.503655	1
 10252	3917	std::coroutine_traits<return_type, ...>\n{\n};	code	cpp	2025-04-06 18:26:50.503655	2
@@ -11826,9 +11827,60 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 10280	3928	return_type make_coroutine()\n{\n    co_yield 42;\n}	code	cpp	2025-04-06 18:26:50.518646	3
 10281	3928	int main()\n{\n    return_type coroutine = make_coroutine();\n    coroutine.print_value();\n}	code	cpp	2025-04-06 18:26:50.518646	4
 10282	3929	template<typename Promise>\nstruct value_type\n{\n    int value;\n    constexpr explicit value_type(int input): value{input} { }\n    constexpr bool await_ready() const noexcept { return false; }\n    constexpr void await_suspend(std::coroutine_handle<Promise> handle) const noexcept { handle.promise().number = value; }\n    constexpr void await_resume() const noexcept { }\n};	code	cpp	2025-04-06 18:26:50.520131	1
+10287	3931	set <var>=<value>	code	muttrc	2025-05-03 22:26:42.985292	1
+10288	3931	There is also another form of assignment only for yes/no values:	text	txt	2025-05-03 22:26:42.985292	2
 10283	3929	struct return_type\n{\n    struct promise_type\n    {\n        int number;\n        return_type get_return_object() { return return_type{std::coroutine_handle<promise_type>::from_promise(*this)}; }\n        void return_void() { }\n        void unhandled_exception() { }\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n        int yield_value(int value) { return value_type<promise_type>{input}; }\n    };\n    std::coroutine_handle<promise_type> handle;\n    return_type(std::coroutine_handle<promise_type> handle): handle{handle} { }\n    void print_value() { handle.resume(); std::cout << number << std::endl; }\n    void provide(int input) { handle.promise().number = input; handle.resume(); }\n};	code	cpp	2025-04-06 18:26:50.520131	2
 10284	3929	return_type make_coroutine()\n{\n    int value = co_await 42;\n}	code	cpp	2025-04-06 18:26:50.520131	3
 10285	3929	int main()\n{\n    return_type coroutine = make_coroutine();\n    coroutine.print_value();\n}	code	cpp	2025-04-06 18:26:50.520131	4
+10289	3931	toggle <var>	code	muttrc	2025-05-03 22:26:42.985292	3
+10290	3932	These two commands are applicable on variables defined by `toggle` command.	text	txt	2025-05-03 22:26:42.986983	1
+10291	3932	ask-yes	code	muttrc	2025-05-03 22:26:42.986983	2
+10292	3932	ask-no	code	muttrc	2025-05-03 22:26:42.986983	3
+10293	3932	User will be prompted each time with a given default answer.	text	txt	2025-05-03 22:26:42.986983	4
+10294	3933	These commands are only applicable to boolean variables as a shortcut and makes no sense for int and string variables as Mutt will only echo the current value.	text	txt	2025-05-03 22:26:42.988922	1
+10295	3933	unset <var>	code	muttrc	2025-05-03 22:26:42.988922	2
+10296	3933	set <var>	code	muttrc	2025-05-03 22:26:42.988922	3
+10297	3933	set no<var>	code	muttrc	2025-05-03 22:26:42.988922	4
+10298	3934	source <filename>	code	muttrc	2025-05-03 22:26:42.991771	1
+10299	3935	source "<command> |"	code	muttrc	2025-05-03 22:26:42.994522	1
+10300	3935	source "gpg --decrypt credentials |"	code	muttrc	2025-05-03 22:26:42.994522	2
+10301	3935	When the filename argument of `source` command ends with pipe character, then the content is not evaluated literally, but executed as system shell command, and the output is taken as muttrc commands. This is useful to dynamically change config at runtime on complex or external conditions.	text	txt	2025-05-03 22:26:42.994522	3
+10302	3936	:	code	muttrc	2025-05-03 22:26:42.996738	1
+10303	3936	This command reloads the whole config when you specify the main rc file.	text	txt	2025-05-03 22:26:42.996738	2
+10304	3937	mailboxes <folder> ...	code	muttrc	2025-05-03 22:26:42.999002	1
+10305	3938	my_hdr <string>	code	muttrc	2025-05-03 22:26:43.000796	1
+10306	3939	The list should be comma separated.	text	txt	2025-05-03 22:26:43.002619	1
+10307	3939	alias <short address> <long address> , ...	code	muttrc	2025-05-03 22:26:43.002619	2
+10308	3940	When checking headers for managing different addresses on the same host, you should let mutt know how to identify you:	text	txt	2025-05-03 22:26:43.003798	1
+10309	3940	alternates <regexp> ...	code	muttrc	2025-05-03 22:26:43.003798	2
+10310	3941	list <regexp> ...	code	muttrc	2025-05-03 22:26:43.004873	1
+10311	3941	subscribe <regexp> ...	code	muttrc	2025-05-03 22:26:43.004873	2
+10312	3942	color <object> <foreground color> <background color> [pattern]	code	muttrc	2025-05-03 22:26:43.005821	1
+10313	3943	ignore <regex> ...	code	muttrc	2025-05-03 22:26:43.006922	1
+10314	3943	unignore <regex> ...	code	muttrc	2025-05-03 22:26:43.006922	2
+10315	3944	hdr_order <pattern> ...	code	muttrc	2025-05-03 22:26:43.007903	1
+10316	3945	There is no need to surround the function with `<>` in `bind` and `exec`.	text	txt	2025-05-03 22:26:43.00897	1
+10317	3945	bind <mode> <key> <function>	code	muttrc	2025-05-03 22:26:43.00897	2
+10318	3946	Use literal `<>` around function names for `macro` and `push`. To use `<` literal character escape it.	text	txt	2025-05-03 22:26:43.010065	1
+10319	3946	macro <mode> <key> <sequence> [description]	code	muttrc	2025-05-03 22:26:43.010065	2
+10320	3947	There is no need to surround the function with `<>` in `bind` and `exec`.	text	txt	2025-05-03 22:26:43.011182	1
+10321	3947	exec <function> ...	code	muttrc	2025-05-03 22:26:43.011182	2
+10322	3947	No input data for dialogs are allowed in this context.	text	txt	2025-05-03 22:26:43.011182	3
+10323	3948	Use literal `<>` around function names for `macro` and `push`. To use `<` literal character escape it.	text	txt	2025-05-03 22:26:43.012253	1
+10324	3948	This command includes input to dialogs and functions.	text	txt	2025-05-03 22:26:43.012253	2
+10325	3948	push <sequence>	code	muttrc	2025-05-03 22:26:43.012253	3
+10326	3949	`regexp` are extended regular expressions, `mutt-pattern` are regexp with mutt-specific modifiers preceeding them.	text	txt	2025-05-03 22:26:43.013197	1
+10327	3949	"~f eMail.*@.*adr$"	code	muttrc	2025-05-03 22:26:43.013197	2
+10328	3950	`regexp`, `mutt-pattern`, `mutt-command` are 3 different levels of patterns, each having their own special characters that have to be escaped when their literal characters are intented to be used. Depending on the level, you should escape them many times as needed until the intended level can see it as literal.	text	txt	2025-05-03 22:26:43.014128	1
+10329	3951	`regexp`: `(|).*+?[]{}\\\\^$`	text	txt	2025-05-03 22:26:43.015266	1
+10330	3951	`mutt-pattern`: `(|)!~\\\\"'` and `WSPC`	text	txt	2025-05-03 22:26:43.015266	2
+10331	3951	`mutt-command`: `;#\\`\\\\'"$` and `WSPC`	text	txt	2025-05-03 22:26:43.015266	3
+10332	3952	;	code	muttrc	2025-05-03 22:26:43.016218	1
+10333	3953	# comment	code	muttrc	2025-05-03 22:26:43.01722	1
+10334	3954	Legal shell variable name can only be used.	text	txt	2025-05-03 22:26:43.018217	1
+10335	3954	$EDITOR	code	muttrc	2025-05-03 22:26:43.018217	2
+10336	3955	WSPC characters are either space or tab and they separate arguments from commands, or separate patterns from each other.	text	txt	2025-05-03 22:26:43.019159	1
+10337	3956	Every character between a pair of single quotes or double quotes is literal, except with double quotes which will not quote shell variables and command substitutions, unless quoted with backslash.	text	txt	2025-05-03 22:26:43.02011	1
 \.
 
 
@@ -15910,6 +15962,33 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 3927	1670	What interface should values have in order to be usable by coroutines?	open	2025-04-06 18:26:50.51744	2025-04-06 18:26:50.51744	0
 3928	1670	Get a value out of coroutine?	open	2025-04-06 18:26:50.518646	2025-04-06 18:26:50.518646	0
 3929	1670	Put a value into coroutine?	open	2025-04-06 18:26:50.520131	2025-04-06 18:26:50.520131	0
+3930	1674	How many command types exist in Mutt?	open	2025-05-03 22:26:42.982366	2025-05-03 22:26:42.982366	0
+3931	1674	What is the syntax of assigning a variable in configuration?	open	2025-05-03 22:26:42.985292	2025-05-03 22:26:42.985292	0
+3932	1674	What command prompts user to take yes or no answer?	open	2025-05-03 22:26:42.986983	2025-05-03 22:26:42.986983	0
+3933	1674	Remove a variable in configuration?	open	2025-05-03 22:26:42.988922	2025-05-03 22:26:42.988922	0
+3934	1674	Include the configuration contents from a separate path inside a configuration file?	open	2025-05-03 22:26:42.991771	2025-05-03 22:26:42.991771	0
+3935	1674	Take the output of an external shell command as muttrc commands?	open	2025-05-03 22:26:42.994522	2025-05-03 22:26:42.994522	0
+3936	1674	Execute configuration commands from main config file on runtime?	open	2025-05-03 22:26:42.996738	2025-05-03 22:26:42.996738	0
+3937	1674	Define the path mutt should treat as incoming mailboxes?	open	2025-05-03 22:26:42.999002	2025-05-03 22:26:42.999002	0
+3938	1674	Define the standard or user defined headers to be overwritten to outgoing emails?	open	2025-05-03 22:26:43.000796	2025-05-03 22:26:43.000796	0
+3939	1674	Define aliases to a long email address?	open	2025-05-03 22:26:43.002619	2025-05-03 22:26:43.002619	0
+3940	1674	Introduce the addresses by which you should be known to mutt?	open	2025-05-03 22:26:43.003798	2025-05-03 22:26:43.003798	0
+3941	1674	Specify addresses to be recognized as mailing lists where your address does not appear as recipient?	open	2025-05-03 22:26:43.004873	2025-05-03 22:26:43.004873	0
+3942	1674	What is the syntax for colorizing elements in the mutt environment?	open	2025-05-03 22:26:43.005821	2025-05-03 22:26:43.005821	0
+3943	1674	Hide headers with specific patterns in them?	open	2025-05-03 22:26:43.006922	2025-05-03 22:26:43.006922	0
+3944	1674	Order headers in a specific pattern?	open	2025-05-03 22:26:43.007903	2025-05-03 22:26:43.007903	0
+3945	1674	Invoke a single function by assigning a key-binding?	open	2025-05-03 22:26:43.00897	2025-05-03 22:26:43.00897	0
+3946	1674	Bind a series of key-strikes or functions to a single key?	open	2025-05-03 22:26:43.010065	2025-05-03 22:26:43.010065	0
+3947	1674	Execute a series of functions in configuration?	open	2025-05-03 22:26:43.011182	2025-05-03 22:26:43.011182	0
+3948	1674	Execute a series of key-strikes in configuration?	open	2025-05-03 22:26:43.012253	2025-05-03 22:26:43.012253	0
+3949	1674	What are the differences between regexp and mutt-pattern?	open	2025-05-03 22:26:43.013197	2025-05-03 22:26:43.013197	0
+3950	1674	When do we need to quote special characters?	open	2025-05-03 22:26:43.014128	2025-05-03 22:26:43.014128	0
+3951	1674	What are the special characters on each level of patterns in mutt configuration?	open	2025-05-03 22:26:43.015266	2025-05-03 22:26:43.015266	0
+3952	1674	Separate multiple commands in mutt command?	open	2025-05-03 22:26:43.016218	2025-05-03 22:26:43.016218	0
+3953	1674	Write a comment in mutt configuration?	open	2025-05-03 22:26:43.01722	2025-05-03 22:26:43.01722	0
+3954	1674	Use a shell variable inside mutt configuration?	open	2025-05-03 22:26:43.018217	2025-05-03 22:26:43.018217	0
+3955	1674	What are the white space characters in mutt configuration?	open	2025-05-03 22:26:43.019159	2025-05-03 22:26:43.019159	0
+3956	1674	What are the quoting characters in mutt configuration?	open	2025-05-03 22:26:43.02011	2025-05-03 22:26:43.02011	0
 \.
 
 
@@ -22205,6 +22284,7 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 12	LinkedIn Course: C++ Design Patterns: Creational	https://www.linkedin.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	1	Olivia Chiu Stone
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
+117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
 \.
 
 
@@ -23870,6 +23950,31 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 1609	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.439038	4
 1610	111	completed	\N	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.440622	5
 1670	116	completed	\N	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.52099	1
+1671	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	1
+1672	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	2
+1673	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	3
+1675	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	5
+1676	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	6
+1677	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	7
+1678	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	8
+1679	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	9
+1680	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	10
+1681	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	11
+1682	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	12
+1683	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	13
+1684	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	14
+1685	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	15
+1686	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	16
+1687	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	17
+1688	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	18
+1689	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	19
+1690	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	20
+1691	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	21
+1692	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	22
+1693	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	23
+1694	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	24
+1695	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	25
+1674	117	completed	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.021042	4
 \.
 
 
@@ -25513,6 +25618,7 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 1	1602	2025-02-22 20:56:43.554574
 1	458	2025-03-07 16:48:01.389522
 1	459	2025-03-07 19:38:21.385269
+1	1670	2025-05-03 19:01:00.811664
 \.
 
 
@@ -25643,6 +25749,7 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 27	114
 11	115
 6	116
+29	117
 \.
 
 
@@ -25710,6 +25817,7 @@ COPY flashback.subjects (id, name, creation, updated) FROM stdin;
 26	Yocto	2024-09-27 10:13:16.039172	2024-09-27 10:13:16.039172
 27	GitHub	2025-01-03 19:08:32.573019	2025-01-03 19:08:32.573019
 28	Vulkan	2025-01-11 23:05:47.863592	2025-01-11 23:05:47.863592
+29	Mutt	2025-05-03 19:02:51.097675	2025-05-03 19:02:51.097675
 \.
 
 
@@ -26235,7 +26343,7 @@ SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10285, true);
+SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10337, true);
 
 
 --
@@ -26263,7 +26371,7 @@ SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3929, true);
+SELECT pg_catalog.setval('flashback.notes_id_seq', 3956, true);
 
 
 --
@@ -26319,7 +26427,7 @@ SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 116, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 117, true);
 
 
 --
@@ -26340,7 +26448,7 @@ SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1670, true);
+SELECT pg_catalog.setval('flashback.sections_id_seq', 1695, true);
 
 
 --
@@ -26354,7 +26462,7 @@ SELECT pg_catalog.setval('flashback.subject_editing_id_seq', 1, false);
 -- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.subjects_id_seq', 28, true);
+SELECT pg_catalog.setval('flashback.subjects_id_seq', 29, true);
 
 
 --
