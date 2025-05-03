@@ -1,42 +1,37 @@
 create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
 create procedure add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
-call add_block('text', 'txt', 'CRTP is useful when we need some functionality of a derived type inside the base class.');
-call add_block('code', 'cpp', $$template<typename Derived>
-class base
-{
-public:
-    base() = default;
+call add_block('text', 'txt', 'CRTP is most useful when you want compile-time polymorphism, meaning you want a base class to call functions from the derived class without using virtual functions (no runtime overhead).');
+call create_note_with_name('Design Patterns in Modern C++20', 1, 'What are the use cases of Curiously Recurring Template Pattern?');
 
-    void show()
+call add_block('code', 'cpp', $$template<typename Iterative>
+struct non_iterative
+{
+    non_iterative()
     {
-        for (auto const& value: *static_cast<Derived*>(this))
+        for (auto const& item: *static_cast<Iterative*>(this))
         {
-            /* do something */
+            (void*) item;
         }
     }
 };
 
-class derived: public base<derived>
+struct iterative: public non_iterative<iterative>
 {
-public:
-    derived() = default;
-
     class iterator
     {
-        /* iterator implementation */
+        friend bool operator ==(iterator const&, iterator const&) { return true; }
+        friend iterator& operator ++(iterator& iter) { return iter; }
+        friend bool operator *(iterator const&) { return true; }
     };
 
-    iterator begin();
-    iterator end();
-    iterator cbegin() const;
-    iterator cend() const;
+    iterator begin() { return {}; }
+    iterator end() { return {}; }
 };
 
 int main()
 {
-    derived d{};
-    d.show();
+    non_iterative<iterative> range{};
 }$$);
 call add_block('text', 'txt', 'In this case, the base type does not provide begin and end methods, but the derived type does.');
 call add_block('text', 'txt', 'This pattern can be used in Composite pattern.');
