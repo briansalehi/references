@@ -1,5 +1,5 @@
-create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-create procedure add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
+create temp table temp_blocks(row_number serial, t_content text, t_type milestone.block_type, t_language varchar(10));
+create procedure add_block(type milestone.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
 call add_block('text', 'txt', 'Since C++17 the need to specify template arguments explicitly to class templates is relaxed.');
 call add_block('code', 'cpp', 'std::complex<double> c{4.2, 5.1}; // prior to C++17');

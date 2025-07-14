@@ -1,2 +1,2 @@
-create role flashback with login;
-create database flashback owner flashback;
+create role milestone with login;
+create database milestone owner milestone;
