@@ -16321,7 +16321,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 146	85	BitBake evaluates all available metadata, managing dynamic variable\nexpansion, dependencies, and code generation. In addition, it keeps track of\nall tasks to ensure their completion, maximizing the use of processing\nresources to reduce build time and predictability.	text	txt	2024-07-28 09:45:38.708148	2
 147	85	The source code is in the `bitbake` subdirectory of Poky.	text	txt	2024-07-28 09:45:38.720847	3
 148	86	The OpenEmbedded Core metadata collection provides the engine of the Poky\nbuild system. It provides the core features and aims to be generic and as\nlean as possible. It supports seven different processor architectures (ARM,\nARM64, x86, x86-64, PowerPC, PowerPC 64, MIPS, MIPS64, RISC-V32, and RISC-V\n64), only supporting platforms to be emulated by QEMU.	text	txt	2024-07-28 09:45:38.953016	1
-507	265	Data x = { .b = 2.4 };\n// x == { 0, 2.4, "" }	text	txt	2024-07-28 09:46:45.369545	4
 149	86	The OpenEmbedded Core houses its metadata inside the `meta` subdirectory of\nPoky.	text	txt	2024-07-28 09:45:38.966518	2
 150	87	The metadata includes recipes and configuration files. It is composed of a\nmix of Python and Shell Script text files, providing a tremendously flexible\ntool. Poky uses this metadata to extend OpenEmbedded Core.	text	txt	2024-07-28 09:45:39.197553	1
 151	87	BitBake uses these scripts to inform the steps needed to build, download the\nsource code and other tasks related to a specific software application or\nlibrary.	text	txt	2024-07-28 09:45:39.213218	2
@@ -16364,8 +16363,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 197	116	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Scalar{}`|\n|Copy constructor|`cv::Scalar{s}`|\n|Value constructor|`cv::Scalar{x0}` `cv::Scalar{x0, x1, x2, x3}`|\n|Element-wise multiplication|`s1.mul(s2)`|\n|Conjugation|`s.conj()`|\n|Real test|`s.isReal()`|\nThe size classes are similar to point classes, and can be cast to and from\nthem. The primary difference is that the point data members are named `x` and\n`y`, while the size data members are named `width` and `height`.	text	txt	2024-07-28 09:45:49.06236	1
 198	116	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Size{}` `cv::Size2i{}` `cv::Size2f{}`|\n|Copy constructor|`cv::Size{s}`|\n|Value constructor|`cv::Size2f{w, h}`|\n|Member access|`sz.width` `sz.height`|\n|Compute area|`sz.area()`|	text	txt	2024-07-28 09:45:49.082336	2
 199	117	Similar to `cv::Point` class there are `x` and `y` data members in `cv::Rect`\nclass. Additionally, there are `width` and `height` data members.	text	txt	2024-07-28 09:45:49.677004	1
-508	265	// Typical use case with default-heavy aggregate:\nstruct Configuration {\n    enum class options { enabled, disabled };\n    struct Coords { int x; int y; };	text	txt	2024-07-28 09:46:45.390553	5
-509	265	    options used_option = options::enabled;\n    std::string label = "default label";\n    Coords coords = { 10, 20 };\n};	text	txt	2024-07-28 09:46:45.411039	6
 200	117	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Rect{}`|\n|Copy constructor|`cv::Rect{r}`|\n|Value constructor|`cv::Rect{x, y, w, h}`|\n|Construct from origin and size|`cv::Rect{p, sz}`|\n|Construct from two corners|`cv::Rect{tl, br}`|\n|Member access|`r.x` `r.y` `r.width` `r.height`|\n|Compute area|`r.area()`|\n|Extract upper-left corner|`r.tl()`|\n|Extract bottom-right corner|`r.br()`|\n|Determine if a point is inside|`r.contains(p)`|\n|Intersection of rectangles|`r1 &= r2`|\n|Minimum area rectangle|`r1 |= r2`|\n|Translate rectangle by an amount|`r += x`|\n|Enlarge rectangle by size|`r += s`|\n|Compare rectangles for exact quality|`r1 == r2`|\n|Compare rectangles for inequality|`r1 != r2`|	text	txt	2024-07-28 09:45:49.699798	2
 201	118	A non-template class holding a `cv::Point2f` member called `center`, a\n`cv::Size2f` called `size`, and one additional `float` called `angle`, with\nthe latter representing the rotation of the rectangle around `center`.	text	txt	2024-07-28 09:45:50.142573	1
 202	118	|Operation|Example|\n|---|---|\n|Default constructor|`cv::RotatedRect{}`|\n|Copy constructor|`cv::RotatedRect{rr}`|\n|Value constructor|`cv::RotatedRect{p, sz, theta}`|\n|Construct from two corners|`cv::RotatedRect{p1, p2}`|\n|Member access|`rr.center` `rr.size` `rr.angle`|\n|Return a list of corners|`rr.points{pts[4]}`|	text	txt	2024-07-28 09:45:50.164594	2
@@ -16568,7 +16565,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 395	212	It should contain at least two commands:	text	txt	2024-07-28 09:46:25.080177	3
 396	212	cmake_minimum_required(VERSION <x.xx>)\nproject(<name> <OPTIONS>)	code	txt	2024-07-28 09:46:25.101148	4
 397	212	We also have an `add_subdirectory(api)` command to include another\n`CMakeListst.txt` file from the api directory to perform steps that are\nspecific to the API part of our application.	text	txt	2024-07-28 09:46:25.122426	5
-510	265	Configuration config = { .label = "some label" };\n// config == {options::enabled, "some label", {10, 20}};	text	txt	2024-07-28 09:46:45.431855	7
 3664	1169	#include <stdio.h>	text	txt	2024-07-28 09:55:26.401303	6
 398	213	Not that many: a script can be as complex as you like or an empty file.\nHowever, it is recommended that you call the `cmake_minimum_required()`\ncommand at the beginning of the script. This command tells CMake which\npolicies should be applied to subsequent commands in this project	text	txt	2024-07-28 09:46:25.455896	1
 399	213	When running scripts, CMake won't execute any of the usual stages (such as\nconfiguration or generation), and it won't use the cache.	text	txt	2024-07-28 09:46:25.476425	2
@@ -16638,17 +16634,13 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 469	256	sudo hotspot	code	txt	2024-07-28 09:46:39.001065	1
 484	260	- Literal constants\n- Constants defined by `const`\n- Constant expressions defined by `constexpr`\n- Immediate functions marked by `consteval`\n- Enumerations\n- Scoped Enumerations\n- Preprocessor macro `#define`	text	txt	2024-07-28 09:46:41.305457	1
 495	263	Before C++ direct list initialization deduced as `std::initializer_list<int>`\nbut since C++17 it is as `int`.	text	txt	2024-07-28 09:46:43.287337	1
-504	265	C++20 introduced designated initializers for aggregate initialization. This\nallows for better control over which elements of the aggregate will be\nexplicitly initialized.	text	txt	2024-07-28 09:46:45.307708	1
-505	265	#include <string>	text	txt	2024-07-28 09:46:45.328004	2
-506	265	struct Data {\n    int a;\n    double b;\n    std::string c;\n};	text	txt	2024-07-28 09:46:45.349071	3
 470	257	g++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.360787	1
 471	257	clang++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.381534	2
 485	261	const double pi = 22.0 / 7;	code	cpp	2024-07-28 09:46:41.547064	1
 497	264	Aggregate types can be initialized using special aggregate initialization.\nThis initializes members in their declaration order. Members that are not\nexplicitly initialized and do not have a default member initializer are\ninitialized using empty copy-list-initialization (i.e. `T x={}`).	text	txt	2024-07-28 09:46:44.264905	1
 486	262	* direct initialization initializes an object from an explicit set of\n  constructor arguments.\n* copy initialization initializes an object from another object.\n* brace initialization prevents narrowing conversion of data types.\n* all elements of list initialization should be of the same type.	text	txt	2024-07-28 09:46:42.687443	1
 496	263	auto x { 42 };\n// before C++17: std::initializer_list<int>\n// since C++17: int	code	cpp	2024-07-28 09:46:43.308841	2
-511	265	// A clunky but functional option for named agruments in C++\nstruct Arg { const std::string& label; int64_t id; };\nvoid some_func(Arg arg) {}	text	txt	2024-07-28 09:46:45.452174	8
-512	265	some_func({.label = config.label, .id = 42});	code	txt	2024-07-28 09:46:45.473004	9
+504	265	C++20 introduced designated initializers for aggregate initialization. This\nallows for better control over which elements of the aggregate will be\nexplicitly initialized.	text	txt	2024-07-28 09:46:45.307708	1
 513	266	void do_something();	text	txt	2024-07-28 09:46:45.903451	1
 514	266	int main()\n{\n    do_something();\n}	text	txt	2024-07-28 09:46:45.923765	2
 515	266	void do_something()\n{\n}	code	txt	2024-07-28 09:46:45.943087	3
@@ -19954,6 +19946,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3830	259	#include <iostream>\n\nint global_number = 42;\n\nint function()\n{\n    int local_number = 77;\n    return local_number;\n}\n\nint main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	cpp	2025-07-14 12:45:07.366694	1
 3837	262	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>\n\nvoid func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}\n\nvoid func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}\n\nint main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization\n\n    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};\n\n    func({1, 2, 3}); // call std::initializer_list<int> overload\n\n    std::vector v1{4}; // size = 1\n    std::vector v2(4); // size = 4\n\n    auto a = {42}; // std::initializer_list<int>\n    auto b{42}; // int\n    auto c = {4, 2}; //std::initializer_list<int>\n    auto d{4, 2}; // error, too many elements	code	cpp	2025-07-14 13:09:53.17377	2
 3842	264	#include <string>\n#include <vector>\n\nstruct Data\n{\n    int x;\n    double y;\n    std::string label = "Hello World!"; // only permitted since C++14\n    std::vector<int> arr;\n};\n\nstruct X\n{\n    int a;\n    int b;\n};\n\nstruct Y\n{\n    X x;\n    X y;\n};\n\n// Initialization is done in declaration order:\nData a = {10, 2.3};\n// a.x == 10, a.y == 2.3\n// a.label == "Hello World!", a.arr == std::vector<int>{}\n\n// Nested brackets can be omitted:\nY b = { 10, 20, 30 };\n// b.x == {10, 20}, b.y == {30, int{} == 0}	code	cpp	2025-07-14 16:42:58.546421	2
+3849	265	#include <string>\n\nstruct Data {\n    int a;\n    double b;\n    std::string c;\n};\n\nData x = { .b = 2.4 };\n// x == { 0, 2.4, "" }\n\n// Typical use case with default-heavy aggregate:\nstruct Configuration {\n    enum class options { enabled, disabled };\n    struct Coords { int x; int y; };\n\n    options used_option = options::enabled;\n    std::string label = "default label";\n    Coords coords = { 10, 20 };\n};\n\nConfiguration config = { .label = "some label" };\n// config == {options::enabled, "some label", {10, 20}};\n\n// A clunky but functional option for named agruments in C++\nstruct Arg { const std::string& label; int64_t id; };\nvoid some_func(Arg arg) {}\n\nsome_func({.label = config.label, .id = 42});	code	cpp	2025-07-14 21:19:18.235921	2
 \.
 
 
@@ -26583,7 +26576,7 @@ SELECT pg_catalog.setval('milestone.notes_id_seq', 3968, true);
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3842, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3849, true);
 
 
 --
