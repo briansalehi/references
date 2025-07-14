@@ -18,31 +18,31 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: flashback; Type: SCHEMA; Schema: -; Owner: flashback
+-- Name: milestone; Type: SCHEMA; Schema: -; Owner: milestone
 --
 
-CREATE SCHEMA flashback;
+CREATE SCHEMA milestone;
 
 
-ALTER SCHEMA flashback OWNER TO flashback;
+ALTER SCHEMA milestone OWNER TO milestone;
 
 --
--- Name: block_type; Type: TYPE; Schema: flashback; Owner: flashback
+-- Name: block_type; Type: TYPE; Schema: milestone; Owner: milestone
 --
 
-CREATE TYPE flashback.block_type AS ENUM (
+CREATE TYPE milestone.block_type AS ENUM (
     'text',
     'code'
 );
 
 
-ALTER TYPE flashback.block_type OWNER TO flashback;
+ALTER TYPE milestone.block_type OWNER TO milestone;
 
 --
--- Name: editing_action; Type: TYPE; Schema: flashback; Owner: flashback
+-- Name: editing_action; Type: TYPE; Schema: milestone; Owner: milestone
 --
 
-CREATE TYPE flashback.editing_action AS ENUM (
+CREATE TYPE milestone.editing_action AS ENUM (
     'create',
     'edit',
     'merge',
@@ -54,13 +54,13 @@ CREATE TYPE flashback.editing_action AS ENUM (
 );
 
 
-ALTER TYPE flashback.editing_action OWNER TO flashback;
+ALTER TYPE milestone.editing_action OWNER TO milestone;
 
 --
--- Name: publication_state; Type: TYPE; Schema: flashback; Owner: flashback
+-- Name: publication_state; Type: TYPE; Schema: milestone; Owner: milestone
 --
 
-CREATE TYPE flashback.publication_state AS ENUM (
+CREATE TYPE milestone.publication_state AS ENUM (
     'open',
     'writing',
     'completed',
@@ -72,13 +72,13 @@ CREATE TYPE flashback.publication_state AS ENUM (
 );
 
 
-ALTER TYPE flashback.publication_state OWNER TO flashback;
+ALTER TYPE milestone.publication_state OWNER TO milestone;
 
 --
--- Name: resource_type; Type: TYPE; Schema: flashback; Owner: flashback
+-- Name: resource_type; Type: TYPE; Schema: milestone; Owner: milestone
 --
 
-CREATE TYPE flashback.resource_type AS ENUM (
+CREATE TYPE milestone.resource_type AS ENUM (
     'unknown',
     'book',
     'website',
@@ -90,13 +90,13 @@ CREATE TYPE flashback.resource_type AS ENUM (
 );
 
 
-ALTER TYPE flashback.resource_type OWNER TO flashback;
+ALTER TYPE milestone.resource_type OWNER TO milestone;
 
 --
--- Name: user_state; Type: TYPE; Schema: flashback; Owner: flashback
+-- Name: user_state; Type: TYPE; Schema: milestone; Owner: milestone
 --
 
-CREATE TYPE flashback.user_state AS ENUM (
+CREATE TYPE milestone.user_state AS ENUM (
     'active',
     'deactivated',
     'removed',
@@ -104,13 +104,13 @@ CREATE TYPE flashback.user_state AS ENUM (
 );
 
 
-ALTER TYPE flashback.user_state OWNER TO flashback;
+ALTER TYPE milestone.user_state OWNER TO milestone;
 
 --
--- Name: add_section(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: add_section(integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.add_section(IN resource_index integer, IN reference_string character varying)
+CREATE PROCEDURE milestone.add_section(IN resource_index integer, IN reference_string character varying)
     LANGUAGE plpgsql
     AS $$
     declare last_section_number integer;
@@ -120,13 +120,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.add_section(IN resource_index integer, IN reference_string character varying) OWNER TO flashback;
+ALTER PROCEDURE milestone.add_section(IN resource_index integer, IN reference_string character varying) OWNER TO milestone;
 
 --
--- Name: create_note(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: create_note(integer, integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.create_note(IN resource_index integer, IN section_index integer, IN heading character varying)
+CREATE PROCEDURE milestone.create_note(IN resource_index integer, IN section_index integer, IN heading character varying)
     LANGUAGE plpgsql
     AS $$
 declare note_index integer;
@@ -144,13 +144,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.create_note(IN resource_index integer, IN section_index integer, IN heading character varying) OWNER TO flashback;
+ALTER PROCEDURE milestone.create_note(IN resource_index integer, IN section_index integer, IN heading character varying) OWNER TO milestone;
 
 --
--- Name: create_note_with_name(character varying, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: create_note_with_name(character varying, integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.create_note_with_name(IN resource_name character varying, IN section_number integer, IN heading character varying)
+CREATE PROCEDURE milestone.create_note_with_name(IN resource_name character varying, IN section_number integer, IN heading character varying)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
@@ -172,13 +172,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.create_note_with_name(IN resource_name character varying, IN section_number integer, IN heading character varying) OWNER TO flashback;
+ALTER PROCEDURE milestone.create_note_with_name(IN resource_name character varying, IN section_number integer, IN heading character varying) OWNER TO milestone;
 
 --
--- Name: create_practice(character varying, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: create_practice(character varying, character varying, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.create_practice(IN subject_name character varying, IN topic_name character varying, IN practice_heading character varying)
+CREATE PROCEDURE milestone.create_practice(IN subject_name character varying, IN topic_name character varying, IN practice_heading character varying)
     LANGUAGE plpgsql
     AS $$
 declare subject_index integer;
@@ -194,13 +194,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.create_practice(IN subject_name character varying, IN topic_name character varying, IN practice_heading character varying) OWNER TO flashback;
+ALTER PROCEDURE milestone.create_practice(IN subject_name character varying, IN topic_name character varying, IN practice_heading character varying) OWNER TO milestone;
 
 --
--- Name: create_resource(integer, character varying, flashback.resource_type, integer, integer, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: create_resource(integer, character varying, milestone.resource_type, integer, integer, character varying, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying DEFAULT NULL::character varying, IN leading_author_name character varying DEFAULT NULL::character varying)
+CREATE PROCEDURE milestone.create_resource(IN subject_index integer, IN name_string character varying, IN type_string milestone.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying DEFAULT NULL::character varying, IN leading_author_name character varying DEFAULT NULL::character varying)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
@@ -211,13 +211,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.create_resource(IN subject_index integer, IN name_string character varying, IN type_string flashback.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying, IN leading_author_name character varying) OWNER TO flashback;
+ALTER PROCEDURE milestone.create_resource(IN subject_index integer, IN name_string character varying, IN type_string milestone.resource_type, IN section_pattern_index integer, IN sections integer, IN resource_reference character varying, IN leading_author_name character varying) OWNER TO milestone;
 
 --
--- Name: create_user(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: create_user(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) RETURNS integer
+CREATE FUNCTION milestone.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare user_index integer;
@@ -231,13 +231,13 @@ end;
 $$;
 
 
-ALTER FUNCTION flashback.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) OWNER TO flashback;
+ALTER FUNCTION milestone.create_user(username_string character varying, email_string character varying, first_name_string character varying, middle_name_string character varying, last_name_string character varying) OWNER TO milestone;
 
 --
--- Name: export_resource(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: export_resource(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.export_resource(resource_index integer) RETURNS TABLE(section_index integer, note_index bigint, note text)
+CREATE FUNCTION milestone.export_resource(resource_index integer) RETURNS TABLE(section_index integer, note_index bigint, note text)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -251,13 +251,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.export_resource(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.export_resource(resource_index integer) OWNER TO milestone;
 
 --
--- Name: export_resource_by_name(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: export_resource_by_name(character varying); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.export_resource_by_name(resource_name character varying) RETURNS TABLE(section_index integer, note_index bigint, note text)
+CREATE FUNCTION milestone.export_resource_by_name(resource_name character varying) RETURNS TABLE(section_index integer, note_index bigint, note text)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
@@ -274,13 +274,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.export_resource_by_name(resource_name character varying) OWNER TO flashback;
+ALTER FUNCTION milestone.export_resource_by_name(resource_name character varying) OWNER TO milestone;
 
 --
--- Name: export_section(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: export_section(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.export_section(section_index integer) RETURNS TABLE(note_index bigint, note text)
+CREATE FUNCTION milestone.export_section(section_index integer) RETURNS TABLE(note_index bigint, note text)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -300,13 +300,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.export_section(section_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.export_section(section_index integer) OWNER TO milestone;
 
 --
--- Name: get_editing_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_editing_sections(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_editing_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state flashback.publication_state)
+CREATE FUNCTION milestone.get_editing_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state milestone.publication_state)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -320,13 +320,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_editing_sections(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_editing_sections(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_editor_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_editor_resources(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_editor_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, incomplete_sections bigint, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_editor_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, incomplete_sections bigint, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -340,13 +340,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_editor_resources(user_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_editor_resources(user_index integer) OWNER TO milestone;
 
 --
--- Name: get_note_blocks(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_note_blocks(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_note_blocks(note_index integer) RETURNS TABLE(id integer, block_position integer, content text, type flashback.block_type, language character varying, last_update timestamp without time zone)
+CREATE FUNCTION milestone.get_note_blocks(note_index integer) RETURNS TABLE(id integer, block_position integer, content text, type milestone.block_type, language character varying, last_update timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -357,13 +357,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_note_blocks(note_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_note_blocks(note_index integer) OWNER TO milestone;
 
 --
--- Name: get_practice_blocks(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_practice_blocks(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_practice_blocks(practice_index integer) RETURNS TABLE(id integer, block_position integer, content text, type flashback.block_type, language character varying, last_update timestamp without time zone)
+CREATE FUNCTION milestone.get_practice_blocks(practice_index integer) RETURNS TABLE(id integer, block_position integer, content text, type milestone.block_type, language character varying, last_update timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -374,13 +374,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_practice_blocks(practice_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_practice_blocks(practice_index integer) OWNER TO milestone;
 
 --
--- Name: get_resource_editing_notes(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_resource_editing_notes(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_resource_editing_notes(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section text, section_state flashback.publication_state, note_id integer, note_state flashback.publication_state, heading character varying, content text, last_edit timestamp without time zone)
+CREATE FUNCTION milestone.get_resource_editing_notes(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section text, section_state milestone.publication_state, note_id integer, note_state milestone.publication_state, heading character varying, content text, last_edit timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -396,13 +396,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_resource_editing_notes(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_resource_editing_notes(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_resource_study_notes(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_resource_study_notes(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_resource_study_notes(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section text, section_state flashback.publication_state, note_id integer, note_state flashback.publication_state, heading character varying, content text, last_edit timestamp without time zone)
+CREATE FUNCTION milestone.get_resource_study_notes(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section text, section_state milestone.publication_state, note_id integer, note_state milestone.publication_state, heading character varying, content text, last_edit timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -418,35 +418,35 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_resource_study_notes(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_resource_study_notes(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_section_name_patterns(); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_section_name_patterns(); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_section_name_patterns() RETURNS TABLE(id integer, pattern character varying)
+CREATE FUNCTION milestone.get_section_name_patterns() RETURNS TABLE(id integer, pattern character varying)
     LANGUAGE plpgsql
     AS $$ begin return query select p.id, p.pattern from flashback.section_name_patterns p; end; $$;
 
 
-ALTER FUNCTION flashback.get_section_name_patterns() OWNER TO flashback;
+ALTER FUNCTION milestone.get_section_name_patterns() OWNER TO milestone;
 
 --
--- Name: get_section_pattern(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_section_pattern(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_section_pattern(resource_index integer) RETURNS TABLE(pattern character varying)
+CREATE FUNCTION milestone.get_section_pattern(resource_index integer) RETURNS TABLE(pattern character varying)
     LANGUAGE plpgsql
     AS $$ begin return query select p.pattern from resources r join section_name_patterns p on r.section_pattern_id = p.id where r.id = resource_index; end; $$;
 
 
-ALTER FUNCTION flashback.get_section_pattern(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_section_pattern(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_section_study_notes(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_section_study_notes(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_section_study_notes(section_index integer) RETURNS TABLE(note_id integer, note_state flashback.publication_state, heading character varying, content text, creation timestamp without time zone, last_update timestamp without time zone)
+CREATE FUNCTION milestone.get_section_study_notes(section_index integer) RETURNS TABLE(note_id integer, note_state milestone.publication_state, heading character varying, content text, creation timestamp without time zone, last_update timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -459,13 +459,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_section_study_notes(section_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_section_study_notes(section_index integer) OWNER TO milestone;
 
 --
--- Name: get_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_sections(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state flashback.publication_state)
+CREATE FUNCTION milestone.get_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state milestone.publication_state)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -479,13 +479,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_sections(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_sections(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_studying_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_studying_sections(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_studying_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state flashback.publication_state)
+CREATE FUNCTION milestone.get_studying_sections(resource_index integer) RETURNS TABLE(section_id integer, section_number integer, section_state milestone.publication_state)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -499,13 +499,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.get_studying_sections(resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_studying_sections(resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_note_blocks(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_note_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_note_blocks(user_index integer, section_index integer) RETURNS TABLE(note_id integer, block_id integer, pos integer, content text, type flashback.block_type, language character varying, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_note_blocks(user_index integer, section_index integer) RETURNS TABLE(note_id integer, block_id integer, pos integer, content text, type milestone.block_type, language character varying, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -518,13 +518,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_note_blocks(user_index integer, section_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_note_blocks(user_index integer, section_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_notes(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_notes(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_notes(user_index integer, section_index integer) RETURNS TABLE(id integer, heading character varying, state flashback.publication_state, updated timestamp without time zone, creation timestamp without time zone)
+CREATE FUNCTION milestone.get_user_notes(user_index integer, section_index integer) RETURNS TABLE(id integer, heading character varying, state milestone.publication_state, updated timestamp without time zone, creation timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -536,13 +536,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_notes(user_index integer, section_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_notes(user_index integer, section_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_practice_blocks(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_practice_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_practice_blocks(user_index integer, topic_index integer) RETURNS TABLE(practice_id integer, block_id integer, heading character varying, block text, type flashback.block_type, language character varying, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_practice_blocks(user_index integer, topic_index integer) RETURNS TABLE(practice_id integer, block_id integer, heading character varying, block text, type milestone.block_type, language character varying, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -556,13 +556,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_practice_blocks(user_index integer, topic_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_practice_blocks(user_index integer, topic_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_practices(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_practices(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_practices(user_index integer, topic_index integer) RETURNS TABLE(id integer, heading character varying, pos integer, content text, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_practices(user_index integer, topic_index integer) RETURNS TABLE(id integer, heading character varying, pos integer, content text, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -576,13 +576,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_practices(user_index integer, topic_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_practices(user_index integer, topic_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_sections(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_sections(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_sections(user_index integer, resource_index integer) RETURNS TABLE(id integer, pattern_id integer, section_number integer, notes bigint, state flashback.publication_state, reference character varying, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_sections(user_index integer, resource_index integer) RETURNS TABLE(id integer, pattern_id integer, section_number integer, notes bigint, state milestone.publication_state, reference character varying, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -597,13 +597,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_sections(user_index integer, resource_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_sections(user_index integer, resource_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_studying_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_studying_resources(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_studying_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, incomplete_sections bigint, completed_sections bigint, total_sections bigint, last_study timestamp without time zone)
+CREATE FUNCTION milestone.get_user_studying_resources(user_index integer) RETURNS TABLE(resource_id integer, subject_id integer, resource character varying, incomplete_sections bigint, completed_sections bigint, total_sections bigint, last_study timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -623,13 +623,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_studying_resources(user_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_studying_resources(user_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_subjects(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_subjects(user_index integer) RETURNS TABLE(id integer, name character varying, topics bigint, resources bigint, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_subjects(user_index integer) RETURNS TABLE(id integer, name character varying, topics bigint, resources bigint, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -644,13 +644,13 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_subjects(user_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_subjects(user_index integer) OWNER TO milestone;
 
 --
--- Name: get_user_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user_topics(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.get_user_topics(user_index integer, subject_index integer) RETURNS TABLE(subject_id integer, topic_id integer, topic_position integer, name character varying, practices bigint, updated timestamp without time zone)
+CREATE FUNCTION milestone.get_user_topics(user_index integer, subject_index integer) RETURNS TABLE(subject_id integer, topic_id integer, topic_position integer, name character varying, practices bigint, updated timestamp without time zone)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -665,35 +665,179 @@ begin
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user_topics(user_index integer, subject_index integer) OWNER TO flashback;
+ALTER FUNCTION milestone.get_user_topics(user_index integer, subject_index integer) OWNER TO milestone;
 
 --
--- Name: search_subject(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: merge_note_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.search_subject(pattern character varying) RETURNS TABLE(id integer, name character varying)
+CREATE FUNCTION milestone.merge_note_blocks(upper integer, lower integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare
+    upper_note integer;
+    lower_note integer;
+    upper_position integer;
+    lower_position integer;
+    swap_position integer;
+    lower_type block_type;
+    lower_language varchar(10);
+    block integer;
+begin
+    if upper_position = lower_position then
+        return 0;
+    end if;
+
+    if upper_position > lower_position then
+        swap_position = upper_position;
+        upper_position = lower_position;
+        lower_position = swap_position;
+    end if;
+
+    -- collect first block info
+    select note_id, position
+    into upper_note, upper_position
+    from note_blocks where id = upper;
+
+    -- collect second block info
+    select note_id, position, type, language
+    into lower_note, lower_position, lower_type, lower_language
+    from note_blocks where id = lower;
+
+    if upper_note <> lower_note then
+        raise exception 'Uncommon card between blocks % and %', upper, lower;
+    end if;
+
+    -- find the top free position of this note for swapping
+    select max(position) + 1 into swap_position
+    from note_blocks where note_id = upper_note;
+
+    -- create a new record on the top most position
+    insert into note_blocks (note_id, content, type, language, position)
+    select upper_note, string_agg(coalesce(content, ''), E'\n\n' order by position), lower_type, lower_language, swap_position
+    from note_blocks where id in (upper, lower)
+    returning id into block;
+
+    -- remove the two merged blocks
+    delete from note_blocks where id in (upper, lower);
+
+    -- move the newly created block into the top most position
+    update note_blocks set position = lower_position where id = block;
+
+    -- reorder positions from top to bottom for a note
+    update note_blocks pb set position = sub.position
+    from (
+        select id, row_number() over (order by position) as position
+        from note_blocks where note_id = upper_note
+    ) sub
+    where pb.id = sub.id;
+
+    return block;
+end;
+$$;
+
+
+ALTER FUNCTION milestone.merge_note_blocks(upper integer, lower integer) OWNER TO milestone;
+
+--
+-- Name: merge_practice_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
+--
+
+CREATE FUNCTION milestone.merge_practice_blocks(upper integer, lower integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare
+    upper_practice integer;
+    lower_practice integer;
+    upper_position integer;
+    lower_position integer;
+    swap_position integer;
+    lower_type block_type;
+    lower_language varchar(10);
+    block integer;
+begin
+    if upper_position = lower_position then
+        return 0;
+    end if;
+
+    if upper_position > lower_position then
+        swap_position := upper_position;
+        upper_position := lower_position;
+        lower_position := swap_position;
+    end if;
+
+    -- collect first block info
+    select practice_id, position
+    into upper_practice, upper_position
+    from practice_blocks where id = upper;
+
+    -- collect second block info
+    select practice_id, position, type, language
+    into lower_practice, lower_position, lower_type, lower_language
+    from practice_blocks where id = lower;
+
+    if upper_practice <> lower_practice then
+        raise exception 'Uncommon card between blocks % and %', upper, lower;
+    end if;
+
+    -- find the top free position of this practice for swapping
+    select max(position) + 1 into swap_position
+    from practice_blocks where practice_id = upper_practice;
+
+    -- create a new record on the top most position
+    insert into practice_blocks (practice_id, content, type, language, position)
+    select upper_practice, string_agg(coalesce(content, ''), E'\n\n' order by position), lower_type, lower_language, swap_position
+    from practice_blocks where id in (upper, lower)
+    returning id into block;
+
+    -- remove the two merged blocks
+    delete from practice_blocks where id in (upper, lower);
+
+    -- move the newly created block into the top most position
+    update practice_blocks set position = lower_position where id = block;
+
+    -- reorder positions from top to bottom for a practice
+    update practice_blocks pb set position = sub.position
+    from (
+        select id, row_number() over (order by position) as position
+        from practice_blocks where practice_id = upper_practice
+    ) sub
+    where pb.id = sub.id;
+
+    return block;
+end;
+$$;
+
+
+ALTER FUNCTION milestone.merge_practice_blocks(upper integer, lower integer) OWNER TO milestone;
+
+--
+-- Name: search_subject(character varying); Type: FUNCTION; Schema: milestone; Owner: milestone
+--
+
+CREATE FUNCTION milestone.search_subject(pattern character varying) RETURNS TABLE(id integer, name character varying)
     LANGUAGE plpgsql
     AS $$ begin return query select s.id, s.name from flashback.subjects s where s.name like format('%%%s%%', pattern); end; $$;
 
 
-ALTER FUNCTION flashback.search_subject(pattern character varying) OWNER TO flashback;
+ALTER FUNCTION milestone.search_subject(pattern character varying) OWNER TO milestone;
 
 --
--- Name: section_study_completed(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: section_study_completed(integer, integer); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.section_study_completed(IN user_index integer, IN section_index integer)
+CREATE PROCEDURE milestone.section_study_completed(IN user_index integer, IN section_index integer)
     LANGUAGE plpgsql
     AS $$ begin update flashback.studies set updated = now() where user_id = user_index and section_id = section_index; end; $$;
 
 
-ALTER PROCEDURE flashback.section_study_completed(IN user_index integer, IN section_index integer) OWNER TO flashback;
+ALTER PROCEDURE milestone.section_study_completed(IN user_index integer, IN section_index integer) OWNER TO milestone;
 
 --
--- Name: set_section_as_complete(character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: set_section_as_complete(character varying, integer); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.set_section_as_complete(IN resource_name character varying, IN section_number integer)
+CREATE PROCEDURE milestone.set_section_as_complete(IN resource_name character varying, IN section_number integer)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
@@ -705,13 +849,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.set_section_as_complete(IN resource_name character varying, IN section_number integer) OWNER TO flashback;
+ALTER PROCEDURE milestone.set_section_as_complete(IN resource_name character varying, IN section_number integer) OWNER TO milestone;
 
 --
--- Name: set_section_as_complete_id(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: set_section_as_complete_id(integer, integer); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.set_section_as_complete_id(IN resource_index integer, IN section_number integer)
+CREATE PROCEDURE milestone.set_section_as_complete_id(IN resource_index integer, IN section_number integer)
     LANGUAGE plpgsql
     AS $$
 declare section_index integer;
@@ -721,13 +865,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.set_section_as_complete_id(IN resource_index integer, IN section_number integer) OWNER TO flashback;
+ALTER PROCEDURE milestone.set_section_as_complete_id(IN resource_index integer, IN section_number integer) OWNER TO milestone;
 
 --
--- Name: set_section_as_ignored(character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: set_section_as_ignored(character varying, integer); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.set_section_as_ignored(IN resource_name character varying, IN section_number integer)
+CREATE PROCEDURE milestone.set_section_as_ignored(IN resource_name character varying, IN section_number integer)
     LANGUAGE plpgsql
     AS $$
 declare resource_index integer;
@@ -739,13 +883,13 @@ begin
 end; $$;
 
 
-ALTER PROCEDURE flashback.set_section_as_ignored(IN resource_name character varying, IN section_number integer) OWNER TO flashback;
+ALTER PROCEDURE milestone.set_section_as_ignored(IN resource_name character varying, IN section_number integer) OWNER TO milestone;
 
 --
--- Name: user_login(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: user_login(character varying, character varying); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.user_login(identifier character varying, passphrase character varying) RETURNS character varying
+CREATE FUNCTION milestone.user_login(identifier character varying, passphrase character varying) RETURNS character varying
     LANGUAGE plpgsql
     AS $$
 declare user_index integer := 0;
@@ -763,13 +907,13 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.user_login(identifier character varying, passphrase character varying) OWNER TO flashback;
+ALTER FUNCTION milestone.user_login(identifier character varying, passphrase character varying) OWNER TO milestone;
 
 --
--- Name: user_starts_reading(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: user_starts_reading(integer, integer); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE flashback.user_starts_reading(IN user_index integer, IN section_index integer)
+CREATE PROCEDURE milestone.user_starts_reading(IN user_index integer, IN section_index integer)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -777,13 +921,13 @@ begin
 end $$;
 
 
-ALTER PROCEDURE flashback.user_starts_reading(IN user_index integer, IN section_index integer) OWNER TO flashback;
+ALTER PROCEDURE milestone.user_starts_reading(IN user_index integer, IN section_index integer) OWNER TO milestone;
 
 --
--- Name: validate_user_session(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: validate_user_session(integer, character varying); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
-CREATE FUNCTION flashback.validate_user_session(user_index integer, session_string character varying) RETURNS boolean
+CREATE FUNCTION milestone.validate_user_session(user_index integer, session_string character varying) RETURNS boolean
     LANGUAGE plpgsql
     AS $$
 declare is_valid boolean := false;
@@ -793,17 +937,17 @@ begin
 end $$;
 
 
-ALTER FUNCTION flashback.validate_user_session(user_index integer, session_string character varying) OWNER TO flashback;
+ALTER FUNCTION milestone.validate_user_session(user_index integer, session_string character varying) OWNER TO milestone;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: container_templates; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: container_templates; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.container_templates (
+CREATE TABLE milestone.container_templates (
     id integer NOT NULL,
     name character varying(40) NOT NULL,
     content text,
@@ -812,14 +956,14 @@ CREATE TABLE flashback.container_templates (
 );
 
 
-ALTER TABLE flashback.container_templates OWNER TO flashback;
+ALTER TABLE milestone.container_templates OWNER TO milestone;
 
 --
--- Name: container_templates_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: container_templates_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.container_templates ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.container_templates_id_seq
+ALTER TABLE milestone.container_templates ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.container_templates_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -829,10 +973,10 @@ ALTER TABLE flashback.container_templates ALTER COLUMN id ADD GENERATED ALWAYS A
 
 
 --
--- Name: containers; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: containers; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.containers (
+CREATE TABLE milestone.containers (
     id integer NOT NULL,
     template_id integer,
     name character varying(40) NOT NULL,
@@ -843,14 +987,14 @@ CREATE TABLE flashback.containers (
 );
 
 
-ALTER TABLE flashback.containers OWNER TO flashback;
+ALTER TABLE milestone.containers OWNER TO milestone;
 
 --
--- Name: containers_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: containers_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.containers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.containers_id_seq
+ALTER TABLE milestone.containers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.containers_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -860,10 +1004,10 @@ ALTER TABLE flashback.containers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTIT
 
 
 --
--- Name: credentials; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: credentials; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.credentials (
+CREATE TABLE milestone.credentials (
     id integer NOT NULL,
     user_id integer,
     hash character varying(4096) NOT NULL,
@@ -871,14 +1015,14 @@ CREATE TABLE flashback.credentials (
 );
 
 
-ALTER TABLE flashback.credentials OWNER TO flashback;
+ALTER TABLE milestone.credentials OWNER TO milestone;
 
 --
--- Name: credentials_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: credentials_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.credentials ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.credentials_id_seq
+ALTER TABLE milestone.credentials ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.credentials_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -888,10 +1032,10 @@ ALTER TABLE flashback.credentials ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTI
 
 
 --
--- Name: logins; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: logins; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.logins (
+CREATE TABLE milestone.logins (
     id integer NOT NULL,
     user_id integer,
     session character varying(1000) NOT NULL,
@@ -900,14 +1044,14 @@ CREATE TABLE flashback.logins (
 );
 
 
-ALTER TABLE flashback.logins OWNER TO flashback;
+ALTER TABLE milestone.logins OWNER TO milestone;
 
 --
--- Name: logins_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: logins_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.logins ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.logins_id_seq
+ALTER TABLE milestone.logins ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.logins_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -917,28 +1061,28 @@ ALTER TABLE flashback.logins ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: note_blocks; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: note_blocks; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.note_blocks (
+CREATE TABLE milestone.note_blocks (
     id integer NOT NULL,
     note_id integer,
     content text,
-    type flashback.block_type DEFAULT 'text'::flashback.block_type NOT NULL,
+    type milestone.block_type DEFAULT 'text'::milestone.block_type NOT NULL,
     language character varying(10) NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL,
     "position" integer DEFAULT 0 NOT NULL
 );
 
 
-ALTER TABLE flashback.note_blocks OWNER TO flashback;
+ALTER TABLE milestone.note_blocks OWNER TO milestone;
 
 --
--- Name: note_blocks_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: note_blocks_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.note_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.note_blocks_id_seq
+ALTER TABLE milestone.note_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.note_blocks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -948,26 +1092,26 @@ ALTER TABLE flashback.note_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTI
 
 
 --
--- Name: note_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: note_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.note_editing (
+CREATE TABLE milestone.note_editing (
     id integer NOT NULL,
     user_id integer,
     note_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.note_editing OWNER TO flashback;
+ALTER TABLE milestone.note_editing OWNER TO milestone;
 
 --
--- Name: note_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: note_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.note_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.note_editing_id_seq
+ALTER TABLE milestone.note_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.note_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -977,26 +1121,26 @@ ALTER TABLE flashback.note_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENT
 
 
 --
--- Name: note_references; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: note_references; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.note_references (
+CREATE TABLE milestone.note_references (
     id integer NOT NULL,
     note_id integer,
     origin character varying(2000) NOT NULL,
-    type flashback.resource_type DEFAULT 'unknown'::flashback.resource_type NOT NULL,
+    type milestone.resource_type DEFAULT 'unknown'::milestone.resource_type NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.note_references OWNER TO flashback;
+ALTER TABLE milestone.note_references OWNER TO milestone;
 
 --
--- Name: note_references_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: note_references_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.note_references ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.note_references_id_seq
+ALTER TABLE milestone.note_references ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.note_references_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1006,10 +1150,10 @@ ALTER TABLE flashback.note_references ALTER COLUMN id ADD GENERATED ALWAYS AS ID
 
 
 --
--- Name: note_usage; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: note_usage; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.note_usage (
+CREATE TABLE milestone.note_usage (
     id integer NOT NULL,
     user_id integer,
     note_id integer,
@@ -1018,14 +1162,14 @@ CREATE TABLE flashback.note_usage (
 );
 
 
-ALTER TABLE flashback.note_usage OWNER TO flashback;
+ALTER TABLE milestone.note_usage OWNER TO milestone;
 
 --
--- Name: note_usage_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: note_usage_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.note_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.note_usage_id_seq
+ALTER TABLE milestone.note_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.note_usage_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1035,28 +1179,28 @@ ALTER TABLE flashback.note_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTIT
 
 
 --
--- Name: notes; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: notes; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.notes (
+CREATE TABLE milestone.notes (
     id integer NOT NULL,
     section_id integer,
     heading character varying(400) NOT NULL,
-    state flashback.publication_state DEFAULT 'open'::flashback.publication_state NOT NULL,
+    state milestone.publication_state DEFAULT 'open'::milestone.publication_state NOT NULL,
     creation timestamp without time zone DEFAULT now() NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL,
     number integer DEFAULT 0 NOT NULL
 );
 
 
-ALTER TABLE flashback.notes OWNER TO flashback;
+ALTER TABLE milestone.notes OWNER TO milestone;
 
 --
--- Name: notes_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: notes_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.notes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.notes_id_seq
+ALTER TABLE milestone.notes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.notes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1066,28 +1210,28 @@ ALTER TABLE flashback.notes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: practice_blocks; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: practice_blocks; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.practice_blocks (
+CREATE TABLE milestone.practice_blocks (
     id integer NOT NULL,
     practice_id integer,
     content text,
-    type flashback.block_type DEFAULT 'text'::flashback.block_type NOT NULL,
+    type milestone.block_type DEFAULT 'text'::milestone.block_type NOT NULL,
     language character varying(10) NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL,
     "position" integer DEFAULT 0 NOT NULL
 );
 
 
-ALTER TABLE flashback.practice_blocks OWNER TO flashback;
+ALTER TABLE milestone.practice_blocks OWNER TO milestone;
 
 --
--- Name: practice_blocks_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: practice_blocks_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.practice_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.practice_blocks_id_seq
+ALTER TABLE milestone.practice_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.practice_blocks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1097,26 +1241,26 @@ ALTER TABLE flashback.practice_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS ID
 
 
 --
--- Name: practice_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: practice_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.practice_editing (
+CREATE TABLE milestone.practice_editing (
     id integer NOT NULL,
     user_id integer,
     practice_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.practice_editing OWNER TO flashback;
+ALTER TABLE milestone.practice_editing OWNER TO milestone;
 
 --
--- Name: practice_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: practice_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.practice_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.practice_editing_id_seq
+ALTER TABLE milestone.practice_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.practice_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1126,24 +1270,24 @@ ALTER TABLE flashback.practice_editing ALTER COLUMN id ADD GENERATED ALWAYS AS I
 
 
 --
--- Name: practice_resources; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: practice_resources; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.practice_resources (
+CREATE TABLE milestone.practice_resources (
     id integer NOT NULL,
     practice_id integer,
     section_id integer
 );
 
 
-ALTER TABLE flashback.practice_resources OWNER TO flashback;
+ALTER TABLE milestone.practice_resources OWNER TO milestone;
 
 --
--- Name: practice_resources_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: practice_resources_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.practice_resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.practice_resources_id_seq
+ALTER TABLE milestone.practice_resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.practice_resources_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1153,10 +1297,10 @@ ALTER TABLE flashback.practice_resources ALTER COLUMN id ADD GENERATED ALWAYS AS
 
 
 --
--- Name: practice_usage; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: practice_usage; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.practice_usage (
+CREATE TABLE milestone.practice_usage (
     id integer NOT NULL,
     user_id integer,
     practice_id integer,
@@ -1165,14 +1309,14 @@ CREATE TABLE flashback.practice_usage (
 );
 
 
-ALTER TABLE flashback.practice_usage OWNER TO flashback;
+ALTER TABLE milestone.practice_usage OWNER TO milestone;
 
 --
--- Name: practice_usage_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: practice_usage_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.practice_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.practice_usage_id_seq
+ALTER TABLE milestone.practice_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.practice_usage_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1182,10 +1326,10 @@ ALTER TABLE flashback.practice_usage ALTER COLUMN id ADD GENERATED ALWAYS AS IDE
 
 
 --
--- Name: practices; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: practices; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.practices (
+CREATE TABLE milestone.practices (
     id integer NOT NULL,
     topic_id integer,
     heading character varying(400) NOT NULL,
@@ -1195,14 +1339,14 @@ CREATE TABLE flashback.practices (
 );
 
 
-ALTER TABLE flashback.practices OWNER TO flashback;
+ALTER TABLE milestone.practices OWNER TO milestone;
 
 --
--- Name: practices_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: practices_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.practices ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.practices_id_seq
+ALTER TABLE milestone.practices ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.practices_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1212,39 +1356,39 @@ ALTER TABLE flashback.practices ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 
 
 --
--- Name: progress; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: progress; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.progress (
+CREATE TABLE milestone.progress (
     user_id integer NOT NULL,
     topic_id integer NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.progress OWNER TO flashback;
+ALTER TABLE milestone.progress OWNER TO milestone;
 
 --
--- Name: references; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: references; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback."references" (
+CREATE TABLE milestone."references" (
     id integer NOT NULL,
     practice_id integer,
     origin character varying(2000) NOT NULL,
-    type flashback.resource_type DEFAULT 'unknown'::flashback.resource_type NOT NULL,
+    type milestone.resource_type DEFAULT 'unknown'::milestone.resource_type NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback."references" OWNER TO flashback;
+ALTER TABLE milestone."references" OWNER TO milestone;
 
 --
--- Name: references_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: references_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback."references" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.references_id_seq
+ALTER TABLE milestone."references" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.references_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1254,26 +1398,26 @@ ALTER TABLE flashback."references" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENT
 
 
 --
--- Name: resource_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: resource_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.resource_editing (
+CREATE TABLE milestone.resource_editing (
     id integer NOT NULL,
     user_id integer,
     resource_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.resource_editing OWNER TO flashback;
+ALTER TABLE milestone.resource_editing OWNER TO milestone;
 
 --
--- Name: resource_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: resource_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.resource_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.resource_editing_id_seq
+ALTER TABLE milestone.resource_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.resource_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1283,27 +1427,27 @@ ALTER TABLE flashback.resource_editing ALTER COLUMN id ADD GENERATED ALWAYS AS I
 
 
 --
--- Name: resource_watching; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: resource_watching; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.resource_watching (
+CREATE TABLE milestone.resource_watching (
     user_id integer NOT NULL,
     resource_id integer NOT NULL,
     update timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.resource_watching OWNER TO flashback;
+ALTER TABLE milestone.resource_watching OWNER TO milestone;
 
 --
--- Name: resources; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: resources; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.resources (
+CREATE TABLE milestone.resources (
     id integer NOT NULL,
     name character varying(1000) NOT NULL,
     reference character varying(2000),
-    type flashback.resource_type DEFAULT 'unknown'::flashback.resource_type NOT NULL,
+    type milestone.resource_type DEFAULT 'unknown'::milestone.resource_type NOT NULL,
     created timestamp without time zone DEFAULT now() NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL,
     section_pattern_id integer,
@@ -1311,14 +1455,14 @@ CREATE TABLE flashback.resources (
 );
 
 
-ALTER TABLE flashback.resources OWNER TO flashback;
+ALTER TABLE milestone.resources OWNER TO milestone;
 
 --
--- Name: resources_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: resources_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.resources_id_seq
+ALTER TABLE milestone.resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.resources_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1328,26 +1472,26 @@ ALTER TABLE flashback.resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 
 
 --
--- Name: section_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: section_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.section_editing (
+CREATE TABLE milestone.section_editing (
     id integer NOT NULL,
     user_id integer,
     section_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.section_editing OWNER TO flashback;
+ALTER TABLE milestone.section_editing OWNER TO milestone;
 
 --
--- Name: section_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: section_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.section_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.section_editing_id_seq
+ALTER TABLE milestone.section_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.section_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1357,23 +1501,23 @@ ALTER TABLE flashback.section_editing ALTER COLUMN id ADD GENERATED ALWAYS AS ID
 
 
 --
--- Name: section_name_patterns; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: section_name_patterns; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.section_name_patterns (
+CREATE TABLE milestone.section_name_patterns (
     id integer NOT NULL,
     pattern character varying(20) NOT NULL
 );
 
 
-ALTER TABLE flashback.section_name_patterns OWNER TO flashback;
+ALTER TABLE milestone.section_name_patterns OWNER TO milestone;
 
 --
--- Name: section_types_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: section_types_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.section_name_patterns ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.section_types_id_seq
+ALTER TABLE milestone.section_name_patterns ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.section_types_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1383,13 +1527,13 @@ ALTER TABLE flashback.section_name_patterns ALTER COLUMN id ADD GENERATED ALWAYS
 
 
 --
--- Name: sections; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: sections; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.sections (
+CREATE TABLE milestone.sections (
     id integer NOT NULL,
     resource_id integer,
-    state flashback.publication_state DEFAULT 'open'::flashback.publication_state NOT NULL,
+    state milestone.publication_state DEFAULT 'open'::milestone.publication_state NOT NULL,
     reference character varying(2000) DEFAULT NULL::character varying,
     created timestamp without time zone DEFAULT now() NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL,
@@ -1397,14 +1541,14 @@ CREATE TABLE flashback.sections (
 );
 
 
-ALTER TABLE flashback.sections OWNER TO flashback;
+ALTER TABLE milestone.sections OWNER TO milestone;
 
 --
--- Name: sections_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: sections_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.sections ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.sections_id_seq
+ALTER TABLE milestone.sections ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.sections_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1414,39 +1558,39 @@ ALTER TABLE flashback.sections ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY 
 
 
 --
--- Name: studies; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: studies; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.studies (
+CREATE TABLE milestone.studies (
     user_id integer NOT NULL,
     section_id integer NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.studies OWNER TO flashback;
+ALTER TABLE milestone.studies OWNER TO milestone;
 
 --
--- Name: subject_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: subject_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.subject_editing (
+CREATE TABLE milestone.subject_editing (
     id integer NOT NULL,
     user_id integer,
     subject_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.subject_editing OWNER TO flashback;
+ALTER TABLE milestone.subject_editing OWNER TO milestone;
 
 --
--- Name: subject_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: subject_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.subject_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.subject_editing_id_seq
+ALTER TABLE milestone.subject_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.subject_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1456,35 +1600,35 @@ ALTER TABLE flashback.subject_editing ALTER COLUMN id ADD GENERATED ALWAYS AS ID
 
 
 --
--- Name: subject_resources; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: subject_resources; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.subject_resources (
+CREATE TABLE milestone.subject_resources (
     subject_id integer NOT NULL,
     resource_id integer NOT NULL
 );
 
 
-ALTER TABLE flashback.subject_resources OWNER TO flashback;
+ALTER TABLE milestone.subject_resources OWNER TO milestone;
 
 --
--- Name: subject_watching; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: subject_watching; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.subject_watching (
+CREATE TABLE milestone.subject_watching (
     user_id integer NOT NULL,
     subject_id integer NOT NULL,
     update timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.subject_watching OWNER TO flashback;
+ALTER TABLE milestone.subject_watching OWNER TO milestone;
 
 --
--- Name: subjects; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: subjects; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.subjects (
+CREATE TABLE milestone.subjects (
     id integer NOT NULL,
     name character varying(50) NOT NULL,
     creation timestamp without time zone DEFAULT now() NOT NULL,
@@ -1492,14 +1636,14 @@ CREATE TABLE flashback.subjects (
 );
 
 
-ALTER TABLE flashback.subjects OWNER TO flashback;
+ALTER TABLE milestone.subjects OWNER TO milestone;
 
 --
--- Name: subjects_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: subjects_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.subjects ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.subjects_id_seq
+ALTER TABLE milestone.subjects ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.subjects_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1509,28 +1653,28 @@ ALTER TABLE flashback.subjects ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY 
 
 
 --
--- Name: task_blocks; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: task_blocks; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.task_blocks (
+CREATE TABLE milestone.task_blocks (
     id integer NOT NULL,
     task_id integer,
     solution text,
-    type flashback.block_type DEFAULT 'text'::flashback.block_type NOT NULL,
+    type milestone.block_type DEFAULT 'text'::milestone.block_type NOT NULL,
     language character varying(10) NOT NULL,
     creation timestamp without time zone DEFAULT now() NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.task_blocks OWNER TO flashback;
+ALTER TABLE milestone.task_blocks OWNER TO milestone;
 
 --
--- Name: task_blocks_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: task_blocks_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.task_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.task_blocks_id_seq
+ALTER TABLE milestone.task_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.task_blocks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1540,10 +1684,10 @@ ALTER TABLE flashback.task_blocks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTI
 
 
 --
--- Name: tasks; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: tasks; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.tasks (
+CREATE TABLE milestone.tasks (
     id integer NOT NULL,
     topic_id integer,
     heading character varying(400) NOT NULL,
@@ -1552,14 +1696,14 @@ CREATE TABLE flashback.tasks (
 );
 
 
-ALTER TABLE flashback.tasks OWNER TO flashback;
+ALTER TABLE milestone.tasks OWNER TO milestone;
 
 --
--- Name: tasks_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: tasks_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.tasks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.tasks_id_seq
+ALTER TABLE milestone.tasks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.tasks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1569,26 +1713,26 @@ ALTER TABLE flashback.tasks ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: topic_editing; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: topic_editing; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.topic_editing (
+CREATE TABLE milestone.topic_editing (
     id integer NOT NULL,
     user_id integer,
     topic_id integer,
-    action flashback.editing_action NOT NULL,
+    action milestone.editing_action NOT NULL,
     updated timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE flashback.topic_editing OWNER TO flashback;
+ALTER TABLE milestone.topic_editing OWNER TO milestone;
 
 --
--- Name: topic_editing_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: topic_editing_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.topic_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.topic_editing_id_seq
+ALTER TABLE milestone.topic_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.topic_editing_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1598,10 +1742,10 @@ ALTER TABLE flashback.topic_editing ALTER COLUMN id ADD GENERATED ALWAYS AS IDEN
 
 
 --
--- Name: topics; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: topics; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.topics (
+CREATE TABLE milestone.topics (
     id integer NOT NULL,
     subject_id integer,
     name character varying(100) NOT NULL,
@@ -1611,14 +1755,14 @@ CREATE TABLE flashback.topics (
 );
 
 
-ALTER TABLE flashback.topics OWNER TO flashback;
+ALTER TABLE milestone.topics OWNER TO milestone;
 
 --
--- Name: topics_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: topics_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.topics ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.topics_id_seq
+ALTER TABLE milestone.topics ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.topics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1628,28 +1772,28 @@ ALTER TABLE flashback.topics ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: users; Type: TABLE; Schema: flashback; Owner: flashback
+-- Name: users; Type: TABLE; Schema: milestone; Owner: milestone
 --
 
-CREATE TABLE flashback.users (
+CREATE TABLE milestone.users (
     id integer NOT NULL,
     username character varying(20) NOT NULL,
     first_name character varying(30),
     last_name character varying(30),
-    state flashback.user_state DEFAULT 'active'::flashback.user_state NOT NULL,
+    state milestone.user_state DEFAULT 'active'::milestone.user_state NOT NULL,
     email character varying(100) DEFAULT NULL::character varying,
     is_author boolean DEFAULT false NOT NULL
 );
 
 
-ALTER TABLE flashback.users OWNER TO flashback;
+ALTER TABLE milestone.users OWNER TO milestone;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+-- Name: users_id_seq; Type: SEQUENCE; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE flashback.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.users_id_seq
+ALTER TABLE milestone.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME milestone.users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1659,36 +1803,36 @@ ALTER TABLE flashback.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Data for Name: container_templates; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: container_templates; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.container_templates (id, name, content, creation, updated) FROM stdin;
+COPY milestone.container_templates (id, name, content, creation, updated) FROM stdin;
 1	flashback	FROM ubuntu:24.04\n\n RUN apt update && apt upgrade --yes && apt install bash build-essential bzip2 ca-certificates chrpath cmake curl file gawk git locales lz4 make patch python3 vim wget zstd \n\n ENV LANG="en_US.UTF-8 UTF-8"\n RUN echo "$LANG" > /etc/locale.gen\n RUN echo "LANG=$LANG" > /etc/default/locale\n RUN echo "LC_ALL=$LANG" >> /etc/default/locale\n RUN locale-gen\n\n WORKDIR /src\n\n CMD /usr/bin/bash	2024-08-31 18:58:52.176345	2024-08-31 18:58:52.176345
 \.
 
 
 --
--- Data for Name: containers; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: containers; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.containers (id, template_id, name, content, description, creation, updated) FROM stdin;
+COPY milestone.containers (id, template_id, name, content, description, creation, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: credentials; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: credentials; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.credentials (id, user_id, hash, updated) FROM stdin;
+COPY milestone.credentials (id, user_id, hash, updated) FROM stdin;
 1	1	1cfea2a4b1e9d0ad61aaa97d23f0338233538ecbb858d196c3be1142f22c4b21e4419ae1706ab34ab42013a499a67edb85b1d75aa80eb23bc31b57e53c5e1c32	2024-08-11 03:13:54.980249
 \.
 
 
 --
--- Data for Name: logins; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: logins; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.logins (id, user_id, session, updated, valid) FROM stdin;
+COPY milestone.logins (id, user_id, session, updated, valid) FROM stdin;
 1	1	b6e90657b0390c2f17170140de87c9f19c4eaf882a4f9fb3b65292c093e3fef7f9d807eeec0cf8ee773723ccc6c7790b8a4df6f82e7efdcc681e3e57415daf58	2024-08-11 03:12:43.341393+02	f
 2	1	067c7d68caf127743291f56d1791d1944ed9c16c414b934913e88ad52e3e474b8d654e20ab1858e2c73e7aef17c1c696fcd1b5da313a6e0842efc96ce47765aa	2024-08-11 11:18:14.335912+02	f
 3	1	9cfac9f64b7aff5e0c80fdaa4c231a8f25af48adbb0dde266bdf149a00a1f2c130ff05f46dae68ea7278b278090a353ce53b8c4fc2d10b4bac06fef5ed0f8e24	2024-08-11 11:18:40.857472+02	t
@@ -1696,10 +1840,10 @@ COPY flashback.logins (id, user_id, session, updated, valid) FROM stdin;
 
 
 --
--- Data for Name: note_blocks; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: note_blocks; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.note_blocks (id, note_id, content, type, language, updated, "position") FROM stdin;
+COPY milestone.note_blocks (id, note_id, content, type, language, updated, "position") FROM stdin;
 8735	3289	git clone --depth 1 https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git	code	sh	2024-11-16 23:53:47.322787	1
 8736	3290	git pull --unshallow	code	sh	2024-11-16 23:53:47.32897	1
 8737	3291	git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git	code	sh	2024-11-16 23:53:47.331381	1
@@ -11885,18 +12029,18 @@ COPY flashback.note_blocks (id, note_id, content, type, language, updated, "posi
 
 
 --
--- Data for Name: note_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: note_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.note_editing (id, user_id, note_id, action, updated) FROM stdin;
+COPY milestone.note_editing (id, user_id, note_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: note_references; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: note_references; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.note_references (id, note_id, origin, type, updated) FROM stdin;
+COPY milestone.note_references (id, note_id, origin, type, updated) FROM stdin;
 1	65	https://www.nasm.us - https://www.nasm.us/doc/	unknown	2024-07-28 09:56:29.918375
 2	65	https://gcc.gnu.org - https://gcc.gnu.org/onlinedocs/	unknown	2024-07-28 09:56:29.92817
 3	65	https://www.gnu.org - https://www.gnu.org/software/make/manual/html_node/	unknown	2024-07-28 09:56:29.938076
@@ -12105,18 +12249,18 @@ COPY flashback.note_references (id, note_id, origin, type, updated) FROM stdin;
 
 
 --
--- Data for Name: note_usage; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: note_usage; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.note_usage (id, user_id, note_id, duration, updated) FROM stdin;
+COPY milestone.note_usage (id, user_id, note_id, duration, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: notes; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: notes; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.notes (id, section_id, heading, state, creation, updated, number) FROM stdin;
+COPY milestone.notes (id, section_id, heading, state, creation, updated, number) FROM stdin;
 1	113	What are the main data structure operations?	open	2024-07-28 09:55:47.305832	2024-07-28 09:55:47.305832	0
 2	113	How do we measure the speed of an operation in code?	open	2024-07-28 09:55:47.475222	2024-07-28 09:55:47.475222	0
 3	113	How many steps does each of four main operations take for an array?	open	2024-07-28 09:55:47.859131	2024-07-28 09:55:47.859131	0
@@ -15993,10 +16137,10 @@ COPY flashback.notes (id, section_id, heading, state, creation, updated, number)
 
 
 --
--- Data for Name: practice_blocks; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: practice_blocks; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.practice_blocks (id, practice_id, content, type, language, updated, "position") FROM stdin;
+COPY milestone.practice_blocks (id, practice_id, content, type, language, updated, "position") FROM stdin;
 108	59	mmc	code	txt	2024-07-28 09:45:31.345142	1
 245	137	import QtQuick	text	txt	2024-07-28 09:45:58.690062	5
 531	272	struct Data{};	text	txt	2024-07-28 09:46:49.418214	3
@@ -16481,33 +16625,8 @@ COPY flashback.practice_blocks (id, practice_id, content, type, language, update
 467	254	You can also enable it for all directories with `set auto-load-safe-path /`.	text	txt	2024-07-28 09:46:38.465778	5
 468	255	perf record -o /tmp/perf.data --call-graph dwarf --event instructions,cpu-cycles,cache-misses,branches,branch-misses --aio --sample-cpu <exec>	code	txt	2024-07-28 09:46:38.736678	1
 469	256	sudo hotspot	code	txt	2024-07-28 09:46:39.001065	1
-470	257	g++ -o program source.cpp -std=c++20	code	txt	2024-07-28 09:46:39.360787	1
-471	257	clang++ -o program source.cpp -std=c++20	code	txt	2024-07-28 09:46:39.381534	2
-472	258	Unlike some other languages, the fundamental types (`bool`, `char`, `int`,\n`float`,...) in C++ do not receive special treatment with the following\nexceptions:	text	txt	2024-07-28 09:46:40.18121	1
-473	258	- Fundamental types have their semantics defined in the C++ standard.\n- Default initializing a variable of a fundamental type does not perform any\n  initialization.\n- Arguments to operators for fundamental types are prvalues.	text	txt	2024-07-28 09:46:40.201882	2
-474	258	#include <string>	text	txt	2024-07-28 09:46:40.222284	3
-475	258	int v; // left uninitialized	text	txt	2024-07-28 09:46:40.243502	4
-476	258	// Only well-defined since C++17\nint x = 1;\n(x = 2) = x; // x == 1	text	txt	2024-07-28 09:46:40.263242	5
-477	258	// right side evalutes: 1 (prvalue)\n// left side evaluates: ref to x (x==2)\n// assignment evaluates: ref to x (x==1)	text	txt	2024-07-28 09:46:40.28468	6
-478	258	std::string y = "a";\n(y = "b") = y; // y == "b"	text	txt	2024-07-28 09:46:40.303948	7
-479	258	// right side evaluates: ref to y\n// left side evalutes: ref y (y=="b")\n// assignment evaluates: ref to y (y=="b")	code	txt	2024-07-28 09:46:40.323457	8
-480	259	#include <iostream>	text	txt	2024-07-28 09:46:40.868101	1
-481	259	int global_number = 42;	text	txt	2024-07-28 09:46:40.887556	2
-482	259	int function()\n{\n    int local_number = 77;\n    return local_number;\n}	text	txt	2024-07-28 09:46:40.908775	3
-483	259	int main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	txt	2024-07-28 09:46:40.931053	4
 484	260	- Literal constants\n- Constants defined by `const`\n- Constant expressions defined by `constexpr`\n- Immediate functions marked by `consteval`\n- Enumerations\n- Scoped Enumerations\n- Preprocessor macro `#define`	text	txt	2024-07-28 09:46:41.305457	1
-485	261	const double pi = 22.0 / 7;	code	txt	2024-07-28 09:46:41.547064	1
-486	262	* direct initialization initializes an object from an explicit set of\n  constructor arguments.\n* copy initialization initializes an object from another object.\n* brace initialization prevents narrowing conversion of data types.\n* all elements of list initialization should be of the same type.	text	txt	2024-07-28 09:46:42.687443	1
-487	262	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>	text	txt	2024-07-28 09:46:42.709203	2
-488	262	void func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}	text	txt	2024-07-28 09:46:42.731217	3
-489	262	void func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}	text	txt	2024-07-28 09:46:42.752051	4
-490	262	int main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization	text	txt	2024-07-28 09:46:42.772898	5
-491	262	    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};	text	txt	2024-07-28 09:46:42.794464	6
-492	262	    func({1, 2, 3}); // call std::initializer_list<int> overload	text	txt	2024-07-28 09:46:42.815327	7
-493	262	    std::vector v1{4}; // size = 1\n    std::vector v2(4); // size = 4	text	txt	2024-07-28 09:46:42.836057	8
-494	262	    auto a = {42}; // std::initializer_list<int>\n    auto b{42}; // int\n    auto c = {4, 2}; //std::initializer_list<int>\n    auto d{4, 2}; // error, too many elements	code	txt	2024-07-28 09:46:42.856724	9
 495	263	Before C++ direct list initialization deduced as `std::initializer_list<int>`\nbut since C++17 it is as `int`.	text	txt	2024-07-28 09:46:43.287337	1
-496	263	auto x { 42 };\n// before C++17: std::initializer_list<int>\n// since C++17: int	code	txt	2024-07-28 09:46:43.308841	2
 497	264	Aggregate types can be initialized using special aggregate initialization.\nThis initializes members in their declaration order. Members that are not\nexplicitly initialized and do not have a default member initializer are\ninitialized using empty copy-list-initialization (i.e. `T x={}`).	text	txt	2024-07-28 09:46:44.264905	1
 498	264	#include <string>\n#include <vector>	text	txt	2024-07-28 09:46:44.286577	2
 499	264	struct Data\n{\n    int x;\n    double y;\n    std::string label = "Hello World!"; // only permitted since C++14\n    std::vector<int> arr;\n};	text	txt	2024-07-28 09:46:44.307937	3
@@ -16518,6 +16637,11 @@ COPY flashback.practice_blocks (id, practice_id, content, type, language, update
 504	265	C++20 introduced designated initializers for aggregate initialization. This\nallows for better control over which elements of the aggregate will be\nexplicitly initialized.	text	txt	2024-07-28 09:46:45.307708	1
 505	265	#include <string>	text	txt	2024-07-28 09:46:45.328004	2
 506	265	struct Data {\n    int a;\n    double b;\n    std::string c;\n};	text	txt	2024-07-28 09:46:45.349071	3
+470	257	g++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.360787	1
+471	257	clang++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.381534	2
+485	261	const double pi = 22.0 / 7;	code	cpp	2024-07-28 09:46:41.547064	1
+486	262	* direct initialization initializes an object from an explicit set of\n  constructor arguments.\n* copy initialization initializes an object from another object.\n* brace initialization prevents narrowing conversion of data types.\n* all elements of list initialization should be of the same type.	text	txt	2024-07-28 09:46:42.687443	1
+496	263	auto x { 42 };\n// before C++17: std::initializer_list<int>\n// since C++17: int	code	cpp	2024-07-28 09:46:43.308841	2
 511	265	// A clunky but functional option for named agruments in C++\nstruct Arg { const std::string& label; int64_t id; };\nvoid some_func(Arg arg) {}	text	txt	2024-07-28 09:46:45.452174	8
 512	265	some_func({.label = config.label, .id = 42});	code	txt	2024-07-28 09:46:45.473004	9
 513	266	void do_something();	text	txt	2024-07-28 09:46:45.903451	1
@@ -19819,22 +19943,27 @@ COPY flashback.practice_blocks (id, practice_id, content, type, language, update
 3820	1191	Data in section `.data` and `.bss` should be aligned on a 16-byte border so\nthat registers can be filled with data once for each block of data.	text	txt	2024-07-28 09:55:46.454851	1
 3821	1192	In **NASM** the assembly directive `align 16` and `alignb 16` can be used in\nfront of the data.	text	txt	2024-07-28 09:55:46.758689	1
 3822	1192	For **AVX**, data should be aligned on a 32 bytes border and for **AVX-512**,\ndata needs to be aligned on a 64 bytes border.	text	txt	2024-07-28 09:55:46.780365	2
+472	258	Unlike some other languages, the fundamental types (`bool`, `char`, `int`,\n`float`,...) in C++ do not receive special treatment with the following\nexceptions:	text	txt	2024-07-28 09:46:40.18121	1
+473	258	- Fundamental types have their semantics defined in the C++ standard.\n- Default initializing a variable of a fundamental type does not perform any\n  initialization.\n- Arguments to operators for fundamental types are prvalues.	text	txt	2024-07-28 09:46:40.201882	2
+3827	258	#include <string>\n\nint v; // left uninitialized\n\n// Only well-defined since C++17\nint x = 1;\n(x = 2) = x; // x == 1\n\n// right side evalutes: 1 (prvalue)\n// left side evaluates: ref to x (x==2)\n// assignment evaluates: ref to x (x==1)\n\nstd::string y = "a";\n(y = "b") = y; // y == "b"\n\n// right side evaluates: ref to y\n// left side evalutes: ref y (y=="b")\n// assignment evaluates: ref to y (y=="b")	code	cpp	2025-07-13 14:51:59.008113	3
+3830	259	#include <iostream>\n\nint global_number = 42;\n\nint function()\n{\n    int local_number = 77;\n    return local_number;\n}\n\nint main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	cpp	2025-07-14 12:45:07.366694	1
+3837	262	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>\n\nvoid func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}\n\nvoid func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}\n\nint main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization\n\n    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};\n\n    func({1, 2, 3}); // call std::initializer_list<int> overload\n\n    std::vector v1{4}; // size = 1\n    std::vector v2(4); // size = 4\n\n    auto a = {42}; // std::initializer_list<int>\n    auto b{42}; // int\n    auto c = {4, 2}; //std::initializer_list<int>\n    auto d{4, 2}; // error, too many elements	code	cpp	2025-07-14 13:09:53.17377	2
 \.
 
 
 --
--- Data for Name: practice_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: practice_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.practice_editing (id, user_id, practice_id, action, updated) FROM stdin;
+COPY milestone.practice_editing (id, user_id, practice_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: practice_resources; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: practice_resources; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.practice_resources (id, practice_id, section_id) FROM stdin;
+COPY milestone.practice_resources (id, practice_id, section_id) FROM stdin;
 1	1	46
 2	2	46
 3	3	46
@@ -20619,18 +20748,18 @@ COPY flashback.practice_resources (id, practice_id, section_id) FROM stdin;
 
 
 --
--- Data for Name: practice_usage; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: practice_usage; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.practice_usage (id, user_id, practice_id, duration, updated) FROM stdin;
+COPY milestone.practice_usage (id, user_id, practice_id, duration, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: practices; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: practices; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.practices (id, topic_id, heading, creation, updated, "position") FROM stdin;
+COPY milestone.practices (id, topic_id, heading, creation, updated, "position") FROM stdin;
 1	1	What are the development stages of an embedded Linux system?	2024-07-28 09:45:11.194663	2024-07-28 09:45:11.194663	0
 2	1	What are the building blocks of an embedded Linux system?	2024-07-28 09:45:11.496136	2024-07-28 09:45:11.496136	0
 3	1	What are the minimum required hardware target to develop an Embedded Linux for?	2024-07-28 09:45:11.754399	2024-07-28 09:45:11.754399	0
@@ -21827,10 +21956,10 @@ COPY flashback.practices (id, topic_id, heading, creation, updated, "position") 
 
 
 --
--- Data for Name: progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: progress; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.progress (user_id, topic_id, updated) FROM stdin;
+COPY milestone.progress (user_id, topic_id, updated) FROM stdin;
 1	1	2024-08-10 16:07:40.034905
 1	21	2024-08-10 16:07:40.034905
 1	30	2024-08-10 16:07:40.034905
@@ -21855,10 +21984,10 @@ COPY flashback.progress (user_id, topic_id, updated) FROM stdin;
 
 
 --
--- Data for Name: references; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: references; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback."references" (id, practice_id, origin, type, updated) FROM stdin;
+COPY milestone."references" (id, practice_id, origin, type, updated) FROM stdin;
 1	174	https://github.blog - https://github.blog/2021-04-29-scaling-monorepo-maintainance	unknown	2024-07-28 09:46:11.530853
 2	262	https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/initialization	unknown	2024-07-28 09:46:42.927493
 3	263	https://en.cppreference.com - https://en.cppreference.com/w/cpp/language/initialization	unknown	2024-07-28 09:46:43.33888
@@ -22054,18 +22183,18 @@ COPY flashback."references" (id, practice_id, origin, type, updated) FROM stdin;
 
 
 --
--- Data for Name: resource_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: resource_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.resource_editing (id, user_id, resource_id, action, updated) FROM stdin;
+COPY milestone.resource_editing (id, user_id, resource_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: resource_watching; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: resource_watching; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.resource_watching (user_id, resource_id, update) FROM stdin;
+COPY milestone.resource_watching (user_id, resource_id, update) FROM stdin;
 1	1	2024-09-08 15:15:14.413906
 1	3	2024-09-08 15:15:14.413906
 1	4	2024-09-08 15:15:14.413906
@@ -22166,17 +22295,16 @@ COPY flashback.resource_watching (user_id, resource_id, update) FROM stdin;
 
 
 --
--- Data for Name: resources; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: resources; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.resources (id, name, reference, type, created, updated, section_pattern_id, leading_author) FROM stdin;
+COPY milestone.resources (id, name, reference, type, created, updated, section_pattern_id, leading_author) FROM stdin;
 7	Daily C++ Bites	\N	mailing list	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	\N	\N
 15	Learning OpenCV 3	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 65	Offensive Security Wireless Professional (OSWP)	\N	video	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	4	\N
 55	The C++ Standard Library: A Tutorial and Reference	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Nicolai M. Josuttis
 16	Calculus: Concepts and Contexts	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 17	Qt6 Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-18	Mastering Embedded Linux Programming	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 19	Teach Yourself C++ in One Hour a Day	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 20	C++20 STL Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 21	Mastering OpenCV 3	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -22285,22 +22413,23 @@ COPY flashback.resources (id, name, reference, type, created, updated, section_p
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
+18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 \.
 
 
 --
--- Data for Name: section_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: section_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.section_editing (id, user_id, section_id, action, updated) FROM stdin;
+COPY milestone.section_editing (id, user_id, section_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: section_name_patterns; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: section_name_patterns; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.section_name_patterns (id, pattern) FROM stdin;
+COPY milestone.section_name_patterns (id, pattern) FROM stdin;
 1	Chapter
 2	Page
 3	Course
@@ -22310,10 +22439,10 @@ COPY flashback.section_name_patterns (id, pattern) FROM stdin;
 
 
 --
--- Data for Name: sections; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: sections; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.sections (id, resource_id, state, reference, created, updated, number) FROM stdin;
+COPY milestone.sections (id, resource_id, state, reference, created, updated, number) FROM stdin;
 37	17	open	\N	2024-07-28 09:44:55.719932	2024-07-28 09:44:55.719932	1
 38	17	open	\N	2024-07-28 09:44:55.719932	2024-07-28 09:44:55.719932	2
 39	17	open	\N	2024-07-28 09:44:55.719932	2024-07-28 09:44:55.719932	3
@@ -23979,10 +24108,10 @@ COPY flashback.sections (id, resource_id, state, reference, created, updated, nu
 
 
 --
--- Data for Name: studies; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: studies; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.studies (user_id, section_id, updated) FROM stdin;
+COPY milestone.studies (user_id, section_id, updated) FROM stdin;
 1	6	2024-08-07 22:44:43.138201
 1	3	2024-08-07 22:44:43.138201
 1	49	2024-08-07 22:44:43.138201
@@ -25623,18 +25752,18 @@ COPY flashback.studies (user_id, section_id, updated) FROM stdin;
 
 
 --
--- Data for Name: subject_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: subject_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.subject_editing (id, user_id, subject_id, action, updated) FROM stdin;
+COPY milestone.subject_editing (id, user_id, subject_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: subject_resources; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: subject_resources; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
+COPY milestone.subject_resources (subject_id, resource_id) FROM stdin;
 19	5
 9	6
 6	7
@@ -25754,10 +25883,10 @@ COPY flashback.subject_resources (subject_id, resource_id) FROM stdin;
 
 
 --
--- Data for Name: subject_watching; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: subject_watching; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.subject_watching (user_id, subject_id, update) FROM stdin;
+COPY milestone.subject_watching (user_id, subject_id, update) FROM stdin;
 1	1	2024-09-08 15:15:39.858664
 1	2	2024-09-08 15:15:39.858664
 1	3	2024-09-08 15:15:39.858664
@@ -25785,10 +25914,10 @@ COPY flashback.subject_watching (user_id, subject_id, update) FROM stdin;
 
 
 --
--- Data for Name: subjects; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: subjects; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.subjects (id, name, creation, updated) FROM stdin;
+COPY milestone.subjects (id, name, creation, updated) FROM stdin;
 1	Algorithms	2024-07-28 09:44:46.506337	2024-07-28 09:44:46.506337
 2	x64 Assembly	2024-07-28 09:44:46.506337	2024-07-28 09:44:46.506337
 3	Boost	2024-07-28 09:44:46.506337	2024-07-28 09:44:46.506337
@@ -25822,34 +25951,34 @@ COPY flashback.subjects (id, name, creation, updated) FROM stdin;
 
 
 --
--- Data for Name: task_blocks; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: task_blocks; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.task_blocks (id, task_id, solution, type, language, creation, updated) FROM stdin;
+COPY milestone.task_blocks (id, task_id, solution, type, language, creation, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: tasks; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: tasks; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.tasks (id, topic_id, heading, creation, updated) FROM stdin;
+COPY milestone.tasks (id, topic_id, heading, creation, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: topic_editing; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: topic_editing; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.topic_editing (id, user_id, topic_id, action, updated) FROM stdin;
+COPY milestone.topic_editing (id, user_id, topic_id, action, updated) FROM stdin;
 \.
 
 
 --
--- Data for Name: topics; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: topics; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.topics (id, subject_id, name, creation, update, "position") FROM stdin;
+COPY milestone.topics (id, subject_id, name, creation, update, "position") FROM stdin;
 1	8	Embedded Linux Development	2024-07-28 09:44:54.679633	2024-07-28 09:44:54.679633	0
 2	8	Host Toolchains	2024-07-28 09:44:54.679633	2024-07-28 09:44:54.679633	0
 3	8	Cross Toolchains	2024-07-28 09:44:54.679633	2024-07-28 09:44:54.679633	0
@@ -26303,841 +26432,841 @@ COPY flashback.topics (id, subject_id, name, creation, update, "position") FROM 
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: flashback; Owner: flashback
+-- Data for Name: users; Type: TABLE DATA; Schema: milestone; Owner: milestone
 --
 
-COPY flashback.users (id, username, first_name, last_name, state, email, is_author) FROM stdin;
+COPY milestone.users (id, username, first_name, last_name, state, email, is_author) FROM stdin;
 1	briansalehi	Brian	Salehi	active	briansalehi@proton.me	t
 \.
 
 
 --
--- Name: container_templates_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: container_templates_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.container_templates_id_seq', 1, true);
-
-
---
--- Name: containers_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.containers_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.container_templates_id_seq', 1, true);
 
 
 --
--- Name: credentials_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: containers_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.credentials_id_seq', 1, true);
-
-
---
--- Name: logins_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.logins_id_seq', 3, true);
+SELECT pg_catalog.setval('milestone.containers_id_seq', 1, false);
 
 
 --
--- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: credentials_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.note_blocks_id_seq', 10337, true);
-
-
---
--- Name: note_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.note_editing_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.credentials_id_seq', 1, true);
 
 
 --
--- Name: note_references_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: logins_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.note_references_id_seq', 204, true);
-
-
---
--- Name: note_usage_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.note_usage_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 
 
 --
--- Name: notes_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.notes_id_seq', 3956, true);
-
-
---
--- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.practice_blocks_id_seq', 3822, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10337, true);
 
 
 --
--- Name: practice_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: note_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.practice_editing_id_seq', 1, false);
-
-
---
--- Name: practice_resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.practice_resources_id_seq', 819, true);
+SELECT pg_catalog.setval('milestone.note_editing_id_seq', 1, false);
 
 
 --
--- Name: practice_usage_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: note_references_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.practice_usage_id_seq', 1, false);
-
-
---
--- Name: practices_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.practices_id_seq', 1192, true);
+SELECT pg_catalog.setval('milestone.note_references_id_seq', 204, true);
 
 
 --
--- Name: references_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: note_usage_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.references_id_seq', 191, true);
-
-
---
--- Name: resource_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.resource_editing_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 
 
 --
--- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 117, true);
-
-
---
--- Name: section_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.section_editing_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3956, true);
 
 
 --
--- Name: section_types_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.section_types_id_seq', 5, true);
-
-
---
--- Name: sections_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.sections_id_seq', 1695, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3837, true);
 
 
 --
--- Name: subject_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: practice_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.subject_editing_id_seq', 1, false);
-
-
---
--- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.subjects_id_seq', 29, true);
+SELECT pg_catalog.setval('milestone.practice_editing_id_seq', 1, false);
 
 
 --
--- Name: task_blocks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: practice_resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.task_blocks_id_seq', 1, false);
-
-
---
--- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.tasks_id_seq', 1, false);
+SELECT pg_catalog.setval('milestone.practice_resources_id_seq', 819, true);
 
 
 --
--- Name: topic_editing_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: practice_usage_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.topic_editing_id_seq', 1, false);
-
-
---
--- Name: topics_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.topics_id_seq', 449, true);
+SELECT pg_catalog.setval('milestone.practice_usage_id_seq', 1, false);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+-- Name: practices_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('flashback.users_id_seq', 1, true);
+SELECT pg_catalog.setval('milestone.practices_id_seq', 1192, true);
 
 
 --
--- Name: container_templates container_templates_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: references_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.container_templates
+SELECT pg_catalog.setval('milestone.references_id_seq', 191, true);
+
+
+--
+-- Name: resource_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.resource_editing_id_seq', 1, false);
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.resources_id_seq', 117, true);
+
+
+--
+-- Name: section_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.section_editing_id_seq', 1, false);
+
+
+--
+-- Name: section_types_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.section_types_id_seq', 5, true);
+
+
+--
+-- Name: sections_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.sections_id_seq', 1695, true);
+
+
+--
+-- Name: subject_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.subject_editing_id_seq', 1, false);
+
+
+--
+-- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.subjects_id_seq', 29, true);
+
+
+--
+-- Name: task_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.task_blocks_id_seq', 1, false);
+
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.tasks_id_seq', 1, false);
+
+
+--
+-- Name: topic_editing_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.topic_editing_id_seq', 1, false);
+
+
+--
+-- Name: topics_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.topics_id_seq', 449, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
+--
+
+SELECT pg_catalog.setval('milestone.users_id_seq', 1, true);
+
+
+--
+-- Name: container_templates container_templates_name_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
+--
+
+ALTER TABLE ONLY milestone.container_templates
     ADD CONSTRAINT container_templates_name_key UNIQUE (name);
 
 
 --
--- Name: container_templates container_templates_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: container_templates container_templates_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.container_templates
+ALTER TABLE ONLY milestone.container_templates
     ADD CONSTRAINT container_templates_pkey PRIMARY KEY (id);
 
 
 --
--- Name: containers containers_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: containers containers_name_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.containers
+ALTER TABLE ONLY milestone.containers
     ADD CONSTRAINT containers_name_key UNIQUE (name);
 
 
 --
--- Name: containers containers_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: containers containers_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.containers
+ALTER TABLE ONLY milestone.containers
     ADD CONSTRAINT containers_pkey PRIMARY KEY (id);
 
 
 --
--- Name: credentials credentials_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: credentials credentials_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.credentials
+ALTER TABLE ONLY milestone.credentials
     ADD CONSTRAINT credentials_pkey PRIMARY KEY (id);
 
 
 --
--- Name: logins logins_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: logins logins_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.logins
+ALTER TABLE ONLY milestone.logins
     ADD CONSTRAINT logins_pkey PRIMARY KEY (id);
 
 
 --
--- Name: note_blocks note_blocks_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_blocks note_blocks_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_blocks
+ALTER TABLE ONLY milestone.note_blocks
     ADD CONSTRAINT note_blocks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: note_editing note_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_editing note_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_editing
+ALTER TABLE ONLY milestone.note_editing
     ADD CONSTRAINT note_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: note_references note_references_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_references note_references_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_references
+ALTER TABLE ONLY milestone.note_references
     ADD CONSTRAINT note_references_pkey PRIMARY KEY (id);
 
 
 --
--- Name: note_usage note_usage_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_usage note_usage_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_usage
+ALTER TABLE ONLY milestone.note_usage
     ADD CONSTRAINT note_usage_pkey PRIMARY KEY (id);
 
 
 --
--- Name: notes notes_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: notes notes_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.notes
+ALTER TABLE ONLY milestone.notes
     ADD CONSTRAINT notes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: practice_blocks practice_blocks_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_blocks practice_blocks_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_blocks
+ALTER TABLE ONLY milestone.practice_blocks
     ADD CONSTRAINT practice_blocks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: practice_editing practice_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_editing practice_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_editing
+ALTER TABLE ONLY milestone.practice_editing
     ADD CONSTRAINT practice_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: practice_resources practice_resources_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_resources practice_resources_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_resources
+ALTER TABLE ONLY milestone.practice_resources
     ADD CONSTRAINT practice_resources_pkey PRIMARY KEY (id);
 
 
 --
--- Name: practice_usage practice_usage_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_usage practice_usage_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_usage
+ALTER TABLE ONLY milestone.practice_usage
     ADD CONSTRAINT practice_usage_pkey PRIMARY KEY (id);
 
 
 --
--- Name: practices practices_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practices practices_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practices
+ALTER TABLE ONLY milestone.practices
     ADD CONSTRAINT practices_pkey PRIMARY KEY (id);
 
 
 --
--- Name: references references_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: references references_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback."references"
+ALTER TABLE ONLY milestone."references"
     ADD CONSTRAINT references_pkey PRIMARY KEY (id);
 
 
 --
--- Name: resource_editing resource_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_editing resource_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_editing
+ALTER TABLE ONLY milestone.resource_editing
     ADD CONSTRAINT resource_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: resource_watching resource_watching_user_id_resource_id_pk; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_watching resource_watching_user_id_resource_id_pk; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_watching
+ALTER TABLE ONLY milestone.resource_watching
     ADD CONSTRAINT resource_watching_user_id_resource_id_pk PRIMARY KEY (user_id, resource_id);
 
 
 --
--- Name: resources resources_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resources resources_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resources
+ALTER TABLE ONLY milestone.resources
     ADD CONSTRAINT resources_pkey PRIMARY KEY (id);
 
 
 --
--- Name: section_editing section_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: section_editing section_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.section_editing
+ALTER TABLE ONLY milestone.section_editing
     ADD CONSTRAINT section_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: section_name_patterns section_types_pattern_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: section_name_patterns section_types_pattern_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.section_name_patterns
+ALTER TABLE ONLY milestone.section_name_patterns
     ADD CONSTRAINT section_types_pattern_key UNIQUE (pattern);
 
 
 --
--- Name: section_name_patterns section_types_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: section_name_patterns section_types_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.section_name_patterns
+ALTER TABLE ONLY milestone.section_name_patterns
     ADD CONSTRAINT section_types_pkey PRIMARY KEY (id);
 
 
 --
--- Name: sections sections_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: sections sections_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.sections
+ALTER TABLE ONLY milestone.sections
     ADD CONSTRAINT sections_pkey PRIMARY KEY (id);
 
 
 --
--- Name: studies studies_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: studies studies_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.studies
+ALTER TABLE ONLY milestone.studies
     ADD CONSTRAINT studies_pkey PRIMARY KEY (user_id, section_id);
 
 
 --
--- Name: subject_editing subject_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_editing subject_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_editing
+ALTER TABLE ONLY milestone.subject_editing
     ADD CONSTRAINT subject_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: subject_resources subject_resources_pk; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_resources subject_resources_pk; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_resources
+ALTER TABLE ONLY milestone.subject_resources
     ADD CONSTRAINT subject_resources_pk PRIMARY KEY (subject_id, resource_id);
 
 
 --
--- Name: subject_watching subject_watching_user_id_subject_id_pk; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_watching subject_watching_user_id_subject_id_pk; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_watching
+ALTER TABLE ONLY milestone.subject_watching
     ADD CONSTRAINT subject_watching_user_id_subject_id_pk PRIMARY KEY (user_id, subject_id);
 
 
 --
--- Name: subjects subjects_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subjects subjects_name_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subjects
+ALTER TABLE ONLY milestone.subjects
     ADD CONSTRAINT subjects_name_key UNIQUE (name);
 
 
 --
--- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subjects
+ALTER TABLE ONLY milestone.subjects
     ADD CONSTRAINT subjects_pkey PRIMARY KEY (id);
 
 
 --
--- Name: task_blocks task_blocks_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: task_blocks task_blocks_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.task_blocks
+ALTER TABLE ONLY milestone.task_blocks
     ADD CONSTRAINT task_blocks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.tasks
+ALTER TABLE ONLY milestone.tasks
     ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: topic_editing topic_editing_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: topic_editing topic_editing_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.topic_editing
+ALTER TABLE ONLY milestone.topic_editing
     ADD CONSTRAINT topic_editing_pkey PRIMARY KEY (id);
 
 
 --
--- Name: topics topics_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: topics topics_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.topics
+ALTER TABLE ONLY milestone.topics
     ADD CONSTRAINT topics_pkey PRIMARY KEY (id);
 
 
 --
--- Name: progress user_progress_pk; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: progress user_progress_pk; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.progress
+ALTER TABLE ONLY milestone.progress
     ADD CONSTRAINT user_progress_pk PRIMARY KEY (user_id, topic_id);
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.users
+ALTER TABLE ONLY milestone.users
     ADD CONSTRAINT users_email_key UNIQUE (email);
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.users
+ALTER TABLE ONLY milestone.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users users_username_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.users
+ALTER TABLE ONLY milestone.users
     ADD CONSTRAINT users_username_key UNIQUE (username);
 
 
 --
--- Name: containers containers_container_template_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: containers containers_container_template_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.containers
-    ADD CONSTRAINT containers_container_template_id FOREIGN KEY (template_id) REFERENCES flashback.container_templates(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.containers
+    ADD CONSTRAINT containers_container_template_id FOREIGN KEY (template_id) REFERENCES milestone.container_templates(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_blocks fk_note_block; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_blocks fk_note_block; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_blocks
-    ADD CONSTRAINT fk_note_block FOREIGN KEY (note_id) REFERENCES flashback.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_blocks
+    ADD CONSTRAINT fk_note_block FOREIGN KEY (note_id) REFERENCES milestone.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_references fk_note_reference; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_references fk_note_reference; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_references
-    ADD CONSTRAINT fk_note_reference FOREIGN KEY (note_id) REFERENCES flashback.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_references
+    ADD CONSTRAINT fk_note_reference FOREIGN KEY (note_id) REFERENCES milestone.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_blocks fk_practice_block; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_blocks fk_practice_block; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_blocks
-    ADD CONSTRAINT fk_practice_block FOREIGN KEY (practice_id) REFERENCES flashback.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_blocks
+    ADD CONSTRAINT fk_practice_block FOREIGN KEY (practice_id) REFERENCES milestone.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: references fk_practice_reference; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: references fk_practice_reference; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback."references"
-    ADD CONSTRAINT fk_practice_reference FOREIGN KEY (practice_id) REFERENCES flashback.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone."references"
+    ADD CONSTRAINT fk_practice_reference FOREIGN KEY (practice_id) REFERENCES milestone.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_resources fk_practice_resource; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_resources fk_practice_resource; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_resources
-    ADD CONSTRAINT fk_practice_resource FOREIGN KEY (practice_id) REFERENCES flashback.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_resources
+    ADD CONSTRAINT fk_practice_resource FOREIGN KEY (practice_id) REFERENCES milestone.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_resources fk_practice_section; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_resources fk_practice_section; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_resources
-    ADD CONSTRAINT fk_practice_section FOREIGN KEY (section_id) REFERENCES flashback.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_resources
+    ADD CONSTRAINT fk_practice_section FOREIGN KEY (section_id) REFERENCES milestone.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: notes fk_resource_note; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: notes fk_resource_note; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.notes
-    ADD CONSTRAINT fk_resource_note FOREIGN KEY (section_id) REFERENCES flashback.sections(id) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY milestone.notes
+    ADD CONSTRAINT fk_resource_note FOREIGN KEY (section_id) REFERENCES milestone.sections(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
--- Name: sections fk_resource_section; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: sections fk_resource_section; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.sections
-    ADD CONSTRAINT fk_resource_section FOREIGN KEY (resource_id) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.sections
+    ADD CONSTRAINT fk_resource_section FOREIGN KEY (resource_id) REFERENCES milestone.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: topics fk_subject; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: topics fk_subject; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.topics
-    ADD CONSTRAINT fk_subject FOREIGN KEY (subject_id) REFERENCES flashback.subjects(id) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY milestone.topics
+    ADD CONSTRAINT fk_subject FOREIGN KEY (subject_id) REFERENCES milestone.subjects(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
--- Name: practices fk_topics; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practices fk_topics; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practices
-    ADD CONSTRAINT fk_topics FOREIGN KEY (topic_id) REFERENCES flashback.topics(id) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY milestone.practices
+    ADD CONSTRAINT fk_topics FOREIGN KEY (topic_id) REFERENCES milestone.topics(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
--- Name: credentials fk_user_credential_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: credentials fk_user_credential_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.credentials
-    ADD CONSTRAINT fk_user_credential_id FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.credentials
+    ADD CONSTRAINT fk_user_credential_id FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: progress fk_user_progress_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: progress fk_user_progress_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.progress
-    ADD CONSTRAINT fk_user_progress_id FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.progress
+    ADD CONSTRAINT fk_user_progress_id FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: studies fk_user_section_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: studies fk_user_section_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.studies
-    ADD CONSTRAINT fk_user_section_id FOREIGN KEY (section_id) REFERENCES flashback.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.studies
+    ADD CONSTRAINT fk_user_section_id FOREIGN KEY (section_id) REFERENCES milestone.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: studies fk_user_studies_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: studies fk_user_studies_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.studies
-    ADD CONSTRAINT fk_user_studies_id FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.studies
+    ADD CONSTRAINT fk_user_studies_id FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: progress fk_user_topic_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: progress fk_user_topic_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.progress
-    ADD CONSTRAINT fk_user_topic_id FOREIGN KEY (topic_id) REFERENCES flashback.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.progress
+    ADD CONSTRAINT fk_user_topic_id FOREIGN KEY (topic_id) REFERENCES milestone.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: logins logins_user_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: logins logins_user_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.logins
-    ADD CONSTRAINT logins_user_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.logins
+    ADD CONSTRAINT logins_user_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_editing note_editing_note_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_editing note_editing_note_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_editing
-    ADD CONSTRAINT note_editing_note_id_fk FOREIGN KEY (note_id) REFERENCES flashback.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_editing
+    ADD CONSTRAINT note_editing_note_id_fk FOREIGN KEY (note_id) REFERENCES milestone.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_editing note_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_editing note_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_editing
-    ADD CONSTRAINT note_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_editing
+    ADD CONSTRAINT note_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_usage note_note_usage_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_usage note_note_usage_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_usage
-    ADD CONSTRAINT note_note_usage_id FOREIGN KEY (note_id) REFERENCES flashback.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_usage
+    ADD CONSTRAINT note_note_usage_id FOREIGN KEY (note_id) REFERENCES milestone.notes(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_editing practice_editing_practice_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_editing practice_editing_practice_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_editing
-    ADD CONSTRAINT practice_editing_practice_id_fk FOREIGN KEY (practice_id) REFERENCES flashback.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_editing
+    ADD CONSTRAINT practice_editing_practice_id_fk FOREIGN KEY (practice_id) REFERENCES milestone.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_editing practice_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_editing practice_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_editing
-    ADD CONSTRAINT practice_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_editing
+    ADD CONSTRAINT practice_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_usage practice_practice_usage_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_usage practice_practice_usage_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_usage
-    ADD CONSTRAINT practice_practice_usage_id FOREIGN KEY (practice_id) REFERENCES flashback.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_usage
+    ADD CONSTRAINT practice_practice_usage_id FOREIGN KEY (practice_id) REFERENCES milestone.practices(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: resource_editing resource_editing_resource_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_editing resource_editing_resource_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_editing
-    ADD CONSTRAINT resource_editing_resource_id_fk FOREIGN KEY (resource_id) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.resource_editing
+    ADD CONSTRAINT resource_editing_resource_id_fk FOREIGN KEY (resource_id) REFERENCES milestone.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: resource_editing resource_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_editing resource_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_editing
-    ADD CONSTRAINT resource_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.resource_editing
+    ADD CONSTRAINT resource_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: resources resource_section_pattern_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resources resource_section_pattern_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resources
-    ADD CONSTRAINT resource_section_pattern_id FOREIGN KEY (section_pattern_id) REFERENCES flashback.section_name_patterns(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.resources
+    ADD CONSTRAINT resource_section_pattern_id FOREIGN KEY (section_pattern_id) REFERENCES milestone.section_name_patterns(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: resource_watching resource_watching_resource_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_watching resource_watching_resource_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_watching
-    ADD CONSTRAINT resource_watching_resource_id_fk FOREIGN KEY (resource_id) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.resource_watching
+    ADD CONSTRAINT resource_watching_resource_id_fk FOREIGN KEY (resource_id) REFERENCES milestone.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: resource_watching resource_watching_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: resource_watching resource_watching_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.resource_watching
-    ADD CONSTRAINT resource_watching_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.resource_watching
+    ADD CONSTRAINT resource_watching_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: section_editing section_editing_section_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: section_editing section_editing_section_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.section_editing
-    ADD CONSTRAINT section_editing_section_id_fk FOREIGN KEY (section_id) REFERENCES flashback.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.section_editing
+    ADD CONSTRAINT section_editing_section_id_fk FOREIGN KEY (section_id) REFERENCES milestone.sections(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: section_editing section_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: section_editing section_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.section_editing
-    ADD CONSTRAINT section_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.section_editing
+    ADD CONSTRAINT section_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_editing subject_editing_subject_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_editing subject_editing_subject_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_editing
-    ADD CONSTRAINT subject_editing_subject_id_fk FOREIGN KEY (subject_id) REFERENCES flashback.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_editing
+    ADD CONSTRAINT subject_editing_subject_id_fk FOREIGN KEY (subject_id) REFERENCES milestone.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_editing subject_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_editing subject_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_editing
-    ADD CONSTRAINT subject_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_editing
+    ADD CONSTRAINT subject_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_resources subject_resources_resource_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_resources subject_resources_resource_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_resources
-    ADD CONSTRAINT subject_resources_resource_id_fk FOREIGN KEY (resource_id) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_resources
+    ADD CONSTRAINT subject_resources_resource_id_fk FOREIGN KEY (resource_id) REFERENCES milestone.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_resources subject_resources_subject_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_resources subject_resources_subject_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_resources
-    ADD CONSTRAINT subject_resources_subject_id_fk FOREIGN KEY (subject_id) REFERENCES flashback.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_resources
+    ADD CONSTRAINT subject_resources_subject_id_fk FOREIGN KEY (subject_id) REFERENCES milestone.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_watching subject_watching_subject_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_watching subject_watching_subject_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_watching
-    ADD CONSTRAINT subject_watching_subject_id_fk FOREIGN KEY (subject_id) REFERENCES flashback.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_watching
+    ADD CONSTRAINT subject_watching_subject_id_fk FOREIGN KEY (subject_id) REFERENCES milestone.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: subject_watching subject_watching_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: subject_watching subject_watching_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.subject_watching
-    ADD CONSTRAINT subject_watching_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.subject_watching
+    ADD CONSTRAINT subject_watching_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: task_blocks task_block_task_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: task_blocks task_block_task_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.task_blocks
-    ADD CONSTRAINT task_block_task_id FOREIGN KEY (task_id) REFERENCES flashback.tasks(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.task_blocks
+    ADD CONSTRAINT task_block_task_id FOREIGN KEY (task_id) REFERENCES milestone.tasks(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: tasks task_topic_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: tasks task_topic_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.tasks
-    ADD CONSTRAINT task_topic_id FOREIGN KEY (topic_id) REFERENCES flashback.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.tasks
+    ADD CONSTRAINT task_topic_id FOREIGN KEY (topic_id) REFERENCES milestone.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: topic_editing topic_editing_topic_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: topic_editing topic_editing_topic_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.topic_editing
-    ADD CONSTRAINT topic_editing_topic_id_fk FOREIGN KEY (topic_id) REFERENCES flashback.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.topic_editing
+    ADD CONSTRAINT topic_editing_topic_id_fk FOREIGN KEY (topic_id) REFERENCES milestone.topics(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: topic_editing topic_editing_user_id_fk; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: topic_editing topic_editing_user_id_fk; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.topic_editing
-    ADD CONSTRAINT topic_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.topic_editing
+    ADD CONSTRAINT topic_editing_user_id_fk FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: note_usage user_note_usage_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: note_usage user_note_usage_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.note_usage
-    ADD CONSTRAINT user_note_usage_id FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.note_usage
+    ADD CONSTRAINT user_note_usage_id FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: practice_usage user_note_usage_id; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: practice_usage user_note_usage_id; Type: FK CONSTRAINT; Schema: milestone; Owner: milestone
 --
 
-ALTER TABLE ONLY flashback.practice_usage
-    ADD CONSTRAINT user_note_usage_id FOREIGN KEY (user_id) REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY milestone.practice_usage
+    ADD CONSTRAINT user_note_usage_id FOREIGN KEY (user_id) REFERENCES milestone.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
