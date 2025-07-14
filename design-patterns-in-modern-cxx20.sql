@@ -1,5 +1,5 @@
-create temp table temp_blocks(row_number serial, t_content text, t_type flashback.block_type, t_language varchar(10));
-create procedure add_block(type flashback.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
+create temp table temp_blocks(row_number serial, t_content text, t_type milestone.block_type, t_language varchar(10));
+create procedure add_block(type milestone.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
 call add_block('text', 'txt', 'CRTP is most useful when you want compile-time polymorphism, meaning you want a base class to call functions from the derived class without using virtual functions (no runtime overhead).');
 call create_note_with_name('Design Patterns in Modern C++20', 1, 'What are the use cases of Curiously Recurring Template Pattern?');
