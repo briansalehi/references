@@ -1,18 +1,73 @@
 create temp table temp_blocks(row_number serial, t_content text, t_type milestone.block_type, t_language varchar(10));
 create procedure add_block(type milestone.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
--- subject_id integer (1:Algorithms, 2:x64 Assembly, 3:Boost, 4:C, 5:CMake, 6:C++, 7:Docker, 8:Embedded Linux, 9:GNU Debugger, 10:Git, 11:Linux Kernel, 12:LaTeX, 13:Linux Administration, 14:Mathematics, 15:OpenCV, 16:OpenSSL, 17:Perf, 18:PostgreSQL, 19:Qt, 20:Software Security, 21:Tmux, 22:Valgrind, 23:Vim, 24:GoogleTest, 25:OpenGL, 26:Yocto, 27:GitHub, 28:Vulkan, 29: Mutt)
--- resource_name varchar
--- resource_type resource_type (book, video, website, mailing list, course, manual, slides, unknown)
--- section_pattern_id integer (1:Chapter, 2:Page, 3:Course, 4:Video)
--- sections integer
--- resource_reference varchar
-call create_resource(0, '', '', 0, 0, '');
+call create_resource(1, 'Algorithms and Data Structures Made Easy', 'video', 4, 68, 'https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'xxx', '');
-call create_note_with_name('', 0, '');
-call set_section_as_complete('', 0);
+call add_block('text', 'txt', 'An algorithm is a well defined set of steps to solve a problem. Algorithms are measured by time complexity.');
+call create_note_with_name('Algorithms and Data Structures Made Easy', 1, 'What measurement do we use to evaluate how efficient an algorithm is?');
+call set_section_as_complete('Algorithms and Data Structures Made Easy', 1);
+
+call add_block('text', 'txt', 'We count operations instead of measuring the variable time when those operations run.');
+call add_block('code', 'cpp', 'template<Container, Element>
+requires requires(Element e) { e + e; }
+int aggregate(Container<Element> const& container)
+{
+    int sum{0}; // 1
+
+    for (Element const& element: container)
+    {
+        sum += element; // 3N
+    }
+
+    return sum; // 1
+}');
+call create_note_with_name('Algorithms and Data Structures Made Easy', 2, 'How to avoid different measurements between different runs of an algorithm?');
+
+call add_block('text', 'txt', 'We only consider the highest growth term using asymptotic notation.');
+call add_block('code', 'cpp', 'template<Container, Element>
+requires requires(Element e) { e + e; }
+int aggregate(Container<Element> const& container)
+{
+    int sum{0}; // 1
+
+    for (Element const& element: container)
+    {
+        sum += element; // 3N
+    }
+
+    return sum; // 1
+}');
+call add_block('text', 'txt', 'f(N) = 3N + 2
+O(N) = N');
+call add_block('code', 'cpp', 'template<Container, Element>
+requires requires(Element e) { e + e; }
+long long aggregate(Container<Element> const& container)
+{
+    int index{0}; // 1
+    long long sum{0}; // 1
+
+    while (index < container.size())
+    {
+        sum += container.at(index); // 3N
+        index++; // N
+    }
+
+    return sum; // 1
+}');
+call add_block('text', 'txt', 'f(N) = 4N + 3
+O(N) = N');
+call create_note_with_name('Algorithms and Data Structures Made Easy', 2, 'How to avoid different measurements between different implementations?');
+call set_section_as_complete('Algorithms and Data Structures Made Easy', 2);
+
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Algorithms and Data Structures Made Easy', 3, '');
+--call set_section_as_complete('Algorithms and Data Structures Made Easy', 3);
+--
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', '');
+--call create_note_with_name('Algorithms and Data Structures Made Easy', 4, '');
+--call set_section_as_complete('Algorithms and Data Structures Made Easy', 4);
 
 drop procedure add_block;
 drop table temp_blocks;
