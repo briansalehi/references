@@ -135,10 +135,10 @@ declare resource_index integer;
 declare record record;
 begin
     select resource_id into resource_index from sections where id = section_index;
-    insert into flashback.notes (section_id, heading) values (section_index, heading) returning id into note_index;
-    insert into flashback.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
-    update flashback.sections set state = 'writing', updated = now() where id = section_index;
-    update flashback.resources set updated = now() where id = resource_index;
+    insert into milestone.notes (section_id, heading) values (section_index, heading) returning id into note_index;
+    insert into milestone.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
+    update milestone.sections set state = 'writing', updated = now() where id = section_index;
+    update milestone.resources set updated = now() where id = resource_index;
     delete from temp_blocks;
     alter sequence temp_block_row_number_seq restart with 1;
 end; $$;
@@ -160,13 +160,13 @@ declare note_index integer;
 declare block_index integer;
 declare record record;
 begin
-    select r.id into resource_index from flashback.resources r where r.name = resource_name;
-    select s.id into section_index from flashback.sections s where s.number = section_number and s.resource_id = resource_index;
-    select s.state into section_state from flashback.sections s where s.id = section_index;
-    insert into flashback.notes (section_id, heading) values (section_index, heading) returning id into note_index;
-    insert into flashback.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
-    update flashback.sections set state = 'writing', updated = now() where id = section_index;
-    update flashback.resources set updated = now() where id = resource_index;
+    select r.id into resource_index from milestone.resources r where r.name = resource_name;
+    select s.id into section_index from milestone.sections s where s.number = section_number and s.resource_id = resource_index;
+    select s.state into section_state from milestone.sections s where s.id = section_index;
+    insert into milestone.notes (section_id, heading) values (section_index, heading) returning id into note_index;
+    insert into milestone.note_blocks (note_id, content, type, language, position) select note_index, t_content, t_type, t_language, row_number from temp_blocks;
+    update milestone.sections set state = 'writing', updated = now() where id = section_index;
+    update milestone.resources set updated = now() where id = resource_index;
     delete from temp_blocks;
     alter sequence temp_blocks_row_number_seq restart with 1;
 end; $$;
@@ -205,9 +205,9 @@ CREATE PROCEDURE milestone.create_resource(IN subject_index integer, IN name_str
     AS $$
 declare resource_index integer;
 begin
-    insert into flashback.resources(name, reference, leading_author, type, section_pattern_id) values (name_string, resource_reference, leading_author_name, type_string, section_pattern_index) returning id into resource_index;
-    insert into flashback.subject_resources(subject_id, resource_id) values (subject_index, resource_index);
-    insert into flashback.sections(resource_id, number) select resource_index, generate_series(1, sections);
+    insert into milestone.resources(name, reference, leading_author, type, section_pattern_id) values (name_string, resource_reference, leading_author_name, type_string, section_pattern_index) returning id into resource_index;
+    insert into milestone.subject_resources(subject_id, resource_id) values (subject_index, resource_index);
+    insert into milestone.sections(resource_id, number) select resource_index, generate_series(1, sections);
 end; $$;
 
 
@@ -843,9 +843,9 @@ CREATE PROCEDURE milestone.set_section_as_complete(IN resource_name character va
 declare resource_index integer;
 declare section_index integer;
 begin
-    select id into resource_index from flashback.resources where name = resource_name;
-    select id into section_index from flashback.sections where resource_id = resource_index and number = section_number;
-    update flashback.sections set state = 'completed', updated = now() where id = section_index;
+    select id into resource_index from milestone.resources where name = resource_name;
+    select id into section_index from milestone.sections where resource_id = resource_index and number = section_number;
+    update milestone.sections set state = 'completed', updated = now() where id = section_index;
 end; $$;
 
 
@@ -12025,6 +12025,14 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10335	3954	$EDITOR	code	muttrc	2025-05-03 22:26:43.018217	2
 10336	3955	WSPC characters are either space or tab and they separate arguments from commands, or separate patterns from each other.	text	txt	2025-05-03 22:26:43.019159	1
 10337	3956	Every character between a pair of single quotes or double quotes is literal, except with double quotes which will not quote shell variables and command substitutions, unless quoted with backslash.	text	txt	2025-05-03 22:26:43.02011	1
+10338	3957	An algorithm is a well defined set of steps to solve a problem. Algorithms are measured by time complexity.	text	txt	2025-07-14 20:33:03.503422	1
+10339	3958	We count operations instead of measuring the variable time when those operations run.	text	txt	2025-07-14 20:33:03.507465	1
+10340	3958	template<Container, Element>\nrequires requires(Element e) { e + e; }\nint aggregate(Container<Element> const& container)\n{\n    int sum{0}; // 1\n\n    for (Element const& element: container)\n    {\n        sum += element; // 3N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.507465	2
+10341	3959	We only consider the highest growth term using asymptotic notation.	text	txt	2025-07-14 20:33:03.508943	1
+10342	3959	template<Container, Element>\nrequires requires(Element e) { e + e; }\nint aggregate(Container<Element> const& container)\n{\n    int sum{0}; // 1\n\n    for (Element const& element: container)\n    {\n        sum += element; // 3N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.508943	2
+10343	3959	f(N) = 3N + 2\nO(N) = N	text	txt	2025-07-14 20:33:03.508943	3
+10344	3959	template<Container, Element>\nrequires requires(Element e) { e + e; }\nlong long aggregate(Container<Element> const& container)\n{\n    int index{0}; // 1\n    long long sum{0}; // 1\n\n    while (index < container.size())\n    {\n        sum += container.at(index); // 3N\n        index++; // N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.508943	4
+10345	3959	f(N) = 4N + 3\nO(N) = N	text	txt	2025-07-14 20:33:03.508943	5
 \.
 
 
@@ -16133,6 +16141,9 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3954	1674	Use a shell variable inside mutt configuration?	open	2025-05-03 22:26:43.018217	2025-05-03 22:26:43.018217	0
 3955	1674	What are the white space characters in mutt configuration?	open	2025-05-03 22:26:43.019159	2025-05-03 22:26:43.019159	0
 3956	1674	What are the quoting characters in mutt configuration?	open	2025-05-03 22:26:43.02011	2025-05-03 22:26:43.02011	0
+3957	\N	What measurement do we use to evaluate how efficient an algorithm is?	open	2025-07-14 20:33:03.503422	2025-07-14 20:33:03.503422	0
+3958	\N	How to avoid different measurements between different runs of an algorithm?	open	2025-07-14 20:33:03.507465	2025-07-14 20:33:03.507465	0
+3959	\N	How to avoid different measurements between different implementations?	open	2025-07-14 20:33:03.508943	2025-07-14 20:33:03.508943	0
 \.
 
 
@@ -16627,19 +16638,13 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 469	256	sudo hotspot	code	txt	2024-07-28 09:46:39.001065	1
 484	260	- Literal constants\n- Constants defined by `const`\n- Constant expressions defined by `constexpr`\n- Immediate functions marked by `consteval`\n- Enumerations\n- Scoped Enumerations\n- Preprocessor macro `#define`	text	txt	2024-07-28 09:46:41.305457	1
 495	263	Before C++ direct list initialization deduced as `std::initializer_list<int>`\nbut since C++17 it is as `int`.	text	txt	2024-07-28 09:46:43.287337	1
-497	264	Aggregate types can be initialized using special aggregate initialization.\nThis initializes members in their declaration order. Members that are not\nexplicitly initialized and do not have a default member initializer are\ninitialized using empty copy-list-initialization (i.e. `T x={}`).	text	txt	2024-07-28 09:46:44.264905	1
-498	264	#include <string>\n#include <vector>	text	txt	2024-07-28 09:46:44.286577	2
-499	264	struct Data\n{\n    int x;\n    double y;\n    std::string label = "Hello World!"; // only permitted since C++14\n    std::vector<int> arr;\n};	text	txt	2024-07-28 09:46:44.307937	3
-500	264	struct X\n{\n    int a;\n    int b;\n};	text	txt	2024-07-28 09:46:44.327795	4
-501	264	struct Y\n{\n    X x;\n    X y;\n};	text	txt	2024-07-28 09:46:44.35017	5
-502	264	// Initialization is done in declaration order:\nData a = {10, 2.3};\n// a.x == 10, a.y == 2.3\n// a.label == "Hello World!", a.arr == std::vector<int>{}	text	txt	2024-07-28 09:46:44.370323	6
-503	264	// Nested brackets can be omitted:\nY b = { 10, 20, 30 };\n// b.x == {10, 20}, b.y == {30, int{} == 0}	code	txt	2024-07-28 09:46:44.391909	7
 504	265	C++20 introduced designated initializers for aggregate initialization. This\nallows for better control over which elements of the aggregate will be\nexplicitly initialized.	text	txt	2024-07-28 09:46:45.307708	1
 505	265	#include <string>	text	txt	2024-07-28 09:46:45.328004	2
 506	265	struct Data {\n    int a;\n    double b;\n    std::string c;\n};	text	txt	2024-07-28 09:46:45.349071	3
 470	257	g++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.360787	1
 471	257	clang++ -o program source.cpp -std=c++20	code	sh	2024-07-28 09:46:39.381534	2
 485	261	const double pi = 22.0 / 7;	code	cpp	2024-07-28 09:46:41.547064	1
+497	264	Aggregate types can be initialized using special aggregate initialization.\nThis initializes members in their declaration order. Members that are not\nexplicitly initialized and do not have a default member initializer are\ninitialized using empty copy-list-initialization (i.e. `T x={}`).	text	txt	2024-07-28 09:46:44.264905	1
 486	262	* direct initialization initializes an object from an explicit set of\n  constructor arguments.\n* copy initialization initializes an object from another object.\n* brace initialization prevents narrowing conversion of data types.\n* all elements of list initialization should be of the same type.	text	txt	2024-07-28 09:46:42.687443	1
 496	263	auto x { 42 };\n// before C++17: std::initializer_list<int>\n// since C++17: int	code	cpp	2024-07-28 09:46:43.308841	2
 511	265	// A clunky but functional option for named agruments in C++\nstruct Arg { const std::string& label; int64_t id; };\nvoid some_func(Arg arg) {}	text	txt	2024-07-28 09:46:45.452174	8
@@ -19948,6 +19953,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3827	258	#include <string>\n\nint v; // left uninitialized\n\n// Only well-defined since C++17\nint x = 1;\n(x = 2) = x; // x == 1\n\n// right side evalutes: 1 (prvalue)\n// left side evaluates: ref to x (x==2)\n// assignment evaluates: ref to x (x==1)\n\nstd::string y = "a";\n(y = "b") = y; // y == "b"\n\n// right side evaluates: ref to y\n// left side evalutes: ref y (y=="b")\n// assignment evaluates: ref to y (y=="b")	code	cpp	2025-07-13 14:51:59.008113	3
 3830	259	#include <iostream>\n\nint global_number = 42;\n\nint function()\n{\n    int local_number = 77;\n    return local_number;\n}\n\nint main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	cpp	2025-07-14 12:45:07.366694	1
 3837	262	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>\n\nvoid func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}\n\nvoid func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}\n\nint main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization\n\n    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};\n\n    func({1, 2, 3}); // call std::initializer_list<int> overload\n\n    std::vector v1{4}; // size = 1\n    std::vector v2(4); // size = 4\n\n    auto a = {42}; // std::initializer_list<int>\n    auto b{42}; // int\n    auto c = {4, 2}; //std::initializer_list<int>\n    auto d{4, 2}; // error, too many elements	code	cpp	2025-07-14 13:09:53.17377	2
+3842	264	#include <string>\n#include <vector>\n\nstruct Data\n{\n    int x;\n    double y;\n    std::string label = "Hello World!"; // only permitted since C++14\n    std::vector<int> arr;\n};\n\nstruct X\n{\n    int a;\n    int b;\n};\n\nstruct Y\n{\n    X x;\n    X y;\n};\n\n// Initialization is done in declaration order:\nData a = {10, 2.3};\n// a.x == 10, a.y == 2.3\n// a.label == "Hello World!", a.arr == std::vector<int>{}\n\n// Nested brackets can be omitted:\nY b = { 10, 20, 30 };\n// b.x == {10, 20}, b.y == {30, int{} == 0}	code	cpp	2025-07-14 16:42:58.546421	2
 \.
 
 
@@ -22414,6 +22420,7 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
 18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
+118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	4	\N
 \.
 
 
@@ -24104,6 +24111,74 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1694	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	24
 1695	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	25
 1674	117	completed	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.021042	4
+1698	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	3
+1699	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	4
+1700	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	5
+1701	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	6
+1702	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	7
+1703	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	8
+1704	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	9
+1705	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	10
+1706	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	11
+1707	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	12
+1708	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	13
+1709	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	14
+1710	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	15
+1711	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	16
+1712	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	17
+1713	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	18
+1714	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	19
+1715	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	20
+1716	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	21
+1717	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	22
+1718	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	23
+1719	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	24
+1720	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	25
+1721	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	26
+1722	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	27
+1723	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	28
+1724	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	29
+1725	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	30
+1726	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	31
+1727	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	32
+1728	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	33
+1729	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	34
+1730	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	35
+1731	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	36
+1732	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	37
+1733	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	38
+1734	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	39
+1735	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	40
+1736	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	41
+1737	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	42
+1738	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	43
+1739	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	44
+1740	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	45
+1741	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	46
+1742	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	47
+1743	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	48
+1744	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	49
+1745	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	50
+1746	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	51
+1747	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	52
+1748	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	53
+1749	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	54
+1750	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	55
+1751	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	56
+1752	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	57
+1753	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	58
+1754	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	59
+1755	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	60
+1756	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	61
+1757	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	62
+1758	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	63
+1759	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	64
+1760	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	65
+1761	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	66
+1762	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	67
+1763	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	68
+1696	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.793634	1
+1697	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	2
 \.
 
 
@@ -25879,6 +25954,7 @@ COPY milestone.subject_resources (subject_id, resource_id) FROM stdin;
 11	115
 6	116
 29	117
+1	118
 \.
 
 
@@ -26472,7 +26548,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10337, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10369, true);
 
 
 --
@@ -26500,14 +26576,14 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3956, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3968, true);
 
 
 --
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3837, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3842, true);
 
 
 --
@@ -26556,7 +26632,7 @@ SELECT pg_catalog.setval('milestone.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.resources_id_seq', 117, true);
+SELECT pg_catalog.setval('milestone.resources_id_seq', 119, true);
 
 
 --
@@ -26577,7 +26653,7 @@ SELECT pg_catalog.setval('milestone.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.sections_id_seq', 1695, true);
+SELECT pg_catalog.setval('milestone.sections_id_seq', 1831, true);
 
 
 --
