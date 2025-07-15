@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.4
--- Dumped by pg_dump version 17.4
+-- Dumped from database version 17.3
+-- Dumped by pg_dump version 17.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -121,6 +121,21 @@ end; $$;
 
 
 ALTER PROCEDURE milestone.add_section(IN resource_index integer, IN reference_string character varying) OWNER TO milestone;
+
+--
+-- Name: change_block_language(integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
+--
+
+CREATE PROCEDURE milestone.change_block_language(IN block integer, IN new_language character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update practice_blocks set language = new_language where id = block;
+end;
+$$;
+
+
+ALTER PROCEDURE milestone.change_block_language(IN block integer, IN new_language character varying) OWNER TO milestone;
 
 --
 -- Name: create_note(integer, integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
@@ -738,6 +753,88 @@ $$;
 
 
 ALTER FUNCTION milestone.merge_note_blocks(upper integer, lower integer) OWNER TO milestone;
+
+--
+-- Name: merge_practice_block_series(integer[]); Type: FUNCTION; Schema: milestone; Owner: milestone
+--
+
+CREATE FUNCTION milestone.merge_practice_block_series(VARIADIC block_list integer[]) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare
+    block_index integer default 1;
+    lower_block integer;
+    upper_block integer;
+    upper_practice integer;
+    lower_practice integer;
+    upper_position integer;
+    lower_position integer;
+    swap_position integer;
+    lower_type block_type;
+    lower_language varchar(10);
+    block integer;
+begin
+    upper_block := block_list[block_index];
+    block_index := block_index + 1;
+
+    while block_index <= array_length(block_list, 1) loop
+        lower_block := block_list[block_index];
+
+        select practice_id, position
+        into upper_practice, upper_position
+        from practice_blocks where id = upper_block;
+
+        select practice_id, position, type, language
+        into lower_practice, lower_position, lower_type, lower_language
+        from practice_blocks where id = lower_block;
+
+        if upper_position = lower_position then
+            return 0;
+        end if;
+
+        if upper_position > lower_position then
+            swap_position := upper_position;
+            upper_position := lower_position;
+            lower_position := swap_position;
+        end if;
+
+        if upper_practice <> lower_practice then
+            raise exception 'Uncommon card between blocks % and %', upper_block, lower_block;
+        end if;
+
+        -- find the top free position of this practice for swapping
+        select max(position) + 1 into swap_position
+        from practice_blocks where practice_id = upper_practice;
+
+        -- create a new record on the top most position
+        insert into practice_blocks (practice_id, content, type, language, position)
+        select upper_practice, string_agg(coalesce(content, ''), E'\n\n' order by position), lower_type, lower_language, swap_position
+        from practice_blocks where id in (upper_block, lower_block)
+        returning id into block;
+
+        -- remove the two merged blocks
+        delete from practice_blocks where id in (upper_block, lower_block);
+
+        update practice_blocks set position = lower_position where id = block;
+
+        upper_block := block;
+        block_index := block_index + 1;
+    end loop;
+
+    -- reorder positions from top to bottom for a practice
+    update practice_blocks pb set position = sub.position
+    from (
+        select id, row_number() over (order by position) as position
+        from practice_blocks where practice_id = upper_practice
+    ) sub
+    where pb.id = sub.id;
+
+    return block;
+end;
+$$;
+
+
+ALTER FUNCTION milestone.merge_practice_block_series(VARIADIC block_list integer[]) OWNER TO milestone;
 
 --
 -- Name: merge_practice_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
@@ -16154,7 +16251,6 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 COPY milestone.practice_blocks (id, practice_id, content, type, language, updated, "position") FROM stdin;
 108	59	mmc	code	txt	2024-07-28 09:45:31.345142	1
 245	137	import QtQuick	text	txt	2024-07-28 09:45:58.690062	5
-531	272	struct Data{};	text	txt	2024-07-28 09:46:49.418214	3
 713	301	class Value\n{\n    long id;	text	txt	2024-07-28 09:47:15.566017	6
 880	340	#include <type_traits>	text	txt	2024-07-28 09:47:41.231796	2
 181	105	\\\\sout{Strikethrough text}	code	txt	2024-07-28 09:45:45.292618	2
@@ -16648,80 +16744,23 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 517	268	consteval double divide(double a, double b)\n{\n    return a / b;\n}	text	txt	2024-07-28 09:46:46.76329	1
 518	268	consteval double get_pi()\n{\n    return divide(22.0, 7); // OK\n}	text	txt	2024-07-28 09:46:46.783456	2
 519	268	double dividen{22.0}, divisor{7.0};\ndivide(dividen, divisor); // ERROR: non-const arguments to consteval	code	txt	2024-07-28 09:46:46.805479	3
-520	269	C++23 brings `if consteval` conditional statement.	text	txt	2024-07-28 09:46:47.522905	1
-521	269	This `if` statement takes no condition but would only evaluate during\nconstant evaluation. Otherwise, the `else` statement is evaluated.	text	txt	2024-07-28 09:46:47.543252	2
-522	269	consteval int f(int i) { return i; }	text	txt	2024-07-28 09:46:47.562905	3
-523	269	constexpr int g(int i)\n{\n    if consteval\n    {\n        return f(i) + 1; // immediate function context\n    }\n    else\n    {\n        return 42;\n    }\n}	text	txt	2024-07-28 09:46:47.584569	4
-524	269	consteval int h(int i)\n{\n    return f(i) + 1; // immediate function context\n}	code	txt	2024-07-28 09:46:47.605265	5
-525	270	if (std::is_constant_evaluated())\n{\n    /* A */\n}\nelse\n{\n    /* B */\n}	code	txt	2024-07-28 09:46:48.001507	1
 526	271	- `if consteval` is part of the core language, so no header needed\n- `if consteval` cannot be used wrong, but `is_constant_evaluated()` can:	text	txt	2024-07-28 09:46:48.369782	1
-527	271	if constexpr (std::is_constant_evaluated()) { /*A*/ } else { /*B*/ };	code	txt	2024-07-28 09:46:48.389926	2
 528	271	- Within `if consteval` block you can call immediate `consteval` functions.	text	txt	2024-07-28 09:46:48.409219	3
+525	270	if (std::is_constant_evaluated())\n{\n    /* A */\n}\nelse\n{\n    /* B */\n}	code	cpp	2024-07-28 09:46:48.001507	1
+527	271	if constexpr (std::is_constant_evaluated()) { /*A*/ } else { /*B*/ };	code	cpp	2024-07-28 09:46:48.389926	2
 529	272	Besides being a simple smart pointer, `std::unique_ptr` is also an important\nsemantic tool, marking an ownership handoff.	text	txt	2024-07-28 09:46:49.377355	1
-530	272	#include <memory>	text	txt	2024-07-28 09:46:49.397182	2
-532	272	// Function returning a unique_ptr handing off ownership to caller.\nstd::unique_ptr<Data> producer() { return std::make_unique<Data>(); }	text	txt	2024-07-28 09:46:49.437619	4
-533	272	// Function accepting a unique_ptr taking over ownership.\nvoid consumer(std::unique_ptr<Data> data) {}	text	txt	2024-07-28 09:46:49.45777	5
-534	272	// Helps with Single Reponsibility Principle\n// by separating resource management from logic\nstruct Holder {\n    Holder() : data_{std::make_unique<Data>()} {}\n    // implicitly defaulted move constructor && move assignment\n    // implicitly deleted copy constructor && copy assignment\nprivate:\n    std::unique_ptr<Data> data_;\n};	text	txt	2024-07-28 09:46:49.47884	6
-535	272	// shared_ptr has a fast constructor from unique_ptr\nstd::shared_ptr<Data> sptr = producer();	text	txt	2024-07-28 09:46:49.500137	7
-536	272	// Even in cases when manual resource management is required,\n// a unique_ptr on the interface might be preferable:\nvoid manual_handler(std::unique_ptr<Data> ptr) {\n    Data* raw = ptr.release();\n    // manual resource management\n}	code	txt	2024-07-28 09:46:49.520118	8
-537	273	#include <iostream>	text	txt	2024-07-28 09:46:49.982779	1
-538	273	int main()\n{\n    using std::cout;\n    using std::endl;	text	txt	2024-07-28 09:46:50.002303	2
-539	273	    cout << 42 << endl;\n}	code	txt	2024-07-28 09:46:50.022742	3
-586	283	export module geometry;   // module declaration	text	txt	2024-07-28 09:46:57.962919	4
-587	283	import std;      // module preamble	text	txt	2024-07-28 09:46:57.984943	5
-540	274	Unnamed namespaces as well as all namespaces declared directly or indirectly\nwithin an unnamed namespace have internal linkage, which means that any name\nthat is declared within an unnamed namespace has internal linkage.	text	txt	2024-07-28 09:46:50.680303	1
-541	274	namespace\n{\n    void f() { } // ::(unique)::f\n}	text	txt	2024-07-28 09:46:50.701498	2
-542	274	f(); // OK	text	txt	2024-07-28 09:46:50.723662	3
-543	274	namespace A\n{\n    void f() { } // A::f\n}	text	txt	2024-07-28 09:46:50.743666	4
-544	274	using namespace A;	text	txt	2024-07-28 09:46:50.76438	5
-545	274	f(); // Error: ::(unique)::f and A::f both in scope	code	txt	2024-07-28 09:46:50.785509	6
-546	275	Prior to C++11, non-type template arguments could not be named with internal\nlinkage, so `static` variables were not allowed.\nVC++ compiler still doesn't support it.	text	txt	2024-07-28 09:46:51.380161	1
-547	275	template <int const& Size>\nclass test {};	text	txt	2024-07-28 09:46:51.401093	2
-548	275	static int Size1 = 10; // internal linkage due static	text	txt	2024-07-28 09:46:51.422182	3
-549	275	namespace\n{\n    int Size2 = 10; // internal linkage due unnamed namespace\n}	text	txt	2024-07-28 09:46:51.442891	4
-550	275	test<Size1> t1; // error only on VC++\ntest<Size2> t2; // okay	code	txt	2024-07-28 09:46:51.462877	5
-551	276	Members of an inline namespace are treated as if they are members of the\nenclosing namespace. This property is transitive: if a namespace N contains\nan inline namespace M, which in turn contains an inline namespace O, then the\nmembers of O can be used as though they were members of M or N.	text	txt	2024-07-28 09:46:53.862341	1
-552	276	Common use cases of inline namespaces are:	text	txt	2024-07-28 09:46:53.882664	2
-553	276	* Specialization of a template is required to be done in the same namespace\n  where the template was declared.\n* Define the content of the library inside a namespace\n* Define each version of the library or parts of it inside an inner inline\n  namespace\n* Use preprocessor macros to enable a particular version of the library	text	txt	2024-07-28 09:46:53.903544	3
-554	276	namespace incorrect_implementation\n{\n    namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }	text	txt	2024-07-28 09:46:53.924456	4
-555	276	    namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }	text	txt	2024-07-28 09:46:53.944904	5
-556	276	    #ifndef _lib_version_1\n        using namespace v1;\n    #endif	text	txt	2024-07-28 09:46:53.965669	6
-557	276	    #ifndef _lib_version_2\n        using namespace v2;\n    #endif\n}	text	txt	2024-07-28 09:46:53.987312	7
-558	276	namespace broken_client_code\n{\n    // okay\n    auto x = incorrect_implementation::test(42);	text	txt	2024-07-28 09:46:54.007879	8
-559	276	    struct foo { int a; };	text	txt	2024-07-28 09:46:54.028755	9
-560	276	    // breaks\n    namespace incorrect_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }	text	txt	2024-07-28 09:46:54.04859	10
-561	276	    // won't compile\n    auto y = incorrect_implementation::test(foor{42});	text	txt	2024-07-28 09:46:54.06944	11
-562	276	    // library leaks implementation details\n    namespace incorrect_implementation\n    {\n        namespace version_2\n        {\n            template<>\n            int test(foo value) { return value.a; }\n        }\n    }	text	txt	2024-07-28 09:46:54.091579	12
-563	276	    // okay, but client needs to be aware of implementation details\n    auto y = incorrect_implementation::test(foor{42});\n}	text	txt	2024-07-28 09:46:54.114198	13
-564	276	namespace correct_implementation\n{\n    #ifndef _lib_version_1\n    inline namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n    #endif	text	txt	2024-07-28 09:46:54.135231	14
-565	276	    #ifndef _lib_version_2\n    inline namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }\n    #endif\n}	text	txt	2024-07-28 09:46:54.15647	15
-566	276	namespace working_client_code\n{\n    // okay\n    auto x = correct_implementation::test(42);	text	txt	2024-07-28 09:46:54.177698	16
-567	276	    struct foo { int a; };	text	txt	2024-07-28 09:46:54.198585	17
-568	276	    namespace correct_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }	text	txt	2024-07-28 09:46:54.219469	18
-569	276	    // okay\n    auto y = correct_implementation::test(foor{42});\n}	code	txt	2024-07-28 09:46:54.239404	19
-570	277	// before C++17\nnamespace A\n{\n    namespace B\n    {\n        namespace C\n        {\n            /* ... */\n        }\n    }\n}	text	txt	2024-07-28 09:46:54.85892	1
-571	277	// since C++16\nnamespace A::B::C\n{\n    /* ... */\n};	code	txt	2024-07-28 09:46:54.87948	2
 572	278	- Modules are only imported once and the order they're imported in does not matter.\n- Modules do not require splitting interfaces and implementation in different source files, although this is still possible.\n- Modules reduce compilation time. The entities exported from a module are described in a binary file that the compiler can process faster than traditional precompiled headers.\n- Exported files can potentially be used to build integrations with C++ code from other languages.	text	txt	2024-07-28 09:46:55.138744	1
-573	279	import std;	text	txt	2024-07-28 09:46:55.632971	1
-574	279	int main()\n{\n    std::cout << std::format("{}\\\\n", "modules are working");\n}	code	txt	2024-07-28 09:46:55.653325	2
-575	279	Headers can also be imported:	text	txt	2024-07-28 09:46:55.673671	3
-576	279	import std;\nimport "geometry.hpp"	code	txt	2024-07-28 09:46:55.693903	4
 577	280	- The **global module fragment**, introduced with a `module;` statement. This\n  part is optional and, if present, may only contain preprocessor directives.\n  Everything that is added here is said to belong to the *global module*,\n  which is the collection of all the global module fragments and all\n  translation units that are not modules.	text	txt	2024-07-28 09:46:56.092092	1
 578	280	- The **module declaration**, which is a required statement of the form\n  `export module name;`.\n- The **module preamble**, which is optional, and may only contain import\n  declarations.\n- The **module purview**, which is the content of the unit, starting with the\n  module declaration and extending to the end of the module unit.	text	txt	2024-07-28 09:46:56.112746	2
 579	281	Entities can be exported only when:	text	txt	2024-07-28 09:46:56.422239	1
 580	281	- have a name\n- have external linkage	text	txt	2024-07-28 09:46:56.443531	2
 581	281	Names of namespaces containing export declarations are implicitly exported as\nwell.	text	txt	2024-07-28 09:46:56.464812	3
 582	282	- Names with internal linkage or no linkage cannot be exported.\n- An export group must not contain declarations that cannot be exported, e.g.\n  `static_assert` or anonymous names.\n- The module declaration must not be the result of macro expansion.	text	txt	2024-07-28 09:46:56.740033	1
+551	276	Members of an inline namespace are treated as if they are members of the\nenclosing namespace. This property is transitive: if a namespace N contains\nan inline namespace M, which in turn contains an inline namespace O, then the\nmembers of O can be used as though they were members of M or N.	text	txt	2024-07-28 09:46:53.862341	1
+552	276	Common use cases of inline namespaces are:	text	txt	2024-07-28 09:46:53.882664	2
+575	279	Headers can also be imported:	text	txt	2024-07-28 09:46:55.673671	2
+576	279	import std;\nimport "geometry.hpp"	code	cpp	2024-07-28 09:46:55.693903	3
 583	283	Export a module by creating a **Module Interface Unit (MIU)** that can\ncontain functions, types, constants, and even macros.	text	txt	2024-07-28 09:46:57.900993	1
-584	283	module;               // global module fragment	text	txt	2024-07-28 09:46:57.921254	2
-585	283	#define X\n#include "code.h"	text	txt	2024-07-28 09:46:57.941471	3
-588	283	// module purview	text	txt	2024-07-28 09:46:58.006327	6
-589	283	export template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	text	txt	2024-07-28 09:46:58.027761	7
-590	283	export using int_point = point<int>;	text	txt	2024-07-28 09:46:58.047364	8
-591	283	export constexpr int_point int_point_zero{0, 0};	text	txt	2024-07-28 09:46:58.067856	9
-592	283	export template<typename T>\ndouble distance(point<T> const& p1, point<T> const& p2)\n{\n    return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));\n}	code	txt	2024-07-28 09:46:58.089466	10
-593	283	import std;\nimport geometry;	text	txt	2024-07-28 09:46:58.111906	11
-594	283	int main()\n{\n    int_point p{3, 4};\n    std::cout << distance(int_point_zero, p) << std::endl;\n}	code	txt	2024-07-28 09:46:58.134035	12
 595	284	The source code of a module may become large and difficult to maintain.\nMoreover, a module may be composed of logically separate parts. To help with\nscenarios like that, modules support composition from parts called\n**partitions**.	text	txt	2024-07-28 09:46:58.630847	1
 596	284	Although module partitions are distinct files, they are not available as\nseparate modules or submodules to translation units using a module. They are\nexported together as a single, aggregated module.	text	txt	2024-07-28 09:46:58.653004	2
 597	285	A module unit that is a partition that exports entities is called a **module\ninterface partition**.	text	txt	2024-07-28 09:47:00.35894	1
@@ -16775,6 +16814,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 645	287	std::cout << power << "\\\\n";	code	txt	2024-07-28 09:47:04.316856	25
 646	287	Choosing between using partitions or multiple modules for componentizing your\nsource code should depend on the particularities of your project. If you use\nmultiple smaller modules, you provide better granularity for imports. This\ncan be important if you're developing a large library because users should\nonly import things they use.	text	txt	2024-07-28 09:47:04.337692	26
 647	288	Benefits of using `auto`:	text	txt	2024-07-28 09:47:05.591579	1
+1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
 648	288	* It is not possible to leave a variable uninitialized with `auto`.\n* It prevents narrowing conversion of data types. (?)\n* It makes generic programming easy.\n* It can be used where we don't care about types.	text	txt	2024-07-28 09:47:05.6121	2
 649	288	Preconditions of using `auto`:	text	txt	2024-07-28 09:47:05.633075	3
 650	288	* `auto` does not retain cv-ref qualifiers.\n* `auto` cannot be used for non-movable objects.\n* `auto` cannot be used for multi-word types like long long.	text	txt	2024-07-28 09:47:05.654222	4
@@ -17083,6 +17123,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 952	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n    Stack& operator=(Stack const&);\n};	code	txt	2024-07-28 09:47:51.553726	2
 953	353	But it is formally equivalent to specify template parameters:	text	txt	2024-07-28 09:47:51.574715	3
 954	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack<T> const&);\n    Stack<T>& operator=(Stack<T> const&);\n};	code	txt	2024-07-28 09:47:51.596094	4
+1003	362	struct Matrix\n{\n    using iterator = ...;\n};	text	txt	2024-07-28 09:47:59.567489	2
 955	353	But usually the `<T>` signals special handling of special template\nparameters, so it’s usually better to use the first form. However, outside\nthe class structure you'd need to specify it.	text	txt	2024-07-28 09:47:51.616517	5
 956	354	To define a member function of a class template, you have to specify that it\nis a template, and you have to use the full type qualification of the class\ntemplate.	text	txt	2024-07-28 09:47:52.233889	1
 957	354	template<typename T>\nclass Stack\n{\n    void push(T const&);\n    void pop();\n};	text	txt	2024-07-28 09:47:52.254135	2
@@ -17132,8 +17173,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 999	360	template<typename T, typename C>\nbool Stack<T, C>::empty() const\n{\n    return container.empty();\n}	code	txt	2024-07-28 09:47:58.510304	6
 1000	361	Unlike a `typedef`, an alias declaration can be templated to provide a\nconvenient name for a family of types. This is also available since C++11 and\nis called an alias template.	text	txt	2024-07-28 09:47:58.866759	1
 1001	361	template<typename T>\nusing matrix = std::vector<std::vector<T>>;	code	txt	2024-07-28 09:47:58.886473	2
-1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
-1003	362	struct Matrix\n{\n    using iterator = ...;\n};	text	txt	2024-07-28 09:47:59.567489	2
 1004	362	template<typename T>\nusing MatrixIterator = typename Matrix<T>::iterator;	code	txt	2024-07-28 09:47:59.588822	3
 1006	362	Since C++14, the standard library uses this technique to define shortcuts for\nall type traits in the standard library that yield a type:	text	txt	2024-07-28 09:47:59.629697	5
 1007	362	std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11\nstd::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11	code	txt	2024-07-28 09:47:59.650938	6
@@ -17387,6 +17426,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1251	409	public:\n    box(std::string&& f, std::string&& l): first{std::move(f)}, last{std::move(l)} {}\n};	code	txt	2024-07-28 09:48:42.40117	18
 1252	409	But this solely prevents objects with names. So we should implement two\noverloads that pass by values and move:	text	txt	2024-07-28 09:48:42.421675	19
 1253	409	Overloading both for rvalue and lvalue references lead to many different\ncombinations of parameters.	text	txt	2024-07-28 09:48:42.442683	20
+1875	550	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:19.443774	1
 1254	409	In some cases, move operations take significant time. For example, if we have\na class with a string and a vector of values, taking by value and move is\nusually the right approach. However, if we have a `std::array` member, moving\nit will take significant time even if the members are moved.	text	txt	2024-07-28 09:48:42.463009	21
 1255	409	#include <string>\n#include <array>	text	txt	2024-07-28 09:48:42.484018	22
 1256	409	class box\n{\nprivate:\n    std::string first;\n    std::array<std::string, 1000> values;	text	txt	2024-07-28 09:48:42.50653	23
@@ -18009,7 +18049,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1872	548	    std::ranges::copy(range | std::views::transform([](long e) -> long { return e*e; }), std::ostream_iterator<long>(std::cout, " "));\n    // 1 4 9 16 25\n}	code	txt	2024-07-28 09:50:18.503519	4
 1873	549	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:18.951263	1
 1874	549	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::take(3), std::ostream_iterator<long>(std::cout, " "));\n    // 1 2 3\n}	code	txt	2024-07-28 09:50:18.9723	2
-1875	550	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:19.443774	1
 1876	550	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::take_while([](long e) { return e <= 3; }), std::ostream_iterator<long>(std::cout, " "));\n    // 1 2 3\n}	code	txt	2024-07-28 09:50:19.464747	2
 1877	551	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:19.959671	1
 1878	551	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::drop(3), std::ostream_iterator<long>(std::cout, " "));\n    // 4 5\n}	code	txt	2024-07-28 09:50:19.981975	2
@@ -18424,6 +18463,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2281	683	std::filesystem::is_regular_file(fs);\nstd::filesystem::is_directory(fs);\nstd::filesystem::is_symlink(fs);\nstd::filesystem::is_other(fs);	text	txt	2024-07-28 09:51:33.953561	2
 2282	683	std::filesystem::is_character_file(fs);\nstd::filesystem::is_block_file(fs);\nstd::filesystem::is_fifo(fs);\nstd::filesystem::is_socket(fs);	code	txt	2024-07-28 09:51:33.974546	3
 2283	684	std::filesystem::path p{};\nstd::filesystem::file_status fs = std::filesystem::status(p);\nstd::filesystem::file_type ft = fs.type();	text	txt	2024-07-28 09:51:34.589291	1
+3676	1172	__asm__(\n    ".intel_syntax noprefix;"\n    "mov rbx, rdx;"\n    "imul rbx, rcx;"\n    "mov rax, rbx;"\n    :"=a"(eproduct)\n    :"d"(x), "c"(y)\n    :"rbx"\n);	text	txt	2024-07-28 09:55:28.461292	4
+3677	1172	printf("The extended inline product is %i\\\\n", eproduct);	code	txt	2024-07-28 09:55:28.482158	5
 2284	684	switch (fs.type())\n{\n    using std::filesystem::file_type;\n    case (file_type::regular):      std::cout << "regular"; break;\n    case (file_type::directory):    std::cout << "directory"; break;\n    case (file_type::block):        std::cout << "block"; break;\n    case (file_type::character):    std::cout << "char"; break;\n    case (file_type::symlink):      std::cout << "symlink"; break;\n    case (file_type::socket):       std::cout << "socket"; break;\n    case (file_type::fifo):         std::cout << "fifo"; break;\n    case (file_type::not_found):    std::cout << "not found"; break;\n    case (file_type::unknown):      std::cout << "unknown"; break;\n    case (file_type::none):         std::cout << "none"; break;\n}	code	txt	2024-07-28 09:51:34.612483	2
 2285	685	std::filesystem::path p{};\nstd::filesysetm::file_status fs = std::filesystem::status(p);\nstd::filesystem::perms file_permissions = fs.permissions();	code	txt	2024-07-28 09:51:34.896079	1
 2286	686	#include <iostream>\n#include <filesystem>	text	txt	2024-07-28 09:51:35.332317	1
@@ -19794,8 +19835,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3673	1172	General syntax of extended inline assembly is as follows:	text	txt	2024-07-28 09:55:28.398983	1
 3674	1172	__asm__(\n    assembler code\n    : output operands\n    : input operands\n    : list of clobbered registers\n);	code	txt	2024-07-28 09:55:28.419093	2
 3675	1172	* After the assembler code, additional and optional information is used.\n* Instruction orders must be respected.	text	txt	2024-07-28 09:55:28.440053	3
-3676	1172	__asm__(\n    ".intel_syntax noprefix;"\n    "mov rbx, rdx;"\n    "imul rbx, rcx;"\n    "mov rax, rbx;"\n    :"=a"(eproduct)\n    :"d"(x), "c"(y)\n    :"rbx"\n);	text	txt	2024-07-28 09:55:28.461292	4
-3677	1172	printf("The extended inline product is %i\\\\n", eproduct);	code	txt	2024-07-28 09:55:28.482158	5
 3678	1172	`a`, `d`, `c` are register constraints, and they map to the registers `rax`,\n`rdx`, `rcx`, respectively. `:"=a"(eproduct)` means that the output will be\nin `rax`, and `rax` will refer to the variable `eproduct`. Register `rdx`\nrefers to `x`, and `rcx` refers to `y`, which are the input variables. `rbx`\nis considered clobbered in the code and will be restored to its original\nvalue, because it was declared in the list of clobbering registers.	text	txt	2024-07-28 09:55:28.504929	6
 3679	1172	a -> rax, eax, ax, al\nb -> rbx, ebx, bx, bl\nc -> rcx, ecx, cx, cl\nd -> rdx, edx, dx, dl\nS -> rsi, esi, si\nD -> rdi, edi, di\nr -> any register	code	txt	2024-07-28 09:55:28.526264	7
 3680	1173	extern printf	text	txt	2024-07-28 09:55:29.520284	1
@@ -19947,6 +19986,19 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3837	262	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>\n\nvoid func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}\n\nvoid func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}\n\nint main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization\n\n    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};\n\n    func({1, 2, 3}); // call std::initializer_list<int> overload\n\n    std::vector v1{4}; // size = 1\n    std::vector v2(4); // size = 4\n\n    auto a = {42}; // std::initializer_list<int>\n    auto b{42}; // int\n    auto c = {4, 2}; //std::initializer_list<int>\n    auto d{4, 2}; // error, too many elements	code	cpp	2025-07-14 13:09:53.17377	2
 3842	264	#include <string>\n#include <vector>\n\nstruct Data\n{\n    int x;\n    double y;\n    std::string label = "Hello World!"; // only permitted since C++14\n    std::vector<int> arr;\n};\n\nstruct X\n{\n    int a;\n    int b;\n};\n\nstruct Y\n{\n    X x;\n    X y;\n};\n\n// Initialization is done in declaration order:\nData a = {10, 2.3};\n// a.x == 10, a.y == 2.3\n// a.label == "Hello World!", a.arr == std::vector<int>{}\n\n// Nested brackets can be omitted:\nY b = { 10, 20, 30 };\n// b.x == {10, 20}, b.y == {30, int{} == 0}	code	cpp	2025-07-14 16:42:58.546421	2
 3849	265	#include <string>\n\nstruct Data {\n    int a;\n    double b;\n    std::string c;\n};\n\nData x = { .b = 2.4 };\n// x == { 0, 2.4, "" }\n\n// Typical use case with default-heavy aggregate:\nstruct Configuration {\n    enum class options { enabled, disabled };\n    struct Coords { int x; int y; };\n\n    options used_option = options::enabled;\n    std::string label = "default label";\n    Coords coords = { 10, 20 };\n};\n\nConfiguration config = { .label = "some label" };\n// config == {options::enabled, "some label", {10, 20}};\n\n// A clunky but functional option for named agruments in C++\nstruct Arg { const std::string& label; int64_t id; };\nvoid some_func(Arg arg) {}\n\nsome_func({.label = config.label, .id = 42});	code	cpp	2025-07-14 21:19:18.235921	2
+3853	269	C++23 brings `if consteval` conditional statement.\n\nThis `if` statement takes no condition but would only evaluate during\nconstant evaluation. Otherwise, the `else` statement is evaluated.\n\nconsteval int f(int i) { return i; }\n\nconstexpr int g(int i)\n{\n    if consteval\n    {\n        return f(i) + 1; // immediate function context\n    }\n    else\n    {\n        return 42;\n    }\n}\n\nconsteval int h(int i)\n{\n    return f(i) + 1; // immediate function context\n}	code	cpp	2025-07-15 09:24:18.592781	1
+3859	272	#include <memory>\n\nstruct Data{};\n\n// Function returning a unique_ptr handing off ownership to caller.\nstd::unique_ptr<Data> producer() { return std::make_unique<Data>(); }\n\n// Function accepting a unique_ptr taking over ownership.\nvoid consumer(std::unique_ptr<Data> data) {}\n\n// Helps with Single Reponsibility Principle\n// by separating resource management from logic\nstruct Holder {\n    Holder() : data_{std::make_unique<Data>()} {}\n    // implicitly defaulted move constructor && move assignment\n    // implicitly deleted copy constructor && copy assignment\nprivate:\n    std::unique_ptr<Data> data_;\n};\n\n// shared_ptr has a fast constructor from unique_ptr\nstd::shared_ptr<Data> sptr = producer();\n\n// Even in cases when manual resource management is required,\n// a unique_ptr on the interface might be preferable:\nvoid manual_handler(std::unique_ptr<Data> ptr) {\n    Data* raw = ptr.release();\n    // manual resource management\n}	code	cpp	2025-07-15 10:04:19.384019	2
+3861	273	#include <iostream>\n\nint main()\n{\n    using std::cout;\n    using std::endl;\n\n    cout << 42 << endl;\n}	code	cpp	2025-07-15 10:10:47.086144	1
+540	274	Unnamed namespaces as well as all namespaces declared directly or indirectly\nwithin an unnamed namespace have internal linkage, which means that any name\nthat is declared within an unnamed namespace has internal linkage.	text	txt	2024-07-28 09:46:50.680303	1
+3865	274	namespace\n{\n    void f() { } // ::(unique)::f\n}\n\nf(); // OK\n\nnamespace A\n{\n    void f() { } // A::f\n}\n\nusing namespace A;\n\nf(); // Error: ::(unique)::f and A::f both in scope	code	cpp	2025-07-15 10:13:10.323432	2
+546	275	Prior to C++11, non-type template arguments could not be named with internal\nlinkage, so `static` variables were not allowed.\nVC++ compiler still doesn't support it.	text	txt	2024-07-28 09:46:51.380161	1
+3868	275	template <int const& Size>\nclass test {};\n\nstatic int Size1 = 10; // internal linkage due static\n\nnamespace\n{\n    int Size2 = 10; // internal linkage due unnamed namespace\n}\n\ntest<Size1> t1; // error only on VC++\ntest<Size2> t2; // okay	code	cpp	2025-07-15 10:40:52.962384	2
+3893	283	module;               // global module fragment\n\n#define X\n#include "code.h"\n\nexport module geometry;   // module declaration\n\nimport std;      // module preamble\n\n// module purview\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};\n\nexport using int_point = point<int>;\n\nexport constexpr int_point int_point_zero{0, 0};\n\nexport template<typename T>\ndouble distance(point<T> const& p1, point<T> const& p2)\n{\n    return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));\n}	code	cpp	2025-07-15 12:14:25.146642	2
+3894	283	import std;\nimport geometry;\n\nint main()\n{\n    int_point p{3, 4};\n    std::cout << distance(int_point_zero, p) << std::endl;\n}	code	cpp	2025-07-15 12:14:41.011353	3
+553	276	* Specialization of a template is required to be done in the same namespace\n  where the template was declared.\n* Define the content of the library inside a namespace\n* Define each version of the library or parts of it inside an inner inline\n  namespace\n* Use preprocessor macros to enable a particular version of the library	text	txt	2024-07-28 09:46:53.903544	3
+3883	276	namespace incorrect_implementation\n{\n    namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n\n    namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }\n\n    #ifndef _lib_version_1\n        using namespace v1;\n    #endif\n\n    #ifndef _lib_version_2\n        using namespace v2;\n    #endif\n}\n\nnamespace broken_client_code\n{\n    // okay\n    auto x = incorrect_implementation::test(42);\n\n    struct foo { int a; };\n\n    // breaks\n    namespace incorrect_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }\n\n    // won't compile\n    auto y = incorrect_implementation::test(foor{42});\n\n    // library leaks implementation details\n    namespace incorrect_implementation\n    {\n        namespace version_2\n        {\n            template<>\n            int test(foo value) { return value.a; }\n        }\n    }\n\n    // okay, but client needs to be aware of implementation details\n    auto y = incorrect_implementation::test(foor{42});\n}\n\nnamespace correct_implementation\n{\n    #ifndef _lib_version_1\n    inline namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n    #endif\n\n    #ifndef _lib_version_2\n    inline namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }\n    #endif\n}\n\nnamespace working_client_code\n{\n    // okay\n    auto x = correct_implementation::test(42);\n\n    struct foo { int a; };\n\n    namespace correct_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }\n\n    // okay\n    auto y = correct_implementation::test(foor{42});\n}	code	cpp	2025-07-15 10:46:39.802283	4
+3884	277	// before C++17\nnamespace A\n{\n    namespace B\n    {\n        namespace C\n        {\n            /* ... */\n        }\n    }\n}\n\n// since C++16\nnamespace A::B::C\n{\n    /* ... */\n};	code	cpp	2025-07-15 11:21:06.660083	1
+3885	279	import std;\n\nint main()\n{\n    std::cout << std::format("{}\\\\n", "modules are working");\n}	code	cpp	2025-07-15 11:22:18.217297	1
 \.
 
 
@@ -25816,6 +25868,99 @@ COPY milestone.studies (user_id, section_id, updated) FROM stdin;
 1	458	2025-03-07 16:48:01.389522
 1	459	2025-03-07 19:38:21.385269
 1	1670	2025-05-03 19:01:00.811664
+1	1671	2025-07-15 07:37:43.488169
+1	1672	2025-07-15 07:37:43.488169
+1	1673	2025-07-15 07:37:43.488169
+1	1675	2025-07-15 07:37:43.488169
+1	1676	2025-07-15 07:37:43.488169
+1	1677	2025-07-15 07:37:43.488169
+1	1678	2025-07-15 07:37:43.488169
+1	1679	2025-07-15 07:37:43.488169
+1	1680	2025-07-15 07:37:43.488169
+1	1681	2025-07-15 07:37:43.488169
+1	1682	2025-07-15 07:37:43.488169
+1	1683	2025-07-15 07:37:43.488169
+1	1684	2025-07-15 07:37:43.488169
+1	1685	2025-07-15 07:37:43.488169
+1	1686	2025-07-15 07:37:43.488169
+1	1687	2025-07-15 07:37:43.488169
+1	1688	2025-07-15 07:37:43.488169
+1	1689	2025-07-15 07:37:43.488169
+1	1690	2025-07-15 07:37:43.488169
+1	1691	2025-07-15 07:37:43.488169
+1	1692	2025-07-15 07:37:43.488169
+1	1693	2025-07-15 07:37:43.488169
+1	1694	2025-07-15 07:37:43.488169
+1	1695	2025-07-15 07:37:43.488169
+1	1674	2025-07-15 07:37:43.488169
+1	1698	2025-07-15 07:37:43.488169
+1	1699	2025-07-15 07:37:43.488169
+1	1700	2025-07-15 07:37:43.488169
+1	1701	2025-07-15 07:37:43.488169
+1	1702	2025-07-15 07:37:43.488169
+1	1703	2025-07-15 07:37:43.488169
+1	1704	2025-07-15 07:37:43.488169
+1	1705	2025-07-15 07:37:43.488169
+1	1706	2025-07-15 07:37:43.488169
+1	1707	2025-07-15 07:37:43.488169
+1	1708	2025-07-15 07:37:43.488169
+1	1709	2025-07-15 07:37:43.488169
+1	1710	2025-07-15 07:37:43.488169
+1	1711	2025-07-15 07:37:43.488169
+1	1712	2025-07-15 07:37:43.488169
+1	1713	2025-07-15 07:37:43.488169
+1	1714	2025-07-15 07:37:43.488169
+1	1715	2025-07-15 07:37:43.488169
+1	1716	2025-07-15 07:37:43.488169
+1	1717	2025-07-15 07:37:43.488169
+1	1718	2025-07-15 07:37:43.488169
+1	1719	2025-07-15 07:37:43.488169
+1	1720	2025-07-15 07:37:43.488169
+1	1721	2025-07-15 07:37:43.488169
+1	1722	2025-07-15 07:37:43.488169
+1	1723	2025-07-15 07:37:43.488169
+1	1724	2025-07-15 07:37:43.488169
+1	1725	2025-07-15 07:37:43.488169
+1	1726	2025-07-15 07:37:43.488169
+1	1727	2025-07-15 07:37:43.488169
+1	1728	2025-07-15 07:37:43.488169
+1	1729	2025-07-15 07:37:43.488169
+1	1730	2025-07-15 07:37:43.488169
+1	1731	2025-07-15 07:37:43.488169
+1	1732	2025-07-15 07:37:43.488169
+1	1733	2025-07-15 07:37:43.488169
+1	1734	2025-07-15 07:37:43.488169
+1	1735	2025-07-15 07:37:43.488169
+1	1736	2025-07-15 07:37:43.488169
+1	1737	2025-07-15 07:37:43.488169
+1	1738	2025-07-15 07:37:43.488169
+1	1739	2025-07-15 07:37:43.488169
+1	1740	2025-07-15 07:37:43.488169
+1	1741	2025-07-15 07:37:43.488169
+1	1742	2025-07-15 07:37:43.488169
+1	1743	2025-07-15 07:37:43.488169
+1	1744	2025-07-15 07:37:43.488169
+1	1745	2025-07-15 07:37:43.488169
+1	1746	2025-07-15 07:37:43.488169
+1	1747	2025-07-15 07:37:43.488169
+1	1748	2025-07-15 07:37:43.488169
+1	1749	2025-07-15 07:37:43.488169
+1	1750	2025-07-15 07:37:43.488169
+1	1751	2025-07-15 07:37:43.488169
+1	1752	2025-07-15 07:37:43.488169
+1	1753	2025-07-15 07:37:43.488169
+1	1754	2025-07-15 07:37:43.488169
+1	1755	2025-07-15 07:37:43.488169
+1	1756	2025-07-15 07:37:43.488169
+1	1757	2025-07-15 07:37:43.488169
+1	1758	2025-07-15 07:37:43.488169
+1	1759	2025-07-15 07:37:43.488169
+1	1760	2025-07-15 07:37:43.488169
+1	1761	2025-07-15 07:37:43.488169
+1	1762	2025-07-15 07:37:43.488169
+1	1763	2025-07-15 07:37:43.488169
+1	1696	2025-07-15 07:37:43.488169
+1	1697	2025-07-15 07:37:43.488169
 \.
 
 
@@ -26576,7 +26721,7 @@ SELECT pg_catalog.setval('milestone.notes_id_seq', 3968, true);
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3849, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3894, true);
 
 
 --

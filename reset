@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-psql -U postgres -c 'drop database if exists flashback;'
-psql -U postgres -c 'drop role if exists flashback;'
+psql -U postgres -c 'drop database if exists milestone;'
+psql -U postgres -c 'drop role if exists milestone;'
 bash init
