@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.3
--- Dumped by pg_dump version 17.3
+-- Dumped from database version 17.4
+-- Dumped by pg_dump version 17.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16251,7 +16251,6 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 COPY milestone.practice_blocks (id, practice_id, content, type, language, updated, "position") FROM stdin;
 108	59	mmc	code	txt	2024-07-28 09:45:31.345142	1
 245	137	import QtQuick	text	txt	2024-07-28 09:45:58.690062	5
-713	301	class Value\n{\n    long id;	text	txt	2024-07-28 09:47:15.566017	6
 880	340	#include <type_traits>	text	txt	2024-07-28 09:47:41.231796	2
 181	105	\\\\sout{Strikethrough text}	code	txt	2024-07-28 09:45:45.292618	2
 182	106	usepackage(ulem)	text	txt	2024-07-28 09:45:45.582554	1
@@ -16459,6 +16458,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 197	116	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Scalar{}`|\n|Copy constructor|`cv::Scalar{s}`|\n|Value constructor|`cv::Scalar{x0}` `cv::Scalar{x0, x1, x2, x3}`|\n|Element-wise multiplication|`s1.mul(s2)`|\n|Conjugation|`s.conj()`|\n|Real test|`s.isReal()`|\nThe size classes are similar to point classes, and can be cast to and from\nthem. The primary difference is that the point data members are named `x` and\n`y`, while the size data members are named `width` and `height`.	text	txt	2024-07-28 09:45:49.06236	1
 198	116	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Size{}` `cv::Size2i{}` `cv::Size2f{}`|\n|Copy constructor|`cv::Size{s}`|\n|Value constructor|`cv::Size2f{w, h}`|\n|Member access|`sz.width` `sz.height`|\n|Compute area|`sz.area()`|	text	txt	2024-07-28 09:45:49.082336	2
 199	117	Similar to `cv::Point` class there are `x` and `y` data members in `cv::Rect`\nclass. Additionally, there are `width` and `height` data members.	text	txt	2024-07-28 09:45:49.677004	1
+583	283	Export a module by creating a **Module Interface Unit (MIU)** that can\ncontain functions, types, constants, and even macros.	text	txt	2024-07-28 09:46:57.900993	1
+1055	368	Because handling raw pointers in containers is a source of trouble, we should\ndisable automatically deducing raw character pointers for container classes.	text	txt	2024-07-28 09:48:06.30882	1
 200	117	|Operation|Example|\n|---|---|\n|Default constructor|`cv::Rect{}`|\n|Copy constructor|`cv::Rect{r}`|\n|Value constructor|`cv::Rect{x, y, w, h}`|\n|Construct from origin and size|`cv::Rect{p, sz}`|\n|Construct from two corners|`cv::Rect{tl, br}`|\n|Member access|`r.x` `r.y` `r.width` `r.height`|\n|Compute area|`r.area()`|\n|Extract upper-left corner|`r.tl()`|\n|Extract bottom-right corner|`r.br()`|\n|Determine if a point is inside|`r.contains(p)`|\n|Intersection of rectangles|`r1 &= r2`|\n|Minimum area rectangle|`r1 |= r2`|\n|Translate rectangle by an amount|`r += x`|\n|Enlarge rectangle by size|`r += s`|\n|Compare rectangles for exact quality|`r1 == r2`|\n|Compare rectangles for inequality|`r1 != r2`|	text	txt	2024-07-28 09:45:49.699798	2
 201	118	A non-template class holding a `cv::Point2f` member called `center`, a\n`cv::Size2f` called `size`, and one additional `float` called `angle`, with\nthe latter representing the rotation of the rectangle around `center`.	text	txt	2024-07-28 09:45:50.142573	1
 202	118	|Operation|Example|\n|---|---|\n|Default constructor|`cv::RotatedRect{}`|\n|Copy constructor|`cv::RotatedRect{rr}`|\n|Value constructor|`cv::RotatedRect{p, sz, theta}`|\n|Construct from two corners|`cv::RotatedRect{p1, p2}`|\n|Member access|`rr.center` `rr.size` `rr.angle`|\n|Return a list of corners|`rr.points{pts[4]}`|	text	txt	2024-07-28 09:45:50.164594	2
@@ -16654,7 +16655,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 388	208	cmake -E <command> [<options>]	code	txt	2024-07-28 09:46:23.6259	2
 389	209	cmake -E	code	txt	2024-07-28 09:46:23.874976	1
 390	210	cmake ––help[-<topic>]\ncmake --help-commands file	code	txt	2024-07-28 09:46:24.170911	1
-391	211	The simplest way to run tests for a built project is to call ctest in the\ngenerated build tree:	text	txt	2024-07-28 09:46:24.523912	1
 392	211	ctest	code	txt	2024-07-28 09:46:24.544688	2
 393	212	Files that contain the CMake language are called listfiles and can be\nincluded one in another, by calling `include()` and `find_package()`, or\nindirectly with `add_subdirectory()`	text	txt	2024-07-28 09:46:25.040491	1
 394	212	CMake projects are configured with `CMakeLists.txt` listfiles.	text	txt	2024-07-28 09:46:25.060414	2
@@ -16662,6 +16662,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 396	212	cmake_minimum_required(VERSION <x.xx>)\nproject(<name> <OPTIONS>)	code	txt	2024-07-28 09:46:25.101148	4
 397	212	We also have an `add_subdirectory(api)` command to include another\n`CMakeListst.txt` file from the api directory to perform steps that are\nspecific to the API part of our application.	text	txt	2024-07-28 09:46:25.122426	5
 3664	1169	#include <stdio.h>	text	txt	2024-07-28 09:55:26.401303	6
+1052	367	With this, the following initialization works fine:	text	txt	2024-07-28 09:48:05.649849	6
 398	213	Not that many: a script can be as complex as you like or an empty file.\nHowever, it is recommended that you call the `cmake_minimum_required()`\ncommand at the beginning of the script. This command tells CMake which\npolicies should be applied to subsequent commands in this project	text	txt	2024-07-28 09:46:25.455896	1
 399	213	When running scripts, CMake won't execute any of the usual stages (such as\nconfiguration or generation), and it won't use the cache.	text	txt	2024-07-28 09:46:25.476425	2
 400	214	To use a utility module, we need to call an `include(<MODULE>)` command.	text	txt	2024-07-28 09:46:25.674686	1
@@ -16760,281 +16761,98 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 552	276	Common use cases of inline namespaces are:	text	txt	2024-07-28 09:46:53.882664	2
 575	279	Headers can also be imported:	text	txt	2024-07-28 09:46:55.673671	2
 576	279	import std;\nimport "geometry.hpp"	code	cpp	2024-07-28 09:46:55.693903	3
-583	283	Export a module by creating a **Module Interface Unit (MIU)** that can\ncontain functions, types, constants, and even macros.	text	txt	2024-07-28 09:46:57.900993	1
 595	284	The source code of a module may become large and difficult to maintain.\nMoreover, a module may be composed of logically separate parts. To help with\nscenarios like that, modules support composition from parts called\n**partitions**.	text	txt	2024-07-28 09:46:58.630847	1
 596	284	Although module partitions are distinct files, they are not available as\nseparate modules or submodules to translation units using a module. They are\nexported together as a single, aggregated module.	text	txt	2024-07-28 09:46:58.653004	2
-597	285	A module unit that is a partition that exports entities is called a **module\ninterface partition**.	text	txt	2024-07-28 09:47:00.35894	1
-598	285	Here the `geometry-core.cppm` and `geometry-literals.cppm` are internal partitions.	text	txt	2024-07-28 09:47:00.380515	2
-599	285	*geometry-core.cppm*\nexport module geometry:core;	text	txt	2024-07-28 09:47:00.402003	3
-600	285	import std.core;	text	txt	2024-07-28 09:47:00.421713	4
-601	285	export template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	code	txt	2024-07-28 09:47:00.444865	5
-602	285	*geometry-literals.cppm*\nexport module geometry.literals;	text	txt	2024-07-28 09:47:00.465732	6
-603	285	import std.core;	text	txt	2024-07-28 09:47:00.48503	7
-604	285	namespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t const size)\n    {\n        int x{}, y{};\n        ...\n        return {x , y};\n    }\n}	code	txt	2024-07-28 09:47:00.504712	8
-605	285	In the primary module interface unit, import and then export the partitions\nwith statements of the form `export import :partitionname`.	text	txt	2024-07-28 09:47:00.524852	9
-606	285	*geometry.cppm*\nexport module geometry;	text	txt	2024-07-28 09:47:00.546334	10
-607	285	export import :core;\nexport import :literals;	code	txt	2024-07-28 09:47:00.566281	11
-608	285	The code importing a module composed from multiple partitions only sees the\nmodule as a whole if it was built from a single module unit:	text	txt	2024-07-28 09:47:00.586687	12
-609	285	import std.core;\nimport geometry;	text	txt	2024-07-28 09:47:00.606601	13
-610	285	int main()\n{\n    point<int> p{4, 2};	text	txt	2024-07-28 09:47:00.627186	14
-611	285	    {\n        using namespace geometry_literals;\n        point<int> origin{"0,0"_p};\n    }\n}	code	txt	2024-07-28 09:47:00.647983	15
+1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
 612	286	Apart from *module interface partition*, there could also be internal\npartitions that do not export anything. Such partition unit is called a\n**module implementation partition**.	text	txt	2024-07-28 09:47:01.687487	1
 613	286	It is possible to create internal partitions that do not export anything, but\ncontain code that can be used in the same module.	text	txt	2024-07-28 09:47:01.707675	2
-614	286	modulename:partitionname;`.	text	txt	2024-07-28 09:47:01.728647	3
-615	286	*geometry-details.cppm*\nmodule geometry:details;	text	txt	2024-07-28 09:47:01.748465	4
-616	286	import std.core;	text	txt	2024-07-28 09:47:01.767777	5
-617	286	std::pair<int, int> split(char const* ptr, std::size_t const size)\n{\n    int x{}, y{};\n    ...\n    return {x, y};\n}	code	txt	2024-07-28 09:47:01.788304	6
-618	286	*geometry-literals.cppm*\nexport module geometry:literals;	text	txt	2024-07-28 09:47:01.808253	7
-619	286	import :core;\nimport :details;	text	txt	2024-07-28 09:47:01.828581	8
-620	286	namespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t size)\n    {\n        auto [x, y] = split(ptr, size);\n        return {x, y};\n    }\n}	code	txt	2024-07-28 09:47:01.849217	9
 621	287	Partitions are division of a module. However, they are not submodules. They\ndo not logically exist outside of the module. There is no concept of a\nsubmodule in the C++ language.	text	txt	2024-07-28 09:47:03.815119	1
 622	287	This snippet uses module interface partition and module implementation partition.	text	txt	2024-07-28 09:47:03.834224	2
-623	287	*sample-core.cppm*\nexport module sample:core;	text	txt	2024-07-28 09:47:03.855161	3
-624	287	export constexpr double fraction{7 / 5};	code	txt	2024-07-28 09:47:03.87611	4
-625	287	*sample-details.cppm*\nmodule sample:details;	text	txt	2024-07-28 09:47:03.897368	5
-626	287	import :core;	text	txt	2024-07-28 09:47:03.918088	6
-627	287	constexpr double power{fraction * fraction};	code	txt	2024-07-28 09:47:03.939792	7
-628	287	*sample.cppm*\nexport module sample;	text	txt	2024-07-28 09:47:03.960943	8
-629	287	export import :core;	code	txt	2024-07-28 09:47:03.982216	9
-630	287	*consumer.cpp*\nimport std.core;\nimport sample;	text	txt	2024-07-28 09:47:04.00139	10
-631	287	std::cout << power << "\\\\n";	code	txt	2024-07-28 09:47:04.022652	11
-632	287	Next snippet is the same implementation but with modules instead of partitions:	text	txt	2024-07-28 09:47:04.044701	12
-633	287	*sample-core.cppm*\nexport module sample.core;	text	txt	2024-07-28 09:47:04.067462	13
-634	287	export constexpr double fraction{7 / 5};	code	txt	2024-07-28 09:47:04.088412	14
-635	287	*sample-details.cppm*\nmodule sample.details;	text	txt	2024-07-28 09:47:04.107738	15
-636	287	import sample.core;	text	txt	2024-07-28 09:47:04.127746	16
-637	287	constexpr double power{fraction * fraction};	code	txt	2024-07-28 09:47:04.148403	17
-638	287	*sample.cppm*\nexport module sample;	text	txt	2024-07-28 09:47:04.168728	18
-639	287	export import sample.core;	code	txt	2024-07-28 09:47:04.188548	19
-640	287	*consumer.cpp*\nimport std.core;\nimport sample;	text	txt	2024-07-28 09:47:04.209786	20
-641	287	std::cout << power << "\\\\n";	code	txt	2024-07-28 09:47:04.230242	21
-642	287	So far, we have two modules: `sample.core` and `sample`. Here `sample`\nimports and then re-exports the entire content of `sample.core`. Because of\nthis, the core in the `consumer.cpp` does not need to change. By solely\nimporting the `sample` module, we get access to the content of the\n`sample.core` module.	text	txt	2024-07-28 09:47:04.251552	22
-643	287	However, if we do not define the `sample` module anymore, then we need to explicitly import `sample.core` module:	text	txt	2024-07-28 09:47:04.272721	23
-644	287	*consumer.cpp*\nimport std.core;\nimport sample.core;	text	txt	2024-07-28 09:47:04.294419	24
-645	287	std::cout << power << "\\\\n";	code	txt	2024-07-28 09:47:04.316856	25
-646	287	Choosing between using partitions or multiple modules for componentizing your\nsource code should depend on the particularities of your project. If you use\nmultiple smaller modules, you provide better granularity for imports. This\ncan be important if you're developing a large library because users should\nonly import things they use.	text	txt	2024-07-28 09:47:04.337692	26
+632	287	Next snippet is the same implementation but with modules instead of partitions:	text	txt	2024-07-28 09:47:04.044701	7
 647	288	Benefits of using `auto`:	text	txt	2024-07-28 09:47:05.591579	1
-1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
 648	288	* It is not possible to leave a variable uninitialized with `auto`.\n* It prevents narrowing conversion of data types. (?)\n* It makes generic programming easy.\n* It can be used where we don't care about types.	text	txt	2024-07-28 09:47:05.6121	2
-649	288	Preconditions of using `auto`:	text	txt	2024-07-28 09:47:05.633075	3
-650	288	* `auto` does not retain cv-ref qualifiers.\n* `auto` cannot be used for non-movable objects.\n* `auto` cannot be used for multi-word types like long long.	text	txt	2024-07-28 09:47:05.654222	4
-651	288	#include <string>\n#include <vector>\n#include <memory>	text	txt	2024-07-28 09:47:05.676004	5
-652	288	int main()\n{\n    auto i = 42; // int\n    auto d = 42.5; // double\n    auto c = "text"; // char const*\n    auto z = {1, 2, 3}; // std::initializer_list<int>	text	txt	2024-07-28 09:47:05.697171	6
-653	288	    auto b = new char[10]{0}; // char*\n    auto s = std::string{"text"}; // std::string\n    auto v = std::vector<int>{1, 2, 3}; // std::vector<int>\n    auto p = std::make_shared<int>(42); // std::shared_ptr<int>	text	txt	2024-07-28 09:47:05.717819	7
-654	288	    auto upper = [](char const c) { return toupper(c); };\n    auto add = [](auto const a, auto const b) { return a + b; };	text	txt	2024-07-28 09:47:05.73943	8
-655	288	    template<typename F, typename F>\n    auto apply(F&& f, T value)\n    {\n        return f(value);\n    }\n}	text	txt	2024-07-28 09:47:05.760336	9
-656	288	class foo\n{\n    int _x;\npublic:\n    foo(int const x = 0): _x{x} {}\n    int& get() { return _x; }\n};	text	txt	2024-07-28 09:47:05.781168	10
-657	288	decltype(auto) proxy_gen(foo& f) { return f.get(); }\n// ^__ decltype() preserves cv-ref qualification of return type	code	txt	2024-07-28 09:47:05.801966	11
 658	289	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt	2024-07-28 09:47:06.201144	1
-659	289	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	txt	2024-07-28 09:47:06.221279	2
+855	332		code	txt	2024-07-28 09:47:36.860706	4
+1053	367	Stack StringStack = "surprise!";    // Stack<char const*> deduced since C++17	code	txt	2024-07-28 09:48:05.67328	7
+659	289	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	cpp	2024-07-28 09:47:06.221279	2
 660	290	* Only by C++20 structured bindings can include `static` or `thread_local`\n  specifiers in the declaration.\n* Only by C++20 `[[maybe_unused]]` attribute can be used in the declaration.\n* Only by C++20 a lambda can capture structure binding identifiers.	text	txt	2024-07-28 09:47:06.807831	1
-661	290	#include <iostream>\n#include <set>	text	txt	2024-07-28 09:47:06.829573	2
-662	290	int main()\n{\n    std::set<int> numbers;	text	txt	2024-07-28 09:47:06.850677	3
-663	290	    if (auto const [iter, inserted] = numbers.insert(1); inserted)\n        std::cout << std::distance(numbers.cbegin(), iter);\n}	code	txt	2024-07-28 09:47:06.872307	4
-664	291	typedef unsigned long positive_t;	code	txt	2024-07-28 09:47:07.149927	1
-665	292	#include <bitset>	text	txt	2024-07-28 09:47:07.674437	1
-666	292	using byte = std::bitset<8>;\nusing fn = void(byte, double);\nusing fn_ptr = void(*)(byte, double);	text	txt	2024-07-28 09:47:07.694657	2
-667	292	void func(byte b, double d) { /* ... */ }	text	txt	2024-07-28 09:47:07.715147	3
-668	292	int main()\n{\n    byte b{001101001};\n    fn* f = func;\n    fn_ptr fp = func;\n}	code	txt	2024-07-28 09:47:07.737104	4
+664	291	typedef unsigned long positive_t;	code	cpp	2024-07-28 09:47:07.149927	1
 669	293	Scoped enumerations do not export their enumerators to the surrounding scope.	text	txt	2024-07-28 09:47:08.366138	1
 670	293	Scoped enumerations have an underlying type so they can be forward declared.	text	txt	2024-07-28 09:47:08.387321	2
 671	293	Values of scoped enumerations do not convert implicitly to int.	text	txt	2024-07-28 09:47:08.40869	3
-672	293	enum class status: unsigned int; // forward declared	text	txt	2024-07-28 09:47:08.430493	4
-673	293	status do_something(); // function declaration/prototype	text	txt	2024-07-28 09:47:08.451522	5
-674	293	enum class status : unsigned int\n{\n    success = 0,\n    failed = 1,\n    unknown = 0xffff0000U\n};	text	txt	2024-07-28 09:47:08.471884	6
-675	293	status do_something() { return status::success; }	code	txt	2024-07-28 09:47:08.492072	7
-676	294	#include <string>	text	txt	2024-07-28 09:47:09.152323	1
-677	294	enum class status : unsigned int\n{\n    success = 0,\n    failure = 1,\n    unknown = 0xffff0000U\n};	text	txt	2024-07-28 09:47:09.173609	2
-678	294	std::string_view to_string(status const s)\n{\n    switch (s)\n    {\n        using enum status;\n        case success: return "success";\n        case failure: return "failure";\n        case unknown: return "unknown";\n    }\n}	code	txt	2024-07-28 09:47:09.194473	3
 679	295	`std::variant` is the C++17 type-safe alternative to union which supports\nnon-trivial custom types.	text	txt	2024-07-28 09:47:09.749066	1
 680	295	Variant is never empty. Without arguments, it default constructs the first\ntype.	text	txt	2024-07-28 09:47:09.769924	2
-681	295	#include <variant>\n#include <string>	text	txt	2024-07-28 09:47:09.789939	3
-682	295	std::variant<int, double, std::string> v{"some characters"};\nbool x = std::holds_alternative<std::string>(v);\n// x == true	code	txt	2024-07-28 09:47:09.811138	4
 683	296	Assignment sets the variant type:	text	txt	2024-07-28 09:47:10.202264	1
-684	296	#include <variant>\n#include <string>	text	txt	2024-07-28 09:47:10.223004	2
-685	296	std::variant<int, double, std::string> v;\nv = 10;	code	txt	2024-07-28 09:47:10.243609	3
 686	297	Elements can be extracted by type or index; however, only the active type can\nbe accessed.	text	txt	2024-07-28 09:47:10.961927	1
-687	297	#include <variant>\n#include <string>	text	txt	2024-07-28 09:47:10.981034	2
-688	297	std::variant<int, double, std::string> v{10};\nint number;	text	txt	2024-07-28 09:47:11.000702	3
-689	297	number = std::get<int>(v);\nnumber = std::get<0>(v); // same as above but with index	code	txt	2024-07-28 09:47:11.021324	4
-690	297	`std::variant` throws when we attempt to access the wrong type:	text	txt	2024-07-28 09:47:11.041431	5
-691	297	#include <variant>\n#include <string>	text	txt	2024-07-28 09:47:11.061923	6
-692	297	std::variant<int, double, std::string> v{10};	text	txt	2024-07-28 09:47:11.081085	7
-693	297	double value = std::get<double>(v);\n// throws std::bad_variant_access	code	txt	2024-07-28 09:47:11.102102	8
+690	297	`std::variant` throws when we attempt to access the wrong type:	text	txt	2024-07-28 09:47:11.041431	3
 694	298	When working with `std::variant`, querying the current content can become\ncumbersome. As an alternative, especially for cases when type deduction is\ninvolved, we can use the `std::visit`.	text	txt	2024-07-28 09:47:11.672399	1
 695	298	The `std::visit` requires as an argument an invocable that is compatible with\neach of the contained types.	text	txt	2024-07-28 09:47:11.694222	2
-696	298	#include <variant>\n#include <string>\n#include <iostream>	text	txt	2024-07-28 09:47:11.715725	3
-697	298	std::varian<int, double, std::string> v{"sample string"};	text	txt	2024-07-28 09:47:11.736179	4
-855	332		code	txt	2024-07-28 09:47:36.860706	4
-698	298	std::visit([](auto&& x) {\n    std::cout << x << '\\\\n';\n}, v);\n// prints "sample string"	code	txt	2024-07-28 09:47:11.756269	5
-699	299	#include <variant>\n#include <string>\n#include <iostream>	text	txt	2024-07-28 09:47:12.563389	1
-700	299	std::variant<int, double, std::string> v;	text	txt	2024-07-28 09:47:12.584956	2
-701	299	template<typename ...Ts>\nstruct overloaded : Ts...\n{\n    using Ts::operator()...;\n};	text	txt	2024-07-28 09:47:12.606593	3
-702	299	v = 3.14;	text	txt	2024-07-28 09:47:12.627192	4
-703	299	std::visit(overloaded{\n    [](int& x) {\n        std::cout << "int: " << x << '\\\\n';\n    },\n    [](double& x) {\n        std::cout << "double: " << x << '\\\\n';\n    },\n    [](std::string& x) {\n        std::cout << "std::string: " << x << '\\\\n';\n    }\n}, v);\n// prints "double: 3.14"	code	txt	2024-07-28 09:47:12.649606	5
-704	300	The `std::expected` (C++23) comes with a monadic interface. Relying on the\nmonadic interface prevents the typical if-then-else verbose error checking.\nThe `and_then()` and `or_else()` methods expect a callable that accepts a\nvalue/error and returns a `std::expected`. The `transform` and\n`transform_error` methods expect a callable that accepts a value/error and\nreturns a value/error.	text	txt	2024-07-28 09:47:13.477597	1
-705	300	#include <expected>\n#include <system_error>\n#include <string>	text	txt	2024-07-28 09:47:13.49908	2
-706	300	std::expected<std::string, std::error_condition> read_input();\nstd::expected<int, std::error_condition> to_int(const std::string& s);\nint increase(int v);\nstd::expected<int, std::error_condition> log_error(const std::error_condition& err);	text	txt	2024-07-28 09:47:13.521109	3
-707	300	auto result = read_input()\n    .and_then(to_int) // invoked if the expected contains a value\n    // the callable has to return a std::expected, but can change\n    // the type: std::expected<T,Err> -> std::expected<U,Err>\n    .transform(increase) // invoked if the expected contains a value\n    // the callable can return any type\n    // std::expected<T,Err> -> std::expected<U,Err>\n    .or_else(log_error); // invoked if the expected contains an error\n    // the callable has to return a std::expected, but can change\n    // the type: std::expected<V,T> -> std::expected<V,U>	code	txt	2024-07-28 09:47:13.544485	4
+730	302	However, it is usually easier to define the operator by mapping it to results\nof underlying types.	text	txt	2024-07-28 09:47:17.176903	6
 708	301	Before C++20 you had to define six operators for a type to provide full\nsupport for all possible comparisons of its objects. The problem is that even\nthough most of the operators are defined in terms of either `operator ==` or\n`operator <`, the definitions are tedious and they add a lot of visual\nclutter.	text	txt	2024-07-28 09:47:15.457053	1
-709	301	class Value\n{\n    long id;	text	txt	2024-07-28 09:47:15.47816	2
-710	301	public:\n    bool operator==(Value const& rhs) const { return id == rhs.id; }\n    bool operator!=(Value const& rhs) const { return !(*this == rhs); }\n    bool operator< (Value const& rhs) const { return id < rhs.id; }\n    bool operator<=(Value const& rhs) const { return !(*this < rhs); }\n    bool operator> (Value const& rhs) const { return rhs < *this; }\n    bool operator>=(Value const& rhs) const { return !(rhs < *this); }\n};	code	txt	2024-07-28 09:47:15.500633	3
-711	301	In addition, for a well implemented type, you might need:	text	txt	2024-07-28 09:47:15.521732	4
-712	301	- Declare the operators with `noexcept` if they cannot throw.\n- Declare the operators with `constexpr` if they can be used at compile time.\n- Declare the operators as hidden friends (declare them with `friend` inside\n  the class structure so that both operands become parameters and support\n  implicit conversions if the constructors are not `explicit`).\n- Declare the operators with `[[nodiscard]]` to warn if the return value is\n  not used.	text	txt	2024-07-28 09:47:15.545241	5
-714	301	public:\n    [[nodiscard]] friend constexpr bool operator==(Value const& lhs, Value const& rhs) noexcept { return lhs.id == rhs.id; }\n    [[nodiscard]] friend constexpr bool operator!=(Value const& lhs, Value const& rhs) noexcept { return !(lhs == rhs); }\n    [[nodiscard]] friend constexpr bool operator< (Value const& lhs, Value const& rhs) noexcept { return lhs.id < rhs.id; }\n    [[nodiscard]] friend constexpr bool operator<=(Value const& lhs, Value const& rhs) noexcept { return !(lhs < rhs); }\n    [[nodiscard]] friend constexpr bool operator> (Value const& lhs, Value const& rhs) noexcept { return rhs < lhs; }\n    [[nodiscard]] friend constexpr bool operator>=(Value const& lhs, Value const& rhs) noexcept { return !(rhs < lhs); }\n};	code	txt	2024-07-28 09:47:15.587697	7
-715	301	Since C++20 `operator ==` also implies `operator !=`, therefore, for `a` of\ntype `TypeA` and `b` of `TypeB`, the compiler will be able to compile `a !=\nb` if there is:	text	txt	2024-07-28 09:47:15.608539	8
-716	301	- a freestanding `operator !=(TypeA, TypeB)`\n- a freestanding `operator ==(TypeA, TypeB)`\n- a freestanding `operator ==(TypeB, TypeA)`\n- a member function `TypeA::operator!=(TypeB)`\n- a member function `TypeA::operator==(TypeB)`\n- a member function `TypeB::operator==(TypeA)`	text	txt	2024-07-28 09:47:15.629665	9
-717	301	Having both a freestanding and a member function is an ambiguity error.	text	txt	2024-07-28 09:47:15.649983	10
-718	301	Since C++20 it is enough to declare `operator <=>` with `=default` so that\nthe defaulted member `operator <=>` generates a corresponding member\n`operator ==`:	text	txt	2024-07-28 09:47:15.671329	11
-719	301	class Value\n{\n    auto operator<=>(Value const& rhs) const = default;\n    auto operator==(Value const& rhs) const = default; // implicitly generated\n};	code	txt	2024-07-28 09:47:15.69261	12
-720	301	Both operators use their default implementation to compare objects member by\nmember. The order to the members in the class matter.	text	txt	2024-07-28 09:47:15.713293	13
-721	301	In addition, even when declaring the spaceship operator as a member function,\nthe generated operators:	text	txt	2024-07-28 09:47:15.733108	14
-722	301	- are `noexcept` if comparing the members never throws\n- are `constexpr` if comparing the members is possible at compile time\n- implicit type conversions for the first operand are also supported if a\n  corresponding implicit type conversion is defined\n- may warn if the result of a comparison is not used (compiler dependent)	text	txt	2024-07-28 09:47:15.754684	15
+711	301	In addition, for a well implemented type, you might need:	text	txt	2024-07-28 09:47:15.521732	3
+712	301	- Declare the operators with `noexcept` if they cannot throw.\n- Declare the operators with `constexpr` if they can be used at compile time.\n- Declare the operators as hidden friends (declare them with `friend` inside\n  the class structure so that both operands become parameters and support\n  implicit conversions if the constructors are not `explicit`).\n- Declare the operators with `[[nodiscard]]` to warn if the return value is\n  not used.	text	txt	2024-07-28 09:47:15.545241	4
 723	302	If the `operator <=>` for `x <= y` does not find a matching definition of\n`operator <=`, it might be rewritten as `(x <=> y) <= 0` or even `0 <= (y <=>\nx)`. By this rewriting, the `operator <=>` performs a three-way comparison,\nwhich yields a value that can be compared with 0:	text	txt	2024-07-28 09:47:17.027753	1
 724	302	- If the value of `x <=> y` compares equal to 0, `x` and `y` are equal or equivalent.\n- If the value of `x <=> y` compares less than 0, `x` is less than `y`.\n- If the value of `x <=> y` compares greater than 0, `x` is greater than `y`.	text	txt	2024-07-28 09:47:17.048726	2
 725	302	The return type of `operator <=>` is not an integral value. The return type\nis a type that signals the comparison category, which could be the *strong\nordering*, *weak ordering*, or *partial ordering*. These types support the\ncomparison with 0 to deal with the result.	text	txt	2024-07-28 09:47:17.068719	3
 726	302	You have to include a specific header file to deal with the result of\n`operator <=>`.	text	txt	2024-07-28 09:47:17.089688	4
-727	302	#include <compare>	text	txt	2024-07-28 09:47:17.111914	5
-728	302	class Value\n{\n    long id;	text	txt	2024-07-28 09:47:17.132552	6
-729	302	public:\n    std::strong_ordering operator<=>(Value const& rhs) const\n    {\n        return id < rhs.id ? std::strong_ordering::less :\n            id > rhs.id ? std::strong_ordering::greater :\n                std::strong_ordering::equivalent;\n    }\n};	code	txt	2024-07-28 09:47:17.154688	7
-730	302	However, it is usually easier to define the operator by mapping it to results\nof underlying types.	text	txt	2024-07-28 09:47:17.176903	8
-731	302	#include <compare>	text	txt	2024-07-28 09:47:17.197731	9
-732	302	class Value\n{\n    long id;	text	txt	2024-07-28 09:47:17.220672	10
-733	302	public:\n    auto operator<=>(Value const& rhs) const\n    {\n        return id <=> rhs.id;\n    }\n};	code	txt	2024-07-28 09:47:17.241901	11
-734	302	The member function has to take the second parameter as `const` lvalue\nreference with `=default`. A friend function might also take both parameters\nby value.	text	txt	2024-07-28 09:47:17.26293	12
 735	303	- **strong ordering**: any value of a given type is either *less than* or\n  *equal to* or *greater than* any other value of this type. If a value is\n  neither less nor greater is has to be equal.\n  + `std::strong_ordering:less`\n  + `std::strong_ordering:equal` or `std::strong_ordering::equivalent`\n  + `std::strong_ordering:greater`\n- **weak ordering**: any value of a given type is either *less than*,\n  *equivalent to* or *greater than* any other value of this type. However,\n  equivalent values do not have to be equal (have the same value).\n  + `std::weak_ordering::less`\n  + `std::weak_ordering::equivalent`\n  + `std::weak_ordering::greater`\n- **partial ordering**: any value of a given type could either be *less\n  than*, *equivalent to* or *greater than* any other value of this type.\n  However it could also happen that you cannot specify a specific order\n  between two values.\n  + `std::partial_ordering::less`\n  + `std::partial_ordering::equivalent`\n  + `std::partial_ordering::greater`\n  + `std::partial_ordering::unordered`	text	txt	2024-07-28 09:47:18.152098	1
 736	303	As an example, a floating-point type has a special value `NaN`. Any\ncomparison with `NaN` yields `false`. So in this case a comparison might\nyield that two values are unordered and the comparison operator might return\none of four values.	text	txt	2024-07-28 09:47:18.173146	2
 737	303	Stronger comparison types have implicit type conversions to weaker comparison\ntypes.	text	txt	2024-07-28 09:47:18.19262	3
 738	303	Relational comparison with `nullptr` results compiler error.	text	txt	2024-07-28 09:47:18.212835	4
 739	303	Comparison types themselves can be compared against a specific return value.\nDue to implicit type conversions to weaker ordering types `x <=> y ==\nstd::partial_ordering::equivalent` will compile even if the `operator <=>`\nyields a `std::strong_ordering` or `std::weak_ordering` value. However, the\nother way around does not work. Comparison with 0 is always possible and\nusually easier.	text	txt	2024-07-28 09:47:18.233993	5
+1054	367	In this case, don't forget to use move semantics to avoid unnecessary copy of\nthe argument.	text	txt	2024-07-28 09:48:05.694919	8
+759	305	The compiler does not compile because it cannot decide which ordering\ncategory the base class has.	text	txt	2024-07-28 09:47:21.242912	7
 740	304	The return type does not compile if the attributes have different comparison\ncategories. In that case use the weakest comparison type as the return type.	text	txt	2024-07-28 09:47:19.383515	1
-741	304	#include <compare>\n#include <string>	text	txt	2024-07-28 09:47:19.404413	2
-742	304	class Person\n{\n    std::string name;\n    double weight;	text	txt	2024-07-28 09:47:19.426243	3
-743	304	public:\n    std::partial_ordering operator<=>(Person const& rhs) const\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering	text	txt	2024-07-28 09:47:19.44602	4
-744	304	        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	txt	2024-07-28 09:47:19.466384	5
-745	304	If you do not know the comparison types, use\n`std::common_comparison_category<>` type trait that computes the strongest\ncomparison category.	text	txt	2024-07-28 09:47:19.485991	6
-746	304	#include <compare>\n#include <string>	text	txt	2024-07-28 09:47:19.506752	7
-747	304	class Person\n{\n    std::string name;\n    double weight;	text	txt	2024-07-28 09:47:19.527659	8
-748	304	public:\n    auto operator<=>(Person const& rhs) const\n        -> std::common_comparison_category_t<decltype(name <=> rhs.name),\n                                             decltype(weight <=> rhs.name)>\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering	text	txt	2024-07-28 09:47:19.549814	9
-749	304	        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	txt	2024-07-28 09:47:19.570064	10
-750	305	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt	2024-07-28 09:47:21.056492	1
-751	305	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};	text	txt	2024-07-28 09:47:21.077294	2
-752	305	struct Derived: public Base\n{\n    std::strong_ordering operator<=>(Derived const&) const = default;\n};	text	txt	2024-07-28 09:47:21.099105	3
-753	305	Derived d1, d2;\nd1 > d2; // calls Base::operator== and Base::operator<	code	txt	2024-07-28 09:47:21.119488	4
-754	305	If `operator ==` yields true, we know that the result of `>` is `false`,\notherwise `operator <` is called to find out the expression is `true` or\n`false`.	text	txt	2024-07-28 09:47:21.140545	5
-755	305	struct Derived: public Base\n{\n    std::partial_ordering operator<=>(Derived const&) const = default;\n};	code	txt	2024-07-28 09:47:21.160939	6
-756	305	The compiler might call `operator <` twice to find out whether there is any\norder at all.	text	txt	2024-07-28 09:47:21.18186	7
-757	305	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};	text	txt	2024-07-28 09:47:21.201853	8
-758	305	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n};	code	txt	2024-07-28 09:47:21.221789	9
-759	305	The compiler does not compile because it cannot decide which ordering\ncategory the base class has.	text	txt	2024-07-28 09:47:21.242912	10
-760	305	Checks for equality work for Derived because `operator ==` automatically\ndeclared equivalent to `operator <=>`:	text	txt	2024-07-28 09:47:21.26387	11
-761	305	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n    bool operator==(Derived const&) const = default;\n};	text	txt	2024-07-28 09:47:21.284773	12
-762	305	Derived d1, d2;\nd1 > d2; // ERROR: cannot deduce comparison category of operator <=>\nd1 == d2; // OK: only tries operator <=> and Base::operator==	code	txt	2024-07-28 09:47:21.305098	13
 763	306	When we have a trivial class that stores an integral value and has an\nimplicit constructor only enable implicit type conversions for the second\noperand.	text	txt	2024-07-28 09:47:22.703969	1
-764	306	class MyType\n{\n    int i;	text	txt	2024-07-28 09:47:22.724781	2
-765	306	public:\n    // implicit constructor from int\n    MyType(int i);	text	txt	2024-07-28 09:47:22.745414	3
-766	306	    // before C++20 enables implicit conversion for the second operand\n    bool operator==(MyType const&) const;\n};	code	txt	2024-07-28 09:47:22.766443	4
-767	306	A freestanding `operator==` that swaps the order of the arguments might be\ndefined as well.	text	txt	2024-07-28 09:47:22.787989	5
-768	306	bool operator==(int i, MyType const& t)\n{\n    return t == i; // OK with C++17\n}	code	txt	2024-07-28 09:47:22.810856	6
-769	306	Usually, the class should better define the `operator ==` as **hidden\nfriend** which is declared as a `friend` inside the class so that both\noperators become parameters and support implicit type conversions. However,\nthis is a valid approach to have the same effect.	text	txt	2024-07-28 09:47:22.833564	7
-770	306	This code no longer works in C++20 due to endless recursion. The reason is\nthat inside the global function the expression `t == i` can also call the\nglobal `operator ==` itself, because the compiler also tries to rewrite the\ncall as `i == t`:	text	txt	2024-07-28 09:47:22.856012	8
-771	306	bool operator==(int i, MyType const& t)\n{\n    return t == i;\n    // tries operator==(i, t) in addition to t.operator(MyType{i})\n}	code	txt	2024-07-28 09:47:22.877836	9
-772	306	Unfortunately, the rewritten statement is a better match, because it does not\nneed the implicit type conversion.	text	txt	2024-07-28 09:47:22.90029	10
-773	306	To fix this defect, either use an explicit conversion, or a feature test\nmacro to disable the new feature.	text	txt	2024-07-28 09:47:22.920434	11
-774	306	bool operator==(int i, MyType const& t)\n{\n    return t == MyType{i};\n    // doesn't try operator==(i, t) causing infinit recursion\n    // only uses t.operator(MyType{i});\n}	code	txt	2024-07-28 09:47:22.941101	12
-775	307	#include <memory>	text	txt	2024-07-28 09:47:23.793458	1
-776	307	class string_buffer\n{\npublic:\n    explicit string_buffer() {}\n    explicit string_buffer(std::size_t const size) {}\n    explicit string_buffer(char const* const ptr) {}\n    explicit operator bool() const { return false; }\n    explicit operator char* const () const { return nullptr; }\n};	text	txt	2024-07-28 09:47:23.81553	2
-777	307	int main()\n{\n    std::shared_ptr<char> str;\n    string_buffer b1;            // calls string_buffer()\n    string_buffer b2(20);        // calls string_buffer(std::size_t const)\n    string_buffer b3(str.get()); // calls string_buffer(char const*)	text	txt	2024-07-28 09:47:23.837453	3
-778	307	    enum item_size { small, medium, large };	text	txt	2024-07-28 09:47:23.858658	4
-779	307	    // implicit conversion cases when explicit not specified\n    string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)\n    string_buffer b5 = small;    // would call string_buffer(std::size_t const)\n}	code	txt	2024-07-28 09:47:23.878997	5
-780	308	struct base\n{\n    // default member initialization\n    const int height = 14;\n    const int width = 80;	text	txt	2024-07-28 09:47:24.525655	1
-781	308	    v_align valign = v_align::middle;\n    h_align halign = h_align::left;	text	txt	2024-07-28 09:47:24.546731	2
-782	308	    std::string text;	text	txt	2024-07-28 09:47:24.568315	3
-783	308	    // constructor initialization list\n    base(std::string const& t): text{t}\n    {}	text	txt	2024-07-28 09:47:24.589622	4
-784	308	    base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}\n    {}\n};	code	txt	2024-07-28 09:47:24.610277	5
-785	309	[[nodiscard]] bool completed();	code	txt	2024-07-28 09:47:24.905949	1
+767	306	A freestanding `operator==` that swaps the order of the arguments might be\ndefined as well.	text	txt	2024-07-28 09:47:22.787989	3
+769	306	Usually, the class should better define the `operator ==` as **hidden\nfriend** which is declared as a `friend` inside the class so that both\noperators become parameters and support implicit type conversions. However,\nthis is a valid approach to have the same effect.	text	txt	2024-07-28 09:47:22.833564	5
+768	306	bool operator==(int i, MyType const& t)\n{\n    return t == i; // OK with C++17\n}	code	cpp	2024-07-28 09:47:22.810856	4
+750	305	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt	2024-07-28 09:47:21.056492	1
+754	305	If `operator ==` yields true, we know that the result of `>` is `false`,\notherwise `operator <` is called to find out the expression is `true` or\n`false`.	text	txt	2024-07-28 09:47:21.140545	3
+755	305	struct Derived: public Base\n{\n    std::partial_ordering operator<=>(Derived const&) const = default;\n};	code	cpp	2024-07-28 09:47:21.160939	4
+756	305	The compiler might call `operator <` twice to find out whether there is any\norder at all.	text	txt	2024-07-28 09:47:21.18186	5
 3665	1169	extern int sum(int, int);	text	txt	2024-07-28 09:55:26.420978	7
-786	310	[[nodiscard("lock objects should never be discarded")]] bool generated();	code	txt	2024-07-28 09:47:25.165387	1
-787	311	auto l = [] [[nodiscard]] () -> int { return 42; };\nl(); // warning here	code	txt	2024-07-28 09:47:25.46244	1
-788	312	struct [[nodiscard]] ErrorType{};\nErrorType get_value();	text	txt	2024-07-28 09:47:25.85528	1
-789	312	int main()\n{\n    get_value(); // warning here\n}	code	txt	2024-07-28 09:47:25.876479	2
-790	313	*C++20*\nstruct Holder\n{\n    [[nodiscard]] Holder(int value);\n    Holder();\n};	text	txt	2024-07-28 09:47:26.38376	1
-791	313	int main()\n{\n    Holder{42}; // warning here\n    Holder h{42}; // constructed object not discarded, no warning\n    Holder{}; // default constructed, no warning\n}	code	txt	2024-07-28 09:47:26.404699	2
 792	314	Using 4 overloads for all possible combinations of ref-quilified methods is\ncode dupliation.	text	txt	2024-07-28 09:47:27.272446	1
-793	314	class box\n{\npublic:\n    box(std::string label): m_label{std::move(label)} {}\n    std::string& label() & { return m_label; }\n    std::string const& label() const& { return m_label; }\n    std::string&& label() && { return std::move(m_label); }\n    std::string const&& label() const&& { return std::move(m_label); }\nprivate:\n    std::string m_label;\n};	code	txt	2024-07-28 09:47:27.292953	2
 794	314	Since C++23 we can replace all 4 overloads with one:	text	txt	2024-07-28 09:47:27.31374	3
-795	314	class box\n{\npublic:\n    box(std::string label): m_label(std::move(label)} {}\n    template<typename S> auto&& label(this S&& self)\n    {\n        return std::forward<S>(self).m_label;\n    }\n};	code	txt	2024-07-28 09:47:27.333542	4
 796	315	C++23 allows you to write ref-qualified members differently:	text	txt	2024-07-28 09:47:27.863673	1
-797	315	void f() &;\nvoid g() const&;\nvoid h() &&;	code	txt	2024-07-28 09:47:27.884399	2
 798	315	Instead:	text	txt	2024-07-28 09:47:27.904514	3
-799	315	void f(this Data&);\nvoid g(this Data const&);\nvoid h(this Data&&);	code	txt	2024-07-28 09:47:27.925798	4
 800	316	C++23 allows for recursive lambda expressions.	text	txt	2024-07-28 09:47:28.357528	1
 801	316	`this` in a lambda accesses the object that contains the lambda, not the\nlambda instance itself.	text	txt	2024-07-28 09:47:28.380478	2
-802	316	auto fibonacci = [](this auto self, int n)\n{\n    if (n < 2) { return n; }\n    return self(n - 1) + self(n - 2);\n};	code	txt	2024-07-28 09:47:28.401164	3
 803	317	1. You implement the same behavior repeatedly for each different types, you\n   make the same mistakes.\n2. You write general code for a common base type such as `void*`, you lose\n   type checking and lose the control of maitaining derived classes.\n3. You use special preprocessors, code is replaced by stupid text replacement\n   mechanism that has no idea of scope and types.	text	txt	2024-07-28 09:47:28.70298	1
 804	319	Historically, `class` keyword can be used instead of `typename`. However,\nbecause this use of `class` can be misleading, you should prefer the use of\n`typename`. The keyword `struct` cannot be used in place of `typename` when\ndeclaring type parameters.	text	txt	2024-07-28 09:47:29.516711	1
 805	319	- Without instantiation at definition time, the template code itself is\n  checked for correctness ignoring the template parameters.\n  + Syntax errors are discovered, such as missing semicolons.\n  + Using unknown names that don't depend on template parameters are\n    discovered.\n  + Static assertions that don't depend on template parameters are checked.\n- At instantiation time, the template code is checked again to ensure that\n  all code is valid. Especially, all parts that depend on template parameters\n  are double-checked.	text	txt	2024-07-28 09:47:29.538909	2
-806	319	template<typename T>\nvoid foo(T t)\n{\n    undeclared(); // first-stage compile-time error\n    undeclared(t); // second-stage compile-time error\n}	code	txt	2024-07-28 09:47:29.559317	3
-856	333	#include <iostream>\n#include <algorithm>\n#include <iterator>\n#include <vector>	text	txt	2024-07-28 09:47:37.478747	1
 1005	362	The `typename` is necessary here because the member is a type.	text	txt	2024-07-28 09:47:59.609593	4
 807	320	When a function template is used in a way that triggers its instantiation, a\ncompiler at some point will need to see that template's definition. This\nbreaks the usual compile and link distinction for ordinary functions, when\nthe declaration of a function is sufficient to compile its use. The simplest\napproach to handle this problem is to implement each template inside a header\nfile.	text	txt	2024-07-28 09:47:29.901985	1
+785	309	[[nodiscard]] bool completed();	code	cpp	2024-07-28 09:47:24.905949	1
+786	310	[[nodiscard("lock objects should never be discarded")]] bool generated();	code	cpp	2024-07-28 09:47:25.165387	1
+787	311	auto l = [] [[nodiscard]] () -> int { return 42; };\nl(); // warning here	code	cpp	2024-07-28 09:47:25.46244	1
+793	314	class box\n{\npublic:\n    box(std::string label): m_label{std::move(label)} {}\n    std::string& label() & { return m_label; }\n    std::string const& label() const& { return m_label; }\n    std::string&& label() && { return std::move(m_label); }\n    std::string const&& label() const&& { return std::move(m_label); }\nprivate:\n    std::string m_label;\n};	code	cpp	2024-07-28 09:47:27.292953	2
+795	314	class box\n{\npublic:\n    box(std::string label): m_label(std::move(label)} {}\n    template<typename S> auto&& label(this S&& self)\n    {\n        return std::forward<S>(self).m_label;\n    }\n};	code	cpp	2024-07-28 09:47:27.333542	4
+797	315	void f() &;\nvoid g() const&;\nvoid h() &&;	code	cpp	2024-07-28 09:47:27.884399	2
+799	315	void f(this Data&);\nvoid g(this Data const&);\nvoid h(this Data&&);	code	cpp	2024-07-28 09:47:27.925798	4
+802	316	auto fibonacci = [](this auto self, int n)\n{\n    if (n < 2) { return n; }\n    return self(n - 1) + self(n - 2);\n};	code	cpp	2024-07-28 09:47:28.401164	3
+806	319	template<typename T>\nvoid foo(T t)\n{\n    undeclared(); // first-stage compile-time error\n    undeclared(t); // second-stage compile-time error\n}	code	cpp	2024-07-28 09:47:29.559317	3
 808	321	Function template defintion specifies a family of functions with parameters\nleft undetermined, parameterized as template parameters.	text	txt	2024-07-28 09:47:30.342588	1
-809	321	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	code	txt	2024-07-28 09:47:30.364146	2
 810	322	* You can use any type, as long as the it provides the operations that the\n  template uses.\n* Value of type `T` must also be copyable in order to be returned.\n* Before C++17, type `T` also had to be copyable to be able to pass in\n  arguments, but since C++17 you can pass rvalues even if neither a copy nor\n  a move constructor is valid.	text	txt	2024-07-28 09:47:30.691335	1
-811	323	#include <iostream>	text	txt	2024-07-28 09:47:31.164224	1
-812	323	void print_container(auto const& container)\n{\n    for (auto const& element: container)\n    {\n        std::cout << element << '\\\\n';\n    }\n}	code	txt	2024-07-28 09:47:31.185452	2
-813	324	template<typename T>\nT max(T a, T b) { return b < a ? a : b; }	text	txt	2024-07-28 09:47:31.620824	1
-814	324	max(7, 42); // 42\n::max(3.4, -6.7); // 3.4\n::max("mathematics", "math"); // mathematics	code	txt	2024-07-28 09:47:31.641573	2
-815	324	Each call to `max()` template is qualified with `::` to ensure template is\nfound in the global namespace, not possibly the one in `std` namespace.	text	txt	2024-07-28 09:47:31.66199	3
-816	325	When we call a function template, the template parameters are determined by\nthe arguments we pass. However, template parameters might only be part of the\narguments type.	text	txt	2024-07-28 09:47:32.197384	1
-817	325	If we declare a function template to use constant references as function\narguments, and pass `int`, template parameter is deduced as `int`, because\nthe parameters match for `int const&`.	text	txt	2024-07-28 09:47:32.219105	2
-818	325	template<typename T>\nT max(T const& a, T const& b) { return a < b ? b : a; }	text	txt	2024-07-28 09:47:32.241003	3
-819	325	max(7, 42); // T is int	code	txt	2024-07-28 09:47:32.260583	4
-820	326	- When declaring call parameters by reference, even trivial conversion do not\n  apply to type dedution. Two arguments declared with the same template\n  parameter `T` must match exactly.\n- When declaring call parameters by value, only trivial conversion that decay\n  are supported. Qualifications with `const` or `volatile` are ignored,\n  references convert to the referenced type, and raw arrays or functions\n  convert to the corresponding pointer type. For two arguments declared with\n  the same template parameter `T` the decayed types must match.	text	txt	2024-07-28 09:47:33.045139	1
-821	326	template<typename T>\nT max(T a, T b) { return a < b ? b : a; }	text	txt	2024-07-28 09:47:33.065415	2
-822	326	int const c = 42;\nmax(i, c);    // OK: T deduced as int\nmax(c, c);    // OK: T deduced as int	text	txt	2024-07-28 09:47:33.0875	3
-823	326	int& ir = i;\nmax(i, ir);   // OK: T deduced as int	text	txt	2024-07-28 09:47:33.108451	4
-824	326	int arr[4];\nmax(&i, arr); // OK: T deduced as int*	text	txt	2024-07-28 09:47:33.128787	5
-825	326	max(4, 7.2);  // ERROR: T can be dudeced as int or double	text	txt	2024-07-28 09:47:33.148759	6
-826	326	std::string s;\nmax("text", s); // ERROR: T can be deduced as char const[5] or std::string	code	txt	2024-07-28 09:47:33.168817	7
-827	327	1. Cast the arguments so that they both match:	text	txt	2024-07-28 09:47:33.875424	1
-828	327	max(static_cast<double>(4), 7.2);	code	txt	2024-07-28 09:47:33.89607	2
-829	327	2. Specify explicitly the type of function template parameter to prevent the compiler from attempting type deduction:	text	txt	2024-07-28 09:47:33.91743	3
-830	327	max<double>(4, 7.2);	code	txt	2024-07-28 09:47:33.936353	4
-831	327	3. Specify that the parameters may have different types:	text	txt	2024-07-28 09:47:33.956145	5
-832	327	#include <type_traits>	text	txt	2024-07-28 09:47:33.975783	6
-833	327	template<typename T, typename R>\nauto max(T a, R b) -> std::common_type_t<T, R>\n{\n    return a < b ? b : a;\n}	text	txt	2024-07-28 09:47:33.995919	7
-834	327	max<double>(4, 7.2);	code	txt	2024-07-28 09:47:34.016412	8
-835	328	Type deduction does not work for default call arguments.	text	txt	2024-07-28 09:47:34.601937	1
-836	328	template<typename T>\nvoid f(T = "");	text	txt	2024-07-28 09:47:34.622997	2
-837	328	f(1);   // OK: f<int>(1)\nf();    // ERROR: cannot deduce T	code	txt	2024-07-28 09:47:34.644916	3
-838	328	You have to declare a default function template parameter.	text	txt	2024-07-28 09:47:34.665908	4
-839	328	template<typename T = std::string>\nvoid f(T = "");	text	txt	2024-07-28 09:47:34.685755	5
-840	328	f();    // OK: f<std::string>()	code	txt	2024-07-28 09:47:34.706834	6
-841	329	template<typename T1, typename T2>\nT1 max(T1 a, T2 b)\n{\n    return b < a ? a : b;\n}	text	txt	2024-07-28 09:47:35.110975	1
-842	329	auto m = ::max(4, 7.2); // OK:: but max returns int	code	txt	2024-07-28 09:47:35.13075	2
 843	330	- Introduce an additional template parameter for the return type\n- Let the compiler find out the return type.\n- Declare the return type to be the common type of the parameter types.	text	txt	2024-07-28 09:47:35.404916	1
-844	331	In cases when there is no connection between template and call parameters and\nwhen template parameters cannot be determined, you must specify the template\nargument explicitly with the call. For example, the additional template\nargument type to define the return type of a function template. However,\ntemplate argument deduction does not take return types into account, and its\ntemplate parameter does not appear in the types of the function call\nparameters. Therefore, it cannot be deduced.	text	txt	2024-07-28 09:47:36.145632	1
-845	331	As a consequence, you have to specify the template argument list explicitly:	text	txt	2024-07-28 09:47:36.166621	2
-846	331	template<typename T1, typename T2, typename RT>\nRT max(T1 a, T2 b);	text	txt	2024-07-28 09:47:36.186722	3
-847	331	max<int, double, double>(4, 7.2); // OK, but tedious	code	txt	2024-07-28 09:47:36.206464	4
-848	331	Another approach is to specify return type template parameter at first:	text	txt	2024-07-28 09:47:36.22766	5
-849	331	template <typaname RT, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt	2024-07-28 09:47:36.247489	6
-850	331	max<double>(4, 7.2); // OK	code	txt	2024-07-28 09:47:36.267593	7
-851	331	These modifications don't lead to significant advantages.	text	txt	2024-07-28 09:47:36.28841	8
 852	332	- Types for constant integral values (int, long, enum, ...)\n- `std::nullptr_t`\n- Pointers to be globally visible objects/function/members\n- Lvalue references to objects or functions\n- Floating point types (C++20)\n- Data structures with public members (C++20)\n- Lambdas (C++20)	text	txt	2024-07-28 09:47:36.799559	1
 853	332	**Not supporting types:**	text	txt	2024-07-28 09:47:36.820307	2
 854	332	- String literals\n- Classes	text	txt	2024-07-28 09:47:36.841611	3
-857	333	template<template<typename> typename V, typename T>\nvoid print(V<T> const& container)\n{\n    for (auto const& item: container)\n        std::cout << item << " ";\n    std::cout << std::endl;\n}	text	txt	2024-07-28 09:47:37.500584	2
-858	333	int main()\n{\n    print(std::vector<int>{1,2,3,4});\n}	code	txt	2024-07-28 09:47:37.522447	3
-859	334	It is a template parameter representing multiple parameters with different types.	text	txt	2024-07-28 09:47:37.983517	1
-860	334	void print() { }	text	txt	2024-07-28 09:47:38.00519	2
-861	334	template<typename T, typename... Types>\nvoid print(T first, Types... rest)\n{\n    std::cout << first << '\\\\n';\n    print(rest...);\n}	code	txt	2024-07-28 09:47:38.026288	3
-862	335	void num_args() { }	text	txt	2024-07-28 09:47:38.419471	1
-863	335	template<typename T, typename... Types>\nvoid num_args(T first, Types... rest)\n{\n    std::cout << sizeof...(rest) + 1 << '\\\\n';\n}	code	txt	2024-07-28 09:47:38.439944	2
-864	336	Parameter pack is available since C++17:	text	txt	2024-07-28 09:47:38.866103	1
-865	336	template<typename... Args>\nauto print(Args... args)\n{\n    (std::cout << ... << args) << std::endl;\n}	text	txt	2024-07-28 09:47:38.886169	2
-866	336	print(42, "42", 42.0);	code	txt	2024-07-28 09:47:38.906543	3
+815	324	Each call to `max()` template is qualified with `::` to ensure template is\nfound in the global namespace, not possibly the one in `std` namespace.	text	txt	2024-07-28 09:47:31.66199	2
+816	325	When we call a function template, the template parameters are determined by\nthe arguments we pass. However, template parameters might only be part of the\narguments type.	text	txt	2024-07-28 09:47:32.197384	1
+817	325	If we declare a function template to use constant references as function\narguments, and pass `int`, template parameter is deduced as `int`, because\nthe parameters match for `int const&`.	text	txt	2024-07-28 09:47:32.219105	2
+820	326	- When declaring call parameters by reference, even trivial conversion do not\n  apply to type dedution. Two arguments declared with the same template\n  parameter `T` must match exactly.\n- When declaring call parameters by value, only trivial conversion that decay\n  are supported. Qualifications with `const` or `volatile` are ignored,\n  references convert to the referenced type, and raw arrays or functions\n  convert to the corresponding pointer type. For two arguments declared with\n  the same template parameter `T` the decayed types must match.	text	txt	2024-07-28 09:47:33.045139	1
+835	328	Type deduction does not work for default call arguments.	text	txt	2024-07-28 09:47:34.601937	1
+838	328	You have to declare a default function template parameter.	text	txt	2024-07-28 09:47:34.665908	3
+827	327	1. Cast the arguments so that they both match:	text	txt	2024-07-28 09:47:33.875424	1
+828	327	max(static_cast<double>(4), 7.2);	code	cpp	2024-07-28 09:47:33.89607	2
+829	327	2. Specify explicitly the type of function template parameter to prevent the compiler from attempting type deduction:	text	txt	2024-07-28 09:47:33.91743	3
+830	327	max<double>(4, 7.2);	code	cpp	2024-07-28 09:47:33.936353	4
+831	327	3. Specify that the parameters may have different types:	text	txt	2024-07-28 09:47:33.956145	5
+844	331	In cases when there is no connection between template and call parameters and\nwhen template parameters cannot be determined, you must specify the template\nargument explicitly with the call. For example, the additional template\nargument type to define the return type of a function template. However,\ntemplate argument deduction does not take return types into account, and its\ntemplate parameter does not appear in the types of the function call\nparameters. Therefore, it cannot be deduced.	text	txt	2024-07-28 09:47:36.145632	1
+845	331	As a consequence, you have to specify the template argument list explicitly:	text	txt	2024-07-28 09:47:36.166621	2
+848	331	Another approach is to specify return type template parameter at first:	text	txt	2024-07-28 09:47:36.22766	4
+851	331	These modifications don't lead to significant advantages.	text	txt	2024-07-28 09:47:36.28841	6
 867	337	Since C++14, this is possible by simply not declaring any return type:	text	txt	2024-07-28 09:47:39.282552	1
 868	337	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	code	txt	2024-07-28 09:47:39.303726	2
 869	337	Deducing the return type from the function body has to be possible.\nTherefore, the code must be available and multiple return statements have to\nmatch.	text	txt	2024-07-28 09:47:39.324911	3
@@ -17078,6 +16896,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 908	344	template<typename RT, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt	2024-07-28 09:47:44.179574	3
 909	344	max(4, 7.2);  // calls first overload\n::max<long double>(4, 7.2); // calls second overload\n::max<int>(4, 7.2); // ERROR: both function templates match	code	txt	2024-07-28 09:47:44.199873	4
 910	345	A useful example would be to overload the maximum template for pointers and\nordinary C-strings.	text	txt	2024-07-28 09:47:45.026953	1
+864	336	Parameter pack is available since C++17:	text	txt	2024-07-28 09:47:38.866103	1
 911	345	#include <cstring>\n#include <string>	text	txt	2024-07-28 09:47:45.046538	2
 912	345	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	text	txt	2024-07-28 09:47:45.067519	3
 913	345	template<typename T>\nT* max(T* a, T* b)\n{\n    return *b < *a ? a : b;\n}	text	txt	2024-07-28 09:47:45.087475	4
@@ -17220,10 +17039,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1049	367	However, when passing arguments of a template type T by value, the parameter\ndecays, which is the term for the mechansim to convert a raw array type to\nthe corresponding raw pointer type.	text	txt	2024-07-28 09:48:05.583125	3
 1050	367	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;	text	txt	2024-07-28 09:48:05.60679	4
 1051	367	public:\n    Stack(T value): container({std::move(value)}) { }\n    // initialize stack with one element by value to decay on class template argument deduction\n};	code	txt	2024-07-28 09:48:05.628303	5
-1052	367	With this, the following initialization works fine:	text	txt	2024-07-28 09:48:05.649849	6
-1053	367	Stack StringStack = "surprise!";    // Stack<char const*> deduced since C++17	code	txt	2024-07-28 09:48:05.67328	7
-1054	367	In this case, don't forget to use move semantics to avoid unnecessary copy of\nthe argument.	text	txt	2024-07-28 09:48:05.694919	8
-1055	368	Because handling raw pointers in containers is a source of trouble, we should\ndisable automatically deducing raw character pointers for container classes.	text	txt	2024-07-28 09:48:06.30882	1
 1056	368	You can define specific **deduction guides** to provide additional or fix\nexisting class template argument deductions.	text	txt	2024-07-28 09:48:06.330419	2
 1057	368	Stack(const char*) -> Stack<std::string>;	code	txt	2024-07-28 09:48:06.351616	3
 1058	368	This guide has to appear in the same scope as the class definition.	text	txt	2024-07-28 09:48:06.372458	4
@@ -17308,6 +17123,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1135	380	template <char...>\nT operator ""_suffix();	code	txt	2024-07-28 09:48:19.536471	3
 1136	381	namespace binary\n{\n    using numeric = unsigned int;	text	txt	2024-07-28 09:48:20.711905	1
 1137	381	    inline namespace binary_literals\n    {\n        namespace binary_internals\n        {\n            template<typename T, char... bits>\n            struct bit_seq;	text	txt	2024-07-28 09:48:20.73455	2
+1921	573	The compiler will compile contracts, checks for their correctness, and when\neverything is checked all the contracts will be wiped from the code.	text	txt	2024-07-28 09:50:29.427889	1
 1138	381	            template<typename T, '0', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value { bit_seq<T, bits...>::value };\n            };	text	txt	2024-07-28 09:48:20.755136	3
 1139	381	            template<typename T, '1', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value {\n                    bit_seq<T, bits...>::value | static_cast<T>(1 << sizeof...(bits))\n                };\n            };	text	txt	2024-07-28 09:48:20.776757	4
 1140	381	            template<typename T>\n            struct bit_seq<T>\n            {\n                static constexpr T value{0};\n            };\n        }	text	txt	2024-07-28 09:48:20.797392	5
@@ -17390,6 +17206,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1216	403	In this case, `=delete` disables the fallback mechanism.	text	txt	2024-07-28 09:48:34.602877	9
 1217	404	Returning a local object by value automatically uses move semantics if\nsupported. On the other hand, `std::move` is just a `static_cast` to an\nrvalue reference, therefore disables **return value optimization**, which\nusually allows the returned object to be used as a return value instead.	text	txt	2024-07-28 09:48:35.073806	1
 1218	404	std::string foo()\n{\n    std::string s;\n    return std::move(s); // BAD, returns std::string&&\n}	code	txt	2024-07-28 09:48:35.094681	2
+1922	573		code	txt	2024-07-28 09:50:29.447795	2
 1219	405	Declaring the special move member functions as deleted is usually not the\nright way to do it because it disables the fallback mechanism. The right way\nto disable move semantics while providing copy semantics is to declare one of\nthe other special member functions (copy constructor, assignment operator, or\ndestructor). I recommend that you default the copy constructor and the\nassignment operator (declaring one of them would be enough but might cause\nunnecessary confusion):	text	txt	2024-07-28 09:48:35.704622	1
 1220	405	class Customer\n{\n    ...\npublic:\n    ...\n    Customer(const Customer&) = default;    // disable move semantics\n    Customer& operator=(const Customer&) = default;     // disable move semantics\n};	code	txt	2024-07-28 09:48:35.72559	2
 1221	406	If move semantics is unavailable or has been deleted for a type, this has no\ninfluence on the generation of move semantics for classes that have members\nof this type.	text	txt	2024-07-28 09:48:36.601007	1
@@ -17701,6 +17518,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1523	478	// OK for std::copy\n//         [ source range      ]\n// [ destination range ]\nstd::copy(data.begin() + 1, data.end(), data.begin());\n// data == {2, 3, 4, 5, 6, 7, 8, 9, 9}	text	txt	2024-07-28 09:49:25.142063	4
 1524	478	data = {1, 2, 3, 4, 5, 6, 7, 8, 9};	text	txt	2024-07-28 09:49:25.162159	5
 1525	478	// OK for std::copy_backward\n// [ source range      ]\n//         [ destination range ]\nstd::copy_backward(data.begin(), data.begin() + 8, data.end());\n// data == {1, 1, 2, 3, 4, 5, 6, 7, 8}	code	txt	2024-07-28 09:49:25.183124	6
+1923	574	When implementing contract for overriden functions, the contract cannot be\nwider than the contract already defined for the virtual function within base\nclass.	text	txt	2024-07-28 09:50:30.104241	1
+1924	574	class base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 100)\n    {\n    }\n};	text	txt	2024-07-28 09:50:30.124	2
 1526	479	- Iteration over a sequence for arbitrary action on each element: `for_each`, `for_each_n`, `transform`\n- Searching through a sequence: `find`, `find_if`, `find_end`, `search`, `count`, `any_of`, `adjacent_find`\n- Mutate the sequence: `copy`, `copy_if`, `move`, `fill`, `replacd`, `generate`, `rotate`\n- Sort in various ways: `sort`, `stable_sort`, `partial_sort`, `nth_element`, `is_sorted`\n- Reduction and scans: `reduce`, `transform_reduce`, `inclusive_scan`, `exclusive_scan`	text	txt	2024-07-28 09:49:25.548245	1
 1527	480	The algorithms that have the overload with `std::execution` enumeration as\nfirst parameter.	text	txt	2024-07-28 09:49:26.029294	1
 1528	480	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 09:49:26.049714	2
@@ -17748,6 +17567,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1570	487	    // parallel execution C++17\n    std::for_each(std::execution::par_unseq, // parallel, in any order\n            rng.begin(), rng.end(), // all elements\n            process // invoke process on each element\n            );\n}	code	txt	2024-07-28 09:49:31.810127	15
 1571	487	#include <algorithm>\n#include <vector>\n#include <optional>	text	txt	2024-07-28 09:49:31.829572	16
 1572	487	int main()\n{\n    std::vector<std::optional<int>> opt{{},2,{},4,{}};\n    // range version with projection C++20	text	txt	2024-07-28 09:49:31.849843	17
+1925	574	class derived : public base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 120)\n    {\n    }\n};	code	txt	2024-07-28 09:50:30.144674	3
+1926	575	#include <thread>\n#include <chrono>	text	txt	2024-07-28 09:50:30.729072	1
 1573	487	    std::ranges::for_each(opt,\n        [](int v) {\n            // iterate over projected values\n            // {0, 2, 0, 4, 0}\n        },\n        [](std::optional<int>& v){\n            // projection that will return\n            // the contained value or zero\n            return v.value_or(0);\n        }\n    );\n}	code	txt	2024-07-28 09:49:31.871037	18
 1574	488	As long as the operations are independent, there is no need for\nsynchronization primitives.	text	txt	2024-07-28 09:49:32.827695	1
 1575	488	#include <algorithm>\n#include <execution>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:49:32.84949	2
@@ -17919,6 +17740,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1738	514	| `std::binary_search` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:55.659268	1
 1739	514	This function checks whether the requested value is present in the sorted\nrange or not.	text	txt	2024-07-28 09:49:55.679818	2
 1740	514	#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:49:55.701889	3
+1927	575	void do_something()\n{\n    using namespace std::chrono_literals;\n    std::this_thread::sleep_for(1s);\n}	text	txt	2024-07-28 09:50:30.751292	2
 1741	514	int main()\n{\n    std::vector<long> data{1,2,3,4,5,6};\n    std::binary_search(data.begin(), data.end(), 4);\n    // true\n    std::ranges::binary_search(data, 4);\n    // true\n}	code	txt	2024-07-28 09:49:55.723394	4
 1742	514	`std::binary_search` is equivalent to calling `std::equal_range` and checking\nwhether the returned is non-empty; however, `std::binary_search` offers a\nsingle lookup performance, where `std::equal_range` does two lookups to\ndetermine the lower and upper bounds.	text	txt	2024-07-28 09:49:55.744734	5
 1743	515	| `std::includes` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:56.304633	1
@@ -18005,6 +17827,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1824	537	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 09:50:10.959326	2
 1825	537	int main()\n{\n    std::vector<long> range{1,2,3};	text	txt	2024-07-28 09:50:10.980647	3
 1826	537	    std::ranges::any_of(range, [](long e) { return e % 2 == 0; });\n    // at least an even number exists: true\n}	code	txt	2024-07-28 09:50:11.002083	4
+1928	575	int main()\n{\n    std::thread worker{do_something};\n    worker.join();\n}	code	txt	2024-07-28 09:50:30.771576	3
 1827	538	| `std::all_of` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:11.534362	1
 1828	538	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 09:50:11.555476	2
 1829	538	int main()\n{\n    std::vector<long> range{1,2,3};	text	txt	2024-07-28 09:50:11.576202	3
@@ -18049,6 +17872,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1872	548	    std::ranges::copy(range | std::views::transform([](long e) -> long { return e*e; }), std::ostream_iterator<long>(std::cout, " "));\n    // 1 4 9 16 25\n}	code	txt	2024-07-28 09:50:18.503519	4
 1873	549	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:18.951263	1
 1874	549	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::take(3), std::ostream_iterator<long>(std::cout, " "));\n    // 1 2 3\n}	code	txt	2024-07-28 09:50:18.9723	2
+1929	576	#include <thread>	text	txt	2024-07-28 09:50:31.808004	1
+1930	576	void do_something() {}\nvoid do_something_else() {}	text	txt	2024-07-28 09:50:31.828728	2
 1876	550	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::take_while([](long e) { return e <= 3; }), std::ostream_iterator<long>(std::cout, " "));\n    // 1 2 3\n}	code	txt	2024-07-28 09:50:19.464747	2
 1877	551	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:19.959671	1
 1878	551	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::ranges::copy(range | std::views::drop(3), std::ostream_iterator<long>(std::cout, " "));\n    // 4 5\n}	code	txt	2024-07-28 09:50:19.981975	2
@@ -18096,16 +17921,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1918	571	void ::handle_contract_violation(std::contracts::contract_violation const& cv);	code	txt	2024-07-28 09:50:28.779406	3
 1919	572	* enforce\n* observe\n* ignore	text	txt	2024-07-28 09:50:29.109956	1
 1920	572		code	txt	2024-07-28 09:50:29.13097	2
-1921	573	The compiler will compile contracts, checks for their correctness, and when\neverything is checked all the contracts will be wiped from the code.	text	txt	2024-07-28 09:50:29.427889	1
-1922	573		code	txt	2024-07-28 09:50:29.447795	2
-1923	574	When implementing contract for overriden functions, the contract cannot be\nwider than the contract already defined for the virtual function within base\nclass.	text	txt	2024-07-28 09:50:30.104241	1
-1924	574	class base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 100)\n    {\n    }\n};	text	txt	2024-07-28 09:50:30.124	2
-1925	574	class derived : public base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 120)\n    {\n    }\n};	code	txt	2024-07-28 09:50:30.144674	3
-1926	575	#include <thread>\n#include <chrono>	text	txt	2024-07-28 09:50:30.729072	1
-1927	575	void do_something()\n{\n    using namespace std::chrono_literals;\n    std::this_thread::sleep_for(1s);\n}	text	txt	2024-07-28 09:50:30.751292	2
-1928	575	int main()\n{\n    std::thread worker{do_something};\n    worker.join();\n}	code	txt	2024-07-28 09:50:30.771576	3
-1929	576	#include <thread>	text	txt	2024-07-28 09:50:31.808004	1
-1930	576	void do_something() {}\nvoid do_something_else() {}	text	txt	2024-07-28 09:50:31.828728	2
 1931	576	struct background_task\n{\n    void operator()()\n    {\n        do_something();\n        do_something_else();\n    }\n};	text	txt	2024-07-28 09:50:31.848554	3
 1934	576	    // no to mistakenly call a thread like this:\n    //   std::thread thread_x(background_task());\n    // which can be correctly expressed like:\n    //   std::thread thread_x((background_task()));\n    //   std::thread thread_x{background_task()};	text	txt	2024-07-28 09:50:31.910166	6
 1935	576	    std::thread thread_l([]{\n        do_something();\n        do_something_else();\n    });\n    thread_l.join();\n}	code	txt	2024-07-28 09:50:31.930517	7
@@ -18288,6 +18103,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2109	624	`std::latch` is a single-use counter that allows threads to wait for the\ncounter to reach zero.	text	txt	2024-07-28 09:51:03.024535	1
 2110	624	`std::latch` is useful for managing one task leveraged by multiple threads.	text	txt	2024-07-28 09:51:03.045269	2
 2111	625	A thread waits at a synchronization point until the internal counter becomes\nzero. So latches are almost opposites of the semaphore in counting.	text	txt	2024-07-28 09:51:03.4522	1
+3739	1183	section .data\n    CREATE equ 1            ; use for conditional assembly\n    NR_create equ 85        ; create system call	text	txt	2024-07-28 09:55:38.098087	1
+3740	1183	section .text\n    global create	text	txt	2024-07-28 09:55:38.11817	2
 2112	625	- Create the latch with a **non-zero** counter\n- One or more threads decrease the count\n- Other threads may wait for the latch to be signalled\n- When the count reaches zero it is permanently signalled and all waiting\n  threads are woken.	text	txt	2024-07-28 09:51:03.472909	2
 2151	632	    /* expose ImplIface as any other PIMPL */\nprivate:\n    static std::once_flag flag_;\n    static std::unique_ptr<ImplIface> impl_;\n};	text	txt	2024-07-28 09:51:10.434327	18
 2152	632	std::once_flag MonoPIMPL::flag_;\nstd::unique_ptr<ImplIface> MonoPIMPL::impl_;	code	txt	2024-07-28 09:51:10.454765	19
@@ -18469,6 +18286,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2285	685	std::filesystem::path p{};\nstd::filesysetm::file_status fs = std::filesystem::status(p);\nstd::filesystem::perms file_permissions = fs.permissions();	code	txt	2024-07-28 09:51:34.896079	1
 2286	686	#include <iostream>\n#include <filesystem>	text	txt	2024-07-28 09:51:35.332317	1
 2287	686	int main()\n{\n    std::filesystem::path file{"/etc/passwd"};\n    std::filesystem::file_status status{std::filesystem::status(file)};\n    std::cout << "file type: ";\n    std::cout << "\\\\n";\n}	code	txt	2024-07-28 09:51:35.352836	2
+3741	1183	; \\\\pre rdi address of filename string\n; \\\\post rax error code\ncreate:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:38.139778	3
 2288	687	|Enum|Octal|POSIX|\n|---|---|---|\n|`none`|0||\n|`owner_read`|0400|`S_IRUSR`|\n|`owner_write`|0200|`S_IWUSR`|\n|`owner_exec`|0100|`S_IXUSR`|\n|`owner_all`|0700|`S_IRWXU`|\n|`group_read`|040|`S_IRGRP`|\n|`group_write`|020|`S_IWGRP`|\n|`group_exec`|010|`S_IXGRP`|\n|`group_all`|070|`S_IRWXG`|\n|`others_read`|04|`S_IROTH`|\n|`others_write`|02|`S_IWOTH`|\n|`others_exec`|01|`S_IXOTH`|\n|`others_all`|07|`S_IRWXO`|\n|`all`|0777||\n|`set_suid`|04000|`S_ISUID`|\n|`set_guid`|02000|`S_ISGID`|\n|`sticky_bit`|01000|`S_ISVTX`|\n|`mask`|07777||\n|`unknown`|0xFFFF||	text	txt	2024-07-28 09:51:36.391878	1
 2289	687	std::filesystem::path p{};\nstd::filesystem::file_status fs = std::filesystem::symlink_status(fs);\nstd::filesystem::perms perms = fs.permissions();\nstd::filesystem::perms write_free = std::filesystem::perms::owner_write | std::filesystem::perms::group_write | std::filesystem::perms::others_write;	text	txt	2024-07-28 09:51:36.413533	2
 2290	687	if ((perms & write_free) != std::filesystem::perms::none)\n{\n}	code	txt	2024-07-28 09:51:36.43397	3
@@ -18714,6 +18532,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2528	791	docker container run --interactive --tty --restart unless-stopped ubuntu /usr/bin	code	txt	2024-07-28 09:52:19.573171	2
 2529	792	The `on-failure` policy will restart a container if it exits with a non-zero\nexit code. It will also restart containers when the Docker daemon restarts,\neven containers that were in the `stopped` state.	text	txt	2024-07-28 09:52:19.949808	1
 2530	792	docker container run --interactive --tty --restart on-failure ubuntu /usr/bin	code	txt	2024-07-28 09:52:19.970826	2
+3742	1183	    mov rax, NR_create\n    mov rsi, S_IRUSR | S_IWUSR\n    syscall	text	txt	2024-07-28 09:55:38.160844	4
 2531	793	Lists all containers in the running (UP) state. If you add the `-a` flag you\nwill also see containers in the stopped (Exited) state.	text	txt	2024-07-28 09:52:20.383077	1
 2532	793	docker container list --all	code	txt	2024-07-28 09:52:20.40359	2
 2533	794	FROM alpine\nLABEL maintainer="maintainer@domain.tld"\nLABEL description="Web service"\nLABEL version="0.1"	code	txt	2024-07-28 09:52:20.795367	1
@@ -18753,6 +18572,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2565	810	Swarm implements a form of active-passive multi-manager high availability\nmechanism. This means that although you have multiple *managers*, only one of\nthem is *active* at any given moment. This active *manager* is called the\n*leader*, and is the only *manager* that will ever issue live commands\nagainst the *swarm*. So, it's only ever the *leader* that changes the config,\nor issues tasks to workers. If a *follower manager* (passive) receives\ncommands for the swarm, it proxies them across the *leader*.	text	txt	2024-07-28 09:52:26.673299	1
 2566	811	1. Deploy an odd number of managers.\n2. Don't deploy too many managers (3 or 5 is recommended)	text	txt	2024-07-28 09:52:27.150177	1
 2567	811	Having an odd number of *managers* reduced the chance of split-brain\ncondition. For example, if you had 4 *managers* and the network partitioned,\nyou could be left with two managers on each side of the partition. This is\nknown as a split brain, each side knows there used to be 4 but can now only\nsee 2. But crucially, neither side has any way of knowing if the other are\nstill alive and whether it holds a majority (quorum). A swarm cluster\ncontinues to operate during split-brain condition, but you are no longer able\nto alter the configuration, or add and manage application workloads. However,\nif you have 3 or 5 managers and the same network partition occurs, it is\nimpossible to have an equal number of managers on both sides of the parition,\nthen one side achieves quorum and full cluster management services remain\navailable.	text	txt	2024-07-28 09:52:27.173761	2
+3743	1183	    leave\n    ret	code	txt	2024-07-28 09:55:38.182003	5
+3744	1183	section .data\n    CREATE equ 1            ; use for conditional assembly\n    NR_create equ 85        ; create system call	text	txt	2024-07-28 09:55:38.203265	6
 2568	812	Restarting an old manager or restoring an old backup has the potential to\ncompromise the cluster. Old managers re-joining a swarm automatically decrypt\nand gain access to the Raft log time-series database, this can pose security\nconcerns. Restoring old backups can also wipe the current swarm\nconfiguration.	text	txt	2024-07-28 09:52:27.538768	1
 2569	812	To prevent situations like these, Docker allows to lock a swarm with the\nAutolock feature. This forces restarted managers to present the cluster\nunlock key before being admitted back into the cluster.	text	txt	2024-07-28 09:52:27.559701	2
 2570	813	To apply a lock directly to a new swarm:	text	txt	2024-07-28 09:52:27.991235	1
@@ -19109,6 +18930,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2910	941	`make` can leverage the host's CPU performance by running multiple jobs in\nparallel:	text	txt	2024-07-28 09:53:26.389348	1
 2911	941	make -j8	code	txt	2024-07-28 09:53:26.409722	2
 2912	942	make -j $(($(nproc)/2)) ARCH=arm CROSS_COMPILE=arm-rpi-linux-gnueabihf- V=1 zImage	code	txt	2024-07-28 09:53:26.678246	1
+3745	1183	section .text\n    global create	text	txt	2024-07-28 09:55:38.224127	7
+3746	1183	; \\\\pre rdi file descriptor\n; \\\\post rax error code\ncreate:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:38.244762	8
+3747	1183	    mov rax, NR_create\n    mov rsi, S_IRUSR | S_IWUSR\n    syscall	text	txt	2024-07-28 09:55:38.264129	9
+3748	1183	    leave\n    ret	code	txt	2024-07-28 09:55:38.284275	10
+3749	1183	extern create\nextern close	text	txt	2024-07-28 09:55:38.304427	11
+3750	1183	section .text\n    global main	text	txt	2024-07-28 09:55:38.326061	12
 2913	944	- `arch/$ARCH/boot`: the directory containing vmlinux image converted for\n  bootloaders.\n- `arch/$ARCH/boot/Image`: An uncompressed kernel image that can be booted.\n- `arch/$ARCH/boot/*Image*`: A compressed kernel image that can also be\n  booted.\n- `arch/$ARCH/boot/dts/*.dtb`: Provides compiled device tree blobs for the\n  selected CPU variant.\n- `vmlinux`: A raw, uncompressed, and unstripped kernel image in ELF format\n  suited for debugging by `kgdb` but generally not used for booting purposes.\n- `zImage`: compressed version of `Image`.\n- `uImage`: `zImage` plus a 64-byte U-Boot header.\n- `System.map`: the symbol table in a human-readable form.	text	txt	2024-07-28 09:53:27.454525	1
 2914	944	mkimage --help\nmkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 0e 0x80008000 -n 'Linux' -d zImage uImage	code	txt	2024-07-28 09:53:27.476275	2
 2915	945	Raspberry Pi is a little different here. So prebuilt binaries or patched\nsources are preferred:	text	txt	2024-07-28 09:53:28.863149	1
@@ -19186,6 +19013,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2995	977	module_init(sample_module);\nmodule_exit(sample_cleanup);\nMODULE_LICENSE("GPL");	code	txt	2024-07-28 09:53:41.689847	6
 2996	978	* https://github.com - https://github.com/devicetree-org/devicetree-specification/releases	text	txt	2024-07-28 09:53:41.915632	1
 2997	979	- Device tree begins with a root node.\n- **reg** property referes to a range of units in a register space.	text	txt	2024-07-28 09:53:42.646056	1
+3751	1183	main:\n    section .data\n        fd dq 0                 ; to hold file descriptor	text	txt	2024-07-28 09:55:38.346885	13
+3752	1183	    section .text\n        push rbp\n        mov rbp, rsp	text	txt	2024-07-28 09:55:38.368273	14
 2998	979	/dts-v1/;\n/{\n    model = "TI AM335x BeagleBone";\n    compatible = "ti,am33xx";\n    #address-cells = <1>;\n    #size-cells = <1>;\n    cpus {\n        #address-cells = <1>;\n        #size-cells = <0>;\n        cpu@0 {\n            compatible = "arm,cortex-a8";\n            device_type = "cpu";\n            reg = <0>;\n        };\n    };\n    memory@80000000 {\n        device_type = "memory";\n        reg = <0x80000000 0x20000000>; /* 512 MB */\n    };\n};	code	txt	2024-07-28 09:53:42.668424	2
 2999	980	- Labels used can be expressed in connections to reference to a node.\n- Labels are also referred to as **phandles**.\n- **interrupt-controller** property identifies not as interrupt controller.\n- **interrupt-parrent** property references the interrupt controller.	text	txt	2024-07-28 09:53:43.355763	1
 3000	980	/dts-v1/;\n{\n    intc: interrupt-controller@48200000 {\n        compatible = "ti,am33xx-intc";\n        interrupt-controller;\n        #interrupt-cells = <1>;\n        reg = <0x48200000 0x1000>;\n    };\n    lcdc: lcdc@48200000 {\n        compatible = "ti,am33xx-tilcdc";\n        reg = <0x4830e000 0x1000>;\n        interrupt-parent = <&intc>;\n        interrupts = <36>;\n        ti,hwmods = "lcdc";\n        status = "disabled";\n    };\n};	code	txt	2024-07-28 09:53:43.37679	2
@@ -19254,6 +19083,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3063	1004	static DEFINE_SPINLOCK(my_spinlock);	code	txt	2024-07-28 09:53:55.954014	2
 3064	1004	This macro is defined in `include/linux/spinlock_types.h`.	text	txt	2024-07-28 09:53:55.974623	3
 3065	1004	For dynamic (runtime) allocation, it's better to embed the spinlock into a\nbigger structure, allocating memory for this structure and then calling\n`spin_lock_init()` on the spinlock element:	text	txt	2024-07-28 09:53:55.995885	4
+3753	1183	    %IF CREATE\n        mov rdi, filename\n        call create\n        mov qword[fd], rax      ; save file descriptor\n    %ENDIF	text	txt	2024-07-28 09:55:38.389003	15
 3066	1004	struct bigger_struct {\n    spinlock_t lock;\n    unsigned int foo;\n    [...]\n};\nstatic struct bigger_struct *fake_init_function()\n{\n    struct bigger_struct *bs;\n    bs = kmalloc(sizeof(struct bigger_struct), GFP_KERNEL);\n    if (!bs)\n        return -ENOMEM;\n    spin_lock_init(&bs->lock);\n    return bs;\n}	code	txt	2024-07-28 09:53:56.017358	5
 3067	1005	We can lock/unlock the spinlock using `spin_lock()` and `spin_unlock()`\ninline functions, both defined in `include/linux/spinlock.h`:	text	txt	2024-07-28 09:53:56.401562	1
 3068	1005	static __always_inline void spin_unlock(spinlock_t *lock);\nstatic __always_inline void spin_lock(spinlock_t *lock);	code	txt	2024-07-28 09:53:56.423695	2
@@ -19321,6 +19151,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3129	1026	wait_event_timeout(&smoe_event, condition, timeout)	code	txt	2024-07-28 09:54:07.437946	2
 3130	1026	Time unit for `timeout` is a jiffy.	text	txt	2024-07-28 09:54:07.458181	3
 3131	1027	This function has two behaviors, depending on the timeout having elapsed or\nnot.	text	txt	2024-07-28 09:54:07.768329	1
+3754	1183	    %IF CLOSE\n        mov rdi, qword[fd]      ; file descriptor\n        call close\n    %ENDIF	code	txt	2024-07-28 09:55:38.409978	16
 3132	1027	- **Timeout elapsed:** the function returns 0 if the condition is evaluated\n  to `false` or 1 if it is evaluated `true`.\n- **Timeout not elapsed yet:** the function returns the remaining time (in\n  jiffies at least 1) if the condition is evaluated to `true`.	text	txt	2024-07-28 09:54:07.788581	2
 3133	1028	After a change on any variable that could affect the result of the wait\nqueue, call the appropriate `wake_up*` family function.	text	txt	2024-07-28 09:54:08.274796	1
 3134	1028	In order to wake up a process sleeping on a wait queue, you should call\neither of the following functions. Whenever you call any of these functions,\nthe condition is re-evaluated again. If the condition is `true` at that time,\nthen a process (or all processes for the `_all()` variant) in the wait queue\nwill be awakened, and its state set to `TASK_RUNNING`; otherwise, nothing\nhappens.	text	txt	2024-07-28 09:54:08.29759	2
@@ -19349,6 +19180,10 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3160	1041	KERNEL_SRC ?= /lib/modules/$(shell uname -r)/build	text	txt	2024-07-28 09:54:13.524648	2
 3161	1041	all default: modules\ninstall: modules_install	text	txt	2024-07-28 09:54:13.545898	3
 3162	1041	modules modules_install help clean:\n    $(MAKE) -C $(KERNEL_SRC) M=$(shell pwd) $@	code	txt	2024-07-28 09:54:13.566494	4
+3755	1184	section .data\n    CREATE equ 1            ; use for conditional assembly	text	txt	2024-07-28 09:55:39.565712	1
+3756	1184	section .text\n    global create	text	txt	2024-07-28 09:55:39.587005	2
+3757	1184	create:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:39.607123	3
+3758	1184	    leave\n    ret	code	txt	2024-07-28 09:55:39.627696	4
 3163	1041	`KERNEL_SRC`: This is the location of the prebuilt kernel source which usually is `/lib/modules/$(uname -r)/build`.\nThere is also a symbolic link `/usr/src/linux` pointing to this directory.\nAs we said earlier, we need a prebuilt kernel in order to build any module.\nIf you have built your kernel from the source, you should set this variable with the absolute path of the built source directory.\n`–C` instructs the make utility to change into the specified directory reading the makefiles.	text	txt	2024-07-28 09:54:13.588716	5
 3164	1041	`M`: This is relevant to the kernel build system.\nThe `Makefile` kernel uses this variable to locate the directory of an external module to build.\nYour `.c` files should be placed in that directory.	text	txt	2024-07-28 09:54:13.609505	6
 3165	1041	`$(MAKE) -C $(KERNEL_SRC) M=$(shell pwd) $@`: This is the rule to be executed for each of the targets enumerated previously.\nUsing this kind of magic word prevents us from writing as many (identical) lines as there are targets.	text	txt	2024-07-28 09:54:13.631019	7
@@ -19432,6 +19267,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3245	1062	err_alloc:\n    return ret;	code	txt	2024-07-28 09:54:24.260452	9
 3246	1062	By using the `goto` statement, we have straight control flow instead of a nest.	text	txt	2024-07-28 09:54:24.279474	10
 3247	1062	That said, you should only use `goto` to move forward in a function, not backward, nor to implement loops (as is the case in an assembler).	text	txt	2024-07-28 09:54:24.299043	11
+3759	1184	extern create\nextern close\nextern write	text	txt	2024-07-28 09:55:39.647875	5
 3248	1063	When it comes to returning an error from functions that are supposed to return a pointer, functions often return the `NULL` pointer.\nIt is functional but it is a quite meaningless approach, since we do not exactly know why this `NULL` pointer is returned.\nFor that purpose, the kernel provides three functions, `ERR_PTR`, `IS_ERR`, and `PTR_ERR`, defined as follows:	text	txt	2024-07-28 09:54:25.423237	1
 3249	1063	void *ERR_PTR(long error);\nlong IS_ERR(const void *ptr);\nlong PTR_ERR(const void *ptr);	code	txt	2024-07-28 09:54:25.44439	2
 3250	1063	* `ERR_PTR`: The first macro returns the error value as a pointer.\n* `IS_ERR`: The second macro is used to check whether the returned value is a pointer error using `if(IS_ERR(foo))`.\n* `PTR_ERR`: The last one returns the actual error code, `return PTR_ERR(foo)`.	text	txt	2024-07-28 09:54:25.467382	3
@@ -19497,6 +19333,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3307	1081	static DEFINE_MUTEX(my_mutex);	code	txt	2024-07-28 09:54:33.293403	2
 3308	1081	A second approach the kernel offers is dynamic initialization, possible thanks to a call to a `__mutex_init()` low-level function, which is actually wrapped by a much more user-friendly macro, `mutex_init()`.	text	txt	2024-07-28 09:54:33.312869	3
 3309	1081	struct fake_data {\n    struct i2c_client *client;\n    u16 reg_conf;\n    struct mutex mutex;\n};	text	txt	2024-07-28 09:54:33.33376	4
+3760	1184	section .text\n    global main	text	txt	2024-07-28 09:55:39.668657	6
 3310	1081	static int fake_probe(struct i2c_client *client)\n{\n    [...]\n        mutex_init(&data->mutex);\n    [...]\n}	code	txt	2024-07-28 09:54:33.354874	5
 3311	1082	Acquiring (aka locking) a mutex is as simple as calling one of the following three functions:	text	txt	2024-07-28 09:54:33.850573	1
 3312	1082	void mutex_lock(struct mutex *lock);\nint mutex_lock_interruptible(struct mutex *lock);\nint mutex_lock_killable(struct mutex *lock);	code	txt	2024-07-28 09:54:33.87061	2
@@ -19787,6 +19624,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3600	1164	success_func:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:18.473409	11
 3601	1164	    mov rax, 0	text	txt	2024-07-28 09:55:18.494407	12
 3602	1164	    leave\n    ret	code	txt	2024-07-28 09:55:18.515331	13
+3761	1184	main:\n    section .data\n        fd dq 0                 ; to hold file descriptor	text	txt	2024-07-28 09:55:39.688366	7
+3762	1184	    section .text\n        push rbp\n        mov rbp, rsp	text	txt	2024-07-28 09:55:39.709923	8
 3603	1165	* Following calling conventions are for System V AMD64 ABI:\n* For integral types, registers are `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`\n  respectively, and additional arguments are passed via the stack and in\n  reverse order so that we can pop off in the right order.\n* Function's return address `rip` is pushed on the stack, just after the\n  arguments.\n* In function, then `rbp` is pushed, there maybe another 8 bytes needed to be\n  pushed to align the stack in 16 bytes.\n* For floating point types, registers are `xmm0` to `xmm7`, additional\n  arguments are passed via the stack but not with `push` instruction. Will be\n  discussed later.	text	txt	2024-07-28 09:55:20.457548	1
 3604	1165	section .text\n    global main	text	txt	2024-07-28 09:55:20.478138	2
 3605	1165	main:\n    section .data\n        .first   dq 1\n        .second  dq 2\n        .third   dq 3\n        .forth   dq 4\n        .fifth   dq 5\n        .sixth   dq 6\n        .seventh dq 7\n        .eighth  dq 8\n        .ninth   dq 9\n        .tenth   dq 10	text	txt	2024-07-28 09:55:20.498529	3
@@ -19839,6 +19678,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3679	1172	a -> rax, eax, ax, al\nb -> rbx, ebx, bx, bl\nc -> rcx, ecx, cx, cl\nd -> rdx, edx, dx, dl\nS -> rsi, esi, si\nD -> rdi, edi, di\nr -> any register	code	txt	2024-07-28 09:55:28.526264	7
 3680	1173	extern printf	text	txt	2024-07-28 09:55:29.520284	1
 3681	1173	; multiply value v by shifting it n times\n%define multiply(v, n) sal v, n	text	txt	2024-07-28 09:55:29.540955	2
+3763	1184	    %IF CREATE\n        mov rdi, filename\n        call create\n        mov qword[fd], rax      ; save file descriptor\n    %ENDIF	text	txt	2024-07-28 09:55:39.730901	9
 3682	1173	; having two arguments\n%macro print 2\n    section .data\n        %%detail db %1, 0\n        %%format_string db "%s: %i", 10, 0\n    section .text\n        xor rax, rax\n        mov rdi, %%format_string\n        mov rsi, %%detail\n        mov rdx, %2\n        call printf\n%endmacro	text	txt	2024-07-28 09:55:29.562689	3
 3683	1173	section .data\n    number dq 42	text	txt	2024-07-28 09:55:29.582805	4
 3684	1173	section .text\n    global main	text	txt	2024-07-28 09:55:29.602595	5
@@ -19895,31 +19735,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3736	1180	    leave\n    ret	code	txt	2024-07-28 09:55:35.969394	8
 3737	1181	info registers rdi rsi rsp\nx/1xg <the pointer in rdi>\nx/s <address where the pointer in rdi points to>\nx/s <address where the pointer in rdi points to + 8>\nx/s <address where the pointer in rdi points to + 16>	code	txt	2024-07-28 09:55:36.281728	1
 3738	1182	`/usr/include/asm-generic/fcntl.h`	text	txt	2024-07-28 09:55:36.494241	1
-3739	1183	section .data\n    CREATE equ 1            ; use for conditional assembly\n    NR_create equ 85        ; create system call	text	txt	2024-07-28 09:55:38.098087	1
-3740	1183	section .text\n    global create	text	txt	2024-07-28 09:55:38.11817	2
-3741	1183	; \\\\pre rdi address of filename string\n; \\\\post rax error code\ncreate:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:38.139778	3
-3742	1183	    mov rax, NR_create\n    mov rsi, S_IRUSR | S_IWUSR\n    syscall	text	txt	2024-07-28 09:55:38.160844	4
-3743	1183	    leave\n    ret	code	txt	2024-07-28 09:55:38.182003	5
-3744	1183	section .data\n    CREATE equ 1            ; use for conditional assembly\n    NR_create equ 85        ; create system call	text	txt	2024-07-28 09:55:38.203265	6
-3745	1183	section .text\n    global create	text	txt	2024-07-28 09:55:38.224127	7
-3746	1183	; \\\\pre rdi file descriptor\n; \\\\post rax error code\ncreate:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:38.244762	8
-3747	1183	    mov rax, NR_create\n    mov rsi, S_IRUSR | S_IWUSR\n    syscall	text	txt	2024-07-28 09:55:38.264129	9
-3748	1183	    leave\n    ret	code	txt	2024-07-28 09:55:38.284275	10
-3749	1183	extern create\nextern close	text	txt	2024-07-28 09:55:38.304427	11
-3750	1183	section .text\n    global main	text	txt	2024-07-28 09:55:38.326061	12
-3751	1183	main:\n    section .data\n        fd dq 0                 ; to hold file descriptor	text	txt	2024-07-28 09:55:38.346885	13
-3752	1183	    section .text\n        push rbp\n        mov rbp, rsp	text	txt	2024-07-28 09:55:38.368273	14
-3753	1183	    %IF CREATE\n        mov rdi, filename\n        call create\n        mov qword[fd], rax      ; save file descriptor\n    %ENDIF	text	txt	2024-07-28 09:55:38.389003	15
-3754	1183	    %IF CLOSE\n        mov rdi, qword[fd]      ; file descriptor\n        call close\n    %ENDIF	code	txt	2024-07-28 09:55:38.409978	16
-3755	1184	section .data\n    CREATE equ 1            ; use for conditional assembly	text	txt	2024-07-28 09:55:39.565712	1
-3756	1184	section .text\n    global create	text	txt	2024-07-28 09:55:39.587005	2
-3757	1184	create:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:39.607123	3
-3758	1184	    leave\n    ret	code	txt	2024-07-28 09:55:39.627696	4
-3759	1184	extern create\nextern close\nextern write	text	txt	2024-07-28 09:55:39.647875	5
-3760	1184	section .text\n    global main	text	txt	2024-07-28 09:55:39.668657	6
-3761	1184	main:\n    section .data\n        fd dq 0                 ; to hold file descriptor	text	txt	2024-07-28 09:55:39.688366	7
-3762	1184	    section .text\n        push rbp\n        mov rbp, rsp	text	txt	2024-07-28 09:55:39.709923	8
-3763	1184	    %IF CREATE\n        mov rdi, filename\n        call create\n        mov qword[fd], rax      ; save file descriptor\n    %ENDIF	text	txt	2024-07-28 09:55:39.730901	9
 3764	1184	    %IF WRITE\n        mov rdi, qword[fd]      ; file descriptor\n        mov rsi, text           ; address of string\n        mov rdx, qword[length]  ; length of string\n        call write\n    %ENDIF	text	txt	2024-07-28 09:55:39.752144	10
 3765	1184	    %IF CLOSE\n        mov rdi, qword[fd]      ; file descriptor\n        call close\n    %ENDIF	code	txt	2024-07-28 09:55:39.77242	11
 3766	1185	section .data\n    CREATE equ 1            ; use for conditional assembly	text	txt	2024-07-28 09:55:40.944032	1
@@ -19996,9 +19811,93 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3893	283	module;               // global module fragment\n\n#define X\n#include "code.h"\n\nexport module geometry;   // module declaration\n\nimport std;      // module preamble\n\n// module purview\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};\n\nexport using int_point = point<int>;\n\nexport constexpr int_point int_point_zero{0, 0};\n\nexport template<typename T>\ndouble distance(point<T> const& p1, point<T> const& p2)\n{\n    return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));\n}	code	cpp	2025-07-15 12:14:25.146642	2
 3894	283	import std;\nimport geometry;\n\nint main()\n{\n    int_point p{3, 4};\n    std::cout << distance(int_point_zero, p) << std::endl;\n}	code	cpp	2025-07-15 12:14:41.011353	3
 553	276	* Specialization of a template is required to be done in the same namespace\n  where the template was declared.\n* Define the content of the library inside a namespace\n* Define each version of the library or parts of it inside an inner inline\n  namespace\n* Use preprocessor macros to enable a particular version of the library	text	txt	2024-07-28 09:46:53.903544	3
+597	285	A module unit that is a partition that exports entities is called a **module\ninterface partition**.	text	txt	2024-07-28 09:47:00.35894	1
 3883	276	namespace incorrect_implementation\n{\n    namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n\n    namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }\n\n    #ifndef _lib_version_1\n        using namespace v1;\n    #endif\n\n    #ifndef _lib_version_2\n        using namespace v2;\n    #endif\n}\n\nnamespace broken_client_code\n{\n    // okay\n    auto x = incorrect_implementation::test(42);\n\n    struct foo { int a; };\n\n    // breaks\n    namespace incorrect_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }\n\n    // won't compile\n    auto y = incorrect_implementation::test(foor{42});\n\n    // library leaks implementation details\n    namespace incorrect_implementation\n    {\n        namespace version_2\n        {\n            template<>\n            int test(foo value) { return value.a; }\n        }\n    }\n\n    // okay, but client needs to be aware of implementation details\n    auto y = incorrect_implementation::test(foor{42});\n}\n\nnamespace correct_implementation\n{\n    #ifndef _lib_version_1\n    inline namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n    #endif\n\n    #ifndef _lib_version_2\n    inline namespace v2\n    {\n        template<typename T>\n        int test(T value) { return 2; }\n    }\n    #endif\n}\n\nnamespace working_client_code\n{\n    // okay\n    auto x = correct_implementation::test(42);\n\n    struct foo { int a; };\n\n    namespace correct_implementation\n    {\n        template <>\n        int test(foo value) { return value.a; }\n    }\n\n    // okay\n    auto y = correct_implementation::test(foor{42});\n}	code	cpp	2025-07-15 10:46:39.802283	4
 3884	277	// before C++17\nnamespace A\n{\n    namespace B\n    {\n        namespace C\n        {\n            /* ... */\n        }\n    }\n}\n\n// since C++16\nnamespace A::B::C\n{\n    /* ... */\n};	code	cpp	2025-07-15 11:21:06.660083	1
 3885	279	import std;\n\nint main()\n{\n    std::cout << std::format("{}\\\\n", "modules are working");\n}	code	cpp	2025-07-15 11:22:18.217297	1
+598	285	Here the `geometry-core.cppm` and `geometry-literals.cppm` are internal partitions.	text	txt	2024-07-28 09:47:00.380515	2
+3896	285	*geometry-core.cppm*\nexport module geometry:core;\n\nimport std.core;\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	code	cpp	2025-07-15 19:25:13.860133	3
+3898	285	*geometry-literals.cppm*\nexport module geometry.literals;\n\nimport std.core;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t const size)\n    {\n        int x{}, y{};\n        ...\n        return {x , y};\n    }\n}	code	cpp	2025-07-15 19:25:47.77262	4
+605	285	In the primary module interface unit, import and then export the partitions\nwith statements of the form `export import :partitionname`.	text	txt	2024-07-28 09:47:00.524852	5
+3899	285	*geometry.cppm*\nexport module geometry;\n\nexport import :core;\nexport import :literals;	code	cpp	2025-07-15 19:26:10.938543	6
+608	285	The code importing a module composed from multiple partitions only sees the\nmodule as a whole if it was built from a single module unit:	text	txt	2024-07-28 09:47:00.586687	7
+3901	285	import std.core;\nimport geometry;\n\nint main()\n{\n    point<int> p{4, 2};\n\n    {\n        using namespace geometry_literals;\n        point<int> origin{"0,0"_p};\n    }\n}	code	cpp	2025-07-15 19:26:42.762726	8
+3947	300	#include <expected>\n#include <system_error>\n#include <string>\n\nstd::expected<std::string, std::error_condition> read_input();\nstd::expected<int, std::error_condition> to_int(const std::string& s);\nint increase(int v);\nstd::expected<int, std::error_condition> log_error(const std::error_condition& err);\n\nauto result = read_input()\n    .and_then(to_int) // invoked if the expected contains a value\n    // the callable has to return a std::expected, but can change\n    // the type: std::expected<T,Err> -> std::expected<U,Err>\n    .transform(increase) // invoked if the expected contains a value\n    // the callable can return any type\n    // std::expected<T,Err> -> std::expected<U,Err>\n    .or_else(log_error); // invoked if the expected contains an error\n    // the callable has to return a std::expected, but can change\n    // the type: std::expected<V,T> -> std::expected<V,U>	code	cpp	2025-07-15 21:44:51.843137	2
+3904	286	modulename:partitionname;`.\n\n*geometry-details.cppm*\nmodule geometry:details;\n\nimport std.core;\n\nstd::pair<int, int> split(char const* ptr, std::size_t const size)\n{\n    int x{}, y{};\n    ...\n    return {x, y};\n}	code	cpp	2025-07-15 19:50:15.815487	3
+3906	286	*geometry-literals.cppm*\nexport module geometry:literals;\n\nimport :core;\nimport :details;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t size)\n    {\n        auto [x, y] = split(ptr, size);\n        return {x, y};\n    }\n}	code	cpp	2025-07-15 19:51:06.409088	4
+3937	297	#include <variant>\n#include <string>\n\nstd::variant<int, double, std::string> v{10};\nint number;\n\nnumber = std::get<int>(v);\nnumber = std::get<0>(v); // same as above but with index	code	cpp	2025-07-15 21:41:23.34397	2
+704	300	The `std::expected` (C++23) comes with a monadic interface. Relying on the\nmonadic interface prevents the typical if-then-else verbose error checking.\nThe `and_then()` and `or_else()` methods expect a callable that accepts a\nvalue/error and returns a `std::expected`. The `transform` and\n`transform_error` methods expect a callable that accepts a value/error and\nreturns a value/error.	text	txt	2024-07-28 09:47:13.477597	1
+3939	297	#include <variant>\n#include <string>\n\nstd::variant<int, double, std::string> v{10};\n\ndouble value = std::get<double>(v);\n// throws std::bad_variant_access	code	cpp	2025-07-15 21:41:37.250157	4
+3945	299	#include <variant>\n#include <string>\n#include <iostream>\n\nstd::variant<int, double, std::string> v;\n\ntemplate<typename ...Ts>\nstruct overloaded : Ts...\n{\n    using Ts::operator()...;\n};\n\nv = 3.14;\n\nstd::visit(overloaded{\n    [](int& x) {\n        std::cout << "int: " << x << '\\\\n';\n    },\n    [](double& x) {\n        std::cout << "double: " << x << '\\\\n';\n    },\n    [](std::string& x) {\n        std::cout << "std::string: " << x << '\\\\n';\n    }\n}, v);\n// prints "double: 3.14"	code	cpp	2025-07-15 21:43:15.053373	1
+3907	287	*sample-core.cppm*\nexport module sample:core;\n\nexport constexpr double fraction{7 / 5};	code	cpp	2025-07-15 19:55:29.714244	3
+3909	287	*sample-details.cppm*\nmodule sample:details;\n\nimport :core;\n\nconstexpr double power{fraction * fraction};	code	cpp	2025-07-15 19:55:49.31077	4
+3948	301	class Value\n{\n    long id;\n\npublic:\n    bool operator==(Value const& rhs) const { return id == rhs.id; }\n    bool operator!=(Value const& rhs) const { return !(*this == rhs); }\n    bool operator< (Value const& rhs) const { return id < rhs.id; }\n    bool operator<=(Value const& rhs) const { return !(*this < rhs); }\n    bool operator> (Value const& rhs) const { return rhs < *this; }\n    bool operator>=(Value const& rhs) const { return !(rhs < *this); }\n};	code	cpp	2025-07-15 21:45:33.308217	2
+3910	287	*sample.cppm*\nexport module sample;\n\nexport import :core;	code	cpp	2025-07-15 19:56:11.377051	5
+3911	287	*consumer.cpp*\nimport std.core;\nimport sample;\n\nstd::cout << power << "\\\\n";	code	cpp	2025-07-15 19:56:23.72385	6
+3912	287	*sample-core.cppm*\nexport module sample.core;\n\nexport constexpr double fraction{7 / 5};	code	cpp	2025-07-15 19:56:39.58146	8
+3914	287	*sample-details.cppm*\nmodule sample.details;\n\nimport sample.core;\n\nconstexpr double power{fraction * fraction};	code	cpp	2025-07-15 19:56:55.575191	9
+3915	287	*sample.cppm*\nexport module sample;\n\nexport import sample.core;	code	cpp	2025-07-15 19:57:12.995892	10
+642	287	So far, we have two modules: `sample.core` and `sample`. Here `sample`\nimports and then re-exports the entire content of `sample.core`. Because of\nthis, the core in the `consumer.cpp` does not need to change. By solely\nimporting the `sample` module, we get access to the content of the\n`sample.core` module.	text	txt	2024-07-28 09:47:04.251552	12
+643	287	However, if we do not define the `sample` module anymore, then we need to explicitly import `sample.core` module:	text	txt	2024-07-28 09:47:04.272721	13
+3941	298	#include <variant>\n#include <string>\n#include <iostream>\n\nstd::varian<int, double, std::string> v{"sample string"};\n\nstd::visit([](auto&& x) {\n    std::cout << x << '\\\\n';\n}, v);\n// prints "sample string"	code	cpp	2025-07-15 21:42:05.684617	3
+3935	296	#include <variant>\n#include <string>\n\nstd::variant<int, double, std::string> v;\nv = 10;	code	cpp	2025-07-15 21:40:55.134056	2
+715	301	Since C++20 `operator ==` also implies `operator !=`, therefore, for `a` of\ntype `TypeA` and `b` of `TypeB`, the compiler will be able to compile `a !=\nb` if there is:	text	txt	2024-07-28 09:47:15.608539	6
+716	301	- a freestanding `operator !=(TypeA, TypeB)`\n- a freestanding `operator ==(TypeA, TypeB)`\n- a freestanding `operator ==(TypeB, TypeA)`\n- a member function `TypeA::operator!=(TypeB)`\n- a member function `TypeA::operator==(TypeB)`\n- a member function `TypeB::operator==(TypeA)`	text	txt	2024-07-28 09:47:15.629665	7
+3916	287	*consumer.cpp*\nimport std.core;\nimport sample;\n\nstd::cout << power << "\\\\n";	code	cpp	2025-07-15 19:57:26.648786	11
+646	287	Choosing between using partitions or multiple modules for componentizing your\nsource code should depend on the particularities of your project. If you use\nmultiple smaller modules, you provide better granularity for imports. This\ncan be important if you're developing a large library because users should\nonly import things they use.	text	txt	2024-07-28 09:47:04.337692	15
+3917	287	*consumer.cpp*\nimport std.core;\nimport sample.core;\n\nstd::cout << power << "\\\\n";	code	cpp	2025-07-15 19:57:45.490528	14
+717	301	Having both a freestanding and a member function is an ambiguity error.	text	txt	2024-07-28 09:47:15.649983	8
+718	301	Since C++20 it is enough to declare `operator <=>` with `=default` so that\nthe defaulted member `operator <=>` generates a corresponding member\n`operator ==`:	text	txt	2024-07-28 09:47:15.671329	9
+720	301	Both operators use their default implementation to compare objects member by\nmember. The order to the members in the class matter.	text	txt	2024-07-28 09:47:15.713293	11
+721	301	In addition, even when declaring the spaceship operator as a member function,\nthe generated operators:	text	txt	2024-07-28 09:47:15.733108	12
+722	301	- are `noexcept` if comparing the members never throws\n- are `constexpr` if comparing the members is possible at compile time\n- implicit type conversions for the first operand are also supported if a\n  corresponding implicit type conversion is defined\n- may warn if the result of a comparison is not used (compiler dependent)	text	txt	2024-07-28 09:47:15.754684	13
+3949	301	class Value\n{\n    long id;\n\npublic:\n    [[nodiscard]] friend constexpr bool operator==(Value const& lhs, Value const& rhs) noexcept { return lhs.id == rhs.id; }\n    [[nodiscard]] friend constexpr bool operator!=(Value const& lhs, Value const& rhs) noexcept { return !(lhs == rhs); }\n    [[nodiscard]] friend constexpr bool operator< (Value const& lhs, Value const& rhs) noexcept { return lhs.id < rhs.id; }\n    [[nodiscard]] friend constexpr bool operator<=(Value const& lhs, Value const& rhs) noexcept { return !(lhs < rhs); }\n    [[nodiscard]] friend constexpr bool operator> (Value const& lhs, Value const& rhs) noexcept { return rhs < lhs; }\n    [[nodiscard]] friend constexpr bool operator>=(Value const& lhs, Value const& rhs) noexcept { return !(rhs < lhs); }\n};	code	cpp	2025-07-15 21:45:52.482938	5
+719	301	class Value\n{\n    auto operator<=>(Value const& rhs) const = default;\n    auto operator==(Value const& rhs) const = default; // implicitly generated\n};	code	cpp	2024-07-28 09:47:15.69261	10
+3951	302	#include <compare>\n\nclass Value\n{\n    long id;\n\npublic:\n    std::strong_ordering operator<=>(Value const& rhs) const\n    {\n        return id < rhs.id ? std::strong_ordering::less :\n            id > rhs.id ? std::strong_ordering::greater :\n                std::strong_ordering::equivalent;\n    }\n};	code	cpp	2025-07-15 21:46:46.741047	5
+734	302	The member function has to take the second parameter as `const` lvalue\nreference with `=default`. A friend function might also take both parameters\nby value.	text	txt	2024-07-28 09:47:17.26293	8
+3953	302	#include <compare>\n\nclass Value\n{\n    long id;\n\npublic:\n    auto operator<=>(Value const& rhs) const\n    {\n        return id <=> rhs.id;\n    }\n};	code	cpp	2025-07-15 21:47:05.456747	7
+3956	304	#include <compare>\n#include <string>\n\nclass Person\n{\n    std::string name;\n    double weight;\n\npublic:\n    std::partial_ordering operator<=>(Person const& rhs) const\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering\n\n        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	cpp	2025-07-15 21:47:56.189792	2
+745	304	If you do not know the comparison types, use\n`std::common_comparison_category<>` type trait that computes the strongest\ncomparison category.	text	txt	2024-07-28 09:47:19.485991	3
+649	288	Preconditions of using `auto`:	text	txt	2024-07-28 09:47:05.633075	3
+650	288	* `auto` does not retain cv-ref qualifiers.\n* `auto` cannot be used for non-movable objects.\n* `auto` cannot be used for multi-word types like long long.	text	txt	2024-07-28 09:47:05.654222	4
+3923	288	#include <string>\n#include <vector>\n#include <memory>\n\nint main()\n{\n    auto i = 42; // int\n    auto d = 42.5; // double\n    auto c = "text"; // char const*\n    auto z = {1, 2, 3}; // std::initializer_list<int>\n\n    auto b = new char[10]{0}; // char*\n    auto s = std::string{"text"}; // std::string\n    auto v = std::vector<int>{1, 2, 3}; // std::vector<int>\n    auto p = std::make_shared<int>(42); // std::shared_ptr<int>\n\n    auto upper = [](char const c) { return toupper(c); };\n    auto add = [](auto const a, auto const b) { return a + b; };\n\n    template<typename F, typename F>\n    auto apply(F&& f, T value)\n    {\n        return f(value);\n    }\n}\n\nclass foo\n{\n    int _x;\npublic:\n    foo(int const x = 0): _x{x} {}\n    int& get() { return _x; }\n};\n\ndecltype(auto) proxy_gen(foo& f) { return f.get(); }\n// ^__ decltype() preserves cv-ref qualification of return type	code	cpp	2025-07-15 21:30:53.176986	5
+3931	293	enum class status: unsigned int; // forward declared\n\nstatus do_something(); // function declaration/prototype\n\nenum class status : unsigned int\n{\n    success = 0,\n    failed = 1,\n    unknown = 0xffff0000U\n};\n\nstatus do_something() { return status::success; }	code	cpp	2025-07-15 21:38:05.547993	4
+3925	290	#include <iostream>\n#include <set>\n\nint main()\n{\n    std::set<int> numbers;\n\n    if (auto const [iter, inserted] = numbers.insert(1); inserted)\n        std::cout << std::distance(numbers.cbegin(), iter);\n}	code	cpp	2025-07-15 21:33:18.587318	2
+3928	292	#include <bitset>\n\nusing byte = std::bitset<8>;\nusing fn = void(byte, double);\nusing fn_ptr = void(*)(byte, double);\n\nvoid func(byte b, double d) { /* ... */ }\n\nint main()\n{\n    byte b{001101001};\n    fn* f = func;\n    fn_ptr fp = func;\n}	code	cpp	2025-07-15 21:35:38.109099	1
+3933	294	#include <string>\n\nenum class status : unsigned int\n{\n    success = 0,\n    failure = 1,\n    unknown = 0xffff0000U\n};\n\nstd::string_view to_string(status const s)\n{\n    switch (s)\n    {\n        using enum status;\n        case success: return "success";\n        case failure: return "failure";\n        case unknown: return "unknown";\n    }\n}	code	cpp	2025-07-15 21:38:36.737068	1
+3934	295	#include <variant>\n#include <string>\n\nstd::variant<int, double, std::string> v{"some characters"};\nbool x = std::holds_alternative<std::string>(v);\n// x == true	code	cpp	2025-07-15 21:40:10.184971	3
+3959	304	#include <compare>\n#include <string>\n\nclass Person\n{\n    std::string name;\n    double weight;\n\npublic:\n    auto operator<=>(Person const& rhs) const\n        -> std::common_comparison_category_t<decltype(name <=> rhs.name),\n                                             decltype(weight <=> rhs.name)>\n    {\n        auto cmp1 = name <=> rhs.name;\n        if (name != 0) return cmp1; // std::strong_ordering\n\n        return weight <=> rhs.weight; // std::partial_ordering\n    }\n};	code	cpp	2025-07-15 21:48:18.520261	4
+770	306	This code no longer works in C++20 due to endless recursion. The reason is\nthat inside the global function the expression `t == i` can also call the\nglobal `operator ==` itself, because the compiler also tries to rewrite the\ncall as `i == t`:	text	txt	2024-07-28 09:47:22.856012	6
+772	306	Unfortunately, the rewritten statement is a better match, because it does not\nneed the implicit type conversion.	text	txt	2024-07-28 09:47:22.90029	8
+773	306	To fix this defect, either use an explicit conversion, or a feature test\nmacro to disable the new feature.	text	txt	2024-07-28 09:47:22.920434	9
+3965	306	class MyType\n{\n    int i;\n\npublic:\n    // implicit constructor from int\n    MyType(int i);\n\n    // before C++20 enables implicit conversion for the second operand\n    bool operator==(MyType const&) const;\n};	code	cpp	2025-07-15 21:50:28.471529	2
+771	306	bool operator==(int i, MyType const& t)\n{\n    return t == i;\n    // tries operator==(i, t) in addition to t.operator(MyType{i})\n}	code	cpp	2024-07-28 09:47:22.877836	7
+3961	305	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};\n\nstruct Derived: public Base\n{\n    std::strong_ordering operator<=>(Derived const&) const = default;\n};\n\nDerived d1, d2;\nd1 > d2; // calls Base::operator== and Base::operator<	code	cpp	2025-07-15 21:48:55.107587	2
+3962	305	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};\n\nstruct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n};	code	cpp	2025-07-15 21:49:22.746141	6
+760	305	Checks for equality work for Derived because `operator ==` automatically\ndeclared equivalent to `operator <=>`:	text	txt	2024-07-28 09:47:21.26387	8
+774	306	bool operator==(int i, MyType const& t)\n{\n    return t == MyType{i};\n    // doesn't try operator==(i, t) causing infinit recursion\n    // only uses t.operator(MyType{i});\n}	code	cpp	2024-07-28 09:47:22.941101	10
+3963	305	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n    bool operator==(Derived const&) const = default;\n};\n\nDerived d1, d2;\nd1 > d2; // ERROR: cannot deduce comparison category of operator <=>\nd1 == d2; // OK: only tries operator <=> and Base::operator==	code	cpp	2025-07-15 21:49:39.381832	9
+3969	307	#include <memory>\n\nclass string_buffer\n{\npublic:\n    explicit string_buffer() {}\n    explicit string_buffer(std::size_t const size) {}\n    explicit string_buffer(char const* const ptr) {}\n    explicit operator bool() const { return false; }\n    explicit operator char* const () const { return nullptr; }\n};\n\nint main()\n{\n    std::shared_ptr<char> str;\n    string_buffer b1;            // calls string_buffer()\n    string_buffer b2(20);        // calls string_buffer(std::size_t const)\n    string_buffer b3(str.get()); // calls string_buffer(char const*)\n\n    enum item_size { small, medium, large };\n\n    // implicit conversion cases when explicit not specified\n    string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)\n    string_buffer b5 = small;    // would call string_buffer(std::size_t const)\n}	code	cpp	2025-07-15 21:51:51.616913	1
+3975	313	*C++20*\nstruct Holder\n{\n    [[nodiscard]] Holder(int value);\n    Holder();\n};\n\nint main()\n{\n    Holder{42}; // warning here\n    Holder h{42}; // constructed object not discarded, no warning\n    Holder{}; // default constructed, no warning\n}	code	cpp	2025-07-15 21:53:53.51629	1
+809	321	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	code	cpp	2024-07-28 09:47:30.364146	2
+391	211	The simplest way to run tests for a built project is to call ctest in the\ngenerated build tree:	text	txt	2024-07-28 09:46:24.523912	1
+3973	308	struct base\n{\n    // default member initialization\n    const int height = 14;\n    const int width = 80;\n\n    v_align valign = v_align::middle;\n    h_align halign = h_align::left;\n\n    std::string text;\n\n    // constructor initialization list\n    base(std::string const& t): text{t}\n    {}\n\n    base(std::string const& t, v_align const va, h_align const ha): text{t}, valign{va}, halign{ha}\n    {}\n};	code	cpp	2025-07-15 21:52:28.004625	1
+3976	323	#include <iostream>\n\nvoid print_container(auto const& container)\n{\n    for (auto const& element: container)\n    {\n        std::cout << element << '\\\\n';\n    }\n}	code	cpp	2025-07-15 21:56:11.281862	1
+3974	312	struct [[nodiscard]] ErrorType{};\nErrorType get_value();\n\nint main()\n{\n    get_value(); // warning here\n}	code	cpp	2025-07-15 21:53:35.183684	1
+3983	326	template<typename T>\nT max(T a, T b) { return a < b ? b : a; }\n\nint const c = 42;\nmax(i, c);    // OK: T deduced as int\nmax(c, c);    // OK: T deduced as int\n\nint& ir = i;\nmax(i, ir);   // OK: T deduced as int\n\nint arr[4];\nmax(&i, arr); // OK: T deduced as int*\n\nmax(4, 7.2);  // ERROR: T can be dudeced as int or double\n\nstd::string s;\nmax("text", s); // ERROR: T can be deduced as char const[5] or std::string	code	cpp	2025-07-15 21:57:25.29908	2
+3977	324	template<typename T>\nT max(T a, T b) { return b < a ? a : b; }\n\nmax(7, 42); // 42\n::max(3.4, -6.7); // 3.4\n::max("mathematics", "math"); // mathematics	code	cpp	2025-07-15 21:56:34.511859	1
+3985	327	#include <type_traits>\n\ntemplate<typename T, typename R>\nauto max(T a, R b) -> std::common_type_t<T, R>\n{\n    return a < b ? b : a;\n}\n\nmax<double>(4, 7.2);	code	cpp	2025-07-15 21:58:05.234503	6
+3978	325	template<typename T>\nT max(T const& a, T const& b) { return a < b ? b : a; }\n\nmax(7, 42); // T is int	code	cpp	2025-07-15 21:56:57.276498	3
+3991	331	template<typename T1, typename T2, typename RT>\nRT max(T1 a, T2 b);\n\nmax<int, double, double>(4, 7.2); // OK, but tedious	code	cpp	2025-07-15 22:01:20.472789	3
+3996	335	void num_args() { }\n\ntemplate<typename T, typename... Types>\nvoid num_args(T first, Types... rest)\n{\n    std::cout << sizeof...(rest) + 1 << '\\\\n';\n}	code	cpp	2025-07-15 22:04:00.717008	1
+859	334	It is a template parameter representing multiple parameters with different types.	text	txt	2024-07-28 09:47:37.983517	1
+3988	328	template<typename T = std::string>\nvoid f(T = "");\n\nf();    // OK: f<std::string>()	code	cpp	2025-07-15 21:59:16.971079	4
+3989	328	template<typename T>\nvoid f(T = "");\n\nf(1);   // OK: f<int>(1)\nf();    // ERROR: cannot deduce T	code	cpp	2025-07-15 21:59:56.371463	2
+3990	329	template<typename T1, typename T2>\nT1 max(T1 a, T2 b)\n{\n    return b < a ? a : b;\n}\n\nauto m = ::max(4, 7.2); // OK:: but max returns int	code	cpp	2025-07-15 22:01:00.500284	1
+3997	336	template<typename... Args>\nauto print(Args... args)\n{\n    (std::cout << ... << args) << std::endl;\n}\n\nprint(42, "42", 42.0);	code	cpp	2025-07-15 22:05:27.847752	2
+3992	331	template <typaname RT, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nmax<double>(4, 7.2); // OK	code	cpp	2025-07-15 22:02:20.287953	5
+3994	333	#include <iostream>\n#include <algorithm>\n#include <iterator>\n#include <vector>\n\ntemplate<template<typename> typename V, typename T>\nvoid print(V<T> const& container)\n{\n    for (auto const& item: container)\n        std::cout << item << " ";\n    std::cout << std::endl;\n}\n\nint main()\n{\n    print(std::vector<int>{1,2,3,4});\n}	code	cpp	2025-07-15 22:03:23.437946	1
+3995	334	void print() { }\n\ntemplate<typename T, typename... Types>\nvoid print(T first, Types... rest)\n{\n    std::cout << first << '\\\\n';\n    print(rest...);\n}	code	cpp	2025-07-15 22:03:45.459907	2
 \.
 
 
@@ -26721,7 +26620,7 @@ SELECT pg_catalog.setval('milestone.notes_id_seq', 3968, true);
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3894, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3997, true);
 
 
 --
