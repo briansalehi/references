@@ -16269,7 +16269,6 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 COPY milestone.practice_blocks (id, practice_id, content, type, language, updated, "position") FROM stdin;
 108	59	mmc	code	txt	2024-07-28 09:45:31.345142	1
 245	137	import QtQuick	text	txt	2024-07-28 09:45:58.690062	5
-880	340	#include <type_traits>	text	txt	2024-07-28 09:47:41.231796	2
 181	105	\\\\sout{Strikethrough text}	code	txt	2024-07-28 09:45:45.292618	2
 182	106	usepackage(ulem)	text	txt	2024-07-28 09:45:45.582554	1
 183	106	\\\\xout{Slashed out text}	code	txt	2024-07-28 09:45:45.603052	2
@@ -16680,7 +16679,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 396	212	cmake_minimum_required(VERSION <x.xx>)\nproject(<name> <OPTIONS>)	code	txt	2024-07-28 09:46:25.101148	4
 397	212	We also have an `add_subdirectory(api)` command to include another\n`CMakeListst.txt` file from the api directory to perform steps that are\nspecific to the API part of our application.	text	txt	2024-07-28 09:46:25.122426	5
 3664	1169	#include <stdio.h>	text	txt	2024-07-28 09:55:26.401303	6
-1052	367	With this, the following initialization works fine:	text	txt	2024-07-28 09:48:05.649849	6
+1052	367	With this, the following initialization works fine:	text	txt	2024-07-28 09:48:05.649849	5
 398	213	Not that many: a script can be as complex as you like or an empty file.\nHowever, it is recommended that you call the `cmake_minimum_required()`\ncommand at the beginning of the script. This command tells CMake which\npolicies should be applied to subsequent commands in this project	text	txt	2024-07-28 09:46:25.455896	1
 399	213	When running scripts, CMake won't execute any of the usual stages (such as\nconfiguration or generation), and it won't use the cache.	text	txt	2024-07-28 09:46:25.476425	2
 400	214	To use a utility module, we need to call an `include(<MODULE>)` command.	text	txt	2024-07-28 09:46:25.674686	1
@@ -16781,7 +16780,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 576	279	import std;\nimport "geometry.hpp"	code	cpp	2024-07-28 09:46:55.693903	3
 595	284	The source code of a module may become large and difficult to maintain.\nMoreover, a module may be composed of logically separate parts. To help with\nscenarios like that, modules support composition from parts called\n**partitions**.	text	txt	2024-07-28 09:46:58.630847	1
 596	284	Although module partitions are distinct files, they are not available as\nseparate modules or submodules to translation units using a module. They are\nexported together as a single, aggregated module.	text	txt	2024-07-28 09:46:58.653004	2
-1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
+4148	413	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};\n\nclass derived final: public base\n{\n    virtual void foo() override {}\n    virtual void baz() override {}\n};\n\n// won't compile\nclass prime: public derived\n{\n};	code	cpp	2025-07-16 14:48:04.065869	1
+4146	412	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};\n\nclass alpha: public base\n{\n    virtual void foo() override {}\n    virtual void baz() override final {}\n};\n\nclass beta: public alpha\n{\n    // won't compile\n    virtual void baz() override {}\n};\n\nint main()\n{\n    beta object;\n}	code	cpp	2025-07-16 14:47:48.613775	1
+4143	411	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};\n\nclass alpha: public base\n{\n    virtual void bar() override {}\n    virtual void baz() override {}\n};\n\nclass beta: public alpha\n{\n    virtual void foo() override {}\n};\n\nbeta object;	code	cpp	2025-07-16 14:47:35.680752	1
+4138	409	#include <string>\n\nclass box\n{\nprivate:\n    std::string first;\n\npublic:\n    box(std::string f): first{std::move(f)} {}\n    void set_first(std::string f) { first = f; }\n};\n\nbox b{"Sample"};\nb.set_first("Another Sample");\nb.set_first("Another Sample");\nb.set_first("Another Sample");\nb.set_first("Another Sample");	code	cpp	2025-07-16 14:46:39.576048	15
+4140	409	#include <string>\n\nclass box\n{\nprivate:\n    std::string first;\n\npublic:\n    box(std::string f): first{std::move(f)} {}\n    void set_first(std::string const& f) { first = f; }\n};	code	cpp	2025-07-16 14:46:57.225496	17
+4149	414	#include <syncstream>\n#include <iostream>\n\nint main()\n{\n    std::osyncstream output_stream{std::cout};\n    output_stream << "This literal string will be";\n    output_stream << std::endl; // no effect\n    output_stream << "written into output stream";\n    // flushes on destruction\n}	code	cpp	2025-07-16 14:48:45.611898	1
 612	286	Apart from *module interface partition*, there could also be internal\npartitions that do not export anything. Such partition unit is called a\n**module implementation partition**.	text	txt	2024-07-28 09:47:01.687487	1
 613	286	It is possible to create internal partitions that do not export anything, but\ncontain code that can be used in the same module.	text	txt	2024-07-28 09:47:01.707675	2
 621	287	Partitions are division of a module. However, they are not submodules. They\ndo not logically exist outside of the module. There is no concept of a\nsubmodule in the C++ language.	text	txt	2024-07-28 09:47:03.815119	1
@@ -16789,9 +16793,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 632	287	Next snippet is the same implementation but with modules instead of partitions:	text	txt	2024-07-28 09:47:04.044701	7
 647	288	Benefits of using `auto`:	text	txt	2024-07-28 09:47:05.591579	1
 648	288	* It is not possible to leave a variable uninitialized with `auto`.\n* It prevents narrowing conversion of data types. (?)\n* It makes generic programming easy.\n* It can be used where we don't care about types.	text	txt	2024-07-28 09:47:05.6121	2
+1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
+4153	415	#include <iostream>\n#include <sstream>\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream str;\n    str << "Using C++20 standard";\n    // allocates\n\n    std::cout << str.str() << '\\\\n';\n    // allocates\n\n    std::cout << str.view() << '\\\\n';\n    // doesn't allocate\n}	code	cpp	2025-07-16 14:49:05.50068	2
+4160	417	#include <iostream>\n#include <sstream>\n#include <spanstream> // new header\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream ss;\n    ss << "one string that doesn't fit into SSO";\n    ss << "another string that hopefully won't fit";\n    // allocates memory\n\n    char buffer[128]{};\n    std::span<char> internal_memory(buffer);\n    std::basic_spanstream<char> ss2(internal_memory);\n    ss2 << "one string that doesn't fit into SSO";\n    ss2 << "another string that hopefully won't fit";\n    // doesn't allocate new memory\n}	code	cpp	2025-07-16 14:49:46.214148	2
+4157	416	#include <iostream>\n#include <sstream>\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream str {std::string("hello C++ programming World")};\n}	code	cpp	2025-07-16 14:49:24.767542	2
 658	289	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt	2024-07-28 09:47:06.201144	1
 855	332		code	txt	2024-07-28 09:47:36.860706	4
-1053	367	Stack StringStack = "surprise!";    // Stack<char const*> deduced since C++17	code	txt	2024-07-28 09:48:05.67328	7
 659	289	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	cpp	2024-07-28 09:47:06.221279	2
 660	290	* Only by C++20 structured bindings can include `static` or `thread_local`\n  specifiers in the declaration.\n* Only by C++20 `[[maybe_unused]]` attribute can be used in the declaration.\n* Only by C++20 a lambda can capture structure binding identifiers.	text	txt	2024-07-28 09:47:06.807831	1
 664	291	typedef unsigned long positive_t;	code	cpp	2024-07-28 09:47:07.149927	1
@@ -16805,6 +16812,15 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 690	297	`std::variant` throws when we attempt to access the wrong type:	text	txt	2024-07-28 09:47:11.041431	3
 694	298	When working with `std::variant`, querying the current content can become\ncumbersome. As an alternative, especially for cases when type deduction is\ninvolved, we can use the `std::visit`.	text	txt	2024-07-28 09:47:11.672399	1
 695	298	The `std::visit` requires as an argument an invocable that is compatible with\neach of the contained types.	text	txt	2024-07-28 09:47:11.694222	2
+1053	367	Stack StringStack = "surprise!";    // Stack<char const*> deduced since C++17	code	cpp	2024-07-28 09:48:05.67328	6
+4165	418	#include <vector>\n#include <string>\n\nstd::vector<std::string> vec;\n\n{\n    std::string s("Hello World!");\n    vec.push_back(s); // Copy\n    vec.push_back(std::move(s)); // Move\n}\n\n{\n    std::string s("Hello World!");\n    vec.emplace_back(s); // Copy (same as push_back)\n    vec.emplace_back(std::move(s)); // Move (same as push_back)\n\n    // In-place construction, no move or copy:\n    vec.emplace_back("Hello World!");\n\n    // Note the difference, this is still a move:\n    vec.emplace_back(std::string{"Hello World!"});\n}	code	cpp	2025-07-16 14:50:10.646101	2
+4177	425	try\n{\n    auto i1 = std::stoi("");\n}\ncatch (std::invalid_argument const& exp)\n{\n    std::cerr << exp.what() << '\\\\n';\n}\n\ntry\n{\n    auto i2 = std::stoi("12345678901234");\n    auto i3 = std::stoi("12345678901234");\n}\ncatch (std::out_of_range const& exp)\n{\n    std::cerr << exp.what() << '\\\\n';\n}	code	cpp	2025-07-16 14:52:06.040917	2
+4172	420	#include <string_view>\n\nbool secure_protocol(std::string_view url)\n{\n    if (url.starts_with("https"))\n        return true;\n\n    return false;\n}	code	cpp	2025-07-16 14:51:00.799328	2
+4175	423	auto i1 = std::stoi("42");\nauto i2 = std::stoi("101010", nullptr, 2);\nauto i3 = std::stoi("052", nullptr, 8);\nauto i7 = std::stoi("052", nullptr, 0);\nauto i4 = std::stoi("0x2A", nullptr, 16);\nauto i9 = std::stoi("0x2A", nullptr, 0);\nauto i10 = std::stoi("101010", nullptr, 2);\nauto i11 = std::stoi("22", nullptr, 20);\nauto i12 = std::stoi("-22", nullptr, 20);\n\nauto d1 = std::stod("123.45"); // d1 = 123.45000000000000\nauto d2 = std::stod("1.2345e+2"); // d2 = 123.45000000000000\nauto d3 = std::stod("0xF.6E6666p3"); // d3 = 123.44999980926514	code	cpp	2025-07-16 14:51:39.316808	1
+4167	419	#include <string>\n#include <iostream>\n\nint main() {\n    std::string message{"Using prior C++23 standard."};\n\n    if (message.find("C++") != std::string::npos)\n        std::cout << "You are using C++\\\\n";\n}	code	cpp	2025-07-16 14:50:36.834409	2
+4170	419	Using C++23:\n\n#include <string>\n#include <iostream>\n\nint main() {\n    std::string message{"Using C++23 standard."};\n\n    if (message.contains("C++"))\n        std::cout << "You are using C++\\\\n";\n}	code	cpp	2025-07-16 14:50:48.497149	3
+4176	423	template<typename T, typename = typename T = std::is_integral_v<T>>\nT stoi(std::string const& str, std::size_t* pos = 0, T base = 10);\n\ntemplate<typename F, typename = typename F = std::is_floating_point_v<F>>\nF stof(std::string const& str, std::size_t* pos = 0);	code	cpp	2025-07-16 14:51:45.397612	3
+4174	421	#include <string_view>\n\nbool org_domain(std::string_view url)\n{\n    if (url.ends_with(".org"))\n        return true;\n\n    return false;\n}	code	cpp	2025-07-16 14:51:13.11929	1
 730	302	However, it is usually easier to define the operator by mapping it to results\nof underlying types.	text	txt	2024-07-28 09:47:17.176903	6
 708	301	Before C++20 you had to define six operators for a type to provide full\nsupport for all possible comparisons of its objects. The problem is that even\nthough most of the operators are defined in terms of either `operator ==` or\n`operator <`, the definitions are tedious and they add a lot of visual\nclutter.	text	txt	2024-07-28 09:47:15.457053	1
 711	301	In addition, for a well implemented type, you might need:	text	txt	2024-07-28 09:47:15.521732	3
@@ -16813,22 +16829,28 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 724	302	- If the value of `x <=> y` compares equal to 0, `x` and `y` are equal or equivalent.\n- If the value of `x <=> y` compares less than 0, `x` is less than `y`.\n- If the value of `x <=> y` compares greater than 0, `x` is greater than `y`.	text	txt	2024-07-28 09:47:17.048726	2
 725	302	The return type of `operator <=>` is not an integral value. The return type\nis a type that signals the comparison category, which could be the *strong\nordering*, *weak ordering*, or *partial ordering*. These types support the\ncomparison with 0 to deal with the result.	text	txt	2024-07-28 09:47:17.068719	3
 726	302	You have to include a specific header file to deal with the result of\n`operator <=>`.	text	txt	2024-07-28 09:47:17.089688	4
+4181	427	#include <string>\n#include <string_view>\n\nusing namespace std::string_literals;\n\nauto s1{ "text"s }; // std::string\nauto s2{ L"text"s }; // std::wstring\nauto s3{ u8"text"s }; // std::u8string\nauto s3{ u"text"s }; // std::u16string\nauto s4{ U"text"s }; // std::u32string\n\nusing namespace std::string_view_literals;\n\nauto s5{ "text"sv }; // std::string_view	code	cpp	2025-07-16 14:52:33.89923	1
 735	303	- **strong ordering**: any value of a given type is either *less than* or\n  *equal to* or *greater than* any other value of this type. If a value is\n  neither less nor greater is has to be equal.\n  + `std::strong_ordering:less`\n  + `std::strong_ordering:equal` or `std::strong_ordering::equivalent`\n  + `std::strong_ordering:greater`\n- **weak ordering**: any value of a given type is either *less than*,\n  *equivalent to* or *greater than* any other value of this type. However,\n  equivalent values do not have to be equal (have the same value).\n  + `std::weak_ordering::less`\n  + `std::weak_ordering::equivalent`\n  + `std::weak_ordering::greater`\n- **partial ordering**: any value of a given type could either be *less\n  than*, *equivalent to* or *greater than* any other value of this type.\n  However it could also happen that you cannot specify a specific order\n  between two values.\n  + `std::partial_ordering::less`\n  + `std::partial_ordering::equivalent`\n  + `std::partial_ordering::greater`\n  + `std::partial_ordering::unordered`	text	txt	2024-07-28 09:47:18.152098	1
 736	303	As an example, a floating-point type has a special value `NaN`. Any\ncomparison with `NaN` yields `false`. So in this case a comparison might\nyield that two values are unordered and the comparison operator might return\none of four values.	text	txt	2024-07-28 09:47:18.173146	2
 737	303	Stronger comparison types have implicit type conversions to weaker comparison\ntypes.	text	txt	2024-07-28 09:47:18.19262	3
 738	303	Relational comparison with `nullptr` results compiler error.	text	txt	2024-07-28 09:47:18.212835	4
 739	303	Comparison types themselves can be compared against a specific return value.\nDue to implicit type conversions to weaker ordering types `x <=> y ==\nstd::partial_ordering::equivalent` will compile even if the `operator <=>`\nyields a `std::strong_ordering` or `std::weak_ordering` value. However, the\nother way around does not work. Comparison with 0 is always possible and\nusually easier.	text	txt	2024-07-28 09:47:18.233993	5
-1054	367	In this case, don't forget to use move semantics to avoid unnecessary copy of\nthe argument.	text	txt	2024-07-28 09:48:05.694919	8
+4183	428	#include <string>\n\nusing namespace std::string_literals;\n\nauto filename { R"(C:\\\\Users\\\\Brian\\\\Documents\\\\)"s };\nauto pattern { R"((\\\\w[\\\\w\\\\d]*)=(\\\\d+))"s };	code	cpp	2025-07-16 14:52:51.583027	1
 759	305	The compiler does not compile because it cannot decide which ordering\ncategory the base class has.	text	txt	2024-07-28 09:47:21.242912	7
 740	304	The return type does not compile if the attributes have different comparison\ncategories. In that case use the weakest comparison type as the return type.	text	txt	2024-07-28 09:47:19.383515	1
 763	306	When we have a trivial class that stores an integral value and has an\nimplicit constructor only enable implicit type conversions for the second\noperand.	text	txt	2024-07-28 09:47:22.703969	1
 767	306	A freestanding `operator==` that swaps the order of the arguments might be\ndefined as well.	text	txt	2024-07-28 09:47:22.787989	3
 769	306	Usually, the class should better define the `operator ==` as **hidden\nfriend** which is declared as a `friend` inside the class so that both\noperators become parameters and support implicit type conversions. However,\nthis is a valid approach to have the same effect.	text	txt	2024-07-28 09:47:22.833564	5
 768	306	bool operator==(int i, MyType const& t)\n{\n    return t == i; // OK with C++17\n}	code	cpp	2024-07-28 09:47:22.810856	4
+1054	367	In this case, don't forget to use move semantics to avoid unnecessary copy of\nthe argument.	text	txt	2024-07-28 09:48:05.694919	7
 750	305	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt	2024-07-28 09:47:21.056492	1
 754	305	If `operator ==` yields true, we know that the result of `>` is `false`,\notherwise `operator <` is called to find out the expression is `true` or\n`false`.	text	txt	2024-07-28 09:47:21.140545	3
 755	305	struct Derived: public Base\n{\n    std::partial_ordering operator<=>(Derived const&) const = default;\n};	code	cpp	2024-07-28 09:47:21.160939	4
 756	305	The compiler might call `operator <` twice to find out whether there is any\norder at all.	text	txt	2024-07-28 09:47:21.18186	5
+4187	429	#include <string>\n\nusing namespace std::string_literals;\n\nauto s1{ R"(text)"s }; // std::string\nauto s2{ LR"(text)"s }; // std::wstring\nauto s3{ u8R"(text)"s }; // std::u8string\nauto s3{ uR"(text)"s }; // std::u16string\nauto s4{ UR"(text)"s }; // std::u32string\n\nusing namespace std::string_view_literals;\n\nauto s5{ R"text"sv }; // std::string_view	code	cpp	2025-07-16 14:53:20.607419	1
+4189	430	#include <string_view>\n\nstd::string_view trim_view(std::string_view str)\n{\n    auto const pos1{ str.find_first_not_of(" ") };\n    auto const pos2{ str.find_last_not_of(" ") };\n    str.remove_suffix(str.length() - pos2 - 1);\n    str.remove_prefix(pos1);\n    return str;\n}\n\nauto sv1{ trim_view("sample") };\nauto sv2{ trim_view(" sample") };\nauto sv3{ trim_view("sample ") };\nauto sv4{ trim_view(" sample ") };	code	cpp	2025-07-16 14:53:35.771267	2
+4191	431	#include <string_view>\n\nstd::string_view message{"  something to show  "};\n\nstd::size_t suffix{ str.find_last_not_of(" ") };\nstd::size_t prefix{ str.find_first_not_of(" ") };	code	cpp	2025-07-16 14:53:49.263363	1
+4194	432	#include <string_view>\n\nstd::string_view message{"  something to show  "};\n\nstd::size_t suffix{ str.find_last_not_of(" ") };\nstd::size_t prefix{ str.find_first_not_of(" ") };\n\nstr.remove_suffix(str.length() - pos2 - 1);\nstr.remove_prefix(pos1);	code	cpp	2025-07-16 14:54:00.35797	1
 3665	1169	extern int sum(int, int);	text	txt	2024-07-28 09:55:26.420978	7
 792	314	Using 4 overloads for all possible combinations of ref-quilified methods is\ncode dupliation.	text	txt	2024-07-28 09:47:27.272446	1
 794	314	Since C++23 we can replace all 4 overloads with one:	text	txt	2024-07-28 09:47:27.31374	3
@@ -16839,7 +16861,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 803	317	1. You implement the same behavior repeatedly for each different types, you\n   make the same mistakes.\n2. You write general code for a common base type such as `void*`, you lose\n   type checking and lose the control of maitaining derived classes.\n3. You use special preprocessors, code is replaced by stupid text replacement\n   mechanism that has no idea of scope and types.	text	txt	2024-07-28 09:47:28.70298	1
 804	319	Historically, `class` keyword can be used instead of `typename`. However,\nbecause this use of `class` can be misleading, you should prefer the use of\n`typename`. The keyword `struct` cannot be used in place of `typename` when\ndeclaring type parameters.	text	txt	2024-07-28 09:47:29.516711	1
 805	319	- Without instantiation at definition time, the template code itself is\n  checked for correctness ignoring the template parameters.\n  + Syntax errors are discovered, such as missing semicolons.\n  + Using unknown names that don't depend on template parameters are\n    discovered.\n  + Static assertions that don't depend on template parameters are checked.\n- At instantiation time, the template code is checked again to ensure that\n  all code is valid. Especially, all parts that depend on template parameters\n  are double-checked.	text	txt	2024-07-28 09:47:29.538909	2
-1005	362	The `typename` is necessary here because the member is a type.	text	txt	2024-07-28 09:47:59.609593	4
 807	320	When a function template is used in a way that triggers its instantiation, a\ncompiler at some point will need to see that template's definition. This\nbreaks the usual compile and link distinction for ordinary functions, when\nthe declaration of a function is sufficient to compile its use. The simplest\napproach to handle this problem is to implement each template inside a header\nfile.	text	txt	2024-07-28 09:47:29.901985	1
 785	309	[[nodiscard]] bool completed();	code	cpp	2024-07-28 09:47:24.905949	1
 786	310	[[nodiscard("lock objects should never be discarded")]] bool generated();	code	cpp	2024-07-28 09:47:25.165387	1
@@ -16850,8 +16871,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 799	315	void f(this Data&);\nvoid g(this Data const&);\nvoid h(this Data&&);	code	cpp	2024-07-28 09:47:27.925798	4
 802	316	auto fibonacci = [](this auto self, int n)\n{\n    if (n < 2) { return n; }\n    return self(n - 1) + self(n - 2);\n};	code	cpp	2024-07-28 09:47:28.401164	3
 806	319	template<typename T>\nvoid foo(T t)\n{\n    undeclared(); // first-stage compile-time error\n    undeclared(t); // second-stage compile-time error\n}	code	cpp	2024-07-28 09:47:29.559317	3
+1005	362	The `typename` is necessary here because the member is a type.	text	txt	2024-07-28 09:47:59.609593	3
 808	321	Function template defintion specifies a family of functions with parameters\nleft undetermined, parameterized as template parameters.	text	txt	2024-07-28 09:47:30.342588	1
 810	322	* You can use any type, as long as the it provides the operations that the\n  template uses.\n* Value of type `T` must also be copyable in order to be returned.\n* Before C++17, type `T` also had to be copyable to be able to pass in\n  arguments, but since C++17 you can pass rvalues even if neither a copy nor\n  a move constructor is valid.	text	txt	2024-07-28 09:47:30.691335	1
+4197	434	#include <string>\n#include <string_view>\n\nstd::string str("the quick brown fox jumps over the lazy dog");\nbool t1 = str.starts_with("the quick"); // const char* overload\n                                        // t1 == true\nbool t2 = str.ends_with('g'); // char overload\n                              // t2 == true\n\nstd::string_view needle = "lazy dog";\nbool t3 = str.ends_with(needle); // string_view overload\n                                 // t3 == true\n\nstd::string_view haystack = "you are a lazy cat";\n// both starts_with and ends_with also available for string_view\nbool t4 = haystack.ends_with(needle);\n// t4 == false	code	cpp	2025-07-16 14:54:24.087859	2
+4198	436	#include <iostream>\n#include <format>\n\nstd::clog << std::format("{0:02x} {1:02x} {2:02x}\\\\n", v0, v1, v2);	code	cpp	2025-07-16 14:54:41.648801	2
+4199	437	#include <format>\n\nstd::format("{02x}\\\\n", value);	code	cpp	2025-07-16 14:54:52.954848	1
 843	330	- Introduce an additional template parameter for the return type\n- Let the compiler find out the return type.\n- Declare the return type to be the common type of the parameter types.	text	txt	2024-07-28 09:47:35.404916	1
 852	332	- Types for constant integral values (int, long, enum, ...)\n- `std::nullptr_t`\n- Pointers to be globally visible objects/function/members\n- Lvalue references to objects or functions\n- Floating point types (C++20)\n- Data structures with public members (C++20)\n- Lambdas (C++20)	text	txt	2024-07-28 09:47:36.799559	1
 853	332	**Not supporting types:**	text	txt	2024-07-28 09:47:36.820307	2
@@ -16871,34 +16896,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 845	331	As a consequence, you have to specify the template argument list explicitly:	text	txt	2024-07-28 09:47:36.166621	2
 848	331	Another approach is to specify return type template parameter at first:	text	txt	2024-07-28 09:47:36.22766	4
 851	331	These modifications don't lead to significant advantages.	text	txt	2024-07-28 09:47:36.28841	6
+4203	438	#include <format>\n#include <ostream>\n\nenum class color_code : std::uint_least8_t {};\n\nstd::ostream& operator<<(std::ostream& os, color_code s)\n{\n    return os << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned>(s);\n}\n\ntemplate <>\nstruct std::formatter<color_code> : std::formatter<unsigned>\n{\n    auto format(color_code const& code, format_context& ctx) {\n        return format_to(ctx.out(), "{:02x}", static_cast<unsigned>(code));\n    }\n};\n\nstd::format("{}\\\\n", color_code);	code	cpp	2025-07-16 14:55:08.040814	1
+4205	440	#include <iostream>\n#include <format>\n\nstd::print("{} <{}>", "Brian Salehi", "salehibrian@gmail.com");	code	cpp	2025-07-16 14:55:28.007166	1
+4204	439	#include <format>\n#include <chrono>\n\nstd::format("{:%F %T} UTC", std::chrono::system_clock::now());	code	cpp	2025-07-16 14:55:16.282145	1
 867	337	Since C++14, this is possible by simply not declaring any return type:	text	txt	2024-07-28 09:47:39.282552	1
-868	337	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	code	txt	2024-07-28 09:47:39.303726	2
 869	337	Deducing the return type from the function body has to be possible.\nTherefore, the code must be available and multiple return statements have to\nmatch.	text	txt	2024-07-28 09:47:39.324911	3
-870	338	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(b < a ? a : b);	code	txt	2024-07-28 09:47:39.771519	1
 871	338	Using this method the implementation does not necessarily have to match. Even\nusing `true` as the condition for ternary operator in the declaration is\nenough:	text	txt	2024-07-28 09:47:39.792174	2
-872	338	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(true ? a : b);	code	txt	2024-07-28 09:47:39.812493	3
-873	339	It might happen that the return type is a reference type, because under some\nconditions the template parameter might be a reference. For this reason you\nshould return the type decayed from the template paramter, which looks as\nfollows:	text	txt	2024-07-28 09:47:40.471027	1
-874	339	#include <type_traits>	text	txt	2024-07-28 09:47:40.490299	2
-875	339	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type;	code	txt	2024-07-28 09:47:40.511166	3
-876	339	Because the member `type` is a type, you have to qualify the expression with\n`typename` to access it.	text	txt	2024-07-28 09:47:40.532613	4
-877	339	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt	2024-07-28 09:47:40.552593	5
-878	339	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	txt	2024-07-28 09:47:40.574171	6
-879	340	`std::common_type` is a type trait, defined in `<type_traits>`, which yields\na structure having a `type` static member for the resulting type. Thus, it\nneeds a `typename` beforehand in order to access its type.	text	txt	2024-07-28 09:47:41.212027	1
-881	340	template<typename T1, typename T2>\ntypename std::common_type<T1, T2>::type max(T1 a, T2 b);	code	txt	2024-07-28 09:47:41.252837	3
-882	340	Since C++14, `std::common_type_t` is equivalent to\n`std::common_type<T>::type`.	text	txt	2024-07-28 09:47:41.273228	4
-883	340	#include <type_traits>	text	txt	2024-07-28 09:47:41.292909	5
-884	340	template<typename T1, typename T2>\nstd::common_type_t<T1, T2> max(T1 a, T2 b);	code	txt	2024-07-28 09:47:41.313142	6
-885	340	Note that `std::common_type<>` decays.	text	txt	2024-07-28 09:47:41.332911	7
-886	341	Default template arguments can be used with any kind of template. They may\neven refer to previous template parameters.	text	txt	2024-07-28 09:47:41.901125	1
-887	341	#include <type_traits>	text	txt	2024-07-28 09:47:41.921344	2
-888	341	template<typename T1, typename T2,\n          typename RT = std::decay_t<decltype(true ? T1() : T2())>>	code	txt	2024-07-28 09:47:41.94232	3
-889	341	Another way is to use `std::common_type<>` which also decays so that return\nvalue doesn't become a reference.	text	txt	2024-07-28 09:47:41.962554	4
-890	341	RT max(T1 a, T2 b);	text	txt	2024-07-28 09:47:41.982942	5
-891	341	template<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>\nRT max(T1 a, T2 b);	code	txt	2024-07-28 09:47:42.003106	6
-892	342	In principle, it is possible to have default arguments for leading function\ntemplate parameters even if parameters without default arguments follow:	text	txt	2024-07-28 09:47:42.495603	1
-893	342	template<typename RT = long, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt	2024-07-28 09:47:42.516989	2
-894	342	int i;\nlong l;\nmax(i, l);  // returns long due default argument of template parameter for return type\nmax<int>(7, 42);    // returns int as explicitly specified, T1 and T2 deduced by function arguments	code	txt	2024-07-28 09:47:42.539025	3
-895	342	However, this approach only makes sence, if there is a natural default for a\ntemplate parameter.	text	txt	2024-07-28 09:47:42.559336	4
 896	343	int max(int a, int b);	text	txt	2024-07-28 09:47:43.504419	1
 897	343	template<typename T>\nT max(T a, T b);	code	txt	2024-07-28 09:47:43.52564	2
 898	343	The overload resolution process prefers the nontemplate over one generated\nfrom the template.	text	txt	2024-07-28 09:47:43.545514	3
@@ -16915,6 +16918,20 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 909	344	max(4, 7.2);  // calls first overload\n::max<long double>(4, 7.2); // calls second overload\n::max<int>(4, 7.2); // ERROR: both function templates match	code	txt	2024-07-28 09:47:44.199873	4
 910	345	A useful example would be to overload the maximum template for pointers and\nordinary C-strings.	text	txt	2024-07-28 09:47:45.026953	1
 864	336	Parameter pack is available since C++17:	text	txt	2024-07-28 09:47:38.866103	1
+868	337	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	code	cpp	2024-07-28 09:47:39.303726	2
+870	338	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(b < a ? a : b);	code	cpp	2024-07-28 09:47:39.771519	1
+872	338	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(true ? a : b);	code	cpp	2024-07-28 09:47:39.812493	3
+873	339	It might happen that the return type is a reference type, because under some\nconditions the template parameter might be a reference. For this reason you\nshould return the type decayed from the template paramter, which looks as\nfollows:	text	txt	2024-07-28 09:47:40.471027	1
+876	339	Because the member `type` is a type, you have to qualify the expression with\n`typename` to access it.	text	txt	2024-07-28 09:47:40.532613	3
+877	339	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt	2024-07-28 09:47:40.552593	4
+878	339	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	cpp	2024-07-28 09:47:40.574171	5
+886	341	Default template arguments can be used with any kind of template. They may\neven refer to previous template parameters.	text	txt	2024-07-28 09:47:41.901125	1
+879	340	`std::common_type` is a type trait, defined in `<type_traits>`, which yields\na structure having a `type` static member for the resulting type. Thus, it\nneeds a `typename` beforehand in order to access its type.	text	txt	2024-07-28 09:47:41.212027	1
+882	340	Since C++14, `std::common_type_t` is equivalent to\n`std::common_type<T>::type`.	text	txt	2024-07-28 09:47:41.273228	3
+885	340	Note that `std::common_type<>` decays.	text	txt	2024-07-28 09:47:41.332911	5
+889	341	Another way is to use `std::common_type<>` which also decays so that return\nvalue doesn't become a reference.	text	txt	2024-07-28 09:47:41.962554	3
+892	342	In principle, it is possible to have default arguments for leading function\ntemplate parameters even if parameters without default arguments follow:	text	txt	2024-07-28 09:47:42.495603	1
+895	342	However, this approach only makes sence, if there is a natural default for a\ntemplate parameter.	text	txt	2024-07-28 09:47:42.559336	3
 911	345	#include <cstring>\n#include <string>	text	txt	2024-07-28 09:47:45.046538	2
 912	345	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	text	txt	2024-07-28 09:47:45.067519	3
 913	345	template<typename T>\nT* max(T* a, T* b)\n{\n    return *b < *a ? a : b;\n}	text	txt	2024-07-28 09:47:45.087475	4
@@ -16939,260 +16956,112 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 931	347	template<typename T>\nT max (T a, T b, T c)\n{\n    return max (max(a,b), c);\n    // calls template max<int> not overload\n}	text	txt	2024-07-28 09:47:47.412335	3
 932	347	// declaration comes too late\nint max (int a, int b)\n{\n    std::cout << "max(int,int) \\\\n";\n    return b < a ? a : b;\n}	code	txt	2024-07-28 09:47:47.433569	4
 933	348	For each function or class template, there are preconditions and\nrequirements. These requirements were implicitly handled before C++20, but\nconcepts make it easier to express requirements explicitly.	text	txt	2024-07-28 09:47:47.966121	1
-934	348	template<typename T>\nrequires std::is_copyable<T> && supports_less_than<T>\nT max_value(T a, T b)\n{\n    return b < a ? a : b;\n}	code	txt	2024-07-28 09:47:47.986862	2
-935	349	template<typename T>\nconcept supports_less_than = requires (T x) { x < x; };	code	txt	2024-07-28 09:47:48.302284	1
+4208	441	#include <string>\n#include <regex>\n\nusing namespace std::string_literals;\n\nstd::string pattern{R"(...)"};\n\nstd::regex srx{pattern};\nstd::regex lrx{R"(...)"s};	code	cpp	2025-07-16 14:55:45.769478	1
+951	353	Template parameters can be omited when declaring copy constructor and copy\nassignment operator.	text	txt	2024-07-28 09:47:51.531661	1
+953	353	But it is formally equivalent to specify template parameters:	text	txt	2024-07-28 09:47:51.574715	3
+935	349	template<typename T>\nconcept supports_less_than = requires (T x) { x < x; };	code	cpp	2024-07-28 09:47:48.302284	1
 936	350	Having two different function bodies but with the same signature, would\nresult in ambigous overload and compiler will raise an error.	text	txt	2024-07-28 09:47:48.99598	1
-937	350	To inform compiler about the best match of two overloads with same signature,\nwe can use concepts as a type constraint.	text	txt	2024-07-28 09:47:49.015818	2
-938	350	template<typename T>\nconcept has_push_back = requires (Container c, Container::value_type v) { c.push_back(v); };	text	txt	2024-07-28 09:47:49.036358	3
-939	350	template<typename T>\nconcept has_insert = requires (Container c, Container::value_type v) { c.insert(v); };	text	txt	2024-07-28 09:47:49.056381	4
-940	350	void add(has_push_back auto& container, auto const& value)\n{\n    container.push_back(value);\n}	text	txt	2024-07-28 09:47:49.077988	5
-941	350	void add(has_insert auto& container, auto const& value)\n{\n    container.insert(value);\n}	code	txt	2024-07-28 09:47:49.099271	6
-942	351	template<typename T>\nconcept has_push_back = requies (Container c, Container::value_type v) { c.push_back(v); };	text	txt	2024-07-28 09:47:49.890134	1
-943	351	template<has_push_back C, typename T>\nvoid add(C& container, T const& value)\n{\n    container.push_back(value);\n}	text	txt	2024-07-28 09:47:49.910836	2
-944	351	void add(has_push_back auto& container, auto const& value)\n{\n    container.push_back(value);\n}	text	txt	2024-07-28 09:47:49.930757	3
-945	351	void add(auto& container, auto const& value)\n{\n    if constexpr (requires { container.push_back(value); })\n    {\n        container.push_back(value);\n    }\n    else\n    {\n        container.insert(value);\n    }\n}	code	txt	2024-07-28 09:47:49.952294	4
 946	352	Before the declaration, you have to declare one or multiple identifiers as a\ntype parameters.	text	txt	2024-07-28 09:47:50.640396	1
 947	352	Inside the class template, template parameters can be used just like any\nother type to declare members and member functions.	text	txt	2024-07-28 09:47:50.661321	2
-948	352	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> data;	text	txt	2024-07-28 09:47:50.682354	3
-949	352	public:\n    void push(T const&);\n    void pop() const;\n    T const& top() const;\n    bool empty() const;\n};	code	txt	2024-07-28 09:47:50.703076	4
-950	352	The keyword `class` can be used instead of `typename`.	text	txt	2024-07-28 09:47:50.724486	5
-951	353	Template parameters can be omited when declaring copy constructor and copy\nassignment operator.	text	txt	2024-07-28 09:47:51.531661	1
-952	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n    Stack& operator=(Stack const&);\n};	code	txt	2024-07-28 09:47:51.553726	2
-953	353	But it is formally equivalent to specify template parameters:	text	txt	2024-07-28 09:47:51.574715	3
-954	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack<T> const&);\n    Stack<T>& operator=(Stack<T> const&);\n};	code	txt	2024-07-28 09:47:51.596094	4
-1003	362	struct Matrix\n{\n    using iterator = ...;\n};	text	txt	2024-07-28 09:47:59.567489	2
+950	352	The keyword `class` can be used instead of `typename`.	text	txt	2024-07-28 09:47:50.724486	4
+952	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n    Stack& operator=(Stack const&);\n};	code	cpp	2024-07-28 09:47:51.553726	2
+954	353	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack<T> const&);\n    Stack<T>& operator=(Stack<T> const&);\n};	code	cpp	2024-07-28 09:47:51.596094	4
 955	353	But usually the `<T>` signals special handling of special template\nparameters, so it’s usually better to use the first form. However, outside\nthe class structure you'd need to specify it.	text	txt	2024-07-28 09:47:51.616517	5
-956	354	To define a member function of a class template, you have to specify that it\nis a template, and you have to use the full type qualification of the class\ntemplate.	text	txt	2024-07-28 09:47:52.233889	1
-957	354	template<typename T>\nclass Stack\n{\n    void push(T const&);\n    void pop();\n};	text	txt	2024-07-28 09:47:52.254135	2
-958	354	template<typename T>\nvoid Stack<T>::push(T const&) { }	text	txt	2024-07-28 09:47:52.274207	3
-959	354	template<typename T>\nvoid Stack<T>::pop() { }	code	txt	2024-07-28 09:47:52.294217	4
 960	355	Class template arguments have to support all operations of member templates\nthat are **used**. They don't have to support all the operations that\n**could** be used.	text	txt	2024-07-28 09:47:53.074275	1
-961	355	template<typename T>\nclass stack\n{\npublic:\n    std::vector<T> container;\nprivate:\n    void print() const\n    {\n        for (T const& element: container)\n        {\n            std::cout << element << ' ';\n            // requires operator<<() support for type T\n        }\n    }\n};	code	txt	2024-07-28 09:47:53.095746	2
-962	356	To declare a friend function and define it afterwards, we have two options:	text	txt	2024-07-28 09:47:54.352482	1
-963	356	1. We can implicitly declare a new function template, which must use a\n   different template parameter, such as U:	text	txt	2024-07-28 09:47:54.374724	2
-964	356	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);	text	txt	2024-07-28 09:47:54.39645	3
-965	356	    template<typename U>\n    friend std::ostream& operator<<(std::ostream&, Stack<U> const&);\n};	code	txt	2024-07-28 09:47:54.419273	4
-966	356	We forward declare the output operator for a class to be a template, which,\nhowever, means that we first have to forward declare the class too:	text	txt	2024-07-28 09:47:54.440538	5
-967	356	template<typename T>\nclass Stack;	text	txt	2024-07-28 09:47:54.460525	6
-968	356	template<typename T>\nstd::ostream& operator<<(std::ostream&, Stack<T> const&);	text	txt	2024-07-28 09:47:54.481624	7
-969	356	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);	text	txt	2024-07-28 09:47:54.502528	8
-970	356	    friend std::ostream& operator<<<T>(std::ostream&, Stack<T> const&);\n};	code	txt	2024-07-28 09:47:54.524669	9
-971	356	Note the `<T>` behind the function name `operator<<`. Thus, we declare a\nspecialization of the nonmember function template as friend. Without `<T>` we\nwould declare a new nontemplate function.	text	txt	2024-07-28 09:47:54.544082	10
 1848	543	template<typename CharT>\nusing tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;	text	txt	2024-07-28 09:50:15.361228	2
 3645	1167	section .text\n    global main	text	txt	2024-07-28 09:55:24.588638	14
-972	357	To specialize a class template, you have to declare the class with a leading\n`template<>` and a specialization of the types for which the class template\nis specialized. The types are used as a template argument and must be\nspecified directly forwarding the name of the class:	text	txt	2024-07-28 09:47:55.246144	1
-973	357	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};	text	txt	2024-07-28 09:47:55.266304	2
-974	357	template<typename T>\nvoid Stack<T>::push(T const&) { }	text	txt	2024-07-28 09:47:55.285633	3
-975	357	template<>\nStack<std::string>\n{\n    void push(std::string const&);\n};	text	txt	2024-07-28 09:47:55.30628	4
-976	357	void Stack<std::string>::push(std::string const&) { }	code	txt	2024-07-28 09:47:55.326268	5
-977	358	You can provide special implementation for particular circumstances, but some\ntemplate parameters must still be defined by the user.	text	txt	2024-07-28 09:47:56.05029	1
-978	358	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};	text	txt	2024-07-28 09:47:56.070383	2
-979	358	template<typename T>\nvoid Stack<T> push(T const&) { }	text	txt	2024-07-28 09:47:56.091299	3
-980	358	template<typename T>\nclass Stack<T*>\n{\n    void push(T*);\n};	text	txt	2024-07-28 09:47:56.11261	4
-981	358	template<typename T>\nvoid Stack<T*>::push(T*) { }	code	txt	2024-07-28 09:47:56.133408	5
-982	358	With partial specialization, we define a class template, still parametrized\nfor `T` but specialized for a pointer (`Stack<T*>`).	text	txt	2024-07-28 09:47:56.154059	6
-983	359	template<typename T1, typename T2>\nclass Stack;	code	txt	2024-07-28 09:47:57.184975	1
-984	359	The following class template can be specialized in following ways:	text	txt	2024-07-28 09:47:57.205656	2
-985	359	template<typename T>\nclass Stack<T, T>;	text	txt	2024-07-28 09:47:57.226318	3
-986	359	template<typename T>\nclass Stack<T, int>;	text	txt	2024-07-28 09:47:57.246499	4
-987	359	template<typename T1, typename T2>\nclass Stack<T1*, T2*>;	code	txt	2024-07-28 09:47:57.268001	5
-988	359	The following examples show which template is used by which declaration:	text	txt	2024-07-28 09:47:57.288451	6
-989	359	Stack<int, float>{};    // Stack<T1, T2>\nStack<float, float>{};  // Stack<T, T>\nStack<float, int>{};    // Stack<T, int>\nStack<int*, float*>{};  // Stack<T1*, T2*>	code	txt	2024-07-28 09:47:57.309682	7
-990	359	If more than one partial specialization matches equally well, the declaration is ambiguous:	text	txt	2024-07-28 09:47:57.329755	8
-991	359	Stack<int, int>{};  // ERROR: matches Stack<T, T> and Stack<T, int>\nStack<int*, int*>{};    // ERROR: matches Stack<T, T> and Stack<T1*, T2*>	code	txt	2024-07-28 09:47:57.349901	9
-992	359	To resolve the second ambiguity, you could provide an additional partial specialization for pointers of the same type:	text	txt	2024-07-28 09:47:57.369754	10
-993	359	template<typename T>\nclass Stack<T*, T*>;	code	txt	2024-07-28 09:47:57.390157	11
-994	360	template<typename T, typename C = std::vector<T>>\nclass Stack\n{\nprivate:\n    C container;	text	txt	2024-07-28 09:47:58.405271	1
-995	360	public:\n    void push(T const&);\n    void pop();\n    T const& top() const;\n    bool empty() const;\n};	text	txt	2024-07-28 09:47:58.425949	2
-996	360	template<typename T, typename C>\nvoid Stack<T, C>::push(T const& value)\n{\n    container.push_back(value);\n}	text	txt	2024-07-28 09:47:58.447286	3
-997	360	template<typename T, typename C>\nvoid Stack<T, C>::pop()\n{\n    container.pop_back();\n}	text	txt	2024-07-28 09:47:58.468734	4
-998	360	template<typename T, typename C>\nT const& Stack<T, C>::top() const\n{\n    if (container.empty()) throw std::exception{"empty container"};\n    return container.back();\n}	text	txt	2024-07-28 09:47:58.489871	5
-999	360	template<typename T, typename C>\nbool Stack<T, C>::empty() const\n{\n    return container.empty();\n}	code	txt	2024-07-28 09:47:58.510304	6
 1000	361	Unlike a `typedef`, an alias declaration can be templated to provide a\nconvenient name for a family of types. This is also available since C++11 and\nis called an alias template.	text	txt	2024-07-28 09:47:58.866759	1
-1001	361	template<typename T>\nusing matrix = std::vector<std::vector<T>>;	code	txt	2024-07-28 09:47:58.886473	2
-1004	362	template<typename T>\nusing MatrixIterator = typename Matrix<T>::iterator;	code	txt	2024-07-28 09:47:59.588822	3
-1006	362	Since C++14, the standard library uses this technique to define shortcuts for\nall type traits in the standard library that yield a type:	text	txt	2024-07-28 09:47:59.629697	5
-1007	362	std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11\nstd::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11	code	txt	2024-07-28 09:47:59.650938	6
+961	355	template<typename T>\nclass stack\n{\npublic:\n    std::vector<T> container;\nprivate:\n    void print() const\n    {\n        for (T const& element: container)\n        {\n            std::cout << element << ' ';\n            // requires operator<<() support for type T\n        }\n    }\n};	code	cpp	2024-07-28 09:47:53.095746	2
+977	358	You can provide special implementation for particular circumstances, but some\ntemplate parameters must still be defined by the user.	text	txt	2024-07-28 09:47:56.05029	1
+982	358	With partial specialization, we define a class template, still parametrized\nfor `T` but specialized for a pointer (`Stack<T*>`).	text	txt	2024-07-28 09:47:56.154059	3
+989	359	Stack<int, float>{};    // Stack<T1, T2>\nStack<float, float>{};  // Stack<T, T>\nStack<float, int>{};    // Stack<T, int>\nStack<int*, float*>{};  // Stack<T1*, T2*>	code	cpp	2024-07-28 09:47:57.309682	5
+962	356	To declare a friend function and define it afterwards, we have two options:	text	txt	2024-07-28 09:47:54.352482	1
+963	356	1. We can implicitly declare a new function template, which must use a\n   different template parameter, such as U:	text	txt	2024-07-28 09:47:54.374724	2
+966	356	We forward declare the output operator for a class to be a template, which,\nhowever, means that we first have to forward declare the class too:	text	txt	2024-07-28 09:47:54.440538	4
+972	357	To specialize a class template, you have to declare the class with a leading\n`template<>` and a specialization of the types for which the class template\nis specialized. The types are used as a template argument and must be\nspecified directly forwarding the name of the class:	text	txt	2024-07-28 09:47:55.246144	1
+983	359	template<typename T1, typename T2>\nclass Stack;	code	cpp	2024-07-28 09:47:57.184975	1
+984	359	The following class template can be specialized in following ways:	text	txt	2024-07-28 09:47:57.205656	2
+988	359	The following examples show which template is used by which declaration:	text	txt	2024-07-28 09:47:57.288451	4
+990	359	If more than one partial specialization matches equally well, the declaration is ambiguous:	text	txt	2024-07-28 09:47:57.329755	6
+992	359	To resolve the second ambiguity, you could provide an additional partial specialization for pointers of the same type:	text	txt	2024-07-28 09:47:57.369754	8
+991	359	Stack<int, int>{};  // ERROR: matches Stack<T, T> and Stack<T, int>\nStack<int*, int*>{};    // ERROR: matches Stack<T, T> and Stack<T1*, T2*>	code	cpp	2024-07-28 09:47:57.349901	7
+993	359	template<typename T>\nclass Stack<T*, T*>;	code	cpp	2024-07-28 09:47:57.390157	9
+1001	361	template<typename T>\nusing matrix = std::vector<std::vector<T>>;	code	cpp	2024-07-28 09:47:58.886473	2
+4213	443	#include <string>\n#include <regex>\n\ntemplate<typename CharT>\nusing tstring = std::baisc_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;\n\ntemplate<typename CharT>\nusing tregex = std::basic_regex<CharT>;\n\ntemplate<typename CharT>\nbool matches(tstring<CharT> const& text, tstring<CharT> const& pattern)\n{\n    std::basic_regex<CharT> rx{pattern, std::regex_constants::icase};\n    return std::regex_match(text, rx);\n}\n\nint main()\n{\n    std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};\n    std::string pattern{R"((\\\\w+)://([\\\\w.]+)/([\\\\w\\\\d._-]+)/([\\\\w\\\\d._-]+)[.git]?)"};\n\n    if(matches(text, pattern))\n        std::cout << text << '\\\\n';\n    else\n        std::cerr << "invalid repository link!\\\\n";\n}	code	cpp	2025-07-16 14:56:15.950887	1
 1008	363	Since C++17, the constraint that you always have to specify the template\narguments explicitly was relaxed.	text	txt	2024-07-28 09:48:00.093252	1
-1009	363	Stack<int> IntStack;\nStack<int> AnotherStack = IntStack;   // OK in all standard versions\nStack IntegralStack = AnotherStack;    // OK since C++17	code	txt	2024-07-28 09:48:00.114129	2
+1009	363	Stack<int> IntStack;\nStack<int> AnotherStack = IntStack;   // OK in all standard versions\nStack IntegralStack = AnotherStack;    // OK since C++17	code	cpp	2024-07-28 09:48:00.114129	2
 1010	364	Compiler tries to deduce class template arguments by first deducing the\nconstructor argument types which is a regular function template argument\ndeduction. If a constructor meets all the following requirements, then its\nargument types will be used for class template arguments.	text	txt	2024-07-28 09:48:02.261672	1
-1011	364	1. Number of arguments must match\n2. Types must fit (including implicit conversions)\n3. Choose best match:\n  - Perfect match over template\n  - Template over conversion\n  - For non-empty brace initialization, `std::initializer_list<>` has highest\n    priority	text	txt	2024-07-28 09:48:02.284768	2
-1012	364	namespace std\n{\n    template<typename ElemT, typename Allocator = allocator<T>>\n    class vector\n    {\n    public:\n        vector() noexcept(noexcept(Allocator()));	text	txt	2024-07-28 09:48:02.305437	3
-1013	364	        explicit vector(Allocator const&) noexcept;	text	txt	2024-07-28 09:48:02.325306	4
-1014	364	        explicit vector(size_t n, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.345329	5
-1015	364	        vector(size_t n, ElemT const& value, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.364438	6
-1016	364	        template<typename Iter>\n        vector(Iter beg, Iter end, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.38507	7
-1017	364	        vector(vector const& x);	text	txt	2024-07-28 09:48:02.405373	8
-1018	364	        vector(vector&&) noexcept;	text	txt	2024-07-28 09:48:02.424474	9
-1019	364	        vector(vector const&, Allocator const&);	text	txt	2024-07-28 09:48:02.444621	10
-1020	364	        vector(vector&&, Allocator const&);	text	txt	2024-07-28 09:48:02.465229	11
-1021	364	        vector(vector&&, Allocator const&);	text	txt	2024-07-28 09:48:02.486178	12
-1022	364	        vector(initializer_list<ElemT>, Allocator const& = Allocator());\n    };\n} // std	text	txt	2024-07-28 09:48:02.506859	13
-1023	364	int main()\n{\n    std::vector v1(42, 73);\n}	code	txt	2024-07-28 09:48:02.529826	14
-1024	364	By following the overload resolution matching rules, the first rule *number\nof arguments* specifies that we have 6 following matches that fit two\nparameters:	text	txt	2024-07-28 09:48:02.551094	15
-1025	364	explicit vector(size_t n, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.572276	16
-1026	364	vector(size_t n, ElemT const& value, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.593723	17
-1027	364	template<typename Iter>\nvector(Iter beg, Iter end, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.615974	18
-1028	364	vector(vector&&, Allocator const&);	text	txt	2024-07-28 09:48:02.637401	19
-1029	364	vector(vector&&, Allocator const&);	text	txt	2024-07-28 09:48:02.657857	20
-1030	364	vector(initializer_list<ElemT>, Allocator const& = Allocator());	code	txt	2024-07-28 09:48:02.677689	21
-1031	364	By applying the second rule *types must fit* we will only have the following\n3 remaining overload resolutions:	text	txt	2024-07-28 09:48:02.698736	22
-1032	364	vector(size_t n, ElemT const& value, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.719362	23
-1033	364	template<typename Iter>\nvector(Iter beg, Iter end, Allocator const& = Allocator());	text	txt	2024-07-28 09:48:02.741117	24
-1034	364	vector(initializer_list<ElemT>, Allocator const& = Allocator());	code	txt	2024-07-28 09:48:02.761803	25
-1035	364	The second overload resolution might seem strange that integers fit two\niterators, but compiler only sees two matching arguments having the same type\nwhich can also be `int`.	text	txt	2024-07-28 09:48:02.782795	26
-1036	364	Going further, the third rule of *choose the best match*, we would lose the\nfirst two because if we have an initializer list for constructing an object,\nthe overload resolution having `std::initializer_list<>` is a best match. So\nwe would only have the last overload:	text	txt	2024-07-28 09:48:02.8052	27
-1037	364	vector(initializer_list<ElemT>, Allocator const& = Allocator());	code	txt	2024-07-28 09:48:02.82573	28
 1038	365	By providing constructors that pass some initial arguments, you can support\ndeduction of the type used in a class.	text	txt	2024-07-28 09:48:03.367263	1
-1039	365	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;	text	txt	2024-07-28 09:48:03.387934	2
-1040	365	public:\n    Stack() = default;\n    Stack(T const& value): container({value}) { }\n};	code	txt	2024-07-28 09:48:03.408883	3
 1041	366	1. You have to request the default constructor to be available with its\n   default behavior, because the default constructor is available only if no\n   other constructor is defined:	text	txt	2024-07-28 09:48:04.44524	1
-1042	366	template<typename T>\nclass Stack\n{\npublic:\n    Stack() = default;\n};	code	txt	2024-07-28 09:48:04.466157	2
+1042	366	template<typename T>\nclass Stack\n{\npublic:\n    Stack() = default;\n};	code	cpp	2024-07-28 09:48:04.466157	2
 1043	366	2. The initial argument is passed with braces around to initialize the\n   internal container with an initializer list that argument as the only\n   argument:	text	txt	2024-07-28 09:48:04.488528	3
-1044	366	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;	text	txt	2024-07-28 09:48:04.5092	4
-1045	366	public:\n    Stack() = default;\n    Stack(T const& value): container({value}) { }\n};	code	txt	2024-07-28 09:48:04.530061	5
-1046	366	This is because there is no constructor for a vector that is able to take a\nsingle parameter as initial element directly. Even worse, there is a vector\nconstructor taking one integral argument as initial size, so that for a stack\nwith the initial value 5, the vector would get an initial size of five\nelements when `container(value)` is used.	text	txt	2024-07-28 09:48:04.550731	6
+1046	366	This is because there is no constructor for a vector that is able to take a\nsingle parameter as initial element directly. Even worse, there is a vector\nconstructor taking one integral argument as initial size, so that for a stack\nwith the initial value 5, the vector would get an initial size of five\nelements when `container(value)` is used.	text	txt	2024-07-28 09:48:04.550731	5
 1047	367	When passing arguments of a template type `T` by reference, the parameter\ndoes not decay, which is the term for the mechanism to convert a raw array\ntype to the corresponding raw pointer typel.	text	txt	2024-07-28 09:48:05.539551	1
-1048	367	Stack StringStack = "surprise!";    // Stack<char const[10]> deduced since C++17	code	txt	2024-07-28 09:48:05.56086	2
+1048	367	Stack StringStack = "surprise!";    // Stack<char const[10]> deduced since C++17	code	cpp	2024-07-28 09:48:05.56086	2
 1049	367	However, when passing arguments of a template type T by value, the parameter\ndecays, which is the term for the mechansim to convert a raw array type to\nthe corresponding raw pointer type.	text	txt	2024-07-28 09:48:05.583125	3
-1050	367	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;	text	txt	2024-07-28 09:48:05.60679	4
-1051	367	public:\n    Stack(T value): container({std::move(value)}) { }\n    // initialize stack with one element by value to decay on class template argument deduction\n};	code	txt	2024-07-28 09:48:05.628303	5
 1056	368	You can define specific **deduction guides** to provide additional or fix\nexisting class template argument deductions.	text	txt	2024-07-28 09:48:06.330419	2
-1057	368	Stack(const char*) -> Stack<std::string>;	code	txt	2024-07-28 09:48:06.351616	3
 1058	368	This guide has to appear in the same scope as the class definition.	text	txt	2024-07-28 09:48:06.372458	4
 1059	368	We call the `->` the *guided type* of the deduction guide.	text	txt	2024-07-28 09:48:06.394973	5
-1060	368	Stack StringStack{"no surprises now!"};  // Stack<std::string>	code	txt	2024-07-28 09:48:06.415747	6
-1061	369	The type of objects without template arguments are not types, but act as a\nplaceholder for a type that activates CTAD. When compiler encouters it, it\nbuilds a set of deduction guides which can be complemented by user with user\ndefined deduction rules.	text	txt	2024-07-28 09:48:07.385832	1
-1062	369	**CTAD** does not occur if the template argument list is present.	text	txt	2024-07-28 09:48:07.406005	2
-1063	369	std::pair p{42, "demo"};    // std::pair<int, char const*>\nstd::vector v{1, 2};        // std::vector<int>	code	txt	2024-07-28 09:48:07.426636	3
-1064	369	// declaration of the template\ntemplate<typename T>\nstruct container\n{\n    container(T t) {}	text	txt	2024-07-28 09:48:07.446604	4
-1065	369	    template<typename Iter>\n    container(Iter beg, Iter end);\n};	text	txt	2024-07-28 09:48:07.46886	5
-1066	369	// additional deduction guide\ntemplate<typename Iter>\ncontainer(Iter b, Iter e) -> container<typename std::iterator_traits<Iter>::value_type>;	text	txt	2024-07-28 09:48:07.489777	6
-1067	369	// use cases\ncontainer c(7); // OK: deduces container<int> using an implicitly-generated guide\nstd::vector<double> v = {/* ... */};\nauto d = container(v.begin(), v.end()); // OK: deduces container<double>\ncontainer e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type	code	txt	2024-07-28 09:48:07.510605	7
+1393	444	The class template `std::sub_match` represents a sequence of characters that\nmatches a capture group; this class is actually derived from std::pair, and\nits first and second members represent iterators to the first and the one-\npast-end characters in the match sequence. If there is no match sequence, the\ntwo iterators are equal:	text	txt	2024-07-28 09:49:04.77727	3
 1068	370	The declaration of a `Stack{"no surprise!"}` deduces as `Stack<char const*>` using the deduction guide:	text	txt	2024-07-28 09:48:08.095611	1
-1069	370	Stack(char const*) -> Stack<std::string>;	code	txt	2024-07-28 09:48:08.117473	2
 1070	370	However, the following still doesn't work:	text	txt	2024-07-28 09:48:08.139329	3
-1071	370	Stack StringStack = "surprise again!"; // ERROR: Stack<std::string> deduced, but still not valid	code	txt	2024-07-28 09:48:08.162531	4
 1072	370	By language rules, you can't copy initialize an object by passing a string\nliteral to a constructor expecting a `std::string`. So you have to initialize\nthe object with brace initialization.	text	txt	2024-07-28 09:48:08.183979	5
+1394	444	* `typedef sub_match<const char *> csub_match;`\n* `typedef sub_match<const wchar_t *> wcsub_match;`\n* `typedef sub_match<string::const_iterator> ssub_match;`\n* `typedef sub_match<wstring::const_iterator> wssub_match;`	text	txt	2024-07-28 09:49:04.797473	4
+1395	444	The class template `std::match_results` is a collection of matches; the first\nelement is always a full match in the target, while the other elements are\nmatches of subexpressions:	text	txt	2024-07-28 09:49:04.819322	5
+1396	444	* `typedef match_results<const char *> cmatch;`\n* `typedef match_results<const wchar_t *> wcmatch;`\n* `typedef match_results<string::const_iterator> smatch;`\n* `typedef match_results<wstring::const_iterator> wsmatch;`	text	txt	2024-07-28 09:49:04.839906	6
+4217	445	#include <regex>\n\nstd::regex pattern{R"(...)", std::regex_constants::egrep};	code	cpp	2025-07-16 14:56:49.801604	3
+4216	444	#include <string>\n#include <regex>\n\nint main()\n{\n    std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};\n    std::string pattern{R"((\\\\w+)://([\\\\w.]+)/([\\\\w\\\\d._-]+)/([\\\\w\\\\d._-]+)[.git]?)"};\n\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::smatch matches;\n    bool matched = std::regex_match(text, matches, rx);\n\n    if (auto [match, protocol, domain, username, project] = matches; matched)\n        std::cout << project << " owned by " << username\n                  << " hosted on " << domain\n                  << " using " << protocol << " protocol\\\\n";	code	cpp	2025-07-16 14:56:36.204828	7
+1060	368	Stack StringStack{"no surprises now!"};  // Stack<std::string>	code	cpp	2024-07-28 09:48:06.415747	6
+1062	369	**CTAD** does not occur if the template argument list is present.	text	txt	2024-07-28 09:48:07.406005	2
+1069	370	Stack(char const*) -> Stack<std::string>;	code	cpp	2024-07-28 09:48:08.117473	2
+1071	370	Stack StringStack = "surprise again!"; // ERROR: Stack<std::string> deduced, but still not valid	code	cpp	2024-07-28 09:48:08.162531	4
 1073	371	Aggregate classes; classes or structs with no user-provided, explicit, or\ninherited constructor, no private or protected nonstatic data members, no\nvirtual functions, and no virtual, private, or protected base classes; can\nalso be templates.	text	txt	2024-07-28 09:48:09.004473	1
-1074	371	template<typename T>\nstruct ValueWithComment\n{\n    T value;\n    std::string comment;\n};	code	txt	2024-07-28 09:48:09.024898	2
+1074	371	template<typename T>\nstruct ValueWithComment\n{\n    T value;\n    std::string comment;\n};	code	cpp	2024-07-28 09:48:09.024898	2
 1075	371	Since C++17, you can even define deduction guides for aggregate class templates:	text	txt	2024-07-28 09:48:09.046265	3
-1076	371	ValueWithComment(char const*, char const*) -> ValueWithComment<std::string>;	text	txt	2024-07-28 09:48:09.06904	4
-1077	371	ValueWithComment vc = {"secret", "my secret message"}; // ValueWithComment<std::string> deduced	code	txt	2024-07-28 09:48:09.089601	5
-1078	371	Without the deduction guide, the initialization would not be possible,\nbecause the aggregate class has no constructor to perform the deduction\nagainst.	text	txt	2024-07-28 09:48:09.11008	6
-1079	371	The standard library class `std::array<>` is also an aggregate, parametrized\nfor both the element type and the size. The C++17 standard library also\ndefines a deduction guide for it.	text	txt	2024-07-28 09:48:09.131001	7
-1080	372	#include <vector>\n#include <map>	text	txt	2024-07-28 09:48:10.243146	1
-1081	372	std::vector<int> get_numbers()\n{\n    return std::vector<int>{1, 2, 3, 4, 5};\n}	text	txt	2024-07-28 09:48:10.263722	2
-1082	372	std::map<int, double> get_doubles()\n{\n    return std::map<int, double>{\n        {0, 0.0},\n        {1, 1.1},\n        {2, 2.2}\n    };\n}	text	txt	2024-07-28 09:48:10.285544	3
-1083	372	int main()\n{\n    auto numbers = std::vector<int>{1, 2, 3, 4, 5};\n    auto copies = std::vector<int>(numbers.size() * 4);	text	txt	2024-07-28 09:48:10.306297	4
-1084	372	    for (int element: numbers)\n        copies.push_back(element);	text	txt	2024-07-28 09:48:10.326395	5
-1085	372	    for (int& element: numbers)\n        copies.push_back(element);	text	txt	2024-07-28 09:48:10.348338	6
-1086	372	    for (auto&& element: get_numbers())\n        copies.push_back(element);	text	txt	2024-07-28 09:48:10.367831	7
-1087	372	    for (auto&& [key, value]: get_doubles())\n        copies.push_back(key);\n}	code	txt	2024-07-28 09:48:10.390078	8
-1088	373	#include <iostream>\n#include <stdexcept>\n#include <iterator>	text	txt	2024-07-28 09:48:13.056002	1
-1089	373	template<typename T, std::size_t const S>\nclass dummy_array\n{\n    T data[S] = {};	text	txt	2024-07-28 09:48:13.078385	2
-1090	373	public:\n    T const& at(std::size_t const index) const\n    {\n        if (index < S) return data[index];\n        throw std::out_of_range("index out of range");\n    }	text	txt	2024-07-28 09:48:13.100525	3
-1091	373	    void insert(std::size_t const index, T const& value)\n    {\n        if (index < S) data[index] = value;\n        else throw std::out_of_range("index out of range");\n    }	text	txt	2024-07-28 09:48:13.122636	4
-1092	373	    std::size_t size() const { return S; }\n};	text	txt	2024-07-28 09:48:13.144295	5
-1093	373	template<typename T, typename C, std::size_t const S>\nclass dummy_array_iterator_type\n{\npublic:\n    dummy_array_iterator_type(C& collection, std::size_t const index): index{index}, collection{collection}\n    {}	text	txt	2024-07-28 09:48:13.164879	6
-1094	373	    bool operator !=(dummy_array_iterator_type const& other) const\n    {\n        return index != other.index;\n    }	text	txt	2024-07-28 09:48:13.185745	7
-1095	373	    T const& operator *() const\n    {\n        return collection.at(index);\n    }	text	txt	2024-07-28 09:48:13.205466	8
-1096	373	    dummy_array_iterator_type& operator ++()\n    {\n        ++index;\n        return *this;\n    }	text	txt	2024-07-28 09:48:13.226931	9
-1097	373	    dummy_array_iterator_type operator ++(int)\n    {\n        auto temp = *this;\n        ++*temp;\n        return temp;\n    }	text	txt	2024-07-28 09:48:13.248873	10
-1098	373	private:\n    std::size_t index;\n    C& collection;\n};	text	txt	2024-07-28 09:48:13.26967	11
-1346	429	auto s5{ R"text"sv }; // std::string_view	code	txt	2024-07-28 09:48:56.828395	5
-1099	373	template<typename T, std::size_t const S>\nusing dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;	text	txt	2024-07-28 09:48:13.290794	12
-1100	373	template<typename T, std::size_t const S>\nusing dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;	text	txt	2024-07-28 09:48:13.311681	13
-1101	373	template<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, 0);\n}	text	txt	2024-07-28 09:48:13.3325	14
-1102	373	template<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, collection.size());\n}	text	txt	2024-07-28 09:48:13.354099	15
-1103	373	template<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, 0);\n}	text	txt	2024-07-28 09:48:13.376171	16
-1104	373	template<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, collection.size());\n}	text	txt	2024-07-28 09:48:13.396743	17
-1105	373	int main()\n{\n    dummy_array<int, 5> numbers;\n    numbers.insert(0, 1);\n    numbers.insert(1, 2);\n    numbers.insert(2, 3);\n    numbers.insert(3, 4);\n    numbers.insert(4, 5);	text	txt	2024-07-28 09:48:13.418321	18
-1106	373	    for (auto&& element: numbers)\n        std::cout << element << ' ';\n    std::cout << '\\\\n';\n}	code	txt	2024-07-28 09:48:13.440409	19
-1107	374	The alignment must match the size of the largest member in order to avoid\nperformance issues.	text	txt	2024-07-28 09:48:14.791652	1
-1108	374	struct foo1         // size = 1, alignment = 1\n{                   // foo1:    +-+\n    char a;         // members: |a|\n};	text	txt	2024-07-28 09:48:14.813986	2
-1109	374	struct foo2         // size = 2, alignment = 1\n{                   // foo1:    +-+-+\n    char a;         // members: |a|b|\n    char b;\n};	text	txt	2024-07-28 09:48:14.836717	3
-1110	374	struct foo3         // size = 8, alignment = 4\n{                   // foo1:    +----+----+\n    char a;         // members: |a...|bbbb|\n    int  b;\n};	text	txt	2024-07-28 09:48:14.857759	4
-1111	374	struct foo3_\n{\n    char a;         // 1 byte\n    char _pad0[3];  // 3 bytes\n    int  b;         // 4 byte\n};	text	txt	2024-07-28 09:48:14.880231	5
+1078	371	Without the deduction guide, the initialization would not be possible,\nbecause the aggregate class has no constructor to perform the deduction\nagainst.	text	txt	2024-07-28 09:48:09.11008	5
+1079	371	The standard library class `std::array<>` is also an aggregate, parametrized\nfor both the element type and the size. The C++17 standard library also\ndefines a deduction guide for it.	text	txt	2024-07-28 09:48:09.131001	6
+4221	446	#include <string>\n#include <regex>\n\nstd::string text {\nR"(\n# server address\naddress = 123.40.94.215\nport=22\n\n# time to live\nttl = 5\n)"};\n\nint main()\n{\n    std::string pattern{R"(^(?!#)(\\\\w+)\\\\s*=\\\\s*([\\\\w\\\\d]+[\\\\w\\\\d._,:-]*)$)"};\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::smatch match{};\n\n    if (std::string variable, value; std::regex_search(text, match, rx))\n    {\n        variable = match[1];\n        value = match[2];\n    }\n}	code	cpp	2025-07-16 14:57:04.905332	1
 1849	543	template<typename CharT>\nusing tstringstream = std::basic_stringstream<CharT, std::char_traits<CharT>, std::allocator<CharT>>;	text	txt	2024-07-28 09:50:15.382212	3
-1112	374	struct foo4         // size = 24, alignment = 8\n{                   // foo4:    +--------+--------+--------+--------+\n    int a;          // members: |aaaa....|cccc....|dddddddd|e.......|\n    char b;\n    float c;\n    double d;\n    bool e;\n};	text	txt	2024-07-28 09:48:14.902044	6
-1113	374	struct foo4_\n{\n    int a;          // 4 bytes\n    char b;         // 1 byte\n    char _pad0[3];  // 3 bytes\n    float c;        // 4 bytes\n    char _pad1[4];  // 4 bytes\n    double d;       // 8 bytes\n    bool e;         // 1 byte\n    char _pad2[7];  // 7 bytes\n};	code	txt	2024-07-28 09:48:14.922269	7
+1921	573	The compiler will compile contracts, checks for their correctness, and when\neverything is checked all the contracts will be wiped from the code.	text	txt	2024-07-28 09:50:29.427889	1
+1107	374	The alignment must match the size of the largest member in order to avoid\nperformance issues.	text	txt	2024-07-28 09:48:14.791652	1
 1114	375	`alignof` can only be applied to type-ids, and not to variables or class data\nmembers.	text	txt	2024-07-28 09:48:15.569202	1
-1115	375	struct alignas(4) foo     // size: 4, alignment: 4\n{                         // foo:     +----+\n    char a;               // members: |ab..|\n    char b;\n};	text	txt	2024-07-28 09:48:15.592877	2
-1116	375	alignof(foo);   // 4\nsizeof(foo);    // 4\nalignof(foo&);  // 4\nalignof(char);  // 1\nalignof(int);   // 4\nalignof(int*);  // 8 (64-bit)\nalignof(int[4]);// 4 (natural alignment of element is 4)	code	txt	2024-07-28 09:48:15.614479	3
 1117	376	`alignas` takes an expression evaluating 0 or valid value for alignment, a\ntype-id, or a parameter pack.	text	txt	2024-07-28 09:48:17.109646	1
 1118	376	Only valid values of object alignment are the powers of two.	text	txt	2024-07-28 09:48:17.1309	2
 1119	376	Program is ill-formed if largest `alignas` on a declaration is smaller than\nnatural alignment without any `alignas` specifier.	text	txt	2024-07-28 09:48:17.153713	3
-1120	376	// alignas specifier applied to struct\nstruct alignas(4) foo1  // size = 4, aligned as = 4\n{                       // foo1:    +----+\n    char a;             // members: |a.b.|\n    char b;\n};	text	txt	2024-07-28 09:48:17.175591	4
-1121	376	struct foo1_            // size = 4, aligned as = 1\n{\n    char a;             // 1 byte\n    char b;             // 1 byte\n    char _pad0[2];      // 2 bytes\n};	text	txt	2024-07-28 09:48:17.195715	5
-1122	376	// alignas specifier applied to member data declarations\nstruct foo2             // size = 16, aligned as = 8\n{                       // foo2:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbb....|\n    alignas(8) int b;\n};	text	txt	2024-07-28 09:48:17.216577	6
-1123	376	struct foo2_            // size = 16, aligned as = 4\n{\n    char a;             // 2 bytes\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};	text	txt	2024-07-28 09:48:17.239421	7
-1124	376	// the alignas specifier applied to the struct is less than alignas\n// specifier applied to member data declaration, thus will be ignored.\nstruct alignas(4) foo3  // size = 16, aligned as = 8\n{                       // foo3:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbbbbbb|\n    alignas(8) int b;\n};	text	txt	2024-07-28 09:48:17.260166	8
-1125	376	struct foo3_            // size = 16, aligned as = 4\n{\n    char a;             // 2 byte\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};	text	txt	2024-07-28 09:48:17.281097	9
-1126	376	alignas(8) int a;       // size = 4, alignment = 8\nalignas(256) long b[4]; // size = 32, alignment = 256	code	txt	2024-07-28 09:48:17.304537	10
-1127	377	#include <iostream>	text	txt	2024-07-28 09:48:17.728911	1
-1128	377	int main()\n{\n    std::cout << sizeof(long double) << '\\\\n';\n}	code	txt	2024-07-28 09:48:17.748606	2
-1129	378	T operator ""_suffix(unsigned long long int); // biggest integral type\nT operator ""_suffix(long double); // biggest floating-point type\nT operator ""_suffix(char);\nT operator ""_suffix(wchar_t);\nT operator ""_suffix(char16_t);\nT operator ""_suffix(char32_t);\nT operator ""_suffix(char const *, std::size_t);\nT operator ""_suffix(wchar_t const *, std::size_t);\nT operator ""_suffix(char16_t const *, std::size_t);\nT operator ""_suffix(char32_t const *, std::size_t);	code	txt	2024-07-28 09:48:18.299711	1
-1130	379	namespace units\n{\n    inline namespace literals\n    {\n        inline namespace units_literals\n        {\n            constexpr size_t operator ""_KB(unsigned long long const size)\n            {\n                return static_cast<size_t>(size * 1024);\n            }\n        }\n    }\n}	text	txt	2024-07-28 09:48:19.036306	1
-1131	379	int main()\n{\n    using namespace units::units_literals;	text	txt	2024-07-28 09:48:19.058862	2
-1132	379	    size_t bytes = "1024"_KB;\n}	code	txt	2024-07-28 09:48:19.079677	3
+1129	378	T operator ""_suffix(unsigned long long int); // biggest integral type\nT operator ""_suffix(long double); // biggest floating-point type\nT operator ""_suffix(char);\nT operator ""_suffix(wchar_t);\nT operator ""_suffix(char16_t);\nT operator ""_suffix(char32_t);\nT operator ""_suffix(char const *, std::size_t);\nT operator ""_suffix(wchar_t const *, std::size_t);\nT operator ""_suffix(char16_t const *, std::size_t);\nT operator ""_suffix(char32_t const *, std::size_t);	code	cpp	2024-07-28 09:48:18.299711	1
 1133	380	Always define literals in a separate namespace to avoid name clashes.	text	txt	2024-07-28 09:48:19.49427	1
-1134	380	T operator ""_suffix(char const*);	text	txt	2024-07-28 09:48:19.515004	2
-1135	380	template <char...>\nT operator ""_suffix();	code	txt	2024-07-28 09:48:19.536471	3
-1136	381	namespace binary\n{\n    using numeric = unsigned int;	text	txt	2024-07-28 09:48:20.711905	1
-1137	381	    inline namespace binary_literals\n    {\n        namespace binary_internals\n        {\n            template<typename T, char... bits>\n            struct bit_seq;	text	txt	2024-07-28 09:48:20.73455	2
-1921	573	The compiler will compile contracts, checks for their correctness, and when\neverything is checked all the contracts will be wiped from the code.	text	txt	2024-07-28 09:50:29.427889	1
-1138	381	            template<typename T, '0', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value { bit_seq<T, bits...>::value };\n            };	text	txt	2024-07-28 09:48:20.755136	3
-1139	381	            template<typename T, '1', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value {\n                    bit_seq<T, bits...>::value | static_cast<T>(1 << sizeof...(bits))\n                };\n            };	text	txt	2024-07-28 09:48:20.776757	4
-1140	381	            template<typename T>\n            struct bit_seq<T>\n            {\n                static constexpr T value{0};\n            };\n        }	text	txt	2024-07-28 09:48:20.797392	5
-1141	381	        template <char... bits>\n        constexpr numeric operator ""_byte()\n        {\n            static_assert(sizeof...(bits) <= 32, "binary literals only hold 32 bits");	text	txt	2024-07-28 09:48:20.819033	6
-1142	381	            return binary_internals::bit_seq<numeric, bits...>::value;\n        }\n    }\n}	code	txt	2024-07-28 09:48:20.839991	7
-1143	382	#include <vector>\n#include <string>	text	txt	2024-07-28 09:48:21.599244	1
-1144	382	std::vector<std::string> f()\n{\n    std::vector<std::string> cells; // default constructed vector without allocations\n    cells.reserve(3);               // allocate 3 elements of std::string\n    std::string s{"data"};          // default constructed std::string\n    cells.push_back(s);             // 1st vector element copy constructed\n    cells.push_back(s+s);           // default construction of temporary object; move construction of 2nd vector element\n    cells.push_back(std::move(s));  // move constructed 3rd vector element; empty out s object\n    return cells;                   // optimize out vector as return value\n}	text	txt	2024-07-28 09:48:21.621475	2
-1145	382	int main()\n{\n    std::vector<std::string> v;\n    v = f();                        // move assigned constructed vector by return value\n}	code	txt	2024-07-28 09:48:21.643701	3
-1146	383	#include <utility>	text	txt	2024-07-28 09:48:22.794489	1
-1147	383	class bag\n{\nprivate:\n    unsigned int _count;\n    int* _storage;	text	txt	2024-07-28 09:48:22.815607	2
+4227	447	#include <string>\n#include <regex>\n\nstd::string text {\nR"(\n# server address\naddress = 123.40.94.215\nport=22\n\n# time to live\nttl = 5\n)"};\n\nint main()\n{\n    std::string pattern{R"(^(?!#)(\\\\w+)\\\\s*=\\\\s*([\\\\w\\\\d]+[\\\\w\\\\d._,:-]*)$)"};\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::sregex_iterator end{};\n\n    // iterate through regex matches\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }\n\n    // iterate through unmatched tokens\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx, -1};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }\n\n    // iterate through tokens of regex matches\n    std::sregex_token_iterator tend{};\n    for (auto it = std::sregex_token_iterator{std::begin(text), std::end(text), rx};\n            it ! tend; ++it)\n    {\n        std::string token = *it;\n    }\n}	code	cpp	2025-07-16 14:57:32.817026	4
+4228	448	#include <string>\n#include <regex>\n\nint main()\n{\n    std::string text{"this is a example with a error"};\n    std::regex rx{R"(\\\\ba ((a|e|i|o|u)\\\\w+))"};\n    std::regex_replace(text, rx, "an $1");\n}	code	cpp	2025-07-16 14:57:42.275748	1
+4229	449	#include <string>\n#include <regex>\n\nint main()\n{\n    std::string text{"current date: 3 10 2022"};\n    std::regex pattern{R"((\\\\d{1,2})\\\\s*(\\\\d{1,2})\\\\s*(\\\\d{2,4}))"};\n    std::string reformatted = std::regex_replace(text, pattern, R"([$`] $2 $1 $3 [$'])");\n}	code	cpp	2025-07-16 14:57:51.131539	2
 3646	1167	main:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:24.608549	15
-1148	383	public:\n    bag(int const& number): _count{0}, _storage{nullptr}\n    {\n        _count++;\n        _storage = new int{number};\n    }	text	txt	2024-07-28 09:48:22.835933	3
-1149	383	    virtual ~bag()\n    {\n        if (_count)\n            delete _storage;\n    }	text	txt	2024-07-28 09:48:22.857129	4
-1150	383	    bag(bag const& other): _count{other._count}\n    {\n        _storage = new int{*other._storage};\n    }	text	txt	2024-07-28 09:48:22.878749	5
-1151	383	    bag(bag&& other): _count{other._count}, _storage{other._storage}\n    {\n        other._count = 0;\n        other._storage = nullptr;\n    }\n};	text	txt	2024-07-28 09:48:22.899818	6
-1152	383	int main()\n{\n    bag a{1};\n    bag b{std::move(a)};\n}	code	txt	2024-07-28 09:48:22.920633	7
 1153	384	- When the value of a temporary object is passed that will automatically be\n  destroyed after the statement.\n- When a non-`const` object marked with `std::move()`.	text	txt	2024-07-28 09:48:23.215263	1
 1154	385	`std::move()` is defined a a function in C++ standard library `<utility>`. No\nstandard header is required t include `utility` header file. Therefore, when\nusing `std::move()`, you should explicitly include `<utility>` to make your\nprogram portable.	text	txt	2024-07-28 09:48:23.545057	1
-1155	386	function(static_cast<decltype(object)&&>(object)	code	txt	2024-07-28 09:48:23.890747	1
 1156	387	The rule is that for a temporary object or an object marked with\n`std::move()`, if available, a function declaring parameters as an rvalue\nreference is preferred. However, if no such function exists, the usual copy\nsemantics is used as a fallback.	text	txt	2024-07-28 09:48:24.254937	1
-1157	388	The objects declared with const cannot be moved because any optimizing\nimplementation requires that the passed argument can be modified.	text	txt	2024-07-28 09:48:24.714339	1
-1158	388	std::vector<std::string> coll;\nconst std::string s{"data"};	text	txt	2024-07-28 09:48:24.736101	2
-1159	388	coll.push_back(std::move(s));   // OK, calls push_back(const std::string &)	code	txt	2024-07-28 09:48:24.757869	3
+4231	450	#include <limits>\n\nauto min_int = std::numeric_limits<int>::min();\nauto max_int = std::numeric_limits<int>::max();\n\nauto min_double = std::numeric_limits<double>::min();\nauto low_double = std::numeric_limits<double>::lowest();\nauto max_double = std::numeric_limits<double::lowest();	code	cpp	2025-07-16 14:58:16.480118	2
 1160	389	Declaring the return value as a whole to be `const` disables move semantics\nand it also disables **return value optimization**. `const` should be used to\ndeclare parts of return type instead, such as the object a returned reference\nor poionter refers to.	text	txt	2024-07-28 09:48:25.30484	1
-1161	389	const std::string getValues(); // BAD: disables move semantics for return value\nconst std::string& getRef();   // OK\nconst std::string* getPtr();   // OK	code	txt	2024-07-28 09:48:25.326211	2
 1162	390	The implementer has to ensure that the passed argument is in a valid state\nafter the call.	text	txt	2024-07-28 09:48:25.63987	1
-1163	391	Moved-from objects are still valid objects for which at least the destructor\nwill be called. However, they should also be valid in the sense that they\nhave a consisten state and all operations work as expected. The only thing\nyou do not know is their value.	text	txt	2024-07-28 09:48:26.291633	1
-1164	391	std::string s{"data"};	text	txt	2024-07-28 09:48:26.312982	2
-1165	391	foo(std::move(s));	text	txt	2024-07-28 09:48:26.332146	3
-1166	391	std::cout << s << '\\\\n'; // OK (don't know which value is written)\nstd::cout << s.size() << '\\\\n';  // OK (writes current number of characters)\nstd::cout << s[0] << '\\\\n';  // ERROR (potentially undefined behavior)\nstd::cout << s.front() << '\\\\n'; // ERROR (potentially undefined behavior)\ns = "new value";  // OK	code	txt	2024-07-28 09:48:26.354659	4
-1167	392	The parameter can bind only to a temporary object that does not have a name\nor to an object marked with `std::move()`.	text	txt	2024-07-28 09:48:26.982006	1
-1168	392	According to the semantics of rvalue references, the caller claims that it is\n*no longer interested in the value*. Therefore, you can modify the object the\nparameter refers to. However, the caller might still be interested in using\nthe object. Therefore, any modification should keep the referenced object in\na valid state.	text	txt	2024-07-28 09:48:27.003314	2
-1169	392	void foo(std::string&& rv);\nstd::string s{"data"};	text	txt	2024-07-28 09:48:27.023583	3
-1170	392	foo(s);     // ERROR\nfoo(std::move(s));      // OK\nfoo(returnStringByValue());     // OK	code	txt	2024-07-28 09:48:27.046779	4
+1432	450	    for (autp i = start; i < end; ++i)\n        if (*i < latest_minimum)\n            latest_minimum = *i;	text	txt	2024-07-28 09:49:10.184975	4
 1171	393	**const lvalue reference**	text	txt	2024-07-28 09:48:28.448022	1
 1172	393	The function has only read access to the passed argument.	text	txt	2024-07-28 09:48:28.468645	2
-1173	393	void foo(const std::string& arg);	code	txt	2024-07-28 09:48:28.488389	3
 1174	393	You can pass everything to a function declared that way if the type fits:	text	txt	2024-07-28 09:48:28.510056	4
 1175	393	- A modifiable named object\n- A `const` named object\n- A temporary object that does not have a name\n- A non-`const` object marked with `std::move()`	text	txt	2024-07-28 09:48:28.531378	5
 1176	393	**non-const lvalue reference**	text	txt	2024-07-28 09:48:28.553519	6
 1177	393	The function has write access to the passed argument. You can no longer pass\neverything to a function declared that way even if the type fits.	text	txt	2024-07-28 09:48:28.575523	7
-1178	393	void foo(std::string& arg);	code	txt	2024-07-28 09:48:28.598669	8
+1155	386	function(static_cast<decltype(object)&&>(object)	code	cpp	2024-07-28 09:48:23.890747	1
+1157	388	The objects declared with const cannot be moved because any optimizing\nimplementation requires that the passed argument can be modified.	text	txt	2024-07-28 09:48:24.714339	1
+1161	389	const std::string getValues(); // BAD: disables move semantics for return value\nconst std::string& getRef();   // OK\nconst std::string* getPtr();   // OK	code	cpp	2024-07-28 09:48:25.326211	2
+1163	391	Moved-from objects are still valid objects for which at least the destructor\nwill be called. However, they should also be valid in the sense that they\nhave a consisten state and all operations work as expected. The only thing\nyou do not know is their value.	text	txt	2024-07-28 09:48:26.291633	1
+1167	392	The parameter can bind only to a temporary object that does not have a name\nor to an object marked with `std::move()`.	text	txt	2024-07-28 09:48:26.982006	1
+1168	392	According to the semantics of rvalue references, the caller claims that it is\n*no longer interested in the value*. Therefore, you can modify the object the\nparameter refers to. However, the caller might still be interested in using\nthe object. Therefore, any modification should keep the referenced object in\na valid state.	text	txt	2024-07-28 09:48:27.003314	2
+1173	393	void foo(const std::string& arg);	code	cpp	2024-07-28 09:48:28.488389	3
+4233	450	#include <limits>\n\ntemplate<typename T, typename Iter>\nT minimum(Iter const start, Iter const end)\n{\n    T latest_minimum = std::numeric_limits<T>::max();\n\n    return latest_minimum;\n}	code	cpp	2025-07-16 14:58:28.222163	5
 1179	393	You can pass:	text	txt	2024-07-28 09:48:28.620763	9
 1180	393	- A modifiable object	text	txt	2024-07-28 09:48:28.641685	10
 1181	393	**non-const rvalue reference**	text	txt	2024-07-28 09:48:28.662588	11
-1182	393	void foo(std::string&& arg);	code	txt	2024-07-28 09:48:28.683403	12
 1183	393	The function has write access to the passed argument.\nHowever, you have restrictions on what you can pass:	text	txt	2024-07-28 09:48:28.703213	13
 1184	393	- A temporary object that does not have a name\n- A non-`const` object marked with `std::move()`	text	txt	2024-07-28 09:48:28.724256	14
 1185	393	The semantic meaning is that we give `foo()` write access to the passed\nargument to steal the value.	text	txt	2024-07-28 09:48:28.746123	15
 1186	393	**const rvalue reference**	text	txt	2024-07-28 09:48:28.767736	16
-1187	393	void foo(const std::string&& arg);	code	txt	2024-07-28 09:48:28.78819	17
 1188	393	This also means that you have read access to the passed argument.\nYou can only pass:	text	txt	2024-07-28 09:48:28.809884	18
 1189	393	- A temporary object that does not have name\n- A `const` or non-`const` object marked with `std::move()`	text	txt	2024-07-28 09:48:28.831577	19
 1190	393	However, there is no useful semantic meaning of this case.	text	txt	2024-07-28 09:48:28.853052	20
@@ -17203,321 +17072,102 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1195	396	* No <b>copy constructor</b> is user-declared\n* No <b>copy assignment operator</b> is user-declared\n* No another <b>move operation</b> is user-declared\n* No <b>destructor</b> is user-declared	text	txt	2024-07-28 09:48:30.009595	2
 1196	397	Declaring destructors in anyway disables the automatic generation of move\noperations.	text	txt	2024-07-28 09:48:30.301132	1
 1197	398	By default, both copying and moving special member functions are generated\nfor class.	text	txt	2024-07-28 09:48:30.897685	1
-1198	398	class Person\n{\n    ...\npublic:\n    ...\n    // NO copy constructor/assignment declared\n    // NO move constructor/assignment declared\n    // NO destructor declared\n};	code	txt	2024-07-28 09:48:30.918305	2
 1199	399	Generated move operations might introduce problems even though the generated\ncopy operations work correctly. In particular, you have to be careful in the\nfollowing situations:	text	txt	2024-07-28 09:48:31.335346	1
 1200	399	- Values of members have restrictions\n- Values of members depend on each other\n- Member with reference semantics are used (pointers, smart pointers, ...)\n- Objects have no default constructed state	text	txt	2024-07-28 09:48:31.355678	2
 1201	400	The guideline is to either declare all five (copy constructor, move\nconstructor, copy assignment operator, move assignment operator, and\ndestructor) or none of them. Declaration means either to implement, set as\ndefault, or set as deleted.	text	txt	2024-07-28 09:48:31.671011	1
 1202	401	Move constructor is called when the caller no longer needs the value. Inside\nthe move constructor, we hdecide where an how long we need it. In particular,\nwe might need the value multiple times and not lose it with its first use.	text	txt	2024-07-28 09:48:32.314338	1
-1203	401	void insertTwice(std::vector<std::string>& coll, std::string&& str)\n{\n    coll.push_back(str);    // copy str into coll\n    coll.push_back(std::move(str));     // move str into coll\n}	code	txt	2024-07-28 09:48:32.336215	2
 1204	401	The important lesson to learn here is that a parameter being declared as an\nrvalue reference restricts what we can pass to this function but behaves just\nlike any other non-`const` object of this type.	text	txt	2024-07-28 09:48:32.356868	3
 1205	402	All types in C++ standard library receive a valid but unspecified state when\nobjects are moved to themselves. This means that by default, you might lose\nthe values of your members and you might even have a more severe problem if\nyour type does not work properly with members that have arbitrary values.	text	txt	2024-07-28 09:48:33.04932	1
 1206	402	The traditional/naive way to protect against self-assignments is to check\nwether both operands are identical. You can also do this when implementing\nthe move assignment operator.	text	txt	2024-07-28 09:48:33.071338	2
-1207	402	Customer& operator=(Customer&& other) noexcept\n{\n    if (this != &other)\n    {\n        name = std::move(other.name);\n        values = std::move(other.values);\n    }\n    return *this;\n}	code	txt	2024-07-28 09:48:33.09303	3
-1208	403	if you declare the move constructor as deleted, you cannot move (you have\ndisabled this operation; any fallback is not used) and cannot copy (because a\ndeclared move constructor disables copy operations).	text	txt	2024-07-28 09:48:34.432418	1
-1209	403	class Person\n{\npublic:\n    ...\n    // NO copy constructor declared	text	txt	2024-07-28 09:48:34.45322	2
-1210	403	    // move constructor/assignment declared as deleted:\n    Person(Person&&) = delete;\n    Person& operator=(Person&&) = delete;\n    ...\n};	text	txt	2024-07-28 09:48:34.475797	3
-1211	403	Person p{"Tina", "Fox"};\ncoll.push_back(p); // ERROR: copying disabled\ncoll.push_back(std::move(p)); // ERROR: moving disabled	code	txt	2024-07-28 09:48:34.496348	4
-1212	403	You get the same effect by declaring copying special member functions as\ndeleted and that is probably less confusing for other programmers.	text	txt	2024-07-28 09:48:34.517545	5
-1213	403	Deleting the move operations and enabling the copy operations really makes no sense:\nclass Person\n{\npublic:\n    ...\n    // copy constructor explicitly declared:\n    Person(const Person& p) = default;\n    Person& operator=(const Person&) = default;	text	txt	2024-07-28 09:48:34.540005	6
-1214	403	    // move constructor/assignment declared as deleted:\n    Person(Person&&) = delete;\n    Person& operator=(Person&&) = delete;\n    ...\n};	text	txt	2024-07-28 09:48:34.562064	7
-1215	403	Person p{"Tina", "Fox"};\ncoll.push_back(p); // OK: copying enabled\ncoll.push_back(std::move(p)); // ERROR: moving disabled	code	txt	2024-07-28 09:48:34.581343	8
-1216	403	In this case, `=delete` disables the fallback mechanism.	text	txt	2024-07-28 09:48:34.602877	9
+4234	451	#include <limits>\n\nauto s = std::numeric_limits<short>::digits;\nauto d = std::numeric_limits<double>::digits;	code	cpp	2025-07-16 14:58:37.147347	2
+4235	452	#include <limits>\n\nauto s = std::numeric_limits<short>::digits10;\nauto d = std::numeric_limits<double>::digits10;	code	cpp	2025-07-16 14:58:48.156271	1
+4236	453	#include <limits>\n\nauto value_is_signed = std::numeric_limist<T>::is_signed;	code	cpp	2025-07-16 14:58:55.505561	1
 1217	404	Returning a local object by value automatically uses move semantics if\nsupported. On the other hand, `std::move` is just a `static_cast` to an\nrvalue reference, therefore disables **return value optimization**, which\nusually allows the returned object to be used as a return value instead.	text	txt	2024-07-28 09:48:35.073806	1
-1218	404	std::string foo()\n{\n    std::string s;\n    return std::move(s); // BAD, returns std::string&&\n}	code	txt	2024-07-28 09:48:35.094681	2
 1922	573		code	txt	2024-07-28 09:50:29.447795	2
+1182	393	void foo(std::string&& arg);	code	cpp	2024-07-28 09:48:28.683403	12
+1187	393	void foo(const std::string&& arg);	code	cpp	2024-07-28 09:48:28.78819	17
+1203	401	void insertTwice(std::vector<std::string>& coll, std::string&& str)\n{\n    coll.push_back(str);    // copy str into coll\n    coll.push_back(std::move(str));     // move str into coll\n}	code	cpp	2024-07-28 09:48:32.336215	2
+1207	402	Customer& operator=(Customer&& other) noexcept\n{\n    if (this != &other)\n    {\n        name = std::move(other.name);\n        values = std::move(other.values);\n    }\n    return *this;\n}	code	cpp	2024-07-28 09:48:33.09303	3
+4237	454	#include <limits>\n\nauto value_is_integer = std::numeric_limist<T>::is_integer;	code	cpp	2025-07-16 14:59:01.21841	1
+1208	403	if you declare the move constructor as deleted, you cannot move (you have\ndisabled this operation; any fallback is not used) and cannot copy (because a\ndeclared move constructor disables copy operations).	text	txt	2024-07-28 09:48:34.432418	1
+1218	404	std::string foo()\n{\n    std::string s;\n    return std::move(s); // BAD, returns std::string&&\n}	code	cpp	2024-07-28 09:48:35.094681	2
+4238	455	#include <limits>\n\nauto value_is_exact = std::numeric_limist<T>::is_exact;	code	cpp	2025-07-16 14:59:07.064751	1
+4239	456	#include <limits>\n\nauto value_has_infinity = std::numeric_limist<T>::has_infinity;	code	cpp	2025-07-16 14:59:40.909708	1
 1219	405	Declaring the special move member functions as deleted is usually not the\nright way to do it because it disables the fallback mechanism. The right way\nto disable move semantics while providing copy semantics is to declare one of\nthe other special member functions (copy constructor, assignment operator, or\ndestructor). I recommend that you default the copy constructor and the\nassignment operator (declaring one of them would be enough but might cause\nunnecessary confusion):	text	txt	2024-07-28 09:48:35.704622	1
-1220	405	class Customer\n{\n    ...\npublic:\n    ...\n    Customer(const Customer&) = default;    // disable move semantics\n    Customer& operator=(const Customer&) = default;     // disable move semantics\n};	code	txt	2024-07-28 09:48:35.72559	2
-1221	406	If move semantics is unavailable or has been deleted for a type, this has no\ninfluence on the generation of move semantics for classes that have members\nof this type.	text	txt	2024-07-28 09:48:36.601007	1
-1222	406	class Customer\n{\n    ...\npublic:\n    ...\n    Customer(const Customer&) = default;\n    // copying calls enabled\n    Customer& operator=(const Customer&) = default; // copying calls enabled\n    Customer(Customer&&) = delete;\n    // moving calls disabled\n    Customer& operator=(Customer&&) = delete;\n    // moving calls disabled\n};	text	txt	2024-07-28 09:48:36.622668	2
-1223	406	class Invoice\n{\n    std::string id;\n    Customer cust;\npublic:\n    ... // no special member functions\n};	text	txt	2024-07-28 09:48:36.643662	3
-1224	406	Invoice i;\nInvoice i1{std::move(i)}; // OK, moves id, copies cust	code	txt	2024-07-28 09:48:36.66584	4
-1225	407	Usually, in polymorphic derived classes there is no need to declare special\nmember functions, especially virtual destructor.	text	txt	2024-07-28 09:48:37.379986	1
-1226	407	class Base\n{\npublic:\n    virtual void do_something() const = 0;\n    virtual ~Base() = default;\n};	text	txt	2024-07-28 09:48:37.401074	2
-1227	407	class Derived: public Base\n{\npublic:\n    virtual void do_something() const override;\n    virtual ~Derived() = default; // BAD, redundant, disables move\n};	code	txt	2024-07-28 09:48:37.422308	3
-3647	1167	    ; use and print the results of sum function\n    mov rdi, 1\n    mov rsi, 3\n    call sum	text	txt	2024-07-28 09:55:24.629689	16
-1228	408	With move semantics call-by-value can become cheap if a temporary object is\npassed or the passed argument is marked with `std::move()`. Retuurning a\nlocal object by value can be optimized away. However, if it is not optimized\naway, the call is guaranteed to be cheap now.	text	txt	2024-07-28 09:48:38.240365	1
-1229	408	void fooByVal(std::string str);\nvoid fooByRRef(std::string&& str);;	text	txt	2024-07-28 09:48:38.260688	2
-1230	408	std::string s1{"data"}, s2{"data"};	text	txt	2024-07-28 09:48:38.281432	3
-1231	408	fooByVal(std::move(s1));    // s1 is moved\nfooByRRef(std::move(s2));   // s2 might be moved	code	txt	2024-07-28 09:48:38.302908	4
-1232	408	The function taking the string by value will use move semantics because a new\nstring is created with the value of passed argument. The function taking the\nstring by rvalue reference might use move semantics. Passing the argument\ndoes not create a new string. Wether the value of the passed argument is\nstolen/modified depends on the implementation of the function.	text	txt	2024-07-28 09:48:38.323813	5
-1233	408	Move semantics does not guarantee that any optimization happens at all or\nwhat the effect of any optimization is. All we know is that the passed object\nis subsequently in a valid but unspecified state.	text	txt	2024-07-28 09:48:38.344799	6
+4244	459	#include <random>\n\nstd::random_device seeder;\nstd::mt19937 generator1{seeder()};\n\nstd::mt19937 generator2;\ngenerator2.seed(seeder());	code	cpp	2025-07-16 15:01:05.478273	2
+4248	462	#include <random>\n#include <functional>\n\nint main()\n{\n    std::random_device seeder;\n\n    std::array<int, std::mt19937::state_size> seed_data{};\n    std::generate(std::begin(seed_data), std::end(seed_data), std::ref(seeder));\n    std::seed_seq seeds(std::begin(seed_data), std::end(seed_data));\n    std::mt19937 generator{seeds};\n    std::uniform_int_distribution<> dist{0, 10}; // [0, 10)\n    int random_number = dist(generator);\n}	code	cpp	2025-07-16 15:01:34.502272	2
+4245	460	#include <random>\n\nstd::random_device seeder;\nstd::mt19937 generator{seeder()};\nauto number = generator();	code	cpp	2025-07-16 15:01:16.178677	2
 1234	409	Constructing an object only by const lvalue references will allocate four\nmemory spaces which two of them are unnecessary. Also move operation does not\nwork here because parameters are const.	text	txt	2024-07-28 09:48:42.040525	1
+3647	1167	    ; use and print the results of sum function\n    mov rdi, 1\n    mov rsi, 3\n    call sum	text	txt	2024-07-28 09:55:24.629689	16
 1235	409	When passing string literals to const lvalue references, compiler creates two\ntemporary objects of `std::string`, which then will be used to initialize\nmembers while this also makes two copies.	text	txt	2024-07-28 09:48:42.061547	2
-1236	409	#include <string>	text	txt	2024-07-28 09:48:42.083074	3
-1237	409	class box\n{\nprivate:\n    std::string first;\n    std::string last;	text	txt	2024-07-28 09:48:42.103643	4
-1238	409	public:\n    box(std::string const& f, std::string const& l): first{f}, last{l} {}\n    // f, l allocated\n    // first, last also allocated\n};	text	txt	2024-07-28 09:48:42.125897	5
-1239	409	box b{"First", "Last"};	code	txt	2024-07-28 09:48:42.146717	6
-1240	409	With constructors that take each argument by value and moving them into\nmembers, we avoid redundant memory allocations. This is especially true when\nwe are taking values in constructor initialization list.	text	txt	2024-07-28 09:48:42.168895	7
-1241	409	#include <string>	text	txt	2024-07-28 09:48:42.191237	8
-1242	409	class box\n{\nprivate:\n    std::string first;\n    std::string last;	text	txt	2024-07-28 09:48:42.213049	9
-1243	409	public:\n    box(std::string f, std::string l): first{std::move(f)}, last{std::move(l)} {}\n};	code	txt	2024-07-28 09:48:42.234552	10
-1244	409	Another good example to pass by value and move is methods taking objects to\nadd to a data structure:	text	txt	2024-07-28 09:48:42.2536	11
-1245	409	#include <string>\n#include <vector>	text	txt	2024-07-28 09:48:42.274321	12
-1246	409	class box\n{\nprivate:\n    std::string first;\n    std::vector<std::string> values;	text	txt	2024-07-28 09:48:42.296132	13
-1247	409	public:\n    box(std::string f, std::vector<std::string> v): first{std::move(f)}, values{std::move(v)} {}\n    insert(std::string n) { values.push_back(std::move(n)); }\n};	code	txt	2024-07-28 09:48:42.317224	14
-1248	409	It is also possible to use rvalue parameters and move options:	text	txt	2024-07-28 09:48:42.336273	15
-1249	409	#include <string>	text	txt	2024-07-28 09:48:42.357269	16
-1250	409	class box\n{\nprivate:\n    std::string first;\n    std::string last;	text	txt	2024-07-28 09:48:42.37994	17
-1251	409	public:\n    box(std::string&& f, std::string&& l): first{std::move(f)}, last{std::move(l)} {}\n};	code	txt	2024-07-28 09:48:42.40117	18
-1252	409	But this solely prevents objects with names. So we should implement two\noverloads that pass by values and move:	text	txt	2024-07-28 09:48:42.421675	19
-1253	409	Overloading both for rvalue and lvalue references lead to many different\ncombinations of parameters.	text	txt	2024-07-28 09:48:42.442683	20
+1240	409	With constructors that take each argument by value and moving them into\nmembers, we avoid redundant memory allocations. This is especially true when\nwe are taking values in constructor initialization list.	text	txt	2024-07-28 09:48:42.168895	4
+1244	409	Another good example to pass by value and move is methods taking objects to\nadd to a data structure:	text	txt	2024-07-28 09:48:42.2536	6
+1248	409	It is also possible to use rvalue parameters and move options:	text	txt	2024-07-28 09:48:42.336273	8
+4241	457	#include <complex>\n\nusing namespace std::complex_literals;\n\nauto c{ 12.0 + 4.2i }; // std::complex<double>	code	cpp	2025-07-16 14:59:59.030373	1
+4242	458	#include <random>\n\nauto min = std::mt19937::min();\nauto max = std::mt19937::max();	code	cpp	2025-07-16 15:00:54.320617	2
+4246	461	#include <random>\n\nstd::mt19937 generator{};\ngenerator.discard(4); // discard 4 numbers	code	cpp	2025-07-16 15:01:23.468663	1
 1875	550	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>\n#include <vector>	text	txt	2024-07-28 09:50:19.443774	1
-1254	409	In some cases, move operations take significant time. For example, if we have\na class with a string and a vector of values, taking by value and move is\nusually the right approach. However, if we have a `std::array` member, moving\nit will take significant time even if the members are moved.	text	txt	2024-07-28 09:48:42.463009	21
-1255	409	#include <string>\n#include <array>	text	txt	2024-07-28 09:48:42.484018	22
-1256	409	class box\n{\nprivate:\n    std::string first;\n    std::array<std::string, 1000> values;	text	txt	2024-07-28 09:48:42.50653	23
-1257	409	public:\n    box(std::string f, std::array<std::string, 1000>& v): first{std::move(f)}, values{v} {}\n    box(std::string f, std::array<std::string, 1000>&& v): first{std::move(f)}, values{std::move(v)} {}\n};	code	txt	2024-07-28 09:48:42.529563	24
-1302	418	{\n    std::string s("Hello World!");\n    vec.push_back(s); // Copy\n    vec.push_back(std::move(s)); // Move\n}	text	txt	2024-07-28 09:48:49.590405	4
-1258	409	Often, pass by value is useful when we *create and initialize* a new value.\nBut if we already have a value, which we update or modify, using this\napproach would be counterproductive. A simple example would be setters:	text	txt	2024-07-28 09:48:42.551019	25
-1259	409	#include <string>	text	txt	2024-07-28 09:48:42.571775	26
-1260	409	class box\n{\nprivate:\n    std::string first;	text	txt	2024-07-28 09:48:42.591571	27
-1261	409	public:\n    box(std::string f): first{std::move(f)} {}\n    void set_first(std::string f) { first = f; }\n};	text	txt	2024-07-28 09:48:42.614385	28
-1262	409	box b{"Sample"};\nb.set_first("Another Sample");\nb.set_first("Another Sample");\nb.set_first("Another Sample");\nb.set_first("Another Sample");	code	txt	2024-07-28 09:48:42.635711	29
-1263	409	Each time we set a new firstname we create a new temporary parameter `s`\nwhich allocates its own memory. But by implementing in the traditional way\ntaking a const lvalue reference we avoid allocations:	text	txt	2024-07-28 09:48:42.657736	30
-1264	409	#include <string>	text	txt	2024-07-28 09:48:42.680363	31
-1265	409	class box\n{\nprivate:\n    std::string first;	text	txt	2024-07-28 09:48:42.701515	32
-1266	409	public:\n    box(std::string f): first{std::move(f)} {}\n    void set_first(std::string const& f) { first = f; }\n};	code	txt	2024-07-28 09:48:42.722642	33
-1267	409	Even with move semantics, the best approach for setting existing values is to\ntake the new values by const lvalue reference and assign without using move\noperation.	text	txt	2024-07-28 09:48:42.745615	34
-1268	409	Taking a parameter by value and moving it to where the new value is needed is\nonly useful when we store the passed value somewhere as a new value where we\nneed new memory allocation anyway. When modifying an existing value, this\npolicy might be counterproductive.	text	txt	2024-07-28 09:48:42.767129	35
+4251	463	#include <chrono>\n#include <thread>\n\nusing namespace std::chrono_literals;\n\nauto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();\n\nauto duration = tp2 - tp1;\nstd::cout << duration << "\\\\n";\n// example output: 1115389ns	code	cpp	2025-07-16 16:13:23.716575	2
+1221	406	If move semantics is unavailable or has been deleted for a type, this has no\ninfluence on the generation of move semantics for classes that have members\nof this type.	text	txt	2024-07-28 09:48:36.601007	1
+1225	407	Usually, in polymorphic derived classes there is no need to declare special\nmember functions, especially virtual destructor.	text	txt	2024-07-28 09:48:37.379986	1
+1228	408	With move semantics call-by-value can become cheap if a temporary object is\npassed or the passed argument is marked with `std::move()`. Retuurning a\nlocal object by value can be optimized away. However, if it is not optimized\naway, the call is guaranteed to be cheap now.	text	txt	2024-07-28 09:48:38.240365	1
+1232	408	The function taking the string by value will use move semantics because a new\nstring is created with the value of passed argument. The function taking the\nstring by rvalue reference might use move semantics. Passing the argument\ndoes not create a new string. Wether the value of the passed argument is\nstolen/modified depends on the implementation of the function.	text	txt	2024-07-28 09:48:38.323813	3
+1233	408	Move semantics does not guarantee that any optimization happens at all or\nwhat the effect of any optimization is. All we know is that the passed object\nis subsequently in a valid but unspecified state.	text	txt	2024-07-28 09:48:38.344799	4
+4254	464	#include <chrono>\n#include <thread>\n\nusing namespace std::chrono_literals;\n\nauto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();\n\n// explicit type of duration, base type double, with micro precision\nstd::chrono::duration<double, std::micro> sleep_duration = tp2 - tp1;\nstd::cout << sleep_duration << "\\\\n";\n// example output: 1115.39µs	code	cpp	2025-07-16 16:13:38.372491	1
+4258	466	#include <chrono>\n\nbool system_is_steady = std::chrono::system_clock::is_steady;	code	cpp	2025-07-16 16:14:23.375021	1
+4257	465	#include <chrono>\n#include <thread>\n\nusing namespace std::chrono_literals;\n\nauto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();\n\nauto micro = std::chrono::duration_cast<std::chrono::microseconds>(tp2 - tp1);\nstd::cout << micro << "\\\\n";\n// example output: 1115µs	code	cpp	2025-07-16 16:13:50.561888	2
+4259	467	#include <chrono>\n\nauto resolution = std::chrono::system_clock::duration{1};	code	cpp	2025-07-16 16:14:33.104615	1
+1283	415	String stream operations are slow. To enhance the performance of operations,\nyou have the `view()` member function coming in C++20. This can be used as an\nalternative to `str()`. In short, rather than creating a copy of the internal\nstring, you will get a view instead, so there is no need to dynamically\nallocate memory.	text	txt	2024-07-28 09:48:47.054657	1
+1289	416	Using C++20 there is an extra constructor that can take an rvalue reference\nto the string object, and thus it might not require an additional copy:	text	txt	2024-07-28 09:48:47.787053	1
+1293	416	Compiled with C++17, two allocations can be witnessed. But compiled with\nC++20, duplicate copy no longer takes place.	text	txt	2024-07-28 09:48:47.871537	3
+1294	417	Staring with C++23, you can take complete control over the internal memory of\na stream.	text	txt	2024-07-28 09:48:48.684565	1
+4262	468	#include <chrono>\n\nusing namespace std::chrono_literals;\n\nauto timer {2h + 42min + 15s}; // std::chrono::duration<long long>\n\nauto year { 2035y }; // std::chrono::year (c++20)\nauto day { 15d }; // std::chrono::day (c++20)	code	cpp	2025-07-16 16:14:59.949302	1
+4263	470	// A day in a year can be specified using literals and operator/\nauto christmas_eve = 2023y/std::chrono::December/24d;\n// decltype(christmas_eve) == std::chrono::year_month_day\n\nauto specific_day = std::chrono::weekday{std::chrono::sys_days{christmas_eve}};\n// specific_day == std::chrono::Sunday	code	cpp	2025-07-16 16:15:29.987992	1
 1846	542	template<typename CharT>\ninline tstring<CharT> remove(tstring<CharT> text, CharT const character)\n{\n    auto last = std::remove_if(std::begin(text), std::end(text), [character](CharT const c) { return c == character; });\n    text.erase(last, std::end(text));\n    return text;\n}	code	txt	2024-07-28 09:50:14.559843	3
 1847	543	#include <string>\n#include <sstream>\n#include <vector>	text	txt	2024-07-28 09:50:15.341052	1
 1269	410	- Constructors that initialize members from parameters, for which move\n  operations are cheap, should take the argument by value and move it to the\n  member.\n- Constructors that initialize members from parameters, for which move\n  operations take a significant amount of time, should be overloaded for move\n  semantics for best performance.\n- In general, creating and initializing new values from parameters, for which\n  move operations are cheap, should take the arguments by value and move.\n  However, do not take by value and move to update/modify existing values.	text	txt	2024-07-28 09:48:43.149396	1
-1270	411	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};	text	txt	2024-07-28 09:48:43.910586	1
-1271	411	class alpha: public base\n{\n    virtual void bar() override {}\n    virtual void baz() override {}\n};	text	txt	2024-07-28 09:48:43.93154	2
-1272	411	class beta: public alpha\n{\n    virtual void foo() override {}\n};	text	txt	2024-07-28 09:48:43.951912	3
-1273	411	beta object;	code	txt	2024-07-28 09:48:43.974055	4
-1274	412	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};	text	txt	2024-07-28 09:48:44.853245	1
-1275	412	class alpha: public base\n{\n    virtual void foo() override {}\n    virtual void baz() override final {}\n};	text	txt	2024-07-28 09:48:44.873577	2
-1276	412	class beta: public alpha\n{\n    // won't compile\n    virtual void baz() override {}\n};	text	txt	2024-07-28 09:48:44.893414	3
-1277	412	int main()\n{\n    beta object;\n}	code	txt	2024-07-28 09:48:44.915026	4
-1278	413	class base\n{\n    virtual void foo() = 0;\n    virtual void bar() {}\n    virtual void baz() = 0;\n};	text	txt	2024-07-28 09:48:45.61151	1
-1279	413	class derived final: public base\n{\n    virtual void foo() override {}\n    virtual void baz() override {}\n};	text	txt	2024-07-28 09:48:45.631865	2
-1280	413	// won't compile\nclass prime: public derived\n{\n};	code	txt	2024-07-28 09:48:45.65422	3
-1281	414	#include <syncstream>\n#include <iostream>	text	txt	2024-07-28 09:48:46.252922	1
-1282	414	int main()\n{\n    std::osyncstream output_stream{std::cout};\n    output_stream << "This literal string will be";\n    output_stream << std::endl; // no effect\n    output_stream << "written into output stream";\n    // flushes on destruction\n}	code	txt	2024-07-28 09:48:46.274301	2
-1283	415	String stream operations are slow. To enhance the performance of operations,\nyou have the `view()` member function coming in C++20. This can be used as an\nalternative to `str()`. In short, rather than creating a copy of the internal\nstring, you will get a view instead, so there is no need to dynamically\nallocate memory.	text	txt	2024-07-28 09:48:47.054657	1
-1284	415	#include <iostream>\n#include <sstream>	text	txt	2024-07-28 09:48:47.075105	2
-1285	415	// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}	text	txt	2024-07-28 09:48:47.09673	3
-1286	415	int main() {\n    std::stringstream str;\n    str << "Using C++20 standard";\n    // allocates	text	txt	2024-07-28 09:48:47.117577	4
-1287	415	    std::cout << str.str() << '\\\\n';\n    // allocates	text	txt	2024-07-28 09:48:47.13789	5
-1288	415	    std::cout << str.view() << '\\\\n';\n    // doesn't allocate\n}	code	txt	2024-07-28 09:48:47.159596	6
-1289	416	Using C++20 there is an extra constructor that can take an rvalue reference\nto the string object, and thus it might not require an additional copy:	text	txt	2024-07-28 09:48:47.787053	1
-1290	416	#include <iostream>\n#include <sstream>	text	txt	2024-07-28 09:48:47.807647	2
-1291	416	// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}	text	txt	2024-07-28 09:48:47.831143	3
-1292	416	int main() {\n    std::stringstream str {std::string("hello C++ programming World")};\n}	code	txt	2024-07-28 09:48:47.850601	4
-1293	416	Compiled with C++17, two allocations can be witnessed. But compiled with\nC++20, duplicate copy no longer takes place.	text	txt	2024-07-28 09:48:47.871537	5
-1294	417	Staring with C++23, you can take complete control over the internal memory of\na stream.	text	txt	2024-07-28 09:48:48.684565	1
-1295	417	#include <iostream>\n#include <sstream>\n#include <spanstream> // new header	text	txt	2024-07-28 09:48:48.706131	2
-1296	417	// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}	text	txt	2024-07-28 09:48:48.728587	3
-1297	417	int main() {\n    std::stringstream ss;\n    ss << "one string that doesn't fit into SSO";\n    ss << "another string that hopefully won't fit";\n    // allocates memory	text	txt	2024-07-28 09:48:48.752175	4
-1298	417	    char buffer[128]{};\n    std::span<char> internal_memory(buffer);\n    std::basic_spanstream<char> ss2(internal_memory);\n    ss2 << "one string that doesn't fit into SSO";\n    ss2 << "another string that hopefully won't fit";\n    // doesn't allocate new memory\n}	code	txt	2024-07-28 09:48:48.77452	5
-1299	418	In C++11, all containers received emplace variants of their typical\ninsert/push methods. The emplace variants can construct the element in place,\nsaving a move or copy.	text	txt	2024-07-28 09:48:49.526105	1
-1300	418	#include <vector>\n#include <string>	text	txt	2024-07-28 09:48:49.546821	2
-1301	418	std::vector<std::string> vec;	text	txt	2024-07-28 09:48:49.566733	3
-1303	418	{\n    std::string s("Hello World!");\n    vec.emplace_back(s); // Copy (same as push_back)\n    vec.emplace_back(std::move(s)); // Move (same as push_back)	text	txt	2024-07-28 09:48:49.611912	5
-1304	418	    // In-place construction, no move or copy:\n    vec.emplace_back("Hello World!");	text	txt	2024-07-28 09:48:49.632733	6
-1305	418	    // Note the difference, this is still a move:\n    vec.emplace_back(std::string{"Hello World!"});\n}	code	txt	2024-07-28 09:48:49.653807	7
-1306	419	To find a substring prior standard C++23:	text	txt	2024-07-28 09:48:50.503099	1
-1307	419	#include <string>\n#include <iostream>	text	txt	2024-07-28 09:48:50.523186	2
-1308	419	int main() {\n    std::string message{"Using prior C++23 standard."};	text	txt	2024-07-28 09:48:50.544059	3
-1309	419	    if (message.find("C++") != std::string::npos)\n        std::cout << "You are using C++\\\\n";\n}	code	txt	2024-07-28 09:48:50.567054	4
-1310	419	Using C++23:	text	txt	2024-07-28 09:48:50.588603	5
-1311	419	#include <string>\n#include <iostream>	text	txt	2024-07-28 09:48:50.609858	6
-1312	419	int main() {\n    std::string message{"Using C++23 standard."};	text	txt	2024-07-28 09:48:50.633503	7
-1313	419	    if (message.contains("C++"))\n        std::cout << "You are using C++\\\\n";\n}	code	txt	2024-07-28 09:48:50.654833	8
-1314	420	Using C++23:	text	txt	2024-07-28 09:48:51.076935	1
-1315	420	#include <string_view>	text	txt	2024-07-28 09:48:51.096539	2
-1316	420	bool secure_protocol(std::string_view url)\n{\n    if (url.starts_with("https"))\n        return true;	text	txt	2024-07-28 09:48:51.117077	3
-1317	420	    return false;\n}	code	txt	2024-07-28 09:48:51.13843	4
-1318	421	#include <string_view>	text	txt	2024-07-28 09:48:51.595657	1
-1319	421	bool org_domain(std::string_view url)\n{\n    if (url.ends_with(".org"))\n        return true;	text	txt	2024-07-28 09:48:51.616325	2
-1320	421	    return false;\n}	code	txt	2024-07-28 09:48:51.636754	3
-1321	422	auto si  = std::to_string(42); // "42"\nauto sl  = std::to_string(42L); // "42"\nauto su  = std::to_string(42u); // "42"\nauto sd  = std::to_wstring(42.0); // "42.000000"\nauto sld = std::to_wstring(42.0L); // "42.000000"	code	txt	2024-07-28 09:48:51.997505	1
-1322	423	auto i1 = std::stoi("42");\nauto i2 = std::stoi("101010", nullptr, 2);\nauto i3 = std::stoi("052", nullptr, 8);\nauto i7 = std::stoi("052", nullptr, 0);\nauto i4 = std::stoi("0x2A", nullptr, 16);\nauto i9 = std::stoi("0x2A", nullptr, 0);\nauto i10 = std::stoi("101010", nullptr, 2);\nauto i11 = std::stoi("22", nullptr, 20);\nauto i12 = std::stoi("-22", nullptr, 20);	text	txt	2024-07-28 09:48:52.863448	1
-1323	423	auto d1 = std::stod("123.45"); // d1 = 123.45000000000000\nauto d2 = std::stod("1.2345e+2"); // d2 = 123.45000000000000\nauto d3 = std::stod("0xF.6E6666p3"); // d3 = 123.44999980926514	code	txt	2024-07-28 09:48:52.883242	2
-1324	423	1. The first parameter is the input string.\n2. The second parameter is a pointer that, when not null, will receive the\n   number of characters that were processed. This can include any leading\n   whitespaces that were discarded, the sign, and the base prefix, so it\n   should not be confused with the number of digits the integral value has.\n3. A number indicating the base; by default, this is 10. Valid numbers of 2\n   to 36.	text	txt	2024-07-28 09:48:52.904194	3
-1325	423	template<typename T, typename = typename T = std::is_integral_v<T>>\nT stoi(std::string const& str, std::size_t* pos = 0, T base = 10);	text	txt	2024-07-28 09:48:52.925105	4
-1326	423	template<typename F, typename = typename F = std::is_floating_point_v<F>>\nF stof(std::string const& str, std::size_t* pos = 0);	code	txt	2024-07-28 09:48:52.94633	5
+4271	475	#include <vector>\n#include <iostream>\n\nint main() {\n    std::vector<int> data{1, 2, 3, 4, 5, 6};\n\n    // z is the literal suffix for signed size type\n    for (auto i = 0z; i < ssize(data); i++) {\n        int sum = 0;\n        if (i - 1 >= 0)\n            sum += data[i-1];\n        sum += data[i];\n        if (i + 1 < ssize(data))\n            sum += data[i+1];\n        std::cout << "" << sum << "\\\\n";\n    } // prints 3, 6, 9, 12, 15, 11\n}	code	cpp	2025-07-16 16:36:47.197495	2
+4264	471	#include <chrono>\n\nauto date{2024y/std::chrono::April/1d};\nfor (; date.month() == std::chrono::April; date += std::chrono::days{1})\n{\n    // iterate over all days in April 2024\n}	code	cpp	2025-07-16 16:15:36.804191	1
+4268	474	// C++17\nusing file_time_type = std::chrono::time_point</*trivial-clock*/>;\n\n// C++20\nusing file_time_type = std::chrono::time_point<std::chrono::file_clock>;	code	cpp	2025-07-16 16:18:39.549556	1
+4267	472	#include <iostream>\n#include <ctime>\n#include <sys/stat.h>\n\nint main(int argc, char** argv)\n{\n    char const* file_path{argv[0]};\n\n    struct stat file_stat;\n\n    if (stat(file_path, &file_stat) == 0)\n    {\n        std::time_t mod_time{file_stat.st_mtime};\n        char* str{std::asctime(std::localtime(&mod_time))};\n        std::cout << "Last modification time: " << str;;\n    }\n    else\n    {\n        std::cerr << "File status retrival failed\\\\n";\n    }\n}	code	cpp	2025-07-16 16:17:17.254314	1
+4269	474	#include <iostream>\n#include <filesystem>\n#include <chrono>\n\nint main(int argc, char** argv)\n{\n    std::filesystem::path file_path{argv[0]};\n    std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time(file_path);\n    std::cout << std::format("{0:%F 0:%R}\\\\n", last_write_time);\n}	code	cpp	2025-07-16 16:18:59.149422	2
 1327	424	* A sign, plus (+) or minus (-) (optional)\n* Prefix 0 to indicate an octal base (optional)\n* Prefix 0x or 0X to indicate a hexadecimal base (optional)\n* A sequence of digits	text	txt	2024-07-28 09:48:53.424476	1
-1328	424	auto i1 = std::stoi("42"); // 42\nauto i2 = std::stoi("    42"); // 42\nauto i3 = std::stoi("    42fortytwo"); // 42\nauto i4 = std::stoi("+42"); // 42\nauto i5 = std::stoi("-42"); // -42	code	txt	2024-07-28 09:48:53.44617	2
-1329	425	- `std::invalid_argument`: conversion cannot be performed.\n- `std::out_of_range`: converted value is outside the range of the result\n  type.	text	txt	2024-07-28 09:48:54.20091	1
-1330	425	try\n{\n    auto i1 = std::stoi("");\n}\ncatch (std::invalid_argument const& exp)\n{\n    std::cerr << exp.what() << '\\\\n';\n}	text	txt	2024-07-28 09:48:54.221671	2
-1331	425	try\n{\n    auto i2 = std::stoi("12345678901234");\n    auto i3 = std::stoi("12345678901234");\n}\ncatch (std::out_of_range const& exp)\n{\n    std::cerr << exp.what() << '\\\\n';\n}	code	txt	2024-07-28 09:48:54.242839	3
 1332	426	- Decimal floating-point expression (optional sign, sequence of decimal\n  digits with optional point, optional `e` or `E`, followed by exponent with\n  optional sign).\n- Binary floating-point expression (optional sign, `0x` or `0X` prefix,\n  sequence of hexadecimal digits with optional point, optional `p` or `P`,\n  followed by exponent with optional sign).\n- Infinity expression (optional sign followed by case-insensitive `INF` or\n  `INFINITY`).\n- A non-number expression (optional sign followed by case-insensitive `NAN`\n  and possibly other alphanumeric characters).	text	txt	2024-07-28 09:48:54.970496	1
-1333	426	auto d1 = std::stod("123.45");       // d1 = 123.45000000000000\nauto d2 = std::stod("+123.45");      // d2 = 123.45000000000000\nauto d3 = std::stod("-123.45");      // d3 = -123.45000000000000\nauto d4 = std::stod(" 123.45");      // d4 = 123.45000000000000\nauto d5 = std::stod(" -123.45abc");  // d5 = -123.45000000000000\nauto d6 = std::stod("1.2345e+2");    // d6 = 123.45000000000000\nauto d7 = std::stod("0xF.6E6666p3"); // d7 = 123.44999980926514\nauto d8 = std::stod("INF");          // d8 = inf\nauto d9 = std::stod("-infinity");    // d9 = -inf\nauto d10 = std::stod("NAN");         // d10 = nan\nauto d11 = std::stod("-nanabc");     // d11 = -nan	code	txt	2024-07-28 09:48:54.993014	2
-1334	427	#include <string>\n#include <string_view>	text	txt	2024-07-28 09:48:55.621418	1
-1335	427	using namespace std::string_literals;	text	txt	2024-07-28 09:48:55.641545	2
-1336	427	auto s1{ "text"s }; // std::string\nauto s2{ L"text"s }; // std::wstring\nauto s3{ u8"text"s }; // std::u8string\nauto s3{ u"text"s }; // std::u16string\nauto s4{ U"text"s }; // std::u32string	text	txt	2024-07-28 09:48:55.662145	3
-1337	427	using namespace std::string_view_literals;	text	txt	2024-07-28 09:48:55.683266	4
-1338	427	auto s5{ "text"sv }; // std::string_view	code	txt	2024-07-28 09:48:55.703935	5
-1339	428	#include <string>	text	txt	2024-07-28 09:48:56.131717	1
-1340	428	using namespace std::string_literals;	text	txt	2024-07-28 09:48:56.151439	2
-1341	428	auto filename { R"(C:\\\\Users\\\\Brian\\\\Documents\\\\)"s };\nauto pattern { R"((\\\\w[\\\\w\\\\d]*)=(\\\\d+))"s };	code	txt	2024-07-28 09:48:56.173321	3
-1342	429	#include <string>	text	txt	2024-07-28 09:48:56.744062	1
-1343	429	using namespace std::string_literals;	text	txt	2024-07-28 09:48:56.765548	2
-1344	429	auto s1{ R"(text)"s }; // std::string\nauto s2{ LR"(text)"s }; // std::wstring\nauto s3{ u8R"(text)"s }; // std::u8string\nauto s3{ uR"(text)"s }; // std::u16string\nauto s4{ UR"(text)"s }; // std::u32string	text	txt	2024-07-28 09:48:56.786935	3
-1345	429	using namespace std::string_view_literals;	text	txt	2024-07-28 09:48:56.807512	4
-1347	430	Passing `std::basic_string_view` to functions and returning\n`std::basic_string_view` still creates temporaries of this type, but these\nare small-sized objects on the stack (a pointer and a size could be 16 bytes\nfor 64-bit platforms); therefore, they should incur fewer performance costs\nthan allocating heap space and copying data.	text	txt	2024-07-28 09:48:57.487358	1
-1348	430	#include <string_view>	text	txt	2024-07-28 09:48:57.508818	2
-1349	430	std::string_view trim_view(std::string_view str)\n{\n    auto const pos1{ str.find_first_not_of(" ") };\n    auto const pos2{ str.find_last_not_of(" ") };\n    str.remove_suffix(str.length() - pos2 - 1);\n    str.remove_prefix(pos1);\n    return str;\n}	text	txt	2024-07-28 09:48:57.529348	3
-1350	430	auto sv1{ trim_view("sample") };\nauto sv2{ trim_view(" sample") };\nauto sv3{ trim_view("sample ") };\nauto sv4{ trim_view(" sample ") };	code	txt	2024-07-28 09:48:57.549508	4
-1351	431	#include <string_view>	text	txt	2024-07-28 09:48:57.909122	1
-1352	431	std::string_view message{"  something to show  "};	text	txt	2024-07-28 09:48:57.928415	2
-1353	431	std::size_t suffix{ str.find_last_not_of(" ") };\nstd::size_t prefix{ str.find_first_not_of(" ") };	code	txt	2024-07-28 09:48:57.949384	3
-1354	432	#include <string_view>	text	txt	2024-07-28 09:48:58.368724	1
-1355	432	std::string_view message{"  something to show  "};	text	txt	2024-07-28 09:48:58.390496	2
-1356	432	std::size_t suffix{ str.find_last_not_of(" ") };\nstd::size_t prefix{ str.find_first_not_of(" ") };	text	txt	2024-07-28 09:48:58.411204	3
-1357	432	str.remove_suffix(str.length() - pos2 - 1);\nstr.remove_prefix(pos1);	code	txt	2024-07-28 09:48:58.432423	4
+1299	418	In C++11, all containers received emplace variants of their typical\ninsert/push methods. The emplace variants can construct the element in place,\nsaving a move or copy.	text	txt	2024-07-28 09:48:49.526105	1
+1324	423	1. The first parameter is the input string.\n2. The second parameter is a pointer that, when not null, will receive the\n   number of characters that were processed. This can include any leading\n   whitespaces that were discarded, the sign, and the base prefix, so it\n   should not be confused with the number of digits the integral value has.\n3. A number indicating the base; by default, this is 10. Valid numbers of 2\n   to 36.	text	txt	2024-07-28 09:48:52.904194	2
+1328	424	auto i1 = std::stoi("42"); // 42\nauto i2 = std::stoi("    42"); // 42\nauto i3 = std::stoi("    42fortytwo"); // 42\nauto i4 = std::stoi("+42"); // 42\nauto i5 = std::stoi("-42"); // -42	code	cpp	2024-07-28 09:48:53.44617	2
+1329	425	- `std::invalid_argument`: conversion cannot be performed.\n- `std::out_of_range`: converted value is outside the range of the result\n  type.	text	txt	2024-07-28 09:48:54.20091	1
+1333	426	auto d1 = std::stod("123.45");       // d1 = 123.45000000000000\nauto d2 = std::stod("+123.45");      // d2 = 123.45000000000000\nauto d3 = std::stod("-123.45");      // d3 = -123.45000000000000\nauto d4 = std::stod(" 123.45");      // d4 = 123.45000000000000\nauto d5 = std::stod(" -123.45abc");  // d5 = -123.45000000000000\nauto d6 = std::stod("1.2345e+2");    // d6 = 123.45000000000000\nauto d7 = std::stod("0xF.6E6666p3"); // d7 = 123.44999980926514\nauto d8 = std::stod("INF");          // d8 = inf\nauto d9 = std::stod("-infinity");    // d9 = -inf\nauto d10 = std::stod("NAN");         // d10 = nan\nauto d11 = std::stod("-nanabc");     // d11 = -nan	code	cpp	2024-07-28 09:48:54.993014	2
+1306	419	To find a substring prior standard C++23:	text	txt	2024-07-28 09:48:50.503099	1
+1314	420	Using C++23:	text	txt	2024-07-28 09:48:51.076935	1
+1321	422	auto si  = std::to_string(42); // "42"\nauto sl  = std::to_string(42L); // "42"\nauto su  = std::to_string(42u); // "42"\nauto sd  = std::to_wstring(42.0); // "42.000000"\nauto sld = std::to_wstring(42.0L); // "42.000000"	code	cpp	2024-07-28 09:48:51.997505	1
 1358	433	Converting from an `std::basic_string_view` to an `std::basic_string` is not\npossible. You must explicitly construct an `std::basic_string` object from a\n`std::basic_string_view`.	text	txt	2024-07-28 09:48:58.818153	1
-1359	433	std::string_view sv{ "demo" };\nstd::string s{ sv };	code	txt	2024-07-28 09:48:58.839474	2
-1360	434	C++20 added prefix and suffix checking methods: starts_with and ends_with to both std::string and std::string_view.	text	txt	2024-07-28 09:48:59.47241	1
-1361	434	#include <string>\n#include <string_view>	text	txt	2024-07-28 09:48:59.493116	2
-1362	434	std::string str("the quick brown fox jumps over the lazy dog");\nbool t1 = str.starts_with("the quick"); // const char* overload\n                                        // t1 == true\nbool t2 = str.ends_with('g'); // char overload\n                              // t2 == true	text	txt	2024-07-28 09:48:59.513794	3
-1363	434	std::string_view needle = "lazy dog";\nbool t3 = str.ends_with(needle); // string_view overload\n                                 // t3 == true	text	txt	2024-07-28 09:48:59.53471	4
-1364	434	std::string_view haystack = "you are a lazy cat";\n// both starts_with and ends_with also available for string_view\nbool t4 = haystack.ends_with(needle);\n// t4 == false	code	txt	2024-07-28 09:48:59.555859	5
 1365	435	- You cannot format objects of user-defined types with printf.	text	txt	2024-07-28 09:48:59.777473	1
+1347	430	Passing `std::basic_string_view` to functions and returning\n`std::basic_string_view` still creates temporaries of this type, but these\nare small-sized objects on the stack (a pointer and a size could be 16 bytes\nfor 64-bit platforms); therefore, they should incur fewer performance costs\nthan allocating heap space and copying data.	text	txt	2024-07-28 09:48:57.487358	1
+1359	433	std::string_view sv{ "demo" };\nstd::string s{ sv };	code	cpp	2024-07-28 09:48:58.839474	2
+1360	434	C++20 added prefix and suffix checking methods: starts_with and ends_with to both std::string and std::string_view.	text	txt	2024-07-28 09:48:59.47241	1
 1366	436	`std::format` supports positional arguments i.e. referring to an argument by\nits index separated from format specifiers by the `:` character.	text	txt	2024-07-28 09:49:00.153432	1
-1367	436	#include <iostream>\n#include <format>	text	txt	2024-07-28 09:49:00.174405	2
-1368	436	std::clog << std::format("{0:02x} {1:02x} {2:02x}\\\\n", v0, v1, v2);	code	txt	2024-07-28 09:49:00.195387	3
-1369	437	#include <format>	text	txt	2024-07-28 09:49:00.492986	1
-1370	437	std::format("{02x}\\\\n", value);	code	txt	2024-07-28 09:49:00.511913	2
-1371	438	#include <format>\n#include <ostream>	text	txt	2024-07-28 09:49:01.133278	1
-1372	438	enum class color_code : std::uint_least8_t {};	text	txt	2024-07-28 09:49:01.15405	2
-1373	438	std::ostream& operator<<(std::ostream& os, color_code s)\n{\n    return os << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned>(s);\n}	text	txt	2024-07-28 09:49:01.174317	3
-1374	438	template <>\nstruct std::formatter<color_code> : std::formatter<unsigned>\n{\n    auto format(color_code const& code, format_context& ctx) {\n        return format_to(ctx.out(), "{:02x}", static_cast<unsigned>(code));\n    }\n};	text	txt	2024-07-28 09:49:01.194726	4
-1375	438	std::format("{}\\\\n", color_code);	code	txt	2024-07-28 09:49:01.215849	5
-1376	439	#include <format>\n#include <chrono>	text	txt	2024-07-28 09:49:01.525339	1
-1377	439	std::format("{:%F %T} UTC", std::chrono::system_clock::now());	code	txt	2024-07-28 09:49:01.545516	2
-1378	440	#include <iostream>\n#include <format>	text	txt	2024-07-28 09:49:01.845766	1
-1379	440	std::print("{} <{}>", "Brian Salehi", "salehibrian@gmail.com");	code	txt	2024-07-28 09:49:01.865153	2
-1380	441	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:02.303932	1
-1381	441	using namespace std::string_literals;	text	txt	2024-07-28 09:49:02.324158	2
-1382	441	std::string pattern{R"(...)"};	text	txt	2024-07-28 09:49:02.344938	3
-1383	441	std::regex srx{pattern};\nstd::regex lrx{R"(...)"s};	code	txt	2024-07-28 09:49:02.365336	4
-1384	442	std::regex irx{R"(...)"s, std::regex_constants::icase};	code	txt	2024-07-28 09:49:02.64907	1
-1385	443	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:03.463197	1
-1386	443	template<typename CharT>\nusing tstring = std::baisc_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;	text	txt	2024-07-28 09:49:03.483652	2
-1387	443	template<typename CharT>\nusing tregex = std::basic_regex<CharT>;	text	txt	2024-07-28 09:49:03.505512	3
-1388	443	template<typename CharT>\nbool matches(tstring<CharT> const& text, tstring<CharT> const& pattern)\n{\n    std::basic_regex<CharT> rx{pattern, std::regex_constants::icase};\n    return std::regex_match(text, rx);\n}	text	txt	2024-07-28 09:49:03.526991	4
-1389	443	int main()\n{\n    std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};\n    std::string pattern{R"((\\\\w+)://([\\\\w.]+)/([\\\\w\\\\d._-]+)/([\\\\w\\\\d._-]+)[.git]?)"};	text	txt	2024-07-28 09:49:03.549389	5
-1390	443	    if(matches(text, pattern))\n        std::cout << text << '\\\\n';\n    else\n        std::cerr << "invalid repository link!\\\\n";\n}	code	txt	2024-07-28 09:49:03.570144	6
+1384	442	std::regex irx{R"(...)"s, std::regex_constants::icase};	code	cpp	2024-07-28 09:49:02.64907	1
 1391	444	The `std::regex_match()` method has overloads that take a reference to a\n`std::match_results` object to store the result of the match.	text	txt	2024-07-28 09:49:04.734617	1
 1392	444	If there is no match, then `std::match_results` is empty and its size is 0.\nOtherwise, its size is 1, plus the number of matched subexpressions.	text	txt	2024-07-28 09:49:04.755407	2
-1393	444	The class template `std::sub_match` represents a sequence of characters that\nmatches a capture group; this class is actually derived from std::pair, and\nits first and second members represent iterators to the first and the one-\npast-end characters in the match sequence. If there is no match sequence, the\ntwo iterators are equal:	text	txt	2024-07-28 09:49:04.77727	3
-1394	444	* `typedef sub_match<const char *> csub_match;`\n* `typedef sub_match<const wchar_t *> wcsub_match;`\n* `typedef sub_match<string::const_iterator> ssub_match;`\n* `typedef sub_match<wstring::const_iterator> wssub_match;`	text	txt	2024-07-28 09:49:04.797473	4
-1395	444	The class template `std::match_results` is a collection of matches; the first\nelement is always a full match in the target, while the other elements are\nmatches of subexpressions:	text	txt	2024-07-28 09:49:04.819322	5
-1396	444	* `typedef match_results<const char *> cmatch;`\n* `typedef match_results<const wchar_t *> wcmatch;`\n* `typedef match_results<string::const_iterator> smatch;`\n* `typedef match_results<wstring::const_iterator> wsmatch;`	text	txt	2024-07-28 09:49:04.839906	6
-1397	444	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:04.859582	7
-1398	444	int main()\n{\n    std::string text{R"(https://github.com - https://github.com/briansalehi/references)"};\n    std::string pattern{R"((\\\\w+)://([\\\\w.]+)/([\\\\w\\\\d._-]+)/([\\\\w\\\\d._-]+)[.git]?)"};	text	txt	2024-07-28 09:49:04.880622	8
-1399	444	    std::regex rx{pattern, std::regex_constants::icase};\n    std::smatch matches;\n    bool matched = std::regex_match(text, matches, rx);	text	txt	2024-07-28 09:49:04.901556	9
-1400	444	    if (auto [match, protocol, domain, username, project] = matches; matched)\n        std::cout << project << " owned by " << username\n                  << " hosted on " << domain\n                  << " using " << protocol << " protocol\\\\n";	code	txt	2024-07-28 09:49:04.922474	10
 1401	445	The C++ standard library supports six regular expression engines:	text	txt	2024-07-28 09:49:05.461067	1
 1402	445	* ECMAScript (default)\n* basic POSIX\n* extended POSIX\n* awk\n* grep\n* egrep (grep with the option -E)	text	txt	2024-07-28 09:49:05.481883	2
-1403	445	#include <regex>	text	txt	2024-07-28 09:49:05.501822	3
-1404	445	std::regex pattern{R"(...)", std::regex_constants::egrep};	code	txt	2024-07-28 09:49:05.522224	4
-1405	446	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:06.305757	1
-1406	446	std::string text {\nR"(\n# server address\naddress = 123.40.94.215\nport=22	text	txt	2024-07-28 09:49:06.327505	2
-1407	446	# time to live\nttl = 5\n)"};	text	txt	2024-07-28 09:49:06.347431	3
-1408	446	int main()\n{\n    std::string pattern{R"(^(?!#)(\\\\w+)\\\\s*=\\\\s*([\\\\w\\\\d]+[\\\\w\\\\d._,:-]*)$)"};\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::smatch match{};	text	txt	2024-07-28 09:49:06.36908	4
-1409	446	    if (std::string variable, value; std::regex_search(text, match, rx))\n    {\n        variable = match[1];\n        value = match[2];\n    }\n}	code	txt	2024-07-28 09:49:06.391495	5
 1410	447	The iterators available in the regular expressions standard library are as\nfollows:	text	txt	2024-07-28 09:49:07.915783	1
 1411	447	* `std::regex_interator`: A constant forward iterator used to iterate through\n  the occurrences of a pattern in a string. It has a pointer to an\n  `std::basic_regex` that must live until the iterator is destroyed. Upon\n  creation and when incremented, the iterator calls `std::regex_search()` and\n  stores a copy of the `std::match_results` object returned by the algorithm.\n* `std::regex_token_iterator`: A constant forward iterator used to iterate\n  through the submatches of every match of a regular expression in a string.\n  Internally, it uses a `std::regex_iterator` to step through the submatches.\n  Since it stores a pointer to an `std::basic_regex` instance, the regular\n  expression object must live until the iterator is destroyed.	text	txt	2024-07-28 09:49:07.939133	2
 1412	447	The token iterators can return the unmatched parts of the string if the index\nof the subexpressions is -1, in which case it returns an `std::match_results`\nobject that corresponds to the sequence of characters between the last match\nand the end of the sequence:	text	txt	2024-07-28 09:49:07.96024	3
-1413	447	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:07.980177	4
-1414	447	std::string text {\nR"(\n# server address\naddress = 123.40.94.215\nport=22	text	txt	2024-07-28 09:49:08.000833	5
-1415	447	# time to live\nttl = 5\n)"};	text	txt	2024-07-28 09:49:08.021485	6
-1416	447	int main()\n{\n    std::string pattern{R"(^(?!#)(\\\\w+)\\\\s*=\\\\s*([\\\\w\\\\d]+[\\\\w\\\\d._,:-]*)$)"};\n    std::regex rx{pattern, std::regex_constants::icase};\n    std::sregex_iterator end{};	text	txt	2024-07-28 09:49:08.042548	7
-1417	447	    // iterate through regex matches\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }	text	txt	2024-07-28 09:49:08.063166	8
-1418	447	    // iterate through unmatched tokens\n    for (auto it = std::sregex_iterator{std::begin(text), std::end(text), rx, -1};\n            it ! end; ++it)\n    {\n        std::string variable = (*it)[1];\n        std::string value = (*it)[2];\n    }	text	txt	2024-07-28 09:49:08.084537	9
-1419	447	    // iterate through tokens of regex matches\n    std::sregex_token_iterator tend{};\n    for (auto it = std::sregex_token_iterator{std::begin(text), std::end(text), rx};\n            it ! tend; ++it)\n    {\n        std::string token = *it;\n    }\n}	code	txt	2024-07-28 09:49:08.105455	10
-1420	448	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:08.558622	1
-1421	448	int main()\n{\n    std::string text{"this is a example with a error"};\n    std::regex rx{R"(\\\\ba ((a|e|i|o|u)\\\\w+))"};\n    std::regex_replace(text, rx, "an $1");\n}	code	txt	2024-07-28 09:49:08.580007	2
 1422	449	Apart from the identifiers of the subexpressions (`$1`, `$2`, and so on),\nthere are other identifiers for the entire match (`$&`), the part of the\nstring before the first match ($\\\\`), and the part of the string after the\nlast match (`$'`).	text	txt	2024-07-28 09:49:09.099723	1
-1423	449	#include <string>\n#include <regex>	text	txt	2024-07-28 09:49:09.120376	2
-1424	449	int main()\n{\n    std::string text{"current date: 3 10 2022"};\n    std::regex pattern{R"((\\\\d{1,2})\\\\s*(\\\\d{1,2})\\\\s*(\\\\d{2,4}))"};\n    std::string reformatted = std::regex_replace(text, pattern, R"([$`] $2 $1 $3 [$'])");\n}	code	txt	2024-07-28 09:49:09.141424	3
 1425	450	Standard types that are not arithmetic types, such as `std::complex<T>` or\n`std::nullptr_t`, do not have `std::numeric_limits` specializations.	text	txt	2024-07-28 09:49:10.043176	1
-1426	450	#include <limits>	text	txt	2024-07-28 09:49:10.063408	2
-1427	450	auto min_int = std::numeric_limits<int>::min();\nauto max_int = std::numeric_limits<int>::max();	text	txt	2024-07-28 09:49:10.084329	3
-1428	450	auto min_double = std::numeric_limits<double>::min();\nauto low_double = std::numeric_limits<double>::lowest();\nauto max_double = std::numeric_limits<double::lowest();	code	txt	2024-07-28 09:49:10.105092	4
-1429	450	In this example objects in a range should have `<` comparison operator overloaded.	text	txt	2024-07-28 09:49:10.124395	5
-1430	450	#include <limits>	text	txt	2024-07-28 09:49:10.144701	6
-1431	450	template<typename T, typename Iter>\nT minimum(Iter const start, Iter const end)\n{\n    T latest_minimum = std::numeric_limits<T>::max();	text	txt	2024-07-28 09:49:10.164447	7
-1432	450	    for (autp i = start; i < end; ++i)\n        if (*i < latest_minimum)\n            latest_minimum = *i;	text	txt	2024-07-28 09:49:10.184975	8
-1433	450	    return latest_minimum;\n}	code	txt	2024-07-28 09:49:10.205897	9
-1434	451	`digits` represents the number of bits (excluding the sign bit if present)\nand padding bits (if any) for integral types and the number of bits of the\nmantissa for floating-point types.	text	txt	2024-07-28 09:49:10.69293	1
-1435	451	#include <limits>	text	txt	2024-07-28 09:49:10.713393	2
-1436	451	auto s = std::numeric_limits<short>::digits;\nauto d = std::numeric_limits<double>::digits;	code	txt	2024-07-28 09:49:10.734611	3
-1437	452	#include <limits>	text	txt	2024-07-28 09:49:11.124051	1
-1438	452	auto s = std::numeric_limits<short>::digits10;\nauto d = std::numeric_limits<double>::digits10;	code	txt	2024-07-28 09:49:11.143339	2
-1439	453	#include <limits>	text	txt	2024-07-28 09:49:11.502615	1
-1440	453	auto value_is_signed = std::numeric_limist<T>::is_signed;	code	txt	2024-07-28 09:49:11.52406	2
-1441	454	#include <limits>	text	txt	2024-07-28 09:49:11.877154	1
-1442	454	auto value_is_integer = std::numeric_limist<T>::is_integer;	code	txt	2024-07-28 09:49:11.897741	2
-1443	455	#include <limits>	text	txt	2024-07-28 09:49:12.260637	1
-1444	455	auto value_is_exact = std::numeric_limist<T>::is_exact;	code	txt	2024-07-28 09:49:12.280032	2
-1445	456	#include <limits>	text	txt	2024-07-28 09:49:12.609411	1
-1446	456	auto value_has_infinity = std::numeric_limist<T>::has_infinity;	code	txt	2024-07-28 09:49:12.629795	2
-1447	457	#include <complex>	text	txt	2024-07-28 09:49:13.035705	1
-1448	457	using namespace std::complex_literals;	text	txt	2024-07-28 09:49:13.055301	2
-1449	457	auto c{ 12.0 + 4.2i }; // std::complex<double>	code	txt	2024-07-28 09:49:13.075705	3
-1450	458	Except for `random_device`, all engines produce numbers in a uniform distribution.	text	txt	2024-07-28 09:49:13.491277	1
-1451	458	#include <random>	text	txt	2024-07-28 09:49:13.512169	2
-1452	458	auto min = std::mt19937::min();\nauto max = std::mt19937::max();	code	txt	2024-07-28 09:49:13.533412	3
-1453	459	Random generators can be seeded using their constructors or the `seed()`\nmethod. Note that `random_device` cannot be seeded.	text	txt	2024-07-28 09:49:14.060533	1
-1454	459	#include <random>	text	txt	2024-07-28 09:49:14.081311	2
-1455	459	std::random_device seeder;\nstd::mt19937 generator1{seeder()};	text	txt	2024-07-28 09:49:14.103408	3
-1456	459	std::mt19937 generator2;\ngenerator2.seed(seeder());	code	txt	2024-07-28 09:49:14.124494	4
-1457	460	The function call operators of random engines are overloaded and generate a\nnew number uniformly distributed between `min()` and `max()`:	text	txt	2024-07-28 09:49:14.622394	1
-1458	460	#include <random>	text	txt	2024-07-28 09:49:14.643461	2
-1459	460	std::random_device seeder;\nstd::mt19937 generator{seeder()};\nauto number = generator();	code	txt	2024-07-28 09:49:14.665309	3
-1460	461	#include <random>	text	txt	2024-07-28 09:49:15.045216	1
-1461	461	std::mt19937 generator{};\ngenerator.discard(4); // discard 4 numbers	code	txt	2024-07-28 09:49:15.065887	2
-1462	462	The Mersenne twister engine has a bias toward producing some values\nrepeatedly and omitting others, thus generating numbers not in a uniform\ndistribution, but rather in a binomial or Poisson distribution.	text	txt	2024-07-28 09:49:15.686428	1
-1463	462	#include <random>\n#include <functional>	text	txt	2024-07-28 09:49:15.707636	2
-1464	462	int main()\n{\n    std::random_device seeder;	text	txt	2024-07-28 09:49:15.727749	3
-1465	462	    std::array<int, std::mt19937::state_size> seed_data{};\n    std::generate(std::begin(seed_data), std::end(seed_data), std::ref(seeder));\n    std::seed_seq seeds(std::begin(seed_data), std::end(seed_data));\n    std::mt19937 generator{seeds};\n    std::uniform_int_distribution<> dist{0, 10}; // [0, 10)\n    int random_number = dist(generator);\n}	code	txt	2024-07-28 09:49:15.749516	4
-1466	463	Difference of time points is a duration.	text	txt	2024-07-28 09:49:16.295539	1
-1467	463	#include <chrono>\n#include <thread>	text	txt	2024-07-28 09:49:16.316777	2
-1468	463	using namespace std::chrono_literals;	text	txt	2024-07-28 09:49:16.337121	3
-1469	463	auto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();	text	txt	2024-07-28 09:49:16.357419	4
-1470	463	auto duration = tp2 - tp1;\nstd::cout << duration << "\\\\n";\n// example output: 1115389ns	code	txt	2024-07-28 09:49:16.3791	5
-1471	464	#include <chrono>\n#include <thread>	text	txt	2024-07-28 09:49:16.876751	1
-1472	464	using namespace std::chrono_literals;	text	txt	2024-07-28 09:49:16.89764	2
-1473	464	auto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();	text	txt	2024-07-28 09:49:16.918559	3
-1474	464	// explicit type of duration, base type double, with micro precision\nstd::chrono::duration<double, std::micro> sleep_duration = tp2 - tp1;\nstd::cout << sleep_duration << "\\\\n";\n// example output: 1115.39µs	code	txt	2024-07-28 09:49:16.941761	4
-1475	465	Duractions can be converted between each other using `duration_cast`.	text	txt	2024-07-28 09:49:17.450555	1
-1476	465	#include <chrono>\n#include <thread>	text	txt	2024-07-28 09:49:17.472587	2
-1477	465	using namespace std::chrono_literals;	text	txt	2024-07-28 09:49:17.493318	3
-1478	465	auto tp1 = std::chrono::steady_clock::now();\nstd::this_thread::sleep_for(1ms);\nauto tp2 = std::chrono::steady_clock::now();	text	txt	2024-07-28 09:49:17.51469	4
-1479	465	auto micro = std::chrono::duration_cast<std::chrono::microseconds>(tp2 - tp1);\nstd::cout << micro << "\\\\n";\n// example output: 1115µs	code	txt	2024-07-28 09:49:17.535712	5
-1480	466	#include <chrono>	text	txt	2024-07-28 09:49:17.851207	1
-1481	466	bool system_is_steady = std::chrono::system_clock::is_steady;	code	txt	2024-07-28 09:49:17.872054	2
-1482	467	#include <chrono>	text	txt	2024-07-28 09:49:18.137106	1
-1483	467	auto resolution = std::chrono::system_clock::duration{1};	code	txt	2024-07-28 09:49:18.157148	2
-1484	468	#include <chrono>	text	txt	2024-07-28 09:49:18.595973	1
-1485	468	using namespace std::chrono_literals;	text	txt	2024-07-28 09:49:18.615466	2
-1486	468	auto timer {2h + 42min + 15s}; // std::chrono::duration<long long>	text	txt	2024-07-28 09:49:18.636698	3
-1487	468	auto year { 2035y }; // std::chrono::year (c++20)\nauto day { 15d }; // std::chrono::day (c++20)	code	txt	2024-07-28 09:49:18.656694	4
+1429	450	In this example objects in a range should have `<` comparison operator overloaded.	text	txt	2024-07-28 09:49:10.124395	3
 1488	469	- `operator""y`\n- `operator""d`	text	txt	2024-07-28 09:49:18.920083	1
-1489	470	// A day in a year can be specified using literals and operator/\nauto christmas_eve = 2023y/std::chrono::December/24d;\n// decltype(christmas_eve) == std::chrono::year_month_day	text	txt	2024-07-28 09:49:19.271953	1
-1490	470	auto specific_day = std::chrono::weekday{std::chrono::sys_days{christmas_eve}};\n// specific_day == std::chrono::Sunday	code	txt	2024-07-28 09:49:19.293242	2
-1491	471	#include <chrono>	text	txt	2024-07-28 09:49:19.64946	1
-1492	471	auto date{2024y/std::chrono::April/1d};\nfor (; date.month() == std::chrono::April; date += std::chrono::days{1})\n{\n    // iterate over all days in April 2024\n}	code	txt	2024-07-28 09:49:19.670721	2
-1493	472	#include <iostream>\n#include <ctime>\n#include <sys/stat.h>	text	txt	2024-07-28 09:49:20.366016	1
-1494	472	int main(int argc, char** argv)\n{\n    char const* file_path{argv[0]};	text	txt	2024-07-28 09:49:20.386552	2
-1495	472	    struct stat file_stat;	text	txt	2024-07-28 09:49:20.406628	3
-1496	472	    if (stat(file_path, &file_stat) == 0)\n    {\n        std::time_t mod_time{file_stat.st_mtime};\n        char* str{std::asctime(std::localtime(&mod_time))};\n        std::cout << "Last modification time: " << str;;\n    }\n    else\n    {\n        std::cerr << "File status retrival failed\\\\n";\n    }\n}	code	txt	2024-07-28 09:49:20.428222	4
+1434	451	`digits` represents the number of bits (excluding the sign bit if present)\nand padding bits (if any) for integral types and the number of bits of the\nmantissa for floating-point types.	text	txt	2024-07-28 09:49:10.69293	1
+1450	458	Except for `random_device`, all engines produce numbers in a uniform distribution.	text	txt	2024-07-28 09:49:13.491277	1
+1453	459	Random generators can be seeded using their constructors or the `seed()`\nmethod. Note that `random_device` cannot be seeded.	text	txt	2024-07-28 09:49:14.060533	1
+1457	460	The function call operators of random engines are overloaded and generate a\nnew number uniformly distributed between `min()` and `max()`:	text	txt	2024-07-28 09:49:14.622394	1
+1462	462	The Mersenne twister engine has a bias toward producing some values\nrepeatedly and omitting others, thus generating numbers not in a uniform\ndistribution, but rather in a binomial or Poisson distribution.	text	txt	2024-07-28 09:49:15.686428	1
+1466	463	Difference of time points is a duration.	text	txt	2024-07-28 09:49:16.295539	1
+1475	465	Duractions can be converted between each other using `duration_cast`.	text	txt	2024-07-28 09:49:17.450555	1
 1497	473	We have one free function and a member function in `directory_entry`.\nThey both return file_time_type which in C++17 is defined as:	text	txt	2024-07-28 09:49:20.928923	1
-1498	473	// C++17\nusing file_time_type = std::chrono::time_point</*trivial-clock*/>;	code	txt	2024-07-28 09:49:20.949159	2
-1499	473	*Sample*\nauto filetime = std::filesystem::last_write_time(myPath);\nconst auto toNow = std::filesystem::file_time_type::clock::now() - filetime;\nconst auto elapsedSec = duration_cast<seconds>(toNow).count();	code	txt	2024-07-28 09:49:20.971189	3
-1500	474	// C++17\nusing file_time_type = std::chrono::time_point</*trivial-clock*/>;	text	txt	2024-07-28 09:49:21.6011	1
-1501	474	// C++20\nusing file_time_type = std::chrono::time_point<std::chrono::file_clock>;	code	txt	2024-07-28 09:49:21.621608	2
-1502	474	#include <iostream>\n#include <filesystem>\n#include <chrono>	text	txt	2024-07-28 09:49:21.641967	3
-1503	474	int main(int argc, char** argv)\n{\n    std::filesystem::path file_path{argv[0]};\n    std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time(file_path);\n    std::cout << std::format("{0:%F 0:%R}\\\\n", last_write_time);\n}	code	txt	2024-07-28 09:49:21.662842	4
 3648	1167	    mov rdi, format_integral\n    mov rsi, rax\n    xor rax, rax\n    call printf	text	txt	2024-07-28 09:55:24.650697	17
-1504	475	`std::ssize()` is a C++20 function template that returns the size information\nof the passed-in range or array as a signed integer (typically\n`std::ptrdiff_t`). The range version `std::ranges::ssize()` instead uses the\nrange-style "customization point object" approach while maintaining the same\nfunctionality. This allows for simpler code when working with raw indexes.	text	txt	2024-07-28 09:49:22.341083	1
-1505	475	#include <vector>\n#include <iostream>	text	txt	2024-07-28 09:49:22.361731	2
-1506	475	int main() {\n    std::vector<int> data{1, 2, 3, 4, 5, 6};	text	txt	2024-07-28 09:49:22.381861	3
-1507	475	    // z is the literal suffix for signed size type\n    for (auto i = 0z; i < ssize(data); i++) {\n        int sum = 0;\n        if (i - 1 >= 0)\n            sum += data[i-1];\n        sum += data[i];\n        if (i + 1 < ssize(data))\n            sum += data[i+1];\n        std::cout << "" << sum << "\\\\n";\n    } // prints 3, 6, 9, 12, 15, 11\n}	code	txt	2024-07-28 09:49:22.403583	4
 1508	476	A *range* is denoted by a pair of *iterators*, or more generally, since\nC++20, an *iterator* and a *sentinel*.	text	txt	2024-07-28 09:49:23.503368	1
 1509	476	To reference the entire content of a data structure, we can use the `begin()`\nand `end()` methods that return an iterator to the first element and an\niterator one past the last element, respectively. Hence, the range [begin,\nend) contains all data structure elements.	text	txt	2024-07-28 09:49:23.525156	2
 1510	476	#include <algorithm>\n#include <iostream>\n#include <vector>	text	txt	2024-07-28 09:49:23.546342	3
@@ -17538,6 +17188,9 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1525	478	// OK for std::copy_backward\n// [ source range      ]\n//         [ destination range ]\nstd::copy_backward(data.begin(), data.begin() + 8, data.end());\n// data == {1, 1, 2, 3, 4, 5, 6, 7, 8}	code	txt	2024-07-28 09:49:25.183124	6
 1923	574	When implementing contract for overriden functions, the contract cannot be\nwider than the contract already defined for the virtual function within base\nclass.	text	txt	2024-07-28 09:50:30.104241	1
 1924	574	class base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 100)\n    {\n    }\n};	text	txt	2024-07-28 09:50:30.124	2
+1498	473	// C++17\nusing file_time_type = std::chrono::time_point</*trivial-clock*/>;	code	cpp	2024-07-28 09:49:20.949159	2
+1499	473	*Sample*\nauto filetime = std::filesystem::last_write_time(myPath);\nconst auto toNow = std::filesystem::file_time_type::clock::now() - filetime;\nconst auto elapsedSec = duration_cast<seconds>(toNow).count();	code	cpp	2024-07-28 09:49:20.971189	3
+1504	475	`std::ssize()` is a C++20 function template that returns the size information\nof the passed-in range or array as a signed integer (typically\n`std::ptrdiff_t`). The range version `std::ranges::ssize()` instead uses the\nrange-style "customization point object" approach while maintaining the same\nfunctionality. This allows for simpler code when working with raw indexes.	text	txt	2024-07-28 09:49:22.341083	1
 1526	479	- Iteration over a sequence for arbitrary action on each element: `for_each`, `for_each_n`, `transform`\n- Searching through a sequence: `find`, `find_if`, `find_end`, `search`, `count`, `any_of`, `adjacent_find`\n- Mutate the sequence: `copy`, `copy_if`, `move`, `fill`, `replacd`, `generate`, `rotate`\n- Sort in various ways: `sort`, `stable_sort`, `partial_sort`, `nth_element`, `is_sorted`\n- Reduction and scans: `reduce`, `transform_reduce`, `inclusive_scan`, `exclusive_scan`	text	txt	2024-07-28 09:49:25.548245	1
 1527	480	The algorithms that have the overload with `std::execution` enumeration as\nfirst parameter.	text	txt	2024-07-28 09:49:26.029294	1
 1528	480	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 09:49:26.049714	2
@@ -19895,6 +19548,14 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 760	305	Checks for equality work for Derived because `operator ==` automatically\ndeclared equivalent to `operator <=>`:	text	txt	2024-07-28 09:47:21.26387	8
 774	306	bool operator==(int i, MyType const& t)\n{\n    return t == MyType{i};\n    // doesn't try operator==(i, t) causing infinit recursion\n    // only uses t.operator(MyType{i});\n}	code	cpp	2024-07-28 09:47:22.941101	10
 3963	305	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n    bool operator==(Derived const&) const = default;\n};\n\nDerived d1, d2;\nd1 > d2; // ERROR: cannot deduce comparison category of operator <=>\nd1 == d2; // OK: only tries operator <=> and Base::operator==	code	cpp	2025-07-15 21:49:39.381832	9
+937	350	To inform compiler about the best match of two overloads with same signature,\nwe can use concepts as a type constraint.	text	txt	2024-07-28 09:47:49.015818	2
+4013	356	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n\n    template<typename U>\n    friend std::ostream& operator<<(std::ostream&, Stack<U> const&);\n};	code	cpp	2025-07-16 14:12:32.650297	3
+4006	350	template<typename T>\nconcept has_push_back = requires (Container c, Container::value_type v) { c.push_back(v); };\n\ntemplate<typename T>\nconcept has_insert = requires (Container c, Container::value_type v) { c.insert(v); };\n\nvoid add(has_push_back auto& container, auto const& value)\n{\n    container.push_back(value);\n}\n\nvoid add(has_insert auto& container, auto const& value)\n{\n    container.insert(value);\n}	code	cpp	2025-07-16 14:10:42.601141	3
+4010	352	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> data;\n\npublic:\n    void push(T const&);\n    void pop() const;\n    T const& top() const;\n    bool empty() const;\n};	code	cpp	2025-07-16 14:11:30.104055	3
+4009	351	template<typename T>\nconcept has_push_back = requies (Container c, Container::value_type v) { c.push_back(v); };\n\ntemplate<has_push_back C, typename T>\nvoid add(C& container, T const& value)\n{\n    container.push_back(value);\n}\n\nvoid add(has_push_back auto& container, auto const& value)\n{\n    container.push_back(value);\n}\n\nvoid add(auto& container, auto const& value)\n{\n    if constexpr (requires { container.push_back(value); })\n    {\n        container.push_back(value);\n    }\n    else\n    {\n        container.insert(value);\n    }\n}	code	cpp	2025-07-16 14:11:02.515213	1
+956	354	To define a member function of a class template, you have to specify that it\nis a template, and you have to use the full type qualification of the class\ntemplate.	text	txt	2024-07-28 09:47:52.233889	1
+4012	354	template<typename T>\nclass Stack\n{\n    void push(T const&);\n    void pop();\n};\n\ntemplate<typename T>\nvoid Stack<T>::push(T const&) { }\n\ntemplate<typename T>\nvoid Stack<T>::pop() { }	code	cpp	2025-07-16 14:11:52.075904	2
+971	356	Note the `<T>` behind the function name `operator<<`. Thus, we declare a\nspecialization of the nonmember function template as friend. Without `<T>` we\nwould declare a new nontemplate function.	text	txt	2024-07-28 09:47:54.544082	6
 3969	307	#include <memory>\n\nclass string_buffer\n{\npublic:\n    explicit string_buffer() {}\n    explicit string_buffer(std::size_t const size) {}\n    explicit string_buffer(char const* const ptr) {}\n    explicit operator bool() const { return false; }\n    explicit operator char* const () const { return nullptr; }\n};\n\nint main()\n{\n    std::shared_ptr<char> str;\n    string_buffer b1;            // calls string_buffer()\n    string_buffer b2(20);        // calls string_buffer(std::size_t const)\n    string_buffer b3(str.get()); // calls string_buffer(char const*)\n\n    enum item_size { small, medium, large };\n\n    // implicit conversion cases when explicit not specified\n    string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)\n    string_buffer b5 = small;    // would call string_buffer(std::size_t const)\n}	code	cpp	2025-07-15 21:51:51.616913	1
 3975	313	*C++20*\nstruct Holder\n{\n    [[nodiscard]] Holder(int value);\n    Holder();\n};\n\nint main()\n{\n    Holder{42}; // warning here\n    Holder h{42}; // constructed object not discarded, no warning\n    Holder{}; // default constructed, no warning\n}	code	cpp	2025-07-15 21:53:53.51629	1
 809	321	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	code	cpp	2024-07-28 09:47:30.364146	2
@@ -19911,11 +19572,78 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 859	334	It is a template parameter representing multiple parameters with different types.	text	txt	2024-07-28 09:47:37.983517	1
 3988	328	template<typename T = std::string>\nvoid f(T = "");\n\nf();    // OK: f<std::string>()	code	cpp	2025-07-15 21:59:16.971079	4
 3989	328	template<typename T>\nvoid f(T = "");\n\nf(1);   // OK: f<int>(1)\nf();    // ERROR: cannot deduce T	code	cpp	2025-07-15 21:59:56.371463	2
+4001	341	#include <type_traits>\n\ntemplate<typename T1, typename T2,\n          typename RT = std::decay_t<decltype(true ? T1() : T2())>>	code	cpp	2025-07-16 14:09:18.915151	2
 3990	329	template<typename T1, typename T2>\nT1 max(T1 a, T2 b)\n{\n    return b < a ? a : b;\n}\n\nauto m = ::max(4, 7.2); // OK:: but max returns int	code	cpp	2025-07-15 22:01:00.500284	1
+4002	341	RT max(T1 a, T2 b);\n\ntemplate<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>\nRT max(T1 a, T2 b);	code	cpp	2025-07-16 14:09:25.85498	4
 3997	336	template<typename... Args>\nauto print(Args... args)\n{\n    (std::cout << ... << args) << std::endl;\n}\n\nprint(42, "42", 42.0);	code	cpp	2025-07-15 22:05:27.847752	2
 3992	331	template <typaname RT, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nmax<double>(4, 7.2); // OK	code	cpp	2025-07-15 22:02:20.287953	5
 3994	333	#include <iostream>\n#include <algorithm>\n#include <iterator>\n#include <vector>\n\ntemplate<template<typename> typename V, typename T>\nvoid print(V<T> const& container)\n{\n    for (auto const& item: container)\n        std::cout << item << " ";\n    std::cout << std::endl;\n}\n\nint main()\n{\n    print(std::vector<int>{1,2,3,4});\n}	code	cpp	2025-07-15 22:03:23.437946	1
 3995	334	void print() { }\n\ntemplate<typename T, typename... Types>\nvoid print(T first, Types... rest)\n{\n    std::cout << first << '\\\\n';\n    print(rest...);\n}	code	cpp	2025-07-15 22:03:45.459907	2
+3998	339	#include <type_traits>\n\ntemplate<typename T1, typename T2>\nauto max(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type;	code	cpp	2025-07-16 14:08:00.480194	2
+3999	340	#include <type_traits>\n\ntemplate<typename T1, typename T2>\ntypename std::common_type<T1, T2>::type max(T1 a, T2 b);	code	cpp	2025-07-16 14:08:28.112224	2
+4000	340	#include <type_traits>\n\ntemplate<typename T1, typename T2>\nstd::common_type_t<T1, T2> max(T1 a, T2 b);	code	cpp	2025-07-16 14:08:34.631286	4
+4003	342	template<typename RT = long, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nint i;\nlong l;\nmax(i, l);  // returns long due default argument of template parameter for return type\nmax<int>(7, 42);    // returns int as explicitly specified, T1 and T2 deduced by function arguments	code	cpp	2025-07-16 14:09:46.985342	2
+934	348	template<typename T>\nrequires std::is_copyable<T> && supports_less_than<T>\nT max_value(T a, T b)\n{\n    return b < a ? a : b;\n}	code	cpp	2024-07-28 09:47:47.986862	2
+4016	356	template<typename T>\nclass Stack;\n\ntemplate<typename T>\nstd::ostream& operator<<(std::ostream&, Stack<T> const&);\n\ntemplate<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n\n    friend std::ostream& operator<<<T>(std::ostream&, Stack<T> const&);\n};	code	cpp	2025-07-16 14:12:49.239489	5
+4019	357	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};\n\ntemplate<typename T>\nvoid Stack<T>::push(T const&) { }\n\ntemplate<>\nStack<std::string>\n{\n    void push(std::string const&);\n};\n\nvoid Stack<std::string>::push(std::string const&) { }	code	cpp	2025-07-16 14:13:18.000498	2
+1006	362	Since C++14, the standard library uses this technique to define shortcuts for\nall type traits in the standard library that yield a type:	text	txt	2024-07-28 09:47:59.629697	4
+4029	360	template<typename T, typename C = std::vector<T>>\nclass Stack\n{\nprivate:\n    C container;\n\npublic:\n    void push(T const&);\n    void pop();\n    T const& top() const;\n    bool empty() const;\n};\n\ntemplate<typename T, typename C>\nvoid Stack<T, C>::push(T const& value)\n{\n    container.push_back(value);\n}\n\ntemplate<typename T, typename C>\nvoid Stack<T, C>::pop()\n{\n    container.pop_back();\n}\n\ntemplate<typename T, typename C>\nT const& Stack<T, C>::top() const\n{\n    if (container.empty()) throw std::exception{"empty container"};\n    return container.back();\n}\n\ntemplate<typename T, typename C>\nbool Stack<T, C>::empty() const\n{\n    return container.empty();\n}	code	cpp	2025-07-16 14:17:45.750803	1
+4022	358	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};\n\ntemplate<typename T>\nvoid Stack<T> push(T const&) { }\n\ntemplate<typename T>\nclass Stack<T*>\n{\n    void push(T*);\n};\n\ntemplate<typename T>\nvoid Stack<T*>::push(T*) { }	code	cpp	2025-07-16 14:13:39.482773	2
+4030	362	struct Matrix\n{\n    using iterator = ...;\n};\n\ntemplate<typename T>\nusing MatrixIterator = typename Matrix<T>::iterator;	code	cpp	2025-07-16 14:22:26.224873	2
+1007	362	std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11\nstd::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11	code	cpp	2024-07-28 09:47:59.650938	5
+4024	359	template<typename T>\nclass Stack<T, T>;\n\ntemplate<typename T>\nclass Stack<T, int>;\n\ntemplate<typename T1, typename T2>\nclass Stack<T1*, T2*>;	code	cpp	2025-07-16 14:14:01.889553	3
+1011	364	1. Number of arguments must match\n2. Types must fit (including implicit conversions)\n3. Choose best match:\n  - Perfect match over template\n  - Template over conversion\n  - For non-empty brace initialization, `std::initializer_list<>` has highest\n    priority	text	txt	2024-07-28 09:48:02.284768	2
+4041	364	namespace std\n{\n    template<typename ElemT, typename Allocator = allocator<T>>\n    class vector\n    {\n    public:\n        vector() noexcept(noexcept(Allocator()));\n\n        explicit vector(Allocator const&) noexcept;\n\n        explicit vector(size_t n, Allocator const& = Allocator());\n\n        vector(size_t n, ElemT const& value, Allocator const& = Allocator());\n\n        template<typename Iter>\n        vector(Iter beg, Iter end, Allocator const& = Allocator());\n\n        vector(vector const& x);\n\n        vector(vector&&) noexcept;\n\n        vector(vector const&, Allocator const&);\n\n        vector(vector&&, Allocator const&);\n\n        vector(vector&&, Allocator const&);\n\n        vector(initializer_list<ElemT>, Allocator const& = Allocator());\n    };\n} // std\n\nint main()\n{\n    std::vector v1(42, 73);\n}	code	cpp	2025-07-16 14:23:45.148707	3
+1252	409	But this solely prevents objects with names. So we should implement two\noverloads that pass by values and move:	text	txt	2024-07-28 09:48:42.421675	10
+1253	409	Overloading both for rvalue and lvalue references lead to many different\ncombinations of parameters.	text	txt	2024-07-28 09:48:42.442683	11
+4119	403	Deleting the move operations and enabling the copy operations really makes no sense:\nclass Person\n{\npublic:\n    ...\n    // copy constructor explicitly declared:\n    Person(const Person& p) = default;\n    Person& operator=(const Person&) = default;\n\n    // move constructor/assignment declared as deleted:\n    Person(Person&&) = delete;\n    Person& operator=(Person&&) = delete;\n    ...\n};\n\nPerson p{"Tina", "Fox"};\ncoll.push_back(p); // OK: copying enabled\ncoll.push_back(std::move(p)); // ERROR: moving disabled	code	cpp	2025-07-16 14:40:23.980828	4
+4051	367	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;\n\npublic:\n    Stack(T value): container({std::move(value)}) { }\n    // initialize stack with one element by value to decay on class template argument deduction\n};	code	cpp	2025-07-16 14:25:40.056214	4
+1024	364	By following the overload resolution matching rules, the first rule *number\nof arguments* specifies that we have 6 following matches that fit two\nparameters:	text	txt	2024-07-28 09:48:02.551094	4
+4046	364	explicit vector(size_t n, Allocator const& = Allocator());\n\nvector(size_t n, ElemT const& value, Allocator const& = Allocator());\n\ntemplate<typename Iter>\nvector(Iter beg, Iter end, Allocator const& = Allocator());\n\nvector(vector&&, Allocator const&);\n\nvector(vector&&, Allocator const&);\n\nvector(initializer_list<ElemT>, Allocator const& = Allocator());	code	cpp	2025-07-16 14:24:12.87054	5
+1031	364	By applying the second rule *types must fit* we will only have the following\n3 remaining overload resolutions:	text	txt	2024-07-28 09:48:02.698736	6
+1057	368	Stack(const char*) -> Stack<std::string>;	code	cpp	2024-07-28 09:48:06.351616	3
+1035	364	The second overload resolution might seem strange that integers fit two\niterators, but compiler only sees two matching arguments having the same type\nwhich can also be `int`.	text	txt	2024-07-28 09:48:02.782795	8
+1036	364	Going further, the third rule of *choose the best match*, we would lose the\nfirst two because if we have an initializer list for constructing an object,\nthe overload resolution having `std::initializer_list<>` is a best match. So\nwe would only have the last overload:	text	txt	2024-07-28 09:48:02.8052	9
+4048	364	vector(size_t n, ElemT const& value, Allocator const& = Allocator());\n\ntemplate<typename Iter>\nvector(Iter beg, Iter end, Allocator const& = Allocator());\n\nvector(initializer_list<ElemT>, Allocator const& = Allocator());	code	cpp	2025-07-16 14:24:30.68525	7
+1037	364	vector(initializer_list<ElemT>, Allocator const& = Allocator());	code	cpp	2024-07-28 09:48:02.82573	10
+1220	405	class Customer\n{\n    ...\npublic:\n    ...\n    Customer(const Customer&) = default;    // disable move semantics\n    Customer& operator=(const Customer&) = default;     // disable move semantics\n};	code	cpp	2024-07-28 09:48:35.72559	2
+4049	365	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;\n\npublic:\n    Stack() = default;\n    Stack(T const& value): container({value}) { }\n};	code	cpp	2025-07-16 14:24:57.801991	2
+4050	366	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> container;\n\npublic:\n    Stack() = default;\n    Stack(T const& value): container({value}) { }\n};	code	cpp	2025-07-16 14:25:17.37479	4
+1061	369	The type of objects without template arguments are not types, but act as a\nplaceholder for a type that activates CTAD. When compiler encouters it, it\nbuilds a set of deduction guides which can be complemented by user with user\ndefined deduction rules.	text	txt	2024-07-28 09:48:07.385832	1
+4121	406	class Customer\n{\n    ...\npublic:\n    ...\n    Customer(const Customer&) = default;\n    // copying calls enabled\n    Customer& operator=(const Customer&) = default; // copying calls enabled\n    Customer(Customer&&) = delete;\n    // moving calls disabled\n    Customer& operator=(Customer&&) = delete;\n    // moving calls disabled\n};\n\nclass Invoice\n{\n    std::string id;\n    Customer cust;\npublic:\n    ... // no special member functions\n};\n\nInvoice i;\nInvoice i1{std::move(i)}; // OK, moves id, copies cust	code	cpp	2025-07-16 14:44:19.672377	2
+4122	407	class Base\n{\npublic:\n    virtual void do_something() const = 0;\n    virtual ~Base() = default;\n};\n\nclass Derived: public Base\n{\npublic:\n    virtual void do_something() const override;\n    virtual ~Derived() = default; // BAD, redundant, disables move\n};	code	cpp	2025-07-16 14:44:34.678988	2
+4124	408	void fooByVal(std::string str);\nvoid fooByRRef(std::string&& str);;\n\nstd::string s1{"data"}, s2{"data"};\n\nfooByVal(std::move(s1));    // s1 is moved\nfooByRRef(std::move(s2));   // s2 might be moved	code	cpp	2025-07-16 14:45:16.189084	2
+4055	369	std::pair p{42, "demo"};    // std::pair<int, char const*>\nstd::vector v{1, 2};        // std::vector<int>\n\n// declaration of the template\ntemplate<typename T>\nstruct container\n{\n    container(T t) {}\n\n    template<typename Iter>\n    container(Iter beg, Iter end);\n};\n\n// additional deduction guide\ntemplate<typename Iter>\ncontainer(Iter b, Iter e) -> container<typename std::iterator_traits<Iter>::value_type>;\n\n// use cases\ncontainer c(7); // OK: deduces container<int> using an implicitly-generated guide\nstd::vector<double> v = {/* ... */};\nauto d = container(v.begin(), v.end()); // OK: deduces container<double>\ncontainer e{5, 6}; // Error: there is no std::iterator_traits<int>::value_type	code	cpp	2025-07-16 14:27:06.724713	3
+4056	371	ValueWithComment(char const*, char const*) -> ValueWithComment<std::string>;\n\nValueWithComment vc = {"secret", "my secret message"}; // ValueWithComment<std::string> deduced	code	cpp	2025-07-16 14:28:12.865543	4
+4127	409	#include <string>\n\nclass box\n{\nprivate:\n    std::string first;\n    std::string last;\n\npublic:\n    box(std::string const& f, std::string const& l): first{f}, last{l} {}\n    // f, l allocated\n    // first, last also allocated\n};\n\nbox b{"First", "Last"};	code	cpp	2025-07-16 14:45:37.757281	3
+4129	409	#include <string>\n\nclass box\n{\nprivate:\n    std::string first;\n    std::string last;\n\npublic:\n    box(std::string f, std::string l): first{std::move(f)}, last{std::move(l)} {}\n};	code	cpp	2025-07-16 14:45:51.397513	5
+1254	409	In some cases, move operations take significant time. For example, if we have\na class with a string and a vector of values, taking by value and move is\nusually the right approach. However, if we have a `std::array` member, moving\nit will take significant time even if the members are moved.	text	txt	2024-07-28 09:48:42.463009	12
+1258	409	Often, pass by value is useful when we *create and initialize* a new value.\nBut if we already have a value, which we update or modify, using this\napproach would be counterproductive. A simple example would be setters:	text	txt	2024-07-28 09:48:42.551019	14
+1263	409	Each time we set a new firstname we create a new temporary parameter `s`\nwhich allocates its own memory. But by implementing in the traditional way\ntaking a const lvalue reference we avoid allocations:	text	txt	2024-07-28 09:48:42.657736	16
+1267	409	Even with move semantics, the best approach for setting existing values is to\ntake the new values by const lvalue reference and assign without using move\noperation.	text	txt	2024-07-28 09:48:42.745615	18
+4063	372	#include <vector>\n#include <map>\n\nstd::vector<int> get_numbers()\n{\n    return std::vector<int>{1, 2, 3, 4, 5};\n}\n\nstd::map<int, double> get_doubles()\n{\n    return std::map<int, double>{\n        {0, 0.0},\n        {1, 1.1},\n        {2, 2.2}\n    };\n}\n\nint main()\n{\n    auto numbers = std::vector<int>{1, 2, 3, 4, 5};\n    auto copies = std::vector<int>(numbers.size() * 4);\n\n    for (int element: numbers)\n        copies.push_back(element);\n\n    for (int& element: numbers)\n        copies.push_back(element);\n\n    for (auto&& element: get_numbers())\n        copies.push_back(element);\n\n    for (auto&& [key, value]: get_doubles())\n        copies.push_back(key);\n}	code	cpp	2025-07-16 14:29:01.682728	1
+4131	409	#include <string>\n#include <vector>\n\nclass box\n{\nprivate:\n    std::string first;\n    std::vector<std::string> values;\n\npublic:\n    box(std::string f, std::vector<std::string> v): first{std::move(f)}, values{std::move(v)} {}\n    insert(std::string n) { values.push_back(std::move(n)); }\n};	code	cpp	2025-07-16 14:46:03.788955	7
+4133	409	#include <string>\n\nclass box\n{\nprivate:\n    std::string first;\n    std::string last;\n\npublic:\n    box(std::string&& f, std::string&& l): first{std::move(f)}, last{std::move(l)} {}\n};	code	cpp	2025-07-16 14:46:12.845512	9
+4135	409	#include <string>\n#include <array>\n\nclass box\n{\nprivate:\n    std::string first;\n    std::array<std::string, 1000> values;\n\npublic:\n    box(std::string f, std::array<std::string, 1000>& v): first{std::move(f)}, values{v} {}\n    box(std::string f, std::array<std::string, 1000>&& v): first{std::move(f)}, values{std::move(v)} {}\n};	code	cpp	2025-07-16 14:46:26.477634	13
+1268	409	Taking a parameter by value and moving it to where the new value is needed is\nonly useful when we store the passed value somewhere as a new value where we\nneed new memory allocation anyway. When modifying an existing value, this\npolicy might be counterproductive.	text	txt	2024-07-28 09:48:42.767129	19
+4081	373	#include <iostream>\n#include <stdexcept>\n#include <iterator>\n\ntemplate<typename T, std::size_t const S>\nclass dummy_array\n{\n    T data[S] = {};\n\npublic:\n    T const& at(std::size_t const index) const\n    {\n        if (index < S) return data[index];\n        throw std::out_of_range("index out of range");\n    }\n\n    void insert(std::size_t const index, T const& value)\n    {\n        if (index < S) data[index] = value;\n        else throw std::out_of_range("index out of range");\n    }\n\n    std::size_t size() const { return S; }\n};\n\ntemplate<typename T, typename C, std::size_t const S>\nclass dummy_array_iterator_type\n{\npublic:\n    dummy_array_iterator_type(C& collection, std::size_t const index): index{index}, collection{collection}\n    {}\n\n    bool operator !=(dummy_array_iterator_type const& other) const\n    {\n        return index != other.index;\n    }\n\n    T const& operator *() const\n    {\n        return collection.at(index);\n    }\n\n    dummy_array_iterator_type& operator ++()\n    {\n        ++index;\n        return *this;\n    }\n\n    dummy_array_iterator_type operator ++(int)\n    {\n        auto temp = *this;\n        ++*temp;\n        return temp;\n    }\n\nprivate:\n    std::size_t index;\n    C& collection;\n};\n\ntemplate<typename T, std::size_t const S>\nusing dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;\n\ntemplate<typename T, std::size_t const S>\nusing dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, 0);\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, collection.size());\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, 0);\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, collection.size());\n}\n\nint main()\n{\n    dummy_array<int, 5> numbers;\n    numbers.insert(0, 1);\n    numbers.insert(1, 2);\n    numbers.insert(2, 3);\n    numbers.insert(3, 4);\n    numbers.insert(4, 5);\n\n    for (auto&& element: numbers)\n        std::cout << element << ' ';\n    std::cout << '\\\\n';\n}	code	cpp	2025-07-16 14:30:53.699656	1
+4086	374	struct foo1         // size = 1, alignment = 1\n{                   // foo1:    +-+\n    char a;         // members: |a|\n};\n\nstruct foo2         // size = 2, alignment = 1\n{                   // foo1:    +-+-+\n    char a;         // members: |a|b|\n    char b;\n};\n\nstruct foo3         // size = 8, alignment = 4\n{                   // foo1:    +----+----+\n    char a;         // members: |a...|bbbb|\n    int  b;\n};\n\nstruct foo3_\n{\n    char a;         // 1 byte\n    char _pad0[3];  // 3 bytes\n    int  b;         // 4 byte\n};\n\nstruct foo4         // size = 24, alignment = 8\n{                   // foo4:    +--------+--------+--------+--------+\n    int a;          // members: |aaaa....|cccc....|dddddddd|e.......|\n    char b;\n    float c;\n    double d;\n    bool e;\n};\n\nstruct foo4_\n{\n    int a;          // 4 bytes\n    char b;         // 1 byte\n    char _pad0[3];  // 3 bytes\n    float c;        // 4 bytes\n    char _pad1[4];  // 4 bytes\n    double d;       // 8 bytes\n    bool e;         // 1 byte\n    char _pad2[7];  // 7 bytes\n};	code	cpp	2025-07-16 14:31:56.052473	2
+4087	375	struct alignas(4) foo     // size: 4, alignment: 4\n{                         // foo:     +----+\n    char a;               // members: |ab..|\n    char b;\n};\n\nalignof(foo);   // 4\nsizeof(foo);    // 4\nalignof(foo&);  // 4\nalignof(char);  // 1\nalignof(int);   // 4\nalignof(int*);  // 8 (64-bit)\nalignof(int[4]);// 4 (natural alignment of element is 4)	code	cpp	2025-07-16 14:32:10.63828	2
+4111	383	#include <utility>\n\nclass bag\n{\nprivate:\n    unsigned int _count;\n    int* _storage;\n\npublic:\n    bag(int const& number): _count{0}, _storage{nullptr}\n    {\n        _count++;\n        _storage = new int{number};\n    }\n\n    virtual ~bag()\n    {\n        if (_count)\n            delete _storage;\n    }\n\n    bag(bag const& other): _count{other._count}\n    {\n        _storage = new int{*other._storage};\n    }\n\n    bag(bag&& other): _count{other._count}, _storage{other._storage}\n    {\n        other._count = 0;\n        other._storage = nullptr;\n    }\n};\n\nint main()\n{\n    bag a{1};\n    bag b{std::move(a)};\n}	code	cpp	2025-07-16 14:36:43.884824	1
+4112	388	std::vector<std::string> coll;\nconst std::string s{"data"};\n\ncoll.push_back(std::move(s));   // OK, calls push_back(const std::string &)	code	cpp	2025-07-16 14:37:21.054244	2
+4114	391	std::string s{"data"};\n\nfoo(std::move(s));\n\nstd::cout << s << '\\\\n'; // OK (don't know which value is written)\nstd::cout << s.size() << '\\\\n';  // OK (writes current number of characters)\nstd::cout << s[0] << '\\\\n';  // ERROR (potentially undefined behavior)\nstd::cout << s.front() << '\\\\n'; // ERROR (potentially undefined behavior)\ns = "new value";  // OK	code	cpp	2025-07-16 14:38:00.271586	2
+4117	403	class Person\n{\npublic:\n    ...\n    // NO copy constructor declared\n\n    // move constructor/assignment declared as deleted:\n    Person(Person&&) = delete;\n    Person& operator=(Person&&) = delete;\n    ...\n};\n\nPerson p{"Tina", "Fox"};\ncoll.push_back(p); // ERROR: copying disabled\ncoll.push_back(std::move(p)); // ERROR: moving disabled	code	cpp	2025-07-16 14:39:58.187432	2
+1212	403	You get the same effect by declaring copying special member functions as\ndeleted and that is probably less confusing for other programmers.	text	txt	2024-07-28 09:48:34.517545	3
+4115	392	void foo(std::string&& rv);\nstd::string s{"data"};\n\nfoo(s);     // ERROR\nfoo(std::move(s));      // OK\nfoo(returnStringByValue());     // OK	code	cpp	2025-07-16 14:38:17.569822	3
+1178	393	void foo(std::string& arg);	code	cpp	2024-07-28 09:48:28.598669	8
+1198	398	class Person\n{\n    ...\npublic:\n    ...\n    // NO copy constructor/assignment declared\n    // NO move constructor/assignment declared\n    // NO destructor declared\n};	code	cpp	2024-07-28 09:48:30.918305	2
+1216	403	In this case, `=delete` disables the fallback mechanism.	text	txt	2024-07-28 09:48:34.602877	5
+4093	376	// alignas specifier applied to struct\nstruct alignas(4) foo1  // size = 4, aligned as = 4\n{                       // foo1:    +----+\n    char a;             // members: |a.b.|\n    char b;\n};\n\nstruct foo1_            // size = 4, aligned as = 1\n{\n    char a;             // 1 byte\n    char b;             // 1 byte\n    char _pad0[2];      // 2 bytes\n};\n\n// alignas specifier applied to member data declarations\nstruct foo2             // size = 16, aligned as = 8\n{                       // foo2:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbb....|\n    alignas(8) int b;\n};\n\nstruct foo2_            // size = 16, aligned as = 4\n{\n    char a;             // 2 bytes\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};\n\n// the alignas specifier applied to the struct is less than alignas\n// specifier applied to member data declaration, thus will be ignored.\nstruct alignas(4) foo3  // size = 16, aligned as = 8\n{                       // foo3:    +--------+--------+\n    alignas(2) char a;  // members: |aa......|bbbbbbbb|\n    alignas(8) int b;\n};\n\nstruct foo3_            // size = 16, aligned as = 4\n{\n    char a;             // 2 byte\n    char _pad0[6];      // 6 bytes\n    int b;              // 4 bytes\n    char _pad1[4];      // 4 bytes\n};\n\nalignas(8) int a;       // size = 4, alignment = 8\nalignas(256) long b[4]; // size = 32, alignment = 256	code	cpp	2025-07-16 14:32:44.377664	4
+4094	377	#include <iostream>\n\nint main()\n{\n    std::cout << sizeof(long double) << '\\\\n';\n}	code	cpp	2025-07-16 14:33:22.826192	1
+4096	379	namespace units\n{\n    inline namespace literals\n    {\n        inline namespace units_literals\n        {\n            constexpr size_t operator ""_KB(unsigned long long const size)\n            {\n                return static_cast<size_t>(size * 1024);\n            }\n        }\n    }\n}\n\nint main()\n{\n    using namespace units::units_literals;\n\n    size_t bytes = "1024"_KB;\n}	code	cpp	2025-07-16 14:34:54.728646	1
+4097	380	T operator ""_suffix(char const*);\n\ntemplate <char...>\nT operator ""_suffix();	code	cpp	2025-07-16 14:35:22.850456	2
+4103	381	namespace binary\n{\n    using numeric = unsigned int;\n\n    inline namespace binary_literals\n    {\n        namespace binary_internals\n        {\n            template<typename T, char... bits>\n            struct bit_seq;\n\n            template<typename T, '0', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value { bit_seq<T, bits...>::value };\n            };\n\n            template<typename T, '1', char... bits>\n            struct bit_seq\n            {\n                static constexpr T value {\n                    bit_seq<T, bits...>::value | static_cast<T>(1 << sizeof...(bits))\n                };\n            };\n\n            template<typename T>\n            struct bit_seq<T>\n            {\n                static constexpr T value{0};\n            };\n        }\n\n        template <char... bits>\n        constexpr numeric operator ""_byte()\n        {\n            static_assert(sizeof...(bits) <= 32, "binary literals only hold 32 bits");\n\n            return binary_internals::bit_seq<numeric, bits...>::value;\n        }\n    }\n}	code	cpp	2025-07-16 14:35:48.760149	1
+4105	382	#include <vector>\n#include <string>\n\nstd::vector<std::string> f()\n{\n    std::vector<std::string> cells; // default constructed vector without allocations\n    cells.reserve(3);               // allocate 3 elements of std::string\n    std::string s{"data"};          // default constructed std::string\n    cells.push_back(s);             // 1st vector element copy constructed\n    cells.push_back(s+s);           // default construction of temporary object; move construction of 2nd vector element\n    cells.push_back(std::move(s));  // move constructed 3rd vector element; empty out s object\n    return cells;                   // optimize out vector as return value\n}\n\nint main()\n{\n    std::vector<std::string> v;\n    v = f();                        // move assigned constructed vector by return value\n}	code	cpp	2025-07-16 14:36:20.573766	1
 \.
 
 
@@ -26638,7 +26366,7 @@ SELECT pg_catalog.setval('milestone.notes_id_seq', 3974, true);
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 3997, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 4271, true);
 
 
 --
