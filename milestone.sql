@@ -12158,6 +12158,10 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10395	3978	The third objective can be fixed with concepts:	text	txt	2025-07-16 20:32:27.138319	4
 10396	3978	template<typename Impl>\nconcept is_notifier = requires(Impl impl) {\n    impl.send_sms(std::string_view{});\n    impl.send_email(std::string_view{});\n};\n\ntemplate<is_notifier Notifier>\nvoid notify_all_channels(Notifier& notifier, std::string message)\n{\n    notifier.send_sms(message);\n    notifier.send_email(message);\n}	code	cpp	2025-07-16 20:32:27.138319	5
 10397	3978	With concepts, there is no need for the interface.	text	txt	2025-07-16 20:32:27.138319	6
+10398	3979	qemu-system-arm -machine vexpress-a9 -m 256M -drive file=rootfs.ext4,sd -net nic -net use -kernel zImage -dtb vexpress-v2p-ca9.dtb -append "console=ttyAMA0,115200 root=/dev/mmcblk0" -serial stdio -net nic,model=lan9118 -net tap,ifname=tap0	code	sh	2025-07-16 20:36:30.837888	1
+10399	3979	`-machine`: creates a machine with specified processor\n`-m`: specifies the amount of memory available on the emulated machine\n`-drive`: locates the filesystem image\n`-kernel`: locates the kernel image\n`-dtb`: locates the device driver files\n`-serial`: connects the serial port to the terminal that launched the machine\n`-net nic,model=lan9118`: creates a network interface\n`-net tap,ifname=tap0`: connects the network interface to the virtual network interface `tap0`	text	txt	2025-07-16 20:36:30.837888	2
+10400	3979	To configure the host side of the network, use `tunctl` from the **User Mode Linux (UML)** project.	text	txt	2025-07-16 20:36:30.837888	3
+10401	3979	sudo tunctl -u $USER -t tap0	code	sh	2025-07-16 20:36:30.837888	4
 \.
 
 
@@ -16279,6 +16283,7 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3976	702	Use curiously recurring template pattern to use derived type functionalities inside the base type?	open	2025-07-16 20:32:27.134015	2025-07-16 20:32:27.134015	0
 3977	702	Use mixin inheritance pattern to implement a composition type?	open	2025-07-16 20:32:27.136287	2025-07-16 20:32:27.136287	0
 3978	702	Use static polymorphism pattern to implement multiple variations of a class ensuring all having the same interface?	open	2025-07-16 20:32:27.138319	2025-07-16 20:32:27.138319	0
+3979	46	Build a fundamental ARM machine with QEMU?	open	2025-07-16 20:36:30.837888	2025-07-16 20:36:30.837888	0
 \.
 
 
@@ -22128,9 +22133,10 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
-18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.642871	4	\N
 54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:32:27.138319	1	\N
+120	Mastering Embedded Linux Development	https://subscription.packtpub.com/book/iot-and-hardware/9781803232591	book	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	1	\N
+18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:36:30.837888	1	\N
 \.
 
 
@@ -23125,7 +23131,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1073	74	open	\N	2024-07-28 09:45:06.849374	2024-07-28 09:45:06.849374	27
 588	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	45
 1019	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	42
-46	18	writing	\N	2024-07-28 09:44:55.916674	2024-07-28 09:44:55.916674	1
 439	42	open	\N	2024-07-28 09:45:00.186006	2024-07-28 09:45:00.186006	3
 1389	92	open	\N	2024-07-28 09:45:10.290381	2024-07-28 09:45:10.290381	7
 586	47	open	\N	2024-07-28 09:45:01.69487	2024-07-28 09:45:01.69487	43
@@ -23889,6 +23894,28 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1698	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.626803	3
 1700	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.632099	5
 702	54	writing	\N	2024-07-28 09:45:02.987548	2025-07-16 20:32:27.138319	1
+1832	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	1
+1833	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	2
+1834	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	3
+1835	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	4
+1836	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	5
+1837	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	6
+1838	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	7
+1839	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	8
+1840	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	9
+1841	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	10
+1842	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	11
+1843	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	12
+1844	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	13
+1845	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	14
+1846	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	15
+1847	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	16
+1848	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	17
+1849	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	18
+1850	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	19
+1851	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	20
+1852	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	21
+46	18	writing	\N	2024-07-28 09:44:55.916674	2025-07-16 20:36:30.837888	1
 \.
 
 
@@ -25758,6 +25785,7 @@ COPY milestone.subject_resources (subject_id, resource_id) FROM stdin;
 6	116
 29	117
 1	118
+8	120
 \.
 
 
@@ -26351,7 +26379,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10397, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10401, true);
 
 
 --
@@ -26379,7 +26407,7 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3978, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3979, true);
 
 
 --
@@ -26435,7 +26463,7 @@ SELECT pg_catalog.setval('milestone.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.resources_id_seq', 119, true);
+SELECT pg_catalog.setval('milestone.resources_id_seq', 120, true);
 
 
 --
@@ -26456,7 +26484,7 @@ SELECT pg_catalog.setval('milestone.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.sections_id_seq', 1831, true);
+SELECT pg_catalog.setval('milestone.sections_id_seq', 1852, true);
 
 
 --
