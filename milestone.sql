@@ -12126,6 +12126,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10339	3958	We count operations instead of measuring the variable time when those operations run.	text	txt	2025-07-14 20:33:03.507465	1
 10340	3958	template<Container, Element>\nrequires requires(Element e) { e + e; }\nint aggregate(Container<Element> const& container)\n{\n    int sum{0}; // 1\n\n    for (Element const& element: container)\n    {\n        sum += element; // 3N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.507465	2
 10341	3959	We only consider the highest growth term using asymptotic notation.	text	txt	2025-07-14 20:33:03.508943	1
+10382	3975	CRTP is most useful when you want compile-time polymorphism, meaning you want a base class to call functions from the derived class without using virtual functions (no runtime overhead).	text	txt	2025-07-16 20:32:27.129894	1
 10342	3959	template<Container, Element>\nrequires requires(Element e) { e + e; }\nint aggregate(Container<Element> const& container)\n{\n    int sum{0}; // 1\n\n    for (Element const& element: container)\n    {\n        sum += element; // 3N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.508943	2
 10343	3959	f(N) = 3N + 2\nO(N) = N	text	txt	2025-07-14 20:33:03.508943	3
 10344	3959	template<Container, Element>\nrequires requires(Element e) { e + e; }\nlong long aggregate(Container<Element> const& container)\n{\n    int index{0}; // 1\n    long long sum{0}; // 1\n\n    while (index < container.size())\n    {\n        sum += container.at(index); // 3N\n        index++; // N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.508943	4
@@ -12142,6 +12143,21 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10379	3974	bool is_palindrome(std::string const& s)\n{\n    std::string r{s};\n    std::reverse(r.begin(), r.end());\n    bool result{true};\n    int i{0};\n\n    while (result && i < s.length())\n    {\n        if (s[i] != r[i])\n        {\n            result = false;\n        }\n\n        ++i;\n    }\n\n    return result;\n}	code	cpp	2025-07-16 14:02:30.642871	2
 10380	3974	But this can also be done by approaching from the beginning and the end of the string at the same time. The time complexity of this approach is `O(n)` and `Omega(n)`.	text	txt	2025-07-16 14:02:30.642871	3
 10381	3974	bool is_palindrome(std::string const& s)\n{\n    auto forward{s.cbegin()};\n    auto backward{s.cend() - 1};\n    bool result{true};\n\n    while (result && std::distance(forward, backward) > 0)\n    {\n        if (*forward != *backwards)\n        {\n            result = false;\n        }\n\n        ++forward;\n        --backward;\n    }\n\n    return result;\n}	code	cpp	2025-07-16 14:02:30.642871	4
+10383	3976	template<typename Iterative>\nstruct non_iterative\n{\n    non_iterative()\n    {\n        for (auto const& item: *static_cast<Iterative*>(this))\n        {\n            (void*) item;\n        }\n    }\n};\n\nstruct iterative: public non_iterative<iterative>\n{\n    class iterator\n    {\n        friend bool operator ==(iterator const&, iterator const&) { return true; }\n        friend iterator& operator ++(iterator& iter) { return iter; }\n        friend bool operator *(iterator const&) { return true; }\n    };\n\n    iterator begin() { return {}; }\n    iterator end() { return {}; }\n};\n\nint main()\n{\n    non_iterative<iterative> range{};\n}	code	cpp	2025-07-16 20:32:27.134015	1
+10384	3976	In this case, the base type does not provide begin and end methods, but the derived type does.	text	txt	2025-07-16 20:32:27.134015	2
+10385	3976	This pattern can be used in Composite pattern.	text	txt	2025-07-16 20:32:27.134015	3
+10386	3977	A class can inherit from its own template argument.	text	txt	2025-07-16 20:32:27.136287	1
+10387	3977	template<typename T>\nclass mixin: T\n{\n};	code	cpp	2025-07-16 20:32:27.136287	2
+10388	3977	This pattern allows hierarchical composition of types:	text	txt	2025-07-16 20:32:27.136287	3
+10389	3977	Top<Middle<Bottom>> hierarchy;	code	cpp	2025-07-16 20:32:27.136287	4
+10390	3977	This implements the traits of all three classes, without the need to construct a new `TopMiddleBottom` class.	text	txt	2025-07-16 20:32:27.136287	5
+10391	3977	This pattern can be used in Decorator pattern.	text	txt	2025-07-16 20:32:27.136287	6
+10392	3978	When a class might have multiple behaviors within its methods, to make sure all variations follow the same API, we can make an interface with the functionalities shared between implementations, then we can use curiously recurring template pattern to implement multiple variations. This can be a substitution for C++ concepts prior to C++20.	text	txt	2025-07-16 20:32:27.138319	1
+10393	3978	template<typename Impl>\nclass basic_notifier\n{\npublic:\n    basic_notifier(): impl{static_cast<Impl&>(*this)}\n    {\n    }\n\n    void send_sms(std::string_view message)\n    {\n        impl.sms(message);\n    }\n\n    void send_email(std::string_view message)\n    {\n        impl.email(message);\n    }\n\nprivate:\n    Impl& impl;\n    friend Impl;\n};\n\nclass empty_notifier: public basic_notifier<empty_notifier>\n{\npublic:\n    void sms(std::string_view message) { }\n    void email(std::string_view message) { }\n};\n\ntemplate<typename Impl>\nvoid notify_all_channels(basic_notifier<Impl>& notifier, std::string_view message)\n{\n    notifier.send_sms(message);\n    notifier.send_email(message);\n}\n\nint main()\n{\n    empty_notifier notifier{};\n    notify_all_channels(notifier, "");\n}	code	cpp	2025-07-16 20:32:27.138319	2
+10394	3978	Disadvantages of this pattern is:\n\n- Parallel APIs between interface and implementations due to implementation methods hiding interface methods when they share the same name\n- Pimpl pattern seems unnecessary and normal polymorphism would look better\n- Availability of interface methods in implementations are not checked in compile time	text	txt	2025-07-16 20:32:27.138319	3
+10395	3978	The third objective can be fixed with concepts:	text	txt	2025-07-16 20:32:27.138319	4
+10396	3978	template<typename Impl>\nconcept is_notifier = requires(Impl impl) {\n    impl.send_sms(std::string_view{});\n    impl.send_email(std::string_view{});\n};\n\ntemplate<is_notifier Notifier>\nvoid notify_all_channels(Notifier& notifier, std::string message)\n{\n    notifier.send_sms(message);\n    notifier.send_email(message);\n}	code	cpp	2025-07-16 20:32:27.138319	5
+10397	3978	With concepts, there is no need for the interface.	text	txt	2025-07-16 20:32:27.138319	6
 \.
 
 
@@ -16259,6 +16275,10 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3972	1701	What are the characteristics of an array data structure?	open	2025-07-16 14:02:30.634981	2025-07-16 14:02:30.634981	0
 3973	1702	What algorithm can be used to find the maximum value in an array?	open	2025-07-16 14:02:30.639054	2025-07-16 14:02:30.639054	0
 3974	1703	What algorithms can be used to check if a string is palindrome or not?	open	2025-07-16 14:02:30.642871	2025-07-16 14:02:30.642871	0
+3975	702	What are the use cases of Curiously Recurring Template Pattern?	open	2025-07-16 20:32:27.129894	2025-07-16 20:32:27.129894	0
+3976	702	Use curiously recurring template pattern to use derived type functionalities inside the base type?	open	2025-07-16 20:32:27.134015	2025-07-16 20:32:27.134015	0
+3977	702	Use mixin inheritance pattern to implement a composition type?	open	2025-07-16 20:32:27.136287	2025-07-16 20:32:27.136287	0
+3978	702	Use static polymorphism pattern to implement multiple variations of a class ensuring all having the same interface?	open	2025-07-16 20:32:27.138319	2025-07-16 20:32:27.138319	0
 \.
 
 
@@ -22031,7 +22051,6 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 50	Introduction to Linear and Matrix Algebra	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 51	Extreme C	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 53	The Shellcoder's Handbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 56	Docker Deep Dive	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 57	Modern C++ Programming Cookbook	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 58	Step by Step Learning x64 Assembly Language	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -22111,6 +22130,7 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
 18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.642871	4	\N
+54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:32:27.138319	1	\N
 \.
 
 
@@ -22434,7 +22454,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 683	53	open	\N	2024-07-28 09:45:02.724565	2024-07-28 09:45:02.724565	9
 317	34	open	\N	2024-07-28 09:44:58.73201	2024-07-28 09:44:58.73201	6
 1265	84	open	\N	2024-07-28 09:45:08.962478	2024-07-28 09:45:08.962478	5
-702	54	open	\N	2024-07-28 09:45:02.987548	2024-07-28 09:45:02.987548	1
 488	44	writing	\N	2024-07-28 09:45:00.748766	2024-07-28 09:45:00.748766	18
 126	22	writing	\N	2024-07-28 09:44:56.635259	2024-07-28 09:44:56.635259	14
 1101	76	open	\N	2024-07-28 09:45:07.275524	2024-07-28 09:45:07.275524	1
@@ -23869,6 +23888,7 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1697	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	2
 1698	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.626803	3
 1700	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.632099	5
+702	54	writing	\N	2024-07-28 09:45:02.987548	2025-07-16 20:32:27.138319	1
 \.
 
 
@@ -26331,7 +26351,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10381, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10397, true);
 
 
 --
@@ -26359,7 +26379,7 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3974, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3978, true);
 
 
 --

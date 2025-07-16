@@ -112,58 +112,30 @@ void notify_all_channels(Notifier& notifier, std::string message)
 call add_block('text', 'txt', 'With concepts, there is no need for the interface.');
 call create_note_with_name('Design Patterns in Modern C++20', 1, 'Use static polymorphism pattern to implement multiple variations of a class ensuring all having the same interface?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', $$$$);
+--call create_note_with_name('Design Patterns in Modern C++20', 1, '');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Design Patterns in Modern C++20', 1, '');
-
-call set_section_as_complete('Design Patterns in Modern C++20', 1);
+--call set_section_as_complete('Design Patterns in Modern C++20', 1);
 
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
 --call create_note_with_name('Design Patterns in Modern C++20', 2, '');
---
+
 --call set_section_as_complete('Design Patterns in Modern C++20', 2);
---
+
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
 --call create_note_with_name('Design Patterns in Modern C++20', 3, '');
---
+
 --call set_section_as_complete('Design Patterns in Modern C++20', 3);
---
+
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
 --call create_note_with_name('Design Patterns in Modern C++20', 4, '');
---
+
 --call set_section_as_complete('Design Patterns in Modern C++20', 4);
---
+
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
 --call create_note_with_name('Design Patterns in Modern C++20', 5, '');

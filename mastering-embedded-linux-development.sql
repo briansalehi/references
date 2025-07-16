@@ -30,5 +30,35 @@ call create_note_with_name('Mastering Embedded Linux Development', 1, '');
 
 call set_section_as_complete('Mastering Embedded Linux Development', 1);
 
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('Mastering Embedded Linux Development', 2, '');
+
+call set_section_as_complete('Mastering Embedded Linux Development', 2);
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('Mastering Embedded Linux Development', 3, '');
+
+call set_section_as_complete('Mastering Embedded Linux Development', 3);
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('Mastering Embedded Linux Development', 4, '');
+
+call set_section_as_complete('Mastering Embedded Linux Development', 4);
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('Mastering Embedded Linux Development', 5, '');
+
+call set_section_as_complete('Mastering Embedded Linux Development', 5);
+
+call add_block('text', 'txt', '');
+call add_block('code', 'cpp', '');
+call create_note_with_name('Mastering Embedded Linux Development', 6, '');
+
+call set_section_as_complete('Mastering Embedded Linux Development', 6);
+
 drop procedure add_block;
 drop table temp_blocks;
