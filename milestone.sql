@@ -12130,6 +12130,18 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10343	3959	f(N) = 3N + 2\nO(N) = N	text	txt	2025-07-14 20:33:03.508943	3
 10344	3959	template<Container, Element>\nrequires requires(Element e) { e + e; }\nlong long aggregate(Container<Element> const& container)\n{\n    int index{0}; // 1\n    long long sum{0}; // 1\n\n    while (index < container.size())\n    {\n        sum += container.at(index); // 3N\n        index++; // N\n    }\n\n    return sum; // 1\n}	code	cpp	2025-07-14 20:33:03.508943	4
 10345	3959	f(N) = 4N + 3\nO(N) = N	text	txt	2025-07-14 20:33:03.508943	5
+10370	3969	For each algorithm, there are three cases to analyze; the best case, the worst case, and the average case. For each, there are use cases, but most of the time, we only care about the worst case scenario. The big O notation is the definition of the worst case scenario of an algorithm. If the algorithm can be written as `f(n) = 5n + 3`, then `g(n) = n` is always greater than `f(n)`. Therefore, by taking only the highest order of a function, we estimate the worst case scenario. For the best case scenario, if we have a function `f(n)`, and the best case is `g(n)`, then the comparison `f(n) > g(n)` is always true. For the average case, if we have `f(n)` and the best case scenario is `g(n)`, and the worst case of `h(n)`, then the average function `w(n)` is always sandwiched between `f(n)` and `g(n)`, thus `f(n) >= w(n) >= g(n)`.	text	txt	2025-07-16 14:02:30.622829	1
+10371	3970	The worst case scenario is written by `O(n)` notation. Best case scenario is written by `Omega(n)`. Average case scenario is written by `Delta(n)` notation.	text	txt	2025-07-16 14:02:30.628117	1
+10372	3971	When we have a function `1 + 2 + 3 + ... + n`, then we can rewrite the function as `f(n) = (n + 1) / 2`. Then say the worst case is `O(n) = n`, and the best case scenario is `Omega(n) = 1`. For average case, we have `Delta(n) = n/2 + 1/2 = n`.	text	txt	2025-07-16 14:02:30.630504	1
+10373	3971		code	cpp	2025-07-16 14:02:30.630504	2
+10374	3972	Array is a set of adjacent elements on memory.	text	txt	2025-07-16 14:02:30.634981	1
+10375	3972	|**Operation**|**Time Complexity**|\n|Read|`O(1)`|\n|Write|`O(n)`|\n|Search|`O(n)`|\n|Delete|`O(n)`|	text	txt	2025-07-16 14:02:30.634981	2
+10376	3973	The maximum number can be the first element in best case scenario, or it can be the last element in the worst case scenario. So the algorithm is to search for all the elements of an array from beginning to the end, and for best and worst case scenario we read the entire list. Therefore, the algorithm is linear, and the worst case is `O(n)`, and the best case is `Omega(n)`.	text	txt	2025-07-16 14:02:30.639054	1
+10377	3973	template<typename T>\nT max(std::array<T> const& container)\n{\n    auto iter{container.cbegin()};\n    auto last{container.cend()};\n    auto value{*iter};\n\n    for (; iter != last; ++iter)\n    {\n        if (*iter > value)\n        {\n            value = *iter;\n        }\n    }\n\n    return value;\n}	code	cpp	2025-07-16 14:02:30.639054	2
+10378	3974	The first and naive approach could be to take the reverse of a string and linearly step through both strings and check until the end. In this case, we have `O(n)` and `Omega(n)`.	text	txt	2025-07-16 14:02:30.642871	1
+10379	3974	bool is_palindrome(std::string const& s)\n{\n    std::string r{s};\n    std::reverse(r.begin(), r.end());\n    bool result{true};\n    int i{0};\n\n    while (result && i < s.length())\n    {\n        if (s[i] != r[i])\n        {\n            result = false;\n        }\n\n        ++i;\n    }\n\n    return result;\n}	code	cpp	2025-07-16 14:02:30.642871	2
+10380	3974	But this can also be done by approaching from the beginning and the end of the string at the same time. The time complexity of this approach is `O(n)` and `Omega(n)`.	text	txt	2025-07-16 14:02:30.642871	3
+10381	3974	bool is_palindrome(std::string const& s)\n{\n    auto forward{s.cbegin()};\n    auto backward{s.cend() - 1};\n    bool result{true};\n\n    while (result && std::distance(forward, backward) > 0)\n    {\n        if (*forward != *backwards)\n        {\n            result = false;\n        }\n\n        ++forward;\n        --backward;\n    }\n\n    return result;\n}	code	cpp	2025-07-16 14:02:30.642871	4
 \.
 
 
@@ -16241,6 +16253,12 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3957	\N	What measurement do we use to evaluate how efficient an algorithm is?	open	2025-07-14 20:33:03.503422	2025-07-14 20:33:03.503422	0
 3958	\N	How to avoid different measurements between different runs of an algorithm?	open	2025-07-14 20:33:03.507465	2025-07-14 20:33:03.507465	0
 3959	\N	How to avoid different measurements between different implementations?	open	2025-07-14 20:33:03.508943	2025-07-14 20:33:03.508943	0
+3969	1698	What are the use cases of the worst, best, and average functions in algorithm analysis?	open	2025-07-16 14:02:30.622829	2025-07-16 14:02:30.622829	0
+3970	1699	What notation do we use for best, worst, and average case scenarios of an algorithm?	open	2025-07-16 14:02:30.628117	2025-07-16 14:02:30.628117	0
+3971	1700	What is the general procedure to find the average function of an algorithm?	open	2025-07-16 14:02:30.630504	2025-07-16 14:02:30.630504	0
+3972	1701	What are the characteristics of an array data structure?	open	2025-07-16 14:02:30.634981	2025-07-16 14:02:30.634981	0
+3973	1702	What algorithm can be used to find the maximum value in an array?	open	2025-07-16 14:02:30.639054	2025-07-16 14:02:30.639054	0
+3974	1703	What algorithms can be used to check if a string is palindrome or not?	open	2025-07-16 14:02:30.642871	2025-07-16 14:02:30.642871	0
 \.
 
 
@@ -22364,7 +22382,7 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
 18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	4	\N
+118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.642871	4	\N
 \.
 
 
@@ -24055,18 +24073,16 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1694	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	24
 1695	117	open	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:42.979764	25
 1674	117	completed	\N	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.021042	4
-1698	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	3
-1699	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	4
-1700	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	5
-1701	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	6
-1702	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	7
-1703	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	8
 1704	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	9
 1705	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	10
 1706	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	11
 1707	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	12
 1708	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	13
 1709	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	14
+1699	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.629205	4
+1701	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.636803	6
+1702	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.640862	7
+1703	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.644692	8
 1710	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	15
 1711	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	16
 1712	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	17
@@ -24123,6 +24139,8 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1763	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	68
 1696	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.793634	1
 1697	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	2
+1698	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.626803	3
+1700	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.632099	5
 \.
 
 
@@ -26585,7 +26603,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10369, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10381, true);
 
 
 --
@@ -26613,7 +26631,7 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3968, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3974, true);
 
 
 --
