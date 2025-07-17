@@ -123,10 +123,25 @@ end; $$;
 ALTER PROCEDURE milestone.add_section(IN resource_index integer, IN reference_string character varying) OWNER TO milestone;
 
 --
--- Name: change_block_language(integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
+-- Name: change_note_block_language(integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
 --
 
-CREATE PROCEDURE milestone.change_block_language(IN block integer, IN new_language character varying)
+CREATE PROCEDURE milestone.change_note_block_language(IN block integer, IN new_language character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update note_blocks set language = new_language where id = block;
+end;
+$$;
+
+
+ALTER PROCEDURE milestone.change_note_block_language(IN block integer, IN new_language character varying) OWNER TO milestone;
+
+--
+-- Name: change_practice_block_language(integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
+--
+
+CREATE PROCEDURE milestone.change_practice_block_language(IN block integer, IN new_language character varying)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -135,7 +150,7 @@ end;
 $$;
 
 
-ALTER PROCEDURE milestone.change_block_language(IN block integer, IN new_language character varying) OWNER TO milestone;
+ALTER PROCEDURE milestone.change_practice_block_language(IN block integer, IN new_language character varying) OWNER TO milestone;
 
 --
 -- Name: create_note(integer, integer, character varying); Type: PROCEDURE; Schema: milestone; Owner: milestone
@@ -683,6 +698,135 @@ end; $$;
 ALTER FUNCTION milestone.get_user_topics(user_index integer, subject_index integer) OWNER TO milestone;
 
 --
+-- Name: merge_note_block_series(integer[]); Type: FUNCTION; Schema: milestone; Owner: milestone
+--
+
+CREATE FUNCTION milestone.merge_note_block_series(VARIADIC block_list integer[]) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare
+    block_index integer default 1;
+    lower_block integer;
+    upper_block integer;
+    upper_note integer;
+    lower_note integer;
+    upper_position integer;
+    lower_position integer;
+    swap_position integer;
+    lower_type block_type;
+    lower_language varchar(10);
+    block integer;
+begin
+    upper_block := block_list[block_index];
+    block := upper_block;
+    block_index := block_index + 1;
+
+    while block_index <= array_length(block_list, 1) loop
+        lower_block := block_list[block_index];
+
+        select note_id, position
+        into upper_note, upper_position
+        from note_blocks where id = upper_block;
+
+        select note_id, position, type, language
+        into lower_note, lower_position, lower_type, lower_language
+        from note_blocks where id = lower_block;
+
+        if upper_position = lower_position then
+            return 0;
+        end if;
+
+        if upper_position > lower_position then
+            swap_position := upper_position;
+            upper_position := lower_position;
+            lower_position := swap_position;
+        end if;
+
+        if upper_note <> lower_note then
+            raise exception 'Uncommon card between blocks % and %', upper_block, lower_block;
+        end if;
+
+        -- find the top free position of this note for swapping
+        select max(position) + 1 into swap_position
+        from note_blocks where note_id = upper_note;
+
+        -- create a new record on the top most position
+        insert into note_blocks (note_id, content, type, language, position)
+        select upper_note, string_agg(coalesce(content, ''), E'\n\n' order by position), lower_type, lower_language, swap_position
+        from note_blocks where id in (upper_block, lower_block)
+        returning id into block;
+
+        -- remove the two merged blocks
+        delete from note_blocks where id in (upper_block, lower_block);
+
+        update note_blocks set position = lower_position where id = block;
+
+        upper_block := block;
+        block_index := block_index + 1;
+    end loop;
+
+    -- reorder positions from top to bottom for a note
+    update note_blocks pb set position = sub.position
+    from (
+        select id, row_number() over (order by position) as position
+        from note_blocks where note_id = upper_note
+    ) sub
+    where pb.id = sub.id;
+
+    return block;
+end;
+$$;
+
+
+ALTER FUNCTION milestone.merge_note_block_series(VARIADIC block_list integer[]) OWNER TO milestone;
+
+--
+-- Name: merge_note_blocks(integer); Type: FUNCTION; Schema: milestone; Owner: milestone
+--
+
+CREATE FUNCTION milestone.merge_note_blocks(note integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare
+    upper_block integer;
+    swap_position integer;
+    block integer;
+    block_record record;
+begin
+    select id into upper_block from note_blocks where note_id = note and position = 1;
+
+    select max(position) + 1 into swap_position from note_blocks where note_id = note;
+
+    block := upper_block;
+
+    for block_record in select id, position, type, language from note_blocks where note_id = note and position > 1 loop
+        insert into note_blocks (note_id, content, type, language, position)
+        select note, string_agg(coalesce(content, ''), E'\n\n' order by position), block_record.type, block_record.language, swap_position
+        from note_blocks where id in (upper_block, block_record.id)
+        returning id into block;
+
+        delete from note_blocks where id in (upper_block, block_record.id);
+
+        update note_blocks set position = block_record.position where id = block;
+
+        upper_block := block;
+    end loop;
+
+    update note_blocks pb set position = sub.position
+    from (
+        select id, row_number() over (order by position) as position
+        from note_blocks where note_id = note
+    ) sub
+    where pb.id = sub.id;
+
+    return block;
+end;
+$$;
+
+
+ALTER FUNCTION milestone.merge_note_blocks(note integer) OWNER TO milestone;
+
+--
 -- Name: merge_note_blocks(integer, integer); Type: FUNCTION; Schema: milestone; Owner: milestone
 --
 
@@ -704,9 +848,9 @@ begin
     end if;
 
     if upper_position > lower_position then
-        swap_position = upper_position;
-        upper_position = lower_position;
-        lower_position = swap_position;
+        swap_position := upper_position;
+        upper_position := lower_position;
+        lower_position := swap_position;
     end if;
 
     -- collect first block info
@@ -8081,12 +8225,6 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 6103	1833	* Anti-Aliased line with Guassian Smoothing	text	txt	2024-07-28 10:11:42.341209	6
 6104	1833	```\n|O|O| | | | | | | | |\n| |O|X|O| | | | | | |\n| | | |O|X|O| | | | |\n| | | | | |O|X|O| | |\n| | | | | | | |O|X|O|\n| | | | | | | | | |O|\n``````	text	txt	2024-07-28 10:11:42.362869	7
 6105	1834	The `thickness` of the lines measured in pixles. For all closed shapes, it\ncan be set to `cv::FILLED` which is an alias for `-1`.	text	txt	2024-07-28 10:11:42.550676	1
-6106	1835	The signature of this function is as follows:	text	txt	2024-07-28 10:11:43.35882	1
-6107	1835	void cv::circle(\n    cv::Mat&            image,      // image to be drawn on\n    cv::Point           center,     // location of circle center\n    int                 radius,     // radius of circle\n    const cv::Scalar&   color,      // color RGB form\n    int                 thickness=1,// thickness of line\n    int                 lineType=8, // connectedness, 4 or 8\n    int                 shift=0     // bits of radius to treat as fraction\n)	code	txt	2024-07-28 10:11:43.380029	2
-6108	1835	A sample usage of this drawing function is:	text	txt	2024-07-28 10:11:43.400078	3
-6109	1835	#include <opencv2/imgproc.hpp>	text	txt	2024-07-28 10:11:43.420899	4
-6110	1835	int main()\n{\n    cv::Mat image = cv::imread("/tmp/image.jpg");\n    cv::Point2i center{image.cols / 2, image.rows / 2};\n    int radius{100};\n    cv::Scalar color{};\n    int thickness{4};\n    int linetype{4};\n    int shift{0};	text	txt	2024-07-28 10:11:43.441207	5
-6111	1835	    cv::circle(image, center, radius, color, thickness, linetype, shift);\n}	code	txt	2024-07-28 10:11:43.463046	6
 6112	1836	git clone https://github.com - https://github.com/opencv/opencv.git\ncmake -S opencv -B opencv-build -D CMAKE_BUILD_TYPE=Release -D CMAKE_PREFIX_PATH=/usr/local\ncmake --build opencv-build --release Release --target all -j $(nproc)\ncmake --install opencv-build -j $(nproc)	code	txt	2024-07-28 10:11:44.271593	1
 6113	1837	#include <opencv2/core.hpp>	code	txt	2024-07-28 10:11:44.51335	1
 6114	1838	cv::Mat image;\nstd::cout << image.rows << " x " << image.cols << '\\\\n';;	code	txt	2024-07-28 10:11:44.773739	1
@@ -8120,6 +8258,8 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 6143	1847	    cv::rectangle(image, topleft, bottomright, color, thickness);\n    cv::putText(image, name, position, cv::FONT_HERSHEY_PLAIN, scale, color, thickness);\n    cv::imshow(window, image);\n    cv::waitKey(0);\n    cv::destroyWindow(window);\n}	code	txt	2024-07-28 10:11:49.842696	4
 6455	2036	    Rectangle {\n        anchors.fill: parent\n        color: 'lightsteelblue'\n        border.color: 'gray'\n    }	text	txt	2024-07-28 10:12:59.414114	3
 6456	2036	    property alias text: input.text\n    property alias input: input	text	txt	2024-07-28 10:12:59.434325	4
+6106	1835	The signature of this function is as follows:	text	txt	2024-07-28 10:11:43.35882	1
+6108	1835	A sample usage of this drawing function is:	text	txt	2024-07-28 10:11:43.400078	3
 6144	1848	You need to specify the type of each matrix element. The letter `U` means it\nis unsigned. You can also declare signed numbers by using the letter `S`. For\na color image, you would specify three channels. You can also declare\nintegers (signed or unsigned) of size 16 and 32. You also have access to\n32-bit and 64-bit floating-point numbers	text	txt	2024-07-28 10:11:50.36288	1
 6145	1848	`CV_8U`: 1-byte pixel image with a single channel.\n`CV_8UC3`: 1-byte pixel image with 3 channels.\n`CV_16SC3`: 2-byte pixel image with 3 channels.\n`CV_32F`: 4-byte floating point pixel image.	text	txt	2024-07-28 10:11:50.383908	2
 6146	1848	#include <opencv2/core.hpp>	text	txt	2024-07-28 10:11:50.403893	3
@@ -12209,6 +12349,8 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10399	3979	`-machine`: creates a machine with specified processor\n`-m`: specifies the amount of memory available on the emulated machine\n`-drive`: locates the filesystem image\n`-kernel`: locates the kernel image\n`-dtb`: locates the device driver files\n`-serial`: connects the serial port to the terminal that launched the machine\n`-net nic,model=lan9118`: creates a network interface\n`-net tap,ifname=tap0`: connects the network interface to the virtual network interface `tap0`	text	txt	2025-07-16 20:36:30.837888	2
 10400	3979	To configure the host side of the network, use `tunctl` from the **User Mode Linux (UML)** project.	text	txt	2025-07-16 20:36:30.837888	3
 10401	3979	sudo tunctl -u $USER -t tap0	code	sh	2025-07-16 20:36:30.837888	4
+6107	1835	void cv::circle(\n    cv::Mat&            image,      // image to be drawn on\n    cv::Point           center,     // location of circle center\n    int                 radius,     // radius of circle\n    const cv::Scalar&   color,      // color RGB form\n    int                 thickness=1,// thickness of line\n    int                 lineType=8, // connectedness, 4 or 8\n    int                 shift=0     // bits of radius to treat as fraction\n)	code	cpp	2024-07-28 10:11:43.380029	2
+10403	1835	#include <opencv2/imgproc.hpp>\n\nint main()\n{\n    cv::Mat image = cv::imread("/tmp/image.jpg");\n    cv::Point2i center{image.cols / 2, image.rows / 2};\n    int radius{100};\n    cv::Scalar color{};\n    int thickness{4};\n    int linetype{4};\n    int shift{0};\n\n    cv::circle(image, center, radius, color, thickness, linetype, shift);\n}	code	cpp	2025-07-17 18:50:21.243988	4
 \.
 
 
@@ -16870,6 +17012,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 648	288	* It is not possible to leave a variable uninitialized with `auto`.\n* It prevents narrowing conversion of data types. (?)\n* It makes generic programming easy.\n* It can be used where we don't care about types.	text	txt	2024-07-28 09:47:05.6121	2
 1002	362	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt	2024-07-28 09:47:59.546801	1
 4153	415	#include <iostream>\n#include <sstream>\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream str;\n    str << "Using C++20 standard";\n    // allocates\n\n    std::cout << str.str() << '\\\\n';\n    // allocates\n\n    std::cout << str.view() << '\\\\n';\n    // doesn't allocate\n}	code	cpp	2025-07-16 14:49:05.50068	2
+4690	888	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>\n\nvoid some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}\n\nvoid finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}\n\nint main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n    std::thread worker{finish_tasks, std::ref(service)};\n    strand.post(std::bind(some_work, 2));\n    service.post(strand.wrap(std::bind(some_work, 2)));\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:32:42.260618	2
 4160	417	#include <iostream>\n#include <sstream>\n#include <spanstream> // new header\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream ss;\n    ss << "one string that doesn't fit into SSO";\n    ss << "another string that hopefully won't fit";\n    // allocates memory\n\n    char buffer[128]{};\n    std::span<char> internal_memory(buffer);\n    std::basic_spanstream<char> ss2(internal_memory);\n    ss2 << "one string that doesn't fit into SSO";\n    ss2 << "another string that hopefully won't fit";\n    // doesn't allocate new memory\n}	code	cpp	2025-07-16 14:49:46.214148	2
 4157	416	#include <iostream>\n#include <sstream>\n\n// make allocations obvious\nvoid* operator new(std::size_t sz){\n    std::cout << "Allocating " << sz << " bytes\\\\n";\n    return std::malloc(sz);\n}\n\nint main() {\n    std::stringstream str {std::string("hello C++ programming World")};\n}	code	cpp	2025-07-16 14:49:24.767542	2
 658	289	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt	2024-07-28 09:47:06.201144	1
@@ -16913,6 +17056,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 739	303	Comparison types themselves can be compared against a specific return value.\nDue to implicit type conversions to weaker ordering types `x <=> y ==\nstd::partial_ordering::equivalent` will compile even if the `operator <=>`\nyields a `std::strong_ordering` or `std::weak_ordering` value. However, the\nother way around does not work. Comparison with 0 is always possible and\nusually easier.	text	txt	2024-07-28 09:47:18.233993	5
 4433	540	#include <string>\n\ntemplate<typename CharT>\nusing tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;\n\ntemplate<typename CharT>\ninline tstring<CharT> reverse(tstring<CharT> text)\n{\n    std::reverse(std::begin(text), std::end(text));\n    return text;\n}\n\ntemplate<typename CharT>\ninline tstring<CharT> reverse(tstring<CharT>&& text)\n{\n    std::reverse(std::begin(text), std::end(text));\n    return text;\n}	code	cpp	2025-07-17 11:05:25.759029	1
 4183	428	#include <string>\n\nusing namespace std::string_literals;\n\nauto filename { R"(C:\\\\Users\\\\Brian\\\\Documents\\\\)"s };\nauto pattern { R"((\\\\w[\\\\w\\\\d]*)=(\\\\d+))"s };	code	cpp	2025-07-16 14:52:51.583027	1
+4694	889	#include <thread>\n#include <mutex>\n#include <iostream>\n#include <exception>\n#include <boost/asio.hpp>\n\nstd::mutex ostream_lock;\n\nvoid some_work()\n{\n    throw std::runtime_error("i/o failure");\n}\n\nvoid finish_tasks(boost::asio::io_service& service)\n{\n    try\n    {\n        service.run();\n    }\n    catch (std::runtime_error const& exp)\n    {\n        std::lock_guard<std::mutex> lock{ostream_lock};\n        std::cerr << exp.what() << "\\\\n";\n    }\n}\n\nint main()\n{\n    boost::asio::io_context service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(some_work);\n    service.post(some_work); // no more io context to dispatch\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:33:16.124335	1
+3694	1175	; preconditions:\n; address of string be set to rsi\n; length of string be set to rdx\nwrite:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:30.968894	2
 4435	541	#include <string>\n#include <utility>\n\ntemplate<typename CharT>\nusing tstring = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;\n\ntemplate<typename CharT>\ninline tstring<CharT> trim(tstring<CharT> const& text)\n{\n    tstring<CharT>::size first{text.find_first_not_of(' ')};\n    tstring<CharT>::size last{text.find_last_not_of(' ')};\n    return text.substr(first, (last - first + 1));\n}	code	cpp	2025-07-17 11:05:35.682114	1
 759	305	The compiler does not compile because it cannot decide which ordering\ncategory the base class has.	text	txt	2024-07-28 09:47:21.242912	7
 740	304	The return type does not compile if the attributes have different comparison\ncategories. In that case use the weakest comparison type as the return type.	text	txt	2024-07-28 09:47:19.383515	1
@@ -17306,7 +17451,12 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 4512	585	#include <iostream>\n#include <format>\n#include <thread>\n#include <chrono>\n\nbool state{false};\n\nbool preconditions_apply()\n{\n    return state;\n}\n\nvoid do_something(std::stop_token caller)\n{\n    while (!caller.stop_requested())\n    {\n        /* process something */\n    }\n    std::cerr << std::format("{}\\\\n", "Halting worker");\n}\n\nvoid thread_controller(std::stop_source source)\n{\n    while (preconditions_apply())\n    {\n        std::this_thread::sleep_for(std::chrono::milliseconds{100});\n    }\n    source.request_stop();\n}\n\nint main()\n{\n    state = true; // preconditions apply\n    std::stop_source source_controller;\n    std::jthread worker{do_something, source_controller.get_token()};\n    std::jthread controller{thread_controller, std::ref(source_controller)};\n    std::this_thread::sleep_for(std::chrono::milliseconds{1000});\n    state = false; // break the contract\n}	code	cpp	2025-07-17 12:02:22.70438	2
 4515	588	#include <thread>\n\nint main()\n{\n    std::stop_source caller_source;\n    auto callable = [](std::stop_token caller) { while (!caller.stop_requested()); };\n    std::jthread stoppable_thread{callable, caller_source.get_token()};\n    std::jthread regular_thread{[]{ return; }};\n    caller_source.request_stop();\n}	code	cpp	2025-07-17 12:03:04.425264	2
 4514	587	#include <thread>\n#include <chrono>\n\nint main()\n{\n    std::jthread t{[](std::stop_token token) {\n        while (token.stop_requested())\n            break;\n        std::this_thread::sleep_for(std::chrono::milliseconds(100));\n    }};\n\n    std::this_thread::sleep_for(std::chrono::milliseconds(500));\n    t.request_stop();\n}	code	cpp	2025-07-17 12:02:47.739186	1
+4680	884	#include <iostream>\n#include <boost/asio.hpp>\n\nint main()\n{\n    boost::asio::io_service service;\n    boost::asio::io_service::work work{service};\n    service.run();\n    // will not be reached: blocking service\n}	code	cpp	2025-07-17 18:30:54.564642	2
 4638	679	#include <iostream>\n#include <filesystem>\n\nint main()\n{\n    std::filesystem::path existing_file{"/dev/random"};\n    std::filesystem::path non_existing_file{"/dev/none"};\n    std::filesystem::path existing_symlink{"/lib"};\n\n    std::filesystem::exists(existing_file);\n    std::filesystem::exists(non_existing_file);\n    std::filesystem::exists(symlink_status(existing_symlink));\n}	code	cpp	2025-07-17 12:27:43.196204	2
+2707	884	Running the `io_service` object's event processing loop will block the\nexecution of the thread and will run ready handlers until there are no more\nready handlers remaining or until the `io_service` object has been stopped.	text	txt	2024-07-28 09:52:53.944094	1
+2710	884	The `boost::asio::io_service::work` class is responsible for telling the\n`io_service` object when the work starts and when it has finished. It will\nmake sure that the `io_service::run()` function will not exit during the time\nthe work is underway. Also, it will make sure that the `io_service::run()`\nfunction exits when there is no unfinished work remaining.	text	txt	2024-07-28 09:52:54.006925	3
+4681	885	#include <iostream>\n#include <boost/asio.hpp>\n\nint main()\n{\n    boost::asio::io_service service;\n    boost::asio::io_service::work work{service};\n    service.poll();\n    // will be reached: non-blocking service\n}	code	cpp	2025-07-17 18:31:04.068212	2
+2714	886	The `post()` function requests the service to run its works after queueing up\nall the work. So it does not run the works immediately.	text	txt	2024-07-28 09:52:55.507289	1
 1530	481	The overhead of creating and managing threads on two operations costs highly.\nIt would be better to join the operations in one parallel execution.	text	txt	2024-07-28 09:49:26.660069	1
 1537	483	Starting with C++23, basic strings support `starts_with()` operation:	text	txt	2024-07-28 09:49:27.512533	1
 1540	484	Starting with C++23, basic strings support `ends_with()` operation:	text	txt	2024-07-28 09:49:27.914929	1
@@ -17320,9 +17470,11 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 4640	683	std::filesystem::path p{};\nstd::filesystem::file_status fs = std::filesystem::status(p);\n\nstd::filesystem::is_regular_file(fs);\nstd::filesystem::is_directory(fs);\nstd::filesystem::is_symlink(fs);\nstd::filesystem::is_other(fs);\n\nstd::filesystem::is_character_file(fs);\nstd::filesystem::is_block_file(fs);\nstd::filesystem::is_fifo(fs);\nstd::filesystem::is_socket(fs);	code	cpp	2025-07-17 12:28:10.68912	1
 2292	687	if ((perms & std::filesystem::perms{0222}) != std::filesystem::perms::none)\n{\n}	code	cpp	2024-07-28 09:51:36.474865	4
 4642	686	#include <iostream>\n#include <filesystem>\n\nint main()\n{\n    std::filesystem::path file{"/etc/passwd"};\n    std::filesystem::file_status status{std::filesystem::status(file)};\n    std::cout << "file type: ";\n    std::cout << "\\\\n";\n}	code	cpp	2025-07-17 12:28:25.573274	1
+2715	886	Any thread calling `io_service::run()` function will block execution and wait\nfor tasks to be enqueued, or finish existing tasks. Best practice is to attach\n`io_service` to slave threads so that they wait for tasks to be given and\nexecute them while master threads assign new tasks to them.	text	txt	2024-07-28 09:52:55.528797	2
 2288	687	|Enum|Octal|POSIX|\n|---|---|---|\n|`none`|0||\n|`owner_read`|0400|`S_IRUSR`|\n|`owner_write`|0200|`S_IWUSR`|\n|`owner_exec`|0100|`S_IXUSR`|\n|`owner_all`|0700|`S_IRWXU`|\n|`group_read`|040|`S_IRGRP`|\n|`group_write`|020|`S_IWGRP`|\n|`group_exec`|010|`S_IXGRP`|\n|`group_all`|070|`S_IRWXG`|\n|`others_read`|04|`S_IROTH`|\n|`others_write`|02|`S_IWOTH`|\n|`others_exec`|01|`S_IXOTH`|\n|`others_all`|07|`S_IRWXO`|\n|`all`|0777||\n|`set_suid`|04000|`S_ISUID`|\n|`set_guid`|02000|`S_ISGID`|\n|`sticky_bit`|01000|`S_ISVTX`|\n|`mask`|07777||\n|`unknown`|0xFFFF||	text	txt	2024-07-28 09:51:36.391878	1
 2291	687	A shorter way to initialize a bitmask is:	text	txt	2024-07-28 09:51:36.453728	3
 4644	688	#include <fstream>\n\nstd::fstream file{"/tmp/non-existing-file"};	code	cpp	2025-07-17 12:29:07.888991	1
+4684	886	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>\n\nvoid finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}\n\nvoid some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}\n\nint main()\n{\n    boost::asio::io_service service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(std::bind(some_work, 2));\n    worker.join();\n}	code	cpp	2025-07-17 18:31:59.621498	3
 1589	490	Importantly, because the algorithm does not have access to the end iterator\nof the source range, it does no out-of-bounds checking, and it is the\nresponsibility of the caller to ensure that the range $[first, first + n)$ is\nvalid.	text	txt	2024-07-28 09:49:34.42329	4
 1590	491	| `std::swap` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:35.131004	1
 1591	491	Correctly calling swap requires pulling the default `std::swap` version to\nthe local scope.	text	txt	2024-07-28 09:49:35.151604	2
@@ -17372,6 +17524,8 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1694	508	| `std::is_partitioned` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:49.433274	1
 1697	509	| `std::partition_copy` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:50.228294	1
 1698	509	The `std::partition_copy` is a variant of `std::partition` that, instead of\nreordering elements, will output the partitioned elements to the two output\nranges denoted by two iterators.	text	txt	2024-07-28 09:49:50.249579	2
+4700	890	#include <thread>\n#include <chrono>\n#include <boost/asio.hpp>\n\nvoid some_work()\n{\n    std::this_thread::sleep_for(std::chrono::seconds(2));\n}\n\nvoid finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}\n\nvoid timer_handler(boost::system::error_code const&)\n{\n}\n\nint main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(some_work);\n\n    boost::asio::deadline_timer timer{service};\n    timer.expires_from_now(boost::posix_time::seconds(1));\n    timer.async_wait(strand.wrap(timer_handler));\n\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:35:01.737424	1
+4706	891	#include <iostream>\n#include <thread>\n#include <chrono>\n#include <string>\n#include <boost/asio.hpp>\n\nvoid initialize_service(boost::asio::io_context& service)\n{\n    service.run();\n}\n\nint main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n\n    std::thread worker{initialize_service, std::ref(service)};\n    boost::asio::ip::tcp::socket socket{service};\n\n    try\n    {\n        boost::asio::ip::tcp::resolver resolver{service};\n        boost::asio::ip::tcp::resolver::query query{"example.com", std::to_string(80)};\n        boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);\n        boost::asio::ip::tcp::endpoint endpoint = *iterator;\n\n        socket.connect(endpoint);\n        socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n        socket.close();\n    }\n    catch (std::exception const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:35:42.843963	1
 4535	599	#include <initializer_list>\n#include <vector>\n#include <thread>\n#include <mutex>\n\ntemplate<typename T>\nclass some_task\n{\npublic:\n    some_task(std::initializer_list<T> range): tokens{range} {}\n    void append(some_task<T> const& other) noexcept\n    {\n        std::scoped_lock guard{exclusive, other.exclusive};\n        tokens.insert(tokens.end(), other.tokens.begin(), other.tokens.end());\n    }\n    std::size_t size() const noexcept\n    {\n        std::lock_guard guard{exclusive};\n        return tokens.size();\n    }\n\nprivate:\n    std::vector<T> tokens;\n    std::mutex exclusive;\n};\n\ntemplate<typename T>\nvoid merge_tasks(some_task<T>& a, some_task<T>& b)\n{\n    a.append(b);\n}\n\nint main()\n{\n    some_task<long> A{1,2,3,4}, B{5,6,7,8};\n    std::thread t1{&some_task<long>::size, A};\n    std::thread t2{merge_tasks<long>, A, B};\n}	code	cpp	2025-07-17 12:06:01.639825	1
 4652	713	*mpeg.cpp*\n#include <mpeg.hpp>\n\nusing namespace dp;\n\nmpeg::mpeg(std::chrono::seconds const& length)\n    : _length{length}\n{\n}\n\nstd::chrono::seconds mpeg::length() const noexcept\n{\n    return _length;\n}	code	cpp	2025-07-17 12:33:15.618513	2
 1703	510	| `std::nth_element` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:49:51.285752	1
@@ -17407,8 +17561,11 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1778	525	| `std::remove` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:02.986697	1
 4667	713	*video_stream.hpp*\n#pragma once\n\n#include <memory>\n\nnamespace dp\n{\nclass video;\n\nclass video_stream\n{\npublic:\n    virtual std::shared_ptr<video> record(char const type[4]) = 0;\n};\n}	code	cpp	2025-07-17 12:34:17.875158	7
 1823	537	| `std::all_of` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:10.938543	1
+4716	892	#include <iostream>\n#include <thread>\n#include <string>\n#include <functional>\n#include <boost/asio.hpp>\n\nstatic constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};\n\nvoid connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}\n\nint main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};\n\n    std::thread worker(connection_worker, std::ref(context));\n\n    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};\n\n    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);\n\n    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;\n\n    acceptor.accept(socket);\n\n    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;\n\n    acceptor.close();\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    context.stop();\n    worker.join();\n}	code	cpp	2025-07-17 18:35:49.336671	1
 4541	606	#include <condition_variable>\n#include <thread>\n#include <vector>\n#include <mutex>\n\ntemplate<typename T>\nclass bag\n{\npublic:\n    void append(T value)\n    {\n        std::unique_lock<std::mutex> guard{exclusive};\n        container.push_back(std::move(value));\n        guard.unlock();\n        condition.notify_one();\n    }\n\n    T get() const\n    {\n        std::unique_lock<std::mutex> guard{exclusive};\n        while (container.empty())\n            condition.wait(guard);\n        T value = std::move(container.back());\n        return value;\n    }\n\nprivate:\n    mutable std::mutex exclusive;\n    mutable std::condition_variable condition;\n    std::vector<T> container;\n};\n\nint main()\n{\n    bag<long> numbers{};\n    numbers.append(42);\n    long n = numbers.get(); // 42\n}	code	cpp	2025-07-17 12:11:04.399822	1
+4722	895	#include <thread>\n#include <string>\n#include <boost/asio.hpp>\n\nvoid initialize_service(boost::asio::io_context& service)\n{\n    service.run();\n}\n\nint main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n\n    std::thread worker{initialize_service, std::ref(service)};\n\n    boost::asio::ip::tcp::socket socket{service};\n    boost::asio::ip::tcp::resolver resolver{service};\n    boost::asio::ip::tcp::resolver::query query{"127.0.0.1", std::to_string(9090)};\n    boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);\n    boost::asio::ip::tcp::endpoint endpoint = *iterator;\n\n    socket.connect(endpoint);\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:36:05.393098	1
 4544	608	#include <atomic>\n#include <thread>\n\nstd::atomic<long> shared_value{};\n\nvoid increment_shared()\n{\n    shared_value++;\n}\n\nint main()\n{\n    std::thread t1{increment_shared};\n    std::thread t2{increment_shared};\n    t1.join();\n    t2.join();\n}	code	cpp	2025-07-17 12:11:35.635684	2
+4687	887	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>\n\nvoid some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}\n\nvoid finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}\n\nint main()\n{\n    boost::asio::io_service service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    boost::asio::dispatch(service, std::bind(some_work, 2));\n    worker.join();\n    service.stop();\n}	code	cpp	2025-07-17 18:32:13.026871	3
 1781	526	| `std::remove_if` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:03.5547	1
 1784	527	| `std::replace` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:04.130555	1
 1787	528	| `std::replace_if` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:04.739652	1
@@ -17425,6 +17582,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 1819	536	| `std::all_of` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 09:50:10.322739	1
 1853	544	Following string operations are available in C++23:	text	txt	2024-07-28 09:50:15.777457	1
 1854	544	- `std::basic_string<CharT,Traits,Allocator>::insert_range`\n- `std::basic_string<CharT,Traits,Allocator>::append_range`\n- `std::basic_string<CharT,Traits,Allocator>::replace_with_range`	text	txt	2024-07-28 09:50:15.79933	2
+4729	896	#include <thread>\n#include <iostream>\n#include <functional>\n#include <boost/asio.hpp>\n\nvoid connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}\n\nvoid on_connect(boost::asio::ip::tcp::endpoint const& endpoint)\n{\n    std::cout << "connected to " << endpoint.address().to_string() << std::endl;\n}\n\nint main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    std::thread worker{connection_worker, std::ref(context)};\n\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n\n    boost::asio::ip::tcp::resolver::query query{"127.0.0.1", "9000"};\n    boost::asio::ip::tcp::resolver::iterator endpoints = resolver.resolve(query);\n\n    boost::asio::ip::tcp::endpoint endpoint = *endpoints;\n    socket.async_connect(endpoint, std::bind(on_connect, std::ref(endpoint)));\n\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    worker.join();\n    context.stop();\n}	code	cpp	2025-07-17 18:37:01.611744	1
 2024	600		code	txt	2024-07-28 09:50:47.321231	2
 1893	559	incomplete	text	txt	2024-07-28 09:50:23.985942	1
 1905	566	The relationships between elements within a range cannot be directly stated.	text	txt	2024-07-28 09:50:26.74826	1
@@ -17531,6 +17689,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2178	640	namespace std::filesystem\n{\n    enum class file_type\n    {\n        regular, directory, symlink,\n        block, character, fifo, socket,\n        ...\n        none, not_found, unknown\n    };\n}	code	cpp	2024-07-28 09:51:14.945843	2
 2184	643	Note that `current_path()` is an expensive operation because it is based on\noperating system calls.	text	txt	2024-07-28 09:51:16.296116	1
 2189	645	std::filesystem::path p;\np.empty(); // true	code	cpp	2024-07-28 09:51:17.084586	1
+4740	897	#include <iostream>\n#include <memory>\n#include <thread>\n#include <string>\n#include <functional>\n#include <boost/asio.hpp>\n\nstatic constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};\n\nvoid connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}\n\nvoid on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)\n{\n    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;\n\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    work.reset();\n}\n\nint main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    auto work{std::make_shared<boost::asio::io_context::work>(context)};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};\n\n    std::thread worker(connection_worker, std::ref(context));\n\n    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};\n\n    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);\n\n    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;\n\n    acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));\n\n    worker.join();\n    acceptor.close();\n    context.stop();\n}	code	cpp	2025-07-17 18:37:08.340421	1
 2205	650	Lexically relative path can be used in symbolic link creation.	text	txt	2024-07-28 09:51:19.8993	1
 2206	650	Lexical relative path yields the empty path if there is no relative path from p1 to p2.	text	txt	2024-07-28 09:51:19.922663	2
 2208	650	Lexical proximate path yields p1 if there is no relative path from p1 to p2.	text	txt	2024-07-28 09:51:19.965002	4
@@ -17929,10 +18088,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2668	856	Running service can be found in cluster by following command:	text	txt	2024-07-28 09:52:44.639646	3
 2669	856	docker service ps my-service	code	txt	2024-07-28 09:52:44.661076	4
 2670	857	Assuming an application running on two nodes of a cluster and both have write\naccess to the shared volume.	text	txt	2024-07-28 09:52:45.153925	1
-2714	886	The `post()` function requests the service to run its works after queueing up\nall the work. So it does not run the works immediately.	text	txt	2024-07-28 09:52:55.507289	1
-2715	886	Any thread calling `io_service::run()` function will block execution and wait\nfor tasks to be enqueued, or finish existing tasks. Best practice is to attach\n`io_service` to slave threads so that they wait for tasks to be given and\nexecute them while master threads assign new tasks to them.	text	txt	2024-07-28 09:52:55.528797	2
-2716	886	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:55.550048	3
-2717	886	void finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:52:55.570467	4
 3152	1036	MODULE_INFO(tag, info);	code	txt	2024-07-28 09:54:11.436843	1
 3656	1168	section .text\n    ...	code	txt	2024-07-28 09:55:25.36245	3
 3657	1168	*main.nasm*>\nextern pi	text	txt	2024-07-28 09:55:25.382183	4
@@ -17977,112 +18132,15 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 2704	881	gdb ./program\n(gdb) set remote exec-file ./program\n(gdb) set sysroot /\n(gdb) target extended-remote | vgdb --multi --vargs -q\n(gdb) start\n(gdb) help valgrind\n(gdb) help memcheck\n(gdb) help helgrind	code	txt	2024-07-28 09:52:52.666568	1
 2705	882	The I/O service is a channel that is used to access operating system\nresources and establish communication between our program and the operating\nsystem that performs I/O requests.	text	txt	2024-07-28 09:52:52.960134	1
 2706	883	The I/O object has the role of submitting I/O requests. For instance, the\n`tcp::socket` object will provide a socket programming request from our\nprogram to the operating system.	text	txt	2024-07-28 09:52:53.245876	1
-2707	884	Running the `io_service` object's event processing loop will block the\nexecution of the thread and will run ready handlers until there are no more\nready handlers remaining or until the `io_service` object has been stopped.	text	txt	2024-07-28 09:52:53.944094	1
-2708	884	#include <iostream>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:53.964368	2
-2709	884	int main()\n{\n    boost::asio::io_service service;\n    boost::asio::io_service::work work{service};\n    service.run();\n    // will not be reached: blocking service\n}	code	txt	2024-07-28 09:52:53.98535	3
-2710	884	The `boost::asio::io_service::work` class is responsible for telling the\n`io_service` object when the work starts and when it has finished. It will\nmake sure that the `io_service::run()` function will not exit during the time\nthe work is underway. Also, it will make sure that the `io_service::run()`\nfunction exits when there is no unfinished work remaining.	text	txt	2024-07-28 09:52:54.006925	4
+2726	888	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt	2024-07-28 09:52:57.595848	1
+2731	888	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt	2024-07-28 09:52:57.698388	3
 2711	885	The `poll()` function will run the `io_service` object's event processing loop\nwithout blocking the execution of the thread. This will run the handlers until\nthere are no more ready handlers remaining or until the `io_service` object\nhas been stopped.	text	txt	2024-07-28 09:52:54.576944	1
-2712	885	#include <iostream>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:54.597406	2
-2713	885	int main()\n{\n    boost::asio::io_service service;\n    boost::asio::io_service::work work{service};\n    service.poll();\n    // will be reached: non-blocking service\n}	code	txt	2024-07-28 09:52:54.619393	3
-2718	886	void some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}	text	txt	2024-07-28 09:52:55.59311	5
-2719	886	int main()\n{\n    boost::asio::io_service service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(std::bind(some_work, 2));\n    worker.join();\n}	code	txt	2024-07-28 09:52:55.61417	6
 2720	887	The `dispatch()` function requests the service to run its works right away\nwithout queueing up.	text	txt	2024-07-28 09:52:56.557112	1
 2721	887	The `dispatch()` function can be invoked from the current worker thread, while\nthe `post()` function has to wait until the handler of the worker is complete\nbefore it can be invoked. In other words, the `dispatch()` function's events\ncan be executed from the current worker thread even if there are other pending\nevents queued up, while the `post()` function's events have to wait until the\nhandler completes the execution before being allowed to be executed.	text	txt	2024-07-28 09:52:56.577591	2
-2722	887	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:56.597561	3
-2723	887	void some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}	text	txt	2024-07-28 09:52:56.61807	4
-2724	887	void finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:52:56.638279	5
-2725	887	int main()\n{\n    boost::asio::io_service service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    boost::asio::dispatch(service, std::bind(some_work, 2));\n    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:52:56.658485	6
-2726	888	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt	2024-07-28 09:52:57.595848	1
-2727	888	#include <thread>\n#include <chrono>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:57.615943	2
-2728	888	void some_work(std::size_t s)\n{\n    std::this_thread::sleep_for(std::chrono::seconds(s));\n}	text	txt	2024-07-28 09:52:57.636771	3
-2729	888	void finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:52:57.656721	4
-2730	888	int main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n    std::thread worker{finish_tasks, std::ref(service)};\n    strand.post(std::bind(some_work, 2));\n    service.post(strand.wrap(std::bind(some_work, 2)));\n    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:52:57.678062	5
-2731	888	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt	2024-07-28 09:52:57.698388	6
-2732	889	#include <thread>\n#include <mutex>\n#include <iostream>\n#include <exception>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:58.66555	1
-2733	889	std::mutex ostream_lock;	text	txt	2024-07-28 09:52:58.685142	2
-2734	889	void some_work()\n{\n    throw std::runtime_error("i/o failure");\n}	text	txt	2024-07-28 09:52:58.704992	3
-2735	889	void finish_tasks(boost::asio::io_service& service)\n{\n    try\n    {\n        service.run();\n    }\n    catch (std::runtime_error const& exp)\n    {\n        std::lock_guard<std::mutex> lock{ostream_lock};\n        std::cerr << exp.what() << "\\\\n";\n    }\n}	text	txt	2024-07-28 09:52:58.72587	4
-2736	889	int main()\n{\n    boost::asio::io_context service;\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(some_work);\n    service.post(some_work); // no more io context to dispatch\n    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:52:58.747873	5
-2737	890	#include <thread>\n#include <chrono>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:52:59.644094	1
-2738	890	void some_work()\n{\n    std::this_thread::sleep_for(std::chrono::seconds(2));\n}	text	txt	2024-07-28 09:52:59.664329	2
-2739	890	void finish_tasks(boost::asio::io_service& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:52:59.684397	3
-2740	890	void timer_handler(boost::system::error_code const&)\n{\n}	text	txt	2024-07-28 09:52:59.705632	4
-2741	890	int main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};\n    std::thread worker{finish_tasks, std::ref(service)};\n    service.post(some_work);	text	txt	2024-07-28 09:52:59.726571	5
-2742	890	    boost::asio::deadline_timer timer{service};\n    timer.expires_from_now(boost::posix_time::seconds(1));\n    timer.async_wait(strand.wrap(timer_handler));	text	txt	2024-07-28 09:52:59.748355	6
-2743	890	    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:52:59.769233	7
-2744	891	#include <iostream>\n#include <thread>\n#include <chrono>\n#include <string>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:00.86916	1
-2745	891	void initialize_service(boost::asio::io_context& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:53:00.890811	2
-2746	891	int main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};	text	txt	2024-07-28 09:53:00.912153	3
-2747	891	    std::thread worker{initialize_service, std::ref(service)};\n    boost::asio::ip::tcp::socket socket{service};	text	txt	2024-07-28 09:53:00.933005	4
-2748	891	    try\n    {\n        boost::asio::ip::tcp::resolver resolver{service};\n        boost::asio::ip::tcp::resolver::query query{"example.com", std::to_string(80)};\n        boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);\n        boost::asio::ip::tcp::endpoint endpoint = *iterator;	text	txt	2024-07-28 09:53:00.956347	5
-2749	891	        socket.connect(endpoint);\n        socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n        socket.close();\n    }\n    catch (std::exception const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }	text	txt	2024-07-28 09:53:00.978674	6
-2750	891	    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:53:00.999116	7
-2751	892	#include <iostream>\n#include <thread>\n#include <string>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:02.281273	1
-2752	892	static constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};	text	txt	2024-07-28 09:53:02.302163	2
-2753	892	void connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}	text	txt	2024-07-28 09:53:02.322279	3
-2754	892	int main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};	text	txt	2024-07-28 09:53:02.342698	4
-2755	892	    std::thread worker(connection_worker, std::ref(context));	text	txt	2024-07-28 09:53:02.36387	5
-2756	892	    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};	text	txt	2024-07-28 09:53:02.384892	6
-2757	892	    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);	text	txt	2024-07-28 09:53:02.406238	7
-2758	892	    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;	text	txt	2024-07-28 09:53:02.426869	8
-2759	892	    acceptor.accept(socket);	text	txt	2024-07-28 09:53:02.447302	9
-2760	892	    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;	text	txt	2024-07-28 09:53:02.468127	10
-2761	892	    acceptor.close();\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    context.stop();\n    worker.join();\n}	code	txt	2024-07-28 09:53:02.488754	11
 2762	893		code	txt	2024-07-28 09:53:02.731008	1
 2763	894		code	txt	2024-07-28 09:53:02.945519	1
-2764	895	#include <thread>\n#include <string>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:03.815209	1
-2765	895	void initialize_service(boost::asio::io_context& service)\n{\n    service.run();\n}	text	txt	2024-07-28 09:53:03.835594	2
-2766	895	int main()\n{\n    boost::asio::io_context service;\n    boost::asio::io_context::strand strand{service};	text	txt	2024-07-28 09:53:03.856003	3
-2767	895	    std::thread worker{initialize_service, std::ref(service)};	text	txt	2024-07-28 09:53:03.877764	4
-2768	895	    boost::asio::ip::tcp::socket socket{service};\n    boost::asio::ip::tcp::resolver resolver{service};\n    boost::asio::ip::tcp::resolver::query query{"127.0.0.1", std::to_string(9090)};\n    boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);\n    boost::asio::ip::tcp::endpoint endpoint = *iterator;	text	txt	2024-07-28 09:53:03.900019	5
-2769	895	    socket.connect(endpoint);\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();	text	txt	2024-07-28 09:53:03.921209	6
-2770	895	    worker.join();\n    service.stop();\n}	code	txt	2024-07-28 09:53:03.941867	7
-2771	896	#include <thread>\n#include <iostream>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:04.921908	1
-2772	896	void connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}	text	txt	2024-07-28 09:53:04.942401	2
-2773	896	void on_connect(boost::asio::ip::tcp::endpoint const& endpoint)\n{\n    std::cout << "connected to " << endpoint.address().to_string() << std::endl;\n}	text	txt	2024-07-28 09:53:04.962424	3
-2774	896	int main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    std::thread worker{connection_worker, std::ref(context)};	text	txt	2024-07-28 09:53:04.984167	4
-2775	896	    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};	text	txt	2024-07-28 09:53:05.004417	5
-2776	896	    boost::asio::ip::tcp::resolver::query query{"127.0.0.1", "9000"};\n    boost::asio::ip::tcp::resolver::iterator endpoints = resolver.resolve(query);	text	txt	2024-07-28 09:53:05.025668	6
-2777	896	    boost::asio::ip::tcp::endpoint endpoint = *endpoints;\n    socket.async_connect(endpoint, std::bind(on_connect, std::ref(endpoint)));	text	txt	2024-07-28 09:53:05.047992	7
-2778	896	    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    worker.join();\n    context.stop();\n}	code	txt	2024-07-28 09:53:05.069141	8
-2779	897	#include <iostream>\n#include <memory>\n#include <thread>\n#include <string>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:06.467595	1
-2780	897	static constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};	text	txt	2024-07-28 09:53:06.489296	2
-2781	897	void connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}	text	txt	2024-07-28 09:53:06.509451	3
-2782	897	void on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)\n{\n    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;	text	txt	2024-07-28 09:53:06.53003	4
-2783	897	    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    work.reset();\n}	text	txt	2024-07-28 09:53:06.550551	5
-2784	897	int main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    auto work{std::make_shared<boost::asio::io_context::work>(context)};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};	text	txt	2024-07-28 09:53:06.573768	6
-2785	897	    std::thread worker(connection_worker, std::ref(context));	text	txt	2024-07-28 09:53:06.594461	7
-2786	897	    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};	text	txt	2024-07-28 09:53:06.615013	8
-2787	897	    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);	text	txt	2024-07-28 09:53:06.636164	9
-2788	897	    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;	text	txt	2024-07-28 09:53:06.657291	10
-2789	897	    acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));	text	txt	2024-07-28 09:53:06.677659	11
-2790	897	    worker.join();\n    acceptor.close();\n    context.stop();\n}	code	txt	2024-07-28 09:53:06.697825	12
-2791	898	#include <iostream>\n#include <algorithm>\n#include <numeric>\n#include <memory>\n#include <thread>\n#include <string>\n#include <vector>\n#include <list>\n#include <functional>\n#include <boost/asio.hpp>	text	txt	2024-07-28 09:53:09.523628	1
-2792	898	static constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};	text	txt	2024-07-28 09:53:09.545286	2
-2793	898	std::vector<std::uint8_t> receive_buffer(4096);\nstd::size_t receive_buffer_index{};\nstd::list<std::vector<std::uint8_t>> send_buffer;	text	txt	2024-07-28 09:53:09.565822	3
-2794	898	void connection_worker(boost::asio::io_context&);\nvoid on_send(boost::asio::ip::tcp::socket&, std::list<std::vector<std::uint8_t>>::iterator);\nvoid send(boost::asio::ip::tcp::socket&, void const*, std::size_t);\nvoid on_receive(boost::asio::ip::tcp::socket&, std::size_t);\nvoid receive(boost::asio::ip::tcp::socket&);\nvoid on_accept(boost::asio::ip::tcp::socket&, std::shared_ptr<boost::asio::io_context::work>);	text	txt	2024-07-28 09:53:09.586983	4
-2795	898	void connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}	text	txt	2024-07-28 09:53:09.606618	5
-2796	898	void on_send(boost::asio::ip::tcp::socket& socket, std::list<std::vector<std::uint8_t>>::iterator node)\n{\n    send_buffer.erase(node);	text	txt	2024-07-28 09:53:09.627245	6
 2831	904	If these variables are not specified, the native host machine is going to be\ntargeted.	text	txt	2024-07-28 09:53:13.175479	3
 2832	904	make help	code	txt	2024-07-28 09:53:13.195794	4
-2797	898	    if (!send_buffer.empty())\n    {\n        boost::asio::async_write(\n            socket,\n            boost::asio::buffer(send_buffer.front()),\n            std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())\n        );\n    }\n}	text	txt	2024-07-28 09:53:09.647757	7
-2798	898	void send(boost::asio::ip::tcp::socket& socket, void const* buffer, std::size_t length)\n{\n    std::vector<std::uint8_t> output;\n    std::copy((std::uint8_t const*)buffer, (std::uint8_t const*)buffer + length, std::back_inserter(output));	text	txt	2024-07-28 09:53:09.669113	8
-2799	898	    send_buffer.push_back(output);	text	txt	2024-07-28 09:53:09.688649	9
-2800	898	    boost::asio::async_write(\n        socket,\n        boost::asio::buffer(send_buffer.front()),\n        std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())\n    );\n}	text	txt	2024-07-28 09:53:09.709838	10
-2801	898	void on_receive(boost::asio::ip::tcp::socket& socket, std::size_t bytes_transferred)\n{\n    receive_buffer_index += bytes_transferred;	text	txt	2024-07-28 09:53:09.730807	11
-2802	898	    for (std::size_t index{}; index < receive_buffer_index; ++index)\n    {\n        std::cout << (char)receive_buffer[index] << " ";\n    }\n    std::cout << std::endl;\n    receive_buffer_index = 0;	text	txt	2024-07-28 09:53:09.752677	12
-2803	898	    receive(socket);\n}	text	txt	2024-07-28 09:53:09.775188	13
-2804	898	void receive(boost::asio::ip::tcp::socket& socket)\n{\n    socket.async_read_some(\n        boost::asio::buffer(\n            &receive_buffer[receive_buffer_index],\n            receive_buffer.size() - receive_buffer_index\n        ),\n        std::bind(on_receive, std::ref(socket), 1)\n    );\n}	text	txt	2024-07-28 09:53:09.797311	14
-2805	898	void on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)\n{\n    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;	text	txt	2024-07-28 09:53:09.819022	15
-2806	898	    send(socket, "payload", 7);\n    receive(socket);	text	txt	2024-07-28 09:53:09.840738	16
-2807	898	    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    work.reset();\n}	text	txt	2024-07-28 09:53:09.862384	17
-2808	898	int main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    auto work{std::make_shared<boost::asio::io_context::work>(context)};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};	text	txt	2024-07-28 09:53:09.883762	18
-2809	898	    std::thread worker(connection_worker, std::ref(context));	text	txt	2024-07-28 09:53:09.904536	19
-2810	898	    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};	text	txt	2024-07-28 09:53:09.926971	20
-2811	898	    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);	text	txt	2024-07-28 09:53:09.947719	21
-2812	898	    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;	text	txt	2024-07-28 09:53:09.969333	22
-2813	898	    acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));	text	txt	2024-07-28 09:53:09.989011	23
-2814	898	    worker.join();\n    acceptor.close();\n    context.stop();\n}	code	txt	2024-07-28 09:53:10.009872	24
 2815	899	Follow up overviews of each kernel release on **KernelNewbies** to see changes.	text	txt	2024-07-28 09:53:10.294082	1
 2816	900	The source can be downloaded as an archive but without any git history:	text	txt	2024-07-28 09:53:10.932494	1
 2817	900	wget https://cdn.kernel.org - https://cdn.kernel.org/pub/linux/kernel/v5.4/linux-v5.4.tar.xz	code	txt	2024-07-28 09:53:10.952572	2
@@ -18942,7 +19000,6 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 3691	1174	%IF CONDITION\n    xor rdi, rdi\n%ELSE\n    mov rdi, 1\n%ENDIF	text	txt	2024-07-28 09:55:30.321722	4
 3692	1174	    leave\n    ret	code	txt	2024-07-28 09:55:30.341765	5
 3693	1175	section .text\n    global write	text	txt	2024-07-28 09:55:30.948467	1
-3694	1175	; preconditions:\n; address of string be set to rsi\n; length of string be set to rdx\nwrite:\n    push rbp\n    mov rbp, rsp	text	txt	2024-07-28 09:55:30.968894	2
 3695	1175	    mov rax, 1  ; write system call number\n    mov rdi, 1  ; stdout\n    syscall	text	txt	2024-07-28 09:55:30.988539	3
 3696	1175	    xor rax, rax\n    leave\n    ret	code	txt	2024-07-28 09:55:31.008935	4
 3697	1176	section .text\n    global read	text	txt	2024-07-28 09:55:31.557594	1
@@ -19291,6 +19348,7 @@ COPY milestone.practice_blocks (id, practice_id, content, type, language, update
 4415	532	#include <algorithm>\n#include <vector>\n#include <ranges>\n#include <random>\n\nint main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::random_device rd{};\n    std::mt19937 generator{rd()};\n    std::ranges::shuffle(range, generator);\n}	code	cpp	2025-07-17 10:58:35.600816	2
 4419	535	#include <algorithm>\n#include <vector>\n#include <ranges>\n\nint main()\n{\n    std::vector<long> range1{1,2,3}, range2{1,3,2};\n    std::ranges::is_permutation(range1, range2);\n    // true\n}	code	cpp	2025-07-17 11:00:17.845037	2
 4111	383	#include <utility>\n\nclass bag\n{\nprivate:\n    unsigned int _count;\n    int* _storage;\n\npublic:\n    bag(int const& number): _count{0}, _storage{nullptr}\n    {\n        _count++;\n        _storage = new int{number};\n    }\n\n    virtual ~bag()\n    {\n        if (_count)\n            delete _storage;\n    }\n\n    bag(bag const& other): _count{other._count}\n    {\n        _storage = new int{*other._storage};\n    }\n\n    bag(bag&& other): _count{other._count}, _storage{other._storage}\n    {\n        other._count = 0;\n        other._storage = nullptr;\n    }\n};\n\nint main()\n{\n    bag a{1};\n    bag b{std::move(a)};\n}	code	cpp	2025-07-16 14:36:43.884824	1
+4763	898	#include <iostream>\n#include <algorithm>\n#include <numeric>\n#include <memory>\n#include <thread>\n#include <string>\n#include <vector>\n#include <list>\n#include <functional>\n#include <boost/asio.hpp>\n\nstatic constexpr auto port{8888};\nstatic constexpr auto address{"127.0.0.1"};\n\nstd::vector<std::uint8_t> receive_buffer(4096);\nstd::size_t receive_buffer_index{};\nstd::list<std::vector<std::uint8_t>> send_buffer;\n\nvoid connection_worker(boost::asio::io_context&);\nvoid on_send(boost::asio::ip::tcp::socket&, std::list<std::vector<std::uint8_t>>::iterator);\nvoid send(boost::asio::ip::tcp::socket&, void const*, std::size_t);\nvoid on_receive(boost::asio::ip::tcp::socket&, std::size_t);\nvoid receive(boost::asio::ip::tcp::socket&);\nvoid on_accept(boost::asio::ip::tcp::socket&, std::shared_ptr<boost::asio::io_context::work>);\n\nvoid connection_worker(boost::asio::io_context& context)\n{\n    context.run();\n}\n\nvoid on_send(boost::asio::ip::tcp::socket& socket, std::list<std::vector<std::uint8_t>>::iterator node)\n{\n    send_buffer.erase(node);\n\n    if (!send_buffer.empty())\n    {\n        boost::asio::async_write(\n            socket,\n            boost::asio::buffer(send_buffer.front()),\n            std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())\n        );\n    }\n}\n\nvoid send(boost::asio::ip::tcp::socket& socket, void const* buffer, std::size_t length)\n{\n    std::vector<std::uint8_t> output;\n    std::copy((std::uint8_t const*)buffer, (std::uint8_t const*)buffer + length, std::back_inserter(output));\n\n    send_buffer.push_back(output);\n\n    boost::asio::async_write(\n        socket,\n        boost::asio::buffer(send_buffer.front()),\n        std::bind(on_send, boost::asio::placeholders::error, send_buffer.begin())\n    );\n}\n\nvoid on_receive(boost::asio::ip::tcp::socket& socket, std::size_t bytes_transferred)\n{\n    receive_buffer_index += bytes_transferred;\n\n    for (std::size_t index{}; index < receive_buffer_index; ++index)\n    {\n        std::cout << (char)receive_buffer[index] << " ";\n    }\n    std::cout << std::endl;\n    receive_buffer_index = 0;\n\n    receive(socket);\n}\n\nvoid receive(boost::asio::ip::tcp::socket& socket)\n{\n    socket.async_read_some(\n        boost::asio::buffer(\n            &receive_buffer[receive_buffer_index],\n            receive_buffer.size() - receive_buffer_index\n        ),\n        std::bind(on_receive, std::ref(socket), 1)\n    );\n}\n\nvoid on_accept(boost::asio::ip::tcp::socket& socket, std::shared_ptr<boost::asio::io_context::work> work)\n{\n    boost::asio::ip::tcp::endpoint client{socket.remote_endpoint()};\n    boost::asio::ip::address client_addr{client.address()};\n    boost::asio::ip::port_type client_port{client.port()};\n    std::clog << "client " << client_addr << ":" << client_port << std::endl;\n\n    send(socket, "payload", 7);\n    receive(socket);\n\n    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);\n    socket.close();\n    work.reset();\n}\n\nint main()\n{\n    boost::asio::io_context context{};\n    boost::asio::io_context::strand strand{context};\n    auto work{std::make_shared<boost::asio::io_context::work>(context)};\n    boost::asio::ip::tcp::socket socket{context};\n    boost::asio::ip::tcp::resolver resolver{context};\n    boost::asio::ip::tcp::acceptor acceptor{context};\n\n    std::thread worker(connection_worker, std::ref(context));\n\n    boost::asio::ip::tcp::resolver::query query{address, std::to_string(port)};\n    boost::asio::ip::tcp::resolver::iterator iterator{resolver.resolve(query)};\n    boost::asio::ip::tcp::endpoint endpoint{*iterator};\n\n    acceptor.open(endpoint.protocol());\n    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));\n    acceptor.bind(endpoint);\n    acceptor.listen(boost::asio::socket_base::max_connections);\n\n    boost::asio::ip::address local_addr{endpoint.address()};\n    boost::asio::ip::port_type local_port{port};\n    std::clog << "listening " << local_addr << ":" << local_port << std::endl;\n\n    acceptor.async_accept(socket, std::bind(on_accept, std::ref(socket), std::move(work)));\n\n    worker.join();\n    acceptor.close();\n    context.stop();\n}	code	cpp	2025-07-17 18:37:43.543659	1
 4112	388	std::vector<std::string> coll;\nconst std::string s{"data"};\n\ncoll.push_back(std::move(s));   // OK, calls push_back(const std::string &)	code	cpp	2025-07-16 14:37:21.054244	2
 4421	536	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> range{1,2,3};\n\n    std::ranges::all_of(range, [](long e) { return e > 0; });\n    // all numbers are possitive: true\n}	code	cpp	2025-07-17 11:01:45.179769	2
 4114	391	std::string s{"data"};\n\nfoo(std::move(s));\n\nstd::cout << s << '\\\\n'; // OK (don't know which value is written)\nstd::cout << s.size() << '\\\\n';  // OK (writes current number of characters)\nstd::cout << s[0] << '\\\\n';  // ERROR (potentially undefined behavior)\nstd::cout << s.front() << '\\\\n'; // ERROR (potentially undefined behavior)\ns = "new value";  // OK	code	cpp	2025-07-16 14:38:00.271586	2
@@ -26018,7 +26076,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10401, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10403, true);
 
 
 --
@@ -26053,7 +26111,7 @@ SELECT pg_catalog.setval('milestone.notes_id_seq', 3979, true);
 -- Name: practice_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 4679, true);
+SELECT pg_catalog.setval('milestone.practice_blocks_id_seq', 4765, true);
 
 
 --
