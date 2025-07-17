@@ -775,6 +775,7 @@ declare
     block integer;
 begin
     upper_block := block_list[block_index];
+    block := upper_block;
     block_index := block_index + 1;
 
     while block_index <= array_length(block_list, 1) loop
