@@ -1148,8 +1148,8 @@ CREATE PROCEDURE milestone.set_section_as_complete_id(IN resource_index integer,
     AS $$
 declare section_index integer;
 begin
-    select id into section_index from flashback.sections where resource_id = resource_index and number = section_number;
-    update flashback.sections set state = 'completed', updated = now() where id = section_index;
+    select id into section_index from milestone.sections where resource_id = resource_index and number = section_number;
+    update milestone.sections set state = 'completed', updated = now() where id = section_index;
 end; $$;
 
 
@@ -1165,9 +1165,9 @@ CREATE PROCEDURE milestone.set_section_as_ignored(IN resource_name character var
 declare resource_index integer;
 declare section_index integer;
 begin
-    select id into resource_index from flashback.resources where name = resource_name;
-    select id into section_index from flashback.sections where resource_id = resource_index and number = section_number;
-    update flashback.sections set state = 'ignored', updated = now() where id = section_index;
+    select id into resource_index from milestone.resources where name = resource_name;
+    select id into section_index from milestone.sections where resource_id = resource_index and number = section_number;
+    update milestone.sections set state = 'ignored', updated = now() where id = section_index;
 end; $$;
 
 

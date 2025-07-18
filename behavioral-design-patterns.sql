@@ -281,11 +281,11 @@ int main()
 }$$);
 call create_note_with_name('Behavioral Design Patterns in C++', 5, 'Use command pattern to decouple invoker and receiver classes?');
 
-call add_block('text', 'txt', '');
-call add_block('code', 'cpp', $$$$);
-call create_note_with_name('Behavioral Design Patterns in C++', 5, '');
-
-call set_section_as_complete('Behavioral Design Patterns in C++', 5);
+--call add_block('text', 'txt', '');
+--call add_block('code', 'cpp', $$$$);
+--call create_note_with_name('Behavioral Design Patterns in C++', 5, '');
+--
+--call set_section_as_complete('Behavioral Design Patterns in C++', 5);
 --
 --call add_block('text', 'txt', '');
 --call add_block('code', 'cpp', $$$$);
