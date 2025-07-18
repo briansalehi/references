@@ -12351,6 +12351,22 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10401	3979	sudo tunctl -u $USER -t tap0	code	sh	2025-07-16 20:36:30.837888	4
 6107	1835	void cv::circle(\n    cv::Mat&            image,      // image to be drawn on\n    cv::Point           center,     // location of circle center\n    int                 radius,     // radius of circle\n    const cv::Scalar&   color,      // color RGB form\n    int                 thickness=1,// thickness of line\n    int                 lineType=8, // connectedness, 4 or 8\n    int                 shift=0     // bits of radius to treat as fraction\n)	code	cpp	2024-07-28 10:11:43.380029	2
 10403	1835	#include <opencv2/imgproc.hpp>\n\nint main()\n{\n    cv::Mat image = cv::imread("/tmp/image.jpg");\n    cv::Point2i center{image.cols / 2, image.rows / 2};\n    int radius{100};\n    cv::Scalar color{};\n    int thickness{4};\n    int linetype{4};\n    int shift{0};\n\n    cv::circle(image, center, radius, color, thickness, linetype, shift);\n}	code	cpp	2025-07-17 18:50:21.243988	4
+10404	3980	When there are multiple variations in the behavior of a member function, we can either implement each variation in a naive way and separate them by conditions, but then we will have to add more conditional statements over time, thus modifying the existing code which leads to the violation of Open-Closed principle.	text	txt	2025-07-18 23:22:41.330377	1
+10405	3980	class context\n{\nprivate:\n    state current_state;\n\npublic:\n    enum class state { active, passive };\n\n    void run()\n    {\n        switch (current_state)\n        {\n        case state::active:\n            // strategy 1\n            break;\n        case state::passive:\n            // strategy 2\n            break;\n        default:\n            // possible future strategies\n        }\n    }\n};	code	cpp	2025-07-18 23:22:41.330377	2
+10406	3980	With strategy pattern, each conditional behavior, also known as algorithms, are taken out of the member functions and are put inside their own classes. The class that might behave differently based on conditions, is also known as a context. Since all of the algorithm classes have the same behavior, but with different implementations, they can be inherited from a common base class. These classes are called strategies or policies.	text	txt	2025-07-18 23:22:41.330377	3
+10407	3980	#include <memory>\n\nclass context\n{\nprivate:\n    std::unique_ptr<basic_strategy> m_strategy;\npublic:\n    context(): m_strategy{nullptr}\n    { }\n\n    explicit context(std::unique_ptr<basic_strategy> strategy): m_strategy{std::move(strategy)}\n    { }\n\n    void set_strategy(std::unique_ptr<basic_strategy> strategy)\n    {\n        m_strategy.reset(std::move(strategy));\n    }\n\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass basic_strategy\n{\nprotected:\n    virtual void run() = 0;\n};\n\nstruct strategy1: public basic_strategy\n{\n    void run() override;\n};\n\nstruct strategy2: public basic_strategy\n{\n    void run() override;\n};\n\nint main()\n{\n    context c{};\n    std::unique_ptr<strategy1> s1{std::make_unique<strategy1>()};\n    std::unique_ptr<strategy2> s2{std::make_unique<strategy2>()};\n\n    c.set_strategy(s1);\n    c.run();\n\n    c.set_strategy(s2);\n    c.run();\n}	code	cpp	2025-07-18 23:22:41.330377	4
+10408	3981	Instead of creating strategies dynamically on runtime, strategy pattern can be applied using templates in compile-time.	text	txt	2025-07-18 23:22:41.333005	1
+10409	3981	template<typename Strategy>\nclass context\n{\nprivate:\n    Strategy m_strategy;\npublic:\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass strategy1\n{\n};\n\nclass strategy2\n{\n};\n\nint main()\n{\n    context<strategy1> c1{};\n    c1.run();\n    context<strategy2> c2{};\n    c2.run();\n}	code	cpp	2025-07-18 23:22:41.333005	2
+10410	3982	When the strategy is not used across the class, there is no need to store it as a member. Therefore, we can only pass the strategy to the member function where it uses the strategy.	text	txt	2025-07-18 23:22:41.334417	1
+10411	3982	class context\n{\npublic:\n    template<typename Strategy>\n    void run(Strategy strategy)\n    {\n        strategy->run();\n    }\n};\n\nclass strategy1\n{\n};\n\nclass strategy2\n{\n};\n\nint main()\n{\n    context c{};\n    c.run<strategy1>();\n    c.run<strategy2>();\n}	code	cpp	2025-07-18 23:22:41.334417	2
+10412	3983	Similar to strategy pattern which applies to classes that have multiple variations of behaviors between instances, template method pattern applies to algorithms that some of the steps have variations of behaviors.	text	txt	2025-07-18 23:22:41.338346	1
+10413	3983	With template method pattern, we define the skeleton of an algorithm in an operation, deferring some steps to the subclasses. Then, redefine certain steps of an algorithm without changing the algorithms structure.	text	txt	2025-07-18 23:22:41.338346	2
+10414	3983	class basic_context\n{\nprotected:\n    virtual void step1() = 0; // varying step\n    virtual void step2() = 0; // varying step\n    virtual void step3() { } // optional step, hook\n    void step4() { } // fixed step\n\npublic:\n    virtual void run()\n    {\n        step1(); // varying\n        step2(); // varying\n        step3(); // hook\n        step4(); // fixed\n    }\n};\n\nclass context: public basic_context\n{\nprotected:\n    void step1() override { }\n    void step2() override { }\n\npublic:\n    void run() override;\n};\n\nint main()\n{\n    context c{};\n    c.run();\n}	code	cpp	2025-07-18 23:22:41.338346	3
+10415	3984	Where there are requests from one part of an application called *invoker*, to another component called receiver, by first design we might directly connect these two to directly call on each other. But if later we need to know the state of these requests in order to implement features like undo and redo, we need to make these requests into instances of command class. The difference is that requests were functions but now they are classes with the advantage of having states.	text	txt	2025-07-18 23:22:41.341768	1
+10416	3985	class invoker as "User" <<Invoker>> {\n    - receiver\n}\n\nclass receiver as "Bank Account" <<Receiver>> {\n    + withdraw(amount: int): void\n    + deposit(amount: int): void\n}\n\nreceiver -o invoker: < aggregates	code	plantuml	2025-07-18 23:22:41.344604	1
+10417	3985	The invoker and receiver classes can be decoupled like this:	text	txt	2025-07-18 23:22:41.344604	2
+10418	3985	abstract command {\n    - receiver\n    {abstract} + execute(): void\n}\n\nclass withdraw_command {\n    + execute(): void\n}\n\nclass deposit_command {\n    + execute(): void\n}\n\nclass invoker as "User" <<Invoker>> {\n    - command\n}\n\nclass receiver as "Bank Account" <<Receiver>> {\n    + withdraw(amount: int): void\n    + deposit(amount: int): void\n}\n\ncommand <|.. withdraw_command: > implements\ncommand <|.. deposit_command: > implements\ncommand -o invoker: < aggregates\nreceiver -o command: < aggregates	code	plantuml	2025-07-18 23:22:41.344604	3
+10419	3986	#include <iostream>\n\nclass bank_account\n{\nprivate:\n    int m_balance;\n    int m_overdraft_limit;\n\npublic:\n    explicit bank_account(): m_overdraft_limit{-500} { }\n    explicit bank_account(int balance, int overdraft_limit = -500): m_balance{balance}, m_overdraft_limit{overdraft_limit} { }\n\n    void withdraw(int amount) { m_balance-= amount; }\n    void deposit(int amount) { m_balance+= amount; }\n    int balance() const { return m_balance; }\n};\n\nclass command\n{\n    virtual void execute() const = 0;\n};\n\nclass withdraw_command: public command\n{\nprivate:\n    int amount;\n    bank_account& account;\n\npublic:\n    explicit withdraw_command(bank_account& account, int const amount): amount{amount}, account{account} { }\n\n    void execute() const override { account.withdraw(amount); }\n};\n\nclass deposit_command: public command\n{\nprivate:\n    int amount;\n    bank_account& account;\n\npublic:\n    explicit deposit_command(bank_account& account, int const amount): amount{amount}, account{account} { }\n\n    void execute() const override { account.deposit(amount); }\n};\n\nint main()\n{\n    bank_account account{1000};\n    withdraw_command action{account, 10};\n    std::cout << account.balance() << std::endl; // 1000\n    action.execute();\n    std::cout << account.balance() << std::endl; // 990\n}	code	cpp	2025-07-18 23:22:41.347225	1
 \.
 
 
@@ -16473,6 +16489,13 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3977	702	Use mixin inheritance pattern to implement a composition type?	open	2025-07-16 20:32:27.136287	2025-07-16 20:32:27.136287	0
 3978	702	Use static polymorphism pattern to implement multiple variations of a class ensuring all having the same interface?	open	2025-07-16 20:32:27.138319	2025-07-16 20:32:27.138319	0
 3979	46	Build a fundamental ARM machine with QEMU?	open	2025-07-16 20:36:30.837888	2025-07-16 20:36:30.837888	0
+3980	1855	What are the use cases of strategy pattern?	open	2025-07-18 23:22:41.330377	2025-07-18 23:22:41.330377	0
+3981	1855	What are the advantages of static strategy pattern over dynamic strategy pattern?	open	2025-07-18 23:22:41.333005	2025-07-18 23:22:41.333005	0
+3982	1855	What are the advantages of using strategies as non-member functions?	open	2025-07-18 23:22:41.334417	2025-07-18 23:22:41.334417	0
+3983	1856	What are the use cases of template method pattern?	open	2025-07-18 23:22:41.338346	2025-07-18 23:22:41.338346	0
+3984	1857	Where are the common use cases of the command pattern?	open	2025-07-18 23:22:41.341768	2025-07-18 23:22:41.341768	0
+3985	1857	What is the structure of the command pattern?	open	2025-07-18 23:22:41.344604	2025-07-18 23:22:41.344604	0
+3986	1857	Use command pattern to decouple invoker and receiver classes?	open	2025-07-18 23:22:41.347225	2025-07-18 23:22:41.347225	0
 \.
 
 
@@ -21830,10 +21853,13 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
+123	Deciphering C++ Coroutines Part 2	https://www.youtube.com/watch?v=qfKFfQSxvA8	video	2025-07-18 23:25:55.834891	2025-07-18 23:25:55.834891	4	\N
 118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.642871	4	\N
 54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:32:27.138319	1	\N
 120	Mastering Embedded Linux Development	https://subscription.packtpub.com/book/iot-and-hardware/9781803232591	book	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	1	\N
 18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:36:30.837888	1	\N
+121	Behavioral Design Patterns in C++	https://subscription.packtpub.com/video/programming/9781804615652	video	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.347225	1	\N
+122	Computer Graphics Programming in OpenGL with C++	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186	book	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	1	\N
 \.
 
 
@@ -23590,6 +23616,8 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1697	118	writing	\N	2025-07-14 20:36:31.814802	2025-07-14 20:37:01.798552	2
 1698	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.626803	3
 1700	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.632099	5
+1857	121	writing	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.347225	5
+1866	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	1
 702	54	writing	\N	2024-07-28 09:45:02.987548	2025-07-16 20:32:27.138319	1
 1832	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	1
 1833	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	2
@@ -23613,6 +23641,36 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1851	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	20
 1852	120	open	\N	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	21
 46	18	writing	\N	2024-07-28 09:44:55.916674	2025-07-16 20:36:30.837888	1
+1858	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	6
+1859	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	7
+1860	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	8
+1861	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	9
+1862	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	10
+1863	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	11
+1864	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	12
+1865	121	open	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.325436	13
+1853	121	ignored	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.327608	1
+1854	121	ignored	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.328872	2
+1867	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	2
+1868	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	3
+1869	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	4
+1855	121	completed	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.336033	3
+1870	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	5
+1856	121	completed	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.340188	4
+1871	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	6
+1872	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	7
+1873	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	8
+1874	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	9
+1875	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	10
+1876	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	11
+1877	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	12
+1878	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	13
+1879	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	14
+1880	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	15
+1881	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	16
+1882	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	17
+1883	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	18
+1884	123	open	\N	2025-07-18 23:25:55.834891	2025-07-18 23:25:55.834891	1
 \.
 
 
@@ -25483,6 +25541,9 @@ COPY milestone.subject_resources (subject_id, resource_id) FROM stdin;
 29	117
 1	118
 8	120
+6	121
+25	122
+6	123
 \.
 
 
@@ -26076,7 +26137,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10403, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10419, true);
 
 
 --
@@ -26104,7 +26165,7 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3979, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 3986, true);
 
 
 --
@@ -26160,7 +26221,7 @@ SELECT pg_catalog.setval('milestone.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.resources_id_seq', 120, true);
+SELECT pg_catalog.setval('milestone.resources_id_seq', 123, true);
 
 
 --
@@ -26181,7 +26242,7 @@ SELECT pg_catalog.setval('milestone.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.sections_id_seq', 1852, true);
+SELECT pg_catalog.setval('milestone.sections_id_seq', 1884, true);
 
 
 --

@@ -3,8 +3,6 @@ create procedure add_block(type milestone.block_type, language varchar(10), cont
 
 /**********************************************************************************************************************/
 
-call create_resource(6, 'Deciphering C++ Coroutines Part 2', 'video', 4, 1, 'https://www.youtube.com/watch?v=qfKFfQSxvA8');
-
 call add_block('text', 'txt', '');
 call add_block('code', 'cpp', '');
 call create_note_with_name('Deciphering C++ Coroutines Part 2', 1, '');
