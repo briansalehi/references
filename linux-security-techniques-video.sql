@@ -1,8 +1,6 @@
 create temp table temp_blocks(row_number serial, t_content text, t_type milestone.block_type, t_language varchar(10));
 create procedure add_block(type milestone.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
 
-call create_resource(13, 'Linux Security Techniques', 'course', 4, 21, 'https://subscription.packtpub.com/video/security/9781835887042');
-
 call add_block('text', 'txt', '');
 call add_block('code', 'sh', '');
 call create_note_with_name('Linux Security Techniques', 1, '');

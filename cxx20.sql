@@ -3,9 +3,9 @@ create procedure add_block(type milestone.block_type, language varchar(10), cont
 
 call milestone.create_resource_with_sequenced_sections(6, 'C++20 Features Cheatsheet', 'slides', 2, 1, 'https://www.bfilipek.com', 'Bartłomiej Filipek');
 
-call milestone.add_block('text', 'txt', '');
-call milestone.add_block('code', 'cpp', '');
-call milestone.create_note_with_name('C++20 Features Cheatsheet', 1, '');
+--call milestone.add_block('text', 'txt', '');
+--call milestone.add_block('code', 'cpp', '');
+--call milestone.create_note_with_name('C++20 Features Cheatsheet', 1, '');
 
 drop procedure add_block;
 drop table temp_blocks;

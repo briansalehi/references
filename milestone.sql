@@ -3798,6 +3798,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 1639	368	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    auto last = std::remove(range.begin(), range.end(), 3);\n    range.erase(last, range.end());\n}	code	txt	2024-07-28 10:00:10.040533	3
 1640	369	| `std::remove_if` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 10:00:10.589465	1
 1641	369	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 10:00:10.610141	2
+10436	3994	fromJSON(object)	code	yml	2025-07-18 23:37:25.752058	7
 1642	369	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    auto last = std::remove_if(range.begin(), range.end(), [limit=4](long v) { return v > limit; });\n    range.erase(last, range.end());\n}	code	txt	2024-07-28 10:00:10.630715	3
 1643	370	| `std::replace` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 10:00:11.176005	1
 1644	370	#include <algorithm>\n#include <vector>	text	txt	2024-07-28 10:00:11.197611	2
@@ -3889,6 +3890,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 1730	392	#include <algorithm>\n#include <vector>\n#include <ranges>	text	txt	2024-07-28 10:00:25.818701	2
 1731	392	int main()\n{\n    std::vector<long> range(5,0);\n    std::ranges::generate_n(range, 3, []() { return 1; });\n    // range == {1,1,1,0,0}\n}	code	txt	2024-07-28 10:00:25.838181	3
 1732	393	| `std::iota` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++23 |	text	txt	2024-07-28 10:00:26.40426	1
+10437	3994	hashFiles(path)	code	yml	2025-07-18 23:37:25.752058	8
 1733	393	#include <algorithm>\n#include <vector>\n#include <ranges>	text	txt	2024-07-28 10:00:26.424838	2
 1734	393	int main()\n{\n    std::vector<long> range(5,0);\n    std::ranges::iota(range, 1);\n    std::ranges::copy(range, std::ostream_iterator<long>(std::cout, " "));\n}	code	txt	2024-07-28 10:00:26.445923	3
 1735	394	| `std::copy` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	2024-07-28 10:00:27.093163	1
@@ -4837,6 +4839,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 2671	639	std::filesystem::is_character_file(fs);\nstd::filesystem::is_block_file(fs);\nstd::filesystem::is_fifo(fs);\nstd::filesystem::is_socket(fs);	code	txt	2024-07-28 10:02:55.477638	3
 2672	640	std::filesystem::path p{};\nstd::filesystem::file_status fs = std::filesystem::status(p);\nstd::filesystem::file_type ft = fs.type();	text	txt	2024-07-28 10:02:56.0795	1
 3523	838	Apart from *module interface partition*, there could also be internal\npartitions that do not export anything. Such partition unit is called a\n**module implementation partition**.	text	txt	2024-07-28 10:05:03.987289	1
+10459	4009	select 1.23456789::int4;	code	sql	2025-07-18 23:38:35.226499	1
 2673	640	switch (fs.type())\n{\n    using std::filesystem::file_type;\n    case (file_type::regular):      std::cout << "regular"; break;\n    case (file_type::directory):    std::cout << "directory"; break;\n    case (file_type::block):        std::cout << "block"; break;\n    case (file_type::character):    std::cout << "char"; break;\n    case (file_type::symlink):      std::cout << "symlink"; break;\n    case (file_type::socket):       std::cout << "socket"; break;\n    case (file_type::fifo):         std::cout << "fifo"; break;\n    case (file_type::not_found):    std::cout << "not found"; break;\n    case (file_type::unknown):      std::cout << "unknown"; break;\n    case (file_type::none):         std::cout << "none"; break;\n}	code	txt	2024-07-28 10:02:56.102891	2
 2674	641	std::filesystem::path p{};\nstd::filesysetm::file_status fs = std::filesystem::status(p);\nstd::filesystem::perms file_permissions = fs.permissions();	code	txt	2024-07-28 10:02:56.38347	1
 2675	642	#include <iostream>\n#include <filesystem>	text	txt	2024-07-28 10:02:56.775368	1
@@ -5058,6 +5061,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 2934	706	1. Specify what data the problem operates on: **bag**	text	txt	2024-07-28 10:03:38.604967	1
 2935	706	2. Specify what operations does the problem requires:	text	txt	2024-07-28 10:03:38.625708	2
 2936	706	* Get the number of items currently in the bag.\n* See whether the bag is empty.\n* Add a given object to the bag.\n* Remove an occurence of a specific object from the bag, if possible.\n* Remove all objects from the bag.\n* Count the number of times a certain object occurs in the bag.\n* Test whether the bag contains a particular object.\n* Look at all objects that are in the bag.	text	txt	2024-07-28 10:03:38.647513	3
+10460	4009	select 1.23456789::int8;	code	sql	2025-07-18 23:38:35.226499	2
 2937	706	3. Specify ADT operations using the **Unified Modeling Language**:	text	txt	2024-07-28 10:03:38.667708	4
 2938	706	class bag {\n    // return the current number of entries in the bag\n    + size(): integer	text	txt	2024-07-28 10:03:38.689476	5
 2939	706	    // return true if the bag is empty; false otherwise\n    + empty(): boolean	text	txt	2024-07-28 10:03:38.711769	6
@@ -5106,6 +5110,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 2983	710	#include <iostream>\n#include <initializer_list>\n#include <string>\n#include <vector>\n#include <map>	text	txt	2024-07-28 10:03:43.174276	2
 2984	710	void func(int const a, int const b, int const c)\n{\n    std::cout << a << b << c << '\\\\n';\n}	text	txt	2024-07-28 10:03:43.19523	3
 2985	710	void func(std::initializer_list<int> const list)\n{\n    for (auto const& e: list)\n        std::cout << e;\n    std::cout << '\\\\n';\n}	text	txt	2024-07-28 10:03:43.215445	4
+10461	4009	* `integer`, `int4`\n* `bigint`, `int8`	text	txt	2025-07-18 23:38:35.226499	3
 2986	710	int main()\n{\n    std::string s1("text"); // direct initialization\n    std::string s2 = "text"; // copy initialization\n    std::string s3{"text"}; // direct list-initialization\n    std::string s4 = {"text"}; // copy list-initialization	text	txt	2024-07-28 10:03:43.235714	5
 2987	710	    std::vector<int> v{1, 2, 3};\n    std::map<int, std::string> m{{1, "one"}, {2, "two"}};	text	txt	2024-07-28 10:03:43.256768	6
 2988	710	    func({1, 2, 3}); // call std::initializer_list<int> overload	text	txt	2024-07-28 10:03:43.277137	7
@@ -5446,6 +5451,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 3324	791	void sample()\n{\n    std::function<int(int const)> lfib = [&lfib](int const n)\n    {\n        return n <= 2 ? 1 : lfib(n - 1) + lfib(n - 2);\n    };	text	txt	2024-07-28 10:04:33.340135	5
 3325	791	    auto f10 = lfib(10);\n}	code	txt	2024-07-28 10:04:33.360106	6
 3326	792	In order to write variadic function templates, you must perform the following steps:	text	txt	2024-07-28 10:04:34.072169	1
+10462	4010	select 1.23456789::real;	code	sql	2025-07-18 23:38:35.228058	1
 3327	792	1. Define an overload with a fixed number of arguments to end compile-time recursion if the semantics of the variadic function template require it.\n2. Define a template parameter pack that is a template parameter that can hold any number of arguments, including zero; these arguments can be either types, non-types, or templates.\n3. Define a function parameter pack to hold any number of function arguments, including zero; the size of the template parameter pack and the corresponding function parameter pack is the same. This size can be determined with the sizeof... operator.\n4. Expand the parameter pack in order to replace it with the actual arguments being supplied.	text	txt	2024-07-28 10:04:34.095273	2
 3328	792	With GCC and Clang, you can use the `__PRETTY_FUNCTION__` macro to print the name and the signature of the function.	text	txt	2024-07-28 10:04:34.114399	3
 3329	792	Make return type `auto` to ensure all of the function template initializations have the same return type, for example, in case of having `std::string` and `char` types in parameter pack.	text	txt	2024-07-28 10:04:34.135056	4
@@ -5535,6 +5541,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 3414	811	// using SFINAE\ntemplate<typename T, typename = typename std::enable_if_t<std::is_pointer_v<T>, T>>\nauto value_of(T value) { return *value; }	text	txt	2024-07-28 10:04:47.783428	1
 3415	811	template<typename T, typename = typename std::enable_if_t<!std::is_pointer_v<T>, T>>\nT value_of(T value) { return value; }	text	txt	2024-07-28 10:04:47.804333	2
 3416	811	// simplified by if constexpr\ntemplate<typename T>\nauto value_of(T value)\n{\n    if constexpr (std::is_pointer_v<T>)\n        return *value;\n    else\n        return value;\n}	code	txt	2024-07-28 10:04:47.825422	3
+10463	4010	select 1.23456789::double precision;	code	sql	2025-07-18 23:38:35.228058	2
 3417	811	template<typename CharT, char d, char... bits>\nconstexpr CharT binary_eval()\n{\n    if constexpr(sizeof...(bits) == 0)\n        return static_cast<CharT>(d-'0');\n    else if constexpr(d == '0')\n        return binary_eval<CharT, bits...>();\n    else if constexpr(d == '1')\n        return static_cast<CharT>((1 << sizeof...(bits)) | binary_eval<CharT, bits...>());\n}	text	txt	2024-07-28 10:04:47.846905	4
 3418	811	template<char... bits>\nconstexpr byte8 operator""_b8()\n{\n    static_assert(sizeof...(bits) <= 8, "binary literal b8 must be up to 8 digits long");\n    return binary_eval<byte8, bits...>();\n}	code	txt	2024-07-28 10:04:47.867047	5
 3419	812	[[nodiscard]] int get_value() { return 42; }	text	txt	2024-07-28 10:04:48.120397	1
@@ -5637,6 +5644,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 3516	837	In the primary module interface unit, import and then export the partitions\nwith statements of the form `export import :partitionname`.	text	txt	2024-07-28 10:05:02.853873	9
 3517	837	*geometry.cppm*\nexport module geometry;	text	txt	2024-07-28 10:05:02.875296	10
 3518	837	export import :core;\nexport import :literals;	code	txt	2024-07-28 10:05:02.894678	11
+10527	4050	./scripts/kconfig/streamline_config.pl	code	sh	2025-07-18 23:40:48.372459	1
 3528	838	std::pair<int, int> split(char const* ptr, std::size_t const size)\n{\n    int x{}, y{};\n    ...\n    return {x, y};\n}	code	txt	2024-07-28 10:05:04.091518	6
 3529	838	*geometry-literals.cppm*\nexport module geometry:literals;	text	txt	2024-07-28 10:05:04.111753	7
 3530	838	import :core;\nimport :details;	text	txt	2024-07-28 10:05:04.132399	8
@@ -5777,6 +5785,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 3665	876	#include <iostream>	text	txt	2024-07-28 10:05:24.723072	1
 3666	876	int main()\n{\n    std::cout << "default compiler standard: " << __cplusplus << std::endl;\n}	code	txt	2024-07-28 10:05:24.744285	2
 3667	877	void f(int);\nvoid f(void*);	text	txt	2024-07-28 10:05:25.191527	1
+10528	4050	make localdefconfig	code	sh	2025-07-18 23:40:48.372459	2
 3668	877	int main()\n{\n    f(0); // calls f(int)\n    f(NULL); // calls f(int)\n    f(nullptr); // calls f(void*)\n}	code	txt	2024-07-28 10:05:25.212795	2
 3669	878	int main()\n{\n    auto i = 42;\n    auto u = 42U;\n    auto l = 42L;\n    auto ul = 42UL;\n    auto ll = 42LL;\n    auto ull = 42ULL;\n    auto d = 42.0;\n    auto ld = 42.0L;\n}	code	txt	2024-07-28 10:05:25.775062	1
 3670	879	int main()\n{\n    int i; // indeterminate value\n    int j{}; // initialized to 0\n    int* p; // indeterminate value\n    int* q{}; // initialized to nullptr	text	txt	2024-07-28 10:05:26.430485	1
@@ -12152,6 +12161,7 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10178	3882	cmake --build build --config Release	code	sh	2025-02-23 23:06:51.388193	4
 10213	3900	We’re not technically linking against the library, but we must add the target as a dependency so that the include search paths for our target get populated.	text	txt	2025-02-23 23:06:51.419662	1
 10214	3900	target_include_directories(<lib> INTERFACE $<BUILD_LOCAL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)	code	cmake	2025-02-23 23:06:51.419662	2
+10457	4007	* `true`: `yes`, `on`, 1\n* `false`: `no`, `off`, 0	text	txt	2025-07-18 23:38:35.221613	1
 10179	3883	1. Copy the third-party library into source directory.\n2.  If third-party project is using CMake, it’s possible to use a feature called `add_subdirectory` to add that library relatively cleanly. Any modifications will make future upgrades incredibly painful. A `LICENSE` file exists in that library’s root folder.\n3. Git submodules have the advantage of keeping the source files of third-party dependencies out of project but submodules can make cloning and updating the project more complex.\n4. `FetchContent` solves all of these problems, keeping good hygiene between code and dependencies and avoiding unwanted complexity or maintenance headaches.	text	txt	2025-02-23 23:06:51.391595	1
 10180	3884	FetchContent allows us to keep the source of any third-party dependency out of codebase. A target can depend on the targets provided by the dependency at configure time. The dependency will be built at the same time as the project.	text	txt	2025-02-23 23:06:51.393767	1
 10181	3885	The build artifacts will added to a folder called `_deps` inside the build directory.	text	txt	2025-02-23 23:06:51.39501	1
@@ -12349,11 +12359,35 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10399	3979	`-machine`: creates a machine with specified processor\n`-m`: specifies the amount of memory available on the emulated machine\n`-drive`: locates the filesystem image\n`-kernel`: locates the kernel image\n`-dtb`: locates the device driver files\n`-serial`: connects the serial port to the terminal that launched the machine\n`-net nic,model=lan9118`: creates a network interface\n`-net tap,ifname=tap0`: connects the network interface to the virtual network interface `tap0`	text	txt	2025-07-16 20:36:30.837888	2
 10400	3979	To configure the host side of the network, use `tunctl` from the **User Mode Linux (UML)** project.	text	txt	2025-07-16 20:36:30.837888	3
 10401	3979	sudo tunctl -u $USER -t tap0	code	sh	2025-07-16 20:36:30.837888	4
+10420	3987	Since C++17 the need to specify template arguments explicitly to class templates is relaxed.	text	txt	2025-07-18 23:34:38.274381	1
+10421	3987	std::complex<double> c{4.2, 5.1}; // prior to C++17	code	cpp	2025-07-18 23:34:38.274381	2
+10422	3987	std::complex c{4.2, 5.1}; // since C++17	code	cpp	2025-07-18 23:34:38.274381	3
+10423	3988	Template parameters have to be unambiguously deducible.	text	txt	2025-07-18 23:34:38.278197	1
+10424	3988	std::complex c{3, 4.2}; // ERROR: attempts int and double as T	code	cpp	2025-07-18 23:34:38.278197	2
 6107	1835	void cv::circle(\n    cv::Mat&            image,      // image to be drawn on\n    cv::Point           center,     // location of circle center\n    int                 radius,     // radius of circle\n    const cv::Scalar&   color,      // color RGB form\n    int                 thickness=1,// thickness of line\n    int                 lineType=8, // connectedness, 4 or 8\n    int                 shift=0     // bits of radius to treat as fraction\n)	code	cpp	2024-07-28 10:11:43.380029	2
+10438	3995	steps:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - name: "Runs the step if the previous step has failed"\n        if: ${{ failure() }}\n      - name: "Runs the step only if the workflow has cancelled"\n        if: ${{ cancelled() }}\n      - name: "Runs the step if none of the previous steps have failed or been cancelled"\n        if: ${{ success() }}\n      - name: "Runs the step even if previous steps failed or cancelled"\n        if: ${{ always }}	code	yml	2025-07-18 23:37:25.755172	1
 10403	1835	#include <opencv2/imgproc.hpp>\n\nint main()\n{\n    cv::Mat image = cv::imread("/tmp/image.jpg");\n    cv::Point2i center{image.cols / 2, image.rows / 2};\n    int radius{100};\n    cv::Scalar color{};\n    int thickness{4};\n    int linetype{4};\n    int shift{0};\n\n    cv::circle(image, center, radius, color, thickness, linetype, shift);\n}	code	cpp	2025-07-17 18:50:21.243988	4
 10404	3980	When there are multiple variations in the behavior of a member function, we can either implement each variation in a naive way and separate them by conditions, but then we will have to add more conditional statements over time, thus modifying the existing code which leads to the violation of Open-Closed principle.	text	txt	2025-07-18 23:22:41.330377	1
 10405	3980	class context\n{\nprivate:\n    state current_state;\n\npublic:\n    enum class state { active, passive };\n\n    void run()\n    {\n        switch (current_state)\n        {\n        case state::active:\n            // strategy 1\n            break;\n        case state::passive:\n            // strategy 2\n            break;\n        default:\n            // possible future strategies\n        }\n    }\n};	code	cpp	2025-07-18 23:22:41.330377	2
 10406	3980	With strategy pattern, each conditional behavior, also known as algorithms, are taken out of the member functions and are put inside their own classes. The class that might behave differently based on conditions, is also known as a context. Since all of the algorithm classes have the same behavior, but with different implementations, they can be inherited from a common base class. These classes are called strategies or policies.	text	txt	2025-07-18 23:22:41.330377	3
+10439	3996	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "::warning some warning"\n      - run: echo "::error some error"	code	yml	2025-07-18 23:37:25.758193	1
+10440	3997	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - name: "Set file path"\n        id: paths\n        run: echo "file_path=/src/project/main.cpp" >> "$GITHUB_OUTPUT"\n      - name: "Get file path"\n        run: echo "${{ steps.paths.outputs.file_path }}"	code	yml	2025-07-18 23:37:25.761095	1
+10441	3998	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "::add-mask::$(( RANDOM ))"	code	yml	2025-07-18 23:37:25.762967	1
+10442	3999	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - id: produce\n        run: echo "action_state=yellow" >> "$GITHUB_ENV"\n      - run: echo "state: ${{ env.action_state }}"	code	yml	2025-07-18 23:37:25.764245	1
+10443	4000	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "### First Step" >> "$GITHUB_STEP_SUMMARY"\n      - run: echo "### Second Step" >> "$GITHUB_STEP_SUMMARY"\n      - run: echo "### Third Step" >> "$GITHUB_STEP_SUMMARY"	code	yml	2025-07-18 23:37:25.765478	1
+10444	4001	- Organization\n  - User\n    - Repository (default)\n      - Environment	text	txt	2025-07-18 23:37:25.766731	1
+10445	4002	Secrets and variables can be created in either of three context levels to have different access levels.	text	txt	2025-07-18 23:37:25.768146	1
+10446	4002	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/create-release@v1\n        with:\n          GITHUB_TOKEN: ${{ secrets.github_token }}	code	yml	2025-07-18 23:37:25.768146	2
+10447	4003	Secrets and variables can be set using `gh` command:	text	txt	2025-07-18 23:37:25.769546	1
+10448	4003	gh secret set KEY --body "$((RANDOM))"	code	sh	2025-07-18 23:37:25.769546	2
+10449	4003	gh secret set KEY --body "$((RANDOM))" --env <environment>	code	sh	2025-07-18 23:37:25.769546	3
+10450	4003	gh secret set KEY --body "$((RANDOM))" --org <organization> --visibility public	code	sh	2025-07-18 23:37:25.769546	4
+10451	4003	gh secret set KEY --body "$((RANDOM))" --org <organization> --repos <repo>...	code	sh	2025-07-18 23:37:25.769546	5
+10452	4003	gh secret set KEY --body "$((RANDOM))" --user	code	sh	2025-07-18 23:37:25.769546	6
+10453	4004	GitHub automatically creates a secret and it can be accessed by `github.token` or `secrets.github_token`.	text	txt	2025-07-18 23:37:25.77078	1
+10454	4004	jobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          GITHUB_TOKEN: ${{ github.token }}	code	yml	2025-07-18 23:37:25.77078	2
+10455	4005	Permissions can be applied on the entire workflow, or on a single job.	text	txt	2025-07-18 23:37:25.771914	1
+10458	4008	alter table users add is_active boolean default true;	code	sql	2025-07-18 23:38:35.22487	1
 10407	3980	#include <memory>\n\nclass context\n{\nprivate:\n    std::unique_ptr<basic_strategy> m_strategy;\npublic:\n    context(): m_strategy{nullptr}\n    { }\n\n    explicit context(std::unique_ptr<basic_strategy> strategy): m_strategy{std::move(strategy)}\n    { }\n\n    void set_strategy(std::unique_ptr<basic_strategy> strategy)\n    {\n        m_strategy.reset(std::move(strategy));\n    }\n\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass basic_strategy\n{\nprotected:\n    virtual void run() = 0;\n};\n\nstruct strategy1: public basic_strategy\n{\n    void run() override;\n};\n\nstruct strategy2: public basic_strategy\n{\n    void run() override;\n};\n\nint main()\n{\n    context c{};\n    std::unique_ptr<strategy1> s1{std::make_unique<strategy1>()};\n    std::unique_ptr<strategy2> s2{std::make_unique<strategy2>()};\n\n    c.set_strategy(s1);\n    c.run();\n\n    c.set_strategy(s2);\n    c.run();\n}	code	cpp	2025-07-18 23:22:41.330377	4
 10408	3981	Instead of creating strategies dynamically on runtime, strategy pattern can be applied using templates in compile-time.	text	txt	2025-07-18 23:22:41.333005	1
 10409	3981	template<typename Strategy>\nclass context\n{\nprivate:\n    Strategy m_strategy;\npublic:\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass strategy1\n{\n};\n\nclass strategy2\n{\n};\n\nint main()\n{\n    context<strategy1> c1{};\n    c1.run();\n    context<strategy2> c2{};\n    c2.run();\n}	code	cpp	2025-07-18 23:22:41.333005	2
@@ -12367,6 +12401,157 @@ COPY milestone.note_blocks (id, note_id, content, type, language, updated, "posi
 10417	3985	The invoker and receiver classes can be decoupled like this:	text	txt	2025-07-18 23:22:41.344604	2
 10418	3985	abstract command {\n    - receiver\n    {abstract} + execute(): void\n}\n\nclass withdraw_command {\n    + execute(): void\n}\n\nclass deposit_command {\n    + execute(): void\n}\n\nclass invoker as "User" <<Invoker>> {\n    - command\n}\n\nclass receiver as "Bank Account" <<Receiver>> {\n    + withdraw(amount: int): void\n    + deposit(amount: int): void\n}\n\ncommand <|.. withdraw_command: > implements\ncommand <|.. deposit_command: > implements\ncommand -o invoker: < aggregates\nreceiver -o command: < aggregates	code	plantuml	2025-07-18 23:22:41.344604	3
 10419	3986	#include <iostream>\n\nclass bank_account\n{\nprivate:\n    int m_balance;\n    int m_overdraft_limit;\n\npublic:\n    explicit bank_account(): m_overdraft_limit{-500} { }\n    explicit bank_account(int balance, int overdraft_limit = -500): m_balance{balance}, m_overdraft_limit{overdraft_limit} { }\n\n    void withdraw(int amount) { m_balance-= amount; }\n    void deposit(int amount) { m_balance+= amount; }\n    int balance() const { return m_balance; }\n};\n\nclass command\n{\n    virtual void execute() const = 0;\n};\n\nclass withdraw_command: public command\n{\nprivate:\n    int amount;\n    bank_account& account;\n\npublic:\n    explicit withdraw_command(bank_account& account, int const amount): amount{amount}, account{account} { }\n\n    void execute() const override { account.withdraw(amount); }\n};\n\nclass deposit_command: public command\n{\nprivate:\n    int amount;\n    bank_account& account;\n\npublic:\n    explicit deposit_command(bank_account& account, int const amount): amount{amount}, account{account} { }\n\n    void execute() const override { account.deposit(amount); }\n};\n\nint main()\n{\n    bank_account account{1000};\n    withdraw_command action{account, 10};\n    std::cout << account.balance() << std::endl; // 1000\n    action.execute();\n    std::cout << account.balance() << std::endl; // 990\n}	code	cpp	2025-07-18 23:22:41.347225	1
+10425	3989	on:\n  workflow_dispatch:\n    inputs:\n      log-level:\n        description: "verbosity of logs"\n        required: true\n        default: "warning"\n        type: choice\n        options:\n          - info\n          - warning\n          - debug\n      environment:\n        description: "selected environments"\n        type: environment\n        required: true	code	yml	2025-07-18 23:37:25.737122	1
+10426	3990	gh workflow run <workflow> -f log-level=debug -f environment=Debug	code	sh	2025-07-18 23:37:25.739394	1
+10427	3991	jobs:\n  release:\n    strategy:\n      fail-fast: false\n      max-parallel: 3\n      matrix:\n        os_version: [macos-latest, ubuntu-latest]\n        node_version: [12, 14, 16]\n    name: Release\n    runs-on: ${{ matrix.os_version }}\n    steps:\n      - uses: actions/setup-node@v3.6.0\n        with:\n          node-version: ${{ matrix.node_version }}	code	yml	2025-07-18 23:37:25.741787	1
+10428	3992	jobs:\n  release:\n    if: ${{ github.ref_name == "main" }}\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "Deploy branch ${{ github.ref_name }}"	code	yml	2025-07-18 23:37:25.745186	1
+10429	3993	|Operator|Description|\n|---|---|\n|`()`|Logical grouping|\n|`[]`|Index|\n|`.`|Property dereference|\n|`!`|Logical inverse|\n|`<`, `<=`, `>`, `>=`|Comparison|\n|`==`, `!=`|Equality and inequality|\n|`&&`, `||`|Logical combinations|	text	txt	2025-07-18 23:37:25.748419	1
+10430	3994	contains(list, item)	code	yml	2025-07-18 23:37:25.752058	1
+10431	3994	startsWith(list, item)	code	yml	2025-07-18 23:37:25.752058	2
+10432	3994	endsWith(list, item)	code	yml	2025-07-18 23:37:25.752058	3
+10433	3994	format(string, v0, v1,...)	code	yml	2025-07-18 23:37:25.752058	4
+10434	3994	join(list, separator)	code	yml	2025-07-18 23:37:25.752058	5
+10435	3994	toJSON(string)	code	yml	2025-07-18 23:37:25.752058	6
+10456	4006	jobs:\n  release:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      pull-requests: write\n    steps:\n      - uses: actions/labeler@v4	code	yml	2025-07-18 23:37:25.773264	1
+10464	4010	* `real` (4 byte precision, almost 6 digits)\n* `double precision` (8 byte variable precision, almost 15 digits)	text	txt	2025-07-18 23:38:35.228058	3
+10465	4011	select 1.99::numeric(3,2) as wallet;	code	sql	2025-07-18 23:38:35.231245	1
+10466	4011	The type `numeric` takes two arguments `(precision, scale)`, by which precision is the total count of significant digits in the whole number, and the scale of a numeric is the count of decimal digits.	text	txt	2025-07-18 23:38:35.231245	2
+10467	4012	create table tags (id integer not null primary key, fixed_tag char(10), varying_tag varchar(10), long_tag text);	code	sql	2025-07-18 23:38:35.234243	1
+10468	4012	* `char(n)`, `character(n)`\n* `varchar(n)`, `character varying(n)`\n* `text`, `varchar`	text	txt	2025-07-18 23:38:35.234243	2
+10469	4013	select length(name) from users where id = 1;	code	sql	2025-07-18 23:38:35.236741	1
+10470	4014	select octet_length(name) from users where id = 1;	code	sql	2025-07-18 23:38:35.238147	1
+10471	4015		code	sql	2025-07-18 23:38:35.239665	1
+10472	4015	Using the `pg_settings` view, we can view the parameters set in the `postgresql.conf` configuration file.	text	txt	2025-07-18 23:38:35.239665	2
+10473	4016	select * from pg_settings where name = 'DateStyle';	code	sql	2025-07-18 23:38:35.242222	1
+10474	4016	*postgresql.conf*\n\ndatestyle = 'iso, mdy'	text	txt	2025-07-18 23:38:35.242222	2
+10475	4017	select to_date('2025-06-10', 'yyyy-mm-dd');	code	sql	2025-07-18 23:38:35.245024	1
+10476	4018	select to_char(to_date('2025-06-10', 'yyyy-mm-dd'), 'dd.mm.yyyy');	code	sql	2025-07-18 23:38:35.247441	1
+10477	4019	create table posts (creation timestamp with timezone);	code	sql	2025-07-18 23:38:35.249064	1
+10478	4019	select creation::timestamp with time zone as creation_tz, creation::timestamp without time zone as creation_nz from posts;	code	sql	2025-07-18 23:38:35.249064	2
+10479	4020	show timezone;	code	sql	2025-07-18 23:38:35.250401	1
+10480	4021	set timezone='UTC';	code	sql	2025-07-18 23:38:35.251593	1
+10481	4022	select id, username, hstore(array['first', first_name, 'last', last_name]) as name from users;	code	sql	2025-07-18 23:38:35.252905	1
+10482	4023	select username from users where name->'first' = 'Brian';	code	sql	2025-07-18 23:38:35.254148	1
+10483	4024	select row_to_json(q) as data from (select * from users) Q;	code	sql	2025-07-18 23:38:35.255625	1
+10484	4024	create table posts (data jsonb);	code	sql	2025-07-18 23:38:35.255625	2
+10485	4024	insert into posts (data) select row_to_json(q) from users;	code	sql	2025-07-18 23:38:35.255625	3
+10486	4025	create table posts (data jsonb);	code	sql	2025-07-18 23:38:35.256933	1
+10487	4025	select jsonb_pretty(data) from posts;	code	sql	2025-07-18 23:38:35.256933	2
+10488	4026	select jsonb_pretty(data) from posts where data @> '{"tag": "design"}';	code	sql	2025-07-18 23:38:35.25812	1
+10489	4027	* SQL\n* PL/pgSQL\n* C	text	txt	2025-07-18 23:38:35.259281	1
+10490	4028	create or replace function show_timezone() returns varchar as begin return now(); end; language plpgsql;	code	sql	2025-07-18 23:38:35.260566	1
+10491	4029	* parsing\n* rewriting\n* optimization\n* execution	text	txt	2025-07-18 23:38:35.261861	1
+10492	4030	Handles the textual form of a statement and verifies whether it is syntactically correct or not.	text	txt	2025-07-18 23:38:35.264692	1
+10493	4031	Applies any syntactic rules to rewrite the original statement into what will be effectively executed.	text	txt	2025-07-18 23:38:35.267764	1
+10494	4032	Finds the fastest path to the data.	text	txt	2025-07-18 23:38:35.269627	1
+10495	4033	Goes to the storage and retrieves the data using the access method decided by the executor.	text	txt	2025-07-18 23:38:35.271447	1
+10496	4034	When retrieving a very large set of data that can be performed by dividing the amount of work between different parallel workers, each one assigned to a smaller subset of the data.	text	txt	2025-07-18 23:38:35.272758	1
+10497	4035	The optimizer divides the set of actions to pass to the executor in nodes. A node is an action to execute in order to provide the final or an intermediate result. For example, when executing a generic query asking for data in a specific order:	text	txt	2025-07-18 23:38:35.274292	1
+10498	4035	select * from posts order by release_date;	code	sql	2025-07-18 23:38:35.274292	2
+10499	4035	The optimizer will pass two actions to the executor, and thus the nodes include one to retrieve all the data and one to sort the data.	text	txt	2025-07-18 23:38:35.274292	3
+10500	4036	- Sequential nodes\n- Parallel nodes	text	txt	2025-07-18 23:38:35.275518	1
+10501	4037	Sequential nodes are those nodes that will be executed sequentially, one afer the other, in order to achieve the final result.	text	txt	2025-07-18 23:38:35.276871	1
+10502	4037	- Sequential scan\n- Index scan, index-only scan, and bitmap index scan\n- Nested loop, hash join, and merge join\n- The gather and merge parallel nodes	text	txt	2025-07-18 23:38:35.276871	2
+10503	4037		code	sql	2025-07-18 23:38:35.276871	3
+10504	4038	The sequential scan is the only node that is always available to the optimizer and the executor, when there is no other valuable alternative. In sequential scan, the executor will iterate through all the data from the beginning of the dataset in sequential order.	text	txt	2025-07-18 23:38:35.278236	1
+10505	4038	This node is used when the filtering clause is not very limiting in the query so that the end result will be to get almost the whole table contents.	text	txt	2025-07-18 23:38:35.278236	2
+10506	4038	select * from categories;	code	sql	2025-07-18 23:38:35.278236	3
+10507	4039	An index scan has access to the data that involves an index in order to quickly find the requested dataset. Indexes live alongside the table. Therefore, there will be a data file for the table and one for every index built on the table. Postgres avoids using indexes when double storage access accounts for more disadvantages than advantages. But when used, Postgres will produce an index node that can specialize in three different types:	text	txt	2025-07-18 23:38:35.280361	1
+10508	4039	- Index scan\n- Index-only scan\n- Bitmap index scan	text	txt	2025-07-18 23:38:35.280361	2
+10509	4040	Using this classical index access method, Postgres reads the chosen index, and from that, it goes seeking the tuples, reading again from the storage.	text	txt	2025-07-18 23:38:35.283282	1
+10510	4041	If the requested data only involves columns that belong to the index, Postgres is smart enough to avoid the second trip to storage.	text	txt	2025-07-18 23:38:35.285607	1
+10511	4042	PostgreSQL builds a memory bitmap containing the location of tuples that satisfy the statement clauses, then it will use that bitmap to locate the tuples.	text	txt	2025-07-18 23:38:35.28718	1
+10512	4042	Bitmap index scan is usually associated with bitmap heap scan.	text	txt	2025-07-18 23:38:35.28718	2
+10513	4043	When PostgreSQL performs a join between two or more tables, it uses of the following nodes:	text	txt	2025-07-18 23:38:35.288496	1
+10514	4043	- Nested loop\n- hash join\n- merge join	text	txt	2025-07-18 23:38:35.288496	2
+10515	4044	When bot both tables are scanned in a sequential or indexed based method and every tuple is checked to see whether there is a match.	text	txt	2025-07-18 23:38:35.289791	1
+10516	4044	for (tuple o: outer)\n    for (tuple i: inner)\n        if (o.matches(i))\n            result_set.append(o, i);	code	c	2025-07-18 23:38:35.289791	2
+10517	4044	Nested loop nodes are not forced to perform a sequential scan on both tables. However, the core concept does not change that there will always be a nested doule loop to search for matches among the tuples.	text	txt	2025-07-18 23:38:35.289791	3
+10518	4044	PostgreSQL chooses nested loop scans only if the inner table is small enough so that looping every time over it does not introduce any penalties.	text	txt	2025-07-18 23:38:35.289791	4
+10519	4045	When the inner table is mapped into a hash, which is aset of buckets containing the tuples of the table, the outer table is then walked and for every tuple extraced from the outer table, the hash is searched to see whether there is a match.	text	txt	2025-07-18 23:38:35.291291	1
+10520	4045	hash inner_hash = build_hash(inner_table);\n\nfor (tuple o: outer_table)\n    if (inner_hash.contains(build_hash(o));\n        result_set.append(o, i);	code	c	2025-07-18 23:38:35.291291	2
+10521	4046	When the program needs to do multiple checking before running something, the chain of responsibility pattern can be applied. An obvious pattern is where we need multiple if conditions which breaks reusability. For example, checks for authentication, validation and connection before a user can do something. Another example is to check for length, strength, and validity of an input password.	text	txt	2025-07-18 23:39:44.427016	1
+10522	4047	Represent sequential checks as a chain of handlers. Each handler handles the situation or passes on the responsibility to the next handler.	text	txt	2025-07-18 23:39:44.430053	1
+10523	4047	\ntemplate<typename T>\nclass basic_validator\n{\npublic:\n    virtual ~basic_validator();\n    virtual std::shared_ptr<basic_validator> next(std::shared_ptr<basic_validator> validator) = 0;\n    virtual bool is_valid(T const&) = 0;\n};\n\ntemplate<typename T>\nclass password_length_validator: public basic_validator\n{\nprotected:\n    std::shared_ptr<basic_validator> m_next;\n\npublic:\n    virtual ~password_length_validator() override { }\n\n    std::shared_ptr<basic_validator> next(std::shared_ptr<basic_validator> validator) override\n    {\n        m_next.reset(validator);\n        return validator;\n    }\n\n    bool is_valid(T const& value) override\n    {\n        return m_next ? m_next->is_valid(value) : true;\n    }\n};\n\ntemplate<typename T>\nclass incorrect_character_validator: public basic_validator\n{\n    virtual ~incorrect_character_validator() override { };\n\n    std::shared_ptr<basic_validator> next(std::shared_ptr<basic_validator> validator) override\n    {\n        m_next.reset(validator);\n        return validator;\n    }\n\n    bool is_valid(T const& value) override\n    {\n        return m_next ? m_next->is_valid() : true;\n    }\n};\n\nint main()\n{\n    std::shared_ptr<basic_validator> validator{std::make_shared<password_length_validator>()};\n    validator->next(std::make_shared<incorrect_character_validator>());\n    std::cout << validator->is_valid("123456") << std::endl;\n}	code	cpp	2025-07-18 23:39:44.430053	2
+10524	4048	Use this pattern to reduce coupling between classes that call one another and make functionality more reusable between similar classes.	text	txt	2025-07-18 23:39:44.433487	1
+10525	4048	This pattern represents events or changes that can occur in a program as their own classes, which implement a common command interface.	text	txt	2025-07-18 23:39:44.433487	2
+10526	4049	#include <vector>\n#include <ranges>\n#include <string>\n#include <memory>\n#include <iostream>\n#include <iterator>\n\nclass console\n{\nprivate:\n    std::vector<std::string> m_logs;\npublic:\n    void clear() noexcept { m_logs.clear(); }\n    void print() const { std::ranges::copy(m_logs, std::ostream_iterator{std::cout, "\\n"}); }\n    void add(std::string const& log) { m_logs.push_back(log); }\n};\n\nclass basic_console_command\n{\npublic:\n    virtual ~basic_console_command() = default;\n    virtual void execute() = 0;\n};\n\nclass clear_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\npublic:\n    explicit clear_console_command(console& tty): m_console{tty} { }\n    void execute() override { m_console.clear(); }\n};\n\nclass print_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\npublic:\n    explicit print_console_command(console& tty): m_console{tty} { }\n    void execute() override { m_console.print(); }\n};\n\nclass add_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\n    std::string m_value;\npublic:\n    explicit print_console_command(console& tty, std::string const& value): m_console{tty}, m_value{value} { }\n    void execute() override { m_console.add(m_value); }\n};\n\nclass button\n{\nprivate:\n    std::shared_ptr<basic_console_command> m_command;\npublic:\n    explicit button(std::shared_ptr<basic_console_command> command): m_command{command} { }\n    void click() { m_command.execute(); }\n};\n\nint main()\n{\n    console tty{};\n\n    std::shared_ptr<clear_console_command> clear_command{std::make_shared<clear_console_command>(tty)};\n    std::shared_ptr<print_console_command> print_command{std::make_shared<print_console_command>(tty)};\n    std::shared_ptr<add_console_command> add_command{std::make_shared<add_console_command>(tty, "Command Pattern")};\n\n    button clear{clear_command};\n    button print{print_command};\n    button add{add_command};\n}	code	cpp	2025-07-18 23:39:44.436944	1
+10529	4050	This is suitable when your distro kernel has too many modules but you just want the ones that you are using right now.	text	txt	2025-07-18 23:40:48.372459	3
+10530	4051	lsmod > /tmp/modules.lst	code	sh	2025-07-18 23:40:48.375969	1
+10531	4051	make LSMOD=/tmp/modules.lst LCM_KEEP="drivers/usb:drivers/gpu:fs" localmodconfig	code	sh	2025-07-18 23:40:48.375969	2
+10532	4052	./scripts/extract-ikconfig	code	sh	2025-07-18 23:40:48.377417	1
+10533	4053	./scripts/diffconfig <config> <config>	code	sh	2025-07-18 23:40:48.378758	1
+10534	4054	cmake -B build -D CMAKE_INSTALL_PREFIX=install	code	cmake	2025-07-18 23:42:15.132698	1
+10535	4055	cmake --build build --config Release --target install	code	cmake	2025-07-18 23:42:15.136532	1
+10536	4055	cmake --install build --config Release	code	cmake	2025-07-18 23:42:15.136532	2
+10537	4056	When building, the default configuration is `Debug`.	text	txt	2025-07-18 23:42:15.138702	1
+10538	4056	cmake --build build	code	cmake	2025-07-18 23:42:15.138702	2
+10539	4056	But CMake will look for `Release` configuration on installing.	text	txt	2025-07-18 23:42:15.138702	3
+10540	4056	cmake --install build	code	cmake	2025-07-18 23:42:15.138702	4
+10541	4057	cmake --install build --prefix install	code	cmake	2025-07-18 23:42:15.142676	1
+10542	4058	Config mode, Module mode.	text	txt	2025-07-18 23:42:15.1472	1
+10543	4058	find_package(<lib> CONFIG REQUIRED)	code	cmake	2025-07-18 23:42:15.1472	2
+10544	4058	find_package(<lib> REQUIRED)	code	cmake	2025-07-18 23:42:15.1472	3
+10545	4059	Config mode is the mode to use when the dependency has itself been built and installed using CMake. As part of the install process, either `<package>-config.cmake` or `<Package>Config.cmake` will be created by CMake. This file includes the location of built artifacts, include paths and etc. to import and use the library.	text	txt	2025-07-18 23:42:15.150449	1
+10546	4060	CMake looks for a file called `Find<Package>.cmake` in several locations. Manual locations can be added to `CMAKE_MODULE_PATH` to make them visible to CMake.	text	txt	2025-07-18 23:42:15.154619	1
+10547	4061	`Find<Package>.cmake` files are hand crafted and hard to write. But modules are helpful when we want to import a project that is not built by CMake.	text	txt	2025-07-18 23:42:15.158694	1
+10548	4061		code	cmake	2025-07-18 23:42:15.158694	2
+10549	4062	List of emails in the currently opened mailbox. By default it opens the system mailbox.	text	txt	2025-07-18 23:42:51.026286	1
+10550	4063	The pager contains the email content. How much information can be seen depends on configuration.	text	txt	2025-07-18 23:42:51.028862	1
+10551	4064	The file browser is the interface to the local or remote file system, presenting mailboxes listed in a custom sorting of items.	text	txt	2025-07-18 23:42:51.031382	1
+10552	4065	The sidebar shows a list of all mailboxes.	text	txt	2025-07-18 23:42:51.034885	1
+10553	4066	set sidebar_visible\nset sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"\nset mail_check_stats	code	neomutt.rc	2025-07-18 23:42:51.037976	1
+10554	4067	`<sidebar_next>` and `<sidebar-prev>` named keys move the highlight, and `<sidebar-open>` named key opens the highlighted folder.	text	txt	2025-07-18 23:42:51.040713	1
+10555	4067	bind index,pager \\CP sidebar-prev	code	neomutt.rc	2025-07-18 23:42:51.040713	2
+10556	4067	bind index,pager \\CN sidebar-next	code	neomutt.rc	2025-07-18 23:42:51.040713	3
+10557	4067	bind index,pager \\CO sidebar-open	code	neomutt.rc	2025-07-18 23:42:51.040713	4
+10558	4068		text	txt	2025-07-18 23:42:51.042397	1
+10559	4068		code	neomutt.rc	2025-07-18 23:42:51.042397	2
+10560	4069	A class should have only one reason to change and only one responsibility.	text	txt	2025-07-18 23:43:56.283835	1
+10561	4069	class Note\n{\npublic:\n    void add();\n    void remove();\n    void display(); // beyond the responsibility of this class\n};	code	cpp	2025-07-18 23:43:56.283835	2
+10562	4070	Classes should be open for extension but closed for modification. We should add more code instead of changing current code.	text	txt	2025-07-18 23:43:56.286872	1
+10563	4070	class Note\n{\npublic:\n    void add()\n    {\n        // directly modifying code breaks this principle\n        if (contains("!"))\n        {\n        }\n    }\n\n    void remove();\n};	code	cpp	2025-07-18 23:43:56.286872	2
+10564	4070	class INote\n{\npublic:\n    virtual void add() = 0;\n    virtual void remove() = 0;\n};\n\nclass TaggedNote\n{\npublic:\n    void add() override\n    {\n        if (contains("!"))\n        {\n        }\n    }\n\n    void remove() override;\n};	code	cpp	2025-07-18 23:43:56.286872	3
+10565	4071	Subtypes must be substitutable for their base types. Inheritance relationship should be based on behavior. A subclass must not remove or change its parent behavior. This allows subclass to replace its base type. New classes can be added without modifying existing code. By following this principle, we automatically follow open-closed principle as well.	text	txt	2025-07-18 23:43:56.290291	1
+10566	4071	using OperationResult = std::variant<int, bool>;	code	cpp	2025-07-18 23:43:56.290291	2
+10567	4071	class IOperation\n{\npublic:\n    virtual OperationResult perform() = 0;\n};\n\nclass IntegerOperation: public IOperation\n{\npublic:\n    OperationResult perform() override\n    {\n        return int{};\n    }\n};\n\nclass BooleanOperation: public IOperation\n{\npublic:\n    OperationResult perform() override\n    {\n        return bool{};\n    }\n};	code	cpp	2025-07-18 23:43:56.290291	3
+10568	4072	Interface users should not be forced to depend on methods they do not use. Interfaces with too many irrelevant methods will be complex to use. Some users may not use all the methods. Separate the interface and put methods based on client use.	text	txt	2025-07-18 23:43:56.293498	1
+10569	4072	struct IFile\n{\n    virtual ~IFile() = default;\n    virtual void write() = 0;\n    virtual void read() = 0; // not all users may use write()\n};	code	cpp	2025-07-18 23:43:56.293498	2
+10570	4072	struct IWrite\n{\n    virtual ~IWrite() = default;\n    virtual void write() = 0;\n};\n\nstruct IRead\n{\n    virtual ~IRead() = default;\n    virtual void read() = 0;\n};	code	cpp	2025-07-18 23:43:56.293498	3
+10571	4073	Interfaces should not depend on classes, classes should depend on interfaces. Using a concrete class directly creates dependency. Software becomes difficult to modify. Invert the dependency by using an interface rather than a concrete class.	text	txt	2025-07-18 23:43:56.297161	1
+10572	4073	class ImageReader\n{\npublic:\n    virtual ~ImageReader() = default;\n    virtual void decode() = 0;\n};\n\nclass BitmapReader: public ImageReader\n{\npublic:\n    void decode() override;\n};	code	cpp	2025-07-18 23:43:56.297161	2
+10573	4073	class ImageViewer\n{\nprivate:\n    // depends on implementation not abstraction\n    std::shared_ptr<BitmapReader> m_reader;\npublic:\n    ImageViewer(std::shared_ptr<BitmapReader> reader): m_reader{reader} { }\n    void display();\n};	code	cpp	2025-07-18 23:43:56.297161	3
+10574	4073	class ImageViewer\n{\nprivate:\n    std::shared_ptr<ImageReader> m_reader;\npublic:\n    ImageViewer(std::shared_ptr<ImageReader> reader): m_reader{reader} { }\n    void display();\n};	code	cpp	2025-07-18 23:43:56.297161	4
+10575	4074	|Pattern|Description|\n|---|---|\n|Singleton|Ensure only one instance exists|\n|Factory Method|Create instance without depending on its concrete type|\n|Object Pool|Reuse existing instances|\n|Abstract Factory|Create instances from a specific family|\n|Prototype|Clone existing objects from a prototype|\n|Builder|Construct a complex object step by step|	text	txt	2025-07-18 23:43:56.299385	1
+10576	4075	Ensure a class only has one instance, and provide a global point of access to it.	text	txt	2025-07-18 23:43:56.305103	1
+10577	4075	The class is responsible for its own instance. Direct construction of the object is prohibited. It contains a method to construct and return a single instance.	text	txt	2025-07-18 23:43:56.305103	2
+10578	4075	Singleton {\n    + static createInstance(): unique_instance\n    + SingletonOperation()\n    + GetSingletonData()\n    - static unique_instance\n    - singleton_data\n}	code	uml	2025-07-18 23:43:56.305103	3
+10579	4076	class Singleton\n{\nprivate:\n    Singleton() = default;\n    static Singleton m_instance;\n\npublic:\n    static Singleton& createInstance();\n    void doSomething();\n    void doSomethingElse();\n};	code	cpp	2025-07-18 23:43:56.308045	1
+10580	4076	#include "singleton.hpp"\n\nSingleton Singleton::m_instance;\n\nSingleton& Singleton::createInstance()\n{\n    return m_instance;\n}\n\nvoid Singleton::doSomething()\n{\n}\n\nvoid Singleton::doSomethingElse()\n{\n}	code	cpp	2025-07-18 23:43:56.308045	2
+10581	4076	#include "singleton.hpp"\n\nint main()\n{\n    Singleton& singleton = Singleton::createInstance();\n    singleton.doSomething();\n}	code	cpp	2025-07-18 23:43:56.308045	3
+10582	4077	A program that is not a system program is designed as if it has exclusive access to all of the resources it uses. It does not deal with complexity of talking directly to the kernel. In contrast, a system program makes direct requests from the operating system for services.	text	txt	2025-07-18 23:44:32.481364	1
+10583	4078	#include <algorithm>\n#include <utility>\n\nint min_year{std::min({2003, 2011, 2014, 2017, 2020, 2023, 2026, 2029, 2032, 2035, 2038})};\nint max_year{std::max({2003, 2011, 2014, 2017, 2020, 2023, 2026, 2029, 2032, 2035, 2038})};\nstd::pair<int, int> minmax_result{std::minmax({2003, 2011, 2014, 2017, 2020, 2023, 2026, 2029, 2032, 2035, 2038})};	code	cpp	2025-07-18 23:45:13.801103	1
+10584	4079	All overloads are also available for `std::min()` and `std::max()` functions.	text	txt	2025-07-18 23:45:13.804623	1
+10585	4079	std::minmax(a, b);	code	cpp	2025-07-18 23:45:13.804623	2
+10586	4079	std::minmax(a, b, predicate);	code	cpp	2025-07-18 23:45:13.804623	3
+10587	4079	std::minmax({initializer list});	code	cpp	2025-07-18 23:45:13.804623	4
+10588	4079	std::minmax({initializer list}, predicate);	code	cpp	2025-07-18 23:45:13.804623	5
+10589	4080	Arguments can be integers, floating points, and points. When arguments are pointers, they both should point to the same array object.	text	txt	2025-07-18 23:45:13.806312	1
+10590	4080	#include <numeric>\n\nauto result{std::midpoint(a, b)};	code	cpp	2025-07-18 23:45:13.806312	2
+10591	4081	#include <cmath>\n\nauto result{std::lerp(a, b, t)}; // result = a + t(b - a)	code	cpp	2025-07-18 23:45:13.808377	1
+10592	4082		text	txt	2025-07-18 23:45:13.812305	1
+10593	4082	#include <utility>\n\nstd::cmp_equal(a, b);\nstd::cmp_not_equal(a, b);\nstd::cmp_less(a, b);\nstd::cmp_greater(a, b);\nstd::cmp_less_equal(a, b);\nstd::cmp_greater_equal(a, b);	code	cpp	2025-07-18 23:45:13.812305	2
+10594	4083	#include <utility>\n#include <string>\n\nvoid get_message(std::string&& m);\nstd::string message{"something to say"};\nget_message(message);	code	cpp	2025-07-18 23:45:13.81527	1
+10595	4084	Typical use cases are factory functions which create an object and should pass to their arguments unmodified.	text	txt	2025-07-18 23:45:13.818629	1
+10596	4084	 Another use case is constructors which often use their arguments to initialize their base class with identical arguments.	text	txt	2025-07-18 23:45:13.818629	2
+10597	4084	#include <utility>\n#include <string>\n\nvoid f(std::string& ref);\nvoid f(std::string const& cref);\nvoid f(std::string&& rref);\nvoid f(std::string const&& rref);\n\nstd::string sv;\nstd::string const sc;\n\ntemplate<typename T>\nvoid call_f(T&& arg)\n{\n    f(std::forward(arg));\n}\n\ncall_f(sv); // ref\ncall_f(std::move(sv)); // rref\ncall_f(sc); // cref\ncall_f(std::move(sc)); // rcref	code	cpp	2025-07-18 23:45:13.818629	3
+10598	4085	#include <type_traits>\n#include <cstdint>\n\nenum class some_type : std::uint16_t { first, second, etc };\nauto underlying_type{std::to_underlying(some_type)};	code	cpp	2025-07-18 23:45:13.821365	1
+10599	4086	Swap internally uses move semantics for efficiency.	text	txt	2025-07-18 23:45:13.825151	1
+10600	4086	#include <utility>\n\nstd::swap(a, b);	code	cpp	2025-07-18 23:45:13.825151	2
+10601	4087	#include <functional>\n\nusing std::placeholder;\n\ndouble div(double a, double b) { return a / b; }\n\nstd::function<double(double, double)> div1{std::bind(div, _1, _2)};\nstd::function<double(double, double)> div2{std::bind(div, 2000, _1)};\nstd::function<double(double, double)> div3{std::bind_front(div, 2000)}; // C++20\nstd::function<double(double, double)> div4{std::bind_back(div, 10)}; // C++23	code	cpp	2025-07-18 23:45:13.828221	1
+10602	4088	While `std::bind()` and counterparts `std::bind_back()` and `std::bind_front()` create a function object, `std::function()` takes these objects and binds them to a variable.	text	txt	2025-07-18 23:45:13.829883	1
+10603	4089	#include <utility>\n\nstd::pair<T1, T2> p1{a, b};\nauto p2{std::make_pair(a, b)};	code	cpp	2025-07-18 23:45:13.831198	1
+10604	4090	std::get<0>(p);\np.first;\nstd::get<1>(p);\np.second;	code	cpp	2025-07-18 23:45:13.832514	1
 \.
 
 
@@ -13851,6 +14036,7 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 1288	1398	Compile a program with debugging information?	open	2024-07-28 10:08:03.754196	2024-07-28 10:08:03.754196	0
 1289	419	How does <code>eBPF</code> help us to learn application behavior?	open	2024-07-28 10:08:13.272943	2024-07-28 10:08:13.272943	0
 1290	419	What does the <code>eBPF</code> verifier?	open	2024-07-28 10:08:13.439554	2024-07-28 10:08:13.439554	0
+4063	1972	What is the content of pager?	open	2025-07-18 23:42:51.028862	2025-07-18 23:42:51.028862	0
 1291	419	What is the advantage of dynamic loading functionality in <code>eBPF</code>?	open	2024-07-28 10:08:13.66934	2024-07-28 10:08:13.66934	0
 1292	419	How efficient is loading <code>eBPF</code> programs?	open	2024-07-28 10:08:13.884486	2024-07-28 10:08:13.884486	0
 1293	420	How to load a simple <code>eBPF</code> code in python's BCC library as a simplified example?	open	2024-07-28 10:08:14.98458	2024-07-28 10:08:14.98458	0
@@ -16496,6 +16682,109 @@ COPY milestone.notes (id, section_id, heading, state, creation, updated, number)
 3984	1857	Where are the common use cases of the command pattern?	open	2025-07-18 23:22:41.341768	2025-07-18 23:22:41.341768	0
 3985	1857	What is the structure of the command pattern?	open	2025-07-18 23:22:41.344604	2025-07-18 23:22:41.344604	0
 3986	1857	Use command pattern to decouple invoker and receiver classes?	open	2025-07-18 23:22:41.347225	2025-07-18 23:22:41.347225	0
+3987	852	What are the benefits of Class Template Argument Deduction feature?	open	2025-07-18 23:34:38.274381	2025-07-18 23:34:38.274381	0
+3988	852	What is the consequence of not having type conversions for deducing template parameters?	open	2025-07-18 23:34:38.278197	2025-07-18 23:34:38.278197	0
+3989	1911	Introduce inputs to manual triggers?	open	2025-07-18 23:37:25.737122	2025-07-18 23:37:25.737122	0
+3990	1911	Give input parameters to manual workflows?	open	2025-07-18 23:37:25.739394	2025-07-18 23:37:25.739394	0
+3991	1911	Define matrix strategy for a job?	open	2025-07-18 23:37:25.741787	2025-07-18 23:37:25.741787	0
+3992	1911	Apply conditions on a job?	open	2025-07-18 23:37:25.745186	2025-07-18 23:37:25.745186	0
+3993	1911	What expressions are available in GitHub expressions?	open	2025-07-18 23:37:25.748419	2025-07-18 23:37:25.748419	0
+3994	1911	What are the built-in expression functions?	open	2025-07-18 23:37:25.752058	2025-07-18 23:37:25.752058	0
+3995	1911	What functions return the status of the current job?	open	2025-07-18 23:37:25.755172	2025-07-18 23:37:25.755172	0
+3996	1911	Print logs with specific contexts?	open	2025-07-18 23:37:25.758193	2025-07-18 23:37:25.758193	0
+3997	1911	Pass outputs to subsequent steps?	open	2025-07-18 23:37:25.761095	2025-07-18 23:37:25.761095	0
+3998	1911	Mask the output of a step?	open	2025-07-18 23:37:25.762967	2025-07-18 23:37:25.762967	0
+3999	1911	Use environment variables to pass values to subsequent steps?	open	2025-07-18 23:37:25.764245	2025-07-18 23:37:25.764245	0
+4000	1911	Create job summaries?	open	2025-07-18 23:37:25.765478	2025-07-18 23:37:25.765478	0
+4001	1911	How many context levels exist?	open	2025-07-18 23:37:25.766731	2025-07-18 23:37:25.766731	0
+4002	1911	In what context level secrets and variables exist?	open	2025-07-18 23:37:25.768146	2025-07-18 23:37:25.768146	0
+4003	1911	Set secrets and variables?	open	2025-07-18 23:37:25.769546	2025-07-18 23:37:25.769546	0
+4004	1911	Get access to GitHub token?	open	2025-07-18 23:37:25.77078	2025-07-18 23:37:25.77078	0
+4005	1911	Where permissions can be applied?	open	2025-07-18 23:37:25.771914	2025-07-18 23:37:25.771914	0
+4006	1911	What permissions are available?	open	2025-07-18 23:37:25.773264	2025-07-18 23:37:25.773264	0
+4007	211	What forms of boolean types exist in postgres?	open	2025-07-18 23:38:35.221613	2025-07-18 23:38:35.221613	0
+4008	211	Add a boolean type column to a table?	open	2025-07-18 23:38:35.22487	2025-07-18 23:38:35.22487	0
+4009	211	What are the two integral types in postgres?	open	2025-07-18 23:38:35.226499	2025-07-18 23:38:35.226499	0
+4010	211	What floating types are supported by postgres?	open	2025-07-18 23:38:35.228058	2025-07-18 23:38:35.228058	0
+4011	211	Write a numeric type to hold money amount?	open	2025-07-18 23:38:35.231245	2025-07-18 23:38:35.231245	0
+4012	211	What character types exist in postgres?	open	2025-07-18 23:38:35.234243	2025-07-18 23:38:35.234243	0
+4013	211	Count the number of characters in a string?	open	2025-07-18 23:38:35.236741	2025-07-18 23:38:35.236741	0
+4014	211	Count the number of bytes in a string?	open	2025-07-18 23:38:35.238147	2025-07-18 23:38:35.238147	0
+4015	211	Where in the database can we see the parameters in postgres configurations?	open	2025-07-18 23:38:35.239665	2025-07-18 23:38:35.239665	0
+4016	211	Check the current date type of the server?	open	2025-07-18 23:38:35.242222	2025-07-18 23:38:35.242222	0
+4017	211	Convert a string to date type?	open	2025-07-18 23:38:35.245024	2025-07-18 23:38:35.245024	0
+4018	211	Convert a date type to string?	open	2025-07-18 23:38:35.247441	2025-07-18 23:38:35.247441	0
+4019	211	What are the two types of timestamps in postgres?	open	2025-07-18 23:38:35.249064	2025-07-18 23:38:35.249064	0
+4020	211	Check the timezone set in current session?	open	2025-07-18 23:38:35.250401	2025-07-18 23:38:35.250401	0
+4021	211	Change timezone in current session?	open	2025-07-18 23:38:35.251593	2025-07-18 23:38:35.251593	0
+4022	211	Create hstore rows in a query?	open	2025-07-18 23:38:35.252905	2025-07-18 23:38:35.252905	0
+4023	211	Access to hstore data in a query?	open	2025-07-18 23:38:35.254148	2025-07-18 23:38:35.254148	0
+4024	211	Create JSON rows in a query?	open	2025-07-18 23:38:35.255625	2025-07-18 23:38:35.255625	0
+4025	211	Beautify the JSON output in a query?	open	2025-07-18 23:38:35.256933	2025-07-18 23:38:35.256933	0
+4026	211	Search in a JSON data by matching to an object?	open	2025-07-18 23:38:35.25812	2025-07-18 23:38:35.25812	0
+4027	211	What builtin languages are supported by postgres?	open	2025-07-18 23:38:35.259281	2025-07-18 23:38:35.259281	0
+4028	211	Define a function?	open	2025-07-18 23:38:35.260566	2025-07-18 23:38:35.260566	0
+4029	217	What are the four stages of query execution?	open	2025-07-18 23:38:35.261861	2025-07-18 23:38:35.261861	0
+4030	217	What is the responsibility of the parser?	open	2025-07-18 23:38:35.264692	2025-07-18 23:38:35.264692	0
+4031	217	What is the responsibility of the rewriter?	open	2025-07-18 23:38:35.267764	2025-07-18 23:38:35.267764	0
+4032	217	What is the responsibility of the optimizer?	open	2025-07-18 23:38:35.269627	2025-07-18 23:38:35.269627	0
+4033	217	What is the responsibility of the executor?	open	2025-07-18 23:38:35.271447	2025-07-18 23:38:35.271447	0
+4034	217	When does executor perform data access using parallel jobs?	open	2025-07-18 23:38:35.272758	2025-07-18 23:38:35.272758	0
+4035	217	What is a node?	open	2025-07-18 23:38:35.274292	2025-07-18 23:38:35.274292	0
+4036	217	What nodes does the optimizer use?	open	2025-07-18 23:38:35.275518	2025-07-18 23:38:35.275518	0
+4037	217	What are the sequential nodes?	open	2025-07-18 23:38:35.276871	2025-07-18 23:38:35.276871	0
+4038	217	When does the optimizer apply sequential scan?	open	2025-07-18 23:38:35.278236	2025-07-18 23:38:35.278236	0
+4039	217	What are the characteristics of index nodes?	open	2025-07-18 23:38:35.280361	2025-07-18 23:38:35.280361	0
+4040	217	How does index scan optimize queries?	open	2025-07-18 23:38:35.283282	2025-07-18 23:38:35.283282	0
+4041	217	How does index-only scan optimize queries?	open	2025-07-18 23:38:35.285607	2025-07-18 23:38:35.285607	0
+4042	217	How does bitmap index scan optimize queries?	open	2025-07-18 23:38:35.28718	2025-07-18 23:38:35.28718	0
+4043	217	What are the characteristics of join nodes?	open	2025-07-18 23:38:35.288496	2025-07-18 23:38:35.288496	0
+4044	217	When does the nested loop node applies by the optimizer?	open	2025-07-18 23:38:35.289791	2025-07-18 23:38:35.289791	0
+4045	217	When does the hash join node applies by the optimizer?	open	2025-07-18 23:38:35.291291	2025-07-18 23:38:35.291291	0
+4046	1921	What are the use cases of chain of responsibility pattern?	open	2025-07-18 23:39:44.427016	2025-07-18 23:39:44.427016	0
+4047	1921	What are the steps into implementing the chain of responsibilities pattern?	open	2025-07-18 23:39:44.430053	2025-07-18 23:39:44.430053	0
+4048	1922	What are the use cases of command pattern?	open	2025-07-18 23:39:44.433487	2025-07-18 23:39:44.433487	0
+4049	1922	Apply command pattern to refine multiple implementations of class button when each execute a different task to a single implementation of class button with multiple definitions of a command?	open	2025-07-18 23:39:44.436944	2025-07-18 23:39:44.436944	0
+4062	1972	What is the content of index?	open	2025-07-18 23:42:51.026286	2025-07-18 23:42:51.026286	0
+4050	459	Create a config file containing only the modules that are enabled on your system?	open	2025-07-18 23:40:48.372459	2025-07-18 23:40:48.372459	0
+4051	459	Configure the kernel with your existing modules but exceptionally leave a few modules unchanged?	open	2025-07-18 23:40:48.375969	2025-07-18 23:40:48.375969	0
+4052	459	Extract the kernel configurations from a kernel image that has embedded configurations?	open	2025-07-18 23:40:48.377417	2025-07-18 23:40:48.377417	0
+4053	459	Locate the differences between two kernel config files?	open	2025-07-18 23:40:48.378758	2025-07-18 23:40:48.378758	0
+4054	1611	Specify a separate directory for installation?	open	2025-07-18 23:42:15.132698	2025-07-18 23:42:15.132698	0
+4055	1611	How many ways exist to install a project?	open	2025-07-18 23:42:15.136532	2025-07-18 23:42:15.136532	0
+4056	1611	What are the default configurations of cmake commands when build type is not specified?	open	2025-07-18 23:42:15.138702	2025-07-18 23:42:15.138702	0
+4057	1611	Override the install directory when installing?	open	2025-07-18 23:42:15.142676	2025-07-18 23:42:15.142676	0
+4058	1611	How many search modes exist to find an external library?	open	2025-07-18 23:42:15.1472	2025-07-18 23:42:15.1472	0
+4059	1611	What files will be searched for in the config mode?	open	2025-07-18 23:42:15.150449	2025-07-18 23:42:15.150449	0
+4060	1611	What files will be searched for in the module mode?	open	2025-07-18 23:42:15.154619	2025-07-18 23:42:15.154619	0
+4061	1611	What are the advantages of both search modes?	open	2025-07-18 23:42:15.158694	2025-07-18 23:42:15.158694	0
+4064	1972	What is the content of file browser??	open	2025-07-18 23:42:51.031382	2025-07-18 23:42:51.031382	0
+4065	1972	What is the content of sidebar?	open	2025-07-18 23:42:51.034885	2025-07-18 23:42:51.034885	0
+4066	1972	Enable sidebar?	open	2025-07-18 23:42:51.037976	2025-07-18 23:42:51.037976	0
+4067	1972	What named keys are available to move the sidebar highlight?	open	2025-07-18 23:42:51.040713	2025-07-18 23:42:51.040713	0
+4068	1972		open	2025-07-18 23:42:51.042397	2025-07-18 23:42:51.042397	0
+4069	2019	What is the definition of single responsibility principle?	open	2025-07-18 23:43:56.283835	2025-07-18 23:43:56.283835	0
+4070	2019	What is the definition of open-closed principle?	open	2025-07-18 23:43:56.286872	2025-07-18 23:43:56.286872	0
+4071	2019	What is the definition of Liskov substitution principle?	open	2025-07-18 23:43:56.290291	2025-07-18 23:43:56.290291	0
+4072	2019	What is the definition of interface segregation principle?	open	2025-07-18 23:43:56.293498	2025-07-18 23:43:56.293498	0
+4073	2019	What is the definition of dependency inversion principle?	open	2025-07-18 23:43:56.297161	2025-07-18 23:43:56.297161	0
+4074	2019	What are the structural design patterns?	open	2025-07-18 23:43:56.299385	2025-07-18 23:43:56.299385	0
+4075	2020	What are the essential steps of creating a singleton?	open	2025-07-18 23:43:56.305103	2025-07-18 23:43:56.305103	0
+4076	2020	Implement a singleton class?	open	2025-07-18 23:43:56.308045	2025-07-18 23:43:56.308045	0
+4077	2027	What is the difference between ordinary programs and system programs?	open	2025-07-18 23:44:32.481364	2025-07-18 23:44:32.481364	0
+4078	2046	Find the minimum and maximum value in a series of values?	open	2025-07-18 23:45:13.801103	2025-07-18 23:45:13.801103	0
+4079	2046	What overloads of min and max functions are available?	open	2025-07-18 23:45:13.804623	2025-07-18 23:45:13.804623	0
+4080	2046	Calculate the midpoint between two values?	open	2025-07-18 23:45:13.806312	2025-07-18 23:45:13.806312	0
+4081	2046	Calculate the interpolation of two numbers?	open	2025-07-18 23:45:13.808377	2025-07-18 23:45:13.808377	0
+4082	2046	Safely compare two integral values?	open	2025-07-18 23:45:13.812305	2025-07-18 23:45:13.812305	0
+4083	2046	Mark an object as no longer needed while passed as an argument?	open	2025-07-18 23:45:13.81527	2025-07-18 23:45:13.81527	0
+4084	2046	Pass input arguments without changes in constness and value category to another call?	open	2025-07-18 23:45:13.818629	2025-07-18 23:45:13.818629	0
+4085	2046	Cast a scoped enumeration into its underlying type?	open	2025-07-18 23:45:13.821365	2025-07-18 23:45:13.821365	0
+4086	2046	Swap the value of two objects?	open	2025-07-18 23:45:13.825151	2025-07-18 23:45:13.825151	0
+4087	2046	Bind arguments to an arbitrary position?	open	2025-07-18 23:45:13.828221	2025-07-18 23:45:13.828221	0
+4088	2046	What is the difference between <code>std::function()</code> and <code>std::bind()</code>	open	2025-07-18 23:45:13.829883	2025-07-18 23:45:13.829883	0
+4089	2046	Construct a pair of two objects?	open	2025-07-18 23:45:13.831198	2025-07-18 23:45:13.831198	0
+4090	2046	Get either of the two elements of a pair?	open	2025-07-18 23:45:13.832514	2025-07-18 23:45:13.832514	0
 \.
 
 
@@ -21781,7 +22070,6 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 58	Step by Step Learning x64 Assembly Language	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 60	Practical Binary Analysis	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 61	Learn Docker in a month of Lunches	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
-63	C++17: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 66	Kali Linux Penetration Testing Bible	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 67	Linux Device Driver Development	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
 68	The C++ Programming Language	\N	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	\N
@@ -21822,6 +22110,7 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 101	C++17 Language New Features Ref Card	\N	slides	2024-09-28 14:30:48.180433	2024-09-28 14:30:48.180433	2	\N
 48	CMake Best Practices	https://subscription.packtpub.com/book/programming/9781835880647	book	2024-07-28 09:44:55.224368	2024-07-28 09:44:55.224368	1	Dominik Berner
 103	Advanced C++ Programming Cookbook	https://subscription.packtpub.com/book/programming/9781838559915	book	2024-10-13 09:55:46.597127	2024-10-13 09:55:46.604041	1	\N
+63	C++17: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2025-07-18 23:34:38.278197	1	\N
 104	Black Hat Bash	\N	book	2024-10-13 09:59:13.360502	2024-10-13 09:59:13.384872	1	\N
 105	Cpp Hive	https://www.youtube.com/watch?v=pfrcDZ2ECsQ&list=PLS0ecZsqDIUy-XGKW35qONyRDn1PlNvR5	video	2024-10-13 10:12:00.008513	2024-10-13 10:12:00.014774	4	\N
 106	Mastering Modern CPP Features	https://www.youtube.com/playlist?list=PL2EnPlznFzmhKDBfE0lqMAWyr74LZsFVY	video	2024-10-13 10:12:00.016594	2024-10-13 10:12:00.032792	4	\N
@@ -21833,8 +22122,6 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 102	GoogleTest Documentation	https://google.github.io/googletest	website	2024-10-05 21:49:48.993968	2024-10-30 21:41:01.822841	2	\N
 36	C++20: The Complete Guide	\N	book	2024-07-28 09:44:55.224368	2024-11-03 16:19:44.063814	1	\N
 100	Yocto Project and OpenEmbedded Training Course	https://bootlin.com/training/yocto	video	2024-09-27 08:13:12.835493	2024-11-10 14:03:34.330867	1	Bootlin
-43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2024-11-17 16:33:28.654627	1	\N
-26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2024-11-21 23:59:46.642383	1	\N
 1	YouTube	https://youtube.com	video	2024-07-28 09:44:46.086413	2024-11-27 21:53:14.163735	4	\N
 6	GDB Tips by Greg Law	\N	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	5	\N
 10	https://en.cppreference.com	https://www.cppstories.com	website	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	2	\N
@@ -21850,16 +22137,32 @@ COPY milestone.resources (id, name, reference, type, created, updated, section_p
 109	Asynchronous Programming with C++		book	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	1	\N
 115	Advanced Linux: The Linux Kernel	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769/discover-and-control-hardware?autoSkip=true&resume=false	video	2025-02-04 23:38:07.850623	2025-02-04 23:38:08.006489	1	\N
 12	LinkedIn Course: C++ Design Patterns: Creational	https://www.linkedin.com	video	2024-07-28 09:44:46.086413	2024-07-28 09:44:46.086413	1	Olivia Chiu Stone
-111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-02-23 23:06:51.433314	1	\N
 116	Deciphering C++ Coroutines Part 1	https://www.youtube.com/watch?v=J7fYddslH0Q	video	2025-04-06 18:26:50.480431	2025-04-06 18:26:50.520131	4	\N
 117	MuttGuide	https://gitlab.com/muttmua/mutt/-/wikis/MuttGuide	website	2025-05-03 22:26:42.979764	2025-05-03 22:26:43.02011	1	\N
 123	Deciphering C++ Coroutines Part 2	https://www.youtube.com/watch?v=qfKFfQSxvA8	video	2025-07-18 23:25:55.834891	2025-07-18 23:25:55.834891	4	\N
+124	Language Features of C++17 Ref Card	https://www.bfilipek.com	slides	2025-07-18 23:34:05.229443	2025-07-18 23:34:05.229443	2	Bartłomiej Filipek
+125	C++ Memory Management	https://subscription.packtpub.com/book/programming/9781805129806	book	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	1	\N
+126	Template Metaprogramming with C++	https://subscription.packtpub.com/book/programming/9781803243450	book	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	1	\N
 118	Algorithms and Data Structures Made Easy	https://youtube.com/playlist?list=PL2EF13wm-hWBZxHel48KrVo-R-fG_rpm7	video	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.642871	4	\N
+132	NeoMutt Guide	https://neomutt.org/guide/index	manual	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.042397	1	\N
+133	Real-time Linux with PREEMPT_RT Training Course	https://bootlin.com/training/preempt-rt	course	2025-07-18 23:43:21.396307	2025-07-18 23:43:21.396307	3	Bootlin
 54	Design Patterns in Modern C++20	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:32:27.138319	1	\N
 120	Mastering Embedded Linux Development	https://subscription.packtpub.com/book/iot-and-hardware/9781803232591	book	2025-07-16 20:36:30.834427	2025-07-16 20:36:30.834427	1	\N
 18	Mastering Embedded Linux Development	\N	book	2024-07-28 09:44:55.224368	2025-07-16 20:36:30.837888	1	\N
+43	Linux Kernel Programming	\N	book	2024-07-28 09:44:55.224368	2025-07-18 23:40:48.378758	1	\N
+128	LinkedIn Course: C++ Design Patterns: Behavioral	https://www.linkedin.com/learning/c-plus-plus-design-patterns-behavioral/behavioral-patterns-improve-software-design	video	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.436944	1	\N
+129	LinkedIn Course: C++ Design Patterns: Structural	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029/structural-design-patterns-in-c-plus-plus	video	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	1	\N
+127	GitHub Actions in Action	https://www.manning.com/books/github-actions-in-action	book	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.773264	1	\N
+130	Linux Security Techniques	https://subscription.packtpub.com/video/security/9781835887042	course	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	4	\N
 121	Behavioral Design Patterns in C++	https://subscription.packtpub.com/video/programming/9781804615652	video	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.347225	1	\N
 122	Computer Graphics Programming in OpenGL with C++	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186	book	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	1	\N
+131	Mastering C++ Multithreading	https://subscription.packtpub.com/book/programming/9781787121706/pref	book	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	1	\N
+134	Structural Design Patterns in C++	https://subscription.packtpub.com/video/programming/9781801073073	video	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.308045	1	\N
+111	Minimal CMake	https://subscription.packtpub.com/book/programming/9781835087312	book	2025-01-07 20:26:11.766237	2025-07-18 23:42:15.158694	1	\N
+135	System Programming in Linux	https://nostarch.com/system-programming-linux	book	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.481364	1	\N
+26	Learn PostgreSQL	\N	book	2024-07-28 09:44:55.224368	2025-07-18 23:38:35.291291	1	\N
+136	The C++ Standard Library by Rainer Grimm	https://leanpub.com/cpplibrary	book	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.832514	1	\N
+137	The Modern Vulkan Cookbook	https://subscription.packtpub.com/book/game-development/9781803239989	book	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	1	\N
 \.
 
 
@@ -22379,7 +22682,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 994	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	17
 987	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	10
 1099	75	open	\N	2024-07-28 09:45:07.046276	2024-07-28 09:45:07.046276	17
-852	63	open	\N	2024-07-28 09:45:04.614571	2024-07-28 09:45:04.614571	9
 250	28	writing	\N	2024-07-28 09:44:57.873227	2024-07-28 09:44:57.873227	10
 611	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	4
 621	48	open	\N	2024-07-28 09:45:01.882235	2024-07-28 09:45:01.882235	14
@@ -23260,7 +23562,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 923	68	open	\N	2024-07-28 09:45:05.579846	2024-07-28 09:45:05.579846	6
 995	70	open	\N	2024-07-28 09:45:06.229684	2024-07-28 09:45:06.229684	18
 434	41	open	\N	2024-07-28 09:44:59.970291	2024-07-28 09:44:59.970291	5
-211	26	open	\N	2024-07-28 09:44:57.573652	2024-07-28 09:44:57.573652	7
 1420	97	writing	\N	2024-07-28 09:45:10.892813	2024-07-28 09:45:10.892813	3
 1320	87	open	\N	2024-07-28 09:45:09.480176	2024-07-28 09:45:09.480176	11
 901	67	writing	\N	2024-07-28 09:45:05.152752	2024-07-28 09:45:05.152752	1
@@ -23346,7 +23647,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1413	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.804056	4
 1415	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.808926	6
 1416	95	completed	\N	2024-07-28 09:45:10.562906	2024-10-27 21:24:06.810017	7
-217	26	writing	\N	2024-07-28 09:44:57.573652	2024-10-27 23:27:17.054564	13
 1466	99	completed	\N	2024-09-23 20:32:01.286448	2024-11-02 10:31:32.7885	3
 1488	102	open	http://google.github.io/googletest/advanced.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	2
 1489	102	completed	http://google.github.io/googletest/gmock_for_dummies.html	2024-10-05 21:49:48.993968	2024-10-05 21:49:48.993968	3
@@ -23394,7 +23694,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1554	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.332721	4
 458	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-16 23:53:47.317912	1
 1553	100	completed	\N	2024-11-07 22:07:28.651539	2024-11-10 14:03:34.331915	3
-459	43	completed	\N	2024-07-28 09:45:00.334809	2024-11-17 16:33:28.656464	2
 209	26	writing	\N	2024-07-28 09:44:57.573652	2024-11-21 23:59:46.642383	5
 1352	89	completed	\N	2024-07-28 09:45:09.867651	2024-11-23 14:11:23.087911	6
 1571	1	writing	https://youtu.be/xmqkRcAslw8	2024-11-27 20:58:50.907296	2024-11-27 21:53:14.163735	1
@@ -23440,6 +23739,7 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 794	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-25 21:59:50.294658	9
 1586	109	writing	\N	2024-12-05 16:21:03.593753	2025-01-30 22:03:26.360568	3
 795	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-26 10:13:56.272168	10
+459	43	writing	\N	2024-07-28 09:45:00.334809	2025-07-18 23:40:48.378758	2
 796	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 12:14:27.167271	11
 797	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-28 19:21:57.509366	12
 798	59	completed	\N	2024-07-28 09:45:03.853918	2024-12-29 13:02:11.391609	13
@@ -23456,7 +23756,6 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1601	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.622986	3
 1602	110	completed	\N	2025-01-03 20:38:12.197376	2025-01-05 16:23:18.627091	4
 1603	110	ignored	\N	2025-01-03 20:38:12.197376	2025-01-05 16:44:03.30081	5
-1611	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	6
 1612	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	7
 1613	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	8
 1614	111	open	\N	2025-01-07 20:26:11.766237	2025-01-07 20:26:11.766237	9
@@ -23558,6 +23857,7 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1701	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.636803	6
 1702	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.640862	7
 1703	118	completed	\N	2025-07-14 20:36:31.814802	2025-07-16 14:02:30.644692	8
+1611	111	writing	\N	2025-01-07 20:26:11.766237	2025-07-18 23:42:15.158694	6
 1710	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	15
 1711	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	16
 1712	118	open	\N	2025-07-14 20:36:31.814802	2025-07-14 20:36:31.814802	17
@@ -23658,6 +23958,7 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1870	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	5
 1856	121	completed	\N	2025-07-18 23:22:41.325436	2025-07-18 23:22:41.340188	4
 1871	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	6
+1885	124	open	\N	2025-07-18 23:34:05.229443	2025-07-18 23:34:05.229443	1
 1872	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	7
 1873	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	8
 1874	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	9
@@ -23671,6 +23972,198 @@ COPY milestone.sections (id, resource_id, state, reference, created, updated, nu
 1882	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	17
 1883	122	open	\N	2025-07-18 23:24:51.69424	2025-07-18 23:24:51.69424	18
 1884	123	open	\N	2025-07-18 23:25:55.834891	2025-07-18 23:25:55.834891	1
+852	63	writing	\N	2024-07-28 09:45:04.614571	2025-07-18 23:34:38.278197	9
+1886	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	1
+1887	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	2
+1888	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	3
+1889	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	4
+1890	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	5
+1891	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	6
+1892	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	7
+1893	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	8
+1894	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	9
+1895	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	10
+1896	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	11
+1897	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	12
+1898	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	13
+1899	125	open	\N	2025-07-18 23:36:25.92073	2025-07-18 23:36:25.92073	14
+1900	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	1
+1901	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	2
+1902	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	3
+1903	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	4
+1904	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	5
+1905	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	6
+1906	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	7
+1907	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	8
+1908	126	open	\N	2025-07-18 23:36:49.170308	2025-07-18 23:36:49.170308	9
+1912	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	4
+1913	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	5
+1914	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	6
+1915	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	7
+1916	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	8
+1917	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	9
+1918	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	10
+1919	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	11
+1920	127	open	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.731365	12
+1909	127	ignored	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.73456	1
+1910	127	ignored	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.735994	2
+1922	128	completed	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.439209	2
+1933	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	1
+1934	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	2
+1935	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	3
+1936	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	4
+1937	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	5
+1938	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	6
+1939	129	open	\N	2025-07-18 23:40:14.196843	2025-07-18 23:40:14.196843	7
+1940	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	1
+1941	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	2
+1942	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	3
+1943	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	4
+1944	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	5
+1945	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	6
+1946	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	7
+1947	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	8
+1948	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	9
+1949	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	10
+1911	127	completed	\N	2025-07-18 23:37:25.731365	2025-07-18 23:37:25.774713	3
+1950	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	11
+1951	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	12
+1952	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	13
+1953	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	14
+1954	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	15
+1955	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	16
+1956	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	17
+1957	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	18
+1958	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	19
+1959	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	20
+1960	130	open	\N	2025-07-18 23:41:20.627294	2025-07-18 23:41:20.627294	21
+1961	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	1
+1962	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	2
+1963	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	3
+1964	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	4
+1965	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	5
+1966	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	6
+1967	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	7
+1968	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	8
+1969	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	9
+211	26	writing	\N	2024-07-28 09:44:57.573652	2025-07-18 23:38:35.260566	7
+1970	131	open	\N	2025-07-18 23:41:38.875661	2025-07-18 23:41:38.875661	10
+1973	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	3
+1974	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	4
+1975	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	5
+1976	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	6
+1977	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	7
+1978	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	8
+1979	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	9
+1980	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	10
+1981	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	11
+1982	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	12
+1983	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	13
+1984	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	14
+217	26	writing	\N	2024-07-28 09:44:57.573652	2025-07-18 23:38:35.291291	13
+1923	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	3
+1924	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	4
+1925	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	5
+1926	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	6
+1927	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	7
+1928	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	8
+1929	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	9
+1930	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	10
+1931	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	11
+1932	128	open	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.424036	12
+1985	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	15
+1986	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	16
+1921	128	completed	\N	2025-07-18 23:39:44.424036	2025-07-18 23:39:44.431366	1
+1987	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	17
+1971	132	completed	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.024115	1
+1988	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	18
+1989	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	19
+1990	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	20
+1991	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	21
+1992	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	22
+1993	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	23
+1994	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	24
+1995	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	25
+1996	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	26
+1997	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	27
+1998	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	28
+1999	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	29
+2000	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	30
+2001	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	31
+2002	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	32
+2003	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	33
+2004	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	34
+1972	132	completed	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.043431	2
+2005	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	35
+2006	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	36
+2007	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	37
+2008	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	38
+2009	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	39
+2010	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	40
+2011	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	41
+2012	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	42
+2013	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	43
+2014	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	44
+2015	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	45
+2016	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	46
+2017	132	open	\N	2025-07-18 23:42:51.021086	2025-07-18 23:42:51.021086	47
+2018	133	open	\N	2025-07-18 23:43:21.396307	2025-07-18 23:43:21.396307	1
+2021	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	3
+2022	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	4
+2023	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	5
+2024	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	6
+2025	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	7
+2026	134	open	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.281019	8
+2019	134	completed	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.302362	1
+2020	134	writing	\N	2025-07-18 23:43:56.281019	2025-07-18 23:43:56.308045	2
+2028	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	2
+2029	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	3
+2030	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	4
+2031	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	5
+2032	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	6
+2033	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	7
+2034	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	8
+2035	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	9
+2036	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	10
+2037	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	11
+2038	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	12
+2039	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	13
+2040	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	14
+2041	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	15
+2042	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	16
+2043	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	17
+2044	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	18
+2045	135	open	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.478401	19
+2027	135	writing	\N	2025-07-18 23:44:32.478401	2025-07-18 23:44:32.481364	1
+2047	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	2
+2048	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	3
+2049	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	4
+2050	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	5
+2051	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	6
+2052	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	7
+2053	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	8
+2054	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	9
+2055	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	10
+2056	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	11
+2057	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	12
+2058	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	13
+2059	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	14
+2060	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	15
+2061	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	16
+2062	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	17
+2063	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	18
+2064	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	19
+2065	136	open	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.798048	20
+2046	136	writing	\N	2025-07-18 23:45:13.798048	2025-07-18 23:45:13.832514	1
+2066	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	1
+2067	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	2
+2068	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	3
+2069	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	4
+2070	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	5
+2071	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	6
+2072	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	7
+2073	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	8
+2074	137	open	\N	2025-07-18 23:45:35.714876	2025-07-18 23:45:35.714876	9
 \.
 
 
@@ -25544,6 +26037,20 @@ COPY milestone.subject_resources (subject_id, resource_id) FROM stdin;
 6	121
 25	122
 6	123
+6	124
+18	125
+6	126
+27	127
+6	128
+6	129
+13	130
+6	131
+29	132
+11	133
+6	134
+4	135
+6	136
+28	137
 \.
 
 
@@ -26137,7 +26644,7 @@ SELECT pg_catalog.setval('milestone.logins_id_seq', 3, true);
 -- Name: note_blocks_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10419, true);
+SELECT pg_catalog.setval('milestone.note_blocks_id_seq', 10604, true);
 
 
 --
@@ -26165,7 +26672,7 @@ SELECT pg_catalog.setval('milestone.note_usage_id_seq', 1, false);
 -- Name: notes_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.notes_id_seq', 3986, true);
+SELECT pg_catalog.setval('milestone.notes_id_seq', 4090, true);
 
 
 --
@@ -26221,7 +26728,7 @@ SELECT pg_catalog.setval('milestone.resource_editing_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.resources_id_seq', 123, true);
+SELECT pg_catalog.setval('milestone.resources_id_seq', 137, true);
 
 
 --
@@ -26242,7 +26749,7 @@ SELECT pg_catalog.setval('milestone.section_types_id_seq', 5, true);
 -- Name: sections_id_seq; Type: SEQUENCE SET; Schema: milestone; Owner: milestone
 --
 
-SELECT pg_catalog.setval('milestone.sections_id_seq', 1884, true);
+SELECT pg_catalog.setval('milestone.sections_id_seq', 2074, true);
 
 
 --
