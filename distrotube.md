@@ -255,6 +255,137 @@ rmdir -v <directory>
 
 #### Creating Directories
 
+##### https://youtu.be/Do4G_es2vm8
+
+###### Create a directory?
+
+```sh
+mkdir <name>
+```
+
+###### Create nested directories?
+
+```sh
+mkdir -p <directory>/...
+mkdir --parents <directory>/...
+```
+
+###### Create directories with specific permissions?
+
+```sh
+mkdir -m <role>=<permissions> <directory>...
+```
+
+###### Create directories with confirmations after creation?
+
+```sh
+mkdir -v <directory>...
+```
+
+#### Manual Pages
+
+##### https://youtu.be/1V5ewUKIM1I
+
+###### Open the manual page of a command?
+
+```sh
+man <command>
+```
+
+###### Where is the common path to manual page files?
+
+```sh
+/usr/share/man
+```
+
+###### List available manpage sections of a command?
+
+```sh
+man -f <command>
+```
+
+###### Select a specific manpage section of a command?
+
+```sh
+man <section> <command>
+```
+
+###### Open a manpage in your favorite browser?
+
+```sh
+man --html=firefox <command>
+```
+
+###### Locate the path to the manual page files of a command?
+
+```sh
+man -w <command>
+```
+
+###### Search for the manual page of a command?
+
+```sh
+man -k <command>
+```
+
+###### Open the manual page of a command in a specific locale?
+
+```sh
+man --locale <locale> <command>
+```
+
+###### Open the manual page of a command with a specific pager?
+
+```sh
+man -P <pager> <command>
+man --pager <pager> <command>
+```
+
 #### Moving Files
 
+##### https://youtu.be/R8CQjsNYdvY
+
+###### Rename a file?
+
+```sh
+mv <file> <file>
+```
+
+###### Prevent file overwrites when moving?
+
+```sh
+mv -n <file> <file>
+```
+
+###### Overwrite files when moving without prompts?
+
+```sh
+man -f <file> <file>
+```
+
+###### Interactively move files?
+
+```sh
+man -i <file> <file>
+```
+
+##### https://youtu.be/KeAkWb4wgsc
+
+###### Copy a file into another path?
+
+```sh
+cp <file> <file>
+```
+
+###### Recursively copy files inside a directory?
+
+```sh
+cp -r <file> <file>
+```
+
+###### Update files when there are differences between source and destination?
+
+```sh
+cp -u <file> <file>
+```
 
