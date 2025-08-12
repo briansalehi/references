@@ -1,0 +1,181 @@
+#!/usr/bin/env bash
+
+declare -a data_files
+declare -A blocks
+subject=""
+provider=""
+presenter=""
+topic=""
+section=""
+card=""
+block_position=0
+block_type=""
+block_extension=""
+
+error()
+{
+    echo -e "\e[1;31m$*\e[0m"
+    exit 1
+}
+
+get_help()
+{
+    echo "$(basename $(readlink -f "$0")) [options] <file>..."
+    echo
+    echo "1 # Subject"
+    echo "2 ## Provider"
+    echo "3 ### Presenter"
+    echo "4 #### Topic"
+    echo "5 ##### Section"
+    echo "6 ###### Card"
+}
+
+collect_data_files()
+{
+    local base="${1:-.}"
+    local data_file
+
+    while IFS='\n' read -r data_file
+    do
+        data_files+=( "$data_file" )
+    done < <(find "${base}" -type f -name '*.md' -and -not -name README.md -exec readlink -f {} \;)
+}
+
+parse_args()
+{
+    while [ $# -gt 0 ]
+    do
+        case "$1" in
+            -h|--help) get_help ;;
+            -a|--all) collect_data_files "$2"; shift ;;
+            *) data_files+=($1) ;;
+        esac
+        shift
+    done
+}
+
+#get_subject_id()
+#{
+#}
+
+create_card()
+{
+    if [ -n "$subject" ] && [ -n "$provider" ] && [ -n "$presenter" ] && [ -n "$topic" ] && [ -n "$section" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
+    then
+        echo -ne "\e[1;34m$subject\e[0m provided by "
+        echo -ne "\e[1;31m$provider\e[0m presented by "
+        echo -ne "\e[1;31m$presenter\e[0m about "
+        echo -ne "\e[1;32m$topic\e[0m in "
+        echo -ne "\e[1;35m$section\e[0m: "
+        echo -e "\e[1;33m$card\e[0m "
+
+        for position in $(seq 1 $block_position)
+        do
+            file_name="${blocks[$position]}"
+            block_extension="${file_name#*.}"
+            block_extension="${block_extension#*.}"
+            block_type="${file_name%.*}"
+            block_type="${block_type#*.}"
+            if [ "$block_type" == "text" ]
+            then
+                style="plain"
+            else
+                style="grid,numbers"
+            fi
+            bat --color always --paging never --style "$style" "$file_name"
+            rm "$file_name"
+        done
+    else
+        #echo "empty entry for $subject provided by $provider presented by $presenter about $topic in $section: $card "
+        return;
+    fi
+
+    read -rp "Do you confirm this card? [y]es/no " response < /dev/tty
+
+    if [ "${response,,}" == "y" ]
+    then
+        echo
+        #for position in $(seq 1 $block_position)
+        #do
+        #    cat ${blocks[$position]}
+        #done
+
+        #subject_id="$(get_subject_id("$subject"))"
+    fi
+}
+
+parse_file()
+{
+    local data_file="$1"
+    local buffer
+    local token
+    local line
+    local previous_line
+
+    [ -f "$data_file" ] || error "file $data_file does not exist"
+
+    while read -r line
+    do
+        token="$(grep -oE '^#{1,6} ' <<< "$line")"
+        buffer="${line#* }"
+
+        case "$token" in
+        '# ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider=""; subject="$buffer" ;;
+        '## ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider="$buffer" ;;
+        '### ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter="$buffer" ;;
+        '#### ') create_card; unset blocks; card=""; section=""; section=""; topic="$buffer" ;;
+        '##### ') create_card; unset blocks; card=""; section="$buffer" ;;
+        '###### ') create_card; previous_line=""; block_position=0; block_type="text"; block_extension="md"; unset blocks; declare -A blocks; card="$buffer" ;;
+        *)
+            if [ -n "$card" ]
+            then
+                if [ -n "$line" ] && [ -z "$previous_line" ]
+                then
+                    if [ "${line:0:3}" == '```' ] && [ -n "${line:3}" ]
+                    then
+                        block_extension="${line:3}"
+                        block_type="code"
+                    fi
+
+                    block_position=$((block_position + 1))
+                    blocks[$block_position]="$(mktemp).$block_type.$block_extension";
+
+                    if [ "${line:0:3}" != '```' ]
+                    then
+                        echo -e "$line" >> "${blocks[$block_position]}"
+                    fi
+
+                    previous_line="$line"
+                else
+                    if [ "$line" == '```' ]
+                    then
+                        block_extension="md"
+                        block_type="text"
+                    elif [ -n "$line" ]
+                    then
+                        echo "$line" >> "${blocks[$block_position]}"
+                        previous_line="$line"
+                    else
+                        previous_line="$line"
+                    fi
+                fi
+            fi
+            ;;
+        esac
+    done < "$1"
+
+    [ -n "$card" ] && create_card
+}
+
+read_files()
+{
+    for file in "${data_files[@]}"
+    do
+        [ -z "$file" ] && continue
+
+        parse_file "$file"
+    done
+}
+
+parse_args "$@"
+read_files
