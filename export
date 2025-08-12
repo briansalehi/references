@@ -67,7 +67,7 @@ create_card()
         echo -ne "\e[1;31m$presenter\e[0m about "
         echo -ne "\e[1;32m$topic\e[0m in "
         echo -ne "\e[1;35m$section\e[0m: "
-        echo -e "\e[1;33m$card\e[0m "
+        echo -e "\e[1;33m$card\e[0m\n"
 
         for position in $(seq 1 $block_position)
         do
@@ -83,6 +83,7 @@ create_card()
                 style="grid,numbers"
             fi
             bat --color always --paging never --style "$style" "$file_name"
+            echo
             rm "$file_name"
         done
     else
