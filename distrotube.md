@@ -389,3 +389,76 @@ cp -r <file> <file>
 cp -u <file> <file>
 ```
 
+#### Changing Directory
+
+##### https://youtu.be/0p4l-rIGTfs
+
+###### Change the working directory of the running shell?
+
+```sh
+cd <path>
+```
+
+###### Change the working directory of the running shell into home directory?
+
+```sh
+cd ~
+```
+
+###### Change the working directory of the running shell into root directory?
+
+```sh
+cd /
+```
+
+###### Change the working directory of the running shell to its parent directory?
+
+```sh
+cd ..
+```
+
+#### Listing Directory Entries
+
+##### https://youtu.be/T-4Q7i6mNeM
+
+###### List entries of the current working directory of the running shell?
+
+```sh
+ls
+```
+
+###### List the entries of a directory?
+
+```sh
+ls <directory>
+```
+
+###### List the entries of a directory with human readable file sizes?
+
+```sh
+ls -lh
+```
+
+###### List the entries of a directory sorted by modification time?
+
+```sh
+ls -lt
+```
+
+###### List the entries of a directory sorted by file sizes?
+
+```sh
+ls -lS
+```
+
+To sort the list by size in descending:
+
+```sh
+ls -lrS
+```
+
+###### List the entries of a directory with directories grouped first?
+
+```sh
+ls -l --group-directories-first
+```
