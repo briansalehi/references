@@ -22,12 +22,14 @@ get_help()
 {
     echo "$(basename $(readlink -f "$0")) [options] <file>..."
     echo
-    echo "1 # Subject"
-    echo "2 ## Provider"
-    echo "3 ### Presenter"
-    echo "4 #### Topic"
-    echo "5 ##### Section"
-    echo "6 ###### Card"
+    echo "Syntax:"
+    echo
+    echo "  1 # Subject"
+    echo "  2 ## Provider"
+    echo "  3 ### Presenter"
+    echo "  4 #### Topic"
+    echo "  5 ##### Section"
+    echo "  6 ###### Card"
 }
 
 collect_data_files()
@@ -43,6 +45,8 @@ collect_data_files()
 
 parse_args()
 {
+    [ $# -eq 0 ] && get_help && exit
+
     while [ $# -gt 0 ]
     do
         case "$1" in
