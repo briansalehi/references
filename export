@@ -2,6 +2,7 @@
 
 declare -a data_files
 declare -A blocks
+total_cards=0
 subject=""
 subject_id=0
 resource=""
@@ -75,7 +76,7 @@ get_subject_details()
 
     if [ -z "$subject_id" ]
     then
-        read -rp "Subject $subject does not exist, create it? [y]es/no " response
+        read -rp "Subject $subject does not exist, create it? [y]es/no " response </dev/null
 
         if subject_id="$(psql -U flashback -d flashback -c "select create_subject('${subject//\'/\'\'}')" -At)"
         then
@@ -92,7 +93,7 @@ get_resource_details()
 
     if [ -z "$resource_id" ]
     then
-        read -rp "Resource $resource does not exist, create it? [y]es/no " response
+        read -rp "Resource $resource does not exist, create it? [y]es/no " response </dev/null
 
         if resource_id="$(psql -U flashback -d flashback -c "select create_resource('${resource//\'/\'\'}', '$resource_type', '$section_pattern', '${presenter//\'/\'\'}', '${provider//\'/\'\'}')" -At)"
         then
@@ -109,7 +110,7 @@ get_topic_details()
 
     if [ "${topic_position:-0}" -eq 0 ]
     then
-        read -rp "Topic $topic does not exist, create it? [y]es/no " response
+        read -rp "Topic $topic does not exist, create it? [y]es/no " response </dev/null
 
         if topic_position="$(psql -U flashback -d flashback -c "select create_topic($subject_id, '$topic_level', '${topic//\'/\'\'}')" -At)"
         then
@@ -126,7 +127,7 @@ get_section_details()
 
     if [ "${section_position:-0}" -eq 0 ]
     then
-        read -rp "Section $section does not exist, create it? [y]es/no " response
+        read -rp "Section $section does not exist, create it? [y]es/no " response </dev/null
 
         if section_position="$(psql -U flashback -d flashback -c "select create_section($resource_id, '${section//\'/\'\'}')" -At)"
         then
@@ -187,6 +188,7 @@ create_card()
             block_extension="${file_name##*.}"
             block_type="${file_name%.*}"
             block_type="${block_type##*.}"
+
             if [ "$block_type" == "text" ]
             then
                 style="plain"
@@ -200,19 +202,19 @@ create_card()
         return;
     fi
 
-    response=""
-    while [ "${response,,}" != "y" ] || [ "${response,,}" != "n" ]
-    do
-        read -n1 -rp "Do you confirm this card? [y]es/[n]o " response < /dev/tty
+    response="y"
+    #while [ "${response,,}" != "y" ] || [ "${response,,}" != "n" ]
+    #do
+    #    read -n1 -rp "Do you confirm this card? [y]es/[n]o " response </dev/tty
 
-        if [ "${response,,}" == "y" ]
-        then
-            break
-        elif [ "${response,,}" == "n" ]
-        then
-            break 2
-        fi
-    done
+    #    if [ "${response,,}" == "y" ]
+    #    then
+    #        break
+    #    elif [ "${response,,}" == "n" ]
+    #    then
+    #        break 2
+    #    fi
+    #done
     echo
     echo
 
@@ -226,6 +228,7 @@ create_card()
         if card_id="$(psql -U flashback -d flashback -c "select create_card('${card//\'/\'\'}')" -At)"
         then
             echo -e "\e[1;32mCard $card_id created\e[0m"
+            total_cards=$((total_cards + 1))
         else
             error "Card $card cannot be created"
         fi
@@ -348,7 +351,9 @@ read_files()
         [ -z "$file" ] && continue
 
         parse_file "$file"
-    done
+    done | less -R
+
+    echo "$total_cards cards created"
 }
 
 parse_args "$@"
