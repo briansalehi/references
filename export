@@ -3,10 +3,17 @@
 declare -a data_files
 declare -A blocks
 subject=""
+subject_id=0
+resource=""
+resource_id=""
+resource_type=""
 provider=""
 presenter=""
 topic=""
+topic_level=""
+topic_position=""
 section=""
+section_pattern=""
 card=""
 block_position=0
 block_type=""
@@ -25,8 +32,12 @@ get_help()
     echo "Syntax:"
     echo
     echo "  1 # Subject"
+    echo "  1 # Resource"
+    echo "  2 ## Resource Type (book, website, course, video, channel, mailing list, manual, slides)"
     echo "  2 ## Provider"
+    echo "  3 ### Section Pattern (chapter, page, course, video, post)"
     echo "  3 ### Presenter"
+    echo "  4 #### Topic Level (surface, depth, origin)"
     echo "  4 #### Topic"
     echo "  5 ##### Section"
     echo "  6 ###### Card"
@@ -58,19 +69,115 @@ parse_args()
     done
 }
 
-#get_subject_id()
-#{
-#}
+get_subject_details()
+{
+    subject_id="$(psql -U flashback -d flashback -c "select id from subjects where name = '${subject//\'/\'\'}' -At")"
+
+    if [ -z "$subject_id" ]
+    then
+        read -rp "Subject $subject does not exist, create it? [y]es/no " response
+
+        if subject_id="$(psql -U flashback -d flashback -c "select create_subject('${subject//\'/\'\'}')" -At)"
+        then
+            echo "Subject $subject_id created"
+        else
+            error "Subject $subject cannot be created"
+        fi
+    fi
+}
+
+get_resource_details()
+{
+    resource_id="$(psql -U flashback -d flashback -c "select id from resources where name = '${resource//\'/\'\'}'" -At)"
+
+    if [ -z "$resource_id" ]
+    then
+        read -rp "Resource $resource does not exist, create it? [y]es/no " response
+
+        if resource_id="$(psql -U flashback -d flashback -c "select create_resource('${resource//\'/\'\'}', '$resource_type', '$section_pattern', '${presenter//\'/\'\'}', '${provider//\'/\'\'}')" -At)"
+        then
+            echo "$resource_type $resource_id containing $section_pattern provided by $provider and presented by $presenter created"
+        else
+            error "Resource $resource cannot be created"
+        fi
+    fi
+}
+
+get_topic_details()
+{
+    topic_position="$(psql -U flashback -d flashback -c "select position from topics where subject = $subject_id and level = '$topic_level' and name = '${topic//\'/\'\'}'" -At)"
+
+    if [ "${topic_position:-0}" -eq 0 ]
+    then
+        read -rp "Topic $topic does not exist, create it? [y]es/no " response
+
+        if topic_position="$(psql -U flashback -d flashback -c "select create_topic($subject_id, '$topic_level', '${topic//\'/\'\'}')" -At)"
+        then
+            echo "Topic $topic_position in subject $subject with level $topic_level"
+        else
+            error "Topic $topic cannot be created"
+        fi
+    fi
+}
+
+get_section_details()
+{
+    section_position="$(psql -U flashback -d flashback -c "select position from sections where resource = $resource_id and name = '${section//\'/\'\'}'" -At)"
+
+    if [ "${section_position:-0}" -eq 0 ]
+    then
+        read -rp "Section $section does not exist, create it? [y]es/no " response
+
+        if section_position="$(psql -U flashback -d flashback -c "select create_section($resource_id, '${section//\'/\'\'}')" -At)"
+        then
+            echo "Section $section_position in resource $resource created"
+        else
+            error "Section $section cannot be created"
+        fi
+    fi
+}
+
+create_blocks()
+{
+    local content
+
+    for position in $(seq 1 $block_position)
+    do
+        file_name="${blocks[$position]}"
+        block_extension="${file_name#*.}"
+        block_extension="${block_extension#*.}"
+        block_type="${file_name%.*}"
+        block_type="${block_type#*.}"
+        if [ "$block_type" == "text" ]
+        then
+            style="plain"
+        else
+            style="grid,numbers"
+        fi
+
+        content="$(< "$file_name")"
+
+        if psql -U flashback -d flashback -c "call create_block($card_id, '$block_type', '$block_extension', '${content//\'/\'\'}', $position)" -At
+        then
+            echo "Block $position of card $card_id created"
+        else
+            error "Block $position of card $card_id cannot be created"
+        fi
+
+        rm "$file_name"
+    done
+}
 
 create_card()
 {
-    if [ -n "$subject" ] && [ -n "$provider" ] && [ -n "$presenter" ] && [ -n "$topic" ] && [ -n "$section" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
+    if [ -n "$subject" ] && [ -n "$resource" ] && [ -n "$resource_type" ] && [ -n "$section_pattern" ] && [ -n "$provider" ] && [ -n "$presenter" ] && [ -n "$topic" ] && [ -n "$topic_level" ] && [ -n "$section" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
     then
-        echo -ne "\e[1;34m$subject\e[0m provided by "
+        echo -ne "The $section_pattern \e[1;34m$section\e[0m in "
+        echo -ne "$resource_type \e[1;34m$resource\e[0m provided by "
         echo -ne "\e[1;31m$provider\e[0m presented by "
         echo -ne "\e[1;31m$presenter\e[0m about "
-        echo -ne "\e[1;32m$topic\e[0m in "
-        echo -ne "\e[1;35m$section\e[0m: "
+        echo -ne "\e[1;32m$topic\e[0m covers the "
+        echo -e "$topic_level of \e[1;34m$subject\e[0m"
         echo -e "\e[1;33m$card\e[0m\n"
 
         for position in $(seq 1 $block_position)
@@ -88,24 +195,47 @@ create_card()
             fi
             bat --color always --paging never --style "$style" "$file_name"
             echo
-            rm "$file_name"
         done
     else
-        #echo "empty entry for $subject provided by $provider presented by $presenter about $topic in $section: $card "
         return;
     fi
 
     read -rp "Do you confirm this card? [y]es/no " response < /dev/tty
+    echo
+
+    return
 
     if [ "${response,,}" == "y" ]
     then
-        echo
-        #for position in $(seq 1 $block_position)
-        #do
-        #    cat ${blocks[$position]}
-        #done
+        get_subject_details
+        get_resource_details
+        get_topic_details
+        get_section_details
 
-        #subject_id="$(get_subject_id("$subject"))"
+        if card_id="$(psql -U flashback -d flashback -c "select create_card('${card//\'/\'\'}')" -At)"
+        then
+            echo "Card $card_id created"
+        else
+            error "Card $card cannot be created"
+        fi
+
+        if section_card_position="$(psql -U flashback -d flashback -c "select add_card_to_section($resource_id, $section_position, $card_id)" -At)"
+        then
+            echo "Card $card_id added to section $section of resource $resource in position $section_card_position"
+        else
+            error "Card $card_id cannot be added to section $section_id of resource $resource_id"
+        fi
+
+        if topic_card_position="$(psql -U flashback -d flashback -c "select add_card_to_topic($subject_id, $topic_level, $topic_id, $card_id)" -At)"
+        then
+            echo "Card $card_id added to topic $topic of subject $subject in position $topic_card_position"
+        else
+            error "Card $card_id cannot be added to topic $topic_id of subject $subject_id"
+        fi
+
+        create_blocks
+    else
+        rm "$file_name"
     fi
 }
 
@@ -125,10 +255,38 @@ parse_file()
         buffer="${line#* }"
 
         case "$token" in
-        '# ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider=""; subject="$buffer" ;;
-        '## ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider="$buffer" ;;
-        '### ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter="$buffer" ;;
-        '#### ') create_card; unset blocks; card=""; section=""; section=""; topic="$buffer" ;;
+        '# ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider=""; resource_type=""; section_pattern=""; topic_level="";
+            if [ -z "$subject" ]
+            then
+                subject="$buffer"
+            else
+                resource="$buffer"
+            fi
+            ;;
+        '## ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; section_pattern=""; topic_level="";
+            if [ -z "$resource_type" ]
+            then
+                resource_type="$buffer"
+            else
+                provider="$buffer"
+            fi
+            ;;
+        '### ') create_card; unset blocks; card=""; section=""; section=""; topic=""; toipc_level="";
+            if [ -z "$section_pattern" ]
+            then
+                section_pattern="$buffer"
+            else
+                presenter="$buffer"
+            fi
+            ;;
+        '#### ') create_card; unset blocks; card=""; section=""; section="";
+            if [ -z "$topic_level" ]
+            then
+                topic_level="$buffer"
+            else
+                topic="$buffer"
+            fi
+            ;;
         '##### ') create_card; unset blocks; card=""; section="$buffer" ;;
         '###### ') create_card; previous_line=""; block_position=0; block_type="text"; block_extension="md"; unset blocks; declare -A blocks; card="$buffer" ;;
         *)

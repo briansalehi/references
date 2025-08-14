@@ -1,9 +1,13 @@
 # Linux Administration
+# DistroTube
 
+## channel
 ## YouTube
 
+### video
 ### DistroTube
 
+#### surface
 #### Locating Tools
 
 ##### https://youtu.be/Tl6xOw6Au88
@@ -71,6 +75,7 @@ This option will also exclude the home directory.
 which --skip-tilde <command>
 ```
 
+#### surface
 #### System Monitoring
 
 ##### https://youtu.be/clqL--vqToE?feature=shared
@@ -83,6 +88,7 @@ htop
 btop
 ```
 
+#### surface
 #### Working Directory
 
 ##### https://youtu.be/nXJdxxXjkvA
@@ -100,6 +106,7 @@ pwd -P
 pwd --physical
 ```
 
+#### surface
 #### User Management
 
 ##### https://youtu.be/TLH7tDk6OP4
@@ -114,6 +121,7 @@ whoami
 echo $USER
 ```
 
+#### surface
 #### System Domain
 
 ##### https://youtu.be/XMPeAVx3Cls
@@ -146,6 +154,7 @@ hostname -f
 sudo hostname <new name>
 ```
 
+#### surface
 #### Kernel Management
 
 ##### https://youtu.be/TgoJ51OwSeA
@@ -162,6 +171,7 @@ uname -r
 uname -m
 ```
 
+#### surface
 #### Output Generators
 
 ##### https://youtu.be/d-3A3Y2C-Fc?feature=shared
@@ -178,6 +188,7 @@ seq <numbers>
 seq <begin> <step> <end>
 ```
 
+#### surface
 #### Removing Files
 
 ##### https://youtu.be/1h9T3-X_1qQ
@@ -253,6 +264,7 @@ rmdir --parent <directory>/...
 rmdir -v <directory>
 ```
 
+#### surface
 #### Creating Directories
 
 ##### https://youtu.be/Do4G_es2vm8
@@ -282,6 +294,7 @@ mkdir -m <role>=<permissions> <directory>...
 mkdir -v <directory>...
 ```
 
+#### surface
 #### Manual Pages
 
 ##### https://youtu.be/1V5ewUKIM1I
@@ -341,6 +354,7 @@ man -P <pager> <command>
 man --pager <pager> <command>
 ```
 
+#### surface
 #### Moving Files
 
 ##### https://youtu.be/R8CQjsNYdvY
@@ -389,6 +403,7 @@ cp -r <file> <file>
 cp -u <file> <file>
 ```
 
+#### surface
 #### Changing Directory
 
 ##### https://youtu.be/0p4l-rIGTfs
@@ -417,6 +432,7 @@ cd /
 cd ..
 ```
 
+#### surface
 #### Listing Directory Entries
 
 ##### https://youtu.be/T-4Q7i6mNeM
