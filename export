@@ -203,8 +203,6 @@ create_card()
     read -rp "Do you confirm this card? [y]es/no " response < /dev/tty
     echo
 
-    return
-
     if [ "${response,,}" == "y" ]
     then
         get_subject_details
