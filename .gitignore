@@ -1,8 +1,4 @@
-*~
-.*~
-*.swp
-*.tmp
-tags
-.idea/
-*build*/
-*.cpp
+*
+!.gitignore
+!*.md
+!export

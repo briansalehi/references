@@ -89,7 +89,7 @@ get_subject_details()
 
 get_resource_details()
 {
-    resource_id="$(psql -U flashback -d flashback -c "select id from resources where name = '${resource//\'/\'\'}'" -At)"
+    IFS="|" read -r resource_id resource_provider resource_presenter resource_pattern < <(psql -U flashback -d flashback -c "select id, provider, presenter, section_pattern from resources where name = '${resource//\'/\'\'}'" -At)
 
     if [ -z "$resource_id" ]
     then
@@ -100,6 +100,21 @@ get_resource_details()
             echo -e "\e[1;32mResource $resource_id with type ${resource_type^} containing $section_pattern provided by $provider and presented by $presenter created\e[0m"
         else
             error "Resource $resource cannot be created"
+        fi
+    else
+        if [ "$resource_provider" != "$provider" ]
+        then
+            response="$(psql -U flashback -d flashback -c "call edit_resource_provider($resource_id, '$provider')" -At)"
+        fi
+
+        if [ "$resource_presenter" != "$presenter" ]
+        then
+            response="$(psql -U flashback -d flashback -c "call edit_resource_presenter($resource_id, '$presenter')" -At)"
+        fi
+
+        if [ "$resource_pattern" != "$section_pattern" ]
+        then
+            response="$(psql -U flashback -d flashback -c "call edit_resource_pattern($resource_id, '$section_pattern')" -At)"
         fi
     fi
 }
@@ -123,7 +138,10 @@ get_topic_details()
 
 get_section_details()
 {
-    section_position="$(psql -U flashback -d flashback -c "select position from sections where resource = $resource_id and name = '${section//\'/\'\'}'" -At)"
+    case "$section" in
+        [0-9]+) IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and position = '$section'" -At) ;;
+        *) IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and name = '${section//\'/\'\'}'" -At) ;;
+    esac
 
     if [ "${section_position:-0}" -eq 0 ]
     then
