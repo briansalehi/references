@@ -89,7 +89,7 @@ get_subject_details()
 
 get_resource_details()
 {
-    IFS="|" read -r resource_id resource_provider resource_presenter resource_pattern < <(psql -U flashback -d flashback -c "select id, provider, presenter, section_pattern from resources where name = '${resource//\'/\'\'}'" -At)
+    IFS="|" read -r resource_id resource_provider resource_presenter resource_pattern < <(psql -U flashback -d flashback -c "select id, provider, presenter, pattern from resources where name = '${resource//\'/\'\'}'" -At)
 
     if [ -z "$resource_id" ]
     then
@@ -221,18 +221,18 @@ create_card()
     fi
 
     response="y"
-    #while [ "${response,,}" != "y" ] || [ "${response,,}" != "n" ]
-    #do
-    #    read -n1 -rp "Do you confirm this card? [y]es/[n]o " response </dev/tty
+    while [ "${response,,}" != "y" ] || [ "${response,,}" != "n" ]
+    do
+        read -n1 -rp "Do you confirm this card? [y]es/[n]o " response </dev/tty
 
-    #    if [ "${response,,}" == "y" ]
-    #    then
-    #        break
-    #    elif [ "${response,,}" == "n" ]
-    #    then
-    #        break 2
-    #    fi
-    #done
+        if [ "${response,,}" == "y" ]
+        then
+            break
+        elif [ "${response,,}" == "n" ]
+        then
+            break 2
+        fi
+    done
     echo
     echo
 
