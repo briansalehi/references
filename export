@@ -26,6 +26,8 @@ error()
     exit 1
 }
 
+trap 'echo -e "\r\n"; error "User Interrupted"; exit 1;' SIGINT
+
 get_help()
 {
     echo "$(basename $(readlink -f "$0")) [options] <file>..."
@@ -192,7 +194,7 @@ create_card()
 {
     if [ -n "$subject" ] && [ -n "$resource" ] && [ -n "$resource_type" ] && [ -n "$section_pattern" ] && [ -n "$provider" ] && [ -n "$presenter" ] && [ -n "$topic" ] && [ -n "$topic_level" ] && [ -n "$section" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
     then
-        echo -ne "The $section_pattern \e[1;34m$section\e[0m in "
+        echo -ne "The $section_pattern \e[1;34m$section\e[0m of "
         echo -ne "$resource_type \e[1;34m$resource\e[0m provided by "
         echo -ne "\e[1;31m$provider\e[0m presented by "
         echo -ne "\e[1;31m$presenter\e[0m about "
@@ -223,7 +225,7 @@ create_card()
     response="y"
     while [ "${response,,}" != "y" ] || [ "${response,,}" != "n" ]
     do
-        read -n1 -rp "Do you confirm this card? [y]es/[n]o " response </dev/tty
+        read -n 1 -r -p "Do you confirm this card? [y]es/[n]o " response </dev/tty
 
         if [ "${response,,}" == "y" ]
         then
@@ -232,8 +234,8 @@ create_card()
         then
             break 2
         fi
+        echo
     done
-    echo
     echo
 
     if [ "${response,,}" == "y" ]
@@ -281,7 +283,7 @@ parse_file()
 
     [ -f "$data_file" ] || error "file $data_file does not exist"
 
-    while read -r line
+    while IFS= read -r line
     do
         token="$(grep -oE '^#{1,6} ' <<< "$line")"
         buffer="${line#* }"
@@ -337,7 +339,7 @@ parse_file()
 
                     if [ "${line:0:3}" != '```' ]
                     then
-                        echo -e "$line" >> "${blocks[$block_position]}"
+                        echo "$line" >> "${blocks[$block_position]}"
                     fi
 
                     previous_line="$line"
@@ -357,7 +359,7 @@ parse_file()
             fi
             ;;
         esac
-    done < "$1"
+    done < "$data_file"
 
     [ -n "$card" ] && create_card
 }
@@ -369,7 +371,7 @@ read_files()
         [ -z "$file" ] && continue
 
         parse_file "$file"
-    done | less -R
+    done
 
     echo "$total_cards cards created"
 }
