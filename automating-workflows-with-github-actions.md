@@ -1,9 +1,9 @@
 # GitHub Actions
-# GitHub Actions Masterclass
-## course
+# Automating Workflows with GitHub Actions
+## book
 ## Packt Publishing
-### video
-### LM Academy
+### chapter
+### Priscila Heller
 
 #### surface
 #### Topic

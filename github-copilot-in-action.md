@@ -1,9 +1,9 @@
-# GitHub Actions
-# GitHub Actions Masterclass
+# GitHub Copilot
+# GitHub Copilot in Action
 ## course
 ## Packt Publishing
 ### video
-### LM Academy
+### Jeremy Morgan
 
 #### surface
 #### Topic
