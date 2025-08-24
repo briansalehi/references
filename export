@@ -353,6 +353,10 @@ parse_file()
                     then
                         echo "$line" >> "${blocks[$block_position]}"
                         previous_line="$line"
+                    elif [ -z "$line" ] && [ "$block_type" == "code" ]
+                    then
+                        echo "$line" >> "${blocks[$block_position]}"
+                        previous_line="$line"
                     else
                         previous_line="$line"
                     fi
