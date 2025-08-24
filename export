@@ -116,7 +116,7 @@ get_resource_details()
 
         if [ "$resource_pattern" != "$section_pattern" ]
         then
-            response="$(psql -U flashback -d flashback -c "call edit_resource_pattern($resource_id, '$section_pattern')" -At)"
+            response="$(psql -U flashback -d flashback -c "call edit_section_pattern($resource_id, '$section_pattern')" -At)"
         fi
     fi
 }
