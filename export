@@ -213,6 +213,7 @@ create_card()
             then
                 style="plain"
             else
+                echo -e "\e[2;37m$block_extension $block_type\e[0m"
                 style="grid,numbers"
             fi
             bat --color always --paging never --style "$style" "$file_name"
@@ -326,7 +327,7 @@ parse_file()
         *)
             if [ -n "$card" ]
             then
-                if [ -n "$line" ] && [ -z "$previous_line" ]
+                if [ -n "$line" ] && [ -z "$previous_line" ] && [ "$block_type" != "code" ]
                 then
                     if [ "${line:0:3}" == '```' ] && [ -n "${line:3}" ]
                     then
