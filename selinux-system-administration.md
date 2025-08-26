@@ -137,3 +137,7 @@ ps -eZ
 
 With type enforcement, SELinux controls processes behavior based on how it got executed in the first place. A web server launched by a user will run with a different type than the same web server launched by the init system.
 
+#### Roles
+##### Fundamental of SELinux Concepts
+
+
