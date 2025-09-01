@@ -75,7 +75,6 @@ This option will also exclude the home directory.
 which --skip-tilde <command>
 ```
 
-#### surface
 #### System Monitoring
 
 ##### https://youtu.be/clqL--vqToE?feature=shared
@@ -88,7 +87,6 @@ htop
 btop
 ```
 
-#### surface
 #### Working Directory
 
 ##### https://youtu.be/nXJdxxXjkvA
@@ -106,7 +104,6 @@ pwd -P
 pwd --physical
 ```
 
-#### surface
 #### User Management
 
 ##### https://youtu.be/TLH7tDk6OP4
@@ -121,7 +118,6 @@ whoami
 echo $USER
 ```
 
-#### surface
 #### System Domain
 
 ##### https://youtu.be/XMPeAVx3Cls
@@ -154,7 +150,6 @@ hostname -f
 sudo hostname <new name>
 ```
 
-#### surface
 #### Kernel Management
 
 ##### https://youtu.be/TgoJ51OwSeA
@@ -171,7 +166,6 @@ uname -r
 uname -m
 ```
 
-#### surface
 #### Output Generators
 
 ##### https://youtu.be/d-3A3Y2C-Fc?feature=shared
@@ -188,7 +182,6 @@ seq <numbers>
 seq <begin> <step> <end>
 ```
 
-#### surface
 #### Removing Files
 
 ##### https://youtu.be/1h9T3-X_1qQ
@@ -264,7 +257,6 @@ rmdir --parent <directory>/...
 rmdir -v <directory>
 ```
 
-#### surface
 #### Creating Directories
 
 ##### https://youtu.be/Do4G_es2vm8
@@ -294,7 +286,6 @@ mkdir -m <role>=<permissions> <directory>...
 mkdir -v <directory>...
 ```
 
-#### surface
 #### Manual Pages
 
 ##### https://youtu.be/1V5ewUKIM1I
@@ -354,7 +345,6 @@ man -P <pager> <command>
 man --pager <pager> <command>
 ```
 
-#### surface
 #### Moving Files
 
 ##### https://youtu.be/R8CQjsNYdvY
@@ -403,7 +393,6 @@ cp -r <file> <file>
 cp -u <file> <file>
 ```
 
-#### surface
 #### Changing Directory
 
 ##### https://youtu.be/0p4l-rIGTfs
@@ -432,7 +421,6 @@ cd /
 cd ..
 ```
 
-#### surface
 #### Listing Directory Entries
 
 ##### https://youtu.be/T-4Q7i6mNeM
@@ -478,3 +466,226 @@ ls -lrS
 ```sh
 ls -l --group-directories-first
 ```
+
+#### Stream Manipulators
+
+##### https://youtu.be/ArquIrMD-0M
+
+###### Randomly shuffle the lines of a file or input stream?
+
+```sh
+shuf <file>
+```
+
+```sh
+<command> | shuf
+```
+
+###### Generate a sequence of shuffled numbers?
+
+```sh
+shuf -i <begin>-<end>
+shuf --input-range <begin>-<end>
+```
+
+###### Generate a random percentage?
+
+```sh
+shuf -i 0-100 -n 1
+```
+
+###### Generate a stream of randomly shuffled numbers?
+
+```sh
+shuf -i <begin>-<end> -n <count> -r
+shuf --input-range <begin>-<end> --head-count <count> --repeat
+```
+
+##### https://youtu.be/z55PFrvuBqk
+
+###### Sort the lines of a file or input stream?
+
+```sh
+sort <file>
+```
+
+```sh
+<command> | sort
+```
+
+###### Reversely sort the lines of a file or input stream?
+
+```sh
+sort -r <file>
+```
+
+```sh
+<command> | sort -r
+```
+
+###### Sort numerically the lines of a file or input stream?
+
+```sh
+sort -n <file>
+```
+
+```sh
+<command> | sort -n
+```
+
+###### Randomly sort the lines of a file or input stream?
+
+```sh
+sort -R <file>
+```
+
+```sh
+<command> | sort -R
+```
+
+In this scenario, `shuf` is than `sort`.
+
+###### Sort a column of a file or input stream?
+
+```sh
+sort -k <column> <file>
+```
+
+```sh
+<command> | sort -k <column>
+```
+
+###### Unique sort the lines of a file or input stream?
+
+In this case, `uniq` can also be used after `sort`.
+
+```sh
+sort -u <file>
+```
+
+```sh
+<command> | sort -u
+```
+
+#### Grep
+
+##### https://youtu.be/speTBP-NXJo
+
+###### Search for a pattern in a file or input stream?
+
+Grep uses basic regular expressions by default.
+
+```sh
+grep -G <pattern> <file>
+grep <pattern> <file>
+```
+
+```sh
+<command> | grep <pattern>
+```
+
+###### Use extended regular expressions for searching a pattern in a file or input stream?
+
+```sh
+grep -E <pattern> <file>
+```
+
+```sh
+<command> | grep -E <pattern>
+```
+
+###### Search for a fixed string in a file or input stream?
+
+```sh
+grep -F <string> <file>
+```
+
+```sh
+<command> | grep -F <string>
+```
+
+###### Invert the search results of a pattern in a file or input stream?
+
+```sh
+grep -v <pattern> <file>
+```
+
+```sh
+<command> | grep -v <pattern>
+```
+
+###### Recursively search for a pattern in a directory?
+
+```sh
+grep -r <pattern> <directory>
+```
+
+###### Ignore binary files when searching for a pattern?
+
+```sh
+grep -rI <pattern> <directory>
+```
+
+###### Find the files containing a pattern rather than the lines?
+
+```sh
+grep -rl <pattern> <directory>
+```
+
+###### Ignore case sensitivity when searching for a pattern?
+
+```sh
+grep -i <pattern> <file>
+```
+
+###### Include line numbers in the search results of a pattern?
+
+```sh
+grep -rn <pattern> <directory>
+```
+
+###### Suppress error messages when searching for a pattern?
+
+```sh
+grep -s <pattern> <file>
+```
+
+###### Suppress all output and only return the exit status when searching for a pattern?
+
+```sh
+grep -q <pattern> <file>
+```
+
+###### Search for a whole word pattern in a file or input stream?
+
+```sh
+grep -w <pattern> <file>
+```
+
+###### Search for a pattern that matches the whole line in a file or input stream?
+
+```sh
+grep -x <pattern> <file>
+```
+
+###### Count the number of matching lines for a pattern in a file or input stream?
+
+```sh
+grep -c <pattern> <file>
+```
+
+###### Limit the number of matching lines for a pattern in a file or input stream?
+
+```sh
+grep -m <limit> <pattern> <file>
+```
+
+
+
+
+
+
+
+
+
+
