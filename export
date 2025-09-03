@@ -20,11 +20,8 @@ block_position=0
 block_type=""
 block_extension=""
 
-error()
-{
-    echo -e "\e[1;31m$*\e[0m"
-    exit 1
-}
+error() { echo -e "\e[1;31m$*\e[0m"; exit 1; }
+debug() { echo -e "\e[1;34mdebug:\e[0m \e[1;2;37m$@\e[0m"; }
 
 trap 'echo -e "\r\n"; error "User Interrupted"; exit 1;' SIGINT
 
@@ -140,10 +137,12 @@ get_topic_details()
 
 get_section_details()
 {
-    case "$section" in
-        [0-9]+) IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and position = '$section'" -At) ;;
-        *) IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and name = '${section//\'/\'\'}'" -At) ;;
-    esac
+    if [[ "$section" =~ ^[0-9]+$ ]]
+    then
+        IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and position = '$section'" -At)
+    else
+        IFS="|" read -r section_position section_name < <(psql -U flashback -d flashback -c "select position, name from sections where resource = $resource_id and name = '${section//\'/\'\'}'" -At)
+    fi
 
     if [ "${section_position:-0}" -eq 0 ]
     then
@@ -151,7 +150,7 @@ get_section_details()
 
         if section_position="$(psql -U flashback -d flashback -c "select create_section($resource_id, '${section//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mSection $section_position in resource $resource created\e[0m"
+            echo -e "\e[1;32mSection $section in position $section_position of resource $resource created\e[0m"
         else
             error "Section $section cannot be created"
         fi
@@ -290,10 +289,10 @@ parse_file()
         buffer="${line#* }"
 
         case "$token" in
-        '------') unset blocks; card=""; section=""; section=""; topic=""; topic_level="" ;;
-        '-----') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern="" ;;
-        '----') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type="" ;;
-        '---') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type=""; subject=""; resource="" ;;
+        '------') unset blocks; card=""; section=""; topic=""; topic_level="" ;;
+        '-----') unset blocks; card=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern="" ;;
+        '----') unset blocks; card=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type="" ;;
+        '---') unset blocks; card=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type=""; subject=""; resource="" ;;
         '# ')
             create_card
             unset blocks; card=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type="";
@@ -306,7 +305,7 @@ parse_file()
             ;;
         '## ')
             create_card
-            unset blocks; card=""; section=""; section=""; topic=""; presenter=""; section_pattern=""; topic_level="";
+            unset blocks; card=""; section=""; topic=""; presenter=""; section_pattern=""; topic_level="";
             if [ -z "$resource_type" ]
             then
                 resource_type="$buffer"
@@ -316,7 +315,7 @@ parse_file()
             ;;
         '### ')
             create_card
-            unset blocks; card=""; section=""; section=""; topic=""; toipc_level="";
+            unset blocks; card=""; section=""; topic=""; toipc_level="";
             if [ -z "$section_pattern" ]
             then
                 section_pattern="$buffer"

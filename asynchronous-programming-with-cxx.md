@@ -132,8 +132,8 @@ int main()
 }
 ```
 
-#### 3
-##### Joining Threads
+#### Joining Threads
+##### 3
 
 ###### Wait for a thread to complete execution?
 
