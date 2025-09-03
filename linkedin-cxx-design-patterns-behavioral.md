@@ -10,13 +10,13 @@
 
 ##### Command Pattern
 
-###### What specific situation should remind you to consider using the Command design pattern in program design?
+###### What specific situation should remind you to consider using the Command design pattern in your program design?
 
 * When there are two coupled objects and they are directly invoking calls on the other via callbacks
 * When can also use this pattern when we want to implement undo and redo behavior
 * When we want to create a macro of multiple commands
 
-###### What is the structure of command pattern?
+###### What is the structure of the Command pattern?
 
 ```plantuml
 class Invoker {
@@ -131,8 +131,32 @@ int main()
 }
 ```
 
+#### Memento
 
+##### Memento Pattern
 
+###### What are the use cases of Memento design pattern?
+
+Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
+
+###### What specific situation should remind you to consider using the Memento design pattern in your program design?
+
+###### What is the structure of the Memento pattern?
+
+* `Originator`: knows how to store and restore its state
+* `Caretaker`: knows why and when the `Originator` needs to be stored or restored
+* `Memento`: written and read by `Originator` and used by the `Caretaker` to save `Originator` state
+
+The `Caretaker` will not and should not be able to modify the state of the `Memento`.
+
+```plantuml
+```
+
+`Memento` has a wide interface to the `Originator`, and a narrow interface to the `Caretaker`. Only the narrow interface should be public.
+
+###### What are the disadvantages of Memento design pattern?
+
+Memento consumes too much memory. It should be stored in a file or at least incremental changes of the state should be stored in memory.
 
 
 

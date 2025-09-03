@@ -4,10 +4,9 @@
 ## Packt Publishing
 ### chapter
 ### Javier Reguera-Salgado
-
 #### surface
-#### Thread Construction
 
+#### Thread Construction
 ##### 3
 
 ###### Pass a value as parameter to a thread?
@@ -82,7 +81,6 @@ int main()
 ```
 
 #### Returning Value from Threads
-
 ##### 3
 
 ###### What are the considerations of returning a value from threads?
@@ -112,7 +110,6 @@ int main()
 Future and promises are a more elegant way of returning values from threads.
 
 #### Moving Threads
-
 ##### 3
 
 ###### Move the ownership of a thread to another thread object?
@@ -136,7 +133,6 @@ int main()
 ```
 
 #### 3
-
 ##### Joining Threads
 
 ###### Wait for a thread to complete execution?
@@ -180,7 +176,6 @@ int main()
 ```
 
 #### Detaching Threads
-
 ##### 3
 
 ###### Create a daemon thread?
