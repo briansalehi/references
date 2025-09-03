@@ -290,7 +290,13 @@ parse_file()
         buffer="${line#* }"
 
         case "$token" in
-        '# ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; provider=""; resource_type=""; section_pattern=""; topic_level="";
+        '------') unset blocks; card=""; section=""; section=""; topic=""; topic_level="" ;;
+        '-----') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern="" ;;
+        '----') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type="" ;;
+        '---') unset blocks; card=""; section=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type=""; subject=""; resource="" ;;
+        '# ')
+            create_card
+            unset blocks; card=""; section=""; topic=""; topic_level=""; presenter=""; section_pattern=""; provider=""; resource_type="";
             if [ -z "$subject" ]
             then
                 subject="$buffer"
@@ -298,7 +304,9 @@ parse_file()
                 resource="$buffer"
             fi
             ;;
-        '## ') create_card; unset blocks; card=""; section=""; section=""; topic=""; presenter=""; section_pattern=""; topic_level="";
+        '## ')
+            create_card
+            unset blocks; card=""; section=""; section=""; topic=""; presenter=""; section_pattern=""; topic_level="";
             if [ -z "$resource_type" ]
             then
                 resource_type="$buffer"
@@ -306,7 +314,9 @@ parse_file()
                 provider="$buffer"
             fi
             ;;
-        '### ') create_card; unset blocks; card=""; section=""; section=""; topic=""; toipc_level="";
+        '### ')
+            create_card
+            unset blocks; card=""; section=""; section=""; topic=""; toipc_level="";
             if [ -z "$section_pattern" ]
             then
                 section_pattern="$buffer"
@@ -314,7 +324,9 @@ parse_file()
                 presenter="$buffer"
             fi
             ;;
-        '#### ') create_card; unset blocks; card=""; section=""; section="";
+        '#### ')
+            create_card
+            unset blocks; card=""; section=""; section="";
             if [ -z "$topic_level" ]
             then
                 topic_level="$buffer"
