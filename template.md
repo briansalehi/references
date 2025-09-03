@@ -4,10 +4,8 @@
 ## Provider
 ### Section Pattern (chapter, page, course, video, post)
 ### Presenter
-
 #### Topic Level (surface, depth, origin)
+
 #### Topic
-
 ##### Section
-
 ###### Card
