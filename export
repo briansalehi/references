@@ -20,8 +20,9 @@ block_position=0
 block_type=""
 block_extension=""
 
-error() { echo -e "\e[1;31m$*\e[0m"; exit 1; }
-debug() { echo -e "\e[1;34mdebug:\e[0m \e[1;2;37m$@\e[0m"; }
+error()  { echo -e "\e[1;31m$*\e[0m"; exit 1; }
+debug()  { echo -e "\e[1;34mdebug:\e[0m \e[1;2;37m$@\e[0m"; }
+report() { echo -e "\e[1;35m$*\e[0m"; }
 
 trap 'echo -e "\r\n"; error "User Interrupted"; exit 1;' SIGINT
 
@@ -79,7 +80,7 @@ get_subject_details()
 
         if subject_id="$(psql -U flashback -d flashback -c "select create_subject('${subject//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mSubject $subject_id created\e[0m"
+            report "Subject $subject_id created"
         else
             error "Subject $subject cannot be created"
         fi
@@ -96,7 +97,7 @@ get_resource_details()
 
         if resource_id="$(psql -U flashback -d flashback -c "select create_resource('${resource//\'/\'\'}', '$resource_type', '$section_pattern', '${presenter//\'/\'\'}', '${provider//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mResource $resource_id with type ${resource_type^} containing $section_pattern provided by $provider and presented by $presenter created\e[0m"
+            report "Resource $resource_id with type ${resource_type^} containing $section_pattern provided by $provider and presented by $presenter created"
         else
             error "Resource $resource cannot be created"
         fi
@@ -120,15 +121,15 @@ get_resource_details()
 
 get_topic_details()
 {
-    topic_position="$(psql -U flashback -d flashback -c "select position from topics where subject = $subject_id and level = '$topic_level' and name = '${topic//\'/\'\'}'" -At)"
+    topic_position="$(psql -U flashback -d flashback -c "select position from topics where subject = $subject_id and level = '$topic_level'::expertise_level and name = '${topic//\'/\'\'}'" -At)"
 
     if [ "${topic_position:-0}" -eq 0 ]
     then
         read -rp "Topic $topic does not exist, create it? [y]es/no " response </dev/null
 
-        if topic_position="$(psql -U flashback -d flashback -c "select create_topic($subject_id, '$topic_level', '${topic//\'/\'\'}')" -At)"
+        if topic_position="$(psql -U flashback -d flashback -c "select create_topic($subject_id, '$topic_level'::expertise_level, '${topic//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mTopic $topic_position in subject $subject with level $topic_level created\e[0m"
+            report "Topic $topic_position in subject $subject with level $topic_level created"
         else
             error "Topic $topic cannot be created"
         fi
@@ -150,7 +151,7 @@ get_section_details()
 
         if section_position="$(psql -U flashback -d flashback -c "select create_section($resource_id, '${section//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mSection $section in position $section_position of resource $resource created\e[0m"
+            report "Section $section in position $section_position of resource $resource created"
         else
             error "Section $section cannot be created"
         fi
@@ -179,7 +180,7 @@ create_blocks()
 
         if response="$(psql -U flashback -d flashback -c "call create_block($card_id, '$block_type', '$block_extension', '${content//\'/\'\'}', $position)" -At)"
         then
-            echo -e "\e[1;32mBlock $position of card $card_id created\e[0m"
+            report "Block $position of card $card_id created"
         else
             error "Block $position of card $card_id cannot be created"
         fi
@@ -191,6 +192,8 @@ create_blocks()
 
 create_card()
 {
+    local card_type
+
     if [ -n "$subject" ] && [ -n "$resource" ] && [ -n "$resource_type" ] && [ -n "$section_pattern" ] && [ -n "$provider" ] && [ -n "$presenter" ] && [ -n "$topic" ] && [ -n "$topic_level" ] && [ -n "$section" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
     then
         echo -ne "The $section_pattern \e[1;34m$section\e[0m of "
@@ -198,8 +201,33 @@ create_card()
         echo -ne "\e[1;31m$provider\e[0m presented by "
         echo -ne "\e[1;31m$presenter\e[0m about "
         echo -ne "\e[1;32m$topic\e[0m covers the "
-        echo -e "$topic_level of \e[1;34m$subject\e[0m"
+        echo -e "\e[2;27m$topic_level\e[0m of \e[1;34m$subject\e[0m"
         echo -e "\e[1;33m$card\e[0m\n"
+
+        card_type="regular"
+
+        for position in $(seq 1 $block_position)
+        do
+            file_name="${blocks[$position]}"
+            block_extension="${file_name##*.}"
+            block_type="${file_name%.*}"
+            block_type="${block_type##*.}"
+
+            if [ "$block_type" == "text" ]
+            then
+                style="plain"
+            else
+                echo -e "\e[2;37m$block_extension $block_type\e[0m"
+                style="grid,numbers"
+            fi
+            bat --color always --paging never --style "$style" "$file_name"
+            echo
+        done
+    elif [ -n "$subject" ] && [ -n "$topic" ] && [ -n "$topic_level" ] && [ -n "$card" ] && [ ${#blocks[*]} -gt 0 ]
+    then
+        echo -e "The followwing card will be an assessment in \e[1;32m$topic\e[0m covering the \e[2;27m$topic_level\e[0m of \e[1;34m$subject\e[0m:\n\e[1;33m$card\e[0m\n"
+
+        card_type="assessment"
 
         for position in $(seq 1 $block_position)
         do
@@ -241,30 +269,41 @@ create_card()
     if [ "${response,,}" == "y" ]
     then
         get_subject_details
-        get_resource_details
+        [ "$card_type" == "regular" ] && get_resource_details
         get_topic_details
-        get_section_details
+        [ "$card_type" == "regular" ] && get_section_details
 
         if card_id="$(psql -U flashback -d flashback -c "select create_card('${card//\'/\'\'}')" -At)"
         then
-            echo -e "\e[1;32mCard $card_id created\e[0m"
+            report "Card $card_id created"
             total_cards=$((total_cards + 1))
         else
             error "Card $card cannot be created"
         fi
 
-        if section_card_position="$(psql -U flashback -d flashback -c "select add_card_to_section($resource_id, $section_position, $card_id)" -At)"
+        if [ "$card_type" == "regular" ]
         then
-            echo -e "\e[1;32mCard $card_id added to section $section of resource $resource in position $section_card_position\e[0m"
-        else
-            error "Card $card_id cannot be added to section $section_id of resource $resource_id"
-        fi
+            if section_card_position="$(psql -U flashback -d flashback -c "select add_card_to_section($resource_id, $section_position, $card_id)" -At)"
+            then
+                report "Card $card_id added to section $section of resource $resource in position $section_card_position"
+            else
+                error "Card $card_id cannot be added to section $section_id of resource $resource_id"
+            fi
 
-        if topic_card_position="$(psql -U flashback -d flashback -c "select add_card_to_topic($subject_id, '$topic_level', $topic_position, $card_id)" -At)"
+            if topic_card_position="$(psql -U flashback -d flashback -c "select add_card_to_topic($subject_id, '$topic_level'::expertise_level, $topic_position, $card_id)" -At)"
+            then
+                report "Card $card_id added to topic $topic of subject $subject in position $topic_card_position"
+            else
+                error "Card $card_id cannot be added to topic $topic_position of subject $subject_id"
+            fi
+        elif [ "$card_type" == "assessment" ]
         then
-            echo -e "\e[1;32mCard $card_id added to topic $topic of subject $subject in position $topic_card_position\e[0m"
-        else
-            error "Card $card_id cannot be added to topic $topic_position of subject $subject_id"
+            if psql -U flashback -d flashback -c "call add_card_to_assessments($subject_id, '$topic_level'::expertise_level, $topic_position, $card_id)" -At
+            then
+                report "Assessment card $card_id added to the $topic_level level of topic $topic of subject $subject"
+            else
+                error "Card $card_id cannot be added as assessment of $topic of subject $subject"
+            fi
         fi
 
         create_blocks
