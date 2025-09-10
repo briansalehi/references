@@ -1,88 +1,37 @@
-create temp table temp_blocks(row_number serial, t_content text, t_type milestone.block_type, t_language varchar(10));
-create procedure add_block(type milestone.block_type, language varchar(10), content text) language plpgsql as $$ begin insert into temp_blocks (t_type, t_language, t_content) values (type, language, content); end; $$;
+# PostgreSQL
+# Learn PostgreSQL
+## book
+## Packt Publishing
+### chapter
+### Luca Ferrari
+#### surface
 
--- joins
+#### Backup Strategies
+##### Backup and Restore
 
---call add_block('text', 'txt', '');
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 5, '');
---
---call set_section_as_complete('Learn PostgreSQL', 5);
+###### Card
 
--- advanced windows
+#### Restore Strategies
+##### Backup and Restore
 
---call add_block('text', 'txt', '');
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 6, '');
---
---call set_section_as_complete('Learn PostgreSQL', 6);
+###### Card
 
--- server-side programming
+#### Text Backup
+##### Backup and Restore
 
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call add_block('code', 'sql', '');
---call add_block('text', 'txt', '');
---call create_note_with_name('Learn PostgreSQL', 7, '');
---
---call set_section_as_complete('Learn PostgreSQL', 7);
+###### Card
 
--- sequencial nodes
+#### Compressed Backup
+##### Backup and Restore
 
---call add_block('text', 'txt', '');
---call add_block('code', 'sql', '');
---call create_note_with_name('Learn PostgreSQL', 13, '');
---
---call add_block('text', 'txt', '');
---call add_block('code', 'sql', '');
---call create_note_with_name('Learn PostgreSQL', 13, '');
---
---call set_section_as_complete('Learn PostgreSQL', 13);
+###### Card
 
-drop procedure add_block;
-drop table temp_blocks;
-# Subject
-# Resource
-## Resource Type (book, website, course, video, channel, mailing list, manual, slides)
-## Provider
-### Section Pattern (chapter, page, course, video, post)
-### Presenter
+#### Backup Compatibility
+##### Backup and Restore
 
-#### Topic Level (surface, depth, origin)
-#### Topic
+###### Card
 
-##### Section
+#### Physical Compatibility
+##### Backup and Restore
 
 ###### Card
