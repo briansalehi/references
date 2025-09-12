@@ -412,4 +412,76 @@ Running `copy` requires `pg_write_server` privilege, but unprivileged users can 
 #### Physical Backup
 ##### Backup and Restore
 
-###### Card
+###### What is the major use case of physical backup?
+
+A database cluster requires both the data files contained in `PGDATA/base` and the WALs contained in `PGDATA/wal`, as well as a few other files, because they can make the cluster self-healing and recover from a crash.
+
+Therefore, a physical backup performs a copy of all the cluster files and then, when the restore is required, it simulates a database crash and makes the cluster self-heal with the WALs in place.
+
+The physical backup can be taken pretty much at every moment without impacting the database with a huge transaction.
+
+###### What are the limitations of performing a physical restoration?
+
+You cannot restore a physically backed-up cluster on a different PostgreSQL version and, you need essentially no interaction at all with the cluster during the backup phase.
+
+###### What tools can be used to perform a physical backup?
+
+You are free to use any filesystem-specific command, such as `cp`, `scp`, `rsync`, or `tar`. But `pg_basebackup` is the specific tool shipped with PostgreSQL for physical backups.
+
+But essentially, there is no difference between `pg_basebackup`, because it performs a set of steps that can be performed manually by any system administrator, so the tool is a convenient and well-tested way of doing a physical backup.
+
+###### What are the prerequisites of performing a physical backup?
+
+In order to do the backup, the target directory must exist, and if the database has tablespaces, every single directory for a tablespace must be remapped to another directory. The latter is required because we make a backup on the very same host, so PostgreSQL prevents directory clashes.
+
+###### Perform a physical backup?
+
+In order to work properly, the cluster that needs to be cloned must be set up accordingly. Since `pg_basebackup` asks the cluster to provide the WALs, it is important that the cluster has at least two WAL Sender processes active.
+
+Therefore, the first step is to check that the `max_wal_senders` configuration parameter has at least the value of 2.
+
+```sh
+grep max_wal_senders $PGDATA/postgresql.conf
+```
+
+Then we can perform a backup as follows:
+
+```sh
+pg_basebackup -D /srv/postgres/backup -l 'Physical Backup' -v -h localhost -p 5432 -U postgres -T $PGDATA/tablespaces/ts_a=/srv/postgres/ts_a -T $PGDATA/tablespaces/ts_b=/srv/postgres/ts_b -T $PGDATA/tablespaces/ts_c=/srv/postgres/ts_c
+```
+
+The repeated `-T` flag tells PostgreSQL how to remap every single directory that is used as a tablespace.
+
+###### Verify the integrity of a physical backup?
+
+```sh
+pg_verifybackup /srv/postgres/backup/data
+```
+
+###### Restore a physical backup?
+
+You must be careful when starting the cloned cluster, since it could clash with the original one.
+
+You need to overwrite the original `PGDATA` directory with the cloned copy produced by `pg_basebackup`. This is a very risky operation because you will lose all the content of the `PGDATA` directory and replace it with the backup copy, which means the risk of errors occurring is high.
+
+For that reason, instead of performing an online restoration, the best practice is that you start a cloned cluster somewhere else in order to extract the data you need with a logical backup process and restore it only that data on the target cluster.
+
+```sh
+pg_ctl -D /srv/postgres/backup/data/ -o '-p 5432' start
+```
+
+#### Point in Time Recovery
+##### Backup and Restore
+
+###### What is the use case of Point in Time Recovery?
+
+PITR is a technique to restore your database at a specific point in the past, and it is only possible on a physical backup.
+
+You should initially perform a physical backup, and then continuously store the database WAL segments locally or send to a remote backup machine, a process called *WAL archiving*. Having the physical backup and the stream of WALs, the database cluster can be instructed to replay all the transactions until the expected restore time is reached.
+
+PostgreSQL recycles the WALs once the modified data is safely stored on the disk; therefore, in order to get a continuous stream of WALs, you need to keep all of them. PostgreSQL provides a specific configuration setting, named `archive_command`, that can be tuned to execute an external command like `scp` to transfer WALs. `archive_command` is executed on every single WAL segment as soon as PostgreSQL has completed the WAL file and switches to a new segment.
+
+
+###### What are the disadvantages of Point in Time Recovery?
+
+PITR requires some time and effort for the cluster to be restored to a given time. Moreover, if a single WAL segment is missing in the stream, the cluster will not be able to recover at all.
