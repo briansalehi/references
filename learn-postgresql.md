@@ -11,11 +11,11 @@
 
 ###### What are the differences between logical backup and physical backup?
 
-A logical backup works similarly to a database client that asks for all the data in a database, table by table, and stores the result in a storage system.
+A logical backup interacts directly with the database and its running transactions. A physical backup is a copy of the underlying filesystem and the WALs so that the last known clear state of the database can be restored.
 
 ###### What permissions are required for the user to perform a database backup?
 
-PostgreSQL does not require a special backup permission to dump the content of a database> But, in order to restore data, the user must obtain sufficient permission to write data into tables. There are two predefined roles, `pg_read_all_data` and `pg_write_all_data`, that can be granted to the user who performs restore.
+PostgreSQL does not require a special backup permission to dump the content of a database. But, in order to restore data, the user must obtain sufficient permission to write data into tables. There are two predefined roles, `pg_read_all_data` and `pg_write_all_data`, that can be granted to the user who performs restore.
 
 #### Logical Backup
 ##### Backup and Restore
