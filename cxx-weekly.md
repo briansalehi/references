@@ -7,20 +7,12 @@
 #### surface
 
 #### Developer Options
-##### https://youtu.be/kXe-YkJ9nBs
-###### Export the stack usage of a program with GCC?
-
-```sh
-gcc -fstack-usage
-```
+##### <Video Link>
+###### <Card>
 
 #### Warning Options
-
-###### Activate stack usage warning when it exceeds a certain threshold?
-
-```sh
-gcc -Wstack-usage=<byte-size>
-```
+##### <Video Link>
+###### <Card>
 
 # C++
 # C++ Weekly With Jason Turner
@@ -30,12 +22,12 @@ gcc -Wstack-usage=<byte-size>
 ### Jason Turner
 #### surface
 
-#### Topic
-##### Section
-###### Card
+#### <Topic>
+##### <Section>
+###### <Card>
 
 ---
-# Subject
-#### Topic Level (surface, depth, origin)
-#### Topic
-###### Card
+# GNU Compiler Collection
+#### surface
+#### <Topic>
+###### <Card>
