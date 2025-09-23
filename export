@@ -84,6 +84,22 @@ get_subject_details()
         else
             error "Subject $subject cannot be created"
         fi
+
+        declare -A roadmaps=()
+
+        while read id roadmap
+        do
+            roadmaps[$id]="$roadmap"
+        done < <(psql -U flashback -d flashback -c "select id, name from roadmaps" -At)
+
+        PS3="Which milestone should contain $subject? "
+        select roadmap_id in "${roadmaps[@]}"
+        do
+            if [ -n "${roadmaps[$roadmap_id]}" ]
+            then
+                break
+            fi
+        done
     fi
 }
 
