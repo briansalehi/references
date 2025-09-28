@@ -3,19 +3,29 @@
 ## website
 ## valgrind.org
 ### page
+### Valgrind Developers
 #### surface
 
-#### Topic
-##### Section
+#### Core Options
+##### Core Command-line Options
+
 ###### Card
 
 The option --tool dictates which Valgrind tool to run
 
 valgrind [valgrind-options] <program> [program-options]
 
-valgrind --tool=memcheck ls -l
+```sh
+valgrind --tool=<tool>memcheck ls -l
+```
+
+```sh
+valgrind ls -l
+```
 
 Memcheck is the default tool and can be omitted.
+
+###### Card
 
 The program runs on a synthetic CPU provided by the Valgrind core. As new code is executed for the first time, the core hands the code to the selected tool. The tool adds its own instrumentation code to this and hands the result back to the core, which coordinates the continued execution of this instrumented code.
 
@@ -178,6 +188,20 @@ here's an example using three frame-level wildcards:
    ...
    fun:main
 }
+
+#### Debug Info
+##### Debuginfod
+
+###### Card
+
+When a debuginfo file cannot be found locally, Valgrind is able to query debuginfod servers for the file using the file's build-id.
+
+`debuginfod-find` must be installed and the `DEBUGINFOD_URLS` environment variable must contain space-separated URLs of debuginfod servers.
+
+#### Core Options
+##### Core Command-line Options
+
+###### Card
 
 ---
 # Valgrind
