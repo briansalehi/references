@@ -15,32 +15,3 @@
 #### Topic Level (surface, depth, origin)
 #### Topic
 ###### Card
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
