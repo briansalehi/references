@@ -99,7 +99,7 @@ get_subject_details()
             then
                 break
             fi
-        done
+        done </dev/tty
     fi
 }
 
