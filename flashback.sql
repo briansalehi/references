@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict hj5i1ipvOLmrOvIMNg8qtdtAUvJoJXvPQ0abPuXpKLSLyJ25FYV8tcGC3QKjSxi
+\restrict gc9z6nOnA7yzgavSLSodHkufTmwMVhejcJaNBNLbtyE6hdRcr2L9jzjBTf36v59
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -111,7 +111,8 @@ CREATE TYPE flashback.resource_type AS ENUM (
     'channel',
     'mailing list',
     'manual',
-    'slides'
+    'slides',
+    'user'
 );
 
 
@@ -19430,8 +19431,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
 130	Real-time Linux with PREEMPT_RT	course	course	relevant	\N	Bootlin	\N
 139	OpenCV & C++ Tutorial	book	chapter	relevant	Computer Vision Lab	YouTube	\N
-114	Deciphering C++ Coroutines Part 1	video	video	relevant	Andreas Weis	YouTube	\N
-120	Deciphering C++ Coroutines Part 2	video	video	relevant	Andreas Weis	YouTube	\N
 140	C++ Weekly With Jason Turner	channel	video	relevant	Jason Turner	YouTube	\N
 1	C++26 Preview	video	video	relevant	CppNow	YouTube	https://youtu.be/CwYILWyTRMQ
 2	Boost Documentation	website	page	relevant	\N	https://boost.org	https://www.boost.org/libraries/latest/list/
@@ -19441,7 +19440,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 12	Kevin Dankwardt's Linux Device Drivers	course	video	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
-18	Teach Yourself C++ in One Hour a Day	book	chapter	relevant	\N	\N	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582
 21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	relevant	\N	\N	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/
 23	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-1-4842-4398-5
 25	Learn PostgreSQL	book	chapter	relevant	Luca Ferrari	Packt Publishing	https://subscription.packtpub.com/book/data/9781837635641/
@@ -19464,7 +19462,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 126	C++ Design Patterns: Structural	video	chapter	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029
 127	Linux Security Techniques	course	video	relevant	\N	\N	https://subscription.packtpub.com/video/security/9781835887042/
 129	NeoMutt Guide	manual	chapter	relevant	\N	\N	https://neomutt.org/guide/index
-133	The C++ Standard Library by Rainer Grimm	book	chapter	relevant	\N	\N	https://leanpub.com/cpplibrary
+114	Deciphering C++ Coroutines	video	video	relevant	Andreas Weis	YouTube	\N
 134	The Modern Vulkan Cookbook	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/game-development/9781803239989/
 136	SELinux System Administration	book	chapter	relevant	Sven Vermeulen	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800201477/
 138	The Ultimate Kali Linux Book	book	chapter	relevant	Glen D. Singh	Packt Publishing	https://subscription.packtpub.com/book/security/9781835085806/
@@ -19474,12 +19472,11 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 147	Mastering OpenCV 4	book	chapter	relevant	Roy Shilkrot	Packt Publishing	https://subscription.packtpub.com/book/data/9781789533576/
 149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	chapter	relevant	Antonio Ortiz Lira	Packt Publishing	https://subscription.packtpub.com/video/data/9781788479080/
 150	Computer Vision with OpenCV 3 and Qt5	video	chapter	relevant	Amin Ahmadi Tazehkandi	Packt Publishing	https://subscription.packtpub.com/book/data/9781788472395/
-54	The C++ Standard Library: A Tutorial and Reference	book	chapter	relevant	Nicolai M. Josuttis	\N	https://www.oreilly.com/library/view/c-standard-library/9780132978286/
+18	Teach Yourself C++ in One Hour a Day	book	chapter	relevant	Siddhartha Rao	Sams	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582
 56	Modern C++ Programming Cookbook	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835080542/
 57	Step by Step Learning x64 Assembly Language	book	chapter	relevant	\N	\N	https://www.oreilly.com/library/view/x64-assembly-language/9781394155248/
 61	Boost.Asio C++ Network Programming Cookbook	book	chapter	relevant	Dmytro Radchuk	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781783986545/
 64	Kali Linux Penetration Testing Bible	book	chapter	relevant	\N	\N	https://www.wiley.com/en-us/Kali+Linux+Penetration+Testing+Bible-p-9781119719083
-66	The C++ Programming Language	book	chapter	relevant	\N	\N	https://www.informit.com/store/c-plus-plus-programming-language-9780133522907
 69	Heading for the Yocto Project	book	chapter	relevant	Otavio Salvador	GitHub	https://github.com/CollaborativeWritersHub/heading-for-the-yocto-project
 74	Deciphering Object-Oriented Programming with C++	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/programming/9781804613900/
 76	Hands-On Network Programming with C	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781789349863/
@@ -19515,9 +19512,11 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 161	Kali Linux Cookbook	book	chapter	relevant	Corey P. Schultz	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835889800/
 162	Asynchronous Programming in Python	book	chapter	relevant	Nicolas Bohorquez	Packt Publishing	https://subscription.packtpub.com/book/programming/9781836646617/
 163	Embedded Linux Essentials Handbook	book	chapter	relevant	Mohammed Billoo	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835469309/
+54	The C++ Standard Library	book	chapter	relevant	Nicolai M. Josuttis	\N	https://www.oreilly.com/library/view/c-standard-library/9780132978286/
 112	GitHub Actions Masterclass	video	chapter	relevant	LM Academy	Packt Publishing	https://subscription.packtpub.com/video/business-other/9781837025411/
 62	C++17: The Complete Guide	book	chapter	relevant	Nicolai M. Josuttis	Leanpub	https://leanpub.com/cpp17
 87	C++ Move Semantics: The Complete Guide	book	chapter	relevant	Nicolai M. Josuttis	Leanpub	https://leanpub.com/cppmove
+66	The C++ Programming Language	book	chapter	relevant	Bjarne Stroustrup	Addison-Wesley	https://www.informit.com/store/c-plus-plus-programming-language-9780133522907
 67	Mastering Linux Security and Hardening	book	chapter	relevant	Donald A. Tevault	Packt Publishing	https://subscription.packtpub.com/book/security/9781837630516/
 122	C++ Memory Management	book	chapter	relevant	Patrice Roy	Packt Publishing	https://subscription.packtpub.com/book/programming/9781805129806/
 164	PostgreSQL 18 for Developers	book	chapter	relevant	Marc Linster	Packt Publishing	https://subscription.packtpub.com/book/data/9781806028474/
@@ -19568,6 +19567,10 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 207	Learn OpenGL	book	chapter	relevant	Frahaan Hussain	Packt Publishing	https://subscription.packtpub.com/book/game-development/9781789340365/
 208	The Modern C++ Challenge	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781788993869/
 209	Linux Device Drivers in Action	book	chapter	relevant	Kaiwan N. Billimoria	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781835881866/
+210	Practical C++ Game Programming with Data Structures and Algorithms	book	chapter	relevant	Zhenyu George Li	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835889862/
+211	Linux Command Line and Shell Scripting Techniques	book	chapter	relevant	Jasmin Redzepagic	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800205192/
+212	Linux Administration Best Practices	book	chapter	relevant	Scott Alan Miller	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800568792/
+213	Practical Memory Forensics	book	chapter	relevant	Oleg Skulkin	Packt Publishing	https://subscription.packtpub.com/book/security/9781801070331/
 \.
 
 
@@ -21484,26 +21487,6 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 132	17	\N
 132	18	\N
 132	19	\N
-133	1	\N
-133	2	\N
-133	3	\N
-133	4	\N
-133	5	\N
-133	6	\N
-133	7	\N
-133	8	\N
-133	9	\N
-133	10	\N
-133	11	\N
-133	12	\N
-133	13	\N
-133	14	\N
-133	15	\N
-133	16	\N
-133	17	\N
-133	18	\N
-133	19	\N
-133	20	\N
 134	1	\N
 134	2	\N
 134	3	\N
@@ -21555,7 +21538,6 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 25	18	Logical Replication
 137	20	https://youtu.be/D7aDAXWi5SM
 114	1	https://youtu.be/J7fYddslH0Q
-120	1	https://youtu.be/qfKFfQSxvA8
 140	1	https://youtu.be/kXe-YkJ9nBs
 106	1	Getting Started with OpenCV
 106	2	An Introduction to the Basics of OpenCV
@@ -21567,6 +21549,8 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 106	4	Delving into Histogram and Filters
 100	1	GoogleTest Primer
 100	2	Advanced Topics
+205	1	\N
+114	2	https://youtu.be/qfKFfQSxvA8
 100	4	Mocking Cookbook
 100	6	Testing Reference
 100	9	Matchers
@@ -21579,6 +21563,25 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 151	5	ftxui/component
 151	6	C++20 Modules
 151	7	POSIX Piped Input in FTXUI
+205	2	\N
+205	3	\N
+205	4	\N
+205	5	\N
+205	6	\N
+205	7	\N
+205	8	\N
+205	9	\N
+205	10	\N
+205	11	\N
+205	12	\N
+205	13	\N
+205	14	\N
+205	15	\N
+205	16	\N
+205	17	\N
+205	18	\N
+205	19	\N
+205	20	\N
 \.
 
 
@@ -25446,19 +25449,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 131	2	3979	1
 131	2	3980	2
 132	1	3981	1
-133	1	3982	1
-133	1	3983	2
-133	1	3984	3
-133	1	3985	4
-133	1	3986	5
-133	1	3987	6
-133	1	3988	7
-133	1	3989	8
-133	1	3990	9
-133	1	3991	10
-133	1	3992	11
-133	1	3993	12
-133	1	3994	13
 135	1	5187	1
 135	1	5188	2
 135	1	5189	3
@@ -25956,6 +25946,19 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 151	5	5557	18
 151	6	5558	1
 151	7	5559	1
+205	1	3982	1
+205	1	3983	2
+205	1	3984	3
+205	1	3985	4
+205	1	3986	5
+205	1	3987	6
+205	1	3988	7
+205	1	3989	8
+205	1	3990	9
+205	1	3991	10
+205	1	3992	11
+205	1	3993	12
+205	1	3994	13
 \.
 
 
@@ -26156,7 +26159,6 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 6	6
 77	6
 114	6
-120	6
 74	6
 34	16
 53	6
@@ -26243,7 +26245,6 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 68	18
 66	6
 54	6
-133	6
 46	4
 134	28
 52	43
@@ -26330,6 +26331,10 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 207	25
 208	6
 209	11
+210	6
+211	13
+212	13
+213	45
 \.
 
 
@@ -29404,7 +29409,7 @@ SELECT pg_catalog.setval('flashback.resources_activities_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 209, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 213, true);
 
 
 --
@@ -29970,5 +29975,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict hj5i1ipvOLmrOvIMNg8qtdtAUvJoJXvPQ0abPuXpKLSLyJ25FYV8tcGC3QKjSxi
+\unrestrict gc9z6nOnA7yzgavSLSodHkufTmwMVhejcJaNBNLbtyE6hdRcr2L9jzjBTf36v59
 
