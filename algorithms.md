@@ -8,8 +8,7 @@
 
 #### <Topic>
 ##### Fundamentals
-
-###### Card
+###### <Card>
 
 ##### Basic Programming Model
 ##### Data Abstraction
@@ -45,34 +44,6 @@
 ---
 # Algorithms
 #### surface
+
 #### <Topic>
-###### Card
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+###### <Card>
