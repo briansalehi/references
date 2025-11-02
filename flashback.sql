@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict gc9z6nOnA7yzgavSLSodHkufTmwMVhejcJaNBNLbtyE6hdRcr2L9jzjBTf36v59
+\restrict mklQtbC7IZocNNpAidOtqBfAXYln2bQp5MWyVWabs4R352rtAywTxIAtPVIWgcL
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -912,16 +912,16 @@ ALTER FUNCTION flashback.get_practiced_topics("user" integer, roadmap integer) O
 -- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources("user" integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources("user" integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, max(sections_progress.time)
+    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link, max(sections_progress.time)
     from resources
     join shelves on shelves.resource = resources.id
     left join sections_progress on sections_progress.resource = resources.id and sections_progress."user" = get_resources."user"
-    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider;
+    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link;
 end;
 $$;
 
@@ -932,16 +932,16 @@ ALTER FUNCTION flashback.get_resources("user" integer) OWNER TO flashback;
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources("user" integer, subject integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources("user" integer, subject integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, max(sections_progress.time)
+    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link, max(sections_progress.time)
     from resources
     join shelves on shelves.resource = resources.id and shelves.subject = get_resources.subject
     left join sections_progress on sections_progress.resource = resources.id and sections_progress."user" = get_resources."user"
-    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider;
+    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link;
 end;
 $$;
 
@@ -19571,6 +19571,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 211	Linux Command Line and Shell Scripting Techniques	book	chapter	relevant	Jasmin Redzepagic	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800205192/
 212	Linux Administration Best Practices	book	chapter	relevant	Scott Alan Miller	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800568792/
 213	Practical Memory Forensics	book	chapter	relevant	Oleg Skulkin	Packt Publishing	https://subscription.packtpub.com/book/security/9781801070331/
+214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	Imran Ahmad	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803247762/
 \.
 
 
@@ -26335,6 +26336,7 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 211	13
 212	13
 213	45
+214	1
 \.
 
 
@@ -29341,6 +29343,27 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 2	6	2025-10-27 14:10:28+01	3	51	surface	262
 2	7	2025-10-27 14:10:37+01	9	51	surface	263
 2	8	2025-10-27 14:10:38+01	1	51	surface	264
+2	1	2025-11-02 02:02:16+01	189	51	surface	265
+2	2	2025-11-02 02:02:24+01	8	51	surface	266
+2	3	2025-11-02 02:04:52+01	148	51	surface	267
+2	4	2025-11-02 02:06:01+01	69	51	surface	268
+2	5	2025-11-02 02:06:07+01	6	51	surface	269
+2	6	2025-11-02 02:06:22+01	15	51	surface	270
+2	7	2025-11-02 02:06:40+01	18	51	surface	271
+2	8	2025-11-02 02:07:09+01	29	51	surface	272
+2	9	2025-11-02 02:25:24+01	1095	51	surface	273
+2	10	2025-11-02 02:26:11+01	47	51	surface	274
+2	11	2025-11-02 02:26:12+01	1	51	surface	275
+2	12	2025-11-02 02:26:16+01	4	51	surface	276
+2	13	2025-11-02 02:26:44+01	27	51	surface	277
+2	14	2025-11-02 09:34:46+01	881	51	surface	278
+2	15	2025-11-02 09:39:01+01	255	51	surface	279
+2	16	2025-11-02 10:21:36+01	2555	51	surface	280
+2	17	2025-11-02 10:39:23+01	1067	51	surface	281
+2	18	2025-11-02 10:40:26+01	63	51	surface	282
+2	19	2025-11-02 10:40:28+01	2	51	surface	283
+2	20	2025-11-02 10:43:19+01	171	51	surface	284
+2	21	2025-11-02 10:43:43+01	24	51	surface	285
 \.
 
 
@@ -29409,7 +29432,7 @@ SELECT pg_catalog.setval('flashback.resources_activities_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 213, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 214, true);
 
 
 --
@@ -29465,7 +29488,7 @@ SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
 -- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 264, true);
+SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 285, true);
 
 
 --
@@ -29975,5 +29998,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict gc9z6nOnA7yzgavSLSodHkufTmwMVhejcJaNBNLbtyE6hdRcr2L9jzjBTf36v59
+\unrestrict mklQtbC7IZocNNpAidOtqBfAXYln2bQp5MWyVWabs4R352rtAywTxIAtPVIWgcL
 
