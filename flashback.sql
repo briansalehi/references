@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict mklQtbC7IZocNNpAidOtqBfAXYln2bQp5MWyVWabs4R352rtAywTxIAtPVIWgcL
+\restrict cjLEgNLeSwcd9bAfuTiGVmatjzB5N5wIjEnBSrErRMjsJKqPWuPHW5xCsZcHCJJ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -19362,9 +19362,6 @@ COPY flashback.network_activities (id, "user", "time", activity, address) FROM s
 --
 
 COPY flashback.resources (id, name, type, pattern, condition, presenter, provider, link) FROM stdin;
-5	GDB Tips by Greg Law	website	post	relevant	\N	\N	\N
-6	Daily C++ Bites	mailing list	chapter	relevant	\N	\N	\N
-7	C++ Daily Bites	mailing list	post	relevant	\N	\N	\N
 10	mdadm(1)	manual	page	relevant	\N	\N	\N
 15	Calculus: Concepts and Contexts	book	chapter	relevant	\N	\N	\N
 16	Qt6 Deep Dive	book	chapter	relevant	\N	\N	\N
@@ -19416,6 +19413,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 59	Practical Binary Analysis	book	chapter	relevant	\N	\N	https://practicalbinaryanalysis.com/
 60	Learn Docker in a month of Lunches	book	chapter	relevant	\N	\N	https://www.manning.com/books/learn-docker-in-a-month-of-lunches
 65	Linux Device Driver Development	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/iot-hardware/9781803240060/
+5	GDB Tips by Greg Law	website	post	relevant	Greg Law	LinkedIn	https://www.linkedin.com/in/gregthelaw/
 71	C++ Concurrency in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/c-plus-plus-concurrency-in-action
 75	Linux Kernel Debugging	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781801075039/
 82	A Complete Guide to Standard C++ Algorithms	book	chapter	relevant	\N	\N	https://github.com/HappyCerberus/book-cpp-algorithms
@@ -19427,6 +19425,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 118	Behavioral Design Patterns in C++	video	chapter	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781804615652/
 109	Minimal CMake	book	chapter	relevant	Tom Hulton-Harrop	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835087312/
 110	Mastering GitHub Actions	book	chapter	relevant	Eric Chapman	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781805128625
+6	Daily bit(e) of C++	mailing list	chapter	relevant	Simon Toth	GitHub	https://github.com/HappyCerberus/daily-bite-cpp
 121	Language Features of C++17 Ref Card	slides	page	relevant	Bartłomiej Filipek	\N	\N
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
 130	Real-time Linux with PREEMPT_RT	course	course	relevant	\N	Bootlin	\N
@@ -26146,7 +26145,6 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 35	6
 15	14
 71	6
-7	6
 47	5
 88	5
 122	6
@@ -29998,5 +29996,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict mklQtbC7IZocNNpAidOtqBfAXYln2bQp5MWyVWabs4R352rtAywTxIAtPVIWgcL
+\unrestrict cjLEgNLeSwcd9bAfuTiGVmatjzB5N5wIjEnBSrErRMjsJKqPWuPHW5xCsZcHCJJ
 
