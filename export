@@ -111,7 +111,7 @@ get_resource_details()
     then
         read -rp "Resource $resource does not exist, create it? [y]es/no " response </dev/null
 
-        if resource_id="$(psql -U flashback -d flashback -c "select create_resource('${resource//\'/\'\'}', '$resource_type', '$section_pattern', '${presenter//\'/\'\'}', '${provider//\'/\'\'}')" -At)"
+        if resource_id="$(psql -U flashback -d flashback -c "select create_resource('${resource//\'/\'\'}', '$resource_type', '$section_pattern', '${presenter//\'/\'\'}', '${provider//\'/\'\'}', '')" -At)"
         then
             report "Resource $resource_id with type ${resource_type^} containing $section_pattern provided by $provider and presented by $presenter created"
         else
