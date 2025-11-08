@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict cjLEgNLeSwcd9bAfuTiGVmatjzB5N5wIjEnBSrErRMjsJKqPWuPHW5xCsZcHCJJ
+\restrict 3b3xx1BuGHLvz9xtukCyUOXcFQVaJrDRUQb6ZhhhEjA5xHQmTGZ5gRRJfh39xaF
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -125,9 +125,10 @@ ALTER TYPE flashback.resource_type OWNER TO flashback;
 CREATE TYPE flashback.section_pattern AS ENUM (
     'chapter',
     'page',
-    'course',
-    'video',
-    'post'
+    'session',
+    'segment',
+    'post',
+    'synapse'
 );
 
 
@@ -10781,6 +10782,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3351	2	A package group is a class that inherits from `packagegroup` class.	text	txt
 3352	1	PACKAGE_ARCH ?= "all"	code	bb
 3353	2	- packagegroup-base\n- packagegroup-core-boot\n- packagegroup-core-buildessential\n- packagegroup-core-nfs-client\n- packagegroup-core-nfs-server\n- packagegroup-core-tools-debug\n- packagegroup-core-tools-profile	text	list
+5560	1	sed 's/<pattern>/<substitute>/g' <file>	code	sh
 3354	1	A sysroot is the logical root directory for headers and libraries where compiler looks for headers and runtime linker looks for libraries.	text	txt
 3354	2	A sysroot in yocto could hold kernel headers, C libraries and others.	text	txt
 3355	1	Instead of global sysroot, bitbake implements per-recipe sysroot.	text	txt
@@ -11367,6 +11369,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3616	3	`promise_type` should be encapsulated within the return type and must:\n- have the name `promise_type`.\n- to be a `class` or `struct`.\n- provide at least a constructor.\n- provide `initial_suspend()` method returning an awaiter object.\n- provide non-throwing `final_suspend()` method returning an awaiter object.\n- provide `get_return_object()` method that returns the parent type.\n- provide `unhandled_exception()` method returning void.	text	txt
 3617	1	`std::suspend_always` and `std::suspend_never`.	text	txt
 5469	1	cmake_minimum_required(VERSION 4.0)\nproject(Example VERSION 1.0 LANGUAGES CXX)\n\nfind_package(ftxui 5.0.0 CONFIG REQUIRED COMPONENTS component dom screen)\n\nadd_executable(program main.cpp)\ntarget_link_libraries(program PRIVATE ftxui::component ftxui::dom ftxui::screen)	code	cmake
+5561	1	sed 's/<pattern>/<substitute>/gi' <file>	code	sh
 3617	2	#include <coroutine>\n#include <iostream>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend() { return {}; }\n        std::suspend_never final_suspend() noexcept { return {}; }\n        return_type get_return_object() { return {}; }\n        void unhandled_exception() {}\n    };\n};\n\nreturn_type do_something()\n{\n    std::cout << "start\\n";\n    co_await std::suspend_always{}\n    std::cout << "finish\\n";\n}\n\nint main()\n{\n    do_something();\n}	code	cpp
 3618	1	`std::coroutine_handle<>` is the primary standard type to be used in coroutines.	text	txt
 3619	1	#include <coroutine>\n#include <iostream>\n\nstruct return_type\n{\n    struct promise_type\n    {\n        std::suspend_never initial_suspend() { return {}; }\n        std::suspend_never final_suspend() noexcept { return {}; }\n        return_type get_return_object() { return return_type{std::coroutine_handle<promise_type>::from_promise(*this)}; }\n        void unhandled_exception() {}\n    };\n\n    std::coroutine_handle<> handle();\n\n    return_type(std::coroutine_handle<> handle): handle{handle}\n    {\n    }\n};\n\nreturn_type do_something()\n{\n    std::cout << "start\\n";\n    co_await std::suspend_always{}\n    std::cout << "finish\\n";\n}\n\nint main()\n{\n    do_something();\n}	code	cpp
@@ -11474,6 +11477,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3668	1	The speed-up from parallelization is not linear. The Amdahl's law formula computes the theoretical maximum speed-up a task can perform after parallelization as follows:	text	txt
 3668	3	The `s` is the speed-up factor of the improved part and `p` is the fraction of the parallelizable  part compared to the entire process. Therefore, `1 - p` represents the ratio of the task not parallelizable (the bottleneck or sequential part), while `p / s` represents the speed-up achieved by the parallelizable part.	text	txt
 5469	2	Alternatively, we can integrate it with `FetchContent`:	text	md
+5562	1	sed -E 's/<pattern>/<substitute>/g' <file>	code	sh
 3668	4	The maximum speed-up is limited by the sequential portion of the task. The greater the fraction of parallelizable task (`p` approaches 1), the more the maximum speed-up increases up to the speed-up factor `s`. On the other hand, when the sequential portion becomes larger (`p` approaches 0), `Smax` tends to , meaning that no improvement is possible.	text	txt
 3668	5	The critical path in parallel systems is defined by the longest chain of dependent calculations. As the critical path is hardly parallelizable, it defines the sequential portion and thus the quicker runtime that a program can achieve. For example, if the sequential part of a process represents 10% of the runtime, then the fraction of the parallelizable part is `p = 0.9`. In this case, the potential speed-up will not exceeed 10 times the speed-up, regardless of the number of processor available.	text	txt
 3669	1	This law computes the speed-up gained by using `p` processors as follows:	text	txt
@@ -11499,6 +11503,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3674	1	A process is an instance of a running program that owns its private set of resources, including memory, file descriptors, and execution context. Threads are closely intertwined with the process they belong to, allowing them to share the same memory space and resources within a process, including file descriptors, heap memory, and any other global data structures allocated by the process. Threads represent a lightweight and efficient way to execute multiple tasks within a single process.	text	txt
 3675	1	Effective synchronization is crucial in multithreaded programming to avoid race conditions, deadlocks, and other concurrency-related issues. Synchronization primitives and techniques have been developed such as mutexes, which provide exclusive access to a shared resource, semaphores, which allow for controlled access to a limited number of resources, and condition variables, which enable threads to wait for specific conditions to be met before proceeding.	text	txt
 3676	1	Coroutines can be defined as functions that can be paused and resumed at specific points. Coroutines are cooperative, which means that they must explicitly yield control to the caller in order to switch execution context. This can be a disadvantage in some cases, but it can also be an advantage, as it gives the user program more control over the execution of coroutines.	text	txt
+5563	1	sed -E 's/(<pattern>)/\\U\\1/g' <file>	code	sh
 3677	1	**Creation** involves a function, which takes several parameters. Thread’s attributes, such as its scheduling policy, stack size, priority, and the function that the thread will execute.	text	txt
 3677	2	**Execution** starts by executing its assigned routine. The thread can perform various tasks independently or interact with other threads if necessary. Threads can also create and manage their own local variables and data structures, making them self-contained and capable of performing specific tasks concurrently.	text	txt
 3677	3	**Synchronization** is required ensure orderly access to shared resources and prevent data corruption. Common synchronization primitives include locks, semaphores, and barriers. Proper synchronization allows threads to coordinate their activities, avoiding race conditions, deadlocks, and other issues that can arise in concurrent programming.	text	txt
@@ -11792,6 +11797,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3810	2	We should return event_trigger type when we want to trigger events.	text	txt
 3810	3	CREATE TABLE user_logins (\n    id serial,\n    who text\n);	code	sql
 5483	3	std::cout << screen.ToString();	code	cpp
+5564	1	sed -e '<command>' -e '<command>' ... <file>	code	sh
 3810	4	CREATE FUNCTION on_login_proc()\nRETURNS event_trigger AS\n$$\nBEGIN\n    INSERT INTO user_logins (who)\n    VALUES (SESSION_USER);\n    RAISE NOTICE 'User logged in';\nEND;\n$$ LANGUAGE plpgsql;	code	sql
 3810	5	The return value of this function is a special data type specifically designed for this purpose.	text	txt
 3810	6	Then we create the event itself:	text	txt
@@ -11980,6 +11986,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3901	3	return_type create_coroutine()\n{\n    value_type v{1};\n    while (true)\n    {\n        co_await v;\n        v.value++;\n    }\n}	code	cpp
 5095	1	mdadm --stop /dev/md0	code	txt
 5484	2	Notice that the returned pixel is a reference to an existing object.	text	md
+5565	1	sed -i '<command>' <file>	code	sh
 3902	1	template<typename Promise>\nstruct value_type\n{\n    int value;\n    constexpr explicit value_type(int input): value{input} { }\n    constexpr bool await_ready() const noexcept { return false; }\n    constexpr void await_suspend(std::coroutine_handle<Promise> handle) const noexcept { handle.promise().number = value; }\n    constexpr void await_resume() const noexcept { }\n};	code	cpp
 3902	2	struct return_type\n{\n    struct promise_type\n    {\n        int number;\n        return_type get_return_object() { return return_type{std::coroutine_handle<promise_type>::from_promise(*this)}; }\n        void return_void() { }\n        void unhandled_exception() { }\n        std::suspend_always initial_suspend() { return {}; }\n        std::suspend_always final_suspend() noexcept { return {}; }\n        int yield_value(int value) { return value_type<promise_type>{input}; }\n    };\n    std::coroutine_handle<promise_type> handle;\n    return_type(std::coroutine_handle<promise_type> handle): handle{handle} { }\n    void print_value() { handle.resume(); std::cout << number << std::endl; }\n};	code	cpp
 3902	3	return_type make_coroutine()\n{\n    co_yield 42;\n}	code	cpp
@@ -12067,6 +12074,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3937	3	With strategy pattern, each conditional behavior, also known as algorithms, are taken out of the member functions and are put inside their own classes. The class that might behave differently based on conditions, is also known as a context. Since all of the algorithm classes have the same behavior, but with different implementations, they can be inherited from a common base class. These classes are called strategies or policies.	text	txt
 3937	4	#include <memory>\n\nclass context\n{\nprivate:\n    std::unique_ptr<basic_strategy> m_strategy;\npublic:\n    context(): m_strategy{nullptr}\n    { }\n\n    explicit context(std::unique_ptr<basic_strategy> strategy): m_strategy{std::move(strategy)}\n    { }\n\n    void set_strategy(std::unique_ptr<basic_strategy> strategy)\n    {\n        m_strategy.reset(std::move(strategy));\n    }\n\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass basic_strategy\n{\nprotected:\n    virtual void run() = 0;\n};\n\nstruct strategy1: public basic_strategy\n{\n    void run() override;\n};\n\nstruct strategy2: public basic_strategy\n{\n    void run() override;\n};\n\nint main()\n{\n    context c{};\n    std::unique_ptr<strategy1> s1{std::make_unique<strategy1>()};\n    std::unique_ptr<strategy2> s2{std::make_unique<strategy2>()};\n\n    c.set_strategy(s1);\n    c.run();\n\n    c.set_strategy(s2);\n    c.run();\n}	code	cpp
 3938	1	Instead of creating strategies dynamically on runtime, strategy pattern can be applied using templates in compile-time.	text	txt
+5566	1	sed -n '1,10p' <file>	code	sh
 3938	2	template<typename Strategy>\nclass context\n{\nprivate:\n    Strategy m_strategy;\npublic:\n    void run()\n    {\n        strategy->run();\n    }\n};\n\nclass strategy1\n{\n};\n\nclass strategy2\n{\n};\n\nint main()\n{\n    context<strategy1> c1{};\n    c1.run();\n    context<strategy2> c2{};\n    c2.run();\n}	code	cpp
 3939	1	When the strategy is not used across the class, there is no need to store it as a member. Therefore, we can only pass the strategy to the member function where it uses the strategy.	text	txt
 3939	2	class context\n{\npublic:\n    template<typename Strategy>\n    void run(Strategy strategy)\n    {\n        strategy->run();\n    }\n};\n\nclass strategy1\n{\n};\n\nclass strategy2\n{\n};\n\nint main()\n{\n    context c{};\n    c.run<strategy1>();\n    c.run<strategy2>();\n}	code	cpp
@@ -12123,6 +12131,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3965	1	#include <vector>\n#include <ranges>\n#include <string>\n#include <memory>\n#include <iostream>\n#include <iterator>\n\nclass console\n{\nprivate:\n    std::vector<std::string> m_logs;\npublic:\n    void clear() noexcept { m_logs.clear(); }\n    void print() const { std::ranges::copy(m_logs, std::ostream_iterator{std::cout, "\\n"}); }\n    void add(std::string const& log) { m_logs.push_back(log); }\n};\n\nclass basic_console_command\n{\npublic:\n    virtual ~basic_console_command() = default;\n    virtual void execute() = 0;\n};\n\nclass clear_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\npublic:\n    explicit clear_console_command(console& tty): m_console{tty} { }\n    void execute() override { m_console.clear(); }\n};\n\nclass print_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\npublic:\n    explicit print_console_command(console& tty): m_console{tty} { }\n    void execute() override { m_console.print(); }\n};\n\nclass add_console_command: public basic_console_command\n{\nprivate:\n    console& m_console;\n    std::string m_value;\npublic:\n    explicit print_console_command(console& tty, std::string const& value): m_console{tty}, m_value{value} { }\n    void execute() override { m_console.add(m_value); }\n};\n\nclass button\n{\nprivate:\n    std::shared_ptr<basic_console_command> m_command;\npublic:\n    explicit button(std::shared_ptr<basic_console_command> command): m_command{command} { }\n    void click() { m_command.execute(); }\n};\n\nint main()\n{\n    console tty{};\n\n    std::shared_ptr<clear_console_command> clear_command{std::make_shared<clear_console_command>(tty)};\n    std::shared_ptr<print_console_command> print_command{std::make_shared<print_console_command>(tty)};\n    std::shared_ptr<add_console_command> add_command{std::make_shared<add_console_command>(tty, "Command Pattern")};\n\n    button clear{clear_command};\n    button print{print_command};\n    button add{add_command};\n}	code	cpp
 3966	1	List of emails in the currently opened mailbox. By default it opens the system mailbox.	text	txt
 3967	1	The pager contains the email content. How much information can be seen depends on configuration.	text	txt
+5566	2	This command is similar to what `head` does.	text	md
 3968	1	The file browser is the interface to the local or remote file system, presenting mailboxes listed in a custom sorting of items.	text	txt
 3969	1	The sidebar shows a list of all mailboxes.	text	txt
 3970	1	set sidebar_visible\nset sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"\nset mail_check_stats	code	neomutt.rc
@@ -12650,6 +12659,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4322	1	The iterators available in the regular expressions standard library are as\nfollows:	text	txt
 5236	1	The role is defined in the SELinux user mapping file `/etc/selinux/targeted/seusers`.	text	md
 5265	1	uname -m	code	sh
+5567	1	sed -n '/<pattern>/p' <file>	code	sh
 4322	2	* `std::regex_interator`: A constant forward iterator used to iterate through\n  the occurrences of a pattern in a string. It has a pointer to an\n  `std::basic_regex` that must live until the iterator is destroyed. Upon\n  creation and when incremented, the iterator calls `std::regex_search()` and\n  stores a copy of the `std::match_results` object returned by the algorithm.\n* `std::regex_token_iterator`: A constant forward iterator used to iterate\n  through the submatches of every match of a regular expression in a string.\n  Internally, it uses a `std::regex_iterator` to step through the submatches.\n  Since it stores a pointer to an `std::basic_regex` instance, the regular\n  expression object must live until the iterator is destroyed.	text	txt
 4322	3	The token iterators can return the unmatched parts of the string if the index\nof the subexpressions is -1, in which case it returns an `std::match_results`\nobject that corresponds to the sequence of characters between the last match\nand the end of the sequence:	text	txt
 4345	1	// A day in a year can be specified using literals and operator/\nauto christmas_eve = 2023y/std::chrono::December/24d;\n// decltype(christmas_eve) == std::chrono::year_month_day\n\nauto specific_day = std::chrono::weekday{std::chrono::sys_days{christmas_eve}};\n// specific_day == std::chrono::Sunday	code	cpp
@@ -12765,6 +12775,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4381	3	#include <algorithm>\n#include <iostream>\n#include <vector>\n#include <string>\n\nstruct ExamResult\n{\n    std::string student_name;\n    int score;\n};\n\nint main()\n{\n    std::vector<ExamResult> results{{"Jane Doe", 84}, {"John Doe", 78}, {"Liz Clarkson", 68}, {"David Teneth", 92}};\n\n    auto partition_point = std::partition(results.begin(), results.end(), [threshold=80](auto const& e) { return e.score >= threshold; });\n\n    std::for_each(results.begin(), partition_point, [](auto const& e) { std::cout << "[PASSED] " << e.student_name << "\\\\n"; });\n    std::for_each(partition_point, results.end(), [](auto const& e) { std::cout << "[FAILED] " << e.student_name << "\\\\n"; });\n}	code	cpp
 5273	1	rm -v <file>	code	sh
 4382	1	| `std::stable_partition` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | N/A |\n| rangified | C++20 |	text	txt
+5567	2	This command is similar to what `grep` does.	text	md
 4382	2	The `std::partition` algorithm is permitted to rearrange the elements with\nthe only guarantee that elements for which the predicate evaluated to true\nwill precede elements for which the predicate evaluated to false. But this\nbehaviour might be undesirable, for example, for UI elements.	text	txt
 4382	3	The `std::stable_partition` algorithm adds the guarantee of preserving the\nrelative order of elements in both partitions.	text	txt
 4382	4	auto& widget = get_widget();\nstd::ranges::stable_partition(widget.items, &Item::is_selected);	code	cpp
@@ -12834,6 +12845,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4449	2	class base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 100)\n    {\n    }\n};\n\nclass derived : public base\n{\npublic:\n    virtual void do_something(int x)\n        pre(x < 120)\n    {\n    }\n};	code	cpp
 4450	1	#include <thread>\n#include <chrono>\n\nvoid do_something()\n{\n    using namespace std::chrono_literals;\n    std::this_thread::sleep_for(1s);\n}\n\nint main()\n{\n    std::thread worker{do_something};\n    worker.join();\n}	code	cpp
 4451	1	void do_something() {}\nvoid do_something_else() {}\n\n#include <thread>\n\nint main()\n{\n    std::thread thread_f(do_something);\n    thread_f.join();\n\n    background_task callable;\n    std::thread thread_c(callable);\n    thread_c.join();\n\nstruct background_task\n{\n    void operator()()\n    {\n        do_something();\n        do_something_else();\n    }\n};\n\n    // no to mistakenly call a thread like this:\n    //   std::thread thread_x(background_task());\n    // which can be correctly expressed like:\n    //   std::thread thread_x((background_task()));\n    //   std::thread thread_x{background_task()};\n\n    std::thread thread_l([]{\n        do_something();\n        do_something_else();\n    });\n    thread_l.join();\n}	code	cpp
+5568	1	sed '/<pattern>/d' <file>	code	sh
 1459	1	template<typename T, typename = typename std::enable_if_t<std::is_standard_layout_v<T>, T>>\nclass pod_wrapper\n{\n    T value;\n};\n\nstruct point\n{\n    int x;\n    int y;\n};\n\npod_wrapper<int> w1; // OK\npod_wrapper<point> w2; // OK\npod_wrapper<std::string> w3; // error: too few template arguments\n\ntemplate<typename T, typename = typename std::enable_if_t<std::is_integral_v<T>, T>>\nauto mul(T const a, T const b)\n{\n    return a * b;\n}\n\nauto v1 = mul(1, 2); // OK\nauto v2 = mul(1.0, 2.0); // error: no matching overloaded function found	code	cpp
 4452	4	#include <thread>\n#include <memory>\n#include <string>\n#include <string_view>\n\nvoid rvalue_write(std::string&&) { } // rvalue only\nvoid lvalue_write(std::string&) { } // lvalue only\nvoid pointer_write(std::string_view) { } // pointer only\nvoid smart_write(std::unique_ptr<std::string>) { } // non-copyable object only\n\nstruct X\n{\n    void do_lengthy_work(std::string&) {}\n};\n\nint main()\n{\n    // implicit cast from const char* to std::string\n    std::thread write_thread(rvalue_write, "text");\n    write_thread.join();\n\n    char text[1024];\n    sprintf(text, "%i", 1);\n\n    // use of local object in joinable thread\n    std::thread pointer_thread(pointer_write, text);\n    pointer_thread.join();\n\n    // use of copied local object before background thread invokation\n    std::thread local_thread(rvalue_write, std::string{text});\n    local_thread.detach();\n\n    // pass by lvalue reference to avoid copy\n    std::string str{text};\n    std::thread ref_thread(lvalue_write, std::ref(str));\n    ref_thread.join();\n\n    // bind method to thread\n    X some_work;\n    std::thread binding_thread(&X::do_lengthy_work, &some_work, std::ref(str));\n    binding_thread.join();\n\n    // explicitly move non-copyable objects\n    std::unique_ptr<std::string> non_copyable{new std::string{str}};\n    std::thread smart_thread(smart_write, std::move(non_copyable));\n    smart_thread.join();\n}	code	cpp
 4453	1	#include <thread>\n#include <chrono>\n\nvoid do_something()\n{\n    std::this_thread::sleep_for(std::chrono::seconds{1});\n}\n\nint main()\n{\n    std::jthread t0{do_something};\n}	code	cpp
@@ -12975,6 +12987,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4604	2	docker image list --filter reference="*:latest"	code	txt
 4605	1	You can use the `--format` flag to format output using Go templates. For\nexample, the following command will only return the size property of images\non a Docker host.	text	txt
 4605	2	docker image list --format "{{.Size}}"	code	txt
+5569	1	sed -i.bak '<command>' <file>	code	sh
 4605	3	Use the following command to return all images, but only display repo, tag\nand size.	text	txt
 4605	4	docker image list --format "{{.Repository}}: {{.Tag}}: {{.Size}}"	code	txt
 4606	1	The “NAME” field is the repository name. This includes the Docker ID, or\norganization name, for unofficial repositories.	text	txt
@@ -13071,6 +13084,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4652	1	1. Deploy an odd number of managers.\n2. Don't deploy too many managers (3 or 5 is recommended)	text	txt
 5470	1	#include <ftxui/screen.hpp>\n#include <ftxui/dom.hpp>\n#include <ftxui/component.hpp>\n\nint main()\n{\n}	code	cpp
 5480	2	struct Pixel\n{\n  bool blink : 1;\n  bool bold : 1;\n  bool dim : 1;\n  bool inverted : 1;\n  bool underlined : 1;\n  bool underlined_double : 1;\n  bool strikethrough : 1;\n  bool automerge : 1;\n\n  uint8_t hyperlink = 0;\n\n  std::string character = " ";\n\n  Color background_color = Color::Default;\n  Color foreground_color = Color::Default;\n};	code	cpp
+5569	2	The `<file>.bak` holds unchanged content of the `<file>`.	text	md
 4652	2	Having an odd number of *managers* reduced the chance of split-brain\ncondition. For example, if you had 4 *managers* and the network partitioned,\nyou could be left with two managers on each side of the partition. This is\nknown as a split brain, each side knows there used to be 4 but can now only\nsee 2. But crucially, neither side has any way of knowing if the other are\nstill alive and whether it holds a majority (quorum). A swarm cluster\ncontinues to operate during split-brain condition, but you are no longer able\nto alter the configuration, or add and manage application workloads. However,\nif you have 3 or 5 managers and the same network partition occurs, it is\nimpossible to have an equal number of managers on both sides of the parition,\nthen one side achieves quorum and full cluster management services remain\navailable.	text	txt
 4654	1	To apply a lock directly to a new swarm:	text	txt
 4654	2	docker swarm init --autolock	code	txt
@@ -13560,6 +13574,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5190	1	1. Global memory which is the slowest memory but the easiest memory to access to\n2. L2 cache\n3. Streaming multiprocessors\n4. Interprocess between memory and streaming multiprocessors	text	txt
 5191	1	Single Instruction, Multiple Data (SIMD) is an operation that is performed on vectors or matrices, which makes GPUs faster than CPUs	text	txt
 5471	2	This module represents the `ftxui::Screen` type, which is a 2D grid of styled characters, the `ftxui::Pixel` type which is the unit of rendering, the `ftxui::Color` type which is used to define foreground and background colors for each `ftxiu::Pixel`, and the `ftxui::Dimension` type which is taken by `ftxui::Screen` to control screen sizing.	text	md
+5570	1	sed '/^[[:space:]]*$/d" <file>	code	sh
 1369	1	#include <vector>\n#include <map>\n\nstd::vector<int> get_numbers()\n{\n    return std::vector<int>{1, 2, 3, 4, 5};\n}\n\nstd::map<int, double> get_doubles()\n{\n    return std::map<int, double>{\n        {0, 0.0},\n        {1, 1.1},\n        {2, 2.2}\n    };\n}\n\nint main()\n{\n    auto numbers = std::vector<int>{1, 2, 3, 4, 5};\n    auto copies = std::vector<int>(numbers.size() * 4);\n\n    for (int element: numbers)\n        copies.push_back(element);\n\n    for (int& element: numbers)\n        copies.push_back(element);\n\n    for (auto&& element: get_numbers())\n        copies.push_back(element);\n\n    for (auto&& [key, value]: get_doubles())\n        copies.push_back(key);\n}	code	cpp
 1483	2	module;               // global module fragment\n\n#define X\n#include "code.h"\n\nexport module geometry;   // module declaration\n\nimport std;      // module preamble\n\n// module purview\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};\n\nexport using int_point = point<int>;\n\nexport constexpr int_point int_point_zero{0, 0};\n\nexport template<typename T>\ndouble distance(point<T> const& p1, point<T> const& p2)\n{\n    return std::sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));\n}	code	cpp
 1356	1	Benefits of using `auto`:	text	txt
@@ -13586,6 +13601,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1370	1	#include <iostream>\n#include <stdexcept>\n#include <iterator>\n\ntemplate<typename T, std::size_t const S>\nclass dummy_array\n{\n    T data[S] = {};\n\npublic:\n    T const& at(std::size_t const index) const\n    {\n        if (index < S) return data[index];\n        throw std::out_of_range("index out of range");\n    }\n\n    void insert(std::size_t const index, T const& value)\n    {\n        if (index < S) data[index] = value;\n        else throw std::out_of_range("index out of range");\n    }\n\n    std::size_t size() const { return S; }\n};\n\ntemplate<typename T, typename C, std::size_t const S>\nclass dummy_array_iterator_type\n{\npublic:\n    dummy_array_iterator_type(C& collection, std::size_t const index):\n        index{index}, collection{collection}\n    {}\n\n    bool operator !=(dummy_array_iterator_type const& other) const\n    {\n        return index != other.index;\n    }\n\n    T const& operator *() const\n    {\n        return collection.at(index);\n    }\n\n    dummy_array_iterator_type& operator ++()\n    {\n        ++index;\n        return *this;\n    }\n\n    dummy_array_iterator_type operator ++(int)\n    {\n        auto temp = *this;\n        ++*temp;\n        return temp;\n    }\n\nprivate:\n    std::size_t index;\n    C& collection;\n};\n\ntemplate<typename T, std::size_t const S>\nusing dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, S>, S>;\n\ntemplate<typename T, std::size_t const S>\nusing dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, S> const, S>;\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> begin(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, 0);\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_iterator<T, S> end(dummy_array<T, S>& collection)\n{\n    return dummy_array_iterator<T, S>(collection, collection.size());\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> begin(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, 0);\n}\n\ntemplate<typename T, std::size_t const S>\ninline dummy_array_const_iterator<T, S> end(dummy_array<T, S> const& collection)\n{\n    return dummy_array_const_iterator<T, S>(collection, collection.size());\n}\n\nint main()\n{\n    dummy_array<int, 5> numbers;\n    numbers.insert(0, 1);\n    numbers.insert(1, 2);\n    numbers.insert(2, 3);\n    numbers.insert(3, 4);\n    numbers.insert(4, 5);\n\n    for (auto&& element: numbers)\n        std::cout << element << ' ';\n    std::cout << '\\\\n';\n}	code	cpp
 1371	1	#include <memory>\n\nclass string_buffer\n{\npublic:\n    explicit string_buffer() {}\n    explicit string_buffer(std::size_t const size) {}\n    explicit string_buffer(char const* const ptr) {}\n    explicit operator bool() const { return false; }\n    explicit operator char* const () const { return nullptr; }\n};\n\nint main()\n{\n    std::shared_ptr<char> str;\n    string_buffer b1;            // calls string_buffer()\n    string_buffer b2(20);        // calls string_buffer(std::size_t const)\n    string_buffer b3(str.get()); // calls string_buffer(char const*)\n\n    enum item_size { small, medium, large };\n\n    // implicit conversion cases when explicit not specified\n    string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)\n    string_buffer b5 = small;    // would call string_buffer(std::size_t const)\n}	code	cpp
 5472	1	The module `dom` handles layout and composition.	text	md
+5571	1	sed -i '1i <line>' <file>	code	sh
 1372	2	*file1.cpp*\n#include <iostream>\n\nnamespace\n{\n    void print()\n    {\n        std::cout << "file1" << std::endl;\n    }\n}\n\nprint(); // external linkage, local visibility	code	cpp
 1372	3	*file2.cpp*\n#include <iostream>\n\nnamespace\n{\n    void print()\n    {\n        std::cout << "file2" << std::endl;\n    }\n}\n\nprint(); // external linkage, local visibility	code	cpp
 1373	2	template <int const& Size>\nclass test {};\n\nstatic int Size1 = 10;\n\nnamespace\n{\n    int Size2 = 10;\n}\n\ntest<Size1> t1; // error only on VC++\ntest<Size2> t2; // okay	code	cpp
@@ -13822,6 +13838,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5331	1	grep -c <pattern> <file>	code	sh
 5332	1	grep -m <limit> <pattern> <file>	code	sh
 5472	2	In this module, the `ftxui::Element` is a tree structure for layout and UI. This module also provides composable and responsive elements. The `ftxui::Render` is also responsible to draw layouts onto a `ftxui::Screen`.	text	md
+5572	1	sed -i '/<pattern>/a <line>' <file>	code	sh
 5333	1	Many learners are excited to get started, and can't wait to compromise their first targeted system. Some would be too eager and forget to perform an important step during a process. Hence, various penetration testing methodologies exist to help ethical hackers and penetration testers take a specific course of action during security assessments to ensure all aspects are thoroughly tested for security vulnerabilities.	text	md
 5334	1	* Penetration Testing Execution Standard (PTES)\n* Payment Card Industry Data Security Standard (PCI DSS)\n* Penetration Testing Framework (PTF)\n* Technical Guide to Information Security Testing and Assessment\n* Open Source Security Testing Methodology Manual\n* OWASP Web Security Testing Guide\n* OWASP Mobile Security Testing Guide\n* OWASP Firmware Security Testing Methodology	text	md
 5335	1	1. Obtain Legal Permission: obtain a written legal permission from persons in authority\n2. Rules of Engagement: define the scope of the penetration test\n3. Non-Disclosure Agreement (NDA): a legally signed agreement between client and provider that specifies that a penetration tester and their employer will not share or hold onto any sensitive or proprietary information that is encountered during assessment.\n4. Begin Penetration Testing	text	md
@@ -14158,11 +14175,11 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5534	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element document{\n        ftxui::vbox(\n            ftxui::text("top"),\n            ftxui::text("bottom")\n        ) | ftxui::border\n    };\n}	code	cpp
 5536	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element document{\n        ftxui::vbox(\n            ftxui::text("top"),\n            ftxui::filler(),\n            ftxui::text("bottom")\n        ) | ftxui::border\n    };\n}	code	cpp
 5537	1	#include <ftxui/dom/elements.hpp>\n#include <ftxui/screen/screen.hpp>\n\nint main()\n{\n    ftxui::Screen screen{ftxui::Screen::Create(ftxui::Dimension::Fixed(50), ftxui::Dimension::Fixed(10))};\n    ftxui::Element document{\n        ftxui::vbox(\n            ftxui::hbox(ftxui::text("north-west"), ftxui::filler(), ftxui::text("north-east")),\n            ftxui::filler(),\n            ftxui::hbox(ftxui::filler(), ftxui::text("center"), ftxui::filler()),\n            ftxui::filler(),\n            ftxui::hbox(ftxui::text("south-west"), ftxui::filler(), ftxui::text("south-east"))\n        ) | ftxui::border\n    };\n    ftxui::Render(screen, document);\n    screen.Print();\n}	code	cpp
-5549	1	#include <ftxui/screen/screen.hpp>\n#include <ftxui/dom/elements.hpp>\n#include <ftxui/component/component.hpp>\n\nint main()\n{\n    ftxui::Screen screen{ftxui::ScreenInteractive::TerminalOutput()};\n    ftxui::Renderer renderer{[] { return ftxui::text("Flashback"); }};\n    ftxui::CatchEvent component{renderer, [&](ftxui::Event event) {\n        if (event == ftxui::Event::Character('q'))\n        {\n            screen.ExitLoopClosure()();\n            return true;\n        }\n        return false;\n    }};\n    screen.Loop(component);\n}	code	cpp
-5550	2	bool show = true;\nftxui::Renderer renderer{[] { return "Hello World!"; }};\nftxui::Element component{ftxui::Maybe(renderer, &show)};	code	cpp
-5550	3	ftxui::Renderer renderer{[] { return "Hello World!"; }};\nftxui::Element component{ftxui::Maybe(renderer, [&] { return time > 10; })};	code	cpp
 5551	1	This is useful for visual elements whose visibility can be toggled on or off by the user. Essentially, this is the combination of the `ftxui::Checkbox()` and `ftxui::Maybe()` components.	text	md
 5559	1	#include <ftxui/screen.hpp>\n#include <ftxui/component.hpp>\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::FullScreen()};\n    screen.HandlePipedInput(true); // enabled by default\n    screen.Loop(component);\n}	code	cpp
+5550	2	#include <ftxui/component/screen_interactive.hpp>\n#include <ftxui/component/component.hpp>\n\nconstexpr auto title{"Flashback, for experts like you."};\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::Fullscreen()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::border(ftxui::paragraph(title)); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event event) -> bool { if (event == ftxui::Event::Escape) { screen.ExitLoopClosure()(); return true; }; return false; });\n    bool show{true};\n    component = ftxui::Maybe(component, &show);\n    screen.Loop(component);\n}	code	cpp
+5550	3	#include <ftxui/component/screen_interactive.hpp>\n#include <ftxui/component/component.hpp>\n\nconstexpr auto title{"Flashback, for experts like you."};\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::Fullscreen()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::border(ftxui::paragraph(title)); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event event) -> bool { if (event == ftxui::Event::Escape) { screen.ExitLoopClosure()(); return true; }; return false; });\n    component = ftxui::Maybe(component, [] -> bool { return true; });\n    screen.Loop(component);\n}	code	cpp
+5549	1	#include <ftxui/component/component.hpp>\n#include <ftxui/component/screen_interactive.hpp>\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::TerminalOutput()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::text("Flashback, for experts like you."); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event const& event) -> bool {\n        if (event == ftxui::Event::Character('q'))\n        {\n            screen.ExitLoopClosure()();\n            return true;\n        }\n        return false;\n    });\n    screen.Loop(component);\n}	code	cpp
 \.
 
 
@@ -19130,36 +19147,49 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 5524	Colorize an element with a linear gradient?	review
 5528	Invert the color of an element?	review
 5529	Underline an element?	review
+5562	Use extended regular expressions on sed?	review
 5530	Underline an element with double lines?	review
 5531	Strikethrough an element?	review
 5532	Make an element blink?	review
+5563	Capitalize occurrences of a pattern?	review
 5533	Horizontally align elements?	review
 5534	Vertically align elements?	review
 5535	Align elements inside a grid?	review
+5564	Combine multiple sed statements?	review
 5536	Fill the space between two aligned elements?	review
 5537	Make nested layouts?	review
 5538	Create a table?	review
+5565	Write changes of sed command inplace?	review
 5539	Draw on a canvas?	review
 5540	Take input from keyboard?	review
 5541	Filter input?	review
+5566	Use sed to print a range of lines?	review
 5542	Create a menu of selectable items?	review
 5543	Create a toggle option?	review
 5544	Create a checkbox?	review
+5567	Print lines containing occurrences of a pattern?	review
 5545	Create a radio button?	review
 5546	Create a dropdown?	review
 5547	Create a slider?	review
+5568	Delete lines containing occurrences of a pattern?	review
 5548	Render the screen with a different function?	review
 5549	Catch key presses?	review
 5550	Hide a component based on a predicate?	review
+5569	Make a backup of the original file while in a sed command?	review
 5551	What are the use cases of collapsible elements?	review
 5552	Make an element collapsible?	review
 5553	What are the use cases of containers?	review
+5570	Remove empty lines in a file?	review
 5554	Create a few vertical tabs each containing elements?	review
 5555	Create a few horizontal tabs each containing elements?	review
 5556	Split a few elements within resizable areas?	review
+5571	Add a line on top of a file?	review
 5557	Handle events other than mouse, keyboard, or window resizing?	review
 5558	Import ftxui library as modules?	review
 5559	Toggle processing of piped input?	review
+5572	Write a line after a pattern match?	review
+5560	Replace occurrences of a pattern with a substitute?	review
+5561	Replace occurrences of a pattern with a substitute without case sensitivity?	review
 \.
 
 
@@ -19362,7 +19392,6 @@ COPY flashback.network_activities (id, "user", "time", activity, address) FROM s
 --
 
 COPY flashback.resources (id, name, type, pattern, condition, presenter, provider, link) FROM stdin;
-10	mdadm(1)	manual	page	relevant	\N	\N	\N
 15	Calculus: Concepts and Contexts	book	chapter	relevant	\N	\N	\N
 16	Qt6 Deep Dive	book	chapter	relevant	\N	\N	\N
 28	PostgreSQL 13 Cookbook	book	chapter	relevant	\N	\N	\N
@@ -19371,7 +19400,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 40	Linux Kernel Programming Part 2	book	chapter	relevant	\N	\N	\N
 48	Linux Device Driver	book	chapter	relevant	\N	\N	\N
 52	The Shellcoder's Handbook	book	chapter	relevant	\N	\N	\N
-63	Offensive Security Wireless Professional (OSWP)	video	video	relevant	\N	\N	\N
+63	Offensive Security Wireless Professional (OSWP)	video	segment	relevant	\N	\N	\N
 68	The Art of PostgreSQL	book	chapter	relevant	\N	\N	\N
 70	Introducing Qt6	book	chapter	relevant	\N	\N	\N
 78	Udemy - The C++20 Master Class	book	chapter	relevant	\N	\N	\N
@@ -19380,17 +19409,16 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 81	Sudo Mastery	book	chapter	relevant	\N	\N	\N
 85	Thomas' Calculus	book	chapter	relevant	\N	\N	\N
 86	Qt6 QML	book	chapter	relevant	\N	\N	\N
-89	Embedded Linux Training Course	course	course	relevant	Bootlin	\N	\N
 91	GNU Pocket Reference	book	chapter	relevant	\N	\N	\N
 99	C++17 Language New Features Ref Card	slides	page	relevant	\N	\N	\N
 102	Black Hat Bash	book	chapter	relevant	\N	\N	\N
-103	Cpp Hive	video	video	relevant	\N	\N	\N
-104	Mastering Modern CPP Features	video	video	relevant	\N	\N	\N
-13	Linux Device Drivers	course	video	relevant	\N	LinkedIn	\N
+103	Cpp Hive	video	segment	relevant	\N	\N	\N
+104	Mastering Modern CPP Features	video	segment	relevant	\N	\N	\N
+13	Linux Device Drivers	course	segment	relevant	\N	LinkedIn	\N
 113	Advanced Linux: The Linux Kernel	video	chapter	relevant	\N	\N	\N
 115	MuttGuide	website	chapter	relevant	\N	\N	\N
 98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin	\N	\N
-116	Algorithms and Data Structures Made Easy	video	video	relevant	\N	\N	\N
+116	Algorithms and Data Structures Made Easy	video	segment	relevant	\N	\N	\N
 4	Qt Documentation	website	page	relevant	\N	\N	https://doc.qt.io/
 8	C++ Stories	website	page	relevant	\N	\N	https://www.cppstories.com/
 19	C++20 STL Cookbook	book	chapter	relevant	Bill Weinman	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803248714/
@@ -19415,6 +19443,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 65	Linux Device Driver Development	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/iot-hardware/9781803240060/
 5	GDB Tips by Greg Law	website	post	relevant	Greg Law	LinkedIn	https://www.linkedin.com/in/gregthelaw/
 71	C++ Concurrency in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/c-plus-plus-concurrency-in-action
+89	Embedded Linux Training Course	slides	page	relevant	Bootlin	\N	\N
 75	Linux Kernel Debugging	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781801075039/
 82	A Complete Guide to Standard C++ Algorithms	book	chapter	relevant	\N	\N	https://github.com/HappyCerberus/book-cpp-algorithms
 83	Cross-Platform Development with Qt6 and Modern C++	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/programming/9781800204584/
@@ -19426,17 +19455,17 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 109	Minimal CMake	book	chapter	relevant	Tom Hulton-Harrop	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835087312/
 110	Mastering GitHub Actions	book	chapter	relevant	Eric Chapman	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781805128625
 6	Daily bit(e) of C++	mailing list	chapter	relevant	Simon Toth	GitHub	https://github.com/HappyCerberus/daily-bite-cpp
+10	mdadm(1)	manual	page	relevant	\N	Linux Manual Pages	https://www.man7.org/linux/man-pages/man8/mdadm.8.html
 121	Language Features of C++17 Ref Card	slides	page	relevant	Bartłomiej Filipek	\N	\N
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
-130	Real-time Linux with PREEMPT_RT	course	course	relevant	\N	Bootlin	\N
 139	OpenCV & C++ Tutorial	book	chapter	relevant	Computer Vision Lab	YouTube	\N
-140	C++ Weekly With Jason Turner	channel	video	relevant	Jason Turner	YouTube	\N
-1	C++26 Preview	video	video	relevant	CppNow	YouTube	https://youtu.be/CwYILWyTRMQ
+140	C++ Weekly With Jason Turner	channel	segment	relevant	Jason Turner	YouTube	\N
+1	C++26 Preview	video	segment	relevant	CppNow	YouTube	https://youtu.be/CwYILWyTRMQ
 2	Boost Documentation	website	page	relevant	\N	https://boost.org	https://www.boost.org/libraries/latest/list/
 3	LaTeX Tutorial	website	page	relevant	\N	\N	https://latex-tutorial.com/tutorials/
 9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
 11	C++ Design Patterns: Creational	video	chapter	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational
-12	Kevin Dankwardt's Linux Device Drivers	course	video	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
+12	Kevin Dankwardt's Linux Device Drivers	course	segment	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
 21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	relevant	\N	\N	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/
@@ -19459,9 +19488,9 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 119	Computer Graphics Programming in OpenGL with C++	book	chapter	relevant	\N	\N	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186
 123	Template Metaprogramming with C++	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803243450/
 126	C++ Design Patterns: Structural	video	chapter	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029
-127	Linux Security Techniques	course	video	relevant	\N	\N	https://subscription.packtpub.com/video/security/9781835887042/
+127	Linux Security Techniques	course	segment	relevant	\N	\N	https://subscription.packtpub.com/video/security/9781835887042/
 129	NeoMutt Guide	manual	chapter	relevant	\N	\N	https://neomutt.org/guide/index
-114	Deciphering C++ Coroutines	video	video	relevant	Andreas Weis	YouTube	\N
+114	Deciphering C++ Coroutines	video	segment	relevant	Andreas Weis	YouTube	\N
 134	The Modern Vulkan Cookbook	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/game-development/9781803239989/
 136	SELinux System Administration	book	chapter	relevant	Sven Vermeulen	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800201477/
 138	The Ultimate Kali Linux Book	book	chapter	relevant	Glen D. Singh	Packt Publishing	https://subscription.packtpub.com/book/security/9781835085806/
@@ -19472,6 +19501,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	chapter	relevant	Antonio Ortiz Lira	Packt Publishing	https://subscription.packtpub.com/video/data/9781788479080/
 150	Computer Vision with OpenCV 3 and Qt5	video	chapter	relevant	Amin Ahmadi Tazehkandi	Packt Publishing	https://subscription.packtpub.com/book/data/9781788472395/
 18	Teach Yourself C++ in One Hour a Day	book	chapter	relevant	Siddhartha Rao	Sams	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582
+130	Real-time Linux with PREEMPT_RT	slides	page	relevant	\N	Bootlin	\N
 56	Modern C++ Programming Cookbook	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835080542/
 57	Step by Step Learning x64 Assembly Language	book	chapter	relevant	\N	\N	https://www.oreilly.com/library/view/x64-assembly-language/9781394155248/
 61	Boost.Asio C++ Network Programming Cookbook	book	chapter	relevant	Dmytro Radchuk	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781783986545/
@@ -19489,14 +19519,14 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 111	Mastering PostgreSQL 17	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/data/9781836205975/
 124	GitHub Actions in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/github-actions-in-action
 135	GPU Programming with C++ and CUDA	book	chapter	relevant	Paulo Motta	Packt Publishing	https://subscription.packtpub.com/book/programming/9781805124542/
-137	DistroTube	channel	video	relevant	DistroTube	YouTube	https://www.youtube.com/@DistroTube
+137	DistroTube	channel	segment	relevant	DistroTube	YouTube	https://www.youtube.com/@DistroTube
 141	Yocto Project Documentation	manual	page	relevant	Yocto Development Team	Linux Foundation	https://docs.yoctoproject.org/
 143	Yocto for Raspberry Pi	book	chapter	relevant	Pierre-Jean, Mabäcker	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785281952/
 145	Qt 5 and OpenCV 4 Computer Vision Projects	book	chapter	relevant	Zhuo Qingliang	Packt Publishing	https://subscription.packtpub.com/book/data/9781789532586/
 148	Hands-On GPU-Accelerated Computer Vision with OpenCV and CUDA	book	chapter	relevant	Bhaumik Vaidya	Packt Publishing	https://subscription.packtpub.com/book/data/9781789348293/
 151	FTXUI Documentation	manual	page	relevant	Arthur Sonzogni	GitHub	https://arthursonzogni.github.io/FTXUI/index.html
 128	Mastering C++ Multithreading	book	chapter	relevant	Maya Posch	Packt Publishing	https://subscription.packtpub.com/book/programming/9781787121706/
-125	C++ Design Patterns: Behavioral	video	video	relevant	Olivia Chiu Stone	LinkedIn	https://subscription.packtpub.com/video/programming/9781804615652/
+125	C++ Design Patterns: Behavioral	video	segment	relevant	Olivia Chiu Stone	LinkedIn	https://subscription.packtpub.com/video/programming/9781804615652/
 152	Mastering the C++17 STL	book	chapter	relevant	Arthur O'Dwyer	Packt Publishing	https://subscription.packtpub.com/book/programming/9781787126824/
 153	Mastering C++ Standard Library Features	book	chapter	relevant	Vittorio Romeo	Packt Publishing	https://subscription.packtpub.com/video/programming/9781788294256/
 154	Expert C++	book	chapter	relevant	Vardan Grigoryan	Packt Publishing	https://subscription.packtpub.com/book/programming/9781804617830/
@@ -19537,7 +19567,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 180	Using Yocto Project with BeagleBone Black	book	chapter	relevant	Irfan Sadiq	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785289736/
 181	Python 3 Object-Oriented Programming	book	chapter	relevant	Dusty Phillips	Packt Publishing	https://subscription.packtpub.com/book/programming/9781801077262/
 182	Hands-On Embedded Programming with Qt	book	chapter	relevant	John Werner	Packt Publishing	https://subscription.packtpub.com/book/iot-and-hardware/9781789952063/
-183	C++ 20 (2a) New Features	course	video	relevant	Daniel Zawadzki	Packt Publishing	https://subscription.packtpub.com/video/programming/9781839216909/
+183	C++ 20 (2a) New Features	course	segment	relevant	Daniel Zawadzki	Packt Publishing	https://subscription.packtpub.com/video/programming/9781839216909/
 27	C++17 STL Cookbook	book	chapter	relevant	Jacek Galowicz	Packt Publishing	https://subscription.packtpub.com/book/programming/9781787120495/
 184	C++ in Embedded Systems	book	chapter	relevant	Amar Mahmutbegović	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781835881149/
 185	Offensive Shellcode from Scratch	book	chapter	relevant	Rishalin Pillay	Packt Publishing	https://subscription.packtpub.com/book/security/9781803247427/
@@ -25959,6 +25989,19 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 205	1	3992	11
 205	1	3993	12
 205	1	3994	13
+137	20	5560	14
+137	20	5561	15
+137	20	5562	16
+137	20	5563	17
+137	20	5564	18
+137	20	5565	19
+137	20	5566	20
+137	20	5567	21
+137	20	5568	22
+137	20	5569	23
+137	20	5570	24
+137	20	5571	25
+137	20	5572	26
 \.
 
 
@@ -29116,6 +29159,19 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 38	5557	1	51	surface
 39	5558	1	51	surface
 1	5559	1	51	depth
+34	5560	14	13	surface
+34	5561	15	13	surface
+34	5562	16	13	surface
+34	5563	17	13	surface
+34	5564	18	13	surface
+34	5565	19	13	surface
+34	5566	20	13	surface
+34	5567	21	13	surface
+34	5568	22	13	surface
+34	5569	23	13	surface
+34	5570	24	13	surface
+34	5571	25	13	surface
+34	5572	26	13	surface
 \.
 
 
@@ -29362,6 +29418,42 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 2	19	2025-11-02 10:40:28+01	2	51	surface	283
 2	20	2025-11-02 10:43:19+01	171	51	surface	284
 2	21	2025-11-02 10:43:43+01	24	51	surface	285
+2	22	2025-11-02 18:33:54+01	96	51	surface	286
+2	23	2025-11-02 18:33:56+01	2	51	surface	287
+2	24	2025-11-02 18:33:57+01	1	51	surface	288
+2	25	2025-11-02 18:34:04+01	7	51	surface	289
+2	26	2025-11-02 18:34:05+01	1	51	surface	290
+2	27	2025-11-02 18:34:06+01	1	51	surface	291
+2	28	2025-11-02 18:34:07+01	1	51	surface	292
+2	29	2025-11-02 18:34:08+01	1	51	surface	293
+2	30	2025-11-02 18:34:09+01	1	51	surface	294
+2	31	2025-11-02 18:34:10+01	1	51	surface	295
+2	32	2025-11-02 18:34:12+01	2	51	surface	296
+2	33	2025-11-02 20:07:04+01	97	51	surface	297
+2	34	2025-11-02 20:38:27+01	61	51	surface	298
+2	35	2025-11-02 22:14:19+01	10	51	surface	331
+2	36	2025-11-02 22:14:25+01	6	51	surface	332
+2	37	2025-11-02 22:14:26+01	1	51	surface	333
+2	38	2025-11-02 22:14:26+01	0	51	surface	334
+2	39	2025-11-02 22:14:48+01	22	51	surface	335
+2	1	2025-11-02 22:15:55+01	67	51	depth	336
+2	1	2025-11-03 16:30:56+01	11	3	surface	337
+2	2	2025-11-03 16:31:04+01	8	3	surface	338
+2	3	2025-11-03 16:34:33+01	209	3	surface	339
+2	4	2025-11-03 16:34:36+01	3	3	surface	340
+2	5	2025-11-03 16:35:03+01	27	3	surface	341
+2	6	2025-11-03 16:36:49+01	106	3	surface	342
+2	7	2025-11-03 17:11:41+01	2092	3	surface	343
+2	8	2025-11-03 17:38:17+01	1596	3	surface	344
+2	1	2025-11-04 00:19:54+01	5	3	surface	345
+2	2	2025-11-04 00:19:57+01	3	3	surface	346
+2	3	2025-11-04 00:19:59+01	2	3	surface	347
+2	4	2025-11-04 00:20:01+01	2	3	surface	348
+2	5	2025-11-04 00:20:02+01	1	3	surface	349
+2	6	2025-11-04 00:20:02+01	0	3	surface	350
+2	7	2025-11-04 00:20:09+01	7	3	surface	351
+2	8	2025-11-04 00:20:17+01	8	3	surface	352
+2	9	2025-11-04 00:20:30+01	13	3	surface	353
 \.
 
 
@@ -29402,7 +29494,7 @@ SELECT pg_catalog.setval('flashback.cards_activities_id_seq', 1, false);
 -- Name: cards_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.cards_id_seq', 5559, true);
+SELECT pg_catalog.setval('flashback.cards_id_seq', 5572, true);
 
 
 --
@@ -29486,7 +29578,7 @@ SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
 -- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 285, true);
+SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 353, true);
 
 
 --
@@ -29996,5 +30088,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict cjLEgNLeSwcd9bAfuTiGVmatjzB5N5wIjEnBSrErRMjsJKqPWuPHW5xCsZcHCJJ
+\unrestrict 3b3xx1BuGHLvz9xtukCyUOXcFQVaJrDRUQb6ZhhhEjA5xHQmTGZ5gRRJfh39xaF
 
