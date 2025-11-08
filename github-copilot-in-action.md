@@ -2,7 +2,7 @@
 # GitHub Copilot in Action
 ## course
 ## Packt Publishing
-### video
+### session
 ### Jeremy Morgan
 
 #### surface

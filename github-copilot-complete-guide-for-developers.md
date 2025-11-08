@@ -2,7 +2,7 @@
 # GitHub Copilot Complete Guide for Developers
 ## course
 ## Packt Publishing
-### video
+### session
 ### HHN Automate Book Inc.
 
 #### surface

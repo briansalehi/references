@@ -2,7 +2,7 @@
 # C++ Design Patterns: Behavioral
 ## course
 ## Packt Publishing
-### video
+### session
 ### Umar Lone
 #### surface
 

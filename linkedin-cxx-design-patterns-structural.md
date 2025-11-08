@@ -2,7 +2,7 @@
 # C++ Design Patterns: Structural
 ## course
 ## Packt Publishing
-### video
+### session
 ### Umar Lone
 
 #### Topic Level (surface, depth, origin)

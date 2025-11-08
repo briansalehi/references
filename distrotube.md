@@ -4,7 +4,7 @@
 ## channel
 ## YouTube
 
-### video
+### segment
 ### DistroTube
 
 #### surface

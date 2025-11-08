@@ -1,8 +1,8 @@
 # C++
 # Behavioral Design Patterns in C++
-## book
+## course
 ## Packt Publishing
-### video
+### sesseion
 ### Umar Lone
 #### surface
 

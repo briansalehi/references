@@ -2,7 +2,7 @@
 # GitHub Actions Masterclass
 ## course
 ## Packt Publishing
-### video
+### session
 ### LM Academy
 
 #### surface

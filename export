@@ -340,7 +340,7 @@ parse_file()
 
     while IFS= read -r line
     do
-        token="$(grep -oE '^#{1,6} ' <<< "$line")"
+        token="$(grep -oE '^[#-]{1,6} ' <<< "$line")"
         buffer="${line#* }"
 
         case "$token" in
