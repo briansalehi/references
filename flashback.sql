@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 3b3xx1BuGHLvz9xtukCyUOXcFQVaJrDRUQb6ZhhhEjA5xHQmTGZ5gRRJfh39xaF
+\restrict ZBxFFuCTJt5bR7dE6ryh3vn9m2nypAzcKnbgUqE6YJxG5eMPnmkfnAhzEXSJhpU
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -17587,20 +17587,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3443	When does a test fail?	review
 3444	What are the arguments of a test unit?	review
 3446	Write a test case that uses a fixture?	review
-3469	What is a cardinality in mock functions?	draft
-3470	Specify a method in a mock that should never be called?	draft
-3471	What is the cardinality of a mock when <code>Times()</code> is omitted?	draft
-3472	What is the default behavior of gMock when a mock function returns?	draft
-3473	Specify the return value of mock function for three calls?	draft
-3474	Specify the return value of a mock function for indefinite calls?	draft
-3475	What happens if the cardinality is bigger than the specified return occurrances?	draft
-3476	In what order expectations are searched?	draft
-3477	Specify multiple expectations for a mock function?	draft
-3478	What is the best practice in ordering of multiple expectations?	draft
-3479	Verify that the call to a series of mock functions are in a specific order?	draft
-3480	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	draft
-3481	What are the downsides of expectations being sticky?	draft
-3482	Specify a series of expectations that retire after reaching invocation upper bounds?	draft
 3483	What parameters does a mock method take?	draft
 3484	What qualifiers are possible to specify as the fourth parameter of mock method?	draft
 3485	Write an expectation call to a mock method when the method returns a const reference to a string?	draft
@@ -17620,6 +17606,18 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3499	What is the use case of succeed assertion?	draft
 3500	What is the use case of fail assertion?	draft
 3501	What is the limitation of using fail assertion?	draft
+3470	Specify a method in a mock that should never be called?	review
+3471	What is the cardinality of a mock when <code>Times()</code> is omitted?	review
+3472	What is the default behavior of gMock when a mock function returns?	review
+3473	Specify the return value of mock function for three calls?	review
+3475	What happens if the cardinality is bigger than the specified return occurrances?	review
+3476	In what order expectations are searched?	review
+3477	Specify multiple expectations for a mock function?	review
+3478	What is the best practice in ordering of multiple expectations?	review
+3479	Verify that the call to a series of mock functions are in a specific order?	review
+3480	Verify that a mock function will be called with an specific argument value exactly once and ignore the rest of the calls?	review
+3481	What are the downsides of expectations being sticky?	review
+3482	Specify a series of expectations that retire after reaching invocation upper bounds?	review
 3502	Write a non-fatal failure assertion?	draft
 3503	Write a non-fatal failure for a specific line of file?	draft
 3504	What is an assertion matcher?	draft
@@ -19189,7 +19187,9 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 5559	Toggle processing of piped input?	review
 5572	Write a line after a pattern match?	review
 5560	Replace occurrences of a pattern with a substitute?	review
+3469	What is a cardinality in mock functions?	review
 5561	Replace occurrences of a pattern with a substitute without case sensitivity?	review
+3474	Specify the return value of a mock function for indefinite calls?	review
 \.
 
 
@@ -26160,6 +26160,8 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 151	2	2	2025-10-26 11:12:42+01	252	149
 151	3	2	2025-10-26 11:50:09+01	2247	150
 151	5	2	2025-10-27 15:50:26+01	16	151
+100	1	2	2025-11-10 12:01:05+01	19436	152
+100	3	2	2025-11-10 16:02:02+01	13896	153
 \.
 
 
@@ -29172,6 +29174,20 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 34	5570	24	13	surface
 34	5571	25	13	surface
 34	5572	26	13	surface
+9	3469	6	24	surface
+9	3470	7	24	surface
+9	3471	8	24	surface
+9	3472	9	24	surface
+9	3473	10	24	surface
+9	3474	11	24	surface
+9	3475	12	24	surface
+9	3476	13	24	surface
+9	3477	14	24	surface
+9	3478	15	24	surface
+9	3479	16	24	surface
+9	3480	17	24	surface
+9	3481	18	24	surface
+9	3482	19	24	surface
 \.
 
 
@@ -29454,6 +29470,14 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 2	7	2025-11-04 00:20:09+01	7	3	surface	351
 2	8	2025-11-04 00:20:17+01	8	3	surface	352
 2	9	2025-11-04 00:20:30+01	13	3	surface	353
+2	1	2025-11-09 13:18:08+01	288	51	surface	354
+2	2	2025-11-09 13:25:43+01	455	51	surface	355
+2	3	2025-11-09 13:33:13+01	449	51	surface	356
+2	4	2025-11-09 13:37:36+01	263	51	surface	357
+2	5	2025-11-09 13:38:18+01	42	51	surface	358
+2	6	2025-11-09 13:38:43+01	25	51	surface	359
+2	7	2025-11-09 13:47:55+01	552	51	surface	360
+2	8	2025-11-09 13:48:05+01	10	51	surface	361
 \.
 
 
@@ -29550,7 +29574,7 @@ SELECT pg_catalog.setval('flashback.sections_activities_id_seq', 1, false);
 -- Name: sections_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 151, true);
+SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 153, true);
 
 
 --
@@ -29578,7 +29602,7 @@ SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
 -- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 353, true);
+SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 361, true);
 
 
 --
@@ -30088,5 +30112,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 3b3xx1BuGHLvz9xtukCyUOXcFQVaJrDRUQb6ZhhhEjA5xHQmTGZ5gRRJfh39xaF
+\unrestrict ZBxFFuCTJt5bR7dE6ryh3vn9m2nypAzcKnbgUqE6YJxG5eMPnmkfnAhzEXSJhpU
 
