@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict vQQoyf5iVHgkHbYp4O1BFY6rIMa0Zmlf1q0iKDyZB0je7Tg2aATjI7TExi7ZrCm
+\restrict 2XmGU6p17NPlRzejdauqtXDopOR1F3YNTbis3UDvpTKt25LmKGBchJF2pm3IHXG
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -541,12 +541,24 @@ ALTER PROCEDURE flashback.create_section(IN resource integer, IN name character 
 -- Name: create_session(integer, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.create_session(IN id integer, IN token character varying, IN device character varying)
+CREATE PROCEDURE flashback.create_session(IN user_id integer, IN token character varying, IN device character varying)
     LANGUAGE plpgsql
-    AS $$ declare previous_usage timestamp with time zone; begin select s.last_usage into previous_usage from sessions s where s."user" = create_session.id and s.device = create_session.device; if previous_usage is null then insert into sessions values (create_session.id, create_session.token, create_session.device); else update sessions set token = create_session.token where sesions."user" = create_session.id and sessions.device = create_session.device; end if; end; $$;
+    AS $$
+declare previous_token varchar(300);
+declare last_use date;
+begin
+    select s.token, s.last_active into previous_token, last_use from sessions s where s."user" = user_id and s.device = create_session.device;
+
+    if previous_token is null then
+        insert into sessions ("user", device, token) values (user_id, create_session.device, create_session.token);
+    else
+        update sessions set token = create_session.token, last_active = CURRENT_DATE where sessions."user" = user_id and sessions.device = create_session.device;
+    end if;
+end;
+$$;
 
 
-ALTER PROCEDURE flashback.create_session(IN id integer, IN token character varying, IN device character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.create_session(IN user_id integer, IN token character varying, IN device character varying) OWNER TO flashback;
 
 --
 -- Name: create_subject(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1115,31 +1127,12 @@ ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 -- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user(user_email character varying) RETURNS TABLE(id integer, email character varying, name character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, hash character varying)
+CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id integer, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone)
     LANGUAGE plpgsql
-    AS $$ begin return query select u.id, u.email, u.name, u.state, u.verified, u.joined, u.hash from users u where u.email = get_user.user_email; end; $$;
+    AS $$ begin return query select u.id, u.hash, u.state, u.verified, u.joined from users u where u.email = address; end; $$;
 
 
-ALTER FUNCTION flashback.get_user(user_email character varying) OWNER TO flashback;
-
---
--- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_user(user_email character varying, user_device character varying) RETURNS TABLE(id integer, email character varying, name character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, hash character varying, token character varying, device character varying)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select u.id, u.email, u.name, u.state, u.verified, u.joined, u.hash, s.token, s.device
-    from users u
-    join sessions s on s."user" = u.id
-    where u.email = get_user.user_email and s.device = user_device;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1644,6 +1637,45 @@ end; $$;
 
 ALTER PROCEDURE flashback.split_block(IN card integer, IN block integer) OWNER TO flashback;
 
+--
+-- Name: user_exists(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.user_exists(email character varying) RETURNS boolean
+    LANGUAGE plpgsql
+    AS $$
+declare result boolean;
+begin
+    select exists (select 1 from users where users.email = user_exists.email) into result;
+    return result;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.user_exists(email character varying) OWNER TO flashback;
+
+--
+-- Name: user_is_active(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.user_is_active(email character varying) RETURNS boolean
+    LANGUAGE plpgsql
+    AS $$ declare result boolean; begin select exists (select 1 from users where users.email = user_is_active.email and users.state = 'active'::user_state) into result; return result; end; $$;
+
+
+ALTER FUNCTION flashback.user_is_active(email character varying) OWNER TO flashback;
+
+--
+-- Name: user_is_verified(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.user_is_verified(email character varying) RETURNS boolean
+    LANGUAGE plpgsql
+    AS $$ declare result boolean; begin select verified into result from users where users.email = user_is_verified.email; return result; end; $$;
+
+
+ALTER FUNCTION flashback.user_is_verified(email character varying) OWNER TO flashback;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -1784,17 +1816,6 @@ CREATE TABLE flashback.last_position (
 
 
 ALTER TABLE flashback.last_position OWNER TO flashback;
-
---
--- Name: margin; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.margin (
-    "coalesce" integer
-);
-
-
-ALTER TABLE flashback.margin OWNER TO flashback;
 
 --
 -- Name: milestones; Type: TABLE; Schema: flashback; Owner: flashback
@@ -19265,17 +19286,6 @@ COPY flashback.last_position (max) FROM stdin;
 
 
 --
--- Data for Name: margin; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.margin ("coalesce") FROM stdin;
-9
-9
-9
-\.
-
-
---
 -- Data for Name: milestones; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -29540,6 +29550,46 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 2	6	2025-11-09 13:38:43+01	25	51	surface	359
 2	7	2025-11-09 13:47:55+01	552	51	surface	360
 2	8	2025-11-09 13:48:05+01	10	51	surface	361
+2	1	2025-11-17 07:34:03+01	5	51	surface	362
+2	2	2025-11-17 07:55:01+01	1258	51	surface	363
+2	3	2025-11-17 07:56:26+01	85	51	surface	364
+2	4	2025-11-17 07:57:07+01	41	51	surface	365
+2	5	2025-11-17 07:59:28+01	141	51	surface	366
+2	6	2025-11-17 08:19:22+01	1194	51	surface	367
+2	7	2025-11-17 08:20:42+01	80	51	surface	368
+2	8	2025-11-17 09:53:45+01	5583	51	surface	369
+2	9	2025-11-17 10:09:10+01	925	51	surface	370
+2	10	2025-11-17 10:09:32+01	22	51	surface	371
+2	11	2025-11-17 10:09:38+01	6	51	surface	372
+2	12	2025-11-17 10:09:41+01	3	51	surface	373
+2	13	2025-11-17 10:11:31+01	110	51	surface	374
+2	14	2025-11-17 10:12:26+01	55	51	surface	375
+2	15	2025-11-17 12:45:28+01	9182	51	surface	376
+2	16	2025-11-17 12:50:51+01	323	51	surface	377
+2	17	2025-11-17 12:57:30+01	399	51	surface	378
+2	18	2025-11-17 12:57:38+01	8	51	surface	379
+2	19	2025-11-17 12:57:42+01	4	51	surface	380
+2	20	2025-11-17 13:08:05+01	623	51	surface	381
+2	21	2025-11-17 13:09:09+01	64	51	surface	382
+2	22	2025-11-17 14:25:16+01	4567	51	surface	383
+2	23	2025-11-17 14:25:18+01	2	51	surface	384
+2	24	2025-11-17 14:25:18+01	0	51	surface	385
+2	25	2025-11-17 14:25:20+01	2	51	surface	386
+2	26	2025-11-17 14:25:21+01	1	51	surface	387
+2	27	2025-11-17 14:25:21+01	0	51	surface	388
+2	28	2025-11-17 14:25:22+01	1	51	surface	389
+2	29	2025-11-17 14:25:23+01	1	51	surface	390
+2	30	2025-11-17 14:25:24+01	1	51	surface	391
+2	31	2025-11-17 14:25:24+01	0	51	surface	392
+2	32	2025-11-17 14:25:25+01	1	51	surface	393
+2	33	2025-11-17 15:14:09+01	2924	51	surface	394
+2	34	2025-11-17 15:15:24+01	75	51	surface	395
+2	35	2025-11-17 15:15:32+01	8	51	surface	396
+2	36	2025-11-17 15:15:35+01	3	51	surface	397
+2	37	2025-11-17 15:15:36+01	1	51	surface	398
+2	38	2025-11-17 15:15:36+01	0	51	surface	399
+2	39	2025-11-17 15:15:46+01	10	51	surface	400
+2	1	2025-11-17 15:15:57+01	11	51	depth	401
 \.
 
 
@@ -29665,7 +29715,7 @@ SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
 -- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 361, true);
+SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 401, true);
 
 
 --
@@ -30183,5 +30233,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict vQQoyf5iVHgkHbYp4O1BFY6rIMa0Zmlf1q0iKDyZB0je7Tg2aATjI7TExi7ZrCm
+\unrestrict 2XmGU6p17NPlRzejdauqtXDopOR1F3YNTbis3UDvpTKt25LmKGBchJF2pm3IHXG
 
