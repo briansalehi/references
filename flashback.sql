@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2XmGU6p17NPlRzejdauqtXDopOR1F3YNTbis3UDvpTKt25LmKGBchJF2pm3IHXG
+\restrict RrDtOztlSMqcdvNr0ufyfehcpeNmTVkjDMUhOw0pFaG4u2I5iJjVt2KrvRzGdo9
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -547,12 +547,12 @@ CREATE PROCEDURE flashback.create_session(IN user_id integer, IN token character
 declare previous_token varchar(300);
 declare last_use date;
 begin
-    select s.token, s.last_active into previous_token, last_use from sessions s where s."user" = user_id and s.device = create_session.device;
+    select s.token, s.last_usage into previous_token, last_use from sessions s where s."user" = user_id and s.device = create_session.device;
 
     if previous_token is null then
         insert into sessions ("user", device, token) values (user_id, create_session.device, create_session.token);
     else
-        update sessions set token = create_session.token, last_active = CURRENT_DATE where sessions."user" = user_id and sessions.device = create_session.device;
+        update sessions set token = create_session.token, last_usage = CURRENT_DATE where sessions."user" = user_id and sessions.device = create_session.device;
     end if;
 end;
 $$;
@@ -1127,9 +1127,9 @@ ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 -- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id integer, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone)
+CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone)
     LANGUAGE plpgsql
-    AS $$ begin return query select u.id, u.hash, u.state, u.verified, u.joined from users u where u.email = address; end; $$;
+    AS $$ begin return query select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined from users u where u.email = address; end; $$;
 
 
 ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
@@ -26234,6 +26234,7 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	\N
 3	AEvfrjjcyPMFxIUXv1HHLlHUpnmECnwCqQ8BF6MsTOo	c48564d1-78c2-0893-2b99-22a7cc1a12d2	\N
+2	XMZhg7mO3KGsnfBzdqvjO04J3gDN2rA07sooSYhYAuY	c22478ba-7ffa-11a3-1429-de93cb9a3311	\N
 \.
 
 
@@ -29598,8 +29599,8 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 --
 
 COPY flashback.users (id, name, email, state, verified, joined, hash) FROM stdin;
-2	Brian	briansalehi@proton.me	active	f	2025-07-29 12:17:34.738918+02	$argon2id$v=19$m=262144,t=3,p=1$fqiJerPBCLb2TEdTbGv8BQ$M0j9j6ojyIjD9yZ4+lBBNR/WAiWpImUcEcUhCL3u9gc
 3	Brian Salehi	salehibrian@gmail.com	active	f	2025-11-20 14:26:19.906025+01	$argon2id$v=19$m=262144,t=3,p=1$xVQkOsdIi2LDbcMRaIvIeA$XnMiJ7dmes8Y4TDrdRWeMwIsua6L0AG/BAmRxD6Qf0E
+2	Brian Salehi	briansalehi@proton.me	active	f	2025-07-29 12:17:34.738918+02	$argon2id$v=19$m=262144,t=3,p=1$fqiJerPBCLb2TEdTbGv8BQ$M0j9j6ojyIjD9yZ4+lBBNR/WAiWpImUcEcUhCL3u9gc
 \.
 
 
@@ -30233,5 +30234,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2XmGU6p17NPlRzejdauqtXDopOR1F3YNTbis3UDvpTKt25LmKGBchJF2pm3IHXG
+\unrestrict RrDtOztlSMqcdvNr0ufyfehcpeNmTVkjDMUhOw0pFaG4u2I5iJjVt2KrvRzGdo9
 
