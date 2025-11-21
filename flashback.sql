@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict ZBxFFuCTJt5bR7dE6ryh3vn9m2nypAzcKnbgUqE6YJxG5eMPnmkfnAhzEXSJhpU
+\restrict vQQoyf5iVHgkHbYp4O1BFY6rIMa0Zmlf1q0iKDyZB0je7Tg2aATjI7TExi7ZrCm
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -538,6 +538,17 @@ end; $$;
 ALTER PROCEDURE flashback.create_section(IN resource integer, IN name character varying, IN "position" integer) OWNER TO flashback;
 
 --
+-- Name: create_session(integer, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.create_session(IN id integer, IN token character varying, IN device character varying)
+    LANGUAGE plpgsql
+    AS $$ declare previous_usage timestamp with time zone; begin select s.last_usage into previous_usage from sessions s where s."user" = create_session.id and s.device = create_session.device; if previous_usage is null then insert into sessions values (create_session.id, create_session.token, create_session.device); else update sessions set token = create_session.token where sesions."user" = create_session.id and sessions.device = create_session.device; end if; end; $$;
+
+
+ALTER PROCEDURE flashback.create_session(IN id integer, IN token character varying, IN device character varying) OWNER TO flashback;
+
+--
 -- Name: create_subject(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -606,24 +617,6 @@ $$;
 
 
 ALTER PROCEDURE flashback.create_topic(IN subject integer, IN level flashback.expertise_level, IN name character varying, IN "position" integer) OWNER TO flashback;
-
---
--- Name: create_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.create_user(name character varying, email character varying) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-declare user_id integer;
-begin
-    insert into users (name, email) values(name, email) returning id into user_id;
-
-    return user_id;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.create_user(name character varying, email character varying) OWNER TO flashback;
 
 --
 -- Name: create_user(character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1119,6 +1112,36 @@ CREATE FUNCTION flashback.get_unshelved_resources() RETURNS TABLE(resource integ
 ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 
 --
+-- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user(user_email character varying) RETURNS TABLE(id integer, email character varying, name character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, hash character varying)
+    LANGUAGE plpgsql
+    AS $$ begin return query select u.id, u.email, u.name, u.state, u.verified, u.joined, u.hash from users u where u.email = get_user.user_email; end; $$;
+
+
+ALTER FUNCTION flashback.get_user(user_email character varying) OWNER TO flashback;
+
+--
+-- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user(user_email character varying, user_device character varying) RETURNS TABLE(id integer, email character varying, name character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, hash character varying, token character varying, device character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select u.id, u.email, u.name, u.state, u.verified, u.joined, u.hash, s.token, s.device
+    from users u
+    join sessions s on s."user" = u.id
+    where u.email = get_user.user_email and s.device = user_device;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
+
+--
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1556,6 +1579,21 @@ $$;
 
 
 ALTER PROCEDURE flashback.reorder_topics_cards(IN subject integer, IN level flashback.expertise_level, IN target_topic integer, IN target_card integer, IN new_position integer) OWNER TO flashback;
+
+--
+-- Name: reset_password(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update users set hash = reset_password.hash where id = user_id;
+    delete from sessions where "user" = user_id;
+end; $$;
+
+
+ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying) OWNER TO flashback;
 
 --
 -- Name: split_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2045,6 +2083,20 @@ ALTER TABLE flashback.sections_progress ALTER COLUMN id ADD GENERATED ALWAYS AS 
     CACHE 1
 );
 
+
+--
+-- Name: sessions; Type: TABLE; Schema: flashback; Owner: flashback
+--
+
+CREATE TABLE flashback.sessions (
+    "user" integer,
+    token character varying(300),
+    device character varying(50),
+    last_usage timestamp with time zone
+);
+
+
+ALTER TABLE flashback.sessions OWNER TO flashback;
 
 --
 -- Name: shelves; Type: TABLE; Schema: flashback; Owner: flashback
@@ -26166,6 +26218,16 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 
 
 --
+-- Data for Name: sessions; Type: TABLE DATA; Schema: flashback; Owner: flashback
+--
+
+COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
+2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	\N
+3	AEvfrjjcyPMFxIUXv1HHLlHUpnmECnwCqQ8BF6MsTOo	c48564d1-78c2-0893-2b99-22a7cc1a12d2	\N
+\.
+
+
+--
 -- Data for Name: shelves; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -29486,7 +29548,8 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 --
 
 COPY flashback.users (id, name, email, state, verified, joined, hash) FROM stdin;
-2	Brian	briansalehi@proton.me	active	f	2025-07-29 12:17:34.738918+02	$argon2id$v=19$m=262144,t=3,p=1$SDvIrZmwAQka93Z05Uaqrw$5o6bhWyNV6kwDfUrN8Cnf5Grs1iOg6r5DGbbNs4gzt0
+2	Brian	briansalehi@proton.me	active	f	2025-07-29 12:17:34.738918+02	$argon2id$v=19$m=262144,t=3,p=1$fqiJerPBCLb2TEdTbGv8BQ$M0j9j6ojyIjD9yZ4+lBBNR/WAiWpImUcEcUhCL3u9gc
+3	Brian Salehi	salehibrian@gmail.com	active	f	2025-11-20 14:26:19.906025+01	$argon2id$v=19$m=262144,t=3,p=1$xVQkOsdIi2LDbcMRaIvIeA$XnMiJ7dmes8Y4TDrdRWeMwIsua6L0AG/BAmRxD6Qf0E
 \.
 
 
@@ -29609,7 +29672,7 @@ SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 361, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.users_id_seq', 2, true);
+SELECT pg_catalog.setval('flashback.users_id_seq', 3, true);
 
 
 --
@@ -30013,6 +30076,14 @@ ALTER TABLE ONLY flashback.sections
 
 
 --
+-- Name: sessions sessions_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sessions
+    ADD CONSTRAINT sessions_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: shelves shelves_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30112,5 +30183,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ZBxFFuCTJt5bR7dE6ryh3vn9m2nypAzcKnbgUqE6YJxG5eMPnmkfnAhzEXSJhpU
+\unrestrict vQQoyf5iVHgkHbYp4O1BFY6rIMa0Zmlf1q0iKDyZB0je7Tg2aATjI7TExi7ZrCm
 
