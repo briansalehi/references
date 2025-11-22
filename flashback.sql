@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict RrDtOztlSMqcdvNr0ufyfehcpeNmTVkjDMUhOw0pFaG4u2I5iJjVt2KrvRzGdo9
+\restrict 2kKmibMdBodD7D21frbm7RcUkfokOl7c24msKD0Bdjf6ZBgDjPgFqxEGsALDZmk
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -26235,6 +26235,9 @@ COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	\N
 3	AEvfrjjcyPMFxIUXv1HHLlHUpnmECnwCqQ8BF6MsTOo	c48564d1-78c2-0893-2b99-22a7cc1a12d2	\N
 2	XMZhg7mO3KGsnfBzdqvjO04J3gDN2rA07sooSYhYAuY	c22478ba-7ffa-11a3-1429-de93cb9a3311	\N
+2	BAH+x4QtO8YQUreDR+ajOXdT+8vzqeeHc3haJdF36m4	bb22c848-53f6-cdbb-213d-f8162f9abd38	\N
+2	iNFzgSCY2W+q42gM9lNVbB13v0odiLy6WnHbInbuvvE	e60c872e-5354-4e70-78f7-a4c3a3a9e81f	\N
+2	ySRyOkYi3XlUSTzK3rBBv+wKhwXkPPLI5PsTw+D+26c	de9c839b-ff4e-2861-4954-83c22303077d	\N
 \.
 
 
@@ -30234,5 +30237,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict RrDtOztlSMqcdvNr0ufyfehcpeNmTVkjDMUhOw0pFaG4u2I5iJjVt2KrvRzGdo9
+\unrestrict 2kKmibMdBodD7D21frbm7RcUkfokOl7c24msKD0Bdjf6ZBgDjPgFqxEGsALDZmk
 
