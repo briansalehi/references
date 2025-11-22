@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2kKmibMdBodD7D21frbm7RcUkfokOl7c24msKD0Bdjf6ZBgDjPgFqxEGsALDZmk
+\restrict ogJ46AaFD2VHbzelwgw5rJJFZqlWMwwSfxx04YDJU1X6onYeLccRu1dBaRHmuHA
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1133,6 +1133,24 @@ CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id i
 
 
 ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
+
+--
+-- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user(user_email character varying, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
+    from users u
+    join sessions s on s."user" = u.id and s.device = user_device
+    where u.email = user_email;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -26238,6 +26256,7 @@ COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 2	BAH+x4QtO8YQUreDR+ajOXdT+8vzqeeHc3haJdF36m4	bb22c848-53f6-cdbb-213d-f8162f9abd38	\N
 2	iNFzgSCY2W+q42gM9lNVbB13v0odiLy6WnHbInbuvvE	e60c872e-5354-4e70-78f7-a4c3a3a9e81f	\N
 2	ySRyOkYi3XlUSTzK3rBBv+wKhwXkPPLI5PsTw+D+26c	de9c839b-ff4e-2861-4954-83c22303077d	\N
+2	Y6pN9T2h1rLleeVlQTwhDiicnapONRa2Wz1Pt0wnfGU	baa764df-b0d9-56a5-9980-939ed3b4d9c6	\N
 \.
 
 
@@ -30237,5 +30256,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2kKmibMdBodD7D21frbm7RcUkfokOl7c24msKD0Bdjf6ZBgDjPgFqxEGsALDZmk
+\unrestrict ogJ46AaFD2VHbzelwgw5rJJFZqlWMwwSfxx04YDJU1X6onYeLccRu1dBaRHmuHA
 
