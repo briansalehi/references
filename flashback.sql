@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict fy2AhPnJ1cIPJUNeuE123QMyF0FJf3CqDHu1SBLQOroawJie7aAuOaSpHmUaJqS
+\restrict 9jRyt8tgIVW6UkWizyBgDvcp6BETxYgUZWxAL5XWBO2x4ZL7uCNPYUOxbgWw2fd
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
 
--- Started on 2025-11-26 13:31:10 CET
+-- Started on 2025-11-26 14:23:22 CET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -4562,6 +4562,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 815	10	static void __exit misc_exit(void)\n{\n    misc_deregister(&misc_dev);\n    pr_info("misc_dev unloaded\\\\n");\n}	text	txt
 815	11	module_init(misc_init);\nmodule_exit(misc_exit);	text	txt
 5541	1		code	cpp
+5608	1	// clazy:skip	code	cmake
 817	1	Signature for both functions of user to kernel space and vice versa are similar:	text	txt
 817	2	#include <linux/uaccess.h>	text	txt
 817	3	unsigned long copy_to_user(void __user *to, const void *from, unsigned long n);\nunsigned long copy_from_user(void *to, const void __user *from, unsigned long n);	code	txt
@@ -6086,6 +6087,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1413	1	The `std::regex_match()` method has overloads that take a reference to a `std::match_results` object to store the result of the match.	text	txt
 1413	2	If there is no match, then `std::match_results` is empty and its size is 0. Otherwise, its size is 1, plus the number of matched subexpressions.	text	txt
 1413	3	The class template `std::sub_match` represents a sequence of characters that matches a capture group; this class is actually derived from std::pair, and its first and second members represent iterators to the first and the one- past-end characters in the match sequence. If there is no match sequence, the two iterators are equal:	text	txt
+5614	1	Target property:	text	md
 1413	4	* `typedef sub_match<const char *> csub_match;`\n* `typedef sub_match<const wchar_t *> wcsub_match;`\n* `typedef sub_match<string::const_iterator> ssub_match;`\n* `typedef sub_match<wstring::const_iterator> wssub_match;`	text	txt
 1413	5	The class template `std::match_results` is a collection of matches; the first element is always a full match in the target, while the other elements are matches of subexpressions:	text	txt
 1413	6	* `typedef match_results<const char *> cmatch;`\n* `typedef match_results<const wchar_t *> wcmatch;`\n* `typedef match_results<string::const_iterator> smatch;`\n* `typedef match_results<wstring::const_iterator> wsmatch;`	text	txt
@@ -6116,6 +6118,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1440	2	* Define the lambda in a function scope\n* Assign the lambda to an `std::function` wrapper\n* Capture the `std::function` object by reference in the lambda in order to call it recursively	text	txt
 1478	1	#include <fstream>\n#include <vector>\n#include <string>	text	txt
 2025	5	    t.join();\n}	code	txt
+5575	3	The rest of important properties:	text	md
 1441	1	In order to write variadic function templates, you must perform the following steps:	text	txt
 1441	2	1. Define an overload with a fixed number of arguments to end compile-time recursion if the semantics of the variadic function template require it.\n2. Define a template parameter pack that is a template parameter that can hold any number of arguments, including zero; these arguments can be either types, non-types, or templates.\n3. Define a function parameter pack to hold any number of function arguments, including zero; the size of the template parameter pack and the corresponding function parameter pack is the same. This size can be determined with the sizeof... operator.\n4. Expand the parameter pack in order to replace it with the actual arguments being supplied.	text	txt
 1441	3	With GCC and Clang, you can use the `__PRETTY_FUNCTION__` macro to print the name and the signature of the function.	text	txt
@@ -6169,6 +6172,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1477	1	#include <fstream>\n#include <string>	text	txt
 1477	2	int main()\n{\n    std::string content{"this is a sample content"};\n    std::ofstream file("/tmp/sample.txt", std::ios::out);	text	txt
 1707	4	MACHINE=beaglebone-yocto bitbake core-image-full-cmdline	code	bb
+5615	1	Target property:	text	md
 1477	3	    try {\n        if (file.is_open())\n        {\n            file.write(content);\n            file.close();\n        }\n    }\n    catch (std::ios_base::failure const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	txt
 1466	1	void execute_command(char cmd)\n{\n    switch(cmd)\n    {\n        [[likely]] case 'a': /* add */ break;\n        [[unlikely]] case 'd': /* delete */ break;\n        case 'p': /* print */ break;\n        default: /* do something else */ break;\n    }\n}	code	cpp
 1478	2	int main()\n{\n    std::vector<unsigned char> buffer;\n    std::ifstream file("/tmp/sample.txt", std::ios::in);	text	txt
@@ -6307,6 +6311,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1546	3	The use of `PREMIRRORS` is so common that there is a class to make its configuration easier.	text	txt
 1546	4	Inherit the `own-mirror` class and then set the `SOURCE_MIRROR_URL` variable to the local server address in any global configuration file such as `build/conf/local.conf` file.	text	txt
 1546	5	INHERIT += "own-mirrors"\nSOURCE_MIRROR_URL = "https://localserver"	code	bb
+5577	10	Create imported target `foo::foo`:	text	md
 1546	6	If the desired component is unavailable in the source mirror, bitbake falls back to the `MIRRORS` variable.	text	txt
 1547	1	Override `DL_DIR` in a global configuration file such as `build/conf/local.conf` to outside of build directory:	text	txt
 1547	2	DL_DIR = "/opt/downloads"	code	bb
@@ -6509,6 +6514,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1637	1	bitbake-getvar	code	sh
 1638	1	bitbake-getvar -r procps PACKAGECONFIG	code	sh
 1639	1	A development shell can be used to edit packages and debug build failures. All the environment variables needed for the build ara available in the new terminal, so we can use commands like `configure` and `make`. `devshell` is the tool for it.	text	txt
+5616	1	Test property:	text	md
 1639	2	The `devshell` command is convenient for small tasks. But for more complex debugging, `devtool` is a better option.	text	txt
 1640	1	bitbake linux-yocto -c devshell	code	sh
 1640	2	Changes made inside a development shell do not persist between builds. We should record any critical changes before leaving.	text	txt
@@ -6748,6 +6754,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1750	1	UDP servers do not establish connections and use active sockets to wait for incoming requests.	text	txt
 1750	2	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::udp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::udp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.bind(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp
 1751	1	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address::from_string("::1")};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::socket socket{context, endpoint.protocol()};\n\n    try\n    {\n        socket.connect(endpoint);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp
+5616	2	TEST_LAUNCHER	code	cmake
 1752	1	#include <boost/asio.hpp>\n#include <iostream>\n\nint main()\n{\n    boost::asio::ip::port_type port{9000};\n    boost::asio::ip::address address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::tcp::endpoint endpoint{address, port};\n\n    boost::io_context context{};\n\n    boost::asio::ip::tcp::acceptor acceptor{context, endpoint.protocol()};\n\n    try\n    {\n        acceptor.bind(endpoint);\n        acceptor.listen(10);\n\n        boost::asio::ip::tcp::socket client{context};\n\n        acceptor.accept(client);\n    }\n    catch (boost::system::system_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	cpp
 1753	1	#include <iostream>\n#include <map>	text	txt
 1753	2	int main()\n{\n    std::map<int, char const*> letters;\n    letters.insert({0, "first"});\n    letters.insert({1, "second"});\n    letters.insert({2, "third"});	text	txt
@@ -6799,6 +6806,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1767	2	- Filenames are separated only by a single preferred directory separator.\n- The filename `.` is not used unless the whole path is nothing but `.`.\n- The filename does not contain `..` filenames unless they are at the\n  beginning of a relative path.\n- The path only ends with a directory separator if the trailing filename is a\n  directory with a name other than `.` or `..`.	text	txt
 1768	1	The filesystem library provides several functions, which can be both member\nand free-standing functions. **Member** functions are cheap because they are\npure lexical operations that do not take the actual filesystem into account,\nso that no operating system calls are necessary, e.g. `mypath.is_absolute()`.\n**Free-standing** functions on the other hand are expensive, because they\nusually take the actual filesystem into account, e.g. `equivalent(path1,\npath2)`. Sometimes, the filesystem library provides the same functionality\noperating both lexically and by the actual filesystem into account, e.g.\n`path1.lexically_relative(path2)`.	text	txt
 1768	2	Because of **Argument Dependent Lookup (ADL)** usually we don't have to\nspecify the full namespace `std::filesystem` when calling free-standing\nfilesystem functions.	text	txt
+5576	1	Global target properties influence how CMake initializes these properties.	text	md
 1768	3	create_directory(std::filesystem::path{"/tmp/notes"}); // OK\nremove(std::filesystem::path{"/tmp/note.txt"}); // OK	text	txt
 1768	4	std::filesystem::create_directory("/tmp/note.txt"); // OK\nstd::filesystem::remove("/tmp/note.txt"); // OK	text	txt
 1768	5	create_directory("/tmp/notes"); // ERROR\nremove("/tmp/note.txt"); // OOPS: calls C function remove()	code	txt
@@ -6963,6 +6971,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1838	1	When iterating over directories you can pass values of type\n`directory_options`. The type is a bitmask scoped enumeration type, defined\nin namespace `std::filesystem` as follows:	text	txt
 1838	2	namespace std::filesystem {\n    enum class directory_options {\n        none,\n        follow_directory_symlink,\n        skip_permission_denied\n    };\n}	code	txt
 1838	3	The default is not to follow symbolic links and to skip directories you are\nnot allowed to iterate over. With `skip_permission_denied` iterating over a\ndenied directory, results in an exception.	text	txt
+5576	3	But this will be confusing when a library with this setting is installed.	text	md
 1839	1	The elements directory iterators iterate over are of type\n`std::filesystem::directory_entry`. These iterators are input iterators. The\nreason is that iterating over a directory might result into different results\nas at any time directory entries might change. This has to be taken into\naccount when using directory iterators in parallel.	text	txt
 1839	2	e.path();\ne.exists()\ne.is_regular_file()\ne.is_directory()\ne.is_symlink()\ne.is_other()\ne.is_block_file()\ne.is_character_file()\ne.is_fifo()\ne.is_socket()\ne.file_size()\ne.hard_link_count()\ne.last_write_time()\ne.status()\ne.symlink_status()\ne1 == e2\ne1 != e2\ne1 < e2\ne1 <= e2\ne1 > e2\ne1 >= e2\ne.assign(p)\ne.replace_filename(p)\ne.refresh()	code	txt
 1839	3	`assign()` and `replace_filename()` call the corresponding modifying path\noperations but do not modify the files in the underlying filesystem.	text	txt
@@ -7017,6 +7026,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2766	2		code	txt
 2767	1	*init.c*\n#include <stdio.h>	text	txt
 2767	2	int main(void)\n{\n    fprintf(stdout, "Init program\\\\n");\n    while (true);\n}	code	txt
+5576	4		code	cmake
 1846	1	* `arch/`: To be as generic as possible, architecture-specific code.\n* `block/`: Codes for block storage devices.\n* `crypto/`: Cryptographic API and the encryption algorithm's code.\n* `certs/`: Certificates and sign files to enable a module signature to make the kernel load signed modules.\n* `documentation/`: Descriptions of the APIs that are used for different kernel frameworks and subsystems.\n* `drivers/`: Device driver, organized into various subdirectories.\n* `fs/`: Implementations of different filesystems that the kernel supports, such as NTFS, FAT, ETX{2,3,4}, sysfs, procfs, NFS, and so on.\n* `include/`: Kernel header files.\n* `init/`: Initialization and startup code.\n* `ipc/`: Implementation of the inter-process communication (IPC) mechanisms, such as message queues, semaphores, and shared memory.\n* `kernel/`: Architecture-independent portions of the base kernel.\n* `lib/`: Library routines and some helper functions including generic **kernel object (kobject)** handlers and **cyclic redundancy code (CRC)** computation functions.\n* `mm/`: Memory management code.\n* `net/`: Networking (whatever network type it is) protocol code.\n* `samples/`: Device driver samples for various subsystems.\n* `scripts/`: Scripts and tools that are used alongside the kernel.\n* `security/`: Security framework code.\n* `sound/`: Audio subsystem code.\n* `tools/`: Linux kernel development and testing tools for various subsystems, such as USB, vhost test modules, GPIO, IIO, and SPI, among others.\n* `usr/`: `initramfs` implementation.\n* `virt/`: Virtualization directory, which contains the kernel virtual machine (KVM) module for a hypervisor.	text	txt
 1847	1	Cross-compiler prefix and the architecture of the target must be specified.	text	txt
 1847	2	ARCH=<XXXX> CROSS_COMPILE=<YYYY> make help	code	txt
@@ -7104,6 +7114,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1884	1	The license will define how your source code should be shared (or not) with other developers.\n`MODULE_LICENSE()` tells the kernel what license our module is under.\nIt has an effect on your module behavior, since a license that is not compatible with\n**GPL (General Public License)** will result in your module not being able to see/use\nsymbols exported by the kernel through the `EXPORT_SYMBOL_GPL()` macro,\nwhich shows the symbols for GPL-compatible modules only.\nThis is the opposite of `EXPORT_SYMBOL()`, which exports functions for modules with any license.	text	txt
 1884	2	Loading a non-GPL-compatible module will result in a tainted kernel; that means non-open source or untrusted code has been loaded, and you will likely have no support from the community.	text	txt
 2767	3	arm-black-linux-gnueabihf-gcc -o simple_init -static init.c\ncp simple_init /srv/nfs4/root/	code	txt
+5579	4	Now when we provide the usage of this library:	text	md
 1884	3	Remember that the module without `MODULE_LICENSE()` is not considered open source and will taint the kernel too.\nAvailable licenses can be found in `include/linux/module.h`, describing the license supported by the kernel.	text	txt
 1995	6	Configure the `/etc/security/faillock.conf` file.	text	txt
 1885	1	When code is outside of the kernel source tree, it is known as **out-of-tree** building.\nBuilding a module this way does not allow integration into the kernel configuration/compilation process, and the module needs to be built separately.\nIt must be noted that with this solution, the module cannot be statically linked in the final kernel image – that is, it cannot be built in.\nOut-of-tree compilation only allows **loadable kernel modules** to be produced.	text	txt
@@ -7409,6 +7420,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1956	6	Instead of working as a cron job, as the old `yum-cron` did, `dnf-automatic` works with a systemd timer.\nWhen you first install `dnf-automatic`, the timer is disabled.\nEnable it and start it by running this command:	text	txt
 1956	7	sudo systemctl enable --now dnf-automatic.timer	code	txt
 5257	1	pwd	code	sh
+5587	1	"You are right to assume how to build that project."	text	md
 1956	8	To determine if a system needs to be restarted, just install the `yum-utils` package and run the `needs-restarting` command, the same as you did for CentOS 7.\n(For some reason, the Red Hat developers never bothered to change the package name to `dnf-utils`.)	text	txt
 1957	1	Using `su -` to log in to the root command prompt does not let `sudo` to record user activity.\nFor that reason, getting access to the root command prompt should be prevented.	text	txt
 1958	1	The first method is to add users to a predefined administrators group and then, if it hasn’t already been done, to configure the sudo policy to allow that group to do its job.\nIt’s simple enough to do except that different Linux distro families use different admin groups.	text	txt
@@ -7617,6 +7629,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1993	2	On RHEL 7-type systems and Ubuntu 18.04, you’ll do this by configuring the `pam_tally2` PAM.\nOn RHEL 8/9-type systems and Ubuntu 20.04/22.04, you’ll instead configure the `pam_faillock` PAM module.	text	txt
 1993	3	The `pam_tally2` module comes already installed on CentOS 7, but it isn’t configured.\nWe’ll begin by editing the `/etc/pam.d/login` file.	text	txt
 5552	1		code	cpp
+5589	3	"We do not discriminate against any build pipeline."	text	md
 1993	4	If you’re working with a text-mode server, you’ll only need to configure the `/etc/pam.d/login` file.\nBut if you’re working with a machine that’s running a graphical desktop environment, you’ll also need to configure the `/etc/pam.d/password.auth` and `/etc/pam.d/system.auth` files.	text	txt
 1993	5	In the second line of the example, we see that `pam_tally2` is set with the following parameters:	text	txt
 1993	6	* `deny=4`: This means that the user account under attack will get locked out after only four failed login attempts.\n* `even_deny_root`: This means that even the root user account will get locked if it’s under attack.\n* `unlock_time=1200`: The account will get automatically unlocked after 1,200 seconds, or 20 minutes.	text	txt
@@ -8308,6 +8321,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2202	5	    std::nth_element(series1.begin(), std::next(series1.begin(), 2), series1.end());\n    // 1 2 3 5 6 4	text	txt
 2202	6	    std::nth_element(series2.begin(), std::next(series2.begin(), 2), series2.end(), std::greater<long>{});\n    // 5 6 4 3 2 1\n}	code	txt
 5556	1		code	cpp
+5594	1	File name is not relevant.	text	md
 2210	5	    auto last = std::unique(range1.begin(), range1.end());\n    range1.resize(std::distance(range1.begin(), last));\n    // range1 == {1,2,3,4,5};	text	txt
 3117	2		text	txt
 2202	7	Because of its selection/partitioning nature, `std::nth_element` offers a better theoretical complexity than `std::partial_sort` - `O(n)` vs `O(n ∗ logk)`.\nHowever, note that the standard only mandates average `O(n)` complexity, and `std::nth_element` implementations can have high overhead, so always test to determine which provides better performance for your use case.	text	txt
@@ -8403,6 +8417,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2222	6	    std::shift_right(range.begin(), range.end(), 3);\n    // {N,N,N,4,5}\n}	code	txt
 2223	1	| `std::shuffle` | standard |\n| --- | --- |\n| introduced | C++11 |\n| paralllel | N/A |\n| constexpr | N/A |\n| rangified | C++20 |	text	txt
 2223	2	#include <algorithm>\n#include <vector>\n#include <ranges>\n#include <random>	text	txt
+5595	1	ctest_update(RETURN_VALUE retval)	code	cmake
 2223	3	int main()\n{\n    std::vector<long> range{1,2,3,4,5};\n    std::random_device rd{};\n    std::mt19937 generator{rd()};\n    std::ranges::shuffle(range, generator);\n}	code	txt
 2224	1	| `std::next_permutation` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt
 2224	2	#include <algorithm>\n#include <vector>\n#include <ranges>	text	txt
@@ -8589,6 +8604,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2277	2	int main()\n{\n    std::ranges::copy(std::views::empty<long>, std::ostream_iterator<long>(std::cout, " "));\n}	code	txt
 2278	1	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>	text	txt
 2278	2	int main()\n{\n    std::ranges::copy(std::views::single(4), std::ostream_iterator<long>(std::cout, " "));\n    // 4\n}	code	txt
+5602	1	Incomplete: extend from CMake documentation.	text	md
 2279	1	#include <iostream>\n#include <iterator>\n#include <algorithm>\n#include <ranges>	text	txt
 2279	2	int main()\n{\n    std::ranges::copy(std::views::iota(2,5), std::ostream_iterator<long>(std::cout, " "));\n    // 2 3 4	text	txt
 2279	3	    std::ranges::copy(std::views::iota(4) | std::views::take(3), std::ostream_iterator<long>(std::cout, " "));\n    // 4 5 6\n}	code	txt
@@ -9600,6 +9616,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2661	1	`BUILD_SHARED_LIBS` is a global flag offered by cmake.	text	txt
 2661	2	`add_library` can be invoked without passing the `STATIC/SHARED/OBJECT`\nargument. This command will internally lookup `BUILD_SHARED_LIBS` and will\nuse `SHARED` when set, otherwise it uses `STATIC`.	text	txt
 2773	1	The `post()` function requests the service to run its works after queueing up\nall the work. So it does not run the works immediately.	text	txt
+5603	1	Incomplete: extend from CMake documentation.	text	md
 2662	1	- A logical variable is true if it set to any of the `1, ON, YES, TRUE, Y`,\n  or a non-zero number.\n- A logical variable is false if is set to any of the `0, OFF, NO, FALSE, N,\n  IGNORE, NOTFOUND`, an empty string, or a string ending with `-NOTFOUND`.	text	txt
 2667	1	The board should be physically connected to the host using USB to Serial\ncable.	text	txt
 2667	2	The program which can be used to connect the board with a TTY are as follows:	text	txt
@@ -10204,6 +10221,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2952	1	Strings are considered boolean true, only if they equal to any of the following case sensitive constants:	text	txt
 2952	2	- `ON`\n- `Y`\n- `YES`\n- `TRUE`\n- non-zero number	text	list
 5558	5	---	text	md
+5577	1	Global target properties influence how CMake initializes these properties.	text	md
 2953	1	set(x something)\nset(y "x")\nif (${y})\n    # reference ${y} first expands to x\n    # x is a known variable then it expands to "something"\n    # if("something") is evaluated to false\nendif()	code	cmake
 2953	2	But when variable is used, the condition is considered boolean false only if the expanded value contains `OFF`, `NO` `FALSE`, `N`, `IGNORE`, `NOTFOUND`, a string appended with `-NOTFOUND`, an empty string, zero.	text	txt
 2953	3	if(y)\n    # variable y evaluates to x\n    # but x will not be expanded anymore\n    # because x is not one of the false conditions, it evalues to true\nendif()	code	cmake
@@ -14129,6 +14147,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5367	1	#pragma once\n\n#include <string>\n#include <memory>\n#include <Memento.hpp>\n\nclass Originator\n{\npublic:\n    [[nodiscard]] std::string getText() const;\n    void setText(std::string edited);\n    [[nodiscard]] std::shared_ptr<Memento> getState() const;\n    void setState(std::weak_ptr<Memento> state);\nprivate:\n    std::string text;\n};	code	hpp
 5367	2	#include <utility>\n#include <Originator.hpp>\n\nstd::string Originator::getText() const\n{\n    return text;\n}\n\nvoid Originator::setText(std::string edited)\n{\n    text = std::move(edited);\n}\n\nstd::shared_ptr<Memento> Originator::getState() const\n{\n    std::shared_ptr<Memento> state{std::make_shared<Memento>()};\n    state->text = text;\n    return state;\n}\n\nvoid Originator::setState(std::weak_ptr<Memento> state)\n{\n    if (std::shared_ptr<Memento> capturedState{state.lock()})\n    {\n        text = capturedState->text;\n    }\n}	code	cpp
 5367	3	#pragma once\n\n#include <string>\n\nclass Originator;\n\nclass Memento\n{\nprivate:\n    std::string text;\n    friend Originator;\n};	code	hpp
+5577	3	But this will be confusing when a library with this setting is installed.	text	md
 5367	4	#pragma once\n\n#include <memory>\n#include <Memento.hpp>\n\nclass Caretaker\n{\npublic:\n    void store(std::shared_ptr<Memento> state);\n    [[nodiscard]] std::weak_ptr<Memento> restore() const;\nprivate:\n    std::shared_ptr<Memento> state;\n};	code	hpp
 5367	5	#include <Caretaker.hpp>\n\nvoid Caretaker::store(std::shared_ptr<Memento> state)\n{\n    this->state = state;\n}\n\nstd::weak_ptr<Memento> Caretaker::restore() const\n{\n    return state;\n}	code	cpp
 5367	6	#include <memory>\n#include <print>\n#include <Originator.hpp>\n#include <Memento.hpp>\n#include <Caretaker.hpp>\n\nint main()\n{\n    std::shared_ptr<Originator> originator{std::make_shared<Originator>()};\n    std::shared_ptr<Caretaker> caretaker{std::make_shared<Caretaker>()};\n\n    originator->setText("Initial text");\n    caretaker->store(originator->getState());\n    std::println("{}", originator->getText());\n\n    originator->setText("Edited text");\n    std::println("{}", originator->getText());\n\n    originator->setState(caretaker->restore());\n    std::println("{}", originator->getText());\n}	code	cpp
@@ -14272,6 +14291,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5442	4	sestatus | grep 'Policy deny_unknown status'	code	sh
 5443	1	Administrators can `handle-unknown` variable to `allow`, `deny`, or `reject` values in `/etc/selinux/semanage.conf`.	text	md
 5444	1	seifo -t unconfined_t	code	sh
+5577	4	Create imported target `foo::foo`:	text	md
 1734	1	#include <boost/asio.hpp>\n\nint main()\n{\n    boost::asio::ip::address_v4 address{boost::asio::ip::address_v4::from_string("127.0.0.1")};\n    boost::asio::ip::address_v6 address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::address address{boost::asio::ip::address::from_string("127.0.0.1")};\n    boost::asio::ip::port_type port{80};\n}	code	cpp
 1735	3	1. Obtain the server application's IP address and port number. The IP address\n   should be specified as a string in the dot-decimal (IPv4) or hexadecimal\n   (IPv6) notation.\n2. Represent the raw IP address as an object of the `asio::ip::address`\n   class.\n3. Instantiate the object of the `asio::ip::tcp::endpoint` class from the\n   address object created in step 2 and a port number.\n4. The endpoint is ready to be used to designate the server application in\n   Boost.Asio communication related methods.	text	txt
 1735	4	The server application uses an endpoint to specify a local IP address and a\nport number on which it wants to receive incoming messages from clients. If\nthere is more than one IP address on the host, the server application will\nwant to create a special endpoint representing all IP addresses at once.	text	txt
@@ -14334,6 +14354,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2663	1	cmake_minimum_required(VERSION 3.20 FATAL_ERROR)\nproject(Sample LANGUAGES CXX)\n\nset(USE_LIBRARY OFF)\nset(BULID_SHARED_LIBS OFF)\n\nif(USE_LIBRARY)\n    add_library(message message.hpp message.cpp)\n    add_executable(program main.cpp)\n    target_link_libraries(program message)\nelse()\n    add_executable(program main.cpp ${message_files})\nendif()	code	cmake
 2663	3	objdump --syms build/program	code	sh
 5473	2	In this module, `ftxui::Component` represents stateful and interactive widgets, provides built-in `ftxui::Checkbox`, `ftxui::Input`, `ftxui::Menu`, and `ftxui::Button`. This module supports keyboard and cursor input and composition.	text	md
+5573	1	It is possible to configure all targets at once in CMake, but this CMake coding style is strongly discouraged.	text	md
 2658	1	cmake_minimum_required(VERSION 3.20 FATAL_ERROR)\nproject(Sample LANGUAGES CXX)\nadd_executable(program main.cpp)\nadd_library(message-object OBJECT message.hpp message.cpp)\nset_target_properties(message-object PROPERTIES POSITION_INDEPENDENT_CODE 1)\nadd_library(message-shared SHARED $<TARGET_OBJECTS:message-object>)\nset_target_properties(message-shared PROPERTIES OUTPUT_NAME "message")\nadd_library(message-static STATIC $<TARGET_OBJECTS:message-object>)\nset_target_properties(message-static PROPERTIES OUTPUT_NAME "message")\ntarget_link_libraries(program message-shared)	code	cmake
 2657	1	cmake_minimum_required(VERSION 3.20 FATAL_ERROR)\nproject(Sample LANGUAGES CXX)\nadd_executable(program main.cpp)\nadd_library(message-shared SHARED message.hpp message.cpp)\nadd_library(message-static STATIC message.hpp message.cpp)\ntarget_link_libraries(program message-shared)	code	cmake
 2653	1	cmake --build <build_dir> --target help	code	sh
@@ -14396,6 +14417,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5529	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element text{ftxui::text("Flashback, for experts like you")};\n    ftxui::underline(text);\n}	code	cpp
 5530	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element text{ftxui::text("Flashback, for experts like you")};\n    ftxui::underlineDouble(text);\n}	code	cpp
 5531	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element text{ftxui::text("Flashback, for experts like you")};\n    ftxui::strikethrough(text);\n}	code	cpp
+5575	1	There are many target properties but a few of them are usually required in a moderately small project:	text	md
 5520	1	#include <ftxui/dom/elements.hpp>\n#include <ftxui/dom/node.hpp>\n#include <ftxui/screen/screen.hpp>\n#include <ftxui/screen/color.hpp>\n#include <functional>\n#include <iostream>\n#include <utility>\n#include <vector>\n#include <chrono>\n#include <string>\n#include <thread>\n#include <cmath>\n\nclass Graph\n{\npublic:\n    std::vector<int> operator()(int width, int height) const\n    {\n        std::vector<int> output(width);\n        for (int i = 0; i < width; ++i)\n        {\n            float v = 0;\n            v += 0.5f * sin((i + shift) * 0.2f);\n            v *= height;\n            v += 0.5f * height;\n            output[i] = static_cast<int>(v);\n        }\n        return output;\n    }\n    int operator ++() { return shift++; }\n    void operator ++(int) { ++shift; }\n    int shift = 0;\n};\n\nstd::vector<int> triangle(int width, int height)\n{\n    std::vector<int> output(width);\n\n    for (int i = 0; i < width; ++i)\n    {\n        output[i] = i % (height - 4) + 2;\n    }\n    return output;\n}\n\nint main() {\n    Graph my_graph;\n\n    for (int i = 0;; ++i)\n    {\n        std::ignore = i;\n        auto document{ftxui::graph(std::ref(my_graph))};\n\n        document |= ftxui::border;\n\n        const int min_width = 40;\n        document |= ftxui::size(ftxui::HEIGHT, ftxui::GREATER_THAN, min_width);\n\n        auto screen = ftxui::Screen::Create(ftxui::Dimension::Full(), ftxui::Dimension::Fixed(10));\n        ftxui::Render(screen, document);\n        std::cout << screen.ResetPosition() << screen.ToString() << std::flush;\n\n        const auto sleep_time = std::chrono::seconds{1};\n        std::this_thread::sleep_for(sleep_time);\n        my_graph++;\n    }\n}	code	cpp
 5524	1	#include <ftxui/screen/screen.hpp>\n#include <ftxui/dom/elements.hpp>\n#include <iostream>\n\nint main()\n{\n    ftxui::LinearGradient gradient{ftxui::LinearGradient().Angle(0.0).Stop(ftxui::Color::Black, 0.0).Stop(ftxui::Color::Red, 0.5).Stop(ftxui::Color::Black, 1.0)};\n    ftxui::Element title{ftxui::text("Flashback, for experts like you")};\n    ftxui::Element document{title | ftxui::color(ftxui::Color::Default) | ftxui::border | ftxui::color(gradient)};\n    ftxui::Screen screen{ftxui::Screen::Create(ftxui::Dimension::Fit(document))};\n    ftxui::Render(screen, document);\n    std::cout << screen.ResetPosition(true) << screen.ToString() << std::endl;\n}	code	cpp
 5532	1	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::Element text{ftxui::text("Flashback, for experts like you")};\n    ftxui::blink(text);\n}	code	cpp
@@ -14408,6 +14430,116 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5550	2	#include <ftxui/component/screen_interactive.hpp>\n#include <ftxui/component/component.hpp>\n\nconstexpr auto title{"Flashback, for experts like you."};\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::Fullscreen()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::border(ftxui::paragraph(title)); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event event) -> bool { if (event == ftxui::Event::Escape) { screen.ExitLoopClosure()(); return true; }; return false; });\n    bool show{true};\n    component = ftxui::Maybe(component, &show);\n    screen.Loop(component);\n}	code	cpp
 5550	3	#include <ftxui/component/screen_interactive.hpp>\n#include <ftxui/component/component.hpp>\n\nconstexpr auto title{"Flashback, for experts like you."};\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::Fullscreen()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::border(ftxui::paragraph(title)); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event event) -> bool { if (event == ftxui::Event::Escape) { screen.ExitLoopClosure()(); return true; }; return false; });\n    component = ftxui::Maybe(component, [] -> bool { return true; });\n    screen.Loop(component);\n}	code	cpp
 5549	1	#include <ftxui/component/component.hpp>\n#include <ftxui/component/screen_interactive.hpp>\n\nint main()\n{\n    ftxui::ScreenInteractive screen{ftxui::ScreenInteractive::TerminalOutput()};\n    ftxui::Component component{ftxui::Renderer([] { return ftxui::text("Flashback, for experts like you."); })};\n    component = ftxui::CatchEvent(component, [&screen](ftxui::Event const& event) -> bool {\n        if (event == ftxui::Event::Character('q'))\n        {\n            screen.ExitLoopClosure()();\n            return true;\n        }\n        return false;\n    });\n    screen.Loop(component);\n}	code	cpp
+5573	2	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nset(CMAKE_CXX_STANDARD 23)    # globally applied\nset(CMAKE_CXX_FLAGS "-fpic")  # globally applied\n\ninclude_include_directories(${CMAKE_SOURCE_DIR})  # globally applied\n\nadd_library(foo SHARED foo/foo.cpp)	code	cmake
+5573	3	We should follow a target-centric approach, meaning that we should individually define and customize targets and make meaningful connections between them.	text	md
+5573	4	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nadd_library(foo)\ntarget_sources(foo\n    PUBLIC\n        FILE_SET foo_headers TYPE HEADERS BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} FILES foo/foo.hpp)\n    PRIVATE\n        foo/foo.cpp\n)\n\nadd_executable(program)\ntarget_link_libraries(program PRIVATE foo)	code	cmake
+5574	1	Any target or source has a set of properties to define the usage and behavior of them. Each CMake command affecting targets and sources will populate these properties.	text	md
+5575	2	* `SOURCES` / `INTERFACE_SOURCES`\n* `INCLUDE_DIRECTORIES` / `INTERFACE_INCLUDE_DIRECTORIES`\n* `LINK_LIBRARIES` / `INTERFACE_LINK_LIBRARIES`\n* `TYPE`	text	md
+5577	5	add_library(foo::foo STATIC IMPORTED)	code	cmake
+5577	9	With target properties, the library will be created like this:	text	md
+5575	4	* `COMPILE_DEFINITIONS` / `INTERFACE_COMPILE_DEFINITIONS`\n* `COMPILE_FEATURES` / `INTERFACE_COMPILE_FEATURES`\n* `COMPILE_OPTIONS` / `INTERFACE_COMPILE_OPTIONS`\n* `COMPILE_FLAGS` / `INTERFACE_COMPILE_FLAGS`\n* `LINK_DEPENDS` / `INTERFACE_LINK_DEPENDS`\n* `LINK_LIBRARIES` / `INTERFACE_LINK_LIBRARIES`\n* `LINK_DIRECTORIES` / `INTERFACE_LINK_DIRECTORIES`\n* `C_EXTENSIONS`\n* `C_STANDARD`\n* `C_STANDARD_REQUIRED`\n* `CXX_EXTENSIONS`\n* `CXX_STANDARD`\n* `CXX_STANDARD_REQUIRED`\n* `HEADER_DIRS`\n* `BUILD_RPATH`\n* `BUILD_RPATH_USE_ORIGIN`\n* `INSTALL_RPATH`\n* `INSTALL_RPATH_USE_LINK_PATH`\n* `COMPILE_WARNING_AS_ERROR`\n* `SPDX_LICENSE`	text	md
+5576	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nset(CMAKE_CXX_STANDARD 23)\n\nadd_library(foo)\ntarget_sources(foo PUBLIC FILE_SET foo_headers TYPE HEADERS BASE_DIRS include FILES include/foo/foo.hpp PRIVATE src/foo.cpp)	code	cmake
+5577	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nset(CMAKE_CXX_STANDARD 23)\n\nadd_library(foo)\ntarget_sources(foo PUBLIC FILE_SET foo_headers TYPE HEADERS BASE_DIRS include FILES include/foo/foo.hpp PRIVATE src/foo.cpp)	code	cmake
+5577	6	Users will not know anything about this setting but they have to manually set their project to C++23 to make it work.	text	md
+5577	7	Instead, we can use course-grained target properties and enable them on client projects automatically:	text	md
+5577	8	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nadd_library(foo)\ntarget_sources(foo PUBLIC FILE_SET foo_headers TYPE HEADERS BASE_DIRS include FILES include/foo/foo.hpp PRIVATE src/foo.cpp)\ntarget_compile_features(foo PUBLIC cxx_std_23)	code	cmake
+5577	11	add_library(foo::foo STATIC IMPORTED)\nset_target_properties(foo::foo PROPERTIES INTERFACE_COMPILE_FEATURES "cxx_std_17")	code	cmake
+5578	1	We need to collect the compiled libraries and header files. We also need to provide information on how to consume the libraries.	text	md
+5579	1	When installing a target, the executables, libraries, and headers will be copied into their corresponding sub-directories:	text	md
+5579	2	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nadd_library(foo)\ntarget_sources(foo\n    PUBLIC\n        FILE_SET foo_headers TYPE HEADERS BASE_DIRS include FILES include/foo/foo.hpp\n    PRIVATE\n        src/foo.cpp\n)\n\ninstall(TARGETS foo EXPORT fooTargets FILE_SET foo_headers)	code	cmake
+5579	3	- The header file `foo.hpp` will occupy `_install/include/foo/` directory.\n- The library file `libfoo.a` will occupy `_install/lib/` directory.	text	md
+5579	5	install(EXPORT fooTargets DESTINATION share/cmake/foo NAMESPACE foo::)	code	cmake
+5579	6	- The `fooTargets.cmake` and `fooTargets-Release.cmake` files will be created in `share/cmake/foo/` directory.\n- The `fooConfig.cmake` is also generated in `share/cmake/foo/` directory to define packaging.	text	md
+5579	7	_install\n  include\n    foo\n      foo.hpp\n  lib\n    libfoo.a\n  share\n    cmake\n      foo\n        fooTargets.cmake\n        fooTargets-Release.cmake\n        fooConfig.cmake	code	txt
+5580	1	When using fetch content, we are binding the library to a very specific version of dependencies. But then the library users may end up having multiple versions of those dependencies.	text	md
+5581	1	Packages supporting CMake already expose their headers and dependencies through target properties.	text	md
+5581	2	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nfind_package(Protobuf REQUIRED)\n\nadd_library(foo)\n\ntarget_sources(foo PRIVATE src/foo.cpp)\n\ntarget_link_libraries(foo PUBLIC Protobuf::libprotobuf)	code	cmake
+5581	3	Therefore, we do not need to explicitly specify them again:	text	md
+5581	4	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nfind_package(Protobuf REQUIRED)\n\nadd_library(foo)\n\ntarget_sources(foo PRIVATE src/foo.cpp)\n\ntarget_include_directories(foo PUBLIC "${Protobuf_INCLUDE_DIRS}")\n\ntarget_link_libraries(foo PUBLIC "${Protobuf_LIBRARIES}")	code	cmake
+5582	1	By finding a package but not requiring it, we introduce an implicit requirement which can lead to non-deterministic builds. Notice the non-existing `REQUIRED` paramter:	text	md
+5582	2	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\nfind_package(JPEG)\n\nif(JPEG_FOUND)\n    add_library(foo_jpeg)\n    target_link_libraries(foo_jpeg PRIVATE jpeg::jpeg)\nendif()	code	cmake
+5582	3	This may behave differently on systems with different dependencies installed.	text	md
+5582	4	We can make the packages explicitly required but give library users the possibility to disable them:	text	md
+5582	5	cmake_minimum_required(VERSION 4.0)\n\nproject(Example LANGUAGES CXX)\n\noption(FOO_HAS_JPEG "Build foo with JPEG" ON)\n\nif(FOO_HAS_JPEG)\n    find_package(JPEG REQUIRED)\n    add_library(foo_jpeg)\n    target_link_libraries(foo_jpeg PRIVATE jpeg::jpeg)\nendif()	code	cmake
+5582	6	Notice the `REQUIRED` parameter. This will make the dependency required, but can be discarded when users disable it.	text	md
+5583	1	When usage requirements and how we can use the library is forced inside the project, all users are enforced to have them. The best practice is to specify build settings, but export usage requirements inside workflows.	text	md
+5583	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nif(UNIX)\n    add_compile_options(-Wall -Wextra)\nendif()\n\nadd_subdirectory(foo)\nadd_subdirectory(foo_usage)	code	cmake
+5583	3	This will enfore users to have compiler options enabled. But these are usage requirements. Instead, we can enforce them in workflows which is the correct place to specify usage and its requirements:	text	md
+5583	4	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nadd_subdirectory(foo)\nadd_subdirectory(foo_usage)	code	cmake
+5583	5	{\n    "version": 3,\n    "configurePresets": [\n        {\n            "name": "unix",\n            "displayName": "Default",\n            "cacheVariables": {\n                "COMPILE_OPTIONS": "-Wall -Wextra"\n            }\n        }\n    ]\n}	code	json
+5584	1	- Abstraction of version control system\n- Build warnings and errors\n- Test results\n- Duration\n- Resource usage\n- Code Coverage\n- Memory Defects\n- Custom metrics\n- File and image attachments	text	md
+5585	1	It is not required, but recommended to include CTest as such:	text	md
+5585	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES C CXX)\n\ninclude(CTest)	code	cmake
+5586	1	The `CTestConfig.cmake` file should have at least the following configurations:	text	md
+5586	2	set(CTEST_NIGHTLY_START_TIME "1:00:00 UTC")\nset(CTEST_SUBMIT_URL "https://ci/domain.com/api/submit?project=example")	code	cmake
+5586	3	Now everybody can submit build and test results to that server.	text	md
+5587	2	If this is the only build file in the project, it gives users more confident that they can build the project.	text	md
+5588	1	"The project satisfies the quality standards set by us."	text	md
+5588	2	This also resembles "It works on my machine, but not necessarily yours."	text	md
+5589	1	"We challenge you to define a build pipeline that causes a failure."	text	md
+5589	2	When there is no pipelines defined in the projects, a.k.a CMakePresets.json file, it also resembles:	text	md
+5590	1	Make it a goal to have no build pipelines in your project. Meaning that the best case scenario is to have a `CTestConfig.cmake` but no `CMakePreset.json`.	text	md
+5591	1	Build pipeline maintainers try to cause build or test failures. Project maintainers try to avoid it or fix them. Projects should contain no code specific to build pipelines. The build pipelines contain no code specific to projects.	text	md
+5592	1	Maintainers should make sure that projects support the default workflow.	text	md
+5593	1	The best practice is to make a default workflow for the project. But when tests are excluded and the project is built, the tests will all fail, which breaks the default build workflow.	text	md
+5593	2	The recommended way is to leave the tests and let the default workflow build the project and the tests together.	text	md
+5594	2	set(CTEST_SITE "flashback.eu.com")\nset(CTEST_BUILD_NAME "amd64-gnu-linux-gcc")\nset(CTEST_SOURCE_DIRECTORY "/home/brian/projects/flashback")\nset(CTEST_BINARY_DIRECTORY "${CTEST_SOURCE_DIRECTORY}/../builds/flashback-ctest-release")\nset(CTEST_CMAKE_GENERATOR "Unix Makefiles")\n\nfind_program(CTEST_UPDATE_COMMAND "git")\n\nctest_start("Experimental")\nctest_update()\nctest_configure()\nctest_build()\nctest_test()\nctest_submit()	code	cmake
+5596	1	find_program(CTEST_COVERAGE_COMMAND gcov)\nset(ENV{CXXFLAGS} "--coverage")\n\nctest_start("Experimental")\nctest_update()\nctest_configure()\nctest_build()\nctest_test()\nctest_coverage()	code	cmake
+5597	1	find_program(CTEST_MEMORYCHECK_COMMAND valgrind)\nset(ENV{CXXFLAGS} "-g")\n\nctest_start("Experimental")\nctest_update()\nctest_configure()\nctest_build()\nctest_test()\nctest_memcheck()	code	cmake
+5598	1	set(CTEST_MEMORYCHECK_TYPE "ThreadSanitizer")\nset(ENV{CXXFLAGS} "-fsanitize=thread -fno-omit-frame-pointer")\n\nctest_start("Experimental")\nctest_update()\nctest_configure()\nctest_build()\nctest_test()\nctest_memcheck()	code	cmake
+5599	1	cmake_host_system_information(RESULT nproc QUERY NUMBER_OF_LOGICAL_CORES)\n\nctest_build(PARALLEL_LEVEL ${nproc})	code	cmake
+5603	2	ctest_test(RUN_SERIAL)	code	cmake
+5600	1	cmake_host_system_information(RESULT nproc QUERY NUMBER_OF_LOGICAL_CORES)\n\nctest_test(PARALLEL_LEVEL ${nproc})	code	cmake
+5601	1	cmake_host_system_information(RESULT nproc QUERY NUMBER_OF_LOGICAL_CORES)\n\nctest_memcheck(PARALLEL_LEVEL ${nproc})	code	cmake
+5602	2	ctest_test(PROCESSORS 4)\nctest_test(PROCESSOR_AFFINITY 4)	code	cmake
+5604	1	ctest_test(RESOURCE_LOCK)\nctest_test(RESOURCE_GROUPS)	code	cmake
+5605	1	Using compiler options in CMake files are discouraged. Instead, we should use a CMake property:	text	md
+5605	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nset(CMAKE_COMPILE_WARNING_AS_ERROR ON)	code	cmake
+5605	3	This is also a target property:	text	md
+5605	4	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nadd_executable(program src/main.cpp)\nset_target_properties(program CMAKE_COMPILE_WARNING_AS_ERROR=ON)	code	cmake
+5606	1	Because the pipeline needs to go through the end before it can submit any failure, we should not set any compiler flag. Instead, we should collect the error and warning statistics, then behave accordingly:	text	md
+5606	2	set(ENV{CXX_FLAGS} "-Wall -Wextra")\n\nctest_configure(OPTIONS "--compile-no-warning-as-error")\nctest_build(NUMBER_ERRORS errors NUMBER_WARNINGS warnings)\n\nif((errors GREATER 0) OR (warnings GREATER 0))\n    ctest_submit()\n    message(FATAL_ERROR "Build cancelled")\nendif()	code	cmake
+5607	1	Setting clazy as compiler will inject clazy warnings as compiler warnings.	text	md
+5607	2	set(ENV{CC} "/usr/bin/clang")\nset(ENV{CXX} "/usr/bin/clazy")\nset(ENV{CLANGXX} "/usr/bin/clang++")\nset(ENV{CLAZY_CHECKS} "level2")	code	cmake
+5609	1	// clazy:excludeall=check1,check2	code	cmake
+5610	1	// clazy:exclude=check1,check2	code	cmake
+5611	1	<LANG>_CLANG_TIDY\n<LANG>_CPPCHECK\n<LANG>_CPPLINT\n<LANG>_ICSTAT\n<LANG>_INCLUDE_WHAT_YOU_USE\nLINK_WHAT_YOU_USE	code	cmake
+5612	1	set_source_properties(SKIP_LINTING)	code	cmake
+5613	1	Compiler launcher is a good place to set `ccache`, `sccache`, or `distcc`.	text	md
+5613	2	Launchers can also be used to inject custom static analysis tools, only limited by your imagination.	text	md
+5614	2	<LANG>_COMPILER_LAUNCHER	code	cmake
+5615	2	<LANG>_LINKER_LAUNCHER	code	cmake
+5617	1	We should use launchers module in CTest, so that CTest knows about the build pipeline and launches CMake to build.	text	md
+5617	2	set(CTEST_USE_LAUNCHERS ON)\n\ninclude(CTest)\ninclude(CTestUseLaunchers)	code	cmake
+5617	3	You should never abuse `RULE_LAUNCH_COMPILE` for ccache.	text	md
+5618	1	- Target name\n- Target language\n- Source file\n- Output file\n- Output type\n- Command line\n- Working directory\n- Standard output\n- Standard error\n- Exit code\n- Labels	text	md
+5618	2	But the output is not parsed into diagnostics.	text	md
+5618	3	The number of warnings and errors reported depends on whether `CTEST_USE_LAUNCHERS` is used or not, which is a strange behavior from CMake and should be fixed.	text	md
+5619	1	These properties can be extended:	text	md
+5619	2	- `CTEST_CUSTOM_ERROR_MATCH`\n- `CTEST_CUSTOM_ERROR_EXCEPTION`\n- `CTEST_CUSTOM_WARNING_MATCH`\n- `CTEST_CUSTOM_WARNING_EXCEPTION`\n- `CTEST_CUSTOM_ERROR_PRE_CONTEXT`\n- `CTEST_CUSTOM_ERROR_POST_CONTEXT`\n- `CTEST_CUSTOM_MAXIMUM_NUMBER_OF_ERRORS`\n- `CTEST_CUSTOM_MAXIMUM_NUMBER_OF_WARNINGS`	text	md
+5620	1	Instrumentation is available since CMake 4.0.	text	md
+5620	2	CTEST_USE_INSTRUMENTATION=1\nCTEST_USE_VERBOSE_INSTRUMENTATION=1\nCTEST_EXPERIMENTAL_INSTRUMENTATION="a37d1069-1972-4901-b9c9-f194aaf2b6e0"	code	sh
+5621	1	We cannot put instrumentation variables inside CTest script because it would be too late to change the CTest behavior by the time CTest reaches these lines.	text	md
+5622	1	Compared to `CTEST_USE_LAUNCHERS`, using instrumentation will report all build commands, not just failing ones.	text	md
+5622	2	Additional measurements are also available for build and test:	text	md
+5622	3	- Start timestamp\n- Duration\n- Configuration\n- CPU load\n- Memory usage	text	md
+5622	4	But the following information will not be captured:	text	md
+5622	5	- Standard output\n- Standard error	text	md
+5623	1	Files listed in `CTEST_NOTES_FILES` are encoded in `Notes.xqml`. Alternatively, files passed to `ctest_upload()` are encoded in `Upload.xml`.	text	md
+5623	2	Files listed in `CTEST_EXTRA_SUBMIT_FILES` are submitted with the other XML files.	text	md
+5623	3	`ctest_submit(CDASH_UPLOAD)` sends individiual files after asking for permission.	text	md
+5624	1	set_test_properties(<test-target> ATTACHED_FILES <file>...)\nset_test_properties(<test-target> ATTACHED_FILES_ON_FAIL <file>...)	code	cmake
+5625	1	When there are many small tests but they have **static** libraries as dependencies, they will consume a lot of disk space.	text	md
+5625	2	An alternative to separately building tests, is to make them one test:	text	md
+5625	3	create_test_sourcelist()	code	cmake
+5626	1	When using a framework to link all tsets to a single executable, tests in CMakeLists.txt still register individually.	text	md
+5626	2	include(GoogleTest)\ngtest_discover_tests(<test-target> DISCOVERY_MODE PRE_TEST)	code	cmake
+5627	1	set(CMAKE_SYSTEM_NAME "Windows")\nset(CMAKE_SYSTEM_PROCESSOR "x86_64")\nset(toolchain_prefix "x86_64-w64-mingw32")\n\nset(CMAKE_C_COMPILER "/usr/bin/${toolchain_prefix}-gcc")\nset(CMAKE_CXX_COMPILER "/usr/bin/${toolchain_prefix}-g++")\nset(CMAKE_RC_COMPILER "/usr/bin/${toolchain_prefix}-windres")\n\nset(CMAKE_FIND_ROOT_PATH "/usr/${toolchain_prefix}-sys-root/mingw/")\n\nset(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)\nset(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)\n\nset(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine64")	code	cmake
+5628	1	set(CMAKE_SYSTEM_NAME "Windows")\nset(CMAKE_SYSTEM_PROCESSOR "x86_64")\nset(toolchain_prefix "x86_64-w64-mingw32")\nset(CMAKE_C_COMPILER "/usr/bin/${toolchain_prefix}-gcc")\nset(CMAKE_CXX_COMPILER "/usr/bin/${toolchain_prefix}-g++")\nset(CMAKE_RC_COMPILER "/usr/bin/${toolchain_prefix}-windres")\nset(CMAKE_FIND_ROOT_PATH "/usr/${toolchain_prefix}-sys-root/mingw/")\nset(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)\nset(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)\nset(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine64")\n\nset(ENV{CMAKE_TOOLCHAIN_FILE} "mingw64.cmake")\n\nctest_configure()	code	cmake
+5629	1	The test command is a target. CMake generates a CTest test file with the absolute path, prefixed with the crosscompiling emulator.	text	md
+5629	2	The command is important to be identical with the target name. Any typo or incomplete refactoring may cause CTest to crosscompile a different target.\nTo avoid that, we can use generator expressions.	text	md
+5629	3	set(CMAKE_SYSTEM_NAME "Windows")\nset(CMAKE_SYSTEM_PROCESSOR "x86_64")\nset(toolchain_prefix "x86_64-w64-mingw32")\nset(CMAKE_C_COMPILER "/usr/bin/${toolchain_prefix}-gcc")\nset(CMAKE_CXX_COMPILER "/usr/bin/${toolchain_prefix}-g++")\nset(CMAKE_RC_COMPILER "/usr/bin/${toolchain_prefix}-windres")\nset(CMAKE_FIND_ROOT_PATH "/usr/${toolchain_prefix}-sys-root/mingw/")\nset(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)\nset(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)\nset(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine64")\nset(ENV{CMAKE_TOOLCHAIN_FILE} "mingw64.cmake")\n\nctest_configure()\n\nadd_executable(<target>)\ntarget_sources(<target> PRIVATE <sources>)\nadd_test(NAME <test> COMMAND $<TARGET_FILE:<target>>)	code	cmake
+5629	4	This will run with Wine.	text	md
 \.
 
 
@@ -17763,6 +17895,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3385	What configuration variable lists the files to be included in a package?	draft
 3386	What configuration variable tracks the changes in licenses?	draft
 3387	Which recipes should contain licensing information?	draft
+5623	Attach files to the build?	review
 3388	Specify which licenses cannot be integrated into the image?	draft
 3389	Define a license for commercial components?	draft
 3390	Where does bitbake generate the manifest of all licenses?	draft
@@ -18026,6 +18159,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3697	What location on GitHub do actions refer to?	draft
 3698	What are the use cases of the checkout action?	draft
 3699	Show repository files after checking out?	draft
+5614	Specify compiler launcher?	review
 3700	What is the comment character in YAML syntax?	draft
 3701	What is the syntax of assigning a value in YAML?	draft
 3702	What characters can be used to surround a string value in YAML?	draft
@@ -18126,6 +18260,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3735	What directories should be ignored in projects?	review
 3737	What are the first stages of cmake execution?	review
 3738	What is the underlying build system?	review
+5605	Enable compiler warnings?	review
 3739	What is the incompatibility difference between build systems?	review
 3740	What is the minimum required commands to build a project?	review
 3741	What is a policy?	review
@@ -18559,6 +18694,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 4370	What is the minimum requirement for a type to be comparable for sorting algorithms?	draft
 4371	Compare if one range is lexicographically less than another?	draft
 4372	Compare if one range is lexicographically less than another using spaceship operator?	draft
+5616	Specify test launcher?	review
 4373	What iterator type does the sort function operate on?	draft
 4374	Sort ranges having different iterator types?	draft
 4375	Sort a range providing an additional guarantee of preserving the relative order of equal elements?	draft
@@ -19016,6 +19152,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 5231	Provide environment variables to the actions running by local runners?	review
 5233	Disable steps output on local runners?	review
 5526	Make an element italic?	review
+5607	Enable clazy for Qt projects?	review
 5235	What is the role of SELinux roles in access control?	review
 5237	What roles are available in a default SELinux installation?	review
 5239	How does SELinux prevent unprivileged access when the Linux user has switched?	review
@@ -19192,6 +19329,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 1837	Recursively iterate over directories with following symbolic links?	review
 5419	Import contents of a table from a file?	review
 1278	How to remove an image in docker?	review
+5615	Specify linker launcher?	review
 5420	Filter contents of a table when importing from a file?	review
 1350	Configure the swarm certificate rotation period?	review
 5421	Import contents of a table from a program?	review
@@ -19424,6 +19562,57 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3469	What is a cardinality in mock functions?	review
 5561	Replace occurrences of a pattern with a substitute without case sensitivity?	review
 3474	Specify the return value of a mock function for indefinite calls?	review
+5573	In what granularity should we configure targets?	review
+5574	How properties are affected by CMake commands?	review
+5575	What properties are available for targets?	review
+5576	How properties are affected by CMake commands?	review
+5577	How properties are affected by CMake commands?	review
+5582	What is the best practice to requiring an optional package?	review
+5578	What do we need to collect for packaging a project?	review
+5579	How does the install command populate install directory?	review
+5580	What are the disadvantages of using fetch content?	review
+5583	Why build settings and usage requirements should be separated in configurations?	review
+5581	How dependencies should be linked with targets properly?	review
+5586	What is the bare minimum CTest configuration file that should exist on the top of the source directory?	review
+5584	What does CTest offer out of the box other that handling unit tests?	review
+5585	What is the recommended way of configuring CTest in a project?	review
+5587	What would be the assumption of users about the project developers when there is a CMakeLists.txt file in the top level directory of a project?	review
+5588	What would be the assumption of users about the project developers when there is a GitHub workflow in the project?	review
+5589	What would be the assumption of users about the project developers when there is a CTestConfig.cmake file in the top level directory of a project?	review
+5590	What should be the goal of project developers when preparing their build system?	review
+5591	What is the challenge between project maintainers and build pipeline maintainers?	review
+5592	What is the recommended behavior of the default workflow in projects?	review
+5593	Why excluding tests from the default build workflow of a project is discouraged?	review
+5594	Write a CTest configuration that builds your project?	review
+5595	Take the return value of CTest when updating the repository?	review
+5596	Use CTest commands to collect the test coverage of a project?	review
+5597	Use CTest commands to perform memory checks on tests?	review
+5598	Use CTest commands to sanitize tests?	review
+5599	Use CTest to build the project in parallel?	review
+5600	Use CTest to run tests in parallel?	review
+5601	Use CTest to run memory checks in parallel?	review
+5602	Use a known number of cores to run tests?	review
+5603	Acquire all of the system resources for running tests?	review
+5604	Acquire system resources with fine grained allocations?	review
+5606	Treat warnings as errors in build piplines?	review
+5608	Disable clazy warnings for one file?	review
+5609	Disable individual clazy checks for one file?	review
+5610	Disable individual clazy checks for one line?	review
+5611	What linters are supported through target properties?	review
+5612	Disable linting for a source file?	review
+5613	What are the use cases of using launchers?	review
+5617	What is the best approach when CMake and CTest both need to know about build variables?	review
+5618	What build information is available to CTest?	review
+5619	What properties are used by CTest to scrap build outputs?	review
+5620	What environment variables are available for instrumentation?	review
+5621	Why instrumentation variables should be environment variables?	review
+5622	What additional build information will be available when using instrumentation?	review
+5624	Which test properties can be used to attach files into the test?	review
+5625	What are the disadvantages of building separate small tests?	review
+5626	Allow CTest to schedule and parallelize tests?	review
+5627	Write a toolchain file to crosscompile a target?	review
+5628	Crosscompile with CTest?	review
+5629	Define tests with crosscompiling in CMake?	review
 \.
 
 
@@ -19695,7 +19884,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
 139	OpenCV & C++ Tutorial	book	chapter	relevant	Computer Vision Lab	YouTube	\N
 140	C++ Weekly With Jason Turner	channel	episode	relevant	Jason Turner	YouTube	\N
-1	C++26 Preview	video	episode	relevant	CppNow	YouTube	https://youtu.be/CwYILWyTRMQ
 2	Boost Documentation	website	page	relevant	\N	https://boost.org	https://www.boost.org/libraries/latest/list/
 3	LaTeX Tutorial	website	page	relevant	\N	\N	https://latex-tutorial.com/tutorials/
 9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
@@ -19836,6 +20024,8 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 212	Linux Administration Best Practices	book	chapter	relevant	Scott Alan Miller	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800568792/
 213	Practical Memory Forensics	book	chapter	relevant	Oleg Skulkin	Packt Publishing	https://subscription.packtpub.com/book/security/9781801070331/
 214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	Imran Ahmad	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803247762/
+215	Meeting Cpp	channel	episode	relevant	Kerstin Keller	YouTube	\N
+1	CppNow	video	episode	relevant	Daniel Pfeifer	YouTube	https://youtu.be/CwYILWyTRMQ
 \.
 
 
@@ -21857,6 +22047,8 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 205	18	\N
 205	19	\N
 205	20	\N
+215	1	https://youtu.be/k76LN8dSxx4
+1	2	https://youtu.be/whaPQ5BU2y8
 \.
 
 
@@ -26251,6 +26443,63 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 137	20	5570	24
 137	20	5571	25
 137	20	5572	26
+215	1	5573	1
+215	1	5574	2
+215	1	5575	3
+215	1	5576	4
+215	1	5577	5
+215	1	5578	6
+215	1	5579	7
+215	1	5580	8
+215	1	5581	9
+215	1	5582	10
+215	1	5583	11
+1	2	5584	1
+1	2	5585	2
+1	2	5586	3
+1	2	5587	4
+1	2	5588	5
+1	2	5589	6
+1	2	5590	7
+1	2	5591	8
+1	2	5592	9
+1	2	5593	10
+1	2	5594	11
+1	2	5595	12
+1	2	5596	13
+1	2	5597	14
+1	2	5598	15
+1	2	5599	16
+1	2	5600	17
+1	2	5601	18
+1	2	5602	19
+1	2	5603	20
+1	2	5604	21
+1	2	5605	22
+1	2	5606	23
+1	2	5607	24
+1	2	5608	25
+1	2	5609	26
+1	2	5610	27
+1	2	5611	28
+1	2	5612	29
+1	2	5613	30
+1	2	5614	31
+1	2	5615	32
+1	2	5616	33
+1	2	5617	34
+1	2	5618	35
+1	2	5619	36
+1	2	5620	37
+1	2	5621	38
+1	2	5622	39
+1	2	5623	40
+1	2	5624	41
+1	2	5625	42
+1	2	5626	43
+1	2	5627	44
+1	2	5628	45
+1	2	5629	46
 \.
 
 
@@ -26652,6 +26901,7 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 212	13
 213	45
 214	1
+1	5
 \.
 
 
@@ -27386,6 +27636,20 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 38	Process Custom Events	51	surface
 39	C++20 Modules	51	surface
 1	Piped Input	51	depth
+35	Target Properties	5	surface
+36	Packaging	5	surface
+37	CTest	5	surface
+38	Configure CTest	5	surface
+39	Build with CTest	5	surface
+40	Parallel Execution	5	surface
+41	Compiler Warnings	5	surface
+42	Linters	5	surface
+43	Launchers	5	surface
+44	Build Output Scraping	5	surface
+45	Instrumentation	5	surface
+46	File Attachment	5	surface
+47	Test Granularity	5	surface
+48	Cross Compiling	5	surface
 \.
 
 
@@ -29470,6 +29734,63 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 9	3480	17	24	surface
 9	3481	18	24	surface
 9	3482	19	24	surface
+5	5573	3	5	surface
+35	5574	1	5	surface
+35	5575	2	5	surface
+35	5576	3	5	surface
+35	5577	4	5	surface
+36	5578	1	5	surface
+36	5579	2	5	surface
+28	5580	10	5	surface
+25	5581	5	5	surface
+25	5582	6	5	surface
+34	5583	2	5	surface
+37	5584	1	5	surface
+38	5585	1	5	surface
+38	5586	2	5	surface
+38	5587	3	5	surface
+38	5588	4	5	surface
+38	5589	5	5	surface
+38	5590	6	5	surface
+38	5591	7	5	surface
+38	5592	8	5	surface
+38	5593	9	5	surface
+39	5594	1	5	surface
+39	5595	2	5	surface
+39	5596	3	5	surface
+39	5597	4	5	surface
+39	5598	5	5	surface
+40	5599	1	5	surface
+40	5600	2	5	surface
+40	5601	3	5	surface
+40	5602	4	5	surface
+40	5603	5	5	surface
+40	5604	6	5	surface
+41	5605	1	5	surface
+41	5606	2	5	surface
+41	5607	3	5	surface
+41	5608	4	5	surface
+41	5609	5	5	surface
+41	5610	6	5	surface
+42	5611	1	5	surface
+42	5612	2	5	surface
+43	5613	1	5	surface
+43	5614	2	5	surface
+43	5615	3	5	surface
+43	5616	4	5	surface
+43	5617	5	5	surface
+43	5618	6	5	surface
+44	5619	1	5	surface
+45	5620	1	5	surface
+45	5621	2	5	surface
+45	5622	3	5	surface
+46	5623	1	5	surface
+46	5624	2	5	surface
+47	5625	1	5	surface
+47	5626	2	5	surface
+48	5627	1	5	surface
+48	5628	2	5	surface
+48	5629	3	5	surface
 \.
 
 
@@ -29853,7 +30174,7 @@ SELECT pg_catalog.setval('flashback.cards_activities_id_seq', 1, false);
 -- Name: cards_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.cards_id_seq', 5572, true);
+SELECT pg_catalog.setval('flashback.cards_id_seq', 5629, true);
 
 
 --
@@ -29889,7 +30210,7 @@ SELECT pg_catalog.setval('flashback.resources_activities_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 214, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 215, true);
 
 
 --
@@ -30540,11 +30861,11 @@ ALTER TABLE ONLY flashback.users_roadmaps
     ADD CONSTRAINT user_roadmaps_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2025-11-26 13:31:21 CET
+-- Completed on 2025-11-26 14:23:49 CET
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fy2AhPnJ1cIPJUNeuE123QMyF0FJf3CqDHu1SBLQOroawJie7aAuOaSpHmUaJqS
+\unrestrict 9jRyt8tgIVW6UkWizyBgDvcp6BETxYgUZWxAL5XWBO2x4ZL7uCNPYUOxbgWw2fd
 
