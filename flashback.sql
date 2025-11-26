@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict 9jRyt8tgIVW6UkWizyBgDvcp6BETxYgUZWxAL5XWBO2x4ZL7uCNPYUOxbgWw2fd
+\restrict NaqHbg3aURR73X136lsdeQWPxaVcuAvWrM0OobDTY5aI883rGal7LgMuXgicbtQ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
 
--- Started on 2025-11-26 14:23:22 CET
+-- Started on 2025-11-26 15:38:11 CET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +32,7 @@ CREATE SCHEMA flashback;
 ALTER SCHEMA flashback OWNER TO flashback;
 
 --
--- TOC entry 972 (class 1247 OID 19794)
+-- TOC entry 975 (class 1247 OID 19794)
 -- Name: card_state; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -49,7 +49,7 @@ CREATE TYPE flashback.card_state AS ENUM (
 ALTER TYPE flashback.card_state OWNER TO flashback;
 
 --
--- TOC entry 975 (class 1247 OID 19808)
+-- TOC entry 978 (class 1247 OID 19808)
 -- Name: condition; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -65,7 +65,7 @@ CREATE TYPE flashback.condition AS ENUM (
 ALTER TYPE flashback.condition OWNER TO flashback;
 
 --
--- TOC entry 978 (class 1247 OID 19820)
+-- TOC entry 981 (class 1247 OID 19820)
 -- Name: content_type; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -78,7 +78,7 @@ CREATE TYPE flashback.content_type AS ENUM (
 ALTER TYPE flashback.content_type OWNER TO flashback;
 
 --
--- TOC entry 981 (class 1247 OID 19826)
+-- TOC entry 984 (class 1247 OID 19826)
 -- Name: expertise_level; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -92,7 +92,7 @@ CREATE TYPE flashback.expertise_level AS ENUM (
 ALTER TYPE flashback.expertise_level OWNER TO flashback;
 
 --
--- TOC entry 984 (class 1247 OID 19834)
+-- TOC entry 987 (class 1247 OID 19834)
 -- Name: network_activity; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -108,7 +108,7 @@ CREATE TYPE flashback.network_activity AS ENUM (
 ALTER TYPE flashback.network_activity OWNER TO flashback;
 
 --
--- TOC entry 987 (class 1247 OID 19846)
+-- TOC entry 990 (class 1247 OID 19846)
 -- Name: resource_type; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -128,7 +128,7 @@ CREATE TYPE flashback.resource_type AS ENUM (
 ALTER TYPE flashback.resource_type OWNER TO flashback;
 
 --
--- TOC entry 990 (class 1247 OID 19866)
+-- TOC entry 993 (class 1247 OID 19866)
 -- Name: section_pattern; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -145,7 +145,7 @@ CREATE TYPE flashback.section_pattern AS ENUM (
 ALTER TYPE flashback.section_pattern OWNER TO flashback;
 
 --
--- TOC entry 993 (class 1247 OID 19880)
+-- TOC entry 996 (class 1247 OID 19880)
 -- Name: user_action; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -163,7 +163,7 @@ CREATE TYPE flashback.user_action AS ENUM (
 ALTER TYPE flashback.user_action OWNER TO flashback;
 
 --
--- TOC entry 996 (class 1247 OID 19896)
+-- TOC entry 999 (class 1247 OID 19896)
 -- Name: user_progress; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -180,7 +180,7 @@ CREATE TYPE flashback.user_progress AS ENUM (
 ALTER TYPE flashback.user_progress OWNER TO flashback;
 
 --
--- TOC entry 999 (class 1247 OID 19910)
+-- TOC entry 1002 (class 1247 OID 19910)
 -- Name: user_state; Type: TYPE; Schema: flashback; Owner: flashback
 --
 
@@ -195,7 +195,7 @@ CREATE TYPE flashback.user_state AS ENUM (
 ALTER TYPE flashback.user_state OWNER TO flashback;
 
 --
--- TOC entry 300 (class 1255 OID 19919)
+-- TOC entry 303 (class 1255 OID 19919)
 -- Name: add_card_to_assessments(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -214,7 +214,7 @@ $$;
 ALTER PROCEDURE flashback.add_card_to_assessments(IN subject integer, IN level flashback.expertise_level, IN topic integer, IN card integer) OWNER TO flashback;
 
 --
--- TOC entry 289 (class 1255 OID 19920)
+-- TOC entry 292 (class 1255 OID 19920)
 -- Name: add_card_to_section(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -234,7 +234,7 @@ $$;
 ALTER FUNCTION flashback.add_card_to_section(resource integer, section integer, card integer) OWNER TO flashback;
 
 --
--- TOC entry 349 (class 1255 OID 19921)
+-- TOC entry 352 (class 1255 OID 19921)
 -- Name: add_card_to_section(integer, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -251,7 +251,7 @@ $$;
 ALTER PROCEDURE flashback.add_card_to_section(IN resource integer, IN section integer, IN card integer, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 285 (class 1255 OID 19922)
+-- TOC entry 288 (class 1255 OID 19922)
 -- Name: add_card_to_topic(integer, flashback.expertise_level, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -277,7 +277,7 @@ $$;
 ALTER FUNCTION flashback.add_card_to_topic(subject integer, level flashback.expertise_level, topic integer, card integer) OWNER TO flashback;
 
 --
--- TOC entry 311 (class 1255 OID 19923)
+-- TOC entry 314 (class 1255 OID 19923)
 -- Name: add_card_to_topic(integer, flashback.expertise_level, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -296,7 +296,7 @@ $$;
 ALTER PROCEDURE flashback.add_card_to_topic(IN subject integer, IN level flashback.expertise_level, IN topic integer, IN card integer, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 314 (class 1255 OID 19924)
+-- TOC entry 317 (class 1255 OID 19924)
 -- Name: add_resource_to_subject(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -308,7 +308,7 @@ CREATE PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN su
 ALTER PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN subject_id integer) OWNER TO flashback;
 
 --
--- TOC entry 297 (class 1255 OID 19925)
+-- TOC entry 300 (class 1255 OID 19925)
 -- Name: add_subject_to_roadmap(integer, flashback.expertise_level, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -329,7 +329,7 @@ $$;
 ALTER FUNCTION flashback.add_subject_to_roadmap(subject integer, level flashback.expertise_level, roadmap integer) OWNER TO flashback;
 
 --
--- TOC entry 313 (class 1255 OID 19926)
+-- TOC entry 316 (class 1255 OID 19926)
 -- Name: add_subject_to_roadmap(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -358,7 +358,7 @@ $$;
 ALTER PROCEDURE flashback.add_subject_to_roadmap(IN subject integer, IN level flashback.expertise_level, IN roadmap integer, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 309 (class 1255 OID 19927)
+-- TOC entry 312 (class 1255 OID 19927)
 -- Name: change_block_extension(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -374,7 +374,7 @@ $$;
 ALTER PROCEDURE flashback.change_block_extension(IN selected_card integer, IN block integer, IN new_extension character varying) OWNER TO flashback;
 
 --
--- TOC entry 346 (class 1255 OID 19928)
+-- TOC entry 349 (class 1255 OID 19928)
 -- Name: change_block_type(integer, integer, flashback.content_type); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -390,7 +390,7 @@ $$;
 ALTER PROCEDURE flashback.change_block_type(IN selected_card integer, IN block integer, IN new_type flashback.content_type) OWNER TO flashback;
 
 --
--- TOC entry 347 (class 1255 OID 19929)
+-- TOC entry 350 (class 1255 OID 19929)
 -- Name: change_users_hash(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -402,7 +402,7 @@ CREATE PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash charact
 ALTER PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash character varying) OWNER TO flashback;
 
 --
--- TOC entry 318 (class 1255 OID 19930)
+-- TOC entry 321 (class 1255 OID 19930)
 -- Name: create_block(integer, flashback.content_type, character varying, text); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -423,7 +423,7 @@ $$;
 ALTER FUNCTION flashback.create_block(card integer, type flashback.content_type, extension character varying, content text) OWNER TO flashback;
 
 --
--- TOC entry 315 (class 1255 OID 19931)
+-- TOC entry 318 (class 1255 OID 19931)
 -- Name: create_block(integer, flashback.content_type, character varying, text, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -439,7 +439,7 @@ $$;
 ALTER PROCEDURE flashback.create_block(IN card integer, IN type flashback.content_type, IN extension character varying, IN content text, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 293 (class 1255 OID 19932)
+-- TOC entry 296 (class 1255 OID 19932)
 -- Name: create_card(text); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -457,7 +457,7 @@ $$;
 ALTER FUNCTION flashback.create_card(heading text) OWNER TO flashback;
 
 --
--- TOC entry 276 (class 1255 OID 19933)
+-- TOC entry 279 (class 1255 OID 19933)
 -- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -477,7 +477,7 @@ $$;
 ALTER FUNCTION flashback.create_resource(name character varying, type flashback.resource_type, pattern flashback.section_pattern, author character varying, publisher character varying, link character varying) OWNER TO flashback;
 
 --
--- TOC entry 301 (class 1255 OID 19934)
+-- TOC entry 304 (class 1255 OID 19934)
 -- Name: create_roadmap(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -497,7 +497,7 @@ $$;
 ALTER FUNCTION flashback.create_roadmap(user_id integer, name character varying) OWNER TO flashback;
 
 --
--- TOC entry 339 (class 1255 OID 19935)
+-- TOC entry 342 (class 1255 OID 19935)
 -- Name: create_section(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -521,7 +521,7 @@ end; $$;
 ALTER FUNCTION flashback.create_section(resource integer, name character varying) OWNER TO flashback;
 
 --
--- TOC entry 296 (class 1255 OID 19936)
+-- TOC entry 299 (class 1255 OID 19936)
 -- Name: create_section(integer, character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -569,7 +569,7 @@ end; $$;
 ALTER PROCEDURE flashback.create_section(IN resource integer, IN name character varying, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 273 (class 1255 OID 19937)
+-- TOC entry 276 (class 1255 OID 19937)
 -- Name: create_session(integer, character varying, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -593,7 +593,7 @@ $$;
 ALTER PROCEDURE flashback.create_session(IN user_id integer, IN token character varying, IN device character varying) OWNER TO flashback;
 
 --
--- TOC entry 320 (class 1255 OID 19938)
+-- TOC entry 323 (class 1255 OID 19938)
 -- Name: create_subject(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -612,7 +612,7 @@ $$;
 ALTER FUNCTION flashback.create_subject(name character varying) OWNER TO flashback;
 
 --
--- TOC entry 342 (class 1255 OID 19939)
+-- TOC entry 345 (class 1255 OID 19939)
 -- Name: create_topic(integer, flashback.expertise_level, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -635,7 +635,7 @@ $$;
 ALTER FUNCTION flashback.create_topic(subject integer, level flashback.expertise_level, name character varying) OWNER TO flashback;
 
 --
--- TOC entry 330 (class 1255 OID 19940)
+-- TOC entry 333 (class 1255 OID 19940)
 -- Name: create_topic(integer, flashback.expertise_level, character varying, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -666,7 +666,7 @@ $$;
 ALTER PROCEDURE flashback.create_topic(IN subject integer, IN level flashback.expertise_level, IN name character varying, IN "position" integer) OWNER TO flashback;
 
 --
--- TOC entry 340 (class 1255 OID 19941)
+-- TOC entry 343 (class 1255 OID 19941)
 -- Name: create_user(character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -685,7 +685,7 @@ $$;
 ALTER FUNCTION flashback.create_user(name character varying, email character varying, hash character varying) OWNER TO flashback;
 
 --
--- TOC entry 302 (class 1255 OID 19942)
+-- TOC entry 305 (class 1255 OID 19942)
 -- Name: edit_block(integer, integer, text); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -697,7 +697,7 @@ CREATE PROCEDURE flashback.edit_block(IN card integer, IN block integer, IN cont
 ALTER PROCEDURE flashback.edit_block(IN card integer, IN block integer, IN content text) OWNER TO flashback;
 
 --
--- TOC entry 316 (class 1255 OID 19943)
+-- TOC entry 319 (class 1255 OID 19943)
 -- Name: edit_card_heading(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -713,7 +713,7 @@ $$;
 ALTER PROCEDURE flashback.edit_card_heading(IN card integer, IN new_heading character varying) OWNER TO flashback;
 
 --
--- TOC entry 290 (class 1255 OID 19944)
+-- TOC entry 293 (class 1255 OID 19944)
 -- Name: edit_resource_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -729,7 +729,7 @@ $$;
 ALTER PROCEDURE flashback.edit_resource_name(IN resource integer, IN name character varying) OWNER TO flashback;
 
 --
--- TOC entry 308 (class 1255 OID 19945)
+-- TOC entry 311 (class 1255 OID 19945)
 -- Name: edit_resource_presenter(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -741,7 +741,7 @@ CREATE PROCEDURE flashback.edit_resource_presenter(IN resource integer, IN autho
 ALTER PROCEDURE flashback.edit_resource_presenter(IN resource integer, IN author character varying) OWNER TO flashback;
 
 --
--- TOC entry 337 (class 1255 OID 19946)
+-- TOC entry 340 (class 1255 OID 19946)
 -- Name: edit_resource_provider(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -753,7 +753,7 @@ CREATE PROCEDURE flashback.edit_resource_provider(IN resource integer, IN edited
 ALTER PROCEDURE flashback.edit_resource_provider(IN resource integer, IN edited_publisher character varying) OWNER TO flashback;
 
 --
--- TOC entry 343 (class 1255 OID 19947)
+-- TOC entry 346 (class 1255 OID 19947)
 -- Name: edit_resource_type(integer, flashback.resource_type); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -769,7 +769,7 @@ $$;
 ALTER PROCEDURE flashback.edit_resource_type(IN resource integer, IN type flashback.resource_type) OWNER TO flashback;
 
 --
--- TOC entry 332 (class 1255 OID 19948)
+-- TOC entry 335 (class 1255 OID 19948)
 -- Name: edit_section_pattern(integer, flashback.section_pattern); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -786,7 +786,7 @@ $$;
 ALTER PROCEDURE flashback.edit_section_pattern(IN resource integer, IN pattern flashback.section_pattern) OWNER TO flashback;
 
 --
--- TOC entry 294 (class 1255 OID 19949)
+-- TOC entry 297 (class 1255 OID 19949)
 -- Name: edit_users_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -798,7 +798,7 @@ CREATE PROCEDURE flashback.edit_users_name(IN id integer, IN name character vary
 ALTER PROCEDURE flashback.edit_users_name(IN id integer, IN name character varying) OWNER TO flashback;
 
 --
--- TOC entry 338 (class 1255 OID 19950)
+-- TOC entry 341 (class 1255 OID 19950)
 -- Name: get_assessment_coverage(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -823,7 +823,7 @@ $$;
 ALTER FUNCTION flashback.get_assessment_coverage(subject integer, topic integer, level flashback.expertise_level) OWNER TO flashback;
 
 --
--- TOC entry 344 (class 1255 OID 19951)
+-- TOC entry 347 (class 1255 OID 19951)
 -- Name: get_blocks(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -835,7 +835,7 @@ CREATE FUNCTION flashback.get_blocks(card integer) RETURNS TABLE("position" inte
 ALTER FUNCTION flashback.get_blocks(card integer) OWNER TO flashback;
 
 --
--- TOC entry 317 (class 1255 OID 19952)
+-- TOC entry 320 (class 1255 OID 19952)
 -- Name: get_duplicate_card(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -863,7 +863,7 @@ $$;
 ALTER FUNCTION flashback.get_duplicate_card(card_id integer) OWNER TO flashback;
 
 --
--- TOC entry 286 (class 1255 OID 19953)
+-- TOC entry 289 (class 1255 OID 19953)
 -- Name: get_lost_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -886,7 +886,7 @@ $$;
 ALTER FUNCTION flashback.get_lost_cards() OWNER TO flashback;
 
 --
--- TOC entry 305 (class 1255 OID 19954)
+-- TOC entry 308 (class 1255 OID 19954)
 -- Name: get_out_of_shelves(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -898,7 +898,7 @@ CREATE FUNCTION flashback.get_out_of_shelves() RETURNS TABLE(id integer, name ch
 ALTER FUNCTION flashback.get_out_of_shelves() OWNER TO flashback;
 
 --
--- TOC entry 270 (class 1255 OID 19955)
+-- TOC entry 273 (class 1255 OID 19955)
 -- Name: get_practice_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -922,7 +922,7 @@ $$;
 ALTER FUNCTION flashback.get_practice_topics("user" integer, roadmap integer) OWNER TO flashback;
 
 --
--- TOC entry 291 (class 1255 OID 19956)
+-- TOC entry 294 (class 1255 OID 19956)
 -- Name: get_practice_topics(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -947,7 +947,7 @@ $$;
 ALTER FUNCTION flashback.get_practice_topics("user" integer, roadmap integer, selected_subject integer) OWNER TO flashback;
 
 --
--- TOC entry 280 (class 1255 OID 19957)
+-- TOC entry 283 (class 1255 OID 19957)
 -- Name: get_practiced_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -967,7 +967,7 @@ $$;
 ALTER FUNCTION flashback.get_practiced_topics("user" integer, roadmap integer) OWNER TO flashback;
 
 --
--- TOC entry 336 (class 1255 OID 19958)
+-- TOC entry 339 (class 1255 OID 19958)
 -- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -988,7 +988,7 @@ $$;
 ALTER FUNCTION flashback.get_resources("user" integer) OWNER TO flashback;
 
 --
--- TOC entry 269 (class 1255 OID 19959)
+-- TOC entry 272 (class 1255 OID 19959)
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1009,7 +1009,7 @@ $$;
 ALTER FUNCTION flashback.get_resources("user" integer, subject integer) OWNER TO flashback;
 
 --
--- TOC entry 324 (class 1255 OID 19960)
+-- TOC entry 327 (class 1255 OID 19960)
 -- Name: get_roadmaps(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1021,7 +1021,7 @@ CREATE FUNCTION flashback.get_roadmaps("user" integer) RETURNS TABLE(id integer,
 ALTER FUNCTION flashback.get_roadmaps("user" integer) OWNER TO flashback;
 
 --
--- TOC entry 271 (class 1255 OID 19961)
+-- TOC entry 274 (class 1255 OID 19961)
 -- Name: get_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1040,7 +1040,7 @@ $$;
 ALTER FUNCTION flashback.get_sections(resource integer) OWNER TO flashback;
 
 --
--- TOC entry 341 (class 1255 OID 19962)
+-- TOC entry 344 (class 1255 OID 19962)
 -- Name: get_sections_cards(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1052,7 +1052,7 @@ CREATE FUNCTION flashback.get_sections_cards(resource integer, section integer) 
 ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) OWNER TO flashback;
 
 --
--- TOC entry 272 (class 1255 OID 19963)
+-- TOC entry 275 (class 1255 OID 19963)
 -- Name: get_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1064,7 +1064,7 @@ CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flas
 ALTER FUNCTION flashback.get_subjects(roadmap integer) OWNER TO flashback;
 
 --
--- TOC entry 287 (class 1255 OID 19964)
+-- TOC entry 290 (class 1255 OID 19964)
 -- Name: get_subjects(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1076,7 +1076,7 @@ CREATE FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertis
 ALTER FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertise_level) OWNER TO flashback;
 
 --
--- TOC entry 350 (class 1255 OID 19965)
+-- TOC entry 353 (class 1255 OID 19965)
 -- Name: get_topics(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1088,7 +1088,7 @@ CREATE FUNCTION flashback.get_topics(subject integer, level flashback.expertise_
 ALTER FUNCTION flashback.get_topics(subject integer, level flashback.expertise_level) OWNER TO flashback;
 
 --
--- TOC entry 275 (class 1255 OID 19966)
+-- TOC entry 278 (class 1255 OID 19966)
 -- Name: get_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1108,7 +1108,7 @@ $$;
 ALTER FUNCTION flashback.get_topics(roadmap integer, milestone integer) OWNER TO flashback;
 
 --
--- TOC entry 328 (class 1255 OID 19967)
+-- TOC entry 331 (class 1255 OID 19967)
 -- Name: get_topics_cards(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1131,7 +1131,7 @@ $$;
 ALTER FUNCTION flashback.get_topics_cards(roadmap integer, milestone integer, topic integer) OWNER TO flashback;
 
 --
--- TOC entry 292 (class 1255 OID 19968)
+-- TOC entry 295 (class 1255 OID 19968)
 -- Name: get_unreviewed_sections_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1154,7 +1154,7 @@ $$;
 ALTER FUNCTION flashback.get_unreviewed_sections_cards() OWNER TO flashback;
 
 --
--- TOC entry 334 (class 1255 OID 19969)
+-- TOC entry 337 (class 1255 OID 19969)
 -- Name: get_unreviewed_topics_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1177,7 +1177,7 @@ $$;
 ALTER FUNCTION flashback.get_unreviewed_topics_cards() OWNER TO flashback;
 
 --
--- TOC entry 279 (class 1255 OID 19970)
+-- TOC entry 282 (class 1255 OID 19970)
 -- Name: get_unshelved_resources(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1189,7 +1189,7 @@ CREATE FUNCTION flashback.get_unshelved_resources() RETURNS TABLE(resource integ
 ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 
 --
--- TOC entry 268 (class 1255 OID 19971)
+-- TOC entry 271 (class 1255 OID 19971)
 -- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1201,7 +1201,7 @@ CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id i
 ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
 
 --
--- TOC entry 327 (class 1255 OID 19972)
+-- TOC entry 330 (class 1255 OID 19972)
 -- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1220,7 +1220,7 @@ end; $$;
 ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
 
 --
--- TOC entry 345 (class 1255 OID 19973)
+-- TOC entry 348 (class 1255 OID 19973)
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1232,7 +1232,7 @@ CREATE FUNCTION flashback.is_subject_relevant(target_resource integer, target_su
 ALTER FUNCTION flashback.is_subject_relevant(target_resource integer, target_subject integer) OWNER TO flashback;
 
 --
--- TOC entry 323 (class 1255 OID 19974)
+-- TOC entry 326 (class 1255 OID 19974)
 -- Name: log_resources_activities(integer, character varying, integer, flashback.user_action); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1252,7 +1252,7 @@ $$;
 ALTER PROCEDURE flashback.log_resources_activities(IN user_id integer, IN address character varying, IN resource integer, IN action flashback.user_action) OWNER TO flashback;
 
 --
--- TOC entry 283 (class 1255 OID 19975)
+-- TOC entry 286 (class 1255 OID 19975)
 -- Name: log_sections_activities(integer, character varying, integer, flashback.user_action); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1272,7 +1272,7 @@ $$;
 ALTER PROCEDURE flashback.log_sections_activities(IN user_id integer, IN address character varying, IN section integer, IN action flashback.user_action) OWNER TO flashback;
 
 --
--- TOC entry 312 (class 1255 OID 19976)
+-- TOC entry 315 (class 1255 OID 19976)
 -- Name: make_section_progress(integer, timestamp with time zone, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1289,7 +1289,7 @@ $$;
 ALTER PROCEDURE flashback.make_section_progress(IN "user" integer, IN "time" timestamp with time zone, IN resource integer, IN section integer, IN duration integer) OWNER TO flashback;
 
 --
--- TOC entry 281 (class 1255 OID 19977)
+-- TOC entry 284 (class 1255 OID 19977)
 -- Name: make_topic_progress(integer, timestamp with time zone, integer, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1312,7 +1312,7 @@ $$;
 ALTER PROCEDURE flashback.make_topic_progress(IN "user" integer, IN "time" timestamp with time zone, IN roadmap integer, IN milestone integer, IN topic integer, IN duration integer) OWNER TO flashback;
 
 --
--- TOC entry 325 (class 1255 OID 19978)
+-- TOC entry 328 (class 1255 OID 19978)
 -- Name: merge_blocks(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1368,7 +1368,7 @@ $$;
 ALTER PROCEDURE flashback.merge_blocks(IN selected_card integer) OWNER TO flashback;
 
 --
--- TOC entry 306 (class 1255 OID 19979)
+-- TOC entry 309 (class 1255 OID 19979)
 -- Name: merge_blocks(integer, integer[]); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1426,7 +1426,7 @@ $$;
 ALTER PROCEDURE flashback.merge_blocks(IN selected_card integer, VARIADIC block_list integer[]) OWNER TO flashback;
 
 --
--- TOC entry 348 (class 1255 OID 19980)
+-- TOC entry 351 (class 1255 OID 19980)
 -- Name: merge_cards(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1463,7 +1463,7 @@ $$;
 ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_heading character varying) OWNER TO flashback;
 
 --
--- TOC entry 326 (class 1255 OID 19981)
+-- TOC entry 329 (class 1255 OID 19981)
 -- Name: move_card_to_section(integer, integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1490,7 +1490,7 @@ $$;
 ALTER FUNCTION flashback.move_card_to_section(selected_card integer, current_resource integer, current_section integer, target_section integer) OWNER TO flashback;
 
 --
--- TOC entry 329 (class 1255 OID 19982)
+-- TOC entry 332 (class 1255 OID 19982)
 -- Name: move_card_to_topic(integer, integer, flashback.expertise_level, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1517,7 +1517,7 @@ $$;
 ALTER FUNCTION flashback.move_card_to_topic(selected_card integer, current_subject integer, current_level flashback.expertise_level, current_topic integer, target_topic integer) OWNER TO flashback;
 
 --
--- TOC entry 304 (class 1255 OID 19983)
+-- TOC entry 307 (class 1255 OID 19983)
 -- Name: remove_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1529,7 +1529,7 @@ CREATE PROCEDURE flashback.remove_block(IN card integer, IN block integer)
 ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER TO flashback;
 
 --
--- TOC entry 321 (class 1255 OID 19984)
+-- TOC entry 324 (class 1255 OID 19984)
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1541,7 +1541,7 @@ CREATE PROCEDURE flashback.rename_roadmap(IN roadmap integer, IN name character 
 ALTER PROCEDURE flashback.rename_roadmap(IN roadmap integer, IN name character varying) OWNER TO flashback;
 
 --
--- TOC entry 322 (class 1255 OID 19985)
+-- TOC entry 325 (class 1255 OID 19985)
 -- Name: reorder_blocks(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1570,7 +1570,7 @@ $$;
 ALTER PROCEDURE flashback.reorder_blocks(IN target_card integer, IN old_position integer, IN new_position integer) OWNER TO flashback;
 
 --
--- TOC entry 277 (class 1255 OID 19986)
+-- TOC entry 280 (class 1255 OID 19986)
 -- Name: reorder_milestone(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1601,7 +1601,7 @@ $$;
 ALTER PROCEDURE flashback.reorder_milestone(IN roadmap integer, IN old_position integer, IN new_position integer) OWNER TO flashback;
 
 --
--- TOC entry 295 (class 1255 OID 19987)
+-- TOC entry 298 (class 1255 OID 19987)
 -- Name: reorder_sections_cards(integer, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1639,7 +1639,7 @@ $$;
 ALTER PROCEDURE flashback.reorder_sections_cards(IN target_resource integer, IN target_section integer, IN target_card integer, IN new_position integer) OWNER TO flashback;
 
 --
--- TOC entry 274 (class 1255 OID 19988)
+-- TOC entry 277 (class 1255 OID 19988)
 -- Name: reorder_topics_cards(integer, flashback.expertise_level, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1675,7 +1675,7 @@ $$;
 ALTER PROCEDURE flashback.reorder_topics_cards(IN subject integer, IN level flashback.expertise_level, IN target_topic integer, IN target_card integer, IN new_position integer) OWNER TO flashback;
 
 --
--- TOC entry 307 (class 1255 OID 19989)
+-- TOC entry 310 (class 1255 OID 19989)
 -- Name: reset_password(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1691,7 +1691,7 @@ end; $$;
 ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying) OWNER TO flashback;
 
 --
--- TOC entry 319 (class 1255 OID 19990)
+-- TOC entry 322 (class 1255 OID 19990)
 -- Name: split_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1741,7 +1741,7 @@ end; $$;
 ALTER PROCEDURE flashback.split_block(IN card integer, IN block integer) OWNER TO flashback;
 
 --
--- TOC entry 278 (class 1255 OID 19991)
+-- TOC entry 281 (class 1255 OID 19991)
 -- Name: user_exists(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1759,7 +1759,7 @@ $$;
 ALTER FUNCTION flashback.user_exists(email character varying) OWNER TO flashback;
 
 --
--- TOC entry 267 (class 1255 OID 19992)
+-- TOC entry 270 (class 1255 OID 19992)
 -- Name: user_is_active(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1771,7 +1771,7 @@ CREATE FUNCTION flashback.user_is_active(email character varying) RETURNS boolea
 ALTER FUNCTION flashback.user_is_active(email character varying) OWNER TO flashback;
 
 --
--- TOC entry 288 (class 1255 OID 19993)
+-- TOC entry 291 (class 1255 OID 19993)
 -- Name: user_is_verified(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1800,6 +1800,19 @@ CREATE TABLE flashback.assessments (
 
 
 ALTER TABLE flashback.assessments OWNER TO flashback;
+
+--
+-- TOC entry 267 (class 1259 OID 20498)
+-- Name: authors; Type: TABLE; Schema: flashback; Owner: brian
+--
+
+CREATE TABLE flashback.authors (
+    resource integer NOT NULL,
+    presenter integer NOT NULL
+);
+
+
+ALTER TABLE flashback.authors OWNER TO brian;
 
 --
 -- TOC entry 221 (class 1259 OID 20001)
@@ -2004,6 +2017,34 @@ ALTER TABLE flashback.network_activities OWNER TO flashback;
 
 ALTER TABLE flashback.network_activities ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
     SEQUENCE NAME flashback.network_activities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 266 (class 1259 OID 20489)
+-- Name: presenters; Type: TABLE; Schema: flashback; Owner: brian
+--
+
+CREATE TABLE flashback.presenters (
+    id integer NOT NULL,
+    name character varying NOT NULL
+);
+
+
+ALTER TABLE flashback.presenters OWNER TO brian;
+
+--
+-- TOC entry 265 (class 1259 OID 20488)
+-- Name: presenters_id_seq; Type: SEQUENCE; Schema: flashback; Owner: brian
+--
+
+ALTER TABLE flashback.presenters ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME flashback.presenters_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2472,7 +2513,7 @@ CREATE TABLE flashback.users_roadmaps (
 ALTER TABLE flashback.users_roadmaps OWNER TO flashback;
 
 --
--- TOC entry 3837 (class 0 OID 19994)
+-- TOC entry 3850 (class 0 OID 19994)
 -- Dependencies: 220
 -- Data for Name: assessments; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -2494,7 +2535,17 @@ COPY flashback.assessments (topic, card, subject, level) FROM stdin;
 
 
 --
--- TOC entry 3838 (class 0 OID 20001)
+-- TOC entry 3897 (class 0 OID 20498)
+-- Dependencies: 267
+-- Data for Name: authors; Type: TABLE DATA; Schema: flashback; Owner: brian
+--
+
+COPY flashback.authors (resource, presenter) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3851 (class 0 OID 20001)
 -- Dependencies: 221
 -- Data for Name: blocks; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -14544,7 +14595,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 
 
 --
--- TOC entry 3839 (class 0 OID 20010)
+-- TOC entry 3852 (class 0 OID 20010)
 -- Dependencies: 222
 -- Data for Name: blocks_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -14554,7 +14605,7 @@ COPY flashback.blocks_activities (id, "user", card, action, "time", "position") 
 
 
 --
--- TOC entry 3841 (class 0 OID 20021)
+-- TOC entry 3854 (class 0 OID 20021)
 -- Dependencies: 224
 -- Data for Name: card_position; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -14565,7 +14616,7 @@ COPY flashback.card_position ("coalesce") FROM stdin;
 
 
 --
--- TOC entry 3842 (class 0 OID 20024)
+-- TOC entry 3855 (class 0 OID 20024)
 -- Dependencies: 225
 -- Data for Name: cards; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19617,7 +19668,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 
 
 --
--- TOC entry 3843 (class 0 OID 20032)
+-- TOC entry 3856 (class 0 OID 20032)
 -- Dependencies: 226
 -- Data for Name: cards_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19627,7 +19678,7 @@ COPY flashback.cards_activities (id, "user", card, action, "time") FROM stdin;
 
 
 --
--- TOC entry 3846 (class 0 OID 20043)
+-- TOC entry 3859 (class 0 OID 20043)
 -- Dependencies: 229
 -- Data for Name: last_position; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19640,7 +19691,7 @@ COPY flashback.last_position (max) FROM stdin;
 
 
 --
--- TOC entry 3847 (class 0 OID 20046)
+-- TOC entry 3860 (class 0 OID 20046)
 -- Dependencies: 230
 -- Data for Name: milestones; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19790,7 +19841,7 @@ COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
 
 
 --
--- TOC entry 3848 (class 0 OID 20053)
+-- TOC entry 3861 (class 0 OID 20053)
 -- Dependencies: 231
 -- Data for Name: milestones_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19800,7 +19851,7 @@ COPY flashback.milestones_activities (id, "user", action, "time", subject, roadm
 
 
 --
--- TOC entry 3850 (class 0 OID 20065)
+-- TOC entry 3863 (class 0 OID 20065)
 -- Dependencies: 233
 -- Data for Name: network_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19810,7 +19861,17 @@ COPY flashback.network_activities (id, "user", "time", activity, address) FROM s
 
 
 --
--- TOC entry 3852 (class 0 OID 20075)
+-- TOC entry 3896 (class 0 OID 20489)
+-- Dependencies: 266
+-- Data for Name: presenters; Type: TABLE DATA; Schema: flashback; Owner: brian
+--
+
+COPY flashback.presenters (id, name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3865 (class 0 OID 20075)
 -- Dependencies: 235
 -- Data for Name: resources; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -19839,8 +19900,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 103	Cpp Hive	video	episode	relevant	\N	\N	\N
 104	Mastering Modern CPP Features	video	episode	relevant	\N	\N	\N
 13	Linux Device Drivers	course	episode	relevant	\N	LinkedIn	\N
-113	Advanced Linux: The Linux Kernel	video	chapter	relevant	\N	\N	\N
-115	MuttGuide	website	chapter	relevant	\N	\N	\N
 98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin	\N	\N
 116	Algorithms and Data Structures Made Easy	video	episode	relevant	\N	\N	\N
 4	Qt Documentation	website	page	relevant	\N	\N	https://doc.qt.io/
@@ -19867,7 +19926,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 65	Linux Device Driver Development	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/iot-hardware/9781803240060/
 5	GDB Tips by Greg Law	website	post	relevant	Greg Law	LinkedIn	https://www.linkedin.com/in/gregthelaw/
 71	C++ Concurrency in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/c-plus-plus-concurrency-in-action
-89	Embedded Linux Training Course	slides	page	relevant	Bootlin	\N	\N
 75	Linux Kernel Debugging	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781801075039/
 82	A Complete Guide to Standard C++ Algorithms	book	chapter	relevant	\N	\N	https://github.com/HappyCerberus/book-cpp-algorithms
 83	Cross-Platform Development with Qt6 and Modern C++	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/programming/9781800204584/
@@ -19875,19 +19933,20 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 90	Hands-On Mobile and Embedded Development with Qt5	book	chapter	relevant	Lorn Potter	Packt Publishing	https://subscription.packtpub.com/book/programming/9781789614817/
 92	Mastering Linux Kernel Development	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781785883057/
 101	Advanced C++ Programming Cookbook	book	chapter	relevant	Rian Quinn	Packt Publishing	https://subscription.packtpub.com/book/programming/9781838559915/
-118	Behavioral Design Patterns in C++	video	chapter	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781804615652/
 109	Minimal CMake	book	chapter	relevant	Tom Hulton-Harrop	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835087312/
 110	Mastering GitHub Actions	book	chapter	relevant	Eric Chapman	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781805128625
 6	Daily bit(e) of C++	mailing list	chapter	relevant	Simon Toth	GitHub	https://github.com/HappyCerberus/daily-bite-cpp
 10	mdadm(1)	manual	page	relevant	\N	Linux Manual Pages	https://www.man7.org/linux/man-pages/man8/mdadm.8.html
 121	Language Features of C++17 Ref Card	slides	page	relevant	Bartłomiej Filipek	\N	\N
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
-139	OpenCV & C++ Tutorial	book	chapter	relevant	Computer Vision Lab	YouTube	\N
-140	C++ Weekly With Jason Turner	channel	episode	relevant	Jason Turner	YouTube	\N
-2	Boost Documentation	website	page	relevant	\N	https://boost.org	https://www.boost.org/libraries/latest/list/
 3	LaTeX Tutorial	website	page	relevant	\N	\N	https://latex-tutorial.com/tutorials/
+139	Computer Vision Lab	channel	episode	relevant	Yunus Temurlenk	YouTube	https://www.youtube.com/@computervisionlab2119
+140	C++ Weekly With Jason Turner	channel	episode	relevant	Jason Turner	YouTube	https://www.youtube.com/@cppweekly
+113	Advanced Linux: The Linux Kernel	video	episode	relevant	\N	\N	\N
+89	Embedded Linux Training Course	slides	chapter	relevant	Bootlin	\N	\N
+115	Mutt Documentation	website	chapter	relevant	Michael Elkins	\N	http://www.mutt.org/doc/manual/
+2	Boost Documentation	website	page	relevant	Boost Development Team	Boost Development Team	https://www.boost.org/libraries/latest/list/
 9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
-11	C++ Design Patterns: Creational	video	chapter	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational
 12	Kevin Dankwardt's Linux Device Drivers	course	episode	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
@@ -19910,10 +19969,8 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 107	Asynchronous Programming with C++	book	chapter	relevant	Javier Reguera-Salgado	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835884249/
 119	Computer Graphics Programming in OpenGL with C++	book	chapter	relevant	\N	\N	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186
 123	Template Metaprogramming with C++	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803243450/
-126	C++ Design Patterns: Structural	video	chapter	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029
 127	Linux Security Techniques	course	episode	relevant	\N	\N	https://subscription.packtpub.com/video/security/9781835887042/
 129	NeoMutt Guide	manual	chapter	relevant	\N	\N	https://neomutt.org/guide/index
-114	Deciphering C++ Coroutines	video	episode	relevant	Andreas Weis	YouTube	\N
 134	The Modern Vulkan Cookbook	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/game-development/9781803239989/
 136	SELinux System Administration	book	chapter	relevant	Sven Vermeulen	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800201477/
 138	The Ultimate Kali Linux Book	book	chapter	relevant	Glen D. Singh	Packt Publishing	https://subscription.packtpub.com/book/security/9781835085806/
@@ -19921,10 +19978,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 144	OpenCV 3 Computer Vision Application Programming Cookbook	book	chapter	relevant	Robert Laganiere	Packt Publishing	https://subscription.packtpub.com/book/data/9781786469717/
 146	OpenCV 4 for Secret Agents	book	chapter	relevant	Joseph Howse	Packt Publishing	https://subscription.packtpub.com/book/data/9781789345360/
 147	Mastering OpenCV 4	book	chapter	relevant	Roy Shilkrot	Packt Publishing	https://subscription.packtpub.com/book/data/9781789533576/
-149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	chapter	relevant	Antonio Ortiz Lira	Packt Publishing	https://subscription.packtpub.com/video/data/9781788479080/
-150	Computer Vision with OpenCV 3 and Qt5	video	chapter	relevant	Amin Ahmadi Tazehkandi	Packt Publishing	https://subscription.packtpub.com/book/data/9781788472395/
 18	Teach Yourself C++ in One Hour a Day	book	chapter	relevant	Siddhartha Rao	Sams	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582
-130	Real-time Linux with PREEMPT_RT	slides	page	relevant	\N	Bootlin	\N
 56	Modern C++ Programming Cookbook	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835080542/
 57	Step by Step Learning x64 Assembly Language	book	chapter	relevant	\N	\N	https://www.oreilly.com/library/view/x64-assembly-language/9781394155248/
 61	Boost.Asio C++ Network Programming Cookbook	book	chapter	relevant	Dmytro Radchuk	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781783986545/
@@ -19934,6 +19988,8 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 76	Hands-On Network Programming with C	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781789349863/
 77	Data Abstraction & Problem Solving with C++	book	chapter	relevant	\N	\N	https://www.pearson.com/en-us/subject-catalog/p/data-abstraction--problem-solving-with-c-walls-and-mirrors/P200000003514/9780137516759
 88	CMake Cookbook	book	chapter	relevant	Radovan Bast	Packt Publishing	https://subscription.packtpub.com/book/programming/9781788470711/
+130	Real-time Linux with PREEMPT_RT	slides	chapter	relevant	\N	Bootlin	\N
+114	CppCon	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@CppCon
 94	Embedded Linux Development Using Yocto Project Cookbook 	book	chapter	relevant	Alex González	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781788399210/
 95	C++ Templates: The Complete Guide	book	chapter	relevant	\N	\N	https://www.pearson.com/en-us/subject-catalog/p/c-templates-the-complete-guide/P200000000663/9780134778747
 96	Modern CMake for C++	book	chapter	relevant	Rafał Świdziński	Packt Publishing	https://subscription.packtpub.com/book/programming/9781805121800/
@@ -19954,8 +20010,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 153	Mastering C++ Standard Library Features	book	chapter	relevant	Vittorio Romeo	Packt Publishing	https://subscription.packtpub.com/video/programming/9781788294256/
 154	Expert C++	book	chapter	relevant	Vardan Grigoryan	Packt Publishing	https://subscription.packtpub.com/book/programming/9781804617830/
 155	Mastering Kali Linux for Advanced Penetration Testing	book	chapter	relevant	Vijay Kumar Velu	Packt Publishing	https://subscription.packtpub.com/book/security/9781801819770/
-105	Creational Design Patterns in Modern C++	video	chapter	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781800568242/
-131	Structural Design Patterns in Modern C++	video	chapter	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781801073073/
 160	Software Architecture with C++	book	chapter	relevant	Andrey Gavrilin	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803243016/
 156	The Embedded Linux Security Handbook	book	chapter	relevant	Matt St. Onge	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781835885642/
 157	The C++ Programmer's Mindset	book	chapter	relevant	Sam Morley	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835888421/
@@ -19965,7 +20019,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 162	Asynchronous Programming in Python	book	chapter	relevant	Nicolas Bohorquez	Packt Publishing	https://subscription.packtpub.com/book/programming/9781836646617/
 163	Embedded Linux Essentials Handbook	book	chapter	relevant	Mohammed Billoo	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835469309/
 54	The C++ Standard Library	book	chapter	relevant	Nicolai M. Josuttis	\N	https://www.oreilly.com/library/view/c-standard-library/9780132978286/
-112	GitHub Actions Masterclass	video	chapter	relevant	LM Academy	Packt Publishing	https://subscription.packtpub.com/video/business-other/9781837025411/
 62	C++17: The Complete Guide	book	chapter	relevant	Nicolai M. Josuttis	Leanpub	https://leanpub.com/cpp17
 87	C++ Move Semantics: The Complete Guide	book	chapter	relevant	Nicolai M. Josuttis	Leanpub	https://leanpub.com/cppmove
 66	The C++ Programming Language	book	chapter	relevant	Bjarne Stroustrup	Addison-Wesley	https://www.informit.com/store/c-plus-plus-programming-language-9780133522907
@@ -20015,7 +20068,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 204	C++ System Programming Cookbook	book	chapter	relevant	Onorato Vaticone	Packt Publishing	https://subscription.packtpub.com/book/programming/9781838646554/
 205	The C++ Standard Library	book	chapter	relevant	Rainer Grimm	Leanpub	https://leanpub.com/cpplibrary
 206	Mastering STM32	book	chapter	relevant	Carmine Noviello	Leanpub	https://leanpub.com/mastering-stm32-2nd
-97	OpenGL and GLSL Fundamentals with C++	video	chapter	relevant	course	Packt Publishing	https://subscription.packtpub.com/video/game-development/9781838647889/
 207	Learn OpenGL	book	chapter	relevant	Frahaan Hussain	Packt Publishing	https://subscription.packtpub.com/book/game-development/9781789340365/
 208	The Modern C++ Challenge	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781788993869/
 209	Linux Device Drivers in Action	book	chapter	relevant	Kaiwan N. Billimoria	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781835881866/
@@ -20024,13 +20076,24 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 212	Linux Administration Best Practices	book	chapter	relevant	Scott Alan Miller	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800568792/
 213	Practical Memory Forensics	book	chapter	relevant	Oleg Skulkin	Packt Publishing	https://subscription.packtpub.com/book/security/9781801070331/
 214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	Imran Ahmad	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803247762/
-215	Meeting Cpp	channel	episode	relevant	Kerstin Keller	YouTube	\N
-1	CppNow	video	episode	relevant	Daniel Pfeifer	YouTube	https://youtu.be/CwYILWyTRMQ
+97	OpenGL and GLSL Fundamentals with C++	video	episode	relevant	course	Packt Publishing	https://subscription.packtpub.com/video/game-development/9781838647889/
+216	cpponsea	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpponsea
+215	Meeting Cpp	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@MeetingCPP
+1	CppNow	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@CppNow
+217	Kitware	channel	episode	relevant	Kitware Development Team	YouTube	https://www.youtube.com/@KitwareVideos
+118	Behavioral Design Patterns in C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781804615652/
+11	C++ Design Patterns: Creational	video	episode	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational
+126	C++ Design Patterns: Structural	video	episode	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029
+149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	episode	relevant	Antonio Ortiz Lira	Packt Publishing	https://subscription.packtpub.com/video/data/9781788479080/
+150	Computer Vision with OpenCV 3 and Qt5	video	episode	relevant	Amin Ahmadi Tazehkandi	Packt Publishing	https://subscription.packtpub.com/book/data/9781788472395/
+105	Creational Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781800568242/
+131	Structural Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781801073073/
+112	GitHub Actions Masterclass	video	episode	relevant	LM Academy	Packt Publishing	https://subscription.packtpub.com/video/business-other/9781837025411/
 \.
 
 
 --
--- TOC entry 3853 (class 0 OID 20085)
+-- TOC entry 3866 (class 0 OID 20085)
 -- Dependencies: 236
 -- Data for Name: resources_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -20040,7 +20103,7 @@ COPY flashback.resources_activities (id, "user", resource, action, "time") FROM 
 
 
 --
--- TOC entry 3856 (class 0 OID 20096)
+-- TOC entry 3869 (class 0 OID 20096)
 -- Dependencies: 239
 -- Data for Name: roadmaps; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -20052,7 +20115,7 @@ COPY flashback.roadmaps (id, name) FROM stdin;
 
 
 --
--- TOC entry 3857 (class 0 OID 20101)
+-- TOC entry 3870 (class 0 OID 20101)
 -- Dependencies: 240
 -- Data for Name: roadmaps_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -20062,7 +20125,7 @@ COPY flashback.roadmaps_activities (id, "user", roadmap, action, "time") FROM st
 
 
 --
--- TOC entry 3860 (class 0 OID 20112)
+-- TOC entry 3873 (class 0 OID 20112)
 -- Dependencies: 243
 -- Data for Name: section_name; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -20075,7 +20138,7 @@ chapter
 
 
 --
--- TOC entry 3861 (class 0 OID 20115)
+-- TOC entry 3874 (class 0 OID 20115)
 -- Dependencies: 244
 -- Data for Name: sections; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -22053,7 +22116,7 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 
 
 --
--- TOC entry 3862 (class 0 OID 20120)
+-- TOC entry 3875 (class 0 OID 20120)
 -- Dependencies: 245
 -- Data for Name: sections_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -22063,7 +22126,7 @@ COPY flashback.sections_activities (id, "user", resource, "position", action, "t
 
 
 --
--- TOC entry 3864 (class 0 OID 20131)
+-- TOC entry 3877 (class 0 OID 20131)
 -- Dependencies: 247
 -- Data for Name: sections_cards; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26504,7 +26567,7 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 
 
 --
--- TOC entry 3865 (class 0 OID 20138)
+-- TOC entry 3878 (class 0 OID 20138)
 -- Dependencies: 248
 -- Data for Name: sections_progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26666,7 +26729,7 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 
 
 --
--- TOC entry 3867 (class 0 OID 20150)
+-- TOC entry 3880 (class 0 OID 20150)
 -- Dependencies: 250
 -- Data for Name: sessions; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26685,7 +26748,7 @@ COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 
 
 --
--- TOC entry 3868 (class 0 OID 20153)
+-- TOC entry 3881 (class 0 OID 20153)
 -- Dependencies: 251
 -- Data for Name: shelves; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26906,7 +26969,7 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 
 
 --
--- TOC entry 3869 (class 0 OID 20158)
+-- TOC entry 3882 (class 0 OID 20158)
 -- Dependencies: 252
 -- Data for Name: subjects; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26969,7 +27032,7 @@ COPY flashback.subjects (id, name) FROM stdin;
 
 
 --
--- TOC entry 3870 (class 0 OID 20163)
+-- TOC entry 3883 (class 0 OID 20163)
 -- Dependencies: 253
 -- Data for Name: subjects_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -26979,7 +27042,7 @@ COPY flashback.subjects_activities (id, "user", subject, action, "time") FROM st
 
 
 --
--- TOC entry 3873 (class 0 OID 20174)
+-- TOC entry 3886 (class 0 OID 20174)
 -- Dependencies: 256
 -- Data for Name: topics; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -27654,7 +27717,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 
 
 --
--- TOC entry 3874 (class 0 OID 20181)
+-- TOC entry 3887 (class 0 OID 20181)
 -- Dependencies: 257
 -- Data for Name: topics_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -27664,7 +27727,7 @@ COPY flashback.topics_activities (id, "user", topic, action, "time", subject, le
 
 
 --
--- TOC entry 3876 (class 0 OID 20193)
+-- TOC entry 3889 (class 0 OID 20193)
 -- Dependencies: 259
 -- Data for Name: topics_cards; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -29795,7 +29858,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 
 
 --
--- TOC entry 3877 (class 0 OID 20201)
+-- TOC entry 3890 (class 0 OID 20201)
 -- Dependencies: 260
 -- Data for Name: topics_progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -30127,7 +30190,7 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 
 
 --
--- TOC entry 3879 (class 0 OID 20214)
+-- TOC entry 3892 (class 0 OID 20214)
 -- Dependencies: 262
 -- Data for Name: users; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -30139,7 +30202,7 @@ COPY flashback.users (id, name, email, state, verified, joined, hash) FROM stdin
 
 
 --
--- TOC entry 3881 (class 0 OID 20227)
+-- TOC entry 3894 (class 0 OID 20227)
 -- Dependencies: 264
 -- Data for Name: users_roadmaps; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
@@ -30151,7 +30214,7 @@ COPY flashback.users_roadmaps ("user", roadmap) FROM stdin;
 
 
 --
--- TOC entry 3887 (class 0 OID 0)
+-- TOC entry 3903 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: blocks_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30160,7 +30223,7 @@ SELECT pg_catalog.setval('flashback.blocks_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3888 (class 0 OID 0)
+-- TOC entry 3904 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: cards_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30169,7 +30232,7 @@ SELECT pg_catalog.setval('flashback.cards_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3889 (class 0 OID 0)
+-- TOC entry 3905 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: cards_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30178,7 +30241,7 @@ SELECT pg_catalog.setval('flashback.cards_id_seq', 5629, true);
 
 
 --
--- TOC entry 3890 (class 0 OID 0)
+-- TOC entry 3906 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: milestones_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30187,7 +30250,7 @@ SELECT pg_catalog.setval('flashback.milestones_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3891 (class 0 OID 0)
+-- TOC entry 3907 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: network_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30196,7 +30259,16 @@ SELECT pg_catalog.setval('flashback.network_activities_id_seq', 1, true);
 
 
 --
--- TOC entry 3892 (class 0 OID 0)
+-- TOC entry 3908 (class 0 OID 0)
+-- Dependencies: 265
+-- Name: presenters_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: brian
+--
+
+SELECT pg_catalog.setval('flashback.presenters_id_seq', 1, false);
+
+
+--
+-- TOC entry 3909 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: resources_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30205,16 +30277,16 @@ SELECT pg_catalog.setval('flashback.resources_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3893 (class 0 OID 0)
+-- TOC entry 3910 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 215, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 217, true);
 
 
 --
--- TOC entry 3894 (class 0 OID 0)
+-- TOC entry 3911 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: roadmaps_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30223,7 +30295,7 @@ SELECT pg_catalog.setval('flashback.roadmaps_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3895 (class 0 OID 0)
+-- TOC entry 3912 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: roadmaps_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30232,7 +30304,7 @@ SELECT pg_catalog.setval('flashback.roadmaps_id_seq', 2, true);
 
 
 --
--- TOC entry 3896 (class 0 OID 0)
+-- TOC entry 3913 (class 0 OID 0)
 -- Dependencies: 246
 -- Name: sections_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30241,7 +30313,7 @@ SELECT pg_catalog.setval('flashback.sections_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3897 (class 0 OID 0)
+-- TOC entry 3914 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: sections_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30250,7 +30322,7 @@ SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 153, true);
 
 
 --
--- TOC entry 3898 (class 0 OID 0)
+-- TOC entry 3915 (class 0 OID 0)
 -- Dependencies: 254
 -- Name: subjects_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30259,7 +30331,7 @@ SELECT pg_catalog.setval('flashback.subjects_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3899 (class 0 OID 0)
+-- TOC entry 3916 (class 0 OID 0)
 -- Dependencies: 255
 -- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30268,7 +30340,7 @@ SELECT pg_catalog.setval('flashback.subjects_id_seq', 54, true);
 
 
 --
--- TOC entry 3900 (class 0 OID 0)
+-- TOC entry 3917 (class 0 OID 0)
 -- Dependencies: 258
 -- Name: topics_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30277,7 +30349,7 @@ SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
 
 
 --
--- TOC entry 3901 (class 0 OID 0)
+-- TOC entry 3918 (class 0 OID 0)
 -- Dependencies: 261
 -- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30286,7 +30358,7 @@ SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 401, true);
 
 
 --
--- TOC entry 3902 (class 0 OID 0)
+-- TOC entry 3919 (class 0 OID 0)
 -- Dependencies: 263
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
@@ -30295,7 +30367,7 @@ SELECT pg_catalog.setval('flashback.users_id_seq', 3, true);
 
 
 --
--- TOC entry 3602 (class 2606 OID 20233)
+-- TOC entry 3611 (class 2606 OID 20233)
 -- Name: assessments assessments_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30304,7 +30376,7 @@ ALTER TABLE ONLY flashback.assessments
 
 
 --
--- TOC entry 3606 (class 2606 OID 20235)
+-- TOC entry 3615 (class 2606 OID 20235)
 -- Name: blocks_activities blocks_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30313,7 +30385,7 @@ ALTER TABLE ONLY flashback.blocks_activities
 
 
 --
--- TOC entry 3604 (class 2606 OID 20237)
+-- TOC entry 3613 (class 2606 OID 20237)
 -- Name: blocks blocks_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30322,7 +30394,7 @@ ALTER TABLE ONLY flashback.blocks
 
 
 --
--- TOC entry 3610 (class 2606 OID 20239)
+-- TOC entry 3619 (class 2606 OID 20239)
 -- Name: cards_activities cards_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30331,7 +30403,7 @@ ALTER TABLE ONLY flashback.cards_activities
 
 
 --
--- TOC entry 3608 (class 2606 OID 20241)
+-- TOC entry 3617 (class 2606 OID 20241)
 -- Name: cards cards_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30340,7 +30412,7 @@ ALTER TABLE ONLY flashback.cards
 
 
 --
--- TOC entry 3614 (class 2606 OID 20243)
+-- TOC entry 3623 (class 2606 OID 20243)
 -- Name: milestones_activities milestones_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30349,7 +30421,7 @@ ALTER TABLE ONLY flashback.milestones_activities
 
 
 --
--- TOC entry 3612 (class 2606 OID 20245)
+-- TOC entry 3621 (class 2606 OID 20245)
 -- Name: milestones milestones_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30358,7 +30430,7 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
--- TOC entry 3616 (class 2606 OID 20247)
+-- TOC entry 3625 (class 2606 OID 20247)
 -- Name: network_activities network_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30367,7 +30439,16 @@ ALTER TABLE ONLY flashback.network_activities
 
 
 --
--- TOC entry 3618 (class 2606 OID 20249)
+-- TOC entry 3663 (class 2606 OID 20497)
+-- Name: presenters presenters_pkey; Type: CONSTRAINT; Schema: flashback; Owner: brian
+--
+
+ALTER TABLE ONLY flashback.presenters
+    ADD CONSTRAINT presenters_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3627 (class 2606 OID 20249)
 -- Name: resources resources_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30376,7 +30457,7 @@ ALTER TABLE ONLY flashback.resources
 
 
 --
--- TOC entry 3622 (class 2606 OID 20251)
+-- TOC entry 3631 (class 2606 OID 20251)
 -- Name: roadmaps_activities roadmaps_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30385,7 +30466,7 @@ ALTER TABLE ONLY flashback.roadmaps_activities
 
 
 --
--- TOC entry 3620 (class 2606 OID 20253)
+-- TOC entry 3629 (class 2606 OID 20253)
 -- Name: roadmaps roadmaps_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30394,7 +30475,7 @@ ALTER TABLE ONLY flashback.roadmaps
 
 
 --
--- TOC entry 3626 (class 2606 OID 20255)
+-- TOC entry 3635 (class 2606 OID 20255)
 -- Name: sections_activities sections_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30403,7 +30484,7 @@ ALTER TABLE ONLY flashback.sections_activities
 
 
 --
--- TOC entry 3628 (class 2606 OID 20257)
+-- TOC entry 3637 (class 2606 OID 20257)
 -- Name: sections_cards sections_cards_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30412,7 +30493,7 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
--- TOC entry 3624 (class 2606 OID 20259)
+-- TOC entry 3633 (class 2606 OID 20259)
 -- Name: sections sections_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30421,7 +30502,7 @@ ALTER TABLE ONLY flashback.sections
 
 
 --
--- TOC entry 3630 (class 2606 OID 20261)
+-- TOC entry 3639 (class 2606 OID 20261)
 -- Name: sections_progress sections_progress_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30430,7 +30511,7 @@ ALTER TABLE ONLY flashback.sections_progress
 
 
 --
--- TOC entry 3632 (class 2606 OID 20263)
+-- TOC entry 3641 (class 2606 OID 20263)
 -- Name: shelves shelves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30439,7 +30520,7 @@ ALTER TABLE ONLY flashback.shelves
 
 
 --
--- TOC entry 3638 (class 2606 OID 20265)
+-- TOC entry 3647 (class 2606 OID 20265)
 -- Name: subjects_activities subjects_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30448,7 +30529,7 @@ ALTER TABLE ONLY flashback.subjects_activities
 
 
 --
--- TOC entry 3634 (class 2606 OID 20267)
+-- TOC entry 3643 (class 2606 OID 20267)
 -- Name: subjects subjects_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30457,7 +30538,7 @@ ALTER TABLE ONLY flashback.subjects
 
 
 --
--- TOC entry 3636 (class 2606 OID 20269)
+-- TOC entry 3645 (class 2606 OID 20269)
 -- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30466,7 +30547,7 @@ ALTER TABLE ONLY flashback.subjects
 
 
 --
--- TOC entry 3642 (class 2606 OID 20271)
+-- TOC entry 3651 (class 2606 OID 20271)
 -- Name: topics_activities topics_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30475,7 +30556,7 @@ ALTER TABLE ONLY flashback.topics_activities
 
 
 --
--- TOC entry 3644 (class 2606 OID 20273)
+-- TOC entry 3653 (class 2606 OID 20273)
 -- Name: topics_cards topics_cards_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30484,7 +30565,7 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
--- TOC entry 3640 (class 2606 OID 20275)
+-- TOC entry 3649 (class 2606 OID 20275)
 -- Name: topics topics_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30493,7 +30574,7 @@ ALTER TABLE ONLY flashback.topics
 
 
 --
--- TOC entry 3646 (class 2606 OID 20277)
+-- TOC entry 3655 (class 2606 OID 20277)
 -- Name: topics_progress topics_progress_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30502,7 +30583,7 @@ ALTER TABLE ONLY flashback.topics_progress
 
 
 --
--- TOC entry 3652 (class 2606 OID 20279)
+-- TOC entry 3661 (class 2606 OID 20279)
 -- Name: users_roadmaps user_roadmaps_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30511,7 +30592,7 @@ ALTER TABLE ONLY flashback.users_roadmaps
 
 
 --
--- TOC entry 3648 (class 2606 OID 20281)
+-- TOC entry 3657 (class 2606 OID 20281)
 -- Name: users users_email_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30520,7 +30601,7 @@ ALTER TABLE ONLY flashback.users
 
 
 --
--- TOC entry 3650 (class 2606 OID 20283)
+-- TOC entry 3659 (class 2606 OID 20283)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30529,7 +30610,7 @@ ALTER TABLE ONLY flashback.users
 
 
 --
--- TOC entry 3653 (class 2606 OID 20284)
+-- TOC entry 3664 (class 2606 OID 20284)
 -- Name: assessments assessments_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30538,7 +30619,7 @@ ALTER TABLE ONLY flashback.assessments
 
 
 --
--- TOC entry 3654 (class 2606 OID 20289)
+-- TOC entry 3665 (class 2606 OID 20289)
 -- Name: assessments assessments_subject_level_topic_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30547,7 +30628,25 @@ ALTER TABLE ONLY flashback.assessments
 
 
 --
--- TOC entry 3656 (class 2606 OID 20294)
+-- TOC entry 3701 (class 2606 OID 20508)
+-- Name: authors authors_presenter_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: brian
+--
+
+ALTER TABLE ONLY flashback.authors
+    ADD CONSTRAINT authors_presenter_fkey FOREIGN KEY (presenter) REFERENCES flashback.presenters(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3702 (class 2606 OID 20503)
+-- Name: authors authors_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: brian
+--
+
+ALTER TABLE ONLY flashback.authors
+    ADD CONSTRAINT authors_resource_fkey FOREIGN KEY (resource) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3667 (class 2606 OID 20294)
 -- Name: blocks_activities blocks_activities_card_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30556,7 +30655,7 @@ ALTER TABLE ONLY flashback.blocks_activities
 
 
 --
--- TOC entry 3657 (class 2606 OID 20299)
+-- TOC entry 3668 (class 2606 OID 20299)
 -- Name: blocks_activities blocks_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30565,7 +30664,7 @@ ALTER TABLE ONLY flashback.blocks_activities
 
 
 --
--- TOC entry 3655 (class 2606 OID 20304)
+-- TOC entry 3666 (class 2606 OID 20304)
 -- Name: blocks blocks_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30574,7 +30673,7 @@ ALTER TABLE ONLY flashback.blocks
 
 
 --
--- TOC entry 3658 (class 2606 OID 20309)
+-- TOC entry 3669 (class 2606 OID 20309)
 -- Name: cards_activities cards_activities_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30583,7 +30682,7 @@ ALTER TABLE ONLY flashback.cards_activities
 
 
 --
--- TOC entry 3659 (class 2606 OID 20314)
+-- TOC entry 3670 (class 2606 OID 20314)
 -- Name: cards_activities cards_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30592,7 +30691,7 @@ ALTER TABLE ONLY flashback.cards_activities
 
 
 --
--- TOC entry 3662 (class 2606 OID 20319)
+-- TOC entry 3673 (class 2606 OID 20319)
 -- Name: milestones_activities milestones_activities_roadmap_subject_level_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30601,7 +30700,7 @@ ALTER TABLE ONLY flashback.milestones_activities
 
 
 --
--- TOC entry 3663 (class 2606 OID 20324)
+-- TOC entry 3674 (class 2606 OID 20324)
 -- Name: milestones_activities milestones_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30610,7 +30709,7 @@ ALTER TABLE ONLY flashback.milestones_activities
 
 
 --
--- TOC entry 3660 (class 2606 OID 20329)
+-- TOC entry 3671 (class 2606 OID 20329)
 -- Name: milestones milestones_roadmap_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30619,7 +30718,7 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
--- TOC entry 3661 (class 2606 OID 20334)
+-- TOC entry 3672 (class 2606 OID 20334)
 -- Name: milestones milestones_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30628,7 +30727,7 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
--- TOC entry 3664 (class 2606 OID 20339)
+-- TOC entry 3675 (class 2606 OID 20339)
 -- Name: network_activities network_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30637,7 +30736,7 @@ ALTER TABLE ONLY flashback.network_activities
 
 
 --
--- TOC entry 3665 (class 2606 OID 20344)
+-- TOC entry 3676 (class 2606 OID 20344)
 -- Name: resources_activities resources_activities_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30646,7 +30745,7 @@ ALTER TABLE ONLY flashback.resources_activities
 
 
 --
--- TOC entry 3666 (class 2606 OID 20349)
+-- TOC entry 3677 (class 2606 OID 20349)
 -- Name: resources_activities resources_activities_resource_fkey1; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30655,7 +30754,7 @@ ALTER TABLE ONLY flashback.resources_activities
 
 
 --
--- TOC entry 3667 (class 2606 OID 20354)
+-- TOC entry 3678 (class 2606 OID 20354)
 -- Name: resources_activities resources_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30664,7 +30763,7 @@ ALTER TABLE ONLY flashback.resources_activities
 
 
 --
--- TOC entry 3668 (class 2606 OID 20359)
+-- TOC entry 3679 (class 2606 OID 20359)
 -- Name: roadmaps_activities roadmaps_activities_roadmap_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30673,7 +30772,7 @@ ALTER TABLE ONLY flashback.roadmaps_activities
 
 
 --
--- TOC entry 3669 (class 2606 OID 20364)
+-- TOC entry 3680 (class 2606 OID 20364)
 -- Name: roadmaps_activities roadmaps_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30682,7 +30781,7 @@ ALTER TABLE ONLY flashback.roadmaps_activities
 
 
 --
--- TOC entry 3671 (class 2606 OID 20369)
+-- TOC entry 3682 (class 2606 OID 20369)
 -- Name: sections_activities sections_activities_resource_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30691,7 +30790,7 @@ ALTER TABLE ONLY flashback.sections_activities
 
 
 --
--- TOC entry 3672 (class 2606 OID 20374)
+-- TOC entry 3683 (class 2606 OID 20374)
 -- Name: sections_activities sections_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30700,7 +30799,7 @@ ALTER TABLE ONLY flashback.sections_activities
 
 
 --
--- TOC entry 3673 (class 2606 OID 20379)
+-- TOC entry 3684 (class 2606 OID 20379)
 -- Name: sections_cards sections_cards_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30709,7 +30808,7 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
--- TOC entry 3674 (class 2606 OID 20384)
+-- TOC entry 3685 (class 2606 OID 20384)
 -- Name: sections_cards sections_cards_resource_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30718,7 +30817,7 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
--- TOC entry 3675 (class 2606 OID 20389)
+-- TOC entry 3686 (class 2606 OID 20389)
 -- Name: sections_progress sections_progress_resource_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30727,7 +30826,7 @@ ALTER TABLE ONLY flashback.sections_progress
 
 
 --
--- TOC entry 3676 (class 2606 OID 20394)
+-- TOC entry 3687 (class 2606 OID 20394)
 -- Name: sections_progress sections_progress_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30736,7 +30835,7 @@ ALTER TABLE ONLY flashback.sections_progress
 
 
 --
--- TOC entry 3670 (class 2606 OID 20399)
+-- TOC entry 3681 (class 2606 OID 20399)
 -- Name: sections sections_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30745,7 +30844,7 @@ ALTER TABLE ONLY flashback.sections
 
 
 --
--- TOC entry 3677 (class 2606 OID 20404)
+-- TOC entry 3688 (class 2606 OID 20404)
 -- Name: sessions sessions_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30754,7 +30853,7 @@ ALTER TABLE ONLY flashback.sessions
 
 
 --
--- TOC entry 3678 (class 2606 OID 20409)
+-- TOC entry 3689 (class 2606 OID 20409)
 -- Name: shelves shelves_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30763,7 +30862,7 @@ ALTER TABLE ONLY flashback.shelves
 
 
 --
--- TOC entry 3679 (class 2606 OID 20414)
+-- TOC entry 3690 (class 2606 OID 20414)
 -- Name: shelves shelves_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30772,7 +30871,7 @@ ALTER TABLE ONLY flashback.shelves
 
 
 --
--- TOC entry 3680 (class 2606 OID 20419)
+-- TOC entry 3691 (class 2606 OID 20419)
 -- Name: subjects_activities subjects_activities_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30781,7 +30880,7 @@ ALTER TABLE ONLY flashback.subjects_activities
 
 
 --
--- TOC entry 3681 (class 2606 OID 20424)
+-- TOC entry 3692 (class 2606 OID 20424)
 -- Name: subjects_activities subjects_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30790,7 +30889,7 @@ ALTER TABLE ONLY flashback.subjects_activities
 
 
 --
--- TOC entry 3682 (class 2606 OID 20429)
+-- TOC entry 3693 (class 2606 OID 20429)
 -- Name: topics_activities topics_activities_subject_level_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30799,7 +30898,7 @@ ALTER TABLE ONLY flashback.topics_activities
 
 
 --
--- TOC entry 3683 (class 2606 OID 20434)
+-- TOC entry 3694 (class 2606 OID 20434)
 -- Name: topics_activities topics_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30808,7 +30907,7 @@ ALTER TABLE ONLY flashback.topics_activities
 
 
 --
--- TOC entry 3684 (class 2606 OID 20439)
+-- TOC entry 3695 (class 2606 OID 20439)
 -- Name: topics_cards topics_cards_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30817,7 +30916,7 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
--- TOC entry 3685 (class 2606 OID 20444)
+-- TOC entry 3696 (class 2606 OID 20444)
 -- Name: topics_cards topics_cards_subject_level_topic_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30826,7 +30925,7 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
--- TOC entry 3686 (class 2606 OID 20449)
+-- TOC entry 3697 (class 2606 OID 20449)
 -- Name: topics_progress topics_progress_subject_level_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30835,7 +30934,7 @@ ALTER TABLE ONLY flashback.topics_progress
 
 
 --
--- TOC entry 3687 (class 2606 OID 20454)
+-- TOC entry 3698 (class 2606 OID 20454)
 -- Name: topics_progress topics_progress_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30844,7 +30943,7 @@ ALTER TABLE ONLY flashback.topics_progress
 
 
 --
--- TOC entry 3688 (class 2606 OID 20459)
+-- TOC entry 3699 (class 2606 OID 20459)
 -- Name: users_roadmaps user_roadmaps_roadmap_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30853,7 +30952,7 @@ ALTER TABLE ONLY flashback.users_roadmaps
 
 
 --
--- TOC entry 3689 (class 2606 OID 20464)
+-- TOC entry 3700 (class 2606 OID 20464)
 -- Name: users_roadmaps user_roadmaps_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30861,11 +30960,11 @@ ALTER TABLE ONLY flashback.users_roadmaps
     ADD CONSTRAINT user_roadmaps_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2025-11-26 14:23:49 CET
+-- Completed on 2025-11-26 15:39:07 CET
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 9jRyt8tgIVW6UkWizyBgDvcp6BETxYgUZWxAL5XWBO2x4ZL7uCNPYUOxbgWw2fd
+\unrestrict NaqHbg3aURR73X136lsdeQWPxaVcuAvWrM0OobDTY5aI883rGal7LgMuXgicbtQ
 
