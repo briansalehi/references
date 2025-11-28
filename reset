@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+psql -U postgres -c 'drop database flashback'
+psql -U postgres -c 'create database flashback with owner flashback connection limit 2'
+psql -U flashback -d flashback -f flashback.sql
