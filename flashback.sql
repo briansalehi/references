@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict LgV1N4Kez27CdTRtJfodtsqobXHYM8ykqsbDyKgeX0Edo6KzsC0HUujDyfQpJ23
+\restrict zbT9oWpvEgNqHvwywUDfim3Q3Pou7e3t496ITeli6DmvGgIgFbypMxavnExkeEN
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1694,6 +1694,24 @@ CREATE FUNCTION flashback.user_is_verified(email character varying) RETURNS bool
 
 ALTER FUNCTION flashback.user_is_verified(email character varying) OWNER TO flashback;
 
+--
+-- Name: weigh_card(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.weigh_card(card_id integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare headline_weight integer = 0;
+declare content_weight integer = 0;
+begin
+    select array_length(tsvector_to_array(to_tsvector('simple', heading)), 1) into headline_weight from cards where id = card_id;
+    select sum(array_length(tsvector_to_array(to_tsvector('simple', content)), 1)) into content_weight from blocks where card = card_id;
+    return headline_weight + content_weight;
+end; $$;
+
+
+ALTER FUNCTION flashback.weigh_card(card_id integer) OWNER TO flashback;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -1835,17 +1853,6 @@ ALTER TABLE flashback.cards ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
     CACHE 1
 );
 
-
---
--- Name: last_position; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.last_position (
-    max integer
-);
-
-
-ALTER TABLE flashback.last_position OWNER TO flashback;
 
 --
 -- Name: milestones; Type: TABLE; Schema: flashback; Owner: flashback
@@ -19528,17 +19535,6 @@ COPY flashback.cards_activities (id, "user", card, action, "time") FROM stdin;
 
 
 --
--- Data for Name: last_position; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.last_position (max) FROM stdin;
-10
-10
-10
-\.
-
-
---
 -- Data for Name: milestones; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -19707,6 +19703,133 @@ COPY flashback.network_activities (id, "user", "time", activity, address) FROM s
 --
 
 COPY flashback.presenters (id, name) FROM stdin;
+129	Abdul Wahid Tanner
+130	Adrian Kaehler
+131	Alex González
+132	Amar Mahmutbegović
+133	Amin Ahmadi Tazehkandi
+134	Andreas J. Reichel
+135	Andrey Gavrilin
+136	Antonio Ortiz Lira
+137	Arthur O'Dwyer
+138	Arthur Sonzogni
+139	Austin Kim
+140	Bartłomiej Filipek
+141	Bhaumik Vaidya
+142	Bill Weinman
+143	Bjarne Stroustrup
+144	Björn Andrist
+145	Boost Development Team
+146	Bootlin Development Team
+147	Carmine Noviello
+148	C++ Community
+149	Clément Jean
+150	Corey P. Schultz
+151	Craig Scott
+152	Daniele Lacamera
+153	Daniel Lélis Baggio
+154	Daniel Zawadzki
+155	Dan Olson
+156	David Millán Escrivá
+157	Derek Taylor
+158	Desislav Andreev
+159	Dhairya Parikh
+160	Dmitry Danilov
+161	Dmytro Radchuk
+162	Dominik Berner
+163	Donald A. Tevault
+164	Dusty Phillips
+165	Elías F. Combarro
+166	Eric Chapman
+167	Fedor G. Pikus
+168	Frahaan Hussain
+169	Francesco Ciulla
+170	Frank Vasquez
+171	Gianni Ciolli
+172	Glen D. Singh
+173	Google Development Team
+174	Greg Law
+175	Himanshu Sharma
+176	H.M. Irfan Sadiq
+177	Imran Ahmad
+178	Irfan Sadiq
+179	Israel Gbati
+180	Ivan Murashko
+181	Jacek Galowicz
+182	Jakub Narebski
+183	Jasmin Redzepagic
+184	Jason Turner
+185	Javier Reguera-Salgado
+186	Jean-Georges Valle
+187	Jeff Szuhay
+188	Jim Yuill
+189	John Farrier
+190	John Horton
+191	John Madieu
+192	John Werner
+193	Joseph Howse
+194	Kai Nacke
+195	Kaiwan N. Billimoria
+196	Kamran Amini
+197	Kirill Kolodiazhnyi
+198	Kitware Development Team
+199	Lee Zhi Eng
+200	LM Academy
+201	Lorn Potter
+202	Luca Ferrari
+203	Marc Linster
+204	Marius Bancila
+205	Matt St. Onge
+206	Maya Posch
+207	Michael Elkins
+208	Michael Kaufmann
+209	Michał Jaworski
+210	Mohammed Billoo
+211	Nibedit Dey
+212	Nicolai M. Josuttis
+213	Nicolas Bohorquez
+214	Oleg Skulkin
+215	Olivia Chiu Stone
+216	Onorato Vaticone
+217	Otavio Salvador
+218	Patrice Roy
+219	Paul Duplys
+220	Paulo Motta
+221	Pierre-Jean, Mabäcker
+222	Priscila Heller
+223	Quan Ha Le
+224	Quan Nguyen
+225	Radovan Bast
+226	Rafał Świdziński
+227	Rainer Grimm
+228	Renaldi Gondosubroto
+229	Rian Quinn
+230	Rishalin Pillay
+231	Robert Laganiere
+232	Roy Shilkrot
+233	Ruslan Osipov
+234	Sam Morley
+235	Scott Alan Miller
+236	Sergey Kosarevsky
+237	Sergiy Kravchenko
+238	Siddhartha Rao
+239	Simon Toth
+240	Sourav Ghosh
+241	Steve Campbell
+242	Sven Vermeulen
+243	Tom Hulton-Harrop
+244	Umar Lone
+245	Vardan Grigoryan
+246	Vasilis Tzivaras
+247	Vedat Ozan Oner
+248	Venkatesh Varadachari
+249	Vijay Kumar Velu
+250	Vittorio Romeo
+251	Yocto Development Team
+252	Yunus Temurlenk
+253	Zachary Lasiuk
+254	Zhenyu George Li
+255	Zhuo Qingliang
 \.
 
 
@@ -19736,7 +19859,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 102	Black Hat Bash	book	chapter	relevant	\N	\N	\N
 104	Mastering Modern CPP Features	video	episode	relevant	\N	\N	\N
 13	Linux Device Drivers	course	episode	relevant	\N	LinkedIn	\N
-98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin	\N	\N
 116	Algorithms and Data Structures Made Easy	video	episode	relevant	\N	\N	\N
 4	Qt Documentation	website	page	relevant	\N	\N	https://doc.qt.io/
 8	C++ Stories	website	page	relevant	\N	\N	https://www.cppstories.com/
@@ -19779,11 +19901,11 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 139	Computer Vision Lab	channel	episode	relevant	Yunus Temurlenk	YouTube	https://www.youtube.com/@computervisionlab2119
 140	C++ Weekly With Jason Turner	channel	episode	relevant	Jason Turner	YouTube	https://www.youtube.com/@cppweekly
 113	Advanced Linux: The Linux Kernel	video	episode	relevant	\N	\N	\N
-89	Embedded Linux Training Course	slides	chapter	relevant	Bootlin	\N	\N
 115	Mutt Documentation	website	chapter	relevant	Michael Elkins	\N	http://www.mutt.org/doc/manual/
 2	Boost Documentation	website	page	relevant	Boost Development Team	Boost Development Team	https://www.boost.org/libraries/latest/list/
 9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
 103	Cpp Hive	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpphive4051
+98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin Development Team	\N	\N
 12	Kevin Dankwardt's Linux Device Drivers	course	episode	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
@@ -19802,7 +19924,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 58	Embedded Linux Development Using Yocto Project	book	chapter	relevant	Otavio Salvador	Packt Publishing	https://subscription.packtpub.com/book/security/9781804615065/
 72	Professional CMake	book	chapter	relevant	Craig Scott	Crascit Pty Ltd	https://crascit.com/professional-cmake/
 93	Boost.Asio C++ Network Programming	book	chapter	relevant	Dmytro Radchuk	Packt Publishing	https://subscription.packtpub.com/book/programming/9781785283079/
-100	GoogleTest Documentation	website	page	relevant	Google Developers	Google	https://google.github.io/googletest/
 107	Asynchronous Programming with C++	book	chapter	relevant	Javier Reguera-Salgado	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835884249/
 119	Computer Graphics Programming in OpenGL with C++	book	chapter	relevant	\N	\N	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186
 123	Template Metaprogramming with C++	book	chapter	relevant	Marius Bancila	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803243450/
@@ -19835,7 +19956,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 111	Mastering PostgreSQL 17	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/data/9781836205975/
 124	GitHub Actions in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/github-actions-in-action
 135	GPU Programming with C++ and CUDA	book	chapter	relevant	Paulo Motta	Packt Publishing	https://subscription.packtpub.com/book/programming/9781805124542/
-137	DistroTube	channel	episode	relevant	DistroTube	YouTube	https://www.youtube.com/@DistroTube
 141	Yocto Project Documentation	manual	page	relevant	Yocto Development Team	Linux Foundation	https://docs.yoctoproject.org/
 143	Yocto for Raspberry Pi	book	chapter	relevant	Pierre-Jean, Mabäcker	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785281952/
 145	Qt 5 and OpenCV 4 Computer Vision Projects	book	chapter	relevant	Zhuo Qingliang	Packt Publishing	https://subscription.packtpub.com/book/data/9781789532586/
@@ -19876,9 +19996,9 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 176	Bare-Metal Embedded C Programming	book	chapter	relevant	Israel Gbati	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835460818/
 177	Learn C Programming	book	chapter	relevant	Jeff Szuhay	Packt Publishing	https://subscription.packtpub.com/book/programming/9781801078450/
 178	Embedded Linux Development with Yocto Project	book	chapter	relevant	Otavio Salvador	Packt Publishing	https://subscription.packtpub.com/book/security/9781804615065/
-179	Embedded Linux Projects Using Yocto Project Cookbook	book	chapter	relevant	Alex Gonzalez	Packt Publishing	https://subscription.packtpub.com/book/iot-and-hardware/9781788399210/
 180	Using Yocto Project with BeagleBone Black	book	chapter	relevant	Irfan Sadiq	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785289736/
 181	Python 3 Object-Oriented Programming	book	chapter	relevant	Dusty Phillips	Packt Publishing	https://subscription.packtpub.com/book/programming/9781801077262/
+137	DistroTube	channel	episode	relevant	Derek Taylor	YouTube	https://www.youtube.com/@DistroTube
 182	Hands-On Embedded Programming with Qt	book	chapter	relevant	John Werner	Packt Publishing	https://subscription.packtpub.com/book/iot-and-hardware/9781789952063/
 183	C++ 20 (2a) New Features	course	episode	relevant	Daniel Zawadzki	Packt Publishing	https://subscription.packtpub.com/video/programming/9781839216909/
 27	C++17 STL Cookbook	book	chapter	relevant	Jacek Galowicz	Packt Publishing	https://subscription.packtpub.com/book/programming/9781787120495/
@@ -19913,7 +20033,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 212	Linux Administration Best Practices	book	chapter	relevant	Scott Alan Miller	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781800568792/
 213	Practical Memory Forensics	book	chapter	relevant	Oleg Skulkin	Packt Publishing	https://subscription.packtpub.com/book/security/9781801070331/
 214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	Imran Ahmad	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803247762/
-97	OpenGL and GLSL Fundamentals with C++	video	episode	relevant	course	Packt Publishing	https://subscription.packtpub.com/video/game-development/9781838647889/
 216	cpponsea	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpponsea
 215	Meeting Cpp	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@MeetingCPP
 1	CppNow	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@CppNow
@@ -19938,6 +20057,10 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 227	Internet of Things from Scratch	book	chapter	relevant	Renaldi Gondosubroto	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781837638543
 226	Embedded Systems Architecture	book	chapter	relevant	Daniele Lacamera	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803239545
 228	Advanced ESP32	course	chapter	relevant	Venkatesh Varadachari	Packt Publishing	https://subscription.packtpub.com/video/iot-hardware/9781800202016
+179	Embedded Linux Projects Using Yocto Project Cookbook	book	chapter	relevant	Alex González	Packt Publishing	https://subscription.packtpub.com/book/iot-and-hardware/9781788399210/
+89	Embedded Linux Training Course	slides	chapter	relevant	Bootlin Development Team	\N	\N
+97	OpenGL and GLSL Fundamentals with C++	course	episode	relevant	Sergiy Kravchenko	Packt Publishing	https://subscription.packtpub.com/video/game-development/9781838647889/
+100	GoogleTest Documentation	website	page	relevant	Google Development Team	Google	https://google.github.io/googletest/
 \.
 
 
@@ -30203,7 +30326,7 @@ SELECT pg_catalog.setval('flashback.network_activities_id_seq', 1, true);
 -- Name: presenters_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.presenters_id_seq', 1, false);
+SELECT pg_catalog.setval('flashback.presenters_id_seq', 255, true);
 
 
 --
@@ -30815,5 +30938,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict LgV1N4Kez27CdTRtJfodtsqobXHYM8ykqsbDyKgeX0Edo6KzsC0HUujDyfQpJ23
+\unrestrict zbT9oWpvEgNqHvwywUDfim3Q3Pou7e3t496ITeli6DmvGgIgFbypMxavnExkeEN
 
