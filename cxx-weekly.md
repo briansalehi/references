@@ -2,7 +2,7 @@
 # C++ Weekly With Jason Turner
 ## channel
 ## YouTube
-### segment
+### episode
 ### Jason Turner
 #### surface
 
@@ -18,7 +18,7 @@
 # C++ Weekly With Jason Turner
 ## channel
 ## YouTube
-### segment
+### episode
 ### Jason Turner
 #### surface
 

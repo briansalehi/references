@@ -2,7 +2,7 @@
 # Algorithms and Data Structures Made Easy
 ## channel
 ## YouTube
-### segment
+### episode
 ### OliveStem
 
 #### surface
