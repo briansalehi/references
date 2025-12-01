@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict zbT9oWpvEgNqHvwywUDfim3Q3Pou7e3t496ITeli6DmvGgIgFbypMxavnExkeEN
+\restrict lKr2yMGvuYrEmy1KSN3Ekun9tna55ZRZw4Z7NqMa9fiiVwwbzIKuPEtCOajK0Jh
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -14456,6 +14456,10 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5629	2	The command is important to be identical with the target name. Any typo or incomplete refactoring may cause CTest to crosscompile a different target.\nTo avoid that, we can use generator expressions.	text	md
 5629	3	set(CMAKE_SYSTEM_NAME "Windows")\nset(CMAKE_SYSTEM_PROCESSOR "x86_64")\nset(toolchain_prefix "x86_64-w64-mingw32")\nset(CMAKE_C_COMPILER "/usr/bin/${toolchain_prefix}-gcc")\nset(CMAKE_CXX_COMPILER "/usr/bin/${toolchain_prefix}-g++")\nset(CMAKE_RC_COMPILER "/usr/bin/${toolchain_prefix}-windres")\nset(CMAKE_FIND_ROOT_PATH "/usr/${toolchain_prefix}-sys-root/mingw/")\nset(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)\nset(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)\nset(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)\nset(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine64")\nset(ENV{CMAKE_TOOLCHAIN_FILE} "mingw64.cmake")\n\nctest_configure()\n\nadd_executable(<target>)\ntarget_sources(<target> PRIVATE <sources>)\nadd_test(NAME <test> COMMAND $<TARGET_FILE:<target>>)	code	cmake
 5629	4	This will run with Wine.	text	md
+5630	1	cmake_minimum_required(VERSION 4.1)\n\nproject(Example LANGUAGES CXX)\n\ninclude(GNUInstallDirs)\n\nfind_package(zlib-ng REQUIRED)\n\nadd_library(compress INTERFACE)\ntarget_sources(compress PUBLIC FILE_SET HEADERS FILES include/compress/compress.hpp)\ntarget_compile_features(compress INTERFACE cxx_std_26)\ntarget_link_libraries(compress INTERFACE zlib-ng::zlib)\n\ninstall(TARGETS compress EXPORT compress INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/compress)\ninstall(PACKAGE_INFO compress EXPORT compress)\nexport(EXPORT compress PACKAGE_INFO compress)	code	cmake
+5630	2	Other projects can consume it:	text	md
+5630	3	cmake_minimum_required(VERSION 4.1)\n\nproject(Consumer LANGUAGES CXX)\n\ninclude(GNUInstallDirs)\n\nfind_package(consumer REQUIRED)\n\nadd_executable(consumer main.cpp)\ntarget_link_libraries(consumer PRIVATE compress::compress)\n\ninstall(TARGETS consumer RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})	code	cmake
+5630	4	There is no change between non-CPS and CPS supported code for consumers. We would just find the package as we used to do before.	text	md
 \.
 
 
@@ -19523,6 +19527,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3571	Verify that a container is a superset of given range?	review
 3573	Verify the size of a container?	review
 3581	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	review
+5630	Export a package with CPS information?	review
 \.
 
 
@@ -20035,7 +20040,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	Imran Ahmad	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803247762/
 216	cpponsea	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpponsea
 215	Meeting Cpp	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@MeetingCPP
-1	CppNow	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@CppNow
 217	Kitware	channel	episode	relevant	Kitware Development Team	YouTube	https://www.youtube.com/@KitwareVideos
 118	Behavioral Design Patterns in C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781804615652/
 11	C++ Design Patterns: Creational	video	episode	relevant	Olivia Chiu Stone	LinkedIn	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational
@@ -20045,6 +20049,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 105	Creational Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781800568242/
 131	Structural Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781801073073/
 112	GitHub Actions Masterclass	video	episode	relevant	LM Academy	Packt Publishing	https://subscription.packtpub.com/video/business-other/9781837025411/
+1	CppNow	channel	episode	relevant	Bill Hoffman	YouTube	https://www.youtube.com/@CppNow
 218	The C++ Programmer's Mindset	book	chapter	relevant	Sam Morley	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835888421
 219	Beginning C++ Game Programming	book	chapter	relevant	John Horton	Packt Publishing	https://subscription.packtpub.com/book/game-development/9781835081747
 79	PostgreSQL 16 Administration Cookbook	book	chapter	relevant	Gianni Ciolli	Packt Publishing	https://subscription.packtpub.com/book/data/9781835460580
@@ -22074,6 +22079,7 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 205	20	\N
 215	1	https://youtu.be/k76LN8dSxx4
 1	2	https://youtu.be/whaPQ5BU2y8
+1	3	https://youtu.be/Hk4fv4dD0UQ
 \.
 
 
@@ -26521,6 +26527,7 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 1	2	5627	44
 1	2	5628	45
 1	2	5629	46
+1	3	5630	1
 \.
 
 
@@ -27678,6 +27685,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 7	Running Tests	24	surface
 10	Assertions	24	surface
 11	Matchers	24	surface
+49	Common Package Specification	5	surface
 \.
 
 
@@ -29934,6 +29942,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 11	3599	67	24	surface
 11	3600	68	24	surface
 11	3601	69	24	surface
+49	5630	1	5	surface
 \.
 
 
@@ -30305,7 +30314,7 @@ SELECT pg_catalog.setval('flashback.cards_activities_id_seq', 1, false);
 -- Name: cards_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.cards_id_seq', 5629, true);
+SELECT pg_catalog.setval('flashback.cards_id_seq', 5630, true);
 
 
 --
@@ -30938,5 +30947,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict zbT9oWpvEgNqHvwywUDfim3Q3Pou7e3t496ITeli6DmvGgIgFbypMxavnExkeEN
+\unrestrict lKr2yMGvuYrEmy1KSN3Ekun9tna55ZRZw4Z7NqMa9fiiVwwbzIKuPEtCOajK0Jh
 
