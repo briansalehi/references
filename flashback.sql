@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict tr6nZ6yNirf3gD8n1576H1yHEP0NmhcldctOz9KDqCmN6ceRLQdbiYsNyOHKgpR
+\restrict KuqnGj3twl6d3rHmFfthobcYjtvsA3k1fhQuAFgMZZS0Ycd9QOL1s6GfvResbdM
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -14460,6 +14460,44 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5630	2	Other projects can consume it:	text	md
 5630	3	cmake_minimum_required(VERSION 4.1)\n\nproject(Consumer LANGUAGES CXX)\n\ninclude(GNUInstallDirs)\n\nfind_package(consumer REQUIRED)\n\nadd_executable(consumer main.cpp)\ntarget_link_libraries(consumer PRIVATE compress::compress)\n\ninstall(TARGETS consumer RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})	code	cmake
 5630	4	There is no change between non-CPS and CPS supported code for consumers. We would just find the package as we used to do before.	text	md
+5631	1	- Source tree\n- Build tree\n- Install tree	text	md
+5632	1	File sets describe the availability of objects in the source tree. Using `target_sources()` we can define file sets.	text	md
+5632	2	cmake_minimum_required(VERSION 4.0)\nproject(Example LANGUAGES CXX)\n\nadd_library(example)\ntarget_sources(example\n    PRIVATE\n        FILE_SET private_headers\n        TYPE HEADERS\n        BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}\n        FILES ${headers}\n)	code	cmake
+5633	1	`BASE_DIRS` clarifies where the included files and embed preprocessing directives or modules are located. Compilers require the path to where these objects live by the means of `-I` flag. This information will be used to know which part of the paths get rellocated when we objects are installed.	text	md
+5634	1	Including header files in a modern CMake used to be as follows:	text	md
+5634	2	target_include_directories(<target> PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})	code	cmake
+5634	3	But in a post-modern CMake, private headers files will be assumed to be in the current source directory when omitted:	text	md
+5634	4	target_sources(<target> PRIVATE FILE_SET HEADERS)	code	cmake
+5635	1	Headers and C++ modules are supported:	text	md
+5635	2	target_sources(<target> PRIVATE FILE_SET HEADERS)	code	cmake
+5635	3	target_sources(<target> PRIVATE FILE_SET CXX_MODULES)	code	cmake
+5635	4	But embed files are not supported yet:	text	md
+5635	5	target_sources(<target> PRIVATE FILE_SET EMBED)	code	cmake
+5635	6	And the source files do not have a file set, but we can just describe them with enumerating files:	text	md
+5635	7	target_sources(<target> PRIVATE <sources>)	code	cmake
+5636	1	We may have different sets of sources files that we use differently. We may have sources and generated sources. So we describe sources in a file set and then describe the generated sources in a separate file set, so that CMake knows which files are ready to be built in parallel and for which files the CMake needs to wait until the generator finishes writing them. This will increase the build speed.	text	md
+5637	1	Build trees are volatile and is subject to change at any point of time and we should never rely on its structure.	text	md
+5638	1	install(\n    TARGETS example\n    COMPONENT example\n    EXPORT example-targets\n    DESTINATION ${CMAKE_INSTALL_LIBDIR}\n    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}\n    FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}\n)	code	cmake
+5638	2	But the last three lines are optional, and encouraged to be left untouched.	text	md
+5638	3	And when there is only one component in the project, also omit the component:	text	md
+5638	4	install(TARGETS example EXPORT example-targets)	code	cmake
+5639	1	The `COMPONENT <name>` describes which part of the project needs to be built and can be given to CMake install subcommand with `--component` option:	text	md
+5639	2	cmake --install <bindir> --component <name>	code	cmake
+5639	3	This is useful when we have separate parts of the project where they need to be installed conditionally.	text	md
+5639	4	cmake --install <bindir> --component client	code	cmake
+5639	5	cmake --install <bindir> --component server	code	cmake
+5640	1	`EXPORT <name>` is the name to describe collection of packages.	text	md
+5640	2	install(\n    TARGETS example\n    COMPONENT example\n    EXPORT example-targets\n)	code	cmake
+5641	1	Using `GNUInstallDirs` module, we can refer to a known paths in install tree:	text	md
+5641	2	|    Target Type     |   GNUInstallDirs Variable   |   Path   |\n|--------------------|-----------------------------|----------|\n| `RUNTIME`          | `CMAKE_INSTALL_BINDIR`      | bin      |\n| `LIBRARY`          | `CMAKE_INSTALL_LIBDIR`      | lib      |\n| `ARCHIVE`          | `CMAKE_INSTALL_LIBDIR`      | lib      |\n| `PRIVATE_HEADER`   | `CMAKE_INSTALL_INCLUDEDIR`  | include  |\n| `PUBLIC_HEADER`    | `CMAKE_INSTALL_INCLUDEDIR`  | include  |\n| `FILE_SET HEADERS` | `CMAKE_INSTALL_INCLUDEDIR`  | include  |	text	md
+5642	1	Developers and packages have two different roles. Generally, developers should not interfere with packaging responsibilities. Therefore, developers should not modify environment variables, change default installation destinations, CMake predefined variables, and anything else that already have a reasonable default for projects.	text	md
+5643	1	Package config module can be used to describe packaging of a project:	text	md
+5643	2	include(CMakePackageConfigHelpers)\n\nconfigure_package_config_file(\n    "${CMAKE_CURRENT_SOURCE_DIR}/example-config.cmake.in"\n    "${CMAKE_CURRENT_BINARY_DIR}/example-config.cmake"\n    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/example"\n)\n\nwrite_basic_package_version_file(\n    "${CMAKE_CURRENT_BINARY_DIR}/example.version.cmake"\n    COMPATIBILITY ExactVersion\n)\n\ninstall(\n    FILES\n        "${CMAKE_CURRENT_BINARY_DIR}/example-config.cmake"\n        "${CMAKE_CURRENT_BINARY_DIR}/example-version.cmake"\n    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/example"\n    COMPONENT example\n)\n\ninstall(\n    EXPORT example-targets\n    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/example"\n    NAMESPACE example::\n    FILE example-config.cmake\n    COMPONENT example\n    EXPORT_PACKAGE_DEPENDENCIES\n)	code	cmake
+5643	3	So, there are three types of `install()` commands, for targets, package config, and for exports which installs targets specified in the exports.	text	md
+5643	4	The `EXPORT_PACKAGE_DEPENDENCIES` is a way to get rid of directly writing dependencies for the package, but until we have it in the upstream, we need to write a package config file `example-config.cmake`:	text	md
+5643	5	include(CMakeFindDependencyMacro)\n\nfind_dependency(<dep>)\nfind_dependency(<dep>)\nfind_dependency(<dep>)\n\ninclude(${CMAKE_CURRENT_LIST_DIR}/example-targets.cmake)	code	cmake
+5643	6	But with Command Package Specification, all install commands will become:	text	md
+5643	7	install(PACKAGE_INFO example EXPORT example-targets)	code	cmake
 \.
 
 
@@ -19528,6 +19566,19 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3573	Verify the size of a container?	review
 3581	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	review
 5630	Export a package with CPS information?	review
+5631	What file trees exist in a project?	review
+5632	How can we describe a source tree of a project in CMake?	review
+5633	What is the role of base directories inside a file set?	review
+5634	How would file set description looks like when reduced to only include private header files for a target?	review
+5635	What are the supported private file sets?	review
+5636	What is the reason of separating sources into different file sets?	review
+5637	Why should we never describe build trees in CMake?	review
+5638	Describe the install tree in CMake?	review
+5639	What is the use case of component parameter in install command?	review
+5640	What is the use case of export parameter in install command?	review
+5641	What are the known paths to install tree?	review
+5642	What scope is not in the responsibility of developers to manipulate?	review
+5643	Describe a package containing installed artifacts of the project?	review
 \.
 
 
@@ -20049,7 +20100,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 105	Creational Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781800568242/
 131	Structural Design Patterns in Modern C++	video	episode	relevant	Umar Lone	Packt Publishing	https://subscription.packtpub.com/video/programming/9781801073073/
 112	GitHub Actions Masterclass	video	episode	relevant	LM Academy	Packt Publishing	https://subscription.packtpub.com/video/business-other/9781837025411/
-1	CppNow	channel	episode	relevant	Bill Hoffman	YouTube	https://www.youtube.com/@CppNow
+1	CppNow	channel	episode	relevant	Vito Gamberini	YouTube	https://www.youtube.com/@CppNow
 218	The C++ Programmer's Mindset	book	chapter	relevant	Sam Morley	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835888421
 219	Beginning C++ Game Programming	book	chapter	relevant	John Horton	Packt Publishing	https://subscription.packtpub.com/book/game-development/9781835081747
 79	PostgreSQL 16 Administration Cookbook	book	chapter	relevant	Gianni Ciolli	Packt Publishing	https://subscription.packtpub.com/book/data/9781835460580
@@ -22087,6 +22138,7 @@ COPY flashback.sections (resource, "position", name) FROM stdin;
 215	1	https://youtu.be/k76LN8dSxx4
 1	2	https://youtu.be/whaPQ5BU2y8
 1	3	https://youtu.be/Hk4fv4dD0UQ
+1	4	https://youtu.be/K5Kg8TOTKjU
 \.
 
 
@@ -26535,6 +26587,19 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 1	2	5628	45
 1	2	5629	46
 1	3	5630	1
+1	4	5631	1
+1	4	5632	2
+1	4	5633	3
+1	4	5634	4
+1	4	5635	5
+1	4	5636	6
+1	4	5637	7
+1	4	5638	8
+1	4	5639	9
+1	4	5640	10
+1	4	5641	11
+1	4	5642	12
+1	4	5643	13
 \.
 
 
@@ -27693,6 +27758,9 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 10	Assertions	24	surface
 11	Matchers	24	surface
 49	Common Package Specification	5	surface
+50	File Set	5	surface
+51	Install Tree	5	surface
+52	Package Config	5	surface
 \.
 
 
@@ -29950,6 +30018,19 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 11	3600	68	24	surface
 11	3601	69	24	surface
 49	5630	1	5	surface
+50	5631	1	5	surface
+50	5632	2	5	surface
+50	5633	3	5	surface
+50	5634	4	5	surface
+50	5635	5	5	surface
+50	5636	6	5	surface
+51	5637	1	5	surface
+51	5638	2	5	surface
+51	5639	3	5	surface
+51	5640	4	5	surface
+51	5641	5	5	surface
+51	5642	6	5	surface
+52	5643	1	5	surface
 \.
 
 
@@ -30321,7 +30402,7 @@ SELECT pg_catalog.setval('flashback.cards_activities_id_seq', 1, false);
 -- Name: cards_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.cards_id_seq', 5630, true);
+SELECT pg_catalog.setval('flashback.cards_id_seq', 5643, true);
 
 
 --
@@ -30954,5 +31035,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict tr6nZ6yNirf3gD8n1576H1yHEP0NmhcldctOz9KDqCmN6ceRLQdbiYsNyOHKgpR
+\unrestrict KuqnGj3twl6d3rHmFfthobcYjtvsA3k1fhQuAFgMZZS0Ycd9QOL1s6GfvResbdM
 
