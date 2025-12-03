@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict lKr2yMGvuYrEmy1KSN3Ekun9tna55ZRZw4Z7NqMa9fiiVwwbzIKuPEtCOajK0Jh
+\restrict tr6nZ6yNirf3gD8n1576H1yHEP0NmhcldctOz9KDqCmN6ceRLQdbiYsNyOHKgpR
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -19977,7 +19977,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 157	The C++ Programmer's Mindset	book	chapter	relevant	Sam Morley	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835888421/
 158	Rust for C++ Developers	book	chapter	relevant	Dan Olson	Packt Publishing	https://subscription.packtpub.com/book/programming/9781836206514/
 159	Linux Shell Scripting for Hackers	book	chapter	relevant	Donald A. Tevault	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835462195/
-161	Kali Linux Cookbook	book	chapter	relevant	Corey P. Schultz	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835889800/
 162	Asynchronous Programming in Python	book	chapter	relevant	Nicolas Bohorquez	Packt Publishing	https://subscription.packtpub.com/book/programming/9781836646617/
 163	Embedded Linux Essentials Handbook	book	chapter	relevant	Mohammed Billoo	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835469309/
 54	The C++ Standard Library	book	chapter	relevant	Nicolai M. Josuttis	\N	https://www.oreilly.com/library/view/c-standard-library/9780132978286/
@@ -20004,6 +20003,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 180	Using Yocto Project with BeagleBone Black	book	chapter	relevant	Irfan Sadiq	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785289736/
 181	Python 3 Object-Oriented Programming	book	chapter	relevant	Dusty Phillips	Packt Publishing	https://subscription.packtpub.com/book/programming/9781801077262/
 137	DistroTube	channel	episode	relevant	Derek Taylor	YouTube	https://www.youtube.com/@DistroTube
+161	Kali Linux Cookbook	book	chapter	relevant	Corey P. Schultz	Packt Publishing	https://subscription.packtpub.com/book/security/9781835889817/
 182	Hands-On Embedded Programming with Qt	book	chapter	relevant	John Werner	Packt Publishing	https://subscription.packtpub.com/book/iot-and-hardware/9781789952063/
 183	C++ 20 (2a) New Features	course	episode	relevant	Daniel Zawadzki	Packt Publishing	https://subscription.packtpub.com/video/programming/9781839216909/
 27	C++17 STL Cookbook	book	chapter	relevant	Jacek Galowicz	Packt Publishing	https://subscription.packtpub.com/book/programming/9781787120495/
@@ -20054,7 +20054,6 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 219	Beginning C++ Game Programming	book	chapter	relevant	John Horton	Packt Publishing	https://subscription.packtpub.com/book/game-development/9781835081747
 79	PostgreSQL 16 Administration Cookbook	book	chapter	relevant	Gianni Ciolli	Packt Publishing	https://subscription.packtpub.com/book/data/9781835460580
 220	Developing Modern Database Applications with PostgreSQL	book	chapter	relevant	Quan Ha Le	Packt Publishing	https://subscription.packtpub.com/book/data/9781838648145
-221	Kali Linux - An Ethical Hacker's Cookbook	book	chapter	relevant	Himanshu Sharma	Packt Publishing	https://subscription.packtpub.com/book/security/9781789952308
 222	The Rust Programming Handbook	book	chapter	relevant	Francesco Ciulla	Packt Publishing	https://subscription.packtpub.com/book/programming/9781836208877
 223	Building a BeagleBone Black Super Cluster	book	chapter	relevant	Andreas J. Reichel	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781783989447
 224	Raspberry Pi Zero W Wireless Projects	book	chapter	relevant	Vasilis Tzivaras	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781788290524
@@ -20066,6 +20065,14 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 89	Embedded Linux Training Course	slides	chapter	relevant	Bootlin Development Team	\N	\N
 97	OpenGL and GLSL Fundamentals with C++	course	episode	relevant	Sergiy Kravchenko	Packt Publishing	https://subscription.packtpub.com/video/game-development/9781838647889/
 100	GoogleTest Documentation	website	page	relevant	Google Development Team	Google	https://google.github.io/googletest/
+221	Kali Linux - An Ethical Hacker's Cookbook	book	chapter	relevant	Himanshu Sharma	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781787121829/
+229	Defensive Security with Kali Purple	book	chapter	relevant	Karl Lane	Packt Publishing	https://subscription.packtpub.com/book/security/9781835088982/
+230	Windows and Linux Penetration Testing from Scratch	book	chapter	relevant	Phil Bramwell	Packt Publishing	https://subscription.packtpub.com/book/security/9781801815123/
+231	Mastering Defensive Security	book	chapter	relevant	Cesar Bravo	Packt Publishing	https://subscription.packtpub.com/book/security/9781800208162/
+232	Hacking WEP/WPA/WPA2 WiFi Networks Using Kali Linux	course	chapter	relevant	Saad Sarraj	Packt Publishing	https://subscription.packtpub.com/video/security/9781803239750/
+233	The Complete Pentesting and Privilege Escalation Course	course	chapter	relevant	Rob Percival	Packt Publishing	https://subscription.packtpub.com/video/security/9781801072359/
+234	Pentesting Industrial Control Systems	book	chapter	relevant	Paul Smith	Packt Publishing	https://subscription.packtpub.com/book/security/9781800202382/
+235	Offensive Hacking Unfolded	book	chapter	relevant	Avinash Yadav	Packt Publishing	https://subscription.packtpub.com/video/security/9781804615294/
 \.
 
 
@@ -30349,7 +30356,7 @@ SELECT pg_catalog.setval('flashback.resources_activities_id_seq', 1, false);
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.resources_id_seq', 228, true);
+SELECT pg_catalog.setval('flashback.resources_id_seq', 235, true);
 
 
 --
@@ -30947,5 +30954,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict lKr2yMGvuYrEmy1KSN3Ekun9tna55ZRZw4Z7NqMa9fiiVwwbzIKuPEtCOajK0Jh
+\unrestrict tr6nZ6yNirf3gD8n1576H1yHEP0NmhcldctOz9KDqCmN6ceRLQdbiYsNyOHKgpR
 
