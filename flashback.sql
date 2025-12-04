@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict KuqnGj3twl6d3rHmFfthobcYjtvsA3k1fhQuAFgMZZS0Ycd9QOL1s6GfvResbdM
+\restrict RvLMbhI9LlWdSHigkI2tRgnvHVpULp3pOyluLYMagV5dj72uhzVmYY0k0M052fZ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -993,6 +993,25 @@ CREATE FUNCTION flashback.get_sections_cards(resource integer, section integer) 
 
 
 ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) OWNER TO flashback;
+
+--
+-- Name: get_subject_resources(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_subject_resources(subject character varying) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, provider character varying, presenter character varying, link character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select r.id, r.name, r.type, r.pattern, r.condition, r.provider, r.presenter, r.link
+    from resources r
+    join shelves v on v.resource = r.id
+    join subjects j on j.id = v.subject
+    where j.name = get_subject_resources.subject;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_subject_resources(subject character varying) OWNER TO flashback;
 
 --
 -- Name: get_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -19896,7 +19915,6 @@ COPY flashback.presenters (id, name) FROM stdin;
 COPY flashback.resources (id, name, type, pattern, condition, presenter, provider, link) FROM stdin;
 15	Calculus: Concepts and Contexts	book	chapter	relevant	\N	\N	\N
 16	Qt6 Deep Dive	book	chapter	relevant	\N	\N	\N
-28	PostgreSQL 13 Cookbook	book	chapter	relevant	\N	\N	\N
 31	Linux Security and Administration	book	chapter	relevant	\N	\N	\N
 36	Udemy: SQL and PostgreSQL - The Complete Developer's Guide	book	chapter	relevant	\N	\N	\N
 40	Linux Kernel Programming Part 2	book	chapter	relevant	\N	\N	\N
@@ -19962,6 +19980,7 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
 103	Cpp Hive	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpphive4051
 98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin Development Team	\N	\N
+28	PostgreSQL 13 Cookbook	book	chapter	outdated	\N	\N	\N
 12	Kevin Dankwardt's Linux Device Drivers	course	episode	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
@@ -27010,6 +27029,16 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 200	56
 171	57
 224	57
+216	6
+215	6
+217	5
+230	45
+231	45
+232	45
+233	45
+234	45
+235	45
+229	45
 \.
 
 
@@ -31035,5 +31064,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict KuqnGj3twl6d3rHmFfthobcYjtvsA3k1fhQuAFgMZZS0Ycd9QOL1s6GfvResbdM
+\unrestrict RvLMbhI9LlWdSHigkI2tRgnvHVpULp3pOyluLYMagV5dj72uhzVmYY0k0M052fZ
 
