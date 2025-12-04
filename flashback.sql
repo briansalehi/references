@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict RvLMbhI9LlWdSHigkI2tRgnvHVpULp3pOyluLYMagV5dj72uhzVmYY0k0M052fZ
+\restrict yPQCWMw3DMXvaE9x6Dy6KBYg0eNnHvUPYiqaAGdVhVMr1SFq6gYXT1hqANXdRLS
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -4212,57 +4212,28 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 673	8	Due to using `auto` only for the first parameter in the second declaration of\n`addValInto()`, the order of the template parameters differs. this means that\noverload resolution does not prefer the second declaration over the first one\nand we get an ambiguity error.	text	txt
 673	9	For this reason, be careful when mixing template and `auto` parameters.	text	txt
 674	1	- Using `requires` clause\n- Using concepts\n- Using `requires` expression	text	txt
-675	1	template<typename T>\nrequires (!std::is_pointer_v<T>)\nT get_max(T a, T b)\n{\n    return a > b ? a : b;\n}	text	txt
-675	2	int x{42}, y{77};	text	txt
-675	3	std::cout << get_max(x, y) << '\\\\n'; // OK\nstd::cout << get_max(&x, &y) << '\\\\n'; // ERROR: constraint not met	code	txt
-675	4	When raw pointers are passed, the compiler behaves as if the template were\nnot there.	text	txt
 676	1	A `concept` is a template that introduces a name for one or more requirements\nthat apply to the passed template parameters so that we can use these\nrequirements as constraints.	text	txt
-676	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	code	txt
+680	1	- Specifying requires clause with constraints or concepts\n- Using concepts in template parameters\n- Using concepts behind parameter types\n- Specifying trailing requires clause after parameters list	text	txt
+5535	1		code	cpp
+676	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	code	cpp
 677	1	Note that requires clauses that just constrain a template with a concept (or\nmultiple concepts combined with `&&`) no longer need parentheses.	text	txt
 677	2	A negated concept always needs parentheses.	text	txt
-677	3	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-677	4	template<typename T>\nrequires (!is_pointer<T>)\nT get_max(T a, T b)\n{\n    return a > b ? a : b;\n}	text	txt
-677	5	template<typename T>\nrequires is_pointer<T>\nT get_max(T a, T b)\n{\n    return get_max(*a, *b);\n}	text	txt
-677	6	int x{42}, y{77};	text	txt
-677	7	std::cout << get_max(x, y) << '\\\\n'; // calls get_max() for non-pointers\nstd::cout << get_max(&x, &y) << '\\\\n'; // calls get_max() for pointers	code	txt
-677	8	The second call delegates the computations of both function templates.	text	txt
+677	4	The second call delegates the computations of both function templates.	text	txt
 678	1	Overload resolution considers templates with constraints as more specialized\nthan templates without constraints. Therefore, it is enough to constrain the\nimplementation only for pointers.	text	txt
-678	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-678	3	template<typename T>\nvoid print(T value)\n{\n    std::cout << value << '\\\\n';\n}	text	txt
-678	4	template<typename T>\nrequires is_pointer<T>\nvoid print(T value)\n{\n    print(*value);\n}	text	txt
-678	5	int x{42};	text	txt
-678	6	print(x);  // print() for a value of type T\nprint(&x); // print() for pointers (higher priority)	code	txt
-678	7	However, be careful: overloading once using references and once using\nnon-references might cause ambiguities.	text	txt
-678	8	By using concepts, we can even prefer some constraints over others. However,\nthis requires the use of concepts that **subsume** other concepts.	text	txt
+678	3	However, be careful: overloading once using references and once using\nnon-references might cause ambiguities.	text	txt
+678	4	By using concepts, we can even prefer some constraints over others. However,\nthis requires the use of concepts that **subsume** other concepts.	text	txt
 679	1	Specifying concepts as a type constraint in template parameters:	text	txt
-679	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-679	3	template <is_pointer T>\nauto print(T value)\n{\n    std::cout << value << '\\\\n';\n}	code	txt
-679	4	Specifying concepts as a type constraint behind parameters with `auto`:	text	txt
-679	5	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-679	6	auto print(is_pointer auto value)\n{\n    std::cout << value << '\\\\n';\n}	code	txt
-679	7	This also works for parameters passed by reference:	text	txt
-679	8	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-679	9	auto print(is_pointer auto const& value)\n{\n    std::cout << value << '\\\\n';\n}	code	txt
-680	1	- Specifying requires clause with constraints or concepts\n- Using concepts in template parameters\n- Using concepts behind parameter types\n- Specifying trailing requires clause after parameters list	text	txt
+679	3	Specifying concepts as a type constraint behind parameters with `auto`:	text	txt
+679	5	This also works for parameters passed by reference:	text	txt
 681	1	It has the benefit that it can use the name of a parameter or combine even\nmultiple parameter names to formulate constraints.	text	txt
-5535	1		code	cpp
-681	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;	text	txt
-681	3	template<typename L, typename R>\nconcept is_comparable_with = std::totally_ordered_with<L, R>;	text	txt
-681	4	auto get_max(is_point auto a, is_pointer auto b)\nrequires is_comparable_with<decltype(*a), decltype(*b)>\n{\n    return get_max(*a, *b);\n}	code	txt
-682	1	auto compare(auto lhs, auto rhs)\nrequires std::totally_ordered_with<decltype(lhs), decltype(rhs)>\n{\n    return lhs < rhs ? rhs : lhs;\n}	code	txt
 682	2	The concept `std::totally_ordered_with` takes two template parameters to\ncheck whether the values of the passed types are comparable with the\noperators `==`, `!=`, `<`, `<=`, `>`, and `>=`.	text	txt
-682	3	<=>` is supported.	text	txt
 682	4	To check support for comparisons of two objects of the same type, we can use\nthe concept `std::totally_ordered`.	text	txt
 820	2	make C=1 CHECK=/usr/bin/sparse ARCH=x86_64	code	txt
 683	1	Here, we are using the requires keyword again to introduce a **requires\nexpression**, which can define one or more requirements for types and\nparameters.	text	txt
-683	2	template<typename T>\nconcept is_pointer = requires(T p) {\n    *p; // expression *p has to be well-formed\n    p == nullptr; // can compare with nullptr\n    (p < p) -> std::same_as<bool>; // operator < yields bool\n};	code	txt
 683	3	Note that we do not need two parameters of type `T` to check whether\n`operator <` can be called.	text	txt
 683	4	The runtime value does not matter. However, note that there are some\nrestrictions for how to specify what an expression yields (e.g., you cannot\nspecify just `bool` without `std::same_as<>` there).	text	txt
 683	5	We require here that we can compare `p` with `nullptr`. However, that rules\nout iterators, because in general, they cannot be compared with `nullptr`\n(except when they happen to be implemented as raw pointers, as in the case\nfor type `std::array<>`).	text	txt
 684	1	This is a compile-time constraint that has no impact on the generated code;\nwe only decide for which types the code compiles. Therefore, it does not\nmatter whether we declare the parameters as a value or as a reference.	text	txt
-685	1	template<typename T>\nconcept is_pointer = requires(T p) {\n    *p;\n    p == nullptr;\n    (p < p) -> std::same_as<bool>;\n};	text	txt
-685	2	template<typename T>\nrequires is_pointer<T>\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}	text	txt
-685	3	template<typename T>\nrequires requires(T p) { *p; }\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}	code	txt
 686	1	- To have random access iterators, iterators that can be used to read, write,\n  jump back and forth, and compute distance.\n- To be sortable and support comparison operators.	text	txt
 687	1	#include <algorithm>\n#include <vector>\n#include <ranges>	text	txt
 687	2	int main()\n{\n    std::vector<int> numbers{3,5,1,2,4};\n    std::ranges::sort(numbers);\n}	code	txt
@@ -4300,6 +4271,9 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 711	1	- one to one\n- one to many\n- many to one\n- many to many	text	txt
 712	1	- Each row in every table has one primary key (not empty)\n- No other row in the same table can have the same value (unique)\n- 99% of the time called id\n- Either an integer or a UUID\n- Will never change	text	txt
 5538	1		code	cpp
+682	1	auto compare(auto lhs, auto rhs)\nrequires std::totally_ordered_with<decltype(lhs), decltype(rhs)>\n{\n    return lhs < rhs ? rhs : lhs;\n}	code	cpp
+682	3	`<=>` is supported.	text	txt
+683	2	template<typename T>\nconcept is_pointer = requires(T p) {\n    *p; // expression *p has to be well-formed\n    p == nullptr; // can compare with nullptr\n    (p < p) -> std::same_as<bool>; // operator < yields bool\n};	code	cpp
 713	1	Using `serial` in postgres, we will have a value typed as integral and auto\ngenerate unique IDs.	text	txt
 713	2	create table users (\n    id serial primary key,\n    username varchar(50)\n)	code	txt
 714	1	- Rows only have this key if they have a cell that belongs to another record\n- Many rows in the same table can have the same foreign key\n- Name varies, usually called something like `xyz_id`\n- Exactly equal to the primary key of the referenced row\n- Will change if the relationship changes	text	txt
@@ -14517,6 +14491,15 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5643	5	include(CMakeFindDependencyMacro)\n\nfind_dependency(<dep>)\nfind_dependency(<dep>)\nfind_dependency(<dep>)\n\ninclude(${CMAKE_CURRENT_LIST_DIR}/example-targets.cmake)	code	cmake
 5643	6	But with Command Package Specification, all install commands will become:	text	md
 5643	7	install(PACKAGE_INFO example EXPORT example-targets)	code	cmake
+675	2	When raw pointers are passed, the compiler behaves as if the template were\nnot there.	text	txt
+675	1	template<typename T>\nrequires (!std::is_pointer_v<T>)\nT get_max(T a, T b)\n{\n    return a > b ? a : b;\n}\n\nint x{42}, y{77};\n\nstd::cout << get_max(x, y) << '\\\\n'; // OK\nstd::cout << get_max(&x, &y) << '\\\\n'; // ERROR: constraint not met	code	cpp
+677	3	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate<typename T>\nrequires (!is_pointer<T>)\nT get_max(T a, T b)\n{\n    return a > b ? a : b;\n}\n\ntemplate<typename T>\nrequires is_pointer<T>\nT get_max(T a, T b)\n{\n    return get_max(*a, *b);\n}\n\nint x{42}, y{77};\n\nstd::cout << get_max(x, y) << '\\\\n'; // calls get_max() for non-pointers\nstd::cout << get_max(&x, &y) << '\\\\n'; // calls get_max() for pointers	code	cpp
+678	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate<typename T>\nvoid print(T value)\n{\n    std::cout << value << '\\\\n';\n}\n\ntemplate<typename T>\nrequires is_pointer<T>\nvoid print(T value)\n{\n    print(*value);\n}\n\nint x{42};\n\nprint(x);  // print() for a value of type T\nprint(&x); // print() for pointers (higher priority)	code	cpp
+679	4	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\nauto print(is_pointer auto value)\n{\n    std::cout << value << '\\\\n';\n}	code	cpp
+679	6	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\nauto print(is_pointer auto const& value)\n{\n    std::cout << value << '\\\\n';\n}	code	cpp
+679	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate <is_pointer T>\nauto print(T value)\n{\n    std::cout << value << '\\\\n';\n}	code	cpp
+681	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate<typename L, typename R>\nconcept is_comparable_with = std::totally_ordered_with<L, R>;\n\nauto get_max(is_point auto a, is_pointer auto b)\nrequires is_comparable_with<decltype(*a), decltype(*b)>\n{\n    return get_max(*a, *b);\n}	code	cpp
+685	1	template<typename T>\nconcept is_pointer = requires(T p) {\n    *p;\n    p == nullptr;\n    (p < p) -> std::same_as<bool>;\n};\n\ntemplate<typename T>\nrequires is_pointer<T>\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}\n\ntemplate<typename T>\nrequires requires(T p) { *p; }\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}	code	cpp
 \.
 
 
@@ -15199,18 +15182,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 671	Partially specify abbreviated function template parameters?	draft
 672	Combine template and <code>auto</code> parameters?	draft
 673	Specify parameter types for a mixed template and <code>auto</code> parameters?	draft
-674	How many ways constraints can be applied to a template?	draft
-675	Constraint a template function with a requirement to not be available if raw pointers are passed?	draft
-676	Implement a concept to constraint passing only raw pointers?	draft
-677	Apply a concept restricting parameters only to take raw pointers to a template?	draft
-678	Using overload resolution with concepts implement two function templates for pointers and non-pointers?	draft
-679	How many ways concepts can be applied into templates?	draft
-680	In how many ways a template can be constrained?	draft
-681	What is the advantage of using trailing requires clause over regular requires clause?	draft
-682	Constraint a template to take only two comparable types?	draft
-683	Constraint a template to only accept objects supporting pointer deference operator?	draft
-684	What difference does it take for constraints to declare parameters as value or reference?	draft
-685	Constraint a template with a requires expression?	draft
 686	What are the preconditions and requirements of <code>std::ranges::sort()</code> to accept a container?	draft
 687	How to use ranges to sort a container?	draft
 688	What object can be used to iterate over the elements of a range by filtering out some elements or performing some transformaions of their values?	draft
@@ -15236,6 +15207,16 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 707	Limit the results of a query by comparing the calculated values of two columns?	draft
 708	Update a cell within a very big table?	draft
 709	Delete a row from a table?	draft
+676	Implement a concept to constraint passing only raw pointers?	review
+677	Apply a concept restricting parameters only to take raw pointers to a template?	review
+678	Using overload resolution with concepts implement two function templates for pointers and non-pointers?	review
+679	How many ways concepts can be applied into templates?	review
+680	In how many ways a template can be constrained?	review
+681	What is the advantage of using trailing requires clause over regular requires clause?	review
+682	Constraint a template to take only two comparable types?	review
+683	Constraint a template to only accept objects supporting pointer deference operator?	review
+684	What difference does it take for constraints to declare parameters as value or reference?	review
+685	Constraint a template with a requires expression?	review
 710	Delete all rows of a table?	draft
 711	How many relationships are possible between data?	draft
 712	What are the characteristics of a primary key?	draft
@@ -19584,6 +19565,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3571	Verify that a container is a superset of given range?	review
 3573	Verify the size of a container?	review
 3581	Verify that an object supporting <code>std::get<I>(object)</code> contains elements that match a certain criteria piece-wise?	review
+675	Constraint a template function with a requirement to not be available if raw pointers are passed?	review
 5630	Export a package with CPS information?	review
 5631	What file trees exist in a project?	review
 5632	How can we describe a source tree of a project in CMake?	review
@@ -19598,6 +19580,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 5641	What are the known paths to install tree?	review
 5642	What scope is not in the responsibility of developers to manipulate?	review
 5643	Describe a package containing installed artifacts of the project?	review
+674	How many ways constraints can be applied to a template?	review
 \.
 
 
@@ -26782,6 +26765,7 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 100	4	2	2025-11-27 08:37:29+01	924	154
 100	8	2	2025-11-27 09:40:39+01	3025	155
 100	9	2	2025-11-28 15:31:28+01	5273	156
+35	3	2	2025-12-04 15:02:46+01	5249	157
 \.
 
 
@@ -30060,6 +30044,18 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 51	5641	5	5	surface
 51	5642	6	5	surface
 52	5643	1	5	surface
+54	674	2	6	surface
+56	675	1	6	surface
+55	676	4	6	surface
+56	677	2	6	surface
+54	678	3	6	surface
+54	679	4	6	surface
+54	680	5	6	surface
+54	681	6	6	surface
+56	682	3	6	surface
+54	683	7	6	surface
+54	684	8	6	surface
+54	685	9	6	surface
 \.
 
 
@@ -30494,7 +30490,7 @@ SELECT pg_catalog.setval('flashback.sections_activities_id_seq', 1, false);
 -- Name: sections_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 156, true);
+SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 157, true);
 
 
 --
@@ -31064,5 +31060,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict RvLMbhI9LlWdSHigkI2tRgnvHVpULp3pOyluLYMagV5dj72uhzVmYY0k0M052fZ
+\unrestrict yPQCWMw3DMXvaE9x6Dy6KBYg0eNnHvUPYiqaAGdVhVMr1SFq6gYXT1hqANXdRLS
 
