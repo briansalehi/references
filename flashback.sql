@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict wB0r6qXxMxK5B6exOBiSTXX4uETflqF428CEUw9AsqciWEi7uljJvSN2IA084la
+\restrict PdRnXqkGUIc3kwIhcfSLX49u3FfRBWL1yS4ffFFfw476WOVwJ9zqqAKtvKaNa32
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -98,6 +98,18 @@ CREATE TYPE flashback.network_activity AS ENUM (
 
 
 ALTER TYPE flashback.network_activity OWNER TO flashback;
+
+--
+-- Name: practice_mode; Type: TYPE; Schema: flashback; Owner: brian
+--
+
+CREATE TYPE flashback.practice_mode AS ENUM (
+    'aggressive',
+    'progressive'
+);
+
+
+ALTER TYPE flashback.practice_mode OWNER TO brian;
 
 --
 -- Name: resource_type; Type: TYPE; Schema: flashback; Owner: flashback
@@ -871,6 +883,34 @@ CREATE FUNCTION flashback.get_out_of_shelves() RETURNS TABLE(id integer, name ch
 ALTER FUNCTION flashback.get_out_of_shelves() OWNER TO flashback;
 
 --
+-- Name: get_practice_cards(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: brian
+--
+
+CREATE FUNCTION flashback.get_practice_cards(user_id integer, subject_id integer, max_level flashback.expertise_level) RETURNS TABLE(subject integer, topic integer, level flashback.expertise_level, card integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select tc.subject, tc.topic, tc.level, tc.card
+    from topics_cards tc
+    left join progress p on p."user" = user_id and p.card = tc.card
+    where tc.subject = subject_id and tc.level <= max_level::expertise_level;
+
+    -- aggressive practicing resets after 10 days of inactivity
+    --if (select count(*) > 0 from progress_cards p where p.last_practice is null)
+    --    and (select coalesce(max(p.last_practice), now() - interval '100 days') < now() - interval '10 days' from progress_cards p)
+    --then
+    --    update progress_cards set last_practice = null;
+    --end if;
+
+    -- three consequtive days of progressive practice enables assessments
+end;
+$$;
+
+
+ALTER FUNCTION flashback.get_practice_cards(user_id integer, subject_id integer, max_level flashback.expertise_level) OWNER TO brian;
+
+--
 -- Name: get_practice_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1058,29 +1098,32 @@ CREATE FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertis
 ALTER FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertise_level) OWNER TO flashback;
 
 --
--- Name: get_topic_cards(integer, integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_topic_cards(integer, integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: brian
 --
 
-CREATE FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) RETURNS TABLE(subject integer, topic integer, level flashback.expertise_level, card integer, heading character varying, state flashback.card_state, estimate integer, "time" timestamp with time zone, duration integer)
+CREATE FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) RETURNS TABLE(subject integer, topic integer, level flashback.expertise_level, card integer, heading character varying, state flashback.card_state, last_practice timestamp with time zone, duration_estimate integer, duration integer)
     LANGUAGE plpgsql
     AS $$
 begin
     drop table if exists progress_cards;
 
-    create local temporary table progress_cards (subject integer, topic integer, level expertise_level, card integer, heading character varying, card_state card_state, estimate integer, card_time timestamp with time zone, card_duration integer);
+    create local temporary table progress_cards (subject integer, topic integer, level expertise_level, card integer, heading character varying, card_state card_state, card_time timestamp with time zone, duration_estimate integer, card_duration integer);
 
-    insert into progress_cards select tc.subject, tc.topic, tc.level, tc.card, c.heading, c.state, estimate_read_time(tc.card), p.time, p.duration from topics_cards tc left join progress p on p."user" = user_id and p.card = tc.card join cards c on c.id = tc.card where tc.subject = subject_id and tc.topic = topic_pos and tc.level <= max_level::expertise_level;
+    insert into progress_cards select tc.subject, tc.topic, tc.level, tc.card, c.heading, c.state, p.last_practice, estimate_read_time(tc.card), p.duration from topics_cards tc left join progress p on p."user" = user_id and p.card = tc.card join cards c on c.id = tc.card where tc.subject = subject_id and tc.topic = topic_pos and tc.level <= max_level::expertise_level;
 
-    if (select count(*) > 0 from progress_cards p where p.card_time is null) or (select coalesce(max(p.card_time), now() - interval '100 days') < now() - interval '10 days' from progress_cards p) then
+    -- aggressive practicing resets after 10 days of inactivity
+    if (select count(*) > 0 from progress_cards p where p.card_time is null) and (select coalesce(max(p.card_time), now() - interval '100 days') < now() - interval '10 days' from progress_cards p) then
         update progress_cards set card_time = null;
     end if;
+
+    -- three consequtive days of progressive practice enables assessments
 
     return query select * from progress_cards;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) OWNER TO flashback;
+ALTER FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) OWNER TO brian;
 
 --
 -- Name: get_topics(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2025,7 +2068,7 @@ ALTER TABLE flashback.presenters ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTIT
 CREATE TABLE flashback.progress (
     "user" integer NOT NULL,
     card integer NOT NULL,
-    "time" timestamp with time zone DEFAULT now() NOT NULL,
+    last_practice timestamp with time zone DEFAULT now() CONSTRAINT progress_time_not_null NOT NULL,
     duration integer NOT NULL
 );
 
@@ -19962,7 +20005,11 @@ COPY flashback.presenters (id, name) FROM stdin;
 -- Data for Name: progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.progress ("user", card, "time", duration) FROM stdin;
+COPY flashback.progress ("user", card, last_practice, duration) FROM stdin;
+2	676	2025-08-28 15:49:06.574406+02	33
+2	4224	2025-08-28 15:49:06.574406+02	33
+2	4225	2025-08-28 15:49:06.574406+02	33
+2	4226	2025-08-28 15:49:06.574406+02	33
 \.
 
 
@@ -31156,8 +31203,36 @@ ALTER TABLE ONLY flashback.users_roadmaps
 
 
 --
+-- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: flashback; Owner: brian
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE brian IN SCHEMA flashback GRANT USAGE ON SEQUENCES TO flashback;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: flashback; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA flashback GRANT USAGE ON SEQUENCES TO flashback;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: flashback; Owner: brian
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE brian IN SCHEMA flashback GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO flashback;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: flashback; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA flashback GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO flashback;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict wB0r6qXxMxK5B6exOBiSTXX4uETflqF428CEUw9AsqciWEi7uljJvSN2IA084la
+\unrestrict PdRnXqkGUIc3kwIhcfSLX49u3FfRBWL1yS4ffFFfw476WOVwJ9zqqAKtvKaNa32
 
