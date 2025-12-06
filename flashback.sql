@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict yPQCWMw3DMXvaE9x6Dy6KBYg0eNnHvUPYiqaAGdVhVMr1SFq6gYXT1hqANXdRLS
+\restrict wB0r6qXxMxK5B6exOBiSTXX4uETflqF428CEUw9AsqciWEi7uljJvSN2IA084la
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -754,6 +754,28 @@ CREATE PROCEDURE flashback.edit_users_name(IN id integer, IN name character vary
 ALTER PROCEDURE flashback.edit_users_name(IN id integer, IN name character varying) OWNER TO flashback;
 
 --
+-- Name: estimate_read_time(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.estimate_read_time(card_id integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare time_per_word float = 0.4;
+declare heading_multiplier integer = 2;
+declare text_multiplier integer = 1;
+declare code_multiplier integer = 5;
+declare headline_weight integer = 0;
+declare content_weight integer = 0;
+begin
+    select array_length(tsvector_to_array(to_tsvector('simple', heading)), 1) * time_per_word * heading_multiplier into headline_weight from cards where id = card_id;
+    select sum(array_length(tsvector_to_array(to_tsvector('simple', content)), 1)) * case when type = 'text' then text_multiplier when type = 'code' then code_multiplier end into content_weight from blocks where card = card_id group by content, type;
+    return headline_weight + content_weight;
+end; $$;
+
+
+ALTER FUNCTION flashback.estimate_read_time(card_id integer) OWNER TO flashback;
+
+--
 -- Name: get_assessment_coverage(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1036,6 +1058,31 @@ CREATE FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertis
 ALTER FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertise_level) OWNER TO flashback;
 
 --
+-- Name: get_topic_cards(integer, integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) RETURNS TABLE(subject integer, topic integer, level flashback.expertise_level, card integer, heading character varying, state flashback.card_state, estimate integer, "time" timestamp with time zone, duration integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    drop table if exists progress_cards;
+
+    create local temporary table progress_cards (subject integer, topic integer, level expertise_level, card integer, heading character varying, card_state card_state, estimate integer, card_time timestamp with time zone, card_duration integer);
+
+    insert into progress_cards select tc.subject, tc.topic, tc.level, tc.card, c.heading, c.state, estimate_read_time(tc.card), p.time, p.duration from topics_cards tc left join progress p on p."user" = user_id and p.card = tc.card join cards c on c.id = tc.card where tc.subject = subject_id and tc.topic = topic_pos and tc.level <= max_level::expertise_level;
+
+    if (select count(*) > 0 from progress_cards p where p.card_time is null) or (select coalesce(max(p.card_time), now() - interval '100 days') < now() - interval '10 days' from progress_cards p) then
+        update progress_cards set card_time = null;
+    end if;
+
+    return query select * from progress_cards;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.get_topic_cards(user_id integer, subject_id integer, topic_pos integer, max_level flashback.expertise_level) OWNER TO flashback;
+
+--
 -- Name: get_topics(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1219,6 +1266,22 @@ $$;
 
 
 ALTER PROCEDURE flashback.log_sections_activities(IN user_id integer, IN address character varying, IN section integer, IN action flashback.user_action) OWNER TO flashback;
+
+--
+-- Name: make_progress(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    insert into progress ("user", card, duration) values (user_id, card_id, time_duration)
+    on conflict on constraint progress_pkey do update set duration = time_duration, time = now() where progress."user" = user_id and progress.card = card_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer) OWNER TO flashback;
 
 --
 -- Name: make_section_progress(integer, timestamp with time zone, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -1713,24 +1776,6 @@ CREATE FUNCTION flashback.user_is_verified(email character varying) RETURNS bool
 
 ALTER FUNCTION flashback.user_is_verified(email character varying) OWNER TO flashback;
 
---
--- Name: weigh_card(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.weigh_card(card_id integer) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-declare headline_weight integer = 0;
-declare content_weight integer = 0;
-begin
-    select array_length(tsvector_to_array(to_tsvector('simple', heading)), 1) into headline_weight from cards where id = card_id;
-    select sum(array_length(tsvector_to_array(to_tsvector('simple', content)), 1)) into content_weight from blocks where card = card_id;
-    return headline_weight + content_weight;
-end; $$;
-
-
-ALTER FUNCTION flashback.weigh_card(card_id integer) OWNER TO flashback;
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -1972,6 +2017,20 @@ ALTER TABLE flashback.presenters ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTIT
     CACHE 1
 );
 
+
+--
+-- Name: progress; Type: TABLE; Schema: flashback; Owner: flashback
+--
+
+CREATE TABLE flashback.progress (
+    "user" integer NOT NULL,
+    card integer NOT NULL,
+    "time" timestamp with time zone DEFAULT now() NOT NULL,
+    duration integer NOT NULL
+);
+
+
+ALTER TABLE flashback.progress OWNER TO flashback;
 
 --
 -- Name: resources; Type: TABLE; Schema: flashback; Owner: flashback
@@ -19888,6 +19947,22 @@ COPY flashback.presenters (id, name) FROM stdin;
 253	Zachary Lasiuk
 254	Zhenyu George Li
 255	Zhuo Qingliang
+256	Karl Lane
+257	Cesar Bravo
+258	Vito Gamberini
+259	Phil Bramwell
+260	Paul Smith
+261	Saad Sarraj
+262	Rob Percival
+263	Avinash Yadav
+\.
+
+
+--
+-- Data for Name: progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
+--
+
+COPY flashback.progress ("user", card, "time", duration) FROM stdin;
 \.
 
 
@@ -30448,7 +30523,7 @@ SELECT pg_catalog.setval('flashback.network_activities_id_seq', 1, true);
 -- Name: presenters_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.presenters_id_seq', 255, true);
+SELECT pg_catalog.setval('flashback.presenters_id_seq', 263, true);
 
 
 --
@@ -30598,6 +30673,14 @@ ALTER TABLE ONLY flashback.network_activities
 
 ALTER TABLE ONLY flashback.presenters
     ADD CONSTRAINT presenters_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: progress progress_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.progress
+    ADD CONSTRAINT progress_pkey PRIMARY KEY ("user", card);
 
 
 --
@@ -30857,6 +30940,22 @@ ALTER TABLE ONLY flashback.network_activities
 
 
 --
+-- Name: progress progress_card_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.progress
+    ADD CONSTRAINT progress_card_fkey FOREIGN KEY (card) REFERENCES flashback.cards(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: progress progress_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.progress
+    ADD CONSTRAINT progress_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: resources_activities resources_activities_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31060,5 +31159,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict yPQCWMw3DMXvaE9x6Dy6KBYg0eNnHvUPYiqaAGdVhVMr1SFq6gYXT1hqANXdRLS
+\unrestrict wB0r6qXxMxK5B6exOBiSTXX4uETflqF428CEUw9AsqciWEi7uljJvSN2IA084la
 
