@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict gxszemTUbMkywT33QyUbSHnPi4bwIrXLJYPYKWaxVnPQvFgcicfu8AlOIgN973t
+\restrict ZwqHP4iKQC4QU3twO4R8Dvet5ezbrasSzvsaO9B9u86wBFUBpldbFe52TRlIpeQ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1431,6 +1431,28 @@ $$;
 
 
 ALTER PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer) OWNER TO flashback;
+
+--
+-- Name: make_progress(integer, integer, integer, flashback.practice_mode); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer, IN mode flashback.practice_mode)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    insert into progress ("user", card, duration, progression)
+    values (user_id, card_id, time_duration, 0)
+    on conflict on constraint progress_pkey
+    do update set
+        duration = time_duration,
+        last_practice = now(),
+        progression = case when mode = 'progressive'::practice_mode then progress.progression + 1 else progress.progression end
+    where progress."user" = user_id and progress.card = card_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer, IN mode flashback.practice_mode) OWNER TO flashback;
 
 --
 -- Name: make_section_progress(integer, timestamp with time zone, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -20129,9 +20151,9 @@ COPY flashback.presenters (id, name) FROM stdin;
 --
 
 COPY flashback.progress ("user", card, last_practice, duration, progression) FROM stdin;
-2	111	2025-11-30 01:13:00.985539+01	33	0
 2	4137	2025-11-27 01:44:37.554411+01	33	0
 2	4145	2025-12-05 01:53:04.202274+01	33	0
+2	111	2025-12-07 15:55:35.255414+01	52	3
 2	108	2025-12-07 01:11:25.032361+01	33	0
 2	4133	2025-12-07 01:11:25.032361+01	33	0
 2	116	2025-12-07 01:11:25.032361+01	33	0
@@ -31888,5 +31910,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA flashback GRANT SELECT,INSE
 -- PostgreSQL database dump complete
 --
 
-\unrestrict gxszemTUbMkywT33QyUbSHnPi4bwIrXLJYPYKWaxVnPQvFgcicfu8AlOIgN973t
+\unrestrict ZwqHP4iKQC4QU3twO4R8Dvet5ezbrasSzvsaO9B9u86wBFUBpldbFe52TRlIpeQ
 
