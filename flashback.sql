@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict ZwqHP4iKQC4QU3twO4R8Dvet5ezbrasSzvsaO9B9u86wBFUBpldbFe52TRlIpeQ
+\restrict QEF2qWzWgyFyIACRluvieir3rkKpg4XKOS7qGvP8aeTkaQI0YmRiACvD5unAnEY
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -105,7 +105,8 @@ ALTER TYPE flashback.network_activity OWNER TO flashback;
 
 CREATE TYPE flashback.practice_mode AS ENUM (
     'aggressive',
-    'progressive'
+    'progressive',
+    'selective'
 );
 
 
@@ -886,12 +887,12 @@ ALTER FUNCTION flashback.get_blocks(card integer) OWNER TO flashback;
 -- Name: get_cards(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_cards(user_id integer, subject_id integer, max_level flashback.expertise_level) RETURNS TABLE(topic integer, level flashback.expertise_level, card integer, last_practice timestamp with time zone, duration integer)
+CREATE FUNCTION flashback.get_cards(user_id integer, subject_id integer, max_level flashback.expertise_level) RETURNS TABLE(topic integer, level flashback.expertise_level, card integer, "position" integer, last_practice timestamp with time zone, duration integer)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select tc.topic, tc.level, tc.card, p.last_practice, p.duration
+    select tc.topic, tc.level, tc.card, tc.position, p.last_practice, p.duration
     from topics_cards tc
     left join progress p on p.user = user_id  and p.card = tc.card
     where tc.subject = subject_id and tc.level <= max_level::expertise_level;
@@ -965,20 +966,21 @@ ALTER FUNCTION flashback.get_out_of_shelves() OWNER TO flashback;
 -- Name: get_practice_cards(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_practice_cards(user_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(topic integer, level flashback.expertise_level, card integer, last_practice timestamp with time zone, duration integer)
+CREATE FUNCTION flashback.get_practice_cards(user_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(topic integer, level flashback.expertise_level, card integer, "position" integer, last_practice timestamp with time zone, duration integer)
     LANGUAGE plpgsql
     AS $$
 declare last_acceptable_read timestamp with time zone = now() - interval '7 days';
+declare long_time_ago timestamp with time zone = now() - interval '100 days';
 begin
     if get_practice_mode(user_id, subject_id, subject_level) = 'aggressive'::practice_mode
     then
         return query
-        select g.topic, g.level, g.card, null::timestamp with time zone, null::integer
+        select g.topic, g.level, g.card, g.position, null::timestamp with time zone, null::integer
         from get_cards(user_id, subject_id, subject_level) g
-        where g.last_practice < last_acceptable_read;
+        where coalesce(g.last_practice, long_time_ago) < last_acceptable_read;
     else
         return query
-        select g.topic, g.level, g.card, g.last_practice, g.duration
+        select g.topic, g.level, g.card, g.position, g.last_practice, g.duration
         from get_cards(user_id, subject_id, subject_level) g;
     end if;
 end; $$;
@@ -1028,70 +1030,42 @@ end; $$;
 ALTER FUNCTION flashback.get_practice_mode(user_id integer, subject_id integer, subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
+-- Name: get_practice_topics(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_practice_topics(roadmap_id integer) RETURNS TABLE(milestone integer, subject integer, topic integer, level flashback.expertise_level)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select m.position as milestone, m.subject, t.position as topic, m.level
+    from milestones m
+    join topics t on t.subject = m.subject and t.level <= m.level
+    where m.roadmap = roadmap_id;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer) OWNER TO flashback;
+
+--
 -- Name: get_practice_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_practice_topics("user" integer, roadmap integer) RETURNS TABLE(milestone integer, level flashback.expertise_level, subject integer, topic integer)
+CREATE FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) RETURNS TABLE(milestone integer, subject integer, topic integer, level flashback.expertise_level)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select m.position as milestone, m.level, m.subject, t.position as topic
+    select m.position as milestone, m.subject, t.position as topic, m.level
     from milestones m
-    join topics t on t.subject = m.subject and t.level = m.level
-    where m.roadmap = get_practice_topics.roadmap
-    and (m.position, m.level, m.subject, t.position) not in (
-        select g.milestone, g.level, g.subject, g.topic
-        from get_practiced_topics(get_practice_topics."user", get_practice_topics.roadmap) g
-    );
+    join topics t on t.subject = m.subject and t.level <= m.level
+    where m.roadmap = roadmap_id and m.subject = subject_id;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.get_practice_topics("user" integer, roadmap integer) OWNER TO flashback;
-
---
--- Name: get_practice_topics(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_practice_topics("user" integer, roadmap integer, selected_subject integer) RETURNS TABLE(milestone integer, level flashback.expertise_level, subject integer, topic integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select m.position as milestone, m.level, m.subject, t.position as topic
-    from milestones m
-    join topics t on t.subject = m.subject and t.level = m.level
-    where m.roadmap = get_practice_topics.roadmap
-    and m.subject = selected_subject
-    and (m.position, m.level, m.subject, t.position) not in (
-        select g.milestone, g.level, g.subject, g.topic
-        from get_practiced_topics(get_practice_topics."user", get_practice_topics.roadmap) g
-    );
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_practice_topics("user" integer, roadmap integer, selected_subject integer) OWNER TO flashback;
-
---
--- Name: get_practiced_topics(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_practiced_topics("user" integer, roadmap integer) RETURNS TABLE(milestone integer, level flashback.expertise_level, subject integer, topic integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select m.position as milestone, m.level, tp.subject, tp.topic
-    from milestones m
-    join topics_progress tp on m.subject = tp.subject and tp.level = m.level
-    where tp."user" = get_practiced_topics."user" and m.roadmap = get_practiced_topics.roadmap and tp.time::date = CURRENT_DATE;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_practiced_topics("user" integer, roadmap integer) OWNER TO flashback;
+ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) OWNER TO flashback;
 
 --
 -- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1204,17 +1178,6 @@ CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flas
 ALTER FUNCTION flashback.get_subjects(roadmap integer) OWNER TO flashback;
 
 --
--- Name: get_subjects(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertise_level) RETURNS TABLE("position" integer, id integer, name character varying)
-    LANGUAGE plpgsql
-    AS $$ begin return query select milestones.position, subjects.id, subjects.name from milestones join subjects on milestones.subject = subjects.id where milestones.roadmap = get_subjects.roadmap and milestones.level = get_subjects.level; end; $$;
-
-
-ALTER FUNCTION flashback.get_subjects(roadmap integer, level flashback.expertise_level) OWNER TO flashback;
-
---
 -- Name: get_topic_assessments(integer, integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1237,7 +1200,13 @@ ALTER FUNCTION flashback.get_topic_assessments(user_id integer, subject_id integ
 
 CREATE FUNCTION flashback.get_topics(subject integer, level flashback.expertise_level) RETURNS TABLE("position" integer, name character varying)
     LANGUAGE plpgsql
-    AS $$ begin return query select topics.position, topics.name from topics where topics.subject = get_topics.subject and topics.level = get_topics.level; end; $$;
+    AS $$
+begin
+    return query
+    select topics.position, topics.name
+    from topics
+    where topics.subject = get_topics.subject and topics.level <= get_topics.level;
+end; $$;
 
 
 ALTER FUNCTION flashback.get_topics(subject integer, level flashback.expertise_level) OWNER TO flashback;
@@ -1265,7 +1234,7 @@ ALTER FUNCTION flashback.get_topics(roadmap integer, milestone integer) OWNER TO
 -- Name: get_topics_cards(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_topics_cards(roadmap integer, milestone integer, topic integer) RETURNS TABLE(id integer, "position" integer, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) RETURNS TABLE(card integer, "position" integer, state flashback.card_state, heading text)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -1274,14 +1243,14 @@ begin
     from milestones m
     join topics_cards tc on tc.subject = m.subject
     join cards on cards.id = tc.card
-    where m.roadmap = get_topics_cards.roadmap
-    and m.position = get_topics_cards.milestone
-    and tc.topic = get_topics_cards.topic;
+    where m.roadmap = roadmap_id
+    and m.subject = subject_id
+    and tc.topic = topic_position;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.get_topics_cards(roadmap integer, milestone integer, topic integer) OWNER TO flashback;
+ALTER FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) OWNER TO flashback;
 
 --
 -- Name: get_unreviewed_sections_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1417,22 +1386,6 @@ $$;
 ALTER PROCEDURE flashback.log_sections_activities(IN user_id integer, IN address character varying, IN section integer, IN action flashback.user_action) OWNER TO flashback;
 
 --
--- Name: make_progress(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    insert into progress ("user", card, duration) values (user_id, card_id, time_duration)
-    on conflict on constraint progress_pkey do update set duration = time_duration, time = now() where progress."user" = user_id and progress.card = card_id;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer) OWNER TO flashback;
-
---
 -- Name: make_progress(integer, integer, integer, flashback.practice_mode); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1446,51 +1399,13 @@ begin
     do update set
         duration = time_duration,
         last_practice = now(),
-        progression = case when mode = 'progressive'::practice_mode then progress.progression + 1 else progress.progression end
+        progression = case when mode = 'progressive'::practice_mode and now() - progress.last_practice > interval '1 hour' then progress.progression + 1 else progress.progression end
     where progress."user" = user_id and progress.card = card_id;
 end;
 $$;
 
 
 ALTER PROCEDURE flashback.make_progress(IN user_id integer, IN card_id integer, IN time_duration integer, IN mode flashback.practice_mode) OWNER TO flashback;
-
---
--- Name: make_section_progress(integer, timestamp with time zone, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.make_section_progress(IN "user" integer, IN "time" timestamp with time zone, IN resource integer, IN section integer, IN duration integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    insert into sections_progress (resource, section, "user", time, duration)
-    values (resource, section, make_section_progress."user", make_section_progress."time", duration);
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.make_section_progress(IN "user" integer, IN "time" timestamp with time zone, IN resource integer, IN section integer, IN duration integer) OWNER TO flashback;
-
---
--- Name: make_topic_progress(integer, timestamp with time zone, integer, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.make_topic_progress(IN "user" integer, IN "time" timestamp with time zone, IN roadmap integer, IN milestone integer, IN topic integer, IN duration integer)
-    LANGUAGE plpgsql
-    AS $$
-declare subject integer;
-declare level expertise_level;
-begin
-    select milestones.subject, milestones.level into subject, level
-    from milestones
-    where milestones.roadmap = make_topic_progress.roadmap and milestones.position = make_topic_progress.milestone;
-
-    insert into topics_progress(subject, level, topic, "user", "time", duration)
-    values (subject, level, topic, make_topic_progress."user", make_topic_progress."time", duration);
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.make_topic_progress(IN "user" integer, IN "time" timestamp with time zone, IN roadmap integer, IN milestone integer, IN topic integer, IN duration integer) OWNER TO flashback;
 
 --
 -- Name: merge_blocks(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2113,8 +2028,7 @@ CREATE TABLE flashback.milestones_activities (
     action flashback.user_action NOT NULL,
     "time" timestamp with time zone DEFAULT now() NOT NULL,
     subject integer NOT NULL,
-    roadmap integer NOT NULL,
-    level flashback.expertise_level NOT NULL
+    roadmap integer NOT NULL
 );
 
 
@@ -2898,16 +2812,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 107	11	*drivers/net/ethernet/ti/cpsw-common.c*\nint ti_cm_get_macid(struct device *dev, int slave, u8 *mac_addr)\n{\n    […]\n    if (of_machine_is_compatible("ti,am33xx"))\n        return cpsw_am33xx_cm_get_macid(dev, 0x630, slave, mac_addr);\n    […]\n}	code	txt
 108	1	g++ -o program source.cpp -std=c++20	code	txt
 108	2	clang++ -o program source.cpp -std=c++20	code	txt
-109	1	#include <iostream>	text	txt
-109	2	int main()\n{\n    using std::cout;\n    using std::endl;	text	txt
-109	3	    cout << 42 << endl;\n}	code	txt
-110	1	void do_something();	text	txt
-110	2	int main()\n{\n    do_something();\n}	text	txt
-110	3	void do_something()\n{\n}	code	txt
-111	1	#include <iostream>	text	txt
-111	2	int global_number = 42;	text	txt
-111	3	int function()\n{\n    int local_number = 77;\n    return local_number;\n}	text	txt
-111	4	int main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	txt
 112	1	#include <iostream>	text	txt
 112	2	int main()\n{\n    std::cout << sizeof(long double) << '\\\\n';\n}	code	txt
 113	1	int number = 200000;\nlong large_number = 200000000;\nint regular_number{large_number}; // ERROR: Type long narrowed to int	code	txt
@@ -2915,10 +2819,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 115	1	typedef unsigned long positive_t;	code	txt
 116	1	- Literal constants\n- Constants defined by `const`\n- Constant expressions defined by `constexpr`\n- Immediate functions marked by `consteval`\n- Enumerations\n- Scoped Enumerations\n- Preprocessor macro `#define`	text	txt
 117	1	const double pi = 22.0 / 7;	code	txt
-118	1	constexpr double get_pi()\n{\nreturn 22.0 / 7;\n}	code	txt
-119	1	consteval double divide(double a, double b)\n{\n    return a / b;\n}	text	txt
-119	2	consteval double get_pi()\n{\n    return divide(22.0, 7); // OK\n}	text	txt
-119	3	double dividen{22.0}, divisor{7.0};\ndivide(dividen, divisor); // ERROR: non-const arguments to consteval	code	txt
 120	1	An enumeration comprises a set of constants called enumerators.	text	txt
 120	2	enum class directions\n{\n    north,\n    east,\n    south,\n    west\n};	code	txt
 121	1	#include <string>\n#include <format>	text	txt
@@ -2933,6 +2833,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 125	1	#include <string>\n#include <string_view>\n#include <format>\n#include <cstdio>	text	txt
 125	2	class Data\n{\n    std::string buffer;\n};	text	txt
 159	4	factorial(1) returns 1	text	txt
+118	1	constexpr double get_pi()\n{\nreturn 22.0 / 7;\n}	code	cpp
 125	3	template <>\nstruct std::formatter<Data>\n{\n    template<typename Context>\n    constexpr auto parse(Context& ctx)\n    {\n        return ctx.begin();\n    }	text	txt
 125	4	    template<typename Format>\n    auto format(Data const& d, Format& ctx)\n    {\n        return formal_to(ctx.out(), "{}", d.buffer);\n    }\n};	text	txt
 125	5	template<typename... Args>\nvoid print(std::string_view const fmt_str, Args&&... args)\n{\n    auto fmt_args{std::make_format_args(args...)};\n    std::string out{vformat(fmt_str, fmt_args)};\n    fputs(out.c_str(), stdout);\n}	text	txt
@@ -4478,6 +4379,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 688	1	Views	text	txt
 689	1	std::ranges::take(container, 5);	code	txt
 690	1	#include <vector>\n#include <ranges>	text	txt
+1867	5	make -j8	code	txt
 690	2	int main()\n{\n    std::vector<int> numbers{42,80,13,26,51,9,38};\n    std::ranges::sort(std::views::take(numbers, 5));\n}	code	txt
 691	1	std::views::iota(1, 11); // [1,10]	code	txt
 692	1	// nested form\nauto v = std::views::take(\n            std::views::transform(\n                std::views::filter(container, [](auto e) { return e % 3 == 0; }),\n                [](auto e) { return e * e; }),\n            3);	text	txt
@@ -4639,6 +4541,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 796	1	BPF maps	text	txt
 797	1	A map is a data structure that can be accessed from an `eBPF` program and from user space.	text	txt
 798	1	In order for a user space application to gain access to the underlying device\ndriver within the kernel, some I/O mechanism is required. The Unix (and thus\nLinux) design is to have the process open a special type of file, a **device\nfile**, or **device node**. These files typically live in the `/dev`\ndirectory.	text	txt
+832	1	* bpftrace package (https://github.com - https://github.com/iovisor/bcc) clang dependent\n* https://github.com - https://github.com/iovisor/bcc/blob/master/INSTALL.md	text	txt
+833	1	* https://linuxtesting.org	text	txt
 799	1	**LDM** creates a complex hierarchical tree unifying system components, all\nperipheral devices, and their drivers. This tree is exposed to user space via\nthe *sysfs* pseudo-filesystem analogous to how *procfs* exposes some kernel\nand process/thread internal details to user space, and is typically mounted\nunder `/sys`.	text	txt
 800	1	In order for the kernel to distinguish between device files, it uses two\nattributes within their inode data structure:	text	txt
 800	2	* The type of file – either char or block\n* The major and minor number	text	txt
@@ -4675,6 +4579,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 811	10	obj-m := miscdev.o	text	txt
 811	11	KERNEL_SRC ?= /usr/lib/modules/$(shell uname -r)/build	text	txt
 811	12	all: modules\ninstall: modules_install	text	txt
+834	1	uname -r	code	txt
 811	13	modules modules_install help clean:\n    $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@	code	txt
 812	1	A device driver is the interface between the OS and a peripheral hardware\ndevice. It can be written inline and compiled within the kernel image file or\nwritten outside of the kernel source tree as a kernel module.	text	txt
 812	2	A device driver provides several entry points into the kernel known as the\ndriver's methods. All possible methods the driver author can hook into are in\n`file_operations` kernel data structure defined in `<linux/fs.h>` header.	text	txt
@@ -4733,9 +4638,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 829	3	Commercial tools:	text	txt
 829	4	* https://www.sonarqube.org - https://www.sonarqube.org/\n* https://scan.coverity.com - https://scan.coverity.com/\n* https://www.meteonic.com - https://www.meteonic.com/klocwork	text	txt
 830	1	make C=1 CHECK="/usr/bin/sparse"	code	txt
-832	1	* bpftrace package (https://github.com - https://github.com/iovisor/bcc) clang dependent\n* https://github.com - https://github.com/iovisor/bcc/blob/master/INSTALL.md	text	txt
-833	1	* https://linuxtesting.org	text	txt
-834	1	uname -r	code	txt
 835	1	git log --date-order --graph --tags --simplify-by-decoration	code	txt
 836	1	1. The 5.x stable release is made. Thus, the merge window for the 5.x+1 (mainline) kernel has begun.\n2. The merge window remains open for about 2 weeks and new patches are merged into the mainline.\n3. Once (typically) 2 weeks have elapsed, the merge window is closed.\n4. rc (aka mainline, prepatch) kernels start. 5.x+1-rc1, 5.x+1-rc2, ..., 5.x+1-rcn are released. This process takes anywhere between 6 to 8 weeks.\n5. The stable release has arrived: the new 5.x+1 stable kernel is released.\n6. The release is handed off to the "stable team". Significant bug or security fixes result in the release of 5.x+1.y : 5.x+1.1, 5.x+1.2, ... , 5.x+1.n. Maintained until the next stable release or End Of Life (EOL) date reached.	text	txt
 837	1	* -next trees\n* prepatches, also known as -rc or mainline\n* stable kernels\n* distribution and LTS kernels\n* Super LTS (STLS) kernels	text	txt
@@ -5240,6 +5142,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 972	6	    ; reverse copy the buffer1 into buffer2 without a loop\n    mov rax, 48         ; fill buffer2 with ascii 0\n    mov rdi, buffer2    ; we don't increment rdi with stosb\n    mov rcx, length     ; we don't decrement rcx or loop with stosb\n    rep stosb	text	txt
 972	7	    lea rsi, [buffer1 + length - 4]\n    lea rdi, [buffer2 + length]\n    mov rcx, 27         ; copy only 27 characters\n    std                 ; std sets DF, cld clears DF\n    rep movsb	text	txt
 972	8	    leave\n    ret	code	txt
+1709	1	To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.	text	txt
 973	1	When using `movsb`, the content of `DF` (the direction flag) is taken into account.\nWhen `DF=0`, `rsi` and `rdi` are increased by 1, pointing to the next higher memory address.\nWhen `DF=1`, `rsi` and `rdi` are decreased by 1, pointing to the next lower memory address.\nThis means that in our example with `DF=1`, `rsi` needs to point to the address of the highest memory address to be copied and decrease from there. In addition, `rdi` needs to point to the highest destination address and decrease from there.\nThe intention is to “walk backward” when copying, that is, decreasing `rsi` and `rdi` with every loop.\n**NOTE**: `rsi` and `rdi` both are decreased; you cannot use the `DF` to increase one register and decrease another (reversing the string).	text	txt
 973	2	section .data\n    length equ 95\n    newline db 10	text	txt
 973	3	section .bss\n    buffer1 resb length\n    buffer2 resb length	text	txt
@@ -5537,6 +5440,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1095	1	[R^π/4]	text	txt
 1096	1	[R^-π/6]	text	txt
 1097	1	[R^θ\\\\_yz] = [R^θ\\\\_yz(e₁)|R^θ\\\\_yz(e₂)|R^θ\\\\_yz(e₃)] = [(1,0,0) (0,cos(θ),sin(θ)) (0,-sin(θ),cos(θ))]	text	txt
+1709	2	git clone git://git.yoctoproject.org/poky -b scarthgap	code	sh
 1098	1	Since the goal is to compute R^2π/3\\\\_xy(v), we start by constructing standard matrix of R^2π/3\\\\_xy:\n[R^2π/3\\\\_xy] = [(cos(2π/3),sin(2π/3),0) (-sin(2π/3),cos(2π/3),0) (0,0,1)]\n[R^2π/3\\\\_xy]v = solve it	text	txt
 1099	1	(S○T)(v) = S(T(v)) for all v \\\\in \\\\mathbb{R}^n\n[S○T] = [S]\\\\[T]	text	txt
 1100	1	Compute the two standard matrices individually and then multiply them together:\nA unit vector on the line y = ¾x is u = (⅗,⅘), and the reflection Fu has standard matrix:\n[Fu] = 2[(⅗,⅘)]\\\\[⅗ ⅘] - [(1,0) (0,1)]\nThe diagonal stretch D has standard matrix:\n[D] = [(2,0) (0,3)]\nThe standard matrix of the composite linear transformation T = D○Fu is thus the product of these two individual standard matrices:\n[T] = [D]\\\\[Fu]	text	txt
@@ -5576,6 +5480,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1121	3	Both methods return 0 on failure (the lock is already locked) or 1 on success (lock acquired).\nThus, it makes sense to use these functions along with an if statement:	text	txt
 1166	1	char* shellcode = "\\\\xff\\\\xff\\\\xfe\\\\xf4\\\\xe8\\\\xff\\\\x31\\\\x48\\\\x08\\\\xec\\\\x83\\\\x48";\n// shellcode for exit(0)	text	txt
 1111	1	`spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls schedule() if enabled.\n`spin_unlock()` is then a preemption point and might re-enable preemption.	text	txt
+1709	3	source oe-init-build-env visionfive	code	sh
+1709	4	bitbake-layers layerindex-fetch meta-riscv	code	sh
 1112	1	`spin_lock_irq()` function is unsafe when called from IRQs off-context as its counterpart `spin_unlock_irq()` will dumbly enable IRQs, with the risk of enabling those that were not enabled while `spin_lock_irq()` was invoked.\nIt makes sense to use `spin_lock_irq()` only when you know that interrupts are enabled.	text	txt
 1112	2	To achieve this, the kernel provides `_irqsave` variant functions that behave exactly like the `_irq` ones, with saving and restoring interrupts status features in addition.\nThese are `spin_lock_irqsave()` and `spin_lock_irqrestore()`, defined as follows:	text	txt
 1112	3	spin_lock_irqsave(spinlock_t *lock, unsigned long flags)\nspin_unlock_irqrestore(spinlock_t *lock, unsigned long flags)	code	txt
@@ -5662,6 +5568,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1148	2	`mutex_lock()` should only be used when we can guarantee that the mutex will not be held for a long time.	text	txt
 1165	2	#include <stdlib.h>\n#include <unistd.h>	text	txt
 1166	2	int main(void)\n{\n    int *ret; // empty pointer sitting on stack after (caller address)	text	txt
+1709	5	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt
+1709	6	MACHINE=visionfive bitbake core-image-full-cmdline	code	sh
 1149	1	- only one task can hold the mutex at a time\n- only the owner can unlock the mutex\n- multiple unlocks are not permitted\n- recursive locking is not permitted\n- a mutex object must be initialized via the API\n- a mutex object must not be initialized via memset or copying\n- task may not exit with mutex held\n- memory areas where held locks reside must not be freed\n- held mutexes must not be reinitialized\n- mutexes may not be used in hardware or software interrupt\n- contexts such as tasklets and timers	text	list
 1152	1	When we want to acquire a lock without spinning if we are using a spinlock, or sleeping if we are using a mutex.	text	txt
 1153	1	Both functions return 0 when lock is already locked, and 1 when lock acquired.	text	txt
@@ -6124,6 +6032,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1339	1	docker plugin ls\ndocker plugin list	code	txt
 1340	1	docker plugin install purestorage/docker-plugin:latest --alias pure --grant-all-permissions\ndocker volume create --driver pure --opt size=25GB fast-volume	code	txt
 1341	1	Assuming an application running on two nodes of a cluster and both have write access to the shared volume.	text	txt
+1709	7	After the build process is over, the image will be available inside the `build/tmp/deploy/images/visionfive/` directory. The file we want to use is `core-image-full-cmdline-visionfive.wic.gz`.	text	txt
 1341	2	The application running on node-1 updates some data in the shared volume.\nHowever, instead of writing the update directly to the volume, it holds it in its local buﬀer for faster recall.\nAt this point, the application in node-1 thinks the data has been written to the volume.\nHowever, before node-1 flushes its buffers and commits the data to the volume, the app on node-2 updates the same data with a diﬀerent value and commits it directly to the volume.\nAt this point, both applications think they’ve updated the data in the volume, but in reality only the application in node-2 has.\nA few seconds later, on node-1 flushes the data to the volume, overwriting the changes made by the application in node-2.\nHowever, the application in node-2 is totally unaware of this! This is one of the ways data corruption happens.\nTo prevent this, you need to write your applications in a way to avoid things like this.	text	txt
 1342	1	Docker Swarm Mode is secure by default. Image vulnerability scanning analyses\nimages, detects known vulnerabilities, and provides detailed reports and\nfixes.	text	txt
 1342	2	Scanners work by building a list of all software in an image and then comparing the packages against databases of known vulnerabilities.\nMost vulnerability scanners will rank vulnerabilities and provide advice and help on fixes.	text	txt
@@ -6206,6 +6115,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1373	1	* Prior to C++11, non-type template arguments could not be named with internal linkage, so `static` variables were not allowed. VC++ compiler still doesn't support it.	text	txt
 1374	1	* Specialization of a template is required to be done in the same namespace where the template was declared.\n* Define the content of the library inside a namespace\n* Define each version of the library or parts of it inside an inner inline namespace\n* Use preprocessor macros to enable a particular version of the library	text	txt
 1374	4	    // won't compile\n    auto y = incorrect_implementation::test(foor{42});	text	txt
+1709	8	zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>	code	sh
 1374	5	    // library leaks implementation details\n    namespace incorrect_implementation\n    {\n        namespace version_2\n        {\n            template<>\n            int test(foo value) { return value.a; }\n        }\n    }	text	txt
 1374	6	    // okay, but client needs to be aware of implementation details\n    auto y = incorrect_implementation::test(foor{42});\n}	code	txt
 1374	7	namespace correct_implementation\n{\n    #ifndef _lib_version_1\n    inline namespace v1\n    {\n        template<typename T>\n        int test(T value) { return 1; }\n    }\n    #endif	text	txt
@@ -6715,6 +6625,13 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1708	4	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt
 1708	5	MACHINE=raspberrypi4 bitbake core-image-full-cmdline	code	sh
 5503	1	`ftxui::borderDouble` is similar to the light border but with thicker lines.	text	md
+1709	9	VisionFive doesn’t have a default boot target and requires manual intervention to boot.	text	txt
+1709	10	Inside the U-Boot prompt enter the following commands using a serial console:	text	txt
+1709	11	setenv bootcmd “run distro_bootcmd”\nsaveenv\nboot	code	sh
+1710	1	first, we need to build the `core-image-weston` image. Next, we can run the validation as follows:	text	txt
+1710	2	runqemu gl sdk core-image-weston	code	sh
+1711	1	first, we need to build the `core-image-full-cmdline` image and run QEMU with the following command line:	text	txt
+1711	2	runqemu qemux86-64 qemuparams="-m 128" core-image-full-cmdline	code	sh
 1657	1	* `allow-empty-password`: Allows Dropbear and OpenSSH to accept logins with empty password\n* `allow-root-login`: Allows Dropbear and OpenSSH to accept root logins\n* `dbg-pkgs`: Installs debug symbol packages for all packages installed\n* `debug-tweaks`: Makes an image suitable for development\n* `dev-pkgs`: Installs development packages (headers and extra library links)\n* `empty-root-password`: Allows root login with an empty password\n* `hwcodecs`: Installs hardware acceleration codecs\n* `lic-pkgs`: Installs license packages\n* `nfs-server`: Installs an NFS server\n* `overlayfs-etc`: Configures the /etc directory to be in overlayfs, useful when the root filesystem is configured as read-only\n* `package-management`: Installs package management tools and preserves the package manager database\n* `perf`: Installs profiling tools such as perf, systemtap, and LTTng\n* `post-install-logging`: Enables you to log postinstall script runs in the `/var/log/postinstall.log` file on the first boot of the image on the target system\n* `ptest-pkgs`: Installs ptest packages for all ptest-enabled recipes\n* `read-only-rootfs`: Creates an image whose root filesystem is read-only\n* `read-only-rootfs-delayed-postinsts`: When specified in conjunction with `read-only-rootfs`, it specifies that post-install scripts are still permitted\n* `serial-autologin-root`: When specified in conjunction with empty-root-password, it will automatically login as root on the serial console\n* `splash`: Enables you to show a splash screen during boot. By default, this screen is provided by psplash, which does allow customization\n* `ssh-server-dropbear`: Installs the Dropbear minimal SSH server\n* `ssh-server-openssh`: Installs the OpenSSH SSH server\n* `stateless-rootfs`: Specifies that an image should be created as stateless – when using systemd, `systemctl-native` will not be run on the image, leaving the image to be populated at runtime by systemd\n* `staticdev-pkgs`: Installs static development packages\n* `tools-debug`: Installs debugging tools such as strace and gdb\n* `tools-sdk`: Installs a full SDK that runs on a device\n* `tools-testapps`: Installs device testing tools (for example, touchscreen debugging)\n* `weston`: Installs Weston (a reference Wayland environment)\n* `x11-base`: Installs the X server with a minimal environment\n* `x11`: Installs the X server\n* `x11-sato`: Installs the OpenedHand Sato environment	text	txt
 1658	1	if both the OpenSSH SSH server and the Dropbear minimal SSH server are present in `IMAGE_FEATURES`, then OpenSSH will take precedence and Dropbear will not be installed.	text	txt
 1659	1	The `do_compile` and `do_install` code blocks provide the Shell Script command for us to build and install the resulting binary into the destination directory, referenced as `${D}`, which aims to relocate the installation directory to a path inside the `build/tmp/work/` directory.	text	txt
@@ -6820,22 +6737,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1703	2	ARCHIVER_MODE[src] = "configured"	code	bb
 1704	1	For all flavors of source code, the default resulting file is a tarball; other options will add `ARCHIVER_MODE[srpm] = "1"` to `build/conf/local.conf`, and the resulting file will be an `SRPM` package.	text	txt
 1708	8	After copying the content to the SD card, the machine should boot nicely.	text	txt
-1709	1	To add this board support to our project, we need to include the meta-riscv meta layer, which is the BSP layer with support for RISC-V-based boards, including the VisionFive, but not limited to it.	text	txt
-1709	2	git clone git://git.yoctoproject.org/poky -b scarthgap	code	sh
-1709	3	source oe-init-build-env visionfive	code	sh
-1709	4	bitbake-layers layerindex-fetch meta-riscv	code	sh
-1709	5	The `MACHINE` variable can be changed depending on the board we want to use or set in `build/conf/local.conf`.	text	txt
-1709	6	MACHINE=visionfive bitbake core-image-full-cmdline	code	sh
-1709	7	After the build process is over, the image will be available inside the `build/tmp/deploy/images/visionfive/` directory. The file we want to use is `core-image-full-cmdline-visionfive.wic.gz`.	text	txt
-1709	8	zcat core-image-full-cmdline-visionfive.wic.gz | sudo dd of=/dev/<media>	code	sh
-1709	9	VisionFive doesn’t have a default boot target and requires manual intervention to boot.	text	txt
-1709	10	Inside the U-Boot prompt enter the following commands using a serial console:	text	txt
-1709	11	setenv bootcmd “run distro_bootcmd”\nsaveenv\nboot	code	sh
-1710	1	first, we need to build the `core-image-weston` image. Next, we can run the validation as follows:	text	txt
-1710	2	runqemu gl sdk core-image-weston	code	sh
-1711	1	first, we need to build the `core-image-full-cmdline` image and run QEMU with the following command line:	text	txt
-1711	2	runqemu qemux86-64 qemuparams="-m 128" core-image-full-cmdline	code	sh
-1867	5	make -j8	code	txt
 1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
 1712	3	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt
 1712	4	bitbake -c testimage core-image-weston	code	sh
@@ -7823,6 +7724,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2004	1	While blocking certain types of ICMP packets is good, blocking all ICMP packets is bad.\nThe harsh reality is that certain types of ICMP messages are necessary for the proper functionality of the network.\nSince the drop all that’s not allowed rule that we’ll eventually create also blocks ICMP packets, we’ll need to create some rules that allow the types of ICMP messages that we have to have.	text	txt
 2768	1	If your program is compiled with the GNU Compiler Collection (GCC), using the\n`-g3` and `-gdwarf-2` options, GDB understands references to C preprocessor\nmacros.	text	txt
 5522	4	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::LinearGradient gradient{0.5, ftxui::Color::Black, ftxui::Color::Red};\n}	code	cpp
+2773	2	Any thread calling `io_service::run()` function will block execution and wait\nfor tasks to be enqueued, or finish existing tasks. Best practice is to attach\n`io_service` to slave threads so that they wait for tasks to be given and\nexecute them while master threads assign new tasks to them.	text	txt
+2774	1	The `dispatch()` function requests the service to run its works right away\nwithout queueing up.	text	txt
 2004	3	* `-m conntrack`: Use the conntrack module to allow packets that are in a certain state. This time, though, instead of just allowing packets from a host to which our server has been connected (`ESTABLISHED`,`RELATED`), we’re also allowing `NEW` packets that other hosts are sending to our server.\n* `-p icmp`: This refers to the ICMP protocol.\n* `--icmp-type`: There are quite a few types of ICMP messages:\n    + **type 3**: These are the **“destination unreachable”** messages. Not only can they tell your server that it can’t reach a certain host, but they can also tell it why. For example, if the server has sent out a packet that’s too large for a network switch to handle, the switch will send back an ICMP message that tells the server to fragment that large packet. Without ICMP, the server would have connectivity problems every time it tries to send out a large packet that needs to be broken up into fragments.\n    + **type 11**: **Time-exceeded** messages let your server know that a packet that it has sent out has either exceeded its **Time-to-Live (TTL)** value before it could reach its destination, or that a fragmented packet couldn’t be reassembled before the **TTL** expiration date.\n    + **type 12**: **Parameter problem** messages indicate that the server had sent a packet with a bad IP header. In other words, the IP header is either missing an option flag or it’s of an invalid length.\n    + **type 0** and **type 8**: These are the infamous ping packets. Actually, type 8 is the **echo request** packet that you would send out to ping a host, while type 0 is the **echo reply** that the host would return to let you know that it’s alive. Of course, allowing ping packets to get through could be a big help when troubleshooting network problems. If that scenario ever comes up, you could just add a couple of iptables rules to temporarily allow pings.\n    + **type 5**: Now, we have the infamous **redirect messages**. Allowing these could be handy if you have a router that can suggest more efficient paths for the server to use, but hackers can also use them to redirect you to someplace that you don’t want to go. So, just block them.	text	txt
 2005	2	To create a `DROP` rule at the end of the `INPUT` chain, use this command:	text	txt
 2006	1	There are several ways to do this, but the simplest way to do this on an Ubuntu machine is to install the `iptables-persistent` package:	text	txt
@@ -9893,8 +9796,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2760	4	In kernel config, use `CONFIG_INITRAMFS_SOURCE=/srv/nfs4/root/initramfs.cpio`.	text	txt
 2761	1	The `devtmpfs` virtual filesystem can be mounted on `/dev` and contains all\nthe devices registered to kernel frameworks. The `CONFIG_DEVTMPFS_MOUNT`\nkernel configuration option makes the kernel mount it automatically at boot\ntime, except when booting on an initramfs.	text	txt
 2762	1	mount -t proc nodev /proc	code	txt
-2773	2	Any thread calling `io_service::run()` function will block execution and wait\nfor tasks to be enqueued, or finish existing tasks. Best practice is to attach\n`io_service` to slave threads so that they wait for tasks to be given and\nexecute them while master threads assign new tasks to them.	text	txt
-2774	1	The `dispatch()` function requests the service to run its works right away\nwithout queueing up.	text	txt
 2774	2	The `dispatch()` function can be invoked from the current worker thread, while\nthe `post()` function has to wait until the handler of the worker is complete\nbefore it can be invoked. In other words, the `dispatch()` function's events\ncan be executed from the current worker thread even if there are other pending\nevents queued up, while the `post()` function's events have to wait until the\nhandler completes the execution before being allowed to be executed.	text	txt
 2775	1	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt
 2775	3	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt
@@ -13978,15 +13879,10 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1357	1	#include <bitset>\n\nusing byte = std::bitset<8>;\nusing fn = void(byte, double);\nusing fn_ptr = void(*)(byte, double);\n\nvoid func(byte b, double d) { /* ... */ }\n\nint main()\n{\n    byte b{001101001};\n    fn* f = func;\n    fn_ptr fp = func;\n}	code	cpp
 1358	3	#include <vector>\n\ntemplate<typename T>\nclass custom_allocator { /* ... */ };\n\ntemplate<typename T>\nusing vec_t = std::vector<T, custom_allocator<T>>;\n\nint main()\n{\n    vec_t<int> vi;\n    vec_t<std::string> vs;\n}	code	cpp
 1483	3	import std;\nimport geometry;\n\nint main()\n{\n    int_point p{3, 4};\n    std::cout << distance(int_point_zero, p) << std::endl;\n}	code	cpp
-1487	3	modulename:partitionname;`.\n\n*geometry-details.cppm*\nmodule geometry:details;\n\nimport std.core;\n\nstd::pair<int, int> split(char const* ptr, std::size_t const size)\n{\n    int x{}, y{};\n    ...\n    return {x, y};\n}	code	cpp
-1487	4	*geometry-literals.cppm*\nexport module geometry:literals;\n\nimport :core;\nimport :details;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t size)\n    {\n        auto [x, y] = split(ptr, size);\n        return {x, y};\n    }\n}	code	cpp
-1486	3	*geometry-core.cppm*\nexport module geometry:core;\n\nimport std.core;\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	code	cpp
-1486	4	*geometry-literals.cppm*\nexport module geometry.literals;\n\nimport std.core;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t const size)\n    {\n        int x{}, y{};\n        ...\n        return {x , y};\n    }\n}	code	cpp
 1488	2	This snippet uses module interface partition and module implementation partition.	text	txt
 1488	3	*sample-core.cppm*\nexport module sample:core;\n\nexport constexpr double fraction{7 / 5};	code	cpp
 1488	7	Next snippet is the same implementation but with modules instead of partitions:	text	txt
 1486	6	*geometry.cppm*\nexport module geometry;\n\nexport import :core;\nexport import :literals;	code	cpp
-1486	8	import std.core;\nimport geometry;\n\nint main()\n{\n    point<int> p{4, 2};\n\n    {\n        using namespace geometry_literals;\n        point<int> origin{"0,0"_p};\n    }\n}	code	cpp
 1488	4	*sample-details.cppm*\nmodule sample:details;\n\nimport :core;\n\nconstexpr double power{fraction * fraction};	code	cpp
 1488	5	*sample.cppm*\nexport module sample;\n\nexport import :core;	code	cpp
 1488	12	So far, we have two modules: `sample.core` and `sample`. Here `sample`\nimports and then re-exports the entire content of `sample.core`. Because of\nthis, the core in the `consumer.cpp` does not need to change. By solely\nimporting the `sample` module, we get access to the content of the\n`sample.core` module.	text	txt
@@ -13995,6 +13891,9 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1371	1	#include <memory>\n\nclass string_buffer\n{\npublic:\n    explicit string_buffer() {}\n    explicit string_buffer(std::size_t const size) {}\n    explicit string_buffer(char const* const ptr) {}\n    explicit operator bool() const { return false; }\n    explicit operator char* const () const { return nullptr; }\n};\n\nint main()\n{\n    std::shared_ptr<char> str;\n    string_buffer b1;            // calls string_buffer()\n    string_buffer b2(20);        // calls string_buffer(std::size_t const)\n    string_buffer b3(str.get()); // calls string_buffer(char const*)\n\n    enum item_size { small, medium, large };\n\n    // implicit conversion cases when explicit not specified\n    string_buffer b4 = 'a';      // would call string_buffer(std::size_t const)\n    string_buffer b5 = small;    // would call string_buffer(std::size_t const)\n}	code	cpp
 5472	1	The module `dom` handles layout and composition.	text	md
 5571	1	sed -i '1i <line>' <file>	code	sh
+1486	8	import geometry;\n\nint main()\n{\n    point<int> p{4, 2};\n\n    {\n        using namespace geometry_literals;\n        point<int> origin{"0,0"_p};\n    }\n}	code	cpp
+1487	3	// geometry-details.cppm\nmodule geometry:details;\n\nstd::pair<int, int> split(char const* ptr, std::size_t const size)\n{\n    int x{}, y{};\n    ...\n    return {x, y};\n}	code	cpp
+1487	4	// geometry-literals.cppm\nexport module geometry:literals;\n\nimport :details;\n\nnamespace literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t size)\n    {\n        auto [x, y] = split(ptr, size);\n        return {x, y};\n    }\n}	code	cpp
 1372	2	*file1.cpp*\n#include <iostream>\n\nnamespace\n{\n    void print()\n    {\n        std::cout << "file1" << std::endl;\n    }\n}\n\nprint(); // external linkage, local visibility	code	cpp
 1372	3	*file2.cpp*\n#include <iostream>\n\nnamespace\n{\n    void print()\n    {\n        std::cout << "file2" << std::endl;\n    }\n}\n\nprint(); // external linkage, local visibility	code	cpp
 1373	2	template <int const& Size>\nclass test {};\n\nstatic int Size1 = 10;\n\nnamespace\n{\n    int Size2 = 10;\n}\n\ntest<Size1> t1; // error only on VC++\ntest<Size2> t2; // okay	code	cpp
@@ -14738,6 +14637,12 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 679	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate <is_pointer T>\nauto print(T value)\n{\n    std::cout << value << '\\\\n';\n}	code	cpp
 681	2	template<typename T>\nconcept is_pointer = std::is_pointer_v<T>;\n\ntemplate<typename L, typename R>\nconcept is_comparable_with = std::totally_ordered_with<L, R>;\n\nauto get_max(is_point auto a, is_pointer auto b)\nrequires is_comparable_with<decltype(*a), decltype(*b)>\n{\n    return get_max(*a, *b);\n}	code	cpp
 685	1	template<typename T>\nconcept is_pointer = requires(T p) {\n    *p;\n    p == nullptr;\n    (p < p) -> std::same_as<bool>;\n};\n\ntemplate<typename T>\nrequires is_pointer<T>\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}\n\ntemplate<typename T>\nrequires requires(T p) { *p; }\nvoid print(T value)\n{\n    std::cout << *value << '\\\\n';\n}	code	cpp
+111	1	#include <iostream>\n\nint global_number = 42;\n\nint function()\n{\n    int local_number = 77;\n    return local_number;\n}\n\nint main()\n{\n    std::cout << function() << '\\\\n';\n    std::cout << global_number << '\\\\n';\n    return 0;\n}	code	cpp
+110	1	void do_something();\n\nint main()\n{\n    do_something();\n}\n\nvoid do_something()\n{\n}	code	cpp
+119	1	consteval double divide(double a, double b)\n{\n    return a / b;\n}\n\nconsteval double get_pi()\n{\n    return divide(22.0, 7); // OK\n}\n\ndouble dividen{22.0}, divisor{7.0};\ndivide(dividen, divisor); // ERROR: non-const arguments to consteval	code	cpp
+109	1	#include <iostream>\n\nint main()\n{\n    using std::cout;\n    using std::endl;\n\n    cout << 42 << endl;\n}	code	cpp
+1486	3	// geometry-core.cppm\nexport module geometry:core;\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	code	cpp
+1486	4	// geometry-literals.cppm\nexport module geometry:literals;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t const size)\n    {\n        int x{}, y{};\n        ...\n        return {x , y};\n    }\n}	code	cpp
 \.
 
 
@@ -15544,6 +15449,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 797	What is an <code>eBPF</code> map?	draft
 5527	Make an element dim?	review
 798	What mechanisms are required for user space applications to gain access to the underlying device drivers within the kernel?	draft
+1064	Compute the length of a vector?	draft
 799	How does <b>Linux Device Model</b> expose device driver details to user space?	draft
 800	What inode attributes are used to distinguish between device files?	draft
 801	What is a device driver namespace?	draft
@@ -15804,7 +15710,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 1061	Practice: compute $\\frac{1}{2}(-1,-3,2).(6,-4,2)$?	draft
 1062	What is the Cauchy Schwarz inequality theorem?	draft
 1063	What is the Triangle Inequality theorem?	draft
-1064	Compute the length of a vector?	draft
 1065	Practice: compute the length of $\\vec{v} = (3,4)$?	draft
 1066	Practice: compute the length of $\\vec{v} = (\\cos{\\theta},\\sin{\\theta})$?	draft
 1067	What are the properties of vector length?	draft
@@ -16216,7 +16121,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 1480	How to write the content of a <code>std::basic\\_ifstream</code> object into a <code>std::vector</code> object using <code>std::ifstreambuf\\_iterator</code> and <code>std::back\\_inserter</code> adapter?	draft
 1482	Import a module in a translation unit?	draft
 1489	Specify requirements on template arguments with concepts?	draft
-1484	What are the constituents of a module?	review
 1483	Express a module to be used within another translation unit?	review
 1485	What is a module partition?	review
 1486	What is a module interface partition?	review
@@ -16358,6 +16262,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 1644	What are the essential properties of a layer?	draft
 1645	What kinds of layers exist?	draft
 5494	Create a text widget?	review
+1484	What are the building blocks of a module?	review
 1646	What is the common way to deal with permanent chances that need to be applied as special requirements?	draft
 1647	What are the entries of a layer?	draft
 1648	Add an existing meta layer?	draft
@@ -19835,146 +19740,60 @@ COPY flashback.cards_activities (id, "user", card, action, "time") FROM stdin;
 --
 
 COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
-35	2	origin	12
-14	2	origin	11
-41	2	origin	10
-42	2	origin	9
-41	2	surface	1
-14	2	surface	3
-35	2	surface	4
-41	2	depth	5
-42	2	surface	2
-14	2	depth	8
-35	2	depth	7
-42	2	depth	6
-29	1	origin	120
-52	1	depth	61
-54	1	surface	24
-6	1	surface	1
-3	1	surface	2
-4	1	surface	3
-5	1	surface	4
-1	1	surface	5
-8	1	surface	6
-11	1	surface	7
-10	1	surface	8
-7	1	surface	9
-41	1	surface	10
-42	1	surface	11
-15	1	surface	12
-51	1	surface	13
-50	1	surface	14
-44	1	surface	15
-9	1	surface	16
-52	1	surface	17
-2	1	surface	18
-45	1	surface	19
-13	1	surface	20
-16	1	surface	21
-17	1	surface	22
-18	1	surface	23
-19	1	surface	25
-43	1	surface	26
-20	1	surface	27
-21	1	surface	28
-22	1	surface	29
-23	1	surface	30
-24	1	surface	31
-25	1	surface	32
-26	1	surface	33
-27	1	surface	34
-28	1	surface	35
-29	1	surface	36
-30	1	surface	37
-48	1	surface	38
-31	1	surface	39
-32	1	surface	40
-46	1	surface	41
-33	1	surface	42
-34	1	surface	43
-47	1	surface	44
-36	1	surface	45
-37	1	surface	46
-38	1	surface	47
-49	1	surface	48
+6	1	origin	1
+3	1	origin	2
+4	1	origin	3
+5	1	depth	4
+1	1	depth	5
+8	1	origin	6
+11	1	origin	7
+10	1	origin	8
+7	1	depth	9
+41	1	depth	10
+42	1	depth	11
+15	1	origin	12
+51	1	origin	13
+50	1	origin	14
+44	1	origin	15
+9	1	origin	16
+52	1	origin	17
+2	1	depth	18
+45	1	depth	19
+13	1	origin	20
+16	1	depth	21
+17	1	origin	22
+18	1	origin	23
+54	1	depth	24
+19	1	depth	25
+43	1	origin	26
+20	1	origin	27
+21	1	depth	28
+22	1	depth	29
+23	1	depth	30
+24	1	origin	31
+25	1	depth	32
+26	1	origin	33
+27	1	origin	34
+28	1	depth	35
+29	1	origin	36
+30	1	origin	37
+48	1	origin	38
+31	1	depth	39
+32	1	origin	40
+46	1	origin	41
+33	1	origin	42
+34	1	origin	43
+47	1	origin	44
+36	1	depth	45
+37	1	origin	46
+38	1	depth	47
+49	1	depth	48
 12	1	surface	49
-40	1	surface	50
-6	1	depth	51
-3	1	depth	52
-4	1	depth	53
-5	1	depth	54
-2	1	depth	55
-1	1	depth	56
-7	1	depth	57
-8	1	depth	58
-44	1	depth	59
-9	1	depth	60
-10	1	depth	62
-11	1	depth	63
-45	1	depth	64
-13	1	depth	65
-41	1	depth	66
-42	1	depth	67
-15	1	depth	68
-51	1	depth	69
-50	1	depth	70
-16	1	depth	71
-17	1	depth	72
-18	1	depth	73
-30	1	origin	121
-48	1	origin	122
-32	1	origin	123
-46	1	origin	124
-47	1	origin	125
-33	1	origin	126
-34	1	origin	127
-37	1	origin	128
-10	1	origin	107
-11	1	origin	108
-13	1	origin	109
-15	1	origin	110
-51	1	origin	111
-50	1	origin	112
-17	1	origin	113
-18	1	origin	114
-43	1	origin	115
-20	1	origin	116
-24	1	origin	117
-26	1	origin	118
-27	1	origin	119
-52	1	origin	106
-19	1	depth	75
-43	1	depth	76
-20	1	depth	77
-21	1	depth	78
-22	1	depth	79
-23	1	depth	80
-24	1	depth	81
-25	1	depth	82
-26	1	depth	83
-27	1	depth	84
-28	1	depth	85
-29	1	depth	86
-30	1	depth	87
-48	1	depth	88
-31	1	depth	89
-32	1	depth	90
-46	1	depth	91
-33	1	depth	92
-47	1	depth	93
-34	1	depth	94
-36	1	depth	95
-37	1	depth	96
-38	1	depth	97
-49	1	depth	98
-40	1	depth	99
-3	1	origin	100
-54	1	depth	74
-4	1	origin	101
-6	1	origin	102
-8	1	origin	103
-44	1	origin	104
-9	1	origin	105
+40	1	depth	50
+41	2	origin	1
+42	2	origin	2
+14	2	origin	3
+35	2	origin	4
 \.
 
 
@@ -19982,7 +19801,7 @@ COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
 -- Data for Name: milestones_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.milestones_activities (id, "user", action, "time", subject, roadmap, level) FROM stdin;
+COPY flashback.milestones_activities (id, "user", action, "time", subject, roadmap) FROM stdin;
 \.
 
 
@@ -20151,541 +19970,50 @@ COPY flashback.presenters (id, name) FROM stdin;
 --
 
 COPY flashback.progress ("user", card, last_practice, duration, progression) FROM stdin;
-2	4137	2025-11-27 01:44:37.554411+01	33	0
-2	4145	2025-12-05 01:53:04.202274+01	33	0
-2	111	2025-12-07 15:55:35.255414+01	52	3
-2	108	2025-12-07 01:11:25.032361+01	33	0
-2	4133	2025-12-07 01:11:25.032361+01	33	0
-2	116	2025-12-07 01:11:25.032361+01	33	0
-2	117	2025-12-07 01:11:25.032361+01	33	0
-2	4138	2025-12-07 01:11:25.032361+01	33	0
-2	4139	2025-12-07 01:11:25.032361+01	33	0
-2	4140	2025-12-07 01:11:25.032361+01	33	0
-2	110	2025-12-07 01:11:25.032361+01	33	0
-2	118	2025-12-07 01:11:25.032361+01	33	0
-2	119	2025-12-07 01:11:25.032361+01	33	0
-2	4144	2025-12-07 01:11:25.032361+01	33	0
-2	4146	2025-12-07 01:11:25.032361+01	33	0
-2	4147	2025-12-07 01:11:25.032361+01	33	0
-2	109	2025-12-07 01:11:25.032361+01	33	0
-2	4149	2025-12-07 01:11:25.032361+01	33	0
-2	4150	2025-12-07 01:11:25.032361+01	33	0
-2	4151	2025-12-07 01:11:25.032361+01	33	0
-2	4152	2025-12-07 01:11:25.032361+01	33	0
-2	1481	2025-12-07 01:11:25.032361+01	33	0
-2	1484	2025-12-07 01:11:25.032361+01	33	0
-2	4154	2025-12-07 01:11:25.032361+01	33	0
-2	4156	2025-12-07 01:11:25.032361+01	33	0
-2	4157	2025-12-07 01:11:25.032361+01	33	0
-2	1483	2025-12-07 01:11:25.032361+01	33	0
-2	1485	2025-12-07 01:11:25.032361+01	33	0
-2	1486	2025-12-07 01:11:25.032361+01	33	0
-2	1487	2025-12-07 01:11:25.032361+01	33	0
-2	1488	2025-12-07 01:11:25.032361+01	33	0
-2	2813	2025-12-07 01:11:25.032361+01	33	0
-2	4163	2025-12-07 01:11:25.032361+01	33	0
-2	4165	2025-12-07 01:11:25.032361+01	33	0
-2	115	2025-12-07 01:11:25.032361+01	33	0
-2	4167	2025-12-07 01:11:25.032361+01	33	0
-2	4168	2025-12-07 01:11:25.032361+01	33	0
-2	4169	2025-12-07 01:11:25.032361+01	33	0
-2	4170	2025-12-07 01:11:25.032361+01	33	0
-2	4171	2025-12-07 01:11:25.032361+01	33	0
-2	4172	2025-12-07 01:11:25.032361+01	33	0
-2	4173	2025-12-07 01:11:25.032361+01	33	0
-2	4174	2025-12-07 01:11:25.032361+01	33	0
-2	4175	2025-12-07 01:11:25.032361+01	33	0
-2	640	2025-12-07 01:11:25.032361+01	33	0
-2	641	2025-12-07 01:11:25.032361+01	33	0
-2	4176	2025-12-07 01:11:25.032361+01	33	0
-2	4177	2025-12-07 01:11:25.032361+01	33	0
-2	4178	2025-12-07 01:11:25.032361+01	33	0
-2	4179	2025-12-07 01:11:25.032361+01	33	0
-2	4182	2025-12-07 01:11:25.032361+01	33	0
-2	4183	2025-12-07 01:11:25.032361+01	33	0
-2	4184	2025-12-07 01:11:25.032361+01	33	0
-2	4185	2025-12-07 01:11:25.032361+01	33	0
-2	4186	2025-12-07 01:11:25.032361+01	33	0
-2	4187	2025-12-07 01:11:25.032361+01	33	0
-2	4188	2025-12-07 01:11:25.032361+01	33	0
-2	4189	2025-12-07 01:11:25.032361+01	33	0
-2	4190	2025-12-07 01:11:25.032361+01	33	0
-2	4191	2025-12-07 01:11:25.032361+01	33	0
-2	2795	2025-12-07 01:11:25.032361+01	33	0
-2	2796	2025-12-07 01:11:25.032361+01	33	0
-2	2797	2025-12-07 01:11:25.032361+01	33	0
-2	2798	2025-12-07 01:11:25.032361+01	33	0
-2	2799	2025-12-07 01:11:25.032361+01	33	0
-2	2800	2025-12-07 01:11:25.032361+01	33	0
-2	4198	2025-12-07 01:11:25.032361+01	33	0
-2	2801	2025-12-07 01:11:25.032361+01	33	0
-2	2802	2025-12-07 01:11:25.032361+01	33	0
-2	2803	2025-12-07 01:11:25.032361+01	33	0
-2	2804	2025-12-07 01:11:25.032361+01	33	0
-2	2805	2025-12-07 01:11:25.032361+01	33	0
-2	2806	2025-12-07 01:11:25.032361+01	33	0
-2	2807	2025-12-07 01:11:25.032361+01	33	0
-2	2808	2025-12-07 01:11:25.032361+01	33	0
-2	4207	2025-12-07 01:11:25.032361+01	33	0
-2	4208	2025-12-07 01:11:25.032361+01	33	0
-2	4209	2025-12-07 01:11:25.032361+01	33	0
-2	4210	2025-12-07 01:11:25.032361+01	33	0
-2	4211	2025-12-07 01:11:25.032361+01	33	0
-2	2809	2025-12-07 01:11:25.032361+01	33	0
-2	2810	2025-12-07 01:11:25.032361+01	33	0
-2	2811	2025-12-07 01:11:25.032361+01	33	0
-2	2812	2025-12-07 01:11:25.032361+01	33	0
-2	2814	2025-12-07 01:11:25.032361+01	33	0
-2	2815	2025-12-07 01:11:25.032361+01	33	0
-2	2816	2025-12-07 01:11:25.032361+01	33	0
-2	2817	2025-12-07 01:11:25.032361+01	33	0
-2	2818	2025-12-07 01:11:25.032361+01	33	0
-2	2819	2025-12-07 01:11:25.032361+01	33	0
-2	2820	2025-12-07 01:11:25.032361+01	33	0
-2	674	2025-12-07 01:11:25.032361+01	33	0
-2	678	2025-12-07 01:11:25.032361+01	33	0
-2	679	2025-12-07 01:11:25.032361+01	33	0
-2	680	2025-12-07 01:11:25.032361+01	33	0
-2	681	2025-12-07 01:11:25.032361+01	33	0
-2	683	2025-12-07 01:11:25.032361+01	33	0
-2	684	2025-12-07 01:11:25.032361+01	33	0
-2	685	2025-12-07 01:11:25.032361+01	33	0
-2	4223	2025-12-07 01:11:25.032361+01	33	0
-2	676	2025-12-07 01:11:25.032361+01	33	0
-2	4224	2025-12-07 01:11:25.032361+01	33	0
-2	4225	2025-12-07 01:11:25.032361+01	33	0
-2	4226	2025-12-07 01:11:25.032361+01	33	0
-2	675	2025-12-07 01:11:25.032361+01	33	0
-2	677	2025-12-07 01:11:25.032361+01	33	0
-2	682	2025-12-07 01:11:25.032361+01	33	0
-2	2821	2025-12-07 01:11:25.032361+01	33	0
-2	2822	2025-12-07 01:11:25.032361+01	33	0
-2	2823	2025-12-07 01:11:25.032361+01	33	0
-2	4230	2025-12-07 01:11:25.032361+01	33	0
-2	2824	2025-12-07 01:11:25.032361+01	33	0
-2	2825	2025-12-07 01:11:25.032361+01	33	0
-2	2826	2025-12-07 01:11:25.032361+01	33	0
-2	2827	2025-12-07 01:11:25.032361+01	33	0
-2	2828	2025-12-07 01:11:25.032361+01	33	0
-2	2829	2025-12-07 01:11:25.032361+01	33	0
-2	2830	2025-12-07 01:11:25.032361+01	33	0
-2	2831	2025-12-07 01:11:25.032361+01	33	0
-2	2832	2025-12-07 01:11:25.032361+01	33	0
-2	2833	2025-12-07 01:11:25.032361+01	33	0
-2	2834	2025-12-07 01:11:25.032361+01	33	0
-2	4239	2025-12-07 01:11:25.032361+01	33	0
-2	2835	2025-12-07 01:11:25.032361+01	33	0
-2	2836	2025-12-07 01:11:25.032361+01	33	0
-2	2837	2025-12-07 01:11:25.032361+01	33	0
-2	4244	2025-12-07 01:11:25.032361+01	33	0
-2	4247	2025-12-07 01:11:25.032361+01	33	0
-2	4248	2025-12-07 01:11:25.032361+01	33	0
-2	1362	2025-12-07 01:11:25.032361+01	33	0
-2	4249	2025-12-07 01:11:25.032361+01	33	0
-2	4251	2025-12-07 01:11:25.032361+01	33	0
-2	112	2025-12-07 01:11:25.032361+01	33	0
-2	1396	2025-12-07 01:11:25.032361+01	33	0
-2	4254	2025-12-07 01:11:25.032361+01	33	0
-2	1402	2025-12-07 01:11:25.032361+01	33	0
-2	4255	2025-12-07 01:11:25.032361+01	33	0
-2	2450	2025-12-07 01:11:25.032361+01	33	0
-2	2451	2025-12-07 01:11:25.032361+01	33	0
-2	2456	2025-12-07 01:11:25.032361+01	33	0
-2	2457	2025-12-07 01:11:25.032361+01	33	0
-2	2458	2025-12-07 01:11:25.032361+01	33	0
-2	2452	2025-12-07 01:11:25.032361+01	33	0
-2	2453	2025-12-07 01:11:25.032361+01	33	0
-2	2454	2025-12-07 01:11:25.032361+01	33	0
-2	2455	2025-12-07 01:11:25.032361+01	33	0
-2	2460	2025-12-07 01:11:25.032361+01	33	0
-2	2459	2025-12-07 01:11:25.032361+01	33	0
-2	2461	2025-12-07 01:11:25.032361+01	33	0
-2	2463	2025-12-07 01:11:25.032361+01	33	0
-2	2464	2025-12-07 01:11:25.032361+01	33	0
-2	2465	2025-12-07 01:11:25.032361+01	33	0
-2	2466	2025-12-07 01:11:25.032361+01	33	0
-2	2468	2025-12-07 01:11:25.032361+01	33	0
-2	2469	2025-12-07 01:11:25.032361+01	33	0
-2	2474	2025-12-07 01:11:25.032361+01	33	0
-2	2467	2025-12-07 01:11:25.032361+01	33	0
-2	2470	2025-12-07 01:11:25.032361+01	33	0
-2	2471	2025-12-07 01:11:25.032361+01	33	0
-2	2475	2025-12-07 01:11:25.032361+01	33	0
-2	2472	2025-12-07 01:11:25.032361+01	33	0
-2	2473	2025-12-07 01:11:25.032361+01	33	0
-2	2477	2025-12-07 01:11:25.032361+01	33	0
-2	2462	2025-12-07 01:11:25.032361+01	33	0
-2	2476	2025-12-07 01:11:25.032361+01	33	0
-2	2478	2025-12-07 01:11:25.032361+01	33	0
-2	4286	2025-12-07 01:11:25.032361+01	33	0
-2	4287	2025-12-07 01:11:25.032361+01	33	0
-2	4288	2025-12-07 01:11:25.032361+01	33	0
-2	4289	2025-12-07 01:11:25.032361+01	33	0
-2	4290	2025-12-07 01:11:25.032361+01	33	0
-2	4291	2025-12-07 01:11:25.032361+01	33	0
-2	4292	2025-12-07 01:11:25.032361+01	33	0
-2	4293	2025-12-07 01:11:25.032361+01	33	0
-2	4294	2025-12-07 01:11:25.032361+01	33	0
-2	4295	2025-12-07 01:11:25.032361+01	33	0
-2	4296	2025-12-07 01:11:25.032361+01	33	0
-2	4297	2025-12-07 01:11:25.032361+01	33	0
-2	4298	2025-12-07 01:11:25.032361+01	33	0
-2	4299	2025-12-07 01:11:25.032361+01	33	0
-2	4300	2025-12-07 01:11:25.032361+01	33	0
-2	4301	2025-12-07 01:11:25.032361+01	33	0
-2	4302	2025-12-07 01:11:25.032361+01	33	0
-2	1404	2025-12-07 01:11:25.032361+01	33	0
-2	4303	2025-12-07 01:11:25.032361+01	33	0
-2	1420	2025-12-07 01:11:25.032361+01	33	0
-2	1421	2025-12-07 01:11:25.032361+01	33	0
-2	4305	2025-12-07 01:11:25.032361+01	33	0
-2	4308	2025-12-07 01:11:25.032361+01	33	0
-2	4309	2025-12-07 01:11:25.032361+01	33	0
-2	4310	2025-12-07 01:11:25.032361+01	33	0
-2	4311	2025-12-07 01:11:25.032361+01	33	0
-2	4312	2025-12-07 01:11:25.032361+01	33	0
-2	4313	2025-12-07 01:11:25.032361+01	33	0
-2	4314	2025-12-07 01:11:25.032361+01	33	0
-2	4315	2025-12-07 01:11:25.032361+01	33	0
-2	4316	2025-12-07 01:11:25.032361+01	33	0
-2	4317	2025-12-07 01:11:25.032361+01	33	0
-2	4318	2025-12-07 01:11:25.032361+01	33	0
-2	4319	2025-12-07 01:11:25.032361+01	33	0
-2	4320	2025-12-07 01:11:25.032361+01	33	0
-2	4321	2025-12-07 01:11:25.032361+01	33	0
-2	4322	2025-12-07 01:11:25.032361+01	33	0
-2	4323	2025-12-07 01:11:25.032361+01	33	0
-2	4324	2025-12-07 01:11:25.032361+01	33	0
-2	4325	2025-12-07 01:11:25.032361+01	33	0
-2	4326	2025-12-07 01:11:25.032361+01	33	0
-2	4327	2025-12-07 01:11:25.032361+01	33	0
-2	4328	2025-12-07 01:11:25.032361+01	33	0
-2	4329	2025-12-07 01:11:25.032361+01	33	0
-2	4330	2025-12-07 01:11:25.032361+01	33	0
-2	4331	2025-12-07 01:11:25.032361+01	33	0
-2	4332	2025-12-07 01:11:25.032361+01	33	0
-2	4333	2025-12-07 01:11:25.032361+01	33	0
-2	4334	2025-12-07 01:11:25.032361+01	33	0
-2	4335	2025-12-07 01:11:25.032361+01	33	0
-2	4336	2025-12-07 01:11:25.032361+01	33	0
-2	4337	2025-12-07 01:11:25.032361+01	33	0
-2	4338	2025-12-07 01:11:25.032361+01	33	0
-2	4339	2025-12-07 01:11:25.032361+01	33	0
-2	4340	2025-12-07 01:11:25.032361+01	33	0
-2	4341	2025-12-07 01:11:25.032361+01	33	0
-2	4342	2025-12-07 01:11:25.032361+01	33	0
-2	4343	2025-12-07 01:11:25.032361+01	33	0
-2	4344	2025-12-07 01:11:25.032361+01	33	0
-2	4345	2025-12-07 01:11:25.032361+01	33	0
-2	4346	2025-12-07 01:11:25.032361+01	33	0
-2	4347	2025-12-07 01:11:25.032361+01	33	0
-2	4348	2025-12-07 01:11:25.032361+01	33	0
-2	4349	2025-12-07 01:11:25.032361+01	33	0
-2	4350	2025-12-07 01:11:25.032361+01	33	0
-2	4351	2025-12-07 01:11:25.032361+01	33	0
-2	2178	2025-12-07 01:11:25.032361+01	33	0
-2	4353	2025-12-07 01:11:25.032361+01	33	0
-2	4354	2025-12-07 01:11:25.032361+01	33	0
-2	4355	2025-12-07 01:11:25.032361+01	33	0
-2	4356	2025-12-07 01:11:25.032361+01	33	0
-2	4357	2025-12-07 01:11:25.032361+01	33	0
-2	4358	2025-12-07 01:11:25.032361+01	33	0
-2	4359	2025-12-07 01:11:25.032361+01	33	0
-2	4360	2025-12-07 01:11:25.032361+01	33	0
-2	4361	2025-12-07 01:11:25.032361+01	33	0
-2	4362	2025-12-07 01:11:25.032361+01	33	0
-2	4363	2025-12-07 01:11:25.032361+01	33	0
-2	4364	2025-12-07 01:11:25.032361+01	33	0
-2	4365	2025-12-07 01:11:25.032361+01	33	0
-2	4366	2025-12-07 01:11:25.032361+01	33	0
-2	4367	2025-12-07 01:11:25.032361+01	33	0
-2	4368	2025-12-07 01:11:25.032361+01	33	0
-2	4369	2025-12-07 01:11:25.032361+01	33	0
-2	2195	2025-12-07 01:11:25.032361+01	33	0
-2	4370	2025-12-07 01:11:25.032361+01	33	0
-2	4371	2025-12-07 01:11:25.032361+01	33	0
-2	4372	2025-12-07 01:11:25.032361+01	33	0
-2	4373	2025-12-07 01:11:25.032361+01	33	0
-2	4374	2025-12-07 01:11:25.032361+01	33	0
-2	4375	2025-12-07 01:11:25.032361+01	33	0
-2	4376	2025-12-07 01:11:25.032361+01	33	0
-2	4378	2025-12-07 01:11:25.032361+01	33	0
-2	4379	2025-12-07 01:11:25.032361+01	33	0
-2	4380	2025-12-07 01:11:25.032361+01	33	0
-2	2200	2025-12-07 01:11:25.032361+01	33	0
-2	2202	2025-12-07 01:11:25.032361+01	33	0
-2	4381	2025-12-07 01:11:25.032361+01	33	0
-2	4382	2025-12-07 01:11:25.032361+01	33	0
-2	4384	2025-12-07 01:11:25.032361+01	33	0
-2	2203	2025-12-07 01:11:25.032361+01	33	0
-2	4387	2025-12-07 01:11:25.032361+01	33	0
-2	4388	2025-12-07 01:11:25.032361+01	33	0
-2	4389	2025-12-07 01:11:25.032361+01	33	0
-2	2208	2025-12-07 01:11:25.032361+01	33	0
-2	2210	2025-12-07 01:11:25.032361+01	33	0
-2	4390	2025-12-07 01:11:25.032361+01	33	0
-2	4392	2025-12-07 01:11:25.032361+01	33	0
-2	4394	2025-12-07 01:11:25.032361+01	33	0
-2	2211	2025-12-07 01:11:25.032361+01	33	0
-2	2212	2025-12-07 01:11:25.032361+01	33	0
-2	2213	2025-12-07 01:11:25.032361+01	33	0
-2	2214	2025-12-07 01:11:25.032361+01	33	0
-2	2215	2025-12-07 01:11:25.032361+01	33	0
-2	2216	2025-12-07 01:11:25.032361+01	33	0
-2	2217	2025-12-07 01:11:25.032361+01	33	0
-2	2218	2025-12-07 01:11:25.032361+01	33	0
-2	2219	2025-12-07 01:11:25.032361+01	33	0
-2	2220	2025-12-07 01:11:25.032361+01	33	0
-2	2221	2025-12-07 01:11:25.032361+01	33	0
-2	2222	2025-12-07 01:11:25.032361+01	33	0
-2	2223	2025-12-07 01:11:25.032361+01	33	0
-2	2224	2025-12-07 01:11:25.032361+01	33	0
-2	2225	2025-12-07 01:11:25.032361+01	33	0
-2	4408	2025-12-07 01:11:25.032361+01	33	0
-2	2234	2025-12-07 01:11:25.032361+01	33	0
-2	2235	2025-12-07 01:11:25.032361+01	33	0
-2	2236	2025-12-07 01:11:25.032361+01	33	0
-2	1405	2025-12-07 01:11:25.032361+01	33	0
-2	4415	2025-12-07 01:11:25.032361+01	33	0
-2	4416	2025-12-07 01:11:25.032361+01	33	0
-2	4417	2025-12-07 01:11:25.032361+01	33	0
-2	4418	2025-12-07 01:11:25.032361+01	33	0
-2	4419	2025-12-07 01:11:25.032361+01	33	0
-2	4420	2025-12-07 01:11:25.032361+01	33	0
-2	2264	2025-12-07 01:11:25.032361+01	33	0
-2	2265	2025-12-07 01:11:25.032361+01	33	0
-2	2266	2025-12-07 01:11:25.032361+01	33	0
-2	2267	2025-12-07 01:11:25.032361+01	33	0
-2	2268	2025-12-07 01:11:25.032361+01	33	0
-2	2269	2025-12-07 01:11:25.032361+01	33	0
-2	2270	2025-12-07 01:11:25.032361+01	33	0
-2	2271	2025-12-07 01:11:25.032361+01	33	0
-2	2272	2025-12-07 01:11:25.032361+01	33	0
-2	2273	2025-12-07 01:11:25.032361+01	33	0
-2	2274	2025-12-07 01:11:25.032361+01	33	0
-2	2275	2025-12-07 01:11:25.032361+01	33	0
-2	2276	2025-12-07 01:11:25.032361+01	33	0
-2	2277	2025-12-07 01:11:25.032361+01	33	0
-2	2278	2025-12-07 01:11:25.032361+01	33	0
-2	2279	2025-12-07 01:11:25.032361+01	33	0
-2	2280	2025-12-07 01:11:25.032361+01	33	0
-2	4421	2025-12-07 01:11:25.032361+01	33	0
-2	4439	2025-12-07 01:11:25.032361+01	33	0
-2	4440	2025-12-07 01:11:25.032361+01	33	0
-2	4441	2025-12-07 01:11:25.032361+01	33	0
-2	4442	2025-12-07 01:11:25.032361+01	33	0
-2	4443	2025-12-07 01:11:25.032361+01	33	0
-2	4444	2025-12-07 01:11:25.032361+01	33	0
-2	4445	2025-12-07 01:11:25.032361+01	33	0
-2	4446	2025-12-07 01:11:25.032361+01	33	0
-2	4447	2025-12-07 01:11:25.032361+01	33	0
-2	4448	2025-12-07 01:11:25.032361+01	33	0
-2	4449	2025-12-07 01:11:25.032361+01	33	0
-2	3670	2025-12-07 01:11:25.032361+01	33	0
-2	3671	2025-12-07 01:11:25.032361+01	33	0
-2	3677	2025-12-07 01:11:25.032361+01	33	0
-2	4450	2025-12-07 01:11:25.032361+01	33	0
-2	4451	2025-12-07 01:11:25.032361+01	33	0
-2	4452	2025-12-07 01:11:25.032361+01	33	0
-2	4453	2025-12-07 01:11:25.032361+01	33	0
-2	5349	2025-12-07 01:11:25.032361+01	33	0
-2	5350	2025-12-07 01:11:25.032361+01	33	0
-2	5351	2025-12-07 01:11:25.032361+01	33	0
-2	5352	2025-12-07 01:11:25.032361+01	33	0
-2	5353	2025-12-07 01:11:25.032361+01	33	0
-2	5354	2025-12-07 01:11:25.032361+01	33	0
-2	5355	2025-12-07 01:11:25.032361+01	33	0
-2	4454	2025-12-07 01:11:25.032361+01	33	0
-2	4455	2025-12-07 01:11:25.032361+01	33	0
-2	4456	2025-12-07 01:11:25.032361+01	33	0
-2	5358	2025-12-07 01:11:25.032361+01	33	0
-2	5359	2025-12-07 01:11:25.032361+01	33	0
-2	4457	2025-12-07 01:11:25.032361+01	33	0
-2	5360	2025-12-07 01:11:25.032361+01	33	0
-2	4458	2025-12-07 01:11:25.032361+01	33	0
-2	5357	2025-12-07 01:11:25.032361+01	33	0
-2	4459	2025-12-07 01:11:25.032361+01	33	0
-2	4460	2025-12-07 01:11:25.032361+01	33	0
-2	4461	2025-12-07 01:11:25.032361+01	33	0
-2	4462	2025-12-07 01:11:25.032361+01	33	0
-2	4463	2025-12-07 01:11:25.032361+01	33	0
-2	4464	2025-12-07 01:11:25.032361+01	33	0
-2	4465	2025-12-07 01:11:25.032361+01	33	0
-2	4466	2025-12-07 01:11:25.032361+01	33	0
-2	4467	2025-12-07 01:11:25.032361+01	33	0
-2	4468	2025-12-07 01:11:25.032361+01	33	0
-2	3675	2025-12-07 01:11:25.032361+01	33	0
-2	3678	2025-12-07 01:11:25.032361+01	33	0
-2	3679	2025-12-07 01:11:25.032361+01	33	0
-2	4469	2025-12-07 01:11:25.032361+01	33	0
-2	4470	2025-12-07 01:11:25.032361+01	33	0
-2	3602	2025-12-07 01:11:25.032361+01	33	0
-2	4472	2025-12-07 01:11:25.032361+01	33	0
-2	4473	2025-12-07 01:11:25.032361+01	33	0
-2	4474	2025-12-07 01:11:25.032361+01	33	0
-2	4475	2025-12-07 01:11:25.032361+01	33	0
-2	4476	2025-12-07 01:11:25.032361+01	33	0
-2	4477	2025-12-07 01:11:25.032361+01	33	0
-2	4478	2025-12-07 01:11:25.032361+01	33	0
-2	4479	2025-12-07 01:11:25.032361+01	33	0
-2	4480	2025-12-07 01:11:25.032361+01	33	0
-2	4481	2025-12-07 01:11:25.032361+01	33	0
-2	4482	2025-12-07 01:11:25.032361+01	33	0
-2	4483	2025-12-07 01:11:25.032361+01	33	0
-2	4484	2025-12-07 01:11:25.032361+01	33	0
-2	4485	2025-12-07 01:11:25.032361+01	33	0
-2	4486	2025-12-07 01:11:25.032361+01	33	0
-2	4487	2025-12-07 01:11:25.032361+01	33	0
-2	4488	2025-12-07 01:11:25.032361+01	33	0
-2	4489	2025-12-07 01:11:25.032361+01	33	0
-2	4490	2025-12-07 01:11:25.032361+01	33	0
-2	4491	2025-12-07 01:11:25.032361+01	33	0
-2	4492	2025-12-07 01:11:25.032361+01	33	0
-2	4493	2025-12-07 01:11:25.032361+01	33	0
-2	4494	2025-12-07 01:11:25.032361+01	33	0
-2	4495	2025-12-07 01:11:25.032361+01	33	0
-2	4496	2025-12-07 01:11:25.032361+01	33	0
-2	4497	2025-12-07 01:11:25.032361+01	33	0
-2	4498	2025-12-07 01:11:25.032361+01	33	0
-2	4499	2025-12-07 01:11:25.032361+01	33	0
-2	4500	2025-12-07 01:11:25.032361+01	33	0
-2	4501	2025-12-07 01:11:25.032361+01	33	0
-2	4502	2025-12-07 01:11:25.032361+01	33	0
-2	4503	2025-12-07 01:11:25.032361+01	33	0
-2	4504	2025-12-07 01:11:25.032361+01	33	0
-2	4505	2025-12-07 01:11:25.032361+01	33	0
-2	3672	2025-12-07 01:11:25.032361+01	33	0
-2	3673	2025-12-07 01:11:25.032361+01	33	0
-2	3674	2025-12-07 01:11:25.032361+01	33	0
-2	3676	2025-12-07 01:11:25.032361+01	33	0
-2	3882	2025-12-07 01:11:25.032361+01	33	0
-2	3883	2025-12-07 01:11:25.032361+01	33	0
-2	3884	2025-12-07 01:11:25.032361+01	33	0
-2	3885	2025-12-07 01:11:25.032361+01	33	0
-2	3886	2025-12-07 01:11:25.032361+01	33	0
-2	3887	2025-12-07 01:11:25.032361+01	33	0
-2	3888	2025-12-07 01:11:25.032361+01	33	0
-2	3889	2025-12-07 01:11:25.032361+01	33	0
-2	3890	2025-12-07 01:11:25.032361+01	33	0
-2	3891	2025-12-07 01:11:25.032361+01	33	0
-2	3892	2025-12-07 01:11:25.032361+01	33	0
-2	3893	2025-12-07 01:11:25.032361+01	33	0
-2	3894	2025-12-07 01:11:25.032361+01	33	0
-2	3895	2025-12-07 01:11:25.032361+01	33	0
-2	3896	2025-12-07 01:11:25.032361+01	33	0
-2	3897	2025-12-07 01:11:25.032361+01	33	0
-2	3898	2025-12-07 01:11:25.032361+01	33	0
-2	3899	2025-12-07 01:11:25.032361+01	33	0
-2	3900	2025-12-07 01:11:25.032361+01	33	0
-2	3901	2025-12-07 01:11:25.032361+01	33	0
-2	4506	2025-12-07 01:11:25.032361+01	33	0
-2	4507	2025-12-07 01:11:25.032361+01	33	0
-2	1765	2025-12-07 01:11:25.032361+01	33	0
-2	1766	2025-12-07 01:11:25.032361+01	33	0
-2	1767	2025-12-07 01:11:25.032361+01	33	0
-2	1768	2025-12-07 01:11:25.032361+01	33	0
-2	1769	2025-12-07 01:11:25.032361+01	33	0
-2	1770	2025-12-07 01:11:25.032361+01	33	0
-2	1771	2025-12-07 01:11:25.032361+01	33	0
-2	1772	2025-12-07 01:11:25.032361+01	33	0
-2	1773	2025-12-07 01:11:25.032361+01	33	0
-2	1774	2025-12-07 01:11:25.032361+01	33	0
-2	1775	2025-12-07 01:11:25.032361+01	33	0
-2	1776	2025-12-07 01:11:25.032361+01	33	0
-2	1777	2025-12-07 01:11:25.032361+01	33	0
-2	1778	2025-12-07 01:11:25.032361+01	33	0
-2	1779	2025-12-07 01:11:25.032361+01	33	0
-2	1780	2025-12-07 01:11:25.032361+01	33	0
-2	1781	2025-12-07 01:11:25.032361+01	33	0
-2	1782	2025-12-07 01:11:25.032361+01	33	0
-2	1783	2025-12-07 01:11:25.032361+01	33	0
-2	1784	2025-12-07 01:11:25.032361+01	33	0
-2	1785	2025-12-07 01:11:25.032361+01	33	0
-2	1786	2025-12-07 01:11:25.032361+01	33	0
-2	1787	2025-12-07 01:11:25.032361+01	33	0
-2	1788	2025-12-07 01:11:25.032361+01	33	0
-2	1789	2025-12-07 01:11:25.032361+01	33	0
-2	1790	2025-12-07 01:11:25.032361+01	33	0
-2	1791	2025-12-07 01:11:25.032361+01	33	0
-2	1792	2025-12-07 01:11:25.032361+01	33	0
-2	1793	2025-12-07 01:11:25.032361+01	33	0
-2	1794	2025-12-07 01:11:25.032361+01	33	0
-2	1795	2025-12-07 01:11:25.032361+01	33	0
-2	1796	2025-12-07 01:11:25.032361+01	33	0
-2	1797	2025-12-07 01:11:25.032361+01	33	0
-2	1798	2025-12-07 01:11:25.032361+01	33	0
-2	1799	2025-12-07 01:11:25.032361+01	33	0
-2	1800	2025-12-07 01:11:25.032361+01	33	0
-2	1801	2025-12-07 01:11:25.032361+01	33	0
-2	1802	2025-12-07 01:11:25.032361+01	33	0
-2	1803	2025-12-07 01:11:25.032361+01	33	0
-2	1804	2025-12-07 01:11:25.032361+01	33	0
-2	1805	2025-12-07 01:11:25.032361+01	33	0
-2	1806	2025-12-07 01:11:25.032361+01	33	0
-2	1807	2025-12-07 01:11:25.032361+01	33	0
-2	1808	2025-12-07 01:11:25.032361+01	33	0
-2	1809	2025-12-07 01:11:25.032361+01	33	0
-2	1810	2025-12-07 01:11:25.032361+01	33	0
-2	1811	2025-12-07 01:11:25.032361+01	33	0
-2	1812	2025-12-07 01:11:25.032361+01	33	0
-2	1813	2025-12-07 01:11:25.032361+01	33	0
-2	1814	2025-12-07 01:11:25.032361+01	33	0
-2	1815	2025-12-07 01:11:25.032361+01	33	0
-2	1816	2025-12-07 01:11:25.032361+01	33	0
-2	1817	2025-12-07 01:11:25.032361+01	33	0
-2	1818	2025-12-07 01:11:25.032361+01	33	0
-2	1819	2025-12-07 01:11:25.032361+01	33	0
-2	1820	2025-12-07 01:11:25.032361+01	33	0
-2	1821	2025-12-07 01:11:25.032361+01	33	0
-2	1822	2025-12-07 01:11:25.032361+01	33	0
-2	1823	2025-12-07 01:11:25.032361+01	33	0
-2	1824	2025-12-07 01:11:25.032361+01	33	0
-2	1825	2025-12-07 01:11:25.032361+01	33	0
-2	1826	2025-12-07 01:11:25.032361+01	33	0
-2	1827	2025-12-07 01:11:25.032361+01	33	0
-2	1828	2025-12-07 01:11:25.032361+01	33	0
-2	1829	2025-12-07 01:11:25.032361+01	33	0
-2	1830	2025-12-07 01:11:25.032361+01	33	0
-2	1831	2025-12-07 01:11:25.032361+01	33	0
-2	1832	2025-12-07 01:11:25.032361+01	33	0
-2	1833	2025-12-07 01:11:25.032361+01	33	0
-2	1834	2025-12-07 01:11:25.032361+01	33	0
-2	1835	2025-12-07 01:11:25.032361+01	33	0
-2	410	2025-12-07 01:11:25.032361+01	33	0
-2	1837	2025-12-07 01:11:25.032361+01	33	0
-2	1838	2025-12-07 01:11:25.032361+01	33	0
-2	1839	2025-12-07 01:11:25.032361+01	33	0
-2	4583	2025-12-07 01:11:25.032361+01	33	0
-2	4584	2025-12-07 01:11:25.032361+01	33	0
-2	4585	2025-12-07 01:11:25.032361+01	33	0
-2	4586	2025-12-07 01:11:25.032361+01	33	0
-2	4587	2025-12-07 01:11:25.032361+01	33	0
-2	4588	2025-12-07 01:11:25.032361+01	33	0
-2	4589	2025-12-07 01:11:25.032361+01	33	0
-2	4590	2025-12-07 01:11:25.032361+01	33	0
-2	5194	2025-12-07 01:11:25.032361+01	33	0
-2	5195	2025-12-07 01:11:25.032361+01	33	0
-2	5196	2025-12-07 01:11:25.032361+01	33	0
-2	5197	2025-12-07 01:11:25.032361+01	33	0
-2	5198	2025-12-07 01:11:25.032361+01	33	0
-2	5199	2025-12-07 01:11:25.032361+01	33	0
-2	5200	2025-12-07 01:11:25.032361+01	33	0
-2	5201	2025-12-07 01:11:25.032361+01	33	0
-2	5356	2025-12-07 01:11:25.032361+01	33	0
-2	3964	2025-12-07 01:11:25.032361+01	33	0
-2	5361	2025-12-07 01:11:25.032361+01	33	0
-2	5362	2025-12-07 01:11:25.032361+01	33	0
-2	5363	2025-12-07 01:11:25.032361+01	33	0
-2	5364	2025-12-07 01:11:25.032361+01	33	0
-2	5365	2025-12-07 01:11:25.032361+01	33	0
-2	5366	2025-12-07 01:11:25.032361+01	33	0
-2	5367	2025-12-07 01:11:25.032361+01	33	0
-2	5368	2025-12-07 01:11:25.032361+01	33	0
-2	5369	2025-12-07 01:11:25.032361+01	33	0
-2	5445	2025-12-07 01:11:25.032361+01	33	0
-2	5446	2025-12-07 01:11:25.032361+01	33	0
-2	5447	2025-12-07 01:11:25.032361+01	33	0
-2	5448	2025-12-07 01:11:25.032361+01	33	0
+2	108	2025-12-10 12:37:35.908019+01	8	0
+2	4133	2025-12-10 12:38:06.325959+01	31	0
+2	111	2025-12-10 12:39:18.738802+01	72	0
+2	116	2025-12-10 12:40:27.434731+01	54	0
+2	117	2025-12-10 12:40:30.714517+01	3	0
+2	4137	2025-12-10 12:41:23.434107+01	53	0
+2	4138	2025-12-10 12:42:19.952968+01	56	0
+2	4139	2025-12-10 12:49:00.534666+01	400	0
+2	4140	2025-12-10 13:09:28.659015+01	118	0
+2	110	2025-12-10 13:09:52.703735+01	24	0
+2	118	2025-12-10 13:10:11.242611+01	19	0
+2	119	2025-12-10 13:11:23.307698+01	72	0
+2	4144	2025-12-10 13:13:42.813413+01	139	0
+2	4145	2025-12-10 13:13:56.826333+01	14	0
+2	4146	2025-12-10 13:14:28.435344+01	32	0
+2	4147	2025-12-10 13:16:12.667727+01	104	0
+2	109	2025-12-10 13:16:36.326456+01	24	0
+2	4149	2025-12-10 13:17:31.712993+01	55	0
+2	4150	2025-12-10 13:19:15.905831+01	104	0
+2	4151	2025-12-10 13:22:57.498301+01	222	0
+2	4152	2025-12-10 13:23:08.327246+01	11	0
+2	1481	2025-12-10 13:24:29.269667+01	81	0
+2	4154	2025-12-10 13:25:31.045994+01	11	0
+2	1484	2025-12-10 13:28:49.057145+01	198	0
+2	4156	2025-12-10 13:32:16.049402+01	207	0
+2	4157	2025-12-10 13:35:49.696408+01	213	0
+2	1483	2025-12-10 13:46:18.710693+01	629	0
+2	1485	2025-12-10 13:46:54.891907+01	36	0
+2	1486	2025-12-10 14:09:45.160596+01	305	0
+2	1487	2025-12-10 14:21:11.834213+01	194	0
+2	1488	2025-12-10 14:21:19.95822+01	8	0
+2	4163	2025-12-10 15:13:07.919855+01	215	0
+2	2813	2025-12-10 15:13:36.826759+01	29	0
+2	4165	2025-12-10 15:22:37.675126+01	60	0
+2	115	2025-12-10 15:23:37.917122+01	60	0
+2	4167	2025-12-10 15:23:53.54188+01	16	0
+2	4168	2025-12-10 15:24:17.91975+01	24	0
+2	4169	2025-12-10 15:27:13.965257+01	176	0
+2	4170	2025-12-10 15:27:54.932291+01	40	0
+2	4171	2025-12-10 15:27:56.470603+01	2	0
+2	4172	2025-12-10 16:49:21.0529+01	15	0
+2	4173	2025-12-10 16:49:53.166162+01	8	0
+2	4174	2025-12-10 16:50:55.351773+01	62	0
+2	4175	2025-12-10 16:59:46.842257+01	238	0
 \.
 
 
@@ -27933,7 +27261,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 4	Scalar Class Template	15	surface
 13	Drawing Rectangle	15	surface
 18	Including OpenCV Headers	15	surface
-31	std::variant	6	surface
 32	Optional Return Type	6	surface
 33	Expected Return Type	6	surface
 34	Three-Way Comparison Operator	6	surface
@@ -28572,6 +27899,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 50	File Set	5	surface
 51	Install Tree	5	surface
 52	Package Config	5	surface
+31	Variants	6	surface
 \.
 
 
@@ -31379,7 +30707,7 @@ ALTER TABLE ONLY flashback.milestones_activities
 --
 
 ALTER TABLE ONLY flashback.milestones
-    ADD CONSTRAINT milestones_pkey PRIMARY KEY (roadmap, subject, level);
+    ADD CONSTRAINT milestones_pkey PRIMARY KEY (roadmap, subject);
 
 
 --
@@ -31623,11 +30951,11 @@ ALTER TABLE ONLY flashback.cards_activities
 
 
 --
--- Name: milestones_activities milestones_activities_roadmap_subject_level_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: milestones_activities milestones_activities_roadmap_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
 ALTER TABLE ONLY flashback.milestones_activities
-    ADD CONSTRAINT milestones_activities_roadmap_subject_level_fkey FOREIGN KEY (roadmap, subject, level) REFERENCES flashback.milestones(roadmap, subject, level) ON UPDATE CASCADE;
+    ADD CONSTRAINT milestones_activities_roadmap_subject_fkey FOREIGN KEY (roadmap, subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
@@ -31879,36 +31207,8 @@ ALTER TABLE ONLY flashback.users_roadmaps
 
 
 --
--- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: flashback; Owner: brian
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE brian IN SCHEMA flashback GRANT USAGE ON SEQUENCES TO flashback;
-
-
---
--- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: flashback; Owner: postgres
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA flashback GRANT USAGE ON SEQUENCES TO flashback;
-
-
---
--- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: flashback; Owner: brian
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE brian IN SCHEMA flashback GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO flashback;
-
-
---
--- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: flashback; Owner: postgres
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA flashback GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO flashback;
-
-
---
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ZwqHP4iKQC4QU3twO4R8Dvet5ezbrasSzvsaO9B9u86wBFUBpldbFe52TRlIpeQ
+\unrestrict QEF2qWzWgyFyIACRluvieir3rkKpg4XKOS7qGvP8aeTkaQI0YmRiACvD5unAnEY
 
