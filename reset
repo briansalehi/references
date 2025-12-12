@@ -2,9 +2,10 @@
 
 psql -U postgres -c 'drop database flashback'
 psql -U postgres -c 'drop database flashback_schema'
+psql -U postgres -c 'drop database flashback_test'
 psql -U postgres -c 'create database flashback with owner flashback connection limit 2'
 psql -U flashback -d flashback -f flashback.sql
-psql -U postgres -c 'create database flashback_schema with owner flashback template flashback'
-psql -U postgres -c 'create database flashback_test with owner flashback template flashback'
+psql -U postgres -c 'create database flashback_schema with owner flashback'
+psql -U postgres -c 'create database flashback_test with owner flashback'
 psql -U flashback -d flashback_schema -f schema.sql
 psql -U flashback -d flashback_test -f schema.sql
