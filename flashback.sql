@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict PXPcOMYVLeh6uSbS6cSKeuJHSjskKCpxujMozMvBYMgfvlGrj7P3UuUWghGhJPV
+\restrict Tdlg2EbYS67AZUMQvfc22ZBlYstf0g7wCaCC8cNeEydFLZbHJLwC2HJHZW2o1dH
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1117,6 +1117,17 @@ CREATE FUNCTION flashback.get_roadmaps("user" integer) RETURNS TABLE(id integer,
 
 
 ALTER FUNCTION flashback.get_roadmaps("user" integer) OWNER TO flashback;
+
+--
+-- Name: get_section_coverage(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_section_coverage(resource_id integer) RETURNS TABLE(resource integer, section integer, drafts bigint, reviews bigint, completed bigint, published bigint)
+    LANGUAGE plpgsql
+    AS $$ begin return query select s.resource, s.position as section, count(c.id) filter (where c.state = 'draft'::card_state) as drafts, count(c.id) filter (where c.state = 'review'::card_state) as reviews, count(c.id) filter (where c.state = 'completed'::card_state) as completed, count(id) filter (where c.state = 'approved'::card_state or c.state = 'released'::card_state) as published from sections s left join sections_cards sc on sc.resource = s.resource and sc.section = s.position left join cards c on c.id = sc.card where s.resource = resource_id group by s.resource, s.position; end; $$;
+
+
+ALTER FUNCTION flashback.get_section_coverage(resource_id integer) OWNER TO flashback;
 
 --
 -- Name: get_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2874,6 +2885,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 159	1	1. Identify the base case.\n2. Walk through the function for the base case.\n3. Identify the next-to-last case.\n4. Walk through function for the next-to-last case.\n5. Repeat this process by identifying before the case you just analyzed, and walking through the function for that case.	text	txt
 135	1	* **Read:** it would take `1` step to read from an array, so it is `O(1)`.\n* **Search:** it would take `N` steps to search through an array, so it is `O(N)`.\n* **Insert:** it would take `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** it would take `N` steps to delete from an array, so it is `O(N)`.	text	txt
 136	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
+168	1	To figure out the efficiency of Quicksort, first determine the efficiency of a single partition.	text	txt
+1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
 137	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
 138	1	In constant time efficiency no matter how many elements exist, the operation always takes one step.	text	txt
 139	1	`O(log N)` means the algorithm takes as many steps as it takes to keep halving the data elements until we remain with `1`.	text	txt
@@ -2964,6 +2977,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 159	8	factorial(3) returns 6\nfactorial(2) returns 2\nfactorial(1) returns 1	text	txt
 160	1	In case of infinite recursion, the same function keeps being pushed onto the call stack.\nThe call stack will eventually be consumed until further calls will not be possible.	text	txt
 161	1	When a problem is solved by solving smaller version of the same problem, the smaller problem is called a *subproblem*.\nWhat makes these subproblem overlapping is the fact that each subproblem calls many of the same functions as each other.	text	txt
+1712	3	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt
+1712	4	bitbake -c testimage core-image-weston	code	sh
 162	1	**Dynamic Programming** is the process of optimizing recursive problems that have overlapping subproblems.\nOptimizing an algorithm with dynamic programming is typically accomplished with one of two techniques.\nThe first technique is something called memoization which reduces recursive calls by remembering previously computed functions.\nThe second technique, known as **going bottom-up** uses iteration instead of recursion to prevent duplicate calls.	text	txt
 163	1	With memoization, each time we make a new calculation, we store it in a hash table for future calls.\nThis way we only make a calculation if it hadn't ever been made before.	text	txt
 164	1	By using iteration instead of recursion to ensure that it doesn't make duplicate calls for overlapping subproblems.	text	txt
@@ -2997,7 +3012,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 603	14	exit(0);\n}	text	txt
 167	1	1. Partition the array. The pivot is not in its proper place.\n2. Treat the subarrays to the left and right of the pivot as their own arrays, and recursively repeat step 1 and 2.\n3. When we have a subarray that has zero or one elements, that is our base case and we do nothing.	text	txt
 167	2	void quicksort(int* left_index, int* right_index)\n{\n    if (right_index - left_index > 0)\n    {\n        int* pivot_index = partition(left_index, right_index);\n        quicksort(left_index, pivot_index - 1);\n        quicksort(pivot_index + 1, right_index);\n    }\n}	code	txt
-168	1	To figure out the efficiency of Quicksort, first determine the efficiency of a single partition.	text	txt
 168	2	A partition involves two primary types of steps: *comparison*, and *swaps*.\nEach partition has at least `N` comparisons, we compare each element of the array with the pivot.\nThe number of swaps, however, will depend upon how the data is sorted.\nA single partition can have, at most, `N / 2` swaps,\nBut, on average, we make about `N` comparisons and `N / 4` swaps.\nIn Big O Notation, we’d say that a partition runs in `O(N)` time.	text	txt
 168	3	Now, that’s the efficiency of a single partition, but **Quicksort** involves many partitions.\nSince **Quicksort** is essentially comprised of this series of partitions, and each partition takes about `N` steps for `N` elements of each subarray.	text	txt
 168	4	The number of Quicksort steps for `N` elements in the array is about `N` multiplied by `log N`.\nEach time we partition the array, we end up breaking it down into two subarrays.\nAssuming the *pivot* ends up somewhere in the middle of the array — which is what happens in the average case — these two subarrays are of roughly equal sizes.\nHow many times can we break an array into halves until we’ve broken it completely down to the point of where each subarray is of size `1`?\nFor an array of size `N`, this will take us `log N` times.	text	txt
@@ -3503,6 +3517,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 402	4	#include <iostream>\n#include <exception>\n#include <filesystem>	text	txt
 567	4	int main(int argc, char **argv)\n{\nint result = -1;	text	txt
 592	7	if (fclose(fp) == -1)\n{\nperror(NULL);\nreturn 3;\n}\n}	code	txt
+1713	1	The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.	text	txt
 402	5	int main()\n{\n    try\n    {\n        std::filesystem::path relative_path{"./lib/../include"};\n        std::filesystem::path base_path{"/usr"};\n        std::filesystem::path canonical_path{std::filesystem::canonical(relative_path, base_path)};\n        std::cout << canonical_path << std::endl;\n    }\n    catch (std::filesystem::filesystem_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n    catch (std::bad_alloc const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	txt
 403	1	`std::filesystem::canonical()` does what `std::filesystem::absolute()` does,\nbut canonical additionally removes any "." or ".." paths.	text	txt
 403	2	`std::filesystem::absolute()` does not call system calls.	text	txt
@@ -4207,17 +4222,33 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 637	1	break main\nset follow-fork-mode child\nrun	code	txt
 638	1	info threads\nthread 3\nnext	code	txt
 639	1	valgrind ./leaked	code	txt
+640	1	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt
+640	2	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};	text	txt
+640	3	struct Derived: public Base\n{\n    std::strong_ordering operator<=>(Derived const&) const = default;\n};	text	txt
+640	4	Derived d1, d2;\nd1 > d2; // calls Base::operator== and Base::operator<	code	txt
+640	5	If `operator ==` yields true, we know that the result of `>` is `false`,\notherwise `operator <` is called to find out the expression is `true` or\n`false`.	text	txt
+640	6	struct Derived: public Base\n{\n    std::partial_ordering operator<=>(Derived const&) const = default;\n};	code	txt
+640	7	The compiler might call `operator <` twice to find out whether there is any\norder at all.	text	txt
+640	8	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};	text	txt
+640	9	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n};	code	txt
+640	10	The compiler does not compile because it cannot decide which ordering\ncategory the base class has.	text	txt
+640	11	Checks for equality work for Derived because `operator ==` automatically declared equivalent to `operator <=>`:	text	txt
+640	12	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n    bool operator==(Derived const&) const = default;\n};	text	txt
+640	13	Derived d1, d2;\nd1 > d2; // ERROR: cannot deduce comparison category of operator <=>\nd1 == d2; // OK: only tries operator <=> and Base::operator==	code	txt
+641	1	When we have a trivial class that stores an integral value and has an\nimplicit constructor and is comparable with integral values only enable\nimplicit type conversions for the second operand. So, a global operator that\nswaps the order of the arguments might be defined:	text	txt
+641	2	class MyType\n{\n    int i;	text	txt
+641	3	public:\n    bool operator==(MyType const&) const;\n};	text	txt
+641	4	bool operator==(int i, MyType const& t)\n{\n    return t == i; // OK with C++17\n}	code	txt
+641	5	Usually, the class should better define the `operator ==` as **hidden\nfriend** declared with `friend` inside the class so that both operators\nbecome parameters and support implicit type conversions. However, this is a\nvalid approach to have the same effect.	text	txt
+641	6	This code no longer works in C++20 due to endless recursion. The reason is\nthat inside the global function the expression `t == i` can also call the\nglobal `operator ==` itself, because the compiler also tries to rewrit the\ncall as `t == i`:	text	txt
+641	7	bool operator==(int i, MyType const& t)\n{\n    return t == i; // finds operator==(i, t) in addition to t.operator(MyType{i})\n}	code	txt
+641	8	Unfortunately, the rewritten statement is a better match, because it does not\nneed the implicit type conversion.	text	txt
 642	1	[[nodiscard]] friend constexpr bool operator== (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator!= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator< (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator<= (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator> (const Value& lhs, const Value& rhs) noexcept;\n[[nodiscard]] friend constexpr bool operator>= (const Value& lhs, const Value& rhs) noexcept;	code	cpp
 642	2	The definitions are tedious and they add a lot of visual clutter, specially that well defined types should use `noexcept`, `constexpr`, `friend`, `[[nodiscard]]` qualifiers.	text	txt
 643	1	Highest priority is to find a directly calling `operator!=`, and the lowest priority is to change the order of operands.	text	txt
 643	2	So just implementing `operator==` is enough for the compiler to do inequality because the compiler will rewrite the expression `a != b` as `!(a == b)`.	text	txt
 643	3	TypeB::operator==(TypeA);	code	cpp
 2763	2	cat /proc/<pid>/cmdline	code	txt
-641	1	When we have a trivial class that stores an integral value and has an\nimplicit constructor and is comparable with integral values only enable\nimplicit type conversions for the second operand. So, a global operator that\nswaps the order of the arguments might be defined:	text	txt
-641	3	Usually, the class should better define the `operator ==` as **hidden\nfriend** declared with `friend` inside the class so that both operators\nbecome parameters and support implicit type conversions. However, this is a\nvalid approach to have the same effect.	text	txt
-641	4	This code no longer works in C++20 due to endless recursion. The reason is\nthat inside the global function the expression `t == i` can also call the\nglobal `operator ==` itself, because the compiler also tries to rewrit the\ncall as `t == i`:	text	txt
-641	6	Unfortunately, the rewritten statement is a better match, because it does not\nneed the implicit type conversion.	text	txt
-641	5	bool operator==(int i, MyType const& t)\n{\n    return t == i; // finds operator==(i, t) in addition to t.operator(MyType{i})\n}	code	cpp
 643	4	Since C++20, when the compiler finds no matching declaration for an expression `a != b`, the compiler rewrites the expression and looks for `!(a == b)`. If that does not work, the compiler also tries to change the order of the operands, so it tries `!(b == a)`.	text	txt
 643	5	operator!=(TypeA, TypeB);	code	cpp
 643	6	operator==(TypeA, TypeB);	code	cpp
@@ -4334,6 +4365,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 673	7	int main()\n{\n  std::vector<int> coll;\n  addValInto(42, coll);   // ERROR: ambiguous\n}	code	txt
 673	8	Due to using `auto` only for the first parameter in the second declaration of\n`addValInto()`, the order of the template parameters differs. this means that\noverload resolution does not prefer the second declaration over the first one\nand we get an ambiguity error.	text	txt
 673	9	For this reason, be careful when mixing template and `auto` parameters.	text	txt
+674	1	- Using `requires` clause\n- Using concepts\n- Using `requires` expression	text	txt
 676	1	A `concept` is a template that introduces a name for one or more requirements\nthat apply to the passed template parameters so that we can use these\nrequirements as constraints.	text	txt
 680	1	- Specifying requires clause with constraints or concepts\n- Using concepts in template parameters\n- Using concepts behind parameter types\n- Specifying trailing requires clause after parameters list	text	txt
 5535	1		code	cpp
@@ -6720,10 +6752,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1703	2	ARCHIVER_MODE[src] = "configured"	code	bb
 1704	1	For all flavors of source code, the default resulting file is a tarball; other options will add `ARCHIVER_MODE[srpm] = "1"` to `build/conf/local.conf`, and the resulting file will be an `SRPM` package.	text	txt
 1708	8	After copying the content to the SD card, the machine should boot nicely.	text	txt
-1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
-1712	3	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt
-1712	4	bitbake -c testimage core-image-weston	code	sh
-1713	1	The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.	text	txt
 1714	1	- `recipes-backport`: Backports of recipes coming from new Yocto Project releases\n- `recipes-staging`: New recipes or bbappend files adding missing package configurations or bug fixes	text	txt
 1714	2	New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.	text	txt
 1715	1	When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)	text	txt
@@ -6966,6 +6994,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1818	1	#include <iostream>\n#include <filesystem>	text	txt
 1818	2	int main()\n{\n    std::filesystem::path file{"/etc/passwd"};\n    std::filesystem::file_status status{std::filesystem::status(file)};\n    std::cout << "file type: ";\n    std::cout << "\\\\n";\n}	code	txt
 1819	1	|Enum|Octal|POSIX|\n|---|---|---|\n|`none`|0||\n|`owner_read`|0400|`S_IRUSR`|\n|`owner_write`|0200|`S_IWUSR`|\n|`owner_exec`|0100|`S_IXUSR`|\n|`owner_all`|0700|`S_IRWXU`|\n|`group_read`|040|`S_IRGRP`|\n|`group_write`|020|`S_IWGRP`|\n|`group_exec`|010|`S_IXGRP`|\n|`group_all`|070|`S_IRWXG`|\n|`others_read`|04|`S_IROTH`|\n|`others_write`|02|`S_IWOTH`|\n|`others_exec`|01|`S_IXOTH`|\n|`others_all`|07|`S_IRWXO`|\n|`all`|0777||\n|`set_suid`|04000|`S_ISUID`|\n|`set_guid`|02000|`S_ISGID`|\n|`sticky_bit`|01000|`S_ISVTX`|\n|`mask`|07777||\n|`unknown`|0xFFFF||	text	txt
+2783	1	- `start`: starts debugging session by running program line-by-line.\n- `run`: starts debugging session running program as usual.	text	txt
 1819	2	std::filesystem::path p{};\nstd::filesystem::file_status fs = std::filesystem::symlink_status(fs);\nstd::filesystem::perms perms = fs.permissions();\nstd::filesystem::perms write_free = std::filesystem::perms::owner_write | std::filesystem::perms::group_write | std::filesystem::perms::others_write;	text	txt
 1819	3	if ((perms & write_free) != std::filesystem::perms::none)\n{\n}	code	txt
 1819	4	A shorter way to initialize a bitmask is:	text	txt
@@ -7118,6 +7147,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1871	3	However, this can be changed by specifying modules path with `INSTALL_MOD_PATH`:	text	txt
 1871	4	ARCH=arm CROSS_COMPILE=armv6-unknown-linux-gnueabihf- INSTALL_MOD_PATH=<dir> make modules_install	code	txt
 1872	1	Module files are installed in `/lib/modules/<version>/`:	text	txt
+2774	2	The `dispatch()` function can be invoked from the current worker thread, while\nthe `post()` function has to wait until the handler of the worker is complete\nbefore it can be invoked. In other words, the `dispatch()` function's events\ncan be executed from the current worker thread even if there are other pending\nevents queued up, while the `post()` function's events have to wait until the\nhandler completes the execution before being allowed to be executed.	text	txt
 1872	2	* `modules.builtin`: This lists all the kernel objects (.ko) that are built into the kernel. It is used by the module loading utility (modprobe, for example) so that it does not fail when it's trying to load something that's already built in. `modules.builtin.bin` is its binary counterpart.\n* `modules.alias`: This contains the aliases for module loading utilities, which are used to match drivers and devices.\n* `modules.dep`: This lists modules, along with their dependencies. `modules.dep.bin` is its binary counterpart.\n* `modules.symbols`: This tells us which module a given symbol belongs to. They are in the form of `alias symbol:<symbol> <modulename>`. An example is `alias symbol:v4l2_async_notifier_register videodev`. `modules.symbols.bin` is the binary counterpart of this file.	text	txt
 1872	3	And the rest of module files will be stored in `/lib/modules/<version>/kernel/` in the same directory structure as their corresponding source.	text	txt
 1873	1	Static modules are available at any time in the kernel image and thus can't\nbe unloaded, at the cost of extra size to the final kernel image. A static\nmodule is also known as a built-in module, since it is part of the final\nkernel image output. Any change in its code will require the whole kernel to\nbe rebuilt.	text	txt
@@ -7154,6 +7184,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1887	2	KERNEL_SRC ?= /lib/modules/$(shell uname -r)/build	text	txt
 1887	3	all default: modules\ninstall: modules_install	text	txt
 1887	4	modules modules_install help clean:\n    $(MAKE) -C $(KERNEL_SRC) M=$(shell pwd) $@	code	txt
+2775	1	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt
 1887	5	`KERNEL_SRC`: This is the location of the prebuilt kernel source which usually is `/lib/modules/$(uname -r)/build`.\nThere is also a symbolic link `/usr/src/linux` pointing to this directory.\nAs we said earlier, we need a prebuilt kernel in order to build any module.\nIf you have built your kernel from the source, you should set this variable with the absolute path of the built source directory.\n`–C` instructs the make utility to change into the specified directory reading the makefiles.	text	txt
 1887	6	`M`: This is relevant to the kernel build system.\nThe `Makefile` kernel uses this variable to locate the directory of an external module to build.\nYour `.c` files should be placed in that directory.	text	txt
 1887	7	`$(MAKE) -C $(KERNEL_SRC) M=$(shell pwd) $@`: This is the rule to be executed for each of the targets enumerated previously.\nUsing this kind of magic word prevents us from writing as many (identical) lines as there are targets.	text	txt
@@ -7709,6 +7740,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5522	4	#include <ftxui/dom/elements.hpp>\n\nint main()\n{\n    ftxui::LinearGradient gradient{0.5, ftxui::Color::Black, ftxui::Color::Red};\n}	code	cpp
 2773	2	Any thread calling `io_service::run()` function will block execution and wait\nfor tasks to be enqueued, or finish existing tasks. Best practice is to attach\n`io_service` to slave threads so that they wait for tasks to be given and\nexecute them while master threads assign new tasks to them.	text	txt
 2774	1	The `dispatch()` function requests the service to run its works right away\nwithout queueing up.	text	txt
+2775	3	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt
 2004	3	* `-m conntrack`: Use the conntrack module to allow packets that are in a certain state. This time, though, instead of just allowing packets from a host to which our server has been connected (`ESTABLISHED`,`RELATED`), we’re also allowing `NEW` packets that other hosts are sending to our server.\n* `-p icmp`: This refers to the ICMP protocol.\n* `--icmp-type`: There are quite a few types of ICMP messages:\n    + **type 3**: These are the **“destination unreachable”** messages. Not only can they tell your server that it can’t reach a certain host, but they can also tell it why. For example, if the server has sent out a packet that’s too large for a network switch to handle, the switch will send back an ICMP message that tells the server to fragment that large packet. Without ICMP, the server would have connectivity problems every time it tries to send out a large packet that needs to be broken up into fragments.\n    + **type 11**: **Time-exceeded** messages let your server know that a packet that it has sent out has either exceeded its **Time-to-Live (TTL)** value before it could reach its destination, or that a fragmented packet couldn’t be reassembled before the **TTL** expiration date.\n    + **type 12**: **Parameter problem** messages indicate that the server had sent a packet with a bad IP header. In other words, the IP header is either missing an option flag or it’s of an invalid length.\n    + **type 0** and **type 8**: These are the infamous ping packets. Actually, type 8 is the **echo request** packet that you would send out to ping a host, while type 0 is the **echo reply** that the host would return to let you know that it’s alive. Of course, allowing ping packets to get through could be a big help when troubleshooting network problems. If that scenario ever comes up, you could just add a couple of iptables rules to temporarily allow pings.\n    + **type 5**: Now, we have the infamous **redirect messages**. Allowing these could be handy if you have a router that can suggest more efficient paths for the server to use, but hackers can also use them to redirect you to someplace that you don’t want to go. So, just block them.	text	txt
 2005	2	To create a `DROP` rule at the end of the `INPUT` chain, use this command:	text	txt
 2006	1	There are several ways to do this, but the simplest way to do this on an Ubuntu machine is to install the `iptables-persistent` package:	text	txt
@@ -9246,6 +9278,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2483	6	namespace std {\n    template<typename charT, ...>\n    class basic_string {\n    public:\n        constexpr basic_string& operator=(const basic_string& str) &;\n        constexpr basic_string& operator=(basic_string&& str) & noexcept(...);\n        constexpr basic_string& operator=(const charT* s) &;\n    };\n}	code	txt
 2483	7	Code like this will no longer compile:	text	txt
 2483	8	std::string getString();\ngetString() = "sample";     // Error\nfoo(getString() = "");      // Error	code	txt
+2823	4	template<typename T>\nvoid Stack<T>::pop() { }	code	txt
 2483	9	In general, you should do this for every member function that might modify an object.	text	txt
 2483	10	class MyType {\n    public:\n        // disable assigning value to temporary objects\n        MyType& operator=(const MyType&) & = default;\n        MyType& operator=(MyType&&) & = default;	text	txt
 2483	11	        // enable these because they were disabled by assignment operators\n        MyType(MyType const&) = default;\n        MyType(MyType&&) = default;\n};	code	txt
@@ -9778,10 +9811,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2760	4	In kernel config, use `CONFIG_INITRAMFS_SOURCE=/srv/nfs4/root/initramfs.cpio`.	text	txt
 2761	1	The `devtmpfs` virtual filesystem can be mounted on `/dev` and contains all\nthe devices registered to kernel frameworks. The `CONFIG_DEVTMPFS_MOUNT`\nkernel configuration option makes the kernel mount it automatically at boot\ntime, except when booting on an initramfs.	text	txt
 2762	1	mount -t proc nodev /proc	code	txt
-2774	2	The `dispatch()` function can be invoked from the current worker thread, while\nthe `post()` function has to wait until the handler of the worker is complete\nbefore it can be invoked. In other words, the `dispatch()` function's events\ncan be executed from the current worker thread even if there are other pending\nevents queued up, while the `post()` function's events have to wait until the\nhandler completes the execution before being allowed to be executed.	text	txt
-2775	1	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt
-2775	3	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt
-2783	1	- `start`: starts debugging session by running program line-by-line.\n- `run`: starts debugging session running program as usual.	text	txt
 2784	1	- `continue`: Will resume the execution of the program until it completes.\n- `step`: Executes program one more step. Step might be one line of source\n  code or one machine instruction.\n- `next`: Executes program similar to `step`, but it only continues to the\n  next line in the current stack frame and will not step into functions.	text	txt
 2785	1	`list` displays 10 lines of source code. To see how many lines of source code\nwill be displayed enter `show listsize`. To adjust the lines of source code\ndisplayed enter `set listsize 20`.	text	txt
 2787	1	`delete 1`	text	txt
@@ -9814,90 +9843,186 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2794	3	And the follow up all the steps required to build an image using `bitbake`:	text	txt
 2794	4	git clone git://git.yoctoproject.org/poky\ncd poky\nsource oe-init-build-env\nsed -i '/^MACHINE[ ?=]\\\\+/s/^MACHINE\\\\([ ?=]\\\\+\\\\).*/MACHINE\\\\1"qemuarm64"/' conf/local.conf\nbitbake qemuarm64 core-image-sato\nrunqemu core-image-sato	code	txt
 2794	5	Origin: 1.2	text	txt
+2795	1	1. You implement the same behavior repeatedly for each different types, you\n   make the same mistakes.\n2. You write general code for a common base type such as `void*`, you lose\n   type checking and lose the control of maitaining derived classes.\n3. You use special preprocessors, code is replaced by stupid text replacement\n   mechanism that has no idea of scope and types.	text	txt
 2796	1	Historically, `class` keyword can be used instead of `typename`. However,\nbecause this use of `class` can be misleading, you should prefer the use of\n`typename`. The keyword `struct` cannot be used in place of `typename` when\ndeclaring type parameters.	text	txt
+2797	1	- Without instantiation at definition time, the template code itself is\n  checked for correctness ignoring the template parameters.\n  + Syntax errors are discovered, such as missing semicolons.\n  + Using unknown names that don't depend on template parameters are\n    discovered.\n  + Static assertions that don't depend on template parameters are checked.\n- At instantiation time, the template code is checked again to ensure that\n  all code is valid. Especially, all parts that depend on template parameters\n  are double-checked.	text	txt
+2797	2	template<typename T>\nvoid foo(T t)\n{\n    undeclared(); // first-stage compile-time error\n    undeclared(t); // second-stage compile-time error\n}	code	txt
 5223	3	Passing an event name as the first argument will trigger workflows via that event:	text	md
 2798	1	When a function template is used in a way that triggers its instantiation, a\ncompiler at some point will need to see that template's definition. This\nbreaks the usual compile and link distinction for ordinary functions, when\nthe declaration of a function is sufficient to compile its use. The simplest\napproach to handle this problem is to implement each template inside a header\nfile.	text	txt
 2799	1	Function template defintion specifies a family of functions with parameters\nleft undetermined, parameterized as template parameters.	text	txt
+2799	2	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	code	txt
 5482	1	#include <ftxui/screen/screen.hpp>\n#include <ftxui/screen/color.hpp>\n\nint main()\n{\n    ftxui::Screen screen{ftxui::Screen::Create(ftxui::Dimension::Full(), ftxui::Dimension::Fixed(5)};\n    screen.Print();\n}	code	cpp
 2800	1	* You can use any type, as long as the it provides the operations that the\n  template uses.\n* Value of type `T` must also be copyable in order to be returned.\n* Before C++17, type `T` also had to be copyable to be able to pass in\n  arguments, but since C++17 you can pass rvalues even if neither a copy nor\n  a move constructor is valid.	text	txt
-2797	2	template<typename T>\nvoid foo(T t)\n{\n    undeclared(); // first-stage compile-time error\n    undeclared(t); // second-stage compile-time error\n}	code	cpp
-2799	2	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	code	cpp
-2807	1	- Introduce an additional template parameter for the return type\n- Let the compiler find out the return type.\n- Declare the return type to be the common type of the parameter types.	text	txt
-2809	1	Since C++14, this is possible by simply not declaring any return type:	text	txt
-2809	3	Deducing the return type from the function body has to be possible.\nTherefore, the code must be available and multiple return statements have to\nmatch.	text	txt
-2810	2	Using this method the implementation does not necessarily have to match. Even\nusing `true` as the condition for ternary operator in the declaration is\nenough:	text	txt
-5223	4	act workflow_dispatch	code	sh
+2801	1	template<typename T>\nT max(T a, T b) { return b < a ? a : b; }	text	txt
+2801	2	max(7, 42); // 42\n::max(3.4, -6.7); // 3.4\n::max("mathematics", "math"); // mathematics	code	txt
+2801	3	Each call to `max()` template is qualified with `::` to ensure template is\nfound in the global namespace, not possibly the one in `std` namespace.	text	txt
 2802	1	When we call a function template, the template parameters are determined by\nthe arguments we pass. However, template parameters might only be part of the\narguments type.	text	txt
+2802	2	If we declare a function template to use constant references as function\narguments, and pass `int`, template parameter is deduced as `int`, because\nthe parameters match for `int const&`.	text	txt
+2802	3	template<typename T>\nT max(T const& a, T const& b) { return a < b ? b : a; }	text	txt
+2802	4	max(7, 42); // T is int	code	txt
 2803	1	- When declaring call parameters by reference, even trivial conversion do not\n  apply to type dedution. Two arguments declared with the same template\n  parameter `T` must match exactly.\n- When declaring call parameters by value, only trivial conversion that decay\n  are supported. Qualifications with `const` or `volatile` are ignored,\n  references convert to the referenced type, and raw arrays or functions\n  convert to the corresponding pointer type. For two arguments declared with\n  the same template parameter `T` the decayed types must match.	text	txt
+2803	2	template<typename T>\nT max(T a, T b) { return a < b ? b : a; }	text	txt
+2803	3	int const c = 42;\nmax(i, c);    // OK: T deduced as int\nmax(c, c);    // OK: T deduced as int	text	txt
+2803	4	int& ir = i;\nmax(i, ir);   // OK: T deduced as int	text	txt
+2803	5	int arr[4];\nmax(&i, arr); // OK: T deduced as int*	text	txt
+2803	6	max(4, 7.2);  // ERROR: T can be dudeced as int or double	text	txt
+2803	7	std::string s;\nmax("text", s); // ERROR: T can be deduced as char const[5] or std::string	code	txt
 2804	1	1. Cast the arguments so that they both match:	text	txt
-2804	2	max(static_cast<double>(4), 7.2);	code	cpp
+2804	2	max(static_cast<double>(4), 7.2);	code	txt
 2804	3	2. Specify explicitly the type of function template parameter to prevent the compiler from attempting type deduction:	text	txt
-2804	4	max<double>(4, 7.2);	code	cpp
+2804	4	max<double>(4, 7.2);	code	txt
 2804	5	3. Specify that the parameters may have different types:	text	txt
+2804	6	#include <type_traits>	text	txt
+2804	7	template<typename T, typename R>\nauto max(T a, R b) -> std::common_type_t<T, R>\n{\n    return a < b ? b : a;\n}	text	txt
+2804	8	max<double>(4, 7.2);	code	txt
 2805	1	Type deduction does not work for default call arguments.	text	txt
-2805	3	You have to declare a default function template parameter.	text	txt
-2811	5	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	cpp
+2805	2	template<typename T>\nvoid f(T = "");	text	txt
+2805	3	f(1);   // OK: f<int>(1)\nf();    // ERROR: cannot deduce T	code	txt
+2805	4	You have to declare a default function template parameter.	text	txt
+2805	5	template<typename T = std::string>\nvoid f(T = "");	text	txt
+2805	6	f();    // OK: f<std::string>()	code	txt
+2806	1	template<typename T1, typename T2>\nT1 max(T1 a, T2 b)\n{\n    return b < a ? a : b;\n}	text	txt
+2806	2	auto m = ::max(4, 7.2); // OK:: but max returns int	code	txt
+2807	1	- Introduce an additional template parameter for the return type\n- Let the compiler find out the return type.\n- Declare the return type to be the common type of the parameter types.	text	txt
 2808	1	In cases when there is no connection between template and call parameters and\nwhen template parameters cannot be determined, you must specify the template\nargument explicitly with the call. For example, the additional template\nargument type to define the return type of a function template. However,\ntemplate argument deduction does not take return types into account, and its\ntemplate parameter does not appear in the types of the function call\nparameters. Therefore, it cannot be deduced.	text	txt
 2808	2	As a consequence, you have to specify the template argument list explicitly:	text	txt
-2808	4	Another approach is to specify return type template parameter at first:	text	txt
-2808	6	These modifications don't lead to significant advantages.	text	txt
-2809	2	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	code	cpp
-2810	1	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(b < a ? a : b);	code	cpp
-2810	3	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(true ? a : b);	code	cpp
+2808	3	template<typename T1, typename T2, typename RT>\nRT max(T1 a, T2 b);	text	txt
+2808	4	max<int, double, double>(4, 7.2); // OK, but tedious	code	txt
+2808	5	Another approach is to specify return type template parameter at first:	text	txt
+2808	6	template <typaname RT, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt
+2808	7	max<double>(4, 7.2); // OK	code	txt
+2808	8	These modifications don't lead to significant advantages.	text	txt
+2809	1	Since C++14, this is possible by simply not declaring any return type:	text	txt
+2809	2	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	code	txt
+2809	3	Deducing the return type from the function body has to be possible.\nTherefore, the code must be available and multiple return statements have to\nmatch.	text	txt
+2810	1	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(b < a ? a : b);	code	txt
+2810	2	Using this method the implementation does not necessarily have to match. Even\nusing `true` as the condition for ternary operator in the declaration is\nenough:	text	txt
+2810	3	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> decltype(true ? a : b);	code	txt
 2811	1	It might happen that the return type is a reference type, because under some\nconditions the template parameter might be a reference. For this reason you\nshould return the type decayed from the template paramter, which looks as\nfollows:	text	txt
-2811	3	Because the member `type` is a type, you have to qualify the expression with\n`typename` to access it.	text	txt
-2811	4	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt
+2811	2	#include <type_traits>	text	txt
+2811	3	template<typename T1, typename T2>\nauto max(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type;	code	txt
+5223	4	act workflow_dispatch	code	sh
+2811	4	Because the member `type` is a type, you have to qualify the expression with\n`typename` to access it.	text	txt
+2811	5	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt
+2811	6	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	txt
 2812	1	`std::common_type` is a type trait, defined in `<type_traits>`, which yields\na structure having a `type` static member for the resulting type. Thus, it\nneeds a `typename` beforehand in order to access its type.	text	txt
-2812	3	Since C++14, `std::common_type_t` is equivalent to\n`std::common_type<T>::type`.	text	txt
+2812	2	#include <type_traits>	text	txt
+2812	3	template<typename T1, typename T2>\ntypename std::common_type<T1, T2>::type max(T1 a, T2 b);	code	txt
+2812	4	Since C++14, `std::common_type_t` is equivalent to\n`std::common_type<T>::type`.	text	txt
+2812	5	#include <type_traits>	text	txt
+2812	6	template<typename T1, typename T2>\nstd::common_type_t<T1, T2> max(T1 a, T2 b);	text	txt
+2812	7	Note that `std::common_type<>` decays.	text	txt
 2813	1	Initialization of `auto` always decays. This also applies to return\nvalues when the return type is just `auto`.	text	txt
 2813	2	int i = 42;\nint coust& ir = i;\nauto a = ir;  // a is declared as new object of type int	code	txt
+2814	1	Default template arguments can be used with any kind of template. They may\neven refer to previous template parameters.	text	txt
+2814	2	#include <type_traits>	text	txt
+2814	3	template<typename T1, typename T2,\n          typename RT = std::decay_t<decltype(true ? T1() : T2())>>	code	txt
+2814	4	Another way is to use `std::common_type<>` which also decays so that return\nvalue doesn't become a reference.	text	txt
+2814	5	RT max(T1 a, T2 b);	text	txt
+2814	6	template<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>\nRT max(T1 a, T2 b);	code	txt
+2815	1	In principle, it is possible to have default arguments for leading function\ntemplate parameters even if parameters without default arguments follow:	text	txt
+2815	2	template<typename RT = long, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt
+2823	3	template<typename T>\nvoid Stack<T>::push(T const&) { }	text	txt
+2824	1	To declare a friend function and define it afterwards, we have two options:	text	txt
+2815	3	int i;\nlong l;\nmax(i, l);  // returns long due default argument of template parameter for return type\nmax<int>(7, 42);    // returns int as explicitly specified, T1 and T2 deduced by function arguments	code	txt
+2815	4	However, this approach only makes sence, if there is a natural default for a\ntemplate parameter.	text	txt
+2816	1	int max(int a, int b);	text	txt
+2816	2	template<typename T>\nT max(T a, T b);	code	txt
+2816	3	The overload resolution process prefers the nontemplate over one generated\nfrom the template.	text	txt
+2816	4	max(7, 42);   // calls the nontemplate for two ints	code	txt
 3832	1	/sys/class	code	sh
 3834	1	/usr/share/hwdata/pci.ids	code	sh
-1457	1	struct alignas(8) item\n{\n    int id;\n    bool active;\n    double value;\n};\n\nstatic_assert(sizeof(item) == 16, "size of item must be 16 bytes");	code	cpp
-2815	1	In principle, it is possible to have default arguments for leading function\ntemplate parameters even if parameters without default arguments follow:	text	txt
-2815	3	However, this approach only makes sence, if there is a natural default for a\ntemplate parameter.	text	txt
-2816	2	The overload resolution process prefers the nontemplate over one generated\nfrom the template.	text	txt
-2816	4	If the template can generate a function with a better match, then the\ntemplate is selected. Here, the template is a better match because no\nconversion from `double` or `char` to `int` is required.	text	txt
-2816	6	An empty template argument list indicates that only templates may resolve a\ncall, but all the template parameters should be deduced from the call\narguments.	text	txt
-2816	8	Becuase automatic type conversino is not considered for deduced template\nparameters but is considered for ordinary funcction parameters, the last call\nuses the nontemplate function.	text	txt
+2816	5	If the template can generate a function with a better match, then the\ntemplate is selected. Here, the template is a better match because no\nconversion from `double` or `char` to `int` is required.	text	txt
+2816	6	max(7.0, 42.0);   // calls max<double> by argument deduction\n::max('a', 'b');    // calls max<char> by argument deduction	code	txt
+2816	7	An empty template argument list indicates that only templates may resolve a\ncall, but all the template parameters should be deduced from the call\narguments.	text	txt
+2816	8	max<>(7, 42);     // calls max<int> by argument deduction	code	txt
+2816	9	Becuase automatic type conversino is not considered for deduced template\nparameters but is considered for ordinary funcction parameters, the last call\nuses the nontemplate function.	text	txt
+2816	10	max<double>(7, 42);   // calls max<double> no argument deduction\n::max('a', 42.7);   // calls the nontemplate for two ints	code	txt
 2817	1	When two function templates match, the overload resolution process normally\nto process normally to prefer none and result in an ambiguity error.	text	txt
-2816	3	max(7, 42);   // calls the nontemplate for two ints	code	cpp
-2816	5	max(7.0, 42.0);   // calls max<double> by argument deduction\n::max('a', 'b');    // calls max<char> by argument deduction	code	cpp
-2816	7	max<>(7, 42);     // calls max<int> by argument deduction	code	cpp
+2817	2	template<typename T1, typename T2>\nauto max(T1 a, T2 b);	text	txt
+2817	3	template<typename RT, typename T1, typename T2>\nRT max(T1 a, T2 b);	text	txt
+2817	4	max(4, 7.2);  // calls first overload\n::max<long double>(4, 7.2); // calls second overload\n::max<int>(4, 7.2); // ERROR: both function templates match	code	txt
 2818	1	A useful example would be to overload the maximum template for pointers and\nordinary C-strings.	text	txt
+2818	2	#include <cstring>\n#include <string>	text	txt
+2818	3	template<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}	text	txt
+2818	4	template<typename T>\nT* max(T* a, T* b)\n{\n    return *b < *a ? a : b;\n}	text	txt
+2818	5	char const* max(char const* a, char const* b)\n{\n    return std::strcmp(b, a) < 0 ? a : b;\n}	text	txt
+2818	6	int i{7}, j{42};\nint *p1 = &i, *p2 = &j;	text	txt
+2818	7	max(i, j);   // calls max() for two int\n::max(std::string{"mathematics"}, std::string{"math"}); // calls max() for std::string\n::max(p1, p2);  // calls max<int>() for two pointers\n::max("mathematics", "math");   // calls max() for two C-strings	code	txt
 2819	1	In general, it is a good idea not to change more than necessary when\noverloading function templates. You should limit your changes to the number\nof parameters or to specifying template parameters explicitly. Otherwise,\nunexpected effects may happen.	text	txt
 2819	2	For example, if you implement your `max()` template to pass the arguments by\nreference and overload it for two C-strings passed by value, you can’t use\nthe three-argument version to compute the maximum of three C-strings:	text	txt
-2819	4	The problem is that if you call `max()` for three C-strings, the statement:	text	txt
-2819	6	becomes a run-time error because for C-strings, `max(a,b)` creates a new,\ntemporary local value that is returned by reference, but that temporary value\nexpires as soon as the return statement is complete, leaving `main()` with a\ndangling reference.	text	txt
-2819	7	Unfortunately, the error is quite subtle and may not manifest itself in all\ncases. In general, a conforming compiler isn’t even permitted to reject this\ncode.	text	txt
-2819	5	return max (max(a,b), c);	code	cpp
+2819	3	#include <cstring>	text	txt
+2819	4	template<typename T>\nT const& max(T const& a, T const& b)\n{\n    return b < a ? a : b;\n}	text	txt
+2819	5	char const* max(char const* a, char const* b)\n{\n    return std::strcmp(b, a) < 0 ? a : b;\n}	text	txt
+2819	6	template<typename T>\nT const& max(T const& a, T const& b, T const& c)\n{\n    return max(max(a, b), c); // error if max(a,b) uses call-by-value\n}	text	txt
+2819	7	max(7, 42, 68);   // OK	text	txt
+2819	8	char const* s1 = "A";\nchar const* s2 = "B";\nchar const* s3 = "C";\n::max(s1, s2, s3);  // runtime error	code	txt
+2819	9	The problem is that if you call `max()` for three C-strings, the statement:	text	txt
+2819	10	return max (max(a,b), c);	code	txt
+1457	1	struct alignas(8) item\n{\n    int id;\n    bool active;\n    double value;\n};\n\nstatic_assert(sizeof(item) == 16, "size of item must be 16 bytes");	code	cpp
+2819	11	becomes a run-time error because for C-strings, `max(a,b)` creates a new,\ntemporary local value that is returned by reference, but that temporary value\nexpires as soon as the return statement is complete, leaving `main()` with a\ndangling reference.	text	txt
+2819	12	Unfortunately, the error is quite subtle and may not manifest itself in all\ncases. In general, a conforming compiler isn’t even permitted to reject this\ncode.	text	txt
 2820	1	Ensure that all overloaded versions of a function are declared before the\nfunction is called. This is because the fact that not all overloaded\nfunctions are visible when a corresponding function call is made may matter.	text	txt
-2824	1	To declare a friend function and define it afterwards, we have two options:	text	txt
-2822	1	Template parameters can be omited when declaring copy constructor and copy\nassignment operator.	text	txt
-2822	3	But it is formally equivalent to specify template parameters:	text	txt
-2822	5	But usually the `<T>` signals special handling of special template\nparameters, so it’s usually better to use the first form. However, outside\nthe class structure you'd need to specify it.	text	txt
-2829	1	Unlike a `typedef`, an alias declaration can be templated to provide a\nconvenient name for a family of types. This is also available since C++11 and\nis called an alias template.	text	txt
+2820	2	template<typename T>\nT max (T a, T b)\n{\n    return b < a ? a : b;\n}	text	txt
+2820	3	template<typename T>\nT max (T a, T b, T c)\n{\n    return max (max(a,b), c);\n    // calls template max<int> not overload\n}	text	txt
+2820	4	// declaration comes too late\nint max (int a, int b)\n{\n    std::cout << "max(int,int) \\\\n";\n    return b < a ? a : b;\n}	code	txt
 2821	1	Before the declaration, you have to declare one or multiple identifiers as a\ntype parameters.	text	txt
-2821	4	The keyword `class` can be used instead of `typename`.	text	txt
-2822	2	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n    Stack& operator=(Stack const&);\n};	code	cpp
-2822	4	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack<T> const&);\n    Stack<T>& operator=(Stack<T> const&);\n};	code	cpp
+2821	2	Inside the class template, template parameters can be used just like any\nother type to declare members and member functions.	text	txt
+2821	3	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> data;	text	txt
+2821	4	public:\n    void push(T const&);\n    void pop() const;\n    T const& top() const;\n    bool empty() const;\n};	code	txt
+2821	5	The keyword `class` can be used instead of `typename`.	text	txt
+2822	1	Template parameters can be omited when declaring copy constructor and copy\nassignment operator.	text	txt
+2822	2	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n    Stack& operator=(Stack const&);\n};	code	txt
+2822	3	But it is formally equivalent to specify template parameters:	text	txt
+2822	4	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack<T> const&);\n    Stack<T>& operator=(Stack<T> const&);\n};	code	txt
+2822	5	But usually the `<T>` signals special handling of special template\nparameters, so it’s usually better to use the first form. However, outside\nthe class structure you'd need to specify it.	text	txt
 2823	1	To define a member function of a class template, you have to specify that it\nis a template, and you have to use the full type qualification of the class\ntemplate.	text	txt
-2826	1	You can provide special implementation for particular circumstances, but some\ntemplate parameters must still be defined by the user.	text	txt
+2823	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n    void pop();\n};	text	txt
 2824	2	1. We can implicitly declare a new function template, which must use a\n   different template parameter, such as U:	text	txt
-2824	4	We forward declare the output operator for a class to be a template, which,\nhowever, means that we first have to forward declare the class too:	text	txt
+2824	3	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);	text	txt
+2824	4	    template<typename U>\n    friend std::ostream& operator<<(std::ostream&, Stack<U> const&);\n};	code	txt
+2824	5	We forward declare the output operator for a class to be a template, which,\nhowever, means that we first have to forward declare the class too:	text	txt
+2824	6	template<typename T>\nclass Stack;	text	txt
+2824	7	template<typename T>\nstd::ostream& operator<<(std::ostream&, Stack<T> const&);	text	txt
+2824	8	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);	text	txt
+2824	9	    friend std::ostream& operator<<<T>(std::ostream&, Stack<T> const&);\n};	code	txt
+2824	10	Note the `<T>` behind the function name `operator<<`. Thus, we declare a\nspecialization of the nonmember function template as friend. Without `<T>` we\nwould declare a new nontemplate function.	text	txt
 2825	1	To specialize a class template, you have to declare the class with a leading\n`template<>` and a specialization of the types for which the class template\nis specialized. The types are used as a template argument and must be\nspecified directly forwarding the name of the class:	text	txt
-2826	3	With partial specialization, we define a class template, still parametrized\nfor `T` but specialized for a pointer (`Stack<T*>`).	text	txt
-2827	5	Stack<int, float>{};    // Stack<T1, T2>\nStack<float, float>{};  // Stack<T, T>\nStack<float, int>{};    // Stack<T, int>\nStack<int*, float*>{};  // Stack<T1*, T2*>	code	cpp
-2827	1	template<typename T1, typename T2>\nclass Stack;	code	cpp
+2825	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};	text	txt
+2825	3	template<typename T>\nvoid Stack<T>::push(T const&) { }	text	txt
+2825	4	template<>\nStack<std::string>\n{\n    void push(std::string const&);\n};	text	txt
+2825	5	void Stack<std::string>::push(std::string const&) { }	code	txt
+2826	1	You can provide special implementation for particular circumstances, but some\ntemplate parameters must still be defined by the user.	text	txt
+2826	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};	text	txt
+2826	3	template<typename T>\nvoid Stack<T> push(T const&) { }	text	txt
+2826	4	template<typename T>\nclass Stack<T*>\n{\n    void push(T*);\n};	text	txt
+2826	5	template<typename T>\nvoid Stack<T*>::push(T*) { }	code	txt
+2826	6	With partial specialization, we define a class template, still parametrized\nfor `T` but specialized for a pointer (`Stack<T*>`).	text	txt
+2827	1	template<typename T1, typename T2>\nclass Stack;	code	txt
 2827	2	The following class template can be specialized in following ways:	text	txt
-2827	4	The following examples show which template is used by which declaration:	text	txt
-2827	6	If more than one partial specialization matches equally well, the declaration is ambiguous:	text	txt
-2827	8	To resolve the second ambiguity, you could provide an additional partial specialization for pointers of the same type:	text	txt
-2827	7	Stack<int, int>{};  // ERROR: matches Stack<T, T> and Stack<T, int>\nStack<int*, int*>{};    // ERROR: matches Stack<T, T> and Stack<T1*, T2*>	code	cpp
-2827	9	template<typename T>\nclass Stack<T*, T*>;	code	cpp
-2829	2	template<typename T>\nusing matrix = std::vector<std::vector<T>>;	code	cpp
+2827	3	template<typename T>\nclass Stack<T, T>;	text	txt
+2827	4	template<typename T>\nclass Stack<T, int>;	text	txt
+2827	5	template<typename T1, typename T2>\nclass Stack<T1*, T2*>;	code	txt
+2827	6	The following examples show which template is used by which declaration:	text	txt
+2827	7	Stack<int, float>{};    // Stack<T1, T2>\nStack<float, float>{};  // Stack<T, T>\nStack<float, int>{};    // Stack<T, int>\nStack<int*, float*>{};  // Stack<T1*, T2*>	code	txt
+2827	8	If more than one partial specialization matches equally well, the declaration is ambiguous:	text	txt
+2827	9	Stack<int, int>{};  // ERROR: matches Stack<T, T> and Stack<T, int>\nStack<int*, int*>{};    // ERROR: matches Stack<T, T> and Stack<T1*, T2*>	code	txt
+2827	10	To resolve the second ambiguity, you could provide an additional partial specialization for pointers of the same type:	text	txt
+2827	11	template<typename T>\nclass Stack<T*, T*>;	code	txt
+2828	1	template<typename T, typename C = std::vector<T>>\nclass Stack\n{\nprivate:\n    C container;	text	txt
+2828	2	public:\n    void push(T const&);\n    void pop();\n    T const& top() const;\n    bool empty() const;\n};	text	txt
+2828	3	template<typename T, typename C>\nvoid Stack<T, C>::push(T const& value)\n{\n    container.push_back(value);\n}	text	txt
+2828	4	template<typename T, typename C>\nvoid Stack<T, C>::pop()\n{\n    container.pop_back();\n}	text	txt
+2828	5	template<typename T, typename C>\nT const& Stack<T, C>::top() const\n{\n    if (container.empty()) throw std::exception{"empty container"};\n    return container.back();\n}	text	txt
+2828	6	template<typename T, typename C>\nbool Stack<T, C>::empty() const\n{\n    return container.empty();\n}	code	txt
+2829	1	Unlike a `typedef`, an alias declaration can be templated to provide a\nconvenient name for a family of types. This is also available since C++11 and\nis called an alias template.	text	txt
+2829	2	template<typename T>\nusing matrix = std::vector<std::vector<T>>;	code	txt
 2830	1	Alias templates are especially helpful to define shortcuts for types that are\nmembers of class templates.	text	txt
-2830	3	The `typename` is necessary here because the member is a type.	text	txt
+2830	2	struct Matrix\n{\n    using iterator = ...;\n};	text	txt
+2830	3	template<typename T>\nusing MatrixIterator = typename Matrix<T>::iterator;	code	txt
+2830	4	The `typename` is necessary here because the member is a type.	text	txt
+2830	5	Since C++14, the standard library uses this technique to define shortcuts for\nall type traits in the standard library that yield a type:	text	txt
+2830	6	std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11\nstd::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11	code	txt
 2831	1	Since C++17, the constraint that you always have to specify the template\narguments explicitly was relaxed.	text	txt
 2831	2	Stack<int> IntStack;\nStack<int> AnotherStack = IntStack;   // OK in all standard versions\nStack IntegralStack = AnotherStack;    // OK since C++17	code	txt
 2832	1	By providing constructors that pass some initial arguments, you can support\ndeduction of the type used in a class.	text	txt
@@ -10405,6 +10530,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3044	2	`name` fields.	text	txt
 3044	3	{\n    "version": 6,\n    "configurePresets": {\n        {\n            "name": "myPreset1"\n        },\n        {\n            "name": "myPreset2"\n        }\n    }\n}	code	json
 4157	1	- Names with internal linkage or no linkage cannot be exported.\n- An export group must not contain declarations that cannot be exported, e.g.\n  `static_assert` or anonymous names.\n- The module declaration must not be the result of macro expansion.	text	txt
+4354	1	- Iteration over a sequence for arbitrary action on each element: `for_each`, `for_each_n`, `transform`\n- Searching through a sequence: `find`, `find_if`, `find_end`, `search`, `count`, `any_of`, `adjacent_find`\n- Mutate the sequence: `copy`, `copy_if`, `move`, `fill`, `replacd`, `generate`, `rotate`\n- Sort in various ways: `sort`, `stable_sort`, `partial_sort`, `nth_element`, `is_sorted`\n- Reduction and scans: `reduce`, `transform_reduce`, `inclusive_scan`, `exclusive_scan`	text	txt
 3045	1	{\n    "version": 6,\n    "packagePresets": [\n        {\n            "displayName": "A string that provides user friendly name for the preset",\n            "description": "A string that offers and explanation of what the preset does",\n            "inherits": "A string, or an array of strings, that copies the configuration of presets named in this field as a base, to be further extended or modified",\n            "hidden": "A boolean that hides the preset from the listing, making it suitable to be used through inheritance",\n            "environment": "An object that overrides ENV variables for this stage, each key identifies an individual variable, and values can be strings or null; macros also supported",\n            "condition": "An object that enables or disables this preset",\n            "vendor": "A custom object that contains vendor specific values and not interpreted by CMake",\n        }\n    ]\n}	code	json
 3045	2	Every stage specific preset can have the same optional fields.	text	txt
 3046	1	All stage specific presets must be associated with configuration stage preset as they need to know the location of the build tree. While the `configure` preset is inherently associated with itself, others need to explicitly define this association via the `configurePresets` field.	text	txt
@@ -10518,6 +10644,9 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3109	1	Uniforms are the last stage of the rendering pipeline and they can define constant global values like rotation matrices to shaders.	text	txt
 3109	2	GLuint uniform_matrix;\nuniform_matrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(uniform_matrix, 1, GL_FALSE, &matrix);	code	cpp
 4351	3	#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main()\n{\n    std::vector<int> numbers{1,2,3,4,5};\n    std::for_each(std::begin(numbers), std::end(numbers), [](auto e) { std::cout << e << " "; });\n}	code	cpp
+4355	1	The algorithms that have the overload with `std::execution` enumeration as\nfirst parameter.	text	txt
+4355	2	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> numbers{42,73,10,35,89,24};\n    std::sort(std::execution::par, std::begin(numbers), std::end(numbers));\n}	code	cpp
+4356	1	The overhead of creating and managing threads on two operations costs highly.\nIt would be better to join the operations in one parallel execution.	text	txt
 3110	1	void Window::show()\n{\n    // vertex shader\n    /* ... */\n\n    // fragment shader\n    /* ... */\n\n    // shader program\n    /* ... */\n\n    // vertex buffer object\n    const GLfloat vertices[]{\n        -1.0f, -1.0f, 0.0f,\n         1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f,  1.0f, 0.0f\n    };\n\n    const GLfloat colors[]{\n        0.0f, 0.0f, 1.0f,\n        0.0f, 1.0f, 0.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 0.0f, 1.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 1.0f, 0.0f,\n    };\n\n    GLuint vertexBuffer;\n    glGenBuffers(1, &vertexBuffer);\n    GLuint colorsBuffer;\n    glGenBuffers(1, &colorsBuffer);\n\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);\n\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(colorsBuffer), colorsBuffer, GL_STATIC_DRAW);\n\n    GLint attribute_position = glGetAttribLocation(shaderProgram, "input_position");\n    glEnableVertexAttribArray(attribute_position);\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glVertexAttribPointer(attribute_position, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    GLint attribute_color = glGetAttribLocation(shaderProgram, "input_color");\n    glEnablelVertexAttribArray(attribute_color);\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glVertexAttribPointer(attribute_color, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        float sa = 0.5 * sin(angle);\n        float ca = 0.5 * cos(angle);\n        alpha += 0.1;\n\n        const GLfloat matrix[]{\n            sa, -ca, 0, 0,\n            ca, sa,  0, 0,\n            0,   0,  1, 0,\n            0,   0,  0, 1\n        };\n\n        glUniformMatrix4fv(uniform_matrix, 1, FL_FALSE, matrix);\n\n        glDrawArrays(GL_TRANGLES, 0, 6);\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp
 3111	1	*fragment shader*	text	txt
 3111	2	#version 120\n\nvoid main()\n{\n    float vec4 coordinates = gl_FragCoord;\n    gl_FragColor = vec4(coordinates.x, coordinates.y, coordinates.z, coordinates.w);\n}	code	gl
@@ -12708,7 +12837,10 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4186	1	auto l = [] [[nodiscard]] () -> int { return 42; };\nl(); // warning here	code	cpp
 4187	1	struct [[nodiscard]] ErrorType{};\nErrorType get_value();\n\nint main()\n{\n    get_value(); // warning here\n}	code	cpp
 4188	1	*C++20*\nstruct Holder\n{\n    [[nodiscard]] Holder(int value);\n    Holder();\n};\n\nint main()\n{\n    Holder{42}; // warning here\n    Holder h{42}; // constructed object not discarded, no warning\n    Holder{}; // default constructed, no warning\n}	code	cpp
+4189	1	Using 4 overloads for all possible combinations of ref-quilified methods is\ncode dupliation.	text	txt
+4189	2	class box\n{\npublic:\n    box(std::string label): m_label{std::move(label)} {}\n    std::string& label() & { return m_label; }\n    std::string const& label() const& { return m_label; }\n    std::string&& label() && { return std::move(m_label); }\n    std::string const&& label() const&& { return std::move(m_label); }\nprivate:\n    std::string m_label;\n};	code	cpp
 4189	3	Since C++23 we can replace all 4 overloads with one:	text	txt
+4189	4	class box\n{\npublic:\n    box(std::string label): m_label(std::move(label)} {}\n    template<typename S> auto&& label(this S&& self)\n    {\n        return std::forward<S>(self).m_label;\n    }\n};	code	cpp
 4190	1	C++23 allows you to write ref-qualified members differently:	text	txt
 4190	2	void f() &;\nvoid g() const&;\nvoid h() &&;	code	cpp
 4190	3	Instead:	text	txt
@@ -12727,7 +12859,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4239	8	The second overload resolution might seem strange that integers fit two\niterators, but compiler only sees two matching arguments having the same type\nwhich can also be `int`.	text	txt
 4223	1	For each function or class template, there are preconditions and\nrequirements. These requirements were implicitly handled before C++20, but\nconcepts make it easier to express requirements explicitly.	text	txt
 4223	2	template<typename T>\nrequires std::is_copyable<T> && supports_less_than<T>\nT max_value(T a, T b)\n{\n    return b < a ? a : b;\n}	code	cpp
-4189	1	Using 4 overloads for all possible combinations of ref-qualified methods is code dupliation.	text	txt
 4224	1	template<typename T>\nconcept supports_less_than = requires (T x) { x < x; };	code	cpp
 4225	1	Having two different function bodies but with the same signature, would\nresult in ambigous overload and compiler will raise an error.	text	txt
 4225	2	To inform compiler about the best match of two overloads with same signature,\nwe can use concepts as a type constraint.	text	txt
@@ -12868,10 +12999,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4350	1	`std::ssize()` is a C++20 function template that returns the size information\nof the passed-in range or array as a signed integer (typically\n`std::ptrdiff_t`). The range version `std::ranges::ssize()` instead uses the\nrange-style "customization point object" approach while maintaining the same\nfunctionality. This allows for simpler code when working with raw indexes.	text	txt
 4350	2	#include <vector>\n#include <iostream>\n\nint main() {\n    std::vector<int> data{1, 2, 3, 4, 5, 6};\n\n    // z is the literal suffix for signed size type\n    for (auto i = 0z; i < ssize(data); i++) {\n        int sum = 0;\n        if (i - 1 >= 0)\n            sum += data[i-1];\n        sum += data[i];\n        if (i + 1 < ssize(data))\n            sum += data[i+1];\n        std::cout << "" << sum << "\\\\n";\n    } // prints 3, 6, 9, 12, 15, 11\n}	code	cpp
 4351	1	A *range* is denoted by a pair of *iterators*, or more generally, since\nC++20, an *iterator* and a *sentinel*.	text	txt
-4354	1	- Iteration over a sequence for arbitrary action on each element: `for_each`, `for_each_n`, `transform`\n- Searching through a sequence: `find`, `find_if`, `find_end`, `search`, `count`, `any_of`, `adjacent_find`\n- Mutate the sequence: `copy`, `copy_if`, `move`, `fill`, `replacd`, `generate`, `rotate`\n- Sort in various ways: `sort`, `stable_sort`, `partial_sort`, `nth_element`, `is_sorted`\n- Reduction and scans: `reduce`, `transform_reduce`, `inclusive_scan`, `exclusive_scan`	text	txt
-4355	1	The algorithms that have the overload with `std::execution` enumeration as\nfirst parameter.	text	txt
-4355	2	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> numbers{42,73,10,35,89,24};\n    std::sort(std::execution::par, std::begin(numbers), std::end(numbers));\n}	code	cpp
-4356	1	The overhead of creating and managing threads on two operations costs highly.\nIt would be better to join the operations in one parallel execution.	text	txt
 4356	2	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> numbers{1,2,3,4,5,6};\n\n    // we have two separate parallel execution\n    std::transform(std::execution::par, numbers.begin(), numbers.end());\n    std::reduce(std::execution::par, numbers.begin(), numbers.end());\n\n    // instead we can combine the two\n    std::transform_reduce(std::execution::par, numbers.begin(), numbers.end());\n}	code	cpp
 4357	1	#include <algorithm>\n\nstd::min(42, 87);\nstd::min({2,5,8,23,43});\nstd::max(34, 47);\nstd::max({4,8,12,42});	code	cpp
 4358	1	Starting with C++23, basic strings support `starts_with()` operation:	text	txt
@@ -14527,60 +14654,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 109	1	#include <iostream>\n\nint main()\n{\n    using std::cout;\n    using std::endl;\n\n    cout << 42 << endl;\n}	code	cpp
 1486	3	// geometry-core.cppm\nexport module geometry:core;\n\nexport template<typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>, T>>\nstruct point\n{\n    T x;\n    T y;\n};	code	cpp
 1486	4	// geometry-literals.cppm\nexport module geometry:literals;\n\nnamespace geometry_literals\n{\n    export point<int> operator ""_p(const char* ptr, std::size_t const size)\n    {\n        int x{}, y{};\n        ...\n        return {x , y};\n    }\n}	code	cpp
-640	1	If `operator <=>` is defaulted and the object has a base class having the\n`operator <=>` defined, that operator is called. Otherwise, `operator ==` and\n`operator <` are called to decide whether the objects are `equivalent`,\n`less`, `greater` or `unordered`. In that case, the return type of the\ndefaulted `operator <=>` calling these operators cannot be `auto`.	text	txt
-640	2	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};\n\nstruct Derived: public Base\n{\n    std::strong_ordering operator<=>(Derived const&) const = default;\n};\n\nDerived d1, d2;\nd1 > d2; // calls Base::operator== and Base::operator<	code	cpp
-640	4	struct Derived: public Base\n{\n    std::partial_ordering operator<=>(Derived const&) const = default;\n};	code	cpp
-640	6	struct Base\n{\n    bool operator==(Base const&) const;\n    bool operator<(Base const&) const;\n};\n\nstruct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n};	code	cpp
-640	3	When using strong ordering as the return type, if `operator ==` yields true, we know that the result of `>` is `false`, otherwise `operator <` is called to find out the expression is `true` or `false`.	text	txt
-640	5	When using partial ordering, the compiler might call `operator <` twice to find out whether there is any order at all.	text	txt
-640	7	If we return `auto` as the result of comparison, the compiler does not compile because it cannot decide which ordering category the base class has.	text	txt
-640	8	Checks for equality work for Derived because `operator ==` automatically declared equivalent to `operator <=>`:	text	txt
-640	9	struct Derived: public Base\n{\n    auto operator<=>(Derived const&) const = default;\n    bool operator==(Derived const&) const = default;\n};\n\nDerived d1, d2;\nd1 > d2; // ERROR: cannot deduce comparison category of operator <=>\nd1 == d2; // OK: only tries operator <=> and Base::operator==	code	cpp
-641	2	class MyType\n{\n    int i;\n\npublic:\n    bool operator==(MyType const&) const;\n};\n\nbool operator==(int i, MyType const& t)\n{\n    return t == i; // OK with C++17\n}	code	cpp
-4189	4	class box\n{\npublic:\n    box(std::string label)\n        : m_label(std::move(label)}\n    {\n    }\n\n    template<typename S> auto&& label(this S&& self)\n    {\n        return std::forward<S>(self).m_label;\n    }\nprivate:\n    std::string m_label;\n};	code	cpp
-4189	2	class box\n{\npublic:\n    box(std::string label)\n        : m_label{std::move(label)}\n    {\n    }\n\n    std::string &       label() &       { return m_label; }\n    std::string const&  label() const&  { return m_label; }\n    std::string &&      label() &&      { return std::move(m_label); }\n    std::string const&& label() const&& { return std::move(m_label); }\nprivate:\n    std::string m_label;\n};	code	cpp
-2795	1	1. You implement the same behavior repeatedly for each different types, you make the same mistakes.\n2. You write general code for a common base type such as `void*`, you lose type checking and lose the control of maitaining derived classes.\n3. You use special preprocessors, code is replaced by stupid text replacement mechanism that has no idea of scope and types.	text	txt
-2797	1	- Without instantiation at definition time, the template code itself is checked for correctness ignoring the template parameters.\n  + Syntax errors are discovered, such as missing semicolons.\n  + Using unknown names that don't depend on template parameters are discovered.\n  + Static assertions that don't depend on template parameters are checked.\n- At instantiation time, the template code is checked again to ensure that all code is valid. Especially, all parts that depend on template parameters are double-checked.	text	txt
-2801	2	Each call to `max()` template is qualified with `::` to ensure template is\nfound in the global namespace, not possibly the one in `std` namespace.	text	txt
-2801	1	template<typename T>\nT max(T a, T b) { return b < a ? a : b; }\n\nmax(7, 42); // 42\n::max(3.4, -6.7); // 3.4\n::max("mathematics", "math"); // mathematics	code	cpp
-2802	2	If we declare a function template to use constant references as function\narguments, and pass `int`, template parameter is deduced as `int`, because\nthe parameters match for `int const&`.	text	txt
-2802	3	template<typename T>\nT max(T const& a, T const& b) { return a < b ? b : a; }\n\nmax(7, 42); // T is int	code	cpp
-2803	2	template<typename T>\nT max(T a, T b) { return a < b ? b : a; }\n\nint const c = 42;\nmax(i, c);    // OK: T deduced as int\nmax(c, c);    // OK: T deduced as int\n\nint& ir = i;\nmax(i, ir);   // OK: T deduced as int\n\nint arr[4];\nmax(&i, arr); // OK: T deduced as int*\n\nmax(4, 7.2);  // ERROR: T can be dudeced as int or double\n\nstd::string s;\nmax("text", s); // ERROR: T can be deduced as char const[5] or std::string	code	cpp
-2804	6	#include <type_traits>\n\ntemplate<typename T, typename R>\nauto max(T a, R b) -> std::common_type_t<T, R>\n{\n    return a < b ? b : a;\n}\n\nmax<double>(4, 7.2);	code	cpp
-2805	2	template<typename T>\nvoid f(T = "");\n\nf(1);   // OK: f<int>(1)\nf();    // ERROR: cannot deduce T	code	cpp
-2805	4	template<typename T = std::string>\nvoid f(T = "");\n\nf();    // OK: f<std::string>()	code	cpp
-2806	1	template<typename T1, typename T2>\nT1 max(T1 a, T2 b)\n{\n    return b < a ? a : b;\n}\n\nauto m = ::max(4, 7.2); // OK:: but max returns int	code	cpp
-2812	4	#include <type_traits>\n\ntemplate<typename T1, typename T2>\nstd::common_type_t<T1, T2> max(T1 a, T2 b);	code	cpp
-2808	3	template<typename T1, typename T2, typename RT>\nRT max(T1 a, T2 b);\n\nmax<int, double, double>(4, 7.2); // OK, but tedious	code	cpp
-2808	5	template <typaname RT, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nmax<double>(4, 7.2); // OK	code	cpp
-2811	2	#include <type_traits>\n\ntemplate<typename T1, typename T2>\nauto max(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type;	code	cpp
-2812	5	Note that `std::common_type<>` decays.	text	txt
-2812	2	#include <type_traits>\n\ntemplate<typename T1, typename T2>\ntypename std::common_type<T1, T2>::type max(T1 a, T2 b);	code	cpp
-2814	1	Default template arguments can be used with any kind of template. They may\neven refer to previous template parameters.	text	txt
-2814	3	Another way is to use `std::common_type<>` which also decays so that return\nvalue doesn't become a reference.	text	txt
-2814	2	#include <type_traits>\n\ntemplate<typename T1, typename T2,\n          typename RT = std::decay_t<decltype(true ? T1() : T2())>>	code	cpp
-2814	4	RT max(T1 a, T2 b);\n\ntemplate<typename T1, typename T2, typename RT = std::commot_type_t<T1, T2>>\nRT max(T1 a, T2 b);	code	cpp
-2815	2	template<typename RT = long, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nint i;\nlong l;\nmax(i, l);  // returns long due default argument of template parameter for return type\nmax<int>(7, 42);    // returns int as explicitly specified, T1 and T2 deduced by function arguments	code	cpp
-2816	1	int max(int a, int b);\n\ntemplate<typename T>\nT max(T a, T b);	code	cpp
-2817	2	template<typename T1, typename T2>\nauto max(T1 a, T2 b);\n\ntemplate<typename RT, typename T1, typename T2>\nRT max(T1 a, T2 b);\n\nmax(4, 7.2);  // calls first overload\n::max<long double>(4, 7.2); // calls second overload\n::max<int>(4, 7.2); // ERROR: both function templates match	code	cpp
-2816	9	max<double>(7, 42);   // calls max<double> no argument deduction\n::max('a', 42.7);   // calls the nontemplate for two ints	code	cpp
-2818	2	#include <cstring>\n#include <string>\n\ntemplate<typename T>\nT max(T a, T b)\n{\n    return b < a ? a : b;\n}\n\ntemplate<typename T>\nT* max(T* a, T* b)\n{\n    return *b < *a ? a : b;\n}\n\nchar const* max(char const* a, char const* b)\n{\n    return std::strcmp(b, a) < 0 ? a : b;\n}\n\nint i{7}, j{42};\nint *p1 = &i, *p2 = &j;\n\nmax(i, j);   // calls max() for two int\n::max(std::string{"mathematics"}, std::string{"math"}); // calls max() for std::string\n::max(p1, p2);  // calls max<int>() for two pointers\n::max("mathematics", "math");   // calls max() for two C-strings	code	cpp
-2819	3	#include <cstring>\n\ntemplate<typename T>\nT const& max(T const& a, T const& b)\n{\n    return b < a ? a : b;\n}\n\nchar const* max(char const* a, char const* b)\n{\n    return std::strcmp(b, a) < 0 ? a : b;\n}\n\ntemplate<typename T>\nT const& max(T const& a, T const& b, T const& c)\n{\n    return max(max(a, b), c); // error if max(a,b) uses call-by-value\n}\n\nmax(7, 42, 68);   // OK\n\nchar const* s1 = "A";\nchar const* s2 = "B";\nchar const* s3 = "C";\n::max(s1, s2, s3);  // runtime error	code	cpp
-2820	2	template<typename T>\nT max (T a, T b)\n{\n    return b < a ? a : b;\n}\n\ntemplate<typename T>\nT max (T a, T b, T c)\n{\n    return max (max(a,b), c);\n    // calls template max<int> not overload\n}\n\n// declaration comes too late\nint max (int a, int b)\n{\n    std::cout << "max(int,int) \\\\n";\n    return b < a ? a : b;\n}	code	cpp
-674	1	- Using `requires` clause after template arguments\n- Using `requires` clause after argument list\n- Using concepts\n- Using `requires` expression	text	txt
-2821	2	Inside the class template, template parameters can be used just like any\nother type to declare members and member functions.	text	txt
-2821	3	template<typename T>\nclass Stack\n{\nprivate:\n    std::vector<T> data;\n\npublic:\n    void push(T const&);\n    void pop() const;\n    T const& top() const;\n    bool empty() const;\n};	code	cpp
-2823	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n    void pop();\n};\n\ntemplate<typename T>\nvoid Stack<T>::push(T const&) { }\n\ntemplate<typename T>\nvoid Stack<T>::pop() { }	code	cpp
-2824	3	template<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n\n    template<typename U>\n    friend std::ostream& operator<<(std::ostream&, Stack<U> const&);\n};	code	cpp
-2824	6	Note the `<T>` behind the function name `operator<<`. Thus, we declare a\nspecialization of the nonmember function template as friend. Without `<T>` we\nwould declare a new nontemplate function.	text	txt
-2824	5	template<typename T>\nclass Stack;\n\ntemplate<typename T>\nstd::ostream& operator<<(std::ostream&, Stack<T> const&);\n\ntemplate<typename T>\nclass Stack\n{\npublic:\n    Stack(Stack const&);\n\n    friend std::ostream& operator<<<T>(std::ostream&, Stack<T> const&);\n};	code	cpp
-2825	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};\n\ntemplate<typename T>\nvoid Stack<T>::push(T const&) { }\n\ntemplate<>\nStack<std::string>\n{\n    void push(std::string const&);\n};\n\nvoid Stack<std::string>::push(std::string const&) { }	code	cpp
-2826	2	template<typename T>\nclass Stack\n{\n    void push(T const&);\n};\n\ntemplate<typename T>\nvoid Stack<T> push(T const&) { }\n\ntemplate<typename T>\nclass Stack<T*>\n{\n    void push(T*);\n};\n\ntemplate<typename T>\nvoid Stack<T*>::push(T*) { }	code	cpp
-2827	3	template<typename T>\nclass Stack<T, T>;\n\ntemplate<typename T>\nclass Stack<T, int>;\n\ntemplate<typename T1, typename T2>\nclass Stack<T1*, T2*>;	code	cpp
-2828	1	template<typename T, typename C = std::vector<T>>\nclass Stack\n{\nprivate:\n    C container;\n\npublic:\n    void push(T const&);\n    void pop();\n    T const& top() const;\n    bool empty() const;\n};\n\ntemplate<typename T, typename C>\nvoid Stack<T, C>::push(T const& value)\n{\n    container.push_back(value);\n}\n\ntemplate<typename T, typename C>\nvoid Stack<T, C>::pop()\n{\n    container.pop_back();\n}\n\ntemplate<typename T, typename C>\nT const& Stack<T, C>::top() const\n{\n    if (container.empty()) throw std::exception{"empty container"};\n    return container.back();\n}\n\ntemplate<typename T, typename C>\nbool Stack<T, C>::empty() const\n{\n    return container.empty();\n}	code	cpp
-2830	4	Since C++14, the standard library uses this technique to define shortcuts for\nall type traits in the standard library that yield a type:	text	txt
-2830	2	struct Matrix\n{\n    using iterator = ...;\n};\n\ntemplate<typename T>\nusing MatrixIterator = typename Matrix<T>::iterator;	code	cpp
-2830	5	std::add_const_t<T> // C++14 abbreviate equivalent to std::add_const<T>::type available since C++11\nstd::enable_if_v<T> // C++14 abbreviate equivalent to std::enable_if<T>::value available since C++11	code	cpp
 \.
 
 
@@ -17340,6 +17413,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 2799	What is the signature of a function template?	review
 2800	What requirements should the type of a function template parameter meet?	review
 2801	Use a function template with different types?	review
+2802	How does the compile deduce the type of function template arguments?	review
 2803	What are the limits of type conversion during type deduction of function template arguments?	review
 2804	What are the common ways to handle type conversions during type deduction of function template arguments?	review
 2805	How does the compiler deduce the default function template parameters?	review
@@ -17356,6 +17430,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 2817	What happens when there are two matching template overloads for a function call?	review
 2818	What are the common use cases of overloading function templates?	review
 2819	What is the drawback of overloading function templates?	review
+2820	When a template function overload would be missed by a call?	review
 2821	Declare a class template?	review
 2822	Declare copy constructor and copy assignment operator of a class template?	review
 2823	Define the member functions of a class template outside of the scope of the class?	review
@@ -17375,7 +17450,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 2837	Define deduction guides for aggregate class templates?	review
 2783	Begin debugging session of an executable?	review
 2785	Show source code in debugging session?	review
-2820	When would a template function overload be missed by a call?	review
 2786	Set breakpoints on a program?	review
 2787	Delete a breakpoint from a program?	review
 2784	Step through program execution in debugging session?	review
@@ -17846,7 +17920,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3305	What configuration variable is used to describe the serial console used to attach to target devide?	draft
 3306	What configuration variable is used to describe the target kernel image type?	draft
 3307	What bootloader is used in Poky by default?	draft
-4190	What is the equivalent form of ref-qualified function?	draft
 3308	What configuration variable is used in UBoot recipe to name of the SPL binary?	draft
 3309	What configuration variable is used in UBoot recipe as a suffix to bootloader name?	draft
 3310	What configuration variable is used in UBoot recipe as the target architecture?	draft
@@ -18611,6 +18684,8 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 4186	Indicate error when a return value from lambda is ignored?	draft
 4187	Indicate error when a type is ignored when returned?	draft
 4188	Indicate error when a constructor is used without object name?	draft
+4189	Replace ref-quialified overloads of a method with one generic overload?	draft
+4190	What is the equivalent form of ref-quialified function?	draft
 4191	Access the object containing the lambda within a recursive lambda?	draft
 4198	What is the alternative to writing function templates without having typenames?	draft
 4207	What types are supported as non-type template arguments?	draft
@@ -19660,8 +19735,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 5642	What scope is not in the responsibility of developers to manipulate?	review
 5643	Describe a package containing installed artifacts of the project?	review
 674	How many ways constraints can be applied to a template?	review
-4189	Replace ref-qualified overloads of a method with one generic overload?	draft
-2802	How does the compiler deduce the type of function template arguments?	review
 \.
 
 
@@ -19952,80 +20025,28 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	4173	2025-12-10 16:49:53.166162+01	8	0
 2	4174	2025-12-10 16:50:55.351773+01	62	0
 2	4175	2025-12-10 16:59:46.842257+01	238	0
-2	4176	2025-12-11 07:18:32.595484+01	685	0
-2	4177	2025-12-11 07:26:04.469865+01	452	0
-2	4178	2025-12-11 07:32:51.708971+01	407	0
-2	2819	2025-12-11 11:28:08.892154+01	207	0
-2	2820	2025-12-11 11:30:00.040865+01	112	0
-2	4223	2025-12-11 11:33:07.574006+01	9	0
-2	674	2025-12-11 11:33:32.063308+01	25	0
-2	4179	2025-12-11 07:44:06.444797+01	71	0
-2	640	2025-12-11 07:55:10.073957+01	664	0
-2	641	2025-12-11 08:06:02.301717+01	652	0
-2	4182	2025-12-11 08:06:25.074768+01	23	0
-2	4183	2025-12-11 08:09:32.709832+01	187	0
-2	4184	2025-12-11 08:09:40.939945+01	8	0
-2	4185	2025-12-11 08:09:57.912909+01	17	0
-2	4186	2025-12-11 08:23:37.323892+01	820	0
-2	4187	2025-12-11 08:24:07.985339+01	30	0
-2	4188	2025-12-11 08:24:59.06633+01	51	0
-2	678	2025-12-11 13:29:46.041553+01	81	0
-2	679	2025-12-11 13:30:00.729071+01	14	0
-2	680	2025-12-11 13:31:27.436418+01	87	0
-2	681	2025-12-11 13:31:39.47169+01	12	0
-2	4189	2025-12-11 08:38:20.550499+01	16	0
-2	4190	2025-12-11 08:38:23.836811+01	3	0
-2	4191	2025-12-11 08:42:00.898171+01	217	0
-2	2795	2025-12-11 08:50:03.507254+01	400	0
-2	2796	2025-12-11 08:50:13.584819+01	10	0
-2	683	2025-12-11 14:08:10.410612+01	25	0
-2	684	2025-12-11 14:08:18.865078+01	8	0
-2	2797	2025-12-11 08:52:28.52182+01	25	0
-2	2798	2025-12-11 08:52:49.671284+01	21	0
-2	2799	2025-12-11 08:57:07.444662+01	237	0
-2	2800	2025-12-11 09:00:58.694545+01	231	0
-2	4198	2025-12-11 09:01:09.882808+01	11	0
-2	2801	2025-12-11 09:06:17.8296+01	308	0
-2	685	2025-12-11 14:08:32.184624+01	14	0
-2	4224	2025-12-11 14:08:40.900114+01	8	0
-2	4225	2025-12-11 14:14:22.214039+01	342	0
-2	4226	2025-12-11 14:37:25.195227+01	34	0
-2	2802	2025-12-11 09:10:35.297401+01	44	0
-2	2803	2025-12-11 09:15:31.028988+01	296	0
-2	2804	2025-12-11 09:16:38.113933+01	67	0
-2	2805	2025-12-11 09:18:17.712329+01	99	0
-2	2807	2025-12-11 09:18:44.104027+01	6	0
-2	2806	2025-12-11 09:18:55.633603+01	11	0
-2	2808	2025-12-11 09:51:35.969626+01	128	0
-2	4207	2025-12-11 09:52:47.402748+01	71	0
-2	4208	2025-12-11 09:58:26.705524+01	339	0
-2	4209	2025-12-11 10:01:02.486315+01	156	0
-2	4210	2025-12-11 10:39:31.595043+01	68	0
-2	4211	2025-12-11 10:47:43.368183+01	492	0
-2	676	2025-12-11 14:41:57.419323+01	272	0
-2	675	2025-12-11 14:42:13.517858+01	16	0
-2	2809	2025-12-11 10:50:07.111676+01	42	0
-2	677	2025-12-11 14:42:19.782184+01	6	0
-2	2810	2025-12-11 10:51:32.314348+01	8	0
-2	682	2025-12-11 14:43:47.81286+01	88	0
-2	2811	2025-12-11 10:54:00.649522+01	13	0
-2	2812	2025-12-11 10:54:47.808715+01	47	0
-2	2814	2025-12-11 11:06:47.098362+01	441	0
-2	2815	2025-12-11 11:09:16.827455+01	149	0
-2	2821	2025-12-11 14:50:12.374199+01	4	0
-2	2816	2025-12-11 11:15:48.122597+01	316	0
-2	2817	2025-12-11 11:20:02.197101+01	254	0
-2	2818	2025-12-11 11:23:27.632541+01	174	0
-2	2822	2025-12-11 14:51:07.251509+01	3	0
-2	2823	2025-12-11 14:53:07.605135+01	120	0
-2	4230	2025-12-11 14:53:27.878405+01	20	0
-2	2824	2025-12-11 14:55:28.941307+01	121	0
-2	2825	2025-12-11 14:59:14.488161+01	134	0
-2	2826	2025-12-11 15:01:43.941185+01	6	0
-2	2827	2025-12-11 15:07:35.463832+01	352	0
-2	2828	2025-12-11 15:10:14.817967+01	159	0
-2	2830	2025-12-11 15:13:35.578784+01	18	0
-2	2829	2025-12-11 15:19:22.562916+01	347	0
+2	4176	2025-12-11 22:53:14.538103+01	20	0
+2	5559	2025-12-11 22:57:07.453951+01	136	0
+2	5469	2025-12-11 22:58:32.437451+01	85	0
+2	5470	2025-12-11 22:59:59.984171+01	87	0
+2	5471	2025-12-11 23:01:05.278654+01	65	0
+2	5472	2025-12-11 23:11:09.822498+01	604	0
+2	5473	2025-12-11 23:11:37.331528+01	28	0
+2	5474	2025-12-11 23:11:48.50389+01	11	0
+2	5475	2025-12-11 23:11:52.576187+01	4	0
+2	5476	2025-12-11 23:11:57.564458+01	5	0
+2	5477	2025-12-11 23:12:09.121219+01	12	0
+2	5478	2025-12-11 23:12:54.245728+01	45	0
+2	5479	2025-12-11 23:13:08.299744+01	14	0
+2	5480	2025-12-11 23:15:26.981268+01	138	0
+2	5481	2025-12-11 23:15:52.505404+01	25	0
+2	5482	2025-12-11 23:16:02.409976+01	10	0
+2	5483	2025-12-11 23:16:36.862417+01	34	0
+2	5484	2025-12-11 23:39:55.821025+01	62	0
+2	5485	2025-12-11 23:41:28.586807+01	93	0
+2	5486	2025-12-11 23:41:36.042139+01	8	0
+2	5487	2025-12-11 23:41:43.932377+01	7	0
+2	5488	2025-12-11 23:42:11.345241+01	28	0
 \.
 
 
@@ -26913,6 +26934,7 @@ COPY flashback.sections_progress (resource, section, "user", "time", duration, i
 
 COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	\N
+3	AEvfrjjcyPMFxIUXv1HHLlHUpnmECnwCqQ8BF6MsTOo	c48564d1-78c2-0893-2b99-22a7cc1a12d2	\N
 2	XMZhg7mO3KGsnfBzdqvjO04J3gDN2rA07sooSYhYAuY	c22478ba-7ffa-11a3-1429-de93cb9a3311	\N
 2	BAH+x4QtO8YQUreDR+ajOXdT+8vzqeeHc3haJdF36m4	bb22c848-53f6-cdbb-213d-f8162f9abd38	\N
 2	iNFzgSCY2W+q42gM9lNVbB13v0odiLy6WnHbInbuvvE	e60c872e-5354-4e70-78f7-a4c3a3a9e81f	\N
@@ -30531,6 +30553,7 @@ COPY flashback.topics_progress ("user", topic, "time", duration, subject, level,
 --
 
 COPY flashback.users (id, name, email, state, verified, joined, hash) FROM stdin;
+3	Brian Salehi	salehibrian@gmail.com	active	f	2025-11-20 14:26:19.906025+01	$argon2id$v=19$m=262144,t=3,p=1$xVQkOsdIi2LDbcMRaIvIeA$XnMiJ7dmes8Y4TDrdRWeMwIsua6L0AG/BAmRxD6Qf0E
 2	Brian Salehi	briansalehi@proton.me	active	f	2025-07-29 12:17:34.738918+02	$argon2id$v=19$m=262144,t=3,p=1$fqiJerPBCLb2TEdTbGv8BQ$M0j9j6ojyIjD9yZ4+lBBNR/WAiWpImUcEcUhCL3u9gc
 \.
 
@@ -30661,7 +30684,7 @@ SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 401, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.users_id_seq', 5, true);
+SELECT pg_catalog.setval('flashback.users_id_seq', 3, true);
 
 
 --
@@ -31220,5 +31243,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict PXPcOMYVLeh6uSbS6cSKeuJHSjskKCpxujMozMvBYMgfvlGrj7P3UuUWghGhJPV
+\unrestrict Tdlg2EbYS67AZUMQvfc22ZBlYstf0g7wCaCC8cNeEydFLZbHJLwC2HJHZW2o1dH
 

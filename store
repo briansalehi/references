@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 pg_dump -U flashback -d flashback -f flashback.sql
-pg_dump -U flashback -d flashback_schema --schema-only -f schema.sql
+pg_dump -U flashback -d flashback --schema-only -f schema.sql
