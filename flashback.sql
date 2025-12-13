@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict PXPcOMYVLeh6uSbS6cSKeuJHSjskKCpxujMozMvBYMgfvlGrj7P3UuUWghGhJPV
+\restrict wbOWMxXE8GlmGdW4GChku8vA7UM7aiJhfKBLTDLv5lBLmFwlUcBknD1zqEH46CJ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1091,21 +1091,22 @@ ALTER FUNCTION flashback.get_resources("user" integer) OWNER TO flashback;
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources("user" integer, subject integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link, max(sections_progress.time)
-    from resources
-    join shelves on shelves.resource = resources.id and shelves.subject = get_resources.subject
-    left join sections_progress on sections_progress.resource = resources.id and sections_progress."user" = get_resources."user"
-    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link;
+    select r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    from resources r
+    join shelves s on s.resource = r.id and s.subject = subject_id
+    join sections_cards sc on sc.resource = r.id
+    left join progress p on p."user" = user_id and p.card = sc.card
+    group by r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.get_resources("user" integer, subject integer) OWNER TO flashback;
+ALTER FUNCTION flashback.get_resources(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
 -- Name: get_roadmaps(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2314,36 +2315,6 @@ CREATE TABLE flashback.sections_cards (
 ALTER TABLE flashback.sections_cards OWNER TO flashback;
 
 --
--- Name: sections_progress; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.sections_progress (
-    resource integer NOT NULL,
-    section integer NOT NULL,
-    "user" integer NOT NULL,
-    "time" timestamp with time zone DEFAULT now() NOT NULL,
-    duration integer DEFAULT 0 NOT NULL,
-    id integer NOT NULL
-);
-
-
-ALTER TABLE flashback.sections_progress OWNER TO flashback;
-
---
--- Name: sections_progress_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE flashback.sections_progress ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.sections_progress_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
 -- Name: sessions; Type: TABLE; Schema: flashback; Owner: flashback
 --
 
@@ -2483,37 +2454,6 @@ CREATE TABLE flashback.topics_cards (
 
 
 ALTER TABLE flashback.topics_cards OWNER TO flashback;
-
---
--- Name: topics_progress; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.topics_progress (
-    "user" integer NOT NULL,
-    topic integer NOT NULL,
-    "time" timestamp with time zone DEFAULT now() NOT NULL,
-    duration integer DEFAULT 0 NOT NULL,
-    subject integer NOT NULL,
-    level flashback.expertise_level NOT NULL,
-    id integer NOT NULL
-);
-
-
-ALTER TABLE flashback.topics_progress OWNER TO flashback;
-
---
--- Name: topics_progress_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE flashback.topics_progress ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME flashback.topics_progress_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
 
 --
 -- Name: users; Type: TABLE; Schema: flashback; Owner: flashback
@@ -2874,6 +2814,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 159	1	1. Identify the base case.\n2. Walk through the function for the base case.\n3. Identify the next-to-last case.\n4. Walk through function for the next-to-last case.\n5. Repeat this process by identifying before the case you just analyzed, and walking through the function for that case.	text	txt
 135	1	* **Read:** it would take `1` step to read from an array, so it is `O(1)`.\n* **Search:** it would take `N` steps to search through an array, so it is `O(N)`.\n* **Insert:** it would take `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** it would take `N` steps to delete from an array, so it is `O(N)`.	text	txt
 136	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
+168	1	To figure out the efficiency of Quicksort, first determine the efficiency of a single partition.	text	txt
+1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
 137	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
 138	1	In constant time efficiency no matter how many elements exist, the operation always takes one step.	text	txt
 139	1	`O(log N)` means the algorithm takes as many steps as it takes to keep halving the data elements until we remain with `1`.	text	txt
@@ -2964,6 +2906,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 159	8	factorial(3) returns 6\nfactorial(2) returns 2\nfactorial(1) returns 1	text	txt
 160	1	In case of infinite recursion, the same function keeps being pushed onto the call stack.\nThe call stack will eventually be consumed until further calls will not be possible.	text	txt
 161	1	When a problem is solved by solving smaller version of the same problem, the smaller problem is called a *subproblem*.\nWhat makes these subproblem overlapping is the fact that each subproblem calls many of the same functions as each other.	text	txt
+1712	3	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt
+1712	4	bitbake -c testimage core-image-weston	code	sh
 162	1	**Dynamic Programming** is the process of optimizing recursive problems that have overlapping subproblems.\nOptimizing an algorithm with dynamic programming is typically accomplished with one of two techniques.\nThe first technique is something called memoization which reduces recursive calls by remembering previously computed functions.\nThe second technique, known as **going bottom-up** uses iteration instead of recursion to prevent duplicate calls.	text	txt
 163	1	With memoization, each time we make a new calculation, we store it in a hash table for future calls.\nThis way we only make a calculation if it hadn't ever been made before.	text	txt
 164	1	By using iteration instead of recursion to ensure that it doesn't make duplicate calls for overlapping subproblems.	text	txt
@@ -2997,7 +2941,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 603	14	exit(0);\n}	text	txt
 167	1	1. Partition the array. The pivot is not in its proper place.\n2. Treat the subarrays to the left and right of the pivot as their own arrays, and recursively repeat step 1 and 2.\n3. When we have a subarray that has zero or one elements, that is our base case and we do nothing.	text	txt
 167	2	void quicksort(int* left_index, int* right_index)\n{\n    if (right_index - left_index > 0)\n    {\n        int* pivot_index = partition(left_index, right_index);\n        quicksort(left_index, pivot_index - 1);\n        quicksort(pivot_index + 1, right_index);\n    }\n}	code	txt
-168	1	To figure out the efficiency of Quicksort, first determine the efficiency of a single partition.	text	txt
 168	2	A partition involves two primary types of steps: *comparison*, and *swaps*.\nEach partition has at least `N` comparisons, we compare each element of the array with the pivot.\nThe number of swaps, however, will depend upon how the data is sorted.\nA single partition can have, at most, `N / 2` swaps,\nBut, on average, we make about `N` comparisons and `N / 4` swaps.\nIn Big O Notation, we’d say that a partition runs in `O(N)` time.	text	txt
 168	3	Now, that’s the efficiency of a single partition, but **Quicksort** involves many partitions.\nSince **Quicksort** is essentially comprised of this series of partitions, and each partition takes about `N` steps for `N` elements of each subarray.	text	txt
 168	4	The number of Quicksort steps for `N` elements in the array is about `N` multiplied by `log N`.\nEach time we partition the array, we end up breaking it down into two subarrays.\nAssuming the *pivot* ends up somewhere in the middle of the array — which is what happens in the average case — these two subarrays are of roughly equal sizes.\nHow many times can we break an array into halves until we’ve broken it completely down to the point of where each subarray is of size `1`?\nFor an array of size `N`, this will take us `log N` times.	text	txt
@@ -3503,6 +3446,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 402	4	#include <iostream>\n#include <exception>\n#include <filesystem>	text	txt
 567	4	int main(int argc, char **argv)\n{\nint result = -1;	text	txt
 592	7	if (fclose(fp) == -1)\n{\nperror(NULL);\nreturn 3;\n}\n}	code	txt
+1713	1	The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.	text	txt
 402	5	int main()\n{\n    try\n    {\n        std::filesystem::path relative_path{"./lib/../include"};\n        std::filesystem::path base_path{"/usr"};\n        std::filesystem::path canonical_path{std::filesystem::canonical(relative_path, base_path)};\n        std::cout << canonical_path << std::endl;\n    }\n    catch (std::filesystem::filesystem_error const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n    catch (std::bad_alloc const& exp)\n    {\n        std::cerr << exp.what() << std::endl;\n    }\n}	code	txt
 403	1	`std::filesystem::canonical()` does what `std::filesystem::absolute()` does,\nbut canonical additionally removes any "." or ".." paths.	text	txt
 403	2	`std::filesystem::absolute()` does not call system calls.	text	txt
@@ -4635,6 +4579,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 846	1	Major subsystem directories	text	txt
 846	2	* kernel: core kernel subsystem\n* mm: memory management\n* fs: the kernel **Virtual Filesystem Switch (VFS)** and the individual filesystem drivers\n* block: the underlying block I/O code\n* net: implementation of the network protocol stack\n* ipc: the **Inter-Process Communication (IPC)** subsystem\n* sound: the **Advanced Linux Sound Architecture (ALSA)** sound subsystem\n* virt: the virtualization code, specially **Kernel Virtual Machine (KVM)** subsystem	text	txt
 846	3	 Infrastructure / Misclenaous	text	txt
+2783	1	- `start`: starts debugging session by running program line-by-line.\n- `run`: starts debugging session running program as usual.	text	txt
 846	4	* arch: the arch-specific code\n* crypto: kernel level implementation of ciphers\n* include: arch-independent kernel headers\n* init: arch-independent kernel initialization code\n* lib: the closest equivalent to a library for the kernel\n* scripts: various useful scripts\n* security: the **Linux Security Module (LSM)**, containing **Mandatory Access Control (MAX)** and **Discretionary Access Control (DAC)** frameworks.\n* tools: various tools	text	txt
 847	1	make help\nmake htmldocs\nmake pdfdocs	code	txt
 847	2	Output will be generated in `Documentation/output/latex` and `Documentation/output/html`.	text	txt
@@ -5254,6 +5199,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1003	4	Or you can export the `DOCKER_HOST` environment variable:	text	txt
 1003	5	export DOCKER_HOST=tcp://<your host's ip>:2375\nsudo --preserve-env=DOCKER_HOST docker <subcommand>	code	txt
 1004	1	docker run -d -p 1234:1234 --name daemon ubuntu:20.04 nc -l 1234\ndocker run --detach -publish 1234:1234 --name daemon ...\ndocker container run ...	code	txt
+1714	1	- `recipes-backport`: Backports of recipes coming from new Yocto Project releases\n- `recipes-staging`: New recipes or bbappend files adding missing package configurations or bug fixes	text	txt
 1004	2	The `-d` flag, when used with docker run, runs the container as a daemon.\nWith `-p` you publish the 1234 port from the container to the host.\nThe `--name` flag lets you give the container a name so you can refer to it later.\nFinally, you run a simple listening echo server on port 1234 with **netcat**.	text	txt
 1004	3	nc localhost 1234\nLook ma, I know docker!^C	code	txt
 1004	4	docker container logs daemon\nLook ma, I know docker!	code	txt
@@ -5469,6 +5415,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1112	2	To achieve this, the kernel provides `_irqsave` variant functions that behave exactly like the `_irq` ones, with saving and restoring interrupts status features in addition.\nThese are `spin_lock_irqsave()` and `spin_lock_irqrestore()`, defined as follows:	text	txt
 1112	3	spin_lock_irqsave(spinlock_t *lock, unsigned long flags)\nspin_unlock_irqrestore(spinlock_t *lock, unsigned long flags)	code	txt
 1112	4	`spin_lock()` and all its variants automatically call `preempt_disable()`, which disables preemption on the local CPU, while `spin_unlock()` and its variants call `preempt_enable()`, which tries to enable preemption, and which internally calls `schedule()` if enabled depending on the current value of the counter, whose current value should be 0.</br>\nIt tries because it depends on whether other spinlocks are locked, which would affect the value of the preemption counter.\n`spin_unlock()` is then a preemption point and might re-enable preemption.	text	txt
+1714	2	New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.	text	txt
+2784	1	- `continue`: Will resume the execution of the program until it completes.\n- `step`: Executes program one more step. Step might be one line of source\n  code or one machine instruction.\n- `next`: Executes program similar to `step`, but it only continues to the\n  next line in the current stack frame and will not step into functions.	text	txt
 1113	1	Though disabling interrupts may prevent kernel preemption nothing prevents the protected section from invoking the `schedule()` function.\nThe kernel disables or enables the scheduler, and thus preemtion, by increasing or decreasing a kernel global and per-CPU variable called `preempt_count` with 0 as default value.\nThis variable is checked by the `schedule()` function and when it is greater than 0, the scheduler simply returns and does nothing.\nThis variable is incremented at each invocation of a `spin_lock*()` family function.\nOn the other side, releasing a spinlock decrements it from 1, and whenever it reaches 0, the scheduler is invoked, meaning that your critical section would not be that atomic.	text	txt
 1113	2	Thus, disabling interrupts protects you from kernel preemption only in cases where the protected code does not trigger preemption itself.\nThat said, code that locked a spinlock may not sleep as there would be no way to wake it up as timer interrupts and/or schedulers are disabled on the local CPU.	text	txt
 1114	1	It behaves exactly like a *spinlock*, with the only difference being that your code can sleep.\nA spinlock is a lock held by a CPU, a mutex, on the other hand, is a lock held by a task.	text	txt
@@ -6136,6 +6084,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1416	1	The iterators available in the regular expressions standard library are as follows:	text	txt
 1422	1	Converting from an `std::basic_string_view` to an `std::basic_string` is not possible. You must explicitly construct an `std::basic_string` object from a `std::basic_string_view`.	text	txt
 1423	1	Only class member functions can be `defaulted`.	text	txt
+1715	1	When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)	text	txt
 1425	1	* **user defined constructor** inhibits **default constructor**: If a user-defined constructor exists, the default constructor is not generated by default.\n* **virtual destructor** inhibits **default constructor**: If a user-defined virtual destructor exists, the default constructor is not generated by default.\n* **user defined move constructor/assignment** inhibits **default copy constructor/assignment**: If a user-defined move constructor or move assignment operator exists, then the copy constructor and copy assignment operator are not generated by default.\n* **user defined copy constructor/assignment, move constructor/assignment, destructor** inhibits **default move constructor/assignment**: If a user-defined copy constructor, move constructor, copy assignment operator, move assignment operator, or destructor exists, then the move constructor and move assignment operator are not generated by default.\n* If a user-defined copy constructor or destructor exists, then the copy assignment operator is generated by default. <span style="color:green">(deprecated)</span>\n* If a user-defined copy assignment operator or destructor exists, then the copy constructor is generated by default. <span style="color:green">(deprecated)</span>	text	txt
 1425	2	The rule of thumb, also known as The Rule of Five, for class special member functions is that if you explicitly define any copy constructor, move constructor, copy assignment operator, move assignment operator, or destructor, then you must either explicitly define or default all of them.	text	txt
 1426	1	Declare the copy constructor and the copy assignment operator as `deleted`.	text	txt
@@ -6720,13 +6669,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1703	2	ARCHIVER_MODE[src] = "configured"	code	bb
 1704	1	For all flavors of source code, the default resulting file is a tarball; other options will add `ARCHIVER_MODE[srpm] = "1"` to `build/conf/local.conf`, and the resulting file will be an `SRPM` package.	text	txt
 1708	8	After copying the content to the SD card, the machine should boot nicely.	text	txt
-1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
-1712	3	Then, we must build the `core-image-weston` image. We are ready now to start the execution of `testimage` with the following command:	text	txt
-1712	4	bitbake -c testimage core-image-weston	code	sh
-1713	1	The class `image-buildinfo` writes a plain text file containing build information and layers revisions to the target filesystem at `${sysconfdir}/buildinfo` by default.	text	txt
-1714	1	- `recipes-backport`: Backports of recipes coming from new Yocto Project releases\n- `recipes-staging`: New recipes or bbappend files adding missing package configurations or bug fixes	text	txt
-1714	2	New recipes or bug fixes contineously are sent from `recipes-staging` to the respective upstream project (for example, OpenEmbedded Core). Then, when the patch is accepted, we move this change from `recipes-staging` to the `recipes-backport` directory.	text	txt
-1715	1	When using the Yocto Project, we usually add many configurations in `build/conf/local.conf`. However, as discussed in the book, this is bad as it is not at source control management and is likely to differ among developers. Using a custom distribution allows consistent use among multiple developers, provides a clear view of the different `DISTRO_FEATURES` we use when compared to our base distribution, and provides a central place where we can have a global view of all the required recipe configurations we need for our product, reducing the number of bbappend files required to configure our recipes (for example, `PACKAGECONFIG:pn-<myrecipe>:append = " myfeature"`)	text	txt
 1716	1	A typical starting point is copying the `core-image-base.bb` file to our custom layer as `myproduct-image.bb` and extending it, adding what we need for the product’s image. In addition, we create an image called `myproduct-image-dev.bb` for use during development and make sure it requires `myproduct-image.bb` along with the artifacts used only for development, avoiding code duplication. This way, we have two images for production and development, but they share the same core features and packages.	text	txt
 1717	1	1. Preprocessing\n2. Compilation\n3. Assembly\n4. Linking	text	txt
 1718	1	#include <stdio.h>	text	txt
@@ -7849,6 +7791,13 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2032	5	void print_data()\n{\n    std::lock_guard<std::mutex> guard(mutex);\n    std::for_each(std::begin(data), std::end(data), std::ostream_iterator(std::cout, " "));\n}	text	txt
 2032	6	int main()\n{\n    std::thread t1{add_data, 1);\n    std::thread t2{add_data, 2);\n    std::thread t3{add_data, 3);	text	txt
 2032	8	    t1.join();\n    t2.join();\n    t3.join();\n}	code	txt
+2785	1	`list` displays 10 lines of source code. To see how many lines of source code\nwill be displayed enter `show listsize`. To adjust the lines of source code\ndisplayed enter `set listsize 20`.	text	txt
+2787	1	`delete 1`	text	txt
+2788	1	`print `	text	txt
+2789	1	`set var random_number = 5`	text	txt
+2790	1	`whatis random_number`	text	txt
+2791	1	`shell pwd`	text	txt
+2792	1	First obtain the source tree:	text	txt
 2033	1	Consider `std::stack<std::vector<int>>`. Now, a vector is a dynamically sized\ncontainer, so when you copy a vector, the library has to allocate some more\nmemory from the heap in order to copy the contents. If the system is heavily\nloaded or there are significant resource constraints, this memory allocation\ncan fail, so the copy constructor for vector might throw a `std::bad_alloc`\nexception. This is likely if the vector contains a lot of elements. If the\n`pop()` function was defined to return the value popped, as well as remove it\nfrom the stack, you have a potential problem: the value being popped is\nreturned to the caller only after the stack has been modified, but the\nprocess of copying the data to return to the caller might throw an exception.\nIf this happens, the data popped is lost; it has been removed from the stack,\nbut the copy was unsuccessful!	text	txt
 2033	2	The designers of the `std::stack` interface helpfully split the operation in\ntwo: get the `top()` element and then `pop()` it from the stack, so that if\nyou can’t safely copy the data, it stays on the stack.	text	txt
 2033	3	Unfortunately, it’s precisely this split that you’re trying to avoid in\neliminating the race condition!	text	txt
@@ -7877,6 +7826,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2037	8	C++17 provides additional support for this scenario, in the form of a new\nRAII template, `std::scoped_lock<>`. This is exactly equivalent to\n`std::lock_guard<>`, except that it is a variadic template, accepting a list\nof mutex types as template parameters, and a list of mutexes as constructor\narguments. The mutexes supplied to the constructor are locked using the same\nalgorithm as std::lock, so that when the constructor completes they are all\nlocked, and they are then all unlocked in the destructor.	text	txt
 2037	9	void swap(heavy_work& lhs, heavy_work& rhs)\n{\n    if(&lhs == &rhs)\n        return;\n    std::scoped_lock guard(lhs.exclusive_lock, rhs.exclusive_lock);\n    swap(lhs.some_detail, rhs.some_detail);\n}	code	txt
 2037	10	The `std::adopt_lock` parameter is supplied in addition to the mutex to\nindicate to the `std::lock_guard` objects that the mutexes are already\nlocked, and they should adopt the ownership of the existing lock on the mutex\nrather than attempt to lock the mutex in the constructor.	text	txt
+2792	2	git clone git://git.yoctoproject.org/poky	code	txt
+3831	1	/sys/dev	code	sh
 2038	1	It’s worth noting that locking any of the mutexes inside the call to\n`std::lock` can throw an exception; in this case, the exception is propagated\nout of `std::lock`. If `std::lock` has successfully acquired a lock on one\nmutex and an exception is thrown when it tries to acquire a lock on the other\nmutex, this first lock is released automatically. `std::lock` provides\nall-or-nothing semantics with regard to locking the supplied mutexes.	text	txt
 2038	2	C++17 provides additional support for this scenario, in the form of a new\nRAII template, `std::scoped_lock<>`. This is exactly equivalent to\n`std::lock_guard<>`, except that it is a variadic template, accepting a list\nof mutex types as template parameters, and a list of mutexes as constructor\narguments. The mutexes supplied to the constructor are locked using the same\nalgorithm as std::lock, so that when the constructor completes they are all\nlocked, and they are then all unlocked in the destructor.	text	txt
 2039	1	`std::unique_lock` provides a bit more flexibility than `std::lock_guard` by\nrelaxing the invariants; an `std::unique_lock` instance doesn't always own\nthe mutex that it's associated with. First off, as you can pass\n`std::adopt_lock` as a second argument to the constructor to have the lock\nobject manage the lock on a mutex, you can also pass `std::defer_lock` as the\nsecond argument to indicate that the mutex should remain unlocked on\nconstruction. The lock can then be acquired later by `std::lock()` on the\n`std::unique_lock` object or by passing `std::unique_lock` object to\n`std::lock()`.	text	txt
@@ -7915,6 +7866,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2047	10	// change the date or time of an appointment\nGet the following data from user: prev_date, prev_time, new_date, new_time	text	txt
 2047	11	// retrieve previous purpose of the appointment in given date and time\nprev_purpose = appt_book.purpose(prev_date, prev_time)	text	txt
 2047	12	if (prev_purpose is not empty string)\n{\n    // check whether new date and time is available for new appointment\n    if (appt_book.is_appointment(new_date, new_time))\n    {\n        write("you already have an appointment at", new_time, " on ", new_date)\n    }\n    else\n    {\n        if (appt_book.make_appointment(new_date, new_time, prev_purpose))\n            write("appointment has been rescheduled to ", new_time, " ", new_date)	text	txt
+3831	2	/sys/block	code	sh
 2047	13	        appt_book.cancel_appointment(prev_date, prev_time)\n    }\n}\nelse\n{\n    write("you do not have an appointment at", prev_time, " on ", prev_date)\n}	code	txt
 2048	1	1. Specify what data the problem operates on: **bag**	text	txt
 2048	2	2. Specify what operations does the problem requires:	text	txt
@@ -8754,6 +8706,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2329	3	2. one access happens before the other	text	txt
 2330	1	1. **Single threading:** One control flow\n2. **Multi-threading:** Tasks, Threads, Condition Variables\n3. **Atomic:** Sequential consistency, Acquire-release semantics, Relaxed semantics	text	txt
 3191	3	bitbake ncurses	code	sh
+2792	3	Import the build configurations and environments by sourcing the `oe-init-build-env` script file on the project's root directory.	text	txt
 2331	1	- **Atomic operations:** operations that can perform without an interruption\n- **Partial ordering of operations:** sequence of operations that must not be reordered\n- **Visible effects of operations:** guarantees when operations on shared variables are visible to other threads	text	txt
 2331	2	The foundation of the contract are operations on atomics, that by definition are indivisable and create ordering constraints on execution.	text	txt
 2332	1	x.store() => y.load() => y.store() => x.load()	text	txt
@@ -8851,6 +8804,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2358	2		text	txt
 2359	1	A `std::shared_ptr<>` consists of a control block and its resource. The control block is thread-safe, but access to the resource is not.	text	txt
 2360	1	A function $f$ from a set $D$ to a set $Y$ is a rule that assigns a unique value $f(x)$ in $Y$ to each $x$ in $D$.	text	txt
+2792	4	source oe-init-build-env	code	txt
 2360	2	The value of one variable quantity, say $y$, depends on the value of another variable quantity, which we often call $x$.\nWe say that $y$ is a function of $x$ and write this symbolically as	text	txt
 2360	4	The symbol $f$ represents the function, the letter $x$ is the **independent variable** representing the input value to $f$, and $y$ is the **dependent variable** or ouput value of $f$ at $x$.	text	txt
 2364	1	If $f$ is a function with domain $D$, its graph consists of the points in the Cartesian plane whose coordinates are the input-output pairs for $f$.	text	txt
@@ -8907,6 +8861,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2396	1	The element should have the `focus` property set.	text	txt
 2396	2	Text {\n    focus: true	text	txt
 2396	3	    Keys.onEscapePressed: {\n        label.text = ''\n    }\n}	code	txt
+2792	5	Second argument can be specified as a custom directory path where artifacts will be generated.\nWhen not specified, `build` directory will be generated in the working directory.	text	txt
 2397	1	`Item` is the base element for all visual elements as such all other visual\nelements inherits from `Item`. The `Item` element is often used as a\ncontainer for other elements, similar to the div element in HTML.	text	txt
 2419	8	    Column {\n        id: column\n        anchors.centerIn: parent\n        spacing: 8	text	txt
 2419	9	        RedSquare {}\n        GreenSquare {}\n        BlueSquare {}\n    }\n}	code	txt
@@ -9781,21 +9736,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 2774	2	The `dispatch()` function can be invoked from the current worker thread, while\nthe `post()` function has to wait until the handler of the worker is complete\nbefore it can be invoked. In other words, the `dispatch()` function's events\ncan be executed from the current worker thread even if there are other pending\nevents queued up, while the `post()` function's events have to wait until the\nhandler completes the execution before being allowed to be executed.	text	txt
 2775	1	Strand is a class in the <code>io_service</code> object that provides handler\nexecution serialization. It can be used to ensure the work we have will be\nexecuted serially.	text	txt
 2775	3	The `boost::asio::io_context::strand::wrap()` function creates a new handler\nfunction object that will automatically pass the wrapped handler to the strand\nobject's dispatch function when it is called.	text	txt
-2783	1	- `start`: starts debugging session by running program line-by-line.\n- `run`: starts debugging session running program as usual.	text	txt
-2784	1	- `continue`: Will resume the execution of the program until it completes.\n- `step`: Executes program one more step. Step might be one line of source\n  code or one machine instruction.\n- `next`: Executes program similar to `step`, but it only continues to the\n  next line in the current stack frame and will not step into functions.	text	txt
-2785	1	`list` displays 10 lines of source code. To see how many lines of source code\nwill be displayed enter `show listsize`. To adjust the lines of source code\ndisplayed enter `set listsize 20`.	text	txt
-2787	1	`delete 1`	text	txt
-2788	1	`print `	text	txt
-2789	1	`set var random_number = 5`	text	txt
-2790	1	`whatis random_number`	text	txt
-2791	1	`shell pwd`	text	txt
-2792	1	First obtain the source tree:	text	txt
-2792	2	git clone git://git.yoctoproject.org/poky	code	txt
-3831	1	/sys/dev	code	sh
-3831	2	/sys/block	code	sh
-2792	3	Import the build configurations and environments by sourcing the `oe-init-build-env` script file on the project's root directory.	text	txt
-2792	4	source oe-init-build-env	code	txt
-2792	5	Second argument can be specified as a custom directory path where artifacts will be generated.\nWhen not specified, `build` directory will be generated in the working directory.	text	txt
 2792	6	Before building an image, you should edit and configure the `build/local.conf` file and set `MACHINE` variable to whatever target you desire, e.g. qemuarm, qemuarm64, qemux86-64, etc.	text	txt
 2792	7	sed -i '/^MACHINE[ ?=]\\\\+/s/^MACHINE\\\\([ ?=]\\\\+\\\\).*/MACHINE\\\\1"qemuarm64"/' conf/local.conf	code	txt
 2792	8	Using `bitbake` utility which was sourced earlier build an image by choice:	text	txt
@@ -10397,6 +10337,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3040	1	ctest --list-presets	code	sh
 3041	1	cmake --workflow --list-presets	code	sh
 3042	1	cmake --preset <name>	code	sh
+4367	3	#include <algorithm>\n#include <memory>\n\nint main()\n{\n    auto p1 = std::make_unique<int>(1);\n    auto p2 = std::make_unique<int>(2);\n\n    int *p1_pre = p1.get();\n    int *p2_pre = p2.get();\n\n    std::ranges::swap(p1, p2);\n    // p1.get() == p1_pre, *p1 == 2\n    // p2.get() == p2_pre, *p2 == 1\n}	code	cpp
+4368	1	| `std::swap_ranges` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt
 3043	1	- `version`: an integer indicating the version of the preset JSON schema\n- `cmakeMinimumRequired`: an object holding the required cmake version\n- `include`: an array of strings that include external presets\n- `configurePresets`: an array of objects that define the configuration stage presets\n- `buildPresets`: an array of objects that define the build stage presets\n- `testPresets`: an array of objects that define the test stage presets\n- `packagePresets`: an array of objects that define the packgae stage presets\n- `workflowPresets`: an array of objects that define the workflow mode presets\n- `vendor`: an object containing custom settings defined by IDEs and vendors and not processed by CMake	text	txt
 3043	2	{\n    "version": 6,\n    "cmakeMinimumRequired": {\n        "major": 3,\n        "minor": 30,\n        "patch": 2\n    },\n    "include": [],\n    "configurePresets": [],\n    "buildPresets": [],\n    "testPresets": [],\n    "packagePresets": [],\n    "workflowPresets": [],\n    "vendor": {\n    }\n}	code	json
 3043	3	The appropriate schema version for CMake 3.26 is 6.	text	txt
@@ -10531,6 +10473,9 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3854	2	/run/systemd/system/	code	sh
 3116	1	const GLchar* vertex120 = R"END(\n#version 120\nattribute vec3 position;\nattribute vec3 color;\nvarying vec3 outColor;\nuniform float time;\nuniform mat4 matrix;\nvoid main()\n{\n    float theta = time;\n    \n    float co = cos(theta);\n    float si = sin(theta);\n\n    mat4 rotationY = mat4(co, 0, si, 0,\n                          0, 1, 0, 0,\n                         -si, 0, co, 0,\n                         0, 0, 0, 1);\n\n    mat4 rotationX = mat4(1, 0, 0, 0,\n                          0, co, -si, 0,\n                          0, si, co, 0,\n                          0, 0, 0, 1);\n\n    outColor = color;\n    gl_Position = matrix * rotationY * rotationX * vec4(position,1.f);\n}\n)END";\n\n// fragment shader source\n\nconst GLchar* raster120 = R"END(\n#version 120\nvarying vec3 outColor;\nuniform float time;\nvoid main()\n{\n    gl_FragColor = vec4(outColor,1);\n}\n)END";\n\nGLfloat vertices[] = {\n    -1, -1, +1, // 0\n    -1, +1, +1,\n    +1, +1, +1,\n    +1, -1, +1,\n    -1, -1, -1,\n    -1, +1, -1,\n    +1, +1, -1,\n    +1, -1, -1, //7\n};\n\nGLfloat colors[] = {\n    1, 0, 0, // rgb\n    0, 1, 0,\n    0, 0, 1,\n    1, 0, 1,\n    1, 1, 0,\n    0, 1, 1,\n    0, 1, 0,\n    1, 0, 0\n};\n\nGLubyte indices[] = {\n    0, 1, 2, //1st triangle, ClockWise\n    0, 2, 3,\n    0, 4, 5, // "left" side, clockwise\n    0, 5, 1,\n    1, 5, 6, // "top" side\n    1, 6, 2,\n    3, 2, 6,\n    3, 6, 7,\n    4, 0, 7,\n    7, 6, 5, // back side\n    7, 5, 4,\n};\n\nGLuint verticesBuf;\nglGenBuffers(1, &verticesBuf);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);\n\nGLuint colorsBuf;\nglGenBuffers(1, &colorsBuf);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);\n\nGLuint indicesBuf;\nglGenBuffers(1, &indicesBuf);\nglBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesBuf);\nglBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);\n\n// ----------------- attributes\n\nGLuint attribPosition;\nattribPosition = glGetAttribLocation(shaderProgram, "position");\nglEnableVertexAttribArray(attribPosition);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint attribColor;\nattribColor = glGetAttribLocation(shaderProgram, "color");\nglEnableVertexAttribArray(attribColor);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglVertexAttribPointer(attribColor, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLfloat matrix[] = {\n    0.5, 0, 0, 0,\n    0, 0.5, 0, 0,\n    0, 0, 0.5, 0,\n    0, 0, 0, 1\n};\n\nGLuint attribMatrix;\nattribMatrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(attribMatrix, 1, GL_FALSE, matrix);\n\nGLuint uniformTime;\nuniformTime = glGetUniformLocation(shaderProgram, "time");\n\nglEnable(GL_CULL_FACE);	code	cpp
 3117	1	float shift{100.0f};\nauto rotated{glm::vec2(10.0f, 10.0f)};\nauto view{glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -shift))};\nview = glm::rotate(view, rotated.y, glm::vec3(-1.0f, 0.0f, 0.0f));	code	cpp
+4368	2	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> numbers{1,2,3,4,5,6};\n    std::swap_ranges(numbers.begin(), numbers.begin()+2, numbers.rbegin());\n    // numbers: {6,5,3,4,2,1}\n}	code	cpp
+4452	3	Use `std::ref()` when you really want a reference, or use a lambda as the\ncallable.	text	txt
+4369	1	Customizing swap for user-defined types and correctly calling swap with a\nfallback can be tricky. If we are not using the C++20 range version, we need\nto correctly implement the customized version as a friend function (making it\nvisible only to ADL) and pull in the default swap when calling it (to get the\nfallback).	text	txt
 3118	1	const GLchar* vertex120 = R"END(\n#version 120\nattribute vec3 position;\nattribute vec3 color;\nattribute vec2 inUvs;\nvarying vec3 outColor;\nvarying vec2 outUvs;\nuniform float time;\nuniform mat4 matrix;\nuniform mat4 projection;\nvoid main()\n{\n    float theta = time;\n    \n    float co = cos(theta);\n    float si = sin(theta);\n    \n    mat4 rotationY = mat4(co, 0, si,  0,\n                          0,  1,  0,  0,\n                          -si,  0, co, 0,\n                          0,  0,  0,  1);\n\n    co = cos(theta/2.);\n    si = sin(theta/2.);\n\n    mat4 rotationX = mat4(1, 0, 0, 0,\n                          0, co, -si, 0,\n                          0, si, co, 0,\n                          0, 0, 0, 1);\n\n    outColor = color;\n    outUvs = inUvs;\n    gl_Position = matrix * rotationY * rotationX * vec4(position,1.f);\n}\n)END";\n\n// fragment shader source\n\nconst GLchar* raster120 = R"END(\n#version 120\nvarying vec3 outColor;\nvarying vec2 outUvs;\nuniform sampler2D tex; // 1st texture slot by default\nuniform float time;\nvoid main()\n{\n    gl_FragColor = vec4(texture2D(tex, outUvs)/2.f + vec4(outColor,1.f)/2.f);\n}\n)END";\n\nGLuint attribPosition;\nattribPosition = glGetAttribLocation(shaderProgram, "position");\nglEnableVertexAttribArray(attribPosition);\nglBindBuffer(GL_ARRAY_BUFFER, verticesBuf);\nglVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLuint attribColor;\nattribColor = glGetAttribLocation(shaderProgram, "color");\nglEnableVertexAttribArray(attribColor);\nglBindBuffer(GL_ARRAY_BUFFER, colorsBuf);\nglVertexAttribPointer(attribColor, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\nGLfloat matrix[] = {\n    0.5, 0,   0,   0,\n    0,   0.5, 0,   0,\n    0,   0,   0.5, 0,\n    0,   0,   0,   1\n};\n\nGLuint attribMatrix;\nattribMatrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(attribMatrix, 1, GL_FALSE, matrix);\n\nGLuint uniformTime;\nuniformTime = glGetUniformLocation(shaderProgram, "time");\n\n\nglm::mat4 projectionMatrix = glm::mat4(1.f);// glm::perspective(glm::radians(60.f), 1.f, 0.f, 10.f);\nGLint uniformProjection = glGetUniformLocation(shaderProgram, "projection");\nglUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projectionMatrix));\n\n// tex\n\nbmpread_t bitmap;\n\nif (!bmpread("texture2.bmp",0, &bitmap)) {\n    std::cout << "Texture loading error";\n    exit(-1);\n}\n\nGLuint texid;\nglGenTextures(1, &texid);\nglActiveTexture(GL_TEXTURE0);\nglBindTexture(GL_TEXTURE_2D, texid);\n\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);\nglTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);\nglPixelStorei(GL_UNPACK_ALIGNMENT, 1);\n\nglTexImage2D(GL_TEXTURE_2D,0,3,bitmap.width,bitmap.height,0,GL_RGB,GL_UNSIGNED_BYTE,bitmap.data);\n\nGLuint attribTex = glGetAttribLocation(shaderProgram, "tex");\nglUniform1i(attribTex, 0);\n\n// uvs\n\nGLfloat uvs[] = {\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 0,\n    0, 1,\n    1, 1,\n    1, 0,\n};\n\nGLuint uvsData;\nglGenBuffers(1, &uvsData);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglBufferData(GL_ARRAY_BUFFER, sizeof(uvs), uvs, GL_STATIC_DRAW);\n\nGLuint attribUvs;\nattribUvs = glGetAttribLocation(shaderProgram, "inUvs");\nglEnableVertexAttribArray(attribUvs);\nglBindBuffer(GL_ARRAY_BUFFER, uvsData);\nglVertexAttribPointer(attribUvs, 2, GL_FLOAT, GL_FALSE, 0, 0);	code	cpp
 4351	4	*Sentinels* follow the same idea. However, they do not need to be of an\n*iterator* type. Instead, they only need to be comparable to an *iterator*.\nThe exclusive end of the range is then the first iterator that compares equal\nto the sentinel.	text	txt
 4351	5	#include <iostream>\n#include <algorithm>\n#include <ranges>\n#include <vector>\n\ntemplate<typename T>\nstruct sentinel\n{\n    using iter_t = typename std::vector<T>::iterator;\n    iter_t begin;\n    std::iter_difference_t<iter_t> count;\n    bool operator==(iter_t const& other) const { return std::distance(begin, other) >= count; }\n};\n\nint main()\n{\n    std::vector<long> numbers{1,2,3,4,5};\n    std::vector<long>::iterator iter = numbers.begin();\n    std::ranges::for_each(iter, sentinel<long>{iter, 3}, [](auto e) { std::cout << e << " "; });\n}	code	cpp
@@ -12906,11 +12851,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 4366	3	#include <algorithm>\n\nnamespace library\n{\n    struct container { long value; };\n}\n\nint main()\n{\n    library::container a{3}, b{4};\n    std::ranges::swap(a, b); // first calls library::swap\n                             // then it calls the default move-swap\n}	code	cpp
 4367	1	| `std::iter_swap` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | N/A |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt
 4367	2	The `std::iter_swap` is an indirect swap, swapping values behind two forward\niterators.	text	txt
-4367	3	#include <algorithm>\n#include <memory>\n\nint main()\n{\n    auto p1 = std::make_unique<int>(1);\n    auto p2 = std::make_unique<int>(2);\n\n    int *p1_pre = p1.get();\n    int *p2_pre = p2.get();\n\n    std::ranges::swap(p1, p2);\n    // p1.get() == p1_pre, *p1 == 2\n    // p2.get() == p2_pre, *p2 == 1\n}	code	cpp
-4368	1	| `std::swap_ranges` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt
-4368	2	#include <algorithm>\n#include <vector>\n\nint main()\n{\n    std::vector<long> numbers{1,2,3,4,5,6};\n    std::swap_ranges(numbers.begin(), numbers.begin()+2, numbers.rbegin());\n    // numbers: {6,5,3,4,2,1}\n}	code	cpp
-4452	3	Use `std::ref()` when you really want a reference, or use a lambda as the\ncallable.	text	txt
-4369	1	Customizing swap for user-defined types and correctly calling swap with a\nfallback can be tricky. If we are not using the C++20 range version, we need\nto correctly implement the customized version as a friend function (making it\nvisible only to ADL) and pull in the default swap when calling it (to get the\nfallback).	text	txt
 4369	2	#include <algorithm>\n\nnamespace MyNamespace\n{\nstruct MyClass\n{\n    // Use inline friend function to implement custom swap.\n    friend void swap(MyClass&, MyClass&) { }\n};\n\nstruct MyOtherClass {};\n} // MyNamespace\n\nMyNamespace::MyClass a, b;\nMyNamespace::MyOtherClass x, y;\n\n// Fully qualified call, will always call std::swap\nstd::swap(a,b); // calls std::swap\nstd::swap(x,y); // calls std::swap\n\n// No suitable swap for MyOtherClass.\nswap(a,b); // calls MyNamespace::swap\n// swap(x,y); // would not compile\n\n// Pull std::swap as the default into local scope:\nswap(a,b); // calls MyNamespace::swap\nswap(x,y); // would not compile\n\n// Pull std::swap as the default into local scope:\n\nusing std::swap;\nswap(a,b); // calls MyNamespace::swap\nswap(x,y); // calls std::swap\n\n// C++20 std::ranges::swap which will do the correct thing:\nstd::ranges::swap(x,y); // default swap\nstd::ranges::swap(a,b); // calls MyNamespace::swap	code	cpp
 4370	1	Implementing a `strict_weak_ordering` for a custom type, at minimum requires\nproviding an overload of `operator<`.	text	txt
 4370	2	A good default for a `strict_weak_ordering` implementation is\n*lexicographical ordering*.	text	txt
@@ -16201,6 +16141,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 1645	What kinds of layers exist?	draft
 5494	Create a text widget?	review
 1484	What are the building blocks of a module?	review
+4296	Check if a string has expected postfix?	draft
 1646	What is the common way to deal with permanent chances that need to be applied as special requirements?	draft
 1647	What are the entries of a layer?	draft
 1648	Add an existing meta layer?	draft
@@ -18296,6 +18237,7 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 3749	Start over building the binary directory?	review
 3750	Build a project with single-config generators?	review
 3751	Build a project with multi-config generators?	review
+4297	Convert integeral and floating-point types into strings?	draft
 3752	What options are available to add a third-party dependency to a project?	review
 3753	What are the advantages of <code>FetchContent</code> over <code>add_subdirectory</code>?	review
 3754	Where the dependencies will be stored by <code>FetchContent</code>?	review
@@ -18643,8 +18585,6 @@ COPY flashback.cards (id, heading, state) FROM stdin;
 4293	Insert elements into containers by constructing them on insertion?	draft
 4294	Find a substring within another string?	draft
 4295	Check if a string has expected prefix?	draft
-4296	Check if a string has expected postfix?	draft
-4297	Convert integeral and floating-point types into strings?	draft
 4298	Convert string to numeric types?	draft
 4299	What are the valid input characters for integral type to string conversion functions?	draft
 4300	What exceptions are thrown by numeric to string conversion functions on failure?	draft
@@ -19678,6 +19618,11 @@ COPY flashback.cards_activities (id, "user", card, action, "time") FROM stdin;
 --
 
 COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
+41	2	origin	1
+42	2	origin	2
+14	2	origin	3
+35	2	origin	4
+58	3	origin	1
 6	1	origin	1
 3	1	origin	2
 4	1	origin	3
@@ -19698,40 +19643,37 @@ COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
 2	1	depth	18
 45	1	depth	19
 13	1	origin	20
-16	1	depth	21
-17	1	origin	22
-18	1	origin	23
-54	1	depth	24
-19	1	depth	25
-43	1	origin	26
-20	1	origin	27
-21	1	depth	28
-22	1	depth	29
-23	1	depth	30
-24	1	origin	31
-25	1	depth	32
-26	1	origin	33
-27	1	origin	34
-28	1	depth	35
-29	1	origin	36
-30	1	origin	37
-48	1	origin	38
-31	1	depth	39
-32	1	origin	40
-46	1	origin	41
-33	1	origin	42
-34	1	origin	43
-47	1	origin	44
-36	1	depth	45
-37	1	origin	46
-38	1	depth	47
-49	1	depth	48
-12	1	surface	49
-40	1	depth	50
-41	2	origin	1
-42	2	origin	2
-14	2	origin	3
-35	2	origin	4
+16	1	depth	22
+17	1	origin	23
+18	1	origin	24
+54	1	depth	25
+19	1	depth	26
+43	1	origin	27
+20	1	origin	28
+21	1	depth	29
+22	1	depth	30
+23	1	depth	31
+24	1	origin	32
+25	1	depth	33
+26	1	origin	34
+27	1	origin	35
+28	1	depth	36
+29	1	origin	37
+30	1	origin	38
+48	1	origin	39
+31	1	depth	40
+32	1	origin	41
+46	1	origin	42
+33	1	origin	43
+34	1	origin	44
+47	1	origin	45
+36	1	depth	46
+37	1	origin	47
+38	1	depth	48
+49	1	depth	49
+12	1	surface	50
+40	1	depth	51
+58	1	origin	21
 \.
 
 
@@ -20026,6 +19968,47 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	2828	2025-12-11 15:10:14.817967+01	159	0
 2	2830	2025-12-11 15:13:35.578784+01	18	0
 2	2829	2025-12-11 15:19:22.562916+01	347	0
+2	2831	2025-12-12 18:51:36.376569+01	16	0
+2	5469	2025-12-12 19:09:26.373575+01	4	0
+2	5470	2025-12-12 19:09:29.788286+01	3	0
+2	5559	2025-12-12 19:09:39.226149+01	10	0
+2	9	2025-12-12 19:21:40.739539+01	570	0
+2	3635	2025-12-12 19:23:25.210058+01	105	0
+2	3640	2025-12-12 19:23:52.044126+01	27	0
+2	3644	2025-12-12 19:24:00.479843+01	8	0
+2	5087	2025-12-12 20:14:37.92278+01	11	0
+2	5088	2025-12-12 20:14:51.290676+01	14	0
+2	5089	2025-12-12 20:15:22.403425+01	31	0
+2	5090	2025-12-12 20:16:37.260949+01	40	0
+2	5091	2025-12-12 20:17:10.130168+01	33	0
+2	5092	2025-12-12 20:17:21.492452+01	11	0
+2	5093	2025-12-12 20:19:27.327282+01	126	0
+2	5094	2025-12-12 20:19:33.432348+01	6	0
+2	5095	2025-12-12 20:19:45.141201+01	12	0
+2	5096	2025-12-12 20:20:06.738071+01	21	0
+2	5097	2025-12-12 20:21:57.096575+01	111	0
+2	5098	2025-12-12 20:22:09.121013+01	12	0
+2	5202	2025-12-12 20:22:39.66909+01	30	0
+2	5203	2025-12-12 20:24:15.168331+01	96	0
+2	5204	2025-12-12 20:25:00.509992+01	45	0
+2	5205	2025-12-12 20:26:10.860272+01	70	0
+2	5206	2025-12-12 20:27:08.648523+01	58	0
+2	5207	2025-12-12 20:28:07.483619+01	59	0
+2	5208	2025-12-12 20:28:31.954002+01	24	0
+2	5209	2025-12-12 20:39:01.512673+01	629	0
+2	5210	2025-12-12 20:43:36.117408+01	275	0
+2	5211	2025-12-12 20:47:31.741815+01	235	0
+2	5212	2025-12-12 20:48:09.305826+01	38	0
+2	5213	2025-12-12 20:48:56.723944+01	47	0
+2	5214	2025-12-12 20:53:09.380701+01	253	0
+2	5215	2025-12-12 23:22:47.749667+01	230	0
+2	5216	2025-12-12 23:23:10.210242+01	23	0
+2	5217	2025-12-12 23:28:02.221547+01	292	0
+2	5218	2025-12-12 23:29:47.090728+01	105	0
+2	5219	2025-12-12 23:31:25.063097+01	98	0
+2	5220	2025-12-12 23:32:15.62245+01	50	0
+2	5235	2025-12-12 23:34:17.721769+01	122	0
+2	5236	2025-12-12 23:35:14.772153+01	57	0
 \.
 
 
@@ -20280,8 +20263,9 @@ COPY flashback.resources_activities (id, "user", resource, action, "time") FROM 
 --
 
 COPY flashback.roadmaps (id, name) FROM stdin;
-1	Embedded Linux Software Developer
 2	String Theory Physicist
+1	Embedded Linux Software Engineer
+3	Linux Administrator
 \.
 
 
@@ -26744,170 +26728,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 
 
 --
--- Data for Name: sections_progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.sections_progress (resource, section, "user", "time", duration, id) FROM stdin;
-17	1	2	2025-08-01 16:35:39+02	212	2
-17	2	2	2025-08-01 20:32:53+02	418	3
-17	3	2	2025-08-01 22:35:46+02	7359	4
-43	1	2	2025-08-15 09:47:35+02	9	5
-43	2	2	2025-08-15 09:48:13+02	38	6
-43	3	2	2025-08-15 09:51:18+02	185	7
-43	4	2	2025-08-15 09:52:46+02	87	8
-43	7	2	2025-08-15 09:53:05+02	19	9
-43	8	2	2025-08-15 09:53:16+02	11	10
-43	9	2	2025-08-15 09:53:20+02	4	11
-43	10	2	2025-08-15 09:53:29+02	9	12
-43	11	2	2025-08-15 09:53:36+02	7	13
-43	12	2	2025-08-15 09:53:57+02	21	14
-43	13	2	2025-08-15 09:53:58+02	1	15
-43	14	2	2025-08-15 09:54:01+02	3	16
-43	15	2	2025-08-15 09:54:03+02	2	17
-43	16	2	2025-08-15 09:54:04+02	1	18
-43	17	2	2025-08-15 09:54:07+02	3	19
-43	18	2	2025-08-15 09:54:09+02	2	20
-43	19	2	2025-08-15 09:54:15+02	5	21
-43	20	2	2025-08-15 09:54:37+02	22	22
-43	21	2	2025-08-15 09:54:42+02	4	23
-43	22	2	2025-08-15 09:54:48+02	6	24
-43	23	2	2025-08-15 09:54:51+02	3	25
-43	24	2	2025-08-15 09:55:00+02	9	26
-43	25	2	2025-08-15 09:55:05+02	5	27
-43	26	2	2025-08-15 09:55:10+02	5	28
-43	27	2	2025-08-15 09:55:11+02	1	29
-107	1	2	2025-08-16 19:01:36+02	823	30
-107	2	2	2025-08-16 19:33:18+02	1902	31
-107	3	2	2025-08-16 20:33:21+02	3603	32
-124	3	2	2025-08-17 01:36:44+02	1018	33
-112	2	2	2025-08-17 01:39:00+02	11	34
-112	3	2	2025-08-17 01:39:07+02	7	35
-112	5	2	2025-08-17 01:39:18+02	11	36
-110	2	2	2025-08-17 21:03:03+02	2857	37
-110	2	2	2025-08-18 15:04:59+02	4617	38
-108	1	2	2025-08-21 19:08:03+02	4763	39
-108	2	2	2025-08-21 19:11:46+02	223	40
-108	3	2	2025-08-21 19:17:31+02	344	41
-108	4	2	2025-08-21 19:17:33+02	2	42
-108	6	2	2025-08-21 19:17:36+02	3	43
-110	2	2	2025-08-23 09:35:07+02	4038	44
-81	1	2	2025-08-28 18:46:46+02	84	49
-81	1	2	2025-08-28 18:59:58+02	28	50
-81	2	2	2025-08-28 19:18:02+02	1084	51
-81	3	2	2025-08-28 19:41:33+02	1411	52
-107	1	2	2025-09-03 19:01:20+02	858	53
-107	2	2	2025-09-03 19:39:06+02	2265	54
-107	3	2	2025-09-03 19:49:57+02	651	55
-136	1	2	2025-09-14 22:55:20+02	53291	59
-61	1	2	2025-09-19 20:19:20+02	736	60
-61	1	2	2025-09-20 10:51:22+02	12815	61
-93	4	2	2025-09-20 16:58:54+02	2380	62
-93	5	2	2025-09-20 17:08:07+02	553	63
-93	6	2	2025-09-20 17:25:35+02	1048	64
-93	7	2	2025-09-20 17:25:46+02	11	65
-114	1	2	2025-09-21 11:59:10+02	16315	66
-106	1	2	2025-09-28 10:08:55+02	14	67
-106	1	2	2025-09-28 12:15:57+02	228	68
-106	2	2	2025-09-28 12:58:59+02	2582	69
-25	1	2	2025-09-28 22:55:42+02	16	70
-47	1	2	2025-10-03 00:44:51+02	1581	71
-88	1	2	2025-10-03 03:26:33+02	1593	72
-96	1	2	2025-10-03 11:34:22+02	8000	73
-109	2	2	2025-10-03 12:40:03+02	146	74
-109	3	2	2025-10-03 12:44:54+02	291	75
-109	4	2	2025-10-03 12:50:40+02	346	76
-58	1	2	2025-10-04 22:42:27+02	6	79
-58	2	2	2025-10-04 22:43:30+02	8	80
-94	1	2	2025-10-04 22:43:57+02	4	81
-58	2	2	2025-10-05 00:42:38+02	6863	82
-58	3	2	2025-10-05 00:43:29+02	34	83
-58	1	2	2025-10-05 10:36:22+02	439	84
-94	1	2	2025-10-05 11:41:00+02	34	85
-94	1	2	2025-10-05 11:48:09+02	19	86
-58	1	2	2025-10-05 12:16:45+02	4	87
-58	1	2	2025-10-05 12:17:19+02	1	88
-58	2	2	2025-10-05 12:17:22+02	3	89
-58	1	2	2025-10-05 12:24:30+02	13	90
-58	1	2	2025-10-05 12:32:29+02	346	91
-58	2	2	2025-10-05 12:53:59+02	1290	92
-58	3	2	2025-10-05 12:58:16+02	257	93
-58	4	2	2025-10-05 14:04:23+02	3342	94
-58	5	2	2025-10-05 16:55:15+02	6940	95
-58	6	2	2025-10-06 22:07:49+02	485	96
-100	1	2	2025-10-07 03:52:32+02	1217	97
-58	7	2	2025-10-07 09:42:21+02	2464	98
-58	8	2	2025-10-07 13:57:36+02	4	99
-58	8	2	2025-10-07 14:01:49+02	90	100
-58	9	2	2025-10-08 02:39:01+02	10376	101
-94	1	2	2025-10-08 02:54:10+02	866	102
-17	1	2	2025-10-08 03:26:41+02	69	103
-100	1	2	2025-10-09 17:22:38+02	1002	104
-100	1	2	2025-10-09 23:14:08+02	20	105
-58	1	2	2025-10-12 00:30:40+02	417	106
-58	1	2	2025-10-12 00:51:06+02	6	107
-58	2	2	2025-10-12 00:53:02+02	116	108
-58	3	2	2025-10-12 00:54:16+02	74	109
-58	4	2	2025-10-12 01:00:23+02	367	110
-58	5	2	2025-10-12 02:44:39+02	6256	111
-58	6	2	2025-10-12 02:44:51+02	12	112
-58	7	2	2025-10-12 02:45:14+02	23	113
-58	8	2	2025-10-12 02:45:26+02	12	114
-58	9	2	2025-10-12 02:45:53+02	27	115
-58	1	2	2025-10-12 13:01:07+02	5	116
-58	2	2	2025-10-12 13:12:36+02	689	117
-58	3	2	2025-10-12 13:12:40+02	4	118
-58	4	2	2025-10-12 13:16:15+02	215	119
-107	1	2	2025-10-12 18:42:11+02	29	120
-107	2	2	2025-10-12 18:51:58+02	587	121
-109	2	2	2025-10-12 20:48:10+02	515	122
-109	3	2	2025-10-12 20:52:12+02	242	123
-109	4	2	2025-10-12 21:03:41+02	689	124
-47	1	2	2025-10-15 15:03:02+02	8556	125
-88	1	2	2025-10-16 14:42:54+02	1832	126
-109	2	2	2025-10-16 15:00:35+02	1018	127
-109	3	2	2025-10-16 15:56:06+02	3331	128
-106	1	2	2025-10-17 18:28:16+02	1333	129
-106	2	2	2025-10-18 10:10:43+02	1797	130
-109	5	2	2025-10-18 10:13:02+02	116	131
-109	6	2	2025-10-18 10:16:39+02	11	132
-109	6	2	2025-10-18 10:42:02+02	1260	133
-109	6	2	2025-10-18 13:56:30+02	4	134
-55	4	2	2025-10-18 19:42:39+02	68	135
-55	6	2	2025-10-18 20:13:21+02	1842	136
-55	7	2	2025-10-18 20:51:52+02	2311	137
-55	8	2	2025-10-18 20:59:46+02	474	138
-55	10	2	2025-10-19 09:43:02+02	4421	139
-44	2	2	2025-10-19 13:01:09+02	62	140
-44	3	2	2025-10-19 13:35:04+02	2035	141
-14	3	2	2025-10-19 13:38:11+02	160	142
-14	6	2	2025-10-19 13:54:10+02	959	143
-30	1	2	2025-10-19 14:15:06+02	1231	144
-151	1	2	2025-10-22 23:52:05+02	1110	145
-151	2	2	2025-10-22 23:55:30+02	205	146
-30	1	2	2025-10-23 21:24:02+02	56	147
-105	1	2	2025-08-24 19:17:40+02	25	45
-105	1	2	2025-08-28 17:10:19+02	1936	46
-105	3	2	2025-08-28 17:25:43+02	924	47
-105	5	2	2025-08-28 17:43:00+02	1037	48
-105	1	2	2025-09-06 08:36:54+02	475	56
-105	3	2	2025-09-06 08:55:58+02	1143	57
-105	5	2	2025-09-06 09:07:40+02	702	58
-105	1	2	2025-10-03 16:05:30+02	1607	77
-105	3	2	2025-10-03 16:23:56+02	1106	78
-151	1	2	2025-10-26 11:08:30+01	111	148
-151	2	2	2025-10-26 11:12:42+01	252	149
-151	3	2	2025-10-26 11:50:09+01	2247	150
-151	5	2	2025-10-27 15:50:26+01	16	151
-100	1	2	2025-11-10 12:01:05+01	19436	152
-100	3	2	2025-11-10 16:02:02+01	13896	153
-100	4	2	2025-11-27 08:37:29+01	924	154
-100	8	2	2025-11-27 09:40:39+01	3025	155
-100	9	2	2025-11-28 15:31:28+01	5273	156
-35	3	2	2025-12-04 15:02:46+01	5249	157
-\.
-
-
---
 -- Data for Name: sessions; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -27224,6 +27044,7 @@ COPY flashback.subjects (id, name) FROM stdin;
 55	ARM
 56	ESP32
 57	Raspberry Pi
+58	SELinux
 \.
 
 
@@ -27612,37 +27433,20 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 16	Runner Matrix	27	surface
 17	Permissions	27	surface
 7	Rectangle Class Template	15	surface
-9	Mandatory Access Control	13	surface
-10	Discretionary Access Control Commands	13	surface
-11	Enabling SELinux	13	surface
-12	Contexts	13	surface
-13	Process Attributes	13	surface
-14	Type Enforcement	13	surface
 18	Log Annotations	27	surface
 19	Running Workflows Locally	27	surface
 20	Creating Actions	27	surface
-15	Roles	13	surface
-16	Users	13	surface
-17	Sensitivity	13	surface
-18	Categories	13	surface
-19	Locating Tools	13	surface
-20	System Monitoring	13	surface
-21	Working Directory	13	surface
-22	User Management	13	surface
-23	System Domain	13	surface
-24	Kernel Management	13	surface
-25	Output Generators	13	surface
-26	Removing Files	13	surface
-27	Creating Directories	13	surface
-28	Manual Pages	13	surface
-29	Moving Files	13	surface
-30	Changing Directory	13	surface
-31	Listing Directory Entries	13	surface
-32	Stream Manipulators	13	surface
-33	Grep	13	surface
 2	Ethical Hacking	45	surface
 3	Penetration Testing	45	surface
-34	Sed	13	surface
+9	Locating Tools	13	surface
+10	System Monitoring	13	surface
+11	Working Directory	13	surface
+12	User Management	13	surface
+13	System Domain	13	surface
+14	Kernel Management	13	surface
+15	Output Generators	13	surface
+16	Removing Files	13	surface
+17	Creating Directories	13	surface
 5	Backup Strategies	18	surface
 6	Logical Backup	18	surface
 7	Physical Backup	18	surface
@@ -27655,8 +27459,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 14	Scheduling Backup	18	surface
 15	Copying Data	18	surface
 16	Point in Time Recovery	18	surface
-35	Defining Policies	13	surface
-36	Unconfined Domains	13	surface
 1	Asynchronous IO Context	3	surface
 2	Asynchronous Event Processing Loop	3	surface
 3	Queueing Asynchronous Tasks	3	surface
@@ -27911,6 +27713,25 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 51	Install Tree	5	surface
 52	Package Config	5	surface
 31	Variants	6	surface
+1	Mandatory Access Control	58	surface
+2	Discretionary Access Control Commands	58	surface
+3	Enabling SELinux	58	surface
+4	Contexts	58	surface
+5	Process Attributes	58	surface
+6	Type Enforcement	58	surface
+7	Roles	58	surface
+8	Users	58	surface
+9	Sensitivity	58	surface
+10	Categories	58	surface
+18	Manual Pages	13	surface
+19	Moving Files	13	surface
+20	Changing Directory	13	surface
+21	Listing Directory Entries	13	surface
+22	Stream Manipulators	13	surface
+23	Grep	13	surface
+24	Sed	13	surface
+11	Defining Policies	58	surface
+12	Unconfined Domains	58	surface
 \.
 
 
@@ -27927,8 +27748,6 @@ COPY flashback.topics_activities (id, "user", topic, action, "time", subject, le
 --
 
 COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin;
-35	5433	1	13	surface
-35	5438	6	13	surface
 4	4015	2	2	surface
 9	4028	1	2	surface
 9	4029	2	2	surface
@@ -28253,7 +28072,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 108	4349	3	6	surface
 109	4350	1	6	surface
 110	4351	1	6	surface
-35	5434	2	13	surface
 112	4353	1	6	surface
 116	4354	1	6	surface
 117	4355	1	6	surface
@@ -28355,7 +28173,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 132	2278	16	6	surface
 132	2280	18	6	surface
 4	2662	10	5	surface
-35	5435	3	13	surface
 24	2660	2	5	surface
 16	5465	15	15	surface
 16	5466	16	15	surface
@@ -28822,7 +28639,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 2	5112	4	16	surface
 1	5113	1	17	surface
 2	5114	1	17	surface
-35	5436	4	13	surface
 3	5139	1	19	surface
 3	5140	2	19	surface
 4	5141	1	19	surface
@@ -28939,7 +28755,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 17	5193	2	27	surface
 214	5200	2	6	surface
 215	5201	1	6	surface
-9	5202	1	13	surface
 13	2716	2	8	surface
 14	2017	3	8	surface
 14	1491	5	8	surface
@@ -28987,15 +28802,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 217	3964	4	6	surface
 217	5361	1	6	surface
 217	5362	2	6	surface
-9	5203	2	13	surface
-9	5205	4	13	surface
-10	5207	1	13	surface
-11	5209	1	13	surface
-12	5211	1	13	surface
-12	5213	3	13	surface
-12	5215	5	13	surface
-13	5217	1	13	surface
-13	5219	3	13	surface
 18	5221	1	27	surface
 19	5223	2	27	surface
 19	5225	4	27	surface
@@ -29003,24 +28809,9 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 19	5229	8	27	surface
 19	5231	10	27	surface
 19	5233	12	27	surface
-15	5236	2	13	surface
-15	5238	4	13	surface
-16	5240	2	13	surface
-17	5242	1	13	surface
-17	5244	3	13	surface
-18	5246	2	13	surface
 217	5363	3	6	surface
 218	5364	1	6	surface
 218	5365	2	6	surface
-9	5204	3	13	surface
-9	5206	5	13	surface
-10	5208	2	13	surface
-11	5210	2	13	surface
-12	5212	2	13	surface
-12	5214	4	13	surface
-12	5216	6	13	surface
-13	5218	2	13	surface
-14	5220	1	13	surface
 19	5222	1	27	surface
 19	5224	3	27	surface
 19	5226	5	27	surface
@@ -29028,98 +28819,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 19	5230	9	27	surface
 19	5232	11	27	surface
 20	5234	1	27	surface
-15	5235	1	13	surface
-15	5237	3	13	surface
-16	5239	1	13	surface
-16	5241	3	13	surface
-17	5243	2	13	surface
-18	5245	1	13	surface
-19	5247	1	13	surface
-19	5248	2	13	surface
-19	5249	3	13	surface
-19	5250	4	13	surface
-19	5251	5	13	surface
-19	5252	6	13	surface
-19	5253	7	13	surface
-19	5254	8	13	surface
-19	5255	9	13	surface
-20	5256	1	13	surface
-21	5257	1	13	surface
-21	5258	2	13	surface
-22	5259	1	13	surface
-23	5260	1	13	surface
-23	5261	2	13	surface
-23	5262	3	13	surface
-23	5263	4	13	surface
-24	5264	1	13	surface
-24	5265	2	13	surface
-25	5266	1	13	surface
-25	5267	2	13	surface
-26	5268	1	13	surface
-26	5269	2	13	surface
-26	5270	3	13	surface
-26	5271	4	13	surface
-26	5272	5	13	surface
-26	5273	6	13	surface
-26	5274	7	13	surface
-26	5275	8	13	surface
-26	5276	9	13	surface
-26	5277	10	13	surface
-27	5278	1	13	surface
-27	5279	2	13	surface
-27	5280	3	13	surface
-27	5281	4	13	surface
-28	5282	1	13	surface
-28	5283	2	13	surface
-28	5284	3	13	surface
-28	5285	4	13	surface
-28	5286	5	13	surface
-28	5287	6	13	surface
-28	5288	7	13	surface
-28	5289	8	13	surface
-28	5290	9	13	surface
-29	5291	1	13	surface
-29	5292	2	13	surface
-29	5293	3	13	surface
-29	5294	4	13	surface
-29	5295	5	13	surface
-29	5296	6	13	surface
-29	5297	7	13	surface
-30	5298	1	13	surface
-30	5299	2	13	surface
-30	5300	3	13	surface
-30	5301	4	13	surface
-31	5302	1	13	surface
-31	5303	2	13	surface
-31	5304	3	13	surface
-31	5305	4	13	surface
-31	5306	5	13	surface
-31	5307	6	13	surface
-32	5308	1	13	surface
-32	5309	2	13	surface
-32	5310	3	13	surface
-32	5311	4	13	surface
-32	5312	5	13	surface
-32	5313	6	13	surface
-32	5314	7	13	surface
-32	5315	8	13	surface
-32	5316	9	13	surface
-32	5317	10	13	surface
-33	5318	1	13	surface
-33	5319	2	13	surface
-33	5320	3	13	surface
-33	5321	4	13	surface
-33	5322	5	13	surface
-33	5323	6	13	surface
-33	5324	7	13	surface
-33	5325	8	13	surface
-33	5326	9	13	surface
-33	5327	10	13	surface
-33	5328	11	13	surface
-33	5329	12	13	surface
-33	5330	13	13	surface
-33	5331	14	13	surface
-33	5332	15	13	surface
 2	5333	1	45	surface
 2	5334	2	45	surface
 2	5335	3	45	surface
@@ -29153,19 +28852,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 10	1290	4	7	surface
 10	1294	6	7	surface
 4	3647	1	15	surface
-34	5373	1	13	surface
-34	5374	2	13	surface
-34	5375	3	13	surface
-34	5376	4	13	surface
-34	5377	5	13	surface
-34	5378	6	13	surface
-34	5379	7	13	surface
-34	5380	8	13	surface
-34	5381	9	13	surface
-34	5382	10	13	surface
-34	5383	11	13	surface
-34	5384	12	13	surface
-34	5385	13	13	surface
 5	5386	1	18	surface
 5	5387	2	18	surface
 6	5388	1	18	surface
@@ -29183,6 +28869,11 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 8	5400	8	18	surface
 8	5401	9	18	surface
 8	5402	10	18	surface
+9	5247	1	13	surface
+9	5248	2	13	surface
+9	5249	3	13	surface
+9	5250	4	13	surface
+9	5251	5	13	surface
 8	5403	11	18	surface
 8	5404	12	18	surface
 9	5405	1	18	surface
@@ -29245,9 +28936,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 12	1354	4	7	surface
 2	30	1	8	surface
 3	2677	1	8	surface
-35	5437	5	13	surface
-35	5439	7	13	surface
-35	5440	8	13	surface
 7	42	1	8	surface
 8	2687	1	8	surface
 11	2700	12	8	surface
@@ -29258,10 +28946,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 2	219	6	18	surface
 3	232	3	18	surface
 1	1725	9	20	surface
-35	5441	9	13	surface
-36	5442	1	13	surface
-36	5443	2	13	surface
-36	5444	3	13	surface
 1	2769	1	3	surface
 1	1733	3	3	surface
 7	1734	1	3	surface
@@ -29964,19 +29648,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 38	5557	1	51	surface
 39	5558	1	51	surface
 1	5559	1	51	depth
-34	5560	14	13	surface
-34	5561	15	13	surface
-34	5562	16	13	surface
-34	5563	17	13	surface
-34	5564	18	13	surface
-34	5565	19	13	surface
-34	5566	20	13	surface
-34	5567	21	13	surface
-34	5568	22	13	surface
-34	5569	23	13	surface
-34	5570	24	13	surface
-34	5571	25	13	surface
-34	5572	26	13	surface
 9	3469	6	24	surface
 9	3470	7	24	surface
 9	3471	8	24	surface
@@ -30193,336 +29864,156 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 54	683	7	6	surface
 54	684	8	6	surface
 54	685	9	6	surface
-\.
-
-
---
--- Data for Name: topics_progress; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.topics_progress ("user", topic, "time", duration, subject, level, id) FROM stdin;
-2	1	2025-07-30 09:51:44+02	4	6	surface	2
-2	2	2025-07-30 09:52:15+02	31	6	surface	3
-2	3	2025-07-30 09:52:41+02	26	6	surface	4
-2	4	2025-07-30 09:52:52+02	11	6	surface	5
-2	5	2025-07-30 09:54:24+02	92	6	surface	6
-2	6	2025-07-30 09:56:13+02	109	6	surface	7
-2	7	2025-07-30 10:01:43+02	330	6	surface	8
-2	8	2025-07-30 10:01:46+02	3	6	surface	9
-2	9	2025-07-30 10:03:16+02	90	6	surface	10
-2	10	2025-07-30 10:03:22+02	6	6	surface	11
-2	11	2025-07-30 10:13:16+02	594	6	surface	12
-2	12	2025-07-30 10:13:16+02	0	6	surface	13
-2	13	2025-07-30 10:13:16+02	0	6	surface	14
-2	14	2025-07-30 10:13:16+02	0	6	surface	15
-2	15	2025-07-30 10:19:28+02	372	6	surface	16
-2	16	2025-07-30 10:19:28+02	0	6	surface	17
-2	17	2025-07-30 10:19:28+02	0	6	surface	18
-2	18	2025-07-30 10:19:34+02	6	6	surface	19
-2	19	2025-07-30 10:27:41+02	487	6	surface	20
-2	20	2025-07-30 10:29:29+02	108	6	surface	21
-2	21	2025-07-30 10:29:51+02	22	6	surface	22
-2	22	2025-07-30 10:53:22+02	1411	6	surface	23
-2	23	2025-07-30 11:06:43+02	801	6	surface	24
-2	24	2025-07-30 12:11:42+02	3899	6	surface	25
-2	25	2025-07-30 13:34:45+02	4983	6	surface	26
-2	26	2025-07-30 14:15:30+02	2445	6	surface	27
-2	27	2025-07-30 14:22:23+02	413	6	surface	28
-2	28	2025-07-30 14:22:28+02	5	6	surface	29
-2	29	2025-07-30 14:23:21+02	53	6	surface	30
-2	30	2025-07-30 14:34:37+02	676	6	surface	31
-2	1	2025-08-02 10:18:34+02	3	6	surface	64
-2	2	2025-08-02 10:18:37+02	3	6	surface	65
-2	3	2025-08-02 10:18:40+02	3	6	surface	66
-2	4	2025-08-02 10:19:54+02	74	6	surface	67
-2	5	2025-08-02 10:20:51+02	57	6	surface	68
-2	6	2025-08-02 10:21:07+02	16	6	surface	69
-2	7	2025-08-02 10:21:16+02	9	6	surface	70
-2	8	2025-08-02 10:24:02+02	166	6	surface	71
-2	9	2025-08-02 10:24:10+02	8	6	surface	72
-2	10	2025-08-02 10:24:21+02	11	6	surface	73
-2	11	2025-08-02 10:32:37+02	496	6	surface	74
-2	15	2025-08-02 10:32:41+02	3	6	surface	75
-2	18	2025-08-02 10:32:46+02	5	6	surface	76
-2	19	2025-08-02 10:40:28+02	462	6	surface	77
-2	20	2025-08-02 10:40:38+02	10	6	surface	78
-2	21	2025-08-02 10:42:48+02	130	6	surface	79
-2	22	2025-08-02 10:58:32+02	944	6	surface	80
-2	23	2025-08-02 11:00:21+02	109	6	surface	81
-2	24	2025-08-02 11:16:56+02	995	6	surface	82
-2	25	2025-08-02 19:02:04+02	39	6	surface	83
-2	26	2025-08-02 19:02:17+02	13	6	surface	84
-2	27	2025-08-02 19:02:31+02	14	6	surface	85
-2	28	2025-08-02 19:02:33+02	2	6	surface	86
-2	29	2025-08-02 19:07:28+02	295	6	surface	87
-2	30	2025-08-02 19:12:21+02	293	6	surface	88
-2	31	2025-08-02 23:37:38+02	108	6	surface	89
-2	33	2025-08-02 23:44:28+02	410	6	surface	90
-2	34	2025-08-03 00:08:44+02	1455	6	surface	91
-2	35	2025-08-03 00:17:10+02	506	6	surface	92
-2	36	2025-08-03 00:17:24+02	14	6	surface	93
-2	37	2025-08-03 00:28:12+02	647	6	surface	94
-2	38	2025-08-03 00:34:45+02	393	6	surface	95
-2	39	2025-08-03 00:36:38+02	113	6	surface	96
-2	40	2025-08-03 00:36:48+02	9	6	surface	97
-2	41	2025-08-03 00:43:09+02	381	6	surface	98
-2	1	2025-08-03 09:27:15+02	3	6	surface	99
-2	2	2025-08-03 09:27:26+02	11	6	surface	100
-2	3	2025-08-03 09:55:20+02	85	6	surface	101
-2	4	2025-08-03 09:55:27+02	7	6	surface	102
-2	5	2025-08-03 09:55:42+02	15	6	surface	103
-2	6	2025-08-03 09:55:53+02	11	6	surface	104
-2	7	2025-08-03 09:56:43+02	50	6	surface	105
-2	8	2025-08-03 09:57:17+02	34	6	surface	106
-2	9	2025-08-03 09:57:22+02	5	6	surface	107
-2	10	2025-08-03 09:57:28+02	6	6	surface	108
-2	11	2025-08-03 10:09:45+02	737	6	surface	109
-2	15	2025-08-03 10:09:48+02	3	6	surface	110
-2	18	2025-08-03 10:09:55+02	7	6	surface	111
-2	19	2025-08-03 10:10:41+02	46	6	surface	112
-2	20	2025-08-03 10:10:48+02	7	6	surface	113
-2	21	2025-08-03 10:10:52+02	4	6	surface	114
-2	22	2025-08-03 10:25:41+02	889	6	surface	115
-2	23	2025-08-03 10:30:50+02	309	6	surface	116
-2	24	2025-08-03 10:44:36+02	826	6	surface	117
-2	25	2025-08-03 12:47:08+02	7352	6	surface	118
-2	26	2025-08-03 12:47:18+02	10	6	surface	119
-2	27	2025-08-03 12:47:33+02	15	6	surface	120
-2	28	2025-08-03 12:47:44+02	11	6	surface	121
-2	29	2025-08-03 12:47:49+02	5	6	surface	122
-2	30	2025-08-03 12:47:56+02	7	6	surface	123
-2	31	2025-08-03 12:52:17+02	261	6	surface	124
-2	33	2025-08-03 14:30:18+02	5881	6	surface	125
-2	42	2025-08-03 15:14:48+02	2670	6	surface	126
-2	43	2025-08-03 15:15:07+02	19	6	surface	127
-2	44	2025-08-03 15:15:30+02	23	6	surface	128
-2	1	2025-08-07 20:10:31+02	1	6	surface	129
-2	2	2025-08-07 20:10:36+02	5	6	surface	130
-2	3	2025-08-07 20:10:58+02	22	6	surface	131
-2	4	2025-08-07 20:11:28+02	30	6	surface	132
-2	5	2025-08-07 20:11:38+02	9	6	surface	133
-2	6	2025-08-07 20:11:41+02	3	6	surface	134
-2	7	2025-08-07 20:11:50+02	9	6	surface	135
-2	8	2025-08-07 20:13:16+02	86	6	surface	136
-2	9	2025-08-07 20:13:18+02	2	6	surface	137
-2	10	2025-08-07 20:14:04+02	46	6	surface	138
-2	11	2025-08-07 20:15:45+02	101	6	surface	139
-2	15	2025-08-07 20:15:48+02	3	6	surface	140
-2	18	2025-08-07 20:15:50+02	2	6	surface	141
-2	19	2025-08-07 20:16:03+02	13	6	surface	142
-2	20	2025-08-07 20:17:26+02	83	6	surface	143
-2	21	2025-08-07 20:17:30+02	4	6	surface	144
-2	22	2025-08-07 20:21:33+02	243	6	surface	145
-2	23	2025-08-07 20:26:40+02	307	6	surface	146
-2	24	2025-08-07 20:27:13+02	33	6	surface	147
-2	1	2025-08-10 08:00:21+02	13	6	surface	148
-2	2	2025-08-10 08:00:28+02	7	6	surface	149
-2	3	2025-08-10 08:00:30+02	2	6	surface	150
-2	4	2025-08-10 08:00:42+02	12	6	surface	151
-2	5	2025-08-10 08:04:00+02	198	6	surface	152
-2	6	2025-08-10 08:04:03+02	3	6	surface	153
-2	7	2025-08-10 08:08:23+02	260	6	surface	154
-2	8	2025-08-10 08:08:27+02	4	6	surface	155
-2	9	2025-08-10 08:08:29+02	2	6	surface	156
-2	10	2025-08-10 08:08:31+02	2	6	surface	157
-2	11	2025-08-10 08:09:36+02	65	6	surface	158
-2	15	2025-08-10 08:09:38+02	2	6	surface	159
-2	18	2025-08-10 08:09:42+02	4	6	surface	160
-2	19	2025-08-10 08:09:55+02	13	6	surface	161
-2	20	2025-08-10 08:10:55+02	60	6	surface	162
-2	21	2025-08-10 08:10:56+02	1	6	surface	163
-2	22	2025-08-10 08:13:43+02	167	6	surface	164
-2	23	2025-08-10 08:15:32+02	109	6	surface	165
-2	24	2025-08-10 08:16:02+02	30	6	surface	166
-2	25	2025-08-10 08:18:52+02	170	6	surface	167
-2	26	2025-08-10 08:19:37+02	45	6	surface	168
-2	27	2025-08-10 08:19:51+02	14	6	surface	169
-2	28	2025-08-10 08:19:58+02	6	6	surface	170
-2	29	2025-08-10 08:20:00+02	2	6	surface	171
-2	30	2025-08-10 08:20:06+02	6	6	surface	172
-2	31	2025-08-10 08:34:44+02	878	6	surface	173
-2	33	2025-08-10 10:09:13+02	5669	6	surface	174
-2	34	2025-08-10 14:53:59+02	1329	6	surface	175
-2	35	2025-08-10 14:54:05+02	6	6	surface	176
-2	36	2025-08-10 14:54:19+02	14	6	surface	177
-2	37	2025-08-10 14:56:23+02	124	6	surface	178
-2	1	2025-08-17 13:55:55+02	5	27	surface	179
-2	1	2025-08-24 19:32:50+02	5	6	surface	180
-2	2	2025-08-24 19:32:58+02	8	6	surface	181
-2	3	2025-08-24 19:33:04+02	6	6	surface	182
-2	4	2025-08-24 19:33:12+02	8	6	surface	183
-2	5	2025-08-24 19:40:36+02	444	6	surface	184
-2	1	2025-09-02 21:59:30+02	13	27	surface	185
-2	2	2025-09-02 21:59:32+02	2	27	surface	186
-2	3	2025-09-02 22:04:02+02	269	27	surface	187
-2	4	2025-09-02 22:12:09+02	487	27	surface	188
-2	5	2025-09-02 22:13:10+02	61	27	surface	189
-2	6	2025-09-02 22:13:12+02	2	27	surface	190
-2	7	2025-09-02 22:15:00+02	108	27	surface	191
-2	8	2025-09-02 22:18:29+02	209	27	surface	192
-2	9	2025-09-02 22:18:41+02	12	27	surface	193
-2	1	2025-09-08 22:02:26+02	81	6	surface	194
-2	1	2025-09-09 20:13:58+02	1	6	surface	195
-2	2	2025-09-09 20:19:33+02	335	6	surface	196
-2	3	2025-09-09 20:25:36+02	363	6	surface	197
-2	4	2025-09-09 20:38:39+02	783	6	surface	198
-2	5	2025-09-09 20:52:37+02	838	6	surface	199
-2	6	2025-09-09 20:54:54+02	137	6	surface	200
-2	7	2025-09-09 21:03:15+02	501	6	surface	201
-2	8	2025-09-09 21:03:55+02	40	6	surface	202
-2	9	2025-09-09 21:04:09+02	14	6	surface	203
-2	10	2025-09-09 21:05:07+02	58	6	surface	204
-2	11	2025-09-09 21:08:27+02	200	6	surface	205
-2	15	2025-09-09 21:09:25+02	58	6	surface	206
-2	18	2025-09-09 21:18:54+02	1	6	surface	207
-2	1	2025-10-08 03:27:05+02	14	11	surface	208
-2	1	2025-10-18 15:56:03+02	20	15	surface	223
-2	2	2025-10-18 15:56:32+02	29	15	surface	224
-2	3	2025-10-18 15:58:07+02	95	15	surface	225
-2	4	2025-10-18 15:58:13+02	6	15	surface	226
-2	5	2025-10-18 16:00:44+02	27	15	surface	227
-2	6	2025-10-18 16:00:50+02	6	15	surface	228
-2	7	2025-10-18 16:00:53+02	3	15	surface	229
-2	8	2025-10-18 16:00:56+02	3	15	surface	230
-2	9	2025-10-18 16:00:57+02	1	15	surface	231
-2	10	2025-10-18 16:01:05+02	8	15	surface	232
-2	24	2025-10-18 16:01:50+02	4	15	surface	239
-2	16	2025-10-18 16:01:22+02	17	15	surface	233
-2	17	2025-10-18 16:01:25+02	3	15	surface	234
-2	19	2025-10-18 16:01:32+02	7	15	surface	235
-2	20	2025-10-18 16:01:42+02	10	15	surface	236
-2	21	2025-10-18 16:01:43+02	1	15	surface	237
-2	22	2025-10-18 16:01:46+02	3	15	surface	238
-2	1	2025-10-22 00:34:47+02	119	51	surface	240
-2	2	2025-10-22 00:42:56+02	489	51	surface	241
-2	3	2025-10-22 00:47:32+02	276	51	surface	242
-2	4	2025-10-22 00:49:30+02	117	51	surface	243
-2	5	2025-10-22 00:50:01+02	31	51	surface	244
-2	6	2025-10-22 00:52:04+02	123	51	surface	245
-2	7	2025-10-22 00:53:28+02	84	51	surface	246
-2	8	2025-10-22 00:53:41+02	13	51	surface	247
-2	1	2025-10-23 21:28:23+02	212	51	surface	248
-2	2	2025-10-23 21:29:08+02	45	51	surface	249
-2	3	2025-10-23 21:41:29+02	741	51	surface	250
-2	4	2025-10-23 21:42:05+02	36	51	surface	251
-2	5	2025-10-23 21:46:41+02	276	51	surface	252
-2	6	2025-10-23 21:47:07+02	26	51	surface	253
-2	7	2025-10-23 21:53:27+02	380	51	surface	254
-2	8	2025-10-23 21:54:18+02	51	51	surface	255
-2	1	2025-10-24 20:45:41+02	477	51	surface	256
-2	1	2025-10-27 14:10:08+01	2	51	surface	257
-2	2	2025-10-27 14:10:11+01	3	51	surface	258
-2	3	2025-10-27 14:10:15+01	4	51	surface	259
-2	4	2025-10-27 14:10:22+01	7	51	surface	260
-2	5	2025-10-27 14:10:25+01	3	51	surface	261
-2	6	2025-10-27 14:10:28+01	3	51	surface	262
-2	7	2025-10-27 14:10:37+01	9	51	surface	263
-2	8	2025-10-27 14:10:38+01	1	51	surface	264
-2	1	2025-11-02 02:02:16+01	189	51	surface	265
-2	2	2025-11-02 02:02:24+01	8	51	surface	266
-2	3	2025-11-02 02:04:52+01	148	51	surface	267
-2	4	2025-11-02 02:06:01+01	69	51	surface	268
-2	5	2025-11-02 02:06:07+01	6	51	surface	269
-2	6	2025-11-02 02:06:22+01	15	51	surface	270
-2	7	2025-11-02 02:06:40+01	18	51	surface	271
-2	8	2025-11-02 02:07:09+01	29	51	surface	272
-2	9	2025-11-02 02:25:24+01	1095	51	surface	273
-2	10	2025-11-02 02:26:11+01	47	51	surface	274
-2	11	2025-11-02 02:26:12+01	1	51	surface	275
-2	12	2025-11-02 02:26:16+01	4	51	surface	276
-2	13	2025-11-02 02:26:44+01	27	51	surface	277
-2	14	2025-11-02 09:34:46+01	881	51	surface	278
-2	15	2025-11-02 09:39:01+01	255	51	surface	279
-2	16	2025-11-02 10:21:36+01	2555	51	surface	280
-2	17	2025-11-02 10:39:23+01	1067	51	surface	281
-2	18	2025-11-02 10:40:26+01	63	51	surface	282
-2	19	2025-11-02 10:40:28+01	2	51	surface	283
-2	20	2025-11-02 10:43:19+01	171	51	surface	284
-2	21	2025-11-02 10:43:43+01	24	51	surface	285
-2	22	2025-11-02 18:33:54+01	96	51	surface	286
-2	23	2025-11-02 18:33:56+01	2	51	surface	287
-2	24	2025-11-02 18:33:57+01	1	51	surface	288
-2	25	2025-11-02 18:34:04+01	7	51	surface	289
-2	26	2025-11-02 18:34:05+01	1	51	surface	290
-2	27	2025-11-02 18:34:06+01	1	51	surface	291
-2	28	2025-11-02 18:34:07+01	1	51	surface	292
-2	29	2025-11-02 18:34:08+01	1	51	surface	293
-2	30	2025-11-02 18:34:09+01	1	51	surface	294
-2	31	2025-11-02 18:34:10+01	1	51	surface	295
-2	32	2025-11-02 18:34:12+01	2	51	surface	296
-2	33	2025-11-02 20:07:04+01	97	51	surface	297
-2	34	2025-11-02 20:38:27+01	61	51	surface	298
-2	35	2025-11-02 22:14:19+01	10	51	surface	331
-2	36	2025-11-02 22:14:25+01	6	51	surface	332
-2	37	2025-11-02 22:14:26+01	1	51	surface	333
-2	38	2025-11-02 22:14:26+01	0	51	surface	334
-2	39	2025-11-02 22:14:48+01	22	51	surface	335
-2	1	2025-11-02 22:15:55+01	67	51	depth	336
-2	1	2025-11-03 16:30:56+01	11	3	surface	337
-2	2	2025-11-03 16:31:04+01	8	3	surface	338
-2	3	2025-11-03 16:34:33+01	209	3	surface	339
-2	4	2025-11-03 16:34:36+01	3	3	surface	340
-2	5	2025-11-03 16:35:03+01	27	3	surface	341
-2	6	2025-11-03 16:36:49+01	106	3	surface	342
-2	7	2025-11-03 17:11:41+01	2092	3	surface	343
-2	8	2025-11-03 17:38:17+01	1596	3	surface	344
-2	1	2025-11-04 00:19:54+01	5	3	surface	345
-2	2	2025-11-04 00:19:57+01	3	3	surface	346
-2	3	2025-11-04 00:19:59+01	2	3	surface	347
-2	4	2025-11-04 00:20:01+01	2	3	surface	348
-2	5	2025-11-04 00:20:02+01	1	3	surface	349
-2	6	2025-11-04 00:20:02+01	0	3	surface	350
-2	7	2025-11-04 00:20:09+01	7	3	surface	351
-2	8	2025-11-04 00:20:17+01	8	3	surface	352
-2	9	2025-11-04 00:20:30+01	13	3	surface	353
-2	1	2025-11-09 13:18:08+01	288	51	surface	354
-2	2	2025-11-09 13:25:43+01	455	51	surface	355
-2	3	2025-11-09 13:33:13+01	449	51	surface	356
-2	4	2025-11-09 13:37:36+01	263	51	surface	357
-2	5	2025-11-09 13:38:18+01	42	51	surface	358
-2	6	2025-11-09 13:38:43+01	25	51	surface	359
-2	7	2025-11-09 13:47:55+01	552	51	surface	360
-2	8	2025-11-09 13:48:05+01	10	51	surface	361
-2	1	2025-11-17 07:34:03+01	5	51	surface	362
-2	2	2025-11-17 07:55:01+01	1258	51	surface	363
-2	3	2025-11-17 07:56:26+01	85	51	surface	364
-2	4	2025-11-17 07:57:07+01	41	51	surface	365
-2	5	2025-11-17 07:59:28+01	141	51	surface	366
-2	6	2025-11-17 08:19:22+01	1194	51	surface	367
-2	7	2025-11-17 08:20:42+01	80	51	surface	368
-2	8	2025-11-17 09:53:45+01	5583	51	surface	369
-2	9	2025-11-17 10:09:10+01	925	51	surface	370
-2	10	2025-11-17 10:09:32+01	22	51	surface	371
-2	11	2025-11-17 10:09:38+01	6	51	surface	372
-2	12	2025-11-17 10:09:41+01	3	51	surface	373
-2	13	2025-11-17 10:11:31+01	110	51	surface	374
-2	14	2025-11-17 10:12:26+01	55	51	surface	375
-2	15	2025-11-17 12:45:28+01	9182	51	surface	376
-2	16	2025-11-17 12:50:51+01	323	51	surface	377
-2	17	2025-11-17 12:57:30+01	399	51	surface	378
-2	18	2025-11-17 12:57:38+01	8	51	surface	379
-2	19	2025-11-17 12:57:42+01	4	51	surface	380
-2	20	2025-11-17 13:08:05+01	623	51	surface	381
-2	21	2025-11-17 13:09:09+01	64	51	surface	382
-2	22	2025-11-17 14:25:16+01	4567	51	surface	383
-2	23	2025-11-17 14:25:18+01	2	51	surface	384
-2	24	2025-11-17 14:25:18+01	0	51	surface	385
-2	25	2025-11-17 14:25:20+01	2	51	surface	386
-2	26	2025-11-17 14:25:21+01	1	51	surface	387
-2	27	2025-11-17 14:25:21+01	0	51	surface	388
-2	28	2025-11-17 14:25:22+01	1	51	surface	389
-2	29	2025-11-17 14:25:23+01	1	51	surface	390
-2	30	2025-11-17 14:25:24+01	1	51	surface	391
-2	31	2025-11-17 14:25:24+01	0	51	surface	392
-2	32	2025-11-17 14:25:25+01	1	51	surface	393
-2	33	2025-11-17 15:14:09+01	2924	51	surface	394
-2	34	2025-11-17 15:15:24+01	75	51	surface	395
-2	35	2025-11-17 15:15:32+01	8	51	surface	396
-2	36	2025-11-17 15:15:35+01	3	51	surface	397
-2	37	2025-11-17 15:15:36+01	1	51	surface	398
-2	38	2025-11-17 15:15:36+01	0	51	surface	399
-2	39	2025-11-17 15:15:46+01	10	51	surface	400
-2	1	2025-11-17 15:15:57+01	11	51	depth	401
+1	5202	1	58	surface
+1	5203	2	58	surface
+1	5205	4	58	surface
+1	5204	3	58	surface
+1	5206	5	58	surface
+2	5207	1	58	surface
+2	5208	2	58	surface
+3	5209	1	58	surface
+3	5210	2	58	surface
+4	5211	1	58	surface
+4	5213	3	58	surface
+4	5215	5	58	surface
+4	5212	2	58	surface
+4	5214	4	58	surface
+4	5216	6	58	surface
+5	5217	1	58	surface
+5	5219	3	58	surface
+5	5218	2	58	surface
+6	5220	1	58	surface
+7	5235	1	58	surface
+7	5236	2	58	surface
+7	5237	3	58	surface
+7	5238	4	58	surface
+8	5239	1	58	surface
+8	5240	2	58	surface
+8	5241	3	58	surface
+9	5242	1	58	surface
+9	5243	2	58	surface
+9	5244	3	58	surface
+10	5245	1	58	surface
+10	5246	2	58	surface
+9	5252	6	13	surface
+9	5253	7	13	surface
+9	5254	8	13	surface
+9	5255	9	13	surface
+10	5256	1	13	surface
+11	5257	1	13	surface
+11	5258	2	13	surface
+12	5259	1	13	surface
+13	5260	1	13	surface
+13	5261	2	13	surface
+13	5262	3	13	surface
+13	5263	4	13	surface
+14	5264	1	13	surface
+14	5265	2	13	surface
+15	5266	1	13	surface
+15	5267	2	13	surface
+16	5268	1	13	surface
+16	5269	2	13	surface
+16	5270	3	13	surface
+16	5271	4	13	surface
+16	5272	5	13	surface
+16	5273	6	13	surface
+16	5274	7	13	surface
+16	5275	8	13	surface
+16	5276	9	13	surface
+16	5277	10	13	surface
+17	5278	1	13	surface
+17	5279	2	13	surface
+17	5280	3	13	surface
+17	5281	4	13	surface
+18	5282	1	13	surface
+18	5283	2	13	surface
+18	5284	3	13	surface
+18	5285	4	13	surface
+18	5286	5	13	surface
+18	5287	6	13	surface
+18	5288	7	13	surface
+18	5289	8	13	surface
+18	5290	9	13	surface
+19	5291	1	13	surface
+19	5292	2	13	surface
+19	5293	3	13	surface
+19	5294	4	13	surface
+19	5295	5	13	surface
+19	5296	6	13	surface
+19	5297	7	13	surface
+20	5298	1	13	surface
+20	5299	2	13	surface
+20	5300	3	13	surface
+20	5301	4	13	surface
+21	5302	1	13	surface
+21	5303	2	13	surface
+21	5304	3	13	surface
+21	5305	4	13	surface
+21	5306	5	13	surface
+21	5307	6	13	surface
+22	5308	1	13	surface
+22	5309	2	13	surface
+22	5310	3	13	surface
+22	5311	4	13	surface
+22	5312	5	13	surface
+22	5313	6	13	surface
+22	5314	7	13	surface
+22	5315	8	13	surface
+22	5316	9	13	surface
+22	5317	10	13	surface
+23	5318	1	13	surface
+23	5319	2	13	surface
+23	5320	3	13	surface
+23	5321	4	13	surface
+23	5322	5	13	surface
+23	5323	6	13	surface
+23	5324	7	13	surface
+23	5325	8	13	surface
+23	5326	9	13	surface
+23	5327	10	13	surface
+23	5328	11	13	surface
+23	5329	12	13	surface
+23	5330	13	13	surface
+23	5331	14	13	surface
+23	5332	15	13	surface
+24	5373	1	13	surface
+24	5374	2	13	surface
+24	5375	3	13	surface
+24	5376	4	13	surface
+24	5377	5	13	surface
+24	5378	6	13	surface
+24	5379	7	13	surface
+24	5380	8	13	surface
+24	5381	9	13	surface
+24	5382	10	13	surface
+24	5383	11	13	surface
+24	5384	12	13	surface
+24	5385	13	13	surface
+24	5560	14	13	surface
+24	5561	15	13	surface
+24	5562	16	13	surface
+24	5563	17	13	surface
+24	5564	18	13	surface
+24	5565	19	13	surface
+24	5566	20	13	surface
+24	5567	21	13	surface
+24	5568	22	13	surface
+24	5569	23	13	surface
+24	5570	24	13	surface
+24	5571	25	13	surface
+24	5572	26	13	surface
+11	5433	1	58	surface
+11	5434	2	58	surface
+11	5435	3	58	surface
+11	5436	4	58	surface
+11	5437	5	58	surface
+11	5438	6	58	surface
+11	5439	7	58	surface
+11	5440	8	58	surface
+11	5441	9	58	surface
+12	5442	1	58	surface
+12	5443	2	58	surface
+12	5444	3	58	surface
 \.
 
 
@@ -30542,6 +30033,7 @@ COPY flashback.users (id, name, email, state, verified, joined, hash) FROM stdin
 COPY flashback.users_roadmaps ("user", roadmap) FROM stdin;
 2	1
 2	2
+2	3
 \.
 
 
@@ -30612,7 +30104,7 @@ SELECT pg_catalog.setval('flashback.roadmaps_activities_id_seq', 1, false);
 -- Name: roadmaps_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.roadmaps_id_seq', 2, true);
+SELECT pg_catalog.setval('flashback.roadmaps_id_seq', 3, true);
 
 
 --
@@ -30620,13 +30112,6 @@ SELECT pg_catalog.setval('flashback.roadmaps_id_seq', 2, true);
 --
 
 SELECT pg_catalog.setval('flashback.sections_activities_id_seq', 1, false);
-
-
---
--- Name: sections_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.sections_progress_id_seq', 157, true);
 
 
 --
@@ -30640,7 +30125,7 @@ SELECT pg_catalog.setval('flashback.subjects_activities_id_seq', 1, false);
 -- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.subjects_id_seq', 57, true);
+SELECT pg_catalog.setval('flashback.subjects_id_seq', 58, true);
 
 
 --
@@ -30648,13 +30133,6 @@ SELECT pg_catalog.setval('flashback.subjects_id_seq', 57, true);
 --
 
 SELECT pg_catalog.setval('flashback.topics_activities_id_seq', 1, false);
-
-
---
--- Name: topics_progress_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
---
-
-SELECT pg_catalog.setval('flashback.topics_progress_id_seq', 401, true);
 
 
 --
@@ -30793,14 +30271,6 @@ ALTER TABLE ONLY flashback.sections
 
 
 --
--- Name: sections_progress sections_progress_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.sections_progress
-    ADD CONSTRAINT sections_progress_pkey PRIMARY KEY (id);
-
-
---
 -- Name: shelves shelves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30854,14 +30324,6 @@ ALTER TABLE ONLY flashback.topics_cards
 
 ALTER TABLE ONLY flashback.topics
     ADD CONSTRAINT topics_pkey PRIMARY KEY (subject, level, "position");
-
-
---
--- Name: topics_progress topics_progress_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.topics_progress
-    ADD CONSTRAINT topics_progress_pkey PRIMARY KEY (id);
 
 
 --
@@ -31089,22 +30551,6 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
--- Name: sections_progress sections_progress_resource_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.sections_progress
-    ADD CONSTRAINT sections_progress_resource_position_fkey FOREIGN KEY (resource, section) REFERENCES flashback.sections(resource, "position") ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: sections_progress sections_progress_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.sections_progress
-    ADD CONSTRAINT sections_progress_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE;
-
-
---
 -- Name: sections sections_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31185,22 +30631,6 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
--- Name: topics_progress topics_progress_subject_level_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.topics_progress
-    ADD CONSTRAINT topics_progress_subject_level_position_fkey FOREIGN KEY (subject, level, topic) REFERENCES flashback.topics(subject, level, "position") ON UPDATE CASCADE;
-
-
---
--- Name: topics_progress topics_progress_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.topics_progress
-    ADD CONSTRAINT topics_progress_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE;
-
-
---
 -- Name: users_roadmaps user_roadmaps_roadmap_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31220,5 +30650,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict PXPcOMYVLeh6uSbS6cSKeuJHSjskKCpxujMozMvBYMgfvlGrj7P3UuUWghGhJPV
+\unrestrict wbOWMxXE8GlmGdW4GChku8vA7UM7aiJhfKBLTDLv5lBLmFwlUcBknD1zqEH46CJ
 
