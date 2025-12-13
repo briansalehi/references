@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict wbOWMxXE8GlmGdW4GChku8vA7UM7aiJhfKBLTDLv5lBLmFwlUcBknD1zqEH46CJ
+\restrict KrT4dbOe1XNUm1Y2vsmR9RyQM4zuccbpS7G1aeyzr9PFOUkYZ5gbXEjYEEhehqt
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -2816,6 +2816,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 136	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N+1` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
 168	1	To figure out the efficiency of Quicksort, first determine the efficiency of a single partition.	text	txt
 1712	2	First, we enabled the testimage support by adding `IMAGE_CLASSES += "testimage"` in `build/conf/local.conf` and made sure to build the `core-image-weston` image.	text	txt
+5444	1	seinfo -t unconfined_t	code	sh
 137	1	* **Read:** same as arrays, it would take `1` step to read from an array-based set, so it is `O(1)`.\n* **Search:** same as arrays it would take `N` steps to search through an array-based set, so it is `O(N)`.\n* **Insert:** it would take `N` steps to search first and `N` steps to insert into an array in the worst case scenario, so it is `O(N)`.\n* **Delete:** same as arrays it would take `N` steps to delete from an array-based set, so it is `O(N)`.	text	txt
 138	1	In constant time efficiency no matter how many elements exist, the operation always takes one step.	text	txt
 139	1	`O(log N)` means the algorithm takes as many steps as it takes to keep halving the data elements until we remain with `1`.	text	txt
@@ -14160,7 +14161,6 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 5442	3	This can be configured through `deny_unknown` value.\nTo see the state for unknown permissions:	text	md
 5442	4	sestatus | grep 'Policy deny_unknown status'	code	sh
 5443	1	Administrators can `handle-unknown` variable to `allow`, `deny`, or `reject` values in `/etc/selinux/semanage.conf`.	text	md
-5444	1	seifo -t unconfined_t	code	sh
 5577	4	Create imported target `foo::foo`:	text	md
 1734	1	#include <boost/asio.hpp>\n\nint main()\n{\n    boost::asio::ip::address_v4 address{boost::asio::ip::address_v4::from_string("127.0.0.1")};\n    boost::asio::ip::address_v6 address{boost::asio::ip::address_v6::any()};\n    boost::asio::ip::address address{boost::asio::ip::address::from_string("127.0.0.1")};\n    boost::asio::ip::port_type port{80};\n}	code	cpp
 1735	3	1. Obtain the server application's IP address and port number. The IP address\n   should be specified as a string in the dot-decimal (IPv4) or hexadecimal\n   (IPv6) notation.\n2. Represent the raw IP address as an object of the `asio::ip::address`\n   class.\n3. Instantiate the object of the `asio::ip::tcp::endpoint` class from the\n   address object created in step 2 and a port number.\n4. The endpoint is ready to be used to designate the server application in\n   Boost.Asio communication related methods.	text	txt
@@ -19622,7 +19622,24 @@ COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
 42	2	origin	2
 14	2	origin	3
 35	2	origin	4
-58	3	origin	1
+60	2	origin	5
+61	2	origin	6
+62	2	origin	7
+63	2	origin	8
+64	2	origin	9
+65	2	origin	10
+66	2	origin	11
+67	2	origin	12
+68	2	origin	13
+69	2	origin	14
+70	2	origin	15
+71	2	origin	16
+72	2	origin	17
+73	2	origin	18
+74	2	origin	19
+75	2	origin	20
+76	2	origin	21
+77	2	origin	22
 6	1	origin	1
 3	1	origin	2
 4	1	origin	3
@@ -19674,6 +19691,19 @@ COPY flashback.milestones (subject, roadmap, level, "position") FROM stdin;
 12	1	surface	50
 40	1	depth	51
 58	1	origin	21
+59	3	origin	1
+23	3	depth	2
+10	3	depth	4
+50	3	surface	5
+43	3	origin	13
+45	3	origin	12
+58	3	origin	11
+7	3	origin	6
+36	3	origin	7
+40	3	depth	10
+29	3	depth	9
+27	3	origin	8
+13	3	origin	3
 \.
 
 
@@ -19988,8 +20018,6 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	5096	2025-12-12 20:20:06.738071+01	21	0
 2	5097	2025-12-12 20:21:57.096575+01	111	0
 2	5098	2025-12-12 20:22:09.121013+01	12	0
-2	5202	2025-12-12 20:22:39.66909+01	30	0
-2	5203	2025-12-12 20:24:15.168331+01	96	0
 2	5204	2025-12-12 20:25:00.509992+01	45	0
 2	5205	2025-12-12 20:26:10.860272+01	70	0
 2	5206	2025-12-12 20:27:08.648523+01	58	0
@@ -20006,9 +20034,33 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	5217	2025-12-12 23:28:02.221547+01	292	0
 2	5218	2025-12-12 23:29:47.090728+01	105	0
 2	5219	2025-12-12 23:31:25.063097+01	98	0
+2	5203	2025-12-13 12:01:12.153996+01	5	1
 2	5220	2025-12-12 23:32:15.62245+01	50	0
 2	5235	2025-12-12 23:34:17.721769+01	122	0
 2	5236	2025-12-12 23:35:14.772153+01	57	0
+2	5237	2025-12-13 08:05:13.076193+01	644	0
+2	5238	2025-12-13 08:12:27.268837+01	434	0
+2	5239	2025-12-13 08:14:25.291621+01	118	0
+2	5240	2025-12-13 08:16:46.246076+01	141	0
+2	5241	2025-12-13 08:17:18.649881+01	32	0
+2	5242	2025-12-13 08:23:42.726624+01	384	0
+2	5243	2025-12-13 08:25:18.283389+01	96	0
+2	5244	2025-12-13 08:28:02.673675+01	164	0
+2	5245	2025-12-13 08:34:46.056611+01	404	0
+2	5246	2025-12-13 08:35:27.989759+01	41	0
+2	5433	2025-12-13 08:43:00.050702+01	452	0
+2	5434	2025-12-13 08:43:28.739466+01	28	0
+2	5435	2025-12-13 08:46:00.438025+01	152	0
+2	5436	2025-12-13 08:46:21.24156+01	21	0
+2	5437	2025-12-13 08:47:13.938692+01	52	0
+2	5438	2025-12-13 09:17:57.565331+01	77	0
+2	5439	2025-12-13 11:48:25.442366+01	92	0
+2	5440	2025-12-13 11:51:47.281022+01	202	0
+2	5441	2025-12-13 11:52:13.217178+01	26	0
+2	5442	2025-12-13 11:52:55.327784+01	42	0
+2	5443	2025-12-13 12:00:36.250172+01	6	0
+2	5444	2025-12-13 12:00:49.144241+01	13	0
+2	5202	2025-12-13 12:01:07.565129+01	12	1
 \.
 
 
@@ -26999,7 +27051,6 @@ COPY flashback.subjects (id, name) FROM stdin;
 9	GNU Debugger
 10	Git
 12	LaTeX
-13	Linux Administration
 15	OpenCV
 16	OpenSSL
 17	Perf
@@ -27018,7 +27069,6 @@ COPY flashback.subjects (id, name) FROM stdin;
 32	ARM Assembly
 33	gRPC
 34	eBPF
-35	Physics
 36	Kubernetes
 37	Rust
 38	CUDA
@@ -27045,6 +27095,27 @@ COPY flashback.subjects (id, name) FROM stdin;
 56	ESP32
 57	Raspberry Pi
 58	SELinux
+59	Bash
+13	Linux System Administration
+35	General Physics
+60	Multivariable Calculus
+61	Complex Analysis
+62	Differential Geometry
+63	Manifolds
+64	Topology
+65	Group Theory
+66	Classical Mechanics
+67	Electrodynamics
+68	Special Relativity
+69	General Relativity
+70	Quantum Mechanics
+71	Quantum Field Theory
+72	Gauge Theory
+73	Conformal Field Theory
+74	String Theory
+75	Superstring Theory
+76	Mirror Symmetry
+77	Gauge/Gravity Duality
 \.
 
 
@@ -30125,7 +30196,7 @@ SELECT pg_catalog.setval('flashback.subjects_activities_id_seq', 1, false);
 -- Name: subjects_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
-SELECT pg_catalog.setval('flashback.subjects_id_seq', 58, true);
+SELECT pg_catalog.setval('flashback.subjects_id_seq', 77, true);
 
 
 --
@@ -30650,5 +30721,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict wbOWMxXE8GlmGdW4GChku8vA7UM7aiJhfKBLTDLv5lBLmFwlUcBknD1zqEH46CJ
+\unrestrict KrT4dbOe1XNUm1Y2vsmR9RyQM4zuccbpS7G1aeyzr9PFOUkYZ5gbXEjYEEhehqt
 
