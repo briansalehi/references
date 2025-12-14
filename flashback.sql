@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict y8OaqbbQFxGfK8jImyEra2JBCCCslmv0K7rP49cyD5LyzkrIWRhOQ1NQW0OIhoL
+\restrict QDrpb1tOV3Sb9i1TFbc4lilNA0cVmZ7SxPpQqu2Gt6WE6xkeA1KskegHqDwRzJl
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -563,7 +563,7 @@ begin
     select s.token, s.last_usage into previous_token, last_use from sessions s where s."user" = user_id and s.device = create_session.device;
 
     if previous_token is null then
-        insert into sessions ("user", device, token) values (user_id, create_session.device, create_session.token);
+        insert into sessions ("user", device, token, last_usage) values (user_id, create_session.device, create_session.token, CURRENT_DATE);
     else
         update sessions set token = create_session.token, last_usage = CURRENT_DATE where sessions."user" = user_id and sessions.device = create_session.device;
     end if;
@@ -1309,33 +1309,25 @@ CREATE FUNCTION flashback.get_unshelved_resources() RETURNS TABLE(resource integ
 ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 
 --
--- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone)
-    LANGUAGE plpgsql
-    AS $$ begin return query select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined from users u where u.email = address; end; $$;
-
-
-ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
-
---
--- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_user(user_email character varying, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
+CREATE FUNCTION flashback.get_user(user_id integer, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
     LANGUAGE plpgsql
     AS $$
 begin
+    if exists (select id from sessions s where s."user" = user_id and s.device = user_device) then
+        update sessions s set last_usage = CURRENT_DATE where s."user" = user_id and s.device = user_device;
+    end if;
+
     return query
     select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
     from users u
-    join sessions s on s."user" = u.id and s.device = user_device
-    where u.email = user_email;
+    join sessions s on s."user" = u.id and s."user" = user_id and s.device = user_device;
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.get_user(user_id integer, user_device character varying) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -26826,7 +26818,7 @@ COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
 2	ySRyOkYi3XlUSTzK3rBBv+wKhwXkPPLI5PsTw+D+26c	de9c839b-ff4e-2861-4954-83c22303077d	\N
 2	Y6pN9T2h1rLleeVlQTwhDiicnapONRa2Wz1Pt0wnfGU	baa764df-b0d9-56a5-9980-939ed3b4d9c6	\N
 2	qC3N8hnVhVDKivBUlW1KkuTJXF5Sy5pUyxwLwfQVbcw	d8a853db-9e2e-d4e5-55fc-4ccc5b651d2b	\N
-2	6DfBu+ECxjeiIIMaXWRnh2jTqgjQDg/qqSHy0ekn2tc	5a1143fb-9738-97dc-62a8-ef87f15fa257	\N
+2	6DfBu+ECxjeiIIMaXWRnh2jTqgjQDg/qqSHy0ekn2tc	5a1143fb-9738-97dc-62a8-ef87f15fa257	2025-12-14 00:00:00+01
 \.
 
 
@@ -30756,5 +30748,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict y8OaqbbQFxGfK8jImyEra2JBCCCslmv0K7rP49cyD5LyzkrIWRhOQ1NQW0OIhoL
+\unrestrict QDrpb1tOV3Sb9i1TFbc4lilNA0cVmZ7SxPpQqu2Gt6WE6xkeA1KskegHqDwRzJl
 

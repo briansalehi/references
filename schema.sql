@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict VO1bGrMdlWoiSGmhMuvdmCjGUPqjuHFvyCDUgC0ayABJgZrYYS8z870uF3zebQ1
+\restrict YV62RKjs3LTPapvsQ5kfirm5Eq1Vyk0XbDJcVrepLe4V7nehrud4w6xW38had5a
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -563,7 +563,7 @@ begin
     select s.token, s.last_usage into previous_token, last_use from sessions s where s."user" = user_id and s.device = create_session.device;
 
     if previous_token is null then
-        insert into sessions ("user", device, token) values (user_id, create_session.device, create_session.token);
+        insert into sessions ("user", device, token, last_usage) values (user_id, create_session.device, create_session.token, CURRENT_DATE);
     else
         update sessions set token = create_session.token, last_usage = CURRENT_DATE where sessions."user" = user_id and sessions.device = create_session.device;
     end if;
@@ -1309,33 +1309,25 @@ CREATE FUNCTION flashback.get_unshelved_resources() RETURNS TABLE(resource integ
 ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
 
 --
--- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user(address character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone)
-    LANGUAGE plpgsql
-    AS $$ begin return query select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined from users u where u.email = address; end; $$;
-
-
-ALTER FUNCTION flashback.get_user(address character varying) OWNER TO flashback;
-
---
--- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_user(user_email character varying, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
+CREATE FUNCTION flashback.get_user(user_id integer, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
     LANGUAGE plpgsql
     AS $$
 begin
+    if exists (select id from sessions s where s."user" = user_id and s.device = user_device) then
+        update sessions s set last_usage = CURRENT_DATE where s."user" = user_id and s.device = user_device;
+    end if;
+
     return query
     select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
     from users u
-    join sessions s on s."user" = u.id and s.device = user_device
-    where u.email = user_email;
+    join sessions s on s."user" = u.id and s."user" = user_id and s.device = user_device;
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user(user_email character varying, user_device character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.get_user(user_id integer, user_device character varying) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -3006,5 +2998,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict VO1bGrMdlWoiSGmhMuvdmCjGUPqjuHFvyCDUgC0ayABJgZrYYS8z870uF3zebQ1
+\unrestrict YV62RKjs3LTPapvsQ5kfirm5Eq1Vyk0XbDJcVrepLe4V7nehrud4w6xW38had5a
 
