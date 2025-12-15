@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 3EpmCKcfjtghc2AFswVty70JLNF4IbHXZlUnu8mogxNaCm9ZGouAde2fjGwG3Qb
+\restrict JuD1VW6pNCTjbkh97qiCoaSdj80zk5I3t8iPQa5I4ZhXgh9JlOAV2t3E78P59hl
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1765,6 +1765,20 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN new_hash character varying) OWNER TO flashback;
+
+--
+-- Name: revoke_session(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.revoke_session(IN user_id integer, IN active_token character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from sessions where "user" = user_id and token = active_token;
+end; $$;
+
+
+ALTER PROCEDURE flashback.revoke_session(IN user_id integer, IN active_token character varying) OWNER TO flashback;
 
 --
 -- Name: revoke_sessions_except(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -30772,5 +30786,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 3EpmCKcfjtghc2AFswVty70JLNF4IbHXZlUnu8mogxNaCm9ZGouAde2fjGwG3Qb
+\unrestrict JuD1VW6pNCTjbkh97qiCoaSdj80zk5I3t8iPQa5I4ZhXgh9JlOAV2t3E78P59hl
 
