@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict YV62RKjs3LTPapvsQ5kfirm5Eq1Vyk0XbDJcVrepLe4V7nehrud4w6xW38had5a
+\restrict WcrkztvhYDbacs9DNSV91gaAzGVuEkvShzxQXagIxtAiPQOsls1Wvv9PvjSYCjL
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1756,16 +1756,31 @@ ALTER PROCEDURE flashback.reorder_topics_cards(IN subject integer, IN level flas
 -- Name: reset_password(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying)
+CREATE PROCEDURE flashback.reset_password(IN user_id integer, IN new_hash character varying)
     LANGUAGE plpgsql
     AS $$
 begin
-    update users set hash = reset_password.hash where id = user_id;
-    delete from sessions where "user" = user_id;
+    update users set hash = new_hash where id = user_id;
 end; $$;
 
 
-ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN new_hash character varying) OWNER TO flashback;
+
+--
+-- Name: revoke_sessions_except(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.revoke_sessions_except(IN user_id integer, IN active_token character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if exists (select device from sessions where "user" = user_id and token = active_token) then
+        delete from sessions where "user" = user_id and token <> active_token;
+    end if;
+end; $$;
+
+
+ALTER PROCEDURE flashback.revoke_sessions_except(IN user_id integer, IN active_token character varying) OWNER TO flashback;
 
 --
 -- Name: split_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2311,8 +2326,8 @@ ALTER TABLE flashback.sections_cards OWNER TO flashback;
 --
 
 CREATE TABLE flashback.sessions (
-    "user" integer,
-    token character varying(300),
+    "user" integer NOT NULL,
+    token character varying(300) NOT NULL,
     device character varying(50),
     last_usage timestamp with time zone
 );
@@ -2616,6 +2631,22 @@ ALTER TABLE ONLY flashback.sections_cards
 
 ALTER TABLE ONLY flashback.sections
     ADD CONSTRAINT sections_pkey PRIMARY KEY (resource, "position");
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY ("user", token);
+
+
+--
+-- Name: sessions sessions_user_device_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sessions
+    ADD CONSTRAINT sessions_user_device_key UNIQUE ("user", device);
 
 
 --
@@ -2998,5 +3029,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict YV62RKjs3LTPapvsQ5kfirm5Eq1Vyk0XbDJcVrepLe4V7nehrud4w6xW38had5a
+\unrestrict WcrkztvhYDbacs9DNSV91gaAzGVuEkvShzxQXagIxtAiPQOsls1Wvv9PvjSYCjL
 

@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict QDrpb1tOV3Sb9i1TFbc4lilNA0cVmZ7SxPpQqu2Gt6WE6xkeA1KskegHqDwRzJl
+\restrict 3EpmCKcfjtghc2AFswVty70JLNF4IbHXZlUnu8mogxNaCm9ZGouAde2fjGwG3Qb
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1756,16 +1756,31 @@ ALTER PROCEDURE flashback.reorder_topics_cards(IN subject integer, IN level flas
 -- Name: reset_password(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying)
+CREATE PROCEDURE flashback.reset_password(IN user_id integer, IN new_hash character varying)
     LANGUAGE plpgsql
     AS $$
 begin
-    update users set hash = reset_password.hash where id = user_id;
-    delete from sessions where "user" = user_id;
+    update users set hash = new_hash where id = user_id;
 end; $$;
 
 
-ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN hash character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.reset_password(IN user_id integer, IN new_hash character varying) OWNER TO flashback;
+
+--
+-- Name: revoke_sessions_except(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.revoke_sessions_except(IN user_id integer, IN active_token character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if exists (select device from sessions where "user" = user_id and token = active_token) then
+        delete from sessions where "user" = user_id and token <> active_token;
+    end if;
+end; $$;
+
+
+ALTER PROCEDURE flashback.revoke_sessions_except(IN user_id integer, IN active_token character varying) OWNER TO flashback;
 
 --
 -- Name: split_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2311,8 +2326,8 @@ ALTER TABLE flashback.sections_cards OWNER TO flashback;
 --
 
 CREATE TABLE flashback.sessions (
-    "user" integer,
-    token character varying(300),
+    "user" integer NOT NULL,
+    token character varying(300) NOT NULL,
     device character varying(50),
     last_usage timestamp with time zone
 );
@@ -26811,14 +26826,7 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 --
 
 COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
-2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	\N
-2	XMZhg7mO3KGsnfBzdqvjO04J3gDN2rA07sooSYhYAuY	c22478ba-7ffa-11a3-1429-de93cb9a3311	\N
-2	BAH+x4QtO8YQUreDR+ajOXdT+8vzqeeHc3haJdF36m4	bb22c848-53f6-cdbb-213d-f8162f9abd38	\N
-2	iNFzgSCY2W+q42gM9lNVbB13v0odiLy6WnHbInbuvvE	e60c872e-5354-4e70-78f7-a4c3a3a9e81f	\N
-2	ySRyOkYi3XlUSTzK3rBBv+wKhwXkPPLI5PsTw+D+26c	de9c839b-ff4e-2861-4954-83c22303077d	\N
-2	Y6pN9T2h1rLleeVlQTwhDiicnapONRa2Wz1Pt0wnfGU	baa764df-b0d9-56a5-9980-939ed3b4d9c6	\N
-2	qC3N8hnVhVDKivBUlW1KkuTJXF5Sy5pUyxwLwfQVbcw	d8a853db-9e2e-d4e5-55fc-4ccc5b651d2b	\N
-2	6DfBu+ECxjeiIIMaXWRnh2jTqgjQDg/qqSHy0ekn2tc	5a1143fb-9738-97dc-62a8-ef87f15fa257	2025-12-14 00:00:00+01
+2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	2025-12-15 00:00:00+01
 \.
 
 
@@ -30369,6 +30377,22 @@ ALTER TABLE ONLY flashback.sections
 
 
 --
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY ("user", token);
+
+
+--
+-- Name: sessions sessions_user_device_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sessions
+    ADD CONSTRAINT sessions_user_device_key UNIQUE ("user", device);
+
+
+--
 -- Name: shelves shelves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30748,5 +30772,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict QDrpb1tOV3Sb9i1TFbc4lilNA0cVmZ7SxPpQqu2Gt6WE6xkeA1KskegHqDwRzJl
+\unrestrict 3EpmCKcfjtghc2AFswVty70JLNF4IbHXZlUnu8mogxNaCm9ZGouAde2fjGwG3Qb
 
