@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict JuD1VW6pNCTjbkh97qiCoaSdj80zk5I3t8iPQa5I4ZhXgh9JlOAV2t3E78P59hl
+\restrict 74G3GJ4AxzIWSXjqX2lk5qdBlznML0mSM723bGoR7LnI1v0QVyceZtNZsozlfsM
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -90,8 +90,8 @@ ALTER TYPE flashback.expertise_level OWNER TO flashback;
 
 CREATE TYPE flashback.network_activity AS ENUM (
     'signup',
-    'login',
-    'logout',
+    'signin',
+    'signout',
     'upload',
     'download'
 );
@@ -163,22 +163,6 @@ CREATE TYPE flashback.user_action AS ENUM (
 
 
 ALTER TYPE flashback.user_action OWNER TO flashback;
-
---
--- Name: user_progress; Type: TYPE; Schema: flashback; Owner: flashback
---
-
-CREATE TYPE flashback.user_progress AS ENUM (
-    'reading',
-    'paused',
-    'abandoned',
-    'annotated',
-    'mastered',
-    'completed'
-);
-
-
-ALTER TYPE flashback.user_progress OWNER TO flashback;
 
 --
 -- Name: user_state; Type: TYPE; Schema: flashback; Owner: flashback
@@ -1960,23 +1944,12 @@ ALTER TABLE flashback.blocks_activities ALTER COLUMN id ADD GENERATED ALWAYS AS 
 
 
 --
--- Name: card_position; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.card_position (
-    "coalesce" integer
-);
-
-
-ALTER TABLE flashback.card_position OWNER TO flashback;
-
---
 -- Name: cards; Type: TABLE; Schema: flashback; Owner: flashback
 --
 
 CREATE TABLE flashback.cards (
     id integer NOT NULL,
-    heading text,
+    headline text,
     state flashback.card_state DEFAULT 'draft'::flashback.card_state NOT NULL
 );
 
@@ -2069,17 +2042,6 @@ ALTER TABLE flashback.milestones_activities ALTER COLUMN id ADD GENERATED ALWAYS
     CACHE 1
 );
 
-
---
--- Name: most_recent; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.most_recent (
-    "?column?" interval
-);
-
-
-ALTER TABLE flashback.most_recent OWNER TO flashback;
 
 --
 -- Name: network_activities; Type: TABLE; Schema: flashback; Owner: flashback
@@ -2268,24 +2230,14 @@ ALTER TABLE flashback.roadmaps ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY 
 
 
 --
--- Name: section_name; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.section_name (
-    pattern flashback.section_pattern
-);
-
-
-ALTER TABLE flashback.section_name OWNER TO flashback;
-
---
 -- Name: sections; Type: TABLE; Schema: flashback; Owner: flashback
 --
 
 CREATE TABLE flashback.sections (
     resource integer NOT NULL,
     "position" integer NOT NULL,
-    name character varying(200)
+    name character varying(200),
+    link character varying(2000)
 );
 
 
@@ -2360,6 +2312,36 @@ CREATE TABLE flashback.shelves (
 
 
 ALTER TABLE flashback.shelves OWNER TO flashback;
+
+--
+-- Name: shelves_activities; Type: TABLE; Schema: flashback; Owner: flashback
+--
+
+CREATE TABLE flashback.shelves_activities (
+    id integer NOT NULL,
+    "user" integer NOT NULL,
+    resource integer NOT NULL,
+    subject integer NOT NULL,
+    action flashback.user_action,
+    "time" timestamp with time zone
+);
+
+
+ALTER TABLE flashback.shelves_activities OWNER TO flashback;
+
+--
+-- Name: shelves_activities_id_seq; Type: SEQUENCE; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE flashback.shelves_activities ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME flashback.shelves_activities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
 
 --
 -- Name: subjects; Type: TABLE; Schema: flashback; Owner: flashback
@@ -14550,19 +14532,10 @@ COPY flashback.blocks_activities (id, "user", card, action, "time", "position") 
 
 
 --
--- Data for Name: card_position; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.card_position ("coalesce") FROM stdin;
-2
-\.
-
-
---
 -- Data for Name: cards; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.cards (id, heading, state) FROM stdin;
+COPY flashback.cards (id, headline, state) FROM stdin;
 1	Use formatted messages in static assertion?	draft
 2	Delete a function with giving reasons for it?	draft
 3	Create a break point in code?	draft
@@ -19737,15 +19710,6 @@ COPY flashback.milestones_activities (id, "user", action, "time", subject, roadm
 
 
 --
--- Data for Name: most_recent; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.most_recent ("?column?") FROM stdin;
-5 days 00:05:50.511219
-\.
-
-
---
 -- Data for Name: network_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -20386,1991 +20350,1980 @@ COPY flashback.roadmaps_activities (id, "user", roadmap, action, "time") FROM st
 
 
 --
--- Data for Name: section_name; Type: TABLE DATA; Schema: flashback; Owner: flashback
---
-
-COPY flashback.section_name (pattern) FROM stdin;
-chapter
-chapter
-chapter
-\.
-
-
---
 -- Data for Name: sections; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.sections (resource, "position", name) FROM stdin;
-14	1	\N
-14	2	\N
-14	3	\N
-14	4	\N
-14	5	\N
-14	6	\N
-14	7	\N
-14	8	\N
-14	9	\N
-14	10	\N
-14	11	\N
-14	12	\N
-14	13	\N
-14	14	\N
-14	15	\N
-14	16	\N
-14	17	\N
-14	18	\N
-14	19	\N
-14	20	\N
-14	21	\N
-14	22	\N
-14	23	\N
-15	1	\N
-15	2	\N
-15	3	\N
-15	4	\N
-15	5	\N
-15	6	\N
-15	7	\N
-15	8	\N
-15	9	\N
-15	10	\N
-15	11	\N
-15	12	\N
-15	13	\N
-16	1	\N
-16	2	\N
-16	3	\N
-16	4	\N
-16	5	\N
-16	6	\N
-16	7	\N
-16	8	\N
-16	9	\N
-17	1	\N
-17	2	\N
-17	3	\N
-17	4	\N
-17	5	\N
-17	6	\N
-17	7	\N
-17	8	\N
-17	9	\N
-17	10	\N
-17	11	\N
-17	12	\N
-17	13	\N
-17	14	\N
-17	15	\N
-17	16	\N
-17	17	\N
-17	18	\N
-17	19	\N
-17	20	\N
-17	21	\N
-18	1	\N
-18	2	\N
-18	3	\N
-18	4	\N
-18	5	\N
-18	6	\N
-18	7	\N
-18	8	\N
-18	9	\N
-18	10	\N
-18	11	\N
-18	12	\N
-18	13	\N
-18	14	\N
-18	15	\N
-18	16	\N
-18	17	\N
-18	18	\N
-18	19	\N
-18	20	\N
-18	21	\N
-18	22	\N
-18	23	\N
-18	24	\N
-18	25	\N
-18	26	\N
-18	27	\N
-18	28	\N
-18	29	\N
-18	30	\N
-18	31	\N
-19	1	\N
-19	2	\N
-19	3	\N
-19	4	\N
-19	5	\N
-19	6	\N
-19	7	\N
-19	8	\N
-19	9	\N
-19	10	\N
-19	11	\N
-20	1	\N
-20	2	\N
-20	3	\N
-20	4	\N
-20	5	\N
-20	6	\N
-21	1	\N
-21	2	\N
-21	3	\N
-21	4	\N
-21	5	\N
-21	6	\N
-21	7	\N
-21	8	\N
-21	9	\N
-21	10	\N
-21	11	\N
-21	12	\N
-21	13	\N
-21	14	\N
-21	15	\N
-21	16	\N
-21	17	\N
-21	18	\N
-21	19	\N
-21	20	\N
-22	1	\N
-22	2	\N
-22	3	\N
-22	4	\N
-22	5	\N
-22	6	\N
-22	7	\N
-22	8	\N
-22	9	\N
-22	10	\N
-22	11	\N
-22	12	\N
-22	13	\N
-22	14	\N
-22	15	\N
-22	16	\N
-22	17	\N
-22	18	\N
-22	19	\N
-22	20	\N
-22	21	\N
-22	22	\N
-22	23	\N
-22	24	\N
-22	25	\N
-22	26	\N
-22	27	\N
-22	28	\N
-22	29	\N
-22	30	\N
-22	31	\N
-22	32	\N
-22	33	\N
-22	34	\N
-23	1	\N
-23	2	\N
-23	3	\N
-23	4	\N
-23	5	\N
-23	6	\N
-23	7	\N
-23	8	\N
-23	9	\N
-23	10	\N
-23	11	\N
-23	12	\N
-23	13	\N
-23	14	\N
-23	15	\N
-23	16	\N
-23	17	\N
-23	18	\N
-23	19	\N
-23	20	\N
-24	1	\N
-24	2	\N
-24	3	\N
-24	4	\N
-24	5	\N
-24	6	\N
-24	7	\N
-24	8	\N
-24	9	\N
-24	10	\N
-24	11	\N
-24	12	\N
-24	13	\N
-24	14	\N
-24	15	\N
-24	16	\N
-24	17	\N
-24	18	\N
-25	3	Manipulating Users and Connections
-25	5	Advanced Statements
-25	7	Server-Side Programming
-25	8	Triggers and Rules
-25	11	Transactions, MVCC, WALs, and Checkpoints
-25	14	Logging and Auditing
-25	15	Backup and Restore
-25	17	Physical Replication
-25	19	Useful Tools and Extensions
-26	1	\N
-26	2	\N
-26	3	\N
-26	4	\N
-26	5	\N
-26	6	\N
-26	7	\N
-26	8	\N
-26	9	\N
-26	10	\N
-26	11	\N
-26	12	\N
-26	13	\N
-26	14	\N
-26	15	\N
-26	16	\N
-27	1	\N
-27	2	\N
-27	3	\N
-27	4	\N
-27	5	\N
-27	6	\N
-27	7	\N
-27	8	\N
-27	9	\N
-27	10	\N
-28	1	\N
-29	1	\N
-29	2	\N
-29	3	\N
-29	4	\N
-29	5	\N
-29	6	\N
-29	7	\N
-29	8	\N
-29	9	\N
-29	10	\N
-29	11	\N
-29	12	\N
-29	13	\N
-29	14	\N
-29	15	\N
-29	16	\N
-29	17	\N
-29	18	\N
-29	19	\N
-29	20	\N
-29	21	\N
-30	1	\N
-30	2	\N
-30	3	\N
-30	4	\N
-30	5	\N
-30	6	\N
-30	7	\N
-30	8	\N
-30	9	\N
-30	10	\N
-30	11	\N
-30	12	\N
-30	13	\N
-30	14	\N
-30	15	\N
-31	1	\N
-31	2	\N
-31	3	\N
-31	4	\N
-31	5	\N
-31	6	\N
-31	7	\N
-31	8	\N
-31	9	\N
-31	10	\N
-31	11	\N
-31	12	\N
-32	1	\N
-32	2	\N
-32	3	\N
-32	4	\N
-32	5	\N
-32	6	\N
-32	7	\N
-32	8	\N
-32	9	\N
-32	10	\N
-32	11	\N
-32	12	\N
-33	1	\N
-33	2	\N
-33	3	\N
-33	4	\N
-33	5	\N
-33	6	\N
-33	7	\N
-33	8	\N
-33	9	\N
-33	10	\N
-33	11	\N
-33	12	\N
-34	1	\N
-34	2	\N
-34	3	\N
-34	4	\N
-34	5	\N
-34	6	\N
-34	7	\N
-34	8	\N
-34	9	\N
-34	10	\N
-34	11	\N
-34	12	\N
-35	1	\N
-35	2	\N
-35	3	\N
-35	4	\N
-35	5	\N
-35	6	\N
-35	7	\N
-35	8	\N
-35	9	\N
-35	10	\N
-35	11	\N
-35	12	\N
-35	13	\N
-35	14	\N
-35	15	\N
-35	16	\N
-35	17	\N
-35	18	\N
-35	19	\N
-35	20	\N
-35	21	\N
-35	22	\N
-35	23	\N
-35	24	\N
-36	1	\N
-36	2	\N
-36	3	\N
-36	4	\N
-36	5	\N
-36	6	\N
-36	7	\N
-36	8	\N
-36	9	\N
-36	10	\N
-36	11	\N
-36	12	\N
-36	13	\N
-36	14	\N
-36	15	\N
-36	16	\N
-36	17	\N
-36	18	\N
-36	19	\N
-36	20	\N
-36	21	\N
-36	22	\N
-36	23	\N
-36	24	\N
-36	25	\N
-36	26	\N
-36	27	\N
-36	28	\N
-36	29	\N
-36	30	\N
-36	31	\N
-36	32	\N
-36	33	\N
-36	34	\N
-36	35	\N
-36	36	\N
-36	37	\N
-37	1	\N
-37	2	\N
-37	3	\N
-37	4	\N
-37	5	\N
-37	6	\N
-37	7	\N
-37	8	\N
-37	9	\N
-37	10	\N
-37	11	\N
-37	12	\N
-37	13	\N
-37	14	\N
-37	15	\N
-37	16	\N
-37	17	\N
-37	18	\N
-38	1	\N
-38	2	\N
-38	3	\N
-38	4	\N
-38	5	\N
-38	6	\N
-38	7	\N
-38	8	\N
-38	9	\N
-39	1	\N
-39	2	\N
-39	3	\N
-39	4	\N
-39	5	\N
-39	6	\N
-39	7	\N
-39	8	\N
-39	9	\N
-39	10	\N
-39	11	\N
-40	1	\N
-40	2	\N
-40	3	\N
-40	4	\N
-40	5	\N
-40	6	\N
-40	7	\N
-41	1	\N
-41	2	\N
-41	3	\N
-41	4	\N
-41	5	\N
-41	6	\N
-41	7	\N
-41	8	\N
-41	9	\N
-41	10	\N
-41	11	\N
-41	12	\N
-41	13	\N
-41	14	\N
-41	15	\N
-41	16	\N
-41	17	\N
-41	18	\N
-41	19	\N
-41	20	\N
-41	21	\N
-42	1	\N
-42	2	\N
-42	3	\N
-42	4	\N
-42	5	\N
-42	6	\N
-42	7	\N
-42	8	\N
-42	9	\N
-42	10	\N
-42	11	\N
-42	12	\N
-42	13	\N
-43	1	\N
-43	2	\N
-43	3	\N
-43	4	\N
-43	5	\N
-43	6	\N
-43	7	\N
-43	8	\N
-43	9	\N
-43	10	\N
-43	11	\N
-43	12	\N
-43	13	\N
-43	14	\N
-43	15	\N
-43	16	\N
-43	17	\N
-43	18	\N
-43	19	\N
-43	20	\N
-43	21	\N
-43	22	\N
-43	23	\N
-43	24	\N
-43	25	\N
-43	26	\N
-43	27	\N
-43	28	\N
-43	29	\N
-43	30	\N
-43	31	\N
-43	32	\N
-43	33	\N
-43	34	\N
-43	35	\N
-43	36	\N
-43	37	\N
-43	38	\N
-43	39	\N
-43	40	\N
-43	41	\N
-43	42	\N
-43	43	\N
-44	1	\N
-44	2	\N
-44	3	\N
-44	4	\N
-44	5	\N
-44	6	\N
-44	7	\N
-44	8	\N
-44	9	\N
-44	10	\N
-44	11	\N
-44	12	\N
-44	13	\N
-44	14	\N
-45	1	\N
-45	2	\N
-45	3	\N
-45	4	\N
-45	5	\N
-45	6	\N
-45	7	\N
-45	8	\N
-45	9	\N
-45	10	\N
-45	11	\N
-45	12	\N
-45	13	\N
-45	14	\N
-45	15	\N
-45	16	\N
-46	1	\N
-46	2	\N
-46	3	\N
-46	4	\N
-46	5	\N
-46	6	\N
-46	7	\N
-46	8	\N
-46	9	\N
-46	10	\N
-46	11	\N
-46	12	\N
-46	13	\N
-46	14	\N
-46	15	\N
-46	16	\N
-46	17	\N
-46	18	\N
-46	19	\N
-46	20	\N
-46	21	\N
-46	22	\N
-46	23	\N
-46	24	\N
-46	25	\N
-46	26	\N
-46	27	\N
-46	28	\N
-46	29	\N
-46	30	\N
-46	31	\N
-46	32	\N
-46	33	\N
-46	34	\N
-46	35	\N
-46	36	\N
-46	37	\N
-46	38	\N
-46	39	\N
-46	40	\N
-46	41	\N
-46	42	\N
-46	43	\N
-46	44	\N
-46	45	\N
-46	46	\N
-46	47	\N
-46	48	\N
-46	49	\N
-46	50	\N
-46	51	\N
-46	52	\N
-46	53	\N
-46	54	\N
-46	55	\N
-46	56	\N
-46	57	\N
-46	58	\N
-46	59	\N
-46	60	\N
-46	61	\N
-46	62	\N
-46	63	\N
-46	64	\N
-47	1	\N
-47	2	\N
-47	3	\N
-47	4	\N
-47	5	\N
-47	6	\N
-47	7	\N
-47	8	\N
-47	9	\N
-47	10	\N
-47	11	\N
-47	12	\N
-47	13	\N
-47	14	\N
-47	15	\N
-47	16	\N
-48	1	\N
-49	1	\N
-49	2	\N
-49	3	\N
-49	4	\N
-49	5	\N
-49	6	\N
-49	7	\N
-49	8	\N
-49	9	\N
-49	10	\N
-49	11	\N
-49	12	\N
-50	1	\N
-50	2	\N
-50	3	\N
-50	4	\N
-50	5	\N
-50	6	\N
-50	7	\N
-50	8	\N
-50	9	\N
-50	10	\N
-50	11	\N
-50	12	\N
-50	13	\N
-50	14	\N
-50	15	\N
-50	16	\N
-50	17	\N
-50	18	\N
-50	19	\N
-50	20	\N
-50	21	\N
-50	22	\N
-50	23	\N
-51	1	\N
-51	2	\N
-51	3	\N
-51	4	\N
-51	5	\N
-51	6	\N
-51	7	\N
-51	8	\N
-51	9	\N
-51	10	\N
-51	11	\N
-51	12	\N
-51	13	\N
-51	14	\N
-52	1	\N
-52	2	\N
-52	3	\N
-52	4	\N
-52	5	\N
-52	6	\N
-52	7	\N
-52	8	\N
-52	9	\N
-52	10	\N
-52	11	\N
-52	12	\N
-52	13	\N
-52	14	\N
-52	15	\N
-52	16	\N
-52	17	\N
-52	18	\N
-52	19	\N
-52	20	\N
-52	21	\N
-52	22	\N
-52	23	\N
-52	24	\N
-52	25	\N
-52	26	\N
-52	27	\N
-53	1	\N
-53	2	\N
-53	3	\N
-53	4	\N
-53	5	\N
-53	6	\N
-53	7	\N
-53	8	\N
-53	9	\N
-53	10	\N
-53	11	\N
-53	12	\N
-53	13	\N
-53	14	\N
-53	15	\N
-53	16	\N
-53	17	\N
-53	18	\N
-53	19	\N
-53	20	\N
-53	21	\N
-53	22	\N
-53	23	\N
-53	24	\N
-53	25	\N
-54	1	\N
-54	2	\N
-54	3	\N
-54	4	\N
-54	5	\N
-54	6	\N
-54	7	\N
-54	8	\N
-54	9	\N
-54	10	\N
-54	11	\N
-54	12	\N
-54	13	\N
-54	14	\N
-54	15	\N
-54	16	\N
-54	17	\N
-54	18	\N
-54	19	\N
-55	1	\N
-55	2	\N
-55	3	\N
-55	4	\N
-55	5	\N
-55	6	\N
-55	7	\N
-55	8	\N
-55	9	\N
-55	10	\N
-55	11	\N
-55	12	\N
-55	13	\N
-55	14	\N
-55	15	\N
-55	16	\N
-56	1	\N
-56	2	\N
-56	3	\N
-56	4	\N
-56	5	\N
-56	6	\N
-56	7	\N
-56	8	\N
-56	9	\N
-56	10	\N
-56	11	\N
-56	12	\N
-57	1	\N
-57	2	\N
-57	3	\N
-57	4	\N
-57	5	\N
-57	6	\N
-57	7	\N
-57	8	\N
-57	9	\N
-57	10	\N
-57	11	\N
-57	12	\N
-58	1	\N
-58	2	\N
-58	3	\N
-58	4	\N
-58	5	\N
-58	6	\N
-58	7	\N
-58	8	\N
-58	9	\N
-58	10	\N
-58	11	\N
-58	12	\N
-58	13	\N
-58	14	\N
-58	15	\N
-58	16	\N
-58	17	\N
-59	1	\N
-59	2	\N
-59	3	\N
-59	4	\N
-59	5	\N
-59	6	\N
-59	7	\N
-59	8	\N
-59	9	\N
-59	10	\N
-59	11	\N
-59	12	\N
-59	13	\N
-60	1	\N
-60	2	\N
-60	3	\N
-60	4	\N
-60	5	\N
-60	6	\N
-60	7	\N
-60	8	\N
-60	9	\N
-60	10	\N
-60	11	\N
-60	12	\N
-60	13	\N
-60	14	\N
-60	15	\N
-60	16	\N
-60	17	\N
-60	18	\N
-60	19	\N
-60	20	\N
-60	21	\N
-60	22	\N
-61	1	\N
-61	2	\N
-61	3	\N
-61	4	\N
-61	5	\N
-61	6	\N
-62	1	\N
-62	2	\N
-62	3	\N
-62	4	\N
-62	5	\N
-62	6	\N
-62	7	\N
-62	8	\N
-62	9	\N
-62	10	\N
-62	11	\N
-62	12	\N
-62	13	\N
-62	14	\N
-62	15	\N
-62	16	\N
-62	17	\N
-62	18	\N
-62	19	\N
-62	20	\N
-62	21	\N
-62	22	\N
-62	23	\N
-62	24	\N
-62	25	\N
-62	26	\N
-62	27	\N
-62	28	\N
-62	29	\N
-63	1	\N
-64	1	\N
-64	2	\N
-64	3	\N
-64	4	\N
-64	5	\N
-64	6	\N
-64	7	\N
-64	8	\N
-64	9	\N
-64	10	\N
-64	11	\N
-64	12	\N
-64	13	\N
-64	14	\N
-65	1	\N
-65	2	\N
-65	3	\N
-65	4	\N
-65	5	\N
-65	6	\N
-65	7	\N
-65	8	\N
-65	9	\N
-65	10	\N
-65	11	\N
-65	12	\N
-65	13	\N
-65	14	\N
-65	15	\N
-65	16	\N
-65	17	\N
-66	1	\N
-66	2	\N
-66	3	\N
-66	4	\N
-66	5	\N
-66	6	\N
-66	7	\N
-66	8	\N
-66	9	\N
-66	10	\N
-66	11	\N
-66	12	\N
-66	13	\N
-66	14	\N
-66	15	\N
-66	16	\N
-66	17	\N
-66	18	\N
-66	19	\N
-66	20	\N
-66	21	\N
-66	22	\N
-66	23	\N
-66	24	\N
-66	25	\N
-66	26	\N
-66	27	\N
-66	28	\N
-66	29	\N
-66	30	\N
-66	31	\N
-66	32	\N
-66	33	\N
-66	34	\N
-66	35	\N
-66	36	\N
-66	37	\N
-66	38	\N
-66	39	\N
-66	40	\N
-66	41	\N
-66	42	\N
-66	43	\N
-66	44	\N
-67	1	\N
-67	2	\N
-67	3	\N
-67	4	\N
-67	5	\N
-67	6	\N
-67	7	\N
-67	8	\N
-67	9	\N
-67	10	\N
-67	11	\N
-67	12	\N
-67	13	\N
-67	14	\N
-67	15	\N
-67	16	\N
-68	1	\N
-68	2	\N
-68	3	\N
-68	4	\N
-68	5	\N
-68	6	\N
-68	7	\N
-68	8	\N
-68	9	\N
-68	10	\N
-68	11	\N
-68	12	\N
-68	13	\N
-68	14	\N
-68	15	\N
-68	16	\N
-68	17	\N
-68	18	\N
-68	19	\N
-68	20	\N
-68	21	\N
-68	22	\N
-68	23	\N
-68	24	\N
-68	25	\N
-68	26	\N
-68	27	\N
-68	28	\N
-68	29	\N
-68	30	\N
-68	31	\N
-68	32	\N
-68	33	\N
-68	34	\N
-68	35	\N
-68	36	\N
-68	37	\N
-68	38	\N
-68	39	\N
-68	40	\N
-68	41	\N
-68	42	\N
-68	43	\N
-68	44	\N
-68	45	\N
-68	46	\N
-68	47	\N
-68	48	\N
-68	49	\N
-68	50	\N
-68	51	\N
-69	1	\N
-69	2	\N
-69	3	\N
-69	4	\N
-70	1	\N
-70	2	\N
-70	3	\N
-71	1	\N
-71	2	\N
-71	3	\N
-71	4	\N
-71	5	\N
-71	6	\N
-71	7	\N
-71	8	\N
-71	9	\N
-71	10	\N
-71	11	\N
-72	1	\N
-72	2	\N
-72	3	\N
-72	4	\N
-72	5	\N
-72	6	\N
-72	7	\N
-72	8	\N
-72	9	\N
-72	10	\N
-72	11	\N
-72	12	\N
-72	13	\N
-72	14	\N
-72	15	\N
-72	16	\N
-72	17	\N
-72	18	\N
-72	19	\N
-72	20	\N
-72	21	\N
-72	22	\N
-72	23	\N
-72	24	\N
-72	25	\N
-72	26	\N
-72	27	\N
-72	28	\N
-72	29	\N
-72	30	\N
-72	31	\N
-72	32	\N
-72	33	\N
-72	34	\N
-72	35	\N
-72	36	\N
-74	1	\N
-74	2	\N
-74	3	\N
-74	4	\N
-74	5	\N
-74	6	\N
-74	7	\N
-74	8	\N
-74	9	\N
-74	10	\N
-74	11	\N
-74	12	\N
-74	13	\N
-74	14	\N
-74	15	\N
-74	16	\N
-74	17	\N
-74	18	\N
-74	19	\N
-74	20	\N
-74	21	\N
-75	1	\N
-75	2	\N
-75	3	\N
-75	4	\N
-75	5	\N
-75	6	\N
-75	7	\N
-75	8	\N
-75	9	\N
-75	10	\N
-75	11	\N
-75	12	\N
-76	1	\N
-76	2	\N
-76	3	\N
-76	4	\N
-76	5	\N
-76	6	\N
-76	7	\N
-76	8	\N
-76	9	\N
-76	10	\N
-76	11	\N
-76	12	\N
-76	13	\N
-76	14	\N
-77	1	\N
-77	2	\N
-77	3	\N
-77	4	\N
-77	5	\N
-77	6	\N
-77	7	\N
-77	8	\N
-77	9	\N
-77	10	\N
-77	11	\N
-77	12	\N
-77	13	\N
-77	14	\N
-77	15	\N
-77	16	\N
-77	17	\N
-77	18	\N
-77	19	\N
-77	20	\N
-77	21	\N
-78	1	\N
-78	2	\N
-78	3	\N
-78	4	\N
-78	5	\N
-78	6	\N
-78	7	\N
-78	8	\N
-78	9	\N
-78	10	\N
-78	11	\N
-78	12	\N
-78	13	\N
-78	14	\N
-78	15	\N
-78	16	\N
-78	17	\N
-78	18	\N
-78	19	\N
-78	20	\N
-78	21	\N
-78	22	\N
-78	23	\N
-78	24	\N
-78	25	\N
-78	26	\N
-78	27	\N
-78	28	\N
-78	29	\N
-78	30	\N
-78	31	\N
-78	32	\N
-78	33	\N
-78	34	\N
-78	35	\N
-78	36	\N
-78	37	\N
-78	38	\N
-78	39	\N
-78	40	\N
-78	41	\N
-78	42	\N
-78	43	\N
-78	44	\N
-78	45	\N
-78	46	\N
-78	47	\N
-79	1	\N
-79	2	\N
-79	3	\N
-79	4	\N
-79	5	\N
-79	6	\N
-79	7	\N
-79	8	\N
-79	9	\N
-79	10	\N
-79	11	\N
-79	12	\N
-80	1	\N
-80	2	\N
-80	3	\N
-80	4	\N
-80	5	\N
-80	6	\N
-80	7	\N
-80	8	\N
-80	9	\N
-80	10	\N
-80	11	\N
-80	12	\N
-80	13	\N
-80	14	\N
-80	15	\N
-80	16	\N
-80	17	\N
-80	18	\N
-80	19	\N
-80	20	\N
-81	1	\N
-81	2	\N
-81	3	\N
-81	4	\N
-81	5	\N
-81	6	\N
-81	7	\N
-81	8	\N
-81	9	\N
-81	10	\N
-81	11	\N
-81	12	\N
-81	13	\N
-82	1	\N
-82	2	\N
-82	3	\N
-82	4	\N
-82	5	\N
-82	6	\N
-82	7	\N
-82	8	\N
-82	9	\N
-82	10	\N
-82	11	\N
-82	12	\N
-82	13	\N
-82	14	\N
-82	15	\N
-82	16	\N
-82	17	\N
-82	18	\N
-82	19	\N
-82	20	\N
-83	1	\N
-83	2	\N
-83	3	\N
-83	4	\N
-83	5	\N
-83	6	\N
-83	7	\N
-83	8	\N
-83	9	\N
-83	10	\N
-83	11	\N
-83	12	\N
-84	1	\N
-84	2	\N
-84	3	\N
-84	4	\N
-84	5	\N
-84	6	\N
-84	7	\N
-84	8	\N
-84	9	\N
-84	10	\N
-84	11	\N
-84	12	\N
-84	13	\N
-84	14	\N
-84	15	\N
-84	16	\N
-84	17	\N
-85	1	\N
-85	2	\N
-85	3	\N
-85	4	\N
-85	5	\N
-85	6	\N
-85	7	\N
-85	8	\N
-85	9	\N
-85	10	\N
-85	11	\N
-85	12	\N
-85	13	\N
-85	14	\N
-85	15	\N
-85	16	\N
-85	17	\N
-86	1	\N
-86	2	\N
-86	3	\N
-86	4	\N
-86	5	\N
-86	6	\N
-86	7	\N
-86	8	\N
-86	9	\N
-86	10	\N
-86	11	\N
-86	12	\N
-86	13	\N
-86	14	\N
-86	15	\N
-86	16	\N
-86	17	\N
-86	18	\N
-86	19	\N
-86	20	\N
-87	1	\N
-87	2	\N
-87	3	\N
-87	4	\N
-87	5	\N
-87	6	\N
-87	7	\N
-87	8	\N
-87	9	\N
-87	10	\N
-87	11	\N
-87	12	\N
-87	13	\N
-87	14	\N
-87	15	\N
-88	1	\N
-88	2	\N
-88	3	\N
-88	4	\N
-88	5	\N
-88	6	\N
-88	7	\N
-88	8	\N
-88	9	\N
-88	10	\N
-88	11	\N
-88	12	\N
-88	13	\N
-88	14	\N
-88	15	\N
-89	1	\N
-90	1	\N
-90	2	\N
-90	3	\N
-90	4	\N
-90	5	\N
-90	6	\N
-90	7	\N
-90	8	\N
-90	9	\N
-90	10	\N
-90	11	\N
-90	12	\N
-90	13	\N
-90	14	\N
-90	15	\N
-91	1	\N
-92	1	\N
-92	2	\N
-92	3	\N
-92	4	\N
-92	5	\N
-92	6	\N
-92	7	\N
-92	8	\N
-92	9	\N
-92	10	\N
-92	11	\N
-93	1	\N
-93	2	\N
-93	3	\N
-93	4	\N
-93	5	\N
-93	6	\N
-93	7	\N
-94	1	\N
-95	1	\N
-95	2	\N
-95	3	\N
-95	4	\N
-95	5	\N
-95	6	\N
-95	7	\N
-95	8	\N
-95	9	\N
-95	10	\N
-95	11	\N
-95	12	\N
-95	13	\N
-95	14	\N
-95	15	\N
-95	16	\N
-95	17	\N
-95	18	\N
-95	19	\N
-95	20	\N
-95	21	\N
-95	22	\N
-95	23	\N
-95	24	\N
-95	25	\N
-95	26	\N
-95	27	\N
-95	28	\N
-96	1	\N
-96	2	\N
-96	3	\N
-96	4	\N
-96	5	\N
-96	6	\N
-96	7	\N
-96	8	\N
-96	9	\N
-96	10	\N
-96	11	\N
-96	12	\N
-96	13	\N
-96	14	\N
-96	15	\N
-96	16	\N
-96	17	\N
-96	18	\N
-97	1	\N
-97	2	\N
-97	3	\N
-97	4	\N
-97	5	\N
-98	1	\N
-98	2	\N
-98	3	\N
-98	4	\N
-98	5	\N
-98	6	\N
-98	7	\N
-98	8	\N
-98	9	\N
-98	10	\N
-98	11	\N
-98	12	\N
-98	13	\N
-98	14	\N
-98	15	\N
-98	16	\N
-98	17	\N
-98	18	\N
-98	19	\N
-98	20	\N
-99	1	\N
-101	1	\N
-101	2	\N
-101	3	\N
-101	4	\N
-101	5	\N
-101	6	\N
-101	7	\N
-101	8	\N
-101	9	\N
-101	10	\N
-101	11	\N
-101	12	\N
-101	13	\N
-101	14	\N
-102	1	\N
-102	2	\N
-102	3	\N
-102	4	\N
-102	5	\N
-102	6	\N
-102	7	\N
-102	8	\N
-102	9	\N
-102	10	\N
-102	11	\N
-102	12	\N
-103	1	\N
-103	2	\N
-103	3	\N
-103	4	\N
-103	5	\N
-103	6	\N
-104	1	\N
-104	2	\N
-104	3	\N
-104	4	\N
-104	5	\N
-104	6	\N
-104	7	\N
-104	8	\N
-104	9	\N
-104	10	\N
-104	11	\N
-104	12	\N
-104	13	\N
-105	1	\N
-105	2	\N
-105	3	\N
-105	4	\N
-105	5	\N
-105	6	\N
-105	7	\N
-107	1	\N
-107	2	\N
-107	3	\N
-107	4	\N
-107	5	\N
-107	6	\N
-107	7	\N
-107	8	\N
-107	9	\N
-107	10	\N
-107	11	\N
-107	12	\N
-107	13	\N
-108	1	\N
-108	2	\N
-108	3	\N
-108	4	\N
-108	5	\N
-108	6	\N
-108	7	\N
-109	1	\N
-109	2	\N
-109	3	\N
-109	4	\N
-109	5	\N
-109	6	\N
-109	7	\N
-109	8	\N
-109	9	\N
-109	10	\N
-109	11	\N
-110	1	\N
-110	2	\N
-110	3	\N
-110	4	\N
-110	5	\N
-110	6	\N
-106	3	Learning Graphical User Interfaces
-106	6	Learning Object Classification
-106	8	Video Surveillance, Background Modeling, and Morphological Operations
-106	11	Text Recognition with Tesseract
-110	7	\N
-110	8	\N
-110	9	\N
-110	10	\N
-100	3	Mocking for Dummies
-100	5	Mocking Cheat Sheet
-100	7	Mocking Reference
-110	11	\N
-110	12	\N
-110	13	\N
-110	14	\N
-110	15	\N
-110	16	\N
-111	1	\N
-111	2	\N
-111	3	\N
-111	4	\N
-111	5	\N
-111	6	\N
-111	7	\N
-111	8	\N
-111	9	\N
-111	10	\N
-111	11	\N
-111	12	\N
-111	13	\N
-112	1	\N
-112	2	\N
-112	3	\N
-112	4	\N
-112	5	\N
-112	6	\N
-112	7	\N
-112	8	\N
-112	9	\N
-112	10	\N
-112	11	\N
-112	12	\N
-112	13	\N
-112	14	\N
-112	15	\N
-112	16	\N
-112	17	\N
-112	18	\N
-112	19	\N
-113	1	\N
-113	2	\N
-113	3	\N
-113	4	\N
-113	5	\N
-115	1	\N
-115	2	\N
-115	3	\N
-115	4	\N
-115	5	\N
-115	6	\N
-115	7	\N
-115	8	\N
-115	9	\N
-115	10	\N
-115	11	\N
-115	12	\N
-115	13	\N
-115	14	\N
-115	15	\N
-115	16	\N
-115	17	\N
-115	18	\N
-115	19	\N
-115	20	\N
-115	21	\N
-115	22	\N
-115	23	\N
-115	24	\N
-115	25	\N
-116	1	\N
-116	2	\N
-116	3	\N
-116	4	\N
-116	5	\N
-116	6	\N
-116	7	\N
-116	8	\N
-116	9	\N
-116	10	\N
-116	11	\N
-116	12	\N
-116	13	\N
-116	14	\N
-116	15	\N
-116	16	\N
-116	17	\N
-116	18	\N
-116	19	\N
-116	20	\N
-116	21	\N
-116	22	\N
-116	23	\N
-116	24	\N
-116	25	\N
-116	26	\N
-116	27	\N
-116	28	\N
-116	29	\N
-116	30	\N
-116	31	\N
-116	32	\N
-116	33	\N
-116	34	\N
-116	35	\N
-116	36	\N
-116	37	\N
-116	38	\N
-116	39	\N
-116	40	\N
-116	41	\N
-116	42	\N
-116	43	\N
-116	44	\N
-116	45	\N
-116	46	\N
-116	47	\N
-116	48	\N
-116	49	\N
-116	50	\N
-116	51	\N
-116	52	\N
-116	53	\N
-116	54	\N
-116	55	\N
-116	56	\N
-116	57	\N
-116	58	\N
-116	59	\N
-116	60	\N
-116	61	\N
-116	62	\N
-116	63	\N
-116	64	\N
-116	65	\N
-116	66	\N
-116	67	\N
-116	68	\N
-118	1	\N
-118	2	\N
-118	3	\N
-118	4	\N
-118	5	\N
-118	6	\N
-118	7	\N
-118	8	\N
-118	9	\N
-118	10	\N
-118	11	\N
-118	12	\N
-118	13	\N
-119	1	\N
-119	2	\N
-119	3	\N
-119	4	\N
-119	5	\N
-119	6	\N
-119	7	\N
-119	8	\N
-119	9	\N
-119	10	\N
-119	11	\N
-119	12	\N
-119	13	\N
-119	14	\N
-119	15	\N
-119	16	\N
-119	17	\N
-119	18	\N
-121	1	\N
-122	1	\N
-122	2	\N
-122	3	\N
-122	4	\N
-122	5	\N
-122	6	\N
-122	7	\N
-122	8	\N
-122	9	\N
-122	10	\N
-122	11	\N
-122	12	\N
-122	13	\N
-122	14	\N
-123	1	\N
-123	2	\N
-123	3	\N
-123	4	\N
-123	5	\N
-123	6	\N
-123	7	\N
-123	8	\N
-123	9	\N
-124	1	\N
-124	2	\N
-124	3	\N
-124	4	\N
-124	5	\N
-124	6	\N
-124	7	\N
-124	8	\N
-124	9	\N
-124	10	\N
-124	11	\N
-124	12	\N
-126	1	\N
-125	2	Template Method
-125	3	Command
-125	5	Chain of Responsibility
-125	7	Mediator
-125	8	Visitor
-125	10	State
-125	11	Iterator
-126	2	\N
-126	3	\N
-126	4	\N
-126	5	\N
-126	6	\N
-126	7	\N
-127	1	\N
-127	2	\N
-127	3	\N
-127	4	\N
-127	5	\N
-127	6	\N
-127	7	\N
-127	8	\N
-127	9	\N
-127	10	\N
-127	11	\N
-127	12	\N
-127	13	\N
-127	14	\N
-127	15	\N
-127	16	\N
-127	17	\N
-127	18	\N
-127	19	\N
-127	20	\N
-127	21	\N
-128	1	\N
-128	2	\N
-128	3	\N
-128	4	\N
-128	5	\N
-128	6	\N
-128	7	\N
-128	8	\N
-128	9	\N
-128	10	\N
-129	1	\N
-129	2	\N
-129	3	\N
-129	4	\N
-129	5	\N
-129	6	\N
-129	7	\N
-129	8	\N
-129	9	\N
-129	10	\N
-129	11	\N
-129	12	\N
-129	13	\N
-129	14	\N
-129	15	\N
-129	16	\N
-129	17	\N
-129	18	\N
-129	19	\N
-129	20	\N
-129	21	\N
-129	22	\N
-129	23	\N
-129	24	\N
-129	25	\N
-129	26	\N
-129	27	\N
-129	28	\N
-129	29	\N
-129	30	\N
-129	31	\N
-129	32	\N
-129	33	\N
-129	34	\N
-129	35	\N
-129	36	\N
-129	37	\N
-129	38	\N
-129	39	\N
-129	40	\N
-129	41	\N
-129	42	\N
-129	43	\N
-129	44	\N
-129	45	\N
-129	46	\N
-129	47	\N
-130	1	\N
-131	1	\N
-131	2	\N
-131	3	\N
-131	4	\N
-131	5	\N
-131	6	\N
-131	7	\N
-131	8	\N
-132	1	\N
-132	2	\N
-132	3	\N
-132	4	\N
-132	5	\N
-132	6	\N
-132	7	\N
-132	8	\N
-132	9	\N
-132	10	\N
-132	11	\N
-132	12	\N
-132	13	\N
-132	14	\N
-132	15	\N
-132	16	\N
-132	17	\N
-132	18	\N
-132	19	\N
-134	1	\N
-134	2	\N
-134	3	\N
-134	4	\N
-134	5	\N
-134	6	\N
-134	7	\N
-134	8	\N
-134	9	\N
-135	1	\N
-1	1	https://youtu.be/CwYILWyTRMQ
-108	8	2
-125	1	Strategy
-125	4	Memento
-125	6	Observer
-125	9	Interpreter
-108	9	3
-136	1	Fundamental of SELinux Concepts
-137	1	https://youtu.be/Tl6xOw6Au88
-137	2	https://youtu.be/rF3ymTBeZ_k
-137	3	https://youtu.be/clqL--vqToE?feature=shared
-137	4	https://youtu.be/nXJdxxXjkvA
-137	5	https://youtu.be/TLH7tDk6OP4
-137	6	https://youtu.be/XMPeAVx3Cls
-137	7	https://youtu.be/TgoJ51OwSeA
-137	8	https://youtu.be/d-3A3Y2C-Fc?feature=shared
-137	9	https://youtu.be/1h9T3-X_1qQ
-137	10	https://youtu.be/07nVHYb_vV0
-137	11	https://youtu.be/Do4G_es2vm8
-137	12	https://youtu.be/1V5ewUKIM1I
-137	13	https://youtu.be/R8CQjsNYdvY
-137	14	https://youtu.be/KeAkWb4wgsc
-137	15	https://youtu.be/0p4l-rIGTfs
-137	16	https://youtu.be/T-4Q7i6mNeM
-137	17	https://youtu.be/ArquIrMD-0M
-137	18	https://youtu.be/z55PFrvuBqk
-137	19	https://youtu.be/speTBP-NXJo
-138	1	Introduction to Ethical Hacking
-138	2	Building a Penetration Testing Lab
-25	1	Introduction to PostgreSQL
-25	2	Getting to Know Your Cluster
-25	4	Basic Statements
-25	6	Window Functions
-25	9	Partitioning
-25	10	Users, Roles, and Database Security
-25	12	Extending the Database
-25	13	Query Tuning, Indexes, and Performance Optimization
-25	16	Configuration and Monitoring
-25	18	Logical Replication
-137	20	https://youtu.be/D7aDAXWi5SM
-114	1	https://youtu.be/J7fYddslH0Q
-140	1	https://youtu.be/kXe-YkJ9nBs
-106	1	Getting Started with OpenCV
-106	2	An Introduction to the Basics of OpenCV
-106	5	Automated Optical Inspection, Object Segmentation, and Detection
-106	7	Detecting Face Parts and Overlaying Masks
-106	9	Learning Object Tracking
-106	12	Deep Learning with OpenCV
-106	10	Developing Segmentation Algorithms for Text Recognition
-106	4	Delving into Histogram and Filters
-100	1	GoogleTest Primer
-100	2	Advanced Topics
-205	1	\N
-114	2	https://youtu.be/qfKFfQSxvA8
-100	4	Mocking Cookbook
-100	6	Testing Reference
-100	9	Matchers
-100	8	Assertions
-100	10	Actions
-151	1	Installation
-151	2	ftxui
-151	3	ftxui/screen
-151	4	ftxui/dom
-151	5	ftxui/component
-151	6	C++20 Modules
-151	7	POSIX Piped Input in FTXUI
-205	2	\N
-205	3	\N
-205	4	\N
-205	5	\N
-205	6	\N
-205	7	\N
-205	8	\N
-205	9	\N
-205	10	\N
-205	11	\N
-205	12	\N
-205	13	\N
-205	14	\N
-205	15	\N
-205	16	\N
-205	17	\N
-205	18	\N
-205	19	\N
-205	20	\N
-215	1	https://youtu.be/k76LN8dSxx4
-1	2	https://youtu.be/whaPQ5BU2y8
-1	3	https://youtu.be/Hk4fv4dD0UQ
-1	4	https://youtu.be/K5Kg8TOTKjU
+COPY flashback.sections (resource, "position", name, link) FROM stdin;
+14	1	\N	\N
+14	2	\N	\N
+14	3	\N	\N
+14	4	\N	\N
+14	5	\N	\N
+14	6	\N	\N
+14	7	\N	\N
+14	8	\N	\N
+14	9	\N	\N
+14	10	\N	\N
+14	11	\N	\N
+14	12	\N	\N
+14	13	\N	\N
+14	14	\N	\N
+14	15	\N	\N
+14	16	\N	\N
+14	17	\N	\N
+14	18	\N	\N
+14	19	\N	\N
+14	20	\N	\N
+14	21	\N	\N
+14	22	\N	\N
+14	23	\N	\N
+15	1	\N	\N
+15	2	\N	\N
+15	3	\N	\N
+15	4	\N	\N
+15	5	\N	\N
+15	6	\N	\N
+15	7	\N	\N
+15	8	\N	\N
+15	9	\N	\N
+15	10	\N	\N
+15	11	\N	\N
+15	12	\N	\N
+15	13	\N	\N
+16	1	\N	\N
+16	2	\N	\N
+16	3	\N	\N
+16	4	\N	\N
+16	5	\N	\N
+16	6	\N	\N
+16	7	\N	\N
+16	8	\N	\N
+16	9	\N	\N
+17	1	\N	\N
+17	2	\N	\N
+17	3	\N	\N
+17	4	\N	\N
+17	5	\N	\N
+17	6	\N	\N
+17	7	\N	\N
+17	8	\N	\N
+17	9	\N	\N
+17	10	\N	\N
+17	11	\N	\N
+17	12	\N	\N
+17	13	\N	\N
+17	14	\N	\N
+17	15	\N	\N
+17	16	\N	\N
+17	17	\N	\N
+17	18	\N	\N
+17	19	\N	\N
+17	20	\N	\N
+17	21	\N	\N
+18	1	\N	\N
+18	2	\N	\N
+18	3	\N	\N
+18	4	\N	\N
+18	5	\N	\N
+18	6	\N	\N
+18	7	\N	\N
+18	8	\N	\N
+18	9	\N	\N
+18	10	\N	\N
+18	11	\N	\N
+18	12	\N	\N
+18	13	\N	\N
+18	14	\N	\N
+18	15	\N	\N
+18	16	\N	\N
+18	17	\N	\N
+18	18	\N	\N
+18	19	\N	\N
+18	20	\N	\N
+18	21	\N	\N
+18	22	\N	\N
+18	23	\N	\N
+18	24	\N	\N
+18	25	\N	\N
+18	26	\N	\N
+18	27	\N	\N
+18	28	\N	\N
+18	29	\N	\N
+18	30	\N	\N
+18	31	\N	\N
+19	1	\N	\N
+19	2	\N	\N
+19	3	\N	\N
+19	4	\N	\N
+19	5	\N	\N
+19	6	\N	\N
+19	7	\N	\N
+19	8	\N	\N
+19	9	\N	\N
+19	10	\N	\N
+19	11	\N	\N
+20	1	\N	\N
+20	2	\N	\N
+20	3	\N	\N
+20	4	\N	\N
+20	5	\N	\N
+20	6	\N	\N
+21	1	\N	\N
+21	2	\N	\N
+21	3	\N	\N
+21	4	\N	\N
+21	5	\N	\N
+21	6	\N	\N
+21	7	\N	\N
+21	8	\N	\N
+21	9	\N	\N
+21	10	\N	\N
+21	11	\N	\N
+21	12	\N	\N
+21	13	\N	\N
+21	14	\N	\N
+21	15	\N	\N
+21	16	\N	\N
+21	17	\N	\N
+21	18	\N	\N
+21	19	\N	\N
+21	20	\N	\N
+22	1	\N	\N
+22	2	\N	\N
+22	3	\N	\N
+22	4	\N	\N
+22	5	\N	\N
+22	6	\N	\N
+22	7	\N	\N
+22	8	\N	\N
+22	9	\N	\N
+22	10	\N	\N
+22	11	\N	\N
+22	12	\N	\N
+22	13	\N	\N
+22	14	\N	\N
+22	15	\N	\N
+22	16	\N	\N
+22	17	\N	\N
+22	18	\N	\N
+22	19	\N	\N
+22	20	\N	\N
+22	21	\N	\N
+22	22	\N	\N
+22	23	\N	\N
+22	24	\N	\N
+22	25	\N	\N
+22	26	\N	\N
+22	27	\N	\N
+22	28	\N	\N
+22	29	\N	\N
+22	30	\N	\N
+22	31	\N	\N
+22	32	\N	\N
+22	33	\N	\N
+22	34	\N	\N
+23	1	\N	\N
+23	2	\N	\N
+23	3	\N	\N
+23	4	\N	\N
+23	5	\N	\N
+23	6	\N	\N
+23	7	\N	\N
+23	8	\N	\N
+23	9	\N	\N
+23	10	\N	\N
+23	11	\N	\N
+23	12	\N	\N
+23	13	\N	\N
+23	14	\N	\N
+23	15	\N	\N
+23	16	\N	\N
+23	17	\N	\N
+23	18	\N	\N
+23	19	\N	\N
+23	20	\N	\N
+24	1	\N	\N
+24	2	\N	\N
+24	3	\N	\N
+24	4	\N	\N
+24	5	\N	\N
+24	6	\N	\N
+24	7	\N	\N
+24	8	\N	\N
+24	9	\N	\N
+24	10	\N	\N
+24	11	\N	\N
+24	12	\N	\N
+24	13	\N	\N
+24	14	\N	\N
+24	15	\N	\N
+24	16	\N	\N
+24	17	\N	\N
+24	18	\N	\N
+25	3	Manipulating Users and Connections	\N
+25	5	Advanced Statements	\N
+25	7	Server-Side Programming	\N
+25	8	Triggers and Rules	\N
+25	11	Transactions, MVCC, WALs, and Checkpoints	\N
+25	14	Logging and Auditing	\N
+25	15	Backup and Restore	\N
+25	17	Physical Replication	\N
+25	19	Useful Tools and Extensions	\N
+26	1	\N	\N
+26	2	\N	\N
+26	3	\N	\N
+26	4	\N	\N
+26	5	\N	\N
+26	6	\N	\N
+26	7	\N	\N
+26	8	\N	\N
+26	9	\N	\N
+26	10	\N	\N
+26	11	\N	\N
+26	12	\N	\N
+26	13	\N	\N
+26	14	\N	\N
+26	15	\N	\N
+26	16	\N	\N
+27	1	\N	\N
+27	2	\N	\N
+27	3	\N	\N
+27	4	\N	\N
+27	5	\N	\N
+27	6	\N	\N
+27	7	\N	\N
+27	8	\N	\N
+27	9	\N	\N
+27	10	\N	\N
+28	1	\N	\N
+29	1	\N	\N
+29	2	\N	\N
+29	3	\N	\N
+29	4	\N	\N
+29	5	\N	\N
+29	6	\N	\N
+29	7	\N	\N
+29	8	\N	\N
+29	9	\N	\N
+29	10	\N	\N
+29	11	\N	\N
+29	12	\N	\N
+29	13	\N	\N
+29	14	\N	\N
+29	15	\N	\N
+29	16	\N	\N
+29	17	\N	\N
+29	18	\N	\N
+29	19	\N	\N
+29	20	\N	\N
+29	21	\N	\N
+30	1	\N	\N
+30	2	\N	\N
+30	3	\N	\N
+30	4	\N	\N
+30	5	\N	\N
+30	6	\N	\N
+30	7	\N	\N
+30	8	\N	\N
+30	9	\N	\N
+30	10	\N	\N
+30	11	\N	\N
+30	12	\N	\N
+30	13	\N	\N
+30	14	\N	\N
+30	15	\N	\N
+31	1	\N	\N
+31	2	\N	\N
+31	3	\N	\N
+31	4	\N	\N
+31	5	\N	\N
+31	6	\N	\N
+31	7	\N	\N
+31	8	\N	\N
+31	9	\N	\N
+31	10	\N	\N
+31	11	\N	\N
+31	12	\N	\N
+32	1	\N	\N
+32	2	\N	\N
+32	3	\N	\N
+32	4	\N	\N
+32	5	\N	\N
+32	6	\N	\N
+32	7	\N	\N
+32	8	\N	\N
+32	9	\N	\N
+32	10	\N	\N
+32	11	\N	\N
+32	12	\N	\N
+33	1	\N	\N
+33	2	\N	\N
+33	3	\N	\N
+33	4	\N	\N
+33	5	\N	\N
+33	6	\N	\N
+33	7	\N	\N
+33	8	\N	\N
+33	9	\N	\N
+33	10	\N	\N
+33	11	\N	\N
+33	12	\N	\N
+34	1	\N	\N
+34	2	\N	\N
+34	3	\N	\N
+34	4	\N	\N
+34	5	\N	\N
+34	6	\N	\N
+34	7	\N	\N
+34	8	\N	\N
+34	9	\N	\N
+34	10	\N	\N
+34	11	\N	\N
+34	12	\N	\N
+35	1	\N	\N
+35	2	\N	\N
+35	3	\N	\N
+35	4	\N	\N
+35	5	\N	\N
+35	6	\N	\N
+35	7	\N	\N
+35	8	\N	\N
+35	9	\N	\N
+35	10	\N	\N
+35	11	\N	\N
+35	12	\N	\N
+35	13	\N	\N
+35	14	\N	\N
+35	15	\N	\N
+35	16	\N	\N
+35	17	\N	\N
+35	18	\N	\N
+35	19	\N	\N
+35	20	\N	\N
+35	21	\N	\N
+35	22	\N	\N
+35	23	\N	\N
+35	24	\N	\N
+36	1	\N	\N
+36	2	\N	\N
+36	3	\N	\N
+36	4	\N	\N
+36	5	\N	\N
+36	6	\N	\N
+36	7	\N	\N
+36	8	\N	\N
+36	9	\N	\N
+36	10	\N	\N
+36	11	\N	\N
+36	12	\N	\N
+36	13	\N	\N
+36	14	\N	\N
+36	15	\N	\N
+36	16	\N	\N
+36	17	\N	\N
+36	18	\N	\N
+36	19	\N	\N
+36	20	\N	\N
+36	21	\N	\N
+36	22	\N	\N
+36	23	\N	\N
+36	24	\N	\N
+36	25	\N	\N
+36	26	\N	\N
+36	27	\N	\N
+36	28	\N	\N
+36	29	\N	\N
+36	30	\N	\N
+36	31	\N	\N
+36	32	\N	\N
+36	33	\N	\N
+36	34	\N	\N
+36	35	\N	\N
+36	36	\N	\N
+36	37	\N	\N
+37	1	\N	\N
+37	2	\N	\N
+37	3	\N	\N
+37	4	\N	\N
+37	5	\N	\N
+37	6	\N	\N
+37	7	\N	\N
+37	8	\N	\N
+37	9	\N	\N
+37	10	\N	\N
+37	11	\N	\N
+37	12	\N	\N
+37	13	\N	\N
+37	14	\N	\N
+37	15	\N	\N
+37	16	\N	\N
+37	17	\N	\N
+37	18	\N	\N
+38	1	\N	\N
+38	2	\N	\N
+38	3	\N	\N
+38	4	\N	\N
+38	5	\N	\N
+38	6	\N	\N
+38	7	\N	\N
+38	8	\N	\N
+38	9	\N	\N
+39	1	\N	\N
+39	2	\N	\N
+39	3	\N	\N
+39	4	\N	\N
+39	5	\N	\N
+39	6	\N	\N
+39	7	\N	\N
+39	8	\N	\N
+39	9	\N	\N
+39	10	\N	\N
+39	11	\N	\N
+40	1	\N	\N
+40	2	\N	\N
+40	3	\N	\N
+40	4	\N	\N
+40	5	\N	\N
+40	6	\N	\N
+40	7	\N	\N
+41	1	\N	\N
+41	2	\N	\N
+41	3	\N	\N
+41	4	\N	\N
+41	5	\N	\N
+41	6	\N	\N
+41	7	\N	\N
+41	8	\N	\N
+41	9	\N	\N
+41	10	\N	\N
+41	11	\N	\N
+41	12	\N	\N
+41	13	\N	\N
+41	14	\N	\N
+41	15	\N	\N
+41	16	\N	\N
+41	17	\N	\N
+41	18	\N	\N
+41	19	\N	\N
+41	20	\N	\N
+41	21	\N	\N
+42	1	\N	\N
+42	2	\N	\N
+42	3	\N	\N
+42	4	\N	\N
+42	5	\N	\N
+42	6	\N	\N
+42	7	\N	\N
+42	8	\N	\N
+42	9	\N	\N
+42	10	\N	\N
+42	11	\N	\N
+42	12	\N	\N
+42	13	\N	\N
+43	1	\N	\N
+43	2	\N	\N
+43	3	\N	\N
+43	4	\N	\N
+43	5	\N	\N
+43	6	\N	\N
+43	7	\N	\N
+43	8	\N	\N
+43	9	\N	\N
+43	10	\N	\N
+43	11	\N	\N
+43	12	\N	\N
+43	13	\N	\N
+43	14	\N	\N
+43	15	\N	\N
+43	16	\N	\N
+43	17	\N	\N
+43	18	\N	\N
+43	19	\N	\N
+43	20	\N	\N
+43	21	\N	\N
+43	22	\N	\N
+43	23	\N	\N
+43	24	\N	\N
+43	25	\N	\N
+43	26	\N	\N
+43	27	\N	\N
+43	28	\N	\N
+43	29	\N	\N
+43	30	\N	\N
+43	31	\N	\N
+43	32	\N	\N
+43	33	\N	\N
+43	34	\N	\N
+43	35	\N	\N
+43	36	\N	\N
+43	37	\N	\N
+43	38	\N	\N
+43	39	\N	\N
+43	40	\N	\N
+43	41	\N	\N
+43	42	\N	\N
+43	43	\N	\N
+44	1	\N	\N
+44	2	\N	\N
+44	3	\N	\N
+44	4	\N	\N
+44	5	\N	\N
+44	6	\N	\N
+44	7	\N	\N
+44	8	\N	\N
+44	9	\N	\N
+44	10	\N	\N
+44	11	\N	\N
+44	12	\N	\N
+44	13	\N	\N
+44	14	\N	\N
+45	1	\N	\N
+45	2	\N	\N
+45	3	\N	\N
+45	4	\N	\N
+45	5	\N	\N
+45	6	\N	\N
+45	7	\N	\N
+45	8	\N	\N
+45	9	\N	\N
+45	10	\N	\N
+45	11	\N	\N
+45	12	\N	\N
+45	13	\N	\N
+45	14	\N	\N
+45	15	\N	\N
+45	16	\N	\N
+46	1	\N	\N
+46	2	\N	\N
+46	3	\N	\N
+46	4	\N	\N
+46	5	\N	\N
+46	6	\N	\N
+46	7	\N	\N
+46	8	\N	\N
+46	9	\N	\N
+46	10	\N	\N
+46	11	\N	\N
+46	12	\N	\N
+46	13	\N	\N
+46	14	\N	\N
+46	15	\N	\N
+46	16	\N	\N
+46	17	\N	\N
+46	18	\N	\N
+46	19	\N	\N
+46	20	\N	\N
+46	21	\N	\N
+46	22	\N	\N
+46	23	\N	\N
+46	24	\N	\N
+46	25	\N	\N
+46	26	\N	\N
+46	27	\N	\N
+46	28	\N	\N
+46	29	\N	\N
+46	30	\N	\N
+46	31	\N	\N
+46	32	\N	\N
+46	33	\N	\N
+46	34	\N	\N
+46	35	\N	\N
+46	36	\N	\N
+46	37	\N	\N
+46	38	\N	\N
+46	39	\N	\N
+46	40	\N	\N
+46	41	\N	\N
+46	42	\N	\N
+46	43	\N	\N
+46	44	\N	\N
+46	45	\N	\N
+46	46	\N	\N
+46	47	\N	\N
+46	48	\N	\N
+46	49	\N	\N
+46	50	\N	\N
+46	51	\N	\N
+46	52	\N	\N
+46	53	\N	\N
+46	54	\N	\N
+46	55	\N	\N
+46	56	\N	\N
+46	57	\N	\N
+46	58	\N	\N
+46	59	\N	\N
+46	60	\N	\N
+46	61	\N	\N
+46	62	\N	\N
+46	63	\N	\N
+46	64	\N	\N
+47	1	\N	\N
+47	2	\N	\N
+47	3	\N	\N
+47	4	\N	\N
+47	5	\N	\N
+47	6	\N	\N
+47	7	\N	\N
+47	8	\N	\N
+47	9	\N	\N
+47	10	\N	\N
+47	11	\N	\N
+47	12	\N	\N
+47	13	\N	\N
+47	14	\N	\N
+47	15	\N	\N
+47	16	\N	\N
+48	1	\N	\N
+49	1	\N	\N
+49	2	\N	\N
+49	3	\N	\N
+49	4	\N	\N
+49	5	\N	\N
+49	6	\N	\N
+49	7	\N	\N
+49	8	\N	\N
+49	9	\N	\N
+49	10	\N	\N
+49	11	\N	\N
+49	12	\N	\N
+50	1	\N	\N
+50	2	\N	\N
+50	3	\N	\N
+50	4	\N	\N
+50	5	\N	\N
+50	6	\N	\N
+50	7	\N	\N
+50	8	\N	\N
+50	9	\N	\N
+50	10	\N	\N
+50	11	\N	\N
+50	12	\N	\N
+50	13	\N	\N
+50	14	\N	\N
+50	15	\N	\N
+50	16	\N	\N
+50	17	\N	\N
+50	18	\N	\N
+50	19	\N	\N
+50	20	\N	\N
+50	21	\N	\N
+50	22	\N	\N
+50	23	\N	\N
+51	1	\N	\N
+51	2	\N	\N
+51	3	\N	\N
+51	4	\N	\N
+51	5	\N	\N
+51	6	\N	\N
+51	7	\N	\N
+51	8	\N	\N
+51	9	\N	\N
+51	10	\N	\N
+51	11	\N	\N
+51	12	\N	\N
+51	13	\N	\N
+51	14	\N	\N
+52	1	\N	\N
+52	2	\N	\N
+52	3	\N	\N
+52	4	\N	\N
+52	5	\N	\N
+52	6	\N	\N
+52	7	\N	\N
+52	8	\N	\N
+52	9	\N	\N
+52	10	\N	\N
+52	11	\N	\N
+52	12	\N	\N
+52	13	\N	\N
+52	14	\N	\N
+52	15	\N	\N
+52	16	\N	\N
+52	17	\N	\N
+52	18	\N	\N
+52	19	\N	\N
+52	20	\N	\N
+52	21	\N	\N
+52	22	\N	\N
+52	23	\N	\N
+52	24	\N	\N
+52	25	\N	\N
+52	26	\N	\N
+52	27	\N	\N
+53	1	\N	\N
+53	2	\N	\N
+53	3	\N	\N
+53	4	\N	\N
+53	5	\N	\N
+53	6	\N	\N
+53	7	\N	\N
+53	8	\N	\N
+53	9	\N	\N
+53	10	\N	\N
+53	11	\N	\N
+53	12	\N	\N
+53	13	\N	\N
+53	14	\N	\N
+53	15	\N	\N
+53	16	\N	\N
+53	17	\N	\N
+53	18	\N	\N
+53	19	\N	\N
+53	20	\N	\N
+53	21	\N	\N
+53	22	\N	\N
+53	23	\N	\N
+53	24	\N	\N
+53	25	\N	\N
+54	1	\N	\N
+54	2	\N	\N
+54	3	\N	\N
+54	4	\N	\N
+54	5	\N	\N
+54	6	\N	\N
+54	7	\N	\N
+54	8	\N	\N
+54	9	\N	\N
+54	10	\N	\N
+54	11	\N	\N
+54	12	\N	\N
+54	13	\N	\N
+54	14	\N	\N
+54	15	\N	\N
+54	16	\N	\N
+54	17	\N	\N
+54	18	\N	\N
+54	19	\N	\N
+55	1	\N	\N
+55	2	\N	\N
+55	3	\N	\N
+55	4	\N	\N
+55	5	\N	\N
+55	6	\N	\N
+55	7	\N	\N
+55	8	\N	\N
+55	9	\N	\N
+55	10	\N	\N
+55	11	\N	\N
+55	12	\N	\N
+55	13	\N	\N
+55	14	\N	\N
+55	15	\N	\N
+55	16	\N	\N
+56	1	\N	\N
+56	2	\N	\N
+56	3	\N	\N
+56	4	\N	\N
+56	5	\N	\N
+56	6	\N	\N
+56	7	\N	\N
+56	8	\N	\N
+56	9	\N	\N
+56	10	\N	\N
+56	11	\N	\N
+56	12	\N	\N
+57	1	\N	\N
+57	2	\N	\N
+57	3	\N	\N
+57	4	\N	\N
+57	5	\N	\N
+57	6	\N	\N
+57	7	\N	\N
+57	8	\N	\N
+57	9	\N	\N
+57	10	\N	\N
+57	11	\N	\N
+57	12	\N	\N
+58	1	\N	\N
+58	2	\N	\N
+58	3	\N	\N
+58	4	\N	\N
+58	5	\N	\N
+58	6	\N	\N
+58	7	\N	\N
+58	8	\N	\N
+58	9	\N	\N
+58	10	\N	\N
+58	11	\N	\N
+58	12	\N	\N
+58	13	\N	\N
+58	14	\N	\N
+58	15	\N	\N
+58	16	\N	\N
+58	17	\N	\N
+59	1	\N	\N
+59	2	\N	\N
+59	3	\N	\N
+59	4	\N	\N
+59	5	\N	\N
+59	6	\N	\N
+59	7	\N	\N
+59	8	\N	\N
+59	9	\N	\N
+59	10	\N	\N
+59	11	\N	\N
+59	12	\N	\N
+59	13	\N	\N
+60	1	\N	\N
+60	2	\N	\N
+60	3	\N	\N
+60	4	\N	\N
+60	5	\N	\N
+60	6	\N	\N
+60	7	\N	\N
+60	8	\N	\N
+60	9	\N	\N
+60	10	\N	\N
+60	11	\N	\N
+60	12	\N	\N
+60	13	\N	\N
+60	14	\N	\N
+60	15	\N	\N
+60	16	\N	\N
+60	17	\N	\N
+60	18	\N	\N
+60	19	\N	\N
+60	20	\N	\N
+60	21	\N	\N
+60	22	\N	\N
+61	1	\N	\N
+61	2	\N	\N
+61	3	\N	\N
+61	4	\N	\N
+61	5	\N	\N
+61	6	\N	\N
+62	1	\N	\N
+62	2	\N	\N
+62	3	\N	\N
+62	4	\N	\N
+62	5	\N	\N
+62	6	\N	\N
+62	7	\N	\N
+62	8	\N	\N
+62	9	\N	\N
+62	10	\N	\N
+62	11	\N	\N
+62	12	\N	\N
+62	13	\N	\N
+62	14	\N	\N
+62	15	\N	\N
+62	16	\N	\N
+62	17	\N	\N
+62	18	\N	\N
+62	19	\N	\N
+62	20	\N	\N
+62	21	\N	\N
+62	22	\N	\N
+62	23	\N	\N
+62	24	\N	\N
+62	25	\N	\N
+62	26	\N	\N
+62	27	\N	\N
+62	28	\N	\N
+62	29	\N	\N
+63	1	\N	\N
+64	1	\N	\N
+64	2	\N	\N
+64	3	\N	\N
+64	4	\N	\N
+64	5	\N	\N
+64	6	\N	\N
+64	7	\N	\N
+64	8	\N	\N
+64	9	\N	\N
+64	10	\N	\N
+64	11	\N	\N
+64	12	\N	\N
+64	13	\N	\N
+64	14	\N	\N
+65	1	\N	\N
+65	2	\N	\N
+65	3	\N	\N
+65	4	\N	\N
+65	5	\N	\N
+65	6	\N	\N
+65	7	\N	\N
+65	8	\N	\N
+65	9	\N	\N
+65	10	\N	\N
+65	11	\N	\N
+65	12	\N	\N
+65	13	\N	\N
+65	14	\N	\N
+65	15	\N	\N
+65	16	\N	\N
+65	17	\N	\N
+66	1	\N	\N
+66	2	\N	\N
+66	3	\N	\N
+66	4	\N	\N
+66	5	\N	\N
+66	6	\N	\N
+66	7	\N	\N
+66	8	\N	\N
+66	9	\N	\N
+66	10	\N	\N
+66	11	\N	\N
+66	12	\N	\N
+66	13	\N	\N
+66	14	\N	\N
+66	15	\N	\N
+66	16	\N	\N
+66	17	\N	\N
+66	18	\N	\N
+66	19	\N	\N
+66	20	\N	\N
+66	21	\N	\N
+66	22	\N	\N
+66	23	\N	\N
+66	24	\N	\N
+66	25	\N	\N
+66	26	\N	\N
+66	27	\N	\N
+66	28	\N	\N
+66	29	\N	\N
+66	30	\N	\N
+66	31	\N	\N
+66	32	\N	\N
+66	33	\N	\N
+66	34	\N	\N
+66	35	\N	\N
+66	36	\N	\N
+66	37	\N	\N
+66	38	\N	\N
+66	39	\N	\N
+66	40	\N	\N
+66	41	\N	\N
+66	42	\N	\N
+66	43	\N	\N
+66	44	\N	\N
+67	1	\N	\N
+67	2	\N	\N
+67	3	\N	\N
+67	4	\N	\N
+67	5	\N	\N
+67	6	\N	\N
+67	7	\N	\N
+67	8	\N	\N
+67	9	\N	\N
+67	10	\N	\N
+67	11	\N	\N
+67	12	\N	\N
+67	13	\N	\N
+67	14	\N	\N
+67	15	\N	\N
+67	16	\N	\N
+68	1	\N	\N
+68	2	\N	\N
+68	3	\N	\N
+68	4	\N	\N
+68	5	\N	\N
+68	6	\N	\N
+68	7	\N	\N
+68	8	\N	\N
+68	9	\N	\N
+68	10	\N	\N
+68	11	\N	\N
+68	12	\N	\N
+68	13	\N	\N
+68	14	\N	\N
+68	15	\N	\N
+68	16	\N	\N
+68	17	\N	\N
+68	18	\N	\N
+68	19	\N	\N
+68	20	\N	\N
+68	21	\N	\N
+68	22	\N	\N
+68	23	\N	\N
+68	24	\N	\N
+68	25	\N	\N
+68	26	\N	\N
+68	27	\N	\N
+68	28	\N	\N
+68	29	\N	\N
+68	30	\N	\N
+68	31	\N	\N
+68	32	\N	\N
+68	33	\N	\N
+68	34	\N	\N
+68	35	\N	\N
+68	36	\N	\N
+68	37	\N	\N
+68	38	\N	\N
+68	39	\N	\N
+68	40	\N	\N
+68	41	\N	\N
+68	42	\N	\N
+68	43	\N	\N
+68	44	\N	\N
+68	45	\N	\N
+68	46	\N	\N
+68	47	\N	\N
+68	48	\N	\N
+68	49	\N	\N
+68	50	\N	\N
+68	51	\N	\N
+69	1	\N	\N
+69	2	\N	\N
+69	3	\N	\N
+69	4	\N	\N
+70	1	\N	\N
+70	2	\N	\N
+70	3	\N	\N
+71	1	\N	\N
+71	2	\N	\N
+71	3	\N	\N
+71	4	\N	\N
+71	5	\N	\N
+71	6	\N	\N
+71	7	\N	\N
+71	8	\N	\N
+71	9	\N	\N
+71	10	\N	\N
+71	11	\N	\N
+72	1	\N	\N
+72	2	\N	\N
+72	3	\N	\N
+72	4	\N	\N
+72	5	\N	\N
+72	6	\N	\N
+72	7	\N	\N
+72	8	\N	\N
+72	9	\N	\N
+72	10	\N	\N
+72	11	\N	\N
+72	12	\N	\N
+72	13	\N	\N
+72	14	\N	\N
+72	15	\N	\N
+72	16	\N	\N
+72	17	\N	\N
+72	18	\N	\N
+72	19	\N	\N
+72	20	\N	\N
+72	21	\N	\N
+72	22	\N	\N
+72	23	\N	\N
+72	24	\N	\N
+72	25	\N	\N
+72	26	\N	\N
+72	27	\N	\N
+72	28	\N	\N
+72	29	\N	\N
+72	30	\N	\N
+72	31	\N	\N
+72	32	\N	\N
+72	33	\N	\N
+72	34	\N	\N
+72	35	\N	\N
+72	36	\N	\N
+74	1	\N	\N
+74	2	\N	\N
+74	3	\N	\N
+74	4	\N	\N
+74	5	\N	\N
+74	6	\N	\N
+74	7	\N	\N
+74	8	\N	\N
+74	9	\N	\N
+74	10	\N	\N
+74	11	\N	\N
+74	12	\N	\N
+74	13	\N	\N
+74	14	\N	\N
+74	15	\N	\N
+74	16	\N	\N
+74	17	\N	\N
+74	18	\N	\N
+74	19	\N	\N
+74	20	\N	\N
+74	21	\N	\N
+75	1	\N	\N
+75	2	\N	\N
+75	3	\N	\N
+75	4	\N	\N
+75	5	\N	\N
+75	6	\N	\N
+75	7	\N	\N
+75	8	\N	\N
+75	9	\N	\N
+75	10	\N	\N
+75	11	\N	\N
+75	12	\N	\N
+76	1	\N	\N
+76	2	\N	\N
+76	3	\N	\N
+76	4	\N	\N
+76	5	\N	\N
+76	6	\N	\N
+76	7	\N	\N
+76	8	\N	\N
+76	9	\N	\N
+76	10	\N	\N
+76	11	\N	\N
+76	12	\N	\N
+76	13	\N	\N
+76	14	\N	\N
+77	1	\N	\N
+77	2	\N	\N
+77	3	\N	\N
+77	4	\N	\N
+77	5	\N	\N
+77	6	\N	\N
+77	7	\N	\N
+77	8	\N	\N
+77	9	\N	\N
+77	10	\N	\N
+77	11	\N	\N
+77	12	\N	\N
+77	13	\N	\N
+77	14	\N	\N
+77	15	\N	\N
+77	16	\N	\N
+77	17	\N	\N
+77	18	\N	\N
+77	19	\N	\N
+77	20	\N	\N
+77	21	\N	\N
+78	1	\N	\N
+78	2	\N	\N
+78	3	\N	\N
+78	4	\N	\N
+78	5	\N	\N
+78	6	\N	\N
+78	7	\N	\N
+78	8	\N	\N
+78	9	\N	\N
+78	10	\N	\N
+78	11	\N	\N
+78	12	\N	\N
+78	13	\N	\N
+78	14	\N	\N
+78	15	\N	\N
+78	16	\N	\N
+78	17	\N	\N
+78	18	\N	\N
+78	19	\N	\N
+78	20	\N	\N
+78	21	\N	\N
+78	22	\N	\N
+78	23	\N	\N
+78	24	\N	\N
+78	25	\N	\N
+78	26	\N	\N
+78	27	\N	\N
+78	28	\N	\N
+78	29	\N	\N
+78	30	\N	\N
+78	31	\N	\N
+78	32	\N	\N
+78	33	\N	\N
+78	34	\N	\N
+78	35	\N	\N
+78	36	\N	\N
+78	37	\N	\N
+78	38	\N	\N
+78	39	\N	\N
+78	40	\N	\N
+78	41	\N	\N
+78	42	\N	\N
+78	43	\N	\N
+78	44	\N	\N
+78	45	\N	\N
+78	46	\N	\N
+78	47	\N	\N
+79	1	\N	\N
+79	2	\N	\N
+79	3	\N	\N
+79	4	\N	\N
+79	5	\N	\N
+79	6	\N	\N
+79	7	\N	\N
+79	8	\N	\N
+79	9	\N	\N
+79	10	\N	\N
+79	11	\N	\N
+79	12	\N	\N
+80	1	\N	\N
+80	2	\N	\N
+80	3	\N	\N
+80	4	\N	\N
+80	5	\N	\N
+80	6	\N	\N
+80	7	\N	\N
+80	8	\N	\N
+80	9	\N	\N
+80	10	\N	\N
+80	11	\N	\N
+80	12	\N	\N
+80	13	\N	\N
+80	14	\N	\N
+80	15	\N	\N
+80	16	\N	\N
+80	17	\N	\N
+80	18	\N	\N
+80	19	\N	\N
+80	20	\N	\N
+81	1	\N	\N
+81	2	\N	\N
+81	3	\N	\N
+81	4	\N	\N
+81	5	\N	\N
+81	6	\N	\N
+81	7	\N	\N
+81	8	\N	\N
+81	9	\N	\N
+81	10	\N	\N
+81	11	\N	\N
+81	12	\N	\N
+81	13	\N	\N
+82	1	\N	\N
+82	2	\N	\N
+82	3	\N	\N
+82	4	\N	\N
+82	5	\N	\N
+82	6	\N	\N
+82	7	\N	\N
+82	8	\N	\N
+82	9	\N	\N
+82	10	\N	\N
+82	11	\N	\N
+82	12	\N	\N
+82	13	\N	\N
+82	14	\N	\N
+82	15	\N	\N
+82	16	\N	\N
+82	17	\N	\N
+82	18	\N	\N
+82	19	\N	\N
+82	20	\N	\N
+83	1	\N	\N
+83	2	\N	\N
+83	3	\N	\N
+83	4	\N	\N
+83	5	\N	\N
+83	6	\N	\N
+83	7	\N	\N
+83	8	\N	\N
+83	9	\N	\N
+83	10	\N	\N
+83	11	\N	\N
+83	12	\N	\N
+84	1	\N	\N
+84	2	\N	\N
+84	3	\N	\N
+84	4	\N	\N
+84	5	\N	\N
+84	6	\N	\N
+84	7	\N	\N
+84	8	\N	\N
+84	9	\N	\N
+84	10	\N	\N
+84	11	\N	\N
+84	12	\N	\N
+84	13	\N	\N
+84	14	\N	\N
+84	15	\N	\N
+84	16	\N	\N
+84	17	\N	\N
+85	1	\N	\N
+85	2	\N	\N
+85	3	\N	\N
+85	4	\N	\N
+85	5	\N	\N
+85	6	\N	\N
+85	7	\N	\N
+85	8	\N	\N
+85	9	\N	\N
+85	10	\N	\N
+85	11	\N	\N
+85	12	\N	\N
+85	13	\N	\N
+85	14	\N	\N
+85	15	\N	\N
+85	16	\N	\N
+85	17	\N	\N
+86	1	\N	\N
+86	2	\N	\N
+86	3	\N	\N
+86	4	\N	\N
+86	5	\N	\N
+86	6	\N	\N
+86	7	\N	\N
+86	8	\N	\N
+86	9	\N	\N
+86	10	\N	\N
+86	11	\N	\N
+86	12	\N	\N
+86	13	\N	\N
+86	14	\N	\N
+86	15	\N	\N
+86	16	\N	\N
+86	17	\N	\N
+86	18	\N	\N
+86	19	\N	\N
+86	20	\N	\N
+87	1	\N	\N
+87	2	\N	\N
+87	3	\N	\N
+87	4	\N	\N
+87	5	\N	\N
+87	6	\N	\N
+87	7	\N	\N
+87	8	\N	\N
+87	9	\N	\N
+87	10	\N	\N
+87	11	\N	\N
+87	12	\N	\N
+87	13	\N	\N
+87	14	\N	\N
+87	15	\N	\N
+88	1	\N	\N
+88	2	\N	\N
+88	3	\N	\N
+88	4	\N	\N
+88	5	\N	\N
+88	6	\N	\N
+88	7	\N	\N
+88	8	\N	\N
+88	9	\N	\N
+88	10	\N	\N
+88	11	\N	\N
+88	12	\N	\N
+88	13	\N	\N
+88	14	\N	\N
+88	15	\N	\N
+89	1	\N	\N
+90	1	\N	\N
+90	2	\N	\N
+90	3	\N	\N
+90	4	\N	\N
+90	5	\N	\N
+90	6	\N	\N
+90	7	\N	\N
+90	8	\N	\N
+90	9	\N	\N
+90	10	\N	\N
+90	11	\N	\N
+90	12	\N	\N
+90	13	\N	\N
+90	14	\N	\N
+90	15	\N	\N
+91	1	\N	\N
+92	1	\N	\N
+92	2	\N	\N
+92	3	\N	\N
+92	4	\N	\N
+92	5	\N	\N
+92	6	\N	\N
+92	7	\N	\N
+92	8	\N	\N
+92	9	\N	\N
+92	10	\N	\N
+92	11	\N	\N
+93	1	\N	\N
+93	2	\N	\N
+93	3	\N	\N
+93	4	\N	\N
+93	5	\N	\N
+93	6	\N	\N
+93	7	\N	\N
+94	1	\N	\N
+95	1	\N	\N
+95	2	\N	\N
+95	3	\N	\N
+95	4	\N	\N
+95	5	\N	\N
+95	6	\N	\N
+95	7	\N	\N
+95	8	\N	\N
+95	9	\N	\N
+95	10	\N	\N
+95	11	\N	\N
+95	12	\N	\N
+95	13	\N	\N
+95	14	\N	\N
+95	15	\N	\N
+95	16	\N	\N
+95	17	\N	\N
+95	18	\N	\N
+95	19	\N	\N
+95	20	\N	\N
+95	21	\N	\N
+95	22	\N	\N
+95	23	\N	\N
+95	24	\N	\N
+95	25	\N	\N
+95	26	\N	\N
+95	27	\N	\N
+95	28	\N	\N
+96	1	\N	\N
+96	2	\N	\N
+96	3	\N	\N
+96	4	\N	\N
+96	5	\N	\N
+96	6	\N	\N
+96	7	\N	\N
+96	8	\N	\N
+96	9	\N	\N
+96	10	\N	\N
+96	11	\N	\N
+96	12	\N	\N
+96	13	\N	\N
+96	14	\N	\N
+96	15	\N	\N
+96	16	\N	\N
+96	17	\N	\N
+96	18	\N	\N
+97	1	\N	\N
+97	2	\N	\N
+97	3	\N	\N
+97	4	\N	\N
+97	5	\N	\N
+98	1	\N	\N
+98	2	\N	\N
+98	3	\N	\N
+98	4	\N	\N
+98	5	\N	\N
+98	6	\N	\N
+98	7	\N	\N
+98	8	\N	\N
+98	9	\N	\N
+98	10	\N	\N
+98	11	\N	\N
+98	12	\N	\N
+98	13	\N	\N
+98	14	\N	\N
+98	15	\N	\N
+98	16	\N	\N
+98	17	\N	\N
+98	18	\N	\N
+98	19	\N	\N
+98	20	\N	\N
+99	1	\N	\N
+101	1	\N	\N
+101	2	\N	\N
+101	3	\N	\N
+101	4	\N	\N
+101	5	\N	\N
+101	6	\N	\N
+101	7	\N	\N
+101	8	\N	\N
+101	9	\N	\N
+101	10	\N	\N
+101	11	\N	\N
+101	12	\N	\N
+101	13	\N	\N
+101	14	\N	\N
+102	1	\N	\N
+102	2	\N	\N
+102	3	\N	\N
+102	4	\N	\N
+102	5	\N	\N
+102	6	\N	\N
+102	7	\N	\N
+102	8	\N	\N
+102	9	\N	\N
+102	10	\N	\N
+102	11	\N	\N
+102	12	\N	\N
+103	1	\N	\N
+103	2	\N	\N
+103	3	\N	\N
+103	4	\N	\N
+103	5	\N	\N
+103	6	\N	\N
+104	1	\N	\N
+104	2	\N	\N
+104	3	\N	\N
+104	4	\N	\N
+104	5	\N	\N
+104	6	\N	\N
+104	7	\N	\N
+104	8	\N	\N
+104	9	\N	\N
+104	10	\N	\N
+104	11	\N	\N
+104	12	\N	\N
+104	13	\N	\N
+105	1	\N	\N
+105	2	\N	\N
+105	3	\N	\N
+105	4	\N	\N
+105	5	\N	\N
+105	6	\N	\N
+105	7	\N	\N
+107	1	\N	\N
+107	2	\N	\N
+107	3	\N	\N
+107	4	\N	\N
+107	5	\N	\N
+107	6	\N	\N
+107	7	\N	\N
+107	8	\N	\N
+107	9	\N	\N
+107	10	\N	\N
+107	11	\N	\N
+107	12	\N	\N
+107	13	\N	\N
+108	1	\N	\N
+108	2	\N	\N
+108	3	\N	\N
+108	4	\N	\N
+108	5	\N	\N
+108	6	\N	\N
+108	7	\N	\N
+109	1	\N	\N
+109	2	\N	\N
+109	3	\N	\N
+109	4	\N	\N
+109	5	\N	\N
+109	6	\N	\N
+109	7	\N	\N
+109	8	\N	\N
+109	9	\N	\N
+109	10	\N	\N
+109	11	\N	\N
+110	1	\N	\N
+110	2	\N	\N
+110	3	\N	\N
+110	4	\N	\N
+110	5	\N	\N
+110	6	\N	\N
+106	3	Learning Graphical User Interfaces	\N
+106	6	Learning Object Classification	\N
+106	8	Video Surveillance, Background Modeling, and Morphological Operations	\N
+106	11	Text Recognition with Tesseract	\N
+110	7	\N	\N
+110	8	\N	\N
+110	9	\N	\N
+110	10	\N	\N
+100	3	Mocking for Dummies	\N
+100	5	Mocking Cheat Sheet	\N
+100	7	Mocking Reference	\N
+110	11	\N	\N
+110	12	\N	\N
+110	13	\N	\N
+110	14	\N	\N
+110	15	\N	\N
+110	16	\N	\N
+111	1	\N	\N
+111	2	\N	\N
+111	3	\N	\N
+111	4	\N	\N
+111	5	\N	\N
+111	6	\N	\N
+111	7	\N	\N
+111	8	\N	\N
+111	9	\N	\N
+111	10	\N	\N
+111	11	\N	\N
+111	12	\N	\N
+111	13	\N	\N
+112	1	\N	\N
+112	2	\N	\N
+112	3	\N	\N
+112	4	\N	\N
+112	5	\N	\N
+112	6	\N	\N
+112	7	\N	\N
+112	8	\N	\N
+112	9	\N	\N
+112	10	\N	\N
+112	11	\N	\N
+112	12	\N	\N
+112	13	\N	\N
+112	14	\N	\N
+112	15	\N	\N
+112	16	\N	\N
+112	17	\N	\N
+112	18	\N	\N
+112	19	\N	\N
+113	1	\N	\N
+113	2	\N	\N
+113	3	\N	\N
+113	4	\N	\N
+113	5	\N	\N
+115	1	\N	\N
+115	2	\N	\N
+115	3	\N	\N
+115	4	\N	\N
+115	5	\N	\N
+115	6	\N	\N
+115	7	\N	\N
+115	8	\N	\N
+115	9	\N	\N
+115	10	\N	\N
+115	11	\N	\N
+115	12	\N	\N
+115	13	\N	\N
+115	14	\N	\N
+115	15	\N	\N
+115	16	\N	\N
+115	17	\N	\N
+115	18	\N	\N
+115	19	\N	\N
+115	20	\N	\N
+115	21	\N	\N
+115	22	\N	\N
+115	23	\N	\N
+115	24	\N	\N
+115	25	\N	\N
+116	1	\N	\N
+116	2	\N	\N
+116	3	\N	\N
+116	4	\N	\N
+116	5	\N	\N
+116	6	\N	\N
+116	7	\N	\N
+116	8	\N	\N
+116	9	\N	\N
+116	10	\N	\N
+116	11	\N	\N
+116	12	\N	\N
+116	13	\N	\N
+116	14	\N	\N
+116	15	\N	\N
+116	16	\N	\N
+116	17	\N	\N
+116	18	\N	\N
+116	19	\N	\N
+116	20	\N	\N
+116	21	\N	\N
+116	22	\N	\N
+116	23	\N	\N
+116	24	\N	\N
+116	25	\N	\N
+116	26	\N	\N
+116	27	\N	\N
+116	28	\N	\N
+116	29	\N	\N
+116	30	\N	\N
+116	31	\N	\N
+116	32	\N	\N
+116	33	\N	\N
+116	34	\N	\N
+116	35	\N	\N
+116	36	\N	\N
+116	37	\N	\N
+116	38	\N	\N
+116	39	\N	\N
+116	40	\N	\N
+116	41	\N	\N
+116	42	\N	\N
+116	43	\N	\N
+116	44	\N	\N
+116	45	\N	\N
+116	46	\N	\N
+116	47	\N	\N
+116	48	\N	\N
+116	49	\N	\N
+116	50	\N	\N
+116	51	\N	\N
+116	52	\N	\N
+116	53	\N	\N
+116	54	\N	\N
+116	55	\N	\N
+116	56	\N	\N
+116	57	\N	\N
+116	58	\N	\N
+116	59	\N	\N
+116	60	\N	\N
+116	61	\N	\N
+116	62	\N	\N
+116	63	\N	\N
+116	64	\N	\N
+116	65	\N	\N
+116	66	\N	\N
+116	67	\N	\N
+116	68	\N	\N
+118	1	\N	\N
+118	2	\N	\N
+118	3	\N	\N
+118	4	\N	\N
+118	5	\N	\N
+118	6	\N	\N
+118	7	\N	\N
+118	8	\N	\N
+118	9	\N	\N
+118	10	\N	\N
+118	11	\N	\N
+118	12	\N	\N
+118	13	\N	\N
+119	1	\N	\N
+119	2	\N	\N
+119	3	\N	\N
+119	4	\N	\N
+119	5	\N	\N
+119	6	\N	\N
+119	7	\N	\N
+119	8	\N	\N
+119	9	\N	\N
+119	10	\N	\N
+119	11	\N	\N
+119	12	\N	\N
+119	13	\N	\N
+119	14	\N	\N
+119	15	\N	\N
+119	16	\N	\N
+119	17	\N	\N
+119	18	\N	\N
+121	1	\N	\N
+122	1	\N	\N
+122	2	\N	\N
+122	3	\N	\N
+122	4	\N	\N
+122	5	\N	\N
+122	6	\N	\N
+122	7	\N	\N
+122	8	\N	\N
+122	9	\N	\N
+122	10	\N	\N
+122	11	\N	\N
+122	12	\N	\N
+122	13	\N	\N
+122	14	\N	\N
+123	1	\N	\N
+123	2	\N	\N
+123	3	\N	\N
+123	4	\N	\N
+123	5	\N	\N
+123	6	\N	\N
+123	7	\N	\N
+123	8	\N	\N
+123	9	\N	\N
+124	1	\N	\N
+124	2	\N	\N
+124	3	\N	\N
+124	4	\N	\N
+124	5	\N	\N
+124	6	\N	\N
+124	7	\N	\N
+124	8	\N	\N
+124	9	\N	\N
+124	10	\N	\N
+124	11	\N	\N
+124	12	\N	\N
+126	1	\N	\N
+125	2	Template Method	\N
+125	3	Command	\N
+125	5	Chain of Responsibility	\N
+125	7	Mediator	\N
+125	8	Visitor	\N
+125	10	State	\N
+125	11	Iterator	\N
+126	2	\N	\N
+126	3	\N	\N
+126	4	\N	\N
+126	5	\N	\N
+126	6	\N	\N
+126	7	\N	\N
+127	1	\N	\N
+127	2	\N	\N
+127	3	\N	\N
+127	4	\N	\N
+127	5	\N	\N
+127	6	\N	\N
+127	7	\N	\N
+127	8	\N	\N
+127	9	\N	\N
+127	10	\N	\N
+127	11	\N	\N
+127	12	\N	\N
+127	13	\N	\N
+127	14	\N	\N
+127	15	\N	\N
+127	16	\N	\N
+127	17	\N	\N
+127	18	\N	\N
+127	19	\N	\N
+127	20	\N	\N
+127	21	\N	\N
+128	1	\N	\N
+128	2	\N	\N
+128	3	\N	\N
+128	4	\N	\N
+128	5	\N	\N
+128	6	\N	\N
+128	7	\N	\N
+128	8	\N	\N
+128	9	\N	\N
+128	10	\N	\N
+129	1	\N	\N
+129	2	\N	\N
+129	3	\N	\N
+129	4	\N	\N
+129	5	\N	\N
+129	6	\N	\N
+129	7	\N	\N
+129	8	\N	\N
+129	9	\N	\N
+129	10	\N	\N
+129	11	\N	\N
+129	12	\N	\N
+129	13	\N	\N
+129	14	\N	\N
+129	15	\N	\N
+129	16	\N	\N
+129	17	\N	\N
+129	18	\N	\N
+129	19	\N	\N
+129	20	\N	\N
+129	21	\N	\N
+129	22	\N	\N
+129	23	\N	\N
+129	24	\N	\N
+129	25	\N	\N
+129	26	\N	\N
+129	27	\N	\N
+129	28	\N	\N
+129	29	\N	\N
+129	30	\N	\N
+129	31	\N	\N
+129	32	\N	\N
+129	33	\N	\N
+129	34	\N	\N
+129	35	\N	\N
+129	36	\N	\N
+129	37	\N	\N
+129	38	\N	\N
+129	39	\N	\N
+129	40	\N	\N
+129	41	\N	\N
+129	42	\N	\N
+129	43	\N	\N
+129	44	\N	\N
+129	45	\N	\N
+129	46	\N	\N
+129	47	\N	\N
+130	1	\N	\N
+131	1	\N	\N
+131	2	\N	\N
+131	3	\N	\N
+131	4	\N	\N
+131	5	\N	\N
+131	6	\N	\N
+131	7	\N	\N
+131	8	\N	\N
+132	1	\N	\N
+132	2	\N	\N
+132	3	\N	\N
+132	4	\N	\N
+132	5	\N	\N
+132	6	\N	\N
+132	7	\N	\N
+132	8	\N	\N
+132	9	\N	\N
+132	10	\N	\N
+132	11	\N	\N
+132	12	\N	\N
+132	13	\N	\N
+132	14	\N	\N
+132	15	\N	\N
+132	16	\N	\N
+132	17	\N	\N
+132	18	\N	\N
+132	19	\N	\N
+134	1	\N	\N
+134	2	\N	\N
+134	3	\N	\N
+134	4	\N	\N
+134	5	\N	\N
+134	6	\N	\N
+134	7	\N	\N
+134	8	\N	\N
+134	9	\N	\N
+135	1	\N	\N
+1	1	https://youtu.be/CwYILWyTRMQ	\N
+108	8	2	\N
+125	1	Strategy	\N
+125	4	Memento	\N
+125	6	Observer	\N
+125	9	Interpreter	\N
+108	9	3	\N
+136	1	Fundamental of SELinux Concepts	\N
+137	1	https://youtu.be/Tl6xOw6Au88	\N
+137	2	https://youtu.be/rF3ymTBeZ_k	\N
+137	3	https://youtu.be/clqL--vqToE?feature=shared	\N
+137	4	https://youtu.be/nXJdxxXjkvA	\N
+137	5	https://youtu.be/TLH7tDk6OP4	\N
+137	6	https://youtu.be/XMPeAVx3Cls	\N
+137	7	https://youtu.be/TgoJ51OwSeA	\N
+137	8	https://youtu.be/d-3A3Y2C-Fc?feature=shared	\N
+137	9	https://youtu.be/1h9T3-X_1qQ	\N
+137	10	https://youtu.be/07nVHYb_vV0	\N
+137	11	https://youtu.be/Do4G_es2vm8	\N
+137	12	https://youtu.be/1V5ewUKIM1I	\N
+137	13	https://youtu.be/R8CQjsNYdvY	\N
+137	14	https://youtu.be/KeAkWb4wgsc	\N
+137	15	https://youtu.be/0p4l-rIGTfs	\N
+137	16	https://youtu.be/T-4Q7i6mNeM	\N
+137	17	https://youtu.be/ArquIrMD-0M	\N
+137	18	https://youtu.be/z55PFrvuBqk	\N
+137	19	https://youtu.be/speTBP-NXJo	\N
+138	1	Introduction to Ethical Hacking	\N
+138	2	Building a Penetration Testing Lab	\N
+25	1	Introduction to PostgreSQL	\N
+25	2	Getting to Know Your Cluster	\N
+25	4	Basic Statements	\N
+25	6	Window Functions	\N
+25	9	Partitioning	\N
+25	10	Users, Roles, and Database Security	\N
+25	12	Extending the Database	\N
+25	13	Query Tuning, Indexes, and Performance Optimization	\N
+25	16	Configuration and Monitoring	\N
+25	18	Logical Replication	\N
+137	20	https://youtu.be/D7aDAXWi5SM	\N
+114	1	https://youtu.be/J7fYddslH0Q	\N
+140	1	https://youtu.be/kXe-YkJ9nBs	\N
+106	1	Getting Started with OpenCV	\N
+106	2	An Introduction to the Basics of OpenCV	\N
+106	5	Automated Optical Inspection, Object Segmentation, and Detection	\N
+106	7	Detecting Face Parts and Overlaying Masks	\N
+106	9	Learning Object Tracking	\N
+106	12	Deep Learning with OpenCV	\N
+106	10	Developing Segmentation Algorithms for Text Recognition	\N
+106	4	Delving into Histogram and Filters	\N
+100	1	GoogleTest Primer	\N
+100	2	Advanced Topics	\N
+205	1	\N	\N
+114	2	https://youtu.be/qfKFfQSxvA8	\N
+100	4	Mocking Cookbook	\N
+100	6	Testing Reference	\N
+100	9	Matchers	\N
+100	8	Assertions	\N
+100	10	Actions	\N
+151	1	Installation	\N
+151	2	ftxui	\N
+151	3	ftxui/screen	\N
+151	4	ftxui/dom	\N
+151	5	ftxui/component	\N
+151	6	C++20 Modules	\N
+151	7	POSIX Piped Input in FTXUI	\N
+205	2	\N	\N
+205	3	\N	\N
+205	4	\N	\N
+205	5	\N	\N
+205	6	\N	\N
+205	7	\N	\N
+205	8	\N	\N
+205	9	\N	\N
+205	10	\N	\N
+205	11	\N	\N
+205	12	\N	\N
+205	13	\N	\N
+205	14	\N	\N
+205	15	\N	\N
+205	16	\N	\N
+205	17	\N	\N
+205	18	\N	\N
+205	19	\N	\N
+205	20	\N	\N
+215	1	https://youtu.be/k76LN8dSxx4	\N
+1	2	https://youtu.be/whaPQ5BU2y8	\N
+1	3	https://youtu.be/Hk4fv4dD0UQ	\N
+1	4	https://youtu.be/K5Kg8TOTKjU	\N
 \.
 
 
@@ -27085,6 +27038,14 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 
 
 --
+-- Data for Name: shelves_activities; Type: TABLE DATA; Schema: flashback; Owner: flashback
+--
+
+COPY flashback.shelves_activities (id, "user", resource, subject, action, "time") FROM stdin;
+\.
+
+
+--
 -- Data for Name: subjects; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -30235,6 +30196,13 @@ SELECT pg_catalog.setval('flashback.sections_activities_id_seq', 1, false);
 
 
 --
+-- Name: shelves_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
+--
+
+SELECT pg_catalog.setval('flashback.shelves_activities_id_seq', 1, false);
+
+
+--
 -- Name: subjects_activities_id_seq; Type: SEQUENCE SET; Schema: flashback; Owner: flashback
 --
 
@@ -30407,6 +30375,14 @@ ALTER TABLE ONLY flashback.sessions
 
 
 --
+-- Name: shelves_activities shelves_activities_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.shelves_activities
+    ADD CONSTRAINT shelves_activities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: shelves shelves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30563,7 +30539,7 @@ ALTER TABLE ONLY flashback.cards_activities
 --
 
 ALTER TABLE ONLY flashback.milestones_activities
-    ADD CONSTRAINT milestones_activities_roadmap_subject_fkey FOREIGN KEY (roadmap, subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE SET NULL;
+    ADD CONSTRAINT milestones_activities_roadmap_subject_fkey FOREIGN KEY (roadmap, subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -30703,6 +30679,30 @@ ALTER TABLE ONLY flashback.sessions
 
 
 --
+-- Name: shelves_activities shelves_activities_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.shelves_activities
+    ADD CONSTRAINT shelves_activities_resource_fkey FOREIGN KEY (resource) REFERENCES flashback.resources(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: shelves_activities shelves_activities_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.shelves_activities
+    ADD CONSTRAINT shelves_activities_subject_fkey FOREIGN KEY (subject) REFERENCES flashback.subjects(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: shelves_activities shelves_activities_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.shelves_activities
+    ADD CONSTRAINT shelves_activities_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: shelves shelves_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -30786,5 +30786,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict JuD1VW6pNCTjbkh97qiCoaSdj80zk5I3t8iPQa5I4ZhXgh9JlOAV2t3E78P59hl
+\unrestrict 74G3GJ4AxzIWSXjqX2lk5qdBlznML0mSM723bGoR7LnI1v0QVyceZtNZsozlfsM
 
