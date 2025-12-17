@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 74G3GJ4AxzIWSXjqX2lk5qdBlznML0mSM723bGoR7LnI1v0QVyceZtNZsozlfsM
+\restrict XxpnK8ktL3AyCd6hU4yiOwqNefIud3S5ri29aP7BdTy0Nl6aYlDkSRZxX70TtHU
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1291,6 +1291,27 @@ CREATE FUNCTION flashback.get_unshelved_resources() RETURNS TABLE(resource integ
 
 
 ALTER FUNCTION flashback.get_unshelved_resources() OWNER TO flashback;
+
+--
+-- Name: get_user(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user(user_email character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if exists (select id from sessions s where s.email = user_email) then
+        update sessions s set last_usage = CURRENT_DATE where s.email = user_email;
+    end if;
+
+    return query
+    select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
+    from users u
+    join sessions s on s."user" = u.id and s.email = user_email;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_user(user_email character varying) OWNER TO flashback;
 
 --
 -- Name: get_user(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -20089,11 +20110,6 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 --
 
 COPY flashback.resources (id, name, type, pattern, condition, presenter, provider, link) FROM stdin;
-15	Calculus: Concepts and Contexts	book	chapter	relevant	\N	\N	\N
-16	Qt6 Deep Dive	book	chapter	relevant	\N	\N	\N
-31	Linux Security and Administration	book	chapter	relevant	\N	\N	\N
-36	Udemy: SQL and PostgreSQL - The Complete Developer's Guide	book	chapter	relevant	\N	\N	\N
-40	Linux Kernel Programming Part 2	book	chapter	relevant	\N	\N	\N
 48	Linux Device Driver	book	chapter	relevant	\N	\N	\N
 52	The Shellcoder's Handbook	book	chapter	relevant	\N	\N	\N
 63	Offensive Security Wireless Professional (OSWP)	video	episode	relevant	\N	\N	\N
@@ -20108,23 +20124,12 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 99	C++17 Language New Features Ref Card	slides	page	relevant	\N	\N	\N
 102	Black Hat Bash	book	chapter	relevant	\N	\N	\N
 104	Mastering Modern CPP Features	video	episode	relevant	\N	\N	\N
-13	Linux Device Drivers	course	episode	relevant	\N	LinkedIn	\N
 116	Algorithms and Data Structures Made Easy	video	episode	relevant	\N	\N	\N
-4	Qt Documentation	website	page	relevant	\N	\N	https://doc.qt.io/
-8	C++ Stories	website	page	relevant	\N	\N	https://www.cppstories.com/
 19	C++20 STL Cookbook	book	chapter	relevant	Bill Weinman	Packt Publishing	https://subscription.packtpub.com/book/programming/9781803248714/
 20	Mastering OpenCV 3	book	chapter	relevant	Daniel Lélis Baggio	Packt Publishing	https://subscription.packtpub.com/book/data/9781786467171/
-22	Professional C++	book	chapter	relevant	\N	\N	https://www.wiley.com/en-us/Professional+C%2B%2B%2C+6th+Edition-p-9781394193189
 24	Hands-On Design Patterns with C++	book	chapter	relevant	Fedor G. Pikus	Packt Publishing	https://subscription.packtpub.com/book/programming/9781804611555/
-26	Docker for Developers	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781789536058/
-30	OpenCV 4 Computer Vision Programming Cookbook	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/data/9781789340723/
-34	Demystifying Cryptography with OpenSSL 3.0	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/security/9781800560345/
 35	C++20: The Complete Guide	book	chapter	relevant	Nicolai M. Josuttis	Leanpub	https://leanpub.com/cpp20
 37	Linux Service Management Made Easy with systemd	book	chapter	relevant	Donald A. Tevault	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781801811644/
-39	Learning eBPF	book	chapter	relevant	\N	\N	https://www.oreilly.com/library/view/learning-ebpf/9781098135119/
-42	Linux Kernel Programming	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/cloud-networking/9781803232225/
-44	Docker: Up & Running	book	chapter	relevant	\N	\N	https://dockerupandrunning.com/
-46	The Linux Programming Interface	book	chapter	relevant	\N	\N	https://nostarch.com/tlpi
 49	Introduction to Linear and Matrix Algebra	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-3-030-52811-9
 50	Extreme C	book	chapter	relevant	Kamran Amini	Packt Publishing	https://subscription.packtpub.com/book/programming/9781789343625/
 53	Design Patterns in Modern C++20	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-1-4842-7295-4
@@ -20144,32 +20149,32 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 109	Minimal CMake	book	chapter	relevant	Tom Hulton-Harrop	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835087312/
 110	Mastering GitHub Actions	book	chapter	relevant	Eric Chapman	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781805128625
 6	Daily bit(e) of C++	mailing list	chapter	relevant	Simon Toth	GitHub	https://github.com/HappyCerberus/daily-bite-cpp
-10	mdadm(1)	manual	page	relevant	\N	Linux Manual Pages	https://www.man7.org/linux/man-pages/man8/mdadm.8.html
 121	Language Features of C++17 Ref Card	slides	page	relevant	Bartłomiej Filipek	\N	\N
 132	System Programming in Linux	book	chapter	relevant	\N	\N	\N
-3	LaTeX Tutorial	website	page	relevant	\N	\N	https://latex-tutorial.com/tutorials/
 139	Computer Vision Lab	channel	episode	relevant	Yunus Temurlenk	YouTube	https://www.youtube.com/@computervisionlab2119
 140	C++ Weekly With Jason Turner	channel	episode	relevant	Jason Turner	YouTube	https://www.youtube.com/@cppweekly
 113	Advanced Linux: The Linux Kernel	video	episode	relevant	\N	\N	\N
 115	Mutt Documentation	website	chapter	relevant	Michael Elkins	\N	http://www.mutt.org/doc/manual/
 2	Boost Documentation	website	page	relevant	Boost Development Team	Boost Development Team	https://www.boost.org/libraries/latest/list/
-9	C++ Reference	website	page	relevant	\N	\N	https://cppreference.com/
 103	Cpp Hive	channel	episode	relevant	C++ Community	YouTube	https://www.youtube.com/@cpphive4051
 98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	Bootlin Development Team	\N	\N
-28	PostgreSQL 13 Cookbook	book	chapter	outdated	\N	\N	\N
-12	Kevin Dankwardt's Linux Device Drivers	course	episode	relevant	\N	\N	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
+4	Qt Documentation	website	page	relevant	Qt Development Team	\N	https://doc.qt.io/
+8	C++ Stories	website	page	relevant	Rainer Grimm	\N	https://www.cppstories.com/
+10	mdadm(1)	manual	page	relevant	Linux Community	Linux Manual Pages	https://www.man7.org/linux/man-pages/man8/mdadm.8.html
+22	Professional C++	book	chapter	relevant	Marc Gregoire	Wiley	https://www.wiley.com/en-us/Professional+C%2B%2B%2C+6th+Edition-p-9781394193189
+15	Calculus: Concepts and Contexts	book	chapter	relevant	James Stewart	Cengage Learning	https://faculty.cengage.com/works/9780357632499
+26	Docker for Developers	book	chapter	relevant	Richard Bullington-McGuire	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781789536058/
+30	OpenCV 4 Computer Vision Programming Cookbook	book	chapter	relevant	Robert Laganiere	Packt Publishing	https://subscription.packtpub.com/book/data/9781789340723/
+31	Linux Security and Administration	book	chapter	relevant	Randall Blair	Randall Blair	\N
+34	Demystifying Cryptography with OpenSSL 3.0	book	chapter	relevant	Alexei Khlebnikov	Packt Publishing	https://subscription.packtpub.com/book/security/9781800560345/
+39	Learning eBPF	book	chapter	relevant	Liz Rice	O'Reilly	https://www.oreilly.com/library/view/learning-ebpf/9781098135119/
+40	Linux Kernel Programming Part 2	book	chapter	relevant	Kaiwan N. Billimoria	Packt Publishing	\N
+42	Linux Kernel Programming	book	chapter	relevant	Kaiwan N. Billimoria	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781803232225/
+44	Docker: Up & Running	book	chapter	relevant	Sean P. Kane	O'Reilly	https://dockerupandrunning.com/
+46	The Linux Programming Interface	book	chapter	relevant	Michael Kerrisk	No Starch Press	https://nostarch.com/tlpi
 14	Learning OpenCV 3	book	chapter	relevant	Adrian Kaehler	O’Reilly	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/
 17	Mastering Embedded Linux Development	book	chapter	relevant	Frank Vasquez	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781803232591/
-21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	relevant	\N	\N	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/
-23	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-1-4842-4398-5
 25	Learn PostgreSQL	book	chapter	relevant	Luca Ferrari	Packt Publishing	https://subscription.packtpub.com/book/data/9781837635641/
-29	Practical Vim	book	chapter	relevant	\N	\N	https://pragprog.com/titles/dnvim2/practical-vim-second-edition/
-32	Linux System Programming Techniques	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/programming/9781789951288/
-33	Linux Driver Development for Embedded Processors	book	chapter	relevant	\N	\N	https://vdoc.pub/download/linux-driver-development-for-embedded-processors-second-edition-learn-to-develop-linux-embedded-drivers-with-kernel-49-lts-1gf0ri0tddno
-38	C++20: Get the Details	book	chapter	relevant	\N	\N	https://leanpub.com/c20/
-41	Beginning C++23: From Novice to Professional	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-1-4842-9343-0
-43	Beginning x64 Assembly Programming	book	chapter	relevant	\N	\N	https://link.springer.com/book/10.1007/978-1-4842-5076-1
-45	Docker in Practice	book	chapter	relevant	\N	\N	https://www.manning.com/books/docker-in-practice-second-edition
 47	CMake Best Practices	book	chapter	relevant	Dominik Berner	Packt Publishing	https://subscription.packtpub.com/book/programming/9781835880647/
 51	Mastering Linux Device Driver Development	book	chapter	relevant	John Madieu	\N	https://subscription.packtpub.com/book/iot-hardware/9781789342048/
 58	Embedded Linux Development Using Yocto Project	book	chapter	relevant	Otavio Salvador	Packt Publishing	https://subscription.packtpub.com/book/security/9781804615065/
@@ -20206,6 +20211,13 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 108	GitHub Actions Cookbook	book	chapter	relevant	Michael Kaufmann	Packt Publishing	https://subscription.packtpub.com/book/cloud-networking/9781835468944/
 111	Mastering PostgreSQL 17	book	chapter	relevant	\N	\N	https://subscription.packtpub.com/book/data/9781836205975/
 124	GitHub Actions in Action	book	chapter	relevant	\N	\N	https://www.manning.com/books/github-actions-in-action
+23	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	book	chapter	relevant	Michael Voss	Springer	https://link.springer.com/book/10.1007/978-1-4842-4398-5
+29	Practical Vim	book	chapter	relevant	Drew Neil	The Pragmatic Bookshelf	https://pragprog.com/titles/dnvim2/practical-vim-second-edition/
+32	Linux System Programming Techniques	book	chapter	relevant	Jack-Benny Persson	Packt Publishing	https://subscription.packtpub.com/book/programming/9781789951288/
+38	C++20: Get the Details	book	chapter	relevant	Rainer Grimm	Leanpub	https://leanpub.com/c20/
+41	Beginning C++23: From Novice to Professional	book	chapter	relevant	Ivor Horton	Springer	https://link.springer.com/book/10.1007/978-1-4842-9343-0
+43	Beginning x64 Assembly Programming	book	chapter	relevant	Jo Van Hoey	Springer	https://link.springer.com/book/10.1007/978-1-4842-5076-1
+45	Docker in Practice	book	chapter	relevant	Ian Miell	Manning	https://www.manning.com/books/docker-in-practice-second-edition
 135	GPU Programming with C++ and CUDA	book	chapter	relevant	Paulo Motta	Packt Publishing	https://subscription.packtpub.com/book/programming/9781805124542/
 141	Yocto Project Documentation	manual	page	relevant	Yocto Development Team	Linux Foundation	https://docs.yoctoproject.org/
 143	Yocto for Raspberry Pi	book	chapter	relevant	Pierre-Jean, Mabäcker	Packt Publishing	https://subscription.packtpub.com/book/iot-hardware/9781785281952/
@@ -20319,6 +20331,11 @@ COPY flashback.resources (id, name, type, pattern, condition, presenter, provide
 233	The Complete Pentesting and Privilege Escalation Course	course	chapter	relevant	Rob Percival	Packt Publishing	https://subscription.packtpub.com/video/security/9781801072359/
 234	Pentesting Industrial Control Systems	book	chapter	relevant	Paul Smith	Packt Publishing	https://subscription.packtpub.com/book/security/9781800202382/
 235	Offensive Hacking Unfolded	book	chapter	relevant	Avinash Yadav	Packt Publishing	https://subscription.packtpub.com/video/security/9781804615294/
+3	LaTeX Tutorial	website	page	relevant	LaTeX Development Team	\N	https://latex-tutorial.com/tutorials/
+9	C++ Reference	website	page	relevant	C++ Community	\N	https://cppreference.com/
+12	Linux Device Drivers	course	episode	relevant	Kevin Dankwardt	LinkedIn	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging
+21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	relevant	Jay Wengrow	The Pragmatic Bookshelf	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/
+33	Linux Driver Development for Embedded Processors	book	chapter	relevant	Alberto Liberal de los Ríos	Independently published	https://vdoc.pub/download/linux-driver-development-for-embedded-processors-second-edition-learn-to-develop-linux-embedded-drivers-with-kernel-49-lts-1gf0ri0tddno
 \.
 
 
@@ -20390,15 +20407,6 @@ COPY flashback.sections (resource, "position", name, link) FROM stdin;
 15	11	\N	\N
 15	12	\N	\N
 15	13	\N	\N
-16	1	\N	\N
-16	2	\N	\N
-16	3	\N	\N
-16	4	\N	\N
-16	5	\N	\N
-16	6	\N	\N
-16	7	\N	\N
-16	8	\N	\N
-16	9	\N	\N
 17	1	\N	\N
 17	2	\N	\N
 17	3	\N	\N
@@ -20595,7 +20603,6 @@ COPY flashback.sections (resource, "position", name, link) FROM stdin;
 27	8	\N	\N
 27	9	\N	\N
 27	10	\N	\N
-28	1	\N	\N
 29	1	\N	\N
 29	2	\N	\N
 29	3	\N	\N
@@ -20704,43 +20711,6 @@ COPY flashback.sections (resource, "position", name, link) FROM stdin;
 35	22	\N	\N
 35	23	\N	\N
 35	24	\N	\N
-36	1	\N	\N
-36	2	\N	\N
-36	3	\N	\N
-36	4	\N	\N
-36	5	\N	\N
-36	6	\N	\N
-36	7	\N	\N
-36	8	\N	\N
-36	9	\N	\N
-36	10	\N	\N
-36	11	\N	\N
-36	12	\N	\N
-36	13	\N	\N
-36	14	\N	\N
-36	15	\N	\N
-36	16	\N	\N
-36	17	\N	\N
-36	18	\N	\N
-36	19	\N	\N
-36	20	\N	\N
-36	21	\N	\N
-36	22	\N	\N
-36	23	\N	\N
-36	24	\N	\N
-36	25	\N	\N
-36	26	\N	\N
-36	27	\N	\N
-36	28	\N	\N
-36	29	\N	\N
-36	30	\N	\N
-36	31	\N	\N
-36	32	\N	\N
-36	33	\N	\N
-36	34	\N	\N
-36	35	\N	\N
-36	36	\N	\N
-36	37	\N	\N
 37	1	\N	\N
 37	2	\N	\N
 37	3	\N	\N
@@ -23024,101 +22994,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 35	5	691	6
 35	5	692	7
 35	5	693	8
-36	1	694	1
-36	1	695	2
-36	1	696	3
-36	1	697	4
-36	1	698	5
-36	1	699	6
-36	1	700	7
-36	2	701	1
-36	2	702	2
-36	2	703	3
-36	2	704	4
-36	2	705	5
-36	2	706	6
-36	2	707	7
-36	2	708	8
-36	2	709	9
-36	2	710	10
-36	3	711	1
-36	3	712	2
-36	3	713	3
-36	3	714	4
-36	3	715	5
-36	3	716	6
-36	3	717	7
-36	3	718	8
-36	3	719	9
-36	3	720	10
-36	4	721	1
-36	4	722	2
-36	5	723	1
-36	5	724	2
-36	5	725	3
-36	5	726	4
-36	5	727	5
-36	5	728	6
-36	5	729	7
-36	5	730	8
-36	5	731	9
-36	5	732	10
-36	5	733	11
-36	7	734	1
-36	7	735	2
-36	7	736	3
-36	7	737	4
-36	7	738	5
-36	7	739	6
-36	8	740	1
-36	8	741	2
-36	8	742	3
-36	8	743	4
-36	8	744	5
-36	8	745	6
-36	9	746	1
-36	9	747	2
-36	9	748	3
-36	14	749	1
-36	14	750	2
-36	14	751	3
-36	14	752	4
-36	14	753	5
-36	14	754	6
-36	14	755	7
-36	14	756	8
-36	14	757	9
-36	14	758	10
-36	14	759	11
-36	14	760	12
-36	14	761	13
-36	14	762	14
-36	15	763	1
-36	16	764	1
-36	22	765	1
-36	22	766	2
-36	22	767	3
-36	22	768	4
-36	22	769	5
-36	23	770	1
-36	23	771	2
-36	23	772	3
-36	23	773	4
-36	23	774	5
-36	23	775	6
-36	23	776	7
-36	23	777	8
-36	23	778	9
-36	23	779	10
-36	23	780	11
-36	23	781	12
-36	23	782	13
-36	23	783	14
-36	23	784	15
-36	23	785	16
-36	23	786	17
-36	24	787	1
-36	25	788	1
 39	1	789	1
 39	1	790	2
 39	1	791	3
@@ -26874,7 +26749,6 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 126	6
 48	11
 65	11
-13	11
 33	11
 75	11
 80	11
@@ -26901,14 +26775,12 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 129	29
 30	15
 97	25
-28	18
 79	18
 59	43
 29	23
 22	6
 72	5
 23	6
-16	19
 86	19
 4	19
 130	11
@@ -26925,7 +26797,6 @@ COPY flashback.shelves (resource, subject) FROM stdin;
 134	28
 52	43
 85	14
-36	18
 78	6
 98	26
 1	6
@@ -30786,5 +30657,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 74G3GJ4AxzIWSXjqX2lk5qdBlznML0mSM723bGoR7LnI1v0QVyceZtNZsozlfsM
+\unrestrict XxpnK8ktL3AyCd6hU4yiOwqNefIud3S5ri29aP7BdTy0Nl6aYlDkSRZxX70TtHU
 
