@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict XxpnK8ktL3AyCd6hU4yiOwqNefIud3S5ri29aP7BdTy0Nl6aYlDkSRZxX70TtHU
+\restrict y5BBIZKpzCjgcnKBmdOgNrdwvBkkT3J72jy5XqRgNinal8W7o1AGub3UjEVO9ho
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1300,14 +1300,10 @@ CREATE FUNCTION flashback.get_user(user_email character varying) RETURNS TABLE(i
     LANGUAGE plpgsql
     AS $$
 begin
-    if exists (select id from sessions s where s.email = user_email) then
-        update sessions s set last_usage = CURRENT_DATE where s.email = user_email;
-    end if;
-
     return query
-    select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
+    select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, null::character varying, null::character varying
     from users u
-    join sessions s on s."user" = u.id and s.email = user_email;
+    where u.email = user_email;
 end; $$;
 
 
@@ -30657,5 +30653,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict XxpnK8ktL3AyCd6hU4yiOwqNefIud3S5ri29aP7BdTy0Nl6aYlDkSRZxX70TtHU
+\unrestrict y5BBIZKpzCjgcnKBmdOgNrdwvBkkT3J72jy5XqRgNinal8W7o1AGub3UjEVO9ho
 
