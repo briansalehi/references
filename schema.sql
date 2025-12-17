@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict BSUFvbnp2NN3hQxIAbhFWsnr0vco2YDrHGzd6xUb1wikax4L5EUJhOxve9dBdji
+\restrict dGsHx9ipa2gODb2S9cKl6h2eqF1cIWxNxqwFxazD2Qp4zcIwKBbbxjjQBrh6Alf
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -413,18 +413,18 @@ ALTER PROCEDURE flashback.create_block(IN card integer, IN type flashback.conten
 -- Name: create_card(text); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_card(heading text) RETURNS integer
+CREATE FUNCTION flashback.create_card(headline text) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare card integer;
 begin
-    insert into cards (heading) values (heading) returning id into card;
+    insert into cards (headline) values (headline) returning id into card;
     return card;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.create_card(heading text) OWNER TO flashback;
+ALTER FUNCTION flashback.create_card(headline text) OWNER TO flashback;
 
 --
 -- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -657,19 +657,19 @@ CREATE PROCEDURE flashback.edit_block(IN card integer, IN block integer, IN cont
 ALTER PROCEDURE flashback.edit_block(IN card integer, IN block integer, IN content text) OWNER TO flashback;
 
 --
--- Name: edit_card_heading(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: edit_card_headline(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.edit_card_heading(IN card integer, IN new_heading character varying)
+CREATE PROCEDURE flashback.edit_card_headline(IN card integer, IN new_headline character varying)
     LANGUAGE plpgsql
     AS $$
 begin
-    update cards set heading = new_heading where id = card;
+    update cards set headline = new_headline where id = card;
 end;
 $$;
 
 
-ALTER PROCEDURE flashback.edit_card_heading(IN card integer, IN new_heading character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.edit_card_headline(IN card integer, IN new_headline character varying) OWNER TO flashback;
 
 --
 -- Name: edit_resource_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -758,13 +758,13 @@ CREATE FUNCTION flashback.estimate_read_time(card_id integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare time_per_word float = 0.4;
-declare heading_multiplier integer = 2;
+declare headline_multiplier integer = 2;
 declare text_multiplier integer = 1;
 declare code_multiplier integer = 5;
 declare headline_weight integer = 0;
 declare content_weight integer = 0;
 begin
-    select array_length(tsvector_to_array(to_tsvector('simple', heading)), 1) * time_per_word * heading_multiplier into headline_weight from cards where id = card_id;
+    select array_length(tsvector_to_array(to_tsvector('simple', headline)), 1) * time_per_word * headline_multiplier into headline_weight from cards where id = card_id;
     select sum(array_length(tsvector_to_array(to_tsvector('simple', content)), 1)) * case when type = 'text' then text_multiplier when type = 'code' then code_multiplier end into content_weight from blocks where card = card_id group by content, type;
     return headline_weight + content_weight;
 end; $$;
@@ -890,22 +890,22 @@ ALTER FUNCTION flashback.get_cards(user_id integer, subject_id integer, max_leve
 -- Name: get_duplicate_card(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_duplicate_card(card_id integer) RETURNS TABLE(rid integer, sid integer, "position" integer, card integer, resource character varying, section character varying, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_duplicate_card(card_id integer) RETURNS TABLE(rid integer, sid integer, "position" integer, card integer, resource character varying, section character varying, state flashback.card_state, headline text)
     LANGUAGE plpgsql
     AS $$
-declare card_heading text;
+declare card_headline text;
 begin
-    select c.heading into card_heading
+    select c.headline into card_headline
     from cards c
     where c.id = card_id;
 
     return query
-    select sc.resource as rid, sc.section as sid, sc.position, sc.card, r.name as resource, se.name as section, c.state, c.heading
+    select sc.resource as rid, sc.section as sid, sc.position, sc.card, r.name as resource, se.name as section, c.state, c.headline
     from cards c
     join sections_cards sc on c.id = sc.card
     join sections se on se.resource = sc.resource and se.position = sc.section
     join resources r on r.id = sc.resource
-    where c.heading = card_heading and sc.card <> card_id
+    where c.headline = card_headline and sc.card <> card_id
     order by sc.resource, sc.section, sc.position;
 end;
 $$;
@@ -917,12 +917,12 @@ ALTER FUNCTION flashback.get_duplicate_card(card_id integer) OWNER TO flashback;
 -- Name: get_lost_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_lost_cards() RETURNS TABLE(sid integer, level flashback.expertise_level, tid integer, "position" integer, card integer, subject character varying, topic character varying, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_lost_cards() RETURNS TABLE(sid integer, level flashback.expertise_level, tid integer, "position" integer, card integer, subject character varying, topic character varying, state flashback.card_state, headline text)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select tc.subject as sid, tc.level, tc.topic as tid, tc.position, tc.card, s.name as subject, t.name as topic, c.state, c.heading
+    select tc.subject as sid, tc.level, tc.topic as tid, tc.position, tc.card, s.name as subject, t.name as topic, c.state, c.headline
     from topics_cards tc
     join topics t on t.subject = tc.subject and t.position = tc.topic and t.level = tc.level
     join subjects s on s.id = tc.subject
@@ -1125,9 +1125,16 @@ ALTER FUNCTION flashback.get_sections(resource integer) OWNER TO flashback;
 -- Name: get_sections_cards(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_sections_cards(resource integer, section integer) RETURNS TABLE(id integer, "position" integer, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_sections_cards(resource integer, section integer) RETURNS TABLE(id integer, "position" integer, state flashback.card_state, headline text)
     LANGUAGE plpgsql
-    AS $$ begin return query select cards.id, sc."position", cards.state, cards.heading from sections_cards sc join cards on cards.id = sc.card where sc.resource = get_sections_cards.resource and sc.section = get_sections_cards.section; end; $$;
+    AS $$
+begin
+    return query
+    select cards.id, sc."position", cards.state, cards.headline
+    from sections_cards sc
+    join cards on cards.id = sc.card
+    where sc.resource = get_sections_cards.resource and sc.section = get_sections_cards.section;
+end; $$;
 
 
 ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) OWNER TO flashback;
@@ -1219,12 +1226,12 @@ ALTER FUNCTION flashback.get_topics(roadmap integer, milestone integer) OWNER TO
 -- Name: get_topics_cards(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) RETURNS TABLE(card integer, "position" integer, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) RETURNS TABLE(card integer, "position" integer, state flashback.card_state, headline text)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select cards.id, tc."position", cards.state, cards.heading
+    select cards.id, tc."position", cards.state, cards.headline
     from milestones m
     join topics_cards tc on tc.subject = m.subject
     join cards on cards.id = tc.card
@@ -1241,12 +1248,12 @@ ALTER FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer
 -- Name: get_unreviewed_sections_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_unreviewed_sections_cards() RETURNS TABLE(rid integer, sid integer, "position" integer, card integer, resource character varying, section character varying, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_unreviewed_sections_cards() RETURNS TABLE(rid integer, sid integer, "position" integer, card integer, resource character varying, section character varying, state flashback.card_state, headline text)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select sc.resource, sc.section, sc.position, sc.card, r.name, s.name, c.state, c.heading
+    select sc.resource, sc.section, sc.position, sc.card, r.name, s.name, c.state, c.headline
     from sections_cards sc
     join sections s on s.resource = sc.resource and s.position = sc.section
     join resources r on r.id = sc.resource
@@ -1263,12 +1270,12 @@ ALTER FUNCTION flashback.get_unreviewed_sections_cards() OWNER TO flashback;
 -- Name: get_unreviewed_topics_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_unreviewed_topics_cards() RETURNS TABLE(sid integer, level flashback.expertise_level, tid integer, "position" integer, card integer, subject character varying, topic character varying, state flashback.card_state, heading text)
+CREATE FUNCTION flashback.get_unreviewed_topics_cards() RETURNS TABLE(sid integer, level flashback.expertise_level, tid integer, "position" integer, card integer, subject character varying, topic character varying, state flashback.card_state, headline text)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select tc.subject as sid, tc.level, tc.topic as tid, tc.position, tc.card, s.name as subject, t.name as topic, c.state, c.heading
+    select tc.subject as sid, tc.level, tc.topic as tid, tc.position, tc.card, s.name as subject, t.name as topic, c.state, c.headline
     from topics_cards tc
     join topics t on t.subject = tc.subject and t.position = tc.topic and t.level = tc.level
     join subjects s on s.id = tc.subject
@@ -1517,7 +1524,7 @@ ALTER PROCEDURE flashback.merge_blocks(IN selected_card integer, VARIADIC block_
 -- Name: merge_cards(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_heading character varying)
+CREATE PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_headline character varying)
     LANGUAGE plpgsql
     AS $$
 declare rhs_top_position integer;
@@ -1526,7 +1533,7 @@ begin
 
     update blocks set position = position + rhs_top_position, card = lhs where card = rhs;
 
-    update cards set heading = new_heading where id = lhs;
+    update cards set headline = new_headline where id = lhs;
 
     if not exists (
         select 1 from topics_cards tc join topics_cards tcc on tcc.subject = tc.subject and tcc.topic = tc.topic and tcc.level = tc.level where tc.card = lhs and tcc.card = rhs
@@ -1547,7 +1554,7 @@ end;
 $$;
 
 
-ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_heading character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_headline character varying) OWNER TO flashback;
 
 --
 -- Name: move_card_to_section(integer, integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -3074,5 +3081,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict BSUFvbnp2NN3hQxIAbhFWsnr0vco2YDrHGzd6xUb1wikax4L5EUJhOxve9dBdji
+\unrestrict dGsHx9ipa2gODb2S9cKl6h2eqF1cIWxNxqwFxazD2Qp4zcIwKBbbxjjQBrh6Alf
 
