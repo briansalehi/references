@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict HAAoW9cJ8Q6gdXzbdVeazc1UytvxJnU6kLJ0iR32BpmCiSxh5xkZ5iQIqUnjYnb
+\restrict CFjZ3YEX5snwb38p47ldJWAP4tpR4scfApZFb4ZGDzzWbodQrwPZD9EfqyA5ZIZ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -524,18 +524,19 @@ ALTER FUNCTION flashback.create_resource(resource_name character varying, resour
 -- Name: create_roadmap(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_roadmap(name character varying) RETURNS integer
+CREATE FUNCTION flashback.create_roadmap(roadmap_name character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
-declare roadmap integer;
+declare roadmap_id integer;
 begin
-    insert into roadmaps(name) values (name) returning id into roadmap;
-    return roadmap;
+    insert into roadmaps (name) values (roadmap_name) returning id into roadmap_id;
+
+    return roadmap_id;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.create_roadmap(name character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.create_roadmap(roadmap_name character varying) OWNER TO flashback;
 
 --
 -- Name: create_section(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2378,6 +2379,17 @@ ALTER TABLE flashback.resources ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
     CACHE 1
 );
 
+
+--
+-- Name: roadmap_id; Type: TABLE; Schema: flashback; Owner: flashback
+--
+
+CREATE TABLE flashback.roadmap_id (
+    "coalesce" integer
+);
+
+
+ALTER TABLE flashback.roadmap_id OWNER TO flashback;
 
 --
 -- Name: roadmaps; Type: TABLE; Schema: flashback; Owner: flashback
@@ -21106,6 +21118,14 @@ COPY flashback.resources_activities (id, "user", resource, action, "time") FROM 
 
 
 --
+-- Data for Name: roadmap_id; Type: TABLE DATA; Schema: flashback; Owner: flashback
+--
+
+COPY flashback.roadmap_id ("coalesce") FROM stdin;
+\.
+
+
+--
 -- Data for Name: roadmaps; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
@@ -31450,5 +31470,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict HAAoW9cJ8Q6gdXzbdVeazc1UytvxJnU6kLJ0iR32BpmCiSxh5xkZ5iQIqUnjYnb
+\unrestrict CFjZ3YEX5snwb38p47ldJWAP4tpR4scfApZFb4ZGDzzWbodQrwPZD9EfqyA5ZIZ
 
