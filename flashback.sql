@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict KI1yIXMfXUvFAkgS3VGfp7Ak5VkKApjEliZ8geHSagQ20dGDy3CMGWhkGZhMHpf
+\restrict VzeXVtmeX4euq250La0il3MkH2baqjsLlcwXhFMWhIsOFqdJgcpaJTDlsESpHuq
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1701,12 +1701,15 @@ ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER 
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.rename_roadmap(IN roadmap integer, IN name character varying)
+CREATE PROCEDURE flashback.rename_roadmap(IN roadmap_id integer, IN roadmap_name character varying)
     LANGUAGE plpgsql
-    AS $$ begin update roadmaps set roadmaps.name = rename_roadmap.name where id = roadmap; end; $$;
+    AS $$
+begin
+    update roadmaps set name = roadmap_name where id = roadmap_id;
+end; $$;
 
 
-ALTER PROCEDURE flashback.rename_roadmap(IN roadmap integer, IN name character varying) OWNER TO flashback;
+ALTER PROCEDURE flashback.rename_roadmap(IN roadmap_id integer, IN roadmap_name character varying) OWNER TO flashback;
 
 --
 -- Name: reorder_blocks(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -31478,5 +31481,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict KI1yIXMfXUvFAkgS3VGfp7Ak5VkKApjEliZ8geHSagQ20dGDy3CMGWhkGZhMHpf
+\unrestrict VzeXVtmeX4euq250La0il3MkH2baqjsLlcwXhFMWhIsOFqdJgcpaJTDlsESpHuq
 
