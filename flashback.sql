@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict MNmhAL7ScJXtfEEkhvVtqSoRW8zLM973H8w0MbdYpWPuUM363Q18WUGX1MOV4vo
+\restrict HAAoW9cJ8Q6gdXzbdVeazc1UytvxJnU6kLJ0iR32BpmCiSxh5xkZ5iQIqUnjYnb
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -521,23 +521,21 @@ $$;
 ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, presenter_id integer, provider_id integer, resource_link character varying) OWNER TO flashback;
 
 --
--- Name: create_roadmap(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: create_roadmap(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_roadmap(user_id integer, name character varying) RETURNS integer
+CREATE FUNCTION flashback.create_roadmap(name character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare roadmap integer;
 begin
     insert into roadmaps(name) values (name) returning id into roadmap;
-
-    insert into users_roadmaps("user", roadmap) values (user_id, roadmap);
     return roadmap;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.create_roadmap(user_id integer, name character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.create_roadmap(name character varying) OWNER TO flashback;
 
 --
 -- Name: create_section(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -31452,5 +31450,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict MNmhAL7ScJXtfEEkhvVtqSoRW8zLM973H8w0MbdYpWPuUM363Q18WUGX1MOV4vo
+\unrestrict HAAoW9cJ8Q6gdXzbdVeazc1UytvxJnU6kLJ0iR32BpmCiSxh5xkZ5iQIqUnjYnb
 
