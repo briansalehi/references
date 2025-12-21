@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict CFjZ3YEX5snwb38p47ldJWAP4tpR4scfApZFb4ZGDzzWbodQrwPZD9EfqyA5ZIZ
+\restrict KI1yIXMfXUvFAkgS3VGfp7Ak5VkKApjEliZ8geHSagQ20dGDy3CMGWhkGZhMHpf
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1166,9 +1166,17 @@ ALTER FUNCTION flashback.get_resources(user_id integer, subject_id integer) OWNE
 -- Name: get_roadmaps(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_roadmaps("user" integer) RETURNS TABLE(id integer, name character varying)
+CREATE FUNCTION flashback.get_roadmaps("user" integer) RETURNS TABLE(id integer, name flashback.citext)
     LANGUAGE plpgsql
-    AS $$ begin return query select r.id, r.name from roadmaps r join users_roadmaps ur on ur.roadmap = r.id where ur."user" = get_roadmaps.user order by name; end; $$;
+    AS $$
+begin
+    return query
+    select r.id, r.name
+    from roadmaps r
+    join users_roadmaps ur on ur.roadmap = r.id
+    where ur."user" = get_roadmaps.user
+    order by name;
+end; $$;
 
 
 ALTER FUNCTION flashback.get_roadmaps("user" integer) OWNER TO flashback;
@@ -31470,5 +31478,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict CFjZ3YEX5snwb38p47ldJWAP4tpR4scfApZFb4ZGDzzWbodQrwPZD9EfqyA5ZIZ
+\unrestrict KI1yIXMfXUvFAkgS3VGfp7Ak5VkKApjEliZ8geHSagQ20dGDy3CMGWhkGZhMHpf
 
