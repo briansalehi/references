@@ -1,7 +1,0 @@
-*
-!.gitignore
-!*.md
-!*.sql
-!export
-!restore
-!store
