@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict KMLnSg5vQMc1iOKhacUGeiU0ORu1i4p4dBg2XV7aYhla7EVHKWM1c9b4IpslxYK
+\restrict fZJvsEXitFaBhsxS4x5cTu8WOY9fcsfiphXyPvFbx41RfnsdrpbjqfDjgH7fdag
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1122,40 +1122,24 @@ $$;
 ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) OWNER TO flashback;
 
 --
--- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_resources("user" integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link, max(sections_progress.time)
-    from resources
-    join shelves on shelves.resource = resources.id
-    left join sections_progress on sections_progress.resource = resources.id and sections_progress."user" = get_resources."user"
-    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_resources("user" integer) OWNER TO flashback;
-
---
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    select r.id, r.name, r.type, r.pattern, r.condition, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
     from resources r
     join shelves s on s.resource = r.id and s.subject = subject_id
     join sections_cards sc on sc.resource = r.id
     left join progress p on p."user" = user_id and p.card = sc.card
-    group by r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link;
+    left join authors a on a.resource = r.id
+    left join presenters e on e.id = a.presenter
+    left join producers c on c.resource = r.id
+    left join providers v on v.id = c.provider
+    group by r.id, r.name, r.type, r.pattern, r.condition, e.name, v.name, r.link;
 end;
 $$;
 
@@ -1696,6 +1680,20 @@ CREATE PROCEDURE flashback.remove_block(IN card integer, IN block integer)
 
 
 ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER TO flashback;
+
+--
+-- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_roadmap(IN roadmap_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from roadmaps where id = roadmap_id;
+end; $$;
+
+
+ALTER PROCEDURE flashback.remove_roadmap(IN roadmap_id integer) OWNER TO flashback;
 
 --
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3402,5 +3400,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict KMLnSg5vQMc1iOKhacUGeiU0ORu1i4p4dBg2XV7aYhla7EVHKWM1c9b4IpslxYK
+\unrestrict fZJvsEXitFaBhsxS4x5cTu8WOY9fcsfiphXyPvFbx41RfnsdrpbjqfDjgH7fdag
 

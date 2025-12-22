@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict VzeXVtmeX4euq250La0il3MkH2baqjsLlcwXhFMWhIsOFqdJgcpaJTDlsESpHuq
+\restrict UnaoO7qdDveGeMheKbvi4QzyHfixioDLJ0AYYXW9enX0D47cJxhsWUurVfugQfm
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1122,40 +1122,24 @@ $$;
 ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) OWNER TO flashback;
 
 --
--- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_resources("user" integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link, max(sections_progress.time)
-    from resources
-    join shelves on shelves.resource = resources.id
-    left join sections_progress on sections_progress.resource = resources.id and sections_progress."user" = get_resources."user"
-    group by resources.id, resources.name, resources.type, resources.condition, resources.presenter, resources.provider, resources.link;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_resources("user" integer) OWNER TO flashback;
-
---
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, condition flashback.condition, presenter character varying, provider character varying, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    select r.id, r.name, r.type, r.pattern, r.condition, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
     from resources r
     join shelves s on s.resource = r.id and s.subject = subject_id
     join sections_cards sc on sc.resource = r.id
     left join progress p on p."user" = user_id and p.card = sc.card
-    group by r.id, r.name, r.type, r.condition, r.presenter, r.provider, r.link;
+    left join authors a on a.resource = r.id
+    left join presenters e on e.id = a.presenter
+    left join producers c on c.resource = r.id
+    left join providers v on v.id = c.provider
+    group by r.id, r.name, r.type, r.pattern, r.condition, e.name, v.name, r.link;
 end;
 $$;
 
@@ -1696,6 +1680,20 @@ CREATE PROCEDURE flashback.remove_block(IN card integer, IN block integer)
 
 
 ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER TO flashback;
+
+--
+-- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_roadmap(IN roadmap_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from roadmaps where id = roadmap_id;
+end; $$;
+
+
+ALTER PROCEDURE flashback.remove_roadmap(IN roadmap_id integer) OWNER TO flashback;
 
 --
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -20610,10 +20608,6 @@ COPY flashback.producers (resource, provider) FROM stdin;
 --
 
 COPY flashback.progress ("user", card, last_practice, duration, progression) FROM stdin;
-2	108	2025-12-10 12:37:35.908019+01	8	0
-2	4133	2025-12-10 12:38:06.325959+01	31	0
-2	111	2025-12-10 12:39:18.738802+01	72	0
-2	116	2025-12-10 12:40:27.434731+01	54	0
 2	117	2025-12-10 12:40:30.714517+01	3	0
 2	4137	2025-12-10 12:41:23.434107+01	53	0
 2	4138	2025-12-10 12:42:19.952968+01	56	0
@@ -20765,6 +20759,10 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	5218	2025-12-12 23:29:47.090728+01	105	0
 2	5219	2025-12-12 23:31:25.063097+01	98	0
 2	5203	2025-12-13 12:01:12.153996+01	5	1
+2	108	2025-12-22 11:58:54.337866+01	9	0
+2	4133	2025-12-22 11:59:09.632956+01	15	0
+2	111	2025-12-22 11:59:46.707284+01	37	0
+2	116	2025-12-22 11:59:49.829976+01	3	0
 2	5220	2025-12-12 23:32:15.62245+01	50	0
 2	5235	2025-12-12 23:34:17.721769+01	122	0
 2	5236	2025-12-12 23:35:14.772153+01	57	0
@@ -31481,5 +31479,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict VzeXVtmeX4euq250La0il3MkH2baqjsLlcwXhFMWhIsOFqdJgcpaJTDlsESpHuq
+\unrestrict UnaoO7qdDveGeMheKbvi4QzyHfixioDLJ0AYYXW9enX0D47cJxhsWUurVfugQfm
 
