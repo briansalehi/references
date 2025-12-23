@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict UnaoO7qdDveGeMheKbvi4QzyHfixioDLJ0AYYXW9enX0D47cJxhsWUurVfugQfm
+\restrict KYcaf9gC9YHYszQaKh6b8Vm1HYrffsRhD3PMirRWR47GvvrV7vQENumBoJtbLnb
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1379,25 +1379,25 @@ end; $$;
 ALTER FUNCTION flashback.get_user(user_email character varying) OWNER TO flashback;
 
 --
--- Name: get_user(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_user(character varying, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_user(user_id integer, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
+CREATE FUNCTION flashback.get_user(user_token character varying, user_device character varying) RETURNS TABLE(id integer, name character varying, email character varying, hash character varying, state flashback.user_state, verified boolean, joined timestamp with time zone, token character varying, device character varying)
     LANGUAGE plpgsql
     AS $$
 begin
-    if exists (select id from sessions s where s."user" = user_id and s.device = user_device) then
-        update sessions s set last_usage = CURRENT_DATE where s."user" = user_id and s.device = user_device;
+    if exists (select id from sessions s where s.token = user_token and s.device = user_device) then
+        update sessions s set last_usage = CURRENT_DATE where s.token = user_token and s.device = user_device;
     end if;
 
     return query
     select u.id, u.name, u.email, u.hash, u.state, u.verified, u.joined, s.token, s.device
     from users u
-    join sessions s on s."user" = u.id and s."user" = user_id and s.device = user_device;
+    join sessions s on s."user" = u.id and s.token = user_token and s.device = user_device;
 end; $$;
 
 
-ALTER FUNCTION flashback.get_user(user_id integer, user_device character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.get_user(user_token character varying, user_device character varying) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2520,7 +2520,7 @@ ALTER TABLE flashback.sections_cards OWNER TO flashback;
 CREATE TABLE flashback.sessions (
     "user" integer NOT NULL,
     token character varying(300) NOT NULL,
-    device character varying(50),
+    device character varying(50) NOT NULL,
     last_usage timestamp with time zone
 );
 
@@ -27367,7 +27367,7 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 --
 
 COPY flashback.sessions ("user", token, device, last_usage) FROM stdin;
-2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	2025-12-15 00:00:00+01
+2	Txqw8ldUFaI+e9TGfBlP6YxBkn6bgngfQMJITK8DUSQ	b53c3d26-9f71-a69d-d031-c7bf2febd123	2025-12-23 00:00:00+01
 \.
 
 
@@ -30995,15 +30995,7 @@ ALTER TABLE ONLY flashback.sections
 --
 
 ALTER TABLE ONLY flashback.sessions
-    ADD CONSTRAINT sessions_pkey PRIMARY KEY ("user", token);
-
-
---
--- Name: sessions sessions_user_device_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.sessions
-    ADD CONSTRAINT sessions_user_device_key UNIQUE ("user", device);
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (token, device, "user");
 
 
 --
@@ -31479,5 +31471,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict UnaoO7qdDveGeMheKbvi4QzyHfixioDLJ0AYYXW9enX0D47cJxhsWUurVfugQfm
+\unrestrict KYcaf9gC9YHYszQaKh6b8Vm1HYrffsRhD3PMirRWR47GvvrV7vQENumBoJtbLnb
 
