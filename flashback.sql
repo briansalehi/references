@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict yvIXY79no4MmdMCXGXbhaqtOfGuubuAe9wpUDsAkg3N0MaRHazVSHJQZsRc7ISx
+\restrict jljgb15PkzKHRJB5Rr1rzRofqUYCUQ4lduBzGpJiv1oamzCm6a3XpPfnB9m9TiI
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -12088,13 +12088,10 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3678	4	**Barriers:** allow a group of threads to synchronize their execution, ensuring that all threads reach a certain point before proceeding further.	text	txt
 3678	5	**Read-Write Locks:** provide a way to control concurrent access to shared data, allowing multiple readers but only a single writer at a time.	text	txt
 3678	6	**Spinlocks:** a type of mutex that involves busy waiting, continuously checking a memory location until it becomes available.	text	txt
-3679	1		text	txt
-3679	2	**Race conditions** occur when multiple threads access and modify shared data concurrently.	text	txt
-3679	3	**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.	text	txt
 5226	3	or run the steps without actually creating a container:	text	md
 3680	1	- Kernel threads only used by drivers in kernel space\n- User space native threads created by the kernel using a kernel API, such as standard threads\n- User space lightweight or virtual threads emulated by a runtime or library, such as coroutines	text	txt
 3681	1	When a thread is constructed, it executes immediately. The only delay might be due to OS scheduling process. The order of execution between the parent and children are not defined.	text	txt
-3679	5	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	text	txt
+3679	1	**Race conditions** occur when multiple threads access and modify shared data concurrently.	text	txt
 3681	2	#include <thread>\n\nvoid task_function() { };\nauto task_lambda = [] { };\nstruct task { void operator() { } } task_functor;\nstruct some_type { void do_something() { } } task_object;\nstruct some_other_type { static void do_something() { } };\n\nstd::jthread{task_function};\nstd::jthread{task_lambda};\nstd::jthread{task_functor};\nstd::jthread{&some_type::do_something, &task_object};\nstd::jthread{&some_other_type::do_something};	code	cpp
 3682	1	std::size_t const core_count{std::thread::hardware_concurrency()};	code	cpp
 3682	2	The value returned by this function should only be considered as a hint. It may return 0 when not well defined.	text	txt
@@ -14247,7 +14244,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1435	2	#include <iostream>\n\nstruct base\n{\n    int id;\n\n    void show()\n    {\n        return [*this] { std::cout << id << '\\\\n'; };\n    }\n};\n\nint main()\n{\n    // base is destroyed at the time of show() execution\n    auto lambda = base{42}.show();\n}	code	cpp
 1436	1	#include <vector>\n\nint main()\n{\n    std::vector<int> numbers{0,1,2,3,4,5,6,7,8,9};\n    auto vsize = []<typename T>(std::vector<T> const& v) { return std::size(v); };\n    vsize(v); // 10\n    vsize(42); // error\n}	code	cpp
 1437	1	int main()\n{\n    auto generic_sum = []<typename T>(T&& x, T&& y) nothrow { return x + y; }\n\n    int result = generic_sum(40, 2);\n}	code	cpp
-3679	4	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt
+3679	3	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt
 1416	2	* `std::regex_interator`: A constant forward iterator used to iterate through the occurrences of a pattern in a string. It has a pointer to an `std::basic_regex` that must live until the iterator is destroyed. Upon creation and when incremented, the iterator calls `std::regex_search()` and stores a copy of the `std::match_results` object returned by the algorithm.\n* `std::regex_token_iterator`: A constant forward iterator used to iterate through the submatches of every match of a regular expression in a string. Internally, it uses a `std::regex_iterator` to step through the submatches. Since it stores a pointer to an `std::basic_regex` instance, the regular expression object must live until the iterator is destroyed.	text	txt
 1416	3	The token iterators can return the unmatched parts of the string if the index of the subexpressions is -1, in which case it returns an `std::match_results` object that corresponds to the sequence of characters between the last match and the end of the sequence:	text	txt
 5463	1	Optical flow algorithms are used in videos to track features across successive frames. Running a feature extractor on each frame would be computationally expensive. Instead, we extract the features from the current frame, and then track those features in successive frames.	text	md
@@ -14287,6 +14284,8 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1482	1	import std;\n\nint main()\n{\n    std::cout << std::format("{}\\\\n", "modules are working");\n}	code	cpp
 1482	3	import std;\nimport "geometry.hpp"	code	cpp
 5494	1	#include <ftxui/dom/elements.hpp>\n\nconstexpr auto content{"Flashback, for experts like you."};\n\nint main()\n{\n    ftxui::Element text{ftxui::text(content)};\n}	code	cpp
+3679	2	**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.	text	txt
+3679	4	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	text	txt
 4175	2	#include <expected>\n#include <system_error>\n#include <string>\n\nstd::expected<std::string, std::error_condition> read_input();\nstd::expected<int, std::error_condition> to_int(const std::string& s);\nint increase(int v);\nstd::expected<int, std::error_condition> log_error(const std::error_condition& err);\n\nauto result = read_input()\n    .and_then(to_int) // - invoked if the expected contains a value\n                      // - the callable has to return a std::expected, but can change the type:\n                      // std::expected<T, Err> -> std::expected<U, Err>\n    .transform(increase) // - invoked if the expected contains a value\n                         // - the callable has to return the same type\n                         // U -> U\n    .or_else(log_error); // - invoked if the expected contains an error\n                         // - the callable has to return a std::expected, but can change the type:\n                         // std::expected<T, Err> -> std::expected<V, Err>	code	cpp
 4173	3	#include <variant>\n#include <string>\n#include <iostream>\n\nstd::variant<int, double, std::string> v{"sample string"};\n\nstd::visit([](auto&& x) {\n    std::cout << x << '\\n';\n}, v);\n// prints "sample string"	code	cpp
 5196	1	#pragma once\n\n#include <memory>\n#include <Strategy.hpp>\n\nclass Context: public std::enable_shared_from_this<Context>\n{\n    std::unique_ptr<Strategy> m_strategy;\n\npublic:\n    Context(): m_strategy{nullptr} {}\n\n    void setStrategy(std::unique_ptr<Strategy> strategy) noexcept\n    {\n        m_strategy = std::move(strategy);\n    }\n\n    void contextInterface()\n    {\n        if (m_strategy)\n        {\n            m_strategy->execute(std::weak_ptr<Context>{shared_from_this()});\n        }\n        else\n        {\n            std::println("Default Strategy: {}", getData());\n        }\n    }\n\n    [[nodiscard]] std::string getData() const&\n    {\n        return "Context Data";\n    }\n};	code	cpp
@@ -18513,9 +18512,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3630	What does the liskov substitution principle define?	draft
 3631	What does the interface segregation principle define?	draft
 3632	What does the dependency inversion principle define?	draft
-3680	How many thread types exist?	draft
-3681	Construct a thread of execution?	draft
-3682	Check how many threads can run on the host in parallel?	draft
 3683	Synchronize writes into an output stream from multiple threads?	draft
 3684	How many thread sleeping functions exist?	draft
 3685	What type is the identifier of a thread?	draft
@@ -18582,6 +18578,9 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3667	What are the advantages of preemptive multitasking?	review
 3668	Use Amdahl's law to measure the speed-up factor of a parallel system?	review
 3669	Use Gustafson's law to compute the speed-up gained by using multiple processors?	review
+3681	Construct a thread of execution?	review
+3680	How many thread types exist?	review
+3682	Check how many threads can run on the host in parallel?	review
 3715	What are the use cases of environments?	draft
 3672	What are the main characteristics of a daemon?	review
 3673	What are the steps into creating a daemon?	review
@@ -20803,9 +20802,11 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3444	2025-12-13 14:19:24.870266+01	50	0
 2	4239	2025-12-13 14:31:07.221782+01	4	0
 2	2832	2025-12-13 14:32:41.153739+01	3	0
+2	3683	2025-12-24 02:38:38.338948+01	4	0
 2	2833	2025-12-13 14:36:17.114874+01	3	0
 2	2834	2025-12-13 14:42:08.186176+01	351	0
 2	2835	2025-12-13 14:44:15.153334+01	5	0
+2	3682	2025-12-24 02:38:41.64059+01	3	0
 2	4244	2025-12-13 14:47:47.409495+01	3	0
 2	2836	2025-12-13 14:49:04.321943+01	3	0
 2	2837	2025-12-13 14:53:27.678704+01	263	0
@@ -20857,8 +20858,10 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3675	2025-12-24 02:23:53.863462+01	84	0
 2	3676	2025-12-24 02:24:26.67106+01	33	0
 2	3677	2025-12-24 02:24:34.853472+01	8	0
-2	3679	2025-12-24 02:32:48.127718+01	19	0
-2	3678	2025-12-24 02:32:51.301978+01	3	0
+2	3678	2025-12-24 02:36:36.570213+01	3	0
+2	3679	2025-12-24 02:36:58.367134+01	22	0
+2	3680	2025-12-24 02:38:03.689674+01	3	0
+2	3681	2025-12-24 02:38:06.781976+01	3	0
 \.
 
 
@@ -29101,6 +29104,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 6	5096	2	13	surface
 7	5097	1	13	surface
 8	5098	1	13	surface
+141	3681	14	6	surface
 1	25	3	11	surface
 8	3461	3	24	surface
 9	3465	2	24	surface
@@ -29261,6 +29265,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 13	3801	1	27	surface
 17	5192	1	27	surface
 17	5193	2	27	surface
+140	3680	5	6	surface
 13	2716	2	8	surface
 14	2017	3	8	surface
 14	1491	5	8	surface
@@ -29327,6 +29332,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 219	5365	2	6	surface
 19	5232	11	27	surface
 20	5234	1	27	surface
+149	3682	3	6	surface
 2	5333	1	45	surface
 2	5334	2	45	surface
 2	5335	3	45	surface
@@ -31497,5 +31503,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict yvIXY79no4MmdMCXGXbhaqtOfGuubuAe9wpUDsAkg3N0MaRHazVSHJQZsRc7ISx
+\unrestrict jljgb15PkzKHRJB5Rr1rzRofqUYCUQ4lduBzGpJiv1oamzCm6a3XpPfnB9m9TiI
 
