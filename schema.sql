@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict XscXANgGMosAO7L4cm7uLQIaeHxeMniDARTFRR0emr7x5A9Zgu29XGC5yldjwas
+\restrict BJc9dzLlocp4tisZJ9Dk0M0VNjS6Qe2BUxo7Usms7j2yH8D5GvnFl5rZrmXsoQc
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1674,12 +1674,17 @@ ALTER FUNCTION flashback.move_card_to_topic(selected_card integer, current_subje
 -- Name: remove_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.remove_block(IN card integer, IN block integer)
+CREATE PROCEDURE flashback.remove_block(IN card_id integer, IN block_position integer)
     LANGUAGE plpgsql
-    AS $$ begin delete from blocks where blocks.card = remove_block.card and blocks."position" = remove_block.block; end; $$;
+    AS $$
+begin
+    delete from blocks where card = card_id and "position" = block_position;
+
+    update blocks set position = position - 1 where card = card_id and "position" > block_position;
+end; $$;
 
 
-ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER TO flashback;
+ALTER PROCEDURE flashback.remove_block(IN card_id integer, IN block_position integer) OWNER TO flashback;
 
 --
 -- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3392,5 +3397,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict XscXANgGMosAO7L4cm7uLQIaeHxeMniDARTFRR0emr7x5A9Zgu29XGC5yldjwas
+\unrestrict BJc9dzLlocp4tisZJ9Dk0M0VNjS6Qe2BUxo7Usms7j2yH8D5GvnFl5rZrmXsoQc
 

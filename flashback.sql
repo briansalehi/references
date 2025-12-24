@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict KYcaf9gC9YHYszQaKh6b8Vm1HYrffsRhD3PMirRWR47GvvrV7vQENumBoJtbLnb
+\restrict yvIXY79no4MmdMCXGXbhaqtOfGuubuAe9wpUDsAkg3N0MaRHazVSHJQZsRc7ISx
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1674,12 +1674,17 @@ ALTER FUNCTION flashback.move_card_to_topic(selected_card integer, current_subje
 -- Name: remove_block(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.remove_block(IN card integer, IN block integer)
+CREATE PROCEDURE flashback.remove_block(IN card_id integer, IN block_position integer)
     LANGUAGE plpgsql
-    AS $$ begin delete from blocks where blocks.card = remove_block.card and blocks."position" = remove_block.block; end; $$;
+    AS $$
+begin
+    delete from blocks where card = card_id and "position" = block_position;
+
+    update blocks set position = position - 1 where card = card_id and "position" > block_position;
+end; $$;
 
 
-ALTER PROCEDURE flashback.remove_block(IN card integer, IN block integer) OWNER TO flashback;
+ALTER PROCEDURE flashback.remove_block(IN card_id integer, IN block_position integer) OWNER TO flashback;
 
 --
 -- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -12087,10 +12092,9 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 3679	2	**Race conditions** occur when multiple threads access and modify shared data concurrently.	text	txt
 3679	3	**Deadlocks** occur when two or more threads wait indefinitely for resources held by each other.	text	txt
 5226	3	or run the steps without actually creating a container:	text	md
-3679	4	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt
-3679	5	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	code	cpp
 3680	1	- Kernel threads only used by drivers in kernel space\n- User space native threads created by the kernel using a kernel API, such as standard threads\n- User space lightweight or virtual threads emulated by a runtime or library, such as coroutines	text	txt
 3681	1	When a thread is constructed, it executes immediately. The only delay might be due to OS scheduling process. The order of execution between the parent and children are not defined.	text	txt
+3679	5	**Livelocks** are like deadlocks, but instead of being permanently blocked, the threads remain active and repeatedly try to acquire resources, only without making any progress.	text	txt
 3681	2	#include <thread>\n\nvoid task_function() { };\nauto task_lambda = [] { };\nstruct task { void operator() { } } task_functor;\nstruct some_type { void do_something() { } } task_object;\nstruct some_other_type { static void do_something() { } };\n\nstd::jthread{task_function};\nstd::jthread{task_lambda};\nstd::jthread{task_functor};\nstd::jthread{&some_type::do_something, &task_object};\nstd::jthread{&some_other_type::do_something};	code	cpp
 3682	1	std::size_t const core_count{std::thread::hardware_concurrency()};	code	cpp
 3682	2	The value returned by this function should only be considered as a hint. It may return 0 when not well defined.	text	txt
@@ -14243,6 +14247,7 @@ COPY flashback.blocks (card, "position", content, type, extension) FROM stdin;
 1435	2	#include <iostream>\n\nstruct base\n{\n    int id;\n\n    void show()\n    {\n        return [*this] { std::cout << id << '\\\\n'; };\n    }\n};\n\nint main()\n{\n    // base is destroyed at the time of show() execution\n    auto lambda = base{42}.show();\n}	code	cpp
 1436	1	#include <vector>\n\nint main()\n{\n    std::vector<int> numbers{0,1,2,3,4,5,6,7,8,9};\n    auto vsize = []<typename T>(std::vector<T> const& v) { return std::size(v); };\n    vsize(v); // 10\n    vsize(42); // error\n}	code	cpp
 1437	1	int main()\n{\n    auto generic_sum = []<typename T>(T&& x, T&& y) nothrow { return x + y; }\n\n    int result = generic_sum(40, 2);\n}	code	cpp
+3679	4	**Starvation** occurs when a thread is perpetually denied access to resources it needs to make progress.	text	txt
 1416	2	* `std::regex_interator`: A constant forward iterator used to iterate through the occurrences of a pattern in a string. It has a pointer to an `std::basic_regex` that must live until the iterator is destroyed. Upon creation and when incremented, the iterator calls `std::regex_search()` and stores a copy of the `std::match_results` object returned by the algorithm.\n* `std::regex_token_iterator`: A constant forward iterator used to iterate through the submatches of every match of a regular expression in a string. Internally, it uses a `std::regex_iterator` to step through the submatches. Since it stores a pointer to an `std::basic_regex` instance, the regular expression object must live until the iterator is destroyed.	text	txt
 1416	3	The token iterators can return the unmatched parts of the string if the index of the subexpressions is -1, in which case it returns an `std::match_results` object that corresponds to the sequence of characters between the last match and the end of the sequence:	text	txt
 5463	1	Optical flow algorithms are used in videos to track features across successive frames. Running a feature extractor on each frame would be computationally expensive. Instead, we extract the features from the current frame, and then track those features in successive frames.	text	md
@@ -18508,11 +18513,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3630	What does the liskov substitution principle define?	draft
 3631	What does the interface segregation principle define?	draft
 3632	What does the dependency inversion principle define?	draft
-3665	How many parallel programming paradigms exist?	draft
-3666	What is the difference between preemptive and non-preemptive concurrency?	draft
-3667	What are the advantages of preemptive multitasking?	draft
-3668	Use Amdahl's law to measure the speed-up factor of a parallel system?	draft
-3669	Use Gustafson's law to compute the speed-up gained by using multiple processors?	draft
 3680	How many thread types exist?	draft
 3681	Construct a thread of execution?	draft
 3682	Check how many threads can run on the host in parallel?	draft
@@ -18578,6 +18578,10 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3712	Create a secret?	draft
 3713	Create a variable?	draft
 3714	How many ways are possible to pass values when creating variables?	draft
+3665	How many parallel programming paradigms exist?	review
+3667	What are the advantages of preemptive multitasking?	review
+3668	Use Amdahl's law to measure the speed-up factor of a parallel system?	review
+3669	Use Gustafson's law to compute the speed-up gained by using multiple processors?	review
 3715	What are the use cases of environments?	draft
 3672	What are the main characteristics of a daemon?	review
 3673	What are the steps into creating a daemon?	review
@@ -20042,6 +20046,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 674	How many ways constraints can be applied to a template?	review
 4189	Replace ref-qualified overloads of a method with one generic overload?	draft
 2802	How does the compiler deduce the type of function template arguments?	review
+3666	What is the difference between preemptive and non-preemptive concurrency?	review
 \.
 
 
@@ -20839,6 +20844,21 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3476	2025-12-17 14:21:19.845071+01	6	0
 2	3477	2025-12-17 14:21:31.009133+01	11	0
 2	3478	2025-12-17 14:21:57.869091+01	26	0
+2	3665	2025-12-24 02:12:52.122439+01	4	0
+2	3666	2025-12-24 02:12:55.807213+01	3	0
+2	3667	2025-12-24 02:13:18.54954+01	7	0
+2	3668	2025-12-24 02:14:45.269419+01	30	0
+2	3669	2025-12-24 02:14:52.617954+01	7	0
+2	3670	2025-12-24 02:15:05.665995+01	13	0
+2	3671	2025-12-24 02:17:07.66791+01	122	0
+2	3672	2025-12-24 02:17:14.472342+01	7	0
+2	3673	2025-12-24 02:22:10.700447+01	296	0
+2	3674	2025-12-24 02:22:29.680678+01	19	0
+2	3675	2025-12-24 02:23:53.863462+01	84	0
+2	3676	2025-12-24 02:24:26.67106+01	33	0
+2	3677	2025-12-24 02:24:34.853472+01	8	0
+2	3679	2025-12-24 02:32:48.127718+01	19	0
+2	3678	2025-12-24 02:32:51.301978+01	3	0
 \.
 
 
@@ -27743,168 +27763,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 4	Scalar Class Template	15	surface
 13	Drawing Rectangle	15	surface
 18	Including OpenCV Headers	15	surface
-32	Optional Return Type	6	surface
-33	Expected Return Type	6	surface
-34	Three-Way Comparison Operator	6	surface
-35	Class Default Constructors	6	surface
-36	Class Non-static Member Declaration	6	surface
-37	No Discard Attribute	6	surface
 38	This Deduction	6	surface
-39	Templates	6	surface
-40	Typename	6	surface
-41	Template Translation Phases	6	surface
-42	Function Template Definition	6	surface
-43	Abbreviated Function Template	6	surface
-44	Function Template Usage	6	surface
-45	Function Template Argument Deduction	6	surface
-46	Multiple Function Template Parameters	6	surface
-47	NonType Template Parameter	6	surface
-48	Template Template Parameter	6	surface
-49	Variadic Template	6	surface
-50	Fold Expression	6	surface
-51	Automatic Return Type Deduction	6	surface
-52	Default Template Arguments	6	surface
-53	Overloading Function Templates	6	surface
-54	Concept	6	surface
-55	Concept Declaration	6	surface
-56	Standard Concepts	6	surface
-57	Class Template	6	surface
-58	Class Template Argument	6	surface
-59	Class Template Friend Function	6	surface
-60	Class Template Specialization	6	surface
-61	Class Template Default Parameters	6	surface
-62	Alias Templates	6	surface
-63	Class Template Argument Deduction	6	surface
-64	Class Template Argument Deduction Guides	6	surface
-65	Range-based loop	6	surface
-66	Object Alignment	6	surface
-67	Operators	6	surface
-68	Operator Overloading	6	surface
-69	Cooked User-Defined Literals	6	surface
-70	Raw User-Defined Literals	6	surface
-71	Move Semantics	6	surface
-72	Fallback Copy	6	surface
-73	Moved From State	6	surface
-74	Rvalue Reference	6	surface
-75	Generated Special Member Functions	6	surface
-76	Move Operation Pitfalls	6	surface
-77	Disabling Move Operations	6	surface
-78	Value Semantics	6	surface
-79	Virtual Functions	6	surface
-80	Inheritance	6	surface
-81	Streams	6	surface
-82	Input Streams	6	surface
-83	Output Streams	6	surface
-84	File Streams	6	surface
-85	Sync Streams	6	surface
-86	String Streams	6	surface
-87	Span Streams	6	surface
-88	Containers	6	surface
-89	Vector	6	surface
-90	String	6	surface
-91	Numeric to String Conversion	6	surface
-92	String Literals	6	surface
-93	Raw String Literals	6	surface
-94	String View	6	surface
-95	String Operations	6	surface
-96	Text Formatting	6	surface
-97	Text Printing	6	surface
-98	Regular Expressions	6	surface
-99	Numeric	6	surface
-100	Complex	6	surface
-101	Random	6	surface
-102	Chrono Duration	6	surface
-103	Chrono Time Point	6	surface
-104	Chrono Clocks	6	surface
-105	Chrono Literals	6	surface
-106	Chrono Date	6	surface
-107	Chrono Date Literals	6	surface
-108	Chrono File Clocks	6	surface
-109	Ranges	6	surface
-110	Sentinels	6	surface
-111	Iterators	6	surface
-112	Overlapping Iterators	6	surface
-113	Data Structures	6	surface
-114	Singly Linked List	6	surface
-115	Doubly Linked List	6	surface
-116	Algorithms	6	surface
-117	Parallel Algorithms	6	surface
-118	Comparing Algorithms	6	surface
-119	Ranges Algorithms	6	surface
-120	Equality Checking Algorithms	6	surface
-121	Iterating Algorithms	6	surface
-122	Swapping Algorithms	6	surface
-123	Sorting Algorithms	6	surface
-124	Partitioning Algorithms	6	surface
-125	Sorted Range Algorithms	6	surface
-126	Linear Operation Algorithms	6	surface
-127	Set Operation Algorithms	6	surface
-128	Transformation Algorithms	6	surface
-129	Permutation Transform Algorithms	6	surface
-130	Boolean Reduction Algorithms	6	surface
-131	Strings Algorithms	6	surface
-132	Views	6	surface
-133	Contracts	6	surface
-134	Contract Types	6	surface
-135	Contract Violation	6	surface
-136	Contract Violation Handler	6	surface
-137	Contract Controlling Modes	6	surface
-138	Virtual Function Contracts	6	surface
-139	Inter Process Communication	6	surface
-140	Thread Construction	6	surface
-141	Thread Destructor	6	surface
-142	Joining Threads	6	surface
-143	Detaching Threads	6	surface
-144	Moving Threads	6	surface
-145	Stop Source	6	surface
-146	Stop Token	6	surface
-147	Stop Callback	6	surface
-148	Hardware Concurrency	6	surface
-149	Synchronization	6	surface
-150	Mutex	6	surface
-151	Lock Guard	6	surface
-152	Scoped Lock	6	surface
-153	Unique Lock	6	surface
-154	Shared Mutex	6	surface
-155	Shared Lock	6	surface
-156	Timed Mutex	6	surface
-157	Shared Timed Mutex	6	surface
-158	Recursive Mutex	6	surface
-159	Conditional Variable	6	surface
-160	Atomic	6	surface
-173	Processes	6	surface
-188	File Existence Checking	6	surface
-190	Filesystem Attributes Querying	6	surface
-191	Filesystem Attributes Modification	6	surface
-192	Filesystem Existence Checking	6	surface
-193	File Status	6	surface
-194	File Permissions	6	surface
-195	File Creation	6	surface
-196	Directory Creation	6	surface
-197	Symbolic Link Creation	6	surface
-198	Hard Link Creation	6	surface
-199	File Copy	6	surface
-200	File Removal	6	surface
-201	Filesystem Path Conversion	6	surface
-202	Directory Iteration	6	surface
-203	Directory Entries	6	surface
-204	Logging	6	surface
-205	Design Patterns	6	surface
-206	Creational Design Patterns	6	surface
-207	Factory Method Design Pattern	6	surface
-208	Abstract Factory Design Pattern	6	surface
-209	Builder Design Pattern	6	surface
-210	Prototype Design Pattern	6	surface
-211	Singleton Design Pattern	6	surface
-212	Behavioral Design Patterns	6	surface
-213	Strategy	6	surface
-214	Null Object	6	surface
-215	Static Strategy	6	surface
-216	Returning Value from Threads	6	surface
-217	Command Pattern	6	surface
-218	Memento Pattern	6	surface
-219	Chain of Responsibility Pattern	6	surface
-220	Observer Pattern	6	surface
 5	Point Class Template	15	surface
 14	Drawing Text	15	surface
 23	Mouse Integration	15	surface
@@ -28220,40 +28079,12 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 34	Module Synchronization	11	surface
 35	Kernel Tracing	11	surface
 8	Running Kernel	11	surface
-1	Building Executable	6	surface
 8	Writing Mocks	24	surface
 9	Expectations	24	surface
-2	Fundamental Data Types	6	surface
 1	Writing Assertions	24	surface
 6	Configuring Tests	24	surface
-3	Variable Initialization	6	surface
-4	Constant Initialization	6	surface
-5	Uniform Initialization	6	surface
-6	Aggregate Initialization	6	surface
-7	Designated Initialization	6	surface
-8	Function Declaration	6	surface
-9	Constant Expression	6	surface
-10	Constant Evaluation	6	surface
-11	Conditional Constant Evaluation	6	surface
-12	Lambda	6	surface
-13	Raw Pointer	6	surface
-14	Smart Pointer	6	surface
-15	Unique Pointer	6	surface
-16	Shared Pointer	6	surface
-17	Weak Pointer	6	surface
-18	Namespace Abbreviation	6	surface
-19	Unnamed Namespaces	6	surface
-20	Inline Namespaces	6	surface
-21	Nested Namespaces	6	surface
-22	Modules	6	surface
-23	Module Interface Unit	6	surface
-24	Module Interface Partition	6	surface
-25	Module Implementation Partition	6	surface
-26	Automatic Type Deduction	6	surface
-27	Structured Binding	6	surface
-28	Typedef	6	surface
-29	Type Aliases	6	surface
-30	Enumerations	6	surface
+1	Building Executable	6	surface
+2	Fundamental Data Types	6	surface
 29	List Services	7	surface
 33	Troubleshoot Service	7	surface
 2	Matrix Class Template	15	surface
@@ -28274,33 +28105,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 21	Capture Video	15	surface
 24	File Storage	15	surface
 31	Exporting Libraries	5	surface
-161	Thread Safe Static Initialization	6	surface
-162	Once Flag	6	surface
-163	Future	6	surface
-164	Async	6	surface
-165	Promise	6	surface
-166	Packaged Task	6	surface
-167	Semaphore	6	surface
-168	Semaphore Properties	6	surface
-169	Counting Semaphore	6	surface
-170	Binary Semaphore	6	surface
-171	Latch	6	surface
-172	Barrier	6	surface
-174	Coroutine	6	surface
-175	Monostate Pattern	6	surface
-176	Path Terminalogy	6	surface
-177	Filesystem Error Handling	6	surface
-178	File Types	6	surface
-179	Path Construction	6	surface
-180	Path Inspection	6	surface
-181	Path Conversion	6	surface
-182	Path Relativity	6	surface
-183	Generic Paths	6	surface
-184	Path Expansion	6	surface
-185	Path Modification	6	surface
-186	Path Reduction	6	surface
-187	Path Comparison	6	surface
-189	File Type Checking	6	surface
 1	Library Integration	51	surface
 2	Library Structure	51	surface
 3	Dimension	51	surface
@@ -28362,7 +28166,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 50	File Set	5	surface
 51	Install Tree	5	surface
 52	Package Config	5	surface
-31	Variants	6	surface
 1	Mandatory Access Control	58	surface
 2	Discretionary Access Control Commands	58	surface
 3	Enabling SELinux	58	surface
@@ -28382,6 +28185,224 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 24	Sed	13	surface
 11	Defining Policies	58	surface
 12	Unconfined Domains	58	surface
+3	Variable Initialization	6	surface
+4	Constant Initialization	6	surface
+5	Uniform Initialization	6	surface
+6	Aggregate Initialization	6	surface
+7	Designated Initialization	6	surface
+8	Function Declaration	6	surface
+9	Constant Expression	6	surface
+10	Constant Evaluation	6	surface
+11	Conditional Constant Evaluation	6	surface
+12	Lambda	6	surface
+13	Raw Pointer	6	surface
+14	Smart Pointer	6	surface
+15	Unique Pointer	6	surface
+16	Shared Pointer	6	surface
+17	Weak Pointer	6	surface
+18	Namespace Abbreviation	6	surface
+19	Unnamed Namespaces	6	surface
+20	Inline Namespaces	6	surface
+21	Nested Namespaces	6	surface
+22	Modules	6	surface
+23	Module Interface Unit	6	surface
+24	Module Interface Partition	6	surface
+25	Module Implementation Partition	6	surface
+26	Automatic Type Deduction	6	surface
+27	Structured Binding	6	surface
+28	Typedef	6	surface
+29	Type Aliases	6	surface
+30	Enumerations	6	surface
+31	Variants	6	surface
+32	Optional Return Type	6	surface
+33	Expected Return Type	6	surface
+34	Three-Way Comparison Operator	6	surface
+35	Class Default Constructors	6	surface
+36	Class Non-static Member Declaration	6	surface
+37	No Discard Attribute	6	surface
+39	Templates	6	surface
+40	Typename	6	surface
+41	Template Translation Phases	6	surface
+42	Function Template Definition	6	surface
+43	Abbreviated Function Template	6	surface
+44	Function Template Usage	6	surface
+45	Function Template Argument Deduction	6	surface
+46	Multiple Function Template Parameters	6	surface
+47	NonType Template Parameter	6	surface
+48	Template Template Parameter	6	surface
+49	Variadic Template	6	surface
+50	Fold Expression	6	surface
+51	Automatic Return Type Deduction	6	surface
+52	Default Template Arguments	6	surface
+53	Overloading Function Templates	6	surface
+54	Concept	6	surface
+55	Concept Declaration	6	surface
+56	Standard Concepts	6	surface
+57	Class Template	6	surface
+58	Class Template Argument	6	surface
+59	Class Template Friend Function	6	surface
+60	Class Template Specialization	6	surface
+61	Class Template Default Parameters	6	surface
+62	Alias Templates	6	surface
+63	Class Template Argument Deduction	6	surface
+64	Class Template Argument Deduction Guides	6	surface
+65	Range-based loop	6	surface
+66	Object Alignment	6	surface
+67	Operators	6	surface
+68	Operator Overloading	6	surface
+69	Cooked User-Defined Literals	6	surface
+70	Raw User-Defined Literals	6	surface
+71	Move Semantics	6	surface
+72	Fallback Copy	6	surface
+73	Moved From State	6	surface
+74	Rvalue Reference	6	surface
+75	Generated Special Member Functions	6	surface
+76	Move Operation Pitfalls	6	surface
+77	Disabling Move Operations	6	surface
+78	Value Semantics	6	surface
+79	Virtual Functions	6	surface
+80	Inheritance	6	surface
+81	Streams	6	surface
+82	Input Streams	6	surface
+83	Output Streams	6	surface
+84	File Streams	6	surface
+85	Sync Streams	6	surface
+86	String Streams	6	surface
+87	Span Streams	6	surface
+88	Containers	6	surface
+89	Vector	6	surface
+90	String	6	surface
+91	Numeric to String Conversion	6	surface
+92	String Literals	6	surface
+93	Raw String Literals	6	surface
+94	String View	6	surface
+95	String Operations	6	surface
+96	Text Formatting	6	surface
+97	Text Printing	6	surface
+98	Regular Expressions	6	surface
+99	Numeric	6	surface
+100	Complex	6	surface
+101	Random	6	surface
+102	Chrono Duration	6	surface
+103	Chrono Time Point	6	surface
+104	Chrono Clocks	6	surface
+105	Chrono Literals	6	surface
+106	Chrono Date	6	surface
+107	Chrono Date Literals	6	surface
+108	Chrono File Clocks	6	surface
+109	Ranges	6	surface
+110	Sentinels	6	surface
+111	Iterators	6	surface
+112	Overlapping Iterators	6	surface
+113	Data Structures	6	surface
+114	Singly Linked List	6	surface
+115	Doubly Linked List	6	surface
+116	Algorithms	6	surface
+117	Parallel Algorithms	6	surface
+118	Comparing Algorithms	6	surface
+119	Ranges Algorithms	6	surface
+120	Equality Checking Algorithms	6	surface
+121	Iterating Algorithms	6	surface
+122	Swapping Algorithms	6	surface
+123	Sorting Algorithms	6	surface
+124	Partitioning Algorithms	6	surface
+125	Sorted Range Algorithms	6	surface
+126	Linear Operation Algorithms	6	surface
+127	Set Operation Algorithms	6	surface
+128	Transformation Algorithms	6	surface
+129	Permutation Transform Algorithms	6	surface
+130	Boolean Reduction Algorithms	6	surface
+131	Strings Algorithms	6	surface
+132	Views	6	surface
+133	Contracts	6	surface
+134	Contract Types	6	surface
+135	Contract Violation	6	surface
+136	Contract Violation Handler	6	surface
+137	Contract Controlling Modes	6	surface
+138	Virtual Function Contracts	6	surface
+139	Inter Process Communication	6	surface
+140	Concurrency	6	surface
+141	Thread Construction	6	surface
+142	Thread Destructor	6	surface
+143	Joining Threads	6	surface
+144	Detaching Threads	6	surface
+145	Moving Threads	6	surface
+146	Stop Source	6	surface
+147	Stop Token	6	surface
+148	Stop Callback	6	surface
+149	Hardware Concurrency	6	surface
+150	Synchronization	6	surface
+151	Mutex	6	surface
+152	Lock Guard	6	surface
+153	Scoped Lock	6	surface
+154	Unique Lock	6	surface
+155	Shared Mutex	6	surface
+156	Shared Lock	6	surface
+157	Timed Mutex	6	surface
+158	Shared Timed Mutex	6	surface
+159	Recursive Mutex	6	surface
+160	Conditional Variable	6	surface
+161	Atomic	6	surface
+162	Thread Safe Static Initialization	6	surface
+163	Once Flag	6	surface
+164	Future	6	surface
+165	Async	6	surface
+166	Promise	6	surface
+167	Packaged Task	6	surface
+168	Semaphore	6	surface
+169	Semaphore Properties	6	surface
+170	Counting Semaphore	6	surface
+171	Binary Semaphore	6	surface
+172	Latch	6	surface
+173	Barrier	6	surface
+174	Processes	6	surface
+175	Coroutine	6	surface
+176	Monostate Pattern	6	surface
+177	Path Terminalogy	6	surface
+178	Filesystem Error Handling	6	surface
+179	File Types	6	surface
+180	Path Construction	6	surface
+181	Path Inspection	6	surface
+182	Path Conversion	6	surface
+183	Path Relativity	6	surface
+184	Generic Paths	6	surface
+185	Path Expansion	6	surface
+186	Path Modification	6	surface
+187	Path Reduction	6	surface
+188	Path Comparison	6	surface
+189	File Existence Checking	6	surface
+190	File Type Checking	6	surface
+191	Filesystem Attributes Querying	6	surface
+192	Filesystem Attributes Modification	6	surface
+193	Filesystem Existence Checking	6	surface
+194	File Status	6	surface
+195	File Permissions	6	surface
+196	File Creation	6	surface
+197	Directory Creation	6	surface
+198	Symbolic Link Creation	6	surface
+199	Hard Link Creation	6	surface
+200	File Copy	6	surface
+201	File Removal	6	surface
+202	Filesystem Path Conversion	6	surface
+203	Directory Iteration	6	surface
+204	Directory Entries	6	surface
+205	Logging	6	surface
+206	Design Patterns	6	surface
+207	Creational Design Patterns	6	surface
+208	Factory Method Design Pattern	6	surface
+209	Abstract Factory Design Pattern	6	surface
+210	Builder Design Pattern	6	surface
+211	Prototype Design Pattern	6	surface
+212	Singleton Design Pattern	6	surface
+213	Behavioral Design Patterns	6	surface
+214	Strategy	6	surface
+215	Null Object	6	surface
+216	Static Strategy	6	surface
+217	Returning Value from Threads	6	surface
+218	Command Pattern	6	surface
+219	Memento Pattern	6	surface
+220	Chain of Responsibility Pattern	6	surface
+221	Observer Pattern	6	surface
 \.
 
 
@@ -28398,6 +28419,7 @@ COPY flashback.topics_activities (id, "user", topic, action, "time", subject, le
 --
 
 COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin;
+140	3665	1	6	surface
 4	4015	2	2	surface
 9	4028	1	2	surface
 9	4029	2	2	surface
@@ -28722,6 +28744,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 108	4349	3	6	surface
 109	4350	1	6	surface
 110	4351	1	6	surface
+140	3667	2	6	surface
 112	4353	1	6	surface
 116	4354	1	6	surface
 117	4355	1	6	surface
@@ -28877,53 +28900,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 1	3644	4	15	surface
 10	3660	1	15	surface
 13	1256	7	7	surface
-174	3882	2	6	surface
-174	3883	3	6	surface
-174	3884	4	6	surface
-174	3885	5	6	surface
-174	3886	6	6	surface
-174	3887	7	6	surface
-174	3888	8	6	surface
-174	3889	9	6	surface
-174	3890	10	6	surface
-174	3891	11	6	surface
-174	3892	12	6	surface
-174	3893	13	6	surface
-174	3894	14	6	surface
-174	3895	15	6	surface
-174	3896	16	6	surface
-174	3897	17	6	surface
-174	3898	18	6	surface
-174	3899	19	6	surface
-174	3900	20	6	surface
-174	3901	21	6	surface
-174	4506	1	6	surface
-175	4507	1	6	surface
-176	1765	1	6	surface
-176	1766	2	6	surface
-176	1767	3	6	surface
-176	1768	4	6	surface
-176	1769	5	6	surface
-177	1770	1	6	surface
-177	1771	2	6	surface
-178	1772	1	6	surface
-179	1773	1	6	surface
-179	1774	2	6	surface
-179	1775	3	6	surface
-179	1776	4	6	surface
-180	1777	1	6	surface
-180	1778	2	6	surface
-180	1779	3	6	surface
-180	1780	4	6	surface
-181	1781	1	6	surface
-182	1782	1	6	surface
-183	1783	1	6	surface
-184	1784	1	6	surface
-184	1785	2	6	surface
-184	1786	3	6	surface
-185	1787	1	6	surface
-185	1788	2	6	surface
-185	1789	3	6	surface
+140	3668	3	6	surface
 1	987	1	7	surface
 1	988	2	7	surface
 1	993	3	7	surface
@@ -29082,60 +29059,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 1	24	2	11	surface
 8	3460	2	24	surface
 9	3464	1	24	surface
-185	1790	4	6	surface
-185	1791	5	6	surface
-186	1792	1	6	surface
-186	1793	2	6	surface
-187	1794	1	6	surface
-187	1795	2	6	surface
-187	1796	3	6	surface
-188	1797	1	6	surface
-189	1798	1	6	surface
-189	1799	2	6	surface
-189	1800	3	6	surface
-190	1801	1	6	surface
-190	1802	2	6	surface
-190	1803	3	6	surface
-190	1804	4	6	surface
-190	1805	5	6	surface
-191	1806	1	6	surface
-191	1807	2	6	surface
-191	1808	3	6	surface
-191	1809	4	6	surface
-191	1810	5	6	surface
-192	1811	1	6	surface
-193	1812	1	6	surface
-193	1813	2	6	surface
-193	1814	3	6	surface
-193	1815	4	6	surface
-193	1816	5	6	surface
-193	1817	6	6	surface
-193	1818	7	6	surface
-194	1819	1	6	surface
-195	1820	1	6	surface
-196	1821	1	6	surface
-196	1822	2	6	surface
-197	1823	1	6	surface
-197	1824	2	6	surface
-198	1825	1	6	surface
-199	1826	1	6	surface
-199	1827	2	6	surface
-199	1828	3	6	surface
-199	1829	4	6	surface
-205	4584	1	6	surface
-206	4585	1	6	surface
-207	4586	1	6	surface
-207	4587	2	6	surface
-207	4588	3	6	surface
-209	4589	1	6	surface
-209	4590	2	6	surface
-213	5194	1	6	surface
-213	5195	2	6	surface
-213	5196	3	6	surface
-213	5197	4	6	surface
-213	5198	5	6	surface
-214	5199	1	6	surface
-140	4450	1	6	surface
+140	3669	4	6	surface
 7	2785	1	9	surface
 10	2787	1	9	surface
 16	2784	1	9	surface
@@ -29143,40 +29067,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 22	2790	2	9	surface
 23	2789	1	9	surface
 24	2791	1	9	surface
-140	4451	2	6	surface
-140	4452	3	6	surface
-140	4453	4	6	surface
-140	5349	5	6	surface
-140	5350	6	6	surface
-140	5351	7	6	surface
-140	5352	8	6	surface
-140	5353	9	6	surface
-140	5354	10	6	surface
-140	5355	11	6	surface
-141	4454	1	6	surface
-142	4455	1	6	surface
-142	4456	2	6	surface
-142	5358	3	6	surface
-142	5359	4	6	surface
-143	4457	1	6	surface
-143	5360	2	6	surface
-144	4458	1	6	surface
-144	5357	2	6	surface
-145	4459	1	6	surface
-145	4460	2	6	surface
-145	4461	3	6	surface
-146	4462	1	6	surface
-146	4463	2	6	surface
-146	4464	3	6	surface
-146	4465	4	6	surface
-147	4466	1	6	surface
-148	4467	1	6	surface
-148	4468	2	6	surface
-149	4469	1	6	surface
-149	4470	2	6	surface
-150	3602	1	6	surface
-150	4472	2	6	surface
-151	4473	1	6	surface
 1	5065	1	12	surface
 1	5066	2	12	surface
 1	5067	3	12	surface
@@ -29211,41 +29101,9 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 6	5096	2	13	surface
 7	5097	1	13	surface
 8	5098	1	13	surface
-152	4474	1	6	surface
-152	4475	2	6	surface
-154	4476	1	6	surface
-155	4477	1	6	surface
-157	4478	1	6	surface
-158	4479	1	6	surface
-159	4480	1	6	surface
-159	4481	2	6	surface
-160	4482	1	6	surface
-160	4483	2	6	surface
-160	4484	3	6	surface
-161	4485	1	6	surface
-162	4486	1	6	surface
-163	4487	1	6	surface
-163	4488	2	6	surface
-164	4489	1	6	surface
-165	4490	1	6	surface
-165	4491	2	6	surface
-165	4492	3	6	surface
-167	4493	1	6	surface
-168	4494	1	6	surface
-169	4495	1	6	surface
-169	4496	2	6	surface
 1	25	3	11	surface
 8	3461	3	24	surface
 9	3465	2	24	surface
-169	4497	3	6	surface
-170	4498	1	6	surface
-171	4499	1	6	surface
-171	4500	2	6	surface
-171	4501	3	6	surface
-171	4502	4	6	surface
-172	4503	1	6	surface
-172	4504	2	6	surface
-172	4505	3	6	surface
 12	2652	10	5	surface
 11	1269	3	7	surface
 14	1280	9	7	surface
@@ -29403,12 +29261,9 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 13	3801	1	27	surface
 17	5192	1	27	surface
 17	5193	2	27	surface
-214	5200	2	6	surface
-215	5201	1	6	surface
 13	2716	2	8	surface
 14	2017	3	8	surface
 14	1491	5	8	surface
-216	5356	1	6	surface
 14	2020	10	8	surface
 14	2021	11	8	surface
 15	2717	1	8	surface
@@ -29449,9 +29304,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 1	1730	14	20	surface
 1	1731	15	20	surface
 1	1732	16	20	surface
-217	3964	4	6	surface
-217	5361	1	6	surface
-217	5362	2	6	surface
 18	5221	1	27	surface
 19	5223	2	27	surface
 19	5225	4	27	surface
@@ -29459,14 +29311,20 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 19	5229	8	27	surface
 19	5231	10	27	surface
 19	5233	12	27	surface
-217	5363	3	6	surface
-218	5364	1	6	surface
-218	5365	2	6	surface
 19	5222	1	27	surface
 19	5224	3	27	surface
 19	5226	5	27	surface
 19	5228	7	27	surface
 19	5230	9	27	surface
+215	5200	2	6	surface
+216	5201	1	6	surface
+217	5356	1	6	surface
+218	3964	4	6	surface
+218	5361	1	6	surface
+218	5362	2	6	surface
+218	5363	3	6	surface
+219	5364	1	6	surface
+219	5365	2	6	surface
 19	5232	11	27	surface
 20	5234	1	27	surface
 2	5333	1	45	surface
@@ -29485,16 +29343,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 2	5346	14	45	surface
 2	5347	15	45	surface
 3	5348	1	45	surface
-218	5366	3	6	surface
-218	5367	4	6	surface
-219	5368	1	6	surface
-219	5369	2	6	surface
-220	5445	1	6	surface
-220	5446	2	6	surface
-220	5447	3	6	surface
-220	5448	4	6	surface
-149	3675	3	6	surface
-149	3679	5	6	surface
 12	2653	11	5	surface
 22	2665	1	5	surface
 7	1270	5	7	surface
@@ -29524,6 +29372,16 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 9	5249	3	13	surface
 9	5250	4	13	surface
 9	5251	5	13	surface
+150	3675	3	6	surface
+150	3679	5	6	surface
+219	5366	3	6	surface
+219	5367	4	6	surface
+220	5368	1	6	surface
+220	5369	2	6	surface
+221	5445	1	6	surface
+221	5446	2	6	surface
+221	5447	3	6	surface
+221	5448	4	6	surface
 8	5403	11	18	surface
 8	5404	12	18	surface
 9	5405	1	18	surface
@@ -29576,8 +29434,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 128	2219	5	6	surface
 132	2266	4	6	surface
 132	2279	17	6	surface
-173	3672	1	6	surface
-174	3676	22	6	surface
 12	2654	12	5	surface
 7	1271	6	7	surface
 14	1282	11	7	surface
@@ -29674,6 +29530,8 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 4	1511	4	26	surface
 5	1512	1	26	surface
 5	1513	2	26	surface
+174	3672	1	6	surface
+175	3676	22	6	surface
 6	1514	1	26	surface
 7	1515	1	26	surface
 7	1516	2	26	surface
@@ -29682,8 +29540,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 1	1500	13	26	surface
 1	1501	14	26	surface
 1	1504	15	26	surface
-173	3673	2	6	surface
-140	3677	12	6	surface
 2	2655	14	5	surface
 8	1519	1	26	surface
 8	1518	2	26	surface
@@ -30072,17 +29928,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 25	1351	2	7	surface
 26	1355	1	7	surface
 11	21	3	15	surface
-200	1830	1	6	surface
-200	1831	2	6	surface
-201	1832	1	6	surface
-201	1833	2	6	surface
-201	1834	3	6	surface
-201	1835	4	6	surface
-202	410	1	6	surface
-202	1837	2	6	surface
-202	1838	3	6	surface
-203	1839	1	6	surface
-204	4583	1	6	surface
 9	1291	8	7	surface
 17	1295	12	7	surface
 20	1299	7	7	surface
@@ -30101,8 +29946,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 31	1317	1	7	surface
 33	1325	1	7	surface
 34	986	1	7	surface
-173	3674	3	6	surface
-149	3678	4	6	surface
 6	1275	9	7	surface
 10	1285	3	7	surface
 26	4128	1	5	surface
@@ -30664,6 +30507,189 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 12	5442	1	58	surface
 12	5443	2	58	surface
 12	5444	3	58	surface
+141	3666	13	6	surface
+141	3677	12	6	surface
+141	4450	1	6	surface
+141	4451	2	6	surface
+141	4452	3	6	surface
+141	4453	4	6	surface
+141	5349	5	6	surface
+141	5350	6	6	surface
+141	5351	7	6	surface
+141	5352	8	6	surface
+141	5353	9	6	surface
+141	5354	10	6	surface
+141	5355	11	6	surface
+142	4454	1	6	surface
+143	4455	1	6	surface
+143	4456	2	6	surface
+143	5358	3	6	surface
+143	5359	4	6	surface
+144	4457	1	6	surface
+144	5360	2	6	surface
+145	4458	1	6	surface
+145	5357	2	6	surface
+146	4459	1	6	surface
+146	4460	2	6	surface
+146	4461	3	6	surface
+147	4462	1	6	surface
+147	4463	2	6	surface
+147	4464	3	6	surface
+147	4465	4	6	surface
+148	4466	1	6	surface
+149	4467	1	6	surface
+149	4468	2	6	surface
+150	3678	4	6	surface
+150	4469	1	6	surface
+150	4470	2	6	surface
+151	3602	1	6	surface
+151	4472	2	6	surface
+152	4473	1	6	surface
+153	4474	1	6	surface
+153	4475	2	6	surface
+155	4476	1	6	surface
+156	4477	1	6	surface
+158	4478	1	6	surface
+159	4479	1	6	surface
+160	4480	1	6	surface
+160	4481	2	6	surface
+161	4482	1	6	surface
+161	4483	2	6	surface
+161	4484	3	6	surface
+162	4485	1	6	surface
+163	4486	1	6	surface
+164	4487	1	6	surface
+164	4488	2	6	surface
+165	4489	1	6	surface
+166	4490	1	6	surface
+166	4491	2	6	surface
+166	4492	3	6	surface
+168	4493	1	6	surface
+169	4494	1	6	surface
+170	4495	1	6	surface
+170	4496	2	6	surface
+170	4497	3	6	surface
+171	4498	1	6	surface
+172	4499	1	6	surface
+172	4500	2	6	surface
+172	4501	3	6	surface
+172	4502	4	6	surface
+173	4503	1	6	surface
+173	4504	2	6	surface
+173	4505	3	6	surface
+174	3673	2	6	surface
+174	3674	3	6	surface
+175	3882	2	6	surface
+175	3883	3	6	surface
+175	3884	4	6	surface
+175	3885	5	6	surface
+175	3886	6	6	surface
+175	3887	7	6	surface
+175	3888	8	6	surface
+175	3889	9	6	surface
+175	3890	10	6	surface
+175	3891	11	6	surface
+175	3892	12	6	surface
+175	3893	13	6	surface
+175	3894	14	6	surface
+175	3895	15	6	surface
+175	3896	16	6	surface
+175	3897	17	6	surface
+175	3898	18	6	surface
+175	3899	19	6	surface
+175	3900	20	6	surface
+175	3901	21	6	surface
+175	4506	1	6	surface
+176	4507	1	6	surface
+177	1765	1	6	surface
+177	1766	2	6	surface
+177	1767	3	6	surface
+177	1768	4	6	surface
+177	1769	5	6	surface
+178	1770	1	6	surface
+178	1771	2	6	surface
+179	1772	1	6	surface
+180	1773	1	6	surface
+180	1774	2	6	surface
+180	1775	3	6	surface
+180	1776	4	6	surface
+181	1777	1	6	surface
+181	1778	2	6	surface
+181	1779	3	6	surface
+181	1780	4	6	surface
+182	1781	1	6	surface
+183	1782	1	6	surface
+184	1783	1	6	surface
+185	1784	1	6	surface
+185	1785	2	6	surface
+185	1786	3	6	surface
+186	1787	1	6	surface
+186	1788	2	6	surface
+186	1789	3	6	surface
+186	1790	4	6	surface
+186	1791	5	6	surface
+187	1792	1	6	surface
+187	1793	2	6	surface
+188	1794	1	6	surface
+188	1795	2	6	surface
+188	1796	3	6	surface
+189	1797	1	6	surface
+190	1798	1	6	surface
+190	1799	2	6	surface
+190	1800	3	6	surface
+191	1801	1	6	surface
+191	1802	2	6	surface
+191	1803	3	6	surface
+191	1804	4	6	surface
+191	1805	5	6	surface
+192	1806	1	6	surface
+192	1807	2	6	surface
+192	1808	3	6	surface
+192	1809	4	6	surface
+192	1810	5	6	surface
+193	1811	1	6	surface
+194	1812	1	6	surface
+194	1813	2	6	surface
+194	1814	3	6	surface
+194	1815	4	6	surface
+194	1816	5	6	surface
+194	1817	6	6	surface
+194	1818	7	6	surface
+195	1819	1	6	surface
+196	1820	1	6	surface
+197	1821	1	6	surface
+197	1822	2	6	surface
+198	1823	1	6	surface
+198	1824	2	6	surface
+199	1825	1	6	surface
+200	1826	1	6	surface
+200	1827	2	6	surface
+200	1828	3	6	surface
+200	1829	4	6	surface
+201	1830	1	6	surface
+201	1831	2	6	surface
+202	1832	1	6	surface
+202	1833	2	6	surface
+202	1834	3	6	surface
+202	1835	4	6	surface
+203	410	1	6	surface
+203	1837	2	6	surface
+203	1838	3	6	surface
+204	1839	1	6	surface
+205	4583	1	6	surface
+206	4584	1	6	surface
+207	4585	1	6	surface
+208	4586	1	6	surface
+208	4587	2	6	surface
+208	4588	3	6	surface
+210	4589	1	6	surface
+210	4590	2	6	surface
+214	5194	1	6	surface
+214	5195	2	6	surface
+214	5196	3	6	surface
+214	5197	4	6	surface
+214	5198	5	6	surface
+215	5199	1	6	surface
 \.
 
 
@@ -31471,5 +31497,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict KYcaf9gC9YHYszQaKh6b8Vm1HYrffsRhD3PMirRWR47GvvrV7vQENumBoJtbLnb
+\unrestrict yvIXY79no4MmdMCXGXbhaqtOfGuubuAe9wpUDsAkg3N0MaRHazVSHJQZsRc7ISx
 
