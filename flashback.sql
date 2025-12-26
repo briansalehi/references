@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict BT1LNrKkz9xrRU1Uh68GquizA3SwhTRlIxPPMj837SbRbsDlh7t9Zq3EYMflZib
+\restrict pjLQQLaZjHiHm8HVAyot1g6ncCpqztXkRauElUtcNK61GpcEeaYhRdr8tjvjVzM
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1892,14 +1892,14 @@ ALTER PROCEDURE flashback.revoke_sessions_except(IN user_id integer, IN active_t
 -- Name: search_presenters(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.search_presenters(token character varying) RETURNS TABLE(presenter integer, name flashback.citext)
+CREATE FUNCTION flashback.search_presenters(token character varying) RETURNS TABLE(similarity bigint, presenter integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$
 begin
     set pg_trgm.similarity_threshold = 0.1;
 
     return query
-    select p.id, p.name
+    select row_number() over (order by p.name <-> token), p.id, p.name
     from presenters p
     where p.name % token
     order by p.name <-> token
@@ -1913,14 +1913,14 @@ ALTER FUNCTION flashback.search_presenters(token character varying) OWNER TO fla
 -- Name: search_providers(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.search_providers(token character varying) RETURNS TABLE(provider integer, name flashback.citext)
+CREATE FUNCTION flashback.search_providers(token character varying) RETURNS TABLE(similarity bigint, provider integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$
 begin
     set pg_trgm.similarity_threshold = 0.1;
 
     return query
-    select p.id, p.name
+    select row_number() over (order by p.name <-> token), p.id, p.name
     from providers p
     where p.name % token and p.name <> 'Flashback'
     order by p.name <-> token
@@ -1941,7 +1941,7 @@ begin
     set pg_trgm.similarity_threshold = 0.1;
 
     return query
-    select row_number() over (), r.id, r.name
+    select row_number() over (order by r.name <-> token), r.id, r.name
     from roadmaps r
     where r.name % token
     order by r.name <-> token
@@ -31503,5 +31503,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict BT1LNrKkz9xrRU1Uh68GquizA3SwhTRlIxPPMj837SbRbsDlh7t9Zq3EYMflZib
+\unrestrict pjLQQLaZjHiHm8HVAyot1g6ncCpqztXkRauElUtcNK61GpcEeaYhRdr8tjvjVzM
 
