@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict yj7KHtA9VyPMt8O2ZoLcjRdipAdbpXHqJVGpIS1w2haVTVDRf4DNh5KFk3WqsBb
+\restrict xt8YV0XucaiJF0QR9j4625kIoZTj4fnAxGcHTmT6c1SBD4eWGVYqPzXebEUWBJz
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1934,14 +1934,14 @@ ALTER FUNCTION flashback.search_providers(token character varying) OWNER TO flas
 -- Name: search_roadmaps(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.search_roadmaps(token character varying) RETURNS TABLE(roadmap integer, name flashback.citext)
+CREATE FUNCTION flashback.search_roadmaps(token character varying) RETURNS TABLE(similarity bigint, roadmap integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$
 begin
     set pg_trgm.similarity_threshold = 0.1;
 
     return query
-    select r.id, r.name
+    select row_number() over (), r.id, r.name
     from roadmaps r
     where r.name % token
     order by r.name <-> token
@@ -3397,5 +3397,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict yj7KHtA9VyPMt8O2ZoLcjRdipAdbpXHqJVGpIS1w2haVTVDRf4DNh5KFk3WqsBb
+\unrestrict xt8YV0XucaiJF0QR9j4625kIoZTj4fnAxGcHTmT6c1SBD4eWGVYqPzXebEUWBJz
 
