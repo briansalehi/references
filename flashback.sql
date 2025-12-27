@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 5SpTMfpiFcxlfsy8ytZLRcml7AFpeBZDLOM6HaDGrN0o5B8Bft2gu9ndszvEz4L
+\restrict fTHVC5adJ37tGiyhVJNZse3z9grwNeCp5VjusClJAcCHsm07kdhnLThhhDEb6gi
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -71,21 +71,6 @@ CREATE TYPE flashback.card_state AS ENUM (
 
 
 ALTER TYPE flashback.card_state OWNER TO flashback;
-
---
--- Name: condition; Type: TYPE; Schema: flashback; Owner: flashback
---
-
-CREATE TYPE flashback.condition AS ENUM (
-    'draft',
-    'relevant',
-    'outdated',
-    'canonical',
-    'abandoned'
-);
-
-
-ALTER TYPE flashback.condition OWNER TO flashback;
 
 --
 -- Name: content_type; Type: TYPE; Schema: flashback; Owner: flashback
@@ -1125,12 +1110,12 @@ ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id inte
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, expiration date, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.pattern, r.condition, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    select r.id, r.name, r.type, r.pattern, r.expiration, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
     from resources r
     join shelves s on s.resource = r.id and s.subject = subject_id
     join sections_cards sc on sc.resource = r.id
@@ -1139,7 +1124,7 @@ begin
     left join presenters e on e.id = a.presenter
     left join producers c on c.resource = r.id
     left join providers v on v.id = c.provider
-    group by r.id, r.name, r.type, r.pattern, r.condition, e.name, v.name, r.link;
+    group by r.id, r.name, r.type, r.pattern, r.expiration, e.name, v.name, r.link;
 end;
 $$;
 
@@ -1205,12 +1190,12 @@ ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) O
 -- Name: get_subject_resources(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_subject_resources(subject character varying) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, provider character varying, presenter character varying, link character varying)
+CREATE FUNCTION flashback.get_subject_resources(subject character varying) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, expiration date, provider character varying, presenter character varying, link character varying)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.pattern, r.condition, r.provider, r.presenter, r.link
+    select r.id, r.name, r.type, r.pattern, r.date, r.provider, r.presenter, r.link
     from resources r
     join shelves v on v.resource = r.id
     join subjects j on j.id = v.subject
@@ -2344,9 +2329,9 @@ CREATE TABLE flashback.resources (
     name character varying(200) NOT NULL,
     type flashback.resource_type NOT NULL,
     pattern flashback.section_pattern NOT NULL,
-    condition flashback.condition NOT NULL,
     link character varying(2000),
-    expiration date DEFAULT now()
+    expiration date DEFAULT (now() + '5 years'::interval) NOT NULL,
+    production date DEFAULT now() NOT NULL
 );
 
 
@@ -20920,232 +20905,232 @@ COPY flashback.providers (id, name) FROM stdin;
 -- Data for Name: resources; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.resources (id, name, type, pattern, condition, link, expiration) FROM stdin;
-19	C++20 STL Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781803248714/	2025-12-27
-20	Mastering OpenCV 3	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781786467171/	2025-12-27
-24	Hands-On Design Patterns with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781804611555/	2025-12-27
-35	C++20: The Complete Guide	book	chapter	relevant	https://leanpub.com/cpp20	2025-12-27
-37	Linux Service Management Made Easy with systemd	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781801811644/	2025-12-27
-50	Extreme C	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781789343625/	2025-12-27
-5	GDB Tips by Greg Law	website	post	relevant	https://www.linkedin.com/in/gregthelaw/	2025-12-27
-84	Concurrency with Modern C++	book	chapter	relevant	https://leanpub.com/concurrencywithmodernc	2025-12-27
-90	Hands-On Mobile and Embedded Development with Qt5	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781789614817/	2025-12-27
-101	Advanced C++ Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781838559915/	2025-12-27
-109	Minimal CMake	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835087312/	2025-12-27
-110	Mastering GitHub Actions	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781805128625	2025-12-27
-6	Daily bit(e) of C++	mailing list	chapter	relevant	https://github.com/HappyCerberus/daily-bite-cpp	2025-12-27
-139	Computer Vision Lab	channel	episode	relevant	https://www.youtube.com/@computervisionlab2119	2025-12-27
-140	C++ Weekly With Jason Turner	channel	episode	relevant	https://www.youtube.com/@cppweekly	2025-12-27
-103	Cpp Hive	channel	episode	relevant	https://www.youtube.com/@cpphive4051	2025-12-27
-2	Boost Documentation	website	page	relevant	https://www.boost.org/libraries/latest/list/	2025-12-27
-4	Qt Documentation	website	page	relevant	https://doc.qt.io/	2025-12-27
-10	mdadm(1)	manual	page	relevant	https://www.man7.org/linux/man-pages/man8/mdadm.8.html	2025-12-27
-22	Professional C++	book	chapter	relevant	https://www.wiley.com/en-us/Professional+C%2B%2B%2C+6th+Edition-p-9781394193189	2025-12-27
-15	Calculus: Concepts and Contexts	book	chapter	relevant	https://faculty.cengage.com/works/9780357632499	2025-12-27
-26	Docker for Developers	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781789536058/	2025-12-27
-30	OpenCV 4 Computer Vision Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789340723/	2025-12-27
-98	Yocto Project and OpenEmbedded Training Course	slides	chapter	relevant	https://bootlin.com/training/yocto/	2025-12-27
-34	Demystifying Cryptography with OpenSSL 3.0	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781800560345/	2025-12-27
-40	Linux Kernel Programming Part 2	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-and-networking/9781801079518/pref	2025-12-27
-81	Sudo Mastery	book	chapter	relevant	https://www.amazon.com/Sudo-Mastery-Michael-W-Lucas/dp/1642350303	2025-12-27
-42	Linux Kernel Programming	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781803232225/	2025-12-27
-63	Offensive Security Wireless Professional (OSWP)	video	episode	relevant	https://www.linkedin.com/pulse/offensive-security-wireless-professional-oswp-study-notes-hamdan-fj41f/	2025-12-27
-49	Introduction to Linear and Matrix Algebra	book	chapter	relevant	https://link.springer.com/book/10.1007/978-3-030-52811-9	2025-12-27
-46	The Linux Programming Interface	book	chapter	relevant	https://nostarch.com/tlpi	2025-12-27
-53	Design Patterns in Modern C++20	book	chapter	relevant	https://link.springer.com/book/10.1007/978-1-4842-7295-4	2025-12-27
-55	Docker Deep Dive	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781835081709/	2025-12-27
-59	Practical Binary Analysis	book	chapter	relevant	https://practicalbinaryanalysis.com/	2025-12-27
-65	Linux Device Driver Development	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803240060/	2025-12-27
-31	Linux Security and Administration	book	chapter	relevant	https://www.amazon.com/Linux-Security-Administration-Safeguarding-Proactive/dp/3988317446	2025-12-27
-71	C++ Concurrency in Action	book	chapter	relevant	https://www.manning.com/books/c-plus-plus-concurrency-in-action	2025-12-27
-78	The C++20 Master Class: From Fundamentals to Advanced	course	chapter	relevant	https://www.udemy.com/course/the-modern-cpp-20-masterclass/	2025-12-27
-82	A Complete Guide to Standard C++ Algorithms	book	chapter	relevant	https://github.com/HappyCerberus/book-cpp-algorithms	2025-12-27
-83	Cross-Platform Development with Qt6 and Modern C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781800204584/	2025-12-27
-92	Mastering Linux Kernel Development	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781785883057/	2025-12-27
-132	System Programming in Linux	book	chapter	relevant	https://nostarch.com/system-programming-linux	2025-12-27
-86	Qt6 QML	book	chapter	relevant	https://doc.qt.io/qt-6/qtqml-index.html	2025-12-27
-121	Language Features of C++17 Ref Card	slides	page	relevant	https://www.cppstories.com/2017/01/cpp17features/	2025-12-27
-102	Black Hat Bash	book	chapter	relevant	https://nostarch.com/black-hat-bash	2025-12-27
-113	Advanced Linux: The Linux Kernel	course	episode	relevant	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769	2025-12-27
-68	The Art of PostgreSQL	book	chapter	relevant	https://theartofpostgresql.com/	2025-12-27
-8	C++ Stories	website	page	relevant	https://www.cppstories.com/	2025-12-27
-115	Mutt Documentation	website	chapter	relevant	http://www.mutt.org/doc/manual/	2025-12-27
-39	Learning eBPF	book	chapter	relevant	https://www.oreilly.com/library/view/learning-ebpf/9781098135119/	2025-12-27
-14	Learning OpenCV 3	book	chapter	relevant	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/	2025-12-27
-17	Mastering Embedded Linux Development	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803232591/	2025-12-27
-25	Learn PostgreSQL	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781837635641/	2025-12-27
-47	CMake Best Practices	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835880647/	2025-12-27
-58	Embedded Linux Development Using Yocto Project	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781804615065/	2025-12-27
-72	Professional CMake	book	chapter	relevant	https://crascit.com/professional-cmake/	2025-12-27
-93	Boost.Asio C++ Network Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781785283079/	2025-12-27
-107	Asynchronous Programming with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835884249/	2025-12-27
-123	Template Metaprogramming with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781803243450/	2025-12-27
-136	SELinux System Administration	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781800201477/	2025-12-27
-138	The Ultimate Kali Linux Book	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781835085806/	2025-12-27
-142	Using Yocto Project with BeagleBone Black 	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781785289736/	2025-12-27
-144	OpenCV 3 Computer Vision Application Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781786469717/	2025-12-27
-146	OpenCV 4 for Secret Agents	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789345360/	2025-12-27
-147	Mastering OpenCV 4	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789533576/	2025-12-27
-18	Teach Yourself C++ in One Hour a Day	book	chapter	relevant	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582	2025-12-27
-56	Modern C++ Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835080542/	2025-12-27
-61	Boost.Asio C++ Network Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781783986545/	2025-12-27
-69	Heading for the Yocto Project	book	chapter	relevant	https://github.com/CollaborativeWritersHub/heading-for-the-yocto-project	2025-12-27
-88	CMake Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781788470711/	2025-12-27
-114	CppCon	channel	episode	relevant	https://www.youtube.com/@CppCon	2025-12-27
-94	Embedded Linux Development Using Yocto Project Cookbook 	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781788399210/	2025-12-27
-96	Modern CMake for C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805121800/	2025-12-27
-106	Learn OpenCV 4 by Building Projects	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789341225/	2025-12-27
-108	GitHub Actions Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781835468944/	2025-12-27
-23	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	book	chapter	relevant	https://link.springer.com/book/10.1007/978-1-4842-4398-5	2025-12-27
-29	Practical Vim	book	chapter	relevant	https://pragprog.com/titles/dnvim2/practical-vim-second-edition/	2025-12-27
-32	Linux System Programming Techniques	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781789951288/	2025-12-27
-38	C++20: Get the Details	book	chapter	relevant	https://leanpub.com/c20/	2025-12-27
-41	Beginning C++23: From Novice to Professional	book	chapter	relevant	https://link.springer.com/book/10.1007/978-1-4842-9343-0	2025-12-27
-43	Beginning x64 Assembly Programming	book	chapter	relevant	https://link.springer.com/book/10.1007/978-1-4842-5076-1	2025-12-27
-45	Docker in Practice	book	chapter	relevant	https://www.manning.com/books/docker-in-practice-second-edition	2025-12-27
-130	Real-time Linux with PREEMPT_RT	slides	chapter	relevant	https://bootlin.com/training/preempt-rt/	2025-12-27
-57	x64 Assembly Language Step-by-Step	book	chapter	relevant	https://www.oreilly.com/library/view/x64-assembly-language/9781394155248/	2025-12-27
-64	Kali Linux Penetration Testing Bible	book	chapter	relevant	https://www.wiley.com/en-us/Kali+Linux+Penetration+Testing+Bible-p-9781119719083	2025-12-27
-74	Deciphering Object-Oriented Programming with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781804613900/	2025-12-27
-76	Hands-On Network Programming with C	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781789349863/	2025-12-27
-95	C++ Templates: The Complete Guide	book	chapter	relevant	https://www.pearson.com/en-us/subject-catalog/p/c-templates-the-complete-guide/P200000000663/9780134778747	2025-12-27
-111	Mastering PostgreSQL 17	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781836205975/	2025-12-27
-119	Computer Graphics Programming in OpenGL with C++	book	chapter	relevant	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186	2025-12-27
-124	GitHub Actions in Action	book	chapter	relevant	https://www.manning.com/books/github-actions-in-action	2025-12-27
-127	Linux Security Techniques	course	episode	relevant	https://subscription.packtpub.com/video/security/9781835887042/	2025-12-27
-134	The Modern Vulkan Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/game-development/9781803239989/	2025-12-27
-51	Mastering Linux Device Driver Development	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781789342048/	2025-12-27
-129	NeoMutt Guide	manual	chapter	relevant	https://neomutt.org/guide/index	2025-12-27
-135	GPU Programming with C++ and CUDA	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805124542/	2025-12-27
-141	Yocto Project Documentation	manual	page	relevant	https://docs.yoctoproject.org/	2025-12-27
-143	Yocto for Raspberry Pi	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781785281952/	2025-12-27
-145	Qt 5 and OpenCV 4 Computer Vision Projects	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789532586/	2025-12-27
-148	Hands-On GPU-Accelerated Computer Vision with OpenCV and CUDA	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781789348293/	2025-12-27
-151	FTXUI Documentation	manual	page	relevant	https://arthursonzogni.github.io/FTXUI/index.html	2025-12-27
-128	Mastering C++ Multithreading	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781787121706/	2025-12-27
-125	C++ Design Patterns: Behavioral	video	episode	relevant	https://subscription.packtpub.com/video/programming/9781804615652/	2025-12-27
-152	Mastering the C++17 STL	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781787126824/	2025-12-27
-153	Mastering C++ Standard Library Features	book	chapter	relevant	https://subscription.packtpub.com/video/programming/9781788294256/	2025-12-27
-154	Expert C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781804617830/	2025-12-27
-155	Mastering Kali Linux for Advanced Penetration Testing	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781801819770/	2025-12-27
-160	Software Architecture with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781803243016/	2025-12-27
-156	The Embedded Linux Security Handbook	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781835885642/	2025-12-27
-157	The C++ Programmer's Mindset	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835888421/	2025-12-27
-158	Rust for C++ Developers	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781836206514/	2025-12-27
-159	Linux Shell Scripting for Hackers	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835462195/	2025-12-27
-162	Asynchronous Programming in Python	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781836646617/	2025-12-27
-163	Embedded Linux Essentials Handbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835469309/	2025-12-27
-62	C++17: The Complete Guide	book	chapter	relevant	https://leanpub.com/cpp17	2025-12-27
-87	C++ Move Semantics: The Complete Guide	book	chapter	relevant	https://leanpub.com/cppmove	2025-12-27
-66	The C++ Programming Language	book	chapter	relevant	https://www.informit.com/store/c-plus-plus-programming-language-9780133522907	2025-12-27
-67	Mastering Linux Security and Hardening	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781837630516/	2025-12-27
-122	C++ Memory Management	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805129806/	2025-12-27
-164	PostgreSQL 18 for Developers	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781806028474/	2025-12-27
-165	Building Low Latency Applications with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781837639359/	2025-12-27
-166	Qt 6 C++ GUI Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805122630/	2025-12-27
-167	Mastering Git	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781835086070/	2025-12-27
-168	Bash Shell Scripting for Pentesters	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781835880821/	2025-12-27
-169	TLS Cryptography In-Depth	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781804611951/	2025-12-27
-170	Learn LLVM 17	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781837631346/	2025-12-27
-171	Raspberry Pi and MQTT Essentials	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803244488/	2025-12-27
-172	Data Structures and Algorithms with the C++ STL	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835468555/	2025-12-27
-173	Mastering Vim	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835081877/	2025-12-27
-174	Cross-Platform Development with Qt 6 and Modern C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781800204584/	2025-12-27
-175	C++ Programming for Linux Systems	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805129004/	2025-12-27
-176	Bare-Metal Embedded C Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835460818/	2025-12-27
-177	Learn C Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781801078450/	2025-12-27
-178	Embedded Linux Development with Yocto Project	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781804615065/	2025-12-27
-180	Using Yocto Project with BeagleBone Black	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781785289736/	2025-12-27
-181	Python 3 Object-Oriented Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781801077262/	2025-12-27
-137	DistroTube	channel	episode	relevant	https://www.youtube.com/@DistroTube	2025-12-27
-161	Kali Linux Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781835889817/	2025-12-27
-182	Hands-On Embedded Programming with Qt	book	chapter	relevant	https://subscription.packtpub.com/book/iot-and-hardware/9781789952063/	2025-12-27
-183	C++ 20 (2a) New Features	course	episode	relevant	https://subscription.packtpub.com/video/programming/9781839216909/	2025-12-27
-27	C++17 STL Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781787120495/	2025-12-27
-184	C++ in Embedded Systems	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781835881149/	2025-12-27
-185	Offensive Shellcode from Scratch	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781803247427/	2025-12-27
-186	Protocol Buffers Handbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781805124672/	2025-12-27
-187	A Practical Guide to Quantum Computing	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835885949/	2025-12-27
-188	The Ultimate Linux Shell Scripting Guide	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781835463574/	2025-12-27
-189	Hands-On RTOS with Microcontrollers	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781803237725/	2025-12-27
-190	Rust from Beginner to Professional	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781836208877/	2025-12-27
-191	Automating Workflows with GitHub Actions	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781800560406/	2025-12-27
-192	Reverse Engineering Armv8-A Systems	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781835088920/	2025-12-27
-193	Practical Hardware Pentesting	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781789619133/	2025-12-27
-194	Advanced Python Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781801814010/	2025-12-27
-195	Refactoring with C++	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781837633777/	2025-12-27
-196	Hands-On Machine Learning with C++	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781805120575/	2025-12-27
-197	Vulkan 3D Graphics Rendering Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/game-development/9781803248110/	2025-12-27
-198	C++23 STL Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781836204251/	2025-12-27
-199	Clang Compiler Frontend	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781837630981/	2025-12-27
-200	Developing IoT Projects with ESP32	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803237688/	2025-12-27
-201	Test-Driven Development with C++	book	chapter	relevant	https://subscription.packtpub.com/book/web-development/9781803242002/	2025-12-27
-202	Expert Python Programming	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781801071109/	2025-12-27
-203	C++ High Performance	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781839216541/	2025-12-27
-204	C++ System Programming Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781838646554/	2025-12-27
-205	The C++ Standard Library	book	chapter	relevant	https://leanpub.com/cpplibrary	2025-12-27
-206	Mastering STM32	book	chapter	relevant	https://leanpub.com/mastering-stm32-2nd	2025-12-27
-207	Learn OpenGL	book	chapter	relevant	https://subscription.packtpub.com/book/game-development/9781789340365/	2025-12-27
-208	The Modern C++ Challenge	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781788993869/	2025-12-27
-209	Linux Device Drivers in Action	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781835881866/	2025-12-27
-210	Practical C++ Game Programming with Data Structures and Algorithms	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835889862/	2025-12-27
-211	Linux Command Line and Shell Scripting Techniques	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781800205192/	2025-12-27
-212	Linux Administration Best Practices	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781800568792/	2025-12-27
-213	Practical Memory Forensics	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781801070331/	2025-12-27
-214	50 Algorithms Every Programmer Should Know	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781803247762/	2025-12-27
-216	cpponsea	channel	episode	relevant	https://www.youtube.com/@cpponsea	2025-12-27
-215	Meeting Cpp	channel	episode	relevant	https://www.youtube.com/@MeetingCPP	2025-12-27
-217	Kitware	channel	episode	relevant	https://www.youtube.com/@KitwareVideos	2025-12-27
-118	Behavioral Design Patterns in C++	video	episode	relevant	https://subscription.packtpub.com/video/programming/9781804615652/	2025-12-27
-11	C++ Design Patterns: Creational	video	episode	relevant	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational	2025-12-27
-126	C++ Design Patterns: Structural	video	episode	relevant	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029	2025-12-27
-149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	episode	relevant	https://subscription.packtpub.com/video/data/9781788479080/	2025-12-27
-150	Computer Vision with OpenCV 3 and Qt5	video	episode	relevant	https://subscription.packtpub.com/book/data/9781788472395/	2025-12-27
-105	Creational Design Patterns in Modern C++	video	episode	relevant	https://subscription.packtpub.com/video/programming/9781800568242/	2025-12-27
-131	Structural Design Patterns in Modern C++	video	episode	relevant	https://subscription.packtpub.com/video/programming/9781801073073/	2025-12-27
-112	GitHub Actions Masterclass	video	episode	relevant	https://subscription.packtpub.com/video/business-other/9781837025411/	2025-12-27
-1	CppNow	channel	episode	relevant	https://www.youtube.com/@CppNow	2025-12-27
-218	The C++ Programmer's Mindset	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781835888421	2025-12-27
-219	Beginning C++ Game Programming	book	chapter	relevant	https://subscription.packtpub.com/book/game-development/9781835081747	2025-12-27
-79	PostgreSQL 16 Administration Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781835460580	2025-12-27
-220	Developing Modern Database Applications with PostgreSQL	book	chapter	relevant	https://subscription.packtpub.com/book/data/9781838648145	2025-12-27
-222	The Rust Programming Handbook	book	chapter	relevant	https://subscription.packtpub.com/book/programming/9781836208877	2025-12-27
-223	Building a BeagleBone Black Super Cluster	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781783989447	2025-12-27
-224	Raspberry Pi Zero W Wireless Projects	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781788290524	2025-12-27
-225	The Insider's Guide to Arm Cortex-M Development	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803231112	2025-12-27
-227	Internet of Things from Scratch	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781837638543	2025-12-27
-226	Embedded Systems Architecture	book	chapter	relevant	https://subscription.packtpub.com/book/iot-hardware/9781803239545	2025-12-27
-228	Advanced ESP32	course	chapter	relevant	https://subscription.packtpub.com/video/iot-hardware/9781800202016	2025-12-27
-179	Embedded Linux Projects Using Yocto Project Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/iot-and-hardware/9781788399210/	2025-12-27
-97	OpenGL and GLSL Fundamentals with C++	course	episode	relevant	https://subscription.packtpub.com/video/game-development/9781838647889/	2025-12-27
-100	GoogleTest Documentation	website	page	relevant	https://google.github.io/googletest/	2025-12-27
-221	Kali Linux - An Ethical Hacker's Cookbook	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781787121829/	2025-12-27
-229	Defensive Security with Kali Purple	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781835088982/	2025-12-27
-230	Windows and Linux Penetration Testing from Scratch	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781801815123/	2025-12-27
-231	Mastering Defensive Security	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781800208162/	2025-12-27
-232	Hacking WEP/WPA/WPA2 WiFi Networks Using Kali Linux	course	chapter	relevant	https://subscription.packtpub.com/video/security/9781803239750/	2025-12-27
-233	The Complete Pentesting and Privilege Escalation Course	course	chapter	relevant	https://subscription.packtpub.com/video/security/9781801072359/	2025-12-27
-234	Pentesting Industrial Control Systems	book	chapter	relevant	https://subscription.packtpub.com/book/security/9781800202382/	2025-12-27
-235	Offensive Hacking Unfolded	book	chapter	relevant	https://subscription.packtpub.com/video/security/9781804615294/	2025-12-27
-12	Linux Device Drivers	course	episode	relevant	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging	2025-12-27
-21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	relevant	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/	2025-12-27
-236	Brian Salehi	user	synapse	relevant	\N	2025-12-27
-52	The Shellcoder's Handbook	book	chapter	relevant	https://www.wiley.com/en-us/The+Shellcoder's+Handbook%3A+Discovering+and+Exploiting+Security+Holes+-p-9780764544682	2025-12-27
-60	Learn Docker in a month of Lunches	book	chapter	relevant	https://www.manning.com/books/learn-docker-in-a-month-of-lunches	2025-12-27
-75	Linux Kernel Debugging	book	chapter	relevant	https://subscription.packtpub.com/book/cloud-networking/9781801075039/	2025-12-27
-77	Data Abstraction & Problem Solving with C++	book	chapter	relevant	https://www.pearson.com/en-us/subject-catalog/p/data-abstraction--problem-solving-with-c-walls-and-mirrors/P200000003514/9780137516759	2025-12-27
-70	Introducing Qt6	book	chapter	relevant	https://link.springer.com/book/10.1007/978-1-4842-7490-3	2025-12-27
-104	Mastering Modern C++ : C++11, 14, 17 and 20 Features	video	episode	relevant	https://www.udemy.com/course/mastering-modern-c-c11-14-17-and-20-features/?couponCode=CM251220G1	2025-12-27
-3	LaTeX Tutorial	website	page	relevant	https://latex-tutorial.com/tutorials/	2025-12-27
-9	C++ Reference	website	page	relevant	https://cppreference.com/	2025-12-27
-99	C++17 Language New Features Ref Card	slides	page	relevant	https://www.cppstories.com/p/archive/	2025-12-27
-44	Docker: Up & Running	book	chapter	relevant	https://dockerupandrunning.com/	2025-12-27
-54	The C++ Standard Library	book	chapter	relevant	https://www.oreilly.com/library/view/c-standard-library/9780132978286/	2025-12-27
-91	GDB Pocket Reference	book	chapter	relevant	https://www.oreilly.com/library/view/gdb-pocket-reference/9780596100278/index.html	2025-12-27
-85	Thomas' Calculus	book	chapter	relevant	https://www.pearson.com/en-us/subject-catalog/p/thomas-calculus/P200000007103/9780137616077	2025-12-27
-116	OliveStem	channel	playlist	relevant	https://www.youtube.com/@olivestemlearning	2025-12-27
-89	Embedded Linux Training Course	slides	chapter	relevant	https://bootlin.com/training/embedded-linux/	2025-12-27
-33	Linux Driver Development for Embedded Processors	book	chapter	relevant	https://vdoc.pub/download/linux-driver-development-for-embedded-processors-second-edition-learn-to-develop-linux-embedded-drivers-with-kernel-49-lts-1gf0ri0tddno	2025-12-27
+COPY flashback.resources (id, name, type, pattern, link, expiration, production) FROM stdin;
+19	C++20 STL Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781803248714/	2030-12-27	2025-12-27
+20	Mastering OpenCV 3	book	chapter	https://subscription.packtpub.com/book/data/9781786467171/	2030-12-27	2025-12-27
+24	Hands-On Design Patterns with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781804611555/	2030-12-27	2025-12-27
+35	C++20: The Complete Guide	book	chapter	https://leanpub.com/cpp20	2030-12-27	2025-12-27
+37	Linux Service Management Made Easy with systemd	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781801811644/	2030-12-27	2025-12-27
+50	Extreme C	book	chapter	https://subscription.packtpub.com/book/programming/9781789343625/	2030-12-27	2025-12-27
+5	GDB Tips by Greg Law	website	post	https://www.linkedin.com/in/gregthelaw/	2030-12-27	2025-12-27
+84	Concurrency with Modern C++	book	chapter	https://leanpub.com/concurrencywithmodernc	2030-12-27	2025-12-27
+90	Hands-On Mobile and Embedded Development with Qt5	book	chapter	https://subscription.packtpub.com/book/programming/9781789614817/	2030-12-27	2025-12-27
+109	Minimal CMake	book	chapter	https://subscription.packtpub.com/book/programming/9781835087312/	2030-12-27	2025-12-27
+110	Mastering GitHub Actions	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781805128625	2030-12-27	2025-12-27
+6	Daily bit(e) of C++	mailing list	chapter	https://github.com/HappyCerberus/daily-bite-cpp	2030-12-27	2025-12-27
+139	Computer Vision Lab	channel	episode	https://www.youtube.com/@computervisionlab2119	2030-12-27	2025-12-27
+140	C++ Weekly With Jason Turner	channel	episode	https://www.youtube.com/@cppweekly	2030-12-27	2025-12-27
+103	Cpp Hive	channel	episode	https://www.youtube.com/@cpphive4051	2030-12-27	2025-12-27
+2	Boost Documentation	website	page	https://www.boost.org/libraries/latest/list/	2030-12-27	2025-12-27
+4	Qt Documentation	website	page	https://doc.qt.io/	2030-12-27	2025-12-27
+10	mdadm(1)	manual	page	https://www.man7.org/linux/man-pages/man8/mdadm.8.html	2030-12-27	2025-12-27
+22	Professional C++	book	chapter	https://www.wiley.com/en-us/Professional+C%2B%2B%2C+6th+Edition-p-9781394193189	2030-12-27	2025-12-27
+15	Calculus: Concepts and Contexts	book	chapter	https://faculty.cengage.com/works/9780357632499	2030-12-27	2025-12-27
+26	Docker for Developers	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781789536058/	2030-12-27	2025-12-27
+30	OpenCV 4 Computer Vision Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/data/9781789340723/	2030-12-27	2025-12-27
+98	Yocto Project and OpenEmbedded Training Course	slides	chapter	https://bootlin.com/training/yocto/	2030-12-27	2025-12-27
+34	Demystifying Cryptography with OpenSSL 3.0	book	chapter	https://subscription.packtpub.com/book/security/9781800560345/	2030-12-27	2025-12-27
+40	Linux Kernel Programming Part 2	book	chapter	https://subscription.packtpub.com/book/cloud-and-networking/9781801079518/pref	2030-12-27	2025-12-27
+81	Sudo Mastery	book	chapter	https://www.amazon.com/Sudo-Mastery-Michael-W-Lucas/dp/1642350303	2030-12-27	2025-12-27
+42	Linux Kernel Programming	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781803232225/	2030-12-27	2025-12-27
+63	Offensive Security Wireless Professional (OSWP)	video	episode	https://www.linkedin.com/pulse/offensive-security-wireless-professional-oswp-study-notes-hamdan-fj41f/	2030-12-27	2025-12-27
+49	Introduction to Linear and Matrix Algebra	book	chapter	https://link.springer.com/book/10.1007/978-3-030-52811-9	2030-12-27	2025-12-27
+46	The Linux Programming Interface	book	chapter	https://nostarch.com/tlpi	2030-12-27	2025-12-27
+53	Design Patterns in Modern C++20	book	chapter	https://link.springer.com/book/10.1007/978-1-4842-7295-4	2030-12-27	2025-12-27
+55	Docker Deep Dive	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781835081709/	2030-12-27	2025-12-27
+59	Practical Binary Analysis	book	chapter	https://practicalbinaryanalysis.com/	2030-12-27	2025-12-27
+65	Linux Device Driver Development	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803240060/	2030-12-27	2025-12-27
+31	Linux Security and Administration	book	chapter	https://www.amazon.com/Linux-Security-Administration-Safeguarding-Proactive/dp/3988317446	2030-12-27	2025-12-27
+71	C++ Concurrency in Action	book	chapter	https://www.manning.com/books/c-plus-plus-concurrency-in-action	2030-12-27	2025-12-27
+78	The C++20 Master Class: From Fundamentals to Advanced	course	chapter	https://www.udemy.com/course/the-modern-cpp-20-masterclass/	2030-12-27	2025-12-27
+101	Advanced C++ Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781838559915/	2029-01-01	2020-01-01
+83	Cross-Platform Development with Qt6 and Modern C++	book	chapter	https://subscription.packtpub.com/book/programming/9781800204584/	2030-12-27	2025-12-27
+92	Mastering Linux Kernel Development	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781785883057/	2030-12-27	2025-12-27
+132	System Programming in Linux	book	chapter	https://nostarch.com/system-programming-linux	2030-12-27	2025-12-27
+86	Qt6 QML	book	chapter	https://doc.qt.io/qt-6/qtqml-index.html	2030-12-27	2025-12-27
+121	Language Features of C++17 Ref Card	slides	page	https://www.cppstories.com/2017/01/cpp17features/	2030-12-27	2025-12-27
+102	Black Hat Bash	book	chapter	https://nostarch.com/black-hat-bash	2030-12-27	2025-12-27
+113	Advanced Linux: The Linux Kernel	course	episode	https://www.linkedin.com/learning/advanced-linux-the-linux-kernel-25075769	2029-01-01	2024-01-01
+68	The Art of PostgreSQL	book	chapter	https://theartofpostgresql.com/	2030-12-27	2025-12-27
+8	C++ Stories	website	page	https://www.cppstories.com/	2030-12-27	2025-12-27
+115	Mutt Documentation	website	chapter	http://www.mutt.org/doc/manual/	2030-12-27	2025-12-27
+39	Learning eBPF	book	chapter	https://www.oreilly.com/library/view/learning-ebpf/9781098135119/	2030-12-27	2025-12-27
+14	Learning OpenCV 3	book	chapter	https://www.oreilly.com/library/view/learning-opencv-3/9781491937983/	2030-12-27	2025-12-27
+17	Mastering Embedded Linux Development	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803232591/	2030-12-27	2025-12-27
+25	Learn PostgreSQL	book	chapter	https://subscription.packtpub.com/book/data/9781837635641/	2030-12-27	2025-12-27
+47	CMake Best Practices	book	chapter	https://subscription.packtpub.com/book/programming/9781835880647/	2030-12-27	2025-12-27
+58	Embedded Linux Development Using Yocto Project	book	chapter	https://subscription.packtpub.com/book/security/9781804615065/	2030-12-27	2025-12-27
+72	Professional CMake	book	chapter	https://crascit.com/professional-cmake/	2030-12-27	2025-12-27
+93	Boost.Asio C++ Network Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781785283079/	2030-12-27	2025-12-27
+123	Template Metaprogramming with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781803243450/	2030-12-27	2025-12-27
+136	SELinux System Administration	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781800201477/	2030-12-27	2025-12-27
+138	The Ultimate Kali Linux Book	book	chapter	https://subscription.packtpub.com/book/security/9781835085806/	2030-12-27	2025-12-27
+142	Using Yocto Project with BeagleBone Black 	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781785289736/	2030-12-27	2025-12-27
+144	OpenCV 3 Computer Vision Application Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/data/9781786469717/	2030-12-27	2025-12-27
+146	OpenCV 4 for Secret Agents	book	chapter	https://subscription.packtpub.com/book/data/9781789345360/	2030-12-27	2025-12-27
+147	Mastering OpenCV 4	book	chapter	https://subscription.packtpub.com/book/data/9781789533576/	2030-12-27	2025-12-27
+18	Teach Yourself C++ in One Hour a Day	book	chapter	https://www.pearson.com/en-us/subject-catalog/p/sams-teach-yourself-c-in-one-hour-a-day/P200000000559/9780137334582	2030-12-27	2025-12-27
+56	Modern C++ Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781835080542/	2030-12-27	2025-12-27
+61	Boost.Asio C++ Network Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781783986545/	2030-12-27	2025-12-27
+69	Heading for the Yocto Project	book	chapter	https://github.com/CollaborativeWritersHub/heading-for-the-yocto-project	2030-12-27	2025-12-27
+88	CMake Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781788470711/	2030-12-27	2025-12-27
+114	CppCon	channel	episode	https://www.youtube.com/@CppCon	2030-12-27	2025-12-27
+94	Embedded Linux Development Using Yocto Project Cookbook 	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781788399210/	2030-12-27	2025-12-27
+96	Modern CMake for C++	book	chapter	https://subscription.packtpub.com/book/programming/9781805121800/	2030-12-27	2025-12-27
+106	Learn OpenCV 4 by Building Projects	book	chapter	https://subscription.packtpub.com/book/data/9781789341225/	2030-12-27	2025-12-27
+108	GitHub Actions Cookbook	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781835468944/	2030-12-27	2025-12-27
+23	Pro Tbb: C++ Parallel Programming with Threading Building Blocks	book	chapter	https://link.springer.com/book/10.1007/978-1-4842-4398-5	2030-12-27	2025-12-27
+29	Practical Vim	book	chapter	https://pragprog.com/titles/dnvim2/practical-vim-second-edition/	2030-12-27	2025-12-27
+32	Linux System Programming Techniques	book	chapter	https://subscription.packtpub.com/book/programming/9781789951288/	2030-12-27	2025-12-27
+38	C++20: Get the Details	book	chapter	https://leanpub.com/c20/	2030-12-27	2025-12-27
+41	Beginning C++23: From Novice to Professional	book	chapter	https://link.springer.com/book/10.1007/978-1-4842-9343-0	2030-01-01	2023-01-01
+43	Beginning x64 Assembly Programming	book	chapter	https://link.springer.com/book/10.1007/978-1-4842-5076-1	2030-12-27	2025-12-27
+45	Docker in Practice	book	chapter	https://www.manning.com/books/docker-in-practice-second-edition	2030-12-27	2025-12-27
+130	Real-time Linux with PREEMPT_RT	slides	chapter	https://bootlin.com/training/preempt-rt/	2030-12-27	2025-12-27
+57	x64 Assembly Language Step-by-Step	book	chapter	https://www.oreilly.com/library/view/x64-assembly-language/9781394155248/	2030-12-27	2025-12-27
+64	Kali Linux Penetration Testing Bible	book	chapter	https://www.wiley.com/en-us/Kali+Linux+Penetration+Testing+Bible-p-9781119719083	2030-12-27	2025-12-27
+74	Deciphering Object-Oriented Programming with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781804613900/	2030-12-27	2025-12-27
+76	Hands-On Network Programming with C	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781789349863/	2030-12-27	2025-12-27
+95	C++ Templates: The Complete Guide	book	chapter	https://www.pearson.com/en-us/subject-catalog/p/c-templates-the-complete-guide/P200000000663/9780134778747	2030-12-27	2025-12-27
+111	Mastering PostgreSQL 17	book	chapter	https://subscription.packtpub.com/book/data/9781836205975/	2030-12-27	2025-12-27
+119	Computer Graphics Programming in OpenGL with C++	book	chapter	https://www.packtpub.com/en-de/product/computer-graphics-programming-in-opengl-with-c-edition-3-9781836641186	2030-12-27	2025-12-27
+124	GitHub Actions in Action	book	chapter	https://www.manning.com/books/github-actions-in-action	2030-12-27	2025-12-27
+127	Linux Security Techniques	course	episode	https://subscription.packtpub.com/video/security/9781835887042/	2030-12-27	2025-12-27
+134	The Modern Vulkan Cookbook	book	chapter	https://subscription.packtpub.com/book/game-development/9781803239989/	2030-12-27	2025-12-27
+51	Mastering Linux Device Driver Development	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781789342048/	2030-12-27	2025-12-27
+129	NeoMutt Guide	manual	chapter	https://neomutt.org/guide/index	2030-12-27	2025-12-27
+107	Asynchronous Programming with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781835884249/	2033-01-01	2024-01-01
+135	GPU Programming with C++ and CUDA	book	chapter	https://subscription.packtpub.com/book/programming/9781805124542/	2030-12-27	2025-12-27
+141	Yocto Project Documentation	manual	page	https://docs.yoctoproject.org/	2030-12-27	2025-12-27
+143	Yocto for Raspberry Pi	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781785281952/	2030-12-27	2025-12-27
+145	Qt 5 and OpenCV 4 Computer Vision Projects	book	chapter	https://subscription.packtpub.com/book/data/9781789532586/	2030-12-27	2025-12-27
+148	Hands-On GPU-Accelerated Computer Vision with OpenCV and CUDA	book	chapter	https://subscription.packtpub.com/book/data/9781789348293/	2030-12-27	2025-12-27
+151	FTXUI Documentation	manual	page	https://arthursonzogni.github.io/FTXUI/index.html	2030-12-27	2025-12-27
+128	Mastering C++ Multithreading	book	chapter	https://subscription.packtpub.com/book/programming/9781787121706/	2030-12-27	2025-12-27
+125	C++ Design Patterns: Behavioral	video	episode	https://subscription.packtpub.com/video/programming/9781804615652/	2030-12-27	2025-12-27
+152	Mastering the C++17 STL	book	chapter	https://subscription.packtpub.com/book/programming/9781787126824/	2030-12-27	2025-12-27
+153	Mastering C++ Standard Library Features	book	chapter	https://subscription.packtpub.com/video/programming/9781788294256/	2030-12-27	2025-12-27
+154	Expert C++	book	chapter	https://subscription.packtpub.com/book/programming/9781804617830/	2030-12-27	2025-12-27
+155	Mastering Kali Linux for Advanced Penetration Testing	book	chapter	https://subscription.packtpub.com/book/security/9781801819770/	2030-12-27	2025-12-27
+160	Software Architecture with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781803243016/	2030-12-27	2025-12-27
+156	The Embedded Linux Security Handbook	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781835885642/	2030-12-27	2025-12-27
+157	The C++ Programmer's Mindset	book	chapter	https://subscription.packtpub.com/book/programming/9781835888421/	2030-12-27	2025-12-27
+158	Rust for C++ Developers	book	chapter	https://subscription.packtpub.com/book/programming/9781836206514/	2030-12-27	2025-12-27
+159	Linux Shell Scripting for Hackers	book	chapter	https://subscription.packtpub.com/book/programming/9781835462195/	2030-12-27	2025-12-27
+163	Embedded Linux Essentials Handbook	book	chapter	https://subscription.packtpub.com/book/programming/9781835469309/	2030-12-27	2025-12-27
+62	C++17: The Complete Guide	book	chapter	https://leanpub.com/cpp17	2030-12-27	2025-12-27
+87	C++ Move Semantics: The Complete Guide	book	chapter	https://leanpub.com/cppmove	2030-12-27	2025-12-27
+66	The C++ Programming Language	book	chapter	https://www.informit.com/store/c-plus-plus-programming-language-9780133522907	2030-12-27	2025-12-27
+67	Mastering Linux Security and Hardening	book	chapter	https://subscription.packtpub.com/book/security/9781837630516/	2030-12-27	2025-12-27
+122	C++ Memory Management	book	chapter	https://subscription.packtpub.com/book/programming/9781805129806/	2030-12-27	2025-12-27
+164	PostgreSQL 18 for Developers	book	chapter	https://subscription.packtpub.com/book/data/9781806028474/	2030-12-27	2025-12-27
+165	Building Low Latency Applications with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781837639359/	2030-12-27	2025-12-27
+166	Qt 6 C++ GUI Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781805122630/	2030-12-27	2025-12-27
+167	Mastering Git	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781835086070/	2030-12-27	2025-12-27
+169	TLS Cryptography In-Depth	book	chapter	https://subscription.packtpub.com/book/security/9781804611951/	2030-12-27	2025-12-27
+170	Learn LLVM 17	book	chapter	https://subscription.packtpub.com/book/programming/9781837631346/	2030-12-27	2025-12-27
+171	Raspberry Pi and MQTT Essentials	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803244488/	2030-12-27	2025-12-27
+172	Data Structures and Algorithms with the C++ STL	book	chapter	https://subscription.packtpub.com/book/programming/9781835468555/	2030-12-27	2025-12-27
+173	Mastering Vim	book	chapter	https://subscription.packtpub.com/book/programming/9781835081877/	2030-12-27	2025-12-27
+174	Cross-Platform Development with Qt 6 and Modern C++	book	chapter	https://subscription.packtpub.com/book/programming/9781800204584/	2030-12-27	2025-12-27
+175	C++ Programming for Linux Systems	book	chapter	https://subscription.packtpub.com/book/programming/9781805129004/	2030-12-27	2025-12-27
+177	Learn C Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781801078450/	2030-12-27	2025-12-27
+178	Embedded Linux Development with Yocto Project	book	chapter	https://subscription.packtpub.com/book/security/9781804615065/	2030-12-27	2025-12-27
+180	Using Yocto Project with BeagleBone Black	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781785289736/	2030-12-27	2025-12-27
+181	Python 3 Object-Oriented Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781801077262/	2030-12-27	2025-12-27
+137	DistroTube	channel	episode	https://www.youtube.com/@DistroTube	2030-12-27	2025-12-27
+161	Kali Linux Cookbook	book	chapter	https://subscription.packtpub.com/book/security/9781835889817/	2030-12-27	2025-12-27
+182	Hands-On Embedded Programming with Qt	book	chapter	https://subscription.packtpub.com/book/iot-and-hardware/9781789952063/	2030-12-27	2025-12-27
+183	C++ 20 (2a) New Features	course	episode	https://subscription.packtpub.com/video/programming/9781839216909/	2030-12-27	2025-12-27
+27	C++17 STL Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781787120495/	2030-12-27	2025-12-27
+162	Asynchronous Programming in Python	book	chapter	https://subscription.packtpub.com/book/programming/9781836646617/	2030-01-01	2025-01-01
+176	Bare-Metal Embedded C Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781835460818/	2030-01-01	2024-01-01
+168	Bash Shell Scripting for Pentesters	book	chapter	https://subscription.packtpub.com/book/security/9781835880821/	2028-01-01	2024-01-01
+184	C++ in Embedded Systems	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781835881149/	2030-12-27	2025-12-27
+185	Offensive Shellcode from Scratch	book	chapter	https://subscription.packtpub.com/book/security/9781803247427/	2030-12-27	2025-12-27
+186	Protocol Buffers Handbook	book	chapter	https://subscription.packtpub.com/book/programming/9781805124672/	2030-12-27	2025-12-27
+188	The Ultimate Linux Shell Scripting Guide	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781835463574/	2030-12-27	2025-12-27
+189	Hands-On RTOS with Microcontrollers	book	chapter	https://subscription.packtpub.com/book/security/9781803237725/	2030-12-27	2025-12-27
+190	Rust from Beginner to Professional	book	chapter	https://subscription.packtpub.com/book/programming/9781836208877/	2030-12-27	2025-12-27
+192	Reverse Engineering Armv8-A Systems	book	chapter	https://subscription.packtpub.com/book/security/9781835088920/	2030-12-27	2025-12-27
+193	Practical Hardware Pentesting	book	chapter	https://subscription.packtpub.com/book/security/9781789619133/	2030-12-27	2025-12-27
+195	Refactoring with C++	book	chapter	https://subscription.packtpub.com/book/programming/9781837633777/	2030-12-27	2025-12-27
+196	Hands-On Machine Learning with C++	book	chapter	https://subscription.packtpub.com/book/data/9781805120575/	2030-12-27	2025-12-27
+197	Vulkan 3D Graphics Rendering Cookbook	book	chapter	https://subscription.packtpub.com/book/game-development/9781803248110/	2030-12-27	2025-12-27
+198	C++23 STL Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781836204251/	2030-12-27	2025-12-27
+199	Clang Compiler Frontend	book	chapter	https://subscription.packtpub.com/book/programming/9781837630981/	2030-12-27	2025-12-27
+200	Developing IoT Projects with ESP32	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803237688/	2030-12-27	2025-12-27
+201	Test-Driven Development with C++	book	chapter	https://subscription.packtpub.com/book/web-development/9781803242002/	2030-12-27	2025-12-27
+202	Expert Python Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781801071109/	2030-12-27	2025-12-27
+203	C++ High Performance	book	chapter	https://subscription.packtpub.com/book/programming/9781839216541/	2030-12-27	2025-12-27
+204	C++ System Programming Cookbook	book	chapter	https://subscription.packtpub.com/book/programming/9781838646554/	2030-12-27	2025-12-27
+205	The C++ Standard Library	book	chapter	https://leanpub.com/cpplibrary	2030-12-27	2025-12-27
+206	Mastering STM32	book	chapter	https://leanpub.com/mastering-stm32-2nd	2030-12-27	2025-12-27
+207	Learn OpenGL	book	chapter	https://subscription.packtpub.com/book/game-development/9781789340365/	2030-12-27	2025-12-27
+208	The Modern C++ Challenge	book	chapter	https://subscription.packtpub.com/book/programming/9781788993869/	2030-12-27	2025-12-27
+209	Linux Device Drivers in Action	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781835881866/	2030-12-27	2025-12-27
+210	Practical C++ Game Programming with Data Structures and Algorithms	book	chapter	https://subscription.packtpub.com/book/programming/9781835889862/	2030-12-27	2025-12-27
+211	Linux Command Line and Shell Scripting Techniques	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781800205192/	2030-12-27	2025-12-27
+212	Linux Administration Best Practices	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781800568792/	2030-12-27	2025-12-27
+213	Practical Memory Forensics	book	chapter	https://subscription.packtpub.com/book/security/9781801070331/	2030-12-27	2025-12-27
+216	cpponsea	channel	episode	https://www.youtube.com/@cpponsea	2030-12-27	2025-12-27
+215	Meeting Cpp	channel	episode	https://www.youtube.com/@MeetingCPP	2030-12-27	2025-12-27
+217	Kitware	channel	episode	https://www.youtube.com/@KitwareVideos	2030-12-27	2025-12-27
+118	Behavioral Design Patterns in C++	video	episode	https://subscription.packtpub.com/video/programming/9781804615652/	2030-12-27	2025-12-27
+11	C++ Design Patterns: Creational	video	episode	https://www.linkedin.com/learning/c-plus-plus-design-patterns-creational	2030-12-27	2025-12-27
+126	C++ Design Patterns: Structural	video	episode	https://www.linkedin.com/learning/c-plus-plus-design-patterns-structural-22183029	2030-12-27	2025-12-27
+149	Cross-Platform Application Development with OpenCV 4 and Qt 5	video	episode	https://subscription.packtpub.com/video/data/9781788479080/	2030-12-27	2025-12-27
+150	Computer Vision with OpenCV 3 and Qt5	video	episode	https://subscription.packtpub.com/book/data/9781788472395/	2030-12-27	2025-12-27
+105	Creational Design Patterns in Modern C++	video	episode	https://subscription.packtpub.com/video/programming/9781800568242/	2030-12-27	2025-12-27
+131	Structural Design Patterns in Modern C++	video	episode	https://subscription.packtpub.com/video/programming/9781801073073/	2030-12-27	2025-12-27
+112	GitHub Actions Masterclass	video	episode	https://subscription.packtpub.com/video/business-other/9781837025411/	2030-12-27	2025-12-27
+1	CppNow	channel	episode	https://www.youtube.com/@CppNow	2030-12-27	2025-12-27
+218	The C++ Programmer's Mindset	book	chapter	https://subscription.packtpub.com/book/programming/9781835888421	2030-12-27	2025-12-27
+219	Beginning C++ Game Programming	book	chapter	https://subscription.packtpub.com/book/game-development/9781835081747	2030-12-27	2025-12-27
+79	PostgreSQL 16 Administration Cookbook	book	chapter	https://subscription.packtpub.com/book/data/9781835460580	2030-12-27	2025-12-27
+214	50 Algorithms Every Programmer Should Know	book	chapter	https://subscription.packtpub.com/book/programming/9781803247762/	2029-01-01	2023-01-01
+194	Advanced Python Programming	book	chapter	https://subscription.packtpub.com/book/programming/9781801814010/	2029-01-01	2022-01-01
+187	A Practical Guide to Quantum Computing	book	chapter	https://subscription.packtpub.com/book/programming/9781835885949/	2031-01-01	2025-01-01
+191	Automating Workflows with GitHub Actions	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781800560406/	2027-01-01	2021-01-01
+220	Developing Modern Database Applications with PostgreSQL	book	chapter	https://subscription.packtpub.com/book/data/9781838648145	2030-12-27	2025-12-27
+222	The Rust Programming Handbook	book	chapter	https://subscription.packtpub.com/book/programming/9781836208877	2030-12-27	2025-12-27
+223	Building a BeagleBone Black Super Cluster	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781783989447	2030-12-27	2025-12-27
+224	Raspberry Pi Zero W Wireless Projects	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781788290524	2030-12-27	2025-12-27
+225	The Insider's Guide to Arm Cortex-M Development	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803231112	2030-12-27	2025-12-27
+227	Internet of Things from Scratch	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781837638543	2030-12-27	2025-12-27
+226	Embedded Systems Architecture	book	chapter	https://subscription.packtpub.com/book/iot-hardware/9781803239545	2030-12-27	2025-12-27
+179	Embedded Linux Projects Using Yocto Project Cookbook	book	chapter	https://subscription.packtpub.com/book/iot-and-hardware/9781788399210/	2030-12-27	2025-12-27
+97	OpenGL and GLSL Fundamentals with C++	course	episode	https://subscription.packtpub.com/video/game-development/9781838647889/	2030-12-27	2025-12-27
+100	GoogleTest Documentation	website	page	https://google.github.io/googletest/	2030-12-27	2025-12-27
+221	Kali Linux - An Ethical Hacker's Cookbook	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781787121829/	2030-12-27	2025-12-27
+229	Defensive Security with Kali Purple	book	chapter	https://subscription.packtpub.com/book/security/9781835088982/	2030-12-27	2025-12-27
+230	Windows and Linux Penetration Testing from Scratch	book	chapter	https://subscription.packtpub.com/book/security/9781801815123/	2030-12-27	2025-12-27
+231	Mastering Defensive Security	book	chapter	https://subscription.packtpub.com/book/security/9781800208162/	2030-12-27	2025-12-27
+232	Hacking WEP/WPA/WPA2 WiFi Networks Using Kali Linux	course	chapter	https://subscription.packtpub.com/video/security/9781803239750/	2030-12-27	2025-12-27
+233	The Complete Pentesting and Privilege Escalation Course	course	chapter	https://subscription.packtpub.com/video/security/9781801072359/	2030-12-27	2025-12-27
+234	Pentesting Industrial Control Systems	book	chapter	https://subscription.packtpub.com/book/security/9781800202382/	2030-12-27	2025-12-27
+235	Offensive Hacking Unfolded	book	chapter	https://subscription.packtpub.com/video/security/9781804615294/	2030-12-27	2025-12-27
+12	Linux Device Drivers	course	episode	https://www.linkedin.com/learning/linux-device-drivers-reading-writing-and-debugging	2030-12-27	2025-12-27
+82	A Complete Guide to Standard C++ Algorithms	book	chapter	https://github.com/HappyCerberus/book-cpp-algorithms	2029-01-01	2023-01-01
+236	Brian Salehi	user	synapse	\N	2030-12-27	2025-12-27
+52	The Shellcoder's Handbook	book	chapter	https://www.wiley.com/en-us/The+Shellcoder's+Handbook%3A+Discovering+and+Exploiting+Security+Holes+-p-9780764544682	2030-12-27	2025-12-27
+60	Learn Docker in a month of Lunches	book	chapter	https://www.manning.com/books/learn-docker-in-a-month-of-lunches	2030-12-27	2025-12-27
+75	Linux Kernel Debugging	book	chapter	https://subscription.packtpub.com/book/cloud-networking/9781801075039/	2030-12-27	2025-12-27
+77	Data Abstraction & Problem Solving with C++	book	chapter	https://www.pearson.com/en-us/subject-catalog/p/data-abstraction--problem-solving-with-c-walls-and-mirrors/P200000003514/9780137516759	2030-12-27	2025-12-27
+70	Introducing Qt6	book	chapter	https://link.springer.com/book/10.1007/978-1-4842-7490-3	2030-12-27	2025-12-27
+104	Mastering Modern C++ : C++11, 14, 17 and 20 Features	video	episode	https://www.udemy.com/course/mastering-modern-c-c11-14-17-and-20-features/?couponCode=CM251220G1	2030-12-27	2025-12-27
+3	LaTeX Tutorial	website	page	https://latex-tutorial.com/tutorials/	2030-12-27	2025-12-27
+9	C++ Reference	website	page	https://cppreference.com/	2030-12-27	2025-12-27
+99	C++17 Language New Features Ref Card	slides	page	https://www.cppstories.com/p/archive/	2030-12-27	2025-12-27
+44	Docker: Up & Running	book	chapter	https://dockerupandrunning.com/	2030-12-27	2025-12-27
+54	The C++ Standard Library	book	chapter	https://www.oreilly.com/library/view/c-standard-library/9780132978286/	2030-12-27	2025-12-27
+91	GDB Pocket Reference	book	chapter	https://www.oreilly.com/library/view/gdb-pocket-reference/9780596100278/index.html	2030-12-27	2025-12-27
+85	Thomas' Calculus	book	chapter	https://www.pearson.com/en-us/subject-catalog/p/thomas-calculus/P200000007103/9780137616077	2030-12-27	2025-12-27
+116	OliveStem	channel	playlist	https://www.youtube.com/@olivestemlearning	2030-12-27	2025-12-27
+89	Embedded Linux Training Course	slides	chapter	https://bootlin.com/training/embedded-linux/	2030-12-27	2025-12-27
+33	Linux Driver Development for Embedded Processors	book	chapter	https://vdoc.pub/download/linux-driver-development-for-embedded-processors-second-edition-learn-to-develop-linux-embedded-drivers-with-kernel-49-lts-1gf0ri0tddno	2030-12-27	2025-12-27
+21	A Common-Sense Guide to Data Structures and Algorithms	book	chapter	https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/	2029-01-01	2023-01-01
+228	Advanced ESP32	course	chapter	https://subscription.packtpub.com/video/iot-hardware/9781800202016	2029-01-01	2020-01-01
 \.
 
 
@@ -31519,5 +31504,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 5SpTMfpiFcxlfsy8ytZLRcml7AFpeBZDLOM6HaDGrN0o5B8Bft2gu9ndszvEz4L
+\unrestrict fTHVC5adJ37tGiyhVJNZse3z9grwNeCp5VjusClJAcCHsm07kdhnLThhhDEb6gi
 

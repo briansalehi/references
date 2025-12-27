@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict hsz4A4MOEV2qrK0JPEPTyciMLveDzj05QRXCGSoJ1Yx9tP6fvFpKqwkd2eXnM5E
+\restrict L4AIjPgxn7xAmHG6frf8vlZ7U0KJpbGKogUO9Jtr3Jxg9kubRDu5EDZ0T4ruNbk
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -71,21 +71,6 @@ CREATE TYPE flashback.card_state AS ENUM (
 
 
 ALTER TYPE flashback.card_state OWNER TO flashback;
-
---
--- Name: condition; Type: TYPE; Schema: flashback; Owner: flashback
---
-
-CREATE TYPE flashback.condition AS ENUM (
-    'draft',
-    'relevant',
-    'outdated',
-    'canonical',
-    'abandoned'
-);
-
-
-ALTER TYPE flashback.condition OWNER TO flashback;
 
 --
 -- Name: content_type; Type: TYPE; Schema: flashback; Owner: flashback
@@ -1125,12 +1110,12 @@ ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id inte
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, expiration date, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.pattern, r.condition, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    select r.id, r.name, r.type, r.pattern, r.expiration, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
     from resources r
     join shelves s on s.resource = r.id and s.subject = subject_id
     join sections_cards sc on sc.resource = r.id
@@ -1139,7 +1124,7 @@ begin
     left join presenters e on e.id = a.presenter
     left join producers c on c.resource = r.id
     left join providers v on v.id = c.provider
-    group by r.id, r.name, r.type, r.pattern, r.condition, e.name, v.name, r.link;
+    group by r.id, r.name, r.type, r.pattern, r.expiration, e.name, v.name, r.link;
 end;
 $$;
 
@@ -1205,12 +1190,12 @@ ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) O
 -- Name: get_subject_resources(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_subject_resources(subject character varying) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, condition flashback.condition, provider character varying, presenter character varying, link character varying)
+CREATE FUNCTION flashback.get_subject_resources(subject character varying) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, expiration date, provider character varying, presenter character varying, link character varying)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.pattern, r.condition, r.provider, r.presenter, r.link
+    select r.id, r.name, r.type, r.pattern, r.date, r.provider, r.presenter, r.link
     from resources r
     join shelves v on v.resource = r.id
     join subjects j on j.id = v.subject
@@ -2344,9 +2329,9 @@ CREATE TABLE flashback.resources (
     name character varying(200) NOT NULL,
     type flashback.resource_type NOT NULL,
     pattern flashback.section_pattern NOT NULL,
-    condition flashback.condition NOT NULL,
     link character varying(2000),
-    expiration date DEFAULT now()
+    expiration date DEFAULT (now() + '5 years'::interval) NOT NULL,
+    production date DEFAULT now() NOT NULL
 );
 
 
@@ -3398,5 +3383,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict hsz4A4MOEV2qrK0JPEPTyciMLveDzj05QRXCGSoJ1Yx9tP6fvFpKqwkd2eXnM5E
+\unrestrict L4AIjPgxn7xAmHG6frf8vlZ7U0KJpbGKogUO9Jtr3Jxg9kubRDu5EDZ0T4ruNbk
 
