@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict pjLQQLaZjHiHm8HVAyot1g6ncCpqztXkRauElUtcNK61GpcEeaYhRdr8tjvjVzM
+\restrict FDs5E246dg490DdH6lvi93IOaubj9hxgdPtSzbNfQR88i7p9skvSFdAJJsbUOBx
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -18839,13 +18839,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3901	What interface should values have in order to be usable by coroutines?	review
 3935	What algorithm can be used to find the maximum value in an array?	draft
 3936	What algorithms can be used to check if a string is palindrome or not?	draft
-3937	What are the use cases of strategy pattern?	draft
-3938	What are the advantages of static strategy pattern over dynamic strategy pattern?	draft
-3939	What are the advantages of using strategies as non-member functions?	draft
-3940	What are the use cases of template method pattern?	draft
-3941	Where are the common use cases of the command pattern?	draft
-3942	What is the structure of the command pattern?	draft
-3943	Use command pattern to decouple invoker and receiver classes?	draft
 3944	Introduce inputs to manual triggers?	draft
 3945	Give input parameters to manual workflows?	draft
 3946	Define matrix strategy for a job?	draft
@@ -18857,6 +18850,11 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 3952	Pass outputs to subsequent steps?	draft
 3953	Mask the output of a step?	draft
 3954	Use environment variables to pass values to subsequent steps?	draft
+3939	What are the advantages of using strategies as non-member functions?	review
+3941	Where are the common use cases of the command pattern?	review
+3942	What is the structure of the command pattern?	review
+3943	Use command pattern to decouple invoker and receiver classes?	review
+3940	What are the use cases of template method pattern?	review
 3955	Create job summaries?	draft
 3956	How many context levels exist?	draft
 3957	In what context level secrets and variables exist?	draft
@@ -20046,6 +20044,8 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 4189	Replace ref-qualified overloads of a method with one generic overload?	draft
 2802	How does the compiler deduce the type of function template arguments?	review
 3666	What is the difference between preemptive and non-preemptive concurrency?	review
+3937	What are the use cases of strategy pattern?	review
+3938	What are the advantages of static strategy pattern over dynamic strategy pattern?	review
 \.
 
 
@@ -20845,6 +20845,9 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3476	2025-12-17 14:21:19.845071+01	6	0
 2	3477	2025-12-17 14:21:31.009133+01	11	0
 2	3478	2025-12-17 14:21:57.869091+01	26	0
+2	3937	2025-12-26 04:08:56.210064+01	4	0
+2	3938	2025-12-26 04:09:16.290933+01	3	0
+2	3939	2025-12-26 04:09:35.143709+01	3	0
 2	3665	2025-12-24 02:12:52.122439+01	4	0
 2	3666	2025-12-24 02:12:55.807213+01	3	0
 2	3667	2025-12-24 02:13:18.54954+01	7	0
@@ -20858,10 +20861,14 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3675	2025-12-24 02:23:53.863462+01	84	0
 2	3676	2025-12-24 02:24:26.67106+01	33	0
 2	3677	2025-12-24 02:24:34.853472+01	8	0
+2	3941	2025-12-26 04:10:39.571065+01	3	0
+2	3942	2025-12-26 04:11:05.304298+01	3	0
 2	3678	2025-12-24 02:36:36.570213+01	3	0
 2	3679	2025-12-24 02:36:58.367134+01	22	0
+2	3943	2025-12-26 04:11:24.81081+01	3	0
 2	3680	2025-12-24 02:38:03.689674+01	3	0
 2	3681	2025-12-24 02:38:06.781976+01	3	0
+2	3940	2025-12-26 04:13:31.456586+01	4	0
 \.
 
 
@@ -27766,7 +27773,139 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 4	Scalar Class Template	15	surface
 13	Drawing Rectangle	15	surface
 18	Including OpenCV Headers	15	surface
+36	Class Non-static Member Declaration	6	surface
+37	No Discard Attribute	6	surface
 38	This Deduction	6	surface
+39	Templates	6	surface
+40	Typename	6	surface
+41	Template Translation Phases	6	surface
+42	Function Template Definition	6	surface
+43	Abbreviated Function Template	6	surface
+44	Function Template Usage	6	surface
+45	Function Template Argument Deduction	6	surface
+46	Multiple Function Template Parameters	6	surface
+47	NonType Template Parameter	6	surface
+48	Template Template Parameter	6	surface
+49	Variadic Template	6	surface
+50	Fold Expression	6	surface
+51	Automatic Return Type Deduction	6	surface
+52	Default Template Arguments	6	surface
+53	Overloading Function Templates	6	surface
+54	Concept	6	surface
+55	Concept Declaration	6	surface
+56	Standard Concepts	6	surface
+57	Class Template	6	surface
+58	Class Template Argument	6	surface
+59	Class Template Friend Function	6	surface
+60	Class Template Specialization	6	surface
+61	Class Template Default Parameters	6	surface
+62	Alias Templates	6	surface
+63	Class Template Argument Deduction	6	surface
+64	Class Template Argument Deduction Guides	6	surface
+65	Range-based loop	6	surface
+66	Object Alignment	6	surface
+67	Operators	6	surface
+68	Operator Overloading	6	surface
+69	Cooked User-Defined Literals	6	surface
+70	Raw User-Defined Literals	6	surface
+71	Move Semantics	6	surface
+72	Fallback Copy	6	surface
+73	Moved From State	6	surface
+74	Rvalue Reference	6	surface
+75	Generated Special Member Functions	6	surface
+76	Move Operation Pitfalls	6	surface
+77	Disabling Move Operations	6	surface
+78	Value Semantics	6	surface
+79	Virtual Functions	6	surface
+80	Inheritance	6	surface
+81	Streams	6	surface
+82	Input Streams	6	surface
+83	Output Streams	6	surface
+84	File Streams	6	surface
+85	Sync Streams	6	surface
+86	String Streams	6	surface
+87	Span Streams	6	surface
+88	Containers	6	surface
+89	Vector	6	surface
+90	String	6	surface
+91	Numeric to String Conversion	6	surface
+92	String Literals	6	surface
+93	Raw String Literals	6	surface
+94	String View	6	surface
+95	String Operations	6	surface
+96	Text Formatting	6	surface
+97	Text Printing	6	surface
+98	Regular Expressions	6	surface
+99	Numeric	6	surface
+100	Complex	6	surface
+101	Random	6	surface
+102	Chrono Duration	6	surface
+103	Chrono Time Point	6	surface
+104	Chrono Clocks	6	surface
+105	Chrono Literals	6	surface
+106	Chrono Date	6	surface
+107	Chrono Date Literals	6	surface
+108	Chrono File Clocks	6	surface
+109	Ranges	6	surface
+110	Sentinels	6	surface
+111	Iterators	6	surface
+112	Overlapping Iterators	6	surface
+113	Data Structures	6	surface
+114	Singly Linked List	6	surface
+115	Doubly Linked List	6	surface
+116	Algorithms	6	surface
+117	Parallel Algorithms	6	surface
+118	Comparing Algorithms	6	surface
+119	Ranges Algorithms	6	surface
+120	Equality Checking Algorithms	6	surface
+121	Iterating Algorithms	6	surface
+122	Swapping Algorithms	6	surface
+123	Sorting Algorithms	6	surface
+124	Partitioning Algorithms	6	surface
+125	Sorted Range Algorithms	6	surface
+126	Linear Operation Algorithms	6	surface
+127	Set Operation Algorithms	6	surface
+128	Transformation Algorithms	6	surface
+129	Permutation Transform Algorithms	6	surface
+218	Template Method Pattern	6	surface
+130	Boolean Reduction Algorithms	6	surface
+131	Strings Algorithms	6	surface
+132	Views	6	surface
+133	Contracts	6	surface
+134	Contract Types	6	surface
+135	Contract Violation	6	surface
+136	Contract Violation Handler	6	surface
+137	Contract Controlling Modes	6	surface
+138	Virtual Function Contracts	6	surface
+139	Inter Process Communication	6	surface
+140	Concurrency	6	surface
+141	Thread Construction	6	surface
+142	Thread Destructor	6	surface
+143	Joining Threads	6	surface
+144	Detaching Threads	6	surface
+145	Moving Threads	6	surface
+146	Stop Source	6	surface
+147	Stop Token	6	surface
+148	Stop Callback	6	surface
+149	Hardware Concurrency	6	surface
+150	Synchronization	6	surface
+151	Mutex	6	surface
+152	Lock Guard	6	surface
+153	Scoped Lock	6	surface
+154	Unique Lock	6	surface
+155	Shared Mutex	6	surface
+156	Shared Lock	6	surface
+157	Timed Mutex	6	surface
+158	Shared Timed Mutex	6	surface
+159	Recursive Mutex	6	surface
+160	Conditional Variable	6	surface
+161	Atomic	6	surface
+162	Thread Safe Static Initialization	6	surface
+163	Once Flag	6	surface
+164	Future	6	surface
+165	Async	6	surface
+166	Promise	6	surface
+167	Packaged Task	6	surface
 5	Point Class Template	15	surface
 14	Drawing Text	15	surface
 23	Mouse Integration	15	surface
@@ -27959,6 +28098,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 15	Output Generators	13	surface
 16	Removing Files	13	surface
 17	Creating Directories	13	surface
+1	Building Executable	6	surface
 5	Backup Strategies	18	surface
 6	Logical Backup	18	surface
 7	Physical Backup	18	surface
@@ -27971,6 +28111,7 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 14	Scheduling Backup	18	surface
 15	Copying Data	18	surface
 16	Point in Time Recovery	18	surface
+2	Fundamental Data Types	6	surface
 1	Asynchronous IO Context	3	surface
 2	Asynchronous Event Processing Loop	3	surface
 3	Queueing Asynchronous Tasks	3	surface
@@ -28086,8 +28227,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 9	Expectations	24	surface
 1	Writing Assertions	24	surface
 6	Configuring Tests	24	surface
-1	Building Executable	6	surface
-2	Fundamental Data Types	6	surface
 29	List Services	7	surface
 33	Troubleshoot Service	7	surface
 2	Matrix Class Template	15	surface
@@ -28186,12 +28325,12 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 22	Stream Manipulators	13	surface
 23	Grep	13	surface
 24	Sed	13	surface
-11	Defining Policies	58	surface
-12	Unconfined Domains	58	surface
 3	Variable Initialization	6	surface
 4	Constant Initialization	6	surface
 5	Uniform Initialization	6	surface
 6	Aggregate Initialization	6	surface
+11	Defining Policies	58	surface
+12	Unconfined Domains	58	surface
 7	Designated Initialization	6	surface
 8	Function Declaration	6	surface
 9	Constant Expression	6	surface
@@ -28221,137 +28360,6 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 33	Expected Return Type	6	surface
 34	Three-Way Comparison Operator	6	surface
 35	Class Default Constructors	6	surface
-36	Class Non-static Member Declaration	6	surface
-37	No Discard Attribute	6	surface
-39	Templates	6	surface
-40	Typename	6	surface
-41	Template Translation Phases	6	surface
-42	Function Template Definition	6	surface
-43	Abbreviated Function Template	6	surface
-44	Function Template Usage	6	surface
-45	Function Template Argument Deduction	6	surface
-46	Multiple Function Template Parameters	6	surface
-47	NonType Template Parameter	6	surface
-48	Template Template Parameter	6	surface
-49	Variadic Template	6	surface
-50	Fold Expression	6	surface
-51	Automatic Return Type Deduction	6	surface
-52	Default Template Arguments	6	surface
-53	Overloading Function Templates	6	surface
-54	Concept	6	surface
-55	Concept Declaration	6	surface
-56	Standard Concepts	6	surface
-57	Class Template	6	surface
-58	Class Template Argument	6	surface
-59	Class Template Friend Function	6	surface
-60	Class Template Specialization	6	surface
-61	Class Template Default Parameters	6	surface
-62	Alias Templates	6	surface
-63	Class Template Argument Deduction	6	surface
-64	Class Template Argument Deduction Guides	6	surface
-65	Range-based loop	6	surface
-66	Object Alignment	6	surface
-67	Operators	6	surface
-68	Operator Overloading	6	surface
-69	Cooked User-Defined Literals	6	surface
-70	Raw User-Defined Literals	6	surface
-71	Move Semantics	6	surface
-72	Fallback Copy	6	surface
-73	Moved From State	6	surface
-74	Rvalue Reference	6	surface
-75	Generated Special Member Functions	6	surface
-76	Move Operation Pitfalls	6	surface
-77	Disabling Move Operations	6	surface
-78	Value Semantics	6	surface
-79	Virtual Functions	6	surface
-80	Inheritance	6	surface
-81	Streams	6	surface
-82	Input Streams	6	surface
-83	Output Streams	6	surface
-84	File Streams	6	surface
-85	Sync Streams	6	surface
-86	String Streams	6	surface
-87	Span Streams	6	surface
-88	Containers	6	surface
-89	Vector	6	surface
-90	String	6	surface
-91	Numeric to String Conversion	6	surface
-92	String Literals	6	surface
-93	Raw String Literals	6	surface
-94	String View	6	surface
-95	String Operations	6	surface
-96	Text Formatting	6	surface
-97	Text Printing	6	surface
-98	Regular Expressions	6	surface
-99	Numeric	6	surface
-100	Complex	6	surface
-101	Random	6	surface
-102	Chrono Duration	6	surface
-103	Chrono Time Point	6	surface
-104	Chrono Clocks	6	surface
-105	Chrono Literals	6	surface
-106	Chrono Date	6	surface
-107	Chrono Date Literals	6	surface
-108	Chrono File Clocks	6	surface
-109	Ranges	6	surface
-110	Sentinels	6	surface
-111	Iterators	6	surface
-112	Overlapping Iterators	6	surface
-113	Data Structures	6	surface
-114	Singly Linked List	6	surface
-115	Doubly Linked List	6	surface
-116	Algorithms	6	surface
-117	Parallel Algorithms	6	surface
-118	Comparing Algorithms	6	surface
-119	Ranges Algorithms	6	surface
-120	Equality Checking Algorithms	6	surface
-121	Iterating Algorithms	6	surface
-122	Swapping Algorithms	6	surface
-123	Sorting Algorithms	6	surface
-124	Partitioning Algorithms	6	surface
-125	Sorted Range Algorithms	6	surface
-126	Linear Operation Algorithms	6	surface
-127	Set Operation Algorithms	6	surface
-128	Transformation Algorithms	6	surface
-129	Permutation Transform Algorithms	6	surface
-130	Boolean Reduction Algorithms	6	surface
-131	Strings Algorithms	6	surface
-132	Views	6	surface
-133	Contracts	6	surface
-134	Contract Types	6	surface
-135	Contract Violation	6	surface
-136	Contract Violation Handler	6	surface
-137	Contract Controlling Modes	6	surface
-138	Virtual Function Contracts	6	surface
-139	Inter Process Communication	6	surface
-140	Concurrency	6	surface
-141	Thread Construction	6	surface
-142	Thread Destructor	6	surface
-143	Joining Threads	6	surface
-144	Detaching Threads	6	surface
-145	Moving Threads	6	surface
-146	Stop Source	6	surface
-147	Stop Token	6	surface
-148	Stop Callback	6	surface
-149	Hardware Concurrency	6	surface
-150	Synchronization	6	surface
-151	Mutex	6	surface
-152	Lock Guard	6	surface
-153	Scoped Lock	6	surface
-154	Unique Lock	6	surface
-155	Shared Mutex	6	surface
-156	Shared Lock	6	surface
-157	Timed Mutex	6	surface
-158	Shared Timed Mutex	6	surface
-159	Recursive Mutex	6	surface
-160	Conditional Variable	6	surface
-161	Atomic	6	surface
-162	Thread Safe Static Initialization	6	surface
-163	Once Flag	6	surface
-164	Future	6	surface
-165	Async	6	surface
-166	Promise	6	surface
-167	Packaged Task	6	surface
 168	Semaphore	6	surface
 169	Semaphore Properties	6	surface
 170	Counting Semaphore	6	surface
@@ -28402,10 +28410,10 @@ COPY flashback.topics ("position", name, subject, level) FROM stdin;
 215	Null Object	6	surface
 216	Static Strategy	6	surface
 217	Returning Value from Threads	6	surface
-218	Command Pattern	6	surface
-219	Memento Pattern	6	surface
-220	Chain of Responsibility Pattern	6	surface
-221	Observer Pattern	6	surface
+219	Command Pattern	6	surface
+220	Memento Pattern	6	surface
+221	Chain of Responsibility Pattern	6	surface
+222	Observer Pattern	6	surface
 \.
 
 
@@ -29105,6 +29113,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 7	5097	1	13	surface
 8	5098	1	13	surface
 141	3681	14	6	surface
+214	3937	6	6	surface
 1	25	3	11	surface
 8	3461	3	24	surface
 9	3465	2	24	surface
@@ -29266,6 +29275,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 17	5192	1	27	surface
 17	5193	2	27	surface
 140	3680	5	6	surface
+214	3938	7	6	surface
 13	2716	2	8	surface
 14	2017	3	8	surface
 14	1491	5	8	surface
@@ -29309,6 +29319,12 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 1	1730	14	20	surface
 1	1731	15	20	surface
 1	1732	16	20	surface
+219	3964	4	6	surface
+219	5361	1	6	surface
+219	5362	2	6	surface
+219	5363	3	6	surface
+220	5364	1	6	surface
+220	5365	2	6	surface
 18	5221	1	27	surface
 19	5223	2	27	surface
 19	5225	4	27	surface
@@ -29324,15 +29340,18 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 215	5200	2	6	surface
 216	5201	1	6	surface
 217	5356	1	6	surface
-218	3964	4	6	surface
-218	5361	1	6	surface
-218	5362	2	6	surface
-218	5363	3	6	surface
-219	5364	1	6	surface
-219	5365	2	6	surface
 19	5232	11	27	surface
 20	5234	1	27	surface
 149	3682	3	6	surface
+214	3939	8	6	surface
+220	5366	3	6	surface
+220	5367	4	6	surface
+221	5368	1	6	surface
+221	5369	2	6	surface
+222	5445	1	6	surface
+222	5446	2	6	surface
+222	5447	3	6	surface
+222	5448	4	6	surface
 2	5333	1	45	surface
 2	5334	2	45	surface
 2	5335	3	45	surface
@@ -29380,14 +29399,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 9	5251	5	13	surface
 150	3675	3	6	surface
 150	3679	5	6	surface
-219	5366	3	6	surface
-219	5367	4	6	surface
-220	5368	1	6	surface
-220	5369	2	6	surface
-221	5445	1	6	surface
-221	5446	2	6	surface
-221	5447	3	6	surface
-221	5448	4	6	surface
 8	5403	11	18	surface
 8	5404	12	18	surface
 9	5405	1	18	surface
@@ -29448,6 +29459,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 12	1354	4	7	surface
 2	30	1	8	surface
 3	2677	1	8	surface
+219	3941	5	6	surface
 7	42	1	8	surface
 8	2687	1	8	surface
 11	2700	12	8	surface
@@ -29934,6 +29946,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 25	1351	2	7	surface
 26	1355	1	7	surface
 11	21	3	15	surface
+219	3943	7	6	surface
 9	1291	8	7	surface
 17	1295	12	7	surface
 20	1299	7	7	surface
@@ -30147,6 +30160,8 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 38	5557	1	51	surface
 39	5558	1	51	surface
 1	5559	1	51	depth
+219	3942	6	6	surface
+218	3940	1	6	surface
 9	3469	6	24	surface
 9	3470	7	24	surface
 9	3471	8	24	surface
@@ -31503,5 +31518,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pjLQQLaZjHiHm8HVAyot1g6ncCpqztXkRauElUtcNK61GpcEeaYhRdr8tjvjVzM
+\unrestrict FDs5E246dg490DdH6lvi93IOaubj9hxgdPtSzbNfQR88i7p9skvSFdAJJsbUOBx
 
