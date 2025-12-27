@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict nlr9lOTNVtnZOwwL4MKwpMc5mKxjEAgfo7ooI7yiwG3zOOBgFyuGV50HrOi08VS
+\restrict hsz4A4MOEV2qrK0JPEPTyciMLveDzj05QRXCGSoJ1Yx9tP6fvFpKqwkd2eXnM5E
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -2345,7 +2345,8 @@ CREATE TABLE flashback.resources (
     type flashback.resource_type NOT NULL,
     pattern flashback.section_pattern NOT NULL,
     condition flashback.condition NOT NULL,
-    link character varying(2000)
+    link character varying(2000),
+    expiration date DEFAULT now()
 );
 
 
@@ -3397,5 +3398,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict nlr9lOTNVtnZOwwL4MKwpMc5mKxjEAgfo7ooI7yiwG3zOOBgFyuGV50HrOi08VS
+\unrestrict hsz4A4MOEV2qrK0JPEPTyciMLveDzj05QRXCGSoJ1Yx9tP6fvFpKqwkd2eXnM5E
 

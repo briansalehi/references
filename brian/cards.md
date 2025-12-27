@@ -1,14 +1,6 @@
 # gRPC
-# Brian Salehi
-## user
-## Brian Salehi
-### synapse
-### Brian Salehi
-#### surface
-
-#### CMake Integration
-##### gRPC
-###### Make a dependency between protobuf files CMake targets?
+## CMake Integration
+### Make a dependency between protobuf files and CMake targets?
 
 ```cmake
 cmake_minimum_required(VERSION 4.0.0)
@@ -43,23 +35,3 @@ add_executable(program main.cpp ${service_sources})
 target_link_libraries(program PRIVATE protobuf::libprotobuf gRPC::grpc++)
 ```
 
----
-
-# Subject
-# Resource
-## Resource Type (book, website, course, video, channel, mailing list, manual, slides)
-## Provider
-### Section Pattern (chapter, page, course, video, post)
-### Presenter
-#### Topic Level (surface, depth, origin)
-
-#### <Topic>
-##### <Section>
-###### <Card>
-
----
-# Subject
-#### Topic Level (surface, depth, origin)
-
-#### <Topic>
-###### <Card>
