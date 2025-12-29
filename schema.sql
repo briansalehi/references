@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict L4AIjPgxn7xAmHG6frf8vlZ7U0KJpbGKogUO9Jtr3Jxg9kubRDu5EDZ0T4ruNbk
+\restrict zams5TjM2dgofNL4Fmzke0ZeDdbdpSbL9TKen20XTUxC0PXpr7T0WCCiTshghbG
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -62,8 +62,8 @@ COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching
 
 CREATE TYPE flashback.card_state AS ENUM (
     'draft',
+    'reviewed',
     'completed',
-    'review',
     'approved',
     'released',
     'rejected'
@@ -795,17 +795,6 @@ $$;
 ALTER PROCEDURE flashback.edit_section_pattern(IN resource integer, IN pattern flashback.section_pattern) OWNER TO flashback;
 
 --
--- Name: edit_users_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.edit_users_name(IN id integer, IN name character varying)
-    LANGUAGE plpgsql
-    AS $$ begin update users set name = edit_users_name.name where users.id = edit_users_name.id; end; $$;
-
-
-ALTER PROCEDURE flashback.edit_users_name(IN id integer, IN name character varying) OWNER TO flashback;
-
---
 -- Name: estimate_read_time(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1110,12 +1099,12 @@ ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id inte
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, expiration date, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, production date, expiration date, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.id, r.name, r.type, r.pattern, r.expiration, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
+    select r.id, r.name, r.type, r.pattern, r.production, r.expiration, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
     from resources r
     join shelves s on s.resource = r.id and s.subject = subject_id
     join sections_cards sc on sc.resource = r.id
@@ -1124,7 +1113,7 @@ begin
     left join presenters e on e.id = a.presenter
     left join producers c on c.resource = r.id
     left join providers v on v.id = c.provider
-    group by r.id, r.name, r.type, r.pattern, r.expiration, e.name, v.name, r.link;
+    group by r.id, r.name, r.type, r.pattern, r.production, r.expiration, e.name, v.name, r.link;
 end;
 $$;
 
@@ -1151,6 +1140,24 @@ end; $$;
 ALTER FUNCTION flashback.get_roadmaps("user" integer) OWNER TO flashback;
 
 --
+-- Name: get_section_cards(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_section_cards(resource_id integer, section_id integer) RETURNS TABLE(id integer, "position" integer, state flashback.card_state, headline text)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select cards.id, sc."position", cards.state, cards.headline
+    from sections_cards sc
+    join cards on cards.id = sc.card
+    where sc.resource = resource_id and sc.section = section_id;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_section_cards(resource_id integer, section_id integer) OWNER TO flashback;
+
+--
 -- Name: get_sections(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1167,24 +1174,6 @@ $$;
 
 
 ALTER FUNCTION flashback.get_sections(resource integer) OWNER TO flashback;
-
---
--- Name: get_sections_cards(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_sections_cards(resource integer, section integer) RETURNS TABLE(id integer, "position" integer, state flashback.card_state, headline text)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select cards.id, sc."position", cards.state, cards.headline
-    from sections_cards sc
-    join cards on cards.id = sc.card
-    where sc.resource = get_sections_cards.resource and sc.section = get_sections_cards.section;
-end; $$;
-
-
-ALTER FUNCTION flashback.get_sections_cards(resource integer, section integer) OWNER TO flashback;
 
 --
 -- Name: get_subject_resources(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1234,6 +1223,28 @@ end; $$;
 ALTER FUNCTION flashback.get_topic_assessments(user_id integer, subject_id integer, topic_position integer, max_level flashback.expertise_level) OWNER TO flashback;
 
 --
+-- Name: get_topic_cards(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_topic_cards(roadmap_id integer, subject_id integer, topic_position integer) RETURNS TABLE(card integer, "position" integer, state flashback.card_state, headline text)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select cards.id, tc."position", cards.state, cards.headline
+    from milestones m
+    join topics_cards tc on tc.subject = m.subject
+    join cards on cards.id = tc.card
+    where m.roadmap = roadmap_id
+    and m.subject = subject_id
+    and tc.topic = topic_position;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.get_topic_cards(roadmap_id integer, subject_id integer, topic_position integer) OWNER TO flashback;
+
+--
 -- Name: get_topics(integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1268,28 +1279,6 @@ $$;
 
 
 ALTER FUNCTION flashback.get_topics(roadmap integer, milestone integer) OWNER TO flashback;
-
---
--- Name: get_topics_cards(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) RETURNS TABLE(card integer, "position" integer, state flashback.card_state, headline text)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    return query
-    select cards.id, tc."position", cards.state, cards.headline
-    from milestones m
-    join topics_cards tc on tc.subject = m.subject
-    join cards on cards.id = tc.card
-    where m.roadmap = roadmap_id
-    and m.subject = subject_id
-    and tc.topic = topic_position;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.get_topics_cards(roadmap_id integer, subject_id integer, topic_position integer) OWNER TO flashback;
 
 --
 -- Name: get_unreviewed_sections_cards(); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1698,6 +1687,17 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.rename_roadmap(IN roadmap_id integer, IN roadmap_name character varying) OWNER TO flashback;
+
+--
+-- Name: rename_user(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.rename_user(IN id integer, IN name character varying)
+    LANGUAGE plpgsql
+    AS $$ begin update users set name = edit_users_name.name where users.id = edit_users_name.id; end; $$;
+
+
+ALTER PROCEDURE flashback.rename_user(IN id integer, IN name character varying) OWNER TO flashback;
 
 --
 -- Name: reorder_blocks(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3383,5 +3383,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict L4AIjPgxn7xAmHG6frf8vlZ7U0KJpbGKogUO9Jtr3Jxg9kubRDu5EDZ0T4ruNbk
+\unrestrict zams5TjM2dgofNL4Fmzke0ZeDdbdpSbL9TKen20XTUxC0PXpr7T0WCCiTshghbG
 
