@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict pgzpNfjtxKdNo17QgAtx28fa3UHYZn7eT5GbimSbS4czueBwDQkL3fbZMUlPQMq
+\restrict 4hUaKYXL3ZExe832w0QmVLY0DvEYoAurgEMYfNMuisVIlnF8n122UNH77mz9MKt
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1729,31 +1729,37 @@ ALTER PROCEDURE flashback.reorder_blocks(IN target_card integer, IN old_position
 -- Name: reorder_milestone(integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.reorder_milestone(IN roadmap integer, IN old_position integer, IN new_position integer)
+CREATE PROCEDURE flashback.reorder_milestone(IN roadmap_id integer, IN old_position integer, IN new_position integer)
     LANGUAGE plpgsql
     AS $$
 declare top_position integer;
 begin
     -- locate the free position on top
-    select coalesce(max(m.position), 0) + 1 into top_position from milestones m where m.roadmap = reorder_milestone.roadmap;
+    select coalesce(max(m.position), 0) + 1 into top_position from milestones m where m.roadmap = roadmap_id;
 
     -- relocate targeted milestone to the top
-    update milestones set position = top_position where milestones.roadmap = reorder_milestone.roadmap and milestones.position = old_position;
+    update milestones m set position = top_position where m.roadmap = roadmap_id and m.position = old_position;
 
     -- relocate milestones between the old and new positions upwards or downwards to open up a space for targeted milestone on the new location
     if new_position < old_position then
-        update milestones set position = milestones.position + 1 where milestones.roadmap = reorder_milestone.roadmap and milestones.position >= new_position and milestones.position < old_position;
+        update milestones m set position = m.position + 1 where m.roadmap = roadmap_id and m.position >= new_position and m.position < old_position;
     else
-        update milestones set position = milestones.position - 1 where milestones.roadmap = reorder_milestone.roadmap and milestones.position > old_position and milestones.position <= new_position;
+        update milestones m set position = m.position - 1 where m.roadmap = roadmap_id and m.position > old_position and m.position <= new_position;
     end if;
 
     -- relocate targeted milestone from top to the new free location
-    update milestones set position = new_position where milestones.roadmap = reorder_milestone.roadmap and milestones.position = top_position;
+    update milestones m set position = new_position where m.roadmap = roadmap_id and m.position = top_position;
+
+    -- normalize milestone positions to avoid gaps
+    update milestones m set position = sub.correction from (
+        select row_number() over (order by im.position) as correction, im.position from milestones im where im.roadmap = roadmap_id
+    ) sub
+    where m.roadmap = roadmap_id and m.position = sub.position;
 end;
 $$;
 
 
-ALTER PROCEDURE flashback.reorder_milestone(IN roadmap integer, IN old_position integer, IN new_position integer) OWNER TO flashback;
+ALTER PROCEDURE flashback.reorder_milestone(IN roadmap_id integer, IN old_position integer, IN new_position integer) OWNER TO flashback;
 
 --
 -- Name: reorder_sections_cards(integer, integer, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3382,5 +3388,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pgzpNfjtxKdNo17QgAtx28fa3UHYZn7eT5GbimSbS4czueBwDQkL3fbZMUlPQMq
+\unrestrict 4hUaKYXL3ZExe832w0QmVLY0DvEYoAurgEMYfNMuisVIlnF8n122UNH77mz9MKt
 
