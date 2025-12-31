@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict zams5TjM2dgofNL4Fmzke0ZeDdbdpSbL9TKen20XTUxC0PXpr7T0WCCiTshghbG
+\restrict KpwRxQpP1CNBLMSNPG2SChZTjJhqsdWZ4s2VFIzLbVYkN0qHdESr8IIqdzYV8Re
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -78,7 +78,8 @@ ALTER TYPE flashback.card_state OWNER TO flashback;
 
 CREATE TYPE flashback.content_type AS ENUM (
     'text',
-    'code'
+    'code',
+    'image'
 );
 
 
@@ -348,10 +349,10 @@ $$;
 ALTER PROCEDURE flashback.add_subject_to_roadmap(IN subject integer, IN level flashback.expertise_level, IN roadmap integer, IN "position" integer) OWNER TO flashback;
 
 --
--- Name: assign_roadmap_to_user(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+-- Name: assign_roadmap(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
-CREATE PROCEDURE flashback.assign_roadmap_to_user(IN user_id integer, IN roadmap_id integer)
+CREATE PROCEDURE flashback.assign_roadmap(IN user_id integer, IN roadmap_id integer)
     LANGUAGE plpgsql
     AS $$
 begin
@@ -360,7 +361,7 @@ end;
 $$;
 
 
-ALTER PROCEDURE flashback.assign_roadmap_to_user(IN user_id integer, IN roadmap_id integer) OWNER TO flashback;
+ALTER PROCEDURE flashback.assign_roadmap(IN user_id integer, IN roadmap_id integer) OWNER TO flashback;
 
 --
 -- Name: change_block_extension(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2061,9 +2062,10 @@ ALTER TABLE flashback.authors OWNER TO flashback;
 CREATE TABLE flashback.blocks (
     card integer NOT NULL,
     "position" integer NOT NULL,
-    content text,
+    content text NOT NULL,
     type flashback.content_type NOT NULL,
-    extension character varying(20) NOT NULL
+    extension character varying(20) NOT NULL,
+    metadata character varying(100) DEFAULT NULL::character varying
 );
 
 
@@ -3383,5 +3385,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict zams5TjM2dgofNL4Fmzke0ZeDdbdpSbL9TKen20XTUxC0PXpr7T0WCCiTshghbG
+\unrestrict KpwRxQpP1CNBLMSNPG2SChZTjJhqsdWZ4s2VFIzLbVYkN0qHdESr8IIqdzYV8Re
 
