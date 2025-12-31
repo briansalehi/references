@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict KpwRxQpP1CNBLMSNPG2SChZTjJhqsdWZ4s2VFIzLbVYkN0qHdESr8IIqdzYV8Re
+\restrict pgzpNfjtxKdNo17QgAtx28fa3UHYZn7eT5GbimSbS4czueBwDQkL3fbZMUlPQMq
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -192,24 +192,6 @@ CREATE TYPE flashback.user_state AS ENUM (
 
 
 ALTER TYPE flashback.user_state OWNER TO flashback;
-
---
--- Name: add_card_to_assessments(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.add_card_to_assessments(IN subject integer, IN level flashback.expertise_level, IN topic integer, IN card integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    insert into assessments (subject, level, topic, card)
-    values (add_card_to_assessments.subject, add_card_to_assessments.level, add_card_to_assessments.topic, add_card_to_assessments.card);
-
-    update cards set state = 'review'::card_state where cards.id = add_card_to_assessments.card;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.add_card_to_assessments(IN subject integer, IN level flashback.expertise_level, IN topic integer, IN card integer) OWNER TO flashback;
 
 --
 -- Name: add_card_to_section(integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -403,6 +385,21 @@ CREATE PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash charact
 
 
 ALTER PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash character varying) OWNER TO flashback;
+
+--
+-- Name: create_assessment(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.create_assessment(IN subject_id integer, IN subject_level flashback.expertise_level, IN topic_position integer, IN card_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    insert into assessments (subject, level, topic, card) values (subject_id, subject_level, topic_position, card_id);
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.create_assessment(IN subject_id integer, IN subject_level flashback.expertise_level, IN topic_position integer, IN card_id integer) OWNER TO flashback;
 
 --
 -- Name: create_block(integer, flashback.content_type, character varying, text); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -3385,5 +3382,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict KpwRxQpP1CNBLMSNPG2SChZTjJhqsdWZ4s2VFIzLbVYkN0qHdESr8IIqdzYV8Re
+\unrestrict pgzpNfjtxKdNo17QgAtx28fa3UHYZn7eT5GbimSbS4czueBwDQkL3fbZMUlPQMq
 
