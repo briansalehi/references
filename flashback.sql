@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 4zeR4go5Y3fBY5KTA0GhmIvw34nYIofLRHuFZZE3uPNJQzeGshshA9rBSYrJbsW
+\restrict m8CKWTaQbRsXjWKojYSRB8ysosYfYgmMmj8ZDXQ5JDkSHxMERe3Kzm2vhHaze6U
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1196,7 +1196,7 @@ ALTER FUNCTION flashback.get_subject_resources(subject character varying) OWNER 
 -- Name: get_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name character varying)
+CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$ begin return query select milestones.level, milestones.position, subjects.id, subjects.name from milestones join subjects on milestones.subject = subjects.id where milestones.roadmap = get_subjects.roadmap; end; $$;
 
@@ -20888,9 +20888,9 @@ COPY flashback.progress ("user", card, last_practice, duration, progression) FRO
 2	3678	2025-12-24 02:36:36.570213+01	3	0
 2	3679	2025-12-24 02:36:58.367134+01	22	0
 2	3943	2025-12-26 04:11:24.81081+01	3	0
-2	3680	2025-12-24 02:38:03.689674+01	3	0
-2	3681	2025-12-24 02:38:06.781976+01	3	0
 2	3940	2025-12-26 04:13:31.456586+01	4	0
+2	3680	2026-01-06 21:36:37.401266+01	13	0
+2	3681	2026-01-06 21:38:14.903304+01	97	0
 \.
 
 
@@ -31547,5 +31547,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 4zeR4go5Y3fBY5KTA0GhmIvw34nYIofLRHuFZZE3uPNJQzeGshshA9rBSYrJbsW
+\unrestrict m8CKWTaQbRsXjWKojYSRB8ysosYfYgmMmj8ZDXQ5JDkSHxMERe3Kzm2vhHaze6U
 

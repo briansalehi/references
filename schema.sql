@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict DOpV4pBcA2SgTGzpGvMykgy88MuT98sdBbX115boptPkhCqFSTuaQ6Uc3HnTllB
+\restrict 9raHaggGeJTqF6l17s1rzPDlWmO65mgjYQcA5UpesAUSLp8OtxIMK9aQy0RM2b8
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1196,7 +1196,7 @@ ALTER FUNCTION flashback.get_subject_resources(subject character varying) OWNER 
 -- Name: get_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name character varying)
+CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$ begin return query select milestones.level, milestones.position, subjects.id, subjects.name from milestones join subjects on milestones.subject = subjects.id where milestones.roadmap = get_subjects.roadmap; end; $$;
 
@@ -3426,5 +3426,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict DOpV4pBcA2SgTGzpGvMykgy88MuT98sdBbX115boptPkhCqFSTuaQ6Uc3HnTllB
+\unrestrict 9raHaggGeJTqF6l17s1rzPDlWmO65mgjYQcA5UpesAUSLp8OtxIMK9aQy0RM2b8
 
