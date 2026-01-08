@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict m8CKWTaQbRsXjWKojYSRB8ysosYfYgmMmj8ZDXQ5JDkSHxMERe3Kzm2vhHaze6U
+\restrict g6l9cb1XVkIH7OKrevUMaPZGM0IetYKe0WRun9L09NwC5msLPCgaKEj2qRmpZOi
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -891,7 +891,7 @@ begin
     select ac.subject, ac.topic, ac.level, bool_and(coalesce(p.progression, 0) >= 3) as assimilated
     from get_assessment_coverage(assessment_id) ac
     join topics_cards tc on tc.subject = ac.subject and tc.topic = ac.topic and tc.level = ac.level
-    left join progress p on p.user = user_id and p.card = tc.card
+    left join progress p on p.user = user_id and p.card = tc.card and p.last_practice > now() - '10 days'::interval
     group by ac.subject, ac.topic, ac.level;
 end; $$;
 
@@ -921,7 +921,7 @@ begin
     select tc.topic, tc.level, tc.card, tc.position, p.last_practice, p.duration
     from topics_cards tc
     left join progress p on p.user = user_id  and p.card = tc.card
-    where tc.subject = subject_id and tc.level <= max_level::expertise_level;
+    where tc.subject = subject_id and tc.level <= max_level;
 end;
 $$;
 
@@ -1370,6 +1370,27 @@ end; $$;
 
 
 ALTER FUNCTION flashback.get_user(user_token character varying, user_device character varying) OWNER TO flashback;
+
+--
+-- Name: get_user_cognitive_level(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user_cognitive_level(user_id integer, subject_id integer) RETURNS flashback.expertise_level
+    LANGUAGE plpgsql
+    AS $$
+declare cognitive_level expertise_level;
+begin
+    select t.level into cognitive_level
+    from topics t
+    where t.subject = subject_id
+    group by t.subject, t.level
+    order by get_practice_mode(user_id, t.subject, t.level) = 'progressive'::practice_mode desc, t.level limit 1;
+
+    return cognitive_level;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_user_cognitive_level(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -6304,6 +6325,7 @@ COPY flashback.blocks (card, "position", content, type, extension, metadata) FRO
 1256	1	This is the command used to start new containers.\nIn its simplest form, it accepts an image and a command as arguments.\nThe image is used to create the container and the command is the application\nthe container will run when it starts.\nThis example will start an Ubuntu container in the foreground,\nand tell it to run the Bash shell:	text	txt	\N
 1256	2	docker container run --interactive --tty ubuntu /bin/bash	code	txt	\N
 1256	3	The `-it` flags tell Docker to make the container interactive and to attach\nthe current shell to the container’s terminal.	text	txt	\N
+4371	2	| `std::lexicographical_compare` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	\N
 1257	1	If you’re logged on to the container and type exit, you’ll terminate the\nBash process and the container will exit (terminate). This is because a\ncontainer cannot exist without its designated main process.	text	txt	\N
 1257	2	Press Ctrl-P then Ctrl-Q to exit the container without terminating its main process.\nDoing this will place you back in the shell of your Docker host and leave the\ncontainer running in the background.	text	txt	\N
 1258	1	This command runs a new process inside of a running container.\nIt’s useful for attaching the shell of your Docker host to a terminal\ninside of a running container.\nFor this to work, the image used to create the container must include the Bash shell.	text	txt	\N
@@ -10931,6 +10953,7 @@ COPY flashback.blocks (card, "position", content, type, extension, metadata) FRO
 3109	1	Uniforms are the last stage of the rendering pipeline and they can define constant global values like rotation matrices to shaders.	text	txt	\N
 3109	2	GLuint uniform_matrix;\nuniform_matrix = glGetUniformLocation(shaderProgram, "matrix");\nglUniformMatrix4fv(uniform_matrix, 1, GL_FALSE, &matrix);	code	cpp	\N
 4351	3	#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main()\n{\n    std::vector<int> numbers{1,2,3,4,5};\n    std::for_each(std::begin(numbers), std::end(numbers), [](auto e) { std::cout << e << " "; });\n}	code	cpp	\N
+3717	1	name: Initial Workflow\non:\n  workflow_dispatch:\njobs:\n  first-job:\n    runs-on: ubuntu-latest\n    steps:\n      - id: random_generator\n        name: Generating random number\n        run: echo "number=${RANDOM}" >> "${GITHUB_OUTPUT}"\n    outputs:\n      random: ${{ steps.random_generator.outputs.number }}\n  second-job:\n    runs-on: ubuntu-latest\n    needs: first-job\n    steps:\n      - name: Reading random number\n        run: echo "${{ needs.first-job.outputs.random }}	code	yml	\N
 3110	1	void Window::show()\n{\n    // vertex shader\n    /* ... */\n\n    // fragment shader\n    /* ... */\n\n    // shader program\n    /* ... */\n\n    // vertex buffer object\n    const GLfloat vertices[]{\n        -1.0f, -1.0f, 0.0f,\n         1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f, -1.0f, 0.0f,\n         1.0f,  1.0f, 0.0f,\n        -1.0f,  1.0f, 0.0f\n    };\n\n    const GLfloat colors[]{\n        0.0f, 0.0f, 1.0f,\n        0.0f, 1.0f, 0.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 0.0f, 1.0f,\n        1.0f, 0.0f, 0.0f,\n        0.0f, 1.0f, 0.0f,\n    };\n\n    GLuint vertexBuffer;\n    glGenBuffers(1, &vertexBuffer);\n    GLuint colorsBuffer;\n    glGenBuffers(1, &colorsBuffer);\n\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);\n\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glBufferData(GL_ARRAY_BUFFER, sizeof(colorsBuffer), colorsBuffer, GL_STATIC_DRAW);\n\n    GLint attribute_position = glGetAttribLocation(shaderProgram, "input_position");\n    glEnableVertexAttribArray(attribute_position);\n    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);\n    glVertexAttribPointer(attribute_position, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    GLint attribute_color = glGetAttribLocation(shaderProgram, "input_color");\n    glEnablelVertexAttribArray(attribute_color);\n    glBindBuffer(GL_ARRAY_BUFFER, colorsBuffer);\n    glVertexAttribPointer(attribute_color, 3, GL_FLOAT, GL_FALSE, 0, 0);\n\n    while (!glfwWindowShouldClose(window.get()))\n    {\n        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);\n        glClear(GL_COLOR_BUFFER_BIT);\n\n        float sa = 0.5 * sin(angle);\n        float ca = 0.5 * cos(angle);\n        alpha += 0.1;\n\n        const GLfloat matrix[]{\n            sa, -ca, 0, 0,\n            ca, sa,  0, 0,\n            0,   0,  1, 0,\n            0,   0,  0, 1\n        };\n\n        glUniformMatrix4fv(uniform_matrix, 1, FL_FALSE, matrix);\n\n        glDrawArrays(GL_TRANGLES, 0, 6);\n\n        glfwSwapBuffers(window.get());\n        glfwPollEvents();\n    }\n}	code	cpp	\N
 3111	1	*fragment shader*	text	txt	\N
 3111	2	#version 120\n\nvoid main()\n{\n    float vec4 coordinates = gl_FragCoord;\n    gl_FragColor = vec4(coordinates.x, coordinates.y, coordinates.z, coordinates.w);\n}	code	gl	\N
@@ -13329,8 +13352,6 @@ COPY flashback.blocks (card, "position", content, type, extension, metadata) FRO
 4370	5	The type returned for the spaceship operator is the common comparison\ncategory type for the bases and members, one of:	text	txt	\N
 4370	6	* `std::strong_ordering`\n* `std::weak_ordering`\n* `std::partial_ordering`	text	txt	\N
 4371	1	Lexicographical `strict_weak_ordering` for ranges is exposed through the\n`std::lexicographical_compare` algorithm.	text	txt	\N
-4371	2	| `std::lexicographical_compare` | standard |\n| --- | --- |\n| introduced | C++98 |\n| paralllel | C++17 |\n| constexpr | C++20 |\n| rangified | C++20 |	text	txt	\N
-3717	1	name: Initial Workflow\non:\n  workflow_dispatch:\njobs:\n  first-job:\n    runs-on: ubuntu-latest\n    steps:\n      - id: random_generator\n        name: Generating random number\n        run: echo "number=${RANDOM}" >> "${GITHUB_OUTPUT}"\n    outputs:\n      random: ${{ steps.random_generator.outputs.number }}\n  second-job:\n    runs-on: ubuntu-latest\n    needs: first-job\n    steps:\n      - name: Reading random number\n        run: echo "${{ needs.first-job.outputs.random }}	code	yml	\N
 4371	3	#include <algorithm>\n#include <ranges>\n#include <vector>\n#include <string>\n\nint main()\n{\n    std::vector<long> range1{1, 2, 3};\n    std::vector<long> range2{1, 3};\n    std::vector<long> range3{1, 3, 1};\n\n    bool cmp1 = std::lexicographical_compare(range1.cbegin(), range1.cend(), range2.cbegin(), range2.cend());\n    // same as\n    bool cmp2 = range1 < range2;\n    // cmp1 = cmp2 = true\n\n    bool cmp3 = std::lexicographical_compare(range2.cbegin(), range2.cend(), range3.cbegin(), range3.cend());\n    // same as\n    bool cmp4 = range2 < range3;\n    // cmp3 = cmp4 = true\n\n    std::vector<std::string> range4{"Zoe", "Alice"};\n    std::vector<std::string> range5{"Adam", "Maria"};\n    auto compare_length = [](auto const& l, auto const& r) { return l.length() < r.length(); };\n\n    bool cmp5 = std::ranges::lexicographical_compare(range4, range5, compare_length);\n    // different than\n    bool cmp6 = range1 < range2;\n    // cmp5 = true, cmp6 = false\n}	code	cpp	\N
 4372	1	| `std::lexicographical_compare_three_way` | standard |\n| --- | --- |\n| introduced | C++20 |\n| constexpr | C++20 |\n| paralllel | N/A |\n| rangified | N/A |	text	txt	\N
 4372	2	The `std::lexicographical_compare_three_way` is the spaceship operator\nequivalent to `std::lexicographical_compare`. It returns one of:	text	txt	\N
@@ -15539,6 +15560,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 656	What types are supported by spaceship operator?	draft
 657	What comparison category type does comparing supported types generate?	draft
 658	What comparison category type is safe to be used when comparing fundamental or standard library types?	draft
+1357	Create type aliases?	draft
 659	Which comparison category type should be used when returning a comparison result with multiple ordering criteria?	draft
 660	What is the best practice when partial or weak ordering must be mapped to strong ordering?	draft
 661	What are the requirements of defaulting spaceship and equality operators?	draft
@@ -15789,6 +15811,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 969	Fill a buffer with a value using a simple loop in x64 assembly?	draft
 970	Fill a buffer with a value using a simple loop and `stosb` instruction?	draft
 971	Fill a buffer with a value without using a loop?	draft
+1358	Create alias templates?	draft
 972	Copy contents of a buffer into another without a loop?	draft
 973	Reverse copy the content of a buffer into another without a loop?	draft
 974	Compare two strings in x64 assembly without a loop? <span style="color:green">(needs work)</span>	draft
@@ -15864,6 +15887,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 1080	Find the standard matrix of linear transformation $T(v₁,v₂) = (3v₁-v₂+v₃, 2v₁+4v₂-2v₃)$ when $v₁,v₂ \\in \\mathbb{R}^2$?	draft
 1081	What mathematical operations on standard matrix of linear transformations and scalars are allowed?	draft
 1082	What is the result of multiplication of zero linear transformation function to any vector?	draft
+1356	Use <code>auto</code> to initialize objects in different forms?	draft
 1083	What is the result of multiplication of identify linear transformation function to any vector?	draft
 1084	What is the main property of diagonal linear transformation function $T: R^n → R^n$?	draft
 1085	How can we construct a linear transformation Pu that projects a vector onto a line?	draft
@@ -16019,9 +16043,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 1251	What methods a future provides on its interface to wait for the execution?	draft
 1252	What happens to a future when <code>wait()</code> is called before execution starts?	draft
 1253	What are the possible future states after a call to waiting functions?	draft
-1356	Use <code>auto</code> to initialize objects in different forms?	draft
-1357	Create type aliases?	draft
-1358	Create alias templates?	draft
 1359	Use uniform initialization to initialize objects of types?	draft
 1360	Initialize non-static member variables?	draft
 1361	Evaluate alignment of structures by considering theirs size of members?	draft
@@ -16091,6 +16112,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 1430	How to define a named lambda as a primitive to be used in algorithm function template to count possitive numbers of a range?	draft
 1431	How to define a generic lambda function as a primitive to be used in algorithm function templates to accumulate values of a range?	draft
 1432	What are the different capture forms of lambdas both in forms of copy and reference?	draft
+2727	Install built kernel from source tree?	draft
 1433	What is the general form of a lambda expression and how would each part affect its behavior?	draft
 1434	How to make a lambda capture an rvalue reference as a means of move-semantics?	draft
 1435	How to capture an entire temporary object by a lambda within it to use its member functions and variables?	draft
@@ -16242,6 +16264,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 1756	Use class and structures in structured bindings?	draft
 1757	Use raw arrays in structured binding?	draft
 1758	Use `std::pair`, `std::tuple`, and `std::array` in structured binding?	draft
+2728	What artifacts will be installed from the kernel source tree?	draft
 1759	Make a custom type compatible with tuple interface to be used in structured binding?	draft
 1760	What are the benefits of Class Template Argument Deduction feature?	draft
 1761	What is the consequence of not having type conversions for deducing template parameters?	draft
@@ -16595,6 +16618,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 2311	What objects can be transferred in the communication channel made by a task?	draft
 2312	What are the execution policies?	draft
 2313	What are the advantages of using jthread?	draft
+2729	Which files should we install on root filesystem of the device?	draft
 2314	What are the drawbacks of using shared and weak pointers in multiple threads?	draft
 2315	What are the atomic shared pointers?	draft
 2316	What are the use cases of latch and barriers?	draft
@@ -16916,9 +16940,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 2724	Make building process faster multiple times by caching build artifacts?	draft
 2725	What are the kernel build artifacts?	draft
 2726	How many installation targets do we have to run?	draft
-2727	Install built kernel from source tree?	draft
-2728	What artifacts will be installed from the kernel source tree?	draft
-2729	Which files should we install on root filesystem of the device?	draft
 2730	Install modules from source tree?	draft
 2731	Change the default path to module installation?	draft
 2732	What artifacts will be installed by modules installation?	draft
@@ -19010,6 +19031,7 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 1886	What is the <b>built-in</b> kernel module building?	reviewed
 1887	Write a custom <code>Makefile</code> for <b>out-of-tree</b> kernel modules?	reviewed
 1888	What <code>make</code> targets should be available when writing a custom <code>Makefile</code> for kernel modules?	reviewed
+2282	How to update Qt components after manual installation?	reviewed
 1889	Write configuration dependent target in <code>Makefile</code> for a <b>built-in</b> kernel module?	reviewed
 1890	Specify multiple source files in a custom <code>Makefile</code> for a specific target?	reviewed
 1891	Specify compiler and linker flags in <code>Makefile</code> for kernel module building?	reviewed
@@ -19090,7 +19112,6 @@ COPY flashback.cards (id, headline, state) FROM stdin;
 2279	Represent a view of the generated sequence formed by repeatedly incrementing an initial value?	reviewed
 2280	Represent a view obtained by successively applying the istream input iterator?	reviewed
 2281	Where the Qt installer can be found?	reviewed
-2282	How to update Qt components after manual installation?	reviewed
 2451	How move semantics can be implemented for a class?	reviewed
 2452	What happens to an object when move semantics is not available?	reviewed
 2453	What happens to an object declared with <code>const</code> when moved?	reviewed
@@ -26453,44 +26474,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 104	1	3624	9
 104	1	3625	10
 104	1	3626	11
-105	1	3627	1
-105	1	3628	2
-105	1	3629	3
-105	1	3630	4
-105	1	3631	5
-105	1	3632	6
-106	1	3633	1
-106	2	3634	1
-106	2	3635	2
-106	2	3636	3
-106	2	3637	4
-106	2	3638	5
-106	2	3639	6
-106	2	3640	7
-106	2	3641	8
-106	2	3642	9
-106	2	3643	10
-106	2	3644	11
-106	2	3645	12
-106	2	3646	13
-106	2	3647	14
-106	2	3648	15
-106	2	3649	16
-106	2	3650	17
-106	2	3651	18
-106	2	3652	19
-106	2	3653	20
-106	2	3654	21
-106	2	3655	22
-106	2	3656	23
-106	2	3657	24
-106	2	3658	25
-106	2	3659	26
-106	2	3660	27
-106	2	3661	28
-106	2	3662	29
-106	2	3663	30
-106	2	3664	31
 107	1	3665	1
 107	1	3666	2
 107	1	3667	3
@@ -26576,6 +26559,13 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 109	2	3742	9
 109	2	3743	10
 109	2	3744	11
+106	1	3633	1
+106	2	3634	1
+106	2	3635	3
+106	2	3636	4
+106	2	3637	5
+106	2	3638	6
+106	2	3639	7
 109	2	3745	12
 109	2	3746	13
 109	2	3747	14
@@ -27055,24 +27045,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 136	1	5444	43
 140	1	5449	1
 140	1	5450	2
-106	1	5451	1
-106	1	5452	2
-106	1	5453	3
-106	1	5454	4
-106	1	5455	5
-106	1	5456	6
-106	1	5457	7
-106	1	5458	8
-106	1	5459	9
-106	1	5460	10
-106	1	5461	11
-106	1	5462	12
-106	1	5463	13
-106	1	5464	14
-106	1	5465	15
-106	1	5466	16
-106	1	5467	17
-106	2	5468	1
 100	9	3536	1
 100	9	3537	2
 100	9	3538	3
@@ -27131,6 +27103,7 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 100	9	3591	56
 100	9	3592	57
 100	9	3593	58
+106	2	5468	2
 100	9	3594	59
 100	9	3595	60
 100	9	3596	61
@@ -27209,14 +27182,6 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 105	3	3965	2
 105	5	3962	1
 105	5	3963	2
-105	1	5194	1
-105	1	5196	3
-105	1	5198	5
-105	1	5200	7
-105	1	5195	2
-105	1	5197	4
-105	1	5199	6
-105	1	5201	8
 105	3	5361	3
 105	3	5362	4
 105	3	5363	5
@@ -27411,6 +27376,62 @@ COPY flashback.sections_cards (resource, section, card, "position") FROM stdin;
 116	1	3934	4
 116	1	3935	5
 116	1	3936	6
+105	1	3627	1
+105	1	5194	2
+105	1	3628	3
+105	1	5195	4
+105	1	5196	5
+105	1	3629	6
+105	1	3630	7
+105	1	5197	8
+105	1	3631	9
+105	1	5198	10
+105	1	3632	11
+105	1	5199	12
+105	1	5200	13
+105	1	5201	14
+106	1	5451	2
+106	1	5452	3
+106	1	5453	4
+106	1	5454	5
+106	1	5455	6
+106	1	5456	7
+106	1	5457	8
+106	1	5458	9
+106	1	5459	10
+106	1	5460	11
+106	1	5461	12
+106	1	5462	13
+106	1	5463	14
+106	1	5464	15
+106	1	5465	16
+106	1	5466	17
+106	1	5467	18
+106	2	3640	8
+106	2	3641	9
+106	2	3642	10
+106	2	3643	11
+106	2	3644	12
+106	2	3645	13
+106	2	3646	14
+106	2	3647	15
+106	2	3648	16
+106	2	3649	17
+106	2	3650	18
+106	2	3651	19
+106	2	3652	20
+106	2	3653	21
+106	2	3654	22
+106	2	3655	23
+106	2	3656	24
+106	2	3657	25
+106	2	3658	26
+106	2	3659	27
+106	2	3660	28
+106	2	3661	29
+106	2	3662	30
+106	2	3663	31
+106	2	3664	32
 \.
 
 
@@ -28476,7 +28497,6 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 24	4064	3	2	surface
 26	4074	6	2	surface
 26	4075	7	2	surface
-1	4076	1	3	surface
 3	2649	7	5	surface
 8	1265	4	7	surface
 27	1328	2	7	surface
@@ -30733,6 +30753,7 @@ COPY flashback.topics_cards (topic, card, "position", subject, level) FROM stdin
 214	5197	4	6	surface
 214	5198	5	6	surface
 215	5199	1	6	surface
+1	4076	4	3	surface
 \.
 
 
@@ -30940,6 +30961,14 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
+-- Name: milestones milestones_roadmap_subject_level_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.milestones
+    ADD CONSTRAINT milestones_roadmap_subject_level_position_key UNIQUE (roadmap, subject, level, "position");
+
+
+--
 -- Name: nerves nerves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31052,6 +31081,14 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
+-- Name: sections_cards sections_cards_resource_section_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sections_cards
+    ADD CONSTRAINT sections_cards_resource_section_position_key UNIQUE (resource, section, "position");
+
+
+--
 -- Name: sections sections_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31121,6 +31158,14 @@ ALTER TABLE ONLY flashback.topics_activities
 
 ALTER TABLE ONLY flashback.topics_cards
     ADD CONSTRAINT topics_cards_pkey PRIMARY KEY (subject, level, topic, card);
+
+
+--
+-- Name: topics_cards topics_cards_subject_topic_level_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.topics_cards
+    ADD CONSTRAINT topics_cards_subject_topic_level_position_key UNIQUE (subject, topic, level, "position");
 
 
 --
@@ -31547,5 +31592,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict m8CKWTaQbRsXjWKojYSRB8ysosYfYgmMmj8ZDXQ5JDkSHxMERe3Kzm2vhHaze6U
+\unrestrict g6l9cb1XVkIH7OKrevUMaPZGM0IetYKe0WRun9L09NwC5msLPCgaKEj2qRmpZOi
 

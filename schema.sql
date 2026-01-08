@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 9raHaggGeJTqF6l17s1rzPDlWmO65mgjYQcA5UpesAUSLp8OtxIMK9aQy0RM2b8
+\restrict fqW39a2bC1qQ3ayHt0UFunSWBU5Nr4HHIOOYEAJBe54dey8WcC4NZsRBpCpsQhZ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -891,7 +891,7 @@ begin
     select ac.subject, ac.topic, ac.level, bool_and(coalesce(p.progression, 0) >= 3) as assimilated
     from get_assessment_coverage(assessment_id) ac
     join topics_cards tc on tc.subject = ac.subject and tc.topic = ac.topic and tc.level = ac.level
-    left join progress p on p.user = user_id and p.card = tc.card
+    left join progress p on p.user = user_id and p.card = tc.card and p.last_practice > now() - '10 days'::interval
     group by ac.subject, ac.topic, ac.level;
 end; $$;
 
@@ -921,7 +921,7 @@ begin
     select tc.topic, tc.level, tc.card, tc.position, p.last_practice, p.duration
     from topics_cards tc
     left join progress p on p.user = user_id  and p.card = tc.card
-    where tc.subject = subject_id and tc.level <= max_level::expertise_level;
+    where tc.subject = subject_id and tc.level <= max_level;
 end;
 $$;
 
@@ -1370,6 +1370,27 @@ end; $$;
 
 
 ALTER FUNCTION flashback.get_user(user_token character varying, user_device character varying) OWNER TO flashback;
+
+--
+-- Name: get_user_cognitive_level(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_user_cognitive_level(user_id integer, subject_id integer) RETURNS flashback.expertise_level
+    LANGUAGE plpgsql
+    AS $$
+declare cognitive_level expertise_level;
+begin
+    select t.level into cognitive_level
+    from topics t
+    where t.subject = subject_id
+    group by t.subject, t.level
+    order by get_practice_mode(user_id, t.subject, t.level) = 'progressive'::practice_mode desc, t.level limit 1;
+
+    return cognitive_level;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_user_cognitive_level(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
 -- Name: is_subject_relevant(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2819,6 +2840,14 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
+-- Name: milestones milestones_roadmap_subject_level_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.milestones
+    ADD CONSTRAINT milestones_roadmap_subject_level_position_key UNIQUE (roadmap, subject, level, "position");
+
+
+--
 -- Name: nerves nerves_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -2931,6 +2960,14 @@ ALTER TABLE ONLY flashback.sections_cards
 
 
 --
+-- Name: sections_cards sections_cards_resource_section_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.sections_cards
+    ADD CONSTRAINT sections_cards_resource_section_position_key UNIQUE (resource, section, "position");
+
+
+--
 -- Name: sections sections_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -3000,6 +3037,14 @@ ALTER TABLE ONLY flashback.topics_activities
 
 ALTER TABLE ONLY flashback.topics_cards
     ADD CONSTRAINT topics_cards_pkey PRIMARY KEY (subject, level, topic, card);
+
+
+--
+-- Name: topics_cards topics_cards_subject_topic_level_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.topics_cards
+    ADD CONSTRAINT topics_cards_subject_topic_level_position_key UNIQUE (subject, topic, level, "position");
 
 
 --
@@ -3426,5 +3471,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 9raHaggGeJTqF6l17s1rzPDlWmO65mgjYQcA5UpesAUSLp8OtxIMK9aQy0RM2b8
+\unrestrict fqW39a2bC1qQ3ayHt0UFunSWBU5Nr4HHIOOYEAJBe54dey8WcC4NZsRBpCpsQhZ
 
