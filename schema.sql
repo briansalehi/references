@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict fqW39a2bC1qQ3ayHt0UFunSWBU5Nr4HHIOOYEAJBe54dey8WcC4NZsRBpCpsQhZ
+\restrict EeZmKoz2iZzkUfnrn6wkSz91GDWRaKIuA9A9014kKJ2uJ1vPTGaf4HEORTDbQgr
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -272,6 +272,54 @@ $$;
 ALTER PROCEDURE flashback.add_card_to_topic(IN subject integer, IN level flashback.expertise_level, IN topic integer, IN card integer, IN "position" integer) OWNER TO flashback;
 
 --
+-- Name: add_milestone(integer, flashback.expertise_level, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.add_milestone(subject_id integer, subject_level flashback.expertise_level, roadmap_id integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare top_position integer;
+begin
+    select coalesce(max(milestones.position), 0) + 1 into top_position from milestones where milestones.roadmap = roadmap_id;
+
+    insert into milestones(roadmap, subject, level, position) values (roadmap_id, subject_id, subject_level, top_position);
+
+    return top_position;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.add_milestone(subject_id integer, subject_level flashback.expertise_level, roadmap_id integer) OWNER TO flashback;
+
+--
+-- Name: add_milestone(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.add_milestone(IN subject_id integer, IN subject_level flashback.expertise_level, IN roadmap_id integer, IN subject_position integer)
+    LANGUAGE plpgsql
+    AS $$
+declare top_position integer;
+begin
+    select coalesce(max(milestones.position), 0) + 1 into top_position from milestones where milestones.roadmap = roadmap_id;
+
+    update milestones m set position = m.position + top_position where m.roadmap = roadmap_id and m.position >= subject_position;
+
+    insert into milestones(roadmap, subject, level, position) values (
+        roadmap_id, subject_id, subject_level, subject_position
+    );
+
+    update milestones m set position = s.altered_position
+    from (
+        select mm.position, mm.level, row_number() over (order by mm.position) as altered_position from milestones mm where mm.roadmap = roadmap_id
+    ) s
+    where m.roadmap = roadmap_id and m.level = s.level and m.position = s.position;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.add_milestone(IN subject_id integer, IN subject_level flashback.expertise_level, IN roadmap_id integer, IN subject_position integer) OWNER TO flashback;
+
+--
 -- Name: add_resource_to_subject(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -281,54 +329,6 @@ CREATE PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN su
 
 
 ALTER PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN subject_id integer) OWNER TO flashback;
-
---
--- Name: add_subject_to_roadmap(integer, flashback.expertise_level, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.add_subject_to_roadmap(subject integer, level flashback.expertise_level, roadmap integer) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-declare top_position integer;
-begin
-    select coalesce(max(milestones.position), 0) + 1 into top_position from milestones where milestones.roadmap = add_subject_to_roadmap.roadmap;
-
-    insert into milestones(roadmap, subject, level, position) values (add_subject_to_roadmap.roadmap, add_subject_to_roadmap.subject, add_subject_to_roadmap.level, top_position);
-
-    return top_position;
-end;
-$$;
-
-
-ALTER FUNCTION flashback.add_subject_to_roadmap(subject integer, level flashback.expertise_level, roadmap integer) OWNER TO flashback;
-
---
--- Name: add_subject_to_roadmap(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.add_subject_to_roadmap(IN subject integer, IN level flashback.expertise_level, IN roadmap integer, IN "position" integer)
-    LANGUAGE plpgsql
-    AS $$
-declare top_position integer;
-begin
-    select coalesce(max(milestones.position), 0) + 1 into top_position from milestones where milestones.roadmap = add_subject_to_roadmap.roadmap;
-
-    update milestones m set position = m.position + top_position where m.roadmap = add_subject_to_roadmap.roadmap and m.position >= add_subject_to_roadmap.position;
-
-    insert into milestones(roadmap, subject, level, position) values (
-        add_subject_to_roadmap.roadmap, add_subject_to_roadmap.subject, add_subject_to_roadmap.level, add_subject_to_roadmap.position
-    );
-
-    update milestones m set position = s.altered_position
-    from (
-        select mm.position, mm.level, row_number() over (order by mm.position) as altered_position from milestones mm where mm.roadmap = add_subject_to_roadmap.roadmap
-    ) s
-    where m.roadmap = add_subject_to_roadmap.roadmap and m.level = s.level and m.position = s.position;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.add_subject_to_roadmap(IN subject integer, IN level flashback.expertise_level, IN roadmap integer, IN "position" integer) OWNER TO flashback;
 
 --
 -- Name: assign_roadmap(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -978,6 +978,24 @@ $$;
 ALTER FUNCTION flashback.get_lost_cards() OWNER TO flashback;
 
 --
+-- Name: get_milestones(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_milestones(roadmap_id integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name flashback.citext)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query
+    select milestones.level, milestones.position, subjects.id, subjects.name
+    from milestones
+    join subjects on milestones.subject = subjects.id
+    where milestones.roadmap = roadmap_id;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_milestones(roadmap_id integer) OWNER TO flashback;
+
+--
 -- Name: get_out_of_shelves(); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -1191,17 +1209,6 @@ end; $$;
 
 
 ALTER FUNCTION flashback.get_subject_resources(subject character varying) OWNER TO flashback;
-
---
--- Name: get_subjects(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
---
-
-CREATE FUNCTION flashback.get_subjects(roadmap integer) RETURNS TABLE(level flashback.expertise_level, "position" integer, id integer, name flashback.citext)
-    LANGUAGE plpgsql
-    AS $$ begin return query select milestones.level, milestones.position, subjects.id, subjects.name from milestones join subjects on milestones.subject = subjects.id where milestones.roadmap = get_subjects.roadmap; end; $$;
-
-
-ALTER FUNCTION flashback.get_subjects(roadmap integer) OWNER TO flashback;
 
 --
 -- Name: get_topic_assessments(integer, integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -3471,5 +3478,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fqW39a2bC1qQ3ayHt0UFunSWBU5Nr4HHIOOYEAJBe54dey8WcC4NZsRBpCpsQhZ
+\unrestrict EeZmKoz2iZzkUfnrn6wkSz91GDWRaKIuA9A9014kKJ2uJ1vPTGaf4HEORTDbQgr
 
