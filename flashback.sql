@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 1hTMA42woCI9HPk0gMecy5b1O6WlWJw1AFEi0CuATP0Vy50r8X8pk0rA12TauNQ
+\restrict eqo19qpTDH3YhdTIa1cGH93lmqyX664SteHglUKxzjnA6zWdNMeHcfbZvgX1xRk
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1110,6 +1110,20 @@ $$;
 
 
 ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) OWNER TO flashback;
+
+--
+-- Name: get_requirements(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(roadmap integer, subject integer, level flashback.expertise_level)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query select required_roadmap, required_subject, minimum_level from requirements r where r.roadmap = roadmap_id and r.subject = subject_id and r.level = subject_level;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2391,6 +2405,7 @@ ALTER TABLE flashback.providers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 CREATE TABLE flashback.requirements (
     roadmap integer NOT NULL,
     subject integer NOT NULL,
+    level flashback.expertise_level NOT NULL,
     required_roadmap integer NOT NULL,
     required_subject integer NOT NULL,
     minimum_level flashback.expertise_level
@@ -20984,7 +20999,7 @@ COPY flashback.providers (id, name) FROM stdin;
 -- Data for Name: requirements; Type: TABLE DATA; Schema: flashback; Owner: flashback
 --
 
-COPY flashback.requirements (roadmap, subject, required_roadmap, required_subject, minimum_level) FROM stdin;
+COPY flashback.requirements (roadmap, subject, level, required_roadmap, required_subject, minimum_level) FROM stdin;
 \.
 
 
@@ -31063,6 +31078,14 @@ ALTER TABLE ONLY flashback.providers
 
 
 --
+-- Name: requirements requirements_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.requirements
+    ADD CONSTRAINT requirements_pkey PRIMARY KEY (roadmap, subject, level);
+
+
+--
 -- Name: resources resources_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -31638,5 +31661,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 1hTMA42woCI9HPk0gMecy5b1O6WlWJw1AFEi0CuATP0Vy50r8X8pk0rA12TauNQ
+\unrestrict eqo19qpTDH3YhdTIa1cGH93lmqyX664SteHglUKxzjnA6zWdNMeHcfbZvgX1xRk
 

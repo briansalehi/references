@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict SyqUUPorTRHeBqLtm5RFWBfyUVxlOUFveh6gsPnMRX3GO0On0L92oehhXfEoAs4
+\restrict LptSiX9i70uHAV1g3yUeRPqhue74lYuoUGjY9a0y6NPwbCihaAhNvapD5JTaFCn
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1110,6 +1110,20 @@ $$;
 
 
 ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id integer) OWNER TO flashback;
+
+--
+-- Name: get_requirements(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(roadmap integer, subject integer, level flashback.expertise_level)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    return query select required_roadmap, required_subject, minimum_level from requirements r where r.roadmap = roadmap_id and r.subject = subject_id and r.level = subject_level;
+end; $$;
+
+
+ALTER FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
 -- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2391,6 +2405,7 @@ ALTER TABLE flashback.providers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 CREATE TABLE flashback.requirements (
     roadmap integer NOT NULL,
     subject integer NOT NULL,
+    level flashback.expertise_level NOT NULL,
     required_roadmap integer NOT NULL,
     required_subject integer NOT NULL,
     minimum_level flashback.expertise_level
@@ -2931,6 +2946,14 @@ ALTER TABLE ONLY flashback.providers
 
 ALTER TABLE ONLY flashback.providers
     ADD CONSTRAINT providers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: requirements requirements_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.requirements
+    ADD CONSTRAINT requirements_pkey PRIMARY KEY (roadmap, subject, level);
 
 
 --
@@ -3509,5 +3532,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict SyqUUPorTRHeBqLtm5RFWBfyUVxlOUFveh6gsPnMRX3GO0On0L92oehhXfEoAs4
+\unrestrict LptSiX9i70uHAV1g3yUeRPqhue74lYuoUGjY9a0y6NPwbCihaAhNvapD5JTaFCn
 
