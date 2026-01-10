@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict LptSiX9i70uHAV1g3yUeRPqhue74lYuoUGjY9a0y6NPwbCihaAhNvapD5JTaFCn
+\restrict Jdhnu95rfTWbCxjB9hc1MqQLm4ynz9LBlETdAO0OWklzFPgMt6Lkt3VLOmUF7DH
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -318,6 +318,23 @@ $$;
 
 
 ALTER PROCEDURE flashback.add_milestone(IN subject_id integer, IN subject_level flashback.expertise_level, IN roadmap_id integer, IN subject_position integer) OWNER TO flashback;
+
+--
+-- Name: add_requirement(integer, integer, flashback.expertise_level, integer, flashback.expertise_level); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.add_requirement(IN roadmap_id integer, IN subject_id integer, IN subject_level flashback.expertise_level, IN required_subject_id integer, IN minimum_subject_level flashback.expertise_level)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if subject_id <> required_subject_id and not exists (select 1 from requirements where roadmap = roadmap_id and subject = required_subject_id and required_subject = subject_id) then
+        insert into requirements (roadmap, subject, level, required_subject, minimum_level)
+        values (roadmap_id, subject_id, subject_level, required_subject_id, minimum_subject_level);
+    end if;
+end; $$;
+
+
+ALTER PROCEDURE flashback.add_requirement(IN roadmap_id integer, IN subject_id integer, IN subject_level flashback.expertise_level, IN required_subject_id integer, IN minimum_subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
 -- Name: add_resource_to_subject(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2406,7 +2423,6 @@ CREATE TABLE flashback.requirements (
     roadmap integer NOT NULL,
     subject integer NOT NULL,
     level flashback.expertise_level NOT NULL,
-    required_roadmap integer NOT NULL,
     required_subject integer NOT NULL,
     minimum_level flashback.expertise_level
 );
@@ -2949,11 +2965,11 @@ ALTER TABLE ONLY flashback.providers
 
 
 --
--- Name: requirements requirements_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: requirements requirements_roadmap_subject_level_required_subject_minimum_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
 ALTER TABLE ONLY flashback.requirements
-    ADD CONSTRAINT requirements_pkey PRIMARY KEY (roadmap, subject, level);
+    ADD CONSTRAINT requirements_roadmap_subject_level_required_subject_minimum_key UNIQUE (roadmap, subject, level, required_subject, minimum_level);
 
 
 --
@@ -3321,11 +3337,11 @@ ALTER TABLE ONLY flashback.progress
 
 
 --
--- Name: requirements requirements_required_roadmap_required_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: requirements requirements_roadmap_required_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
 ALTER TABLE ONLY flashback.requirements
-    ADD CONSTRAINT requirements_required_roadmap_required_subject_fkey FOREIGN KEY (required_roadmap, required_subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requirements_roadmap_required_subject_fkey FOREIGN KEY (roadmap, required_subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -3532,5 +3548,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict LptSiX9i70uHAV1g3yUeRPqhue74lYuoUGjY9a0y6NPwbCihaAhNvapD5JTaFCn
+\unrestrict Jdhnu95rfTWbCxjB9hc1MqQLm4ynz9LBlETdAO0OWklzFPgMt6Lkt3VLOmUF7DH
 
