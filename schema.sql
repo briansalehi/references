@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Jdhnu95rfTWbCxjB9hc1MqQLm4ynz9LBlETdAO0OWklzFPgMt6Lkt3VLOmUF7DH
+\restrict WyKbasbl1k7LIStIuGRjf6bh5IoSRWU90ycoYMbfh1uXmLz0n4wTcgmnhXgHSb0
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1132,11 +1132,16 @@ ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id inte
 -- Name: get_requirements(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(roadmap integer, subject integer, level flashback.expertise_level)
+CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(subject integer, level flashback.expertise_level, "position" integer, name flashback.citext)
     LANGUAGE plpgsql
     AS $$
 begin
-    return query select required_roadmap, required_subject, minimum_level from requirements r where r.roadmap = roadmap_id and r.subject = subject_id and r.level = subject_level;
+    return query
+    select r.required_subject, r.minimum_level, m.position, s.name
+    from requirements r
+    join milestones m on m.roadmap = r.roadmap and m.subject = r.required_subject and r.minimum_level <= r.level
+    join subjects s on s.id = r.required_subject
+    where r.roadmap = roadmap_id and r.subject = subject_id and r.level = subject_level;
 end; $$;
 
 
@@ -3548,5 +3553,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Jdhnu95rfTWbCxjB9hc1MqQLm4ynz9LBlETdAO0OWklzFPgMt6Lkt3VLOmUF7DH
+\unrestrict WyKbasbl1k7LIStIuGRjf6bh5IoSRWU90ycoYMbfh1uXmLz0n4wTcgmnhXgHSb0
 
