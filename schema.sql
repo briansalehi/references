@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict EeZmKoz2iZzkUfnrn6wkSz91GDWRaKIuA9A9014kKJ2uJ1vPTGaf4HEORTDbQgr
+\restrict SyqUUPorTRHeBqLtm5RFWBfyUVxlOUFveh6gsPnMRX3GO0On0L92oehhXfEoAs4
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -2385,6 +2385,21 @@ ALTER TABLE flashback.providers ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 
 
 --
+-- Name: requirements; Type: TABLE; Schema: flashback; Owner: flashback
+--
+
+CREATE TABLE flashback.requirements (
+    roadmap integer NOT NULL,
+    subject integer NOT NULL,
+    required_roadmap integer NOT NULL,
+    required_subject integer NOT NULL,
+    minimum_level flashback.expertise_level
+);
+
+
+ALTER TABLE flashback.requirements OWNER TO flashback;
+
+--
 -- Name: resources; Type: TABLE; Schema: flashback; Owner: flashback
 --
 
@@ -2847,11 +2862,11 @@ ALTER TABLE ONLY flashback.milestones
 
 
 --
--- Name: milestones milestones_roadmap_subject_level_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+-- Name: milestones milestones_roadmap_subject_position_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
 ALTER TABLE ONLY flashback.milestones
-    ADD CONSTRAINT milestones_roadmap_subject_level_position_key UNIQUE (roadmap, subject, level, "position");
+    ADD CONSTRAINT milestones_roadmap_subject_position_key UNIQUE (roadmap, subject, "position");
 
 
 --
@@ -3283,6 +3298,22 @@ ALTER TABLE ONLY flashback.progress
 
 
 --
+-- Name: requirements requirements_required_roadmap_required_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.requirements
+    ADD CONSTRAINT requirements_required_roadmap_required_subject_fkey FOREIGN KEY (required_roadmap, required_subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: requirements requirements_roadmap_subject_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.requirements
+    ADD CONSTRAINT requirements_roadmap_subject_fkey FOREIGN KEY (roadmap, subject) REFERENCES flashback.milestones(roadmap, subject) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: resources_activities resources_activities_resource_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -3478,5 +3509,5 @@ ALTER TABLE ONLY flashback.users_roadmaps
 -- PostgreSQL database dump complete
 --
 
-\unrestrict EeZmKoz2iZzkUfnrn6wkSz91GDWRaKIuA9A9014kKJ2uJ1vPTGaf4HEORTDbQgr
+\unrestrict SyqUUPorTRHeBqLtm5RFWBfyUVxlOUFveh6gsPnMRX3GO0On0L92oehhXfEoAs4
 
