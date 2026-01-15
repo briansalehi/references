@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict spwgmpg1vlZCsYHVf2OBrZhyQGuDstkQXYPgo7l6vDF0Vbf77mAFYnvkPd6bU3D
+\restrict MuW9o66kmAUD4jfxKr6ZH6hBgzctOwNjwBvPefqygxfXij1SFeVIRFfab3y6rpQ
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -383,6 +383,20 @@ $$;
 
 
 ALTER PROCEDURE flashback.change_block_type(IN selected_card integer, IN block integer, IN new_type flashback.content_type) OWNER TO flashback;
+
+--
+-- Name: change_milestone_level(integer, integer, flashback.expertise_level); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.change_milestone_level(IN roadmap_id integer, IN subject_id integer, IN subject_level flashback.expertise_level)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update milestones set level = subject_level where roadmap = roadmap_id and subject = subject_id;
+end; $$;
+
+
+ALTER PROCEDURE flashback.change_milestone_level(IN roadmap_id integer, IN subject_id integer, IN subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
 -- Name: change_users_hash(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -31677,5 +31691,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict spwgmpg1vlZCsYHVf2OBrZhyQGuDstkQXYPgo7l6vDF0Vbf77mAFYnvkPd6bU3D
+\unrestrict MuW9o66kmAUD4jfxKr6ZH6hBgzctOwNjwBvPefqygxfXij1SFeVIRFfab3y6rpQ
 
