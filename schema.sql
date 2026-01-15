@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict WyKbasbl1k7LIStIuGRjf6bh5IoSRWU90ycoYMbfh1uXmLz0n4wTcgmnhXgHSb0
+\restrict rYSWPLD9RAux8yfvOfjhfcYRgpHXYT8ndSjoJ2jCkV9qspZUI9sIGtMDuVK6ctA
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -327,7 +327,14 @@ CREATE PROCEDURE flashback.add_requirement(IN roadmap_id integer, IN subject_id 
     LANGUAGE plpgsql
     AS $$
 begin
-    if subject_id <> required_subject_id and not exists (select 1 from requirements where roadmap = roadmap_id and subject = required_subject_id and required_subject = subject_id) then
+    if
+        -- a subject cannot be its own requirement
+        subject_id <> required_subject_id and
+        -- a subject cannot have circular requirement
+        not exists (select 1 from requirements where roadmap = roadmap_id and subject = required_subject_id and required_subject = subject_id) and
+        -- a requirement weaker than what already exists for a subject is a dupliate and is avoided
+        not exists (select 1 from requirements where roadmap = roadmap_id and subject = subject_id and level < subject_level and required_subject = required_subject_id and minimum_level >= minimum_subject_level)
+    then
         insert into requirements (roadmap, subject, level, required_subject, minimum_level)
         values (roadmap_id, subject_id, subject_level, required_subject_id, minimum_subject_level);
     end if;
@@ -346,21 +353,6 @@ CREATE PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN su
 
 
 ALTER PROCEDURE flashback.add_resource_to_subject(IN resource_id integer, IN subject_id integer) OWNER TO flashback;
-
---
--- Name: assign_roadmap(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.assign_roadmap(IN user_id integer, IN roadmap_id integer)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    insert into users_roadmaps("user", roadmap) values (user_id, roadmap_id);
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.assign_roadmap(IN user_id integer, IN roadmap_id integer) OWNER TO flashback;
 
 --
 -- Name: change_block_extension(integer, integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -402,6 +394,28 @@ CREATE PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash charact
 
 
 ALTER PROCEDURE flashback.change_users_hash(IN user_id integer, IN hash character varying) OWNER TO flashback;
+
+--
+-- Name: clone_roadmap(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.clone_roadmap(user_id integer, roadmap_id integer) RETURNS TABLE(id integer, name flashback.citext)
+    LANGUAGE plpgsql
+    AS $$
+declare roadmap_name citext;
+declare roadmap_owner integer;
+declare cloned_roadmap_id integer;
+begin
+    select r.name, r.user into roadmap_name, roadmap_owner from roadmaps r where r.id = roadmap_id;
+
+    if roadmap_owner <> user_id then
+        cloned_roadmap_id := create_roadmap(user_id, roadmap_name);
+        insert into milestones (roadmap, subject, level, position) select m.roadmap, m.subject, m.level, m.position from milestones m where m.roadmap = roadmap_id;
+    end if;
+end; $$;
+
+
+ALTER FUNCTION flashback.clone_roadmap(user_id integer, roadmap_id integer) OWNER TO flashback;
 
 --
 -- Name: create_assessment(integer, flashback.expertise_level, integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -521,22 +535,22 @@ $$;
 ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, presenter_id integer, provider_id integer, resource_link character varying) OWNER TO flashback;
 
 --
--- Name: create_roadmap(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: create_roadmap(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_roadmap(roadmap_name character varying) RETURNS integer
+CREATE FUNCTION flashback.create_roadmap(user_id integer, roadmap_name character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare roadmap_id integer;
 begin
-    insert into roadmaps (name) values (roadmap_name) returning id into roadmap_id;
+    insert into roadmaps ("user", name) values (user_id, roadmap_name) returning id into roadmap_id;
 
     return roadmap_id;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.create_roadmap(roadmap_name character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.create_roadmap(user_id integer, roadmap_name character varying) OWNER TO flashback;
 
 --
 -- Name: create_section(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1132,16 +1146,17 @@ ALTER FUNCTION flashback.get_practice_topics(roadmap_id integer, subject_id inte
 -- Name: get_requirements(integer, integer, flashback.expertise_level); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(subject integer, level flashback.expertise_level, "position" integer, name flashback.citext)
+CREATE FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) RETURNS TABLE(subject integer, "position" integer, name flashback.citext, required_level flashback.expertise_level)
     LANGUAGE plpgsql
     AS $$
 begin
     return query
-    select r.required_subject, r.minimum_level, m.position, s.name
+    select r.required_subject, m.position, s.name, max(r.minimum_level)
     from requirements r
-    join milestones m on m.roadmap = r.roadmap and m.subject = r.required_subject and r.minimum_level <= r.level
+    join milestones m on m.roadmap = r.roadmap and m.subject = r.required_subject and r.minimum_level <= m.level
     join subjects s on s.id = r.required_subject
-    where r.roadmap = roadmap_id and r.subject = subject_id and r.level = subject_level;
+    where r.roadmap = roadmap_id and r.subject = subject_id and r.level <= subject_level
+    group by r.required_subject, m.position, s.name;
 end; $$;
 
 
@@ -1180,12 +1195,7 @@ CREATE FUNCTION flashback.get_roadmaps("user" integer) RETURNS TABLE(id integer,
     LANGUAGE plpgsql
     AS $$
 begin
-    return query
-    select r.id, r.name
-    from roadmaps r
-    join users_roadmaps ur on ur.roadmap = r.id
-    where ur."user" = get_roadmaps.user
-    order by name;
+    return query select r.id, r.name from roadmaps r where r."user" = get_roadmaps.user;
 end; $$;
 
 
@@ -1721,6 +1731,20 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.remove_block(IN card_id integer, IN block_position integer) OWNER TO flashback;
+
+--
+-- Name: remove_milestone(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_milestone(IN roadmap_id integer, IN subject_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from milestones where roadmap = roadmap_id and subject = subject_id;
+end; $$;
+
+
+ALTER PROCEDURE flashback.remove_milestone(IN roadmap_id integer, IN subject_id integer) OWNER TO flashback;
 
 --
 -- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -2512,7 +2536,8 @@ ALTER TABLE flashback.roadmap_id OWNER TO flashback;
 
 CREATE TABLE flashback.roadmaps (
     id integer NOT NULL,
-    name flashback.citext NOT NULL
+    name flashback.citext NOT NULL,
+    "user" integer NOT NULL
 );
 
 
@@ -2822,18 +2847,6 @@ ALTER TABLE flashback.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: users_roadmaps; Type: TABLE; Schema: flashback; Owner: flashback
---
-
-CREATE TABLE flashback.users_roadmaps (
-    "user" integer NOT NULL,
-    roadmap integer NOT NULL
-);
-
-
-ALTER TABLE flashback.users_roadmaps OWNER TO flashback;
-
---
 -- Name: assessments assessments_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -2994,19 +3007,19 @@ ALTER TABLE ONLY flashback.roadmaps_activities
 
 
 --
--- Name: roadmaps roadmaps_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.roadmaps
-    ADD CONSTRAINT roadmaps_name_key UNIQUE (name);
-
-
---
 -- Name: roadmaps roadmaps_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
 ALTER TABLE ONLY flashback.roadmaps
     ADD CONSTRAINT roadmaps_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roadmaps roadmaps_user_name_key; Type: CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.roadmaps
+    ADD CONSTRAINT roadmaps_user_name_key UNIQUE ("user", name);
 
 
 --
@@ -3119,14 +3132,6 @@ ALTER TABLE ONLY flashback.topics_cards
 
 ALTER TABLE ONLY flashback.topics
     ADD CONSTRAINT topics_pkey PRIMARY KEY (subject, level, "position");
-
-
---
--- Name: users_roadmaps user_roadmaps_pkey; Type: CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.users_roadmaps
-    ADD CONSTRAINT user_roadmaps_pkey PRIMARY KEY ("user", roadmap);
 
 
 --
@@ -3398,6 +3403,14 @@ ALTER TABLE ONLY flashback.roadmaps_activities
 
 
 --
+-- Name: roadmaps roadmaps_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
+--
+
+ALTER TABLE ONLY flashback.roadmaps
+    ADD CONSTRAINT roadmaps_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: sections_activities sections_activities_resource_position_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
 --
 
@@ -3534,24 +3547,8 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
--- Name: users_roadmaps user_roadmaps_roadmap_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.users_roadmaps
-    ADD CONSTRAINT user_roadmaps_roadmap_fkey FOREIGN KEY (roadmap) REFERENCES flashback.roadmaps(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: users_roadmaps user_roadmaps_user_fkey; Type: FK CONSTRAINT; Schema: flashback; Owner: flashback
---
-
-ALTER TABLE ONLY flashback.users_roadmaps
-    ADD CONSTRAINT user_roadmaps_user_fkey FOREIGN KEY ("user") REFERENCES flashback.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
 -- PostgreSQL database dump complete
 --
 
-\unrestrict WyKbasbl1k7LIStIuGRjf6bh5IoSRWU90ycoYMbfh1uXmLz0n4wTcgmnhXgHSb0
+\unrestrict rYSWPLD9RAux8yfvOfjhfcYRgpHXYT8ndSjoJ2jCkV9qspZUI9sIGtMDuVK6ctA
 
