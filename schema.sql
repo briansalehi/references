@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Vubc6zduTqPmCKO7vIH4cGmQtFz6ixTQ44NRcKcAVcRbcYPtYFxN7nsISJruzff
+\restrict D8GpvPZsDIQYsZK7DpsQWaGLdeR77NMLkuRBDBa17OVZfysQXlPHtvbQlf1uSaE
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1773,6 +1773,22 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.remove_roadmap(IN roadmap_id integer) OWNER TO flashback;
+
+--
+-- Name: remove_subject(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_subject(IN subject_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if not exists (select 1 from topics_cards where subject = subject_id) then
+        delete from subjects where id = subject_id;
+    end if;
+end; $$;
+
+
+ALTER PROCEDURE flashback.remove_subject(IN subject_id integer) OWNER TO flashback;
 
 --
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3564,5 +3580,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Vubc6zduTqPmCKO7vIH4cGmQtFz6ixTQ44NRcKcAVcRbcYPtYFxN7nsISJruzff
+\unrestrict D8GpvPZsDIQYsZK7DpsQWaGLdeR77NMLkuRBDBa17OVZfysQXlPHtvbQlf1uSaE
 
