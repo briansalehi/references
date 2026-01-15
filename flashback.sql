@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict JLfNuKpMorXzdRgWrQY1Odbn7XmQpV5zzoOOUhToYptTvfaaslG6Lz0khes6pdU
+\restrict kACZOfkcFPTHl31fFDRP73kZiNf4MghjDV5DtQs5ceiGjONU0YQSvMexqKKutSH
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1677,6 +1677,24 @@ $$;
 
 
 ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_headline character varying) OWNER TO flashback;
+
+--
+-- Name: merge_subjects(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.merge_subjects(IN source_subject_id integer, IN target_subject_id integer)
+    LANGUAGE plpgsql
+    AS $$
+declare last_position integer;
+begin
+    if source_subject_id <> target_subject_id then
+        select max(coalesce(position, 0)) + 1 into last_position from topics where subject = source_subject_id;
+        update topics set position = t.position + last_position, subject = target_subject_id where subject = source_subject_id;
+    end if;
+end; $$;
+
+
+ALTER PROCEDURE flashback.merge_subjects(IN source_subject_id integer, IN target_subject_id integer) OWNER TO flashback;
 
 --
 -- Name: move_card_to_section(integer, integer, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -31707,5 +31725,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict JLfNuKpMorXzdRgWrQY1Odbn7XmQpV5zzoOOUhToYptTvfaaslG6Lz0khes6pdU
+\unrestrict kACZOfkcFPTHl31fFDRP73kZiNf4MghjDV5DtQs5ceiGjONU0YQSvMexqKKutSH
 
