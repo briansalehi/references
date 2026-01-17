@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict zBV43jv802GInL4JS98rI7ae3Pals0SKHcypjITiLhb7mgCJSrfHAP1gIDcMZ84
+\restrict wiUZZRIrG5H3nnGc7esVoiOtB1pmflsv2MNy9iVXR7zNSUiKyXkOeLw8Qbws8bt
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -523,30 +523,24 @@ end; $$;
 ALTER FUNCTION flashback.create_nerve(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
--- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, integer, integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, timestamp with time zone, timestamp with time zone); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, presenter_id integer, provider_id integer, resource_link character varying) RETURNS integer
+CREATE FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production timestamp with time zone, resource_expiration timestamp with time zone) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare resource_id integer;
-declare presenter_id integer;
-declare provider_id integer;
 begin
-    insert into resources (name, type, pattern, condition, link)
-    values (resource_name, resource_type, resource_pattern, 'relevant'::condition, nullif(create_resource.link, ''))
+    insert into resources (name, type, pattern, link, production, expiration)
+    values (resource_name, resource_type, resource_pattern, nullif(resource_link, ''), resource_production, resource_expiration)
     returning id into resource_id;
-
-    insert into authors (resource, presenter) values (resource_id, presenter_id);
-
-    insert into producers (resource, provider) values (resource_id, producere_id);
 
     return resource_id;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, presenter_id integer, provider_id integer, resource_link character varying) OWNER TO flashback;
+ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production timestamp with time zone, resource_expiration timestamp with time zone) OWNER TO flashback;
 
 --
 -- Name: create_roadmap(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1465,7 +1459,16 @@ ALTER FUNCTION flashback.get_user_cognitive_level(user_id integer, subject_id in
 
 CREATE FUNCTION flashback.is_subject_relevant(target_resource integer, target_subject integer) RETURNS boolean
     LANGUAGE plpgsql
-    AS $$ begin return (select count(cards.id) > 0 from cards join sections_cards s on s.card = cards.id join topics_cards t on t.card = cards.id where s.resource = target_resource and t.subject = target_subject); end; $$;
+    AS $$
+begin
+    return (
+        select count(cards.id) > 0
+        from cards
+        join sections_cards s on s.card = cards.id
+        join topics_cards t on t.card = cards.id
+        where s.resource = target_resource and t.subject = target_subject
+    );
+end; $$;
 
 
 ALTER FUNCTION flashback.is_subject_relevant(target_resource integer, target_subject integer) OWNER TO flashback;
@@ -2513,7 +2516,7 @@ ALTER TABLE flashback.requirements OWNER TO flashback;
 
 CREATE TABLE flashback.resources (
     id integer NOT NULL,
-    name character varying(200) NOT NULL,
+    name flashback.citext NOT NULL,
     type flashback.resource_type NOT NULL,
     pattern flashback.section_pattern NOT NULL,
     link character varying(2000),
@@ -3213,6 +3216,13 @@ CREATE INDEX providers_name_trigram ON flashback.providers USING gin (name flash
 
 
 --
+-- Name: resources_name_trgm; Type: INDEX; Schema: flashback; Owner: flashback
+--
+
+CREATE INDEX resources_name_trgm ON flashback.resources USING gin (name flashback.gin_trgm_ops);
+
+
+--
 -- Name: roadmaps_name_trigram; Type: INDEX; Schema: flashback; Owner: flashback
 --
 
@@ -3598,5 +3608,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict zBV43jv802GInL4JS98rI7ae3Pals0SKHcypjITiLhb7mgCJSrfHAP1gIDcMZ84
+\unrestrict wiUZZRIrG5H3nnGc7esVoiOtB1pmflsv2MNy9iVXR7zNSUiKyXkOeLw8Qbws8bt
 
