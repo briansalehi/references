@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict oeAl2qe7ZFCads820oDgnOSqoIwXohc3D8nocnBdWieY1dzwj36bIfyn3FD4OA4
+\restrict a8pMFsN3L4Eyc8Bjikx5ynySsQCimzxOJ1ACdphNcOv9opGFpscosSnGge7QVip
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -736,6 +736,21 @@ $$;
 
 
 ALTER FUNCTION flashback.create_user(name character varying, email character varying, hash character varying) OWNER TO flashback;
+
+--
+-- Name: drop_resource_from_subject(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.drop_resource_from_subject(IN resource_id integer, IN subject_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from shelves where resource = resource_id and subject = subject_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.drop_resource_from_subject(IN resource_id integer, IN subject_id integer) OWNER TO flashback;
 
 --
 -- Name: edit_block(integer, integer, text); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -31725,5 +31740,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict oeAl2qe7ZFCads820oDgnOSqoIwXohc3D8nocnBdWieY1dzwj36bIfyn3FD4OA4
+\unrestrict a8pMFsN3L4Eyc8Bjikx5ynySsQCimzxOJ1ACdphNcOv9opGFpscosSnGge7QVip
 
