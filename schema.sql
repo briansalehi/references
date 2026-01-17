@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict wiUZZRIrG5H3nnGc7esVoiOtB1pmflsv2MNy9iVXR7zNSUiKyXkOeLw8Qbws8bt
+\restrict t6PvKSmAs3BmBs756fOmLCt1IkF4snWSqchlP5rLWrGfGmBnXfAN7qK2d0pGF0r
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -523,10 +523,10 @@ end; $$;
 ALTER FUNCTION flashback.create_nerve(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
--- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, timestamp with time zone, timestamp with time zone); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production timestamp with time zone, resource_expiration timestamp with time zone) RETURNS integer
+CREATE FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production integer, resource_expiration integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 declare resource_id integer;
@@ -540,7 +540,7 @@ end;
 $$;
 
 
-ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production timestamp with time zone, resource_expiration timestamp with time zone) OWNER TO flashback;
+ALTER FUNCTION flashback.create_resource(resource_name character varying, resource_type flashback.resource_type, resource_pattern flashback.section_pattern, resource_link character varying, resource_production integer, resource_expiration integer) OWNER TO flashback;
 
 --
 -- Name: create_roadmap(integer, character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1171,29 +1171,19 @@ end; $$;
 ALTER FUNCTION flashback.get_requirements(roadmap_id integer, subject_id integer, subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
--- Name: get_resources(integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
+-- Name: get_resources(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
-CREATE FUNCTION flashback.get_resources(user_id integer, subject_id integer) RETURNS TABLE(id integer, name character varying, type flashback.resource_type, pattern flashback.section_pattern, production date, expiration date, presenter flashback.citext, provider flashback.citext, link character varying, last_read timestamp with time zone)
+CREATE FUNCTION flashback.get_resources(subject_id integer) RETURNS TABLE(id integer, name flashback.citext, type flashback.resource_type, pattern flashback.section_pattern, production integer, expiration integer, link character varying)
     LANGUAGE plpgsql
     AS $$
 begin
-    return query
-    select r.id, r.name, r.type, r.pattern, r.production, r.expiration, e.name as presenter, v.name as provider, r.link, max(p.last_practice) filter (where p.last_practice is not null)
-    from resources r
-    join shelves s on s.resource = r.id and s.subject = subject_id
-    join sections_cards sc on sc.resource = r.id
-    left join progress p on p."user" = user_id and p.card = sc.card
-    left join authors a on a.resource = r.id
-    left join presenters e on e.id = a.presenter
-    left join producers c on c.resource = r.id
-    left join providers v on v.id = c.provider
-    group by r.id, r.name, r.type, r.pattern, r.production, r.expiration, e.name, v.name, r.link;
+    return query select r.id, r.name, r.type, r.pattern, r.production, r.expiration, r.link from resources r join shelves s on s.resource = r.id and s.subject = subject_id;
 end;
 $$;
 
 
-ALTER FUNCTION flashback.get_resources(user_id integer, subject_id integer) OWNER TO flashback;
+ALTER FUNCTION flashback.get_resources(subject_id integer) OWNER TO flashback;
 
 --
 -- Name: get_roadmaps(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -2520,8 +2510,8 @@ CREATE TABLE flashback.resources (
     type flashback.resource_type NOT NULL,
     pattern flashback.section_pattern NOT NULL,
     link character varying(2000),
-    expiration date DEFAULT (now() + '5 years'::interval) NOT NULL,
-    production date DEFAULT now() NOT NULL
+    production integer NOT NULL,
+    expiration integer NOT NULL
 );
 
 
@@ -3608,5 +3598,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict wiUZZRIrG5H3nnGc7esVoiOtB1pmflsv2MNy9iVXR7zNSUiKyXkOeLw8Qbws8bt
+\unrestrict t6PvKSmAs3BmBs756fOmLCt1IkF4snWSqchlP5rLWrGfGmBnXfAN7qK2d0pGF0r
 
