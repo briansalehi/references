@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict V98EnnwkLuvjlFdJOpoIamjXDMT4YjrdfbC4Vb3zVfyAYjrMXxNHgfuMJOgn3Ib
+\restrict dtzi3wE2uy5eXMyAeNWrUAcaurUK61jRR2HaId76lxCfPmyOuWuWWeu9WSubQf1
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -320,6 +320,36 @@ $$;
 ALTER PROCEDURE flashback.add_milestone(IN subject_id integer, IN subject_level flashback.expertise_level, IN roadmap_id integer, IN subject_position integer) OWNER TO flashback;
 
 --
+-- Name: add_presenter(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.add_presenter(IN resource_id integer, IN presenter_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    insert into authors (resource, presenter) values (resource_id, presenter_id);
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.add_presenter(IN resource_id integer, IN presenter_id integer) OWNER TO flashback;
+
+--
+-- Name: add_provider(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.add_provider(IN resource_id integer, IN provider_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    insert into producers (resource, provider) values (resource_id, provider_id);
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.add_provider(IN resource_id integer, IN provider_id integer) OWNER TO flashback;
+
+--
 -- Name: add_requirement(integer, integer, flashback.expertise_level, integer, flashback.expertise_level); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -553,6 +583,42 @@ end; $$;
 ALTER FUNCTION flashback.create_nerve(user_id integer, subject_id integer) OWNER TO flashback;
 
 --
+-- Name: create_presenter(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.create_presenter(presenter_name character varying) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare presenter_id integer;
+begin
+    insert into presenters (name) values (presenter_name) returning id into presenter_id;
+
+    return presenter_id;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.create_presenter(presenter_name character varying) OWNER TO flashback;
+
+--
+-- Name: create_provider(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.create_provider(provider_name character varying) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+declare provider_id integer;
+begin
+    insert into providers (name) values (provider_name) returning id into provider_id;
+
+    return provider_id;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.create_provider(provider_name character varying) OWNER TO flashback;
+
+--
 -- Name: create_resource(character varying, flashback.resource_type, flashback.section_pattern, character varying, integer, integer); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -766,6 +832,36 @@ $$;
 
 
 ALTER FUNCTION flashback.create_user(name character varying, email character varying, hash character varying) OWNER TO flashback;
+
+--
+-- Name: drop_presenter(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.drop_presenter(IN resource_id integer, IN presenter_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from authors where resource = resource_id and presenter = presenter_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.drop_presenter(IN resource_id integer, IN presenter_id integer) OWNER TO flashback;
+
+--
+-- Name: drop_provider(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.drop_provider(IN resource_id integer, IN provider_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from producers where resource = resource_id and provider = provider_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.drop_provider(IN resource_id integer, IN provider_id integer) OWNER TO flashback;
 
 --
 -- Name: drop_resource_from_subject(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -1714,6 +1810,33 @@ $$;
 
 
 ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_headline character varying) OWNER TO flashback;
+
+--
+-- Name: merge_resources(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.merge_resources(IN source_id integer, IN target_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if source_id <> target_id then
+        update sections set resource = target_id where resource = source_id;
+
+        update shelves set resource = target_id where resource = source_id;
+
+        update nerves set resource = target_id where resource = source_id;
+
+        update authors set resource = target_id where resource = source_id;
+
+        update producers set resource = target_id where resource = source_id;
+
+        delete from resources where id = source_id;
+    end if;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.merge_resources(IN source_id integer, IN target_id integer) OWNER TO flashback;
 
 --
 -- Name: merge_subjects(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3696,5 +3819,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict V98EnnwkLuvjlFdJOpoIamjXDMT4YjrdfbC4Vb3zVfyAYjrMXxNHgfuMJOgn3Ib
+\unrestrict dtzi3wE2uy5eXMyAeNWrUAcaurUK61jRR2HaId76lxCfPmyOuWuWWeu9WSubQf1
 
