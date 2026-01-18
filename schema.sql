@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict JKTufzt2ConW1VrJIBE0jjnwEIpORL472PTJkto0jcFEUXBdg1uyFBqT4EnVlbP
+\restrict V98EnnwkLuvjlFdJOpoIamjXDMT4YjrdfbC4Vb3zVfyAYjrMXxNHgfuMJOgn3Ib
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -399,6 +399,36 @@ end; $$;
 ALTER PROCEDURE flashback.change_milestone_level(IN roadmap_id integer, IN subject_id integer, IN subject_level flashback.expertise_level) OWNER TO flashback;
 
 --
+-- Name: change_resource_type(integer, flashback.resource_type); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.change_resource_type(IN resource_id integer, IN resource_type flashback.resource_type)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set type = resource_type where id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.change_resource_type(IN resource_id integer, IN resource_type flashback.resource_type) OWNER TO flashback;
+
+--
+-- Name: change_section_pattern(integer, flashback.section_pattern); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.change_section_pattern(IN resource_id integer, IN resource_pattern flashback.section_pattern)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set pattern = resource_pattern where resources.id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.change_section_pattern(IN resource_id integer, IN resource_pattern flashback.section_pattern) OWNER TO flashback;
+
+--
 -- Name: change_users_hash(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -779,6 +809,21 @@ $$;
 ALTER PROCEDURE flashback.edit_card_headline(IN card integer, IN new_headline character varying) OWNER TO flashback;
 
 --
+-- Name: edit_resource_expiration(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.edit_resource_expiration(IN resource_id integer, IN resource_expiration integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set expiration = resource_expiration where id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.edit_resource_expiration(IN resource_id integer, IN resource_expiration integer) OWNER TO flashback;
+
+--
 -- Name: edit_resource_link(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -794,21 +839,6 @@ $$;
 ALTER PROCEDURE flashback.edit_resource_link(IN resource_id integer, IN subject_link character varying) OWNER TO flashback;
 
 --
--- Name: edit_resource_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.edit_resource_name(IN resource integer, IN name character varying)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    update resources set name = edit_resource_name.name where id = resource;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.edit_resource_name(IN resource integer, IN name character varying) OWNER TO flashback;
-
---
 -- Name: edit_resource_presenter(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -820,6 +850,21 @@ CREATE PROCEDURE flashback.edit_resource_presenter(IN resource integer, IN autho
 ALTER PROCEDURE flashback.edit_resource_presenter(IN resource integer, IN author character varying) OWNER TO flashback;
 
 --
+-- Name: edit_resource_production(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.edit_resource_production(IN resource_id integer, IN resource_production integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set production = resource_production where id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.edit_resource_production(IN resource_id integer, IN resource_production integer) OWNER TO flashback;
+
+--
 -- Name: edit_resource_provider(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -829,37 +874,6 @@ CREATE PROCEDURE flashback.edit_resource_provider(IN resource integer, IN edited
 
 
 ALTER PROCEDURE flashback.edit_resource_provider(IN resource integer, IN edited_publisher character varying) OWNER TO flashback;
-
---
--- Name: edit_resource_type(integer, flashback.resource_type); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.edit_resource_type(IN resource integer, IN type flashback.resource_type)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    update resources set type = edit_resource_type.type where id = resource;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.edit_resource_type(IN resource integer, IN type flashback.resource_type) OWNER TO flashback;
-
---
--- Name: edit_section_pattern(integer, flashback.section_pattern); Type: PROCEDURE; Schema: flashback; Owner: flashback
---
-
-CREATE PROCEDURE flashback.edit_section_pattern(IN resource integer, IN pattern flashback.section_pattern)
-    LANGUAGE plpgsql
-    AS $$
-begin
-    update resources set pattern = edit_section_pattern.pattern
-    where resources.id = edit_section_pattern.resource;
-end;
-$$;
-
-
-ALTER PROCEDURE flashback.edit_section_pattern(IN resource integer, IN pattern flashback.section_pattern) OWNER TO flashback;
 
 --
 -- Name: estimate_read_time(integer); Type: FUNCTION; Schema: flashback; Owner: flashback
@@ -1802,6 +1816,23 @@ end; $$;
 ALTER PROCEDURE flashback.remove_milestone(IN roadmap_id integer, IN subject_id integer) OWNER TO flashback;
 
 --
+-- Name: remove_resource(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_resource(IN resource_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    if not exists (select 1 from sections_cards where resource = resource_id) then
+        delete from resources where id = resource_id;
+    end if;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.remove_resource(IN resource_id integer) OWNER TO flashback;
+
+--
 -- Name: remove_roadmap(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1830,6 +1861,21 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.remove_subject(IN subject_id integer) OWNER TO flashback;
+
+--
+-- Name: rename_resource(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.rename_resource(IN resource_id integer, IN resource_name character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set name = resource_name where id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.rename_resource(IN resource_id integer, IN resource_name character varying) OWNER TO flashback;
 
 --
 -- Name: rename_roadmap(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -3650,5 +3696,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict JKTufzt2ConW1VrJIBE0jjnwEIpORL472PTJkto0jcFEUXBdg1uyFBqT4EnVlbP
+\unrestrict V98EnnwkLuvjlFdJOpoIamjXDMT4YjrdfbC4Vb3zVfyAYjrMXxNHgfuMJOgn3Ib
 
