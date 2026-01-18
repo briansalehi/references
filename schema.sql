@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict dtzi3wE2uy5eXMyAeNWrUAcaurUK61jRR2HaId76lxCfPmyOuWuWWeu9WSubQf1
+\restrict ezu1osnZW3BN1QPKqO93zETUElcCiaZxkrpd6fJXfkgBkkNkMTk3mOD2BIBiYbO
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -1822,7 +1822,7 @@ begin
     if source_id <> target_id then
         update sections set resource = target_id where resource = source_id;
 
-        update shelves set resource = target_id where resource = source_id;
+        update shelves set resource = target_id where resource = source_id and subject not in (select subject from shelves where resource = target_id);
 
         update nerves set resource = target_id where resource = source_id;
 
@@ -3819,5 +3819,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict dtzi3wE2uy5eXMyAeNWrUAcaurUK61jRR2HaId76lxCfPmyOuWuWWeu9WSubQf1
+\unrestrict ezu1osnZW3BN1QPKqO93zETUElcCiaZxkrpd6fJXfkgBkkNkMTk3mOD2BIBiYbO
 
