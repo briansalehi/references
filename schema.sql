@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict RCPh2QzNjGvhS7YtX0QdWTplEkIDuSgxcYQ4hGeHMLJEbFizcBxBBHuItqOH8OA
+\restrict gVtsdb2GCtPo7IEAlXOz5ykX5WGVki4sA1DAK7Zz0hMIJLY0UTaM0PX8tlYzmdq
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -2079,6 +2079,28 @@ end; $$;
 ALTER FUNCTION flashback.search_providers(token character varying) OWNER TO flashback;
 
 --
+-- Name: search_resources(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
+--
+
+CREATE FUNCTION flashback.search_resources(search_pattern character varying) RETURNS TABLE("position" bigint, id integer, name flashback.citext, type flashback.resource_type, pattern flashback.section_pattern, link character varying, production integer, expiration integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    set pg_trgm.similarity_threshold = 0.11;
+
+    return query
+    select row_number() over (order by r.name <-> search_pattern, r.production desc, r.expiration desc), r.id, r.name, r.type, r.pattern, r.link, r.production, r.expiration
+    from resources r
+    where r.name % search_pattern
+    order by r.name <-> search_pattern, r.production desc, r.expiration desc
+    limit 20;
+end;
+$$;
+
+
+ALTER FUNCTION flashback.search_resources(search_pattern character varying) OWNER TO flashback;
+
+--
 -- Name: search_roadmaps(character varying); Type: FUNCTION; Schema: flashback; Owner: flashback
 --
 
@@ -3613,5 +3635,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict RCPh2QzNjGvhS7YtX0QdWTplEkIDuSgxcYQ4hGeHMLJEbFizcBxBBHuItqOH8OA
+\unrestrict gVtsdb2GCtPo7IEAlXOz5ykX5WGVki4sA1DAK7Zz0hMIJLY0UTaM0PX8tlYzmdq
 
