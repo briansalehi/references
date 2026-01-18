@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict aVPAVb9nhTFeN6R0zoOGPzkkUaq87DRAXQk0x0ZiiGfCZU6fHR8bNGda5NB0JMi
+\restrict Z0qcYq5fE5XyjOfLlFWBSHDqzsHmfAEIw98afEjeRpZ7RVudxC47rHdel1vQb7a
 
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
@@ -777,6 +777,21 @@ $$;
 
 
 ALTER PROCEDURE flashback.edit_card_headline(IN card integer, IN new_headline character varying) OWNER TO flashback;
+
+--
+-- Name: edit_resource_link(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.edit_resource_link(IN resource_id integer, IN subject_link character varying)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update resources set link = subject_link where id = resource_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.edit_resource_link(IN resource_id integer, IN subject_link character varying) OWNER TO flashback;
 
 --
 -- Name: edit_resource_name(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -31762,5 +31777,5 @@ ALTER TABLE ONLY flashback.topics_cards
 -- PostgreSQL database dump complete
 --
 
-\unrestrict aVPAVb9nhTFeN6R0zoOGPzkkUaq87DRAXQk0x0ZiiGfCZU6fHR8bNGda5NB0JMi
+\unrestrict Z0qcYq5fE5XyjOfLlFWBSHDqzsHmfAEIw98afEjeRpZ7RVudxC47rHdel1vQb7a
 
