@@ -2,9 +2,9 @@
 -- PostgreSQL database dump
 --
 
-\restrict VijS5hoqzXtfzZ1qKB84PwkUXNyDAoyrcRlXhFR5yxR6MupWpMb2SBxIjHRgoQv
+\restrict OkZyjXrh1q9vFE9691lgRikDbYircrdJF0tSwOUbmDPteNJUvBXhpNu768OnOtv
 
--- Dumped from database version 18.0
+-- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.0
 
 SET statement_timeout = 0;
@@ -27,6 +27,15 @@ CREATE SCHEMA flashback;
 
 
 ALTER SCHEMA flashback OWNER TO flashback;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: flashback
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+ALTER SCHEMA public OWNER TO flashback;
 
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
@@ -1812,6 +1821,40 @@ $$;
 ALTER PROCEDURE flashback.merge_cards(IN lhs integer, IN rhs integer, IN new_headline character varying) OWNER TO flashback;
 
 --
+-- Name: merge_presenters(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.merge_presenters(IN source_id integer, IN target_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update authors set presenter = target_id where presenter = source_id and resource not in (select resource from authors where presenter = target_id);
+
+    delete from presenters where id = source_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.merge_presenters(IN source_id integer, IN target_id integer) OWNER TO flashback;
+
+--
+-- Name: merge_providers(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.merge_providers(IN source_id integer, IN target_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update producers set provider = target_id where provider = source_id and resource not in (select resource from producers where provider = target_id);
+
+    delete from providers where id = source_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.merge_providers(IN source_id integer, IN target_id integer) OWNER TO flashback;
+
+--
 -- Name: merge_resources(integer, integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1939,6 +1982,36 @@ end; $$;
 ALTER PROCEDURE flashback.remove_milestone(IN roadmap_id integer, IN subject_id integer) OWNER TO flashback;
 
 --
+-- Name: remove_presenter(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_presenter(IN presenter_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from presenters where id = presenter_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.remove_presenter(IN presenter_id integer) OWNER TO flashback;
+
+--
+-- Name: remove_provider(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.remove_provider(IN provider_id integer)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    delete from providers where id = provider_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.remove_provider(IN provider_id integer) OWNER TO flashback;
+
+--
 -- Name: remove_resource(integer); Type: PROCEDURE; Schema: flashback; Owner: flashback
 --
 
@@ -1984,6 +2057,36 @@ end; $$;
 
 
 ALTER PROCEDURE flashback.remove_subject(IN subject_id integer) OWNER TO flashback;
+
+--
+-- Name: rename_presenter(integer, flashback.citext); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.rename_presenter(IN presenter_id integer, IN presenter_name flashback.citext)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update presenters set name = presenter_name where id = presenter_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.rename_presenter(IN presenter_id integer, IN presenter_name flashback.citext) OWNER TO flashback;
+
+--
+-- Name: rename_provider(integer, flashback.citext); Type: PROCEDURE; Schema: flashback; Owner: flashback
+--
+
+CREATE PROCEDURE flashback.rename_provider(IN provider_id integer, IN provider_name flashback.citext)
+    LANGUAGE plpgsql
+    AS $$
+begin
+    update providers set name = provider_name where id = provider_id;
+end;
+$$;
+
+
+ALTER PROCEDURE flashback.rename_provider(IN provider_id integer, IN provider_name flashback.citext) OWNER TO flashback;
 
 --
 -- Name: rename_resource(integer, character varying); Type: PROCEDURE; Schema: flashback; Owner: flashback
@@ -31943,8 +32046,16 @@ ALTER TABLE ONLY flashback.topics_cards
 
 
 --
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: flashback
+--
+
+REVOKE USAGE ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO flashback_client;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict VijS5hoqzXtfzZ1qKB84PwkUXNyDAoyrcRlXhFR5yxR6MupWpMb2SBxIjHRgoQv
+\unrestrict OkZyjXrh1q9vFE9691lgRikDbYircrdJF0tSwOUbmDPteNJUvBXhpNu768OnOtv
 
